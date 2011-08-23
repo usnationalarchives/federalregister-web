@@ -1,0 +1,7 @@
+my_fr2:
+  host: localhost
+  port:3000
+
+fr2:
+  host: www.federalregister.gov
+  port:3000

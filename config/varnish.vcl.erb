@@ -1,0 +1,50 @@
+backend my_fr2 {
+  .host = "<%= config['my_fr2']['host'] %>";
+  .port = "<%= config['my_fr2']['port'] %>";
+}
+
+backend fr2 {
+  .host = "<%= config['fr2']['host'] %>";
+  .port = "<%= config['fr2']['port'] %>";
+}
+
+sub vcl_recv {
+    # Reject Non-RFC2616 or CONNECT or TRACE requests.
+    if (req.request != "GET" &&
+      req.request != "HEAD" &&
+      req.request != "PUT" &&
+      req.request != "POST" &&
+      req.request != "OPTIONS" &&
+      req.request != "DELETE") {
+        return (pipe);
+    }
+
+    # Pass my_fr2 requests to my_fr2
+    if (req.url ~ "^/clippings" ){
+        set req.backend = my_fr2;
+        set req.http.host = "<%= config['my_fr2']['hostname'] || config['my_fr2']['host']%>";
+    }
+    else {
+        set req.backend = fr2;
+        set req.http.host = "<%= config['fr2']['hostname'] || config['fr2']['host']%>";
+
+        # Ensure we don't get compressed output
+        remove req.http.Accept-Encoding;
+    }
+    
+    # either return lookup for caching or return pass for no caching
+    <% if config['cache'] %>
+      return (lookup);
+    <% else %>
+      return (pass);
+    <% end %>
+}
+
+sub vcl_fetch {
+    <% unless config['cache'] %>
+        unset beresp.http.Cache-Control;
+        unset beresp.http.Etag;
+    <% end %>
+    
+    esi;
+}

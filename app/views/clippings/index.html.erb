@@ -1,0 +1,20 @@
+<div class="title"><span>My Clippings</span></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Publication Date</th>
+      <th>Document Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clippings.each do |clipping| %>
+      <tr>
+        <td><%= link_to clipping.article.title, clipping.article.html_url %></td>
+        <td><%= clipping.article.publication_date %></td>
+        <td><%= clipping.article.type %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
