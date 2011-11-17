@@ -1,4 +1,7 @@
 MyFr2::Application.routes.draw do
+  devise_for :users
+  root :to => "clippings#index"
+
   resources :clippings
 
   # The priority is based upon order of creation:

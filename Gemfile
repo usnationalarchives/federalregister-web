@@ -5,8 +5,17 @@ gem 'rake',  '0.8.7'
 
 gem 'mysql2', '0.2.6'
 
-gem 'federal_register', '0.3.0'
+gem 'federal_register', '0.4.0'
 # gem 'federal_register', :path => '../federal_register'
+
+gem 'devise', '1.5.0'
+gem 'omniauth', '1.0.0'
+
+gem 'formtastic', '2.0.2'
+
+group :development do
+  gem 'mongrel', '1.1.5'
+end
 
 group :development, :test do 
   gem 'rspec-rails',                    '>= 2.5'
