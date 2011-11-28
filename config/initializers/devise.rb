@@ -1,3 +1,5 @@
+@secret_keys = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -197,6 +199,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  config.omniauth :facebook, @secret_keys["facebook"]["app_id"], @secret_keys["facebook"]["app_secret"], {:scope => 'email'}
+  config.omniauth :twitter, @secret_keys["twitter"]["consumer_key"], @secret_keys["twitter"]["consumer_secret"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

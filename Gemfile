@@ -10,6 +10,8 @@ gem 'federal_register', '0.4.0'
 
 gem 'devise', '1.5.0'
 gem 'omniauth', '1.0.0'
+gem 'omniauth-facebook', '1.0.0'
+gem 'omniauth-twitter', '0.0.6'
 
 gem 'formtastic', '2.0.2'
 
