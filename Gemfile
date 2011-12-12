@@ -9,9 +9,9 @@ gem 'federal_register', '0.4.0'
 # gem 'federal_register', :path => '../federal_register'
 
 gem 'devise', '1.5.0'
-gem 'omniauth', '1.0.0'
+gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook', '1.0.0'
-gem 'omniauth-twitter', '0.0.6'
+gem 'omniauth-twitter', '0.0.7'
 
 gem 'formtastic', '2.0.2'
 gem 'draper',     '0.9.5'

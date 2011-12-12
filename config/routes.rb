@@ -5,6 +5,8 @@ MyFr2::Application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
   end
 
+  match 'special/user_utils' => 'special#user_utils'
+
   root :to => "clippings#index"
 
   resources :clippings
