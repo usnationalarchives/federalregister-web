@@ -2,6 +2,6 @@
 db/*.sqlite3
 log/*.log
 tmp/
-config/database.yml
+config/*.yml
 .screenrc
 tags
