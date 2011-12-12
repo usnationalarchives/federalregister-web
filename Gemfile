@@ -14,6 +14,7 @@ gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-twitter', '0.0.6'
 
 gem 'formtastic', '2.0.2'
+gem 'draper',     '0.9.5'
 
 group :development do
   gem 'mongrel', '1.1.5'
