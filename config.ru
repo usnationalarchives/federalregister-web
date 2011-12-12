@@ -1,4 +1,8 @@
 # This file is used by Rack-based servers to start the application.
 
 require ::File.expand_path('../config/environment',  __FILE__)
-run MyFr2::Application
+
+map '/my' do
+  run MyFr2::Application
+end
+
