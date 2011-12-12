@@ -4,7 +4,8 @@ class Clipping < ActiveRecord::Base
   def self.with_preloaded_articles
     clippings = all
     document_numbers = clippings.map{|c| c.document_number}
-    articles = FederalRegister::Article.find_all(document_numbers)
+    articles = document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers) : [FederalRegister::Article.find(document_numbers.first)]
+
     clippings.map do |clipping|
       clipping.article = articles.find{|a| a.document_number == clipping.document_number}
       clipping
