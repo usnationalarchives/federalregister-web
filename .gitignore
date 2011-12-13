@@ -5,3 +5,4 @@ tmp/
 config/*.yml
 .screenrc
 tags
+.sass-cache/
