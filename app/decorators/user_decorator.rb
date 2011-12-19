@@ -2,9 +2,9 @@ class UserDecorator < ApplicationDecorator
   decorates :user
 
   def display_name
-    if user.first_name || user.last_name
-      [user.first_name, user.last_name].compact.join(' ')
-    elsif user.email
+    if user.try(:first_name) || user.try(:last_name)
+      [user.try(:first_name), user.try(:last_name)].compact.join(' ')
+    elsif user.try(:email)
       user.email
     end
   end

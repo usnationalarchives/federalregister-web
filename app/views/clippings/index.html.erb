@@ -1,19 +1,21 @@
 <div class="title"><span>My Clippings</span></div>
 
-<table>
+<table id="clippings">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Publication Date</th>
-      <th>Document Type</th>
+      <th id="doc_type_header">Document Type</th>
+      <th id="title_header">Title</th>
+      <th id="pub_date_header">Publication Date</th>
+      <th id="created_at_header">Clipped On</th
     </tr>
   </thead>
   <tbody>
     <% @clippings.each do |clipping| %>
       <tr>
-        <td><%= link_to clipping.article.title, clipping.article.html_url %></td>
-        <td><%= clipping.article.publication_date %></td>
-        <td><%= clipping.article.type %></td>
+        <td class="doc_type"><%= clipping.article.type %></td>
+        <td class="title"><%= link_to clipping.article.title, clipping.article.html_url %></td>
+        <td class="pub_date"><%= clipping.article.publication_date.to_formatted_s(:date) %></td>
+        <td class="created_at"><%= clipping.created_at.to_formatted_s(:date) if clipping.created_at %></td>
       </tr>
     <% end %>
   </tbody>

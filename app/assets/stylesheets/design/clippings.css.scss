@@ -1,0 +1,15 @@
+table#clippings { 
+  width: 960px;
+  }
+
+table#clippings th#doc_type_header,
+table#clippings td.doc_type,
+table#clippings th#pub_date_header,
+table#clippings td.pub_date,
+table#clippings th#created_at_header,
+table#clippings td.created_at {
+  text-align: center;
+  }
+table#clippings th#doc_type_header { width: 84px; }
+table#clippings th#pub_date_header { width: 90px; }
+table#clippings th#created_at_header { width: 60px; }
