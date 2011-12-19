@@ -1,0 +1,17 @@
+body#my_fr2 { background: none; }
+
+#user_utils {
+  text-align: right;
+  margin: 0 auto;
+  width: 940px;
+  height: 20px;
+  padding: 0 10px;
+  background-color: #AAA;
+  border-left: 1px solid #AAA;
+
+  background: -webkit-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(234,234,234,1) 50%,rgba(246,246,246,1) 53%); /* Chrome10+,Safari5.1+ */
+  -webkit-box-shadow: inset -1px -1px 3px 0 #AAA;
+  }
+#user_utils ul li {
+  display: inline-block;
+  }

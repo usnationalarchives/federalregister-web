@@ -17,12 +17,17 @@ gem 'formtastic', '2.0.2'
 gem 'draper',     '0.9.5'
 
 gem 'jquery-rails'
+gem 'sass-rails', " ~> 3.1.0"
+
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', " ~> 3.1.0"
+group :assets do 
   gem 'uglifier'
 end
+
+# group :staging do
+#   gem 'therubyracer'
+# end
 
 group :development do
   gem 'mongrel', '1.1.5'
