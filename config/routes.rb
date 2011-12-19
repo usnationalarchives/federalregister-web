@@ -6,6 +6,7 @@ MyFr2::Application.routes.draw do
   end
 
   match 'special/user_utils' => 'special#user_utils'
+  match 'special/shared_assets' => 'special#shared_assets'
 
   root :to => "clippings#index"
 
