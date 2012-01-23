@@ -10,7 +10,11 @@ MyFr2::Application.routes.draw do
 
   root :to => "clippings#index"
 
-  resources :clippings
+  resources :clippings do
+    collection do
+      post 'bulk_create'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

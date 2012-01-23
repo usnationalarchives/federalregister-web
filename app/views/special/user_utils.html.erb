@@ -1,11 +1,21 @@
+<% @document_numbers = user_signed_in? ? current_user.clippings.for_javascript : JSON.parse(cookies[:document_numbers]) %>
+
 <div id="user_utils">
-  <ul>
+  <div id="document-count-holder">
+    <%= link_to @document_numbers.size, clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" if @document_numbers %>
+    <%= link_to "0 (0)", '#', :id => 'document-in-folders-count', :class => "count_with_icon" if user_signed_in? %>
+  </div>
+  <ul id="user-nav">
   <% if user_signed_in? %>
     <li>Welcome, <%= current_user.display_name %></li>
     <li><%= link_to "Sign out", destroy_user_session_path %></li>
   <% else %>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
+    <li><%= link_to "Sign in", new_user_session_path, :id => "sign-in" %></li>
     <li><%= link_to "Sign up", new_user_registration_path %></li>
   <% end %>
   </ul>
 </div>
+
+<script type="text/javascript">
+  var stored_document_numbers = <%= @document_numbers ? @document_numbers.to_json.html_safe : '{}' %>;
+</script>

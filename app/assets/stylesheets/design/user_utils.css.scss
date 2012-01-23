@@ -3,15 +3,40 @@ body#my_fr2 { background: none; }
 #user_utils {
   text-align: right;
   margin: 0 auto;
-  width: 940px;
-  height: 20px;
-  padding: 0 10px;
-  background-color: #AAA;
-  border-left: 1px solid #AAA;
-
-  background: -webkit-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(234,234,234,1) 50%,rgba(246,246,246,1) 53%); /* Chrome10+,Safari5.1+ */
-  -webkit-box-shadow: inset -1px -1px 3px 0 #AAA;
+  width: 960px;
+  height: 22px;
+  padding: 5px 10px 0 0;
   }
+#user_utils #document-count-holder {
+  display: inline-block;
+  margin-right: 10px;
+  }
+#user_utils #user-nav {
+  margin: 0;
+  display: inline-block;
+  }
+
+#user_utils a.count_with_icon {
+  padding-right: 24px;
+  font-weight: bold;
+  color: #6E6E6E;
+  padding-top: 1px;
+  }
+#user_utils a#document-count {
+  background: image-url('/my/assets/user_utils/icon_flag_active.png') 12px -1px no-repeat;
+  }
+#user_utils a#document-count.alert {
+  background: image-url('/my/assets/user_utils/icon_flag_alert.png') 12px -1px no-repeat;
+  }
+#user_utils a#document-in-folders-count {
+  background: image-url('/my/assets/user_utils/icon_folder_active.png') 27px -1px no-repeat;
+  margin-left: 6px;
+  }
+#user_utils a#document-count:hover {
+  color: #B88659;
+  }
+
 #user_utils ul li {
   display: inline-block;
+  padding-right: 5px;
   }

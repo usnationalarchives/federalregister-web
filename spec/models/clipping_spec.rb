@@ -43,4 +43,18 @@ describe Clipping do
       clippings.should have(1).item
     end
   end
+
+  describe "#all_preloaded_from_cookie" do
+    it "returns clippings with articles" do
+      # clipping_1 = FactoryGirl.create(:clipping, :document_number => "2011-1234")
+      # clipping_2 = FactoryGirl.create(:clipping, :document_number => "2011-9876")
+
+      @clippings = Clipping.all_preloaded_from_cookie({"2011-1234" => [0], "2011-9876" => [0]})
+      @clippings.size.should eql(2)
+      @clippings.first.article.should_not be(nil)
+      @clippings.first.article.type.should eql("Notice")
+      @clippings.first.article.publication_date.should eql(Date.parse('Mon, 25 Apr 2011'))
+    end
+  end
+
 end

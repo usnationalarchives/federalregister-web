@@ -1,5 +1,14 @@
 <div class="title"><span>My Clippings</span></div>
 
+<% unless user_signed_in? %>
+  <div class="warning">
+    <p>
+      These clippings are not permanently saved. 
+      Please <%= link_to 'sign in', new_session_path %> or 
+      <%= link_to 'sign up', new_user_registration_path %> to save them permanently.
+  </div>
+<% end %>
+
 <table id="clippings">
   <thead>
     <tr>
@@ -15,8 +24,25 @@
         <td class="doc_type"><%= clipping.article.type %></td>
         <td class="title"><%= link_to clipping.article.title, clipping.article.html_url %></td>
         <td class="pub_date"><%= clipping.article.publication_date.to_formatted_s(:date) %></td>
-        <td class="created_at"><%= clipping.created_at.to_formatted_s(:date) if clipping.created_at %></td>
+        <td class="created_at">
+          <%= if clipping.created_at
+                clipping.created_at.to_formatted_s(:date)
+              else
+                "<span class='unsaved'>Unsaved</span>".html_safe
+              end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script type="text/x-handlebars-template" id="clipping-row-template">
+  {{#each clippings}}
+  <tr>
+    <td class="doc_type">{{doc_type}}</td>
+    <td class="title"><a href="{{{url}}}">{{title}}</a></td>
+    <td class="pub_date">{{pub_date}}</td>
+    <td class="created_at">{{created_at}}</td>
+  </tr>
+  {{/each}}
+</script>

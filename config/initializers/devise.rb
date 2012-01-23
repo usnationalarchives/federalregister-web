@@ -1,5 +1,12 @@
 @secret_keys = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
 
+Warden::Manager.after_authentication do |user, auth, opts|
+  if auth.cookies[:document_numbers]
+    Clipping.create_from_cookie( auth.cookies[:document_numbers], user )
+    auth.cookies[:document_numbers] = nil
+  end
+end
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -210,4 +217,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
 end
+
