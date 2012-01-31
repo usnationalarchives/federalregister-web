@@ -19,6 +19,8 @@ gem 'draper',     '0.9.5'
 gem 'jquery-rails'
 gem 'sass-rails', " ~> 3.1.0"
 
+gem 'userstamp', '2.0.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
@@ -36,7 +38,7 @@ end
 group :development, :test do 
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
-  gem 'spork',                          '~> 0.9.0.rc'
+  gem 'spork',                          '~> 0.8.5'
   gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
 end

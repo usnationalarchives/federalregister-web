@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  model_stamper
+
   has_many :authentications
   has_many :clippings
 
