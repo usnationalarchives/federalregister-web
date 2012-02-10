@@ -1,5 +1,7 @@
 class Clipping < ActiveRecord::Base
   belongs_to :user
+  belongs_to :folder
+
   validates_presence_of :document_number
 
   def self.with_preloaded_articles
@@ -11,6 +13,8 @@ class Clipping < ActiveRecord::Base
   end
 
   def self.create_from_cookie(document_numbers, user)
+    return unless document_numbers.present?
+
     document_numbers = JSON.parse(document_numbers)
     document_numbers.each do |document_number, folder|
       self.persist_document(document_number, user)
@@ -37,17 +41,26 @@ class Clipping < ActiveRecord::Base
 
   def self.for_javascript
     clippings = all
-    clippings.map{|c| {c.document_number => [0]} }
+    clippings.group_by(&:document_number).map do |document_number, clippings| 
+      folder_array = clippings.map{|c| c.folder_id.present? ? c.folder_id : 0}.uniq
+      { document_number => folder_array }
+    end
   end
 
   def self.persist_document(document_number, user)
     clipping = Clipping.find_by_document_number_and_user_id(document_number, user.id)
-    unless clipping
+    unless clipping.present?
       clipping = Clipping.new(:document_number => document_number,
                                :user_id         => user.id)
       clipping.save
     end
     clipping
+  end
+
+  # this is to ensure users can only find documents they have created
+  # user should almost always be the current_user
+  def self.find_by_user_and_id(user, id)
+    scoped(:conditions => {:user_id => user.id, :id => id}).first
   end
 
   def article

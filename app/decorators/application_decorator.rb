@@ -22,7 +22,7 @@ class ApplicationDecorator < Draper::Base
   end
 
   def wrap_in_dd(items)
-    items.map{|item| template.content_tag(:dd, item) }.join("\n")
+    items.map{|item| content_tag(:dd, item) }.join("\n")
   end
 
 end

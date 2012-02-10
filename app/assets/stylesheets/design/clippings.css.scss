@@ -123,9 +123,9 @@
   margin-left: 7px;
   }
 
-/***********************
-/* ADD TO FOLDER MENU
-***********************/
+/************************************
+/* ADD TO FOLDER / JUMP TO FOLDER MENU
+************************************/
 #clipping-actions {
   position: relative;
   height: 30px;
@@ -143,37 +143,56 @@
   -moz-border-radius-topleft: 6px;
   }
 
-#clipping-actions #add-to-folder {
+#clipping-actions #add-to-folder,
+#clipping-actions #jump-to-folder {
   width: 150px;
-  position: absolute;
-  right: 0px;
+  position: absolute; 
   margin: 5px 15px 0 0;
   font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
+#clipping-actions #add-to-folder { right: 0px; }
+#clipping-actions #jump-to-folder { right: 170px; }
 
-#clipping-actions #add-to-folder .button {
+
+#clipping-actions #add-to-folder .button,
+#clipping-actions #jump-to-folder .button {
   position: relative;
   top: 0px;
-  left: 15px;
-  padding: 4px 15px 0 5px;
-  background: #FFF url("menu_arrow_down.png") 119px 6px no-repeat;
+  left: 10px;
+  width: 121px;
+  padding: 4px 15px 0 12px;
+
+  background: white url("menu_arrow_down.png") 125px 6px no-repeat;
   border: #CCC 1px solid;
-  padding: 4px 15px 0 5px;
   line-height: 1.2em;
   }
-#clipping-actions #add-to-folder .button:hover {
-  background: #FFF url("menu_arrow_down_active.png") 119px 6px no-repeat;
+#clipping-actions #add-to-folder:hover .button,
+#clipping-actions #jump-to-folder:hover .button {
+  background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
   color: #B88659;
   }
-#clipping-actions #add-to-folder .button span.icon {
+#clipping-actions #add-to-folder .button span.icon,
+#clipping-actions #jump-to-folder .button span.icon {
   width: 18px;
   height: 15px;
-  background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
   display: inline-block;
   position: relative;
   top: -3px;
   margin: 0;
   }
+#clipping-actions #add-to-folder .button span.icon {
+  background: url(user_utils/icon_folder.png)0 0 no-repeat;
+  }
+#clipping-actions #add-to-folder:hover .button span.icon {
+  background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
+  }
+#clipping-actions #jump-to-folder .button span.icon {
+  background: url(user_utils/icon_folder_open.png)0 0 no-repeat;
+  }
+#clipping-actions #jump-to-folder:hover .button span.icon {
+  background: url(user_utils/icon_folder_open_active.png)0 0 no-repeat;
+  }
+
 #clipping-actions div.menu {
   display: none;
   position: relative;
@@ -182,7 +201,7 @@
   width: 150px;
   right: -4px;
   top: 3px;
-  padding: 5px;
+  padding: 0 5px 5px 5px;
 
   background-color: #EEE;
   border: #CCC 1px solid;
@@ -209,17 +228,24 @@
   }
 #clipping-actions div.menu li:last-child { border-bottom: none; }
 #clipping-actions div.menu li#new-folder {
-  background: url(icon_badge_add.png) 18px 4px no-repeat;
+  background: url(icon_badge_add.png) 36px 4px no-repeat;
   padding-left: 20px;
   text-align: center;
   }
 #clipping-actions div.menu li#new-folder:hover {
-  background: url(icon_badge_add_active.png) 18px 4px no-repeat;
+  background: url(icon_badge_add_active.png) 36px 4px no-repeat;
   }
 #clipping-actions div.menu li:hover {
   background-color: #EBF4F7;
   color: #B88659;
 }
+
+#clipping-actions div.menu li a {
+  color: #6E6E6E;
+  font-weight: bold;
+  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+#clipping-actions div.menu li:hover a { color: #B88659; }
 
 #clipping-actions div.menu span.document_count {
   float: right;

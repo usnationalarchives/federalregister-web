@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118185452) do
+ActiveRecord::Schema.define(:version => 20120130191154) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(:version => 20111118185452) do
     t.integer  "user_id"
     t.string   "document_number"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "folder_id"
+  end
+
+  create_table "folders", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

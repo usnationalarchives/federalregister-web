@@ -1,48 +1,52 @@
-<div class="title"><span>My Clippings</span></div>
+<div class="title"><span><%= @folder.name %> (<%= @clippings.size%>)</span></div>
 
-<% unless user_signed_in? %>
-  <div class="warning">
-    <p>
-      These clippings are not permanently saved. 
-      Please <%= link_to 'sign in', new_session_path %> or 
-      <%= link_to 'sign up', new_user_registration_path %> to save them permanently.
-  </div>
+<%= render :partial => "clippings/not_logged_in_warning" unless user_signed_in? %>
+
+<%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'add-to-folder'} do |f| %>
+  <% if user_signed_in? %>
+    <div id="clipping-actions">
+      <%= render :partial => "clippings/jump_to_folder_menu", :locals => {:folders => @folders} %>
+      <%= render :partial => "clippings/add_to_folder_menu", :locals => {:folders => @folders, :current_folder => @folder} %>
+    </div>
+  <% end %>
+  <ul id="clippings">
+    <% @clippings.each do |clipping| %>
+      <li>
+        <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+        <div class="document_data">
+          <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
+          <dl class="metadata" id="col-1">
+            <dt class="pub_date">Publication Date:</dt>
+            <dd><%= clipping.article.publication_date %></dd>
+
+            <dt class="fr_citation">Citation:</dt>
+            <dd><%= clipping.article.fr_citation %></dd>
+
+            <dt class="pages">Pages:</dt>
+            <dd><%= clipping.article.pages %></dd>
+          </dl>
+          <dl class="metadata" id="col-2">
+            <%= clipping.article.agency_dt_dd %>
+          </dl>
+          <dl class="metadata" id="col-3">
+            <%= clipping.article.docket_dt_dd %>
+          </dl>
+        </div>
+        <div class="clipping_data">
+          <dl class="metadata">
+            <dt class="created_at">Clipped at:</dt>
+            <dd><%= clipping.clipped_at %></dd>
+          </dl> 
+        </div>
+        <% if user_signed_in? %>
+          <div class="add_to_folder_pane">
+            <div class="left_side"></div>
+            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, {}, :class => "clipping_id" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
-<table id="clippings">
-  <thead>
-    <tr>
-      <th id="doc_type_header">Document Type</th>
-      <th id="title_header">Title</th>
-      <th id="pub_date_header">Publication Date</th>
-      <th id="created_at_header">Clipped On</th
-    </tr>
-  </thead>
-  <tbody>
-    <% @clippings.each do |clipping| %>
-      <tr>
-        <td class="doc_type"><%= clipping.article.type %></td>
-        <td class="title"><%= link_to clipping.article.title, clipping.article.html_url %></td>
-        <td class="pub_date"><%= clipping.article.publication_date.to_formatted_s(:date) %></td>
-        <td class="created_at">
-          <%= if clipping.created_at
-                clipping.created_at.to_formatted_s(:date)
-              else
-                "<span class='unsaved'>Unsaved</span>".html_safe
-              end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<script type="text/x-handlebars-template" id="clipping-row-template">
-  {{#each clippings}}
-  <tr>
-    <td class="doc_type">{{doc_type}}</td>
-    <td class="title"><a href="{{{url}}}">{{title}}</a></td>
-    <td class="pub_date">{{pub_date}}</td>
-    <td class="created_at">{{created_at}}</td>
-  </tr>
-  {{/each}}
-</script>
