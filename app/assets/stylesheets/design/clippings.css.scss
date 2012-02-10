@@ -1,15 +1,226 @@
-table#clippings { 
-  width: 960px;
+#clippings > li { 
+  width: 900px;
+
+  list-style: none;
+  padding: 10px;
+  position: relative;
+}
+
+#clippings li {
+  background-color: #F5F8F9;
+  margin-bottom: 10px;
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  border: #B3C2CF 1px solid;
+}
+
+#clippings div.rule_type {
+  width: 49px;
+  height: 49px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  z-index: 500;
+  margin-right: 10px;
+  margin-left: 4px;
+}
+#clippings div.rule_type img { position: relative; }
+#clippings div.rule_type.doc_presdocu img { top: -2px; }
+#clippings div.rule_type.doc_rule img { top: -467px; }
+#clippings div.rule_type.doc_notice img { top: -933px; }
+#clippings div.rule_type.doc_prorule img { top: -1398px; }
+
+.document_data, .clipping_data { 
+  display: inline-block;
+  vertical-align: top;
+  }
+.document_data { width: 675px; }
+
+#clippings .title { 
+  background: none;
+
+  width: 650px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.3em;
+  text-align: left;
+  line-height: 1.3em;
+
+  clear: none;
   }
 
-table#clippings th#doc_type_header,
-table#clippings td.doc_type,
-table#clippings th#pub_date_header,
-table#clippings td.pub_date,
-table#clippings th#created_at_header,
-table#clippings td.created_at {
+#clippings dl#col-1 { width: 100px; }
+#clippings dl#col-2 { width: 200px; }
+#clippings dl#col-3 { width: 250px; }
+
+#clippings dl.metadata { 
+  font-size: 1em;
+  margin: 0 20px 0 0;
+  float: left;
+  }
+#clippings dl.metadata dt {
+  color: #6E6E6E;
+  height: 19px;
+  }
+#clippings dl.metadata dd {
+  margin-left: 1em;
+  margin-bottom: 3px;
+  line-height: 1em;
+  padding-left: 10px;
+  text-indent: -10px;
+  }
+#clippings dl.metadata dd:last { margin-bottom: none; }
+
+#clippings div.clipping_data {
+  border-left: 1px dashed #CCC;
+  padding-left: 10px;
+  }
+
+#clippings div.add_to_folder_pane {
+  width: 27px;
+
+  z-index: -100;
+  position: absolute;
+  left: 917px;
+  top: -1px;
+
+  margin-bottom: 10px;
+  padding: 0 5px 0 8px;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+  border-left: #B3C2CF 1px solid;
+
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-bottomright: 6px;
+  }
+#clippings div.add_to_folder_pane .left_side {
+  width: 6px;
+  background-color: #F5F8F9;
+  border: #B3C2CF 1px solid;
+  height: 100%;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-bottomright: 6px;
+  top: -1px;
+  position: absolute;
+  left: -4px;
+  border-left: none;
+  margin: 0;
+  }
+#clippings li div.add_to_folder_pane input {
+  margin-left: 7px;
+  }
+
+/***********************
+/* ADD TO FOLDER MENU
+***********************/
+#clipping-actions {
+  position: relative;
+  height: 30px;
+  margin-bottom: 10px;
+  z-index: 1001;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-topleft: 6px;
+  }
+
+#clipping-actions #add-to-folder {
+  width: 150px;
+  position: absolute;
+  right: 0px;
+  margin: 5px 15px 0 0;
+  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+
+#clipping-actions #add-to-folder .button {
+  position: relative;
+  top: 0px;
+  left: 15px;
+  padding: 4px 15px 0 5px;
+  background: #FFF url("menu_arrow_down.png") 119px 6px no-repeat;
+  border: #CCC 1px solid;
+  padding: 4px 15px 0 5px;
+  line-height: 1.2em;
+  }
+#clipping-actions #add-to-folder .button:hover {
+  background: #FFF url("menu_arrow_down_active.png") 119px 6px no-repeat;
+  color: #B88659;
+  }
+#clipping-actions #add-to-folder .button span.icon {
+  width: 18px;
+  height: 15px;
+  background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  margin: 0;
+  }
+#clipping-actions div.menu {
+  display: none;
+  position: relative;
+  z-index: 1000;
+
+  width: 150px;
+  right: -4px;
+  top: 3px;
+  padding: 5px;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+  border-top: none;
+
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  }
+#clipping-actions div.menu ul {
+  background-color: #FFF;
+  margin: 0;
+  border: #DDD 1px solid;
+}
+#clipping-actions div.menu li {
+  padding: 1px 5px;
+  border-bottom: #CCC 1px dashed;
+  margin: 0;
+  color: #6E6E6E;
+  font-weight: bold;
+  }
+#clipping-actions div.menu li:last-child { border-bottom: none; }
+#clipping-actions div.menu li#new-folder {
+  background: url(icon_badge_add.png) 18px 4px no-repeat;
+  padding-left: 20px;
   text-align: center;
   }
-table#clippings th#doc_type_header { width: 84px; }
-table#clippings th#pub_date_header { width: 90px; }
-table#clippings th#created_at_header { width: 60px; }
+#clipping-actions div.menu li#new-folder:hover {
+  background: url(icon_badge_add_active.png) 18px 4px no-repeat;
+  }
+#clipping-actions div.menu li:hover {
+  background-color: #EBF4F7;
+  color: #B88659;
+}
+
+#clipping-actions div.menu span.document_count {
+  float: right;
+  }

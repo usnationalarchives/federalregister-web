@@ -1,4 +1,6 @@
 class ApplicationDecorator < Draper::Base
+  include ActionView::Helpers::TagHelper
+
  def self.decorate_methods(*method_names)
    options = method_names.extract_options!
    decorator = options.delete(:with) || raise("Must pass a decorator class using :with")
@@ -10,4 +12,17 @@ class ApplicationDecorator < Draper::Base
      end
    end
  end
+
+  #############
+  # UTILITIES #
+  #############
+
+  def pluralize_without_count(count, word, plural=nil)
+    count == 1 ? word : (plural ? plural : word.pluralize)
+  end
+
+  def wrap_in_dd(items)
+    items.map{|item| template.content_tag(:dd, item) }.join("\n")
+  end
+
 end

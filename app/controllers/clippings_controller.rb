@@ -12,6 +12,8 @@ class ClippingsController < ApplicationController
     else
       @clippings = []
     end
+    @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user.model}).all ) if user_signed_in?
+    @clippings = ClippingDecorator.decorate(@clippings)
   end
 
   def create
