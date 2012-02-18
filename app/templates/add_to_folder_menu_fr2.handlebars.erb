@@ -1,0 +1,25 @@
+<div id="add-to-folder">
+  <div class="button">
+    <span class="icon"></span>
+    Add to folder
+  </div>
+  <div class="menu">
+    <ul>
+      <li id="new-folder">New folder</li>
+      {{#each folders}}
+        {{#ifInFolder ../current_document_number}}
+          <li class="in_folder" data-slug="{{this.slug}}">
+        {{else}}
+          <li class="not_in_folder" data-slug="{{this.slug}}">
+        {{/ifInFolder}}
+            <a href="">
+              <span class="name">{{this.name}}</span>
+              <span class="icon"></span>
+              <span class="loader"></span>
+            </a>
+          </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+

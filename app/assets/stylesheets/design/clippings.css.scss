@@ -238,7 +238,9 @@
 #clipping-actions div.menu li:hover {
   background-color: #EBF4F7;
   color: #B88659;
+  cursor: pointer;
 }
+
 
 #clipping-actions div.menu li a {
   color: #6E6E6E;
@@ -247,6 +249,7 @@
   }
 #clipping-actions div.menu li:hover a { color: #B88659; }
 
-#clipping-actions div.menu span.document_count {
-  float: right;
-  }
+#clipping-actions div.menu span              { display: inline-block; }
+#clipping-actions div.menu span.name         { width: 108px; }
+#clipping-actions div.menu span.document_count { float: right; }
+

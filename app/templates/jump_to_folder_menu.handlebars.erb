@@ -1,0 +1,18 @@
+<div id="jump-to-folder">
+  <div class="button">
+    <span class="icon"></span>
+    View Items In
+  </div>
+  <div class="menu">
+    <ul>
+      {{#each folders}}
+        <li data-slug="{{this.slug}}">
+          <a href="/my/folders/{{this.slug}}">
+            <span class="name">{{this.name}}</span>
+            <span class="document_count">({{this.doc_count}})</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

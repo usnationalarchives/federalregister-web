@@ -38,5 +38,26 @@ $(document).ready(function () {
     update_user_clipped_document_count( stored_document_numbers );
   });
 
+  /* Add to Folder Menu */
+  if ( $("#add-to-folder-menu-fr2-template") ) {
+    add_to_folder_menu_fr2_template = Handlebars.compile( $("#add-to-folder-menu-fr2-template").html() );
+  }
+
+  user_folder_details.current_document_number = current_document_number;
+
+  $('div.share li.clip_for_later').append($('<div>').addClass("fr2").prop('id', 'clipping-actions').append( add_to_folder_menu_fr2_template(user_folder_details) ) );
+
+  $('#clipping-actions.fr2 #add-to-folder').live('hover', function() {
+    $(this).find('.menu').toggle();
+  });
+  
+  $('#clipping-actions.fr2 #add-to-folder .menu li').live('click', function(event) { event.preventDefault(); });
+
+  $('#clipping-actions.fr2 #add-to-folder .menu li.not_in_folder').live('click', function(event) {
+    event.preventDefault();
+    $(this).find('.icon').toggle();
+    $(this).find('.loader').toggle();
+  });
+
 });
 

@@ -16,6 +16,7 @@ MyFr2::Application.routes.draw do
     end
   end
 
+  match 'folders/my-clippings' => 'clippings#index'
   resources :folders
   resources :folder_clippings
 

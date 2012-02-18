@@ -56,12 +56,22 @@ $(document).ready(function () {
     }
   });
 
-  /* Add to Folder Menu */
-  $('#clipping-actions #add-to-folder').on('hover', function() {
-    $(this).find('.menu').toggle();
-  });
-  $('#clipping-actions #jump-to-folder').on('hover', function() {
+  /* Add/Jump to Folder Menu */
+  if ( $("#jump-to-folder-menu-template") ) {
+    jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
+  }
+  $('#clipping-actions').append( jump_to_folder_menu_template(user_folder_details) );
+  
+  if ( $("#add-to-folder-menu-template") ) {
+    add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
+  }
+  $('#clipping-actions').append( add_to_folder_menu_template(user_folder_details) );
+
+  $('#clipping-actions #jump-to-folder').live('hover', function() {
     $(this).find('.menu').toggle();
   });
 
+  $('#clipping-actions #add-to-folder').live('hover', function() {
+    $(this).find('.menu').toggle();
+  });
 });

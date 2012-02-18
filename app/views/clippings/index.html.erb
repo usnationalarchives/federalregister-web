@@ -5,8 +5,10 @@
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'add-to-folder'} do |f| %>
   <% if user_signed_in? %>
     <div id="clipping-actions">
-      <%= render :partial => "clippings/jump_to_folder_menu", :locals => {:folders => @folders} %>
-      <%= render :partial => "clippings/add_to_folder_menu", :locals => {:folders => @folders, :current_folder => @folder} %>
+      <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
+      <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
+      <%#= render :partial => "clippings/jump_to_folder_menu", :locals => {:folders => @folders} %>
+      <%#= render :partial => "clippings/add_to_folder_menu", :locals => {:folders => @folders, :current_folder => @folder} %>
     </div>
   <% end %>
   <ul id="clippings">
@@ -41,7 +43,7 @@
         <% if user_signed_in? %>
           <div class="add_to_folder_pane">
             <div class="left_side"></div>
-            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, {}, :class => "clipping_id" %>
+            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" %>
           </div>
         <% end %>
       </li>

@@ -1,0 +1,21 @@
+<div id="add-to-folder">
+  <div class="button">
+    <span class="icon"></span>
+    Add to folder
+  </div>
+  <div class="menu">
+    <ul>
+      <li id="new-folder">New folder</li>
+      {{#each folders}}
+        {{#unlessMyClipboard}}
+        <li data-slug="{{this.slug}}">
+          <a href="">
+            <span class="name">{{this.name}}</span>
+            <span class="document_count">({{this.doc_count}})</span>
+          </a>
+        </li>
+        {{/unlessMyClipboard}}
+      {{/each}}
+    </ul>
+  </div>
+</div>

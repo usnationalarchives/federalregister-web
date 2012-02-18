@@ -42,7 +42,7 @@ class Clipping < ActiveRecord::Base
   def self.for_javascript
     clippings = all
     clippings.group_by(&:document_number).map do |document_number, clippings| 
-      folder_array = clippings.map{|c| c.folder_id.present? ? c.folder_id : 0}.uniq
+      folder_array = clippings.map{|c| c.folder.present? ? c.folder.slug : "my-clippings"}.uniq
       { document_number => folder_array }
     end
   end

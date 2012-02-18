@@ -3,8 +3,14 @@ class Folder < ApplicationModel
   belongs_to :user, :foreign_key => :creator_id 
 
   validates_presence_of :name
+  validates_uniqueness_of :name, :scope => :creator_id
+  validate :slug_is_not_reserved
 
-  before_save :generate_slug
+  before_validation :generate_slug
+
+  def self.for_current_user
+    scoped(:conditions => {:creator_id => User.stamper}).all
+  end
 
   def to_param
     slug
@@ -21,5 +27,14 @@ class Folder < ApplicationModel
     clean_name = name.downcase.gsub(/[^a-z0-9& -]+/,'').gsub(/&/, 'and')
     slug = view_helper.truncate_words(clean_name, :length => 100, :omission => '')
     self.slug = slug.gsub(/ /,'-')
+  end
+
+  def self.slug_is_not_reserved
+    if self.slug == "my-clippings"
+      errors.add_to_base("Sorry, a folder can not be named 'My Clippings'")
+      return false
+    else
+      return true
+    end
   end
 end
