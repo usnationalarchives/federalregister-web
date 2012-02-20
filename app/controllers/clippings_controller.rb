@@ -20,7 +20,7 @@ class ClippingsController < ApplicationController
   def create
     if user_signed_in?
       # create a clipping unless one already exists for this document
-      Clipping.persist_document(params[:entry][:document_number], current_user)
+      Clipping.persist_document(current_user, params[:entry][:document_number], params[:entry][:folder] )
     else
       # stash the document id in the session if the user isn't logged in
       add_document_id_to_session( params[:entry][:document_number] )

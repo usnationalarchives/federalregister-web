@@ -47,11 +47,18 @@ class Clipping < ActiveRecord::Base
     end
   end
 
-  def self.persist_document(document_number, user)
-    clipping = Clipping.find_by_document_number_and_user_id(document_number, user.id)
+  def self.persist_document(user, document_number, folder_name)
+    if folder_name == 'my-clippings'
+      folder = nil
+      clipping = Clipping.find_by_document_number_and_user_id(document_number, user.id)
+    else
+      folder = Folder.find_by_creator_id_and_slug(user.id, folder_name)
+      clipping = Clipping.find_by_document_number_and_user_id_and_folder_id(document_number, user.id, folder.id)
+    end
     unless clipping.present?
       clipping = Clipping.new(:document_number => document_number,
-                               :user_id         => user.id)
+                              :user_id         => user.id,
+                              :folder          => folder)
       clipping.save
     end
     clipping

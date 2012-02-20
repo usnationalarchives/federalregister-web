@@ -1,0 +1,273 @@
+/**********************************************
+/* MYFR2 - ADD TO FOLDER / JUMP TO FOLDER MENU
+***********************************************/
+#clipping-actions {
+  position: relative;
+  height: 30px;
+  margin-bottom: 10px;
+  z-index: 1001;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-topleft: 6px;
+  }
+
+#clipping-actions #add-to-folder,
+#clipping-actions #jump-to-folder {
+  width: 150px;
+  position: absolute; 
+  margin: 5px 15px 0 0;
+  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+#clipping-actions #add-to-folder { right: 0px; }
+#clipping-actions #jump-to-folder { right: 170px; }
+
+
+#clipping-actions #add-to-folder .button,
+#clipping-actions #jump-to-folder .button {
+  position: relative;
+  top: 0px;
+  left: 10px;
+  width: 121px;
+  padding: 4px 15px 0 12px;
+
+  background: white url("menu_arrow_down.png") 125px 6px no-repeat;
+  border: #CCC 1px solid;
+  line-height: 1.2em;
+  z-index: 1001;
+  }
+#clipping-actions #add-to-folder:hover .button,
+#clipping-actions #jump-to-folder:hover .button {
+  background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
+  color: #B88659;
+  top: -1px;
+  padding-bottom: 6px;
+
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  border-bottom: none;
+  }
+#clipping-actions #add-to-folder .button span.icon,
+#clipping-actions #jump-to-folder .button span.icon {
+  width: 18px;
+  height: 15px;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  margin: 0;
+  }
+#clipping-actions #add-to-folder .button span.icon {
+  background: url(user_utils/icon_folder.png)0 0 no-repeat;
+  }
+#clipping-actions #add-to-folder:hover .button span.icon {
+  background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
+  }
+#clipping-actions #jump-to-folder .button span.icon {
+  background: url(user_utils/icon_folder_open.png)0 0 no-repeat;
+  }
+#clipping-actions #jump-to-folder:hover .button span.icon {
+  background: url(user_utils/icon_folder_open_active.png)0 0 no-repeat;
+  }
+
+#clipping-actions div.menu {
+  display: none;
+  position: relative;
+  z-index: 1000;
+
+  width: 200px;
+  right: 46px;
+  top: -2px;
+  padding: 0 5px 5px 5px;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+  border-top: none;
+
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  }
+#clipping-actions #jump-to-folder:hover .menu ul, 
+#clipping-actions #add-to-folder:hover .menu ul {
+  border-top-left-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+
+  border-bottom-left-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomleft: 6px;
+
+  border-bottom-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  }
+#clipping-actions div.menu ul {
+  background-color: #FFF;
+  margin: 0;
+  border: #DDD 1px solid;
+}
+#clipping-actions div.menu li {
+  padding: 1px 5px;
+  border-bottom: #CCC 1px dashed;
+  margin: 0;
+  color: #6E6E6E;
+  font-weight: bold;
+  position: relative;
+  }
+#clipping-actions div.menu li:last-child { border-bottom: none; }
+#clipping-actions div.menu li#new-folder {
+  background: url(icon_badge_add.png) 61px 4px no-repeat;
+  padding-left: 20px;
+  text-align: center;
+  }
+#clipping-actions div.menu li#new-folder:hover {
+  background: url(icon_badge_add_active.png) 61px 4px no-repeat;
+  }
+#clipping-actions div.menu li:hover {
+  background-color: #EBF4F7;
+  color: #B88659;
+  cursor: pointer;
+}
+
+
+#clipping-actions div.menu li a {
+  color: #6E6E6E;
+  font-weight: bold;
+  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+#clipping-actions div.menu li:hover a { color: #B88659; }
+
+#clipping-actions div.menu a span              { display: inline-block; }
+#clipping-actions div.menu a span.name         { width: 158px; }
+#clipping-actions div.menu a span.document_count { float: right; }
+
+
+
+/**********************************************
+/* FR2 - ADD TO FOLDER MENU
+***********************************************/
+#clipping-actions.fr2 { 
+  background-color: #FFF;
+  border: none;
+  position: relative;
+  margin-right: 0px;
+}
+#clipping-actions.fr2 #add-to-folder {
+  width: 40px;
+  position: relative;
+  margin: 0;
+  }
+#clipping-actions.fr2 #add-to-folder .button {
+  left: 0;
+  top: -2px;
+  width: 40px;
+  height: 27px;
+
+  padding: 0;
+  padding-top: 2px;
+  padding-top: 5px;
+  padding-left: 2px;
+
+  border: none;
+  text-indent: -9999px;
+  background: white url("menu_arrow_down.png") 28px 9px no-repeat;
+
+  float: right;
+  z-index: 100;
+  }
+#clipping-actions.fr2 #add-to-folder:hover .button { 
+  top: -3px;
+  left: 1px;
+
+  background: #EEE url("menu_arrow_down_active.png") 28px 9px no-repeat;
+
+  border: #CCC 1px solid;
+  border-bottom: none;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  }
+
+#clipping-actions.fr2 #add-to-folder .button span.icon {
+  display: block;
+  height: 30px;
+  width: 30px;
+  background: url(icon_add_to_clipboard.png) 0 0 no-repeat;
+  }
+#clipping-actions.fr2 #add-to-folder:hover .button span.icon {
+  background: url(icon_add_to_clipboard_active.png) 0 0 no-repeat;
+  }
+#clipping-actions.fr2 #add-to-folder .menu {
+  clear: both;
+  top: -4px;
+  padding: 5px 7px 5px 5px;
+  right: 173px;
+  border-top: solid 1px #CCC;
+  z-index: 1;
+
+  border-top-left-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  }
+#clipping-actions.fr2 div.menu ul { 
+  width: 200px;
+  position: relative;
+
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  }
+#clipping-actions.fr2 div.menu li { 
+  float: none;
+  display: list-item;
+  clear: both;
+  }
+
+#clipping-actions.fr2 div.menu li.in_folder:hover a {
+  color: #6E6E6E;
+  }
+  
+#clipping-actions.fr2 div.menu a span.name { white-space: normal; }
+
+#clipping-actions.fr2 div.menu a span.icon,
+#clipping-actions.fr2 div.menu a span.loader {
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  right: 3px;
+  position: absolute;
+  margin-right: 0;
+  }
+
+#clipping-actions.fr2 div.menu li.in_folder { cursor: default; }
+
+#clipping-actions.fr2 div.menu li.in_folder a span.icon {
+  background: url(icon_badge_checked_green.png) 0 0 no-repeat;
+  }
+#clipping-actions.fr2 div.menu li.not_in_folder a span.icon {
+  background: url(icon_badge_checked.png) 0 0 no-repeat;
+  }
+#clipping-actions.fr2 div.menu li.not_in_folder:hover a span.icon {
+  background: url(icon_badge_checked_active.png) 0 0 no-repeat;
+  }
+
+#clipping-actions.fr2 div.menu li.not_in_folder a span.loader {
+  display: none;
+  background: url(orange_loader.gif) 0 0 no-repeat;
+  }

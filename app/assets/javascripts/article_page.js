@@ -4,20 +4,38 @@ function document_number_present(document_number, stored_document_numbers) {
   }).length !== 0;
 }
 
+function add_item_to_folder(el) {
+  el.find('.icon').toggle();
+  el.find('.loader').toggle();
+  
+  form = $('form.add_to_clipboard');
+  form_data = form.serializeArray();
+  form_data.push( {name: "entry[folder]", value: el.data('slug')} );
+
+  $.ajax({
+    url: form.prop('action'),
+    data: form_data,
+    type: "POST"
+  }).success(function(response) {
+      el.removeClass('not_in_folder').addClass('in_folder');
+    })
+    .complete(function(response) {
+      el.find('.loader').toggle();
+      el.find('.icon').toggle();
+    });
+
+  /* visually mark the icon as in at least one folder */
+  /* and increment the document count                 */
+  $('div.share a.flag_for_later').addClass('flagged');
+  update_user_clipped_document_count( stored_document_numbers );
+}
+
+
 $(document).ready(function () {
   $('form.add_to_clipboard').hide();
 
   $('form.add_to_clipboard').bind('submit', function(event) {
-    console.log('submitting');
     event.preventDefault();
-    $.ajax({
-      url: $(this).prop('action'),
-      data: $(this).serialize(),
-      type: "POST",
-      success: function(){
-        $(this).addClass("done");
-      }
-    });
   });
 
 
@@ -28,15 +46,6 @@ $(document).ready(function () {
   if( stored_document_numbers !== undefined && document_number_present(current_document_number, stored_document_numbers) ) {
     $('div.share a.flag_for_later').addClass('flagged');
   }
-
-  $('div.share a.flag_for_later').bind('click', function(event) {
-    event.preventDefault();
-    
-    $('div.share a.flag_for_later').addClass('flagged');
-    $('form.add_to_clipboard').submit();
-
-    update_user_clipped_document_count( stored_document_numbers );
-  });
 
   /* Add to Folder Menu */
   if ( $("#add-to-folder-menu-fr2-template") ) {
@@ -55,8 +64,7 @@ $(document).ready(function () {
 
   $('#clipping-actions.fr2 #add-to-folder .menu li.not_in_folder').live('click', function(event) {
     event.preventDefault();
-    $(this).find('.icon').toggle();
-    $(this).find('.loader').toggle();
+    add_item_to_folder( $(this) );
   });
 
 });
