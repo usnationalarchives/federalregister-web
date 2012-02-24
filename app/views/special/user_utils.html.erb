@@ -1,7 +1,18 @@
 <div id="user_utils">
   <div id="document-count-holder">
-    <%= link_to @clippings.size, clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" if @document_numbers %>
-    <%= link_to "#{@folders.count} (#{@folders.map{|f| f.clippings.count}.inject(:+) || 0})", '#', :id => 'document-in-folders-count', :class => "count_with_icon" if user_signed_in? %>
+    <%= link_to clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" do
+          [ content_tag(:span, @clipboard_clippings.size),
+            content_tag(:span, "", :class => "icon")
+          ].join("\n").html_safe
+        end %>
+    <% if user_signed_in? %>
+      <%= link_to clippings_path(), :id => "document-in-folders-count", :class => "count_with_icon" do
+            [ content_tag(:span, @folders.count, :id => "user_folder_count"),
+              "(#{content_tag(:span, @folders.map{|f| f.clippings.count}.inject(:+) || 0, :id => "user_documents_in_folders_count")})",
+              content_tag(:span, "", :class => "icon")
+            ].join("\n").html_safe
+          end %>
+    <% end %>
   </div>
   <ul id="user-nav">
   <% if user_signed_in? %>
@@ -15,10 +26,13 @@
 </div>
 
 <script type="text/javascript">
-  var stored_document_numbers = <%= @document_numbers ? @document_numbers.to_json.html_safe : '{}' %>;
-  <% folder_details = FolderDecorator.for_javascript %>
-  var user_folder_details = <%= folder_details.present? ? folder_details.to_json.html_safe : '{}' %>;
+  var stored_document_numbers = <%= @clipboard_clippings ? document_numbers_for_javascript(@clipboard_clippings).to_json.html_safe : '[]' %>;
+  <% folder_details = folder_details_for_javascript(@folders) %>
+  var user_folder_details = <%= folder_details.to_json.html_safe %>;
 </script>
 
+<%= render :partial => "folders/new" %>
+<%= render :partial => "special/account_needed_modal" %>
 <%= add_handlebars_template('add_to_folder_menu_fr2', 'add-to-folder-menu-fr2') %>
+<%= add_handlebars_template('add_to_folder_menu_li_fr2', 'add-to-folder-menu-li-fr2') %>
 

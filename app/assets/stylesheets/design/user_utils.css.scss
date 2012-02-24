@@ -7,7 +7,7 @@
   }
 #user_utils #document-count-holder {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 30px;
   }
 #user_utils #user-nav {
   margin: 0;
@@ -15,24 +15,40 @@
   }
 
 #user_utils a.count_with_icon {
-  padding-right: 24px;
   font-weight: bold;
   color: #6E6E6E;
   padding-top: 1px;
   }
-#user_utils a#document-count {
-  background: image-url('/my/assets/user_utils/icon_flag_active.png') 12px -1px no-repeat;
+#user_utils a.count_with_icon span.icon {
+  margin-right: 0;
+  }  
+#user_utils a#document-count span.icon {
+  height: 16px;
+  width: 18px;
+  background: image-url('/my/assets/user_utils/icon_flag_active.png') 0 -1px no-repeat;
   }
-#user_utils a#document-count.alert {
-  background: image-url('/my/assets/user_utils/icon_flag_alert.png') 12px -1px no-repeat;
+#user_utils a#document-count.alert span.icon {
+  background: image-url('/my/assets/user_utils/icon_flag_alert.png') 0 -1px no-repeat;
   }
 #user_utils a#document-in-folders-count {
-  background: image-url('/my/assets/user_utils/icon_folder_active.png') 27px -1px no-repeat;
-  margin-left: 6px;
+  margin-left: 10px;
   }
-#user_utils a#document-count:hover {
-  color: #B88659;
+#user_utils a#document-count span,
+#user_utils a#document-in-folders-count span { 
+  display: inline-block; 
   }
+#user_utils a#document-in-folders-count span.icon {
+  height: 16px;
+  width: 18px; 
+  background: url(/my/assets/user_utils/icon_folder_active.png) 0 -1px no-repeat;
+  }
+
+
+#user_utils a#document-count:hover,
+#user_utils a#document-in-folders-count:hover { 
+  color: #B88659; 
+  }
+#user_utils a#document-count.alert:hover { color: #8A3737; }
 
 #user_utils ul li {
   display: inline-block;
