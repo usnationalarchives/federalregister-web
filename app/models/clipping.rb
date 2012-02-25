@@ -7,6 +7,8 @@ class Clipping < ActiveRecord::Base
   def self.with_preloaded_articles
     clippings = all
     document_numbers = clippings.map{|c| c.document_number}
+    
+    return unless clippings.present? && document_numbers.present?
 
     clippings = map_articles_to_clipping(clippings, document_numbers)
     clippings
@@ -21,8 +23,8 @@ class Clipping < ActiveRecord::Base
     end
   end
 
-  def self.all_preloaded_from_cookie(document_number_hash)
-    document_numbers = document_number_hash.map{|doc_num, folders| doc_num }
+  def self.all_preloaded_from_cookie(cookie_data)
+    document_numbers = retrieve_document_numbers(cookie_data)
     clippings = document_numbers.map{|doc_num| Clipping.new(:document_number => doc_num) }
     clippings = map_articles_to_clipping(clippings, document_numbers)
     clippings
@@ -37,14 +39,6 @@ class Clipping < ActiveRecord::Base
     end
 
     clippings
-  end
-
-  def self.for_javascript
-    clippings = all
-    clippings.group_by(&:document_number).map do |document_number, clippings| 
-      folder_array = clippings.map{|c| c.folder.present? ? c.folder.slug : "my-clippings"}.uniq
-      { document_number => folder_array }
-    end
   end
 
   def self.persist_document(user, document_number, folder_name)
@@ -79,5 +73,14 @@ class Clipping < ActiveRecord::Base
   def article=(article)
     self.document_number = article.try(:document_number)
     @article = article
+  end
+
+  def self.retrieve_document_numbers(cookie_data)
+    document_number_array = JSON.parse(cookie_data)
+    document_numbers = []
+    document_number_array.each do |doc_hash| 
+      doc_hash.each_key{|doc_num| document_numbers << doc_num }
+    end
+    document_numbers
   end
 end
