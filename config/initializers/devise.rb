@@ -5,6 +5,11 @@ Warden::Manager.after_authentication do |user, auth, opts|
     Clipping.create_from_cookie( auth.cookies[:document_numbers], user )
     auth.cookies[:document_numbers] = nil
   end
+  auth.cookies["expect_logged_in"] = "1"
+end
+
+Warden::Manager.before_logout do |user, auth, opt|
+  auth.cookies["expect_logged_in"] = "0"
 end
 
 # Use this hook to configure devise mailer, warden hooks and so forth. The first

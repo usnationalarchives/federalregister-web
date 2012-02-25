@@ -1,14 +1,17 @@
 <div class="title"><span><%= @folder.name %> (<%= @clippings.size%>)</span></div>
 
-<%= render :partial => "clippings/not_logged_in_warning" unless user_signed_in? %>
+<% unless user_signed_in? %>
+  <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 %>
+  <%= render :partial => "clippings/not_logged_in_no_clippings" if @clippings.size == 0 %>
+<% else %>
+  <%= render :partial => "clippings/logged_in_no_clippings" if @clippings.size == 0 %>
+<% end %>
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'add-to-folder'} do |f| %>
   <% if user_signed_in? %>
     <div id="clipping-actions">
       <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
       <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
-      <%#= render :partial => "clippings/jump_to_folder_menu", :locals => {:folders => @folders} %>
-      <%#= render :partial => "clippings/add_to_folder_menu", :locals => {:folders => @folders, :current_folder => @folder} %>
     </div>
   <% end %>
   <ul id="clippings">
