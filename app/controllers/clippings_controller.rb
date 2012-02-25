@@ -27,7 +27,7 @@ class ClippingsController < ApplicationController
     end
 
     if request.xhr?
-      render :text => cookies[:document_numbers].to_json.html_safe
+      render :json => {:folder => {:name => 'My Clippings', :slug => 'my-clippings' } }
     else
       redirect_to clippings_url
     end
@@ -61,9 +61,9 @@ class ClippingsController < ApplicationController
 
   def add_document_id_to_session(document_number)
     if cookies[:document_numbers].present?
-      cookies[:document_numbers] = JSON.parse(cookies[:document_numbers]).merge!( {document_number => [0]} ).to_json
+      cookies[:document_numbers] = JSON.parse(cookies[:document_numbers]).push( {document_number => ['my-clippings']} ).to_json
     else
-      cookies[:document_numbers] = {document_number => [0]}.to_json
+      cookies[:document_numbers] = [{document_number => ['my-clippings']}].to_json
     end
   end
 end

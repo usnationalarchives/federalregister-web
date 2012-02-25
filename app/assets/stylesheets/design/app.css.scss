@@ -12,3 +12,77 @@ span.unsaved {
   color: #8A3737;
   font-weight: bold;
   }
+
+div#account-needed-modal,
+div#new-folder-modal { 
+  display: none; 
+  
+  background-color: white;
+  border: 5px solid #3F5B75;
+  display: none;
+  padding: 1em;
+  position: fixed;
+  top: 5em;
+  width: 500px;
+  }
+div#account-needed-modal .jqmClose,
+div#new-folder-modal .jqmClose {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  }
+div#account-needed-modal h3,
+div#new-folder-modal h3 {
+  border-top: none;
+  border-bottom: 2px solid #363636;
+  margin-bottom: .5em;
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 1.8em;
+  }
+
+div#new-folder-modal form { margin-top: 10px; } 
+div#new-folder-modal form fieldset label { 
+  color: #565656;
+  font-weight: 700;
+  font-size: 1.05em;
+  }
+div#new-folder-modal form fieldset.inputs { 
+  float: left;
+  margin-bottom: 0;
+  }
+div#new-folder-modal form fieldset.inputs input { 
+  background: url(icon_new_folder_input.png) 4px 2px no-repeat;
+  border: 1px solid #D5D5D5;
+  height: 17px;
+  margin-right: 0;
+  padding: 1px 5px 1px 25px;
+  width: 215px;
+  }
+
+div#new-folder-modal form fieldset.buttons { 
+  margin: 0;
+  padding-left: 10px;
+  }
+div#new-folder-modal form fieldset.buttons li.commit { padding: 0; }
+
+div#new-folder-modal .folder_create,
+div#new-folder-modal .folder_success {
+  display: none;
+  text-align: center;
+  }
+div#new-folder-modal .folder_create .icon,
+div#new-folder-modal .folder_success .icon {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  }
+div#new-folder-modal .folder_success .icon {
+  top: -2px;
+  background: url(/my/assets/icon_badge_checked_green.png) 0px 0 no-repeat;
+  }
+div#new-folder-modal .folder_create .icon {
+  top: 4px;
+  margin-left: 10px;
+  background: url(/my/assets/orange_loader.gif) 0px 0 no-repeat;
+  }

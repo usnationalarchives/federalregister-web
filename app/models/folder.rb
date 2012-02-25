@@ -1,4 +1,6 @@
 class Folder < ApplicationModel
+  stampable
+
   has_many :clippings
   belongs_to :user, :foreign_key => :creator_id 
 
@@ -20,7 +22,9 @@ class Folder < ApplicationModel
     scoped(:conditions => {:creator_id => user.id, :slug => slug}).first
   end
 
-
+  def document_numbers
+    clippings.map{|c| c.document_number}
+  end
   private
 
   def generate_slug
@@ -29,7 +33,7 @@ class Folder < ApplicationModel
     self.slug = slug.gsub(/ /,'-')
   end
 
-  def self.slug_is_not_reserved
+  def slug_is_not_reserved
     if self.slug == "my-clippings"
       errors.add_to_base("Sorry, a folder can not be named 'My Clippings'")
       return false

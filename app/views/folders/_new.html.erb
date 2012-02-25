@@ -1,0 +1,21 @@
+<div id="new-folder-modal">
+  <a href="#" class="jqmClose">Close</a>
+
+  <h3 class="title_bar">Create New Folder</h3>
+  <p>This will create a new folder and add this item to it.</p>
+  
+  <%= semantic_form_for :folder, :url => folders_path() do |f| %>
+    <%= render :partial => "folders/form", :locals => {:f => f} %>
+  <% end %>
+
+  <div class="folder_create">
+    <p>
+      Creating folder and saving clipping... 
+      <span class="loader"></span>
+    </p>
+  </div>
+
+  <div class="folder_success">
+    <p> <span class="icon"></span></p>
+  </div>
+</div>

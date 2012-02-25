@@ -166,7 +166,7 @@
   border: #CCC 1px solid;
   line-height: 1.2em;
   }
-#clipping-actions #add-to-folder:hover .button,
+#clipping-actions #add-to-folder.hover .button,
 #clipping-actions #jump-to-folder:hover .button {
   background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
   color: #B88659;
@@ -183,7 +183,7 @@
 #clipping-actions #add-to-folder .button span.icon {
   background: url(user_utils/icon_folder.png)0 0 no-repeat;
   }
-#clipping-actions #add-to-folder:hover .button span.icon {
+#clipping-actions #add-to-folder.hover .button span.icon {
   background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
   }
 #clipping-actions #jump-to-folder .button span.icon {
