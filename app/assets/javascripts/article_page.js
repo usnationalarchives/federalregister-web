@@ -1,3 +1,5 @@
+/* ajax send document to my_fr2 app and */
+/* manage which icons are shown during each process of the ajax action */
 function add_item_to_folder(el) {
   el.find('.icon').toggle();
   el.find('.loader').toggle();
@@ -11,6 +13,7 @@ function add_item_to_folder(el) {
     data: form_data,
     type: "POST"
   }).success(function(response) {
+      /* mark folder as containing document */
       el.removeClass('not_in_folder').addClass('in_folder');
 
       /* visually mark the icon as in at least one folder */
@@ -71,12 +74,14 @@ function hide_clippings_menu() {
   }
 
 $(document).ready(function () {
+  /* hide form and prevent unwanted submission */
   $('form.add_to_clipboard').hide();
-
   $('form.add_to_clipboard').bind('submit', function(event) {
     event.preventDefault();
   });
 
+  /* update styles on page so that our hover menu is properly viewable */
+  $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
 
   /* get current document */
   current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
@@ -86,14 +91,15 @@ $(document).ready(function () {
   *  Add to Folder Menu *
   *                     */
 
-  /* Add to Folder Menu */
+  /* compile template */
   if ( $("#add-to-folder-menu-fr2-template") ) {
     add_to_folder_menu_fr2_template = Handlebars.compile( $("#add-to-folder-menu-fr2-template").html() );
   }
-
+  /* add current document number to the folder details */
   user_folder_details.current_document_number = current_document_number;
-
+  /* place the menu on the page */
   $('div.share li.clip_for_later').append($('<div>').addClass("fr2").prop('id', 'clipping-actions').append( add_to_folder_menu_fr2_template(user_folder_details) ) );
+  
 
   /* EVENTS*/
   
@@ -105,14 +111,29 @@ $(document).ready(function () {
     hide_clippings_menu();
   });
   
+  /* allow icon to be clicked as a shortcut for adding current document to the clipboard */
+  $('#clipping-actions').delegate( '#clipping-actions.fr2 #add-to-folder .button .icon', 'click', function(event) {
+    /* check if already in clipboard */
+    not_in_clipboard = $('#clipping-actions.fr2 #add-to-folder .menu li[data-slug="my-clippings"].not_in_folder').length !== 0;
+    if ( not_in_clipboard ) {
+      $('#clipping-actions.fr2 #add-to-folder .menu li[data-slug="my-clippings"]').trigger('click');
+    };
+  });
+
+
   $('#clipping-actions.fr2 #add-to-folder .menu li').live('click', function(event) { event.preventDefault(); });
 
+  /* enable saving to folder */
   $('#clipping-actions.fr2 #add-to-folder .menu li.not_in_folder').live('click', function(event) {
     event.preventDefault();
     add_item_to_folder( $(this) );
   });
 
-});
+  /* visually identify the document as flagged if its in a folder */
+  if( user_folder_details !== undefined && document_number_present(current_document_number, user_folder_details) ) {
+    $('div.share li.clip_for_later #add-to-folder .button span.icon').addClass('clipped');
+  }
+
 
   /*                                 *
   *  Create new folder functionality *
