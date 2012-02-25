@@ -1,6 +1,7 @@
 function update_user_clipped_document_count(stored_documents) {
-  document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0; 
-  $('a#document-count').html( document_count + 1 );
+  //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0; 
+  document_count = parseInt( $('#document-count #doc_count').html() );
+  $('#document-count #doc_count').html( document_count + 1 );
 }
 
 function update_user_folder_count(folder_object) {

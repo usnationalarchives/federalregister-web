@@ -1,7 +1,7 @@
 <div id="user_utils">
   <div id="document-count-holder">
     <%= link_to clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" do
-          [ content_tag(:span, @clipboard_clippings.size),
+          [ content_tag(:span, @clipboard_clippings.size, :id => "doc_count"),
             content_tag(:span, "", :class => "icon")
           ].join("\n").html_safe
         end %>
