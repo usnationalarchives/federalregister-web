@@ -99,7 +99,8 @@ $(document).ready(function () {
   user_folder_details.current_document_number = current_document_number;
   /* place the menu on the page */
   $('div.share li.clip_for_later').append($('<div>').addClass("fr2").prop('id', 'clipping-actions').append( add_to_folder_menu_fr2_template(user_folder_details) ) );
-  
+  /* add tipsy to the menu */
+  $('#add-to-folder .button.tip_over').tipsy({gravity:'south', live: true});
 
   /* EVENTS*/
   
@@ -226,5 +227,17 @@ $(document).ready(function () {
       });
 
   });
+
+
+  $("#new-folder-modal .new_folder_close").bind('click', function (event) {
+    /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
+    $('#clipping-actions').delegate( '#clipping-actions.fr2 #add-to-folder', 'mouseleave', function() {
+      hide_clippings_menu();
+    });
+
+    /* close the hover menu */
+    hide_clippings_menu();
+    $('#clipping-actions.fr2 div.menu li#new-folder').removeClass('hover');
+  });    
 
 });
