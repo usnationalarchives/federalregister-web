@@ -1,9 +1,12 @@
 function add_items_to_folder(el) {
-  el.find('.document_count').toggle();
-  el.find('.loader').toggle();
+  var link        = el.find('a');
+  var folder_slug = el.data('slug');
 
-  parent_li   = el.parent('li');
-  folder_slug = parent_li.data('slug');
+  var loader         = link.find('.loader');
+  var document_count = link.find('.document_count');
+  
+  document_count.toggle();
+  loader.toggle();
 
   form = $('form#folder_clippings');
   form_data = form.serializeArray();
@@ -16,20 +19,20 @@ function add_items_to_folder(el) {
   }).success( function(response) {
       console.log( 'Response: ', response);
 
-      el.find('.loader').toggle();
-      inner = el.find('.document_count_inner');
+      loader.toggle();
+      inner = document_count.find('.document_count_inner');
       inner.html( parseInt(inner.html(), 0) + parseInt(response.folder.doc_count,0) );
 
       /* update the user add to folder menu with the new counts */
       update_span = $('<span>').addClass('update').html("+" + response.folder.doc_count);
-      el.append( update_span );
+      link.append( update_span );
       update_span.animate({opacity: 1}, 1200);
       
       /* cross fade the update and the count of documents in the folder */
       /* fade out the documents that were moved                         */
       setTimeout(function() {
         update_span.animate({opacity: 0}, 600);
-        el.find('.document_count').css('opacity', 0).show().animate({opacity: 1}, 1200);
+        document_count.css('opacity', 0).show().animate({opacity: 1}, 1200);
         _.each( response.folder.documents, function(doc_id) {
           $("#clippings li[data-doc-id='" + doc_id + "']").animate({opacity: 0}, 600);
         });
@@ -49,7 +52,7 @@ $(document).ready(function() {
   /* save clippings to already created folder */
   $('div#add-to-folder .menu li').live('click', function(event) {
     event.preventDefault();
-    add_items_to_folder( $(this).find('a') );
+    add_items_to_folder( $(this) );
   });
 
 });
