@@ -10,6 +10,9 @@ class ClippingsController < ApplicationController
     else
       clipboard_clippings = []
     end
+    
+    clipboard_clippings ||= []
+
     @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user.model}).all ) if user_signed_in?
     @folder    = Folder.new(:name => 'My Clipboard')
     @clippings = ClippingDecorator.decorate(clipboard_clippings)

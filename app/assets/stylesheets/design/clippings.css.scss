@@ -167,7 +167,7 @@
   line-height: 1.2em;
   }
 #clipping-actions #add-to-folder.hover .button,
-#clipping-actions #jump-to-folder:hover .button {
+#clipping-actions #jump-to-folder.hover .button {
   background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
   color: #B88659;
   }
@@ -189,7 +189,7 @@
 #clipping-actions #jump-to-folder .button span.icon {
   background: url(user_utils/icon_folder_open.png)0 0 no-repeat;
   }
-#clipping-actions #jump-to-folder:hover .button span.icon {
+#clipping-actions #jump-to-folder.hover .button span.icon {
   background: url(user_utils/icon_folder_open_active.png)0 0 no-repeat;
   }
 
@@ -252,4 +252,27 @@
 #clipping-actions div.menu span              { display: inline-block; }
 #clipping-actions div.menu span.name         { width: 108px; }
 #clipping-actions div.menu span.document_count { float: right; }
+
+/***********************************
+* Moving clippings between folders *
+***********************************/
+
+#clipping-actions #add-to-folder span.update {
+  color: #7AA13D;
+  font-weight: 700;
+  opacity: 0;
+  position: absolute;
+  right: 8px;
+  }
+#clipping-actions div.menu a span.loader {
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  right: 3px;
+  position: absolute;
+  margin-right: 0;
+
+  display: none;
+  background: url(orange_loader.gif) 0 0 no-repeat;
+  }
 

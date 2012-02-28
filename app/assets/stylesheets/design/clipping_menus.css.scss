@@ -43,10 +43,10 @@
   z-index: 1001;
   }
 #clipping-actions #add-to-folder.hover .button,
-#clipping-actions #jump-to-folder:hover .button {
+#clipping-actions #jump-to-folder.hover .button {
   background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
   color: #B88659;
-  top: -1px;
+  //top: -1px;
   padding-bottom: 6px;
 
   border-bottom-right-radius: 0px;
@@ -191,6 +191,8 @@
 /* the .hover class is used by javascript and is needed because of   *
  * javascript triggered hover interactions that don't play well with *
  * mouse position and css hover states - we get a flickering menu!   */
+#clipping-actions.fr2 #add-to-folder.hover .button { top: -1px; }
+
 #clipping-actions.fr2 #add-to-folder.hover .button { 
   top: -3px;
   left: 1px;

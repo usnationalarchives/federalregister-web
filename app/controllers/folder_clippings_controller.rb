@@ -6,15 +6,18 @@ class FolderClippingsController < ActionController::Base
     
     if folder.present? && clipping_ids.present?
       
+      clipping_count = 0
       clipping_ids.each do |id|
         clipping = Clipping.find_by_user_and_id(current_user, id)
         next unless clipping.present?
-      
+        
+        clipping_count = clipping_count + 1
+
         clipping.folder_id = folder.id
         clipping.save
       end
-      
-      redirect_to clippings_url
+            
+      render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => clipping_count, :documents => clipping_ids } }
     elsif ! clipping_ids.present?
       render :text => "No clipping ids present", :status => 400
     else

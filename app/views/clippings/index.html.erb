@@ -7,7 +7,10 @@
   <%= render :partial => "clippings/logged_in_no_clippings" if @clippings.size == 0 %>
 <% end %>
 
-<%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'add-to-folder'} do |f| %>
+<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+
+<%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <% if user_signed_in? %>
     <div id="clipping-actions">
       <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
@@ -16,7 +19,7 @@
   <% end %>
   <ul id="clippings">
     <% @clippings.each do |clipping| %>
-      <li>
+      <li data-doc-id="<%= clipping.id %>">
         <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
         <div class="document_data">
           <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>

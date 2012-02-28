@@ -81,7 +81,9 @@ $(document).ready(function () {
   });
 
   /* update styles on page so that our hover menu is properly viewable */
-  $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
+  if ( $('.metadata_share_bar').length !== 0 ) {
+    $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
+  }
 
   /* get current document */
   current_document_number = $('form.add_to_clipboard input#entry_document_number').val();

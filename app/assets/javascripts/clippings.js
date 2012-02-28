@@ -74,4 +74,13 @@ $(document).ready(function () {
   $('#clipping-actions #add-to-folder').live('hover', function() {
     $(this).find('.menu').toggle();
   });
+
+
+  /* Add hover states for the menus */
+  $('#clipping-actions').delegate('#clipping-actions  #add-to-folder, #clipping-actions #jump-to-folder', 'mouseenter', function(event) {
+    $(this).addClass('hover');
+  });
+  $('#clipping-actions').delegate('#clipping-actions  #add-to-folder, #clipping-actions #jump-to-folder', 'mouseleave', function(event) {
+    $(this).removeClass('hover');
+  });
 });
