@@ -7,7 +7,7 @@
     <ul>
       <li id="new-folder">New folder</li>
       {{#each folders}}
-        {{#unlessMyClipboard}}
+        <%#{{#unlessMyClipboard}}%>
         <li data-slug="{{this.slug}}">
           <a href="">
             <span class="name">{{this.name}}</span>
@@ -17,7 +17,7 @@
             <span class="loader"></span>
           </a>
         </li>
-        {{/unlessMyClipboard}}
+        <%#{{/unlessMyClipboard}}%>
       {{/each}}
     </ul>
   </div>

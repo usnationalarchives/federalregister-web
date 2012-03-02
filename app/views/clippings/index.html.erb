@@ -1,4 +1,10 @@
-<div class="title"><span><%= @folder.name %> (<%= @clippings.size%>)</span></div>
+<div class="title">
+  <span><%= @folder.name %> 
+    (<span class="clippings_on_page_count"><%= @clippings.size%></span>)
+  </span>
+</div>
+
+<%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 
 <% unless user_signed_in? %>
   <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 %>

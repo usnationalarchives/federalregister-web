@@ -4,7 +4,7 @@ function animate_add_to_folder_pane_out(el) {
       left: '917px',
       'z-index': 0,
       // height: 'toggle'
-    }, {duration: 300, queue: false}
+    }, {duration: 150, queue: false}
   );
 }
 
@@ -14,10 +14,18 @@ function animate_add_to_folder_pane_in(el) {
   el.animate({
       left: '879px',
       // height: 'toggle'
-    }, {duration: 300, queue: false}
+    }, {duration: 150, queue: false}
   );
 }
 
+function show_clipping_menu( el ) {
+  /* turn on hover - these need to be in js or we get weird interactions between js *
+  * triggered hovers and css hover states - no one wants a flickering menu         */
+  el.addClass('hover');
+  }
+function hide_clipping_menu( el ) {
+  el.removeClass('hover');
+  }
 
 $(document).ready(function () {
 
@@ -67,20 +75,17 @@ $(document).ready(function () {
   }
   $('#clipping-actions').append( add_to_folder_menu_template(user_folder_details) );
 
-  $('#clipping-actions #jump-to-folder').live('hover', function() {
-    $(this).find('.menu').toggle();
+  /* show and hide add_to_folder menu */
+  $('#clipping-actions').delegate( '#clipping-actions #add-to-folder, #clipping-actions #jump-to-folder', 'mouseenter', function() {
+    show_clipping_menu( $(this) );
+  });
+  /* the hides need to be delegating seperating so that we can unbind them individually */
+  /* currently used for creating a new folder */
+  $('#clipping-actions').delegate( '#clipping-actions #add-to-folder', 'mouseleave', function() {
+    hide_clipping_menu( $(this) );
+  });
+  $('#clipping-actions').delegate( '#clipping-actions #jump-to-folder', 'mouseleave', function() {
+    hide_clipping_menu( $(this) );
   });
 
-  $('#clipping-actions #add-to-folder').live('hover', function() {
-    $(this).find('.menu').toggle();
-  });
-
-
-  /* Add hover states for the menus */
-  $('#clipping-actions').delegate('#clipping-actions  #add-to-folder, #clipping-actions #jump-to-folder', 'mouseenter', function(event) {
-    $(this).addClass('hover');
-  });
-  $('#clipping-actions').delegate('#clipping-actions  #add-to-folder, #clipping-actions #jump-to-folder', 'mouseleave', function(event) {
-    $(this).removeClass('hover');
-  });
 });

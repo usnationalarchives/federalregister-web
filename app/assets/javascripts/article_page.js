@@ -43,12 +43,6 @@ function expect_logged_in() {
   }
 }
 
-function show_folder_success(response) {
-  new_p = $('<p>').append( response.folder.name ).append( $('<span>').addClass('icon') );
-  $('#new-folder-modal .folder_success p').replaceWith( new_p );
-  $('#new-folder-modal .folder_success').show();
-}
-
 function insert_new_folder_into_menu(response) {
   if ( $("#add-to-folder-menu-li-fr2-template") ) {
     template = Handlebars.compile( $("#add-to-folder-menu-li-fr2-template").html() );

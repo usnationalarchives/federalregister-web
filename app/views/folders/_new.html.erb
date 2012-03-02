@@ -2,7 +2,10 @@
   <a href="#" class="jqmClose new_folder_close">Close</a>
 
   <h3 class="title_bar">Create New Folder</h3>
-  <p>This will create a new folder and add this item to it.</p>
+  <p class='instructions'>
+    Creating folders will help you organize your saved documents.<br />
+    <span id="fyi">When this folder is created the current document will be added to that folder.</span>
+  </p>
   
   <%= semantic_form_for :folder, :url => folders_path() do |f| %>
     <%= render :partial => "folders/form", :locals => {:f => f} %>

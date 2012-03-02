@@ -4,7 +4,8 @@ class FolderClippingsController < ActionController::Base
     clipping_ids = params[:folder_clippings][:clipping_ids]
     folder       = Folder.find_by_user_and_slug(current_user, slug)
     
-    if folder.present? && clipping_ids.present?
+    # my-clippings is a "nil" folder
+    if (folder.present? || slug == "my-clippings") && clipping_ids.present?
       
       clipping_count = 0
       clipping_ids.each do |id|
@@ -13,11 +14,14 @@ class FolderClippingsController < ActionController::Base
         
         clipping_count = clipping_count + 1
 
-        clipping.folder_id = folder.id
+        clipping.folder_id = folder.present? ? folder.id : nil
         clipping.save
       end
             
-      render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => clipping_count, :documents => clipping_ids } }
+      render :json => {:folder => {:name => folder.present? ? folder.name : "my-clippings", 
+                                   :slug => slug, 
+                                   :doc_count => clipping_count, 
+                                   :documents => clipping_ids } }
     elsif ! clipping_ids.present?
       render :text => "No clipping ids present", :status => 400
     else

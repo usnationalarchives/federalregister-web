@@ -2,18 +2,34 @@ class FoldersController < ActionController::Base
   
   def create
     folder = Folder.new(:name => params[:folder][:name], :creator_id => current_user.id, :updater_id => current_user.id)
+    
+    # document numbers are from the article page
     document_numbers = params[:folder][:document_numbers]
+    # clipping ids are from the clippings/folder pages
+    clipping_ids = params[:folder][:clipping_ids].split(',')
 
     if folder.save
-      document_numbers.each do |document_number|
-        clipping = Clipping.new(:document_number => document_number, :folder_id => folder.id, :user_id => current_user.id)
-        clipping.save
+      if document_numbers
+        document_numbers.each do |document_number|
+          clipping = Clipping.new(:document_number => document_number, :folder_id => folder.id, :user_id => current_user.id)
+          clipping.save
+        end
+      elsif clipping_ids
+        clipping_ids.each do |id|
+          clipping = Clipping.find(id)
+          clipping.update_attributes(:folder_id => folder.id)
+        end
       end
     end
 
     if request.xhr?
-      folder.reload
-      render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => folder.clippings.count, :documents => folder.document_numbers } }
+      folder.reload #ensure our folder object is up-to-date
+
+      # from the article page we need to send back document numbers
+      # for the clippings pages we need to send back the ids of the clippings
+      documents = document_numbers.present? ? folder.document_numbers : clipping_ids
+
+      render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => folder.clippings.count, :documents => documents } }
     end
   end
 

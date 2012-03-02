@@ -26,6 +26,12 @@ function document_number_present(document_number, user_folder_details) {
   }).length !== 0;
 }
 
+function show_folder_success(response) {
+  new_p = $('<p>').append( response.folder.name ).append( $('<span>').addClass('icon') );
+  $('#new-folder-modal .folder_success p').replaceWith( new_p );
+  $('#new-folder-modal .folder_success').show();
+}
+
 function closeOnEscape(hash) {
   $(window).one('keyup', function(event) {
     if( event.keyCode === '27' ){
