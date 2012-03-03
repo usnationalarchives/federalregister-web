@@ -40,19 +40,19 @@
   width: 121px;
   padding: 4px 15px 0 12px;
 
-  background: white url("menu_arrow_down.png") 125px 6px no-repeat;
+  background: white url("icons/my_fr2/menu_arrow_down.png") 125px 6px no-repeat;
   border: #CCC 1px solid;
   line-height: 1.2em;
   z-index: 1001;
   }
 #clipping-actions #add-to-folder .button {
   width: 130px;
-  background: white url("menu_arrow_down.png") 140px 6px no-repeat;
+  background: white url("icons/my_fr2/menu_arrow_down.png") 140px 6px no-repeat;
   }
 
 #clipping-actions #add-to-folder.hover .button,
 #clipping-actions #jump-to-folder.hover .button {
-  background: #FFF url("menu_arrow_down_active.png") 125px 6px no-repeat;
+  background: #FFF url("icons/my_fr2/menu_arrow_down_active.png") 125px 6px no-repeat;
   color: #B88659;
   //top: -1px;
   padding-bottom: 6px;
@@ -66,7 +66,7 @@
   border-bottom: none;
   }
 #clipping-actions #add-to-folder.hover .button {
-  background: #FFF url("menu_arrow_down_active.png") 140px 6px no-repeat;
+  background: #FFF url("icons/my_fr2/menu_arrow_down_active.png") 140px 6px no-repeat;
   }
 #clipping-actions #add-to-folder .button span.icon,
 #clipping-actions #jump-to-folder .button span.icon {
@@ -78,16 +78,16 @@
   margin: 0;
   }
 #clipping-actions #add-to-folder .button span.icon {
-  background: url(user_utils/icon_folder_open.png)0 0 no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_folder_open.png)0 0 no-repeat;
   }
 #clipping-actions #add-to-folder.hover .button span.icon {
-  background: url(user_utils/icon_folder_open_active.png)0 0 no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_folder_open_active.png)0 0 no-repeat;
   }
 #clipping-actions #jump-to-folder .button span.icon {
-  background: url(user_utils/icon_folder.png)0 0 no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_folder.png)0 0 no-repeat;
   }
 #clipping-actions #jump-to-folder.hover .button span.icon {
-  background: url(user_utils/icon_folder_active.png)0 0 no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_folder_active.png)0 0 no-repeat;
   }
 
 #clipping-actions div.menu {
@@ -154,13 +154,13 @@
   }
 #clipping-actions div.menu li:last-child { border-bottom: none; }
 #clipping-actions div.menu li#new-folder {
-  background: url(icon_badge_add.png) 61px 4px no-repeat;
+  background: url(icons/my_fr2/icon_badge_add.png) 61px 4px no-repeat;
   padding-left: 20px;
   text-align: center;
   }
 #clipping-actions div.menu li#new-folder.hover,
 #clipping-actions div.menu li#new-folder:hover {
-  background: url(icon_badge_add_active.png) 61px 4px no-repeat;
+  background: url(icons/my_fr2/icon_badge_add_active.png) 61px 4px no-repeat;
   color: #B88659;
   }
 
@@ -211,7 +211,7 @@
 
   border: none;
   text-indent: -9999px;
-  background: white url("menu_arrow_down.png") 28px 9px no-repeat;
+  background: white url("icons/my_fr2/menu_arrow_down.png") 28px 9px no-repeat;
 
   float: right;
   z-index: 100;
@@ -225,7 +225,7 @@
   top: -3px;
   left: 1px;
 
-  background: #EEE url("menu_arrow_down_active.png") 28px 9px no-repeat;
+  background: #EEE url("icons/my_fr2/menu_arrow_down_active.png") 28px 9px no-repeat;
 
   border: #CCC 1px solid;
   border-bottom: none;
@@ -241,12 +241,12 @@
   display: block;
   height: 30px;
   width: 30px;
-  background: url(icon_add_to_clipboard.png) 0 0 no-repeat;
+  background: url(icons/my_fr2/icon_add_to_clipboard.png) 0 0 no-repeat;
   }
 /* the .hover class is used by javascript */
 #clipping-actions.fr2 #add-to-folder .button span.icon.clipped,
 #clipping-actions.fr2 #add-to-folder.hover .button span.icon {
-  background: url(icon_add_to_clipboard_active.png) 0 0 no-repeat;
+  background: url(icons/my_fr2/icon_add_to_clipboard_active.png) 0 0 no-repeat;
   }
 #clipping-actions.fr2 #add-to-folder .menu {
   clear: both;
@@ -293,7 +293,7 @@
   }
 
 #clipping-actions.fr2 div.menu li#new-folder.hover {
-  background: url(icon_badge_add_active.png) 61px 4px no-repeat;
+  background: url(icons/my_fr2/icon_badge_add_active.png) 61px 4px no-repeat;
   }
 #clipping-actions.fr2 div.menu li#new-folder.hover a {
   color: #B88659;
@@ -303,13 +303,13 @@
 #clipping-actions.fr2 div.menu li.in_folder { cursor: default; }
 
 #clipping-actions.fr2 div.menu li.in_folder a span.icon {
-  background: url(icon_badge_checked_green.png) 0 0 no-repeat;
+  background: url(icons/my_fr2/icon_badge_checked_green.png) 0 0 no-repeat;
   }
 #clipping-actions.fr2 div.menu li.not_in_folder a span.icon {
-  background: url(icon_badge_checked.png) 0 0 no-repeat;
+  background: url(icons/my_fr2/icon_badge_checked.png) 0 0 no-repeat;
   }
 #clipping-actions.fr2 div.menu li.not_in_folder:hover a span.icon {
-  background: url(icon_badge_checked_active.png) 0 0 no-repeat;
+  background: url(icons/my_fr2/icon_badge_checked_active.png) 0 0 no-repeat;
   }
 
 #clipping-actions.fr2 div.menu li.not_in_folder a span.loader {

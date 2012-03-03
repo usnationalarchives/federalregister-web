@@ -25,10 +25,10 @@
 #user_utils a#document-count span.icon {
   height: 16px;
   width: 18px;
-  background: image-url('/my/assets/user_utils/icon_flag_active.png') 0 -1px no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_flag_active.png) 0 -1px no-repeat;
   }
 #user_utils a#document-count.alert span.icon {
-  background: image-url('/my/assets/user_utils/icon_flag_alert.png') 0 -1px no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_flag_alert.png) 0 -1px no-repeat;
   }
 #user_utils a#document-in-folders-count {
   margin-left: 10px;
@@ -40,7 +40,7 @@
 #user_utils a#document-in-folders-count span.icon {
   height: 16px;
   width: 18px; 
-  background: url(/my/assets/user_utils/icon_folder_active.png) 0 -1px no-repeat;
+  background: url(icons/my_fr2/user_utils/icon_folder_active.png) 0 -1px no-repeat;
   }
 
 
