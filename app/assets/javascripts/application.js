@@ -8,3 +8,4 @@
 //= require add_to_folder
 //= require clippings
 //= require storage
+//= require tipsy

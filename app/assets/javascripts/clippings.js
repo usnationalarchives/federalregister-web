@@ -65,15 +65,16 @@ $(document).ready(function () {
   });
 
   /* Add/Jump to Folder Menu */
-  if ( $("#jump-to-folder-menu-template") ) {
-    jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
-  }
-  $('#clipping-actions').append( jump_to_folder_menu_template(user_folder_details) );
-  
   if ( $("#add-to-folder-menu-template") ) {
     add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
   }
-  $('#clipping-actions').append( add_to_folder_menu_template(user_folder_details) );
+  $('#clipping-actions').prepend( add_to_folder_menu_template(user_folder_details) );
+  if ( $("#jump-to-folder-menu-template") ) {
+    jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
+  }
+  $('#clipping-actions').prepend( jump_to_folder_menu_template(user_folder_details) );
+  
+  
 
   /* show and hide add_to_folder menu */
   $('#clipping-actions').delegate( '#clipping-actions #add-to-folder, #clipping-actions #jump-to-folder', 'mouseenter', function() {
@@ -88,4 +89,40 @@ $(document).ready(function () {
     hide_clipping_menu( $(this) );
   });
 
+  /* remove clipping */
+  $('#clipping-actions').delegate('#remove-clipping', 'click', function(event) {
+    
+    clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) { 
+                      return $(input).closest('li').data('doc-id'); 
+                   });
+  
+    current_folder_slug = $('div.title').data('folder-slug');
+    
+    form = $('form#folder_clippings');
+    form_data = form.serializeArray();
+    form_data.push( {name: "folder_clippings[clipping_ids]", value: clipping_ids} );
+    form_data.push( {name: "folder_clippings[folder_slug]", value: current_folder_slug} );
+
+    $.ajax({
+      url: '/my/folder_clippings/delete',
+      data: form_data,
+      type: "POST"
+    }).success( function(response) {
+        _.each( response.folder.documents, function(doc_id) {
+          $("#clippings li[data-doc-id='" + doc_id + "']").animate({opacity: 0}, 600);
+        });
+
+        setTimeout(function() {
+            _.each( response.folder.documents, function(doc_id) {
+              $("#clippings li[data-doc-id='" + doc_id + "']").remove();
+            });
+  
+            update_clippings_on_page_count( response.folder.doc_count );
+            update_add_folder_count( response, 'remove' );
+            update_jump_folder_count( response, 'remove' );
+            update_user_util_counts( response.folder.doc_count, response.folder.slug, false );
+          }, 
+          600);
+      });
+  });
 });

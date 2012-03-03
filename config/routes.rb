@@ -18,7 +18,11 @@ MyFr2::Application.routes.draw do
 
   match 'folders/my-clippings' => 'clippings#index'
   resources :folders
-  resources :folder_clippings
+  resources :folder_clippings do
+    collection do
+      post 'delete'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,7 +2,6 @@ div.title span.clippings_on_page_count {
   padding: 0;
   margin: 0;
   }
-
 #clippings > li { 
   width: 900px;
 
@@ -146,6 +145,26 @@ div.title span.clippings_on_page_count {
   -webkit-border-top-left-radius: 6px;
   -moz-border-radius-topright: 6px;
   -moz-border-radius-topleft: 6px;
+  }
+
+#clipping-actions #remove-clipping {
+  width: 14px;
+  height: 16px;
+  
+  position: absolute;
+  right: 0px;
+  margin: 5px 6px 0 0;
+  padding: 4px 4px 0 4px;
+
+  border: #CCC 1px solid;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  
+  background: white url(icon_remove_clipping.png) 2px 2px no-repeat;  
+  }
+#clipping-actions #remove-clipping:hover {
+  background: white url(icon_remove_clipping_active.png) 2px 2px no-repeat;  
   }
 
 #clipping-actions #add-to-folder,
