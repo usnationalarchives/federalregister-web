@@ -57,9 +57,19 @@ div.title span.clippings_on_page_count {
   clear: none;
   }
 
-#clippings dl#col-1 { width: 100px; }
+#clippings dl#col-1 { width: 200px; }
 #clippings dl#col-2 { width: 200px; }
-#clippings dl#col-3 { width: 250px; }
+#clippings dl#col-3 { width: 215px; }
+
+#clippings dl#col-1 dt {
+  clear: both;
+  float: left;
+  }
+#clippings dl#col-1 dd {
+  float: left;
+  padding-top: 4px;
+  margin-left: 5px;
+  }
 
 #clippings dl.metadata { 
   font-size: 1em;
