@@ -6,7 +6,9 @@ class FoldersController < ActionController::Base
     # document numbers are from the article page
     document_numbers = params[:folder][:document_numbers]
     # clipping ids are from the clippings/folder pages
-    clipping_ids = params[:folder][:clipping_ids].split(',')
+    if params[:folder][:clipping_ids]
+      clipping_ids = params[:folder][:clipping_ids].split(',')
+    end
 
     if folder.save
       if document_numbers
