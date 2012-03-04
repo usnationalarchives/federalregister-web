@@ -18,8 +18,10 @@ class Clipping < ActiveRecord::Base
     return unless document_numbers.present?
 
     document_numbers = JSON.parse(document_numbers)
-    document_numbers.each do |document_number, folder|
-      self.persist_document(document_number, user)
+    document_numbers.each do |doc_hash|
+      doc_hash.each_pair do |document_number, folders|
+        self.persist_document(user, document_number, folders[0])
+      end
     end
   end
 
