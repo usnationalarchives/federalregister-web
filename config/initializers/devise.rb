@@ -1,6 +1,6 @@
 @secret_keys = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
 
-Warden::Manager.after_authentication do |user, auth, opts|
+Warden::Manager.after_set_user do |user, auth, opts|
   if auth.cookies[:document_numbers]
     Clipping.create_from_cookie( auth.cookies[:document_numbers], user )
     auth.cookies[:document_numbers] = nil
