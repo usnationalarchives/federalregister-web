@@ -220,7 +220,7 @@ $(document).ready(function () {
   
 
   $('div.share li.clip_for_later').each( function () {
-    var this_document_number;
+    var this_document_number = current_document_number;
     if ( $('body#search').length !== 0 ) {
       this_document_number = $(this).closest('div').closest('li').data('document-number');
       user_folder_details.current_document_number = this_document_number;
