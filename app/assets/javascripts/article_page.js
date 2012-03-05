@@ -247,10 +247,7 @@ $(document).ready(function () {
       };
     });
 
-    menu.find('.menu .li, .menu .li a').bind('click', function(event) { event.preventDefault(); });
-
-    /* add tipsy to the menu */
-    menu.find('.button.tip_over').tipsy({gravity:'south', live: true});
+    menu.find('.menu .li, .menu .li a').bind('click', function(event) { event.preventDefault(); }); 
 
     /* enable saving to folder */
     menu.find('.menu li.not_in_folder').bind('click', function(event) {
@@ -298,4 +295,7 @@ $(document).ready(function () {
     event.preventDefault();
     create_new_folder( $(this) );
   });
+
+  /* add tipsy to the menu(s) */
+  $('.add_to_folder .button.tip_over').tipsy({gravity:'south', offset: 3, live: true});
 });
