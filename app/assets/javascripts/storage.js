@@ -22,7 +22,7 @@ function update_user_folder_and_document_count(folder_object) {
 function document_number_present(document_number, user_folder_details) {
   return _.filter( user_folder_details.folders, function(folder) {
     /* return the folder if it has the document in it */
-    return $.inArray( current_document_number, folder.documents) > -1;
+    return $.inArray( document_number, folder.documents) > -1;
   }).length !== 0;
 }
 
