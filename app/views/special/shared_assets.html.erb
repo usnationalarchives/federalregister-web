@@ -10,3 +10,6 @@
 <%# handlebars helpers %>
 <%= javascript_include_tag "/my/assets/handlebars_helpers.js" %>
 
+<!--[if lte IE 9]>
+  <%= stylesheet_link_tag "ie", :media => :screen %>  
+<![endif]-->
