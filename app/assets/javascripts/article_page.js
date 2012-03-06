@@ -94,15 +94,41 @@ function display_new_folder_modal( menu, document_number ) {
 
   /* decide which modal to show */
   if ( expect_logged_in() ) {
-    modal = $('#new-folder-modal');
+    if ( $('#new-folder-modal-template') ) {
+      modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
+      modal = $( modal_template({}) );
+      if ( $('#new-folder-modal') ) {
+        $('#new-folder-modal').remove();
+      }
+      $('body').append( modal );
+    }
   } else {
-    modal = $('#account-needed-modal');
+    if ( $('#account-needed-modal-template') ) {
+      modal_template = Handlebars.compile( $("#account-needed-modal-template").html() );
+      modal = $( modal_template({}) );
+      if ( $('#account-needed-modal') ) {
+        $('#account-needed-modal').remove();
+      }
+      $('body').append( modal );
+    }
   }
 
   /* place our data in the modal form */
   form = modal.find('form.folder');
   form.data('document-number', document_number);
   form.data('menu', menu);
+
+  /* attach events to the modal close */
+  modal.find(".jqmClose").bind('click', function (event) {
+    /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
+    menu.bind('mouseleave', function() {
+      hide_clippings_menu( $(this) );
+    });
+
+    /* close the hover menu */
+    hide_clippings_menu( menu );
+    menu.find('.menu li#new-folder').removeClass('hover');
+  });
 
   /* show the modal */
   $(modal).jqm({
@@ -111,7 +137,7 @@ function display_new_folder_modal( menu, document_number ) {
       onShow: myfr2_jqmHandlers.show,
       onHide: myfr2_jqmHandlers.hide
   });
-  modal.centerScreen().jqmShow();
+  modal.jqmShow().centerScreen();
 }
 
 function create_new_folder(form) {
@@ -266,19 +292,6 @@ $(document).ready(function () {
     menu.find('.menu li#new-folder').bind('click', function(event) {
       event.preventDefault();
       display_new_folder_modal( menu, this_document_number );
-    });
-
-   
-
-    $("#new-folder-modal .new_folder_close").bind('click', function (event) {
-      /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
-      menu.bind('mouseleave', function() {
-        hide_clippings_menu( $(this) );
-      });
-
-      /* close the hover menu */
-      hide_clippings_menu( menu );
-      menu.find('.menu li#new-folder').removeClass('hover');
     });
   });
   

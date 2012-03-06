@@ -249,23 +249,52 @@ $(document).ready(function() {
 
     /* decide which modal to show */
     if ( expect_logged_in() ) {
-      el = $('#new-folder-modal');
+      if ( $('#new-folder-modal-template') ) {
+        modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
+        modal = $( modal_template({}) );
+        if ( $('#new-folder-modal') ) {
+          $('#new-folder-modal').remove();
+        }
+        $('body').append( modal );
+      }
     } else {
-      el = $('#account-needed-modal');
+      if ( $('#account-needed-modal-template') ) {
+        modal_template = Handlebars.compile( $("#account-needed-modal-template").html() );
+        modal = $( modal_template({}) );
+        if ( $('#account-needed-modal') ) {
+          $('#account-needed-modal').remove();
+        }
+        $('body').append( modal );
+      }
     }
     
-    if ( el.is('#new-folder-modal') ) {
-      el.find('p.instructions span#fyi').html('When this folder is created any selected items will be moved to it.');
+    if ( modal.is('#new-folder-modal') ) {
+      modal.find('p.instructions span#fyi').html('When this folder is created any selected items will be moved to it.');
     }
+  
+    /* attach events to the modal close */
+    modal.find(".jqmClose").bind('click', function (event) {
+      menu = $('#clipping-actions #add-to-folder');
+
+      /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
+      menu.bind('mouseleave', function() {
+        hide_clipping_menu( $(this) );
+      });
+
+      /* close the hover menu */
+      hide_clipping_menu( menu );
+      menu.removeClass('hover');
+      menu.find('.menu li#new-folder').removeClass('hover');
+    });
 
     /* show the modal */
-    $(el).jqm({
+    $(modal).jqm({
         modal: true,
         toTop: true,
         onShow: myfr2_jqmHandlers.show,
         onHide: myfr2_jqmHandlers.hide
     });
-    el.centerScreen().jqmShow();
+    modal.jqmShow().centerScreen();
   });
 
   $('#new-folder-modal form.folder').live('submit', function(event) {
@@ -277,15 +306,4 @@ $(document).ready(function() {
     create_new_folder_with_items( $(this), clipping_ids );
   });
 
-  $("#new-folder-modal .new_folder_close").bind('click', function (event) {
-    /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
-    $('#clipping-actions').delegate( '#clipping-actions #add-to-folder', 'mouseleave', function() {
-      hide_clipping_menu( $(this) );
-    });
-
-    /* close the hover menu */
-    hide_clipping_menu( $('#clipping-actions #add-to-folder') );
-    $('#clipping-actions #add-to-folder').removeClass('hover');
-    $('#clipping-actions div.menu li#new-folder').removeClass('hover');
-  });
 });
