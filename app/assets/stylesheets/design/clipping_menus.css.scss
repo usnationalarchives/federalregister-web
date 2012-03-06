@@ -26,7 +26,7 @@
   font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
 #clipping-actions #add-to-folder { 
-  right: 32px; 
+  right: 33px; 
   width: 160px
   }
 #clipping-actions #jump-to-folder { right: 202px; }
@@ -194,6 +194,7 @@
   margin-right: 0px;
 }
 #clipping-actions.fr2 #add-to-folder {
+  right: 28px;
   width: 40px;
   margin: 0;
   }
