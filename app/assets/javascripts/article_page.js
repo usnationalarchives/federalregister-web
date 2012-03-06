@@ -77,13 +77,23 @@ function update_user_util_folders(response) {
 }
 
 function show_clippings_menu( menu ) {
+  /* ensure menu will be higher than the items below it on the search results */
+  if ( $('#search ol.results') ) {
+    menu.closest('div.my_fr2').closest('li').css('z-index', 1100);
+  }
+
   /* turn on hover - these need to be in js or we get weird interactions between js *
   * triggered hovers and css hover states - no one wants a flickering menu         */
   menu.addClass('hover');
   }
 function hide_clippings_menu( menu ) {
   menu.removeClass('hover');
+
+  /* reset the z-index we modified in show_clippings_menu */
+  if ( $('#search ol.results') ) {
+    menu.closest('div.my_fr2').closest('li').css('z-index', "auto");
   }
+}
 
 
 function display_new_folder_modal( menu, document_number ) {
