@@ -120,7 +120,7 @@ $(document).ready(function () {
             update_clippings_on_page_count( response.folder.doc_count );
             update_add_folder_count( response, 'remove' );
             update_jump_folder_count( response, 'remove' );
-            update_user_util_counts( response.folder.doc_count, response.folder.slug, false );
+            update_user_util_counts( response.folder.doc_count, response.folder.slug, false, 'delete' );
           }, 
           600);
       });
