@@ -235,7 +235,10 @@ $(document).ready(function() {
   /* save clippings to already created folder */
   $('div#add-to-folder .menu li:not(#new-folder)').live('click', function(event) {
     event.preventDefault();
-    add_items_to_folder( $(this) );
+    current_folder_slug = $('h2.title').data('folder-slug');
+    if ( $('form#folder_clippings input:checked').length !== 0 && $(this).data('slug') !== current_folder_slug) {
+      add_items_to_folder( $(this) );
+    }
   });
 
   /* new folder creation */
