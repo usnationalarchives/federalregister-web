@@ -6,7 +6,7 @@ $(document).ready(function(){
   $('.doc_presdocu.add_tipsy').tipsy({gravity: 'e', fallback: "Presidential Document", delayIn: 100, fade: true, offset: 0});
 
   /* slide out drawers */
-  $('#clippings li div.add_to_folder_pane').tipsy( {gravity: 'w', fallback: "Select clipping(s) and modify using menus above", fade: true, offset: -8});
+  $('#clippings li div.add_to_folder_pane').tipsy( {gravity: 'e', fallback: "Select clipping(s) and modify using menus above", fade: true, offset: -15});
   
   /* clipping actions */
   $('#clipping-actions #add-to-folder').tipsy( {gravity: 's', fallback: "Select clipping(s) below to move them", fade: true, offset: 2});
