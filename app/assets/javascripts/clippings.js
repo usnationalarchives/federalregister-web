@@ -55,7 +55,7 @@ $(document).ready(function () {
                       return $(input).closest('li').data('doc-id'); 
                    });
   
-    current_folder_slug = $('div.title').data('folder-slug');
+    current_folder_slug = $('h2.title').data('folder-slug');
     
     form = $('form#folder_clippings');
     form_data = form.serializeArray();

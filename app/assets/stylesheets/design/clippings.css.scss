@@ -1,7 +1,25 @@
-div.title span.clippings_on_page_count {
-  padding: 0;
+h2.title {
+  border-bottom: 1px solid #CCC;
   margin: 0;
+  padding-left: 40px;
+  background: url(icons/my_fr2/icon_folder_large.png) 0 2px no-repeat;
+  line-height: 1.1em;
+  padding-top: 5px;  
   }
+h2.clipboard.title {
+  background: url(icons/my_fr2/icon_clipboard_large.png) 0 3px no-repeat;
+  }
+div#folder_metadata_bar { margin-bottom: 2em; }
+div#folder_metadata_bar ul { 
+  font-weight: 700;
+  color: #666;
+  list-style: none;
+  }
+div#folder_metadata_bar ul li { 
+  display: inline-block;
+  margin-right: 20px;
+  }
+
 #clippings > li { 
   width: 900px;
 

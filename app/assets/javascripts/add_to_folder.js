@@ -1,10 +1,10 @@
 function update_clippings_on_page_count(count) {
-  count_span = $('div.title span.clippings_on_page_count');
+  count_span = $('#folder_metadata_bar span.clippings_on_page_count');
   current_count = parseInt( count_span.html(), 0 );
   count_span.html( current_count - count);
   }
 function update_current_folder_page_counts( count ) {
-  current_folder_slug = $('div.title').data('folder-slug');
+  current_folder_slug = $('h2.title').data('folder-slug');
   jump_to_folder_inner   = $('#jump-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner');
   add_to_folder_inner    = $('#add-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner');
   
@@ -31,7 +31,7 @@ function update_jump_folder_count( response, action ) {
 }
 function update_user_util_counts( count, slug, new_folder, action ) {
   holder = $('#user_utils #document-count-holder');
-  current_folder_slug = $('div.title').data('folder-slug');
+  current_folder_slug = $('h2.title').data('folder-slug');
 
   /* we're moving documents from the clipboard to another folder */
   if ( current_folder_slug === "my-clippings" ) {
