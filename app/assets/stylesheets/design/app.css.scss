@@ -4,6 +4,19 @@ div.warning {
   margin-bottom: 30px;
   text-align: center;
   float: none;
+}
+div.message {
+  /* reset border radius */
+  border-radius:0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  /* apply our style */
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-bottomleft: 6px;
   }
 div.notice {
   background: #D7E5C2;
@@ -12,10 +25,6 @@ div.notice {
 div.warning {
   background: #EDD3D3;
   border: 1px solid #8A3737;
-  }
-div.notice p,
-div.warning p {
-  padding-bottom: 0px;
   }
 
 span.unsaved { 

@@ -4,13 +4,6 @@
 
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 
-<% unless user_signed_in? %>
-  <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 %>
-  <%= render :partial => "clippings/not_logged_in_no_clippings" if @clippings.size == 0 %>
-<% else %>
-  <%= render :partial => "clippings/logged_in_no_clippings" if @clippings.size == 0 && @folder.slug == "my-clippings" %>
-<% end %>
-
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
 
@@ -27,49 +20,57 @@
 </div>
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
-  <% if user_signed_in? %>
-    <div id="clipping-actions">
-      <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
-      <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
-      <div id="remove-clipping"></div>
-    </div>
-  <% end %>
+  <div id="clipping-actions">
+    <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
+    <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
+    <div id="remove-clipping"></div>
+  </div>
+  <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 && !user_signed_in? %>
   <ul id="clippings">
-    <% @clippings.each do |clipping| %>
-      <li data-doc-id="<%= clipping.id %>">
-        <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
-        <div class="document_data">
-          <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
-          <dl class="metadata" id="col-1">
-            <dt class="pub_date">Publication Date:</dt>
-            <dd><%= clipping.article.publication_date %></dd>
+    <% unless @clippings.blank? %>
+      <% @clippings.each do |clipping| %>
+        <li data-doc-id="<%= clipping.id %>">
+          <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+          <div class="document_data">
+            <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
+            <dl class="metadata" id="col-1">
+              <dt class="pub_date">Publication Date:</dt>
+              <dd><%= clipping.article.publication_date %></dd>
 
-            <dt class="fr_citation">Citation:</dt>
-            <dd><%= clipping.article.fr_citation %></dd>
+              <dt class="fr_citation">Citation:</dt>
+              <dd><%= clipping.article.fr_citation %></dd>
 
-            <dt class="pages">Pages:</dt>
-            <dd><%= clipping.article.pages %></dd>
-          </dl>
-          <dl class="metadata" id="col-2">
-            <%= clipping.article.agency_dt_dd %>
-          </dl>
-          <dl class="metadata" id="col-3">
-            <%= clipping.article.docket_dt_dd %>
-          </dl>
-        </div>
-        <div class="clipping_data">
-          <dl class="metadata">
-            <dt class="created_at">Clipped on:</dt>
-            <dd><%= clipping.clipped_at %></dd>
-          </dl> 
-        </div>
-        <% if user_signed_in? %>
-          <div class="add_to_folder_pane">
-            <div class="left_side"></div>
-            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" %>
+              <dt class="pages">Pages:</dt>
+              <dd><%= clipping.article.pages %></dd>
+            </dl>
+            <dl class="metadata" id="col-2">
+              <%= clipping.article.agency_dt_dd %>
+            </dl>
+            <dl class="metadata" id="col-3">
+              <%= clipping.article.docket_dt_dd %>
+            </dl>
           </div>
-        <% end %>
-      </li>
+          <div class="clipping_data">
+            <dl class="metadata">
+              <dt class="created_at">Clipped on:</dt>
+              <dd><%= clipping.clipped_at %></dd>
+            </dl> 
+          </div>
+          <% if user_signed_in? %>
+            <div class="add_to_folder_pane">
+              <div class="left_side"></div>
+              <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <% unless user_signed_in? %> 
+        <%= render :partial => "clippings/not_logged_in_no_clippings" if @clippings.size == 0 %>
+      <% else %>
+        <%= render :partial => "clippings/logged_in_no_clippings" if @clippings.size == 0 && @folder.slug == "my-clippings" %>
+        <%= render :partial => "clippings/logged_in_no_clippings_in_folder" if @clippings.size == 0 && @folder.slug != "my-clippings" %>
+      <% end %>
     <% end %>
   </ul>
 <% end %>
