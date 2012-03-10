@@ -1,0 +1,10 @@
+<div class="notice message">
+  <p>
+    <%= pluralize(count, 'clipping') %> <%= count == 1 ? 'was' : 'were' %> in temporary storage. 
+    <%= count == 1 ? 'It has' : 'They have' %> been saved to your clipboard.
+  </p>
+</div>
+<%
+  #remove the count once we've displayed this message
+  current_user.model.update_attribute(:new_clippings_count, nil)
+%>

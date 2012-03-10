@@ -23,6 +23,7 @@ class Clipping < ActiveRecord::Base
         self.persist_document(user, document_number, folders[0])
       end
     end
+    user.update_attribute(:new_clippings_count, document_numbers.count)
   end
 
   def self.all_preloaded_from_cookie(cookie_data)

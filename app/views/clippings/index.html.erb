@@ -25,7 +25,10 @@
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
     <div id="remove-clipping"></div>
   </div>
+  
   <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 && !user_signed_in? %>
+  <%= render :partial => "clippings/new_from_cookie", :locals => {:count => current_user.new_clippings_count} if user_signed_in? && current_user.new_clippings_count %>
+
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
