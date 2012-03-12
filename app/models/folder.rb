@@ -4,7 +4,7 @@ class Folder < ApplicationModel
   has_many :clippings
   belongs_to :user, :foreign_key => :creator_id 
 
-  validates_presence_of :name
+  validates_presence_of :name, :message => "Folder name must not be blank"
   validates_uniqueness_of :name, :scope => :creator_id
   validate :slug_is_not_reserved
 
@@ -35,7 +35,7 @@ class Folder < ApplicationModel
 
   def slug_is_not_reserved
     if self.slug == "my-clippings"
-      errors.add_to_base("Sorry, a folder can not be named 'My Clippings'")
+      errors.add(:base, "Sorry, a folder can not be named 'My Clippings'")
       return false
     else
       return true

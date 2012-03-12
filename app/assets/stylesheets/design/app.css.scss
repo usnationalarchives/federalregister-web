@@ -98,10 +98,21 @@ div#new-folder-modal .folder_success .icon {
   }
 div#new-folder-modal .folder_success .icon {
   top: -2px;
-  background: url(icons/my_fr2/icon_badge_checked_green.png) 0px 0 no-repeat;
+  background: url(icons/my_fr2/icon_badge_checked_green.png) 0 0 no-repeat;
   }
 div#new-folder-modal .folder_create .icon {
   top: 4px;
   margin-left: 10px;
-  background: url(/my/assets/orange_loader.gif) 0px 0 no-repeat;
+  background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
+  }
+div#new-folder-modal .folder_error { display: none; }
+div#new-folder-modal .folder_error p { 
+  color: #8A3737; 
+  height: 25px;
+  }
+div#new-folder-modal .folder_error .icon {
+  width: 20px;
+  height: 25px;
+  background: url(icons/disclaimer.png) 0 0 no-repeat;
+  margin-right: 10px;
   }

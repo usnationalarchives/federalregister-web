@@ -159,6 +159,7 @@ function create_new_folder_with_items( form, clipping_ids ) {
   /* hide the form so we can show status messages */
   form.hide();
   form.siblings('p').hide();
+  $('#new-folder-modal .folder_error').hide();
 
   /* show creating folder message and loader */
   $('new-folder-modal .folder_create').show();
@@ -226,6 +227,11 @@ function create_new_folder_with_items( form, clipping_ids ) {
       })
       .fail( function(response) {
         $('new-folder-modal .folder_create').hide();
+      
+        responseText = $.parseJSON( response.responseText);
+        $('#new-folder-modal .folder_error p .message').html(responseText.errors[0]);
+        $('#new-folder-modal .folder_error').show();
+
         form.siblings('p').show();
         form.show();
       });

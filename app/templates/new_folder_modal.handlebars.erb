@@ -6,6 +6,13 @@
     Creating folders will help you organize your saved documents.<br />
     <span id="fyi">When this folder is created the current document will be added to that folder.</span>
   </p>
+
+  <div class="folder_error">
+    <p>
+      <span class="icon"></span>
+      <span class="message"></span>
+    </p>
+  </div>
   
   <%= semantic_form_for :folder, :url => folders_path() do |f| %>
     <%= render :partial => "folders/form", :locals => {:f => f} %>
@@ -19,7 +26,7 @@
   </div>
 
   <div class="folder_success">
-    <p> <span class="icon"></span></p>
+    <p><span class="icon"></span></p>
   </div>
 </div>
 

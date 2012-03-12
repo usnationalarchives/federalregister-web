@@ -22,16 +22,23 @@ class FoldersController < ActionController::Base
           clipping.update_attributes(:folder_id => folder.id)
         end
       end
-    end
+    
+      if request.xhr?
+        folder.reload #ensure our folder object is up-to-date
 
-    if request.xhr?
-      folder.reload #ensure our folder object is up-to-date
+        # from the article page we need to send back document numbers
+        # for the clippings pages we need to send back the ids of the clippings
+        documents = document_numbers.present? ? folder.document_numbers : clipping_ids
 
-      # from the article page we need to send back document numbers
-      # for the clippings pages we need to send back the ids of the clippings
-      documents = document_numbers.present? ? folder.document_numbers : clipping_ids
-
-      render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => folder.clippings.count, :documents => documents } }
+        render :json => {:folder => {:name => folder.name, :slug => folder.slug, :doc_count => folder.clippings.count, :documents => documents } }
+      end
+    else
+      if folder.errors[:base].present?
+        errors = folder.errors[:base]
+      else
+        errors = folder.errors.messages.map{|key, value| value}.flatten
+      end
+      render :text => {:errors => errors}.to_json, :status => 400
     end
   end
 
