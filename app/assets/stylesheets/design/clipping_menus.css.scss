@@ -302,9 +302,30 @@
 
 #clipping-actions.fr2 div.menu li.in_folder { cursor: default; }
 
-#clipping-actions.fr2 div.menu li.in_folder a span.icon {
+#clipping-actions.fr2 div.menu li.in_folder a span.icon.checked {
   background: url(icons/my_fr2/icon_badge_checked_green.png) 0 0 no-repeat;
   }
+#clipping-actions.fr2 div.menu li.in_folder:hover a span.icon.checked { display: none; background: none; }
+
+#clipping-actions.fr2 div.menu li.in_folder a span.icon.delete { display: none; }
+#clipping-actions.fr2 div.menu li.in_folder:hover a span.icon.delete {
+  background: url(icons/my_fr2/icon_badge_remove.png) 0 0 no-repeat;
+  display: inline-block;
+  }
+#clipping-actions.fr2 div.menu li.in_folder a span.icon.delete:hover {
+  background: url(icons/my_fr2/icon_badge_remove_active.png) 0 0 no-repeat;
+  }
+
+#clipping-actions.fr2 div.menu li.in_folder a span.icon.goto { display: none; }
+#clipping-actions.fr2 div.menu li.in_folder:hover a span.icon.goto {
+  background: url(icons/my_fr2/icon_badge_goto.png) 0 0 no-repeat;
+  display: inline-block;
+  right: 25px;
+  }
+#clipping-actions.fr2 div.menu li.in_folder a span.icon.goto:hover {
+  background: url(icons/my_fr2/icon_badge_goto_active.png) 0 0 no-repeat;
+  }
+
 #clipping-actions.fr2 div.menu li.not_in_folder a span.icon {
   background: url(icons/my_fr2/icon_badge_checked.png) 0 0 no-repeat;
   }

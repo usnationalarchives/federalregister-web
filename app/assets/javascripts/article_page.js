@@ -309,6 +309,14 @@ $(document).ready(function () {
       event.preventDefault();
       display_new_folder_modal( menu, this_document_number );
     });
+
+    /* goto folder icon link */
+    menu.find('li a span.goto').bind('click', function(event) {
+      event.preventDefault();
+      folder = $(this).closest('li').data('slug');
+      window.location.href = "/my/folders/" + folder;
+    });
+
   });
   
 
@@ -327,4 +335,5 @@ $(document).ready(function () {
 
   /* add tipsy to the menu(s) */
   $('.add_to_folder .button.tip_over').tipsy({gravity:'south', offset: 3, live: true});
+
 });
