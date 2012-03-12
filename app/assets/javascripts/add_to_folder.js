@@ -278,7 +278,7 @@ $(document).ready(function() {
     }
     
     if ( modal.is('#new-folder-modal') ) {
-      modal.find('p.instructions span#fyi').html('When this folder is created any selected items will be moved to it.');
+      modal.find('p.instructions span#fyi').html('When this folder is created any selected clippings will be moved to it.');
     }
   
     /* attach events to the modal close */
