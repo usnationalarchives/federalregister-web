@@ -241,10 +241,13 @@ function remove_document_from_folder(folder_li, document_number, menu) {
     data: {folder_clippings: {folder_slug: folder_li.data('slug'), document_number: document_number}},
     type: "POST"
   }).success(function(response) {
-    console.log('delete success');
     folder_li.removeClass('in_folder').addClass('not_in_folder');
+    
+    /* remove loader as well as goto and delete icons */
     folder_li.find('a span.loader').hide();
     folder_li.find('a span.icon').remove();
+    
+    /* add back our checked icon and bind the proper events to it*/
     checked_span = $('<span>').addClass('checked').addClass('icon');
     folder_li.find('a').append( checked_span );
     folder_li.bind('click', function(event) {
@@ -252,6 +255,9 @@ function remove_document_from_folder(folder_li, document_number, menu) {
       add_item_to_folder( $(this), menu, menu.closest('li').find('form.add_to_clipboard') );
     });
 
+    /* decrement the docs in folders count */
+    documents_in_folders = $('#user_utils #document-count-holder #user_documents_in_folders_count');
+    documents_in_folders.html( parseInt(documents_in_folders.html(), 0) - response.folder.doc_count );
   });
 }
 
@@ -268,7 +274,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
   goto_span.bind('click', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log('goto');
+    
     folder = $(this).closest('li').data('slug');
     window.location.href = "/my/folders/" + folder;
   });
@@ -277,7 +283,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
   delete_span.bind('click', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log('delete');
+    
     remove_document_from_folder( el, document_number, menu );
   });
 }

@@ -68,7 +68,7 @@ class FolderClippingsController < ActionController::Base
 
       render :json => {:folder => {:name => folder.present? ? folder.name : "my-clippings", 
                                    :slug => slug, 
-                                   :doc_count => 1, 
+                                   :doc_count => clippings.count, 
                                    :documents => document_number } }
     else
       render :text => "No clipping ids or document number present", :status => 400
