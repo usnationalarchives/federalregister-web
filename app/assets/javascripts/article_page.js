@@ -1,8 +1,8 @@
 /* ajax send document to my_fr2 app and */
 /* manage which icons are shown during each process of the ajax action */
 function add_item_to_folder(el, menu, form) {
-  el.find('.icon').toggle();
-  el.find('.loader').toggle();
+  el.find('.icon.checked').hide();
+  el.find('.loader').show();
   
   form_data = form.serializeArray();
   form_data.push( {name: "entry[folder]", value: el.data('slug')} );
@@ -26,8 +26,8 @@ function add_item_to_folder(el, menu, form) {
       }
     })
     .complete(function(response) {
-      el.find('.loader').toggle();
-      el.find('.icon').toggle();
+      el.find('.loader').hide();
+      el.find('.icon.checked').show();
     });
 }
 
@@ -154,7 +154,6 @@ function create_new_folder(form) {
   menu = form.data('menu');
   document_number = form.data('document-number');
 
-  console.log( menu, form, document_number);
   /* hide the form so we can show staus messages */
   form.hide();
   form.siblings('p').hide();
@@ -233,6 +232,57 @@ function create_new_folder(form) {
     });
 }
 
+function remove_document_from_folder(folder_li, document_number, menu) {
+  folder_li.find('a span.icon').hide();
+  folder_li.find('a span.loader').show();
+
+  $.ajax({
+    url: '/my/folder_clippings/delete',
+    data: {folder_clippings: {folder_slug: folder_li.data('slug'), document_number: document_number}},
+    type: "POST"
+  }).success(function(response) {
+    console.log('delete success');
+    folder_li.removeClass('in_folder').addClass('not_in_folder');
+    folder_li.find('a span.loader').hide();
+    folder_li.find('a span.icon').remove();
+    checked_span = $('<span>').addClass('checked').addClass('icon');
+    folder_li.find('a').append( checked_span );
+    folder_li.bind('click', function(event) {
+      event.preventDefault();
+      add_item_to_folder( $(this), menu, menu.closest('li').find('form.add_to_clipboard') );
+    });
+
+  });
+}
+
+function add_in_folder_mouseenter_events( el, document_number, menu ) {
+  el.find('a span.checked.icon').remove();
+
+  goto_span = $('<span>').addClass('goto').addClass('icon');
+  el.find('a').append( goto_span );
+  delete_span = $('<span>').addClass('delete').addClass('icon');
+  el.find('a').append( delete_span );
+  
+
+  /* goto folder icon link */
+  goto_span.bind('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('goto');
+    folder = $(this).closest('li').data('slug');
+    window.location.href = "/my/folders/" + folder;
+  });
+
+  /* remove article from folder link */
+  delete_span.bind('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('delete');
+    remove_document_from_folder( el, document_number, menu );
+  });
+}
+
+
 $(document).ready(function () {
   /* hide form and prevent unwanted submission */
   $('form.add_to_clipboard').hide();
@@ -289,7 +339,7 @@ $(document).ready(function () {
       };
     });
 
-    menu.find('.menu .li, .menu .li a').bind('click', function(event) { event.preventDefault(); }); 
+    menu.find('.menu li, .menu li a').bind('click', function(event) { event.preventDefault(); }); 
 
     /* enable saving to folder */
     menu.find('.menu li.not_in_folder').bind('click', function(event) {
@@ -310,15 +360,22 @@ $(document).ready(function () {
       display_new_folder_modal( menu, this_document_number );
     });
 
-    /* goto folder icon link */
-    menu.find('li a span.goto').bind('click', function(event) {
-      event.preventDefault();
-      folder = $(this).closest('li').data('slug');
-      window.location.href = "/my/folders/" + folder;
+    menu.delegate('.menu li.in_folder', 'mouseenter', function(event) {
+      add_in_folder_mouseenter_events( $(this), this_document_number, menu );
+    });
+
+    menu.delegate('.menu li.in_folder', 'mouseleave', function(event) {
+      var el = $(this);
+      el.find('a span.delete.icon').remove();
+      el.find('a span.goto.icon').remove();
+
+      if ( el.find('a span.checked.icon').length === 0 ) {
+        checked_span = $('<span>').addClass('checked').addClass('icon');
+        el.find('a').append( checked_span );
+      }
     });
 
   });
-  
 
   /* visually identify the document as flagged if its in a folder */
   /* this is used on the article page - search is handled above  */
