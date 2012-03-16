@@ -7,3 +7,4 @@ config/*.yml
 .screenrc
 tags
 .sass-cache/
+public/assets
