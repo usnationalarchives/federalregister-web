@@ -1,14 +1,6 @@
 <%= stylesheet_link_tag "/my/assets/application.css" %>
 
-<%# vendored js %>
-<%= javascript_include_tag "/my/assets/underscore-1.2.4.min.js" %>
-
-<%# shared app js %>
-<%= javascript_include_tag "/my/assets/storage.js" %>
-<%= javascript_include_tag "/my/assets/article_page.js" %>
-
-<%# handlebars helpers %>
-<%= javascript_include_tag "/my/assets/handlebars_helpers.js" %>
+<%= javascript_include_tag "/my/assets/application-shared.js" %>
 
 <!--[if lte IE 9]>
   <%= stylesheet_link_tag "/my/assets/application-ie.css", :media => "all" %>

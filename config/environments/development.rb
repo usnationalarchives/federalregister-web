@@ -24,7 +24,7 @@ MyFr2::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
-  config.assets.precompile += %w( application-ie.css )
+  config.assets.precompile += %w( application-ie.css application-shared.js )
 
   # Expands the lines which load the assets
   config.assets.debug = true
