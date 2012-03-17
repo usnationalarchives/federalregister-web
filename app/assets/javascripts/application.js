@@ -4,8 +4,6 @@
 //= require jquery.utilities
 //= require jquery.tipsy
 //= require_self
-//= require handlebars_helpers
 //= require add_to_folder
 //= require clippings
-//= require storage
 //= require tipsy
