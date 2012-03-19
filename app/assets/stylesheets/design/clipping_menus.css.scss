@@ -241,7 +241,8 @@
   display: block;
   height: 30px;
   width: 30px;
-  background: url(icons/my_fr2/icon_add_to_clipboard.png) 0 0 no-repeat;
+  @include my_fr2-sprite(icon_add_to_clipboard);
+  /*background: url(icons/my_fr2/icon_add_to_clipboard.png) 0 0 no-repeat;*/
   }
 /* the .hover class is used by javascript */
 #clipping-actions.fr2 #add-to-folder .button span.icon.clipped,

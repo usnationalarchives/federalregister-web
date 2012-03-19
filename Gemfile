@@ -17,13 +17,19 @@ gem 'formtastic', '2.0.2'
 gem 'draper',     '0.9.5'
 
 gem 'jquery-rails'
-gem 'sass-rails', " ~> 3.1.0"
+gem 'sass-rails',    "~> 3.1.0"
+gem 'compass-rails', "1.0.0"
+gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
 gem 'userstamp', '2.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
+  gem 'sass-rails',    "~> 3.1.0"
+  gem 'compass-rails', "1.0.0"
+  gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
+
   gem 'uglifier'
 end
 
