@@ -2,12 +2,12 @@ h2.title {
   border-bottom: 1px solid #CCC;
   margin: 0;
   padding-left: 40px;
-  background: url(icons/my_fr2/icon_folder_large.png) 0 2px no-repeat;
+  @include my_fr2-sprite(icon_folder_large, $my_fr2-sprite-dimensions, 0, 2);
   line-height: 1.1em;
   padding-top: 5px;  
   }
 h2.clipboard.title {
-  background: url(icons/my_fr2/icon_clipboard_large.png) 0 3px no-repeat;
+  @include my_fr2-sprite(icon_clipboard_large, $my_fr2-sprite-dimensions, 0, 3);
   }
 div#folder_metadata_bar { margin-bottom: 2em; }
 div#folder_metadata_bar ul { 
@@ -153,156 +153,6 @@ div#folder_metadata_bar ul li {
 #clippings li div.add_to_folder_pane input {
   margin-left: 7px;
   }
-
-/************************************
-/* ADD TO FOLDER / JUMP TO FOLDER MENU
-************************************/
-#clipping-actions {
-  position: relative;
-  height: 30px;
-  margin-bottom: 10px;
-  z-index: 1001;
-
-  background-color: #EEE;
-  border: #CCC 1px solid;
-
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-  }
-
-#clipping-actions #remove-clipping {
-  width: 14px;
-  height: 16px;
-  
-  position: absolute;
-  right: 0px;
-  margin: 5px 6px 0 0;
-  padding: 4px 4px 0 4px;
-
-  border: #CCC 1px solid;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  
-  background: white url(icons/my_fr2/icon_remove_clipping.png) 2px 2px no-repeat;  
-  }
-#clipping-actions #remove-clipping:hover {
-  background: white url(icons/my_fr2/icon_remove_clipping_active.png) 2px 2px no-repeat;  
-  }
-
-#clipping-actions #add-to-folder,
-#clipping-actions #jump-to-folder {
-  width: 150px;
-  position: absolute; 
-  margin: 5px 15px 0 0;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-#clipping-actions #add-to-folder { right: 0px; }
-#clipping-actions #jump-to-folder { right: 170px; }
-
-
-#clipping-actions #add-to-folder .button,
-#clipping-actions #jump-to-folder .button {
-  position: relative;
-  top: 0px;
-  left: 10px;
-  width: 121px;
-  padding: 4px 15px 0 12px;
-
-  background: white url("icons/my_fr2/menu_arrow_down.png") 125px 6px no-repeat;
-  border: #CCC 1px solid;
-  line-height: 1.2em;
-  }
-#clipping-actions #add-to-folder.hover .button,
-#clipping-actions #jump-to-folder.hover .button {
-  background: #FFF url("icons/my_fr2/menu_arrow_down_active.png") 125px 6px no-repeat;
-  color: #B88659;
-  }
-#clipping-actions #add-to-folder .button span.icon,
-#clipping-actions #jump-to-folder .button span.icon {
-  width: 18px;
-  height: 15px;
-  display: inline-block;
-  position: relative;
-  top: -3px;
-  margin: 0;
-  }
-#clipping-actions #add-to-folder .button span.icon {
-  background: url(icons/my_fr2/user_utils/icon_folder.png)0 0 no-repeat;
-  }
-#clipping-actions #add-to-folder.hover .button span.icon {
-  background: url(icons/my_fr2/user_utils/icon_folder_active.png)0 0 no-repeat;
-  }
-#clipping-actions #jump-to-folder .button span.icon {
-  background: url(icons/my_fr2/user_utils/icon_folder_open.png)0 0 no-repeat;
-  }
-#clipping-actions #jump-to-folder.hover .button span.icon {
-  background: url(icons/my_fr2/user_utils/icon_folder_open_active.png)0 0 no-repeat;
-  }
-
-#clipping-actions div.menu {
-  display: none;
-  position: relative;
-  z-index: 1000;
-
-  width: 150px;
-  right: -4px;
-  top: 3px;
-  padding: 0 5px 5px 5px;
-
-  background-color: #EEE;
-  border: #CCC 1px solid;
-  border-top: none;
-
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-bottomleft: 6px;
-  }
-#clipping-actions div.menu ul {
-  background-color: #FFF;
-  margin: 0;
-  border: #DDD 1px solid;
-}
-#clipping-actions div.menu li {
-  padding: 1px 5px;
-  border-bottom: #CCC 1px dashed;
-  margin: 0;
-  color: #6E6E6E;
-  font-weight: bold;
-  }
-#clipping-actions div.menu li:last-child { border-bottom: none; }
-#clipping-actions div.menu li#new-folder {
-  background: url(icons/my_fr2/icon_badge_add.png) 36px 4px no-repeat;
-  padding-left: 20px;
-  text-align: center;
-  }
-#clipping-actions div.menu li#new-folder:hover {
-  background: url(icons/my_fr2/icon_badge_add_active.png) 36px 4px no-repeat;
-  }
-#clipping-actions div.menu li:hover {
-  background-color: #EBF4F7;
-  color: #B88659;
-  cursor: pointer;
-}
-
-
-#clipping-actions div.menu li a {
-  color: #6E6E6E;
-  font-weight: bold;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-#clipping-actions div.menu li:hover a { color: #B88659; }
-
-#clipping-actions div.menu span              { display: inline-block; }
-#clipping-actions div.menu span.name         { width: 108px; }
-#clipping-actions div.menu span.document_count { float: right; }
 
 /***********************************
 * Moving clippings between folders *
