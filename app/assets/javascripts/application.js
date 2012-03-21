@@ -1,8 +1,4 @@
-//= require jquery
 //= require jquery_ujs
-//= require jqModal
-//= require jquery.utilities
-//= require jquery.tipsy
 //= require_self
 //= require add_to_folder
 //= require clippings
