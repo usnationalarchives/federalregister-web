@@ -1,5 +1,5 @@
 MyFr2::Application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session

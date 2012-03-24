@@ -1,5 +1,8 @@
 <div class="title"><span>My FR</span></div>
 
+<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
