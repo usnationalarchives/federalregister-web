@@ -1,17 +1,21 @@
-<h2>Sign in</h2>
+<div class="title"><span>My FR</span></div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<%= render :partial => "devise/shared/tabs" %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+<div class="signup_bar">
+  <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <%= f.inputs do %>
+      <%= f.input :email %>
+      <%= f.input :password, :as => :password %>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+      <% if devise_mapping.rememberable? -%>
+        <div class="remember_me"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+      <% end -%>
+    <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+    <%= f.buttons do %>
+      <%= f.commit_button "Sign in" %>
+    <% end %>
+  <% end %>
+</div>

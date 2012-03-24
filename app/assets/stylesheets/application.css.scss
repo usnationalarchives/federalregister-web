@@ -6,6 +6,7 @@ $my_fr2-spacing: 50px;
 $user_utils-spacing: 50px;
 @import "sprites/_user_utils.scss";
 
+@import "formtastic_changes.css.scss";
 @import "design/app.css.scss";
 @import "design/user_utils.css.scss";
 @import "design/clippings.css.scss";

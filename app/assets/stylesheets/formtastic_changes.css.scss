@@ -1,0 +1,43 @@
+form.user { 
+  font-size: 16px;
+  margin-top: 15px;
+  font-family: "athelas-1","athelas-2", "Georgia", serif;  
+  }
+
+form.user p.inline-errors {
+  display: inline-block;
+  padding-bottom: 0;
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #8A3737;
+  }
+
+form.user fieldset.inputs .label {
+  width: 85px;
+  display: inline-block;
+  text-align: left;
+  }
+
+form.user fieldset.inputs li.input { padding-left: 20px; }
+form.user fieldset.inputs li.error { 
+  @include my_fr2-sprite(form_error, $my_fr2-sprite-dimensions, 0, 4px);
+}
+form.user fieldset.inputs input { 
+  width: 200px;
+  vertical-align: top;
+  }
+
+form.user fieldset.inputs .remember_me input {
+  float: left;
+  width: auto;
+  margin-right: 5px;
+  margin-left: 121px;
+  top: 3px;
+  position: relative;
+  }
+
+form.user fieldset.buttons {
+  margin: 0;
+  margin-left: 109px;
+  }
