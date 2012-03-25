@@ -1,28 +1,30 @@
 <div id="user_utils">
-  <div id="document-count-holder">
-    <%= link_to clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" do
-          [ content_tag(:span, @clipboard_clippings.size, :id => "doc_count"),
-            content_tag(:span, "", :class => "icon")
-          ].join("\n").html_safe
-        end %>
-    <% if user_signed_in? %>
-      <%= link_to clippings_path(), :id => "document-in-folders-count", :class => "count_with_icon" do
-            [ content_tag(:span, @folders.count, :id => "user_folder_count"),
-              "(#{content_tag(:span, @folders.map{|f| f.clippings.count}.inject(:+) || 0, :id => "user_documents_in_folders_count")})",
+  <div class="ie_shim">
+    <div id="document-count-holder">
+      <%= link_to clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" do
+            [ content_tag(:span, @clipboard_clippings.size, :id => "doc_count"),
               content_tag(:span, "", :class => "icon")
             ].join("\n").html_safe
           end %>
+      <% if user_signed_in? %>
+        <%= link_to clippings_path(), :id => "document-in-folders-count", :class => "count_with_icon" do
+              [ content_tag(:span, @folders.count, :id => "user_folder_count"),
+                "(#{content_tag(:span, @folders.map{|f| f.clippings.count}.inject(:+) || 0, :id => "user_documents_in_folders_count")})",
+                content_tag(:span, "", :class => "icon")
+              ].join("\n").html_safe
+            end %>
+      <% end %>
+    </div>
+    <ul id="user-nav">
+    <% if user_signed_in? %>
+      <li>Hi, <%= current_user.display_name %></li>
+      <li><%= link_to "Sign out", destroy_session_path %></li>
+    <% else %>
+      <li><%= link_to "Sign in", new_user_session_path, :id => "sign-in" %></li>
+      <li><%= link_to "Sign up", new_user_registration_path %></li>
     <% end %>
-  </div>
-  <ul id="user-nav">
-  <% if user_signed_in? %>
-    <li>Hi, <%= current_user.display_name %></li>
-    <li><%= link_to "Sign out", destroy_session_path %></li>
-  <% else %>
-    <li><%= link_to "Sign in", new_user_session_path, :id => "sign-in" %></li>
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-  <% end %>
-  </ul>
+    </ul>
+  </div> <!-- end ie_shim -->
 </div>
 
 <script type="text/javascript">

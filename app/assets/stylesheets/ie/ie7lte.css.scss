@@ -1,0 +1,41 @@
+#clipping-actions #add-to-folder .button span.icon, 
+#clipping-actions #jump-to-folder .button span.icon {
+  display: block;
+  float: left;
+  padding-right: 5px;
+  }
+
+#clipping-actions div.menu a span.name { float: left; }
+
+#clipping-actions.fr2 #add-to-folder .menu { right: 170px; }
+
+#clipping-actions.fr2 div.menu a span.icon, 
+#clipping-actions.fr2 div.menu a span.loader {
+  top: 0px;
+  }
+
+#clippings div.rule_type { float: left; }
+#clippings .document_data { float: left; }
+
+#navigation { margin-bottom: 20px; }
+#user_utils {
+  height: 30px;
+  position: absolute;
+  right: 0px;
+  top: 35px;
+  }
+#user_utils .ie_shim { 
+  float: right; 
+  padding-right: 20px;
+  }
+#user_utils #document-count-holder,
+#user_utils #user-nav,
+#user_utils #user-nav li {
+  float: left;
+  }
+
+#clippings div.rule_type { position: relative; }
+
+#main div#folder_metadata_bar { margin-bottom: 60px; }
+div#folder_metadata_bar ul li { float: left; }
+
