@@ -9,6 +9,7 @@ require 'thunder_punch'
 #############################################################
 set :application, "my_fr2"
 set :user, "deploy"
+set :current_path, "/var/www/apps/#{application}"
 
 if File.exists?(File.join(ENV["HOME"], ".ssh", "fr_staging"))
   ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "fr_staging")]
