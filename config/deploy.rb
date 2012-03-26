@@ -131,13 +131,13 @@ set :gem_file_groups, [:deployment, :development, :test]
 # all deployment changes that affect app servers also must 
 # be put in the user-scripts files on s3!!!
 
-after "deploy:update_code",              "deploy:set_rake_path"
-after "deploy:set_rake_path",            "bundler:fix_bundle"
-after "bundler:fix_bundle",              "deploy:migrate"
-after "deploy:migrate",                  "assets:create_sprite_scss_files"
-after "assets:create_sprite_scss_files", "assets:precompile"
-after "assets:precompile",               "passenger:restart"
-after "passenger:restart",               "varnish:clear_cache"
+after "deploy:update_code",      "deploy:set_rake_path"
+after "deploy:set_rake_path",    "bundler:fix_bundle"
+after "bundler:fix_bundle",      "deploy:migrate"
+after "deploy:migrate",          "assets:wrangle_sprites"
+after "assets:wrangle_sprites",  "assets:precompile"
+after "assets:precompile",       "passenger:restart"
+after "passenger:restart",       "varnish:clear_cache"
 
 
 #############################################################
@@ -176,13 +176,26 @@ namespace :my_fr2 do
 end
 
 namespace :assets do
+  task :wrangle_sprites do
+    find_and_execute_task("assets:remove_old_sprites")
+    find_and_execute_task("assets:create_sprite_scss_files")
+  end
+
+  task :remove_old_sprites, :roles => [:static] do
+    run "cd #{current_path} && rm -f app/assets/images/icons/my_fr2-s*.png"
+    run "cd #{current_path} && rm -f app/assets/images/icons/my_fr2/user_utils-s*.png"
+  end
+
   task :create_sprite_scss_files, :roles => [:static] do
     run "cd #{current_path} && bundle exec compass sprite -c config/compass.rb 'icons/my_fr2/*.png' --force"
     run "cd #{current_path} && bundle exec compass sprite -c config/compass.rb 'icons/my_fr2/user_utils/*.png' --force"
   end
 
-  task :precompile do
-    run "cd #{current_path} && bundle exec rake assets:precompile"
+  task :precompile, :roles => [:static] do
+    find_and_execute_task("assets:remove_old_sprites")
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile:primary"
+    find_and_execute_task("assets:remove_old_sprites")
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile:nondigest"
   end
 end
 
