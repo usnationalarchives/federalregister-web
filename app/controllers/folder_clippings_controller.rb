@@ -63,7 +63,7 @@ class FolderClippingsController < ActionController::Base
       # the given folder.
       folder_id = folder.present? ? folder.id : nil
       
-      clippings = Clipping.find_all_by_folder_id_and_document_number(folder_id, document_number)
+      clippings = Clipping.find_all_by_user_id_and_folder_id_and_document_number(current_user.id, folder_id, document_number)
       clippings.each{|c| c.destroy}
 
       render :json => {:folder => {:name => folder.present? ? folder.name : "my-clippings", 

@@ -47,7 +47,7 @@ class Clipping < ActiveRecord::Base
   def self.persist_document(user, document_number, folder_name)
     if folder_name == 'my-clippings'
       folder = nil
-      clipping = Clipping.find_by_document_number_and_user_id(document_number, user.id)
+      clipping = Clipping.find_by_document_number_and_user_id_and_folder_id(document_number, user.id, nil)
     else
       folder = Folder.find_by_creator_id_and_slug(user.id, folder_name)
       clipping = Clipping.find_by_document_number_and_user_id_and_folder_id(document_number, user.id, folder.id)
