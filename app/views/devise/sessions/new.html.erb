@@ -9,7 +9,7 @@
   <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
 
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :class => "error" if msg.is_a?(String) %>
+      <%= content_tag :div, msg, :class => "error" if msg.is_a?(String) && name == :alert %>
     <% end %>
 
     <%= f.inputs do %>
