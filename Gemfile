@@ -23,6 +23,9 @@ gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by comp
 
 gem 'userstamp', '2.0.1'
 
+gem "capistrano", '2.5.19', :require => false
+gem "thunder_punch", '0.0.11', :require => false
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
