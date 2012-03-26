@@ -1,0 +1,19 @@
+<div class="title"><span>My FR</span></div>
+
+<%= render :partial => "devise/shared/tabs" %>
+
+<div class="signup_bar">
+  <%= semantic_form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put } do |f| %>
+
+    <%= f.inputs do %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <%= f.input :password, :as => :password %>
+      <%= f.input :password_confirmation, :as => :password, :required => true %>
+    <% end %>
+
+    <%= f.buttons do %>
+      <%= f.commit_button "Change my password" %>
+    <% end %>
+  <% end %>
+</div>
