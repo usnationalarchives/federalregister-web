@@ -1,5 +1,5 @@
 # See comment at the top of config/initializers/monkey_patch.rb
-if Rails.env == "development"
+if ENV["RAILS_ENV"] == "development"
   ENV['RAILS_RELATIVE_URL_ROOT'] = '/my'
 end
 
