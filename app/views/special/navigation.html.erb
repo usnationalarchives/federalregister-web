@@ -1,0 +1,15 @@
+<li class="dropdown nav_myfr2">
+  <a class="myfr2">My FR<span class="arrow"></span></a>
+  <ul class="subnav myfr2_list">
+    <li id='myfr2-clipboard'>
+      <%= link_to 'My Clipboard', '/my/', :class => "myfr2-clipboard" %>
+    </li>
+    <li id='myfr2-account'>
+      <% if user_signed_in? %>
+        <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
+      <% else %>
+        <%= link_to 'Sign Up / Sign In', new_user_session_path(), :class => "myfr2-auth" %>
+      <% end %>
+    </li>
+  </ul>
+</li>

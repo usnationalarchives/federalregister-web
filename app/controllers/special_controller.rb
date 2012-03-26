@@ -10,8 +10,17 @@ class SpecialController < ApplicationController
       @clipboard_clippings = Clipping.all_preloaded_from_cookie( cookies[:document_numbers] ) || []
       @folders   = []
     else
+      cache_for 1.day
       @clipboard_clippings = []
       @folders = []
     end
+  end
+
+  def navigation
+    cache_for 1.day
+  end
+
+  def shared_assets
+    cachec_for 1.day
   end
 end

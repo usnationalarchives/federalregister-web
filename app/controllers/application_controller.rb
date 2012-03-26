@@ -14,5 +14,8 @@ class ApplicationController < ActionController::Base
   def decorate_current_user
     @current_user = UserDecorator.decorate(current_user) if current_user
   end
-  
+
+  def cache_for(time)
+    expires_in time, :public => true
+  end  
 end
