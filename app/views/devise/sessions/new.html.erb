@@ -8,8 +8,12 @@
 <div class="signup_bar">
   <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
 
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :class => "error" if msg.is_a?(String) %>
+    <% end %>
+
     <%= f.inputs do %>
-      <%= f.input :email %>
+      <%= f.input :email, :as => :string %>
       <%= f.input :password, :as => :password %>
 
       <% if devise_mapping.rememberable? -%>

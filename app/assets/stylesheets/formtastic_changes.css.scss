@@ -20,6 +20,10 @@ form.user fieldset.inputs .label {
   }
 
 form.user fieldset.inputs li.input { padding-left: 20px; }
+form.user div.error {
+  color: #8A3737;
+  @include my_fr2-sprite(form_error, $my_fr2-sprite-dimensions, 0, 4px);
+}
 form.user fieldset.inputs li.error { 
   @include my_fr2-sprite(form_error, $my_fr2-sprite-dimensions, 0, 4px);
 }

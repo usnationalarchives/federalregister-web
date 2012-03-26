@@ -39,3 +39,15 @@
 #main div#folder_metadata_bar { margin-bottom: 60px; }
 div#folder_metadata_bar ul li { float: left; }
 
+.signup_tabs li { float: left; }
+.signup_tabs li.on {
+  position: relative;
+  top: -0.25em;
+  }
+form fieldset.inputs ol { margin-left: 0; }
+form.user fieldset.inputs .remember_me input { margin-left: 97px; }
+form.user fieldset.inputs li.error label,
+form.user fieldset.inputs li.error input,
+form.user fieldset.inputs li.error p.inline-errors {
+  float: left;
+  }
