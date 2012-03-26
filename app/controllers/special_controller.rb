@@ -21,6 +21,6 @@ class SpecialController < ApplicationController
   end
 
   def shared_assets
-    cachec_for 1.day
+    cache_for 1.day
   end
 end
