@@ -191,11 +191,17 @@ namespace :assets do
     run "cd #{current_path} && bundle exec compass sprite -c config/compass.rb 'icons/my_fr2/user_utils/*.png' --force"
   end
 
+  task :copy_sprites_to_public, :roles => [:static]  do
+    run "cd #{current_path} && cp app/assets/images/icons/my_fr2-s*.png public/my/assets/icons/"
+    run "cd #{current_path} && cp app/assets/images/icons/my_fr2/user_utils-s*.png public/my/assets/icons/my_fr2/"
+  end
+
   task :precompile, :roles => [:static] do
     find_and_execute_task("assets:remove_old_sprites")
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile:primary"
     find_and_execute_task("assets:remove_old_sprites")
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile:nondigest"
+    find_and_execute_task("assets:copy_sprites_to_public")
   end
 end
 
