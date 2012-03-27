@@ -14,7 +14,7 @@
     </p>
   </div>
   
-  <%= semantic_form_for :folder, :url => folders_path() do |f| %>
+  <%= semantic_form_for :folder, :authenticity_token => false, :url => folders_path() do |f| %>
     <%= render :partial => "folders/form", :locals => {:f => f} %>
   <% end %>
 
