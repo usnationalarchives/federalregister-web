@@ -31,17 +31,6 @@ function add_item_to_folder(el, menu, form) {
     });
 }
 
-/* determine whether to expect a current user */
-function expect_logged_in() {
-  if ( readCookie('expect_logged_in') == "1" ) {
-    return true;
-  } else if ( readCookie('expect_logged_in') == "0") {
-    return false;
-  } else {
-    return false;
-  }
-}
-
 function insert_new_folder_into_menu(menu, response) {
   if ( $("#add-to-folder-menu-li-fr2-template") ) {
     template = Handlebars.compile( $("#add-to-folder-menu-li-fr2-template").html() );

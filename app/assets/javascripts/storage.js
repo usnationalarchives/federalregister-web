@@ -1,3 +1,14 @@
+/* determine whether to expect a current user */
+function expect_logged_in() {
+  if ( readCookie('expect_logged_in') == "1" ) {
+    return true;
+  } else if ( readCookie('expect_logged_in') == "0") {
+    return false;
+  } else {
+    return false;
+  }
+}
+
 function update_user_clipped_document_count(stored_documents) {
   //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0; 
   document_count = parseInt( $('#document-count #doc_count').html() );
