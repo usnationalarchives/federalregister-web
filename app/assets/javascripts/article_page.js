@@ -7,6 +7,9 @@ function add_item_to_folder(el, menu, form) {
   form_data = form.serializeArray();
   form_data.push( {name: "entry[folder]", value: el.data('slug')} );
 
+  document_number = form.find('input#entry_document_number').val();
+  track_clipping_event('add', document_number, el.data('slug'));
+
   $.ajax({
     url: form.prop('action'),
     data: form_data,
@@ -164,6 +167,11 @@ function create_new_folder(form) {
        * specially when we need to                               */
       menu.data('active-menu', true);
 
+      /* track the event */
+      track_folder_event('create', 1);
+      track_clipping_event('add', document_number, form.find('input#folder_name').val() );
+
+
       $('new-folder-modal .folder_create').hide();
       show_folder_success(response); 
       update_user_util_folders(response);
@@ -224,6 +232,8 @@ function create_new_folder(form) {
 function remove_document_from_folder(folder_li, document_number, menu) {
   folder_li.find('a span.icon').hide();
   folder_li.find('a span.loader').show();
+  
+  track_clipping_event('remove', document_number, folder_li.data('slug'));
 
   $.ajax({
     url: '/my/folder_clippings/delete',
