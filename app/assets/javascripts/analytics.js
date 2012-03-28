@@ -43,7 +43,7 @@ function track_folder_event(action, document_count) {
 
   label = user_state + "/" + folder_type + "/" + page_type;
 
-  _gaq.push(['_trackEvent', 'Clipping', action, label, document_count]);
+  _gaq.push(['_trackEvent', 'Folder', action, label, document_count]);
 }
 
 
