@@ -254,9 +254,14 @@ function remove_document_from_folder(folder_li, document_number, menu) {
       add_item_to_folder( $(this), menu, menu.closest('li').find('form.add_to_clipboard') );
     });
 
-    /* decrement the docs in folders count */
-    documents_in_folders = $('#user_utils #document-count-holder #user_documents_in_folders_count');
-    documents_in_folders.html( parseInt(documents_in_folders.html(), 0) - response.folder.doc_count );
+    if( folder_li.data('slug') !== 'my-clippings' ) {
+      /* decrement the docs in folders count */
+      documents_in_folders = $('#user_utils #document-count-holder #user_documents_in_folders_count');
+      documents_in_folders.html( parseInt(documents_in_folders.html(), 0) - response.folder.doc_count );
+    } else {
+      documents_in_clipboard = $('#user_utils #document-count-holder #doc_count');
+      documents_in_clipboard.html( parseInt(documents_in_clipboard.html(), 0) - response.folder.doc_count );
+    }
   });
 }
 
