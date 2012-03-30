@@ -23,4 +23,9 @@ class SpecialController < ApplicationController
   def shared_assets
     cache_for 1.day
   end
+
+  def status
+    current_time_on_database = Clipping.connection.select_values("SELECT NOW()").first
+    render :text => "Current time is: #{current_time_on_database} (MyFR)"
+  end
 end
