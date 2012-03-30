@@ -6,6 +6,7 @@ class Clipping < ActiveRecord::Base
 
   def self.with_preloaded_articles
     clippings = all
+
     document_numbers = clippings.map{|c| c.document_number}
     
     return unless clippings.present? && document_numbers.present?
@@ -34,14 +35,22 @@ class Clipping < ActiveRecord::Base
   end
 
   def self.map_articles_to_clipping(clippings, document_numbers)
-    articles = document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers) : [FederalRegister::Article.find(document_numbers.first)]
+    begin
+      articles = document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers) : [FederalRegister::Article.find(document_numbers.first)]
 
-    clippings.map do |clipping|
-      clipping.article = articles.find{|a| a.document_number == clipping.document_number}
-      clipping
+      clippings.select do |clipping|
+        article = articles.find{|a| a.document_number == clipping.document_number}
+        if article
+          clipping.article = article 
+        else
+          false
+        end
+      end
+    rescue FederalRegister::Article::InvalidDocumentNumber
+      []
+    rescue FederalRegister::Client::RecordNotFound
+      []
     end
-
-    clippings
   end
 
   def self.persist_document(user, document_number, folder_name)

@@ -6,7 +6,7 @@ gem 'rake',  '0.8.7'
 gem 'mysql2', '0.3.11'
 gem 'airbrake', '3.0.9'
 
-gem 'federal_register', '0.4.0'
+gem 'federal_register', '0.5.0'
 # gem 'federal_register', :path => '../federal_register'
 
 gem 'devise', '1.5.0'
