@@ -31,7 +31,7 @@ class FolderClippingsController < ActionController::Base
 
   def delete
     slug         = params[:folder_clippings][:folder_slug]
-    folder       = Folder.find_by_user_and_slug(current_user, slug)
+    folder       = user_signed_in? ? Folder.find_by_user_and_slug(current_user, slug) : nil
 
     if params[:folder_clippings][:clipping_ids].present?
       clipping_ids = params[:folder_clippings][:clipping_ids].split(',')
@@ -63,15 +63,32 @@ class FolderClippingsController < ActionController::Base
       # the given folder.
       folder_id = folder.present? ? folder.id : nil
       
-      clippings = Clipping.find_all_by_user_id_and_folder_id_and_document_number(current_user.id, folder_id, document_number)
-      clippings.each{|c| c.destroy}
+      if user_signed_in?
+        clippings = Clipping.find_all_by_user_id_and_folder_id_and_document_number(current_user.id, folder_id, document_number)
+        clippings.each{|c| c.destroy}
 
-      render :json => {:folder => {:name => folder.present? ? folder.name : "my-clippings", 
-                                   :slug => slug, 
-                                   :doc_count => clippings.count, 
-                                   :documents => document_number } }
+        render :json => {:folder => {:name => folder.present? ? folder.name : "my-clippings", 
+                                     :slug => slug, 
+                                     :doc_count => clippings.count, 
+                                     :documents => document_number } }
+      else
+        remove_document_id_from_session(document_number)
+        render :json => {:folder => {:name => "my-clippings",
+                                     :slug => slug, 
+                                     :doc_count => 1, 
+                                     :documents => document_number } }
+      end
     else
       render :text => "No clipping ids or document number present", :status => 400
+    end
+  end
+
+  private
+
+  def remove_document_id_from_session(document_number)
+    if cookies[:document_numbers].present?
+      new_cookie = JSON.parse(cookies[:document_numbers]).delete( document_number )
+      cookies[:document_numbers] = (new_cookie.nil? ? [] : new_cookie).to_json
     end
   end
 end
