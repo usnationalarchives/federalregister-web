@@ -33,10 +33,14 @@ class FolderClippingsController < ActionController::Base
     slug         = params[:folder_clippings][:folder_slug]
     folder       = user_signed_in? ? Folder.find_by_user_and_slug(current_user, slug) : nil
 
-    if params[:folder_clippings][:clipping_ids].present?
+    if params[:folder_clippings][:clipping_ids].present? && !params[:folder_clippings][:document_numbers].present?
       clipping_ids = params[:folder_clippings][:clipping_ids].split(',')
     else
-      document_number = params[:folder_clippings][:document_number]
+      if params[:folder_clippings][:document_number].present?
+        document_number = params[:folder_clippings][:document_number]
+      elsif params[:folder_clippings][:document_numbers].present?
+        document_number = params[:folder_clippings][:document_numbers]
+      end
     end
 
     # my-clippings is a "nil" folder
@@ -72,10 +76,13 @@ class FolderClippingsController < ActionController::Base
                                      :doc_count => clippings.count, 
                                      :documents => document_number } }
       else
-        remove_document_id_from_session(document_number)
+        document_number.to_a.each do |doc_numb|
+          remove_document_id_from_session(document_number)
+        end
+
         render :json => {:folder => {:name => "my-clippings",
                                      :slug => slug, 
-                                     :doc_count => 1, 
+                                     :doc_count => document_number.to_a.size, 
                                      :documents => document_number } }
       end
     else

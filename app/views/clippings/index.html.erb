@@ -27,12 +27,12 @@
   </div>
   
   <%= render :partial => "clippings/not_logged_in_warning" if @clippings.size > 0 && !user_signed_in? %>
-  <%= render :partial => "clippings/new_from_cookie", :locals => {:count => current_user.new_clippings_count} if user_signed_in? && current_user.new_clippings_count %>
+  <%= render :partial => "clippings/new_from_cookie", :locals => {:count => current_user.new_clippings_count} if user_signed_in? && current_user.new_clippings_count > 0 %>
 
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= clipping.id %>">
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>">
           <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
@@ -53,18 +53,19 @@
               <%= clipping.article.docket_dt_dd %>
             </dl>
           </div>
+
           <div class="clipping_data">
             <dl class="metadata">
               <dt class="created_at">Clipped on:</dt>
               <dd><%= clipping.clipped_at %></dd>
             </dl> 
           </div>
-          <% if user_signed_in? %>
-            <div class="add_to_folder_pane">
-              <div class="left_side"></div>
-              <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" %>
-            </div>
-          <% end %>
+
+          <div class="add_to_folder_pane">
+            <div class="left_side"></div>
+            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" if user_signed_in? %>
+            <%= check_box_tag "folder_clippings[document_numbers][]", clipping.document_number, false, :class => "clipping_id" unless user_signed_in? %>
+          </div>
         </li>
       <% end %>
     <% else %>
