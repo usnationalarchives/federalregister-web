@@ -22,7 +22,7 @@ MyFr2::Application.configure do
   config.assets.prefix = "my/assets"
 
   # Generate digests for assets URLs
-  config.assets.digest = false
+  config.assets.digest = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
