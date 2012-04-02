@@ -76,14 +76,16 @@ class FolderClippingsController < ActionController::Base
                                      :doc_count => clippings.count, 
                                      :documents => document_number } }
       else
-        document_number.to_a.each do |doc_numb|
+        document_numbers = document_number.is_a?(Array) ? document_number : document_number.to_a 
+
+        document_numbers.each do |document_number|
           remove_document_id_from_session(document_number)
         end
 
         render :json => {:folder => {:name => "my-clippings",
                                      :slug => slug, 
-                                     :doc_count => document_number.to_a.size, 
-                                     :documents => document_number } }
+                                     :doc_count => document_numbers.size, 
+                                     :documents => document_numbers } }
       end
     else
       render :text => "No clipping ids or document number present", :status => 400
@@ -94,8 +96,12 @@ class FolderClippingsController < ActionController::Base
 
   def remove_document_id_from_session(document_number)
     if cookies[:document_numbers].present?
-      new_cookie = JSON.parse(cookies[:document_numbers]).delete( document_number )
-      cookies[:document_numbers] = (new_cookie.nil? ? [] : new_cookie).to_json
+      old_cookie = JSON.parse(cookies[:document_numbers])
+      new_cookie = []
+      old_cookie.each do |doc_hash| 
+        new_cookie << doc_hash unless doc_hash.first[0] == document_number
+      end
+      cookies[:document_numbers] = new_cookie.to_json
     end
   end
 end
