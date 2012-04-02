@@ -5,7 +5,7 @@ Warden::Manager.after_set_user do |user, auth, opts|
     Clipping.create_from_cookie( auth.cookies[:document_numbers], user )
     auth.cookies[:document_numbers] = nil
   end
-  auth.cookies["expect_logged_in"] = "1"
+  auth.cookies.permanent["expect_logged_in"] = "1"
 end
 
 Warden::Manager.before_logout do |user, auth, opt|

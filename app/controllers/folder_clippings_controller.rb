@@ -101,7 +101,7 @@ class FolderClippingsController < ActionController::Base
       old_cookie.each do |doc_hash| 
         new_cookie << doc_hash unless doc_hash.first[0] == document_number
       end
-      cookies[:document_numbers] = new_cookie.to_json
+      cookies.permanent[:document_numbers] = new_cookie.to_json
     end
   end
 end
