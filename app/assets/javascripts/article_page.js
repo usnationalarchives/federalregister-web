@@ -262,6 +262,8 @@ function remove_document_from_folder(folder_li, document_number, menu) {
       documents_in_clipboard = $('#user_utils #document-count-holder #doc_count');
       documents_in_clipboard.html( parseInt(documents_in_clipboard.html(), 0) - response.folder.doc_count );
     }
+
+    set_clipped_icon_status();
   });
 }
 
