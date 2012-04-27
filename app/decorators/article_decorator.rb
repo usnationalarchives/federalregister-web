@@ -9,6 +9,8 @@ class ArticleDecorator < ApplicationDecorator
       'notice'
     when 'Presidential Document'
       'presdocu'
+    when 'Document of Unknown Type'
+      'unknown'
     end
   end
 
