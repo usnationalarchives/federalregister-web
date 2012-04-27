@@ -20,6 +20,12 @@ div#folder_metadata_bar ul li {
   margin-right: 20px;
   }
 
+div#folder_metadata_bar ul li.download {
+  position: relative;
+  left: 15px;
+  float: right;
+  }
+
 #clippings > li { 
   width: 900px;
 
@@ -49,10 +55,12 @@ div#folder_metadata_bar ul li {
   margin-left: 4px;
 }
 #clippings div.rule_type img { position: relative; }
-#clippings div.rule_type.doc_presdocu img { top: -2px; }
-#clippings div.rule_type.doc_rule img { top: -467px; }
-#clippings div.rule_type.doc_notice img { top: -933px; }
-#clippings div.rule_type.doc_prorule img { top: -1398px; }
+#clippings div.rule_type.doc_presdocu img { top: -3px; }
+#clippings div.rule_type.doc_rule img { top: -466px; }
+#clippings div.rule_type.doc_notice img { top: -932px; }
+#clippings div.rule_type.doc_prorule img { top: -1397px; }
+#clippings div.rule_type.doc_unknown img { top: -1863px; }
+#clippings div.rule_type.doc_correct img { top: -2327px; }
 
 .document_data, .clipping_data { 
   display: inline-block;
