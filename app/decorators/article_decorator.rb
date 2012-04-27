@@ -11,6 +11,10 @@ class ArticleDecorator < ApplicationDecorator
       'presdocu'
     when 'Document of Unknown Type'
       'unknown'
+    when 'Sunshine Act Document'
+      'notice'
+    when 'Correction'
+      'correct'
     end
   end
 
