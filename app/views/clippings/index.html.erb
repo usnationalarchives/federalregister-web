@@ -11,18 +11,18 @@
   <%= @folder.name %> 
 </h2>
 
-<%= render :partial => "folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
+<%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <div id="clipping-actions">
     <div id="doc-type-filter">
       <ul>
         <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.to_json.html_safe %>;</script>
-        <li class="doc_notice first" data-filter-doc-type="notice"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
-        <li class="doc_prorule" data-filter-doc-type="prorule"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
-        <li class="doc_rule" data-filter-doc-type="rule"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
-        <li class="doc_presdocu" data-filter-doc-type="presdocu"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
-        <li class="doc_correct last" data-filter-doc-type="correct"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_notice first" data-filter-doc-type="notice"   data-filter-doc-type-display="Notice">                <%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_prorule"      data-filter-doc-type="prorule"  data-filter-doc-type-display="Proposed Rule">         <%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_rule"         data-filter-doc-type="rule"     data-filter-doc-type-display="Rule">                  <%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_presdocu"     data-filter-doc-type="presdocu" data-filter-doc-type-display="Presidential Document"> <%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_correct last" data-filter-doc-type="correct"  data-filter-doc-type-display="Correction">            <%= image_tag '/my/assets/document_icons_mini.png' %></li>
       </ul>
     </div>
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
