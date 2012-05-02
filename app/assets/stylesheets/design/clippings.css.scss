@@ -38,9 +38,7 @@ div#folder_metadata_bar ul li.download {
   background-color: #F5F8F9;
   margin-bottom: 10px;
 
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  @include border-radius(6);
   border: #B3C2CF 1px solid;
 }
 

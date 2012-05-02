@@ -10,21 +10,21 @@
 <h2 class="title <%= 'clipboard' if @folder.slug == 'my-clippings' %>" data-folder-slug="<%= @folder.slug %>">
   <%= @folder.name %> 
 </h2>
-<div id="folder_metadata_bar">
-  <ul>
-    <li>Clippings: <span class="clippings_on_page_count"><%= @clippings.size%></span></li>
-    <% if @folder.created_at %>
-      <li>Created on: <%= @folder.created_at.to_formatted_s(:date) %></li>
-    <% end %>
 
-    <% if @clippings.size > 0 %>
-      <li class="download"><%= csv_download_tag('Download clippings as CSV', @clippings) %></li>
-    <% end %>
-  </ul>
-</div>
+<%= render :partial => "folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <div id="clipping-actions">
+    <div id="doc-type-filter">
+      <ul>
+        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.to_json.html_safe %>;</script>
+        <li class="doc_notice first" data-filter-doc-type="notice"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_prorule" data-filter-doc-type="prorule"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_rule" data-filter-doc-type="rule"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_presdocu" data-filter-doc-type="presdocu"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+        <li class="doc_correct last" data-filter-doc-type="correct"><%= image_tag '/my/assets/document_icons_mini.png' %></li>
+      </ul>
+    </div>
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
     <div id="remove-clipping"></div>
@@ -36,7 +36,7 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>">
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class %>">
           <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
