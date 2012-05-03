@@ -22,6 +22,10 @@ class ArticleDecorator < ApplicationDecorator
     model.publication_date.to_formatted_s(:date)
   end
 
+  def effective_date
+    model.effective_on.to_formatted_s(:date) if model.effective_on
+  end
+
   def agency_dt_dd
     html = "<dt class=\"agencies\">#{pluralize_without_count(model.agencies.size, 'Agency')}:</dt>"
     html = html + agency_dd
@@ -50,8 +54,23 @@ class ArticleDecorator < ApplicationDecorator
     wrap_in_dd(model.docket_ids)
   end
 
+  def comments_close_date
+    model.comments_close_on.to_formatted_s(:date) if model.comments_close_on
+  end
 
-  def fr_citation
-    "#{model.volume} FR #{model.start_page}"
+  def signing_date
+    model.signing_date.to_formatted_s(:date)
+  end
+
+  def corrected_by
+    document_numbers = model.corrections.map{|url| url.split('/').last.split('.').first}
+    document_numbers.map do |d|
+      h.content_tag(:dd, h.link_to(d, "https://www.federalregister.gov/a/#{d}"))
+    end.join("\n").html_safe
+  end
+
+  def corrects
+    document_number = model.correction_of.split('/').last.split('.').first
+    h.link_to(document_number, "https://www.federalregister.gov/a/#{document_number}")
   end
 end

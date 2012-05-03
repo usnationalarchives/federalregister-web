@@ -53,7 +53,7 @@ div#folder_metadata_bar ul li.download {
   margin-left: 4px;
 }
 #clippings div.rule_type img { position: relative; }
-#clippings div.rule_type.doc_presdocu img { top: -3px; }
+#clippings div.rule_type.doc_presdocu img { top: 0px; }
 #clippings div.rule_type.doc_rule img { top: -466px; }
 #clippings div.rule_type.doc_notice img { top: -932px; }
 #clippings div.rule_type.doc_prorule img { top: -1397px; }
@@ -85,15 +85,20 @@ div#folder_metadata_bar ul li.download {
 #clippings dl#col-2 { width: 200px; }
 #clippings dl#col-3 { width: 215px; }
 
-#clippings dl#col-1 dt {
+#clippings dl#col-1 dt,
+#clippings .presdocu_metadata_wrapper dl#col-2 dt {
   clear: both;
   float: left;
   }
-#clippings dl#col-1 dd {
+#clippings dl#col-1 dd,
+#clippings .presdocu_metadata_wrapper dl#col-2 dd {
   float: left;
   padding-top: 4px;
   margin-left: 5px;
   }
+
+#clippings dl.metadata dt.comment_close.open { color: #7AA13D; }
+#clippings dl.metadata dt.corrected_by { color: #8A3737; }
 
 #clippings dl.metadata { 
   font-size: 1em;
