@@ -9,11 +9,19 @@
   <dd><%= clipping.article.pages %></dd>
 </dl>
 <dl class="metadata" id="col-2">
-  <dt class="eo_num">EO Number:</dt>
-  <dd><%= clipping.article.executive_order_number %></dd>
 
-  <dt class="pres_name">Signed by:</dt>
-  <dd></dd>
+  <dt class="subtype">Subtype:</dt>
+  <dd><%= clipping.article.subtype %></dt>
+
+  <% if clipping.article.subtype == 'Executive Order' %>
+    <dt class="eo_num">EO Number:</dt>
+    <dd><%= clipping.article.executive_order_number %></dd>
+  <% end %>
+
+  <% if clipping.article.president.present? && clipping.article.president.name.present? %>
+    <dt class="pres_name">Signed by:</dt>
+    <dd><%= clipping.article.president.name %></dd>
+  <% end %>
 
   <dt class="pub_date">Signing Date:</dt>
   <dd><%= clipping.article.signing_date %></dd>
