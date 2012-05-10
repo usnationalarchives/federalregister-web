@@ -18,9 +18,9 @@
     <dd><%= clipping.article.executive_order_number %></dd>
   <% end %>
 
-  <% if clipping.article.president.present? && clipping.article.president.name.present? %>
+  <% if clipping.article.president.present? && clipping.article.president['name'].present? %>
     <dt class="pres_name">Signed by:</dt>
-    <dd><%= clipping.article.president.name %></dd>
+    <dd><%= clipping.article.president['name'] %></dd>
   <% end %>
 
   <dt class="pub_date">Signing Date:</dt>
