@@ -10,17 +10,21 @@
 <h2 class="title <%= 'clipboard' if @folder.slug == 'my-clippings' %>" data-folder-slug="<%= @folder.slug %>">
   <%= @folder.name %> 
 </h2>
-<div id="folder_metadata_bar">
-  <ul>
-    <li>Clippings: <span class="clippings_on_page_count"><%= @clippings.size%></span></li>
-    <% if @folder.created_at %>
-      <li>Created on: <%= @folder.created_at.to_formatted_s(:date) %></li>
-    <% end %>
-  </ul>
-</div>
+
+<%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <div id="clipping-actions">
+    <div id="doc-type-filter">
+      <ul>
+        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.to_json.html_safe %>;</script>
+        <li class="doc_notice first" data-filter-doc-type="notice"   data-filter-doc-type-display="Notice">                <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
+        <li class="doc_prorule"      data-filter-doc-type="prorule"  data-filter-doc-type-display="Proposed Rule">         <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
+        <li class="doc_rule"         data-filter-doc-type="rule"     data-filter-doc-type-display="Rule">                  <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
+        <li class="doc_presdocu"     data-filter-doc-type="presdocu" data-filter-doc-type-display="Presidential Document"> <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
+        <li class="doc_correct last" data-filter-doc-type="correct"  data-filter-doc-type-display="Correction">            <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
+      </ul>
+    </div>
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
     <div id="remove-clipping"></div>
@@ -32,26 +36,13 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>">
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class %>">
           <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
-            <dl class="metadata" id="col-1">
-              <dt class="pub_date">Publication Date:</dt>
-              <dd><%= clipping.article.publication_date %></dd>
-
-              <dt class="fr_citation">Citation:</dt>
-              <dd><%= clipping.article.fr_citation %></dd>
-
-              <dt class="pages">Pages:</dt>
-              <dd><%= clipping.article.pages %></dd>
-            </dl>
-            <dl class="metadata" id="col-2">
-              <%= clipping.article.agency_dt_dd %>
-            </dl>
-            <dl class="metadata" id="col-3">
-              <%= clipping.article.docket_dt_dd %>
-            </dl>
+            <div class="<%=clipping.article.granule_class%>_metadata_wrapper">
+              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class}", :locals => {:clipping => clipping} %>
+            </div>
           </div>
 
           <div class="clipping_data">

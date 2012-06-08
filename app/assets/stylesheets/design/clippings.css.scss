@@ -20,6 +20,12 @@ div#folder_metadata_bar ul li {
   margin-right: 20px;
   }
 
+div#folder_metadata_bar ul li.download {
+  position: relative;
+  left: 15px;
+  float: right;
+  }
+
 #clippings > li { 
   width: 900px;
 
@@ -32,9 +38,7 @@ div#folder_metadata_bar ul li {
   background-color: #F5F8F9;
   margin-bottom: 10px;
 
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  @include border-radius(6);
   border: #B3C2CF 1px solid;
 }
 
@@ -49,10 +53,12 @@ div#folder_metadata_bar ul li {
   margin-left: 4px;
 }
 #clippings div.rule_type img { position: relative; }
-#clippings div.rule_type.doc_presdocu img { top: -2px; }
-#clippings div.rule_type.doc_rule img { top: -467px; }
-#clippings div.rule_type.doc_notice img { top: -933px; }
-#clippings div.rule_type.doc_prorule img { top: -1398px; }
+#clippings div.rule_type.doc_presdocu img { top: 0px; }
+#clippings div.rule_type.doc_rule img { top: -466px; }
+#clippings div.rule_type.doc_notice img { top: -932px; }
+#clippings div.rule_type.doc_prorule img { top: -1397px; }
+#clippings div.rule_type.doc_unknown img { top: -1863px; }
+#clippings div.rule_type.doc_correct img { top: -2327px; }
 
 .document_data, .clipping_data { 
   display: inline-block;
@@ -79,15 +85,20 @@ div#folder_metadata_bar ul li {
 #clippings dl#col-2 { width: 200px; }
 #clippings dl#col-3 { width: 215px; }
 
-#clippings dl#col-1 dt {
+#clippings dl#col-1 dt,
+#clippings .presdocu_metadata_wrapper dl#col-2 dt {
   clear: both;
   float: left;
   }
-#clippings dl#col-1 dd {
+#clippings dl#col-1 dd,
+#clippings .presdocu_metadata_wrapper dl#col-2 dd {
   float: left;
   padding-top: 4px;
   margin-left: 5px;
   }
+
+#clippings dl.metadata dt.comment_close.open { color: #7AA13D; }
+#clippings dl.metadata dt.corrected_by { color: #8A3737; }
 
 #clippings dl.metadata { 
   font-size: 1em;

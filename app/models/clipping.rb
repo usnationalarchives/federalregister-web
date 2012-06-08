@@ -36,7 +36,25 @@ class Clipping < ActiveRecord::Base
 
   def self.map_articles_to_clipping(clippings, document_numbers)
     begin
-      articles = document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers) : [FederalRegister::Article.find(document_numbers.first)]
+      fields = ["agencies",
+                "citation",
+                "comments_close_on",
+                "corrections",
+                "correction_of",
+                "docket_ids",
+                "document_number",
+                "effective_on",
+                "end_page",
+                "executive_order_number",
+                "html_url",
+                "president",
+                "publication_date",
+                "signing_date",
+                "start_page",
+                "subtype",
+                "title",
+                "type"]
+      articles = document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers, :fields => fields) : [FederalRegister::Article.find(document_numbers.first, :fields => fields)]
 
       clippings.select do |clipping|
         article = articles.find{|a| a.document_number == clipping.document_number}
