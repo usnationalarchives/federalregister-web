@@ -44,5 +44,8 @@ module MyFr2
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Use routes to pickup exceptions - allows us to serve pretty error pages
+    config.exceptions_app = self.routes
   end
 end
