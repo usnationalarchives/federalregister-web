@@ -30,6 +30,13 @@ gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
 gem "capistrano", '2.5.19', :require => false
 gem "thunder_punch", '0.0.12', :require => false
 
+gem "carrierwave", "0.6.2"
+gem "fog", "~> 1.3.1"
+gem "pbkdf2"
+gem "cocaine"
+gem "json_builder"
+gem "httmultiparty"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 

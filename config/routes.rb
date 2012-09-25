@@ -26,6 +26,14 @@ MyFr2::Application.routes.draw do
     end
   end
 
+  resources :comments,
+    :path => 'articles/:document_number/comments',
+    :only => [:new, :create]
+
+  resources :comment_attachments,
+    :only => [:create, :destroy]
+
+
   match "/404" => "errors#record_not_found"
   match "/405" => "errors#not_authorized"
   match "/500" => "errors#server_error"

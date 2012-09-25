@@ -1,0 +1,62 @@
+$(function () {
+  if ($('#comment_secret').val() == '') {
+    $('#comment_secret').val(Math.random().toString(36).substring(2,16));
+  }
+
+  var attachedCommentMessage = 'See attached file(s)';
+  var commentField = $('#comment_general_comment');
+  var container = $('.attachments tbody');
+  var existing_attachments = $.parseJSON($('.attachments').data("existing"));
+  var clearoutCommentPlaceholder = function (e, data) {
+    if(commentField.val() === attachedCommentMessage && container.children('tr:not(.error)').size() === 0) {
+      commentField.val('');
+    }
+  };
+
+  var uploader = $('#fileupload').fileupload({
+    url: '/my/comment_attachments',
+    autoUpload: true,
+    maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>,
+    maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>,
+    acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i,
+    formData: {
+      'comment_attachment[secret]': $('#comment_secret').val()
+    },
+    filesContainer: container,
+    prependFiles: true,
+    uploadTemplateId: null,
+    downloadTemplateId: null,
+    uploadTemplate: function (o) {
+      var source   = $("#comment-attachment-upload-template").html();
+      var template = Handlebars.compile(source);
+      return template(o);
+    },
+    downloadTemplate: function (o) {
+      var source   = $("#comment-attachment-complete-template").html();
+      var template = Handlebars.compile(source);
+      return template(o);
+    }
+  }).
+    bind('fileuploaddestroyed', clearoutCommentPlaceholder).
+    bind('fileuploadcompleted', function (e, data) {
+      if(commentField.val() === '') {
+        commentField.val(attachedCommentMessage);
+      }
+    }).
+    data('fileupload');
+
+  uploader._renderDownload(existing_attachments).appendTo(container);
+
+  clearoutCommentPlaceholder();
+    
+  var priorValidations = uploader._hasError;
+  uploader._hasError = function(file) {
+    console.log(file);
+    container.find('tr').each(function(i,elem){
+      if($(elem).data('name') == file.name) {
+        file.error = 'A file with the same name has already been attached.'
+      }
+    });
+    return priorValidations.call(this, file);
+  }
+});

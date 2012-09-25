@@ -1,0 +1,42 @@
+<%# FIXME: remove this garbage %>
+<%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
+<%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
+<%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
+
+
+
+<%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
+<%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
+  
+<%= semantic_form_for(@comment, :url => comments_path) do |f| %>
+  <% if @comment_form.alternative_ways_to_comment.present? %>
+    <div class="alternative_ways">
+      <h3>Alternative Ways to Comment:</h3>
+      <p><%= @comment_form.alternative_ways_to_comment %></p> 
+    </div>
+  <% end %>
+
+  <%= f.semantic_errors %>
+  <%= f.inputs do %>
+    <% @comment_form.fields.each do |field| %>
+      <%= f.input field.name, comment_input_field_options(field) %>
+    <% end %>
+
+    <% if true || @comment_form.allow_attachments? %>
+      <li class="public file input optional">
+        <label>Attachments</label>
+        <%= hidden_field_tag('comment[secret]', params[:comment] && params[:comment][:secret]) %>
+        <input id="fileupload" type="file" name="comment_attachment[attachment]" data-url="/my/comment_attachments" multiple>
+
+        <%= content_tag(:table,
+                        content_tag(:tbody),
+                        :class => "attachments",
+                        :"data-existing" => render(:template => "comment_attachments/index.json.json_builder")
+                       ) %>
+      </li>
+    <% end %>
+  <% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button "Submit Comment" %>
+  <% end %>
+<% end %>
