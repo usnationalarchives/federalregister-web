@@ -1,0 +1,20 @@
+{{# each files}}
+  <tr class="template-upload fade{{#if this.error}} error{{/if}}" data-name="{{this.name}}">
+    <td class="preview"><span class="fade"></span></td>
+    <td class="name"><span>{{this.name}}</span></td>
+    <td class="size"><span>{{human_size this.size}}</span></td>
+    {{#if this.error}}
+      <td class="error" colspan="2"><span class="label label-important">Error:</span> {{localize this.error}}</td>
+    {{else}}
+      <td>
+        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+      </td>
+    {{/if}}
+    <td class="cancel">
+      <button class="btn btn-warning">
+        <i class="icon-ban-circle icon-white"></i>
+        <span>Cancel</span>
+      </button>
+    </td>
+  </tr>
+{{/each}}

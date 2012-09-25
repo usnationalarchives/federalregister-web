@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310230910) do
+ActiveRecord::Schema.define(:version => 20120923212644) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(:version => 20120310230910) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "folder_id"
+  end
+
+  create_table "comment_attachments", :force => true do |t|
+    t.string   "token"
+    t.string   "attachment"
+    t.string   "attachment_md5"
+    t.string   "iv"
+    t.integer  "file_size"
+    t.string   "content_type"
+    t.string   "original_file_name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "comment_attachments", ["created_at"], :name => "index_comment_attachments_on_created_at"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "document_number"
+    t.string   "comment_tracking_number"
+    t.datetime "created_at"
+    t.boolean  "comment_publication_notification"
+    t.datetime "comment_published_at"
+    t.boolean  "followup_document_notification"
+    t.string   "followup_document_number"
   end
 
   create_table "folders", :force => true do |t|
