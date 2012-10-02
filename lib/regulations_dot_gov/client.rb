@@ -46,9 +46,9 @@ class RegulationsDotGov::Client
     end
   end
 
-  def get_options(field_name)
+  def get_options(field_name, options ={})
     begin
-      args = {"lookup" => field_name}
+      args = options.merge("lookup" => field_name)
       response = self.class.get('/getlookup/v1.json', :query => args.merge(:api_key => @get_api_key))
       response.parsed_response['lookuplist']['entry'].map do |option_attributes|
         RegulationsDotGov::CommentForm::Option.new(self, option_attributes)

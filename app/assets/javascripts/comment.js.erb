@@ -1,4 +1,28 @@
 $(function () {
+    $('#new_comment select[name="comment[' + li.data('dependent-on') + ']"]').change(function() {
+      var parent_select = $(this);
+      var parent_value = parent_select.val();
+
+      li.find('select').remove();
+
+      if (dependencies[parent_value]) {
+        var current_value = input.val();
+        var select = $('<select name="' + input.attr('name') + '"><option></option></select>');
+        $.map(dependencies[parent_value], function(options) {
+          var option = $('<option>').first();
+          option.attr('value', options[0]);
+          option.text(options[1]);
+          select.append(option);
+        });
+        select.val(current_value);
+
+        input.attr('disabled', 'disabled').hide().val('').after(select);
+      } else {
+        input.removeAttr('disabled').show();
+      }
+    }).change();
+  });
+
   if ($('#comment_secret').val() == '') {
     $('#comment_secret').val(Math.random().toString(36).substring(2,16));
   }
