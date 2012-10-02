@@ -28,6 +28,14 @@ module CommentsHelper
         :member_label => :label
       )
     when RegulationsDotGov::CommentForm::Field::ComboField
+      options.merge!(
+        :as => :string,
+        :wrapper_html => {
+          :class => "combo",
+          :'data-dependent-on' => field.dependent_on,
+          :'data-dependencies' => field.dependencies.to_json
+        }
+      )
     end
 
     options
