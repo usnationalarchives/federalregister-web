@@ -1,86 +1,168 @@
 $(function () {
-    $('#new_comment select[name="comment[' + li.data('dependent-on') + ']"]').change(function() {
-      var parent_select = $(this);
-      var parent_value = parent_select.val();
+  var initializeCommentForm = function() {
+    var renderCommentSummary = function(fields) {
+      var source   = $("#comment-summary-template").html();
+      var template = Handlebars.compile(source);
+      template(fields);
+    };
 
-      li.find('select').remove();
+    var parseFields = function() {
+      var fields = [];
+      $('#new_comment .inputs > ol > li').each(function(i,elem) {
 
-      if (dependencies[parent_value]) {
-        var current_value = input.val();
-        var select = $('<select name="' + input.attr('name') + '"><option></option></select>');
-        $.map(dependencies[parent_value], function(options) {
-          var option = $('<option>').first();
-          option.attr('value', options[0]);
-          option.text(options[1]);
-          select.append(option);
-        });
-        select.val(current_value);
+        var list_item = $(elem);
+        var key = list_item.find('label').text().replace('*','');
+        var field = {'label' : key};
 
-        input.attr('disabled', 'disabled').hide().val('').after(select);
-      } else {
-        input.removeAttr('disabled').show();
+        if(list_item.hasClass('stringish')) {
+          field.values = [list_item.find('input').val()];
+        } else if(list_item.hasClass('text')) {
+          field.values = [list_item.find('textarea').val()];
+        } else if (list_item.hasClass('select')) {
+          var input = $(list_item.find('select').first());
+          field.values = [input.find('option[value="' + input.val() + '"]').first().text()];
+        } else if (list_item.hasClass('file')) {
+          field.values = list_item.find('.attachments tr').map(function (i,elem) {return $(elem).data('name')});
+        }
+
+        fields.push(field);
+      });
+      return fields;
+    };
+
+    $('.comment_preview').bind('click', function() {
+      var fields = parseFields();
+      var html   = renderCommentSummary(fields);
+
+      Handlebars.registerPartial('comment_summary', $('#comment-summary-template').html());
+      var source   = $("#comment-preview-template").html();
+      var template = Handlebars.compile(source);
+
+      var modal = $(template({"fields":fields}));
+      $('body').append(modal);
+      modal.find(".jqmClose").bind('click', function (event) {
+        modal.remove();
+      });
+
+      modal.jqm({
+          modal: true,
+          toTop: true
+      });
+      modal.jqmShow().centerScreen();
+    });
+
+    $('#new_comment li.combo').each(function() {
+      var li = $(this);
+      var dependencies = li.data('dependencies');
+      var input = li.find('input');
+
+      $('#new_comment select[name="comment[' + li.data('dependent-on') + ']"]').change(function() {
+        var parent_select = $(this);
+        var parent_value = parent_select.val();
+
+        li.find('select').remove();
+
+        if (dependencies[parent_value]) {
+          var current_value = input.val();
+          var select = $('<select name="' + input.attr('name') + '"><option></option></select>');
+          $.map(dependencies[parent_value], function(options) {
+            var option = $('<option>').first();
+            option.attr('value', options[0]);
+            option.text(options[1]);
+            select.append(option);
+          });
+          select.val(current_value);
+
+          input.attr('disabled', 'disabled').hide().val('').after(select);
+        } else {
+          input.removeAttr('disabled').show();
+        }
+      }).change();
+    });
+
+    if ($('#comment_secret').val() == '') {
+      $('#comment_secret').val(Math.random().toString(36).substring(2,16));
+    }
+
+    var attachedCommentMessage = 'See attached file(s)';
+    var commentField = $('#comment_general_comment');
+    var container = $('.attachments tbody');
+    var existing_attachments = $.parseJSON($('.attachments').data("existing"));
+    var clearoutCommentPlaceholder = function (e, data) {
+      if(commentField.val() === attachedCommentMessage && container.children('tr:not(.error)').size() === 0) {
+        commentField.val('');
       }
-    }).change();
-  });
+    };
 
-  if ($('#comment_secret').val() == '') {
-    $('#comment_secret').val(Math.random().toString(36).substring(2,16));
-  }
+    var uploader = $('#fileupload').fileupload({
+      url: '/my/comment_attachments',
+      autoUpload: true,
+      maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>,
+      maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>,
+      acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i,
+      formData: {
+        'comment_attachment[secret]': $('#comment_secret').val()
+      },
+      filesContainer: container,
+      prependFiles: true,
+      uploadTemplateId: null,
+      downloadTemplateId: null,
+      uploadTemplate: function (o) {
+        var source   = $("#comment-attachment-upload-template").html();
+        var template = Handlebars.compile(source);
+        return template(o);
+      },
+      downloadTemplate: function (o) {
+        var source   = $("#comment-attachment-complete-template").html();
+        var template = Handlebars.compile(source);
+        return template(o);
+      }
+    }).
+      bind('fileuploaddestroyed', clearoutCommentPlaceholder).
+      bind('fileuploadcompleted', function (e, data) {
+        if(commentField.val() === '') {
+          commentField.val(attachedCommentMessage);
+        }
+      }).
+      data('fileupload');
 
-  var attachedCommentMessage = 'See attached file(s)';
-  var commentField = $('#comment_general_comment');
-  var container = $('.attachments tbody');
-  var existing_attachments = $.parseJSON($('.attachments').data("existing"));
-  var clearoutCommentPlaceholder = function (e, data) {
-    if(commentField.val() === attachedCommentMessage && container.children('tr:not(.error)').size() === 0) {
-      commentField.val('');
+    if(uploader) {
+      uploader._renderDownload(existing_attachments).appendTo(container);
+
+      clearoutCommentPlaceholder();
+
+      var priorValidations = uploader._hasError;
+      uploader._hasError = function(file) {
+        console.log(file);
+        container.find('tr').each(function(i,elem){
+          if($(elem).data('name') == file.name) {
+            file.error = 'A file with the same name has already been attached.'
+          }
+        });
+        return priorValidations.call(this, file);
+      };
     }
   };
 
-  var uploader = $('#fileupload').fileupload({
-    url: '/my/comment_attachments',
-    autoUpload: true,
-    maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>,
-    maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>,
-    acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i,
-    formData: {
-      'comment_attachment[secret]': $('#comment_secret').val()
-    },
-    filesContainer: container,
-    prependFiles: true,
-    uploadTemplateId: null,
-    downloadTemplateId: null,
-    uploadTemplate: function (o) {
-      var source   = $("#comment-attachment-upload-template").html();
-      var template = Handlebars.compile(source);
-      return template(o);
-    },
-    downloadTemplate: function (o) {
-      var source   = $("#comment-attachment-complete-template").html();
-      var template = Handlebars.compile(source);
-      return template(o);
-    }
-  }).
-    bind('fileuploaddestroyed', clearoutCommentPlaceholder).
-    bind('fileuploadcompleted', function (e, data) {
-      if(commentField.val() === '') {
-        commentField.val(attachedCommentMessage);
-      }
-    }).
-    data('fileupload');
+  $('#flash_message.comment a.button').click(function(event) {
+    var link = $(this);
+    var div = $(this).closest('div');
+    div.html('Loading...');
 
-  uploader._renderDownload(existing_attachments).appendTo(container);
+    var document_number = $('.doc_number').text();
+    var url = "/my/articles/" + document_number + "/comments/new";
 
-  clearoutCommentPlaceholder();
-    
-  var priorValidations = uploader._hasError;
-  uploader._hasError = function(file) {
-    console.log(file);
-    container.find('tr').each(function(i,elem){
-      if($(elem).data('name') == file.name) {
-        file.error = 'A file with the same name has already been attached.'
+    $.ajax(url, {
+      dataType: 'html',
+      success: function(data) {
+        div.html(data);
+        initializeCommentForm();
+      },
+      error: function() {
+        alert('error!');
       }
     });
-    return priorValidations.call(this, file);
-  }
+
+    event.preventDefault();
+  });
 });

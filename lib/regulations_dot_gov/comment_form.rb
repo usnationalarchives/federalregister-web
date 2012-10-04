@@ -22,6 +22,18 @@ class RegulationsDotGov::CommentForm
     attributes["postingGuidelines"]
   end
 
+  def document_id
+    attributes['document']['documentId']
+  end
+
+  def comments_open_at
+    DateTime.parse(attributes['document']['commentStartDate'])
+  end
+
+  def comments_close_at
+    DateTime.parse(attributes['document']['commentEndDate'])
+  end
+
   def has_field?(name)
     fields.any?{|f| f.name == name.to_s}
   end

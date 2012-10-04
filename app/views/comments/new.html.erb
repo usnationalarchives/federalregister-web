@@ -3,16 +3,17 @@
 <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
 <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
 
-
-
 <%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
 <%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
-  
+<%= add_handlebars_template('comment_summary', 'comment-summary'); %>
+<%= add_handlebars_template('comment_preview', 'comment-preview'); %>
+
 <%= semantic_form_for(@comment, :url => comments_path) do |f| %>
+<%= @comment.errors.full_messages %>
   <% if @comment_form.alternative_ways_to_comment.present? %>
     <div class="alternative_ways">
       <h3>Alternative Ways to Comment:</h3>
-      <p><%= @comment_form.alternative_ways_to_comment %></p> 
+      <p><%= @comment_form.alternative_ways_to_comment %></p>
     </div>
   <% end %>
 
@@ -38,5 +39,6 @@
   <% end %>
   <%= f.buttons do %>
     <%= f.commit_button "Submit Comment" %>
+    <%= link_to 'Preview Comment', '#', :class => 'comment_preview' %>
   <% end %>
 <% end %>

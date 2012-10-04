@@ -1,19 +1,24 @@
 class RegulationsDotGov::Client
-  class ResponseError < HTTParty::ResponseError; end
+  class ResponseError < StandardError; end
   class RecordNotFound < ResponseError; end
+  class InvalidSubmission < ResponseError; end
   class ServerError < ResponseError; end
 
-  include HTTParty
-  base_uri 'http://www.regulations.gov/api/'
+  include HTTMultiParty
+
+  debug_output $stderr
+  # base_uri 'http://www.regulations.gov/api/'
+  base_uri 'http://regstest.erulemaking.net/api/'
   default_timeout 2
 
-  def initialize(get_api_key)
+  def initialize(get_api_key, post_api_key=nil)
     @get_api_key = get_api_key
+    @post_api_key = post_api_key
   end
 
   def find_docket(docket_id)
     begin
-      response = self.class.get('/getdocket/v1.json', :query => {:api_key => @get_api_key, :D => docket_id}) 
+      response = self.class.get('/getdocket/v1.json', :query => {:api_key => @get_api_key, :D => docket_id})
       RegulationsDotGov::Docket.new(self, response.parsed_response["docket"])
     rescue ResponseError
     end
@@ -37,23 +42,30 @@ class RegulationsDotGov::Client
   end
 
   def get_comment_form(docket_id)
-    begin
-      args = {"D" => docket_id}
-      response = self.class.get('/getcommentform/v1.json', :query => args.merge(:api_key => @get_api_key))
-      RegulationsDotGov::CommentForm.new(self, response.parsed_response['commentFormConfig'])
-    rescue ResponseError
-      nil
-    end
+    args = {"D" => docket_id}
+    response = self.class.get('/getcommentform/v1.json', :query => args.merge(:api_key => @get_api_key))
+    RegulationsDotGov::CommentForm.new(self, response.parsed_response['commentFormConfig'])
   end
 
   def get_options(field_name, options ={})
     begin
       args = options.merge("lookup" => field_name)
       response = self.class.get('/getlookup/v1.json', :query => args.merge(:api_key => @get_api_key))
-      response.parsed_response['lookuplist']['entry'].map do |option_attributes|
+
+      raw_option_attributes = response.parsed_response['lookuplist']['entry']
+      if raw_option_attributes.is_a?(Hash)
+        raw_option_attributes = [raw_option_attributes]
+      end
+
+      raw_option_attributes.map do |option_attributes|
         RegulationsDotGov::CommentForm::Option.new(self, option_attributes)
       end
     end
+  end
+
+  def submit_comment(fields)
+    response = self.class.post("/submitcomment/v1.json?api_key=#{@post_api_key}", :body => fields)
+    response.body.sub(/Comment tracking number: /,'')
   end
 
   def count_documents(args)
@@ -70,13 +82,13 @@ class RegulationsDotGov::Client
       begin
         fetch_by_document_number(document_number)
       rescue RecordNotFound, ServerError => e
-        revised_document_number = pad_document_number(document_number) 
+        revised_document_number = pad_document_number(document_number)
         if revised_document_number != document_number
           fetch_by_document_number(revised_document_number)
         else
           nil
         end
-      end  
+      end
     rescue ResponseError
       nil
     end
@@ -104,7 +116,7 @@ class RegulationsDotGov::Client
       when 404
         raise RecordNotFound.new(response)
       when 500
-        raise ServerError.new(response)
+        raise ServerError.new(response.parsed_response['error']['message'])
       else
         raise ResponseError.new(response)
       end
@@ -113,5 +125,29 @@ class RegulationsDotGov::Client
     rescue Timeout::Error
       raise ResponseError.new("Request timed out")
     end
+  end
+
+  def self.post(url, options)
+    begin
+      response = super
+
+      case response.code
+      when 200
+        response
+      when 412
+        raise InvalidSubmission.new(response.parsed_response['error']['message'])
+      when 500
+        raise ServerError.new(response)
+      else
+        raise ResponseError.new(response)
+      end
+    rescue SocketError
+      raise ResponseError.new("Hostname lookup failed")
+    end
+  end
+
+  # force multipart content-type on POST
+  def self.hash_contains_files?(hsh)
+    true
   end
 end

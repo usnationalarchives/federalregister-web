@@ -5,7 +5,7 @@ class Comment < ApplicationModel
   after_create :delete_attachments
 
   attr_accessor :secret, :comment_form
-  attr_reader :comment_form, :attachments
+  attr_reader :attachments
 
   validate :required_fields_are_present
   validate :not_too_many_attachments
@@ -14,12 +14,9 @@ class Comment < ApplicationModel
 
   validates_presence_of :document_number
 
-  attr_reader :goats
-  validates_presence_of :goats
-
   def attributes=(hsh)
-    hsh.each_pair do |key, val|
-      self.send("#{key}=", val)
+    hsh.keys.sort.reverse.each do |key|
+      self.send("#{key}=", hsh[key])
     end
 
     hsh
@@ -37,6 +34,7 @@ class Comment < ApplicationModel
         attachment = CommentAttachment.find_by_token(token)
 
         if attachment
+          attachment.secret = secret
           @attachments << attachment
         else
           @missing_attachments << token
@@ -47,10 +45,27 @@ class Comment < ApplicationModel
     @attachments.compact!
   end
 
+  def send_to_regulations_dot_gov
+    Dir.mktmpdir do |dir|
+      args = {
+        :comment_on => comment_form.document_id,
+        :submit     => "Submit Comment"
+      }.merge(attributes.slice(*comment_form.fields.map(&:name)))
+
+      args[:uploadedFile] = attachments.map do |attachment|
+        File.open(attachment.decrypt_to(dir))
+      end
+
+      self.comment_tracking_number = comment_form.client.submit_comment(args)
+
+      # TODO: srm dir
+    end
+  end
+
   private
 
   def attachments_are_uniquely_named
-    unless attachments.size == attachments.map(&:attachment_file_name).uniq.size
+    unless attachments.size == attachments.map(&:original_file_name).uniq.size
       errors.add(:base, "Attachments must be uniquely named")
     end
   end
