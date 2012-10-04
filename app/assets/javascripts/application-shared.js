@@ -6,3 +6,8 @@
 //= require storage.js
 //= require analytics.js
 //= require components
+//= require jquery.ui.widget.js
+//= require jquery.iframe-transport.js
+//= require jquery.fileupload.js
+//= require jquery.fileupload-ui.js
+//= require comment

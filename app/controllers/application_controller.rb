@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
   end
 
   def cache_for(time)
-    expires_in time, :public => true
+    unless Rails.env.development?
+      expires_in time, :public => true
+    end
   end
 
   private
@@ -25,8 +27,7 @@ class ApplicationController < ActionController::Base
   def server_error(exception)
     Rails.logger.error(exception)
     notify_airbrake(exception)
-    
+
     raise exception
   end
-  
 end

@@ -43,14 +43,15 @@ class CommentAttachment < ApplicationModel
     PBKDF2.new(:password => secret, :salt=> salt, :iterations=>1000, :key_length => 256).bin_string
   end
 
-  def unencrypted_file
+  def decrypt_to(dir)
     cipher = generate_cipher
     cipher.decrypt
     cipher.key = encryption_key
-    cipher.iv = iv 
+    cipher.iv = iv
 
     buf = ""
-    File.open("file.dec", "wb") do |outf|
+    path = File.join(dir, File.basename(original_file_name))
+    File.open(path, "wb") do |outf|
       open(attachment.url) do |inf|
         while inf.read(4096, buf)
           outf << cipher.update(buf)
@@ -58,6 +59,8 @@ class CommentAttachment < ApplicationModel
         outf << cipher.final
       end
     end
+
+    path
   end
 
   private
