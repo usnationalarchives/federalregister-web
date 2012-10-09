@@ -22,3 +22,11 @@
   border-bottom-right-radius: #{$radius}px;
   }
 
+@mixin rounded-bottom($radius) {
+  -webkit-border-bottom-right-radius: #{$radius}px;
+  -webkit-border-bottom-left-radius: #{$radius}px;
+  -moz-border-radius-bottomright: #{$radius}px;
+  -moz-border-radius-bottomleft: #{$radius}px;
+  border-bottom-right-radius: #{$radius}px;
+  border-bottom-left-radius: #{$radius}px;
+  }
