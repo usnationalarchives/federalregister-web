@@ -2,7 +2,8 @@ class Comment < ApplicationModel
   MAX_ATTACHMENTS = 10
 
   before_create :send_to_regulations_dot_gov
-  after_create :delete_attachments
+  # TODO: implement delete_attachments
+  #after_create :delete_attachments
 
   attr_accessor :secret, :comment_form
   attr_reader :attachments

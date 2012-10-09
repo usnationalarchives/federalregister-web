@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
     @comment_attachments = @comment.attachments
 
     if @comment.save
-      @comment.submit
       redirect_to root_url#, :flash => "Comment submitted!"
     else
       render :action => :new
