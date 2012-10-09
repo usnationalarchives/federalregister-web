@@ -1,3 +1,104 @@
+$comment-orange: #E4A529;
+$comment-green: #7AA13D;
+
+#flash_message.comment { z-index: 1000; }
+#metadata_content_area .loading {
+  height: 23px;
+  padding: 10px;
+  padding-top: 13px;
+  background-color: #CCC;
+  border: 1px solid #CCC;
+  @include rounded-bottom(6);
+
+  position: relative;
+  top: -23px;
+  z-index: 600;
+  }
+#metadata_content_area .loading .loader {
+  font-weight: bold;
+  margin: 0 auto;
+  width: 180px;
+  display: block;
+  background: url(/my/assets/orange_loader_CCC.gif) 159px 0 no-repeat;
+  }
+
+.comment_form_wrapper {
+  background-color: #D7D7D7;
+  padding: 20px;
+  padding-top: 10px;
+  }
+
+.formtastic.comment {
+  background-color: #EFEFEF;
+  padding: 15px;
+  @include input-box-shadow('#CCC', '#EEE', '#FFF');
+  @include border-radius(5);
+}
+
+.formtastic.comment li.input { margin-bottom: 25px; }
+
+.formtastic.comment fieldset .label {
+  display: inline-block;
+  width: 200px;
+  vertical-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  }
+.formtastic.comment fieldset .text .label { 
+  vertical-align: top;
+  position: relative;
+  top: 5px;
+  }
+
+.formtastic.comment fieldset .label abbr { 
+  color: $comment-orange;
+  margin-left: 2px;
+  font-size: 20px;
+  }
+
+.formtastic.comment input,
+.formtastic.comment select,
+.formtastic.comment textarea {
+  height: 25px;
+  width: 375px;
+  font-size: 13px;
+  @include input-box-shadow('#CCC', '#EEE', '#FFF');
+  @include border-radius(3);
+  }
+.formtastic.comment textarea { height: auto; }
+.formtastic.comment select { width: 380px; }
+
+.formtastic.comment input:focus,
+.formtastic.comment select:focus,
+.formtastic.comment textarea:focus {
+  @include input-focus-box-shadow($comment-green);
+  }
+
+#flash_message .comment_form_wrapper .instructions p {
+  padding: 10px;
+  background: none;
+  line-height: 1.2em;
+  }
+
+#flash_message .formtastic .button {
+  position: relative;
+  padding: 10px;
+  }
+#flash_message .formtastic .button input {
+  width: 200px;
+  box-shadow: none;
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: none;
+  }
+#flash_message .formtastic .comment_preview {
+  line-height: 1.2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-left: 10px;
+  }
+
 div.comment-preview-modal {
   display: none;
 

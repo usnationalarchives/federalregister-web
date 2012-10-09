@@ -148,8 +148,15 @@ $(function () {
 
   $('#flash_message.comment a.button').click(function(event) {
     var link = $(this);
-    var div = $(this).closest('div');
-    div.html('Loading...');
+    var comment_div = link.closest('div');
+    var loading_div = $('<div>').addClass('loading').append(
+                          $('<span>').addClass('loader').html('Loading Comment Form')
+                      );
+
+    loading_div.hide();
+    loading_div.insertAfter( comment_div );
+    loading_div.slideDown(800);
+
 
     var document_number = $('.doc_number').text();
     var url = "/my/articles/" + document_number + "/comments/new";
@@ -157,7 +164,15 @@ $(function () {
     $.ajax(url, {
       dataType: 'html',
       success: function(data) {
-        div.html(data);
+        var comment_form = $('<div>').html(data);
+        comment_form.hide();
+        comment_div.append( comment_form );
+
+        loading_div.fadeOut(800, function() {
+          $('#flash_message.comment p .button').fadeOut(400);
+          comment_form.slideDown(800);
+        });
+
         initializeCommentForm();
       },
       error: function() {
@@ -168,3 +183,4 @@ $(function () {
     event.preventDefault();
   });
 });
+
