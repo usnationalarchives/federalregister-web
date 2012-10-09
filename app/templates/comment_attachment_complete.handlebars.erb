@@ -4,12 +4,14 @@
       <span>{{this.name}}</span>
       <input type="hidden" name="comment[attachment_tokens][]" value="{{this.token}}" />
     </td>
-    <td class="size"><span>{{human_size this.size}}</span></td>
     {{#if this.error}}
       <td class="error" colspan="2"><span class="label label-important">Error:</span> {{this.error}}</td>
     {{else}}
-      <td></td>
+      <td>
+        <div class="progress progress-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:100%;"></div></div>
+      </td>
     {{/if}}
+    <td class="size"><span>{{human_size this.size}}</span></td>
     <td class="delete">
       <button class="btn btn-danger" data-type="DELETE" data-url="/my/comment_attachments/{{this.token}}">
         <i class="icon-trash icon-white"></i>
