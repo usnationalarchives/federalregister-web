@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120923212644) do
     t.string   "token"
     t.string   "attachment"
     t.string   "attachment_md5"
+    t.string   "salt"
     t.string   "iv"
     t.integer  "file_size"
     t.string   "content_type"
