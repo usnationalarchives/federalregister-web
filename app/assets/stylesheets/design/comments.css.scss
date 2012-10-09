@@ -56,7 +56,7 @@ $comment-green: #7AA13D;
   font-size: 20px;
   }
 
-.formtastic.comment input,
+.formtastic.comment input[type='text'],
 .formtastic.comment select,
 .formtastic.comment textarea {
   height: 25px;
@@ -68,7 +68,7 @@ $comment-green: #7AA13D;
 .formtastic.comment textarea { height: auto; }
 .formtastic.comment select { width: 380px; }
 
-.formtastic.comment input:focus,
+.formtastic.comment input[type='text']:focus,
 .formtastic.comment select:focus,
 .formtastic.comment textarea:focus {
   @include input-focus-box-shadow($comment-green);
@@ -109,4 +109,24 @@ div.comment-preview-modal {
   position: fixed;
   top: 5em;
   width: 500px;
+  }
+
+#flash_message .formtastic .file.input .label { margin-right: 0.8em; }
+#flash_message .formtastic .file #fileupload { margin-left: 0; }
+
+table.attachments { margin-left: 215px; }
+table.attachments tr,
+table.attachments td.name { padding-left: 0; }
+
+
+/* PROGRESS BARS */
+table.attachments .progress {
+  margin-bottom: 0;
+  position: relative;
+  top: 5px;
+  width: 200px;
+  }
+table.attachments .progress-striped .bar { background-color: $comment-orange; }
+table.attachments .progress-success .bar {
+  @include striped-progress-background(lighten($comment-green, 20), $comment-green, lighten($comment-green, 10));
   }
