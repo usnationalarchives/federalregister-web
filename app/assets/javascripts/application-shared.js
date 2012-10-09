@@ -8,3 +8,4 @@
 //= require jquery.fileupload.js
 //= require jquery.fileupload-ui.js
 //= require comment
+//= require fr_modal
