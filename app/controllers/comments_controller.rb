@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to root_url#, :flash => "Comment submitted!"
     else
-      render :action => :new
+      render :action => :new, :status => 422
     end
   end
 

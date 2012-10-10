@@ -1,56 +1,57 @@
-<%# FIXME: remove this garbage %>
-<%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
-<%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
-<%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
+<div id="comment_wrapper">
+  <%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
+  <%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
+  <%= add_handlebars_template('comment_summary', 'comment-summary'); %>
+  <%= add_handlebars_template('comment_preview', 'comment-preview'); %>
 
-<%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
-<%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
-<%= add_handlebars_template('comment_summary', 'comment-summary'); %>
-<%= add_handlebars_template('comment_preview', 'comment-preview'); %>
+  <div class="comment_form_wrapper">
+    <div class="instructions">
+      <p>Thank you for taking the time make a comment, your input is important.</p>
+      <p>
+        Once you have filled in the required fields below you can preview and/or submit your comment to the issuing agency for review.
+        All comments are considered public and will be posted online once an agency has reviewed them. You can review the 
+        <a href="#" id="comment-privacy-policy">privacy policy here</a>
+        <% if  @comment_form.alternative_ways_to_comment.present? %>
+          and 
+          <a href="#" class="fr_modal"
+            data-modal-title="Alternative Ways to Comment"
+            data-modal-html="<p><%= @comment_form.alternative_ways_to_comment %></p>">alternative ways to comment here</a>.
+        <% else %>
+          .
+        <% end %>
+      </p>
+    </div>
 
-<div class="comment_form_wrapper">
-  <div class="instructions">
-    <p>Thank you for taking the time make a comment, your input is important.</p>
-    <p>
-      Once you have filled in the required fields below you can preview and/or submit your comment to the issuing agency for review.
-      All comments are considered public and will be posted online once an agency has reviewed them. You can review the 
-      <a href="#" id="comment-privacy-policy">privacy policy here</a>
-      <% if  @comment_form.alternative_ways_to_comment.present? %>
-        and 
-        <a href="#" class="fr_modal"
-          data-modal-title="Alternative Ways to Comment"
-          data-modal-html="<p><%= @comment_form.alternative_ways_to_comment %></p>">alternative ways to comment here</a>.
-      <% else %>
-        .
+    <%= semantic_form_for(@comment, :url => comments_path) do |f| %>
+      <% if @comment.errors.present? %>
+        <div class="errors">
+          <%= CommentDecorator.decorate(@comment).human_error_messages %>
+        </div>
       <% end %>
-    </p>
+      <%= f.semantic_errors %>
+      <%= f.inputs do %>
+        <% @comment_form.fields.each do |field| %>
+          <%= f.input field.name, comment_input_field_options(field) %>
+        <% end %>
+
+        <% if true || @comment_form.allow_attachments? %>
+          <li class="public file input optional">
+            <label class="label">Upload File(s)</label>
+            <%= hidden_field_tag('comment[secret]', params[:comment] && params[:comment][:secret]) %>
+            <input id="fileupload" type="file" name="comment_attachment[attachment]" data-url="/my/comment_attachments" multiple>
+
+            <%= content_tag(:table,
+                            content_tag(:tbody),
+                            :class => "attachments",
+                            :"data-existing" => render(:template => "comment_attachments/index.json.json_builder")
+                           ) %>
+          </li>
+        <% end %>
+      <% end %>
+      <%= f.buttons do %>
+        <%= f.commit_button "Submit Comment" %>
+        <%= content_tag(:li, link_to('Preview Comment', '#', :class => 'comment_preview') ) %>
+      <% end %>
+    <% end %>
   </div>
-
-  <%= semantic_form_for(@comment, :url => comments_path) do |f| %>
-  <%= @comment.errors.full_messages %> 
-    <%= f.semantic_errors %>
-    <%= f.inputs do %>
-      <% @comment_form.fields.each do |field| %>
-        <%= f.input field.name, comment_input_field_options(field) %>
-      <% end %>
-
-      <% if true || @comment_form.allow_attachments? %>
-        <li class="public file input optional">
-          <label class="label">Upload File(s)</label>
-          <%= hidden_field_tag('comment[secret]', params[:comment] && params[:comment][:secret]) %>
-          <input id="fileupload" type="file" name="comment_attachment[attachment]" data-url="/my/comment_attachments" multiple>
-
-          <%= content_tag(:table,
-                          content_tag(:tbody),
-                          :class => "attachments",
-                          :"data-existing" => render(:template => "comment_attachments/index.json.json_builder")
-                         ) %>
-        </li>
-      <% end %>
-    <% end %>
-    <%= f.buttons do %>
-      <%= f.commit_button "Submit Comment" %>
-      <%= content_tag(:li, link_to('Preview Comment', '#', :class => 'comment_preview') ) %>
-    <% end %>
-  <% end %>
-</div>
+</div> <!-- end comment_wrapper -->
