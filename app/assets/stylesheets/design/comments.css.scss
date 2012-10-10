@@ -1,5 +1,7 @@
 $comment-orange: #E4A529;
 $comment-green: #7AA13D;
+$error-red: #8A3737;
+$error-bg-red: #EDD3D3;
 
 #flash_message.comment { z-index: 1000; }
 #metadata_content_area .loading {
@@ -35,7 +37,32 @@ $comment-green: #7AA13D;
   @include border-radius(5);
 }
 
-.formtastic.comment li.input { margin-bottom: 25px; }
+.formtastic.comment li.input { 
+  margin-bottom: 25px;
+  width: 630px;
+  }
+.formtastic.comment li.error {
+  background: none;
+  margin: inherit;
+  padding: inherit;
+  }
+.formtastic.comment li span.public {
+  @include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 4px;
+  }
+.formtastic.comment li select + span.public { 
+  top: 2px;
+  left: 2px;
+  }
+.formtastic.comment li textarea + span.public,
+.formtastic.comment li input[type='file'] + span.public { 
+  top: 0px;
+}
 
 .formtastic.comment fieldset .label {
   display: inline-block;
@@ -99,6 +126,32 @@ $comment-green: #7AA13D;
   margin-left: 10px;
   }
 
+.formtastic.comment .errors {
+  background: $error-bg-red;
+  border: 1px solid $error-red;
+  padding: .5em .5em .25em;
+  @include border-radius(6);
+  text-align: center;
+  font-size: 1.2em;
+  color: $error-red;
+  }
+.formtastic.comment .error .label { color: $error-red; }
+.formtastic.comment .error input[type='text'],
+.formtastic.comment .error select,
+.formtastic.comment .error textarea {
+  @include input-focus-box-shadow($error-red);
+  }
+#flash_message .formtastic.comment p.inline-errors {
+  background: none;
+  font-size: 1em;
+  line-height: 1.4em;
+  color: $error-red;
+  text-align: right;
+  padding-right: 40px;
+  padding-top: 5px;
+  }
+
+
 div.comment-preview-modal {
   display: none;
 
@@ -112,12 +165,19 @@ div.comment-preview-modal {
   }
 
 #flash_message .formtastic .file.input .label { margin-right: 0.8em; }
-#flash_message .formtastic .file #fileupload { margin-left: 0; }
+#flash_message .formtastic .file #fileupload { 
+  margin-left: 0;
+  width: 381px;
+  }
 
 table.attachments { margin-left: 215px; }
 table.attachments tr,
 table.attachments td.name { padding-left: 0; }
-
+table.attachments td.size span {
+  text-align: right;
+  width: 75px;
+  display: inline-block;
+  }
 
 /* PROGRESS BARS */
 table.attachments .progress {

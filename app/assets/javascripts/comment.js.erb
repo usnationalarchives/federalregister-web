@@ -144,6 +144,34 @@ $(function () {
         return priorValidations.call(this, file);
       };
     }
+
+    
+    $('#flash_message .formtastic.comment .inputs li').each(function() {
+      var el = $(this);
+      if( el.hasClass('public') ) {
+        el.find('input').last().after( $('<span>').addClass('public') );
+      }
+    });
+
+    $('#flash_message .formtastic.comment').live('submit', function(event) {
+      event.preventDefault();
+      var form = $(this);
+
+      $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        dataType: 'html',
+        data: form.serialize(),
+        success: function(response) {
+          //window.href = response.href;
+          console.log('success', response);
+        },
+        error: function(response) {
+          $('#comment_wrapper').replaceWith(response.responseText);
+        }
+      });
+    });
+
   };
 
   $('#flash_message.comment a.button').click(function(event) {
@@ -182,5 +210,6 @@ $(function () {
 
     event.preventDefault();
   });
+
 });
 
