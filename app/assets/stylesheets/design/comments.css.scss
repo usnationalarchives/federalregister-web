@@ -66,6 +66,7 @@ $error-bg-red: #EDD3D3;
 
 .formtastic.comment fieldset .label {
   display: inline-block;
+  position: relative;
   width: 200px;
   vertical-align: center;
   font-weight: bold;
@@ -81,6 +82,8 @@ $error-bg-red: #EDD3D3;
   color: $comment-orange;
   margin-left: 2px;
   font-size: 20px;
+  padding-left: 2px;
+  position: absolute;
   }
 
 .formtastic.comment input[type='text'],
@@ -107,6 +110,7 @@ $error-bg-red: #EDD3D3;
   line-height: 1.2em;
   }
 
+#flash_message .formtastic .buttons { margin-top: 6em; }
 #flash_message .formtastic .button {
   position: relative;
   padding: 10px;
@@ -137,6 +141,8 @@ $error-bg-red: #EDD3D3;
   font-size: 1.1em;
   font-weight: bold;
   margin-left: 10px;
+  position: relative;
+  top: 2px;
   }
 
 .formtastic.comment .errors {
@@ -177,7 +183,11 @@ div.comment-preview-modal {
   width: 500px;
   }
 
-#flash_message .formtastic .file.input .label { margin-right: 0.8em; }
+#flash_message .formtastic .file.input .label { 
+  margin-right: 0.8em;
+  margin-top: 2px;
+  vertical-align: top;
+  }
 #flash_message .formtastic .file #fileupload { 
   margin-left: 0;
   width: 381px;
@@ -186,15 +196,73 @@ div.comment-preview-modal {
   height: 20px;
   padding: 0;
   padding-top: 3px;
+  padding-left: 10px;
   min-width: 100px;
   width: 100px;
-  margin-right: 273px;
+  margin-right: 275px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  background-color: $comment-green;
+  @include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);
+  }
+#flash_message .formtastic .file .add_file:hover { background-color: lighten($comment-green, 10); }
+#flash_message .formtastic .file td.cancel,
+#flash_message .formtastic .file td.delete { 
+  vertical-align: middle;
+  }
+#flash_message .formtastic .file button.cancel, 
+#flash_message .formtastic .file button.delete {
+  height: 20px;
+  padding: 0;
+  padding-top: 1px;
+  min-width: 60px;
+  width: 60px;
+  font-weight: bold;
+  background-color: $error-red;
+  top: 2px;
+  position: relative;
+  text-transform: none;
+  border: 0;
+  font-size: 0.8em;
+  }
+#flash_message .formtastic .file button.cancel:hover, 
+#flash_message .formtastic .file button.delete:hover {
+  background-color: lighten($error-red, 10);
+  }
+#flash_message .formtastic .file button.cancel {
+  @include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);
+  }
+#flash_message .formtastic .file button.delete {
+  @include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);
+  }
+#flash_message .formtastic .file button.cancel span,
+#flash_message .formtastic .file button.delete span { padding-left: 10px; }
+
+#flash_message .formtastic .file tr.upload-error button.cancel { top: 0; }
+#flash_message .formtastic .file tr.upload-error td.file-error { 
+  color: $error-red;
   font-weight: bold;
   }
 
-table.attachments { margin-left: 215px; }
+table.attachments { 
+  width: 640px;
+  margin-left: 215px;
+  }
+table.attachments tr {
+  margin-top: 5px;
+  border-top: 1px solid #CCC;
+  }
+table.attachments tr.upload-error td { vertical-align: middle; }
+table.attachments tr.upload-error td.file-error {
+  padding: 0;
+  display: inline-block;
+  width: 215px;
+  }
 table.attachments tr,
-table.attachments td.name { padding-left: 0; }
+table.attachments td.name { 
+  padding-left: 0;
+  padding-bottom: 3px;
+  }
 table.attachments td.size span {
   text-align: right;
   width: 75px;
@@ -208,6 +276,7 @@ table.attachments .progress {
   top: 5px;
   width: 200px;
   }
+table.attachments td.progress-bar { padding-left: 0; }
 table.attachments .progress-striped .bar { background-color: $comment-orange; }
 table.attachments .progress-success .bar {
   @include striped-progress-background(lighten($comment-green, 20), $comment-green, lighten($comment-green, 10));
