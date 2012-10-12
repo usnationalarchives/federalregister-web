@@ -1,3 +1,8 @@
+function add_textarea_expander(field) {
+  $(field).TextAreaExpander(100, 1000);
+}
+
+
 $(function () {
   var initializeCommentForm = function() {
     var renderCommentSummary = function(fields) {
@@ -86,7 +91,7 @@ $(function () {
 
     var attachedCommentMessage = 'See attached file(s)';
     var commentField = $('#comment_general_comment');
-    commentField.TextAreaExpander(100, 1000);
+    add_textarea_expander(commentField);
 
     var container = $('.attachments tbody');
     var existing_attachments = $.parseJSON($('.attachments').data("existing"));
@@ -145,29 +150,69 @@ $(function () {
       };
     }
 
-    
+    /* add public icons where appropriate */
     $('#flash_message .formtastic.comment .inputs li').each(function() {
-      var el = $(this);
-      if( el.hasClass('public') ) {
-        el.find('input').last().after( $('<span>').addClass('public') );
+      var $li = $(this);
+      if( $li.hasClass('public') ) {
+        $li.find(' > input').last().after( $('<span>').addClass('public') );
       }
     });
 
+    /* add tipsy for public (world) icon */
+    $('.formtastic.comment .inputs span.public').tipsy( {gravity: 's', fallback: "This field will be publically viewable.", fade: true, offset: 4});
+
+    
+    /* make the file upload button pretty */
+    var add_file_button = $('<div>').addClass('add_file button').text('Add a file');
+    $('#fileupload').after( add_file_button );
+    $('#flash_message.comment').delegate('.add_file', 'click', function() {
+      $('#fileupload').trigger('click');
+    });
+    $('#fileupload').hide();
+
+
+    /* add events for max characters in a text field */
+    $('#flash_message.comment').delegate('li.input[data-max-size]', 'change', function() {
+      enfore_characters_remaining(this);
+    });
+    $('#flash_message.comment').delegate('li.input[data-max-size]', 'keyup', function() {
+      enfore_characters_remaining(this);
+    });
+
+    /* add events to clear validation errors */
+    $('#flash_message.comment').delegate('li.error.input', 'keyup', function() {
+      validate_field(this);
+    });
+    $('#flash_message.comment').delegate('li.error.input', 'change', function() {
+      validate_field(this);
+    });
+
+
+    $('#flash_message').delegate('.formtastic.comment .button.commit:not(.disabled)', 'click', function() {
+      $(this).closest('form').submit();
+    });
     $('#flash_message .formtastic.comment').live('submit', function(event) {
       event.preventDefault();
-      var form = $(this);
+      var $form = $(this),
+          $submit_button = $form.find('.commit.button');
+
+      $submit_button.addClass('disabled');
+      $submit_button.find('input').disable().attr('value', 'Submitting Comment');
 
       $.ajax({
-        url: form.attr('action'),
+        url: $form.attr('action'),
         type: 'POST',
         dataType: 'html',
-        data: form.serialize(),
+        data: $form.serialize(),
         success: function(response) {
           //window.href = response.href;
           console.log('success', response);
         },
         error: function(response) {
           $('#comment_wrapper').replaceWith(response.responseText);
+          initializeCommentForm();
+
+          $('#comment_wrapper .instructions').scrollintoview({duration: 200});
         }
       });
     });
@@ -196,7 +241,7 @@ $(function () {
         comment_form.hide();
         comment_div.append( comment_form );
 
-        loading_div.fadeOut(800, function() {
+        loading_div.slideUp(800, function() {
           $('#flash_message.comment p .button').fadeOut(400);
           comment_form.slideDown(800);
         });

@@ -7,7 +7,7 @@ $(document).ready(function(){
   $('.doc_unknown.add_tipsy').tipsy( {gravity: 'e', fallback: "Document of Unknown Type", delayIn: 100, fade: true, offset: 0});
   $('.doc_correct.add_tipsy').tipsy( {gravity: 'e', fallback: "Correction",               delayIn: 100, fade: true, offset: 0});
 
-  /* slide out drawers */
+  /* checkbox drawers */
   $('#clippings li div.add_to_folder_pane').tipsy( {gravity: 'e', fallback: "Select clipping(s) and modify using menus above", fade: true, offset: -15});
   
   /* clipping actions */
@@ -16,4 +16,6 @@ $(document).ready(function(){
 
   /* Doctype Filters */
   $('#doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: true, offset: 2, title: function() { return $(this).data('tooltip');} });
+
+  /*** Comment form tipsy is defined in comment.js.erb ***/
 });

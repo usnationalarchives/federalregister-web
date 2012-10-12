@@ -15,7 +15,11 @@ module CommentsHelper
       if field.max_length > 0
         options.merge!(
           :as => :string,
-          :size => field.max_length
+          :size => field.max_length,
+          :wrapper_html => {
+            :'data-max-size' => field.max_length,
+            :'data-size-warn-at' => 7
+          }
         )
       else
         options[:as] = :text
