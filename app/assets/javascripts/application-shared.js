@@ -13,3 +13,4 @@
 //= require jquery.fileupload-ui.js
 //= require comment
 //= require fr_modal
+//= require form_utils

@@ -110,6 +110,7 @@ $error-bg-red: #EDD3D3;
 #flash_message .formtastic .button {
   position: relative;
   padding: 10px;
+  cursor: pointer;
   }
 #flash_message .formtastic .button input {
   width: 200px;
@@ -118,6 +119,18 @@ $error-bg-red: #EDD3D3;
   color: white;
   border: none;
   background: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1em;
+  vertical-align: middle;
+  }
+#flash_message .formtastic .buttons .disabled,
+#flash_message .formtastic .buttons .disabled:hover {
+  background-color: #CCC;
+  }
+#flash_message .formtastic .buttons .disabled input {
+  padding-right: 25px;
+  background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
   }
 #flash_message .formtastic .comment_preview {
   line-height: 1.2em;
@@ -150,7 +163,7 @@ $error-bg-red: #EDD3D3;
   padding-right: 40px;
   padding-top: 5px;
   }
-
+#flash_message .formtastic.comment p.inline-errors.warning { color: $comment-green; }
 
 div.comment-preview-modal {
   display: none;
@@ -168,6 +181,15 @@ div.comment-preview-modal {
 #flash_message .formtastic .file #fileupload { 
   margin-left: 0;
   width: 381px;
+  }
+#flash_message .formtastic .file .add_file {
+  height: 20px;
+  padding: 0;
+  padding-top: 3px;
+  min-width: 100px;
+  width: 100px;
+  margin-right: 273px;
+  font-weight: bold;
   }
 
 table.attachments { margin-left: 215px; }
