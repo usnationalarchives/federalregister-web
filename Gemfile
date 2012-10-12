@@ -21,7 +21,8 @@ gem 'draper',     '0.9.5'
 
 gem 'jquery-rails'
 gem 'sass-rails',    "~> 3.2.5"
-gem 'compass-rails', "1.0.1"
+gem 'compass', '0.12.2'
+gem 'compass-rails', "1.0.3"
 gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
@@ -41,7 +42,7 @@ gem "httmultiparty"
 # in production environments by default.
 group :assets do 
   gem 'sass-rails',    "~> 3.2.5"
-  gem 'compass-rails', "1.0.1"
+  gem 'compass-rails', "1.0.3"
   gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
   gem 'uglifier'
