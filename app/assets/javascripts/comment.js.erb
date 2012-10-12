@@ -205,8 +205,7 @@ $(function () {
         dataType: 'html',
         data: $form.serialize(),
         success: function(response) {
-          //window.href = response.href;
-          console.log('success', response);
+          $('#comment_wrapper').replaceWith(response);
         },
         error: function(response) {
           $('#comment_wrapper').replaceWith(response.responseText);

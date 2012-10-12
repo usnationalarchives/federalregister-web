@@ -7,4 +7,12 @@ class CommentDecorator < ApplicationDecorator
        Please fix them below and submit your comment again."
     end
   end
+
+  def article
+    @article ||= FederalRegister::Article.find(model.document_number)
+  end
+
+  def agency_names
+    article.agencies.map{|a| a.name}.join(', ')
+  end
 end

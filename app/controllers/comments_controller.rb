@@ -15,11 +15,13 @@ class CommentsController < ApplicationController
     @comment_attachments = @comment.attachments
 
     if @comment.save
-      redirect_to root_url#, :flash => "Comment submitted!"
+      @comment = CommentDecorator.decorate(@comment)
+      render :action => :show, :status => 200
     else
       render :action => :new, :status => 422
     end
   end
+
 
   private
 
