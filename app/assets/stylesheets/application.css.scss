@@ -1,10 +1,12 @@
 /* compass sprite -c config/compass.rb "icons/my_fr2/*.png" --force */
-$my_fr2-spacing: 50px;
+$my_fr2-spacing: 50px !default;
 @import "sprites/_my_fr2.scss";
+@import "icons/my_fr2/*.png";
 
 /* compass sprite -c config/compass.rb "icons/my_fr2/user_utils/*.png" --force */
-$user_utils-spacing: 50px;
+$user_utils-spacing: 50px !default;
 @import "sprites/_user_utils.scss";
+@import "icons/my_fr2/user_utils/*.png";
 
 @import "mixins/_css3_utils.scss";
 @import "mixins/_rounded.scss";
