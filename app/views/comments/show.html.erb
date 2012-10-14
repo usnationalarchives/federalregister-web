@@ -1,44 +1,49 @@
-<!-- <%= @comment.inspect %> -->
+<div class="comment_form_wrapper">
+  <!-- <%= @comment.inspect %> -->
 
-<div class="notice message">
-  <p class="info">
-    Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a> 
-    for review by <%= @comment.agency_names %>.
-  </p>
-  <p class="comment_tracking">
-    Comment Tracking Number: <span class="tracking_number"><%= @comment.comment_tracking_number %></span>
-  </p>
-</div>
+  <div class="notice message">
+    <p class="info">
+      Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a> 
+      for review by <%= @comment.agency_names %>.
+    </p>
+    <p class="comment_tracking">
+      Comment Tracking Number: <span class="tracking_number"><%= @comment.comment_tracking_number %></span>
+    </p>
+  </div>
 
-<div class="comment_tracking info">
-  <p>
+  <div class="comment_tracking info">
     <% if @current_user %>
-      Your tracking number has been added to your MyFR account and you will recieve
-      an email notification when your comment has been made public by <%= @comment.agency_names %>.
+      <p>
+        Your tracking number has been added to your MyFR account and you will recieve
+        an email notification when your comment has been made public by <%= @comment.agency_names %>.
+      </p>
     <% else %>
-      The MyFR functionality of FederalRegister.gov can save your tracking number for later retrieval and
-      notify you when your comment has been made public by <%=  @comment.agency_names %>. 
-      <%= link_to "Sign in", new_user_session_path, :id => "sign-in" %> or <%= link_to "Sign up", new_user_registration_path %>
-      to make use of this functionality.
+      <p>
+        The MyFR functionality of FederalRegister.gov can save your tracking number for later retrieval and
+        notify you when your comment has been made public by <%=  @comment.agency_names %>. 
+        <%= link_to "Sign in", new_user_session_path, :id => "sign-in" %> or <%= link_to "Sign up", new_user_registration_path %>
+        to make use of this functionality.
+      </p>
     <% end %>
-  </p>
 
-  <p>
-    FederalRegister.gov values your privacy and does not store the information provided in your comment. 
-    Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
-    once it has been made public by <%=  @comment.agency_names %>.
-  <p>
+    <p>
+      FederalRegister.gov values your privacy and does not store the information provided in your comment. 
+      Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
+      once it has been made public by <%=  @comment.agency_names %>.
+    </p>
 
-  <p>
-    We recommend that you print your comment for your records and for any future coorespondence about your
-    comment with <%= @comment.agency_names %>.
-  <p>
-</div>
+    <p>
+      We recommend that you print your comment for your records and for any future coorespondence about your
+      comment with <%= @comment.agency_names %>.
+    </p>
+  </div>
 
-<div class="social_media">
-  Public engagement is vital to a functioning democracy, get other involved!
-
-  <FACEBOOK/TWITTER LINKS HERE>
-</div>
-
+  <div class="social_media">
+    <p>
+      Public engagement is vital to a functioning democracy, get others involved!
+      <br />
+      "FACEBOOK/TWITTER LINKS HERE"
+    </p>
+  </div>
+</div> <!-- end comment_form_wrapper -->
 
