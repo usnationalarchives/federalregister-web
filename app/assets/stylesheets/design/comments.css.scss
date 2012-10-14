@@ -281,3 +281,29 @@ table.attachments .progress-striped .bar { background-color: $comment-orange; }
 table.attachments .progress-success .bar {
   @include striped-progress-background(lighten($comment-green, 20), $comment-green, lighten($comment-green, 10));
   }
+
+/* COMMENT FORM SUBMIT SUCCESS */
+#flash_message.comment .notice,
+#flash_message.comment .comment_tracking,
+#flash_message.comment .social_media {
+  width: 90%;
+  margin: 0 auto;
+  }
+#flash_message.comment .notice {
+  margin: 5px auto;
+  @include border-radius(6);
+  }
+#flash_message.comment .notice p,
+#flash_message.comment .comment_tracking p,
+#flash_message.comment .social_media p {
+  padding: 10px;
+  line-height: 1.3em;
+  background: none;
+  }
+.tracking_number {
+  background-color: #EFEFEF;
+  font-family: courier;
+  padding: 2px 5px;
+  @include input-box-shadow('#CCC', '#EEE', '#EFEFEF');
+  @include border-radius(3);
+  }
