@@ -293,6 +293,7 @@ table.attachments .progress-success .bar {
   margin: 5px auto;
   @include border-radius(6);
   }
+#flash_message.comment .notice p.info { text-align: left; }
 #flash_message.comment .notice p,
 #flash_message.comment .comment_tracking p,
 #flash_message.comment .social_media p {
