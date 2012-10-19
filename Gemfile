@@ -63,4 +63,7 @@ group :development, :test do
   gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
   gem 'jasmine',                        '1.2.1'
+
+  gem "vcr",     "~> 2.2.5"
+  gem "fakeweb", "~> 1.3.0"
 end
