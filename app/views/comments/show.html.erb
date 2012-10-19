@@ -6,44 +6,61 @@
       Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a> 
       for review by <%= @comment.agency_names %>.
     </p>
-    <p class="comment_tracking">
+    <p class="comment_tracking_number">
       Comment Tracking Number: <span class="tracking_number"><%= @comment.comment_tracking_number %></span>
     </p>
   </div>
 
-  <div class="comment_tracking info">
+  <div class="comment_next_steps">
+    <h2>Next Steps</h2>
+
+    <div class="my_fr">
     <% if @current_user %>
       <p>
-        Your tracking number has been added to your MyFR account and you will recieve
+        Your comment tracking number has been added to your MyFR account and you will recieve
         an email notification when your comment has been made public by <%= @comment.agency_names %>.
       </p>
     <% else %>
       <p>
-        The MyFR functionality of FederalRegister.gov can save your tracking number for later retrieval and
-        notify you when your comment has been made public by <%=  @comment.agency_names %>. 
-        <%= link_to "Sign in", new_user_session_path, :id => "sign-in" %> or <%= link_to "Sign up", new_user_registration_path %>
-        to make use of this functionality.
+        Sign in / sign up to save your comment tracking number and recieve notifications about your comment.
       </p>
+
+      <%= semantic_form_for :comment_notifications do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :future_reference, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.' %>
+          <%= f.input :email_me, :as => :boolean, :label => 'Email me a copy of my comment.' %>
+        <% end %>
+        <%= f.buttons do %>
+          <%= f.commit_button :sign_in, :label => 'Sign In'%>
+          <%= f.commit_button :sign_up, :label => 'Sign Up'%>
+        <% end %>
+      <% end %>
     <% end %>
+    </div>
+  
 
-    <p>
-      FederalRegister.gov values your privacy and does not store the information provided in your comment. 
+    <div class="print">
+      <p>Print your comment for your records and for any future coorespondence about your
+      comment with <%= @comment.agency_names %>.</p>
+    </div>
+
+    <div class="social_media">
+      <p>Public participation is vital to a functioning democracy, get others involved!</p>
+      <ul class="media_buttons">
+        <li><a href="http://twitter.com/home?status=http%3A%2F%2F127.0.0.1%2Fa%2F2012-23883+%23gov20" class="button list social twitter tip_over" target="blank" original-title="Share on Twitter">Twitter</a></li>
+        <li><a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2F127.0.0.1%2Fa%2F2012-23883&amp;t=Special+Load+Line+Exemption+for+the+Gulf+of+Mexico%3A+Petition+for+Rulemaking" class="button list fb_link social facebook tip_over" target="blank" original-title="Share on Facebook">Facebook</a></li>
+      </ul>
+    </div>
+
+    <div class="retrieval">
+      <p>
+      FederalRegister.gov submits your comment to <a href="http://www.regulations.gov">Regulations.gov</a> and does not store the information provided in your comment. 
       Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
-      once it has been made public by <%=  @comment.agency_names %>.
-    </p>
+      once it has been made public by <%=  @comment.agency_names %>.</p>
+    </div>
 
-    <p>
-      We recommend that you print your comment for your records and for any future coorespondence about your
-      comment with <%= @comment.agency_names %>.
-    </p>
   </div>
 
-  <div class="social_media">
-    <p>
-      Public engagement is vital to a functioning democracy, get others involved!
-      <br />
-      "FACEBOOK/TWITTER LINKS HERE"
-    </p>
   </div>
 </div> <!-- end comment_form_wrapper -->
 
