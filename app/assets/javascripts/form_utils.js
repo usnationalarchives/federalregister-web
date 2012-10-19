@@ -53,7 +53,7 @@ function visually_notify_user(input) {
   }
 }
 
-function enfore_characters_remaining(el) {
+function enforce_characters_remaining(el) {
   var input = $(el).find('input');
 
   update_character_count(input);
@@ -64,8 +64,10 @@ function validate_field(el) {
   var $el = $(el),
       $input = $el.find('input');
 
-  if( !add_error($input) && $input.val().length > 0 ) {
-    $el.removeClass('error');
-    $el.find('p.inline-errors').text('');
+  if( $input !== undefined ) {
+    if( !add_error($input) && $input.val().length > 0 ) {
+      $el.removeClass('error');
+      $el.find('p.inline-errors').text('');
+    }
   }
 }
