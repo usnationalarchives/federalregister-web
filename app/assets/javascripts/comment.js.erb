@@ -173,10 +173,10 @@ $(function () {
 
     /* add events for max characters in a text field */
     $('#flash_message.comment').delegate('li.input[data-max-size]', 'change', function() {
-      enfore_characters_remaining(this);
+      enforce_characters_remaining(this);
     });
     $('#flash_message.comment').delegate('li.input[data-max-size]', 'keyup', function() {
-      enfore_characters_remaining(this);
+      enforce_characters_remaining(this);
     });
 
     /* add events to clear validation errors */
@@ -206,6 +206,7 @@ $(function () {
         data: $form.serialize(),
         success: function(response) {
           $('#comment_wrapper').replaceWith(response);
+          $('.comment_form_wrapper').closest('div').scrollintoview({duration: 200});
         },
         error: function(response) {
           $('#comment_wrapper').replaceWith(response.responseText);
