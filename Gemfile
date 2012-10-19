@@ -62,4 +62,5 @@ group :development, :test do
   gem 'spork',                          '~> 0.8.5'
   gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
+  gem 'jasmine',                        '1.2.1'
 end
