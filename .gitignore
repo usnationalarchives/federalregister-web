@@ -10,3 +10,4 @@ tags
 public/assets
 public/my/assets
 app/assets/stylesheets/sprites/*.scss
+spec/vcr/*.yml
