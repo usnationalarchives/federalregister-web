@@ -17,20 +17,22 @@ function add_error(input) {
 function update_character_count(input) {
   var $input = $(input),
       $li = $input.closest('li'),
-      error_field = $input.siblings('p.inline-errors').first();
-
-  if( error_field.length === 0 ) {
-    $input.after( $('<p>').addClass('inline-errors') );
-    error_field = $input.siblings('p.inline-errors').first();
-  }
-
-  var remaining = chars_remaining($input),
+      error_field = $input.siblings('p.inline-errors').first(),
+      remaining = chars_remaining($input),
       text = remaining == 1 ? ' character left' : ' characters left';
 
   if( add_error($input) ) {
+    if( error_field.length === 0 ) {
+      $input.after( $('<p>').addClass('inline-errors') );
+      error_field = $input.siblings('p.inline-errors').first();
+    }
+
     error_field.text( remaining + text );
-  } else { 
-    error_field.text('');
+  } else {
+    if( error_field.length !== 0 ) {
+      error_field.text('');
+      error_field.remove();
+    }
   }
 }
 
