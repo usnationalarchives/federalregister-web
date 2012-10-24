@@ -1,6 +1,9 @@
 class CommentDecorator < ApplicationDecorator
   decorates :comment
 
+  delegate :agency_participates_on_regulations_dot_gov?,
+    :to => :comment_form
+
   def human_error_messages
     if errors.present?
       "There #{errors.count > 1 ? 'were' : 'was'} #{h.pluralize(errors.count, 'problem')} with your submission. 
