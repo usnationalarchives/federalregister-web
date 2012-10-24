@@ -9,6 +9,7 @@ class Comment < ApplicationModel
   attr_reader :attachments
 
   validate :required_fields_are_present
+  validate :fields_do_not_exceed_maximum_length
   validate :not_too_many_attachments
   validate :attachments_are_uniquely_named
   validate :all_attachments_could_be_found
@@ -88,6 +89,14 @@ class Comment < ApplicationModel
   def all_attachments_could_be_found
     unless @missing_attachments.blank?
       errors.add :base, "One or more of your attachments could not be found; please re-upload."
+    end
+  end
+
+  def fields_do_not_exceed_maximum_length
+    comment_form.text_fields.each do |field|
+      if field.max_length && @attributes[field.name].length > field.max_length
+        errors.add(field.name, "cannot exceed #{field.max_length} characters")
+      end
     end
   end
 
