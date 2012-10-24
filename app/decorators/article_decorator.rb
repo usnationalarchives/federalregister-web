@@ -77,4 +77,8 @@ class ArticleDecorator < ApplicationDecorator
     document_number = model.correction_of.split('/').last.split('.').first
     h.link_to(document_number, "https://www.federalregister.gov/a/#{document_number}")
   end
+
+  def short_entry_url
+    "https://www.federalregister.gov/a/#{document_number}"
+  end
 end
