@@ -1,6 +1,11 @@
 class RegulationsDotGov::CommentForm::Field::SelectField < RegulationsDotGov::CommentForm::Field
   def options
-    @options ||= client.get_options(picklist_name)
+    parameters = {}
+    if name == 'comment_category'
+      parameters['agency'] = agency_id
+    end
+
+    @options ||= client.get_options(picklist_name, parameters)
   end 
 
   def default

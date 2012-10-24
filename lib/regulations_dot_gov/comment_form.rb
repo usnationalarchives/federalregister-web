@@ -42,7 +42,7 @@ class RegulationsDotGov::CommentForm
 
   def fields
     @fields ||= attributes["fieldList"]["field"].map do |field_attributes|
-      Field.build(client, field_attributes)
+      Field.build(client, field_attributes, agency_id)
     end
   end
 
