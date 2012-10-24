@@ -22,13 +22,14 @@
       </p>
     <% else %>
       <p>
-        Sign in / sign up to save your comment tracking number and recieve notifications about your comment.
+        Sign in / sign up to save your comment tracking number and recieve a copy of your comment via email.
       </p>
 
       <%= semantic_form_for :comment_notifications do |f| %>
         <%= f.inputs do %>
-          <%= f.input :future_reference, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.' %>
-          <%= f.input :email_me, :as => :boolean, :label => 'Email me a copy of my comment.' %>
+          <%= f.input :made_public, :as => :boolean, :label => 'Notify me when my comment is made public.', :input_html => {:checked => true} %>
+          <%= f.input :future_reference, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.', :input_html => {:checked => true} %>
+          <%= f.input :comment_tracking_number, :as => :hidden, :value => @comment.comment_tracking_number %>
         <% end %>
         <%= f.buttons do %>
           <%= f.commit_button :sign_in, :label => 'Sign In'%>
@@ -40,15 +41,29 @@
   
 
     <div class="print">
-      <p>Print your comment for your records and for any future coorespondence about your
+      <p><%= link_to 'Print your comment' %> for your records and for any future coorespondence about your
       comment with <%= @comment.agency_names %>.</p>
     </div>
 
     <div class="social_media">
       <p>Public participation is vital to a functioning democracy, get others involved!</p>
       <ul class="media_buttons">
-        <li><a href="http://twitter.com/home?status=http%3A%2F%2F127.0.0.1%2Fa%2F2012-23883+%23gov20" class="button list social twitter tip_over" target="blank" original-title="Share on Twitter">Twitter</a></li>
-        <li><a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2F127.0.0.1%2Fa%2F2012-23883&amp;t=Special+Load+Line+Exemption+for+the+Gulf+of+Mexico%3A+Petition+for+Rulemaking" class="button list fb_link social facebook tip_over" target="blank" original-title="Share on Facebook">Facebook</a></li>
+        <li>
+          <div class="left">
+            <%= link_to_twitter("I just commented on #{@comment.article.short_entry_url}. You should too!") %>
+          </div>
+          <div class="right">
+            <p>We'll provide a basic tweet with a link to the article you commented on. You'll be able to customize the message before you tweet.</p>
+          </div>
+        </li>
+        <li>
+          <div class="left">
+            <%= link_to_facebook(@comment.article.short_entry_url, @comment.article.title) %>
+          </div>
+          <div class="right">
+            <p>We provide the title of the article you commented on and a link to it. You'll be able to customize your Facebook wall message before it is posted.</p>
+          </div>
+        </li>
       </ul>
     </div>
 

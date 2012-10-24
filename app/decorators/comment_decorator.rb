@@ -9,10 +9,11 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def article
-    @article ||= FederalRegister::Article.find(model.document_number)
+    @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(model.document_number) )
   end
 
   def agency_names
-    article.agencies.map{|a| a.name}.join(', ')
+    #article.agencies.map{|a| a.name}.join(', ')
+    'the ' + article.agencies.first.name
   end
 end

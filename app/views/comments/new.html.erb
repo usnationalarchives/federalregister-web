@@ -4,11 +4,13 @@
   <%= add_handlebars_template('comment_summary', 'comment-summary'); %>
   <%= add_handlebars_template('comment_preview', 'comment-preview'); %>
 
+  <% @comment = CommentDecorator.decorate(@comment) %>
+
   <div class="comment_form_wrapper">
     <div class="instructions">
       <p>Thank you for taking the time make a comment, your input is important.</p>
       <p>
-        Once you have filled in the required fields below you can preview and/or submit your comment to the issuing agency for review.
+        Once you have filled in the required fields below you can preview and/or submit your comment to <%= @comment.agency_names %> for review.
         All comments are considered public and will be posted online once an agency has reviewed them. You can review the 
         <a href="#" id="comment-privacy-policy">privacy policy here</a>
         <% if  @comment_form.alternative_ways_to_comment.present? %>
@@ -25,7 +27,7 @@
     <%= semantic_form_for(@comment, :url => comments_path) do |f| %>
       <% if @comment.errors.present? %>
         <div class="errors">
-          <%= CommentDecorator.decorate(@comment).human_error_messages %>
+          <%= @comment.human_error_messages %>
         </div>
       <% end %>
       <%= f.semantic_errors %>
