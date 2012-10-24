@@ -170,7 +170,7 @@ $(function () {
     $('#flash_message .formtastic.comment .inputs li').each(function() {
       var $li = $(this);
       if( $li.hasClass('public') ) {
-        $li.find(' > input').last().after( $('<span>').addClass('public') );
+        $li.find(' > :input').last().after( $('<span>').addClass('public') );
       }
     });
 
