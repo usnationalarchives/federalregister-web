@@ -1,6 +1,8 @@
 class RegulationsDotGov::CommentForm
   attr_accessor :client, :attributes
 
+  AGENCY_NAMES = YAML::load_file(Rails.root.join('data', 'regulations_dot_gov_agencies.yml'))
+
   def initialize(client, attributes)
     @client = client
     @attributes = attributes
@@ -42,6 +44,14 @@ class RegulationsDotGov::CommentForm
     @fields ||= attributes["fieldList"]["field"].map do |field_attributes|
       Field.build(client, field_attributes)
     end
+  end
+
+  def agency_name
+    AGENCY_NAMES[agency_id] || agency_id
+  end
+
+  def agency_id
+    attributes['document']['agencyId']
   end
 
   def text_fields
