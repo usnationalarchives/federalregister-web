@@ -6,9 +6,6 @@ module CommentsHelper
       :required => field.required?,
     }
 
-    if field.publically_viewable?
-      options[:wrapper_html] = {:class => "public"}
-    end
 
     case field
     when RegulationsDotGov::CommentForm::Field::TextField
@@ -47,6 +44,11 @@ module CommentsHelper
           :'data-dependencies' => field.dependencies.to_json
         }
       )
+    end
+
+    if field.publically_viewable?
+      options[:wrapper_html] ||= {}
+      options[:wrapper_html][:class] = [options[:wrapper_html][:class], "public"].compact.join(' ')
     end
 
     options
