@@ -334,11 +334,6 @@ table.attachments .progress-success .bar {
 #flash_message.comment .comment_next_steps form .buttons .button input { width: 100px; }
 
 #flash_message.comment .social_media .media_buttons { margin-left: 90px; }
-#flash_message.comment .social_media .media_buttons li {
-  display: inline-block;
-  overflow: hidden;
-  width: 32px;
-}
 #flash_message.comment .comment_next_steps .my_fr p {
   @include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 9px);
   }
@@ -348,14 +343,35 @@ table.attachments .progress-success .bar {
   }
 #flash_message.comment .comment_next_steps .social_media { margin-top: 15px; }
 #flash_message.comment .comment_next_steps .social_media p {
-  @include my_fr2-sprite(icon_thumb_up, $my_fr2-sprite-dimensions, 30px, 4px);
+  @include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, 6px);
+  }
+
+#flash_message.comment .social_media .media_buttons li {
+  display: inline-block;
+  margin: 5px 0;
+  overflow: hidden;
+  width: 600px;
+  }
+#flash_message.comment .media_buttons .left {
+  float: left;
+  clear: both;
+  width: 32px;
   }
 #flash_message.comment .social_media .media_buttons a.button {
   width: 32px;
   min-width: initial;
   position: relative;
+  padding: 0;
   }
-
+#flash_message.comment .media_buttons .right {
+  float: left;
+  width: 500px;
+  }
+#flash_message.comment .comment_next_steps .social_media .media_buttons p {
+  font-size: 1.1em;
+  background: none;
+  padding: 0 10px;
+  }
 
 #flash_message.comment .comment_next_steps .retrieval {
   padding: 0;
