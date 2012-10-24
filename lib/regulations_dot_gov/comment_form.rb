@@ -57,4 +57,8 @@ class RegulationsDotGov::CommentForm
   def text_fields
     fields.select{|x| x.is_a?(RegulationsDotGov::CommentForm::Field::TextField) }
   end
+
+  def agency_participates_on_regulations_dot_gov?
+    attributes["participating"]
+  end
 end
