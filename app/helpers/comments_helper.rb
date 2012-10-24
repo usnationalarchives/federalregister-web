@@ -12,6 +12,7 @@ module CommentsHelper
 
     case field
     when RegulationsDotGov::CommentForm::Field::TextField
+      # the regs.gov API returns a max-length of -1 to mean a textarea capped at 2000 characters
       if field.max_length > 0
         options.merge!(
           :as => :string,
@@ -22,7 +23,12 @@ module CommentsHelper
           }
         )
       else
-        options[:as] = :text
+        options.merge!(
+          :as => :text,
+          :wrapper_html => {
+            :'data-max-size' => 2000,
+            :'data-size-warn-at' => 1800
+          }
       end
     when RegulationsDotGov::CommentForm::Field::SelectField
       options.merge!(
