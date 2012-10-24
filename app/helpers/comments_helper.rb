@@ -29,6 +29,7 @@ module CommentsHelper
             :'data-max-size' => 2000,
             :'data-size-warn-at' => 1800
           }
+        )
       end
     when RegulationsDotGov::CommentForm::Field::SelectField
       options.merge!(
