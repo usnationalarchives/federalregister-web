@@ -43,4 +43,8 @@ class RegulationsDotGov::CommentForm
       Field.build(client, field_attributes)
     end
   end
+
+  def text_fields
+    fields.select{|x| x.is_a?(RegulationsDotGov::CommentForm::Field::TextField) }
+  end
 end
