@@ -1,7 +1,9 @@
 class Comment < ApplicationModel
+  include EncryptionUtils
   MAX_ATTACHMENTS = 10
 
   before_create :send_to_regulations_dot_gov
+  before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
@@ -64,7 +66,19 @@ class Comment < ApplicationModel
     end
   end
 
+  def comment_data
+    @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
+  end
+
   private
+
+  def persist_comment_data
+    @comment_data = comment_form.humanize_form_data(attributes)
+
+    @comment_data << ["Uploaded Files", attachments.map(&:original_file_name).join("\n")]
+
+    self.encrypted_comment_data = encrypt(@comment_data.to_json) 
+  end
 
   def attachments_are_uniquely_named
     unless attachments.size == attachments.map(&:original_file_name).uniq.size

@@ -8,15 +8,23 @@ class RegulationsDotGov::CommentForm::Field::ComboField < RegulationsDotGov::Com
 		mapping[:dependent_on]
 	end
 
+	def dependent_values
+		mapping[:values]
+	end
+
 	def dependencies
 		dependencies = {}
-		mapping[:values].each do |val|
-			dependencies[val] = client.get_options("#{name}_v", 'value' => val, 'field' => dependent_on).map do |option|
+		dependent_values.each do |val|
+			dependencies[val] = options_for_parent_value(val).map do |option|
 				[option.value, option.label]
 			end
 		end
 
 		dependencies
+	end
+
+	def options_for_parent_value(val)
+		client.get_options("#{name}_v", 'value' => val, 'field' => dependent_on)
 	end
 
 	def mapping
