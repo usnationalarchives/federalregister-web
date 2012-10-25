@@ -1,4 +1,5 @@
 class CommentAttachment < ApplicationModel
+  include EncryptionUtils
   require 'open-uri'
 
   ALLOWED_EXTENSIONS = ["bmp", "doc", "xls", "pdf", "gif", "htm", "html", "jpg", "jpeg", "png", "ppt", "rtf", "sgml", "tiff", "tif", "txt" , "wpd", "xml", "docx", "xlsx", "pptx"]
@@ -27,27 +28,8 @@ class CommentAttachment < ApplicationModel
     token
   end
 
-  def salt
-    self.salt = (self[:salt] || SecureRandom.hex(127))
-  end
-
-  def generate_cipher
-    OpenSSL::Cipher.new('aes-256-cbc')
-  end
-
-  def iv
-    self.iv = (self[:iv] || SecureRandom.hex(127))
-  end
-
-  def encryption_key
-    PBKDF2.new(:password => secret, :salt=> salt, :iterations=>1000, :key_length => 256).bin_string
-  end
-
   def decrypt_to(dir)
-    cipher = generate_cipher
-    cipher.decrypt
-    cipher.key = encryption_key
-    cipher.iv = iv
+    cipher = decryption_cipher
 
     buf = ""
     path = File.join(dir, File.basename(original_file_name))
