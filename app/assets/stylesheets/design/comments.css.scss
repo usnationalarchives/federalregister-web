@@ -82,7 +82,6 @@ $error-bg-red: #EDD3D3;
   color: $comment-orange;
   margin-left: 2px;
   font-size: 20px;
-  padding-left: 2px;
   position: absolute;
   }
 
@@ -108,6 +107,10 @@ $error-bg-red: #EDD3D3;
   padding: 10px;
   background: none;
   line-height: 1.2em;
+  }
+#flash_message.comment .notice.comment_reloaded {
+  font-size: 1.2em;
+  margin-bottom: 20px;
   }
 
 #flash_message .formtastic .buttons { margin-top: 6em; }

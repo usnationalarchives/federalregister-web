@@ -7,6 +7,7 @@
 //= require jquery.iframe-transport.js
 //= require jquery.fileupload.js
 //= require jquery.fileupload-ui.js
+//= require amplify.store-1.1.0.min.js
 //= require comment
 //= require fr_modal
 //= require form_utils

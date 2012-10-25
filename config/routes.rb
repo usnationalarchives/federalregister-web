@@ -28,7 +28,12 @@ MyFr2::Application.routes.draw do
 
   resources :comments,
     :path => 'articles/:document_number/comments',
-    :only => [:new, :create]
+    :only => [:new, :create] do
+    collection do 
+      post 'reload'
+    end
+  end
+
 
   resources :comment_attachments,
     :only => [:create, :destroy]

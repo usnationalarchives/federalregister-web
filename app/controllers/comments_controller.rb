@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   layout false
   skip_before_filter :authenticate_user!
-  protect_from_forgery :except => :create
+  protect_from_forgery :except => :reload
 
   before_filter :load_entry
   before_filter :load_comment_form
@@ -10,10 +10,13 @@ class CommentsController < ApplicationController
   def new
   end
 
-  def create
-    @comment.attributes = params[:comment]
-    @comment_attachments = @comment.attachments
+  def reload
+    @comment_reloaded = true
 
+    render :action => :new
+  end
+
+  def create
     if @comment.save
       @comment = CommentDecorator.decorate(@comment)
       render :action => :show, :status => 200
@@ -44,5 +47,7 @@ class CommentsController < ApplicationController
 
   def build_comment
     @comment = Comment.new(:comment_form => @comment_form, :document_number => @entry.document_number)
+    @comment.attributes = params[:comment] if params[:comment]
+    @comment_attachments = @comment.attachments
   end
 end

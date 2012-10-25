@@ -2,6 +2,17 @@ function add_textarea_expander(field) {
   $(field).TextAreaExpander(100, 1000);
 }
 
+function form_has_previously_saved_state(document_number) {
+  return amplify.store(document_number) !== undefined;
+}
+
+function previously_saved_form_data(document_number) {
+  return amplify.store(document_number);
+}
+
+function clear_saved_form_state(document_number) {
+  amplify.store(document_number, null);
+}
 
 $(function () {
   var initializeCommentForm = function() {
@@ -89,6 +100,9 @@ $(function () {
       $('#comment_secret').val(Math.random().toString(36).substring(2,16));
     }
 
+    /* initialize local storage of user's form progress */
+    var commentFormStore = commentFormStorage.initialize( $('#flash_message .formtastic.comment') );
+
     var attachedCommentMessage = 'See attached file(s)';
     var commentField = $('#comment_general_comment');
     add_textarea_expander(commentField);
@@ -130,6 +144,8 @@ $(function () {
         if(commentField.val() === '') {
           commentField.val(attachedCommentMessage);
         }
+        /* ensure form gets saved to local store after upload */
+        commentFormStore.storeComment();
       }).
       data('fileupload');
 
@@ -187,7 +203,6 @@ $(function () {
       validate_field(this);
     });
 
-
     $('#flash_message').delegate('.formtastic.comment .button.commit:not(.disabled)', 'click', function() {
       $(this).closest('form').submit();
     });
@@ -204,9 +219,11 @@ $(function () {
         type: 'POST',
         dataType: 'html',
         data: $form.serialize(),
-        success: function(response) {
+        success: function(response) {          
           $('#comment_wrapper').replaceWith(response);
           $('.comment_form_wrapper').closest('div').scrollintoview({duration: 200});
+
+          clear_saved_form_state( $('.comment_form_wrapper').data('comment-document-number') );
         },
         error: function(response) {
           $('#comment_wrapper').replaceWith(response.responseText);
@@ -232,10 +249,22 @@ $(function () {
 
 
     var document_number = $('.doc_number').text();
-    var url = "/my/articles/" + document_number + "/comments/new";
+    var url = null,
+        data = '',
+        method = 'GET';
+
+    if( form_has_previously_saved_state(document_number) ) {
+      url = "/my/articles/" + document_number + "/comments/reload";
+      method = 'POST';
+      data = previously_saved_form_data(document_number);
+    } else {
+      url = "/my/articles/" + document_number + "/comments/new";
+    }
 
     $.ajax(url, {
       dataType: 'html',
+      type: method,
+      data: data,
       success: function(data) {
         var comment_form = $('<div>').html(data);
         comment_form.hide();
