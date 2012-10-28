@@ -14,10 +14,6 @@ var commentFormStorage = {
     this.documentNumber = this.form.data('document-number');
     this.storedComment = amplify.store(this.documentNumber);
 
-    if( this.storedComment === undefined ) {
-      this.storeComment();
-    }
-
     /* add event listeners */
     this.form.delegate(':input', 'keyup change', function(event) {
       if( ! storageInstance.recentlySaved && storageInstance.saveTimeout === null ) {

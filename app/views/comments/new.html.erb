@@ -28,7 +28,7 @@
       <% if @comment_reloaded %>
         <div class="notice message comment_reloaded">
           It appears that you have attempted to comment on this article before so we've restored your progress. <br />
-          <a href="#reset">Click here</a> to start over.
+          <a href="#" id="comment-start-over">Click here</a> to start over.
         </div>
       <% end %>
       <% if @comment.errors.present? %>
