@@ -1,6 +1,9 @@
 class CommentDecorator < ApplicationDecorator
   decorates :comment
 
+  delegate :agency_participates_on_regulations_dot_gov?,
+    :to => :comment_form
+
   def human_error_messages
     if errors.present?
       "There #{errors.count > 1 ? 'were' : 'was'} #{h.pluralize(errors.count, 'problem')} with your submission. 
@@ -12,8 +15,7 @@ class CommentDecorator < ApplicationDecorator
     @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(model.document_number) )
   end
 
-  def agency_names
-    #article.agencies.map{|a| a.name}.join(', ')
-    'the ' + article.agencies.first.name
+  def agency_name
+    'the ' + comment_form.agency_name
   end
 end

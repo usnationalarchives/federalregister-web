@@ -1,7 +1,9 @@
 class Comment < ApplicationModel
+  include EncryptionUtils
   MAX_ATTACHMENTS = 10
 
   before_create :send_to_regulations_dot_gov
+  before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
@@ -9,6 +11,7 @@ class Comment < ApplicationModel
   attr_reader :attachments
 
   validate :required_fields_are_present
+  validate :fields_do_not_exceed_maximum_length
   validate :not_too_many_attachments
   validate :attachments_are_uniquely_named
   validate :all_attachments_could_be_found
@@ -63,7 +66,19 @@ class Comment < ApplicationModel
     end
   end
 
+  def comment_data
+    @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
+  end
+
   private
+
+  def persist_comment_data
+    @comment_data = comment_form.humanize_form_data(attributes)
+
+    @comment_data << ["Uploaded Files", attachments.map(&:original_file_name).join("\n")]
+
+    self.encrypted_comment_data = encrypt(@comment_data.to_json) 
+  end
 
   def attachments_are_uniquely_named
     unless attachments.size == attachments.map(&:original_file_name).uniq.size
@@ -88,6 +103,14 @@ class Comment < ApplicationModel
   def all_attachments_could_be_found
     unless @missing_attachments.blank?
       errors.add :base, "One or more of your attachments could not be found; please re-upload."
+    end
+  end
+
+  def fields_do_not_exceed_maximum_length
+    comment_form.text_fields.each do |field|
+      if field.max_length && @attributes[field.name].length > field.max_length
+        errors.add(field.name, "cannot exceed #{field.max_length} characters")
+      end
     end
   end
 

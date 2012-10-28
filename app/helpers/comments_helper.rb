@@ -6,13 +6,19 @@ module CommentsHelper
       :required => field.required?,
     }
 
-    if field.publically_viewable?
-      options[:wrapper_html] = {:class => "public"}
-    end
 
     case field
     when RegulationsDotGov::CommentForm::Field::TextField
-      if field.max_length > 0
+      # the regs.gov API returns a max-length of -1 to mean a textarea capped at 2000 characters
+      if field.max_length == 2000
+        options.merge!(
+          :as => :text,
+          :wrapper_html => {
+            :'data-max-size' => 2000,
+            :'data-size-warn-at' => 200
+          }
+        )
+      else
         options.merge!(
           :as => :string,
           :size => field.max_length,
@@ -21,8 +27,6 @@ module CommentsHelper
             :'data-size-warn-at' => 7
           }
         )
-      else
-        options[:as] = :text
       end
     when RegulationsDotGov::CommentForm::Field::SelectField
       options.merge!(
@@ -40,6 +44,11 @@ module CommentsHelper
           :'data-dependencies' => field.dependencies.to_json
         }
       )
+    end
+
+    if field.publically_viewable?
+      options[:wrapper_html] ||= {}
+      options[:wrapper_html][:class] = [options[:wrapper_html][:class], "public"].compact.join(' ')
     end
 
     options

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923212644) do
+ActiveRecord::Schema.define(:version => 20121024231741) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(:version => 20120923212644) do
     t.datetime "comment_published_at"
     t.boolean  "followup_document_notification"
     t.string   "followup_document_number"
+    t.string   "salt"
+    t.string   "iv"
+    t.binary   "encrypted_comment_data"
   end
 
   create_table "folders", :force => true do |t|

@@ -1,5 +1,5 @@
 class RegulationsDotGov::CommentForm::Field
-  def self.build(client, attributes)
+  def self.build(client, attributes, agency_id)
     klass = case attributes['uiControlType']
             when 'text'
               TextField
@@ -11,14 +11,15 @@ class RegulationsDotGov::CommentForm::Field
               raise "invalid type of #{attributes['type']} for field!"
             end
 
-    klass.new(client, attributes)
+    klass.new(client, attributes, agency_id)
   end
 
-  attr_reader :client, :attributes
+  attr_reader :client, :attributes, :agency_id
 
-  def initialize(client, attributes)
+  def initialize(client, attributes, agency_id)
     @client = client
     @attributes = attributes
+    @agency_id = agency_id
   end
 
   def required?

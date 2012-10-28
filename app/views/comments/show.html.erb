@@ -3,8 +3,8 @@
 
   <div class="notice message">
     <p class="info">
-      Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a> 
-      for review by <%= @comment.agency_names %>.
+      Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a>
+      for review by the <%= @comment.agency_name %>.
     </p>
     <p class="comment_tracking_number">
       Comment Tracking Number: <span class="tracking_number"><%= @comment.comment_tracking_number %></span>
@@ -17,8 +17,14 @@
     <div class="my_fr">
     <% if @current_user %>
       <p>
-        Your comment tracking number has been added to your MyFR account and you will recieve
-        an email notification when your comment has been made public by <%= @comment.agency_names %>.
+        <% if @comment.agency_participates_on_regulations_dot_gov? %>
+          Your comment tracking number has been added to your MyFR account and you will recieve
+          an email notification when your comment has been made public by <%= @comment.agency_name %>.
+        <% else %>
+          Your comment tracking number has been added to your MyFR account; because <%= @comment.agency_name %> does
+          not publish comments on Regulations.gov, to check the status of your comment or obtain further information,
+          please follow-up directly with the agency contact listed in the document.
+        <% end %>
       </p>
     <% else %>
       <p>
@@ -41,8 +47,8 @@
   
 
     <div class="print">
-      <p><%= link_to 'Print your comment' %> for your records and for any future coorespondence about your
-      comment with <%= @comment.agency_names %>.</p>
+      <p><%= link_to 'Print your comment', '#', :'data-comment_data' => @comment.comment_data.to_json %> for your records and for any future coorespondence about your
+      comment with <%= @comment.agency_name %>.</p>
     </div>
 
     <div class="social_media">
@@ -71,7 +77,7 @@
       <p>
       FederalRegister.gov submits your comment to <a href="http://www.regulations.gov">Regulations.gov</a> and does not store the information provided in your comment. 
       Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
-      once it has been made public by <%=  @comment.agency_names %>.</p>
+      once it has been made public by <%=  @comment.agency_name %>.</p>
     </div>
 
   </div>
