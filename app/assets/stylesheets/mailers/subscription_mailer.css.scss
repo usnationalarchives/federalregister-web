@@ -1,0 +1,26 @@
+#templateSidebar{
+  background-color:#FFFFFF;
+  border-left:0;
+  }
+
+.sidebarContent div{
+  color:#505050;
+  font-family:Arial;
+  font-size:12px;
+  line-height:150%;
+  text-align:left;
+  }
+
+.sidebarContent div a:link, 
+.sidebarContent div a:visited, 
+/* Yahoo! Mail Override */ .sidebarContent div a .yshortcuts /* Yahoo! Mail Override */ {
+  color:#336699;
+  font-weight:normal;
+  text-decoration:underline;
+  }
+
+.sidebarContent img{
+  display:inline;
+  height:auto;
+  }
+

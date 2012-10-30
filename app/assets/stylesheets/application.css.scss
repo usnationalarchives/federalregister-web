@@ -5,9 +5,13 @@
 
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";
+
+@import "design/my_fr.css.scss";
+
 @import "design/user_utils.css.scss";
 @import "design/clippings.css.scss";
 @import "design/clipping_menus.css.scss";
 
-@import "design/comments.css.scss";
+@import "design/comments/creation.css.scss"
 @import "design/progress_bar.css.scss";
+@import "design/comments/list.css.scss";

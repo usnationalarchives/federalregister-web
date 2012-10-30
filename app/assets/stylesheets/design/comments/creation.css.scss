@@ -1,8 +1,3 @@
-$comment-orange: #E4A529;
-$comment-green: #7AA13D;
-$error-red: #8A3737;
-$error-bg-red: #EDD3D3;
-
 #flash_message.comment { z-index: 1000; }
 #metadata_content_area .loading {
   height: 23px;
@@ -79,7 +74,7 @@ $error-bg-red: #EDD3D3;
   }
 
 .formtastic.comment fieldset .label abbr { 
-  color: $comment-orange;
+  color: $fr-orange;
   margin-left: 2px;
   font-size: 20px;
   position: absolute;
@@ -100,7 +95,7 @@ $error-bg-red: #EDD3D3;
 .formtastic.comment input[type='text']:focus,
 .formtastic.comment select:focus,
 .formtastic.comment textarea:focus {
-  @include input-focus-box-shadow($comment-green);
+  @include input-focus-box-shadow($fr-green);
   }
 
 #flash_message .comment_form_wrapper .instructions p {
@@ -149,30 +144,30 @@ $error-bg-red: #EDD3D3;
   }
 
 .formtastic.comment .errors {
-  background: $error-bg-red;
-  border: 1px solid $error-red;
+  background: $fr-light-red;
+  border: 1px solid $fr-red;
   padding: .5em .5em .25em;
   @include border-radius(6);
   text-align: center;
   font-size: 1.2em;
-  color: $error-red;
+  color: $fr-red;
   }
-.formtastic.comment .error .label { color: $error-red; }
+.formtastic.comment .error .label { color: $fr-red; }
 .formtastic.comment .error input[type='text'],
 .formtastic.comment .error select,
 .formtastic.comment .error textarea {
-  @include input-focus-box-shadow($error-red);
+  @include input-focus-box-shadow($fr-red);
   }
 #flash_message .formtastic.comment p.inline-errors {
   background: none;
   font-size: 1em;
   line-height: 1.4em;
-  color: $error-red;
+  color: $fr-red;
   text-align: right;
   padding-right: 40px;
   padding-top: 5px;
   }
-#flash_message .formtastic.comment p.inline-errors.warning { color: $comment-green; }
+#flash_message .formtastic.comment p.inline-errors.warning { color: $fr-green; }
 
 div.comment-preview-modal {
   display: none;
@@ -205,10 +200,10 @@ div.comment-preview-modal {
   margin-right: 275px;
   margin-bottom: 10px;
   font-weight: bold;
-  background-color: $comment-green;
+  background-color: $fr-green;
   @include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);
   }
-#flash_message .formtastic .file .add_file:hover { background-color: lighten($comment-green, 10); }
+#flash_message .formtastic .file .add_file:hover { background-color: lighten($fr-green, 10); }
 #flash_message .formtastic .file td.cancel,
 #flash_message .formtastic .file td.delete { 
   vertical-align: middle;
@@ -221,7 +216,7 @@ div.comment-preview-modal {
   min-width: 60px;
   width: 60px;
   font-weight: bold;
-  background-color: $error-red;
+  background-color: $fr-red;
   top: 2px;
   position: relative;
   text-transform: none;
@@ -230,7 +225,7 @@ div.comment-preview-modal {
   }
 #flash_message .formtastic .file button.cancel:hover, 
 #flash_message .formtastic .file button.delete:hover {
-  background-color: lighten($error-red, 10);
+  background-color: lighten($fr-red, 10);
   }
 #flash_message .formtastic .file button.cancel {
   @include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);
@@ -243,7 +238,7 @@ div.comment-preview-modal {
 
 #flash_message .formtastic .file tr.upload-error button.cancel { top: 0; }
 #flash_message .formtastic .file tr.upload-error td.file-error { 
-  color: $error-red;
+  color: $fr-red;
   font-weight: bold;
   }
 
@@ -280,9 +275,9 @@ table.attachments .progress {
   width: 200px;
   }
 table.attachments td.progress-bar { padding-left: 0; }
-table.attachments .progress-striped .bar { background-color: $comment-orange; }
+table.attachments .progress-striped .bar { background-color: $fr-orange; }
 table.attachments .progress-success .bar {
-  @include striped-progress-background(lighten($comment-green, 20), $comment-green, lighten($comment-green, 10));
+  @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
   }
 
 /* COMMENT FORM SUBMIT SUCCESS */

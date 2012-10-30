@@ -1,95 +1,27 @@
 h2.title {
-  border-bottom: 1px solid #CCC;
-  margin: 0;
-  line-height: 1.1em;
-  padding-top: 5px;
-
-  .icon-fr2 {
-    color: $fr-blue;
-    top: 4px;
-    font-size: 34px;
-  }
+  @extend %list_page_title;
   .icon-fr2.icon-fr2-flag { top: 5px; }
 }
+
 li.download a .icon-fr2-download { 
   margin-right: 5px;
   font-size: 15px;
 }
 
-div#folder_metadata_bar { margin-bottom: 2em; }
-div#folder_metadata_bar ul { 
-  font-weight: 700;
-  color: #666;
-  list-style: none;
-  }
-div#folder_metadata_bar ul li { 
-  display: inline-block;
-  margin-right: 20px;
-  }
-
-div#folder_metadata_bar ul li.download {
-  position: relative;
-  left: 15px;
-  float: right;
-  }
+div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 #my_fr2 #doc-type-filter li .icon-fr2 { padding-left: 3px; }
 
-#clippings > li { 
-  width: 900px;
+clippings > li { @extend %rounded_capsule; }
 
-  list-style: none;
-  padding: 10px;
-  position: relative;
+#clippings div.rule_type { @extend %large_document_icon_frame; }
+
+.document_data { 
+  @extend %capsule_data;
+  @extend %capsule_metadata_wrapper;
 }
 
-#clippings li {
-  background-color: #F5F8F9;
-  margin-bottom: 10px;
-
-  @include border-radius(6);
-  border: #B3C2CF 1px solid;
-}
-
-#clippings div.rule_type {
-  width: 49px;
-  height: 49px;
-  display: inline-block;
-  vertical-align: top;
-  overflow: hidden;
-  z-index: 500;
-  margin-right: 10px;
-  margin-left: 4px;
-
-  .icon-fr2.icon-doctype { font-size: 49px;}
-  .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
-  .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
-  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
-  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
-  .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
-  .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
-}
-
-.document_data, .clipping_data { 
-  display: inline-block;
-  vertical-align: top;
-  }
-.document_data { width: 675px; }
-
-#clippings .title { 
-  background: none;
-
-  width: 650px;
-  height: auto;
-  margin: 0;
-  padding: 0;
-
-  font-size: 1.3em;
-  text-align: left;
-  line-height: 1.3em;
-
-  clear: none;
-  }
+#clippings .title { @extend %capsule_title }
 
 #clippings dl#col-1 { width: 200px; }
 #clippings dl#col-2 { width: 200px; }
@@ -107,31 +39,13 @@ div#folder_metadata_bar ul li.download {
   margin-left: 5px;
   }
 
-#clippings dl.metadata dt.comment_close.open { color: #7AA13D; }
-#clippings dl.metadata dt.corrected_by { color: #8A3737; }
-
-#clippings dl.metadata { 
-  font-size: 1em;
-  margin: 0 20px 0 0;
-  float: left;
-  }
-#clippings dl.metadata dt {
-  color: #6E6E6E;
-  height: 19px;
-  }
-#clippings dl.metadata dd {
-  margin-left: 1em;
-  margin-bottom: 3px;
-  line-height: 1em;
-  padding-left: 10px;
-  text-indent: -10px;
-  }
-#clippings dl.metadata dd:last { margin-bottom: none; }
-
 #clippings div.clipping_data {
-  border-left: 1px dashed #CCC;
-  padding-left: 10px;
+  @extend %capsule_metadata_wrapper;
+  @extend %capsule_metadata_dash_separated;
   }
+
+#clippings dl.metadata dt.comment_close.open { color: $fr-green; }
+#clippings dl.metadata dt.corrected_by { color: $fr-red; }
 
 #clippings div.add_to_folder_pane {
   width: 27px;
@@ -180,7 +94,7 @@ div#folder_metadata_bar ul li.download {
 ***********************************/
 
 #clipping-actions #add-to-folder span.update {
-  color: #7AA13D;
+  color: $fr-green;
   font-weight: 700;
   opacity: 0;
   position: absolute;

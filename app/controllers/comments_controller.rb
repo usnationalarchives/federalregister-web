@@ -1,11 +1,17 @@
 class CommentsController < ApplicationController
-  layout false
-  skip_before_filter :authenticate_user!
   protect_from_forgery :except => :reload
 
-  before_filter :load_entry
-  before_filter :load_comment_form
-  before_filter :build_comment
+  with_options(:only => [:new, :reload, :create]) do |during_creation|
+    during_creation.layout false
+    during_creation.skip_before_filter :authenticate_user!
+    during_creation.before_filter :load_entry
+    during_creation.before_filter :load_comment_form
+    during_creation.before_filter :build_comment
+ end
+
+  def index
+    @comments = CommentDecorator.decorate(current_user.comments.order('created_at DESC').all)
+  end
 
   def new
   end

@@ -1,0 +1,26 @@
+h2.comment.title {
+  @include my_fr2-sprite(icon_comment_large, $my_fr2-sprite-dimensions, 0, 2);
+  }
+div#comment_metadata_bar { @extend %list_page_title_metadata_bar; }
+
+ul#comments > li { 
+  @extend %rounded_capsule;
+  width: 938px;
+  }
+ul#comments .comment_data { width: 178px; }
+
+ul#comments div.rule_type { @extend %large_document_icon_frame; }
+
+ul#comments div.rule_type.doc_presdocu img { @extend %presdoc_large_icon; }
+ul#comments div.rule_type.doc_rule img { @extend %rule_large_icon; }
+ul#comments div.rule_type.doc_notice img { @extend %notice_large_icon; }
+ul#comments div.rule_type.doc_prorule img { @extend %prorule_large_icon; }
+ul#comments div.rule_type.doc_unknown img { @extend %unknown_large_icon; }
+ul#comments div.rule_type.doc_correct img { @extend %correct_large_icon; }
+
+ul#comments .title { @extend %capsule_title; }
+ul#comments .comment_data { 
+  @extend %capsule_metadata_wrapper;
+  @extend %capsule_metadata_dash_separated;
+  }
+
