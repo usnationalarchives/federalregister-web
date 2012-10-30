@@ -28,13 +28,17 @@ MyFr2::Application.routes.draw do
     end
   end
 
-  resources :comments,
-    :path => 'articles/:document_number/comments',
-    :only => [:new, :create] do
-    collection do 
-      post 'reload'
-    end
-  end
+  resources :comments, :only => [:index]
+  match 'articles/:document_number/comments/new' => 'comments#new',
+   :as => :new_comment,
+   :via => :get
+  match 'articles/:document_number/comments/reload' => 'comments#reload',
+   :as => :reload_comment,
+   :via => :post
+  match 'articles/:document_number/comments' => 'comments#create',
+   :as => :comment,
+   :via => :post
+
 
 
   resources :comment_attachments,
