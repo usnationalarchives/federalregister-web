@@ -59,13 +59,14 @@ task :production do
   set :rails_env,  "production"
   set :branch, 'production'
   
-  role :proxy, "ec2-184-72-241-172.compute-1.amazonaws.com"
-  #role :app, "ec2-204-236-209-41.compute-1.amazonaws.com", "ec2-184-72-139-81.compute-1.amazonaws.com", "ec2-174-129-132-251.compute-1.amazonaws.com", "ec2-72-44-36-213.compute-1.amazonaws.com", "ec2-204-236-254-83.compute-1.amazonaws.com"
-  role :app, "ec2-23-20-255-226.compute-1.amazonaws.com", "ec2-23-20-217-149.compute-1.amazonaws.com", "ec2-50-19-46-231.compute-1.amazonaws.com", "ec2-107-21-88-250.compute-1.amazonaws.com", "ec2-107-21-140-249.compute-1.amazonaws.com"
-  role :db, "ec2-50-17-38-106.compute-1.amazonaws.com", {:primary => true}
-  role :sphinx, "ec2-50-17-38-106.compute-1.amazonaws.com"
-  role :static, "ec2-107-20-145-32.compute-1.amazonaws.com" #monster image
-  role :worker, "ec2-107-20-145-32.compute-1.amazonaws.com", {:primary => true} #monster image
+  set :gateway, 'federalregister.gov'
+  
+  role :proxy,  "proxy.fr2.ec2.internal"
+  role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
+  role :db,     "database.fr2.ec2.internal", {:primary => true}
+  role :sphinx, "sphinx.fr2.ec2.internal"
+  role :static, "static.fr2.ec2.internal"
+  role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
   # Database Settings
   set :remote_db_name, "#{application}_#{rails_env}"
@@ -81,14 +82,14 @@ end
 task :staging do
   set :rails_env,  "staging" 
   set :branch, `git branch`.match(/\* (.*)/)[1]
+  set :gateway, 'fr2.criticaljuncture.org'
   
-  role :proxy,  "ec2-184-72-250-132.compute-1.amazonaws.com"
-  role :app,    "ec2-174-129-64-134.compute-1.amazonaws.com"
-  role :db,     "ec2-50-16-6-83.compute-1.amazonaws.com", {:primary => true}
-  role :sphinx, "ec2-50-16-6-83.compute-1.amazonaws.com"
-
-  role :static, "ec2-184-72-163-77.compute-1.amazonaws.com"
-  role :worker, "ec2-184-72-163-77.compute-1.amazonaws.com", {:primary => true}
+  role :proxy,  "proxy.fr2.ec2.internal"
+  role :app,    "my-fr2-server-1.fr2.ec2.internal"
+  role :db,     "database.fr2.ec2.internal", {:primary => true}
+  role :sphinx, "sphinx.fr2.ec2.internal"
+  role :static, "static.fr2.ec2.internal"
+  role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
   # Database Settings
   set :remote_db_name, "#{application}_#{rails_env}"
@@ -206,5 +207,13 @@ namespace :assets do
   end
 end
 
-require 'airbrake/capistrano'
 
+#############################################################
+# Airbrake Tasks
+#############################################################
+
+namespace :airbrake do
+  task :notify_deploy, :roles => [:static] do
+    run "cd #{current_path} && bundle exec rake airbrake:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`} REVISION=#{real_revision} REPO=#{repository}" 
+  end
+end
