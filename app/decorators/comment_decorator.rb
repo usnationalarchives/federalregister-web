@@ -18,4 +18,10 @@ class CommentDecorator < ApplicationDecorator
   def agency_name
     'the ' + comment_form.agency_name
   end
+
+  def commented_at
+    if comment.created_at
+      comment.created_at.to_formatted_s(:date)
+    end
+  end
 end

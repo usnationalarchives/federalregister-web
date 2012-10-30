@@ -1,4 +1,4 @@
-class FolderClippingsController < ActionController::Base
+class FolderClippingsController < ApplicationController
   def create
     slug         = params[:folder_clippings][:folder_slug]
     clipping_ids = params[:folder_clippings][:clipping_ids]

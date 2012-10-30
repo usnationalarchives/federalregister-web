@@ -1,0 +1,31 @@
+<div class="title"> 
+  <span>My Comments</span>
+</div>
+
+<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+
+<h2 class="comment title">My Comments</h2>
+<%= render :partial => "comments/comment_metadata_bar", :locals => {:comments => @comments} %>
+
+<ul id="comments">
+  <% @comments.each do |comment| %>
+    <li data-doc-id="<%= comment.document_number%>" data-doc-type="<%= comment.article.granule_class %>">
+      <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+      <div class="document_data">
+        <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
+      </div>
+
+      <div class="comment_data">
+        <dl class="metadata">
+          <dt class="created_at">Commented on:</dt>
+          <dd><%= comment.commented_at %></dd>
+
+          <dt class="tracking_nummber">Comment tracking number:</dt>
+          <dd><%= comment.comment_tracking_number %></dd>
+        </dl> 
+      </div>
+    </li>
+  <% end %>
+</ul>
+

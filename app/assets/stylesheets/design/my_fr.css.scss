@@ -1,0 +1,107 @@
+/*** PAGE TITLES ***/
+%list_page_title {
+  border-bottom: 1px solid #CCC;
+  margin: 0;
+  padding-left: 40px;
+  line-height: 1.1em;
+  padding-top: 5px;
+  }
+%list_page_title_metadata_bar {
+  margin-bottom: 2em;
+
+  ul { 
+    font-weight: 700;
+    color: #666;
+    list-style: none;
+
+    li { 
+      display: inline-block;
+      margin-right: 20px;
+      }
+    li.download {
+      position: relative;
+      left: 15px;
+      float: right;
+      }
+    }
+  }
+  
+/*** ROUNDED CAPSULES ***/
+%rounded_capsule {
+  width: 900px;
+
+  list-style: none;
+  padding: 10px;
+  position: relative;
+
+  background-color: #F5F8F9;
+  margin-bottom: 10px;
+
+  @include border-radius(6);
+  border: #B3C2CF 1px solid;
+  }
+  
+%capsule_data { width: 675px; }
+%capsule_title {
+  background: none;
+
+  width: 650px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.3em;
+  text-align: left;
+  line-height: 1.3em;
+
+  clear: none;
+  }
+%capsule_metadata_dash_separated {
+  border-left: 1px dashed #CCC;
+  padding-left: 10px;
+  width: 140px
+  }
+%capsule_metadata_wrapper {
+  display: inline-block;
+  vertical-align: top;
+
+  dl.metadata {
+    font-size: 1em;
+    margin: 0 20px 0 0;
+    float: left;
+
+    dt {
+      color: #6E6E6E;
+      height: 19px;
+      }
+
+    dd {
+      margin-left: 1em;
+      margin-bottom: 3px;
+      line-height: 1em;
+      padding-left: 10px;
+      text-indent: -10px;
+      }
+    dd:last { margin-bottom: none; }
+    }
+  }
+
+/*** DOCUMENT ICONS ***/
+%large_document_icon_frame {
+  width: 49px;
+  height: 49px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  z-index: 500;
+  margin-right: 10px;
+  margin-left: 4px;
+
+  img { position: relative; }
+  }
+%presdoc_large_icon { top: 0px; }
+%rule_large_icon { top: -466px; }
+%notice_large_icon { top: -932px; }
+%prorule_large_icon { top: -1397px; }
+%unknown_large_icon { top: -1863px; }
+%correct_large_icon { top: -2327px; }
