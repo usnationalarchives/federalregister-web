@@ -1,4 +1,4 @@
-class FoldersController < ActionController::Base
+class FoldersController < ApplicationController
   
   def create
     folder = Folder.new(:name => folder_attributes[:name], :creator_id => current_user.id, :updater_id => current_user.id)
@@ -42,7 +42,7 @@ class FoldersController < ActionController::Base
   end
 
   def show
-    @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user}).all )
+    @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user.id}).all )
     @folder    = Folder.find_by_user_and_slug(current_user, params[:id])
     raise ActiveRecord::RecordNotFound unless @folder.present?
 
