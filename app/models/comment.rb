@@ -1,4 +1,6 @@
 class Comment < ApplicationModel
+  belongs_to :user
+
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
 
