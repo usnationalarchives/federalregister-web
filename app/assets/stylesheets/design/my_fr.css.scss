@@ -13,6 +13,7 @@
     font-weight: 700;
     color: #666;
     list-style: none;
+    font-size: 13px;
 
     li { 
       display: inline-block;
@@ -84,6 +85,21 @@
       }
     dd:last { margin-bottom: none; }
     }
+
+  dl#col-1 { 
+    width: 200px;
+    dt {
+      clear: both;
+      float: left;
+      }
+    dd {
+      float: left;
+      padding-top: 4px;
+      margin-left: 5px;
+      }
+  }
+  dl#col-2 { width: 200px; }
+  dl#col-3 { width: 215px; }
   }
 
 /*** DOCUMENT ICONS ***/
