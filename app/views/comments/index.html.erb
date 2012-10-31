@@ -14,6 +14,13 @@
       <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
+        <dl class="metadata" id="col-1">
+          <dt class="pub_date">Publication Date:</dt>
+          <dd><%= comment.article.publication_date %></dd>
+        </dl>
+        <dl class="metadata" id="col-2">
+          <%= comment.article.agency_dt_dd %>
+        </dl>
       </div>
 
       <div class="comment_data">

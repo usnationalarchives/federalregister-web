@@ -12,4 +12,8 @@ class ClippingDecorator < ApplicationDecorator
   def article
     ArticleDecorator.decorate(model.article)
   end
+
+  def commented_on?
+    comment.present?
+  end
 end

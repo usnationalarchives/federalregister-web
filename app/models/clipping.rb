@@ -116,4 +116,15 @@ class Clipping < ActiveRecord::Base
     end
     document_numbers
   end
+
+  def comment
+    comment = user.comments.find(:first, 
+                   :conditions => {:document_number => self.document_number}
+                  )
+    if comment
+      CommentDecorator.decorate(comment)
+    else
+      comment
+    end
+  end
 end
