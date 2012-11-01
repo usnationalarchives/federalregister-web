@@ -7,20 +7,54 @@ ul#comments > li {
   @extend %rounded_capsule;
   width: 938px;
   }
-ul#comments .comment_data { width: 178px; }
 
-ul#comments div.rule_type { @extend %large_document_icon_frame; }
+ul#comments {
+  div.rule_type { @extend %large_document_icon_frame; }
 
-ul#comments div.rule_type.doc_presdocu img { @extend %presdoc_large_icon; }
-ul#comments div.rule_type.doc_rule img { @extend %rule_large_icon; }
-ul#comments div.rule_type.doc_notice img { @extend %notice_large_icon; }
-ul#comments div.rule_type.doc_prorule img { @extend %prorule_large_icon; }
-ul#comments div.rule_type.doc_unknown img { @extend %unknown_large_icon; }
-ul#comments div.rule_type.doc_correct img { @extend %correct_large_icon; }
+  div.rule_type.doc_presdocu img { @extend %presdoc_large_icon; }
+  div.rule_type.doc_rule img { @extend %rule_large_icon; }
+  div.rule_type.doc_notice img { @extend %notice_large_icon; }
+  div.rule_type.doc_prorule img { @extend %prorule_large_icon; }
+  div.rule_type.doc_unknown img { @extend %unknown_large_icon; }
+  div.rule_type.doc_correct img { @extend %correct_large_icon; }
 
-ul#comments .title { @extend %capsule_title; }
-ul#comments .comment_data { 
-  @extend %capsule_metadata_wrapper;
-  @extend %capsule_metadata_dash_separated;
-  }
+  .comment_count {
+    left: 20px;
+    display: inline-block;
+    bottom: 10px;
+    position: absolute;
+    width: 35px;
+    height: 25px;
 
+    @include my_fr2-sprite(icon_comment_medium_green, $my_fr2-sprite-dimensions, 0, 0);
+
+    a.count {
+      width: auto;
+      min-width: 8px;
+      min-height: 8px;
+
+      padding: 0 3px;
+      padding-bottom: 1px;
+
+      font-size: 11px;
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+      font-weight: bold;
+      text-align: center;
+      line-height: 13px;
+      
+      @include border-radius(12);
+      margin: 0;
+      margin-left: 17px;
+      
+      color: #FFF;
+      background-color: $fr-green;
+      border: 2px solid #FFF;
+      }
+    }
+
+  .title { @extend %capsule_title; }
+  .comment_data { 
+    @extend %capsule_metadata_dash_separated;
+    width: 178px;
+    }
+}
