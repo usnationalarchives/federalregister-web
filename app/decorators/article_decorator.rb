@@ -33,7 +33,7 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def agency_dd
-    agency_names = model.agencies.map{|a| a.name}
+    agency_names = model.agencies.map{|a| h.link_to_if(a.url, a.name, a.url)}
     wrap_in_dd(agency_names)
   end
 

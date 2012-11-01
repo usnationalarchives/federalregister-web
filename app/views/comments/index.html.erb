@@ -11,7 +11,10 @@
 <ul id="comments">
   <% @comments.each do |comment| %>
     <li data-doc-id="<%= comment.document_number%>" data-doc-type="<%= comment.article.granule_class %>">
-      <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+    <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+    <div class="comment_count">
+      <%= link_to "17", '#', :class => "count" %>
+    </div>
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
         <dl class="metadata" id="col-1">
@@ -21,15 +24,23 @@
         <dl class="metadata" id="col-2">
           <%= comment.article.agency_dt_dd %>
         </dl>
+        <dl class="metadata" id="col-3">
+          <dt class="reg_gov_data">Regulations.gov Data:</dt>
+          <dd class="docket_count">Docket: USCG-2011-1013<%#= comment.article.regulations_dot_gov_info.docket_id %></dd>
+          <dd class="public_comment_count">Comment Count: 17<%#= comment.article.regulations_dot_gov_info.comments_count %></dd>
+        </dl>
       </div>
 
       <div class="comment_data">
         <dl class="metadata">
-          <dt class="created_at">Commented on:</dt>
+          <dt class="created_at">Comment submitted on:</dt>
           <dd><%= comment.commented_at %></dd>
 
-          <dt class="tracking_nummber">Comment tracking number:</dt>
+          <dt class="comment_tracking_number">Comment tracking number:</dt>
           <dd><%= comment.comment_tracking_number %></dd>
+
+          <dt class="published_at">Comment made public on:</dt>
+          <dd><%= comment.comment_published_at %></dd>
         </dl> 
       </div>
     </li>

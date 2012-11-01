@@ -66,7 +66,8 @@
 %capsule_metadata_dash_separated {
   border-left: 1px dashed #CCC;
   padding-left: 10px;
-  width: 140px
+  width: 140px;
+  @extend %capsule_metadata_wrapper;
   }
 %capsule_metadata_wrapper {
   display: inline-block;

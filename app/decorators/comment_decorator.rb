@@ -24,4 +24,12 @@ class CommentDecorator < ApplicationDecorator
       comment.created_at.to_formatted_s(:date)
     end
   end
+
+  def comment_published_at
+    if comment.comment_published_at
+      comment.comment_published_at.to_formatted_s(:date)
+    else
+      'Not yet published by agency'
+    end
+  end
 end

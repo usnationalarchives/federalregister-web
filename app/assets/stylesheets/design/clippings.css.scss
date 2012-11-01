@@ -34,7 +34,6 @@ clippings > li { @extend %rounded_capsule; }
   }
 
 #clippings div.clipping_data {
-  @extend %capsule_metadata_wrapper;
   @extend %capsule_metadata_dash_separated;
   }
 #clippings div.clipping_data .comment_on {
