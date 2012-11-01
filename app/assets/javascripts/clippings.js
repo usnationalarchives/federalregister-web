@@ -34,8 +34,7 @@ $(document).ready(function () {
 
     $( jump_to_folder_menu_template(user_folder_details) ).insertAfter('#clipping-actions #doc-type-filter');
   }
-  
-  
+
 
   /* show and hide add_to_folder menu */
   $('#clipping-actions').on('mouseenter', '#add-to-folder, #jump-to-folder', function() {
