@@ -50,6 +50,7 @@ ul#comments {
       background-color: $fr-green;
       border: 2px solid #FFF;
       }
+    a.count:hover { background-color: $fr-orange; }
     }
 
   .title { @extend %capsule_title; }

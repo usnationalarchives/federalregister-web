@@ -11,10 +11,15 @@
 <ul id="comments">
   <% @comments.each do |comment| %>
     <li data-doc-id="<%= comment.document_number%>" data-doc-type="<%= comment.article.granule_class %>">
-    <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
-    <div class="comment_count">
-      <%= link_to "17", '#', :class => "count" %>
-    </div>
+      <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+      
+      <% comment_count = 17 %>
+      <% if comment_count > 0 %>
+        <div class="comment_count"> 
+          <%= link_to comment_count, '#', :class => "count", :'data-tooltip' => "View the #{pluralize(comment_count, 'published comment')}" %>
+        </div>
+      <% end %>
+    
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
         <dl class="metadata" id="col-1">
