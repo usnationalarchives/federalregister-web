@@ -24,15 +24,15 @@ $(document).ready(function () {
   });
 
   /* Add/Jump to Folder Menu */
-  if ( $("#add-to-folder-menu-template") ) {
+  if ( $("#add-to-folder-menu-template").length === 1  ) {
     add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
+    $('#clipping-actions').prepend( add_to_folder_menu_template(user_folder_details) );
   }
-  $('#clipping-actions').prepend( add_to_folder_menu_template(user_folder_details) );
-  if ( $("#jump-to-folder-menu-template") ) {
+  if ( $("#jump-to-folder-menu-template").length === 1 ) {
     jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
+    $('#clipping-actions').prepend( jump_to_folder_menu_template(user_folder_details) );
   }
-  $('#clipping-actions').prepend( jump_to_folder_menu_template(user_folder_details) );
-  
+    
   
 
   /* show and hide add_to_folder menu */

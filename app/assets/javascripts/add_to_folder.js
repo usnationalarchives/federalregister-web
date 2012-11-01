@@ -124,7 +124,7 @@ function add_items_to_folder(el) {
 }
 
 function insert_new_folders_into_clipping_menus(response) {
-  if ( $("#add-to-folder-menu-li-template") ) {
+  if ( $("#add-to-folder-menu-li-template").length === 1 ) {
     /* generate new folder li and append */
     template = Handlebars.compile( $("#add-to-folder-menu-li-template").html() );
     new_folder_li = $(template(response));
@@ -258,7 +258,7 @@ $(document).ready(function() {
 
     /* decide which modal to show */
     if ( expect_logged_in() ) {
-      if ( $('#new-folder-modal-template') ) {
+      if ( $('#new-folder-modal-template').length === 1 ) {
         modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
         modal = $( modal_template({}) );
         if ( $('#new-folder-modal') ) {
@@ -267,7 +267,7 @@ $(document).ready(function() {
         $('body').append( modal );
       }
     } else {
-      if ( $('#account-needed-modal-template') ) {
+      if ( $('#account-needed-modal-template').length === 1 ) {
         modal_template = Handlebars.compile( $("#account-needed-modal-template").html() );
         modal = $( modal_template({}) );
         if ( $('#account-needed-modal') ) {
