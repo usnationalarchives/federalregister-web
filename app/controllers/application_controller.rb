@@ -7,10 +7,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_stampers
   before_filter :decorate_current_user
 
-  if Rails.env.development?
-    around_filter :use_vcr
-  end
-
   def set_stampers
     User.stamper = self.current_user
   end
@@ -26,10 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def use_vcr
-    VCR.use_cassette("development") { yield }
-  end
 
   # rescue_from Exception, :with => :server_error
   # def server_error(exception)
