@@ -105,6 +105,29 @@ class ArticleDecorator < ApplicationDecorator
     agency_names(options).to_sentence.html_safe
   end
 
+  def regulations_dot_gov_comment_count
+    (regulations_dot_gov_info && regulations_dot_gov_info["comments_count"]) || 0
+  end
+
+  def regulations_dot_gov_docket_id
+    (regulations_dot_gov_info && regulations_dot_gov_info["docket_id"])
+  end
+
+  def regulations_dot_gov_docket_title
+    (regulations_dot_gov_info && regulations_dot_gov_info["title"])
+  end
+
+  def regulations_dot_gov_docket_url
+    "http://www.regulations.gov/#!docketDetail;D=#{regulations_dot_gov_docket_id}"
+  end
+
+
+  def regulations_dot_gov_comments_url
+    if regulations_dot_gov_docket_id
+      "http://www.regulations.gov/#!docketBrowser;dct=PS;rpp=25;po=0;D=#{regulations_dot_gov_docket_id}"
+    end
+  end
+
   private
 
   def agency_name(agency, include_the)

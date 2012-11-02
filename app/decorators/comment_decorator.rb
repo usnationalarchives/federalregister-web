@@ -32,4 +32,8 @@ class CommentDecorator < ApplicationDecorator
       'Not yet published by agency'
     end
   end
+
+  def regulations_dot_gov_comment_search_result_url
+    "http://www.regulations.gov/#!searchResults;rpp=25;po=0;s=#{comment_tracking_number}"
+  end
 end

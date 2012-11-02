@@ -13,10 +13,10 @@
     <li data-doc-id="<%= comment.document_number%>" data-doc-type="<%= comment.article.granule_class %>">
       <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
       
-      <% comment_count = 17 %>
+      <% comment_count = comment.article.regulations_dot_gov_comment_count %>
       <% if comment_count > 0 %>
         <div class="comment_count"> 
-          <%= link_to comment_count, '#', :class => "count", :'data-tooltip' => "View the #{pluralize(comment_count, 'published comment')}" %>
+          <%= link_to comment_count, comment.article.regulations_dot_gov_comments_url, :class => "count", :'data-tooltip' => "View the #{pluralize(comment_count, 'published comment')}" %>
         </div>
       <% end %>
     
@@ -31,20 +31,20 @@
         </dl>
         <dl class="metadata" id="col-3">
           <dt class="reg_gov_data">Regulations.gov Data:</dt>
-          <dd class="docket_count">Docket: USCG-2011-1013<%#= comment.article.regulations_dot_gov_info.docket_id %></dd>
-          <dd class="public_comment_count">Comment Count: 17<%#= comment.article.regulations_dot_gov_info.comments_count %></dd>
+          <dd class="docket_count">Docket: <%= link_to comment.article.regulations_dot_gov_docket_id || 'Unknown', comment.article.regulations_dot_gov_docket_url, :title => comment.article.regulations_dot_gov_docket_title, :class => "tip_under" %></dd>
+          <dd class="public_comment_count">Comment Count: <%= link_to comment.article.regulations_dot_gov_comment_count, comment.article.regulations_dot_gov_comments_url %></dd>
         </dl>
       </div>
 
       <div class="comment_data">
         <dl class="metadata">
-          <dt class="created_at">Comment submitted on:</dt>
+          <dt class="created_at">Your comment submitted on:</dt>
           <dd><%= comment.commented_at %></dd>
 
-          <dt class="comment_tracking_number">Comment tracking number:</dt>
-          <dd><%= comment.comment_tracking_number %></dd>
+          <dt class="comment_tracking_number">Your comment tracking number:</dt>
+          <dd><%= link_to comment.comment_tracking_number, comment.regulations_dot_gov_comment_search_result_url %></dd>
 
-          <dt class="published_at">Comment made public on:</dt>
+          <dt class="published_at">Your comment made public on:</dt>
           <dd><%= comment.comment_published_at %></dd>
         </dl> 
       </div>
