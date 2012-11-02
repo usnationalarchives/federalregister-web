@@ -35,13 +35,13 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def agency_dt_dd
-    html = "<dt class=\"agencies\">#{pluralize_without_count(model.agencies.size, 'Agency')}:</dt>"
+    html = "<dt class=\"agencies\">#{pluralize_without_count(agency_names.size, 'Agency')}:</dt>"
     html = html + agency_dd
     html.html_safe
   end
 
   def agency_dd
-    wrap_in_dd(agency_names)
+    wrap_in_dd(agency_names(:the => false))
   end
 
   def pages
@@ -91,19 +91,31 @@ class ArticleDecorator < ApplicationDecorator
 
   def agency_names(options = {})
     autolink = options.has_key?(:links) ? options[:links] : true
+    include_the = options.has_key?(:the) ? options[:links] : true
+
     if model.agencies.select{|x| x.id}.present?
       parent_ids = model.agencies.map{|x| x.parent_id}.compact
       agencies = model.agencies.
         reject{|x| x.id.nil?}.
         reject{|x| parent_ids.include?(x.id)}.
-        map{|a| "the #{h.link_to_if autolink, a.name, a.url}" }
+        map{|a| h.link_to_if autolink, agency_name(a, include_the), a.url }
     else
-      agencies = model.agencies.map{|a| "the #{a.name}"}
+      agencies = model.agencies.map{|a| agency_name(a, include_the) }
     end
     agencies
   end
 
   def agency_names_as_sentence(options={})
     agency_names(options).to_sentence.html_safe
+  end
+
+  private
+
+  def agency_name(agency, include_the)
+    if include_the
+      "the #{agency.name}"
+    else
+      agency.name
+    end
   end
 end
