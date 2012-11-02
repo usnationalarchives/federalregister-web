@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024231741) do
+ActiveRecord::Schema.define(:version => 20121029205102) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -65,6 +65,31 @@ ActiveRecord::Schema.define(:version => 20121024231741) do
     t.integer  "updater_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "mailing_lists", :force => true do |t|
+    t.text     "parameters"
+    t.string   "title"
+    t.integer  "active_subscriptions_count"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "type"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "mailing_list_id"
+    t.string   "email"
+    t.string   "requesting_ip"
+    t.string   "token"
+    t.datetime "confirmed_at"
+    t.datetime "unsubscribed_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.datetime "last_delivered_at"
+    t.integer  "delivery_count"
+    t.date     "last_issue_delivered"
+    t.string   "environment"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

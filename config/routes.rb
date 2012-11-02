@@ -38,10 +38,30 @@ MyFr2::Application.routes.draw do
    :via => :post
 
 
+  resources :comments, :only => [:index]
+  match 'articles/:document_number/comments/new' => 'comments#new',
+    :as => :new_comment,
+    :via => :get
+
+  match 'articles/:document_number/comments/new' => 'comments#new',
+      :as => :new_comment,
+      :via => :get
 
   resources :comment_attachments,
     :only => [:create, :destroy]
 
+  resources :subscriptions, :only => [:new, :create, :edit, :update, :destroy] do
+    member do
+      get :unsubscribe
+      get :confirm
+    end
+
+    collection do
+      get :confirmation_sent
+      get :confirmed
+      get :unsubscribed
+    end
+  end
 
   match "/404" => "errors#record_not_found"
   match "/405" => "errors#not_authorized"

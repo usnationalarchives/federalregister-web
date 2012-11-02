@@ -9,7 +9,7 @@ gem 'airbrake', '3.0.9'
 #gem 'federal_register', '0.5.0'
 #gem 'federal_register', :path => '../federal_register'
 gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git", 
-                        :ref => "f1e21a016f258862133eb8f8342bbdde1c10492e"
+                        :ref => "271fbf8c9515b53847c3ffdbbb0b9a91507cc60c"
 
 gem 'devise', '1.5.0'
 gem 'omniauth', '1.0.1'
@@ -17,7 +17,7 @@ gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-twitter', '0.0.7'
 
 gem 'formtastic', '2.0.2'
-gem 'draper',     '0.9.5'
+gem 'draper',     '0.18.0'
 
 gem 'jquery-rails'
 gem 'sass-rails',    "~> 3.2.5"
@@ -38,6 +38,7 @@ gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
 gem "httmultiparty"
+gem 'sendgrid'
 
 # Gems used only for assets and not required
 # in production environments by default.
