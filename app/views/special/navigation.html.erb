@@ -1,9 +1,18 @@
 <li class="dropdown nav_myfr2">
   <a class="myfr2 top_nav">My FR<span class="arrow"></span></a>
   <ul class="subnav myfr2_list">
-    <li id='myfr2-clipboard'>
-      <%= link_to 'My Clipboard', '/my/', :class => "myfr2-clipboard" %>
+    <li id='myfr2-comments'>
+      <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
     </li>
+
+    <li id='myfr2-comments'>
+      <%= link_to 'My Subscriptions', '/my/subscriptions', :class => "myfr2-subscriptions" %>
+    </li>
+
+    <li id='myfr2-clipboard'>
+      <%= link_to 'My Clipboard', '/my/clippings', :class => "myfr2-clipboard" %>
+    </li>
+    
     <li id='myfr2-account'>
       <% if user_signed_in? %>
         <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
