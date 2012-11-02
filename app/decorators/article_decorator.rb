@@ -22,8 +22,16 @@ class ArticleDecorator < ApplicationDecorator
     model.publication_date.to_formatted_s(:date)
   end
 
+  def publication_date_formally
+    model.publication_date.to_formatted_s(:formal)
+  end
+
   def effective_date
     model.effective_on.to_formatted_s(:date) if model.effective_on
+  end
+
+  def shortened_abstract
+    h.truncate_words(model.abstract, :length => 500) || "[No abstract available]"
   end
 
   def agency_dt_dd
@@ -33,7 +41,6 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def agency_dd
-    agency_names = model.agencies.map{|a| h.link_to_if(a.url, a.name, a.url)}
     wrap_in_dd(agency_names)
   end
 
@@ -78,7 +85,25 @@ class ArticleDecorator < ApplicationDecorator
     h.link_to(document_number, "https://www.federalregister.gov/a/#{document_number}")
   end
 
-  def short_entry_url
+  def short_article_url
     "https://www.federalregister.gov/a/#{document_number}"
+  end
+
+  def agency_names(options = {})
+    autolink = options.has_key?(:links) ? options[:links] : true
+    if model.agencies.select{|x| x.id}.present?
+      parent_ids = model.agencies.map{|x| x.parent_id}.compact
+      agencies = model.agencies.
+        reject{|x| x.id.nil?}.
+        reject{|x| parent_ids.include?(x.id)}.
+        map{|a| "the #{h.link_to_if autolink, a.name, a.url}" }
+    else
+      agencies = model.agencies.map{|a| "the #{a.name}"}
+    end
+    agencies
+  end
+
+  def agency_names_as_sentence(options={})
+    agency_names(options).to_sentence.html_safe
   end
 end

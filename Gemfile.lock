@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/criticaljuncture/federal_register.git
-  revision: f1e21a016f258862133eb8f8342bbdde1c10492e
-  ref: f1e21a016f258862133eb8f8342bbdde1c10492e
+  revision: 271fbf8c9515b53847c3ffdbbb0b9a91507cc60c
+  ref: 271fbf8c9515b53847c3ffdbbb0b9a91507cc60c
   specs:
     federal_register (0.5.0)
       httparty (>= 0.7.0)
@@ -78,8 +78,9 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
     diff-lcs (1.2.4)
-    draper (0.9.5)
-      activesupport (>= 2.3.10)
+    draper (0.18.0)
+      actionpack (~> 3.2)
+      activesupport (~> 3.2)
     erubis (2.7.0)
     excon (0.13.4)
     execjs (1.4.0)
@@ -233,6 +234,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    sendgrid (1.2.0)
+      json
     shoulda-matchers (1.0.0.beta3)
     spork (0.8.5)
     sprockets (2.2.2)
@@ -272,7 +275,7 @@ DEPENDENCIES
   compass (= 0.12.2)
   compass-rails (= 1.0.3)
   devise (= 1.5.4)
-  draper (= 0.9.5)
+  draper (= 0.18.0)
   factory_girl_rails (~> 1.1.0)
   fakeweb (~> 1.3.0)
   federal_register!
@@ -294,6 +297,7 @@ DEPENDENCIES
   rspec-rails (>= 2.5)
   sass (~> 3.2.1)
   sass-rails (~> 3.2.5)
+  sendgrid
   shoulda-matchers (= 1.0.0.beta3)
   spork (~> 0.8.5)
   strong_parameters

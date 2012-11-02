@@ -1,0 +1,11 @@
+<div style="margin-left:<%= margin_left %>">
+<h6 style="font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;font-size:12px;margin: 10px 0 5px 0;"><%= link_to article.title, article.short_article_url %></h6>
+          
+<p style="color:#7A838A;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;font-size:12px;margin: 0 0 5px 0;">A <%= article.type %> by <%= article.agency_names_as_sentence(:link => false) %></p>
+    
+<p style="color:#363636;font-family:Georgia, 'Times New Roman',serif;font-size:13px; line-height:1.5;margin:0px 0 15px;"><%= article.shortened_abstract %></p>
+
+<%- if article.comments_close_on && article.comments_close_on > Date.current %>
+  <p style="background:#eeeeee;color:#363636;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;font-weight:bold;padding:3px 3px 5px 3px;text-transform:uppercase;"><img src="https://www.federalregister.gov/images/icons/icon_comment.png" style="margin:3px 5px 0 5px;vertical-align:sub" />Comment period ends in <%= pluralize (article.comments_close_on - Date.current), 'day' %> (<%= article.comments_close_on %>)</p>
+<%- end %>
+</div>

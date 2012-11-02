@@ -1,6 +1,8 @@
 class ApplicationDecorator < Draper::Base
   include ActionView::Helpers::TagHelper
 
+  delegate :type, :to => :model
+
  def self.decorate_methods(*method_names)
    options = method_names.extract_options!
    decorator = options.delete(:with) || raise("Must pass a decorator class using :with")
