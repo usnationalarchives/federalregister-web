@@ -1,22 +1,7 @@
 /**********************************************
 /* MYFR2 - ADD TO FOLDER / JUMP TO FOLDER MENU
 ***********************************************/
-#clipping-actions {
-  position: relative;
-  height: 30px;
-  margin-bottom: 10px;
-  z-index: 1001;
-
-  background-color: #EEE;
-  border: #CCC 1px solid;
-
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-  }
+#clipping-actions { @extend %list_item_action_bar; }
 
 #clipping-actions #add-to-folder,
 #clipping-actions #jump-to-folder {

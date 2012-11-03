@@ -94,22 +94,23 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 * Moving clippings between folders *
 ***********************************/
 
-#clipping-actions #add-to-folder span.update {
-  color: $fr-green;
-  font-weight: 700;
-  opacity: 0;
-  position: absolute;
-  right: 8px;
+#clipping-actions {
+  #add-to-folder span.update {
+    color: $fr-green;
+    font-weight: 700;
+    opacity: 0;
+    position: absolute;
+    right: 8px;
   }
-#clipping-actions div.menu a span.loader {
-  width: 18px;
-  height: 18px;
-  top: 3px;
-  right: 3px;
-  position: absolute;
-  margin-right: 0;
+  div.menu a span.loader {
+    width: 18px;
+    height: 18px;
+    top: 3px;
+    right: 3px;
+    position: absolute;
+    margin-right: 0;
 
-  display: none;
-  background: url(orange_loader.gif) 0 0 no-repeat;
+    display: none;
+    background: url(orange_loader.gif) 0 0 no-repeat;
   }
-
+}

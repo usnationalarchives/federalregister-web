@@ -1,7 +1,16 @@
 class SubscriptionsController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-  skip_before_filter :authenticate_user!
-  
+
+  with_options(:only => [:new, :create, :confirmation_sent, :confirm, :confirmed, :unsunscribe, :unsubscribed, :destroy]) do |during_creation|
+    during_creation.skip_before_filter :verify_authenticity_token
+    during_creation.skip_before_filter :authenticate_user!
+  end
+ 
+  def index
+    @subscriptions = SubscriptionDecorator.decorate(current_user.subscriptions.all)
+    @article_subscription_count = current_user.subscriptions.article_subscriptions.count
+    @pi_subscription_count = current_user.subscriptions.pi_subscriptions.count
+  end
+
   def new
     @subscription = Subscription.new(params[:subscription])
     @subscription.search_type ||= 'Entry'

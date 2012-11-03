@@ -1,0 +1,86 @@
+h2.subscription.title {
+  @include my_fr2-sprite(icon_message_open, $my_fr2-sprite-dimensions, 0, -1);
+  }
+
+#subscription_metadata_bar { @extend %list_page_title_metadata_bar; }
+
+ul#subscriptions > li { 
+  @extend %rounded_capsule;
+  width: 938px;
+  }
+
+ul#subscriptions {
+  .title { @extend %capsule_title; }
+  
+  .search_data { 
+    @extend %capsule_data;
+    @extend %capsule_metadata_wrapper;
+    }
+
+  .subscription_data { 
+    @extend %capsule_metadata_dash_separated;
+    width: 178px;
+    }
+  }
+
+ul#subscriptions .subscription_type {
+  width: 49px;
+  height: 49px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  z-index: 500;
+  margin-right: 10px;
+  margin-left: 4px;
+
+  span { 
+    position: relative;
+    display: block;
+    }
+  }
+ul#subscriptions .subscription_type.sub_article {
+  @include my_fr2-sprite(icon_subscription_article, $my_fr2-sprite-dimensions, 0, -1);
+  }
+ul#subscriptions .subscription_type.sub_publicinspectiondocument {
+  @include my_fr2-sprite(icon_subscription_clipboard, $my_fr2-sprite-dimensions, 0, -1);
+  }
+
+#subscription-actions { 
+  @extend %list_item_action_bar;
+
+  #subscription-type-filter {
+    @extend %list_item_filters;
+
+    ul {
+      li { overflow: hidden; }
+      li.sub_article { 
+        @include my_fr2-sprite(icon_subscription_article_mini, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg;
+      }
+      li.sub_pi { 
+        @include my_fr2-sprite(icon_subscription_clipboard_mini, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg;
+      }
+
+      li.sub_article.on,
+      li.sub_article.hover { 
+        @include my_fr2-sprite(icon_subscription_article_mini_active, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg-on;
+      }
+      li.sub_pi.on,
+      li.sub_pi.hover { 
+        @include my_fr2-sprite(icon_subscription_clipboard_mini_active, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg-on;
+      }
+
+      li.sub_article.disabled { 
+        @include my_fr2-sprite(icon_subscription_article_mini_disabled, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg;
+      }
+      li.sub_pi.disabled { 
+        @include my_fr2-sprite(icon_subscription_clipboard_mini_disabled, $my_fr2-sprite-dimensions, 1px, 1px);
+        background-color: $list-item-filter-bg;
+      }
+    }
+  }
+}

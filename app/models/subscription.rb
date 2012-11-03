@@ -9,7 +9,10 @@ class Subscription < ApplicationModel
   validates_format_of :email, :with => /.+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+/, :format => "is not a valid email address"
   
   attr_accessor :search_conditions, :search_type
+
   belongs_to :mailing_list
+  belongs_to :user
+
   
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
@@ -91,5 +94,15 @@ class Subscription < ApplicationModel
     end
     
     true
+  end
+
+  def self.article_subscriptions
+    scoped(:include => :mailing_list, 
+           :conditions => {:mailing_lists => {:type => "MailingList::Article"}})
+  end
+
+  def self.pi_subscriptions
+    scoped(:include => :mailing_list, 
+           :conditions => {:mailing_lists => {:type => "MailingList::PublicInspection"}})
   end
 end

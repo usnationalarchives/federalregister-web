@@ -1,0 +1,70 @@
+/* these colors don't cascade properly when using sprites so they
+ * defined as vars here so they can be used there... */
+$list-item-filter-bg: #FFF;
+$list-item-filter-bg-on: #F5F8F9;
+
+%list_item_filters {
+  position: absolute;
+  top: 5px;
+  margin-left: 5px;
+
+  ul li {
+    display: inline-block;
+    float: left;
+    width: 21px;
+    height: 20px;
+    border: 1px solid #CCC;
+    background-color: $list-item-filter-bg;
+    border-right: 0px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  ul {
+    li.hover,
+    li.on { background-color: $list-item-filter-bg-on; }
+
+    li.disabled { background-color: $list-item-filter-bg; }
+
+    li.first { @include rounded-left(6); }
+    li.last { 
+      @include rounded-right(6);
+      border-right: 1px solid #CCC;
+    }
+    li img { position: relative; }
+  }
+}
+
+%list_item_filters_document_icon_image_positions {
+  li.doc_presdocu img { top: -1264px; }
+  li.doc_rule img { top: -1474px; }
+  li.doc_notice img { top: -1685px; }
+  li.doc_prorule img { top: -1895px; }
+  li.doc_correct img { top: -2317px; }
+
+  li.doc_presdocu.on img,
+  li.doc_presdocu.hover img { top: -1px; }
+
+  li.doc_rule.on img,
+  li.doc_rule.hover img { top: -211px; }
+
+  li.doc_notice.on img,
+  li.doc_notice.hover img { top: -422px; }
+
+  li.doc_prorule.on img,
+  li.doc_prorule.hover img { top: -632px; }
+
+  li.doc_correct.on img,
+  li.doc_correct.hover img { top: -1054px; }
+  }
+
+
+%list_item_filters_disabled_document_icon_image_positions {
+  ul {
+    li.doc_presdocu.disabled img { top: -2527px; }
+    li.doc_rule.disabled img { top: -2737px; }
+    li.doc_notice.disabled img { top: -2948px; }
+    li.doc_prorule.disabled img { top: -3158px; }
+    li.doc_correct.disabled img { top: -3580px; }
+  }
+}

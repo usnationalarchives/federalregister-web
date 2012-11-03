@@ -15,7 +15,11 @@ $user_utils-spacing: 50px !default;
 @import "mixins/_shadows.scss";
 @import "mixins/_progress.scss";
 
-@import "design/my_fr.css.scss";
+@import "design/patterns/my_fr.css.scss";
+@import "design/patterns/rounded_capsule.css.scss";
+@import "design/patterns/document_icons.css.scss";
+@import "design/patterns/list_item_filters.css.scss";
+
 
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";
@@ -28,3 +32,4 @@ $user_utils-spacing: 50px !default;
 @import "design/progress_bar.css.scss";
 
 @import "design/comments/list.css.scss";
+@import "design/subscriptions.css.scss";

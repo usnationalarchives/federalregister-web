@@ -1,33 +1,3 @@
-/*** PAGE TITLES ***/
-%list_page_title {
-  border-bottom: 1px solid #CCC;
-  margin: 0;
-  padding-left: 40px;
-  line-height: 1.1em;
-  padding-top: 5px;
-  }
-%list_page_title_metadata_bar {
-  margin-bottom: 2em;
-
-  ul { 
-    font-weight: 700;
-    color: #666;
-    list-style: none;
-    font-size: 13px;
-
-    li { 
-      display: inline-block;
-      margin-right: 20px;
-      }
-    li.download {
-      position: relative;
-      left: 15px;
-      float: right;
-      }
-    }
-  }
-  
-/*** ROUNDED CAPSULES ***/
 %rounded_capsule {
   width: 900px;
 
@@ -101,24 +71,4 @@
   }
   dl#col-2 { width: 200px; }
   dl#col-3 { width: 215px; }
-  }
-
-/*** DOCUMENT ICONS ***/
-%large_document_icon_frame {
-  width: 49px;
-  height: 49px;
-  display: inline-block;
-  vertical-align: top;
-  overflow: hidden;
-  z-index: 500;
-  margin-right: 10px;
-  margin-left: 4px;
-
-  img { position: relative; }
-  }
-%presdoc_large_icon { top: 0px; }
-%rule_large_icon { top: -466px; }
-%notice_large_icon { top: -932px; }
-%prorule_large_icon { top: -1397px; }
-%unknown_large_icon { top: -1863px; }
-%correct_large_icon { top: -2327px; }
+}

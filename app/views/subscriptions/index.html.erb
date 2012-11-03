@@ -1,0 +1,61 @@
+<div class="title"> 
+  <span>My Subscriptions</span>
+</div>
+
+<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+
+<h2 class="subscription title">My Subscriptions</h2>
+<%= render :partial => "subscriptions/subscription_metadata_bar", :locals => {:article_subscription_count => @article_subscription_count, :pi_subscription_count => @pi_subscription_count} %>
+
+<div id="subscription-actions">
+  <div id="subscription-type-filter">
+    <ul>
+      <script type="text/javascript">var subscription_type_filters = <%= @subscriptions.map{|s| s.type}.uniq.to_json.html_safe %>;</script>
+      <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Notice"></li>
+      <li class="sub_pi last"       data-filter-doc-type="pi"      data-filter-doc-type-display="Correction"></li>
+    </ul>
+  </div>
+</div>
+
+<ul id="subscriptions">
+  <% @subscriptions.each do |subscription| %>
+    <li data-subscription-id="<%= subscription.id %>" data-subscription-type="<%= subscription.type %>">
+      <div class="subscription_type sub_<%= subscription.type.downcase %> add_tipsy"></div>
+
+      <div class="search_data">
+        <div class="title"><%= link_to subscription.mailing_list.title, subscription.search_url %></div>
+        <dl class="metadata" id="col-1">
+          <dt class="subscription_date">Subscription Started:</dt>
+          <dd><%= subscription.subscribed_on %></dd>
+
+          <dt class="pub_date">Last Delivered On:</dt>
+          <dd><%= subscription.last_delivered_on %></dd>
+
+          <dt class="pub_date">Delivery Count:</dt>
+          <dd><%= subscription.delivery_count %></dd>
+        </dl>
+        <dl class="metadata" id="col-2">
+          <%#= subscription.article.agency_dt_dd %>
+        </dl>
+        <dl class="metadata" id="col-3">
+        </dl>
+      </div>
+
+      <div class="subscription_data">
+        <dl class="metadata">
+          <dt class="unsubscribe_link"></dt>
+          <dd><%= link_to "unsubscribe", '#' %></dd>
+
+          <dt class="rss"></dt>
+          <dd><%= link_to "RSS", '#.rss&order=newest' %></dd>
+
+          <dt class="rss"></dt>
+          <dd><%= link_to "Excel/CSV", '#.rss&order=newest' %></dd>
+        </dl> 
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+

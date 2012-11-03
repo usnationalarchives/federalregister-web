@@ -1,0 +1,43 @@
+/*** PAGE TITLES ***/
+%list_page_title {
+  border-bottom: 1px solid #CCC;
+  margin: 0;
+  padding-left: 40px;
+  line-height: 1.1em;
+  padding-top: 5px;
+  }
+%list_page_title_metadata_bar {
+  margin-bottom: 2em;
+
+  ul { 
+    font-weight: 700;
+    color: #666;
+    list-style: none;
+    font-size: 13px;
+
+    li { 
+      display: inline-block;
+      margin-right: 20px;
+      }
+    li.download {
+      position: relative;
+      left: 15px;
+      float: right;
+      }
+    }
+  }
+
+/* show/hide/move list items */
+%list_item_action_bar {
+  position: relative;
+  height: 30px;
+  margin-bottom: 10px;
+  z-index: 1001;
+
+  background-color: #EEE;
+  border: #CCC 1px solid;
+
+  @include rounded-top(6);
+}
+
+

@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
   def index
     @comments = CommentDecorator.decorate(current_user.comments.order('created_at DESC').all)
   end
-
+  
   def new
   end
 

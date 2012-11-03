@@ -37,20 +37,10 @@ MyFr2::Application.routes.draw do
    :as => :comment,
    :via => :post
 
-
-  resources :comments, :only => [:index]
-  match 'articles/:document_number/comments/new' => 'comments#new',
-    :as => :new_comment,
-    :via => :get
-
-  match 'articles/:document_number/comments/new' => 'comments#new',
-      :as => :new_comment,
-      :via => :get
-
   resources :comment_attachments,
     :only => [:create, :destroy]
 
-  resources :subscriptions, :only => [:new, :create, :edit, :update, :destroy] do
+  resources :subscriptions do
     member do
       get :unsubscribe
       get :confirm
