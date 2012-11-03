@@ -1,0 +1,18 @@
+%large_document_icon_frame {
+  width: 49px;
+  height: 49px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  z-index: 500;
+  margin-right: 10px;
+  margin-left: 4px;
+
+  img { position: relative; }
+  }
+%presdoc_large_icon { top: 0px; }
+%rule_large_icon { top: -466px; }
+%notice_large_icon { top: -932px; }
+%prorule_large_icon { top: -1397px; }
+%unknown_large_icon { top: -1863px; }
+%correct_large_icon { top: -2327px; }

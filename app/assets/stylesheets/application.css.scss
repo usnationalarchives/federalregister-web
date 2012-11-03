@@ -3,10 +3,13 @@
 
 @import "components/doc_type_icon_colors";
 
+@import "design/patterns/my_fr.css.scss";
+@import "design/patterns/rounded_capsule.css.scss";
+@import "design/patterns/document_icons.css.scss";
+@import "design/patterns/list_item_filters.css.scss";
+
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";
-
-@import "design/my_fr.css.scss";
 
 @import "design/user_utils.css.scss";
 @import "design/clippings.css.scss";
@@ -15,3 +18,4 @@
 @import "design/comments/creation.css.scss"
 @import "design/progress_bar.css.scss";
 @import "design/comments/list.css.scss";
+@import "design/subscriptions.css.scss";

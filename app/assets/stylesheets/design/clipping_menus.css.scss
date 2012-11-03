@@ -11,17 +11,7 @@
 /**********************************************
 /* MYFR2 - ADD TO FOLDER / JUMP TO FOLDER MENU
 ***********************************************/
-#clipping-actions {
-  position: relative;
-  height: 30px;
-  margin-bottom: 10px;
-  z-index: 1001;
-
-  background-color: #EEE;
-  border: #CCC 1px solid;
-
-  @include rounded-top(6);
-}
+#clipping-actions { @extend %list_item_action_bar; }
 
 #clipping-actions {
   .action_menu {
