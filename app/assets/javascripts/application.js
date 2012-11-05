@@ -3,4 +3,5 @@
 //= require add_to_folder
 //= require clippings
 //= require clipping_filters
+//= require subscription_filters
 //= require tipsy

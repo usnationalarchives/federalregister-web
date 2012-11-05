@@ -11,16 +11,20 @@
 <div id="subscription-actions">
   <div id="subscription-type-filter">
     <ul>
-      <script type="text/javascript">var subscription_type_filters = <%= @subscriptions.map{|s| s.type}.uniq.to_json.html_safe %>;</script>
-      <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Notice"></li>
-      <li class="sub_pi last"       data-filter-doc-type="pi"      data-filter-doc-type-display="Correction"></li>
+      <script type="text/javascript">var subscription_type_filters = <%= @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe %>;</script>
+      <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Article">
+        Article
+      </li>
+      <li class="sub_pi last" data-filter-doc-type="public-inspection-document" data-filter-doc-type-display="Public Inspection Document">
+        Public Inspection
+      </li>
     </ul>
   </div>
 </div>
 
 <ul id="subscriptions">
   <% @subscriptions.each do |subscription| %>
-    <li data-subscription-id="<%= subscription.id %>" data-subscription-type="<%= subscription.type %>">
+    <li data-subscription-id="<%= subscription.id %>" data-doc-type="<%= subscription.type.underscore.dasherize %>">
       <div class="subscription_type sub_<%= subscription.type.downcase %> add_tipsy"></div>
 
       <div class="search_data">
@@ -36,7 +40,10 @@
           <dd><%= subscription.delivery_count %></dd>
         </dl>
         <dl class="metadata" id="col-2">
-          <%#= subscription.article.agency_dt_dd %>
+          <% unless subscription.type == "PublicInspectionDocument" %>
+            <dt class="activity">Weekly activity in last year:</dt>
+            <dd><%= image_tag(subscription.sparkline_url, :alt => "Sparkline of weekly activity in last year.") %></dd>
+          <% end %>
         </dl>
         <dl class="metadata" id="col-3">
         </dl>
@@ -44,14 +51,15 @@
 
       <div class="subscription_data">
         <dl class="metadata">
-          <dt class="unsubscribe_link"></dt>
-          <dd><%= link_to "unsubscribe", '#' %></dd>
-
-          <dt class="rss"></dt>
-          <dd><%= link_to "RSS", '#.rss&order=newest' %></dd>
-
-          <dt class="rss"></dt>
-          <dd><%= link_to "Excel/CSV", '#.rss&order=newest' %></dd>
+          <dt class="<%= subscription.active? ? 'unsubscribe_link' : 'resubscribe_link' %>">Status:</dt>
+          <% if subscription.active? %>
+            <dd><span class='active'>active</span> : : <%= link_to "unsubscribe", subscription_path(subscription) , :class => 'unsubscribe' %></dd>
+          <% else %>
+            <dd><span class='inactive'>inactive</span> : : <%= link_to "resubscribe", confirm_subscription_path(subscription) , :class => 'resubscribe' %></dd>
+          <% end %>
+          <dt>Other Formats:</dt>
+          <dd class="rss_link"><%= link_to "RSS", '#.rss&order=newest' %></dd>
+          <dd class="csv_link"><%= link_to "Excel/CSV", '#.rss&order=newest' %></dd>
         </dl> 
       </div>
     </li>

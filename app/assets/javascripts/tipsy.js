@@ -18,6 +18,8 @@ $(document).ready(function(){
   /* Doctype Filters */
   $('#clipping-actions #doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: false, offset: 2, title: function() { return $(this).data('tooltip');} });
   $('#doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: true, offset: 2, title: function() { return $(this).data('tooltip');} });
+  /* Subscription Filters */
+  $('#subscription-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: true, offset: 2, title: function() { return $(this).data('tooltip');} });
 
   $('.clipping_data .comment_on').tipsy( {gravity: 's', fade: true, offset: 3, fallback: 'You have officially commented on this article.'} );
 

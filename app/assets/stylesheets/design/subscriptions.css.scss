@@ -15,13 +15,22 @@ ul#subscriptions {
   .search_data { 
     @extend %capsule_data;
     @extend %capsule_metadata_wrapper;
+
+    dl#col-2 {
+      width: 300px;
+      dt { 
+        clear: both;
+        float: left;
+      }
+      dd { float: left; }
     }
+  }
 
   .subscription_data { 
     @extend %capsule_metadata_dash_separated;
     width: 178px;
-    }
   }
+}
 
 ul#subscriptions .subscription_type {
   width: 49px;
@@ -52,7 +61,18 @@ ul#subscriptions .subscription_type.sub_publicinspectiondocument {
     @extend %list_item_filters;
 
     ul {
-      li { overflow: hidden; }
+      li { 
+        overflow: hidden;
+        color: $fr-gray-40;
+        padding-left: 22px;
+        width: 44px;
+        font-weight: bold;
+      }
+      li.last { width: 96px; }
+      li.on,
+      li.hover { color: $fr-bright-orange; }
+      li.disabled { color: $fr-gray-10; }
+
       li.sub_article { 
         @include my_fr2-sprite(icon_subscription_article_mini, $my_fr2-sprite-dimensions, 1px, 1px);
         background-color: $list-item-filter-bg;
@@ -84,3 +104,6 @@ ul#subscriptions .subscription_type.sub_publicinspectiondocument {
     }
   }
 }
+
+.subscription_data .active { color: $fr-green; }
+.subscription_data .inactive { color: $fr-red; }
