@@ -11,3 +11,4 @@
 //= require comment
 //= require fr_modal
 //= require form_utils
+//= require subscription

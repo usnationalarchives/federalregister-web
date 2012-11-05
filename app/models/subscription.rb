@@ -65,7 +65,6 @@ class Subscription < ApplicationModel
       self.unsubscribed_at = Time.current
       self.save!
     end
-    SubscriptionMailer.unsubscribe_notice(self).deliver
   end
 
   private

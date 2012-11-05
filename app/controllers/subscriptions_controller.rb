@@ -34,7 +34,11 @@ class SubscriptionsController < ApplicationController
   def confirm
     @subscription = Subscription.find_by_token!(params[:id])
     @subscription.confirm!
-    redirect_to confirmed_subscriptions_path(:type => @subscription.mailing_list.type)
+
+    respond_to do |format|
+      format.html { redirect_to confirmed_subscriptions_path(:type => @subscription.mailing_list.type) }
+      format.json { render :json => { :unsubscribe_url => subscription_path(@subscription)} }
+    end
   end
   
   def confirmed
@@ -47,7 +51,15 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription = Subscription.find_by_token!(params[:id])
     @subscription.unsubscribe!
-    redirect_to unsubscribed_subscriptions_url
+
+    unless request.xhr?
+      SubscriptionMailer.unsubscribe_notice(self).deliver
+    end
+
+    respond_to do |format|
+      format.html { redirect_to unsubscribed_subscriptions_url }
+      format.json { render :json => { :resubscribe_url => confirm_subscription_url(@subscription)} }
+    end
   end
   
   def unsubscribed
