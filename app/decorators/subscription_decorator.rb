@@ -22,7 +22,10 @@ class SubscriptionDecorator < ApplicationDecorator
           when "PublicInspectionDocument"
             "/public-inspection/search/activity/sparkline/weekly"
           end
-    "#{url}?#{mailing_list.parameters.to_query}"
+    
+    chart_params = {:chart_options => {:chart_bg_color => 'F5F8F9'}}
+
+    "#{url}?#{chart_params.to_query}&#{mailing_list.parameters.to_query}"
   end
 
   def delivery_count

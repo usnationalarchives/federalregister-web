@@ -103,6 +103,6 @@ class Subscription < ApplicationModel
 
   def self.pi_subscriptions
     scoped(:include => :mailing_list, 
-           :conditions => {:mailing_lists => {:type => "MailingList::PublicInspection"}})
+           :conditions => {:mailing_lists => {:type => "MailingList::PublicInspectionDocument"}})
   end
 end
