@@ -5,14 +5,17 @@ class SubscriptionDecorator < ApplicationDecorator
     mailing_list.type.split('::').last
   end
 
-  def search_url
+  def search_path(options={})
+    format = options.delete(:format)
+
     url = case type
           when "Article"
-            "/articles/search"
+            "/articles/search#{format if format}"
           when "PublicInspectionDocument"
-            "/public-inspection/search"
+            "/public-inspection/search#{format if format}"
           end
-    "#{url}?#{mailing_list.parameters.to_query}"
+    
+    "#{url}?#{mailing_list.parameters.merge!(options).to_query}"
   end
 
   def sparkline_url
@@ -27,6 +30,7 @@ class SubscriptionDecorator < ApplicationDecorator
 
     "#{url}?#{chart_params.to_query}&#{mailing_list.parameters.to_query}"
   end
+
 
   def delivery_count
     model.delivery_count || 0
