@@ -72,6 +72,11 @@ class Comment < ApplicationModel
     @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
   end
 
+  def respond_to?(name, include_private = false)
+    attr_name = name.to_s.sub(/=$/,'')
+    comment_form.try(:has_field?, attr_name) || super
+  end
+
   private
 
   def persist_comment_data
