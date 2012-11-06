@@ -28,7 +28,7 @@
       <div class="subscription_type sub_<%= subscription.type.downcase %> add_tipsy"></div>
 
       <div class="search_data">
-        <div class="title"><%= link_to subscription.mailing_list.title, subscription.search_url %></div>
+        <div class="title"><%= link_to subscription.mailing_list.title, subscription.search_path %></div>
         <dl class="metadata" id="col-1">
           <dt class="subscription_date">Subscription Started:</dt>
           <dd><%= subscription.subscribed_on %></dd>
@@ -58,8 +58,8 @@
             <dd><span class='inactive'>inactive</span> : : <%= link_to "resubscribe", confirm_subscription_path(subscription) , :class => 'resubscribe' %></dd>
           <% end %>
           <dt>Other Formats:</dt>
-          <dd class="rss_link"><%= link_to "RSS", '#.rss&order=newest' %></dd>
-          <dd class="csv_link"><%= link_to "Excel/CSV", '#.rss&order=newest' %></dd>
+          <dd class="rss_link"><%= link_to "RSS", subscription.search_path(:format => ".rss", :order => :newest) %></dd>
+          <dd class="csv_link"><%= link_to "Excel/CSV", subscription.search_path(:format => ".csv", :order => :newest) %></dd>
         </dl> 
       </div>
     </li>
