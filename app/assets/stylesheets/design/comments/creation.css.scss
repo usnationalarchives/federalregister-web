@@ -280,6 +280,20 @@ table.attachments .progress-success .bar {
   @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
   }
 
+#fr_modal.comment-preview-modal {
+  dl dt {
+    margin-bottom: 5px;
+    text-align: right;
+    width: 150px;
+    float: left;
+    clear: both;
+    }
+  dl dd {
+    float: left;
+    clear: none;
+    }
+}
+
 /* COMMENT FORM SUBMIT SUCCESS */
 #flash_message.comment .notice {
   padding: 15px;
