@@ -15,7 +15,7 @@ class SubscriptionDecorator < ApplicationDecorator
             "/public-inspection/search#{format if format}"
           end
     
-    "#{url}?#{mailing_list.parameters.merge!(options).to_query}"
+    "#{url}?#{mailing_list.parameters.merge(options).to_query}"
   end
 
   def sparkline_url
