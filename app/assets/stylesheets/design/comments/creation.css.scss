@@ -89,7 +89,10 @@
   @include input-box-shadow('#CCC', '#EEE', '#FFF');
   @include border-radius(3);
   }
-.formtastic.comment textarea { height: auto; }
+.formtastic.comment textarea { 
+  height: auto;
+  width: 373px;
+  }
 .formtastic.comment select { width: 380px; }
 
 .formtastic.comment input[type='text']:focus,
@@ -291,6 +294,10 @@ table.attachments .progress-success .bar {
   dl dd {
     float: left;
     clear: none;
+    }
+  dl dd + dd {
+    clear: left;
+    margin-left: 171px;
     }
 }
 

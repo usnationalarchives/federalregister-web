@@ -24,7 +24,7 @@
       </p>
     </div>
 
-    <%= semantic_form_for @comment, :url => comments_path, :html => {:"data-document-number" => @entry.document_number} do |f| %>
+    <%= semantic_form_for @comment, :url => comment_path, :html => {:"data-document-number" => @entry.document_number} do |f| %>
       <% if @comment_reloaded %>
         <div class="notice message comment_reloaded">
           It appears that you have attempted to comment on this article before so we've restored your progress. <br />

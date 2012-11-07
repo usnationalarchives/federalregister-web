@@ -18,24 +18,25 @@ $(function () {
 
   var comment_form_submission_handler = {
         form: null,
+        submit_button: null,
 
         initialize: function(form) {
           var submission_handler = this;
           
           submission_handler.form = $(form);
+          submission_handler.submit_button = submission_handler.form.find('.commit.button');
 
           return submission_handler;
         },
 
         submit: function() {
+          this.style_submit_button_on_submit();
           this.ajax_submit({type: 'POST'});
         },
 
-        style_submit_button_on_submit: function(form) {
-          $submit_button = form.find('.commit.button');
-
-          $submit_button.addClass('disabled');
-          $submit_button.find('input').disable().attr('value', 'Submitting Comment');
+        style_submit_button_on_submit: function() {
+          this.submit_button.addClass('disabled');
+          this.submit_button.find('input').disable().attr('value', 'Submitting Comment');
         },
 
         success: function(response) {
@@ -66,11 +67,10 @@ $(function () {
           var settings = {
             url: submission_handler.form.attr('action'),
             dataType: 'html',
-            type: 'GET',
+            type: 'POST',
             data: submission_handler.form.serialize()
           }
           $.extend(settings, options);
-
           
           $.ajax({
             url: settings.url,
@@ -151,7 +151,6 @@ $(function () {
           }
           $.extend(settings, this.ajax_options);
 
-          
           $.ajax({
             url: settings.url,
             type: settings.type,
