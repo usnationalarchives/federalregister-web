@@ -200,7 +200,16 @@ $(function () {
         var key = list_item.find('label').text().replace('*','');
         var field = {'label' : key};
 
-        if(list_item.hasClass('stringish')) {
+        if (list_item.hasClass('combo')) {
+          var select = $(list_item.find('select').first());
+          console.log("foo", select);
+          if (select.length) {
+            field.values = [select.find('option[value="' + select.val() + '"]').first().text()];
+          }
+          else {
+            field.values = [list_item.find('input').val()];
+          }
+        } else if(list_item.hasClass('stringish')) {
           field.values = [list_item.find('input').val()];
         } else if(list_item.hasClass('text')) {
           field.values = [list_item.find('textarea').val()];
