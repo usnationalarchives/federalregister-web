@@ -191,14 +191,8 @@ $(function () {
       };
 
 
-  var initializeCommentForm = function() {
-    var renderCommentSummary = function(fields) {
-      var source   = $("#comment-summary-template").html();
-      var template = Handlebars.compile(source);
-      template(fields);
-    };
-
-    var parseFields = function() {
+  var commentForm = {
+    parseFields: function() {
       var fields = [];
       $('#new_comment .inputs > ol > li').each(function(i,elem) {
 
@@ -220,12 +214,20 @@ $(function () {
         fields.push(field);
       });
       return fields;
+    }
+  }
+
+  var initializeCommentForm = function() {
+    var renderCommentSummary = function(fields) {
+      var source   = $("#comment-summary-template").html();
+      var template = Handlebars.compile(source);
+      template(fields);
     };
 
     $('#flash_message.comment').delegate('.comment_preview', 'click', function(event) {
       event.preventDefault();
 
-      var fields = parseFields();
+      var fields = commentForm.parseFields();
       var html   = renderCommentSummary(fields);
 
       Handlebars.registerPartial('comment_summary', $('#comment-summary-template').html());
