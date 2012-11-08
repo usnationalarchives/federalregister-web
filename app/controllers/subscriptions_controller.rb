@@ -22,6 +22,7 @@ class SubscriptionsController < ApplicationController
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
     if @subscription.save
+      SubscriptionMailer.subscription_confirmation(@subscription).deliver
       redirect_to confirmation_sent_subscriptions_url
     else
       render :action => :new
