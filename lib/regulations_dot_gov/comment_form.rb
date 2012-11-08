@@ -79,7 +79,7 @@ class RegulationsDotGov::CommentForm
               end
             end
 
-      [field.label, val]
+      {:label => field.label, :values => [val]}
     end
 
     field_values
