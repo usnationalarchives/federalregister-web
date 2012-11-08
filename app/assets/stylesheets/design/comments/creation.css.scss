@@ -284,6 +284,12 @@ table.attachments .progress-success .bar {
   }
 
 #fr_modal.comment-preview-modal {
+  height: 500px;
+
+  dl {
+    height: 400px;
+    overflow-y: auto;
+    }
   dl dt {
     margin-bottom: 5px;
     text-align: right;
@@ -294,6 +300,7 @@ table.attachments .progress-success .bar {
   dl dd {
     float: left;
     clear: none;
+    width: 300px;
     }
   dl dd + dd {
     clear: left;
