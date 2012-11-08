@@ -3,7 +3,6 @@ class Subscription < ApplicationModel
   default_scope :conditions => { :environment => Rails.env }
   before_create :generate_token
   after_create :remove_from_bounce_list
-  after_create :ask_for_confirmation
   before_save :update_mailing_list_active_subscriptions_count
 
   validates_format_of :email, :with => /.+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+/, :format => "is not a valid email address"
@@ -12,7 +11,6 @@ class Subscription < ApplicationModel
 
   belongs_to :mailing_list
   belongs_to :user
-
   
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
@@ -77,10 +75,6 @@ class Subscription < ApplicationModel
     end
   end
 
-  def ask_for_confirmation
-    SubscriptionMailer.subscription_confirmation(self).deliver
-  end
-  
   def generate_token
     self.token = SecureRandom.hex(20)
   end
