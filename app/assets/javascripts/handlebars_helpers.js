@@ -72,3 +72,17 @@ Handlebars.registerHelper('localize', function(str) {
 
   return messages[str] || str;
 });
+
+Handlebars.registerHelper('createDd', function(item) {
+  var result = "";
+
+  if( $.isArray(item) ) {
+    $.each(item, function() {
+      result += "<dd>" + Handlebars.Utils.escapeExpression(this) + "</dd>";
+    });
+  } else {
+    result = "<dd>" + Handlebars.Utils.escapeExpression(item) + "</dd>";
+  }
+
+  return new Handlebars.SafeString(result);
+});

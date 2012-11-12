@@ -1,5 +1,5 @@
 <div class="comment_form_wrapper" data-comment-document-number="<%= @comment.document_number %>">
-  <!-- <%= @comment.inspect %> -->
+  <%= add_handlebars_template('comment_print_summary', 'comment-print-summary'); %>
 
   <div class="notice message">
     <p class="info">
@@ -47,7 +47,16 @@
   
 
     <div class="print">
-      <p><%= link_to 'Print your comment', '#', :'data-comment_data' => @comment.comment_data.to_json %> for your records and for any future coorespondence about your
+      <p><%= link_to 'Print your comment', '#', 
+                     :'data-comment-data' => @comment.comment_data.to_json, 
+                     :'data-current-document-details' => {:title  => @comment.article.title,
+                                                          :agency => @comment.agency_name,
+                                                          :type   => @comment.article.type,
+                                                          :url    => @comment.article.short_article_url,
+                                                          :published => @comment.article.publication_date}.to_json, 
+                     :'data-comment-details' => {:tracking_number => @comment.comment_tracking_number,
+                                                 :submission_date => @comment.commented_at}.to_json,
+                     :id => 'print-comment' %> for your records and for any future coorespondence about your
       comment with <%= @comment.agency_name %>.</p>
     </div>
 

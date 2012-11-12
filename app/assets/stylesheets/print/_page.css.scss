@@ -1,0 +1,45 @@
+#fr_modal.print_modal { 
+  .jqmClose,
+  .title_bar,
+  .print_button { display: none; }
+
+  @extend %fr_modal;
+  height: auto;
+  
+  .modal_content { overflow-y: visible; }
+
+  dl { height: auto; }
+  dl dt { width: 200px; }
+  dl dd { width: 400px; }
+  dl dd + dd { margin-left: 240px; }
+
+  .document_title { 
+    font-size: 1.5em;
+    line-height: 1.6;
+    }
+
+  .agency {
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    margin: 0.5em 0;
+    overflow: hidden;
+    padding: 0.5em 0;
+    }
+
+  .comment_details {
+    border: 1px #CCC solid;
+    background-color: #EFEFEF;
+    border-radius: 6px;
+    padding: 10px;
+    padding-top: 15px;
+    
+    dd.tracking_number {
+      border: 1px #CCC solid;
+      border-radius: 6px;
+      padding: 0px 5px;
+      width: auto;
+      background-color: white;
+      font-family: courier;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="print_button">Print</div>
+
+<div class="modal_content">
+  {{#with document_details}}
+    <div class="document_title">{{title}}</div>
+    <div class="agency">A {{type}} by {{agency}}</div>
+
+    <dl class="document_details">  
+        <dt>Article Url</dt>
+        <dd>{{url}}</dd>
+        <dt>Published On</dt>
+        <dd>{{published}}</dd>
+    </dl>
+  {{/with}}
+
+  {{#with comment_details}}
+    <dl class="comment_details">
+      <dt>Comment Tracking Number</dt>
+      <dd class="tracking_number">{{tracking_number}}</dd>
+      <dt>Comment Submission Date</dt>
+      <dd>{{submission_date}}</dd>
+    </dl>
+  {{/with}}
+
+  <dl class="comment_contents">
+    {{#each fields}}
+      <dt>{{label}}</dt>
+      {{#each values}}
+        {{createDd this}}
+      {{/each}}
+    {{/each}}
+  </dl>
+</div>
