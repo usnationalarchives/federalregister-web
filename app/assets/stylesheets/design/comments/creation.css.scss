@@ -283,29 +283,57 @@ table.attachments .progress-success .bar {
   @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
   }
 
-#fr_modal.comment-preview-modal {
-  height: 500px;
+#fr_modal.comment-preview-modal,
+#fr_modal.print_modal { 
+  @extend %fr_modal;
+  width: 700px;
+  dl dt { width: 200px; }
+  dl.comment_details dt { width: 190px; }
+  dl dd { width: 450px; }
+  dl dd + dd { margin-left: 221px;}
 
-  dl {
-    height: 400px;
-    overflow-y: auto;
+  .print_button {
+    color: #5697CF;
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    right: 14px;
+    top: 60px;
+
+    cursor: pointer;
+    padding-left: 27px;
+    @include my_fr2-sprite(icon_print_blue, $my_fr2-sprite-dimensions, 0, 0)
     }
-  dl dt {
-    margin-bottom: 5px;
-    text-align: right;
-    width: 150px;
-    float: left;
-    clear: both;
+
+  .document_title { 
+    font-size: 1.5em;
+    line-height: 1.6;
     }
-  dl dd {
-    float: left;
-    clear: none;
-    width: 300px;
+
+  .agency {
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    margin: 0.5em 0;
+    overflow: hidden;
+    padding: 0.5em 0;
     }
-  dl dd + dd {
-    clear: left;
-    margin-left: 171px;
+
+  .comment_details {
+    border: 1px #CCC solid;
+    background-color: #EFEFEF;
+    border-radius: 6px;
+    padding: 10px;
+    padding-top: 15px;
+    
+    dd.tracking_number {
+      border: 1px #CCC solid;
+      border-radius: 6px;
+      padding: 0px 5px;
+      width: auto;
+      background-color: white;
+      font-family: courier;
     }
+  }
 }
 
 /* COMMENT FORM SUBMIT SUCCESS */
@@ -365,7 +393,7 @@ table.attachments .progress-success .bar {
   }
 #flash_message.comment .comment_next_steps .print { margin-top: 20px; }
 #flash_message.comment .comment_next_steps .print p {
-  @include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 27px, 11px);
+  @include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 11px);
   }
 #flash_message.comment .comment_next_steps .social_media { margin-top: 15px; }
 #flash_message.comment .comment_next_steps .social_media p {

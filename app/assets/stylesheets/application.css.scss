@@ -8,18 +8,9 @@ $user_utils-spacing: 50px !default;
 @import "sprites/_user_utils.scss";
 @import "icons/my_fr2/user_utils/*.png";
 
-@import "mixins/_fr_colors.scss";
+@import "mixins.css.scss";
 
-@import "mixins/_css3_utils.scss";
-@import "mixins/_rounded.scss";
-@import "mixins/_shadows.scss";
-@import "mixins/_progress.scss";
-
-@import "design/patterns/my_fr.css.scss";
-@import "design/patterns/rounded_capsule.css.scss";
-@import "design/patterns/document_icons.css.scss";
-@import "design/patterns/list_item_filters.css.scss";
-
+@import "design/patterns.css.scss";
 
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";

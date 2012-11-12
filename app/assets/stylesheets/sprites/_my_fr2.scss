@@ -1,0 +1,84 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$my_fr2-sprite-base-class: ".my_fr2-sprite" !default;
+$my_fr2-sprite-dimensions: false !default;
+$my_fr2-position: 0% !default;
+$my_fr2-spacing: 0 !default;
+$my_fr2-repeat: no-repeat !default;
+$my_fr2-prefix: '' !default;
+$my_fr2-clean-up: true !default;
+$my_fr2-layout:vertical !default;
+$my_fr2-inline: false !default;
+
+
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $my_fr2-user_utils-s093529ae9b-position: $my_fr2-position !default;
+   $my_fr2-user_utils-s093529ae9b-spacing:  $my_fr2-spacing !default;
+   $my_fr2-user_utils-s093529ae9b-repeat:   $my_fr2-repeat !default;
+ 
+
+ $my_fr2-sprites: sprite-map("icons/my_fr2/*.png",
+ 
+   $my_fr2-user_utils-s093529ae9b-position: $my_fr2-user_utils-s093529ae9b-position, 
+   $my_fr2-user_utils-s093529ae9b-spacing:  $my_fr2-user_utils-s093529ae9b-spacing, 
+   $my_fr2-user_utils-s093529ae9b-repeat:   $my_fr2-user_utils-s093529ae9b-repeat,
+ 
+ $layout: $my_fr2-layout,
+ $cleanup: $my_fr2-clean-up
+ );
+
+
+// All sprites should extend this class
+// The my_fr2-sprite mixin will do so for you.
+@if $my_fr2-inline {
+  #{$my_fr2-sprite-base-class} {
+    background-image: inline-sprite($my_fr2-sprites);
+  } 
+} @else {
+  #{$my_fr2-sprite-base-class} {
+    background: $my_fr2-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function my_fr2-sprite-width($name) {
+    $file: sprite_file($my_fr2-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function my_fr2-sprite-height($name) {
+    $file: sprite_file($my_fr2-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin my_fr2-sprite-dimensions($name) {
+  @include sprite-dimensions($my_fr2-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin my_fr2-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($my_fr2-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin my_fr2-sprite($name, $dimensions: $my_fr2-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$my_fr2-sprite-base-class};
+  @include sprite($my_fr2-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin my_fr2-sprites($sprite-names, $dimensions: $my_fr2-sprite-dimensions, $prefix: sprite-map-name($my_fr2-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($my_fr2-sprites, $sprite-names, $my_fr2-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-my_fr2-sprites($dimensions: $my_fr2-sprite-dimensions, $prefix: sprite-map-name($my_fr2-sprites), $offset-x: 0, $offset-y: 0) {
+  @include my_fr2-sprites(user_utils-s093529ae9b, $dimensions, $prefix, $offset-x, $offset-y);
+}

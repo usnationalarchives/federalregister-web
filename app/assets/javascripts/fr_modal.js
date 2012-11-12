@@ -1,4 +1,6 @@
-function display_fr_modal(title, html, el) {
+function display_fr_modal(title, html, el, options) {
+      var modalOptions = options === undefined ? {} : options;
+
       var fr_modal = $('#fr_modal');
       if (fr_modal.size() === 0) {
           $('body').append('<div id="fr_modal"/>');
@@ -10,6 +12,10 @@ function display_fr_modal(title, html, el) {
         html
         ].join("\n")
       );
+
+      if( modalOptions.modalClass !== undefined ) {
+        fr_modal.addClass(options.modalClass);
+      }
 
       var closeModal = function(hash) { 
         el.trigger('modalClose');

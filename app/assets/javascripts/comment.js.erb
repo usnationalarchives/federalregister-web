@@ -293,9 +293,11 @@ $(function () {
     var commentFormStore = commentFormStorage.initialize( $('#flash_message .formtastic.comment') );
 
     var attachedCommentMessage = 'See attached file(s)';
-    var commentField = $('#comment_general_comment');
-    add_textarea_expander(commentField);
 
+    var commentField = $('#comment_general_comment');
+    /* make commentField automatically expand when needed as user types */
+    add_textarea_expander(commentField);
+    
     var container = $('.attachments tbody');
     var existing_attachments = $.parseJSON($('.attachments').data("existing"));
     var clearoutCommentPlaceholder = function (e, data) {
@@ -460,4 +462,35 @@ $(function () {
 
     });
   });
+
+  $('#flash_message.comment').delegate('a#print-comment', 'click', function(event) {
+    event.preventDefault();
+    console.log('click')
+
+    var $link = $(this),
+
+        modal_title    = 'Print your comment',
+        modal_template = $("#comment-print-summary-template"),
+        modal_data     = $link.data('comment-data'),
+      
+        compiled_template = Handlebars.compile( modal_template.html() ),
+        modal_html        = compiled_template(  { fields: modal_data, 
+                                                  document_details: $link.data('current-document-details'), 
+                                                  comment_details: $link.data('comment-details')
+                                                } );
+
+        display_fr_modal(modal_title, modal_html, $link, {modalClass: "print_modal"});
+
+    $('body').addClass('hide_body_content');
+  });
+
+  $('#flash_message.comment').delegate('a#print-comment', 'modalClose', function(event) {
+    $('body').removeClass('hide_body_content');
+  });
+
+  $('body').delegate('#fr_modal .print_button', 'click', function(event) {
+    event.preventDefault();
+    window.print();
+  });
+
 });

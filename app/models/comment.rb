@@ -82,7 +82,7 @@ class Comment < ApplicationModel
   def persist_comment_data
     @comment_data = comment_form.humanize_form_data(attributes)
 
-    @comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name).join("\n")}
+    @comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name)}
 
     self.encrypted_comment_data = encrypt(@comment_data.to_json) 
   end
