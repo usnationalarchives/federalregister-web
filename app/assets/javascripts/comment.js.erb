@@ -40,25 +40,28 @@ $(function () {
         },
 
         success: function(response) {
-          var comment_form = $('.ajax-comment-data');
+          var comment_form = $('.comment_wrapper');
+
+          $('.ajax-comment-data').animate({height: '42px'}, 400);
+          $('.ajax-comment-data').scrollintoview({duration: 400});
           comment_form.slideUp(400, function() { 
             comment_form.remove();
 
-            var success_page = $('<div>').addClass('ajax-comment-data').html(response);
+            var success_page = $('<div>').addClass('comment_wrapper').html(response);
             success_page.hide();
-            $('#flash_message').append( success_page );
-            success_page.slideDown(800, function() {
-              $('.comment_form_wrapper').closest('div').scrollintoview({duration: 300});                        
-            });
+            $('.ajax-comment-data').append( success_page );
+
+            $('.ajax-comment-data').animate({height: success_page.css('height')}, 800);
+            success_page.slideDown(800);            
           });
           clear_saved_form_state( $('.comment_form_wrapper').data('comment-document-number') );
         },
 
         error: function(response) {
-          $('#comment_wrapper').replaceWith(response.responseText);
+          $('.comment_wrapper').html(response.responseText);
           initializeCommentForm();
 
-          $('#comment_wrapper .instructions').scrollintoview({duration: 200});
+          $('.comment_wrapper .instructions').scrollintoview({duration: 200});
         },
 
         ajax_submit: function(options) {
@@ -99,7 +102,11 @@ $(function () {
           var form_load_handler = this;
 
           form_load_handler.comment_link = $('#flash_message.comment a#start_comment');
-          form_load_handler.comment_div = $('#flash_message.comment');
+          form_load_handler.comment_div = $('<div>').addClass('ajax-comment-data');
+
+          form_load_handler.comment_div.hide();
+          $('#flash_message.comment').after( form_load_handler.comment_div );
+
           form_load_handler.loading_div = $('<div>').addClass('loading').append(
                                             $('<span>').addClass('loader').html('Loading Comment Form')
                                           );
@@ -109,9 +116,8 @@ $(function () {
         },
 
         ui_trigger_loading: function() {
-          this.loading_div.hide();
-          this.loading_div.insertAfter( this.comment_div );
-          this.loading_div.slideDown(800);
+          this.comment_div.append( this.loading_div );
+          this.comment_div.slideDown(800);
         },
 
         generate_ajax_options: function() {
@@ -169,24 +175,26 @@ $(function () {
           var form_load_handler = this;
 
           form_load_handler.generate_comment_form(response);
-          form_load_handler.comment_div.append( form_load_handler.comment_form );
 
-          /* form must be initialized after it is added to the dom */
-          initializeCommentForm();
-
-          form_load_handler.loading_div.slideUp(800, function() {
+          form_load_handler.loading_div.fadeOut(600, function() {
             $('#flash_message.comment p .button').fadeOut(400);
+            $('.ajax-comment-data').css('height', '42px').animate({
+              height: form_load_handler.comment_form.css('height')
+            }, 800);
             form_load_handler.comment_form.slideDown(800);
           });
         },
 
         error: function() {
-          alert('error!');
+          alert('We\'re unable to retrieve the comment form from Regulations.gov at the moment.');
         },
 
         generate_comment_form: function(response) {
-          this.comment_form = $('<div>').addClass('ajax-comment-data').html(response);
+          this.comment_form = $('<div>').addClass('comment_wrapper').html(response);
           this.comment_form.hide();
+          this.comment_div.append(this.comment_form);
+
+          initializeCommentForm();
         }
       };
 
@@ -233,7 +241,7 @@ $(function () {
       template(fields);
     };
 
-    $('#flash_message.comment').delegate('.comment_preview', 'click', function(event) {
+    $('#metadata_content_area').delegate('.comment_preview', 'click', function(event) {
       event.preventDefault();
 
       var fields = commentForm.parseFields();
@@ -290,7 +298,7 @@ $(function () {
     }
 
     /* initialize local storage of user's form progress */
-    var commentFormStore = commentFormStorage.initialize( $('#flash_message .formtastic.comment') );
+    var commentFormStore = commentFormStorage.initialize( $('.formtastic.comment') );
 
     var attachedCommentMessage = 'See attached file(s)';
 
@@ -357,7 +365,7 @@ $(function () {
     }
 
     /* add public icons where appropriate */
-    $('#flash_message .formtastic.comment .inputs li').each(function() {
+    $('.formtastic.comment .inputs li').each(function() {
       var $li = $(this);
       if( $li.hasClass('public') ) {
         $li.find(' > :input').last().after( $('<span>').addClass('public') );
@@ -371,7 +379,7 @@ $(function () {
     /* make the file upload button pretty */
     var add_file_button = $('<div>').addClass('add_file button').text('Add a file');
     $('#fileupload').after( add_file_button );
-    $('#flash_message.comment').delegate('.add_file', 'click', function() {
+    $('#metadata_content_area').delegate('.add_file', 'click', function() {
       $('#fileupload').trigger('click');
     });
     $('#fileupload').hide();
@@ -393,13 +401,13 @@ $(function () {
       validate_field(this);
     });
 
-    /* add event to submit for, */
-    $('#flash_message').delegate('.formtastic.comment .button.commit:not(.disabled)', 'click', function() {
+    /* add event to submit form */
+    $('#metadata_content_area').delegate('.formtastic.comment .button.commit:not(.disabled)', 'click', function() {
       $(this).closest('form').submit();
     });
 
     /* handle form submission */
-    $('#flash_message').delegate('.formtastic.comment', 'submit', function(event) {
+    $('#metadata_content_area').delegate('.formtastic.comment', 'submit', function(event) {
       event.preventDefault();
       var $form = $(this),
           handler = comment_form_submission_handler.initialize($form);
@@ -409,7 +417,7 @@ $(function () {
 
   };
 
-  $('#flash_message.comment').delegate('a.button', 'click', function(event) {
+  $('#metadata_content_area').delegate('a#start_comment', 'click', function(event) {
     event.preventDefault();
     var handler = comment_form_load_handler.initialize();
 
@@ -465,7 +473,6 @@ $(function () {
 
   $('#flash_message.comment').delegate('a#print-comment', 'click', function(event) {
     event.preventDefault();
-    console.log('click')
 
     var $link = $(this),
 
