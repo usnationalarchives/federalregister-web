@@ -1,4 +1,5 @@
 #flash_message.comment { z-index: 1000; }
+
 #metadata_content_area .loading {
   height: 23px;
   padding: 10px;
@@ -8,21 +9,32 @@
   @include rounded-bottom(6);
 
   position: relative;
-  top: -23px;
   z-index: 600;
+  
+  .loader {
+    font-weight: bold;
+    margin: 0 auto;
+    width: 180px;
+    display: block;
+    background: url(/my/assets/orange_loader_CCC.gif) 159px 0 no-repeat;
   }
-#metadata_content_area .loading .loader {
-  font-weight: bold;
-  margin: 0 auto;
-  width: 180px;
-  display: block;
-  background: url(/my/assets/orange_loader_CCC.gif) 159px 0 no-repeat;
+}
+
+.ajax-comment-data { 
+  background-color: #D7D7D7;
+  @include rounded-bottom(6);
+  min-height: 48px;
+  top: -23px;
+  position: relative;
+
+  p { font-family: gesta-1, gesta-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
   }
 
 .comment_form_wrapper {
   background-color: #D7D7D7;
   padding: 20px;
   padding-top: 10px;
+  @include rounded-bottom(6);
   }
 
 .formtastic.comment {
@@ -32,112 +44,133 @@
   @include border-radius(5);
 }
 
-.formtastic.comment li.input { 
-  margin-bottom: 25px;
-  width: 630px;
+.formtastic.comment {
+  li.input { 
+    margin-bottom: 25px;
+    width: 630px;
   }
-.formtastic.comment li.error {
-  background: none;
-  margin: inherit;
-  padding: inherit;
+  li.error {
+    background: none;
+    margin: inherit;
+    padding: inherit;
   }
-.formtastic.comment li span.public {
-  @include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);
-  height: 25px;
-  width: 25px;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  top: 4px;
+  
+  li {
+    span.public {
+      @include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);
+      height: 25px;
+      width: 25px;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      top: 4px;
+    }
+    select + span.public { 
+      top: 2px;
+      left: 2px;
+    }
+    textarea + span.public,
+    input[type='file'] + span.public { 
+      top: 0px;
+    }
   }
-.formtastic.comment li select + span.public { 
-  top: 2px;
-  left: 2px;
-  }
-.formtastic.comment li textarea + span.public,
-.formtastic.comment li input[type='file'] + span.public { 
-  top: 0px;
 }
 
-.formtastic.comment fieldset .label {
-  display: inline-block;
-  position: relative;
-  width: 200px;
-  vertical-align: center;
-  font-weight: bold;
-  font-size: 15px;
-  }
-.formtastic.comment fieldset .text .label { 
-  vertical-align: top;
-  position: relative;
-  top: 5px;
+.formtastic.comment fieldset {
+  .label {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 15px;
   }
 
-.formtastic.comment fieldset .label abbr { 
-  color: $fr-orange;
-  margin-left: 2px;
-  font-size: 20px;
-  position: absolute;
+  .text .label { 
+    vertical-align: top;
+    position: relative;
+    top: 5px;
   }
 
-.formtastic.comment input[type='text'],
-.formtastic.comment select,
-.formtastic.comment textarea {
-  height: 25px;
-  width: 375px;
-  font-size: 13px;
-  @include input-box-shadow('#CCC', '#EEE', '#FFF');
-  @include border-radius(3);
+  .label abbr { 
+    color: $fr-orange;
+    margin-left: 2px;
+    font-size: 20px;
+    position: absolute;
   }
-.formtastic.comment textarea { 
-  height: auto;
-  width: 373px;
-  }
-.formtastic.comment select { width: 380px; }
+}
 
-.formtastic.comment input[type='text']:focus,
-.formtastic.comment select:focus,
-.formtastic.comment textarea:focus {
-  @include input-focus-box-shadow($fr-green);
+.formtastic.comment {
+  input[type='text'],
+  select,
+  textarea {
+    height: 25px;
+    width: 375px;
+    font-size: 13px;
+    @include input-box-shadow('#CCC', '#EEE', '#FFF');
+    @include border-radius(3);
   }
 
-#flash_message .comment_form_wrapper .instructions p {
+  textarea { 
+    height: auto;
+    width: 373px;
+  }
+
+  select { width: 380px; }
+
+  input[type='text']:focus,
+  select:focus,
+  textarea:focus {
+    @include input-focus-box-shadow($fr-green);
+  }
+}
+
+.comment_form_wrapper .instructions p {
   padding: 10px;
   background: none;
   line-height: 1.2em;
   }
-#flash_message.comment .notice.comment_reloaded {
+.comment_wrapper .notice.comment_reloaded {
   font-size: 1.2em;
   margin-bottom: 20px;
   }
 
-#flash_message .formtastic .buttons { margin-top: 6em; }
-#flash_message .formtastic .button {
-  position: relative;
-  padding: 10px;
-  cursor: pointer;
+.formtastic.comment {
+  .buttons { 
+    margin-top: 6em;
+
+    .commit.button { background-color: $fr-green; }
+    .commit.button:hover { background-color: $fr-orange; }
+
+    .disabled.commit.button,
+    .disabled.commit.button:hover { background-color: #CCC; }
+    .disabled.commit.button input {
+      padding-right: 25px;
+      background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
+    }
   }
-#flash_message .formtastic .button input {
-  width: 200px;
-  box-shadow: none;
-  font-weight: bold;
-  color: white;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 1em;
-  vertical-align: middle;
+
+  .button {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    
+    input {
+      width: 200px;
+      box-shadow: none;
+      font-weight: bold;
+      color: white;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 1em;
+      vertical-align: middle;
+    }
   }
-#flash_message .formtastic .buttons .disabled,
-#flash_message .formtastic .buttons .disabled:hover {
-  background-color: #CCC;
-  }
-#flash_message .formtastic .buttons .disabled input {
-  padding-right: 25px;
-  background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
-  }
-#flash_message .formtastic .comment_preview {
+}
+
+.formtastic.comment .comment_preview {
   line-height: 1.2em;
   font-size: 1.1em;
   font-weight: bold;
@@ -146,31 +179,38 @@
   top: 2px;
   }
 
-.formtastic.comment .errors {
-  background: $fr-light-red;
-  border: 1px solid $fr-red;
-  padding: .5em .5em .25em;
-  @include border-radius(6);
-  text-align: center;
-  font-size: 1.2em;
-  color: $fr-red;
+.formtastic.comment {
+  .errors {
+    background: $fr-light-red;
+    border: 1px solid $fr-red;
+    padding: .5em .5em .25em;
+    @include border-radius(6);
+    text-align: center;
+    font-size: 1.2em;
+    color: $fr-red;
   }
-.formtastic.comment .error .label { color: $fr-red; }
-.formtastic.comment .error input[type='text'],
-.formtastic.comment .error select,
-.formtastic.comment .error textarea {
-  @include input-focus-box-shadow($fr-red);
+
+ .error {
+    .label { color: $fr-red; }
+
+    input[type='text'],
+    select,
+    textarea { @include input-focus-box-shadow($fr-red); }
   }
-#flash_message .formtastic.comment p.inline-errors {
-  background: none;
-  font-size: 1em;
-  line-height: 1.4em;
-  color: $fr-red;
-  text-align: right;
-  padding-right: 40px;
-  padding-top: 5px;
-  }
-#flash_message .formtastic.comment p.inline-errors.warning { color: $fr-green; }
+}
+
+.formtastic.comment {
+  p.inline-errors {
+    background: none;
+    font-size: 1em;
+    line-height: 1.4em;
+    color: $fr-red;
+    text-align: right;
+    padding-right: 40px;
+    padding-top: 5px;
+    }
+  p.inline-errors.warning { color: $fr-green; }
+}
 
 div.comment-preview-modal {
   display: none;
@@ -184,104 +224,122 @@ div.comment-preview-modal {
   width: 500px;
   }
 
-#flash_message .formtastic .file.input .label { 
+.formtastic .file.input .label { 
   margin-right: 0.8em;
   margin-top: 2px;
   vertical-align: top;
   }
-#flash_message .formtastic .file #fileupload { 
-  margin-left: 0;
-  width: 381px;
-  }
-#flash_message .formtastic .file .add_file {
-  height: 20px;
-  padding: 0;
-  padding-top: 3px;
-  padding-left: 10px;
-  min-width: 100px;
-  width: 100px;
-  margin-right: 275px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  background-color: $fr-green;
-  @include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);
-  }
-#flash_message .formtastic .file .add_file:hover { background-color: lighten($fr-green, 10); }
-#flash_message .formtastic .file td.cancel,
-#flash_message .formtastic .file td.delete { 
-  vertical-align: middle;
-  }
-#flash_message .formtastic .file button.cancel, 
-#flash_message .formtastic .file button.delete {
-  height: 20px;
-  padding: 0;
-  padding-top: 1px;
-  min-width: 60px;
-  width: 60px;
-  font-weight: bold;
-  background-color: $fr-red;
-  top: 2px;
-  position: relative;
-  text-transform: none;
-  border: 0;
-  font-size: 0.8em;
-  }
-#flash_message .formtastic .file button.cancel:hover, 
-#flash_message .formtastic .file button.delete:hover {
-  background-color: lighten($fr-red, 10);
-  }
-#flash_message .formtastic .file button.cancel {
-  @include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);
-  }
-#flash_message .formtastic .file button.delete {
-  @include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);
-  }
-#flash_message .formtastic .file button.cancel span,
-#flash_message .formtastic .file button.delete span { padding-left: 10px; }
 
-#flash_message .formtastic .file tr.upload-error button.cancel { top: 0; }
-#flash_message .formtastic .file tr.upload-error td.file-error { 
-  color: $fr-red;
-  font-weight: bold;
+.formtastic.comment .file {
+  #fileupload { 
+    margin-left: 0;
+    width: 381px;
+    }
+  
+  .add_file {
+    color: #FFF;
+    height: 20px;
+    padding: 0;
+    padding-top: 2px;
+    padding-left: 27px;
+    min-width: inherit;
+    width: 75px;
+    margin-right: 275px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: $fr-green;
+    @include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);
+    }
+  .add_file:hover { background-color: lighten($fr-green, 10); }
+
+  td.cancel,
+  td.delete { vertical-align: middle; }
+
+  button.cancel, 
+  button.delete {
+    color: #FFF;
+    height: 20px;
+    padding: 0;
+    padding-top: 1px;
+    min-width: 60px;
+    width: 60px;
+    font-weight: bold;
+    background-color: $fr-red;
+    top: 1px;
+    position: relative;
+    text-transform: none;
+    border: 0;
+    font-size: 0.8em;
+    }
+  button.cancel:hover, 
+  button.delete:hover { background-color: lighten($fr-red, 10); }
+
+  button.cancel {
+    @include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);
+    }
+  button.delete {
+    @include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);
+    }
+  
+  button.cancel span,
+  button.delete span { 
+    padding-left: 10px;
+    top: -1px;
+    position: relative;
   }
+
+  tr.upload-error button.cancel { top: 0; }
+  tr.upload-error td.file-error { 
+    color: $fr-red;
+    font-weight: bold;
+  }
+}
 
 table.attachments { 
   width: 640px;
   margin-left: 215px;
+  
+  tr {
+    margin-top: 5px;
+    border-top: 1px solid #CCC;
   }
-table.attachments tr {
-  margin-top: 5px;
-  border-top: 1px solid #CCC;
-  }
-table.attachments tr.upload-error td { vertical-align: middle; }
-table.attachments tr.upload-error td.file-error {
-  padding: 0;
-  display: inline-block;
-  width: 215px;
-  }
-table.attachments tr,
-table.attachments td.name { 
-  padding-left: 0;
-  padding-bottom: 3px;
-  }
-table.attachments td.size span {
-  text-align: right;
-  width: 75px;
-  display: inline-block;
+  tr.upload-error {
+    td { vertical-align: middle; }
+    td.file-error {
+      padding: 0;
+      display: inline-block;
+      width: 215px;
+    }
   }
 
+  tr,
+  td.name { 
+    padding-left: 0;
+    padding-bottom: 3px;
+  }
+  td.size span {
+    text-align: right;
+    width: 75px;
+    display: inline-block;
+  }
+}
+
 /* PROGRESS BARS */
-table.attachments .progress {
-  margin-bottom: 0;
-  position: relative;
-  top: 5px;
-  width: 200px;
+table.attachments {
+  .progress {
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+    width: 200px;
   }
-table.attachments td.progress-bar { padding-left: 0; }
-table.attachments .progress-striped .bar { background-color: $fr-orange; }
-table.attachments .progress-success .bar {
-  @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
+
+  td.progress-bar { padding-left: 0; }
+  .progress-striped .bar { background-color: $fr-orange; }
+  .progress-success .bar {
+    @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
+    padding-top: 1px;
   }
+}
 
 #fr_modal.comment-preview-modal,
 #fr_modal.print_modal { 
@@ -337,12 +395,13 @@ table.attachments .progress-success .bar {
 }
 
 /* COMMENT FORM SUBMIT SUCCESS */
-#flash_message.comment .notice {
+.comment_wrapper .notice {
   padding: 15px;
   margin: 5px auto;
   @include border-radius(6);
-  }
-#flash_message.comment .notice p.info { text-align: left; }
+  
+  p.info { text-align: left; }
+}
 
 .tracking_number {
   background-color: #EFEFEF;
@@ -352,86 +411,117 @@ table.attachments .progress-success .bar {
   @include border-radius(3);
   }
 
-#flash_message.comment .notice,
-#flash_message.comment .comment_next_steps {
-  width: 90%;
-  margin: 0 auto;
+.comment_wrapper {
+  .notice,
+  .comment_next_steps {
+    width: 90%;
+    margin: 0 auto;
   }
 
-
-#flash_message.comment .notice p,
-#flash_message.comment .comment_next_steps p {
-  padding: 10px;
-  line-height: 1.3em;
-  background: none;
-  margin-left: 0;
+  .notice p,
+  .comment_next_steps p {
+    padding: 3px 10px;
+    line-height: 1.3em;
+    background: none;
+    margin-left: 0;
   }
+}
 
-#flash_message.comment .comment_next_steps { 
+.comment_wrapper .comment_next_steps { 
   margin-top: 20px;
   background-color: #EFEFEF;
   padding: 15px;
   @include input-box-shadow('#CCC', '#EEE', '#FFF');
   @include border-radius(5);
+
+  h2 { font-size: 1.8em }
+
+  p { padding-left: 60px; }
+  form { 
+    padding-left: 90px;
+
+    .inputs { font-size: 1.1em; }
+    .buttons {
+      margin-top: 0;
+      margin-left: 0;
+
+      .button { 
+        padding: 5px;
+        color: #FFF;
+        height: 20px;
+        font-weight: bold;
+        background-color: $fr-green;
+      }
+      .button:hover { background-color: $fr-orange; }
+      .button input { 
+        width: 100px;
+        box-shadow: none;
+        font-weight: bold;
+        color: white;
+        border: none;
+        background: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 1em;
+        vertical-align: middle;
+      }
+    }
+  }
 }
-#flash_message.comment .comment_next_steps h2 { font-size: 1.8em }
 
-#flash_message.comment .comment_next_steps p { padding-left: 60px; }
-#flash_message.comment .comment_next_steps form { padding-left: 90px; }
-
-#flash_message.comment .comment_next_steps form .inputs { font-size: 1.1em; }
-#flash_message.comment .comment_next_steps form .buttons {
-  margin-top: 0;
-  margin-left: 0;
+.comment_wrapper .social_media .media_buttons { margin-left: 90px; }
+.comment_wrapper .comment_next_steps {
+  .my_fr p {
+    @include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 3px);
+    margin-botton: 10px;
   }
-#flash_message.comment .comment_next_steps form .buttons .button { padding: 5px; }
-#flash_message.comment .comment_next_steps form .buttons .button input { width: 100px; }
-
-#flash_message.comment .social_media .media_buttons { margin-left: 90px; }
-#flash_message.comment .comment_next_steps .my_fr p {
-  @include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 9px);
-  }
-#flash_message.comment .comment_next_steps .print { margin-top: 20px; }
-#flash_message.comment .comment_next_steps .print p {
-  @include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 11px);
-  }
-#flash_message.comment .comment_next_steps .social_media { margin-top: 15px; }
-#flash_message.comment .comment_next_steps .social_media p {
-  @include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, 6px);
+  .my_fr .formtastic.comment_notifications ol { margin-bottom: 0; }
+  
+  .print { margin-top: 20px; }
+  .print p {
+    @include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 2px);
   }
 
-#flash_message.comment .social_media .media_buttons li {
-  display: inline-block;
-  margin: 5px 0;
-  overflow: hidden;
-  width: 600px;
+  .retrieval {
+    padding: 0;
+    text-align: center;
+    margin-top: 35px;
+    font-size: 0.9em;
+    font-style: italic;
   }
-#flash_message.comment .media_buttons .left {
-  float: left;
-  clear: both;
-  width: 32px;
-  }
-#flash_message.comment .social_media .media_buttons a.button {
-  width: 32px;
-  min-width: initial;
-  position: relative;
-  padding: 0;
-  }
-#flash_message.comment .media_buttons .right {
-  float: left;
-  width: 500px;
-  }
-#flash_message.comment .comment_next_steps .social_media .media_buttons p {
-  font-size: 1.1em;
-  background: none;
-  padding: 0 10px;
+  .retrieval p { padding: 0 }
+
+  .social_media { margin-top: 15px; }
+  .social_media p {
+    @include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, -2px);
   }
 
-#flash_message.comment .comment_next_steps .retrieval {
-  padding: 0;
-  text-align: center;
-  margin-top: 35px;
-  font-size: 0.9em;
-  font-style: italic;
+  .social_media .media_buttons {
+    li {
+      display: inline-block;
+      margin: 5px 0;
+      overflow: hidden;
+      width: 600px;
+    }
+    .left {
+      float: left;
+      clear: both;
+      width: 32px;
+    }
+    a.button {
+      width: 32px;
+      min-width: initial;
+      position: relative;
+      padding: 0;
+    }
+    .right {
+      float: left;
+      width: 500px;
+    }
+    p {
+      font-size: 1.1em;
+      background: none;
+      padding: 0 10px;
+    }
   }
-#flash_message.comment .comment_next_steps .retrieval p { padding: 0 }
+}
