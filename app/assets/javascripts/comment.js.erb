@@ -210,7 +210,6 @@ $(function () {
 
         if (list_item.hasClass('combo')) {
           var select = $(list_item.find('select').first());
-          console.log("foo", select);
           if (select.length) {
             field.values = [select.find('option[value="' + select.val() + '"]').first().text()];
           }
@@ -257,6 +256,7 @@ $(function () {
         modal.remove();
       });
 
+      modal.addClass('jqmWindow');
       modal.jqm({
           modal: true,
           toTop: true
@@ -386,18 +386,18 @@ $(function () {
 
 
     /* add events for max characters in a text field */
-    $('#flash_message.comment').delegate('li.input[data-max-size]', 'change', function() {
+    $('#metadata_content_area').delegate('.formtastic.comment li.input[data-max-size]', 'change', function() {
       enforce_characters_remaining(this);
     });
-    $('#flash_message.comment').delegate('li.input[data-max-size]', 'keyup', function() {
+    $('#metadata_content_area').delegate('.formtastic.comment li.input[data-max-size]', 'keyup', function() {
       enforce_characters_remaining(this);
     });
 
     /* add events to clear validation errors */
-    $('#flash_message.comment').delegate('li.error.input', 'keyup', function() {
+    $('#metadata_content_area').delegate('.formtastic.comment li.error.input', 'keyup', function() {
       validate_field(this);
     });
-    $('#flash_message.comment').delegate('li.error.input', 'change', function() {
+    $('#metadata_content_area').delegate('.formtastic.comment li.error.input', 'change', function() {
       validate_field(this);
     });
 
@@ -425,7 +425,7 @@ $(function () {
   });
 
 
-  $('#flash_message.comment').delegate('a#comment-start-over', 'click', function(event) {
+  $('#metadata_content_area').delegate('a#comment-start-over', 'click', function(event) {
     event.preventDefault();
     
     var document_number = $('.doc_number').text(),
@@ -471,7 +471,7 @@ $(function () {
     });
   });
 
-  $('#flash_message.comment').delegate('a#print-comment', 'click', function(event) {
+  $('#metadata_content_area').delegate('a#print-comment', 'click', function(event) {
     event.preventDefault();
 
     var $link = $(this),
@@ -491,7 +491,7 @@ $(function () {
     $('body').addClass('hide_body_content');
   });
 
-  $('#flash_message.comment').delegate('a#print-comment', 'modalClose', function(event) {
+  $('#metadata_content_area').delegate('a#print-comment', 'modalClose', function(event) {
     $('body').removeClass('hide_body_content');
   });
 

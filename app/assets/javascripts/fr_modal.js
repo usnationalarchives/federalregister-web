@@ -2,9 +2,9 @@ function display_fr_modal(title, html, el, options) {
       var modalOptions = options === undefined ? {} : options;
 
       var fr_modal = $('#fr_modal');
-      if (fr_modal.size() === 0) {
-          $('body').append('<div id="fr_modal"/>');
-      }
+      fr_modal.remove();
+      fr_modal = $('<div id="fr_modal"/>');
+      
       fr_modal.html(
         [
         '<a href="#" class="jqmClose">Close</a>',
@@ -16,6 +16,7 @@ function display_fr_modal(title, html, el, options) {
       if( modalOptions.modalClass !== undefined ) {
         fr_modal.addClass(options.modalClass);
       }
+      fr_modal.addClass('jqmWindow');
 
       var closeModal = function(hash) { 
         el.trigger('modalClose');
