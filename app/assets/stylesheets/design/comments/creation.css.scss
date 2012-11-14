@@ -345,6 +345,7 @@ table.attachments {
 #fr_modal.print_modal { 
   @extend %fr_modal;
   width: 700px;
+
   dl dt { width: 200px; }
   dl.comment_details dt { width: 190px; }
   dl dd { width: 450px; }
@@ -382,6 +383,7 @@ table.attachments {
     border-radius: 6px;
     padding: 10px;
     padding-top: 15px;
+    margin-bottom: 1.5em;
     
     dd.tracking_number {
       border: 1px #CCC solid;
@@ -393,16 +395,10 @@ table.attachments {
     }
   }
 }
+/* jqm seems to be having a hardtime position this so we update the default margin left */
+#fr_modal.print_modal { margin-left: -350px; }
 
 /* COMMENT FORM SUBMIT SUCCESS */
-.comment_wrapper .notice {
-  padding: 15px;
-  margin: 5px auto;
-  @include border-radius(6);
-  
-  p.info { text-align: left; }
-}
-
 .tracking_number {
   background-color: #EFEFEF;
   font-family: courier;
@@ -416,6 +412,14 @@ table.attachments {
   .comment_next_steps {
     width: 90%;
     margin: 0 auto;
+  }
+
+  .notice {
+    padding: 15px;
+    margin-top: 13px;
+    @include border-radius(6);
+    
+    p.info { text-align: left; }
   }
 
   .notice p,

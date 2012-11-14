@@ -68,7 +68,7 @@
             <%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!") %>
           </div>
           <div class="right">
-            <p>We'll provide a basic tweet with a link to the article you commented on. You'll be able to customize the message before you tweet.</p>
+            <p><%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!", "Create a tweet", false) %>. We'll provide a basic tweet with a link to the article you commented on. You'll be able to customize the message before you tweet.</p>
           </div>
         </li>
         <li>
@@ -76,7 +76,7 @@
             <%= link_to_facebook(@comment.article.short_article_url, @comment.article.title) %>
           </div>
           <div class="right">
-            <p>We provide the title of the article you commented on and a link to it. You'll be able to customize your Facebook wall message before it is posted.</p>
+            <p><%= link_to_facebook(@comment.article.short_article_url, @comment.article.title, "Post to your Facebook wall", false) %>. We'll provide the title of the article you commented on and a link to it. You'll be able to customize your Facebook wall message before it is posted.</p>
           </div>
         </li>
       </ul>

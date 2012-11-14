@@ -8,7 +8,10 @@
   
   .modal_content { overflow-y: visible; }
 
-  dl { height: auto; }
+  dl { 
+    height: auto;
+    margin-bottom: 1em;
+  }
   dl dt { width: 200px; }
   dl dd { width: 400px; }
   dl dd + dd { margin-left: 240px; }
