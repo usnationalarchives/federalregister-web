@@ -28,7 +28,11 @@ MyFr2::Application.routes.draw do
     end
   end
 
-  resources :comments, :only => [:index]
+  resources :comments, :only => [:index] do
+    collection do
+      post :persist_for_login
+    end
+  end
   match 'articles/:document_number/comments/new' => 'comments#new',
    :as => :new_comment,
    :via => :get

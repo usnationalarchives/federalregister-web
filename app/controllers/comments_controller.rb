@@ -37,6 +37,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def persist_for_login
+    %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification).each do |field|
+      session[field] = params[:comment_notifications][field]
+    end
+
+    if params[:commit] == "Sign In"
+      redirect_to new_session_path
+    else
+      redirect_to new_user_registration_path
+    end
+  end
 
   private
 
