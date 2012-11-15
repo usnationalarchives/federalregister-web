@@ -40,6 +40,12 @@ MyFr2::Application.routes.draw do
   resources :comment_attachments,
     :only => [:create, :destroy]
 
+  resource :comment_publication_notifications,
+    :only => [:create, :destroy]
+
+  resource :comment_followup_document_notifications,
+    :only => [:create, :destroy]
+
   resources :subscriptions do
     member do
       get :unsubscribe

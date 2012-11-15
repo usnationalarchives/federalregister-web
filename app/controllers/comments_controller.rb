@@ -23,6 +23,12 @@ class CommentsController < ApplicationController
   end
 
   def create
+    if user_signed_in?
+      @comment.user = current_user
+      @comment.comment_publication_notification = true
+      @comment.followup_document_notification = true
+    end
+
     if @comment.save
       @comment = CommentDecorator.decorate(@comment)
       render :action => :show, :status => 200

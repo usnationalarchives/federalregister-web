@@ -26,16 +26,23 @@
           please follow-up directly with the agency contact listed in the document.
         <% end %>
       </p>
+
+      <%= csrf_meta_tag %>
+      <ul>
+        <li>You will be notified when your comment is made public <%= link_to 'Remove notification', comment_publication_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
+        <li>You will be notified when a future article mentions the article you commented on <%= link_to 'Remove notification', comment_followup_document_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
+      </ul>
     <% else %>
       <p>
         Sign in / sign up to save your comment tracking number and recieve a copy of your comment via email.
       </p>
 
-      <%= semantic_form_for :comment_notifications do |f| %>
+      <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>
         <%= f.inputs do %>
-          <%= f.input :made_public, :as => :boolean, :label => 'Notify me when my comment is made public.', :input_html => {:checked => true} %>
-          <%= f.input :future_reference, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.', :input_html => {:checked => true} %>
+          <%= f.input :comment_publication_notification, :as => :boolean, :label => 'Notify me when my comment is made public.', :input_html => {:checked => true} %>
+          <%= f.input :followup_document_notification, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.', :input_html => {:checked => true} %>
           <%= f.input :comment_tracking_number, :as => :hidden, :value => @comment.comment_tracking_number %>
+          <%= f.input :comment_secret, :as => :hidden, :value => @comment.secret %>
         <% end %>
         <%= f.buttons do %>
           <%= f.commit_button :sign_in, :label => 'Sign In'%>
