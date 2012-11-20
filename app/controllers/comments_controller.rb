@@ -61,7 +61,7 @@ class CommentsController < ApplicationController
       SECRETS['regulations_dot_gov']['post_token']
     )
     if @entry.regulations_dot_gov_url
-      document_id = 'FDA_FRDOC_0001-3317' || @entry.regulations_dot_gov_url.split(/=/).last
+      document_id = @entry.regulations_dot_gov_url.split(/=/).last
       @comment_form = client.get_comment_form(document_id)
     else
       raise ActiveRecord::RecordNotFound

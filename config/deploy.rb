@@ -140,6 +140,7 @@ after "deploy:migrate",          "assets:wrangle_sprites"
 after "assets:wrangle_sprites",  "assets:precompile"
 after "assets:precompile",       "passenger:restart"
 after "passenger:restart",       "varnish:clear_cache"
+after "varnish:clear_cache",     "airbrake:notify_deploy"
 
 
 #############################################################
