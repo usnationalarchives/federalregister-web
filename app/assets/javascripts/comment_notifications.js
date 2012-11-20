@@ -15,6 +15,7 @@ $(document).ready( function() {
       success: function(response) {
         $link.html( response.link_text );
         $link.data('method', response.method);
+        $link.closest('li').find('.description').html(response.description);
       }
     });
   });

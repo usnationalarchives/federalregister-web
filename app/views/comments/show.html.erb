@@ -29,8 +29,8 @@
 
       <%= csrf_meta_tag %>
       <ul>
-        <li>You will be notified when your comment is made public <%= link_to 'Remove notification', comment_publication_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
-        <li>You will be notified when a future article mentions the article you commented on <%= link_to 'Remove notification', comment_followup_document_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
+        <li><span class="description"><%= t('notifications.comment.publication.active') %></span> <%= link_to t('notifications.links.remove'), comment_publication_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
+        <li><span class="description"><%= t('notifications.comment.followup_document.active') %></span> <%= link_to t('notifications.links.remove'), comment_followup_document_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
       </ul>
     <% else %>
       <p>
