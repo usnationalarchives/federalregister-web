@@ -9,7 +9,7 @@ gem 'airbrake', '3.0.9'
 #gem 'federal_register', '0.5.0'
 #gem 'federal_register', :path => '../federal_register'
 gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git", 
-                        :ref => "271fbf8c9515b53847c3ffdbbb0b9a91507cc60c"
+                        :ref => "7500e781ef3b0c68e507512bd3024c30f7c15aea"
 
 gem 'devise', '1.5.4'
 gem 'omniauth', '1.0.1'
@@ -22,11 +22,6 @@ gem 'formtastic', '2.0.2'
 gem 'draper',     '0.18.0'
 
 gem 'jquery-rails'
-gem 'sass-rails',    "~> 3.2.5"
-gem "sass",          "~> 3.2.1"
-gem 'compass', '0.12.2'
-gem 'compass-rails', "1.0.3"
-gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
@@ -47,6 +42,7 @@ gem 'sendgrid'
 group :assets do 
   gem 'sass-rails',    "~> 3.2.5"
   gem "sass",          "~> 3.2.1"
+  gem 'compass',       '0.12.2'
   gem 'compass-rails', "1.0.3"
   gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
