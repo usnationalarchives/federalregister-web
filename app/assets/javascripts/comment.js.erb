@@ -121,7 +121,7 @@ $(function () {
         },
 
         generate_ajax_options: function() {
-          if( this.has_stored_state ) {
+          if( this.has_stored_state() ) {
             this.ajax_options = {
               url: "/my/articles/" + this.document_number + "/comments/reload",
               type: 'POST',
