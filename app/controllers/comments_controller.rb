@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   protect_from_forgery :except => :reload
+  skip_before_filter :authenticate_user!, :only => :persist_for_login
 
   with_options(:only => [:new, :reload, :create]) do |during_creation|
     during_creation.layout false
@@ -61,7 +62,7 @@ class CommentsController < ApplicationController
       SECRETS['regulations_dot_gov']['post_token']
     )
     if @entry.regulations_dot_gov_url
-      document_id = @entry.regulations_dot_gov_url.split(/=/).last
+      document_id = 'FERC-2012-1415-0001' || @entry.regulations_dot_gov_url.split(/=/).last
       @comment_form = client.get_comment_form(document_id)
     else
       raise ActiveRecord::RecordNotFound
