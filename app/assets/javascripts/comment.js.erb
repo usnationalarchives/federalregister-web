@@ -417,7 +417,7 @@ $(function () {
 
   };
 
-  $('#metadata_content_area').delegate('a#start_comment', 'click', function(event) {
+  $('#metadata_content_area').delegate('a#start_comment[data-comment=1]', 'click', function(event) {
     event.preventDefault();
     var handler = comment_form_load_handler.initialize();
 
