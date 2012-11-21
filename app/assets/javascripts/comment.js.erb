@@ -427,47 +427,18 @@ $(function () {
 
   $('#metadata_content_area').delegate('a#comment-start-over', 'click', function(event) {
     event.preventDefault();
-    
+
     var document_number = $('.doc_number').text(),
-        url = "/my/articles/" + document_number + "/comments/new",
-        data = '',
-        method = 'GET';
-    
+        comment_form = $('.ajax-comment-data');
+
     clear_saved_form_state(document_number);
 
-    var comment_form = $('.ajax-comment-data');
+    //$('.ajax-comment-data').animate({height: '42px'}, 400);
     comment_form.slideUp(400, function() { 
       comment_form.remove();
+      var handler = comment_form_load_handler.initialize();
 
-      var comment_div = $('div#flash_message');
-      var loading_div = $('<div>').addClass('loading').append(
-                            $('<span>').addClass('loader').html('Loading Comment Form')
-                        );
-
-      loading_div.hide();
-      loading_div.insertAfter( comment_div );
-      loading_div.slideDown(800, function() {        
-        $.ajax(url, {
-          dataType: 'html',
-          type: method,
-          data: data,
-          success: function(data) {
-            var comment_form = $('<div>').addClass('ajax-comment-data').html(data);
-            comment_form.hide();
-            comment_div.append( comment_form );
-
-            loading_div.slideUp(800, function() {
-              comment_form.slideDown(800);
-            });
-
-            initializeCommentForm();
-          },
-          error: function() {
-            alert('error!');
-          }
-        });
-      });
-
+      handler.load();
     });
   });
 
