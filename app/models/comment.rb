@@ -73,7 +73,7 @@ class Comment < ApplicationModel
   end
 
   def respond_to?(name, include_private = false)
-    attr_name = name.to_s.sub(/=$/,'')
+    attr_name = name.to_s.sub(/(?:_before_type_case)?=?$/,'')
     comment_form.try(:has_field?, attr_name) || super
   end
 
@@ -122,7 +122,7 @@ class Comment < ApplicationModel
   end
 
   def method_missing(name, *val)
-    attr_name = name.to_s.sub(/=$/,'')
+    attr_name = name.to_s.sub(/(?:_before_type_case)?=?$/,'')
     if @comment_form.has_field?(attr_name)
       @attributes ||= []
 
