@@ -162,6 +162,7 @@ $(function () {
             type: settings.type,
             dataType: settings.dataType,
             data: settings.data,
+            timeout: 30000,
             success: function(response) {
               form_load_handler.success(response);
             },
@@ -186,7 +187,9 @@ $(function () {
         },
 
         error: function() {
-          alert('We\'re unable to retrieve the comment form from Regulations.gov at the moment.');
+          var form_load_handler = this;
+          window.location = $(form_load_handler.comment_link).attr('href');
+          // alert('We\'re unable to retrieve the comment form from Regulations.gov at the moment.');
         },
 
         generate_comment_form: function(response) {
@@ -417,7 +420,7 @@ $(function () {
 
   };
 
-  $('#metadata_content_area').delegate('a#start_comment', 'click', function(event) {
+  $('#metadata_content_area').delegate('a#start_comment[data-comment=1]', 'click', function(event) {
     event.preventDefault();
     var handler = comment_form_load_handler.initialize();
 

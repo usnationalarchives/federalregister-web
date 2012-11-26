@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def after_sign_in_path_for(resource)
+    session[:after_sign_in_path] || root_path
+  end
+
   def use_vcr
     VCR.eject_cassette
     VCR.use_cassette("development") { yield }

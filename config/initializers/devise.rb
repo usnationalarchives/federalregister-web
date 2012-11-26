@@ -21,9 +21,10 @@ Warden::Manager.after_set_user do |user, auth, opts|
       # TODO: send email of comment to user
     end
     rack_session[:comment_tracking_number] = nil
-    rack_session[:followup_document_notification] = nil
+    rack_session[:comment_secret] = nil
     rack_session[:comment_publication_notification] = nil
     rack_session[:followup_document_notification] = nil
+    rack_session[:after_sign_in_path] = '/my/comments'
   end
 
   auth.cookies.permanent["expect_logged_in"] = "1"
