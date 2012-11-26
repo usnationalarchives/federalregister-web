@@ -25,6 +25,7 @@
   @include rounded-bottom(6);
   min-height: 48px;
   top: -23px;
+  margin-bottom: 23px;
   position: relative;
 
   p { font-family: gesta-1, gesta-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
@@ -223,6 +224,9 @@ div.comment-preview-modal {
   top: 5em;
   width: 500px;
   }
+div.comment-preview-modal,
+div.alternative-comment-modal { margin-left: 0px; }
+
 
 .formtastic .file.input .label { 
   margin-right: 0.8em;
