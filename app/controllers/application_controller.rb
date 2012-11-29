@@ -17,5 +17,16 @@ class ApplicationController < ActionController::Base
 
   def cache_for(time)
     expires_in time, :public => true
-  end  
+  end
+
+  private
+
+  rescue_from Exception, :with => :server_error
+  def server_error(exception)
+    Rails.logger.error(exception)
+    notify_airbrake(exception)
+    
+    redirect_to "errors#server_error"
+  end
+  
 end

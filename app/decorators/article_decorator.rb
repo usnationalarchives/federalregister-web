@@ -38,7 +38,11 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def pages
-    model.end_page - model.start_page + 1
+    if model.end_page.present? && model.start_page.present?
+      model.end_page - model.start_page + 1
+    else
+      ""
+    end
   end
 
   def docket_dt_dd
