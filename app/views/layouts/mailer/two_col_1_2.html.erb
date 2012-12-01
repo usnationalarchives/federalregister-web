@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <title>Federal Register</title>
+    <style type="text/css">
+      <%= Rails.application.assets.find_asset('mailers/fr_mailer.css') %>
+      <%= yield :mailer_template_css %>
+    </style>
+	</head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    <center>
+
+      <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+        <tr>
+          <td align="center" valign="top">
+
+            <table border="0" cellpadding="0" cellspacing="0" width="720" id="templateContainer">
+              <tr>
+                <td align="center" valign="top">
+
+                  <!-- // Begin Template Header \\ -->
+                  <table border="0" cellpadding="0" cellspacing="0" width="720" id="templateHeader">
+                    <tr>
+                      <!-- header image -->
+                      <td class="headerContent">
+                        <img src="http://www.fr2.local:8080/my/assets/email_header.png?1234" style="max-width:720px;" id="headerImage campaign-icon" />
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Header \\ -->
+                </td>
+              </tr>
+
+              <tr>
+                <td align="center" valign="top">
+                  
+                  <!-- // Begin Template Body \\ -->
+                  <table border="0" cellpadding="0" cellspacing="0" width="700" id="templateBody">
+                    <tr>
+                      <td colspan="3" valign="top" class="bodyContent">
+                        
+                        <!-- // Begin Module: Standard Content \\ -->
+                        <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                          <tr>
+                            <td valign="top">
+                              <div id="main-content">
+                                <%= yield %>
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- // End Module: Standard Content \\ -->
+
+                      </td>
+                    </tr>
+
+                    <tr class="columnContent">
+                      <td valign="top" width="320" class="leftColumnContent">
+                        
+                        <!-- // Begin Module: Top Image with Content \\ -->
+                        <%= render  :partial => 'fr_mailer/two_column_single_column', 
+                                    :locals => { :table_class => "left",
+                                                 :highlight => @highlights.first }
+                        %>
+                        <!-- // End Module: Top Image with Content \\ -->
+                    
+                      </td>
+                      <td valign="top" width="320" class="rightColumnContent">
+                    
+                        <!-- // Begin Module: Top Image with Content \\ -->
+                        <%= render  :partial => 'fr_mailer/two_column_single_column', 
+                                    :locals => { :table_class => "right",
+                                                 :highlight => @highlights.last }
+                        %>
+                        <!-- // End Module: Top Image with Content \\ -->
+                  
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Body \\ -->
+  
+                </td>
+              </tr>
+              
+              <tr>
+                <td align="center" valign="top">
+                  <!-- // Begin Template Footer \\ -->
+                  <table border="0" cellpadding="10" cellspacing="0" width="650" id="templateFooter">
+                    <tr>
+                      <td valign="top" class="footerContent">
+                        
+                        <!-- // Begin Module: Standard Footer \\ -->
+                        <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                          <tr>
+                            <td colspan="2" valign="middle" id="social">
+                              <div>
+                                &nbsp;<a href="https://twitter.com/FedRegister">Follow us on Twitter here</a> | <a href="https://www.facebook.com/FederalRegister">Like us on Facebook here</a>&nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td valign="middle" width="350" id="disclaimer">
+                              <div>
+                                <center>
+                                <p style="color:#AAAAAA;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;font-size:10px;">
+                                  FederalRegister.gov uses your e-mail address to enable you to receive e-mail notifications according to your preferences. 
+                                  We retain only the personally identifiable information minimally necessary to operate the MyFR service. 
+                                  For more information, please read our <a href="https://www.federalregister.gov/policy/privacy">Privacy and Security Policy</a>.
+                                </p>
+                                </center>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2" valign="middle" id="utility">
+                              <div>
+                                &nbsp; <%= @utility_links.map{|link| link_to(link[0], link[1])}.join(' | ').html_safe %> &nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- // End Module: Standard Footer \\ -->
+                                            
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Footer \\ -->
+
+                </td>
+              </tr>
+            </table>
+
+            <br />
+          </td>
+        </tr>
+      </table>
+  
+    </center>
+  </body>
+</html>
+

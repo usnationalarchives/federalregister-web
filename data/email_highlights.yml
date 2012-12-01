@@ -1,0 +1,27 @@
+- id: clip_from_search
+  created: '10/30/2012'
+  title: Clip Articles From Search
+  image: http://www.fr2.local/my/assets/icons/my_fr2/email/flag.png
+  content: "<span class='strong'>Did you know you can clip articles from search results?</span>
+           From any search result on FederalRegister.gov you can add an article to your clipboard or a folder in your MyFR account.
+           Look for the flag icon on the right hand side of each result in the list and your only one click away from having the articles you're interested in quickly available for future reference!"
+  priority: 1
+  
+- id: comment_on_articles
+  created: '10/30/2012'
+  title: Comment on Articles That Affect You
+  image: http://www.fr2.local/my/assets/icons/my_fr2/email/comment.png
+  content: "<span class='strong'>Now on FederalRegister.gov you can officialy comment on an article that affects you without leaving the site.</span>
+            Working with Regulations.gov we are now providing an enhanced commenting experience with integration to your MyFR account. You can now recieve notifications 
+            when a follow up document is published and more!"
+  priority: 1
+
+- id: subscribe_to_search
+  created: '10/30/2012'
+  title: Subscribe to Any Search Result
+  image: http://www.fr2.local/my/assets/icons/my_fr2/email/search.png
+  content: "<span class='strong'>Did you know that you can subscribe to any search result?</span> 
+            After performing any search on FederalRegister.gov you can choose to recieve via email
+            any future articles that match your search. Just click the subscribe button on the right
+            side of the search box"
+  priority: 1

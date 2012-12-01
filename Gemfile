@@ -43,6 +43,12 @@ gem "json_builder"
 gem "httmultiparty"
 gem 'sendgrid'
 
+gem "premailer", "1.7.3"
+gem "css_parser", "1.2.6"
+
+# pick item(s) from collection by it's weight/probability
+gem "pickup", "0.0.8"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
@@ -60,6 +66,7 @@ end
 # end
 
 group :development do
+  gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
   gem 'mongrel', '1.1.5'
 end
 

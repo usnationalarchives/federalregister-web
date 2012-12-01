@@ -43,7 +43,7 @@ Devise.setup do |config|
   config.mailer_sender = "My FederalRegister.gov <my_fr@mail.federalregister.gov>"
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = "Devise::Mailer"
+  config.mailer = "FRMailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

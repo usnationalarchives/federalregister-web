@@ -13,6 +13,13 @@ GIT
   specs:
     userstamp (2.0.2)
 
+GIT
+  remote: https://github.com/37signals/mail_view.git
+  revision: 2e2b00897cb79b1a6924240b43a7521915efe215
+  specs:
+    mail_view (1.0.1)
+      tilt
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -43,6 +50,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    addressable (2.3.4)
     airbrake (3.0.9)
       activesupport
       builder
@@ -72,6 +80,9 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    css_parser (1.2.6)
+      addressable
+      rdoc
     daemons (1.1.9)
     devise (1.5.4)
       bcrypt-ruby (~> 3.0)
@@ -112,6 +123,7 @@ GEM
     hashie (1.2.0)
     highline (1.6.19)
     hike (1.2.3)
+    htmlentities (4.3.1)
     httmultiparty (0.3.10)
       httparty (>= 0.7.3)
       multipart-post
@@ -181,7 +193,11 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.0.7)
     pbkdf2 (0.1.0)
+    pickup (0.0.8)
     polyglot (0.3.3)
+    premailer (1.7.3)
+      css_parser (>= 1.1.9)
+      htmlentities (>= 4.0.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -236,6 +252,7 @@ GEM
       websocket (~> 1.0.4)
     sendgrid (1.2.0)
       json
+      json
     shoulda-matchers (1.0.0.beta3)
     spork (0.8.5)
     sprockets (2.2.2)
@@ -274,6 +291,7 @@ DEPENDENCIES
   cocaine
   compass (= 0.12.2)
   compass-rails (= 1.0.3)
+  css_parser (= 1.2.6)
   devise (= 1.5.4)
   draper (= 0.18.0)
   factory_girl_rails (~> 1.1.0)
@@ -285,6 +303,7 @@ DEPENDENCIES
   jasmine (= 1.2.1)
   jquery-rails
   json_builder
+  mail_view!
   mongrel (= 1.1.5)
   mysql2 (= 0.3.11)
   oily_png (= 1.0.2)
@@ -292,6 +311,8 @@ DEPENDENCIES
   omniauth-facebook (= 1.0.0)
   omniauth-twitter (= 0.0.7)
   pbkdf2
+  pickup (= 0.0.8)
+  premailer (= 1.7.3)
   rails (= 3.2.13)
   rake (= 0.9.2.2)
   rspec-rails (>= 2.5)
