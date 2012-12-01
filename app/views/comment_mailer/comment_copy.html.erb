@@ -1,0 +1,33 @@
+<% add_css_file_to_mailer('comment_copy.css') %>
+
+<p class="intro">As requested here is a copy of your recent comment.</p>
+
+<div>
+  <% article = @comment.article %>
+  <div class="document_title"><%= link_to article.title, article.html_url %></div>
+  <div class="agency">A <%= article.type %> by <%= @comment.agency_name %></div>
+
+  <dl class="document_details">
+      <dt>Article Url</dt>
+      <dd><%= link_to article.short_article_url, article.short_article_url %></dd>
+      <dt>Published On</dt>
+      <dd><%= article.publication_date %></dd>
+  </dl>
+
+  <dl class="comment_details">
+    <dt>Comment Tracking Number</dt>
+    <dd class="tracking_number"><%= @comment.comment_tracking_number %></dd>
+    <dt>Comment Submission Date</dt>
+    <dd><%= @comment.commented_at %></dd>
+  </dl>
+
+  <dl class="comment_contents">
+    <% @comment.comment_data.each do |field| %>
+      <dt><%= field['label'] %></dt>
+      <% field['values'].each do |value| %>
+        <%= content_tag(:dd, value) %>
+      <% end %>
+    <% end %>
+  </dl>
+</div>
+

@@ -1,0 +1,39 @@
+@import "mixins/_fr_colors.scss";
+
+%bordered {
+  margin-top: 5px;
+  padding: 3px 5px;
+  border-top: 1px solid #CCC;
+  border-bottom:1px solid #CCC;
+  }
+#main-content {
+  p.intro { padding-bottom: 20px; }
+
+  .document_title a { 
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $fr-blue;
+    text-decoration: none;
+  }
+
+  .agency {
+  @extend %bordered;
+  }
+
+  dl {
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    dt {
+      font-weight: bold;
+      float: left;
+      width: 200px;
+      clear: both;
+    }
+    dd {
+      width: 400px;
+      float: left;
+    }
+  }
+
+}

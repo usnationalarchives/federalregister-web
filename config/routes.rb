@@ -67,6 +67,11 @@ MyFr2::Application.routes.draw do
   match "/405" => "errors#not_authorized"
   match "/500" => "errors#server_error"
 
+  if Rails.env.development?
+    mount FRMailer::Preview => 'fr_mail_view'
+    mount CommentMailer::Preview => 'comment_mail_view'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
