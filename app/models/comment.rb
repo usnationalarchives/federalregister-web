@@ -9,8 +9,8 @@ class Comment < ApplicationModel
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
-  attr_accessor :secret, :comment_form
-  attr_reader :attachments
+  attr_accessor :secret
+  attr_reader :attachments, :comment_form
 
   validate :required_fields_are_present
   validate :fields_do_not_exceed_maximum_length
@@ -19,6 +19,10 @@ class Comment < ApplicationModel
   validate :all_attachments_could_be_found
 
   validates_presence_of :document_number
+
+  def article
+    @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(self.document_number) )
+  end
 
   def attributes=(hsh)
     hsh.keys.sort.reverse.each do |key|
@@ -30,6 +34,11 @@ class Comment < ApplicationModel
 
   def attachments
     @attachments ||= []
+  end
+
+  def comment_form=(comment_form)
+    self.agency_name = comment_form.agency_name
+    @comment_form = comment_form
   end
 
   def attachment_tokens=(tokens)

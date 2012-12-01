@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029205102) do
+ActiveRecord::Schema.define(:version => 20121129201408) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20121029205102) do
     t.string   "salt"
     t.string   "iv"
     t.binary   "encrypted_comment_data"
+    t.string   "agency_name"
   end
 
   create_table "folders", :force => true do |t|

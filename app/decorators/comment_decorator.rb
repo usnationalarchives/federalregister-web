@@ -11,12 +11,8 @@ class CommentDecorator < ApplicationDecorator
     end
   end
 
-  def article
-    @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(model.document_number) )
-  end
-
   def agency_name
-    'the ' + comment_form.agency_name
+    'the ' + model.agency_name
   end
 
   def commented_at
