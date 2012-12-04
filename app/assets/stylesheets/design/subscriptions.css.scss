@@ -56,6 +56,7 @@ ul#subscriptions .subscription_type.sub_publicinspectiondocument {
 
 #subscription-actions { 
   @extend %list_item_action_bar;
+  margin-top: 2em;
 
   #subscription-type-filter {
     @extend %list_item_filters;
