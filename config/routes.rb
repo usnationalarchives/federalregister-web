@@ -1,4 +1,6 @@
 MyFr2::Application.routes.draw do
+
+scope "/my" do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
@@ -73,4 +75,5 @@ MyFr2::Application.routes.draw do
     mount FRMailer::Preview => 'fr_mail_view'
     mount CommentMailer::Preview => 'comment_mail_view'
   end
+end
 end
