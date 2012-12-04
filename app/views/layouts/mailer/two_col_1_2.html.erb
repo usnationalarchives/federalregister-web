@@ -96,7 +96,7 @@
                           <tr>
                             <td colspan="2" valign="middle" id="social">
                               <div>
-                                &nbsp;<a href="https://twitter.com/FedRegister">Follow us on Twitter here</a> | <a href="https://www.facebook.com/FederalRegister">Like us on Facebook here</a>&nbsp;
+                                <a href="https://twitter.com/FedRegister">Follow us on Twitter here</a> | <a href="https://www.facebook.com/FederalRegister">Like us on Facebook here</a>
                               </div>
                             </td>
                           </tr>
@@ -118,7 +118,7 @@
                           <tr>
                             <td colspan="2" valign="middle" id="utility">
                               <div>
-                                &nbsp; <%= @utility_links.map{|link| link_to(link[0], link[1])}.join(' | ').html_safe %> &nbsp;
+                                <%= @utility_links.map{|link| link_to(link[0], link[1])}.join(' | ').html_safe %>
                               </div>
                             </td>
                           </tr>
