@@ -1,4 +1,6 @@
 MyFr2::Application.routes.draw do
+
+scope "/my" do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
@@ -128,4 +130,5 @@ MyFr2::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+end
 end
