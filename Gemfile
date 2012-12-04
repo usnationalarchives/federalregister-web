@@ -11,7 +11,7 @@ gem 'airbrake', '3.0.9'
 gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git", 
                         :ref => "7500e781ef3b0c68e507512bd3024c30f7c15aea"
 
-gem 'devise', '1.5.0'
+gem 'devise', '2.1.2'
 gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-twitter', '0.0.7'
