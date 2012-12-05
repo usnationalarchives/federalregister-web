@@ -79,4 +79,12 @@ class User < ActiveRecord::Base
   def update_first_and_last_name(first_name, last_name)
     self.update_attributes(:first_name => first_name, :last_name => last_name)
   end
+
+  def email_required?
+    authentications.empty? && super
+  end
+
+  def confirmation_period_valid?
+    true #we don't force confirmation of email address (just limit what is seen on a page)
+  end
 end
