@@ -28,9 +28,9 @@
       <%= render :partial => 'subscription_list_item', :collection => @subscriptions, :as => :subscription %>
     </ul>
   <% else %>
-    <%= render :partial => 'messages/no_subscriptions' %>
+    <%= render :partial => 'subscriptions/messages/no_subscriptions' %>
   <% end %>
 <% else %>
-    <%= render :partial => 'messages/not_confirmed' %>
+    <%= render :partial => 'subscriptions/messages/not_confirmed' %>
 <% end %>
 
