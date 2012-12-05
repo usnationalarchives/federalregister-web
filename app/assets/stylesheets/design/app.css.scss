@@ -29,6 +29,11 @@ div.warning {
   border: 1px solid #8A3737;
   }
 
+div.notice.message p {
+  padding-bottom: 1em;
+  line-height: 25px;
+  }
+
 span.unsaved { 
   color: #8A3737;
   font-weight: bold;
