@@ -11,7 +11,6 @@ end
 
 module MyFr2
   class Application < Rails::Application
-    config.action_controller.relative_url_root = "/my"
     config.assets.prefix = "/my/assets"
 
     # Settings in config/environments/* take precedence over those specified here.
