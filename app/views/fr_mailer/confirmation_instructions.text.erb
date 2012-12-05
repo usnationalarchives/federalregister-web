@@ -1,0 +1,7 @@
+Welcome to My Federal Register, <%= @user.email %>!
+
+We value your privacy so before we can enable many of the features on My FR we need you to confirm your email address.
+
+You can confirm your email address by clicking on the link below:
+
+<%= user_confirmation_url(:confirmation_token => @user.confirmation_token) %>

@@ -19,7 +19,7 @@ class CommentMailer < ActionMailer::Base
       :to => user.email,
       :subject => "[FR] Your comment on #{@comment.article.title}"
     ) do |format|
-      format.text { render :text => '' }
+      format.text { render('comment_copy') }
       format.html { Premailer.new( render('comment_copy'),
                                    :with_html_string => true,
                                    :warn_level => Premailer::Warnings::SAFE).to_inline_css }
