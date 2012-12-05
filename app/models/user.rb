@@ -85,4 +85,8 @@ class User < ActiveRecord::Base
     authentications.empty? && super
   end
 
+  def confirmation_period_valid?
+    true #we don't force confirmation of email address (just limit what is seen on a page)
+  end
+
 end
