@@ -23,6 +23,11 @@ div.warning {
   border: 1px solid $fr_red;
   }
 
+div.notice.message p {
+  padding-bottom: 1em;
+  line-height: 25px;
+  }
+
 span.unsaved { 
   color: $fr_red;
   font-weight: bold;
