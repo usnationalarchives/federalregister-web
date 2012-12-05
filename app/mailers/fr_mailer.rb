@@ -18,7 +18,7 @@ class FRMailer < Devise::Mailer
       :to => user.email,
       :subject => "[FR] MyFR Email Confirmation"
     ) do |format|
-      format.text { render :text => '' }
+      format.text { render('confirmation_instructions') }
       format.html { Premailer.new( render('confirmation_instructions'),
                                    :with_html_string => true,
                                    :warn_level => Premailer::Warnings::SAFE).to_inline_css }
@@ -37,7 +37,7 @@ class FRMailer < Devise::Mailer
       :to => user.email,
       :subject => "[FR] MyFR Reset Password Instructions"
     ) do |format|
-      format.text { render :text => '' }
+      format.text { render('reset_password_instructions') }
       format.html { Premailer.new( render('reset_password_instructions'),
                                    :with_html_string => true,
                                    :warn_level => Premailer::Warnings::SAFE).to_inline_css }

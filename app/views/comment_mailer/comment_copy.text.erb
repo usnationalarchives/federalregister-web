@@ -1,0 +1,20 @@
+As requested here is a copy of your recent comment.
+
+
+<% article = @comment.article %>
+<%= article.title %>
+A <%= article.type %> by <%= @comment.agency_name %>
+
+
+Article Url: <%= article.short_article_url %>
+Published On: <%= article.publication_date %>
+
+
+Comment Tracking Number: <%= @comment.comment_tracking_number %>
+Comment Submission Date: <%= @comment.commented_at %>
+
+
+<% @comment.comment_data.each do |field| %>
+<%= field['label'] %>: <%= field['values'].join(', ') %>
+<% end %>
+
