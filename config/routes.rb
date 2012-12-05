@@ -1,10 +1,13 @@
 MyFr2::Application.routes.draw do
 
 scope "/my" do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :passwords => "users/passwords" } do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", 
+                                       :passwords => "users/passwords", 
+                                       :confirmations => "users/confirmations" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
+    get 'resend_confirmation', :to => 'users/confirmations#resend', :as => :resend_confirmation
   end
 
   match 'special/user_utils' => 'special#user_utils'
