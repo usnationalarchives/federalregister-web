@@ -8,6 +8,7 @@ class FRMailer < Devise::Mailer
   def confirmation_instructions(user)
     @user = user
     @utility_links = [['manage my subscriptions', subscriptions_url()]]
+    @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "MyFR Email Address Confirmation"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'MyFR email confirmation'
