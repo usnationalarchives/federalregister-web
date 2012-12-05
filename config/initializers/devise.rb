@@ -115,7 +115,8 @@ Devise.setup do |config|
   # the user cannot access the website without confirming his account.
   #
   # We don't force confirmation in MyFR but certain features are limited without it
-  config.allow_unconfirmed_access_for = 10.years
+  # so we override this setting in user.rb
+  # config.allow_unconfirmed_access_for = 2.days
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]

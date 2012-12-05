@@ -47,5 +47,5 @@ MyFr2::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings   = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :script_name => '/my'}
+  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}"}
 end
