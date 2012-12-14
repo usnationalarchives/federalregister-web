@@ -21,9 +21,28 @@ class SubscriptionsController < ApplicationController
     
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
+    
+    @subscription.user = current_user if user_signed_in?
+    
     if @subscription.save
-      SubscriptionMailer.subscription_confirmation(@subscription).deliver
-      redirect_to confirmation_sent_subscriptions_url
+      if user_signed_in?
+        if current_user.confirmed?
+          @subscription.confirm!
+          flash[:notice] = "Successfully subscribed to '#{@subscription.mailing_list.title}'"
+        else
+          flash[:warning] = "Your subscription has been added to your account but you must confirm your email address before we can begin sending you results."
+        end
+
+        redirect_to subscriptions_url
+      elsif @subscription.user_with_this_email_exists?
+        session[:subscription_token] = @subscription.token
+        flash[:notice] = "Please sign into to add this subscription to your My FR account."
+
+        redirect_to new_session_path
+      else
+        SubscriptionMailer.subscription_confirmation(@subscription).deliver
+        redirect_to confirmation_sent_subscriptions_url
+      end
     else
       render :action => :new
     end

@@ -65,6 +65,14 @@ class Subscription < ApplicationModel
     end
   end
 
+  def user_with_this_email_exists?
+    user_with_this_email.present?
+  end
+
+  def user_with_this_email
+    @user_with_this_email ||= User.where(:email => self.email).first
+  end
+
   private
   
   def remove_from_bounce_list
