@@ -4,6 +4,7 @@
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+<%= content_tag(:div, flash[:warning],  :class => 'flash warning') if flash[:warning]  %>
 
 <h2 class="subscription title">My Subscriptions</h2>
 <%= render :partial => "subscriptions/subscription_metadata_bar", :locals => {:article_subscription_count => @article_subscription_count, :pi_subscription_count => @pi_subscription_count} if current_user.confirmed? %>
