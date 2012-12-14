@@ -1,0 +1,8 @@
+<p>Hello, thank you for subscribing to "<strong><%= @subscription.mailing_list.title %></strong>"</p>
+
+<p>Before we can start your subscription we need you to confirm it. Please click the following link to confirm your subscription: </p>
+
+<p><%= link_to 'Confirm my subscription', confirm_subscription_url(@subscription) %></p>
+
+<p>If you did not request to subscribe to these results, simply ignore this email.</p>
+

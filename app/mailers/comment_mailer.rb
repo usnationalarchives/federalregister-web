@@ -8,7 +8,7 @@ class CommentMailer < ActionMailer::Base
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
   def comment_copy(user, comment)
     @user = user
-    @comment = comment
+    @comment = CommentDecorator.decorate( comment )
     @utility_links = [['manage my subscriptions', subscriptions_url()]]
     @highlights = EmailHighlight.pick(2)
 
@@ -33,7 +33,7 @@ class CommentMailer < ActionMailer::Base
         user = User.new(:email => 'name@example.com',
                         :name  => 'Jill Smith',
                         :cofirmation => '123456789')
-        comment = CommentDecorator.decorate( Comment.last )
+        comment = Comment.last
         comment.secret = 'qscgl9h27qm5nr'
         CommentMailer.comment_copy(user, comment)
       }

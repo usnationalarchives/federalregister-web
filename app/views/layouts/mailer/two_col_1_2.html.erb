@@ -5,6 +5,7 @@
     
     <title>Federal Register</title>
     <style type="text/css">
+      <%= Rails.application.assets.find_asset('mailers/common.css') %>
       <%= Rails.application.assets.find_asset('mailers/fr_mailer.css') %>
       <%= yield :mailer_template_css %>
     </style>
@@ -25,7 +26,7 @@
                     <tr>
                       <!-- header image -->
                       <td class="headerContent">
-                        <img src="http://www.fr2.local:8080/my/assets/email_header.png?1234" style="max-width:720px;" id="headerImage campaign-icon" />
+                        <img src="<%=ActionMailer::Base.default_url_options[:host]%>/my/assets/email_header.png?1234" style="max-width:720px;" id="headerImage campaign-icon" />
                       </td>
                     </tr>
                   </table>
@@ -94,7 +95,7 @@
                         <!-- // Begin Module: Standard Footer \\ -->
                         <table border="0" cellpadding="10" cellspacing="0" width="100%">
                           <tr>
-                            <td colspan="2" valign="middle" id="social">
+                            <td valign="middle" id="social">
                               <div>
                                 <a href="https://twitter.com/FedRegister">Follow us on Twitter here</a> | <a href="https://www.facebook.com/FederalRegister">Like us on Facebook here</a>
                               </div>
@@ -116,7 +117,7 @@
                           </tr>
 
                           <tr>
-                            <td colspan="2" valign="middle" id="utility">
+                            <td valign="middle" id="utility">
                               <div>
                                 <%= @utility_links.map{|link| link_to(link[0], link[1])}.join(' | ').html_safe %>
                               </div>
