@@ -50,3 +50,13 @@ Handlebars.registerHelper('createDd', function(item) {
 
   return new Handlebars.SafeString(result);
 });
+
+Handlebars.registerHelper('add_email_to_input', function(email_address) {
+  var result = "";
+  
+  if( email_address !== "" ) {
+   result = "disabled=disabled value=" + email_address;
+  }
+
+  return new Handlebars.SafeString(result);
+});
