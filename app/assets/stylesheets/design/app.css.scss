@@ -6,6 +6,7 @@ div.warning {
   margin-bottom: 30px;
   text-align: center;
   float: none;
+  @include border-radius(6);
 }
 div.message {
   /* reset border radius */
