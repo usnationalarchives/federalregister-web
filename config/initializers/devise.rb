@@ -1,32 +1,6 @@
 @secret_keys = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
 
 Warden::Manager.after_set_user do |user, auth, opts|
-  rack_session = auth.env['rack.session']
-
-  # saving clippings from users session from before signed in or signed up
-  if auth.cookies[:document_numbers]
-    Clipping.create_from_cookie( auth.cookies[:document_numbers], user )
-    auth.cookies[:document_numbers] = nil
-  end
-
-  # allowing user to sign in / sign up after comment had been submitted
-  if rack_session[:comment_tracking_number] && rack_session[:comment_secret]
-    comment = Comment.where(:user_id => nil, :comment_tracking_number => rack_session[:comment_tracking_number]).first
-    if comment
-      comment.user = user
-      comment.secret = rack_session[:comment_secret]
-      comment.comment_publication_notification = rack_session[:comment_publication_notification]
-      comment.followup_document_notification = rack_session[:followup_document_notification]
-      comment.save :validate => false
-      # TODO: send email of comment to user
-    end
-    rack_session[:comment_tracking_number] = nil
-    rack_session[:comment_secret] = nil
-    rack_session[:comment_publication_notification] = nil
-    rack_session[:followup_document_notification] = nil
-    rack_session[:after_sign_in_path] = '/my/comments'
-  end
-
   auth.cookies.permanent["expect_logged_in"] = "1"
 end
 
