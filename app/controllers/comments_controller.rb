@@ -32,6 +32,9 @@ class CommentsController < ApplicationController
 
     if @comment.save
       @comment = CommentDecorator.decorate(@comment)
+
+      CommentMailer.comment_copy(user, @comment).deliver if user_signed_in?
+
       render :action => :show, :status => 200
     else
       render :action => :new, :status => 422
