@@ -60,3 +60,19 @@ Handlebars.registerHelper('add_email_to_input', function(email_address) {
 
   return new Handlebars.SafeString(result);
 });
+
+Handlebars.registerHelper('truncate_words', function(text, word_count) {
+  return new Handlebars.SafeString( text.split(" ").splice(0,word_count).join(" ") + "..." );
+});
+
+Handlebars.registerHelper('date_in_past', function(date, block) {
+  if( new Date(date) > new Date() ) {
+    return block(this);
+  } else {
+    return block.inverse(this);
+  }
+});
+
+Handlebars.registerHelper('formatted_date', function(date) {
+  return strftime('%m/%d/%Y', new Date(date));
+});
