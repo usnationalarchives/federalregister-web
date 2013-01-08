@@ -28,7 +28,7 @@ gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
 
 gem "capistrano", '2.5.19', :require => false
-gem "thunder_punch", '0.0.12', :require => false
+gem "thunder_punch", '0.0.14', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.
