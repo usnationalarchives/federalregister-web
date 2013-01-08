@@ -65,7 +65,6 @@ task :production do
   role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
   role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
-  role :static, "static.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
   # Database Settings
@@ -88,7 +87,6 @@ task :staging do
   role :app,    "my-fr2-server-1.fr2.ec2.internal"
   role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
-  role :static, "static.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
   # Database Settings
@@ -184,22 +182,22 @@ namespace :assets do
     find_and_execute_task("assets:create_sprite_scss_files")
   end
 
-  task :remove_old_sprites, :roles => [:static] do
+  task :remove_old_sprites, :roles => [:worker] do
     run "cd #{current_path} && rm -f app/assets/images/icons/my_fr2-s*.png"
     run "cd #{current_path} && rm -f app/assets/images/icons/my_fr2/user_utils-s*.png"
   end
 
-  task :create_sprite_scss_files, :roles => [:static] do
+  task :create_sprite_scss_files, :roles => [:worker] do
     run "cd #{current_path} && bundle exec compass sprite -c config/compass.rb 'icons/my_fr2/*.png' --force"
     run "cd #{current_path} && bundle exec compass sprite -c config/compass.rb 'icons/my_fr2/user_utils/*.png' --force"
   end
 
-  task :copy_sprites_to_public, :roles => [:static]  do
+  task :copy_sprites_to_public, :roles => [:worker]  do
     run "cd #{current_path} && cp app/assets/images/icons/my_fr2-s*.png public/my/assets/icons/"
     run "cd #{current_path} && cp app/assets/images/icons/my_fr2/user_utils-s*.png public/my/assets/icons/my_fr2/"
   end
 
-  task :precompile, :roles => [:static] do
+  task :precompile, :roles => [:worker] do
     find_and_execute_task("assets:remove_old_sprites")
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile:primary"
     find_and_execute_task("assets:remove_old_sprites")
@@ -214,7 +212,7 @@ end
 #############################################################
 
 namespace :airbrake do
-  task :notify_deploy, :roles => [:static] do
+  task :notify_deploy, :roles => [:worker] do
     run "cd #{current_path} && bundle exec rake airbrake:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`} REVISION=#{real_revision} REPO=#{repository}" 
   end
 end

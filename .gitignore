@@ -9,3 +9,4 @@ tags
 .sass-cache/
 public/assets
 spec/vcr/*.yml
+app/assets/stylesheets/sprites/*.scss
