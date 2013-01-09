@@ -1,31 +1,25 @@
 class ErrorsController < ApplicationController
   def server_error
-    # ESI routes should return correct status codes, but no error page
-    if params[:quiet]
-      render :nothing => true, :status => 500
-    else
-      request.format = :html
-      render :template => "errors/500", :status => 500
-    end
+    handle_error(500)
   end
 
   def record_not_found
-    # ESI routes should return correct status codes, but no error page
-    if params[:quiet]
-      render :nothing => true, :status => 404
-    else
-      request.format = :html
-      render :template => "errors/404", :status => 404
-    end
+    handle_error(404)
   end
 
   def not_authorized
+    handle_error(405)
+  end
+
+  private
+
+  def handle_error(status_code)
     # ESI routes should return correct status codes, but no error page
     if params[:quiet]
-      render :nothing => true, :status => 405
+      render :nothing => true, :status => status_code
     else
       request.format = :html
-      render :template => "errors/405", :status => 405
+      render :template => "errors/#{status_code}", :status => status_code
     end
   end
 end
