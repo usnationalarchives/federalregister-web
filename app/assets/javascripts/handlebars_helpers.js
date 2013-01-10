@@ -76,3 +76,11 @@ Handlebars.registerHelper('date_in_past', function(date, block) {
 Handlebars.registerHelper('formatted_date', function(date) {
   return strftime('%m/%d/%Y', new Date(date));
 });
+
+Handlebars.registerHelper('pluralize', function(number, single, plural) {
+  if( number === 1 ) { 
+    return single;
+  } else { 
+    return plural;
+  }
+});
