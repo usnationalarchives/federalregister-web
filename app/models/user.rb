@@ -17,22 +17,7 @@ class User < ActiveRecord::Base
     auth = Authentication.find_by_provider_and_uid(access_token['provider'], access_token['uid'])
     data = access_token['extra']['raw_info']
 
-    if auth
-      user = auth.user
-    elsif signed_in_resource
-      user = signed_in_resource
-      user.apply_omniauth(access_token)
-      user.update_user_from_omniauth(access_token['provider'], data)
-    else
-      if user = User.find_by_email(data[:email])
-        user.apply_omniauth(access_token)
-      else # Create a user with a stub password.
-        user = User.new(:email => data[:email], :encrypted_password => Devise.friendly_token[0,20])
-        user.apply_omniauth(access_token)
-        user.save!
-        user.update_user_from_omniauth(access_token['provider'], data)
-      end
-    end
+    user = apply_auth_sign_in_or_create_user_with_stub_password(auth, access_token, data)
     user
   end
 
@@ -40,38 +25,9 @@ class User < ActiveRecord::Base
     auth = Authentication.find_by_provider_and_uid(access_token['provider'], access_token['uid'])
     data = access_token['extra']['raw_info']
 
-    if auth
-      user = auth.user
-    elsif signed_in_resource
-      user = signed_in_resource
-      user.apply_omniauth(access_token)
-      user.update_user_from_omniauth(access_token['provider'], data)
-    else
-      user = User.new(:email => data[:email], :encrypted_password => Devise.friendly_token[0,20])
-      user.apply_omniauth(access_token)
-      user.save!
-      user.update_user_from_omniauth(access_token['provider'], data)
-    end
+    user = apply_auth_sign_in_or_create_user_with_stub_password(auth, access_token, data)
     user
-  end
-
-  def apply_omniauth(access_token)
-    authentications.build(:provider => access_token['provider'], :uid => access_token['uid'])
-  end
-
-  def update_user_from_omniauth(provider, raw_info)
-    case provider
-    when "facebook"
-      if !self.first_name && !self.last_name
-        self.update_attributes(:first_name => raw_info[:first_name], :last_name => raw_info[:last_name])
-      end
-    when "twitter"
-      name = data[:name].split(' ') if data[:name]
-      if name && !self.first_name && !self.last_name
-        self.update_attributes(:first_name => name[0...-1].join(' '), :last_name => name[-1])
-      end
-    end
-  end
+   end
 
   protected
 
@@ -83,4 +39,42 @@ class User < ActiveRecord::Base
     authentications.empty? && super
   end
 
+  def apply_auth_sign_in_or_create_user_with_stub_password(auth, access_token, data)
+    if auth
+      user = auth.user
+    elsif signed_in_resource
+      user = signed_in_resource
+      user.apply_omniauth(access_token)
+      user.update_user_from_omniauth(access_token['provider'], data)
+    else
+      if data[:email] && user = User.find_by_email(data[:email]) #twitter doesn't provide email in the data it returns
+        user.apply_omniauth(access_token)
+      else # Create a user with a stub password.
+        user = User.new(:email => data[:email], :encrypted_password => Devise.friendly_token[0,20])
+        user.apply_omniauth(access_token)
+        user.save!
+        user.update_user_from_omniauth(access_token['provider'], data)
+      end
+    end
+
+    user
+  end
+
+  def apply_omniauth(access_token)
+    authentications.build(:provider => access_token['provider'], :uid => access_token['uid'])
+  end
+
+  def update_user_from_omniauth(provider, raw_info)
+    case provider
+    when "facebook"
+      update_first_and_last_name(raw_info[:first_name], raw_info[:last_name]) if !self.first_name && !self.last_name
+    when "twitter"
+      name = raw_info[:name].split(' ') if raw_info[:name]
+      update_first_and_last_name(name[0...-1].join(' '), name[-1]) if name && !self.first_name && !self.last_name
+    end
+  end
+
+  def update_first_and_last_name(first_name, last_name)
+    self.update_attributes(:first_name => first_name, :last_name => last_name)
+  end
 end
