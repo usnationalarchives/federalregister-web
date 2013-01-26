@@ -41,7 +41,7 @@
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
             <div class="<%=clipping.article.granule_class%>_metadata_wrapper">
-              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class}", :locals => {:clipping => clipping} %>
+              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class || 'unknown'}", :locals => {:clipping => clipping} %>
             </div>
           </div>
 
