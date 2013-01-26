@@ -17,7 +17,7 @@
   <div id="clipping-actions">
     <div id="doc-type-filter">
       <ul>
-        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.to_json.html_safe %>;</script>
+        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.compact.to_json.html_safe %>;</script>
         <li class="doc_notice first" data-filter-doc-type="notice"   data-filter-doc-type-display="Notice">                <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
         <li class="doc_prorule"      data-filter-doc-type="prorule"  data-filter-doc-type-display="Proposed Rule">         <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
         <li class="doc_rule"         data-filter-doc-type="rule"     data-filter-doc-type-display="Rule">                  <%= image_tag '/my/assets/icons/document_icons/document_icons_mini.png' %></li>
@@ -36,11 +36,11 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class %>">
-          <div class="rule_type doc_<%= clipping.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'unknown' %>">
+          <div class="rule_type doc_<%= clipping.article.granule_class || 'unknown' %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
-            <div class="<%=clipping.article.granule_class%>_metadata_wrapper">
+            <div class="<%=clipping.article.granule_class || 'unknown' %>_metadata_wrapper">
               <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class || 'unknown'}", :locals => {:clipping => clipping} %>
             </div>
           </div>
