@@ -64,7 +64,7 @@ GEM
     compass-rails (1.0.1)
       compass (~> 0.12.0)
     daemons (1.1.9)
-    devise (1.5.0)
+    devise (1.5.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
@@ -215,7 +215,7 @@ DEPENDENCIES
   airbrake (= 3.0.9)
   capistrano (= 2.5.19)
   compass-rails (= 1.0.1)
-  devise (= 1.5.0)
+  devise (= 1.5.4)
   draper (= 0.9.5)
   factory_girl_rails (~> 1.1.0)
   federal_register!
