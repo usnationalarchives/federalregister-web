@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'rake',  '0.9.2.2'
 
 gem 'mysql2', '0.3.11'
@@ -12,6 +12,7 @@ gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_regis
                         :ref => "7500e781ef3b0c68e507512bd3024c30f7c15aea"
 
 gem 'devise', '2.1.2'
+
 gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-twitter', '0.0.7'

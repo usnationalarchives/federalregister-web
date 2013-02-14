@@ -36,20 +36,20 @@ $(document).ready(function () {
   
 
   /* show and hide add_to_folder menu */
-  $('#clipping-actions').delegate( '#clipping-actions #add-to-folder, #clipping-actions #jump-to-folder', 'mouseenter', function() {
+  $('#clipping-actions').on('mouseenter', '#add-to-folder, #jump-to-folder', function() {
     show_clipping_menu( $(this) );
   });
   /* the hides need to be delegating seperating so that we can unbind them individually */
   /* currently used for creating a new folder */
-  $('#clipping-actions').delegate( '#clipping-actions #add-to-folder', 'mouseleave', function() {
+  $('#clipping-actions').on('mouseleave', '#add-to-folder', function() {
     hide_clipping_menu( $(this) );
   });
-  $('#clipping-actions').delegate( '#clipping-actions #jump-to-folder', 'mouseleave', function() {
+  $('#clipping-actions').on('mouseleave', '#jump-to-folder', function() {
     hide_clipping_menu( $(this) );
   });
 
   /* remove clipping */
-  $('#clipping-actions').delegate('#remove-clipping', 'click', function(event) {
+  $('#clipping-actions').on('click', '#remove-clipping', function(event) {
     
     clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) { 
                       return $(input).closest('li').data('doc-id'); 

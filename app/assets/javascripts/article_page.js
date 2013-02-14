@@ -343,12 +343,12 @@ $(document).ready(function () {
     });
 
     /* allow icon to be clicked as a shortcut for adding current document to the clipboard */
-    menu.delegate('.button .icon', 'click', function(event) {
+    menu.on('click', '.button .icon', function(event) {
       /* check if already in clipboard */
       not_in_clipboard = $(menu).find('.menu li[data-slug="my-clippings"].not_in_folder').length !== 0;
       if ( not_in_clipboard ) {
         $(menu).find('.menu li[data-slug="my-clippings"]').trigger('click');
-      };
+      }
     });
 
     menu.find('.menu li, .menu li a').bind('click', function(event) { event.preventDefault(); }); 
@@ -372,11 +372,11 @@ $(document).ready(function () {
       display_new_folder_modal( menu, this_document_number );
     });
 
-    menu.delegate('.menu li.in_folder', 'mouseenter', function(event) {
+    menu.on('mouseenter', '.menu li.in_folder', function(event) {
       add_in_folder_mouseenter_events( $(this), this_document_number, menu );
     });
 
-    menu.delegate('.menu li.in_folder', 'mouseleave', function(event) {
+    menu.on('mouseleave', '.menu li.in_folder', function(event) {
       var el = $(this);
       el.find('a span.delete.icon').remove();
       el.find('a span.goto.icon').remove();

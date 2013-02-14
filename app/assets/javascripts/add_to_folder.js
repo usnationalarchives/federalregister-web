@@ -214,7 +214,7 @@ function create_new_folder_with_items( form, clipping_ids ) {
 
         /* close the menu and return page state to normal once the new folder animation is complete */
         setTimeout(function() {
-            $('#clipping-actions').delegate( '#clipping-actions #add-to-folder', 'mouseleave', function() {
+            $('#clipping-actions').on('mouseleave', '#add-to-folder', function() {
               hide_clipping_menu( $(this) );
             });
             $('#clipping-actions #add-to-folder').removeClass('hover');
@@ -252,7 +252,7 @@ $(document).ready(function() {
     event.preventDefault();
     
     /* disable the hover menu and keep open */
-    $('#clipping-actions').undelegate('#clipping-actions #add-to-folder', 'mouseleave');
+    $('#clipping-actions').off('mouseleave', '#add-to-folder');
     $('#clipping-actions #add-to-folder').addClass('hover');
     $('#clipping-actions div.menu li#new-folder').addClass('hover');
 
