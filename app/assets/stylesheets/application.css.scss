@@ -6,6 +6,7 @@ $my_fr2-spacing: 50px;
 $user_utils-spacing: 50px;
 @import "sprites/_user_utils.scss";
 
+/* this needs to be in every wrapper file that needs the mixins */
 @import "mixins/_rounded.scss";
 
 @import "formtastic_changes.css.scss";
