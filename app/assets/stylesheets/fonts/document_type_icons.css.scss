@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'fr2_document_type_icons';
+	src:url('fr2_document_type_icons/fr2_document_type_icons.eot');
+	src:url('fr2_document_type_icons/fr2_document_type_icons.eot?#iefix') format('embedded-opentype'),
+		url('fr2_document_type_icons/fr2_document_type_icons.woff') format('woff'),
+		url('fr2_document_type_icons/fr2_document_type_icons.ttf') format('truetype'),
+		url('fr2_document_type_icons/fr2_document_type_icons.svg#fr2_document_type_icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'fr2_document_type_icons';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-fr2-"]:before {
+*/
+.icon-fr2-presidential_document:before, .icon-fr2-uncategorized:before, .icon-fr2-rule:before, .icon-fr2-proposed_rule:before, .icon-fr2-notice:before, .icon-fr2-correction:before {
+	font-family: 'fr2_document_type_icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-fr2-presidential_document:before {
+	content: "\e000";
+}
+.icon-fr2-uncategorized:before {
+	content: "\e001";
+}
+.icon-fr2-rule:before {
+	content: "\e002";
+}
+.icon-fr2-proposed_rule:before {
+	content: "\e003";
+}
+.icon-fr2-notice:before {
+	content: "\e004";
+}
+.icon-fr2-correction:before {
+	content: "\e005";
+}
+
