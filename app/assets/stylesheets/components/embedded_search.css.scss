@@ -1,0 +1,52 @@
+$doc_icon_mini_width: 20;
+$doc_icon_mini_height: 20;
+
+$doc-icon-inactive:       #888888;
+$doc-icon-notice:         #FAB827;
+$doc-icon-prorule:        #D081B6;
+$doc-icon-rule:           #5898CE;
+$doc-icon-presdoc:        #73BD44;
+$doc-icon-correction:     #82D0D4;
+$doc-icon-uncategorized:  #999999;
+
+.embedded_search.search_bar { 
+  margin-left: 0;
+  width: 580px;
+  padding: 1em 0 .6em;
+
+  #conditions_term { width: 244px; }
+
+  .formtastic {
+    .simple ul { float: left; }
+    li.hidden { position: absolute; }
+    #conditions_type_input { display: none; }
+  }
+
+  #doc-type-search-filter {
+    overflow: hidden;
+    height: 28px;
+
+    li {
+      width: 24px;
+      height: 21px;
+      padding: 1px;
+
+      .icon-fr2 {
+        color: $doc-icon-inactive;
+        text-align: center;
+        font-size: 19px;
+      }
+    }
+
+    li.hover,
+    li.on {
+      .icon-fr2-notice { color: $doc-icon-notice; }
+      .icon-fr2-presidential_document { color: $doc-icon-presdoc; }
+      .icon-fr2-uncategorized { color: $doc-icon-correction; }
+      .icon-fr2-rule { color: $doc-icon-rule; }
+      .icon-fr2-proposed_rule { color: $doc-icon-prorule; }
+      .icon-fr2-correction { color: $doc-icon-correction; }
+    }
+  }
+}
+
