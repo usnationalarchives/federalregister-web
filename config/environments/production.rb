@@ -50,7 +50,8 @@ MyFr2::Application.configure do
   config.assets.precompile += %w(
     application-ie.css 
     application-shared.css 
-    application-shared.js 
+    application-shared.js
+    fr-document-icons-lte-ie7.js
     application-fr2.js 
     application-ie8lte.css 
     application-ie7lte.css 
