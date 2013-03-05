@@ -6,10 +6,10 @@ window.onload = function() {
 		el.innerHTML = '<span style="font-family: \'fr2_document_type_icons\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'icon-fr2-presidential_document' : '&#xe000;',
+			'icon-fr2-presdocu' : '&#xe000;',
 			'icon-fr2-uncategorized' : '&#xe001;',
 			'icon-fr2-rule' : '&#xe002;',
-			'icon-fr2-proposed_rule' : '&#xe003;',
+			'icon-fr2-prorule' : '&#xe003;',
 			'icon-fr2-notice' : '&#xe004;',
 			'icon-fr2-correction' : '&#xe005;'
 		},

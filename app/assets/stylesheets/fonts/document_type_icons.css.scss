@@ -15,6 +15,8 @@
 	content: attr(data-icon);
 	speak: none;
 	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
@@ -25,15 +27,17 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-fr2-"]:before {
 */
-.icon-fr2-presidential_document:before, .icon-fr2-uncategorized:before, .icon-fr2-rule:before, .icon-fr2-proposed_rule:before, .icon-fr2-notice:before, .icon-fr2-correction:before {
+.icon-fr2-presdocu:before, .icon-fr2-uncategorized:before, .icon-fr2-rule:before, .icon-fr2-prorule:before, .icon-fr2-notice:before, .icon-fr2-correction:before {
 	font-family: 'fr2_document_type_icons';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-fr2-presidential_document:before {
+.icon-fr2-presdocu:before {
 	content: "\e000";
 }
 .icon-fr2-uncategorized:before {
@@ -42,7 +46,7 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-rule:before {
 	content: "\e002";
 }
-.icon-fr2-proposed_rule:before {
+.icon-fr2-prorule:before {
 	content: "\e003";
 }
 .icon-fr2-notice:before {
@@ -51,4 +55,3 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-correction:before {
 	content: "\e005";
 }
-
