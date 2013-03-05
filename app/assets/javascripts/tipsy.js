@@ -15,5 +15,5 @@ $(document).ready(function(){
   $('#clipping-actions #remove-clipping').tipsy( {gravity: 's', fallback: "Delete selected clipping(s)", fade: true, offset: 2});
 
   /* Doctype Filters */
-  $('#doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: true, offset: 2, title: function() { return $(this).data('tooltip');} });
+  $('#clipping-actions #doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: false, offset: 2, title: function() { return $(this).data('tooltip');} });
 });

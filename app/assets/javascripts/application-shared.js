@@ -5,4 +5,4 @@
 //= require handlebars_helpers
 //= require storage.js
 //= require analytics.js
-
+//= require components
