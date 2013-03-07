@@ -63,7 +63,7 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def signing_date
-    model.signing_date.to_formatted_s(:date)
+    model.signing_date.to_formatted_s(:date) if model.signing_date
   end
 
   def corrected_by
