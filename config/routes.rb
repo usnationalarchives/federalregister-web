@@ -7,6 +7,7 @@ MyFr2::Application.routes.draw do
 
   match 'special/user_utils' => 'special#user_utils'
   match 'special/shared_assets' => 'special#shared_assets'
+  match 'special/my_fr_assets' => 'special#my_fr_assets'
   match 'special/navigation' => 'special#navigation'
   match 'status' => 'special#status'
 

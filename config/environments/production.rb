@@ -47,7 +47,15 @@ MyFr2::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( application-ie.css application-shared.js application-fr2.js application-ie8lte.css application-ie7lte.css )
+  config.assets.precompile += %w(
+    application-ie.css 
+    application-shared.css 
+    application-shared.js
+    fr-document-icons-lte-ie7.js
+    application-fr2.js 
+    application-ie8lte.css 
+    application-ie7lte.css 
+  )
 
   sendgrid_keys  = File.open( File.join(File.dirname(__FILE__), '..', 'sendgrid.yml') ) { |yf| YAML::load( yf ) }
   smtp_settings = {

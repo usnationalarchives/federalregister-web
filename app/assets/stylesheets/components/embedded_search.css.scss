@@ -1,0 +1,101 @@
+$doc_icon_mini_width: 20;
+$doc_icon_mini_height: 20;
+
+$doc-icon-inactive:       #888888;
+$doc-icon-notice:         #FAB827;
+$doc-icon-prorule:        #D081B6;
+$doc-icon-rule:           #5898CE;
+$doc-icon-presdoc:        #73BD44;
+$doc-icon-correction:     #82D0D4;
+$doc-icon-uncategorized:  #999999;
+$doc-icon-disabled:       #E6E6E6;
+
+$filter-bg-color: #FFFFFF;
+$filter-border-color: #CCCCCC;
+$filter-hover-bg-color: #F5F8F9;
+$filter-disabled-bg-color: #FFFFFF;
+
+.embedded_search.search_bar { 
+  margin-left: 0;
+  width: 580px;
+  padding: 1em 0 .6em;
+  float: none;
+  display: block;
+
+  #conditions_term { width: 244px; }
+
+  .formtastic {
+    .simple ul { float: left; }
+    li.hidden { position: absolute; }
+    #conditions_type_input { display: none; }
+  }
+
+  #doc-type-filter {
+    padding-top: 5px;
+    clear: both;
+    position: relative;
+    left: 346px;
+  }
+}
+
+#doc-type-filter {
+  overflow: hidden;
+  height: 28px;
+
+  li {
+    display: inline-block;
+    float: left;
+    width: 24px;
+    height: 21px;
+    padding: 1px;
+    border: 1px solid $filter-border-color;
+    background-color: $filter-bg-color;
+    border-right: 0px;
+    overflow: hidden;
+    position: relative;
+
+    .icon-fr2 {
+      color: $doc-icon-inactive;
+      text-align: center;
+      font-size: 19px;
+      top: -2px;
+      position: relative;
+    }
+  }
+
+  li.hover,
+  li.on {
+    background-color: $filter-hover-bg-color;
+
+    .icon-fr2-notice { color: $doc-icon-notice; }
+    .icon-fr2-presdocu { color: $doc-icon-presdoc; }
+    .icon-fr2-uncategorized { color: $doc-icon-correction; }
+    .icon-fr2-rule { color: $doc-icon-rule; }
+    .icon-fr2-prorule { color: $doc-icon-prorule; }
+    .icon-fr2-correction { color: $doc-icon-correction; }
+  }
+
+  li.disabled {
+    background-color: $filter-disabled-bg-color;
+
+    .icon-fr2-notice,
+    .icon-fr2-presdocu,
+    .icon-fr2-uncategorized,
+    .icon-fr2-rule,
+    .icon-fr2-prorule,
+    .icon-fr2-correction { color: $doc-icon-disabled; }
+  }
+
+  li.first { @include rounded-left(6); }
+  li.last {
+    @include rounded-right(6);
+    border-right: 1px solid $filter-border-color;
+  }
+}
+
+
+/* this is for ie7lte - a span gets added by the js font shim */
+.icon-fr2 span {
+  position: relative;
+  top: -3px;
+  }

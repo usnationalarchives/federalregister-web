@@ -47,5 +47,7 @@ module MyFr2
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
     config.exceptions_app = self.routes
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end
