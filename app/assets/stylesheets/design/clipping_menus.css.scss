@@ -27,9 +27,9 @@
   }
 #clipping-actions #add-to-folder { 
   right: 33px; 
-  width: 160px
+  width: 170px
   }
-#clipping-actions #jump-to-folder { right: 202px; }
+#clipping-actions #jump-to-folder { right: 212px; }
 
 
 #clipping-actions #add-to-folder .button,
@@ -41,14 +41,14 @@
   padding: 4px 15px 0 12px;
 
   background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 125, 6);
+  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 132, 6);
   border: #CCC 1px solid;
   line-height: 1.2em;
   z-index: 1001;
   }
 #clipping-actions #add-to-folder .button {
-  width: 130px;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 140, 6);
+  width: 140px;
+  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 152, 6);
   }
 
 #clipping-actions #add-to-folder.hover .button,
