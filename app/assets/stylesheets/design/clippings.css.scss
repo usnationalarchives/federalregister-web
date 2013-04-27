@@ -1,14 +1,21 @@
 h2.title {
   border-bottom: 1px solid #CCC;
   margin: 0;
-  padding-left: 40px;
-  @include my_fr2-sprite(icon_folder_large, $my_fr2-sprite-dimensions, 0, 2);
   line-height: 1.1em;
-  padding-top: 5px;  
+  padding-top: 5px;
+
+  .icon-fr2 {
+    color: $fr-blue;
+    top: 4px;
+    font-size: 34px;
   }
-h2.clipboard.title {
-  @include my_fr2-sprite(icon_clipboard_large, $my_fr2-sprite-dimensions, 0, 3);
-  }
+  .icon-fr2.icon-fr2-flag { top: 5px; }
+}
+li.download a .icon-fr2-download { 
+  margin-right: 5px;
+  font-size: 15px;
+}
+
 div#folder_metadata_bar { margin-bottom: 2em; }
 div#folder_metadata_bar ul { 
   font-weight: 700;

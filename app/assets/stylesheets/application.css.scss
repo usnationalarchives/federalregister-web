@@ -7,7 +7,7 @@ $user_utils-spacing: 50px;
 @import "sprites/_user_utils.scss";
 
 /* this needs to be in every wrapper file that needs the mixins */
-@import "mixins/_rounded.scss";
+@import "mixins";
 
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";

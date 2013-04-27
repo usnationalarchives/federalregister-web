@@ -30,76 +30,69 @@
 
 #clipping-actions #add-to-folder,
 #clipping-actions #jump-to-folder {
-  width: 150px;
-  position: absolute; 
-  margin: 5px 15px 0 0;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
-#clipping-actions #add-to-folder { 
-  right: 33px; 
-  width: 170px
+#clipping-actions {
+  .action_menu {
+    width: 168px;
+    position: absolute; 
+    margin: 0;
+    top: 3px;
+    font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+    .icon-fr2 { vertical-align: middle; }
+
+    .icon-fr2-folder,
+    .icon-fr2-open_folder {
+      font-size: 22px;
+      top: -3px;
+    }
+
+    .icon-fr2-menu_arrow { 
+      font-size: 13px;
+      top: -2px;
+    }
   }
-#clipping-actions #jump-to-folder { right: 212px; }
+  #add-to-folder { 
+    right: 32px;
+    width: 190px;
+  }
+  
+  #jump-to-folder {
+    right: 211px;
+  }
+}
 
 
-#clipping-actions #add-to-folder .button,
-#clipping-actions #jump-to-folder .button {
-  position: relative;
-  top: 0px;
-  left: 10px;
-  width: 121px;
-  padding: 4px 15px 0 12px;
+#clipping-actions {
+  #add-to-folder .button,
+  #jump-to-folder .button {
+    position: relative;
+    left: 10px;
+    height: 20px;
+    width: 139px;
+    padding: 3px 2px 0 5px;
 
-  background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 132, 6);
-  border: #CCC 1px solid;
-  line-height: 1.2em;
-  z-index: 1001;
-  }
-#clipping-actions #add-to-folder .button {
-  width: 140px;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 152, 6);
+    background-color: #FFF;
+    border: #CCC 1px solid;
+    line-height: 1.2em;
+    z-index: 1001;
   }
 
-#clipping-actions #add-to-folder.hover .button,
-#clipping-actions #jump-to-folder.hover .button {
-  background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down_active, $my_fr2-sprite-dimensions, 125, 6);
-  color: #B88659;
-  padding-bottom: 6px;
+  #add-to-folder .button { width: 160px; }
+}
 
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  border-bottom: none;
+#clipping-actions {
+  #add-to-folder.hover .button,
+  #jump-to-folder.hover .button {
+    background-color: #FFF;
+    color: #B88659;
+    padding-bottom: 6px;
+
+    @include rounded-bottom(0);
+    border-bottom: none;
   }
-#clipping-actions #add-to-folder.hover .button {
-  @include my_fr2-sprite(menu_arrow_down_active, $my_fr2-sprite-dimensions, 140, 6);
-  }
-#clipping-actions #add-to-folder .button span.icon,
-#clipping-actions #jump-to-folder .button span.icon {
-  width: 18px;
-  height: 15px;
-  display: inline-block;
-  position: relative;
-  top: -3px;
-  margin: 0;
-  }
-#clipping-actions #add-to-folder .button span.icon {
-  @include user_utils-sprite(icon_folder_open);
-  }
-#clipping-actions #add-to-folder.hover .button span.icon {
-  @include user_utils-sprite(icon_folder_open_active);
-  }
-#clipping-actions #jump-to-folder .button span.icon {
-  @include user_utils-sprite(icon_folder);
-  }
-#clipping-actions #jump-to-folder.hover .button span.icon {
-  @include user_utils-sprite(icon_folder_active);
-  }
+}
+
 
 #clipping-actions div.menu {
   display: none;
@@ -107,24 +100,19 @@
   z-index: 1000;
 
   width: 200px;
-  right: 46px;
-  top: -2px;
-  padding: 0 5px 5px 5px;
+  right: 48px;
+  top: -3px;
+  padding: 2px 5px 5px 5px;
 
   background-color: #EEE;
   border: #CCC 1px solid;
   border-top: none;
 
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-bottomleft: 6px;
+  @include rounded-bottom(6);
   }
 #clipping-actions #add-to-folder .menu { 
-  right: 38px; 
-  padding: 0 6px 5px 6px;
+  right: 28px; 
+  padding: 2px 6px 5px 6px;
 }
 #clipping-actions #add-to-folder.hover .menu,
 #clipping-actions #jump-to-folder.hover .menu { 
@@ -194,13 +182,14 @@
 #clipping-actions div.menu a span.document_count { float: right; }
 
 #clipping-actions #remove-clipping {
-  width: 14px;
-  height: 16px;
+  width: 18px;
+  height: 23px;
   
   position: absolute;
+  top: -2px;
   right: 0px;
   margin: 5px 6px 0 0;
-  padding: 4px 4px 0 4px;
+  padding: 0 4px 0 4px;
 
   border: #CCC 1px solid;
   border-radius: 6px;

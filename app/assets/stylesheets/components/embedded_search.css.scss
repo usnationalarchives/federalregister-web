@@ -55,10 +55,11 @@ $filter-disabled-bg-color: #FFFFFF;
     position: relative;
 
     .icon-fr2 {
+      padding-left: 3px;
       color: $doc-icon-inactive;
       text-align: center;
       font-size: 19px;
-      top: -2px;
+      top: 1px;
       position: relative;
     }
   }
@@ -79,10 +80,10 @@ $filter-disabled-bg-color: #FFFFFF;
     background-color: $filter-disabled-bg-color;
 
     .icon-fr2-notice,
-    .icon-fr2-presdocu,
+    .icon-fr2-presidential_document,
     .icon-fr2-uncategorized,
     .icon-fr2-rule,
-    .icon-fr2-prorule,
+    .icon-fr2-proposed_rule,
     .icon-fr2-correction { color: $doc-icon-disabled; }
   }
 

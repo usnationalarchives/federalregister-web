@@ -24,6 +24,9 @@ module ClippingHelper
 
     url = "#{base_url}/#{document_numbers.map}.csv?#{field_params}"
 
-    content_tag(:a, text, :href => url)
+    content_tag(:a, :href => url) do 
+      content_tag(:span, '', :class => "icon-fr2 icon-fr2-download") +
+      text
+    end
   end
 end

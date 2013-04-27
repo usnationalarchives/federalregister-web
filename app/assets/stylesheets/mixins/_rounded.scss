@@ -22,3 +22,20 @@
   border-bottom-right-radius: #{$radius}px;
   }
 
+@mixin rounded-bottom($radius) {
+  -webkit-border-bottom-left-radius: #{$radius}px;
+  -webkit-border-bottom-right-radius: #{$radius}px;
+  -moz-border-radius-bottomleft: #{$radius}px;
+  -moz-border-radius-bottomright: #{$radius}px;
+  border-bottom-left-radius: #{$radius}px;
+  border-bottom-right-radius: #{$radius}px;
+  }
+
+@mixin rounded-top($radius) {
+  -webkit-border-top-left-radius: #{$radius}px;
+  -webkit-border-top-right-radius: #{$radius}px;
+  -moz-border-radius-topleft: #{$radius}px;
+  -moz-border-radius-topright: #{$radius}px;
+  border-top-left-radius: #{$radius}px;
+  border-top-right-radius: #{$radius}px;
+  }
