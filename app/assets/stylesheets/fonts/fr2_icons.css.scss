@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-fr2-"] {
 */
-.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-open_folder, .icon-fr2-trash_can, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow {
+.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user {
 	font-family: 'fr2_icons';
 	speak: none;
 	font-style: normal;
@@ -55,9 +55,6 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-open_folder:before {
 	content: "\e005";
 }
-.icon-fr2-trash_can:before {
-	content: "\e006";
-}
 .icon-fr2-correction:before {
 	content: "\e007";
 }
@@ -78,5 +75,11 @@ you can use the generic selector below, but it's slower:
 }
 .icon-fr2-menu_arrow:before {
 	content: "\e00d";
+}
+.icon-fr2-trash_can:before {
+	content: "\e006";
+}
+.icon-fr2-nav_male_female_user:before {
+	content: "\e00e";
 }
 

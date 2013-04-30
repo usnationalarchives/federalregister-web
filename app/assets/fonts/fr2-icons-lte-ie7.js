@@ -12,14 +12,15 @@ window.onload = function() {
 			'icon-fr2-document_subscription' : '&#xe003;',
 			'icon-fr2-pi_subscription' : '&#xe004;',
 			'icon-fr2-open_folder' : '&#xe005;',
-			'icon-fr2-trash_can' : '&#xe006;',
 			'icon-fr2-correction' : '&#xe007;',
 			'icon-fr2-notice' : '&#xe008;',
 			'icon-fr2-presidential_document' : '&#xe009;',
 			'icon-fr2-proposed_rule' : '&#xe00a;',
 			'icon-fr2-rule' : '&#xe00b;',
 			'icon-fr2-uncategorized' : '&#xe00c;',
-			'icon-fr2-menu_arrow' : '&#xe00d;'
+			'icon-fr2-menu_arrow' : '&#xe00d;',
+			'icon-fr2-trash_can' : '&#xe006;',
+			'icon-fr2-nav_male_female_user' : '&#xe00e;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
