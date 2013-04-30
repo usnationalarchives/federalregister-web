@@ -125,14 +125,8 @@
   -webkit-border-top-left-radius: 6px;
   -moz-border-radius-topleft: 6px;
 
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomleft: 6px;
-
-  border-bottom-right-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  }
+  @include rounded-bottom(6)
+}
 #clipping-actions div.menu ul {
   background-color: #FFF;
   margin: 0;
@@ -170,39 +164,44 @@
 }
 
 
-#clipping-actions div.menu li a {
-  color: #6E6E6E;
-  font-weight: bold;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+#clipping-actions div.menu {
+  li a {
+    color: #6E6E6E;
+    font-weight: bold;
+    font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
-#clipping-actions div.menu li:hover a { color: #B88659; }
+  
+  li:hover a { color: #B88659; }
 
-#clipping-actions div.menu a span              { display: inline-block; }
-#clipping-actions div.menu a span.name         { width: 158px; }
-#clipping-actions div.menu a span.document_count { float: right; }
+  a {
+    span { display: inline-block; }
+    span.name { width: 158px; }
+    span.document_count { float: right; }
+  }
+}
 
 #clipping-actions #remove-clipping {
   width: 18px;
   height: 23px;
   
   position: absolute;
-  top: -2px;
-  right: 0px;
-  margin: 5px 6px 0 0;
+  top: 3px;
+  right: 6px;
+  font-size: 22px;
   padding: 0 4px 0 4px;
+  color: #6e6e6e;
 
   border: #CCC 1px solid;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  
+  @include border-radius(6);
+
   background-color: #FFF;
-  @include my_fr2-sprite(icon_remove_clipping, $my_fr2-sprite-dimensions, 2, 2);
+  z-index: 1000;
+
+  .icon-fr2-trash_can {
+    left: -2px;
+    top: -4px;
   }
-#clipping-actions #remove-clipping:hover {
-  background-color: #FFF;
-  @include my_fr2-sprite(icon_remove_clipping_active, $my_fr2-sprite-dimensions, 2, 2);
-  }
+}
 
 /**********************************************
 /* FR2 - ADD TO FOLDER MENU

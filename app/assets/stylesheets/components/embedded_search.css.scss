@@ -1,15 +1,6 @@
 $doc_icon_mini_width: 20;
 $doc_icon_mini_height: 20;
 
-$doc-icon-inactive:       #888888;
-$doc-icon-notice:         #FAB827;
-$doc-icon-prorule:        #D081B6;
-$doc-icon-rule:           #5898CE;
-$doc-icon-presdoc:        #73BD44;
-$doc-icon-correction:     #82D0D4;
-$doc-icon-uncategorized:  #999999;
-$doc-icon-disabled:       #E6E6E6;
-
 $filter-bg-color: #FFFFFF;
 $filter-border-color: #CCCCCC;
 $filter-hover-bg-color: #F5F8F9;
@@ -70,7 +61,7 @@ $filter-disabled-bg-color: #FFFFFF;
 
     .icon-fr2-notice { color: $doc-icon-notice; }
     .icon-fr2-presdocu { color: $doc-icon-presdoc; }
-    .icon-fr2-uncategorized { color: $doc-icon-correction; }
+    .icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
     .icon-fr2-rule { color: $doc-icon-rule; }
     .icon-fr2-prorule { color: $doc-icon-prorule; }
     .icon-fr2-correction { color: $doc-icon-correction; }

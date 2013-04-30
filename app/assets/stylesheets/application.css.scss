@@ -8,6 +8,7 @@ $user_utils-spacing: 50px;
 
 /* this needs to be in every wrapper file that needs the mixins */
 @import "mixins";
+@import "components/doc_type_icon_colors";
 
 @import "formtastic_changes.css.scss";
 @import "design/app.css.scss";

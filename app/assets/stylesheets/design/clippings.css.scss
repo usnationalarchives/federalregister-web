@@ -58,14 +58,15 @@ div#folder_metadata_bar ul li.download {
   z-index: 500;
   margin-right: 10px;
   margin-left: 4px;
+
+  .icon-fr2.icon-doctype { font-size: 49px;}
+  .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
+  .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
+  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-prorule; }
+  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presdoc; }
+  .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
+  .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
 }
-#clippings div.rule_type img { position: relative; }
-#clippings div.rule_type.doc_presdocu img { top: 0px; }
-#clippings div.rule_type.doc_rule img { top: -466px; }
-#clippings div.rule_type.doc_notice img { top: -932px; }
-#clippings div.rule_type.doc_prorule img { top: -1397px; }
-#clippings div.rule_type.doc_unknown img { top: -1863px; }
-#clippings div.rule_type.doc_correct img { top: -2327px; }
 
 .document_data, .clipping_data { 
   display: inline-block;

@@ -27,11 +27,11 @@ $(document).ready(function () {
   if ( $("#add-to-folder-menu-template") ) {
     add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
   }
-  $('#clipping-actions').prepend( add_to_folder_menu_template(user_folder_details) );
+  $( add_to_folder_menu_template(user_folder_details) ).insertAfter( '#clipping-actions #doc-type-filter' );
   if ( $("#jump-to-folder-menu-template") ) {
     jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
   }
-  $('#clipping-actions').prepend( jump_to_folder_menu_template(user_folder_details) );
+  $( jump_to_folder_menu_template(user_folder_details) ).insertAfter('#clipping-actions #doc-type-filter');
   
   
 
