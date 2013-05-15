@@ -24,14 +24,16 @@ $(document).ready(function () {
   });
 
   /* Add/Jump to Folder Menu */
-  if ( $("#add-to-folder-menu-template") ) {
+  if ( $("#add-to-folder-menu-template").length > 0 ) {
     add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
+
+    $( add_to_folder_menu_template(user_folder_details) ).insertAfter( '#clipping-actions #doc-type-filter' );
   }
-  $( add_to_folder_menu_template(user_folder_details) ).insertAfter( '#clipping-actions #doc-type-filter' );
-  if ( $("#jump-to-folder-menu-template") ) {
+  if ( $("#jump-to-folder-menu-template").length > 0 ) {
     jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
+
+    $( jump_to_folder_menu_template(user_folder_details) ).insertAfter('#clipping-actions #doc-type-filter');
   }
-  $( jump_to_folder_menu_template(user_folder_details) ).insertAfter('#clipping-actions #doc-type-filter');
   
   
 
