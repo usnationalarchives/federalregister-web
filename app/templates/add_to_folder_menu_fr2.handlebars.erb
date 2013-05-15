@@ -1,10 +1,14 @@
 <div id="add-to-folder" class="add_to_folder">
   <div class="button tip_over" title="Clip article for later">
-    <span class="icon"></span>
+    <span class="icon icon-fr2 icon-fr2-flag"></span>
+    <span class="icon-fr2 icon-fr2-menu_arrow"></span>
   </div>
   <div class="menu">
     <ul>
-      <li id="new-folder"><a href="">New folder</a></li>
+      <li id="new-folder">
+        <span class="icon-fr2 icon-fr2-badge_plus"></span>
+        <a href="">New folder</a>
+      </li>
       {{#each folders}}
         {{#ifInFolder ../current_document_number}}
           <li class="in_folder" data-slug="{{this.slug}}">
@@ -13,7 +17,7 @@
         {{/ifInFolder}}
             <a href="">
               <span class="name">{{this.name}}</span>
-              <span class="checked icon"></span>
+              <span class="checked icon icon-fr2 icon-fr2-badge_check_mark"></span>
               <span class="loader"></span>
             </a>
           </li>

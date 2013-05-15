@@ -55,6 +55,20 @@ div#new-folder-modal {
   }
 }
 
+div#account-needed-modal,
+div#new-folder-modal {
+  .title_bar .icon-fr2 {
+    margin-right: 5px;
+    top: -5px;
+    position: relative;
+    float: left;
+    font-size: 30px;
+  }
+}
+div#account-needed-modal {
+  .title_bar .icon-fr2 { top: -4px; }
+}
+
 div#new-folder-modal { 
   form { 
     margin-top: 10px;
@@ -68,9 +82,18 @@ div#new-folder-modal {
     fieldset.inputs { 
       float: left;
       margin-bottom: 0;
+      position: relative;
+
+      .icon-fr2 {
+        position: absolute;
+        top: 1px;
+        color: #999999;
+        font-size: 21px;
+        left: 100px;
+        z-index: 2;
+      }
 
       input { 
-        @include my_fr2-sprite(icon_new_folder_input, $my_fr2-sprite-dimensions, 4, 2);
         border: 1px solid #D5D5D5;
         height: 17px;
         margin-right: 0;
@@ -94,20 +117,19 @@ div#new-folder-modal {
   .folder_success {
     display: none;
     text-align: center;
+    margin-top: 20px;
+  }
 
-    .icon {
-      width: 18px;
-      height: 18px;
-      position: relative;
+  .folder_success {
+    .icon-fr2-badge_check_mark {
+      top: 4px;
+      left: 10px;
+      color: $fr-green;
+      font-size: 20px;
     }
   }
-
-  .folder_success .icon {
-    top: -2px;
-    @include my_fr2-sprite(icon_badge_checked_green);
-  }
-  .folder_create .icon {
-    top: 4px;
+  .folder_create .loader {
+    top: 1px;
     margin-left: 10px;
     background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
   }
@@ -118,13 +140,12 @@ div#new-folder-modal {
     p {
       color: $fr_red;
       height: 25px;
+      padding: 0;
     }
 
-    .icon {
-      width: 20px;
-      height: 25px;
-      background: url(icons/disclaimer.png) 0 0 no-repeat;
-      margin-right: 10px;
+    .icon-fr2 {
+      font-size: 22px;
+      top: 4px;
     }
   }
 }

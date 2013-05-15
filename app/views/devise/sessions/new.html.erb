@@ -9,7 +9,12 @@
   <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
 
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :class => "error" if msg.is_a?(String) && name == :alert %>
+      <% if msg.is_a?(String) && name == :alert %>
+        <%= content_tag(:div, :class => "error") do %>
+          <span class="icon-fr2 icon-fr2-alert_alt"></span>
+          <%= msg %>
+        <% end %>
+      <% end %>
     <% end %>
 
     <%= f.inputs do %>

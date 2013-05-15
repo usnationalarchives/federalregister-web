@@ -6,7 +6,10 @@
   </div>
   <div class="menu">
     <ul>
-      <li id="new-folder">New folder</li>
+      <li id="new-folder">
+        <span class="icon-fr2 icon-fr2-badge_plus"></span>
+        New folder
+      </li>
       {{#each folders}}
         <%#{{#unlessMyClipboard}}%>
         <li data-slug="{{this.slug}}">
