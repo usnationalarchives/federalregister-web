@@ -5,7 +5,7 @@ class Folder < ApplicationModel
   belongs_to :user, :foreign_key => :creator_id 
 
   validates_presence_of :name, :message => "Folder name must not be blank"
-  validates_uniqueness_of :name, :scope => :creator_id
+  validates_uniqueness_of :name, :scope => :creator_id, :message => Proc.new{|f| "Folder \"#{f[1][:value]}\" already exists"}
   validate :slug_is_not_reserved
 
   before_validation :generate_slug
