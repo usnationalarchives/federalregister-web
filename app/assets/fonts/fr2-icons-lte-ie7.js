@@ -20,7 +20,13 @@ window.onload = function() {
 			'icon-fr2-uncategorized' : '&#xe00c;',
 			'icon-fr2-menu_arrow' : '&#xe00d;',
 			'icon-fr2-trash_can' : '&#xe006;',
-			'icon-fr2-nav_male_female_user' : '&#xe00e;'
+			'icon-fr2-nav_male_female_user' : '&#xe00e;',
+			'icon-fr2-badge_check_mark' : '&#xe00f;',
+			'icon-fr2-badge_forward_arrow' : '&#xe010;',
+			'icon-fr2-badge_plus' : '&#xe011;',
+			'icon-fr2-badge_x' : '&#xe012;',
+			'icon-fr2-alert' : '&#xe013;',
+			'icon-fr2-alert_alt' : '&#xe014;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
