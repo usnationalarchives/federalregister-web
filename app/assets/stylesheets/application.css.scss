@@ -1,11 +1,3 @@
-/* compass sprite -c config/compass.rb "icons/my_fr2/*.png" --force */
-$my_fr2-spacing: 50px;
-@import "sprites/_my_fr2.scss";
-
-/* compass sprite -c config/compass.rb "icons/my_fr2/user_utils/*.png" --force */
-$user_utils-spacing: 50px;
-@import "sprites/_user_utils.scss";
-
 /* this needs to be in every wrapper file that needs the mixins */
 @import "mixins";
 @import "components/doc_type_icon_colors";
