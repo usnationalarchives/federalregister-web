@@ -33,6 +33,8 @@ div#folder_metadata_bar ul li.download {
   float: right;
   }
 
+#my_fr2 #doc-type-filter li .icon-fr2 { padding-left: 3px; }
+
 #clippings > li { 
   width: 900px;
 
@@ -62,8 +64,8 @@ div#folder_metadata_bar ul li.download {
   .icon-fr2.icon-doctype { font-size: 49px;}
   .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
   .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
-  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-prorule; }
-  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presdoc; }
+  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
+  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
   .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
   .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
 }
