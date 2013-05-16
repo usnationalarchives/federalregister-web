@@ -36,7 +36,7 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'unknown' %>">
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'uncategorized' %>">
           <div class="rule_type doc_<%= clipping.article.granule_class || 'uncategorized' %> add_tipsy">
             <span class="icon-fr2 icon-doctype icon-fr2-<%= clipping.article.granule_class || 'uncategorized' %>"></span>
           </div>

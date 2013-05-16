@@ -46,7 +46,6 @@ $filter-disabled-bg-color: #FFFFFF;
     position: relative;
 
     .icon-fr2 {
-      padding-left: 3px;
       color: $doc-icon-inactive;
       text-align: center;
       font-size: 19px;
@@ -60,10 +59,10 @@ $filter-disabled-bg-color: #FFFFFF;
     background-color: $filter-hover-bg-color;
 
     .icon-fr2-notice { color: $doc-icon-notice; }
-    .icon-fr2-presdocu { color: $doc-icon-presdoc; }
+    .icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
     .icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
     .icon-fr2-rule { color: $doc-icon-rule; }
-    .icon-fr2-prorule { color: $doc-icon-prorule; }
+    .icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
     .icon-fr2-correction { color: $doc-icon-correction; }
   }
 

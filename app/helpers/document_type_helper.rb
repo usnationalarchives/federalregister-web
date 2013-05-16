@@ -20,9 +20,9 @@ module DocumentTypeHelper
   def document_types
     [
       ['notice', 'Notice'],
-      ['prorule', 'Proposed Rule'],
+      ['proposed_rule', 'Proposed Rule'],
       ['rule', 'Rule'],
-      ['presdocu', 'Presidential Document'],
+      ['presidential_document', 'Presidential Document'],
       ['correction', 'Correction']
     ]
   end
