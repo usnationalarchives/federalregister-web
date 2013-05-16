@@ -129,6 +129,8 @@ div#new-folder-modal {
     }
   }
   .folder_create .loader {
+    height: 16px;
+    width: 16px;
     top: 1px;
     margin-left: 10px;
     background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;

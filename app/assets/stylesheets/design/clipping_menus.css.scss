@@ -378,8 +378,10 @@
     a {
       .icon-fr2.icon-fr2-badge_check_mark { color: #CCC; }
       span.loader {
+        width: 18px;
+        height: 18px;
         display: none;
-        background: url(orange_loader.gif) 0 0 no-repeat;
+        background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
       }
     }
   }
