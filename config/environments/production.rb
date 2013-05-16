@@ -12,18 +12,6 @@ MyFr2::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
-
-  # Change path for generated assets
-  config.assets.prefix = "my/assets"
-
-  # Generate digests for assets URLs
-  config.assets.digest = false
-
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
@@ -45,17 +33,6 @@ MyFr2::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w(
-    application-ie.css 
-    application-shared.css 
-    application-shared.js
-    fr-document-icons-lte-ie7.js
-    application-fr2.js 
-    application-ie8lte.css 
-    application-ie7lte.css 
-  )
 
   sendgrid_keys  = File.open( File.join(File.dirname(__FILE__), '..', 'sendgrid.yml') ) { |yf| YAML::load( yf ) }
   smtp_settings = {
