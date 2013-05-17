@@ -134,8 +134,7 @@ set :gem_file_groups, [:deployment, :development, :test]
 after "deploy:update_code",      "deploy:set_rake_path"
 after "deploy:set_rake_path",    "bundler:fix_bundle"
 after "bundler:fix_bundle",      "deploy:migrate"
-after "deploy:migrate",          "assets:wrangle_sprites"
-after "assets:wrangle_sprites",  "assets:precompile"
+after "deploy:migrate",          "assets:precompile"
 after "assets:precompile",       "passenger:restart"
 after "passenger:restart",       "varnish:clear_cache"
 
