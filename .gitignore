@@ -8,4 +8,5 @@ config/*.yml
 tags
 .sass-cache/
 public/assets
+public/my/assets
 app/assets/stylesheets/sprites/*.scss
