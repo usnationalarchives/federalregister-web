@@ -175,7 +175,7 @@ namespace :my_fr2 do
 end
 
 namespace :assets do
-  task :precompile, :roles => [:worker] do
+  task :precompile, :roles => [:app, :worker] do
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
     run "cd #{current_path} && mv public/my/assets public/assets"
   end
