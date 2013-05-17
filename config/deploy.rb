@@ -177,7 +177,6 @@ end
 namespace :assets do
   task :precompile, :roles => [:app, :worker] do
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-    run "cd #{current_path} && mv public/my/assets public/assets"
   end
 end
 
