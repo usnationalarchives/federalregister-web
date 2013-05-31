@@ -1,20 +1,45 @@
 h2.title { padding-bottom: 3px; }
 
-.clip_for_later #clipping-actions.fr2 #add-to-folder.hover { top: -6px; }
+/* fr article clipping menu */
+.metadata_share_bar .share ul li.clip_for_later { padding-right: 25px; }
 
-#folder_clippings #clipping-actions div.menu li#new-folder { padding-left: 35px; }
-#clipping-actions div.menu li#new-folder { padding-left: 30px; }
+/* my fr clippings */
+#clipping-actions {
+  #add-to-folder {
+    width: 180px;
+    right: 41px;
 
-#clipping-actions #add-to-folder .button { width: 140px; }
-
-#clipping-actions #add-to-folder.hover, 
-#clipping-actions #jump-to-folder.hover {
-  margin-top: 6px;
+    .button { width: 160px; }
   }
 
-#clippings dl#col-1 dt.pages { width: auto; }
+  .action_menu {
+    .icon-fr2-folder,
+    .icon-fr2-open_folder { top: -2px; }
 
-#clippings dl#col-2 dd, 
-#clippings dl#col-3 dd { 
-  margin-top: 4px; 
+    .icon-fr2-menu_arrow { top: -2px; }
   }
+}
+
+#folder_clippings #clipping-actions {
+  div.menu li#new-folder { padding-left: 15px; }
+}
+
+#clippings {
+  div.rule_type .icon-doctype.icon-fr2 { top: 0px; }
+
+  dl#col-1 dt.pages { width: auto; }
+
+  dl#col-2 dd, 
+  dl#col-3 dd { 
+    margin-top: 4px; 
+  }
+}
+
+div#account-needed-modal .title_bar .icon-fr2, 
+div#new-folder-modal .title_bar .icon-fr2 {
+  top: -1px;
+}
+
+/* sign in form and new folder modal form*/
+#new_user.formtastic fieldset ol,
+.folder.formtastic fieldset ol { margin-left: 0px; }

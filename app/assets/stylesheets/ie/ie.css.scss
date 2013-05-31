@@ -6,3 +6,21 @@
   height: 23px;
   padding-top: 0;
   }
+
+#clipping-actions {
+  .action_menu {
+    .icon-fr2-folder,
+    .icon-fr2-open_folder { top: -1px; }
+
+    .icon-fr2-menu_arrow { top: -1px; }
+  }
+}
+
+#doc-type-filter {
+  li .icon-fr2 { top: 2px; }
+}
+
+#clippings div.rule_type .icon-doctype.icon-fr2 {
+  position: relative;
+  top: 2px;
+}

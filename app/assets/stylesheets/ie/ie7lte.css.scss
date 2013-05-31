@@ -1,56 +1,105 @@
 h2.title span.icon-fr2 span { top: 2px; }
 .icon-fr2 span { top: 0px; }
 
-#clipping-actions #add-to-folder .button span.icon, 
-#clipping-actions #jump-to-folder .button span.icon {
-  display: block;
-  float: left;
-  padding-right: 5px;
+.metadata_share_bar {
+  position: relative;
+  z-index: 100;
+}
+
+#clipping-actions {
+  #add-to-folder .button span.icon, 
+  #jump-to-folder .button span.icon {
+    display: block;
+    float: left;
+    padding-right: 5px;
   }
 
-#clipping-actions div.menu a span.name { float: left; }
+  .action_menu .icon-fr2-folder, 
+  .action_menu .icon-fr2-open_folder,
+  #remove-clipping .icon-fr2-trash_can { 
+    top: 0px;
+  }
+  
+  div.menu {
+    ul li#new-folder .icon-fr2 { top: 3px; }
+    a span.name { float: left; }
+  }
+}
 
-#clipping-actions.fr2 #add-to-folder .menu { right: 170px; }
+#clipping-actions.fr2 {
+  #add-to-folder {
+    .menu { 
+      right: -14px;
 
-#clipping-actions.fr2 div.menu a span.icon, 
-#clipping-actions.fr2 div.menu a span.loader {
-  top: 0px;
+      li#new-folder .icon-fr2 { margin-right: 5px; }
+    }
+    .button { 
+      width: 60px;
+
+      .icon-fr2-menu_arrow { top: 3px; }
+    }
   }
 
-#clippings div.rule_type { float: left; }
-#clippings .document_data { float: left; }
+  div.menu a span.icon, 
+  div.menu a span.loader {
+    top: 0px;
+  }
+}
 
-#navigation { margin-bottom: 20px; }
+#clippings {
+  div.rule_type { 
+    float: left;
+    position: relative;
+  }
+
+  .document_data { float: left; }
+}
+
+#navigation { 
+  margin-bottom: 20px;
+  
+  .dropdown {
+    a.myfr2.top_nav { line-height: 24px; }
+    .arrow { top: 0px; }
+  }
+}
+
 #user_utils {
   height: 30px;
   position: absolute;
   right: 0px;
   top: 35px;
-  }
-#user_utils .ie_shim { 
-  float: right; 
-  padding-right: 20px;
-  }
-#user_utils #document-count-holder,
-#user_utils #user-nav,
-#user_utils #user-nav li {
-  float: left;
+  
+  .ie_shim { 
+    float: right; 
+    padding-right: 20px;
   }
 
-#clippings div.rule_type { position: relative; }
+  #document-count-holder,
+  #user-nav,
+  #user-nav li {
+    float: left;
+  }
+}
 
 #main div#folder_metadata_bar { margin-bottom: 60px; }
 div#folder_metadata_bar ul li { float: left; }
 
-.signup_tabs li { float: left; }
-.signup_tabs li.on {
-  position: relative;
-  top: -0.25em;
+.signup_tabs {
+  li { float: left; }
+  li.on {
+    position: relative;
+    top: -0.25em;
   }
+}
+
 form fieldset.inputs ol { margin-left: 0; }
-form.user fieldset.inputs .remember_me input { margin-left: 97px; }
-form.user fieldset.inputs li.error label,
-form.user fieldset.inputs li.error input,
-form.user fieldset.inputs li.error p.inline-errors {
-  float: left;
+form.user fieldset.inputs {
+  .remember_me input { margin-left: 97px; }
+
+  li.error label,
+  li.error input,
+  li.error p.inline-errors {
+    float: left;
   }
+}
