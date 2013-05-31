@@ -252,6 +252,9 @@ function remove_document_from_folder(folder_li, document_number, menu) {
     /* add back our checked icon and bind the proper events to it*/
     checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
     folder_li.find('a').append( checked_span );
+    if( $('body').hasClass('fonts_ie7_lte') ) {
+      addIconViaJS(checked_span, 'icon-fr2-badge_check_mark');
+    }
     folder_li.bind('click', function(event) {
       event.preventDefault();
       add_item_to_folder( $(this), menu, menu.closest('li').find('form.add_to_clipboard') );
@@ -273,11 +276,21 @@ function remove_document_from_folder(folder_li, document_number, menu) {
 function add_in_folder_mouseenter_events( el, document_number, menu ) {
   el.find('a span.checked.icon').remove();
 
-  goto_span = $('<span>').addClass('goto icon icon-fr2 icon-fr2-badge_forward_arrow');
-  el.find('a').append( goto_span );
-  delete_span = $('<span>').addClass('delete icon icon-fr2 icon-fr2-badge_x');
-  el.find('a').append( delete_span );
+  /* add the goto and delete buttons/icons */
+  var link = el.find('a');
   
+  goto_span = $('<span>').addClass('goto icon icon-fr2 icon-fr2-badge_forward_arrow');
+  link.append( goto_span );
+  
+  delete_span = $('<span>').addClass('delete icon icon-fr2 icon-fr2-badge_x');
+  link.append( delete_span );
+  
+  if( $('body').hasClass('fonts_ie7_lte') ) {
+    addIconViaJS(goto_span, 'icon-fr2-badge_forward_arrow');
+    addIconViaJS(delete_span, 'icon-fr2-badge_x');
+  }
+
+
 
   /* goto folder icon link */
   goto_span.bind('click', function(event) {
@@ -387,6 +400,10 @@ $(document).ready(function () {
       if ( el.find('a span.checked.icon').length === 0 ) {
         checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
         el.find('a').append( checked_span );
+
+        if( $('body').hasClass('fonts_ie7_lte') ) {
+          addIconViaJS(checked_span, 'icon-fr2-badge_check_mark');
+        }
       }
     });
 

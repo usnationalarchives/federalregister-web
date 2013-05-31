@@ -1,11 +1,5 @@
 /* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
-
-window.onload = function() {
-	function addIcon(el, entity) {
-		var html = el.innerHTML;
-		el.innerHTML = '<span style="font-family: \'fr2_icons\'">' + entity + '</span>' + html;
-	}
-	var icons = {
+var fr_icons = {
 			'icon-fr2-flag' : '&#xe000;',
 			'icon-fr2-folder' : '&#xe001;',
 			'icon-fr2-download' : '&#xe002;',
@@ -27,23 +21,46 @@ window.onload = function() {
 			'icon-fr2-badge_x' : '&#xe012;',
 			'icon-fr2-alert' : '&#xe013;',
 			'icon-fr2-alert_alt' : '&#xe014;'
-		},
-		els = document.getElementsByTagName('*'),
-		i, attr, html, c, el;
-	for (i = 0; ; i += 1) {
-		el = els[i];
-		if(!el) {
-			break;
-		}
-		attr = el.getAttribute('data-icon');
-		if (attr) {
-			addIcon(el, attr);
-		}
-		c = el.className;
-		c = c.match(/icon-fr2-[^\s'"]+/);
-		if (c && icons[c[0]]) {
-			addIcon(el, icons[c[0]]);
-		}
-	}
+		};
+
+function get_entity(class_name) {
+  var c = class_name.match(/icon-fr2-[^\s'"]+/);
+  return fr_icons[c[0]];
+}
+
+function addIconViaJS(el, class_name) {
+  /* using add icon results in errors as the innerHTML is undefined */
+  $(el).prepend('<span style="font-family: \'fr2_icons\'">' + get_entity(class_name) + '</span>');
+}
+
+function addIcon(el, entity) {
+  var html = el.innerHTML;
+  el.innerHTML = '<span style="font-family: \'fr2_icons\'">' + entity + '</span>' + html;
+}
+
+function scan_for_icons_and_add() {
+  var els = document.getElementsByTagName('*'),
+      i, attr, html, c, class_name, el;
+  for (i = 0; ; i += 1) {
+    el = els[i];
+    if(!el) {
+      break;
+    }
+    attr = el.getAttribute('data-icon');
+    if (attr) {
+      addIcon(el, attr);
+    }
+    class_name = el.className;
+    c = class_name.match(/icon-fr2-[^\s'"]+/);
+    if (c && fr_icons[c[0]]) {
+      var entity = get_entity(class_name);
+      addIcon(el, entity);
+    }
+  }
+}
+
+window.onload = function() {
+  $('body').addClass('fonts_ie7_lte');
+  scan_for_icons_and_add();
 };
 
