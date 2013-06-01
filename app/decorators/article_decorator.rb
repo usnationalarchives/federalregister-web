@@ -8,7 +8,7 @@ class ArticleDecorator < ApplicationDecorator
     when 'Notice'
       'notice'
     when 'Presidential Document'
-      'presdocu'
+      'presidential_docuument'
     when 'Uncategorized Document'
       'uncategorized'
     when 'Sunshine Act Document'
