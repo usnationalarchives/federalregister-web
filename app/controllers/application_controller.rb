@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     Rails.logger.error(exception)
     notify_airbrake(exception)
     
-    redirect_to "errors#server_error"
+    raise exception
   end
   
 end
