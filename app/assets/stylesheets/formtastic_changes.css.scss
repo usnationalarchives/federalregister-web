@@ -10,7 +10,7 @@ form.user p.inline-errors {
   margin-left: 5px;
   font-size: 16px;
   font-weight: normal;
-  color: #8A3737;
+  color:$fr-red;
   }
 
 form.user fieldset.inputs .label {
@@ -21,12 +21,23 @@ form.user fieldset.inputs .label {
 
 form.user fieldset.inputs li.input { padding-left: 20px; }
 form.user div.error {
-  color: #8A3737;
-  @include my_fr2-sprite(form_error, $my_fr2-sprite-dimensions, 0, 4px);
+  color: $fr-red;
+  background: none;
+  text-align: left;
+
+  .icon-fr2 {
+    font-size: 20px;
+    top: 2px;
+  }
 }
+
 form.user fieldset.inputs li.error { 
-  @include my_fr2-sprite(form_error, $my_fr2-sprite-dimensions, 0, 4px);
+  color: $fr-red;
+  background: none;
+
+  input { border: 1px solid $fr-red; }
 }
+
 form.user fieldset.inputs input { 
   width: 200px;
   vertical-align: top;

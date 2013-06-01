@@ -1,4 +1,6 @@
-<%= stylesheet_link_tag "/my/assets/application-shared.css?20130328" %>
-<%= javascript_include_tag "/my/assets/application-shared.js?20130328" %>
+<%= stylesheet_link_tag my_asset_path('application-shared.css') %>
+<%= javascript_include_tag my_asset_path('application-shared.js') %>
 
-<!--[if lte IE 7]><script src="/my/assets/fr-document-icons-lte-ie7.js?20130328"></script><![endif]-->
+<!--[if lte IE 7]>
+<script src="<%= my_asset_path('fr2-icons-lte-ie7.js') %>"></script>
+<![endif]-->

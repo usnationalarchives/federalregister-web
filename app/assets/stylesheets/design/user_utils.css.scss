@@ -4,53 +4,46 @@
   width: 960px;
   height: 22px;
   padding: 5px 10px 0 0;
-  }
-#user_utils #document-count-holder {
-  display: inline-block;
-  margin-right: 30px;
-  }
-#user_utils #user-nav {
-  margin: 0;
-  display: inline-block;
+  
+  #document-count-holder {
+    display: inline-block;
+    margin-right: 30px;
+
+    a.count_with_icon {
+      font-weight: bold;
+      color: #6E6E6E;
+      padding-top: 1px;
+    }
+
+    .icon-fr2 {
+      top: 3px;
+      font-size: 18px;
+      color: $fr-orange;
+    }
+
+    .alert .icon-fr2,
+    .alert:hover span { color: $fr-red; }
+
+    a#document-in-folders-count { margin-left: 10px; }
+
+    a#document-count:hover,
+    a#document-in-folders-count:hover { 
+      color: #B88659; 
+    }
+
+    a#document-count span,
+    a#document-in-folders-count span { 
+      display: inline-block; 
+    }
   }
 
-#user_utils a.count_with_icon {
-  font-weight: bold;
-  color: #6E6E6E;
-  padding-top: 1px;
-  }
-#user_utils a.count_with_icon span.icon {
-  margin-right: 0;
-  }  
-#user_utils a#document-count span.icon {
-  height: 16px;
-  width: 18px;
-  @include user_utils-sprite(icon_flag_active, $user_utils-sprite-dimensions, 0, -1);
-  }
-#user_utils a#document-count.alert span.icon {
-  @include user_utils-sprite(icon_flag_alert, $user_utils-sprite-dimensions, 0, -1);
-  }
-#user_utils a#document-in-folders-count {
-  margin-left: 10px;
-  }
-#user_utils a#document-count span,
-#user_utils a#document-in-folders-count span { 
-  display: inline-block; 
-  }
-#user_utils a#document-in-folders-count span.icon {
-  height: 16px;
-  width: 18px; 
-  @include user_utils-sprite(icon_folder_active, $user_utils-sprite-dimensions, 0, -1);
+  #user-nav {
+    margin: 0;
+    display: inline-block;
   }
 
-
-#user_utils a#document-count:hover,
-#user_utils a#document-in-folders-count:hover { 
-  color: #B88659; 
+  ul li {
+    display: inline-block;
+    padding-right: 5px;
   }
-#user_utils a#document-count.alert:hover { color: #8A3737; }
-
-#user_utils ul li {
-  display: inline-block;
-  padding-right: 5px;
-  }
+}

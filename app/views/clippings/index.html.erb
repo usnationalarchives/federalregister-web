@@ -7,8 +7,9 @@
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
 
-<h2 class="title <%= 'clipboard' if @folder.slug == 'my-clippings' %>" data-folder-slug="<%= @folder.slug %>">
-  <%= @folder.name %> 
+<h2 class="title" data-folder-slug="<%= @folder.slug %>">
+  <span class="icon-fr2 <%= @folder.slug == 'my-clippings' ? 'icon-fr2-flag' : 'icon-fr2-folder' %>"></span>
+  <%= @folder.name %>
 </h2>
 
 <%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
@@ -24,7 +25,9 @@
     </div>
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
-    <div id="remove-clipping"></div>
+    <div id="remove-clipping">
+      <span class="icon-fr2 icon-fr2-trash_can"></span>
+    </div>
   </div>
   
   <%= render :partial => "clippings/not_logged_in_warning" if @clippings && @clippings.size > 0 && !user_signed_in? %>
@@ -33,12 +36,14 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'unknown' %>">
-          <div class="rule_type doc_<%= clipping.article.granule_class || 'unknown' %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'uncategorized' %>">
+          <div class="rule_type doc_<%= clipping.article.granule_class || 'uncategorized' %> add_tipsy">
+            <span class="icon-fr2 icon-doctype icon-fr2-<%= clipping.article.granule_class || 'uncategorized' %>"></span>
+          </div>
           <div class="document_data">
             <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
-            <div class="<%=clipping.article.granule_class || 'unknown' %>_metadata_wrapper">
-              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class || 'unknown'}", :locals => {:clipping => clipping} %>
+            <div class="<%=clipping.article.granule_class || 'uncategorized' %>_metadata_wrapper">
+              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class || 'uncategorized'}", :locals => {:clipping => clipping} %>
             </div>
           </div>
 

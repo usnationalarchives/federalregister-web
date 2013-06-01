@@ -20,86 +20,71 @@
   background-color: #EEE;
   border: #CCC 1px solid;
 
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
+  @include rounded-top(6);
+}
+
+#clipping-actions {
+  .action_menu {
+    width: 168px;
+    position: absolute; 
+    margin: 0;
+    top: 3px;
+    font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+    .icon-fr2 { vertical-align: middle; }
+
+    .icon-fr2-folder,
+    .icon-fr2-open_folder {
+      font-size: 22px;
+      top: -3px;
+    }
+
+    .icon-fr2-menu_arrow { 
+      font-size: 13px;
+      top: -2px;
+    }
+  }
+  #add-to-folder { 
+    right: 32px;
+    width: 190px;
+  }
+  
+  #jump-to-folder {
+    right: 211px;
+  }
+}
+
+
+#clipping-actions {
+  #add-to-folder .button,
+  #jump-to-folder .button {
+    position: relative;
+    left: 10px;
+    height: 20px;
+    width: 139px;
+    padding: 3px 2px 0 5px;
+
+    background-color: #FFF;
+    border: #CCC 1px solid;
+    line-height: 1.2em;
+    z-index: 1001;
   }
 
-#clipping-actions #add-to-folder,
-#clipping-actions #jump-to-folder {
-  width: 150px;
-  position: absolute; 
-  margin: 5px 15px 0 0;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-#clipping-actions #add-to-folder { 
-  right: 33px; 
-  width: 170px
-  }
-#clipping-actions #jump-to-folder { right: 212px; }
+  #add-to-folder .button { width: 160px; }
+}
 
+#clipping-actions {
+  #add-to-folder.hover .button,
+  #jump-to-folder.hover .button {
+    background-color: #FFF;
+    color: #B88659;
+    padding-bottom: 6px;
 
-#clipping-actions #add-to-folder .button,
-#clipping-actions #jump-to-folder .button {
-  position: relative;
-  top: 0px;
-  left: 10px;
-  width: 121px;
-  padding: 4px 15px 0 12px;
+    @include rounded-bottom(0);
+    border-bottom: none;
+  }
+}
 
-  background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 132, 6);
-  border: #CCC 1px solid;
-  line-height: 1.2em;
-  z-index: 1001;
-  }
-#clipping-actions #add-to-folder .button {
-  width: 140px;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 152, 6);
-  }
-
-#clipping-actions #add-to-folder.hover .button,
-#clipping-actions #jump-to-folder.hover .button {
-  background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down_active, $my_fr2-sprite-dimensions, 125, 6);
-  color: #B88659;
-  padding-bottom: 6px;
-
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  border-bottom: none;
-  }
-#clipping-actions #add-to-folder.hover .button {
-  @include my_fr2-sprite(menu_arrow_down_active, $my_fr2-sprite-dimensions, 140, 6);
-  }
-#clipping-actions #add-to-folder .button span.icon,
-#clipping-actions #jump-to-folder .button span.icon {
-  width: 18px;
-  height: 15px;
-  display: inline-block;
-  position: relative;
-  top: -3px;
-  margin: 0;
-  }
-#clipping-actions #add-to-folder .button span.icon {
-  @include user_utils-sprite(icon_folder_open);
-  }
-#clipping-actions #add-to-folder.hover .button span.icon {
-  @include user_utils-sprite(icon_folder_open_active);
-  }
-#clipping-actions #jump-to-folder .button span.icon {
-  @include user_utils-sprite(icon_folder);
-  }
-#clipping-actions #jump-to-folder.hover .button span.icon {
-  @include user_utils-sprite(icon_folder_active);
-  }
 
 #clipping-actions div.menu {
   display: none;
@@ -107,266 +92,304 @@
   z-index: 1000;
 
   width: 200px;
-  right: 46px;
-  top: -2px;
-  padding: 0 5px 5px 5px;
+  right: 48px;
+  top: -3px;
+  padding: 2px 5px 5px 5px;
 
   background-color: #EEE;
   border: #CCC 1px solid;
   border-top: none;
 
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-bottomleft: 6px;
+  @include rounded-bottom(6);
   }
 #clipping-actions #add-to-folder .menu { 
-  right: 38px; 
-  padding: 0 6px 5px 6px;
+  right: 28px; 
+  padding: 2px 6px 5px 6px;
 }
-#clipping-actions #add-to-folder.hover .menu,
-#clipping-actions #jump-to-folder.hover .menu { 
-  display: block; 
+
+#clipping-actions {
+  #add-to-folder.hover,
+  #jump-to-folder.hover {
+    .menu { 
+      display: block; 
+
+      ul {
+        background-color: #FFF;
+        margin: 0;
+        border: #DDD 1px solid;
+
+        border-top-left-radius: 6px;
+        -webkit-border-top-left-radius: 6px;
+        -moz-border-radius-topleft: 6px;
+
+        @include rounded-bottom(6)
+      }
+    }
   }
-
-#clipping-actions #jump-to-folder.hover .menu ul, 
-#clipping-actions #add-to-folder.hover .menu ul {
-  border-top-left-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topleft: 6px;
-
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomleft: 6px;
-
-  border-bottom-right-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  }
-#clipping-actions div.menu ul {
-  background-color: #FFF;
-  margin: 0;
-  border: #DDD 1px solid;
 }
-#clipping-actions div.menu li {
-  padding: 1px 5px;
-  border-bottom: #CCC 1px dashed;
-  margin: 0;
-  color: #6E6E6E;
-  font-weight: bold;
-  position: relative;
+
+#clipping-actions div.menu {
+  a {
+    span { display: inline-block; }
+    span.name { width: 158px; }
+    span.document_count { float: right; }
   }
+
+  ul {
+    background-color: #FFF;
+    margin: 0;
+    border: #DDD 1px solid;
+  
+   li {
+      padding: 1px 5px;
+      border-bottom: #CCC 1px dashed;
+      margin: 0;
+      color: #6E6E6E;
+      font-weight: bold;
+      position: relative;
+
+     a {
+        color: #6E6E6E;
+        font-weight: bold;
+        font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      }
+    }
+    li:hover {
+      background-color: #EBF4F7;
+      color: #B88659;
+      cursor: pointer;
+
+      a { color: #B88659; }
+    }
+
+    li:last-child { border-bottom: none; }
+
+    li#new-folder {
+      padding-left: 0;
+      text-align: center;
+      .icon-fr2 {
+        color: #6E6E6E;
+        font-size: 16px;
+        top: -1px;
+      }
+    }
+    li#new-folder.hover,
+    li#new-folder:hover {
+      color: #B88659;
+      .icon-fr2 { color: #B88659; }
+    }
+  }
+}
+
 #clipping-actions #jump-to-folder.hover .menu ul li:first-child:hover {
   border-top-left-radius: 6px;
   -webkit-border-top-left-radius: 6px;
   -moz-border-radius-topleft: 6px;
   }
-#clipping-actions div.menu li:last-child { border-bottom: none; }
-#clipping-actions div.menu li#new-folder {
-  @include my_fr2-sprite(icon_badge_add, $my_fr2-sprite-dimensions, 61, 4);
-  padding-left: 20px;
-  text-align: center;
-  }
-#clipping-actions div.menu li#new-folder.hover,
-#clipping-actions div.menu li#new-folder:hover {
-  @include my_fr2-sprite(icon_badge_add_active, $my_fr2-sprite-dimensions, 61, 4);
-  color: #B88659;
-  }
 
-#clipping-actions div.menu li:hover {
-  background-color: #EBF4F7;
-  color: #B88659;
-  cursor: pointer;
-}
-
-
-#clipping-actions div.menu li a {
-  color: #6E6E6E;
-  font-weight: bold;
-  font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-#clipping-actions div.menu li:hover a { color: #B88659; }
-
-#clipping-actions div.menu a span              { display: inline-block; }
-#clipping-actions div.menu a span.name         { width: 158px; }
-#clipping-actions div.menu a span.document_count { float: right; }
 
 #clipping-actions #remove-clipping {
-  width: 14px;
-  height: 16px;
+  width: 18px;
+  height: 23px;
   
   position: absolute;
-  right: 0px;
-  margin: 5px 6px 0 0;
-  padding: 4px 4px 0 4px;
+  top: 3px;
+  right: 6px;
+  font-size: 22px;
+  padding: 0 4px 0 4px;
+  color: #6e6e6e;
 
   border: #CCC 1px solid;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  
+  @include border-radius(6);
+
   background-color: #FFF;
-  @include my_fr2-sprite(icon_remove_clipping, $my_fr2-sprite-dimensions, 2, 2);
+  z-index: 1000;
+
+  .icon-fr2-trash_can {
+    left: -2px;
+    top: -4px;
   }
-#clipping-actions #remove-clipping:hover {
-  background-color: #FFF;
-  @include my_fr2-sprite(icon_remove_clipping_active, $my_fr2-sprite-dimensions, 2, 2);
-  }
+  .icon-fr2-trash_can:hover { color: $fr-red; }
+}
 
 /**********************************************
 /* FR2 - ADD TO FOLDER MENU
 ***********************************************/
-#clipping-actions.fr2 { 
+#clipping-actions.fr2 {
+  width: 50px;
   background-color: #FFF;
   border: none;
   position: relative;
   margin-right: 0px;
+ 
+  .icon-fr2 { text-indent: 0; }
+
+  #add-to-folder {
+    position: relative;
+    width: 50px;
+    left: 0px;
+    margin: 0;
+  
+    .button {
+      width: 50px;
+      height: 27px;
+      left: 0px;
+
+      padding: 5px 0 0 2px;
+      border: none;
+
+      z-index: 100;
+
+      
+      .icon-fr2-flag {
+        color: #6E6E6E;
+        top: -6px;
+        font-size: 34px;
+        margin-right: 0;
+      }
+      .icon-fr2-menu_arrow {
+        top: -4px;
+        left: -3px;
+        font-size: 13px;
+      }
+
+      .icon-fr2.clipped { color: $fr-orange; }
+    }
+
+    .menu {
+      clear: both;
+      position: absolute;
+      right: -4px;
+      top: 32px;
+      padding: 5px 7px 5px 5px;
+      border-top: solid 1px #CCC;
+      z-index: 1;
+
+      border-top-left-radius: 6px;
+      -webkit-border-top-left-radius: 6px;
+      -moz-border-radius-topleft: 6px;
+    }
+  }
+
+  /* the .hover class is used by javascript and is needed because of   *
+   * javascript triggered hover interactions that don't play well with *
+   * mouse position and css hover states - we get a flickering menu!   */
+   
+  #add-to-folder.hover {
+    top: -1px;
+    left: -1px;
+    height: 36px;
+    background-color: #EEE;
+
+    
+    .button {
+      background-color: #EEE;
+      border: #CCC 1px solid;
+      border-bottom: none;
+
+      @include rounded-bottom(0);
+      @include rounded-top(6);
+
+      .icon-fr2-flag,
+      .icon-fr2-menu_arrow { color: $fr-orange; }
+    }
+    .menu { display: block; }
+  }
+
 }
-#clipping-actions.fr2 #add-to-folder {
-  right: 28px;
-  width: 40px;
-  margin: 0;
-  }
-#clipping-actions.fr2 #add-to-folder .button {
-  left: 0;
-  top: -2px;
-  width: 40px;
-  height: 27px;
 
-  padding: 0;
-  padding-top: 2px;
-  padding-top: 5px;
-  padding-left: 2px;
 
-  border: none;
-  text-indent: -9999px;
-
-  background-color: #FFF;
-  @include my_fr2-sprite(menu_arrow_down, $my_fr2-sprite-dimensions, 28, 9);
-
-  float: right;
-  z-index: 100;
-  }
-/* the .hover class is used by javascript and is needed because of   *
- * javascript triggered hover interactions that don't play well with *
- * mouse position and css hover states - we get a flickering menu!   */
-#clipping-actions.fr2 #add-to-folder.hover .button { top: -1px; }
-
-#clipping-actions.fr2 #add-to-folder.hover .button { 
-  top: -3px;
-  left: 1px;
-
-  background-color: #EEE;
-  @include my_fr2-sprite(menu_arrow_down_active, $my_fr2-sprite-dimensions, 28, 9);
-
-  border: #CCC 1px solid;
-  border-bottom: none;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 0px;
+#clipping-actions.fr2 div.menu {
+  li#new-folder {
+    .icon-fr2 { top: 3px; }
   }
 
-#clipping-actions.fr2 #add-to-folder .button span.icon {
-  display: block;
-  height: 30px;
-  width: 30px;
-  @include my_fr2-sprite(icon_add_to_clipboard);
+  li#new-folder.hover { 
+    color: $fr-orange;
+    a { color: $fr-orange; } 
   }
-/* the .hover class is used by javascript */
-#clipping-actions.fr2 #add-to-folder .button span.icon.clipped,
-#clipping-actions.fr2 #add-to-folder.hover .button span.icon {
-  @include my_fr2-sprite(icon_add_to_clipboard_active);
-  }
-#clipping-actions.fr2 #add-to-folder .menu {
-  clear: both;
-  top: -4px;
-  padding: 5px 7px 5px 5px;
-  right: 173px;
-  border-top: solid 1px #CCC;
-  z-index: 1;
+}
 
-  border-top-left-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topleft: 6px;
-  }
 
-#clipping-actions.fr2 #add-to-folder.hover .menu { display: block; }
+
 #clipping-actions.fr2 div.menu ul { 
   width: 200px;
   position: relative;
 
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
+  @include border-radius(6);
+  li { 
+    float: none;
+    display: list-item;
+    clear: both;
   }
-#clipping-actions.fr2 div.menu li { 
-  float: none;
-  display: list-item;
-  clear: both;
+}
+
+#clipping-actions.fr2 div.menu {
+  li {
+    .icon-fr2 {
+      top: 2px;
+      font-size: 19px;
+      color: #CCC;
+    }
   }
 
-#clipping-actions.fr2 div.menu li.in_folder:hover a {
-  color: #6E6E6E;
+  li.in_folder { 
+    cursor: default;
+    
+    a {
+      .icon-fr2.icon-fr2-badge_check_mark.checked { color: $fr-green; }
+      .icon-fr2.icon-fr2-badge_x.delete,
+      .icon-fr2.icon-fr2-badge_forward_arrow.goto { display: none; }
+    }
   }
+
+  li.in_folder:hover {
+    a { 
+      color: #6E6E6E; 
+      
+      .icon-fr2.icon-fr2-badge_x.delete { display: inline-block; }
+      .icon-fr2.icon-fr2-badge_x.delete:hover { color: $fr-red; }
+
+      .icon-fr2.icon-fr2-badge_forward_arrow.goto {
+        display: inline-block;
+        right: 25px;
+      }
+      .icon-fr2.icon-fr2-badge_forward_arrow.goto:hover { color: $fr-green; }
+    }
+  }
+}
   
-#clipping-actions.fr2 div.menu a span.name { white-space: normal; }
+#clipping-actions.fr2 div.menu {
+  a {
+    span.name { white-space: normal; }
 
-#clipping-actions.fr2 div.menu a span.icon,
-#clipping-actions.fr2 div.menu a span.loader {
-  width: 18px;
-  height: 18px;
-  top: 3px;
-  right: 3px;
-  position: absolute;
-  margin-right: 0;
+    span.icon,
+    span.loader {
+      width: 18px;
+      height: 18px;
+      right: 3px;
+      position: absolute;
+      margin-right: 0;
+    }
   }
+}
 
-#clipping-actions.fr2 div.menu li#new-folder.hover {
-  @include my_fr2-sprite(icon_badge_add_active);
-  }
-#clipping-actions.fr2 div.menu li#new-folder.hover a {
-  color: #B88659;
-  }
-
-
-#clipping-actions.fr2 div.menu li.in_folder { cursor: default; }
-
-#clipping-actions.fr2 div.menu li.in_folder a span.icon.checked {
-  @include my_fr2-sprite(icon_badge_checked_green);
-  }
-
-#clipping-actions.fr2 div.menu li.in_folder a span.icon.delete { display: none; }
-#clipping-actions.fr2 div.menu li.in_folder:hover a span.icon.delete {
-  @include my_fr2-sprite(icon_badge_remove);
-  display: inline-block;
-  }
-#clipping-actions.fr2 div.menu li.in_folder a span.icon.delete:hover {
-  @include my_fr2-sprite(icon_badge_remove_active);
+#clipping-actions.fr2 div.menu {
+  li.not_in_folder {
+    a {
+      .icon-fr2.icon-fr2-badge_check_mark { color: #CCC; }
+      span.loader {
+        width: 18px;
+        height: 18px;
+        display: none;
+        background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
+      }
+    }
   }
 
-#clipping-actions.fr2 div.menu li.in_folder a span.icon.goto { display: none; }
-#clipping-actions.fr2 div.menu li.in_folder:hover a span.icon.goto {
-  @include my_fr2-sprite(icon_badge_goto);
-  display: inline-block;
-  right: 25px;
+  li.not_in_folder:hover {
+    a {
+      .icon-fr2.icon-fr2-badge_check_mark { color: $fr-orange; }
+    }
   }
-#clipping-actions.fr2 div.menu li.in_folder a span.icon.goto:hover {
-  @include my_fr2-sprite(icon_badge_goto_active);
-  }
-
-#clipping-actions.fr2 div.menu li.not_in_folder a span.icon {
-  @include my_fr2-sprite(icon_badge_checked);
-  }
-#clipping-actions.fr2 div.menu li.not_in_folder:hover a span.icon {
-  @include my_fr2-sprite(icon_badge_checked_active);
-  }
-
-#clipping-actions.fr2 div.menu li.not_in_folder a span.loader {
-  display: none;
-  background: url(orange_loader.gif) 0 0 no-repeat;
-  }
+}

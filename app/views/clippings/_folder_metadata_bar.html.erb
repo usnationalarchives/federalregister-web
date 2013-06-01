@@ -6,7 +6,9 @@
     <% end %>
 
     <% if clippings.size > 0 %>
-      <li class="download"><%= csv_download_tag('Download clippings as CSV', clippings) %></li>
+      <li class="download">
+        <%= csv_download_tag('Download clippings as CSV', clippings) %>
+      </li>
     <% end %>
   </ul>
 </div>

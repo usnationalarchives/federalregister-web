@@ -8,28 +8,22 @@ div.warning {
 }
 div.message {
   /* reset border radius */
-  border-radius:0px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
+  @include border-radius(0);
+
   /* apply our style */
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-bottomleft: 6px;
+  @include rounded-bottom(6);
   }
 div.notice {
-  background: #D7E5C2;
-  border: 1px solid #7AA13D;
+  background: $fr_light_green;
+  border: 1px solid $fr_green;
   }
 div.warning {
-  background: #EDD3D3;
-  border: 1px solid #8A3737;
+  background: $fr_light_red;
+  border: 1px solid $fr_red;
   }
 
 span.unsaved { 
-  color: #8A3737;
+  color: $fr_red;
   font-weight: bold;
   }
 
@@ -38,137 +32,165 @@ div#new-folder-modal {
   display: none; 
   
   background-color: white;
-  border: 5px solid #3F5B75;
+  border: 5px solid $fr_dark_blue;
   display: none;
   padding: 1em;
   position: fixed;
   top: 5em;
   width: 500px;
-  }
-div#account-needed-modal .jqmClose,
-div#new-folder-modal .jqmClose {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  }
-div#account-needed-modal h3,
-div#new-folder-modal h3 {
-  border-top: none;
-  border-bottom: 2px solid #363636;
-  margin-bottom: .5em;
-  margin-top: 0;
-  text-transform: uppercase;
-  font-size: 1.8em;
+
+  .jqmClose {
+    position: absolute;
+    right: 1em;
+    top: 1em;
   }
 
-div#new-folder-modal form { margin-top: 10px; } 
-div#new-folder-modal form fieldset label { 
-  color: #565656;
-  font-weight: 700;
-  font-size: 1.05em;
+  h3 {
+    border-top: none;
+    border-bottom: 2px solid #363636;
+    margin-bottom: .5em;
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 1.8em;
   }
-div#new-folder-modal form fieldset.inputs { 
-  float: left;
-  margin-bottom: 0;
+}
+
+div#account-needed-modal,
+div#new-folder-modal {
+  .title_bar .icon-fr2 {
+    margin-right: 5px;
+    top: -5px;
+    position: relative;
+    float: left;
+    font-size: 30px;
   }
-div#new-folder-modal form fieldset.inputs input { 
-  @include my_fr2-sprite(icon_new_folder_input, $my_fr2-sprite-dimensions, 4, 2);
-  border: 1px solid #D5D5D5;
-  height: 17px;
-  margin-right: 0;
-  padding: 1px 5px 1px 25px;
-  width: 215px;
+}
+div#account-needed-modal {
+  .title_bar .icon-fr2 { top: -4px; }
+}
+
+div#new-folder-modal { 
+  form { 
+    margin-top: 10px;
+    
+    fieldset label { 
+      color: #565656;
+      font-weight: 700;
+      font-size: 1.05em;
+    }
+
+    fieldset.inputs { 
+      float: left;
+      margin-bottom: 0;
+      position: relative;
+
+      .icon-fr2 {
+        position: absolute;
+        top: 1px;
+        color: #999999;
+        font-size: 21px;
+        left: 100px;
+        z-index: 2;
+      }
+
+      input { 
+        border: 1px solid #D5D5D5;
+        height: 17px;
+        margin-right: 0;
+        padding: 1px 5px 1px 25px;
+        width: 215px;
+      }
+    }
+
+    fieldset.buttons { 
+      margin: 0;
+      padding-left: 10px;
+
+     li.commit { padding: 0; }
+    }
+  }
+}
+
+
+div#new-folder-modal {
+  .folder_create,
+  .folder_success {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
   }
 
-div#new-folder-modal form fieldset.buttons { 
-  margin: 0;
-  padding-left: 10px;
+  .folder_success {
+    .icon-fr2-badge_check_mark {
+      top: 4px;
+      left: 10px;
+      color: $fr-green;
+      font-size: 20px;
+    }
   }
-div#new-folder-modal form fieldset.buttons li.commit { padding: 0; }
-
-div#new-folder-modal .folder_create,
-div#new-folder-modal .folder_success {
-  display: none;
-  text-align: center;
-  }
-div#new-folder-modal .folder_create .icon,
-div#new-folder-modal .folder_success .icon {
-  width: 18px;
-  height: 18px;
-  position: relative;
-  }
-div#new-folder-modal .folder_success .icon {
-  top: -2px;
-  @include my_fr2-sprite(icon_badge_checked_green);
-  }
-div#new-folder-modal .folder_create .icon {
-  top: 4px;
-  margin-left: 10px;
-  background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
-  }
-div#new-folder-modal .folder_error { display: none; }
-div#new-folder-modal .folder_error p { 
-  color: #8A3737; 
-  height: 25px;
-  }
-div#new-folder-modal .folder_error .icon {
-  width: 20px;
-  height: 25px;
-  background: url(icons/disclaimer.png) 0 0 no-repeat;
-  margin-right: 10px;
+  .folder_create .loader {
+    height: 16px;
+    width: 16px;
+    top: 1px;
+    margin-left: 10px;
+    background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
   }
 
-.signup_tabs {
-  margin-bottom: 0;
-  font-size: 1.2em;
-  outline: 0;
-  }
+  .folder_error {
+    display: none;
 
-.signup_tabs, .signup_bar {
+    p {
+      color: $fr_red;
+      height: 25px;
+      padding: 0;
+    }
+
+    .icon-fr2 {
+      font-size: 22px;
+      top: 4px;
+    }
+  }
+}
+
+
+.signup_tabs, 
+.signup_bar {
   display: inline;
   float: left;
   margin-left: 10px;
   margin-right: 10px;
   width: 850px;
 }
-.signup_tabs li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-  white-space: nowrap;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0 10px;
+
+.signup_tabs {
+  margin-bottom: 0;
+  font-size: 1.2em;
+  outline: 0;
+
+  li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0px;
+    white-space: nowrap;
+    display: -moz-inline-box;
+    -moz-box-orient: vertical;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
   }
-.signup_tabs li.on {
-  background: #F1F1F1;
-  -moz-border-radius-topleft: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -o-border-top-left-radius: 5px;
-  -ms-border-top-left-radius: 5px;
-  -khtml-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -o-border-top-right-radius: 5px;
-  -ms-border-top-right-radius: 5px;
-  -khtml-border-top-right-radius: 5px;
-  border-top-right-radius: 5px;
-  margin-bottom: -1em;
-  padding-bottom: 1em;
-  padding-top: 0.25em;
+ 
+  li.on {
+    background: #F1F1F1;
+    @include rounded-bottom(6);
+    margin-bottom: -1em;
+    padding-bottom: 1em;
+    padding-top: 0.25em;
+  }
 }
 
 .signup_bar {
   background: #F1F1F1;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+  @include border-radius(6);
   margin-bottom: 5em;
   padding: 1em 0;
   padding-left: 25px;

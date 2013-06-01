@@ -6,8 +6,8 @@ module DocumentTypeHelper
                               :class => "doc_#{type} #{position_class(index, document_types.length)}",
                               'data-filter-doc-type' => type,
                               'data-filter-doc-type-display' => label) do
-                    tag(:div,
-                                :class => "icon-fr2 icon-fr2-#{type}",
+                    content_tag(:span, '',
+                                :class => "icon-fr2 icon-fr2-#{label.downcase.gsub(' ', '_')}",
                                 'aria-hidden' => true)
                   end
     end
@@ -20,9 +20,9 @@ module DocumentTypeHelper
   def document_types
     [
       ['notice', 'Notice'],
-      ['prorule', 'Proposed Rule'],
+      ['proposed_rule', 'Proposed Rule'],
       ['rule', 'Rule'],
-      ['presdocu', 'Presidential Document'],
+      ['presidential_document', 'Presidential Document'],
       ['correction', 'Correction']
     ]
   end

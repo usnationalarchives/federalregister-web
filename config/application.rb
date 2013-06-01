@@ -42,8 +42,38 @@ module MyFr2
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Compress JavaScripts and CSS
+    config.assets.compress = true
+
+    # Don't fallback to assets pipeline if a precompiled asset is missed
+    config.assets.compile = false
+
+    # Change path for generated assets
+    config.assets.prefix = "my/assets"
+
+    # Generate digests for assets URLs
+    config.assets.digest = true
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+    config.assets.precompile += %w(
+      application-ie.css 
+      application-shared.css 
+      application-shared.js
+      fr-document-icons-lte-ie7.js
+      fr2-icons-lte-ie7.js
+      application-fr2.js 
+      application-ie8lte.css 
+      application-ie7lte.css
+      application-fr2.js
+
+      *.eot
+      *.svg
+      *.ttf
+      *.woff
+    )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
     config.exceptions_app = self.routes

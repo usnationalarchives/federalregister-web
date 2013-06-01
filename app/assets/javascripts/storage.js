@@ -38,7 +38,11 @@ function document_number_present(document_number, user_folder_details) {
 }
 
 function show_folder_success(response) {
-  new_p = $('<p>').append( response.folder.name ).append( $('<span>').addClass('icon') );
+  new_p = $('<p>').append( 
+    'Successfully created folder "' + response.folder.name + '"'
+  ).append( 
+    $('<span>').addClass('icon-fr2 icon-fr2-badge_check_mark') 
+  );
   $('#new-folder-modal .folder_success p').replaceWith( new_p );
   $('#new-folder-modal .folder_success').show();
 }

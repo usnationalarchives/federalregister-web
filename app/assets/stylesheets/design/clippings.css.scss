@@ -1,14 +1,21 @@
 h2.title {
   border-bottom: 1px solid #CCC;
   margin: 0;
-  padding-left: 40px;
-  @include my_fr2-sprite(icon_folder_large, $my_fr2-sprite-dimensions, 0, 2);
   line-height: 1.1em;
-  padding-top: 5px;  
+  padding-top: 5px;
+
+  .icon-fr2 {
+    color: $fr-blue;
+    top: 4px;
+    font-size: 34px;
   }
-h2.clipboard.title {
-  @include my_fr2-sprite(icon_clipboard_large, $my_fr2-sprite-dimensions, 0, 3);
-  }
+  .icon-fr2.icon-fr2-flag { top: 5px; }
+}
+li.download a .icon-fr2-download { 
+  margin-right: 5px;
+  font-size: 15px;
+}
+
 div#folder_metadata_bar { margin-bottom: 2em; }
 div#folder_metadata_bar ul { 
   font-weight: 700;
@@ -25,6 +32,8 @@ div#folder_metadata_bar ul li.download {
   left: 15px;
   float: right;
   }
+
+#my_fr2 #doc-type-filter li .icon-fr2 { padding-left: 3px; }
 
 #clippings > li { 
   width: 900px;
@@ -51,14 +60,15 @@ div#folder_metadata_bar ul li.download {
   z-index: 500;
   margin-right: 10px;
   margin-left: 4px;
+
+  .icon-fr2.icon-doctype { font-size: 49px;}
+  .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
+  .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
+  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
+  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
+  .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
+  .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
 }
-#clippings div.rule_type img { position: relative; }
-#clippings div.rule_type.doc_presdocu img { top: 0px; }
-#clippings div.rule_type.doc_rule img { top: -466px; }
-#clippings div.rule_type.doc_notice img { top: -932px; }
-#clippings div.rule_type.doc_prorule img { top: -1397px; }
-#clippings div.rule_type.doc_unknown img { top: -1863px; }
-#clippings div.rule_type.doc_correct img { top: -2327px; }
 
 .document_data, .clipping_data { 
   display: inline-block;
@@ -185,6 +195,6 @@ div#folder_metadata_bar ul li.download {
   margin-right: 0;
 
   display: none;
-  background: url(orange_loader.gif) 0 0 no-repeat;
+  background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
   }
 

@@ -3,8 +3,7 @@
     <title>My FR <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
     <esi:include src="/layout/head_content?page_to_track=<%= yield(:page_to_track) %>" />
 
-    <%= stylesheet_link_tag "/my/assets/application.css?20130328" %>
-    <%= javascript_include_tag "/my/assets/application.js?20130328" %>
+    <%= javascript_include_tag my_asset_path('application.js') %>
   </head>
 
   <body id="my_fr2">

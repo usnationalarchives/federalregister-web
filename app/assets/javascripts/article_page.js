@@ -150,9 +150,10 @@ function create_new_folder(form) {
   form.hide();
   form.siblings('p').hide();
   $('#new-folder-modal .folder_error').hide();
+  $('#new-folder-modal .folder_success').hide();
 
   /* show creating folder message and loader */
-  $('new-folder-modal .folder_create').show();
+  $('#new-folder-modal .folder_create').show();
 
   /* submit data and handle response or failure */
   form_data = form.serializeArray();
@@ -172,7 +173,7 @@ function create_new_folder(form) {
       track_clipping_event('add', document_number, form.find('input#folder_name').val() );
 
 
-      $('new-folder-modal .folder_create').hide();
+      $('#new-folder-modal .folder_create').hide();
       show_folder_success(response); 
       update_user_util_folders(response);
 
@@ -220,8 +221,10 @@ function create_new_folder(form) {
     .fail(function(response) {
       $('#new-folder-modal .folder_create').hide();
       
-      responseText = $.parseJSON( response.responseText);
-      $('#new-folder-modal .folder_error p .message').html(responseText.errors[0]);
+      responseText = $.parseJSON( response.responseText );
+      $('#new-folder-modal .folder_error p .message').html(
+        responseText.errors[0]
+      );
       $('#new-folder-modal .folder_error').show();
       
       form.siblings('p').show();
@@ -247,8 +250,11 @@ function remove_document_from_folder(folder_li, document_number, menu) {
     folder_li.find('a span.icon').remove();
     
     /* add back our checked icon and bind the proper events to it*/
-    checked_span = $('<span>').addClass('checked').addClass('icon');
+    checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
     folder_li.find('a').append( checked_span );
+    if( $('body').hasClass('fonts_ie7_lte') ) {
+      addIconViaJS(checked_span, 'icon-fr2-badge_check_mark');
+    }
     folder_li.bind('click', function(event) {
       event.preventDefault();
       add_item_to_folder( $(this), menu, menu.closest('li').find('form.add_to_clipboard') );
@@ -270,11 +276,21 @@ function remove_document_from_folder(folder_li, document_number, menu) {
 function add_in_folder_mouseenter_events( el, document_number, menu ) {
   el.find('a span.checked.icon').remove();
 
-  goto_span = $('<span>').addClass('goto').addClass('icon');
-  el.find('a').append( goto_span );
-  delete_span = $('<span>').addClass('delete').addClass('icon');
-  el.find('a').append( delete_span );
+  /* add the goto and delete buttons/icons */
+  var link = el.find('a');
   
+  goto_span = $('<span>').addClass('goto icon icon-fr2 icon-fr2-badge_forward_arrow');
+  link.append( goto_span );
+  
+  delete_span = $('<span>').addClass('delete icon icon-fr2 icon-fr2-badge_x');
+  link.append( delete_span );
+  
+  if( $('body').hasClass('fonts_ie7_lte') ) {
+    addIconViaJS(goto_span, 'icon-fr2-badge_forward_arrow');
+    addIconViaJS(delete_span, 'icon-fr2-badge_x');
+  }
+
+
 
   /* goto folder icon link */
   goto_span.bind('click', function(event) {
@@ -382,8 +398,12 @@ $(document).ready(function () {
       el.find('a span.goto.icon').remove();
 
       if ( el.find('a span.checked.icon').length === 0 ) {
-        checked_span = $('<span>').addClass('checked').addClass('icon');
+        checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
         el.find('a').append( checked_span );
+
+        if( $('body').hasClass('fonts_ie7_lte') ) {
+          addIconViaJS(checked_span, 'icon-fr2-badge_check_mark');
+        }
       }
     });
 
