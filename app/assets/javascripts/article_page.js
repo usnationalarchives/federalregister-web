@@ -157,7 +157,7 @@ function create_new_folder(form) {
 
   /* submit data and handle response or failure */
   form_data = form.serializeArray();
-  form_data.push( {name: "folder[document_numbers]", value: new Array(document_number)} );
+  form_data.push( {name: "folder[document_numbers][]", value: document_number} );
 
   $.ajax({
     url: form.prop('action'),
