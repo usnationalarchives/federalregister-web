@@ -21,10 +21,10 @@ class ClippingsController < ApplicationController
   def create
     if user_signed_in?
       # create a clipping unless one already exists for this document
-      Clipping.persist_document(current_user, params[:entry][:document_number], params[:entry][:folder] )
+      Clipping.persist_document(current_user, clipping_attributes[:document_number], clipping_attributes[:folder] )
     else
       # stash the document id in the session if the user isn't logged in
-      add_document_id_to_session( params[:entry][:document_number] )
+      add_document_id_to_session( clipping_attributes[:document_number] )
     end
 
     if request.xhr?
@@ -36,7 +36,7 @@ class ClippingsController < ApplicationController
   end
 
   def bulk_create
-    document_numbers = params[:document_numbers]
+    document_numbers = Array( params[:document_numbers] ).flatten
 
     if document_numbers.present?
       clipping_details = []
@@ -59,6 +59,10 @@ class ClippingsController < ApplicationController
   end
 
   private
+
+  def clipping_attributes
+    params.require(:entry).permit(:document_number, :folder)
+  end
 
   def add_document_id_to_session(document_number)
     if cookies[:document_numbers].present?

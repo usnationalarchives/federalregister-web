@@ -1,4 +1,7 @@
 class Folder < ApplicationModel
+  include ActiveModel::ForbiddenAttributesProtection
+  attr_protected []
+  
   stampable
 
   has_many :clippings

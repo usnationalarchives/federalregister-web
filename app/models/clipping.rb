@@ -1,4 +1,7 @@
 class Clipping < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
+  attr_protected []
+
   belongs_to :user
   belongs_to :folder
 

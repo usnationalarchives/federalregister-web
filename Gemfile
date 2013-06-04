@@ -16,6 +16,8 @@ gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-twitter', '0.0.7'
 
+gem 'strong_parameters'
+
 gem 'formtastic', '2.0.2'
 gem 'draper',     '0.9.5'
 

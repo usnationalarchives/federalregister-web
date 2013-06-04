@@ -1,13 +1,14 @@
 class FoldersController < ActionController::Base
   
   def create
-    folder = Folder.new(:name => params[:folder][:name], :creator_id => current_user.id, :updater_id => current_user.id)
+    folder = Folder.new(:name => folder_attributes[:name], :creator_id => current_user.id, :updater_id => current_user.id)
     
     # document numbers are from the article page
-    document_numbers = params[:folder][:document_numbers]
+    document_numbers = folder_attributes[:document_numbers]
+
     # clipping ids are from the clippings/folder pages
-    if params[:folder][:clipping_ids]
-      clipping_ids = params[:folder][:clipping_ids].split(',')
+    if folder_attributes[:clipping_ids]
+      clipping_ids = folder_attributes[:clipping_ids].split(',')
     end
 
     if folder.save
@@ -48,5 +49,11 @@ class FoldersController < ActionController::Base
     @clippings = @folder.clippings.present? ? ClippingDecorator.decorate(@folder.clippings) : []
     
     render 'clippings/index', :layout => "application"
+  end
+
+  private
+
+  def folder_attributes
+    params.require(:folder).permit(:name, :clipping_ids, :document_numbers => [])
   end
 end
