@@ -11,7 +11,7 @@
 
 <%= article.short_article_url %>
 
-A <%= article.type %> by <%= article.agency_names_as_sentence(:links => false) %>.
+<%= article.type.with_indefinite_article(true) %> by <%= article.agency_names_as_sentence(:links => false) %>.
 
 <%= article.shortened_abstract -%>
 

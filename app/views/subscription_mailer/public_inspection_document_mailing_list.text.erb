@@ -9,7 +9,7 @@
 <%- @results.each do |document| -%>
 <%= [document.toc_subject, document.toc_doc, document.title].reject(&:blank?).join(' - ') %> (<%= document.document_number %>)
 
-A <%= document.type %> by <%= document.agency_names_as_sentence(:links => false) %> to be published on <%= document.publication_date %>.
+<%= document.type.with_indefinite_article(true) %> by <%= document.agency_names_as_sentence(:links => false) %> to be published on <%= document.publication_date %>.
 
 <%= document.short_article_url %>
 

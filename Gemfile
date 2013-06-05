@@ -52,6 +52,8 @@ gem "pickup", "0.0.8"
 # preview emails in the broswer
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 
+gem 'indefinite_article'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
