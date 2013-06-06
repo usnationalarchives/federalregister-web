@@ -29,6 +29,11 @@ div.notice.message p {
   line-height: 25px;
   }
 
+div.notice.message p {
+  padding-bottom: 1em;
+  line-height: 25px;
+  }
+
 span.unsaved { 
   color: $fr_red;
   font-weight: bold;
