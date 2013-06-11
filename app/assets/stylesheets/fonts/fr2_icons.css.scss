@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-fr2-"] {
 */
-.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user, .icon-fr2-badge_check_mark, .icon-fr2-badge_forward_arrow, .icon-fr2-badge_plus, .icon-fr2-badge_x, .icon-fr2-alert, .icon-fr2-alert_alt {
+.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user, .icon-fr2-badge_check_mark, .icon-fr2-badge_forward_arrow, .icon-fr2-badge_plus, .icon-fr2-badge_x, .icon-fr2-alert, .icon-fr2-alert_alt, .icon-fr2-document_open, .icon-fr2-pc {
 	font-family: 'fr2_icons';
 	speak: none;
 	font-style: normal;
@@ -100,4 +100,9 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-alert_alt:before {
 	content: "\e014";
 }
-
+.icon-fr2-document_open:before {
+	content: "\e015";
+}
+.icon-fr2-pc:before {
+	content: "\e016";
+}

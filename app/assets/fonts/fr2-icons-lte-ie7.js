@@ -20,7 +20,9 @@ var fr_icons = {
 			'icon-fr2-badge_plus' : '&#xe011;',
 			'icon-fr2-badge_x' : '&#xe012;',
 			'icon-fr2-alert' : '&#xe013;',
-			'icon-fr2-alert_alt' : '&#xe014;'
+			'icon-fr2-alert_alt' : '&#xe014;',
+			'icon-fr2-document_open' : '&#xe015;',
+			'icon-fr2-pc' : '&#xe016;'
 		};
 
 function get_entity(class_name) {
