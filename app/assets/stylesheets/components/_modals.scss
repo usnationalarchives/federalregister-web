@@ -1,0 +1,25 @@
+.fr_modal {
+  background-color: white;
+  border: 5px solid #3F5B75;
+  display: none;
+  padding: 1em;
+  position: fixed;
+  top: 5em;
+  width: 500px;
+
+  .jqmClose {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  .title_bar { 
+    border-top: none;
+    margin-bottom: 0.5em;
+  }
+}
+.fr_modal.wide { width: 650px; }
+
+#interstitial_tender_modal { 
+  .title_bar { margin-top: 0; }
+}
