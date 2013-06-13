@@ -65,10 +65,6 @@ task :production do
   role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
   role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
-<<<<<<< HEAD
-=======
-  role :static, "static.fr2.ec2.internal"
->>>>>>> Use gateway for deployments and add custom airbrake task for deploy notifications
   role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
   # Database Settings
@@ -91,10 +87,6 @@ task :staging do
   role :app,    "my-fr2-server-1.fr2.ec2.internal"
   role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
-<<<<<<< HEAD
-=======
-  role :static, "static.fr2.ec2.internal"
->>>>>>> Use gateway for deployments and add custom airbrake task for deploy notifications
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
   # Database Settings
