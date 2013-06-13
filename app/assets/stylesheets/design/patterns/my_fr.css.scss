@@ -2,10 +2,15 @@
 %list_page_title {
   border-bottom: 1px solid #CCC;
   margin: 0;
-  padding-left: 40px;
   line-height: 1.1em;
   padding-top: 5px;
+
+  .icon-fr2 {
+    color: $fr-blue;
+    top: 4px;
+    font-size: 34px;
   }
+}
 %list_page_title_metadata_bar {
   margin-bottom: 2em;
 
