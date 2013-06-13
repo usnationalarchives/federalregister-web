@@ -58,7 +58,7 @@
   
   li {
     span.public {
-      @include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);
+      /*@include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);*/
       height: 25px;
       width: 25px;
       display: inline-block;
@@ -252,7 +252,7 @@ div.alternative-comment-modal { margin-left: 0px; }
     margin-bottom: 10px;
     font-weight: bold;
     background-color: $fr-green;
-    @include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);
+    /*@include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);*/
     }
   .add_file:hover { background-color: lighten($fr-green, 10); }
 
@@ -279,10 +279,10 @@ div.alternative-comment-modal { margin-left: 0px; }
   button.delete:hover { background-color: lighten($fr-red, 10); }
 
   button.cancel {
-    @include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);
+    /*@include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);*/
     }
   button.delete {
-    @include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);
+    /*@include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);*/
     }
   
   button.cancel span,
@@ -365,7 +365,7 @@ table.attachments {
 
     cursor: pointer;
     padding-left: 27px;
-    @include my_fr2-sprite(icon_print_blue, $my_fr2-sprite-dimensions, 0, 0)
+    /*@include my_fr2-sprite(icon_print_blue, $my_fr2-sprite-dimensions, 0, 0)*/
     }
 
   .document_title { 
@@ -485,14 +485,14 @@ table.attachments {
 .comment_wrapper .social_media .media_buttons { margin-left: 90px; }
 .comment_wrapper .comment_next_steps {
   .my_fr p {
-    @include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 3px);
+    /*@include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 3px);*/
     margin-botton: 10px;
   }
   .my_fr .formtastic.comment_notifications ol { margin-bottom: 0; }
   
   .print { margin-top: 20px; }
   .print p {
-    @include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 2px);
+    /*@include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 2px);*/
   }
 
   .retrieval {
@@ -506,7 +506,7 @@ table.attachments {
 
   .social_media { margin-top: 15px; }
   .social_media p {
-    @include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, -2px);
+    /*@include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, -2px);*/
   }
 
   .social_media .media_buttons {

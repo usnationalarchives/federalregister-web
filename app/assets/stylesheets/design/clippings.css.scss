@@ -42,7 +42,7 @@ clippings > li { @extend %rounded_capsule; }
   bottom: 0;
   padding-bottom: 5px;
   padding-left: 20px;
-  @include my_fr2-sprite(icon_comment_small_orange, $my_fr2-sprite-dimensions, 0, 2);
+  /*@include my_fr2-sprite(icon_comment_small_orange, $my_fr2-sprite-dimensions, 0, 2);*/
   }
 
 #clippings dl.metadata dt.comment_close.open { color: $fr-green; }
