@@ -2,5 +2,7 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-run MyFr2::Application
+map '/my' do
+  run MyFr2::Application
+end
 
