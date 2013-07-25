@@ -12,8 +12,10 @@
 //= require jquery.fileupload.js
 //= require jquery.fileupload-ui.js
 //= require amplify.store-1.1.0.min.js
+<% if FeatureFlag::REGS_DOT_GOV_COMMENTS_ENABLED %>
 //= require comment
 //= require comment_notifications
+<% end %>
 //= require fr_modal
 //= require form_utils
 //= require subscription

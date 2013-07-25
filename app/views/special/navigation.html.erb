@@ -5,11 +5,13 @@
     <span class="arrow"></span>
   </a>
   <ul class="subnav myfr2_list">
-    <li id='myfr2-comments'>
-      <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
-    </li>
+    <% if FeatureFlag::REGS_DOT_GOV_COMMENTS_ENABLED %>
+      <li id='myfr2-comments'>
+        <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
+      </li>
+    <% end %>
 
-    <li id='myfr2-comments'>
+    <li id='myfr2-subscriptions'>
       <%= link_to 'My Subscriptions', '/my/subscriptions', :class => "myfr2-subscriptions" %>
     </li>
 
