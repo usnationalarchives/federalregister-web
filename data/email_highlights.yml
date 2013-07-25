@@ -1,51 +1,56 @@
 - id: clip_from_search
   created: '11/30/2012'
-  title: Clip Articles From Search
-  image: http://www.fr2.local/my/assets/icons/my_fr2/email/flag.png
-  content: "<span class='strong'>Did you know you can clip articles from search results?</span>
-           From any search result on FederalRegister.gov you can add an article to your clipboard 
-           or a folder in your MyFR account. Look for the flag icon on the right hand side of each 
-           result in the list and your only one click away from having the articles you're interested 
+  title: Clip Documents From Search
+  image: email/flag.png
+  content: "<span class='strong'>Did you know you can clip documents from search results?</span>
+           From any search result on FederalRegister.gov you can add a document to your clipboard 
+           or a folder in your MyFR account. Look for the 'flag' icon on the right hand side of each 
+           search result and your only one click away from having the documents you're interested 
            in quickly available for future reference!"
   priority: 1
+  enabled: true
   
 - id: comment_on_articles
   created: '11/30/2012'
-  title: Comment on Articles That Affect You
-  image: http://www.fr2.local/my/assets/icons/my_fr2/email/comment.png
-  content: "<span class='strong'>Officialy comment on an article without leaving FederalRegister.gov.</span> 
+  title: Comment on Documents That Affect You
+  image: email/comment.png
+  content: "<span class='strong'>Officialy comment on a document without leaving FederalRegister.gov.</span> 
             Working with Regulations.gov we are now providing an enhanced commenting experience with 
-            integration to your MyFR account; be notified when a follow up document is published, when your 
+            integration to your MyFR account; be notified when a follow-up document is published, when your 
             comment is made public, and more!"
   priority: 4
+  enabled: false    
 
 - id: subscribe_to_search
   created: '11/30/2012'
   title: Subscribe to Any Search Result
-  image: http://www.fr2.local/my/assets/icons/my_fr2/email/search.png
+  image: email/search.png
   content: "<span class='strong'>Did you know that you can subscribe to any search result?</span> 
             After performing any search on FederalRegister.gov you can choose to recieve via email
-            any future articles that match your search. Just click the subscribe button on the right
-            side of the search box"
+            any future documents that match your search. Just click the subscribe button on the right
+            side of the search box."
   priority: 1
+  enabled: true
 
 - id: subscribe_to_agency
   created: '11/30/2012'
-  title: Subscribe to an Agencies Articles
-  image: http://www.fr2.local/my/assets/icons/my_fr2/email/agency.png
-  content: "<span class='strong'>Interested in a particular agencies regulatory activites?</span> 
-           From any agency page on FederalRegister.gov you can choose to recieve updates via email to 
-           articles from that agency. Choices of subscriptions include Articles on Public Inspection, 
-           Newly Published Articles and Significant Articles."
+  title: Subscribe to an Agency's Documents
+  image: email/agency.png
+  content: "<span class='strong'>Interested in the regulatory activities of a particular agency?</span> 
+           From any agency page on FederalRegister.gov you can choose to recieve email updates of new 
+           documents from that agency. Choices of subscriptions include Documents on Public Inspection, 
+           Newly Published Documents, and Documents Deemed Significant."
   priority: 1
+  enabled: true
 
 - id: public_inspection_description
   created: '12/3/2012'
   title: What is Public Inspection?
-  image: http://www.fr2.local/my/assets/icons/my_fr2/email/clipboards.png
+  image: email/clipboards.png
   content: "<span class='strong'>Pubic Inspection gives the public access to important or complex 
             documents before they publish in the Federal Register.</span> It offers a preview of documents 
-            scheduled to appear in the next day’s Federal Register issue and may also include documents scheduled 
+            scheduled to appear in the next day's Federal Register issue and may also include documents scheduled 
             for later issues, at the request of the issuing agency. 
             <a href='https://www.federalregister.gov/blog/learn/public-inspection-desk-2'>Learn more here</a>"
   priority: 1
+  enabled: true
