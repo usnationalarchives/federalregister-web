@@ -1,5 +1,9 @@
 class FRMailer < Devise::Mailer
   include SendGrid
+  
+  add_template_helper(MailerHelper)
+  add_template_helper(AssetHelper)
+
   layout "mailer/two_col_1_2"
 
   default :from => "My Federal Register <noreply@mail.federalregister.gov>"
