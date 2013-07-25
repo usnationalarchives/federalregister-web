@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'fr2_icons';
-	src:url('fr2_icons/fr2_icons.eot');
-	src:url('fr2_icons/fr2_icons.eot?#iefix') format('embedded-opentype'),
-		url('fr2_icons/fr2_icons.woff') format('woff'),
-		url('fr2_icons/fr2_icons.ttf') format('truetype'),
-		url('fr2_icons/fr2_icons.svg#fr2_icons') format('svg');
+	src:asset-url('fr2_icons/fr2_icons.eot', 'fonts');
+	src:asset-url('fr2_icons/fr2_icons.eot?#iefix', 'fonts') format('embedded-opentype'),
+		asset-url('fr2_icons/fr2_icons.woff', 'fonts') format('woff'),
+		asset-url('fr2_icons/fr2_icons.ttf', 'fonts') format('truetype'),
+		asset-url('fr2_icons/fr2_icons.svg#fr2_icons', 'fonts') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-fr2-"] {
 */
-.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user, .icon-fr2-badge_check_mark, .icon-fr2-badge_forward_arrow, .icon-fr2-badge_plus, .icon-fr2-badge_x, .icon-fr2-alert, .icon-fr2-alert_alt {
+.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user, .icon-fr2-badge_check_mark, .icon-fr2-badge_forward_arrow, .icon-fr2-badge_plus, .icon-fr2-badge_x, .icon-fr2-alert, .icon-fr2-alert_alt, .icon-fr2-document_subscription, .icon-fr2-pi_subscription {
 	font-family: 'fr2_icons';
 	speak: none;
 	font-style: normal;
@@ -45,12 +45,6 @@ you can use the generic selector below, but it's slower:
 }
 .icon-fr2-download:before {
 	content: "\e002";
-}
-.icon-fr2-document_subscription:before {
-	content: "\e003";
-}
-.icon-fr2-pi_subscription:before {
-	content: "\e004";
 }
 .icon-fr2-open_folder:before {
 	content: "\e005";
@@ -99,5 +93,11 @@ you can use the generic selector below, but it's slower:
 }
 .icon-fr2-alert_alt:before {
 	content: "\e014";
+}
+.icon-fr2-document_subscription:before {
+	content: "\e016";
+}
+.icon-fr2-pi_subscription:before {
+	content: "\e003";
 }
 

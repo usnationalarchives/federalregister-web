@@ -3,8 +3,6 @@ var fr_icons = {
 			'icon-fr2-flag' : '&#xe000;',
 			'icon-fr2-folder' : '&#xe001;',
 			'icon-fr2-download' : '&#xe002;',
-			'icon-fr2-document_subscription' : '&#xe003;',
-			'icon-fr2-pi_subscription' : '&#xe004;',
 			'icon-fr2-open_folder' : '&#xe005;',
 			'icon-fr2-correction' : '&#xe007;',
 			'icon-fr2-notice' : '&#xe008;',
@@ -20,7 +18,9 @@ var fr_icons = {
 			'icon-fr2-badge_plus' : '&#xe011;',
 			'icon-fr2-badge_x' : '&#xe012;',
 			'icon-fr2-alert' : '&#xe013;',
-			'icon-fr2-alert_alt' : '&#xe014;'
+			'icon-fr2-alert_alt' : '&#xe014;',
+			'icon-fr2-document_subscription' : '&#xe016;',
+			'icon-fr2-pi_subscription' : '&#xe003;'
 		};
 
 function get_entity(class_name) {
