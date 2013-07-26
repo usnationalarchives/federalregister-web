@@ -23,7 +23,7 @@
       <% if user_signed_in? %>
         <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
       <% else %>
-        <%= link_to 'Sign Up / Sign In', new_user_session_path(), :class => "myfr2-auth" %>
+        <%= link_to 'Sign In / Sign Up', new_session_path, :class => "myfr2-auth" %>
       <% end %>
     </li>
   </ul>
