@@ -1,5 +1,5 @@
 <li data-subscription-id="<%= subscription.id %>" data-doc-type="<%= subscription.type.underscore.dasherize %>">
-  <div class="subscription_type sub_<%= subscription.type.downcase %> add_tipsy"></div>
+  <span class="icon-fr2 <%= subscription.icon_class %> add_tipsy"></span>
 
   <div class="search_data">
     <div class="title"><%= link_to subscription.mailing_list.title, subscription.search_path %></div>

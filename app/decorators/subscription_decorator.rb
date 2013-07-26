@@ -5,6 +5,10 @@ class SubscriptionDecorator < ApplicationDecorator
     mailing_list.type.split('::').last
   end
 
+  def icon_class
+    type == "Article" ? "icon-fr2-document_subscription" : "icon-fr2-pi_subscription"
+  end
+
   def search_path(options={})
     format = options.delete(:format)
 
