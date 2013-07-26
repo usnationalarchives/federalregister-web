@@ -6,7 +6,10 @@
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
 <%= content_tag(:div, flash[:warning],  :class => 'flash warning') if flash[:warning]  %>
 
-<h2 class="subscription title">My Subscriptions</h2>
+<h2 class="subscription title">
+  <span class="icon-fr2 icon-fr2-message_open"></span>
+  My Subscriptions
+</h2>
 <%= render :partial => "subscriptions/subscription_metadata_bar", :locals => {:article_subscription_count => @article_subscription_count, :pi_subscription_count => @pi_subscription_count} if current_user.confirmed? %>
 
 <div id="subscription-actions">
@@ -14,11 +17,11 @@
     <ul>
       <script type="text/javascript">var subscription_type_filters = <%= @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe %>;</script>
       <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Article">
-        Article
+        <span class="icon-fr2 icon-fr2-document_subscription"></span>
         <div class="label">Document</div>
       </li>
       <li class="sub_pi last" data-filter-doc-type="public-inspection-document" data-filter-doc-type-display="Public Inspection Document">
-        Public Inspection
+        <span class="icon-fr2 icon-fr2-pi_subscription"></span>
         <div class="label">Public Inspection</div>
       </li>
     </ul>

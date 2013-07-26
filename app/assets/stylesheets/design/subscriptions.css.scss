@@ -1,6 +1,3 @@
-h2.subscription.title {
-  /*@include my_fr2-sprite(icon_message_open, $my_fr2-sprite-dimensions, 0, -1);*/
-  }
 
 #subscription_metadata_bar { @extend %list_page_title_metadata_bar; }
 
@@ -65,22 +62,26 @@ ul#subscriptions .subscription_type.sub_publicinspectiondocument {
       li { 
         overflow: hidden;
         color: $fr-gray-40;
-        padding-left: 22px;
-        width: 44px;
+        padding-left: 5px;
+        width: 95px;
         font-weight: bold;
+
+        .label {
+          display: inline-block;
+          top: -4px;
+          position: relative;
+        }
       }
-      li.last { width: 96px; }
+      li.last { width: 135px; }
       li.on,
       li.hover { color: $fr-bright-orange; }
       li.disabled { color: $fr-gray-10; }
 
-      li.sub_article { 
-        /*@include my_fr2-sprite(icon_subscription_article_mini, $my_fr2-sprite-dimensions, 1px, 1px);*/
-        background-color: $list-item-filter-bg;
-      }
+      li.sub_article,
       li.sub_pi { 
-        /*@include my_fr2-sprite(icon_subscription_clipboard_mini, $my_fr2-sprite-dimensions, 1px, 1px);*/
         background-color: $list-item-filter-bg;
+
+        .icon-fr2 { font-size: 20px; }
       }
 
       li.sub_article.on,
