@@ -12,6 +12,17 @@ function resubscribe_success($link, response) {
 
 
 $(document).ready( function() {
+  /* set height so that dotted border on subscription data is 
+   * the same size as the search data */
+  $('#subscriptions li').each( function() {
+    var li = $(this),
+        height = li.find('.search_data').height();
+    
+    li.find('.subscription_data').height(height);    
+  });
+
+
+  /* unsubscribe */
   $('#subscriptions').delegate('.subscription_data a.unsubscribe', 'click', function(event) {
     event.preventDefault();
 
@@ -30,6 +41,7 @@ $(document).ready( function() {
     });
   });
 
+  /* resubscribe */
   $('#subscriptions').delegate('.subscription_data a.resubscribe', 'click', function(event) {
     event.preventDefault();
 
