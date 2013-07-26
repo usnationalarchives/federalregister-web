@@ -15,9 +15,11 @@
       <script type="text/javascript">var subscription_type_filters = <%= @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe %>;</script>
       <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Article">
         Article
+        <div class="label">Document</div>
       </li>
       <li class="sub_pi last" data-filter-doc-type="public-inspection-document" data-filter-doc-type-display="Public Inspection Document">
         Public Inspection
+        <div class="label">Public Inspection</div>
       </li>
     </ul>
   </div>
