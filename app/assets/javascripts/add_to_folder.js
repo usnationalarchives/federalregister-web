@@ -278,7 +278,14 @@ $(document).ready(function() {
     }
     
     if ( modal.is('#new-folder-modal') ) {
-      modal.find('p.instructions span#fyi').html('When this folder is created any selected clippings will be moved to it.');
+      var selected_clipping_count = $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked').length,
+          text = "";
+
+      if( selected_clipping_count > 0 ) {
+        text = "When this folder is created the <strong>" + selected_clipping_count + " selected " + (selected_clipping_count === 1 ? 'clipping' : 'clippings') + "</strong> will be moved to it.";
+      }
+
+      modal.find('p.instructions span#fyi').html(text);
     }
   
     /* attach events to the modal close */
@@ -309,7 +316,7 @@ $(document).ready(function() {
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
 
-    clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) { 
+    clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) { 
                       return $(input).closest('li').data('doc-id'); 
                    });
     create_new_folder_with_items( $(this), clipping_ids );
