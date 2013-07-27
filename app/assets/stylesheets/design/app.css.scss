@@ -16,12 +16,12 @@ div.message {
   @include rounded-bottom(6);
   }
 div.notice {
-  background: $fr_light_green;
-  border: 1px solid $fr_green;
+  background: $fr-light-green;
+  border: 1px solid $fr-green;
   }
 div.warning {
-  background: $fr_light_red;
-  border: 1px solid $fr_red;
+  background: $fr-light-red;
+  border: 1px solid $fr-red;
   }
 
 div.notice.message p {
@@ -35,7 +35,7 @@ div.notice.message p {
   }
 
 span.unsaved { 
-  color: $fr_red;
+  color: $fr-red;
   font-weight: bold;
   }
 
@@ -44,7 +44,7 @@ div#new-folder-modal {
   display: none; 
   
   background-color: white;
-  border: 5px solid $fr_dark_blue;
+  border: 5px solid $fr-dark-blue;
   display: none;
   padding: 1em;
   position: fixed;
@@ -107,7 +107,7 @@ div#new-folder-modal {
 
       input { 
         border: 1px solid #D5D5D5;
-        height: 17px;
+        height: 20px;
         margin-right: 0;
         padding: 1px 5px 1px 25px;
         width: 215px;
@@ -117,8 +117,6 @@ div#new-folder-modal {
     fieldset.buttons { 
       margin: 0;
       padding-left: 10px;
-
-     li.commit { padding: 0; }
     }
   }
 }
@@ -152,7 +150,7 @@ div#new-folder-modal {
     display: none;
 
     p {
-      color: $fr_red;
+      color: $fr-red;
       height: 25px;
       padding: 0;
     }
