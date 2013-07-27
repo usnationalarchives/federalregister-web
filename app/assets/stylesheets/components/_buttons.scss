@@ -1,0 +1,37 @@
+.wf-active .fr_button,
+.fr_button {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+
+  &.primary {
+    background: $fr-green;
+    color: $white;
+
+    &:hover,
+    &.hover { 
+      background: $fr-orange;
+    }
+  }
+
+  &.large  { min-width: 200px; }
+  &.medium { 
+    min-width: 150px;
+    padding: 5px;
+    
+    font-size: 12px;
+    input { 
+      font-size: 12px;
+    }
+  }
+  &.small  { min-width: 100px; }
+
+  .browser_reset {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: inherit;
+  }
+}
