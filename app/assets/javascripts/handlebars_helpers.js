@@ -97,6 +97,14 @@ Handlebars.registerHelper('pluralize', function(number, single, plural) {
   }
 });
 
+Handlebars.registerHelper('pluralize_array', function(arr, single, plural) {
+  if( arr.length === 1 ) { 
+    return single;
+  } else { 
+    return plural;
+  }
+});
+
 Handlebars.registerHelper('human_size', function(bytes) {
   if (typeof bytes !== 'number') {
     return '';
@@ -142,4 +150,8 @@ Handlebars.registerHelper('add_email_to_input', function(email_address) {
   }
 
   return new Handlebars.SafeString(result);
+});
+
+Handlebars.registerHelper('count', function(arr) {
+  return arr.length;
 });
