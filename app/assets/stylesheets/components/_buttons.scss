@@ -15,6 +15,16 @@
       background: $fr-bright-orange;
     }
   }
+  &.optional {
+    background: $fr-gray-15;
+    color: $black;
+
+    &:hover,
+    &.hover { 
+      background: $fr-bright-orange;
+      color: $white;
+    }
+  }
 
   &.large  { min-width: 200px; }
   &.medium { 

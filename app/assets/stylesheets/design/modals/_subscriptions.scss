@@ -1,0 +1,94 @@
+.modal.subscribe {
+  h3 { 
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    margin-bottom: 0;
+    margin-left: 1em;
+
+    li {
+      border-bottom: 1px solid #eee;
+      list-style: none;  
+      margin-bottom: 1em;
+      padding-left: 0;
+      overflow: hidden;
+      background: none;
+      
+      a {
+        font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 13px;
+        font-weight: normal;
+        text-transform: none;
+      }
+
+
+      h5 {
+        float: left;
+        margin-top: 0;
+        text-align: right;
+        width: 100px;
+        font-size: 1.2em;
+        margin-right: 10px;
+        text-transform: none;
+        color: $fr-gray-60;
+
+        .icon-fr2 { font-size: 16px; }
+        .icon-fr2-message { 
+          font-size: 22px;
+          top: 4px;
+        }
+      }
+
+      form {
+        padding-top: 5px;
+
+        input[type=text] {
+          font-weight: bold;
+          font-size: 14px;
+          width: 300px;
+          color: $fr-green;
+        }
+
+        ul { 
+          margin: 0;
+          
+          li.radio { 
+            margin-top: 5px;
+            margin-bottom: 0;
+          
+            ol {
+              margin-left: 95px;
+
+              li { margin-bottom: 0; }
+            }
+          }
+        }
+
+        fieldset legend.label {
+          width: inherit;
+          font-size: inherit;
+        }
+        fieldset.buttons {
+          margin-left: 0;
+          margin-top: 10px;
+
+          ol { 
+            margin: 0;
+            li { padding-bottom: 5px; }
+          }
+        }
+      }
+    }
+
+    li:last-child,
+    li li {
+      border: none;
+      padding-bottom: 0;
+    }
+
+    li:last-child { margin-bottom: 0; }
+  }
+}
