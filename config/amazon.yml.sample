@@ -1,0 +1,9 @@
+aws_key_location:   /path/to/directory
+ec2_private_key:    file_name.pem
+ec2_x509_cert:      file_name.pem
+aws_account_id:     integer
+ec2_architecture:   i386
+access_key_id:      access_key
+secret_access_key:  secret_access_key
+ec2_s3_bucket_name: gpo-fr2-ami
+ami_excluded_items: ['/vol', '/var/lib/mysql', '/var/log', '/var/www/apps/']
