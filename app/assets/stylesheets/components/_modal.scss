@@ -1,0 +1,44 @@
+.modal {
+  display: none; 
+  
+  background-color: white;
+  border: 5px solid $fr-dark-blue;
+  display: none;
+  padding: 1em;
+  position: fixed;
+  top: 5em;
+  width: 500px;
+
+  .jqmClose {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  h3 {
+    border-top: none;
+    border-bottom: 2px solid $fr-gray-80;
+    margin-bottom: .5em;
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 1.8em;
+  }
+
+  .title_bar .icon-fr2 {
+    margin-right: 5px;
+    top: -5px;
+    position: relative;
+    float: left;
+    font-size: 30px;
+  }
+
+  form {
+    input[type=text] {
+      border: 1px solid $fr-gray-15;
+      height: 20px;
+      margin-right: 0;
+      padding: 1px 5px;
+      width: 215px;
+    }
+  }
+}

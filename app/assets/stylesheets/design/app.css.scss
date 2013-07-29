@@ -39,44 +39,6 @@ span.unsaved {
   font-weight: bold;
   }
 
-div#account-needed-modal,
-div#new-folder-modal { 
-  display: none; 
-  
-  background-color: white;
-  border: 5px solid $fr-dark-blue;
-  display: none;
-  padding: 1em;
-  position: fixed;
-  top: 5em;
-  width: 500px;
-
-  .jqmClose {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
-
-  h3 {
-    border-top: none;
-    border-bottom: 2px solid #363636;
-    margin-bottom: .5em;
-    margin-top: 0;
-    text-transform: uppercase;
-    font-size: 1.8em;
-  }
-}
-
-div#account-needed-modal,
-div#new-folder-modal {
-  .title_bar .icon-fr2 {
-    margin-right: 5px;
-    top: -5px;
-    position: relative;
-    float: left;
-    font-size: 30px;
-  }
-}
 div#account-needed-modal {
   .title_bar .icon-fr2 { top: -4px; }
 }
@@ -105,12 +67,8 @@ div#new-folder-modal {
         z-index: 2;
       }
 
-      input { 
-        border: 1px solid #D5D5D5;
-        height: 20px;
-        margin-right: 0;
+      input[type=text] { 
         padding: 1px 5px 1px 25px;
-        width: 215px;
       }
     }
 
@@ -123,6 +81,8 @@ div#new-folder-modal {
 
 
 div#new-folder-modal {
+  h3.title_bar { margin-top: 0; }
+
   .folder_create,
   .folder_success {
     display: none;
