@@ -29,14 +29,21 @@ class SubscriptionMailer < ActionMailer::Base
 
   def unsubscribe_notice(subscription)
     @subscription = subscription
-    
+    @utility_links = []
+    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr') 
+
     sendgrid_category "Subscription Unsubscribe"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription unsubscribe'
     
     mail(
       :to => subscription.email,
       :subject => "[FR] #{subscription.mailing_list.title}"
-    )
+    ) do |format|
+      format.text { render('unsubscribe_notice') }
+      format.html { Premailer.new( render('unsubscribe_notice', :layout => "mailer/two_col_1_2"),
+                                   :with_html_string => true,
+                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css } 
+    end
   end
   
   def public_inspection_document_mailing_list(mailing_list, results, subscriptions)
@@ -75,5 +82,17 @@ class SubscriptionMailer < ActionMailer::Base
       :subject => "[FR] #{mailing_list.title}",
       :to =>  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
     )
+  end
+
+  class Preview < MailView
+    def subscription_confirmation
+      subscription = Subscription.find(2)
+      SubscriptionMailer.subscription_confirmation(subscription)
+    end
+
+    def unsubscribe_notice
+      subscription = Subscription.find(2)
+      SubscriptionMailer.unsubscribe_notice(subscription)
+    end
   end
 end

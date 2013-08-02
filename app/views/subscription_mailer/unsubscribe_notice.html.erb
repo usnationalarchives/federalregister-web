@@ -1,0 +1,5 @@
+<p>Hello, you have been unsubscribed from "<strong><%= @subscription.mailing_list.title %></strong>".</p>
+
+<p>If this was done in error, use the link below to resubscribe:</p>
+  
+<p><%= link_to confirm_subscription_url(@subscription), confirm_subscription_url(@subscription) %></p>
