@@ -1,4 +1,9 @@
-- id: clip_from_search
+defaults: &defaults
+  in_rotation: true
+  enabled: true
+
+highlights:
+- name: clip_from_search
   created: '11/30/2012'
   title: Clip Documents From Search
   image: email/flag.png
@@ -8,9 +13,9 @@
            search result and your only one click away from having the documents you're interested 
            in quickly available for future reference!"
   priority: 1
-  enabled: true
+  <<: *defaults
   
-- id: comment_on_articles
+- name: comment_on_articles
   created: '11/30/2012'
   title: Comment on Documents That Affect You
   image: email/comment.png
@@ -19,9 +24,10 @@
             integration to your MyFR account; be notified when a follow-up document is published, when your 
             comment is made public, and more!"
   priority: 4
-  enabled: false    
+  enabled: false
+  <<: *defaults
 
-- id: subscribe_to_search
+- name: subscribe_to_search
   created: '11/30/2012'
   title: Subscribe to Any Search Result
   image: email/search.png
@@ -30,9 +36,9 @@
             any future documents that match your search. Just click the subscribe button on the right
             side of the search box."
   priority: 1
-  enabled: true
+  <<: *defaults
 
-- id: subscribe_to_agency
+- name: subscribe_to_agency
   created: '11/30/2012'
   title: Subscribe to an Agency's Documents
   image: email/agency.png
@@ -41,9 +47,9 @@
            documents from that agency. Choices of subscriptions include Documents on Public Inspection, 
            Newly Published Documents, and Documents Deemed Significant."
   priority: 1
-  enabled: true
+  <<: *defaults
 
-- id: public_inspection_description
+- name: public_inspection_description
   created: '12/3/2012'
   title: What is Public Inspection?
   image: email/clipboards.png
@@ -53,4 +59,17 @@
             for later issues, at the request of the issuing agency. 
             <a href='https://www.federalregister.gov/blog/learn/public-inspection-desk-2'>Learn more here</a>"
   priority: 1
+  <<: *defaults
+
+- name: manage_subscriptions_via_my_fr
+  created: '07/29/2013'
+  title: Manage Your Subscriptions
+  image: email/message.png
+  content: "<span class='strong'>A My Federal Register account allows you to easily manage your subscriptions in 
+            one place.</span> By creating an account you can review your subscriptions, view current results online,
+            and see the last time your subscription matched Federal Register documents.
+            <a href='https://www.federalregister.gov/my/sign_up'>Get started here!</a>"
+  priority: 1
   enabled: true
+  in_rotation: false
+  <<: *defaults
