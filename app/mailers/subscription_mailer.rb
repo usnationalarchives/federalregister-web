@@ -1,6 +1,9 @@
 class SubscriptionMailer < ActionMailer::Base
   include SendGrid
 
+  add_template_helper(MailerHelper)
+  add_template_helper(AssetHelper)
+
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
   
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
