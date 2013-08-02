@@ -7,10 +7,11 @@ class SubscriptionMailer < ActionMailer::Base
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
   
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
+
   def subscription_confirmation(subscription)
     @subscription = subscription
     @utility_links = []
-    @highlights = EmailHighlight.pick(2)
+    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr') 
 
     sendgrid_category "Subscription Confirmation"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription confirmation'
