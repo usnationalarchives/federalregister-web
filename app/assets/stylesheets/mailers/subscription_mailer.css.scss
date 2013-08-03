@@ -1,26 +1,122 @@
+@import "mixins/_colors.scss";
+
 #templateSidebar{
   background-color:#FFFFFF;
   border-left:0;
-  }
+}
 
-.sidebarContent div{
+.sidebarContent div {
   color:#505050;
   font-family:Arial;
   font-size:12px;
   line-height:150%;
   text-align:left;
+
+  a:link,
+  a:visited, 
+  /* Yahoo! Mail Override */ .sidebarContent div a .yshortcuts /* Yahoo! Mail Override */ {
+    color:#336699;
+    font-weight:normal;
+    text-decoration:underline;
   }
 
-.sidebarContent div a:link, 
-.sidebarContent div a:visited, 
-/* Yahoo! Mail Override */ .sidebarContent div a .yshortcuts /* Yahoo! Mail Override */ {
-  color:#336699;
-  font-weight:normal;
-  text-decoration:underline;
+  img{
+    display:inline;
+    height:auto;
   }
 
-.sidebarContent img{
-  display:inline;
-  height:auto;
+}
+
+table.highlight {
+  padding: 10px;
+  background-color: $fr-gray-5;
+  margin: 20px 0;
+
+  h4 {
+    color: $fr-green;
   }
+}
+
+#main-content {
+  font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
+
+  h1 {
+    color: $fr-blue;
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-size: 28px;
+    clear: both;
+  }
+
+  .info {
+    color: $fr-gray-60;
+    font-size: 12px;
+    font-style:italic;
+    font-weight: normal;
+    border-bottom: 1px solid $fr-gray-40;
+    height: 18px;
+    overflow: hidden;
+    padding: 0 5px;
+    margin-bottom: 10px;
+
+    .left,
+    .right { display: block; }
+    .left { float: left; }
+    .right { float: right; }
+  }
+
+  h3 {
+    color: $fr-gray-70;
+    font-size:16px;
+    margin-bottom:5px;
+  }
+
+  .sub_agency {
+    color: $fr-gray-70;
+    font-size: 12px;
+    margin: 0 0 10px 10px;
+
+    .doc_count { font-size: 11px; }
+  }
+
+  h4 {
+    color: $fr-gray-70;
+    font-size: 14px;
+    text-transform:uppercase;
+    margin: 10px 0 10px 10px;
+  }
+
+  h5 {
+    color: $fr-gray-70;
+    font-size: 13px;
+    margin:5px 0 5px 20px;
+  }
+
+  h6 {
+    font-size: 14px;
+    margin: 10px 0 5px 0;
+  }
+
+  .document {
+    margin-left: 20px;
+    &.with_subject { margin-left: 30px; }
+
+    .abstract {
+      color:#363636;
+      font-family: Georgia, 'Times New Roman',serif;
+      font-size: 13px; 
+      line-height: 1.5;
+      margin:0px 0 15px;
+    }
+
+    .comment_open {
+      background: $fr-gray-5;
+      color: $fr-gray-80;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 1px 3px 1px 3px;
+      text-transform: uppercase;
+    }
+  }
+}
 

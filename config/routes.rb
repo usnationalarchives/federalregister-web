@@ -77,6 +77,7 @@ MyFr2::Application.routes.draw do
 
   if Rails.env.development?
     mount FRMailer::Preview => 'fr_mail_view'
+    mount SubscriptionMailer::Preview => 'subscription_mail_view'
     mount CommentMailer::Preview => 'comment_mail_view'
   end
 end

@@ -30,8 +30,8 @@ class ArticleDecorator < ApplicationDecorator
     model.effective_on.to_formatted_s(:date) if model.effective_on
   end
 
-  def shortened_abstract
-    h.truncate_words(model.abstract, :length => 500) || "[No abstract available]"
+  def shortened_abstract(length=500)
+    h.truncate_words(model.abstract, :length => length) || "[No abstract available]"
   end
 
   def agency_dt_dd

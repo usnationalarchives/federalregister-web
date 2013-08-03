@@ -71,6 +71,9 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
+    @utility_links = []
+    @highlights = EmailHighlight.pick(2)
+
     sendgrid_category "Subscription"
     sendgrid_recipients subscriptions.map(&:email)
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
@@ -81,7 +84,13 @@ class SubscriptionMailer < ActionMailer::Base
     mail(
       :subject => "[FR] #{mailing_list.title}",
       :to =>  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
-    )
+    ) do |format|
+      format.text { render('entry_mailing_list') }
+      format.html { Premailer.new( render('entry_mailing_list', :layout => "mailer/simple_rightsidebar"),
+                                   :with_html_string => true,
+                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css } 
+    end
+
   end
 
   class Preview < MailView
@@ -93,6 +102,13 @@ class SubscriptionMailer < ActionMailer::Base
     def unsubscribe_notice
       subscription = Subscription.find(2)
       SubscriptionMailer.unsubscribe_notice(subscription)
+    end
+
+    def entry_mailing_list
+      mailing_list = MailingList.find(1) 
+      subscriptions = mailing_list.subscriptions
+      results = mailing_list.send(:results_for_date, Date.parse('2013-05-08') )
+      SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)
     end
   end
 end
