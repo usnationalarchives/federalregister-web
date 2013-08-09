@@ -53,6 +53,9 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
+    @utility_links = []
+    @highlights = EmailHighlight.pick(2)
+
     sendgrid_category "PI Subscription"
     sendgrid_recipients subscriptions.map(&:email)
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
@@ -61,7 +64,12 @@ class SubscriptionMailer < ActionMailer::Base
     mail(
       :subject => "[FR] #{mailing_list.title}",
       :to => 'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
-    )
+    ) do |format|
+      format.text { render('public_inspection_document_mailing_list') }
+      format.html { Premailer.new( render('public_inspection_document_mailing_list', :layout => "mailer/simple_leftsidebar"),
+                                   :with_html_string => true,
+                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+    end
   end
 
   def entry_mailing_list(mailing_list, results, subscriptions)
@@ -86,7 +94,7 @@ class SubscriptionMailer < ActionMailer::Base
       :to =>  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
     ) do |format|
       format.text { render('entry_mailing_list') }
-      format.html { Premailer.new( render('entry_mailing_list', :layout => "mailer/simple_rightsidebar"),
+      format.html { Premailer.new( render('entry_mailing_list', :layout => "mailer/simple_leftsidebar"),
                                    :with_html_string => true,
                                    :warn_level => Premailer::Warnings::SAFE).to_inline_css } 
     end
@@ -105,7 +113,7 @@ class SubscriptionMailer < ActionMailer::Base
     end
 
     def entry_mailing_list
-      mailing_list = MailingList.find(1) 
+      mailing_list = MailingList.find(4) 
       subscriptions = mailing_list.subscriptions
       results = mailing_list.send(:results_for_date, Date.parse('2013-05-08') )
       SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)

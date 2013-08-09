@@ -1,5 +1,6 @@
 @import "mixins/_colors.scss";
 
+
 #templateSidebar{
   background-color:#FFFFFF;
   border-left:0;
@@ -20,32 +21,62 @@
     text-decoration:underline;
   }
 
-  img{
+  img {
     display:inline;
     height:auto;
   }
+}
 
+%helvetica_neue {
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 table.highlight {
   padding: 10px;
-  background-color: $fr-gray-5;
+  background-color: $fr-gray-2;
   margin: 20px 0;
 
   h4 {
     color: $fr-green;
+    
+    &.top_aligned { 
+      padding-top: 4px;
+      font-size: 18px;
+    }
+  }
+}
+
+tr.social {
+  margin: 0;
+
+  td div {
+    font-family: Arial;
+    @extend helvetica_neue;
+    font-size: 14px;
+    text-align: center;
+
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: $fr-gray-2;
+
+    a,
+    a:visited {
+      color: #336699;336699
+      font-weight: normal;
+      text-decoration: underline;
+    }
+
   }
 }
 
 #main-content {
-  font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
-
   h1 {
     color: $fr-blue;
     margin: 0 0 30px 0;
     padding: 0;
     font-size: 28px;
     clear: both;
+    @extend helvetica_neue;
   }
 
   .info {
@@ -69,6 +100,7 @@ table.highlight {
     color: $fr-gray-70;
     font-size:16px;
     margin-bottom:5px;
+    @extend helvetica_neue;
   }
 
   .sub_agency {
@@ -84,17 +116,20 @@ table.highlight {
     font-size: 14px;
     text-transform:uppercase;
     margin: 10px 0 10px 10px;
+    @extend helvetica_neue;
   }
 
   h5 {
     color: $fr-gray-70;
     font-size: 13px;
     margin:5px 0 5px 20px;
+    @extend helvetica_neue;
   }
 
   h6 {
     font-size: 14px;
     margin: 10px 0 5px 0;
+    @extend helvetica_neue;
   }
 
   .document {

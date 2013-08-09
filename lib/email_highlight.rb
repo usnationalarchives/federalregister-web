@@ -6,10 +6,10 @@ class EmailHighlight
   HIGHLIGHTS = YAML::load_file(Rails.root.join('data', 'email_highlights.yml'))['highlights']
 
   def self.calculate_weight_hash(exclude = [])
-    if exclude.empty?
-      highlights = rotatable_highlights
-    else 
-      highlights = rotatable_highlights - exclude
+    highlights = rotatable_highlights
+
+    if exclude.present?
+      highlights = highlights - exclude
     end
 
     highlights.inject( Hash.new{|h,k| h[k]=[] } ) do |h, highlight|
@@ -20,7 +20,7 @@ class EmailHighlight
 
   def self.pick(num, options={})
     if options[:exclude]
-      weight_hash = calculate_weight_hash(options[:exclude].to_a)
+      weight_hash = calculate_weight_hash( Array(options[:exclude]) )
     else
       weight_hash = calculate_weight_hash
     end
