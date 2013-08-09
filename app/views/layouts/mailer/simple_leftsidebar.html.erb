@@ -38,6 +38,41 @@
                   <!-- // Begin Template Body \\ -->
                   <table border="0" cellpadding="0" cellspacing="0" width="700" id="templateBody">
                     <tr>
+                      <!-- // Begin Sidebar \\  -->
+                      <td valign="top" width="200" id="templateSidebar">
+
+                        <table border="0" cellpadding="0" cellspacing="0" width="200">
+                          <tr>
+                            <td valign="top" class="sidebarContent">
+
+                              <!-- // Begin Module: Top Image with Content \\ -->
+                              <%= render  :partial => 'fr_mailer/simple_left_column', 
+                                          :locals => { :table_class => "highlight top",
+                                                       :highlight => @highlights.first }
+                              %>
+
+                              <%= render  :partial => 'fr_mailer/simple_left_column', 
+                                          :locals => { :table_class => "highlight bottom",
+                                                       :highlight => @highlights.last }
+                              %>
+                              <!-- // End Module: Top Image with Content \\ -->
+                              
+                            </td>
+                          </tr>
+                          <tr class="social">
+                            <td valign="middle">
+                              <div>
+                                <a href="https://twitter.com/FedRegister">Follow Federal Register on Twitter</a>
+                              </div>
+                              <div>
+                                <a href="https://www.facebook.com/FederalRegister">Like Federal Register on Facebook</a>
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <!-- // End Sidebar \\ -->
+
                       <td valign="top">
                         <table border="0" cellpadding="0" cellspacing="0">
                           <tr>
@@ -60,31 +95,7 @@
                         </table>
                       </td>
 
-                      <!-- // Begin Sidebar \\  -->
-                      <td valign="top" width="200" id="templateSidebar">
-
-                        <table border="0" cellpadding="0" cellspacing="0" width="200">
-                          <tr>
-                            <td valign="top" class="sidebarContent">
-
-                              <!-- // Begin Module: Top Image with Content \\ -->
-                              <%= render  :partial => 'fr_mailer/two_column_single_column', 
-                                          :locals => { :table_class => "highlight top",
-                                                       :highlight => @highlights.first }
-                              %>
-
-                              <%= render  :partial => 'fr_mailer/two_column_single_column', 
-                                          :locals => { :table_class => "highlight bottom",
-                                                       :highlight => @highlights.last }
-                              %>
-                              <!-- // End Module: Top Image with Content \\ -->
-                              
-                            </td>
-                          </tr>
-                        </table>
-
-                      </td>
-                      <!-- // End Sidebar \\ -->
+                      
                     </tr>
                   </table>
                   <!-- // End Template Body \\ -->
@@ -102,14 +113,6 @@
                         
                         <!-- // Begin Module: Standard Footer \\ -->
                         <table border="0" cellpadding="10" cellspacing="0" width="100%">
-                          <tr>
-                            <td valign="middle" id="social">
-                              <div>
-                                <a href="https://twitter.com/FedRegister">Follow us on Twitter here</a> | <a href="https://www.facebook.com/FederalRegister">Like us on Facebook here</a>
-                              </div>
-                            </td>
-                          </tr>
-
                           <tr>
                             <td valign="middle" width="350" id="disclaimer">
                               <div>
