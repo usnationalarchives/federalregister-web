@@ -4,72 +4,74 @@ defaults: &defaults
 
 highlights:
 - name: clip_from_search
+  <<: *defaults
   created: '11/30/2012'
   title: Clip Documents From Search
   image: email/flag.png
-  content: "<span class='strong'>Did you know you can clip documents from search results?</span>
+  content: "<strong>Did you know you can clip documents from search results?</strong>
            From any search result on FederalRegister.gov you can add a document to your clipboard 
            or a folder in your MyFR account. Look for the 'flag' icon on the right hand side of each 
            search result and your only one click away from having the documents you're interested 
            in quickly available for future reference!"
   priority: 1
-  <<: *defaults
   
 - name: comment_on_articles
+  <<: *defaults
   created: '11/30/2012'
   title: Comment on Documents That Affect You
   image: email/comment.png
-  content: "<span class='strong'>Officialy comment on a document without leaving FederalRegister.gov.</span> 
+  content: "<strong>Officialy comment on a document without leaving FederalRegister.gov.</strong> 
             Working with Regulations.gov we are now providing an enhanced commenting experience with 
             integration to your MyFR account; be notified when a follow-up document is published, when your 
             comment is made public, and more!"
   priority: 4
   enabled: false
-  <<: *defaults
+
 
 - name: subscribe_to_search
+  <<: *defaults
   created: '11/30/2012'
   title: Subscribe to Any Search Result
   image: email/search.png
-  content: "<span class='strong'>Did you know that you can subscribe to any search result?</span> 
-            After performing any search on FederalRegister.gov you can choose to recieve via email
-            any future documents that match your search. Just click the subscribe button on the right
+  content: "<strong>Did you know that you can subscribe to any search result?</strong> 
+            After performing any search on FederalRegister.gov you can choose to recieve any future 
+            documents that match your search via email. Just click the subscribe button on the right
             side of the search box."
   priority: 1
-  <<: *defaults
+
 
 - name: subscribe_to_agency
+  <<: *defaults
   created: '11/30/2012'
   title: Subscribe to an Agency's Documents
   image: email/agency.png
-  content: "<span class='strong'>Interested in the regulatory activities of a particular agency?</span> 
+  content: "<strong>Interested in the regulatory activities of a particular agency?</strong> 
            From any agency page on FederalRegister.gov you can choose to recieve email updates of new 
            documents from that agency. Choices of subscriptions include Documents on Public Inspection, 
            Newly Published Documents, and Documents Deemed Significant."
   priority: 1
-  <<: *defaults
 
 - name: public_inspection_description
+  <<: *defaults
   created: '12/3/2012'
   title: What is Public Inspection?
   image: email/clipboards.png
-  content: "<span class='strong'>Pubic Inspection gives the public access to important or complex 
-            documents before they publish in the Federal Register.</span> It offers a preview of documents 
+  content: "<strong>Pubic Inspection gives the public access to important or complex 
+            documents before they publish in the Federal Register.</strong> It offers a preview of documents 
             scheduled to appear in the next day's Federal Register issue and may also include documents scheduled 
             for later issues, at the request of the issuing agency. 
             <a href='https://www.federalregister.gov/blog/learn/public-inspection-desk-2'>Learn more here</a>"
   priority: 1
-  <<: *defaults
 
 - name: manage_subscriptions_via_my_fr
+  <<: *defaults
   created: '07/29/2013'
   title: Manage Your Subscriptions
   image: email/message.png
-  content: "<span class='strong'>A My Federal Register account allows you to easily manage your subscriptions in 
-            one place.</span> By creating an account you can review your subscriptions, view current results online,
+  content: "<strong>A My Federal Register account allows you to easily manage your subscriptions in 
+            one place.</strong> By creating an account you can review your subscriptions, view current results online,
             and see the last time your subscription matched Federal Register documents.
             <a href='https://www.federalregister.gov/my/sign_up'>Get started here!</a>"
   priority: 1
   enabled: true
   in_rotation: false
-  <<: *defaults
