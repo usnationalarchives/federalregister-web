@@ -61,7 +61,7 @@ tr.social {
 
     a,
     a:visited {
-      color: #336699;336699
+      color: #336699;
       font-weight: normal;
       text-decoration: underline;
     }
@@ -137,7 +137,7 @@ tr.social {
     &.with_subject { margin-left: 30px; }
 
     .abstract {
-      color:#363636;
+      color: $fr-gray-80;
       font-family: Georgia, 'Times New Roman',serif;
       font-size: 13px; 
       line-height: 1.5;
@@ -151,6 +151,13 @@ tr.social {
       font-size: 12px;
       padding: 1px 3px 1px 3px;
       text-transform: uppercase;
+    }
+
+    .publication_info {
+      color: $fr-gray-50;
+      font-family: 'Helvetica Neue' ,Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      margin: 0 0 5px 0;
     }
   }
 }

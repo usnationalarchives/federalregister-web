@@ -1,0 +1,9 @@
+<div class="document <%= section_class %>">
+  <h6>
+    <%= link_to title.reject(&:blank?).join(' - '), document.short_article_url %>
+  </h6>
+          
+  <p class="publication_info">
+    Scheduled to be published on <%= document.publication_date %> as document <%= document.document_number %>
+  </p>
+</div>

@@ -195,3 +195,17 @@ h4, .h4{
   background-color:#FFFFFF;
   border:0;
   }
+
+#disclaimer {
+  h3 {
+    color: $fr-gray-40;
+    font-size: 13px;
+    margin: 5px 0;
+  }
+
+  p {
+    color: $fr-gray-30;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size:10px;
+  }
+}

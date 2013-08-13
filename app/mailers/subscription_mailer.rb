@@ -115,8 +115,16 @@ class SubscriptionMailer < ActionMailer::Base
     def entry_mailing_list
       mailing_list = MailingList.find(4) 
       subscriptions = mailing_list.subscriptions
-      results = mailing_list.send(:results_for_date, Date.parse('2013-05-08') )
+      results = mailing_list.send(:results_for_date, Date.parse('2013-08-12') )
       SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)
+    end
+
+    def public_inspection_document_mailing_list
+      mailing_list = MailingList.find(2) 
+      subscriptions = mailing_list.subscriptions
+      document_numbers = FederalRegister::PublicInspectionDocument.current.map(&:document_number)
+      results = mailing_list.send(:results_for_document_numbers, document_numbers)
+      SubscriptionMailer.public_inspection_document_mailing_list(mailing_list, results, subscriptions)
     end
   end
 end

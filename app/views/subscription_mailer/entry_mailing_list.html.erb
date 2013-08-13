@@ -28,11 +28,11 @@
       <% if toc_subject.present? %>
         <h5><%= toc_subject %></h5>
         <% articles_by_toc_subject.each do |article| %>
-          <%= render :partial => 'subscription_mailer/article', :locals => {:article => article, :result_count => @results.count, :section_class => 'with_subject'} %>
+          <%= render :partial => 'subscription_mailer/document', :locals => {:article => article, :result_count => @results.count, :section_class => 'with_subject'} %>
         <% end %>  
       <% else %>
         <% articles_by_toc_subject.each do |article| %>
-          <%= render :partial => 'subscription_mailer/article', :locals => {:article => article, :result_count => @results.count, :section_class => ''} %>
+          <%= render :partial => 'subscription_mailer/document', :locals => {:article => article, :result_count => @results.count, :section_class => ''} %>
         <% end %>
       <% end %>
     <% end %>
