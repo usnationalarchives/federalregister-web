@@ -57,6 +57,11 @@
       cursor: pointer;
     }
 
+    &.disabled {
+      background-color: $fr-gray-10;
+      cursor: default;
+    }
+
     .icon-fr2 {
       font-size: 100px;
       top: -15px;
