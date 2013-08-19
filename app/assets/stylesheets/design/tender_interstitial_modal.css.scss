@@ -8,20 +8,32 @@
     line-height: 0.8em;
   }
 
+  .info {
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    border-bottom: $fr-gray-20 1px solid;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+  }
+
   .site_feedback,
   .document_feedback {
     width: 45%;
     float: left;
-    height: 275px;
+    height: 265px;
+    padding-top: 10px;
+
+    p { text-align: center; }
   }
 
   .site_feedback { 
-    border-right: 1px solid #CCC;
-    padding-right: 10px;
+    border-right: 1px solid $fr-gray-20;
+    padding-right: 20px;
     margin-left: 10px;
   }
 
-  .document_feedback { padding-left: 35px; }
+  .document_feedback { padding-left: 25px; }
 
   .agency_question {
     padding-top: 20px;
@@ -56,5 +68,8 @@
   }
 
   .site_feedback .button { margin-left: 27px; }
-  .document_feedback .button { margin-top: 48px; }
+  .document_feedback .button { 
+    margin-left: 35px;
+    margin-top: 29px;
+  }
 }

@@ -1,9 +1,20 @@
 <div class='tender_interstitial_modal'>
   <h3 class="title_bar">Site Feedback</h3>
 
+  <div class="info">
+    The Office of the Federal Register publishes rules, proposed rules, notices, 
+    and presidential documents on behalf of Federal agencies and the President 
+    of the United States. Although our site has the ability to link a user 
+    directly to the document docket on Regulations.gov, we do not accept or 
+    manage comments on any document we publish.  You must submit your comments 
+    through regulations.gov or directly to the agency that wrote the document. 
+    We will not send any comments to the agency.
+  </div>
+
+
   <div class='site_feedback'>
     <p>
-      If you have comments or suggestions regarding how to improve the 
+      If you have comments or suggestions on how to improve the 
       FederalRegister.gov website or have questions about using FederalRegister.gov, 
       please choose the 'Website Feedback' button below.
     </p>
@@ -16,11 +27,10 @@
   
   <div class='document_feedback'>
     <p>
-      If you would like to comment on the document you are currently viewing, 
-      please choose the 'Document Feedback' button below.
+      {{{ document_feedback_text }}}
     </p>
-
-    <div class='button'>
+    
+    <div class='button {{document_button_enabled}}'>
       <span class='icon-fr2 icon-fr2-document_open'></span>
       <div class='button_title'>Document Feedback</div>
     </div>
