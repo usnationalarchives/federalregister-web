@@ -36,18 +36,18 @@ MyFr2::Application.configure do
 
   sendgrid_keys  = File.open( File.join(File.dirname(__FILE__), '..', 'sendgrid.yml') ) { |yf| YAML::load( yf ) }
   smtp_settings = {
-   :address        => "smtp.sendgrid.net",
-   :port           => "587",
-   :domain         => "#{APP_HOST_NAME}",
-   :user_name      => sendgrid_keys['username'],
-   :password       => sendgrid_keys['password'],
-   :authentication => :plain
+    :address        => "mail.fr2.ec2.internal",
+    :port           => "25",
+    :domain         => "#{APP_HOST_NAME}",
+    :user_name      => sendgrid_keys['username'],
+    :password       => sendgrid_keys['password'],
+    :authentication => :plain
   }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings   = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}"}
+  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "https://"}
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
