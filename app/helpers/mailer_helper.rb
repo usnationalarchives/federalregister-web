@@ -7,7 +7,7 @@ module MailerHelper
     base_url =  ActionMailer::Base.default_url_options[:protocol] + 
                   ActionMailer::Base.default_url_options[:host]
 
-    base_url + my_asset_path(asset)
+    base_url + asset_path(asset)
   end
 
 end
