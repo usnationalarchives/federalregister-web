@@ -1,27 +1,17 @@
-require 'spork'
-
 ENV["RAILS_ENV"] ||= 'test'
 
-Spork.prefork do
-  require "rails/application"
-  Spork.trap_method(Rails::Application, :reload_routes!)
+require "rails/application"
 
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'factory_girl_rails'
 
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-  RSpec.configure do |config|
-    config.mock_with :rspec
-    config.use_transactional_fixtures = true
-    config.use_instantiated_fixtures  = false
-  end
-end
-
-Spork.each_run do
-  require 'factory_girl_rails'
+RSpec.configure do |config|
+  config.mock_with :rspec
+  config.use_transactional_fixtures = true
+  config.use_instantiated_fixtures  = false
 end

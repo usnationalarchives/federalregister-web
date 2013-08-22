@@ -23,7 +23,9 @@ var fr_icons = {
 			'icon-fr2-pi_subscription' : '&#xe003;',
 			'icon-fr2-message_open' : '&#xe004;',
 			'icon-fr2-message' : '&#xe015;',
-			'icon-fr2-rss' : '&#xe017;'
+			'icon-fr2-rss' : '&#xe017;',
+			'icon-fr2-pc' : '&#xe019;',
+			'icon-fr2-document_open' : '&#xe018;'
 		};
 
 function get_entity(class_name) {

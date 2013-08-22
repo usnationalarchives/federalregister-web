@@ -1,0 +1,80 @@
+.tender_interstitial_modal {
+  line-height: 1.5em;
+  font-size: 13px;
+
+  .title_bar { 
+    text-align: center;
+    border-bottom: 2px solid $fr_dark_blue;
+    line-height: 0.8em;
+  }
+
+  .info {
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    border-bottom: $fr-gray-20 1px solid;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+  }
+
+  .site_feedback,
+  .document_feedback {
+    width: 45%;
+    float: left;
+    height: 265px;
+    padding-top: 10px;
+
+    p { text-align: center; }
+  }
+
+  .site_feedback { 
+    border-right: 1px solid $fr-gray-20;
+    padding-right: 20px;
+    margin-left: 10px;
+  }
+
+  .document_feedback { padding-left: 25px; }
+
+  .agency_question {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    clear: both;
+  }
+
+  .button {
+    color: $white;
+    background-color: $fr-blue;
+    width: 70%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    @include border-radius(12);
+
+    &:hover { 
+      background-color: $fr_bright_orange;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      background-color: $fr-gray-10;
+      cursor: default;
+    }
+
+    .icon-fr2 {
+      font-size: 100px;
+      top: -15px;
+    }
+    .button_title {
+      top: -20px;
+      position: relative;
+    }
+  }
+
+  .site_feedback .button { margin-left: 27px; }
+  .document_feedback .button { 
+    margin-left: 35px;
+    margin-top: 29px;
+  }
+}
