@@ -71,7 +71,6 @@ end
 # end
 
 group :development do
-  gem 'mongrel', '1.1.5'
 end
 
 group :development, :test do 
