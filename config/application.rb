@@ -68,7 +68,7 @@ module MyFr2
       application-ie8lte.css 
       application-ie7lte.css
       application-fr2.js
-
+      print.css
       *.eot
       *.svg
       *.ttf
