@@ -8,6 +8,7 @@ MyFr2::Application.routes.draw do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
     get 'sign_up', :to => 'devise/registrations#new', :as => :user_registration
+    post 'sign_up', :to => 'devise/registrations#create', :as => :user_registration
     get 'resend_confirmation', :to => 'users/confirmations#resend', :as => :resend_confirmation
   end
 
