@@ -4,4 +4,4 @@
 
 <p>You can confirm your email address by clicking on the link below:</p>
 
-<p><%= link_to 'Confirm my email address', user_confirmation_url(:confirmation_token => @user.confirmation_token) %></p>
+<p><%= link_to 'Confirm my email address', user_confirmation_url(:confirmation_token => @user.confirmation_token, :return_to => @return_path) %></p>

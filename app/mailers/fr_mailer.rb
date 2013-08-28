@@ -15,6 +15,8 @@ class FRMailer < Devise::Mailer
     @utility_links = [['manage my subscriptions', subscriptions_url()]]
     @highlights = EmailHighlight.pick(2)
 
+    @return_path = @user.created_at > 5.minutes.ago ? clippings_url : subscriptions_url
+
     sendgrid_category "MyFR Email Address Confirmation"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'MyFR email confirmation'
 
