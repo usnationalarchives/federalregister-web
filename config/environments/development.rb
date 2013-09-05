@@ -41,7 +41,8 @@ MyFr2::Application.configure do
    :domain         => "#{APP_HOST_NAME}",
    :user_name      => sendgrid_keys['username'],
    :password       => sendgrid_keys['password'],
-   :authentication => :plain
+   :authentication => :plain,
+   :enable_starttls_auto => false
   }
 
   config.action_mailer.delivery_method = :smtp
