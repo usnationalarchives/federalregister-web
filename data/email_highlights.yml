@@ -8,7 +8,7 @@ highlights:
   created: '11/30/2012'
   title: Clip Documents From Search
   image: email/flag.png
-  content: "<strong>Did you know you can clip documents from search results?</strong>
+  content: "<strong>Did you know that you can clip documents from search results?</strong>
            From any search result on FederalRegister.gov you can add a document to your clipboard 
            or a folder in your MyFR account. Look for the 'flag' icon on the right hand side of each 
            search result and your only one click away from having the documents you're interested 
@@ -45,10 +45,9 @@ highlights:
   created: '11/30/2012'
   title: Subscribe to an Agency's Documents
   image: email/agency.png
-  content: "<strong>Interested in the regulatory activities of a particular agency?</strong> 
-           From any agency page on FederalRegister.gov you can choose to recieve email updates of new 
-           documents from that agency. Choices of subscriptions include Documents on Public Inspection, 
-           Newly Published Documents, and Documents Deemed Significant."
+  content: "<strong>From any agency page on FederalRegister.gov you can choose to recieve email updates 
+            of new documents from that agency.</strong> Choices of subscriptions include Documents on 
+            Public Inspection, Newly Published Documents, and Documents Deemed Significant."
   priority: 1
 
 - name: public_inspection_description
@@ -56,7 +55,7 @@ highlights:
   created: '12/3/2012'
   title: What is Public Inspection?
   image: email/clipboards.png
-  content: "<strong>Pubic Inspection gives the public access to important or complex 
+  content: "<strong>Pubic Inspection gives the public access to Federal agency 
             documents before they publish in the Federal Register.</strong> It offers a preview of documents 
             scheduled to appear in the next day's Federal Register issue and may also include documents scheduled 
             for later issues, at the request of the issuing agency. 
@@ -68,7 +67,7 @@ highlights:
   created: '07/29/2013'
   title: Manage Your Subscriptions
   image: email/message.png
-  content: "<strong>A My Federal Register account allows you to easily manage your subscriptions in 
+  content: "<strong>A MyFR account allows you to easily manage your subscriptions in 
             one place.</strong> By creating an account you can review your subscriptions, view current results online,
             and see the last time your subscription matched Federal Register documents.
             <a href='https://www.federalregister.gov/my/sign_up'>Get started here!</a>"
