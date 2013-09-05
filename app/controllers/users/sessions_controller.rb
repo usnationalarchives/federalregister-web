@@ -7,8 +7,9 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
 
-    notice, redirect_location = persist_user_data
-    flash[:notice] = notice if notice
+    message, redirect_location = persist_user_data
+    flash[:notice] = message[:notice] if message[:notice]
+    flash[:warning] = message[:warning] if message[:warning]
         
     respond_with resource, :location => redirect_location || after_sign_in_path_for(resource)
   end

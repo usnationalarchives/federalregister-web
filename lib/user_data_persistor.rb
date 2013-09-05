@@ -1,10 +1,10 @@
 module UserDataPersistor
   
   def persist_user_data
-    notice, redirect_location = associate_clippings_with_user_at_sign_in_up if cookies[:document_numbers]
-    notice, redirect_location = associate_subscription if session[:subscription_token]
-    notice, redirect_location = associate_comment_with_user_at_sign_in_up if session[:comment_tracking_number] && session[:comment_secret]
-    return notice, redirect_location
+    message, redirect_location = associate_clippings_with_user_at_sign_in_up if cookies[:document_numbers]
+    message, redirect_location = associate_subscription if session[:subscription_token]
+    message, redirect_location = associate_comment_with_user_at_sign_in_up if session[:comment_tracking_number] && session[:comment_secret]
+    return message, redirect_location
   end
 
   private
@@ -15,16 +15,18 @@ module UserDataPersistor
     if subscription
       subscription.user = current_user
       subscription.save :validate => false
-      subscription.confirm!
+
+      subscription.confirm! if current_user.confirmed?
     end
     
     # clean up
     session[:subscription_token] = nil
 
     redirect_location = subscriptions_path
-    notice = "Successfully added '#{subscription.mailing_list.title}' to your account"
 
-    return notice, redirect_location
+    message = current_user.confirmed? ? {:notice => "Successfully added '#{subscription.mailing_list.title}' to your account"} : {:warning => "Your subscription has been added to your account but you must confirm your email address before we can begin sending you results."}
+
+    return message, redirect_location
   end
 
   # allowing user to sign in / sign up after comment had been submitted
@@ -49,9 +51,9 @@ module UserDataPersistor
     session[:followup_document_notification] = nil
 
     redirect_location = comments_path
-    notice = "Successfully added your comment on '#{comment.article.title}' to your account."
+    message = {:notice => "Successfully added your comment on '#{comment.article.title}' to your account."}
 
-    return notice, redirect_location
+    return message, redirect_location
   end
 
   # saving clippings from users session from before signed in or signed up
@@ -62,8 +64,8 @@ module UserDataPersistor
     cookies[:document_numbers] = nil
 
     redirect_location = clippings_path
-    notice = nil
+    message = nil
 
-    return notice, redirect_location
+    return message, redirect_location
   end
 end
