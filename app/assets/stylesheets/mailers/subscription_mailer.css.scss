@@ -4,6 +4,7 @@
 #templateSidebar{
   background-color:#FFFFFF;
   border-left:0;
+  padding-top: 17px;
 }
 
 .sidebarContent div {
@@ -74,7 +75,7 @@ tr.social {
     color: $fr-blue;
     margin: 0 0 30px 0;
     padding: 0;
-    font-size: 28px;
+    font-size: 26px;
     clear: both;
     @extend helvetica_neue;
   }
@@ -99,6 +100,7 @@ tr.social {
   h3 {
     color: $fr-gray-70;
     font-size:16px;
+    margin-top: 30px;
     margin-bottom:5px;
     @extend helvetica_neue;
   }
@@ -113,7 +115,7 @@ tr.social {
 
   h4 {
     color: $fr-gray-70;
-    font-size: 14px;
+    font-size: 13px;
     text-transform:uppercase;
     margin: 10px 0 10px 10px;
     @extend helvetica_neue;
@@ -150,6 +152,7 @@ tr.social {
       font-weight: bold;
       font-size: 12px;
       padding: 1px 3px 1px 3px;
+      margin-bottom: 30px;
       text-transform: uppercase;
     }
 

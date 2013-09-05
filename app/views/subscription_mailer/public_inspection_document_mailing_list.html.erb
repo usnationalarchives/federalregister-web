@@ -4,7 +4,7 @@
 </div>
 
 <h1>
-  <%= @mailing_list.title %>
+  <%=h @mailing_list.title %>
 </h1>
 
     
@@ -39,13 +39,4 @@
     <% end %>  
   <% end %>
 <% end %>
-
-<hr />
-  
-<p style="color:#787878;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;">
-  <a href="https://www.federalregister.gov/policy/privacy#endorsement_disclaimer">Disclaimer</a> | 
-  <a href="https://www.federalregister.gov/policy/privacy">Policy</a> | 
-  <%= link_to "Unsubscribe from these results", unsubscribe_subscription_url('(((token)))') %>
-</p> 
-
 

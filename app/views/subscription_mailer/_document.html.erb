@@ -10,7 +10,7 @@
   <%- if article.comments_close_on && article.comments_close_on > Date.current %>
     <p class="comment_open">
       <img src="<%= mailer_asset_url('email/icon_comment.png') %>" style="margin:3px 5px 0 5px;vertical-align:sub" />
-      Comment period ends in <%= pluralize (article.comments_close_on - Date.current), 'day' %> (<%= article.comments_close_on %>)
+      Comment period ends in <%= pluralize (article.comments_close_on - Date.current), 'day' %> (<%= article.comments_close_date %>)
     </p>
   <%- end %>
 </div>

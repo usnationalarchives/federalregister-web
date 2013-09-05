@@ -31,7 +31,7 @@ class MailingList::PublicInspectionDocument < MailingList
         :title,
         :toc_subject,
         :toc_doc,
-        :type,
+        :type
       ],
       :per_page => 1000
     ).to_a

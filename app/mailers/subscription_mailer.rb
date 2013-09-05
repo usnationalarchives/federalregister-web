@@ -53,7 +53,9 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
-    @utility_links = []
+    @utility_links = [['Manage my subscriptions', subscriptions_url()],
+                      ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
+
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "PI Subscription"
@@ -79,7 +81,9 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
-    @utility_links = []
+    @utility_links = [['Manage my subscriptions', subscriptions_url()],
+                      ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
+
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "Subscription"

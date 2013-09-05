@@ -16,39 +16,11 @@ table td {border-collapse:collapse;}
 
 /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: COMMON PAGE ELEMENTS /\/\/\/\/\/\/\/\/\/\ */
 
-body, #backgroundTable { background-color: #F2F2F2; }
+body, #backgroundTable { background-color: $fr-gray-5; }
 
-#templateContainer { border: 1px solid #CCCCCC; }
+#templateContainer { border: 1px solid $fr-gray-20; }
 
 h1, .h1{
-  color:#202020;
-  display:block;
-  font-family:Arial;
-  font-size:34px;
-  font-weight:bold;
-  line-height:100%;
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:10px;
-  margin-left:0;
-  text-align:left;
-  }
-
-h2, .h2{
-  color:#202020;
-  display:block;
-  font-family:Arial;
-  font-size:30px;
-  font-weight:bold;
-  line-height:100%;
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:10px;
-  margin-left:0;
-  text-align:left;
-  }
-
-h3, .h3{
   color:#202020;
   display:block;
   font-family:Arial;
@@ -62,8 +34,22 @@ h3, .h3{
   text-align:left;
   }
 
-h4, .h4{
-  color:#808080;
+h2, .h2{
+  color:#202020;
+  display:block;
+  font-family:Arial;
+  font-size:24px;
+  font-weight:bold;
+  line-height:100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:10px;
+  margin-left:0;
+  text-align:left;
+  }
+
+h3, .h3{
+  color:#202020;
   display:block;
   font-family:Arial;
   font-size:22px;
@@ -75,8 +61,28 @@ h4, .h4{
   margin-left:0;
   text-align:left;
   }
+
+h4, .h4{
+  color:#808080;
+  display:block;
+  font-family:Arial;
+  font-size:20px;
+  font-weight:bold;
+  line-height:100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:10px;
+  margin-left:0;
+  text-align:left;
+  }
 .float_left { float: left; }
 .clear_both { clear: both; }
+
+/* used for creating a better preview in the subject line in clients like Gmail */
+.subject_teaser { 
+  display: none;
+  color:  $fr-gray-5;
+}
 
 /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
 
@@ -141,8 +147,7 @@ h4, .h4{
   }
 
 .bodyContent #main-content {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #CCC;
+  padding-bottom: 10px; 
   }
 
 .bodyContent div a:link, .bodyContent div a:visited, 
@@ -170,6 +175,8 @@ h4, .h4{
   font-size:12px;
   line-height:125%;
   text-align:left;
+  border-top: 1px solid #CCC;
+  padding-top: 0;
   }
 
 .footerContent div a:link, 
@@ -188,19 +195,21 @@ h4, .h4{
   }
 
 #social div, 
-#disclaimer div,
-#utility div { text-align:center; }
+#utility div,
+#unsubscribe { text-align:center; }
 
 #utility{
   background-color:#FFFFFF;
   border:0;
+
+  div.utility_links { padding-top: 20px; }
   }
 
 #disclaimer {
   h3 {
     color: $fr-gray-40;
     font-size: 13px;
-    margin: 5px 0;
+    margin: 20px 0 0 0;
   }
 
   p {

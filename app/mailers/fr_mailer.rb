@@ -12,7 +12,7 @@ class FRMailer < Devise::Mailer
 
   def confirmation_instructions(user)
     @user = user
-    @utility_links = [['manage my subscriptions', subscriptions_url()]]
+    @utility_links = [['Manage my subscriptions', subscriptions_url()]]
     @highlights = EmailHighlight.pick(2)
 
     @return_path = @user.created_at > 5.minutes.ago ? clippings_url : subscriptions_url
@@ -50,19 +50,20 @@ class FRMailer < Devise::Mailer
     end
   end
 
-
   class Preview < MailView
     def confirmation_instructions
       user = User.new(:email => 'name@example.com',
                       :confirmation_token => '123456789')
+      user.created_at = Time.now
       FRMailer.confirmation_instructions(user)
     end
 
     def reset_password_instructions
       user = User.new(:email => 'name@example.com',
                       :reset_password_token => '123456789')
+      user.created_at = Time.now
       FRMailer.reset_password_instructions(user)
     end
-
   end
+
 end
