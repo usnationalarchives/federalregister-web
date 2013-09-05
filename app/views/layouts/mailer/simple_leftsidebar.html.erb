@@ -118,38 +118,36 @@
                           <tr>
                             <td valign="middle" width="350" id="disclaimer">
                               <div>
-                                <center>
-                                  <h3>Privacy</h3>
-                                  <p>
-                                    FederalRegister.gov uses your email address 
-                                    to enable you to receive email notifications according to your preferences. We retain only the 
-                                    personally identifiable information minimally necessary to operate the subscription service. We 
-                                    do not retain any information about third parties who receive "email a friend" notifications through 
-                                    the subscription service. For more information, please read our 
-                                    <a href="https://www.federalregister.gov/policy/privacy">Privacy and Security Policy</a>.
-                                  </p>
+                                <h3>Privacy</h3>
+                                <p>
+                                  FederalRegister.gov uses your email address 
+                                  to enable you to receive email notifications according to your preferences. We retain only the 
+                                  personally identifiable information minimally necessary to operate the subscription service. We 
+                                  do not retain any information about third parties who receive "email a friend" notifications through 
+                                  the subscription service. For more information, please read our 
+                                  <a href="https://www.federalregister.gov/policy/privacy">Privacy and Security Policy</a>.
+                                </p>
 
-                                  <h3>Legal Status</h3>
-                                  <p>
-                                    The documents received via our email subscriptions service originate from FederalRegister.gov, 
-                                    which displays an unofficial "Web 2.0" version of the daily Federal Register. The official electronic 
-                                    version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's 
-                                    <a href="http://www.fdsys.gov/">Federal Digital System website</a>. For more information, please 
-                                    read our <a href="https://www.federalregister.gov/policy/legal-status">Legal Status page</a>.
-                                  </p>
-                                  <p>
-                                    The documents received via email from our Public Inspection web page originate 
-                                    from official copies filed at the Office of the Federal Register. For more 
-                                    information, please read our <a href="https://www.federalregister.gov/learn/public-inspection-desk">About Public Inspection</a> page.
-                                  </p>
-                                </center>
+                                <h3>Legal Status</h3>
+                                <p>
+                                  The documents received via our email subscriptions service originate from FederalRegister.gov, 
+                                  which displays an unofficial "Web 2.0" version of the daily Federal Register. The official electronic 
+                                  version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's 
+                                  <a href="http://www.fdsys.gov/">Federal Digital System website</a>. For more information, please 
+                                  read our <a href="https://www.federalregister.gov/policy/legal-status">Legal Status page</a>.
+                                </p>
+                                <p>
+                                  The documents received via email from our Public Inspection web page originate 
+                                  from official copies filed at the Office of the Federal Register. For more 
+                                  information, please read our <a href="https://www.federalregister.gov/learn/public-inspection-desk">About Public Inspection</a> page.
+                                </p>
                               </div>
                             </td>
                           </tr>
 
                           <tr>
                             <td valign="middle" id="utility">
-                              <div>
+                              <div class="utility_links">
                                 <%= @utility_links.map{|link| link_to(link[0], link[1])}.join(' | ').html_safe %>
                               </div>
                             </td>
