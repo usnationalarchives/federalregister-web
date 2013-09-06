@@ -52,7 +52,7 @@
               <dt class="created_at">Clipped on:</dt>
               <dd><%= clipping.clipped_at %></dd>
             </dl>
-            <% if clipping.commented_on? %>
+            <% if FeatureFlag::REGS_DOT_GOV_COMMENTS_ENABLED && clipping.commented_on? %>
               <div class="comment_on">
                 <%= clipping.comment.commented_at %>
               </div>
