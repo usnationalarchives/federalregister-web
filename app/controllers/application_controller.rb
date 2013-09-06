@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
     raise exception
   end
 
-  def after_sign_in_path_for(resource)
-    session[:after_sign_in_path] || root_path
+  def after_sign_out_path_for(resource)
+    new_session_path
   end
 
   def use_vcr
