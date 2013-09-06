@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
+  after_create :migrate_subscriptions_to_new_user_account
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     auth = Authentication.find_by_provider_and_uid(access_token['provider'], access_token['uid'])
     data = access_token['extra']['raw_info']
@@ -29,7 +31,23 @@ class User < ActiveRecord::Base
 
     user = apply_auth_sign_in_or_create_user_with_stub_password(auth, access_token, data)
     user
-   end
+  end
+
+  def migrate_subscriptions_to_new_user_account
+    associate_subscriptions
+    clean_up_subscriptions
+  end
+
+  private
+
+  def associate_subscriptions
+    Subscription.confirmed.where(:email => email).update_all(:user_id => id)
+    Subscription.unconfirmed.where(:email => email).where("created_at > ?", 1.week.ago).update_all(:user_id => id)
+  end
+
+  def clean_up_subscriptions
+    Subscription.unconfirmed.where(:email => email).where("created_at < ?", 1.week.ago).delete_all
+  end
 
   protected
 

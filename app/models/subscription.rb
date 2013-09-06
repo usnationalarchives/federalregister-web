@@ -29,6 +29,14 @@ class Subscription < ApplicationModel
     scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])
   end
 
+  def self.confirmed
+    where("subscriptions.confirmed_at IS NOT NULL")
+  end
+
+  def self.unconfirmed
+    where(:confirmed_at => nil)
+  end
+
   def public_inspection_search_possible?
     begin
       FederalRegister::PublicInspectionDocument.search_metadata(:conditions => search_conditions)
