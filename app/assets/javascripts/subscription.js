@@ -1,11 +1,11 @@
 function unsubscribe_success($link, response) {
-  $link.removeClass('unsubscribe').addClass('resubscribe').html('resubscribe');
+  $link.removeClass('unsubscribe').addClass('resubscribe').html('re-activate');
   $link.siblings('span.active').removeClass('active').addClass('inactive').html('inactive');
   $link.attr('href', response.resubscribe_url);
 }
 
 function resubscribe_success($link, response) {
-  $link.removeClass('resubscribe').addClass('unsubscribe').html('unsubscribe');
+  $link.removeClass('resubscribe').addClass('unsubscribe').html('suspend');
   $link.siblings('span.inactive').removeClass('inactive').addClass('active').html('active');
   $link.attr('href', response.unsubscribe_url);
 }
