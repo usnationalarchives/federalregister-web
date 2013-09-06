@@ -38,7 +38,7 @@ class SubscriptionsController < ApplicationController
         session[:subscription_token] = @subscription.token
         flash[:notice] = "Please sign into to add this subscription to your My FR account."
 
-        redirect_to new_session_path
+        redirect_to new_session_path(:user => {:email => @subscription.email})
       else
         SubscriptionMailer.subscription_confirmation(@subscription).deliver
         redirect_to confirmation_sent_subscriptions_url
