@@ -1,4 +1,18 @@
 <div class="title"><span>Subscriptions</span></div>
 
-<h3>Almost done!</h3> 
-<p>A confirmation email has been sent; simply click the link in the email to confirm your subscription.</p>
+<div class="small_content_wrapper subscription_confirmation_required">
+  <h3>Almost done!</h3> 
+  <p>
+    A confirmation email has been sent; simply click the link in the email to 
+    confirm your subscription.
+  </p>
+
+  <h4>My Federal Register</h4>
+  <p>
+    A MyFR account allows you to easily manage your subscriptions 
+    in one place. By creating an account you can review your subscriptions, view 
+    current results online, and see the last time your subscription matched 
+    Federal Register documents.
+    You can <%= link_to 'get started here', user_registration_path(:user => {:email => params[:email]}) %>.
+  </p>
+</div>

@@ -1,6 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   include UserDataPersistor
 
+  def new
+    resource = build_resource()
+    respond_with resource
+  end
+
   def create
     build_resource
 

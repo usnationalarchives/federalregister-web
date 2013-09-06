@@ -41,7 +41,7 @@ class SubscriptionsController < ApplicationController
         redirect_to new_session_path(:user => {:email => @subscription.email})
       else
         SubscriptionMailer.subscription_confirmation(@subscription).deliver
-        redirect_to confirmation_sent_subscriptions_url
+        redirect_to confirmation_sent_subscriptions_url(:email => @subscription.email)
       end
     else
       render :action => :new
