@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   end
  
   def index
-    @subscriptions = SubscriptionDecorator.decorate(current_user.subscriptions.all)
+    @subscriptions = SubscriptionDecorator.decorate(current_user.subscriptions.order("subscriptions.created_at DESC"))
     @article_subscription_count = current_user.subscriptions.article_subscriptions.count
     @pi_subscription_count = current_user.subscriptions.pi_subscriptions.count
   end
