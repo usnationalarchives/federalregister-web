@@ -6,7 +6,7 @@
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
-  <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
+  <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name), :authenticity_token => false do |f| %>
 
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) && name == :alert %>
