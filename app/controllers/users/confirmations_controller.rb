@@ -22,9 +22,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   protected
 
   def after_confirmation_path_for(resource_name, resource)
-    if params[:return_to].present?
-      params[:return_to]
-    elsif resource.subscriptions.count > 0
+    if resource.subscriptions.count > 0
       subscriptions_path
     else
       clippings_path
