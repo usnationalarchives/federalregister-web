@@ -1,9 +1,13 @@
 module UserDataPersistor
   
   def persist_user_data
+    # default
+    message, redirect_location = {}, nil
+
     message, redirect_location = associate_clippings_with_user_at_sign_in_up if cookies[:document_numbers]
     message, redirect_location = associate_subscription if session[:subscription_token]
     message, redirect_location = associate_comment_with_user_at_sign_in_up if session[:comment_tracking_number] && session[:comment_secret]
+
     return message, redirect_location
   end
 
@@ -64,7 +68,7 @@ module UserDataPersistor
     cookies[:document_numbers] = nil
 
     redirect_location = clippings_path
-    message = nil
+    message = {}
 
     return message, redirect_location
   end
