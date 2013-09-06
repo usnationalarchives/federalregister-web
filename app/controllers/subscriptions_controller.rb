@@ -22,7 +22,10 @@ class SubscriptionsController < ApplicationController
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
     
-    @subscription.user = current_user if user_signed_in?
+    if user_signed_in?
+      @subscription.user = current_user
+      @subscription.email = current_user.email
+    end
     
     if @subscription.save
       if user_signed_in?
