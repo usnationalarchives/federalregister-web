@@ -15,7 +15,7 @@
 <div id="subscription-actions">
   <div id="subscription-type-filter">
     <ul>
-      <script type="text/javascript">var subscription_type_filters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {} %>;</script>
+      <script type="text/javascript">var subscription_type_filters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;</script>
       <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Document">
         <span class="icon-fr2 icon-fr2-document_subscription"></span>
         <div class="label">Document</div>
