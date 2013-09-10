@@ -162,7 +162,10 @@ function create_new_folder(form) {
   $.ajax({
     url: form.prop('action'),
     data: form_data,
-    type: "POST"
+    type: "POST",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
   }).success(function(response) {
       /* mark the current menu as active so that we can treat it *
        * specially when we need to                               */
