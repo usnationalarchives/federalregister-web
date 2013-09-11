@@ -244,7 +244,10 @@ function remove_document_from_folder(folder_li, document_number, menu) {
   $.ajax({
     url: '/my/folder_clippings/delete',
     data: {folder_clippings: {folder_slug: folder_li.data('slug'), document_number: document_number}},
-    type: "POST"
+    type: "POST",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
   }).success(function(response) {
     folder_li.removeClass('in_folder').addClass('not_in_folder');
     
