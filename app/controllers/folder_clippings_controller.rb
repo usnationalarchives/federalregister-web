@@ -1,5 +1,6 @@
 class FolderClippingsController < ApplicationController
-  protect_from_forgery :except => [:delete]
+  protect_from_forgery :except => :delete
+  skip_before_filter :authenticate_user!, :only => :delete
 
   def create
     slug         = params[:folder_clippings][:folder_slug]
