@@ -1,0 +1,83 @@
+@import compass/utilities/sprites/base
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$user_utils-sprite-base-class: ".user_utils-sprite" !default
+$user_utils-sprite-dimensions: false !default
+$user_utils-position: 0% !default
+$user_utils-spacing: 0 !default
+$user_utils-repeat: no-repeat !default
+$user_utils-prefix: "" !default
+$user_utils-clean-up: true !default
+$user_utils-layout: vertical !default
+$user_utils-inline: false !default
+
+// These variables control the generated sprite output
+// You can override them selectively before you import this file.
+
+$user_utils-icon_flag_active-position: $user_utils-position !default
+$user_utils-icon_flag_active-spacing: $user_utils-spacing !default
+$user_utils-icon_flag_active-repeat: $user_utils-repeat !default
+
+$user_utils-icon_flag_alert-position: $user_utils-position !default
+$user_utils-icon_flag_alert-spacing: $user_utils-spacing !default
+$user_utils-icon_flag_alert-repeat: $user_utils-repeat !default
+
+$user_utils-icon_folder-position: $user_utils-position !default
+$user_utils-icon_folder-spacing: $user_utils-spacing !default
+$user_utils-icon_folder-repeat: $user_utils-repeat !default
+
+$user_utils-icon_folder_active-position: $user_utils-position !default
+$user_utils-icon_folder_active-spacing: $user_utils-spacing !default
+$user_utils-icon_folder_active-repeat: $user_utils-repeat !default
+
+$user_utils-icon_folder_open-position: $user_utils-position !default
+$user_utils-icon_folder_open-spacing: $user_utils-spacing !default
+$user_utils-icon_folder_open-repeat: $user_utils-repeat !default
+
+$user_utils-icon_folder_open_active-position: $user_utils-position !default
+$user_utils-icon_folder_open_active-spacing: $user_utils-spacing !default
+$user_utils-icon_folder_open_active-repeat: $user_utils-repeat !default
+
+$user_utils-sprites: sprite-map("icons/my_fr2/user_utils/*.png", $cleanup: $user_utils-clean-up, $layout: $user_utils-layout, $user_utils_icon_flag_active_position: $user_utils-icon_flag_active-position, $user_utils_icon_flag_active_repeat: $user_utils-icon_flag_active-repeat, $user_utils_icon_flag_active_spacing: $user_utils-icon_flag_active-spacing, $user_utils_icon_flag_alert_position: $user_utils-icon_flag_alert-position, $user_utils_icon_flag_alert_repeat: $user_utils-icon_flag_alert-repeat, $user_utils_icon_flag_alert_spacing: $user_utils-icon_flag_alert-spacing, $user_utils_icon_folder_active_position: $user_utils-icon_folder_active-position, $user_utils_icon_folder_active_repeat: $user_utils-icon_folder_active-repeat, $user_utils_icon_folder_active_spacing: $user_utils-icon_folder_active-spacing, $user_utils_icon_folder_open_active_position: $user_utils-icon_folder_open_active-position, $user_utils_icon_folder_open_active_repeat: $user_utils-icon_folder_open_active-repeat, $user_utils_icon_folder_open_active_spacing: $user_utils-icon_folder_open_active-spacing, $user_utils_icon_folder_open_position: $user_utils-icon_folder_open-position, $user_utils_icon_folder_open_repeat: $user_utils-icon_folder_open-repeat, $user_utils_icon_folder_open_spacing: $user_utils-icon_folder_open-spacing, $user_utils_icon_folder_position: $user_utils-icon_folder-position, $user_utils_icon_folder_repeat: $user_utils-icon_folder-repeat, $user_utils_icon_folder_spacing: $user_utils-icon_folder-spacing)
+
+// All sprites should extend this class
+// The user_utils-sprite mixin will do so for you.
+@if $user_utils-inline
+  #{$user_utils-sprite-base-class}
+    background-image: inline-sprite($user_utils-sprites)
+@else
+  #{$user_utils-sprite-base-class}
+    background: $user_utils-sprites no-repeat
+
+//sass functions to return the dimensions of a sprite image as units
+
+@function user_utils-sprite-width($name)
+  $file: sprite_file($user_utils-sprites, $name)
+  @return image-width($file)
+
+@function user_utils-sprite-height($name)
+  $file: sprite_file($user_utils-sprites, $name)
+  @return image-height($file)
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+=user_utils-sprite-dimensions($name)
+  +sprite-dimensions($user_utils-sprites, $name)
+
+// Move the background position to display the sprite.
+=user_utils-sprite-position($name, $offset-x: 0, $offset-y: 0)
+  +sprite-background-position($user_utils-sprites, $name, $offset-x, $offset-y)
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+=user_utils-sprite($name, $dimensions: $user_utils-sprite-dimensions, $offset-x: 0, $offset-y: 0)
+  @extend #{$user_utils-sprite-base-class}
+  +sprite($user_utils-sprites, $name, $dimensions, $offset-x, $offset-y)
+
+=user_utils-sprites($sprite-names, $dimensions: $user_utils-sprite-dimensions, $prefix: sprite-map-name($user_utils-sprites), $offset-x: 0, $offset-y: 0)
+  +sprites($user_utils-sprites, $sprite-names, $user_utils-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+
+// Generates a class for each sprited image.
+=all-user_utils-sprites($dimensions: $user_utils-sprite-dimensions, $prefix: sprite-map-name($user_utils-sprites), $offset-x: 0, $offset-y: 0)
+  +user_utils-sprites(icon_flag_active icon_flag_alert icon_folder icon_folder_active icon_folder_open icon_folder_open_active, $dimensions, $prefix, $offset-x, $offset-y)

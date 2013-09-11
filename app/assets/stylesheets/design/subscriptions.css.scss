@@ -12,7 +12,9 @@ ul#subscriptions {
   .search_data { 
     @extend %capsule_data;
     @extend %capsule_metadata_wrapper;
-
+    dl#col-1 {
+      dd { min-width: 100px; }
+    }
     dl#col-2 {
       width: 300px;
       dt { 
