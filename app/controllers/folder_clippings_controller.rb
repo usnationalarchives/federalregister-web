@@ -1,4 +1,6 @@
 class FolderClippingsController < ApplicationController
+  protect_from_forgery :except => [:delete]
+
   def create
     slug         = params[:folder_clippings][:folder_slug]
     clipping_ids = params[:folder_clippings][:clipping_ids]
