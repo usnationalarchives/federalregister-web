@@ -59,7 +59,7 @@ highlights:
             documents before they publish in the Federal Register.</strong> It offers a preview of documents 
             scheduled to appear in the next day's Federal Register issue and may also include documents scheduled 
             for later issues, at the request of the issuing agency. 
-            <a href='https://www.federalregister.gov/blog/learn/public-inspection-desk-2'>Learn more here</a>"
+            <a href='https://www.federalregister.gov/blog/learn/public-inspection-desk-2?utm_campaign=highlights&utm_medium=email&utm_source=federalregister.gov&utm_content=public_inspection'>Learn more here</a>"
   priority: 1
 
 - name: manage_subscriptions_via_my_fr
@@ -70,7 +70,7 @@ highlights:
   content: "<strong>A MyFR account allows you to easily manage your subscriptions in 
             one place.</strong> By creating an account you can review your subscriptions, view current results online,
             and see the last time your subscription matched Federal Register documents.
-            <a href='https://www.federalregister.gov/my/sign_up'>Get started here!</a>"
+            <a href='https://www.federalregister.gov/my/sign_up?utm_campaign=highlights&utm_medium=email&utm_source=federalregister.gov&utm_content=manage_subscription'>Get started here!</a>"
   priority: 1
   enabled: true
   in_rotation: false

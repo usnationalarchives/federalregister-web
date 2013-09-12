@@ -53,7 +53,7 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
-    @utility_links = [['Manage my subscriptions', subscriptions_url()],
+    @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
 
     @highlights = EmailHighlight.pick(2)
@@ -81,7 +81,7 @@ class SubscriptionMailer < ActionMailer::Base
     @agencies = toc.agencies
     @articles_without_agencies = toc.articles_without_agencies
 
-    @utility_links = [['Manage my subscriptions', subscriptions_url()],
+    @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
 
     @highlights = EmailHighlight.pick(2)
