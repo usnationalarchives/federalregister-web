@@ -146,9 +146,10 @@ h4, .h4{
   text-align:left;
   }
 
-.bodyContent #main-content {
-  padding-bottom: 10px; 
-  }
+.bodyContent {
+  #main-content { padding-bottom: 10px; }
+  #main-content.two_col_1_2 { border-bottom: 1px solid #CCC }
+}
 
 .bodyContent div a:link, .bodyContent div a:visited, 
 /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */ {
