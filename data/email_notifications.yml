@@ -1,0 +1,74 @@
+defaults: &defaults
+  category: "Generic Notification"
+  enabled: true
+
+notifications:
+- name: subscription_management_my_fr_accounts
+  <<: *defaults
+  created: '09/19/2013'
+  category: Notification - Subscription Management (MyFR Accounts)
+  subject: FederalRegister.gov subscription management now available
+  html_content: "<p>Hello (((email))), 
+              as a subscriber to content from FederalRegister.gov you may have noticed the
+              recent updates to our email formats.</p>
+            <p>Users like you have let us know that they'd like more ways to manage their 
+              content and we're happy to announce that as part of this update we've added 
+              subscription management features to your MyFR account.</p>
+            <p>You can get started managing your subscriptions here: 
+              <a href='https://www.federalregister.gov/my/subscriptions?utm_campaign=feature_notification&utm_content=manage_subscription&utm_medium=email&utm_source=federalregister.gov'>manage my subscriptions</a>.</p>
+            <p>And you can learn more about all the new features in our blog post
+              <a href='https://www.federalregister.gov/blog?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Subscription Management & Email Updates</a>.</p>
+            <p>We hope you find the new features helpful and as always we value your feedback! <br />
+              -the FederalRegister.gov team</p>"
+  text_content: "Hello (((email))), as a subscriber to content from FederalRegister.gov you may have noticed the recent updates to our email formats.
+
+
+                Users like you have let us know that they'd like more ways to manage their content and we're happy to announce that as part of this update we've added subscription management features to your MyFR account.
+
+
+                You can get started managing your subscriptions at https://www.federalregister.gov/my/subscriptions.
+
+
+                And you can learn more about all the new features in our blog post Subscription Management & Email Updates at https://www.federalregister.gov/blog.
+                
+
+                We hope you find the new features helpful and as always we value your feedback!
+                
+                -the FederalRegister.gov team"
+- name: subscription_management_non_my_fr_accounts
+  <<: *defaults
+  created: '09/19/2013'
+  category: Notification - Subscription Management (Non MyFR Accounts)
+  subject: FederalRegister.gov subscription management now available
+  html_content: "<p>Hello (((email))), 
+              as a subscriber to content from FederalRegister.gov you may have noticed the
+              recent updates to our email formats.</p>
+            <p>Users like you have let us know that they'd like more ways to manage their 
+              content and we're happy to announce that as part of this update we've added 
+              subscription management features to our MyFR account service.</p>
+            <p>You can get started managing your subscriptions by 
+              <a href='https://www.federalregister.gov/my/sign_up?utm_campaign=feature_notification&utm_content=create_account&utm_medium=email&utm_source=federalregister.gov'>creating an account</a>.</p>
+            <p>And you can learn more about all the new features in our blog post
+              <a href='https://www.federalregister.gov/blog?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Subscription Management & Email Updates</a>.</p>
+            <p>You can also continue to subscribe and unsubscribe to email content in the standard
+              way if you don't care to create a MyFR account.</p>
+            <p>We hope you find the new features helpful and as always we value your feedback! <br />
+              -the FederalRegister.gov team</p>"
+  text_content: "Hello (((email))), as a subscriber to content from FederalRegister.gov you may have noticed the recent updates to our email formats.
+                
+
+                Users like you have let us know that they'd like more ways to manage their content and we're happy to announce that as part of this update we've added subscription management features to our MyFR account service.
+
+                
+                You can get started managing your subscriptions by creating an account at https://www.federalregister.gov/my/sign_up'.
+    
+
+                And you can learn more about all the new features in our blog post Subscription Management & Email Updates at https://www.federalregister.gov/blog.
+    
+
+                You can also continue to subscribe and unsubscribe to email content in the standard way if you don't care to create a MyFR account.
+    
+
+                We hope you find the new features helpful and as always we value your feedback!
+    
+                -the FederalRegister.gov team"
