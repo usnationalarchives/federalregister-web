@@ -12,7 +12,7 @@ class FRMailer < Devise::Mailer
 
   def confirmation_instructions(user)
     @user = user
-    @utility_links = [['Manage my subscriptions', subscriptions_url()]]
+    @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")]]
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "MyFR Email Address Confirmation"
