@@ -25,8 +25,8 @@ namespace :email do
       email_query = "SELECT DISTINCT email
                      FROM subscriptions
                      WHERE subscriptions.user_id IS NULL
-                       && subscription.confirmed_at IS NOT NULL
-                       && subscription.unsubscribed_at IS NULL
+                       && subscriptions.confirmed_at IS NOT NULL
+                       && subscriptions.unsubscribed_at IS NULL
                        && subscriptions.environment = '#{Rails.env}'"
       emails = ActiveRecord::Base.connection.execute( email_query ).to_a.flatten
 
