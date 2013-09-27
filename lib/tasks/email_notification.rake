@@ -13,6 +13,8 @@ namespace :email do
                      GROUP BY users.email"
       emails = ActiveRecord::Base.connection.execute( email_query ).to_a.flatten
       emails.each_slice(1000) do |emails|
+        puts "Delivering notification to: #{emails.inspect}"
+
         notification.deliver!(emails)
       end
     end
@@ -31,6 +33,8 @@ namespace :email do
       emails = ActiveRecord::Base.connection.execute( email_query ).to_a.flatten
 
       emails.each_slice(1000) do |emails|
+        puts "Delivering notification to: #{emails.inspect}"
+
         notification.deliver!(emails)
       end
     end
