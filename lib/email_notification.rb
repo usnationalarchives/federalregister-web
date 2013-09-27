@@ -40,10 +40,10 @@ class EmailNotification
     @text_content = args[:text_content]
   end
 
-  def deliver!(users)
-    EmailNotification.raise_error("Must supply and array of users to deliver notification to.") unless users.present?
+  def deliver!(emails)
+    EmailNotification.raise_error("Must supply and array of emails to deliver notification to.") unless emails.present?
 
-    FRMailer.generic_notification(Array(users), subject, html_content, text_content, category).deliver!
+    FRMailer.generic_notification(Array(emails), subject, html_content, text_content, category).deliver!
   end
 
   private

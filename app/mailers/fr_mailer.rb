@@ -48,7 +48,7 @@ class FRMailer < Devise::Mailer
     end
   end
 
-  def generic_notification(users, subject, html_content, text_content, category)
+  def generic_notification(emails, subject, html_content, text_content, category)
     @html_content = html_content
     @text_content = text_content
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")]]
@@ -56,8 +56,8 @@ class FRMailer < Devise::Mailer
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category category
-    sendgrid_recipients users.map(&:email)
-    sendgrid_substitute "(((email)))", users.map(&:email)
+    sendgrid_recipients emails
+    sendgrid_substitute "(((email)))", emails
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => category
     
     mail(
@@ -88,7 +88,7 @@ class FRMailer < Devise::Mailer
     end
 
     def generic_notification
-      users =  [User.new(:email => 'name@example.com')]
+      emails =  [name@example.com]
       email_notification = EmailNotification.find('subscription_management_my_fr_accounts')
       FRMailer.generic_notification(users, email_notification.subject, email_notification.html_content, email_notification.text_content, email_notification.category)
     end
