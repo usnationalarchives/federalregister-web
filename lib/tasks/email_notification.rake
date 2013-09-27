@@ -9,7 +9,7 @@ namespace :email do
                      FROM subscriptions, users
                      WHERE subscriptions.user_id IS NOT NULL 
                        && subscriptions.user_id = users.id
-                       && subscriptions.environment = #{Rails.env}
+                       && subscriptions.environment = '#{Rails.env}'
                      GROUP BY users.email"
       emails = ActiveRecord::Base.connection.execute( email_query ).to_a.flatten
       emails.each_slice(1000) do |emails|
@@ -25,7 +25,7 @@ namespace :email do
       email_query = "SELECT DISTINCT email
                      FROM subscriptions
                      WHERE subscriptions.user_id IS NULL
-                       && subscriptions.environment = #{Rails.env}"
+                       && subscriptions.environment = '#{Rails.env}'"
       emails = ActiveRecord::Base.connection.execute( email_query ).to_a.flatten
 
       emails.each_slice(1000) do |emails|
