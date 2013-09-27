@@ -20,7 +20,11 @@ notifications:
               <a href='https://www.federalregister.gov/blog/2013/09/improved-subscription-management?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Improved Subscription Management</a> 
               and <a href='https://www.federalregister.gov/blog/2013/09/subscription-email-improvements?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Subscription Email Improvements</a>.</p>
             <p>We hope you find the new features helpful and as always we value your feedback! <br />
-              -the FederalRegister.gov team</p>"
+              -the FederalRegister.gov team</p>
+            <p class='notification_disclaimer'>
+              You are recieving this email because you have a MyFR account on FederalRegister.gov.
+              We respect your time and your inbox and will only very occasionally notify you of updates to our MyFR service.
+              </p>"
   text_content: "Hello (((email))), as a subscriber to content from FederalRegister.gov you may have noticed the recent updates to our email formats.
 
 
@@ -35,7 +39,14 @@ notifications:
 
                 We hope you find the new features helpful and as always we value your feedback!
                 
-                -the FederalRegister.gov team"
+                -the FederalRegister.gov team
+                
+                
+                
+                
+                You are recieving this email because you have a MyFR account on FederalRegister.gov.
+                We respect your time and your inbox and will only very occasionally notify you of updates to our MyFR service.
+                "
 - name: subscription_management_non_my_fr_accounts
   <<: *defaults
   created: '09/19/2013'
@@ -55,7 +66,11 @@ notifications:
             <p>You can also continue to subscribe and unsubscribe to email content as you have in the past
               if you don't care to create a MyFR account.</p>
             <p>We hope you find the new features helpful and as always we value your feedback! <br />
-              -the FederalRegister.gov team</p>"
+              -the FederalRegister.gov team</p>
+            <p class='notification_disclaimer'>
+              You are recieving this email because you have an active subscription on FederalRegister.gov.
+              We respect your time and your inbox and will only very occasionally notify you of updates to our subscription service.
+              </p>"
   text_content: "Hello (((email))), as a subscriber to content from FederalRegister.gov you may have noticed the recent updates to our email formats.
                 
 
@@ -73,4 +88,10 @@ notifications:
 
                 We hope you find the new features helpful and as always we value your feedback!
     
-                -the FederalRegister.gov team"
+                -the FederalRegister.gov team
+                
+                
+                
+                
+                You are recieving this email because you have an active subscription on FederalRegister.gov.
+                We respect your time and your inbox and will only very occasionally notify you of updates to our subscription service."
