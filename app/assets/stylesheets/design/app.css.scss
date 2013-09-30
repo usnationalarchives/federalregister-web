@@ -1,7 +1,8 @@
 abbr, acronym { border-bottom: none; }
 
 div.notice,
-div.warning {
+div.warning,
+div.info_warning {
   padding: .5em .5em .25em;
   margin-bottom: 30px;
   text-align: center;
@@ -23,6 +24,10 @@ div.warning {
   background: $fr-light-red;
   border: 1px solid $fr-red;
   }
+div.info_warning {
+  background-color: $fr-light-yellow;
+  border: 1px solid $fr-golden;
+}
 
 div.notice.message p {
   padding-bottom: 1em;
