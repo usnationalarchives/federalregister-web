@@ -39,7 +39,7 @@ class TableOfContentsPresenter
   attr_accessor :articles_without_agencies, :agencies, :agency_ids, :articles_with_agencies, :articles
   def initialize(articles, options = {})
     @articles = ArticleDecorator.decorate(articles)
-    @articles_without_agencies, @articles_with_agencies =  @articles.sort_by{|e| [e.try_if_exists(:start_page) || 0, e.try_if_exists(:end_page) || 0, e.document_number]}.partition{|e| e.agencies.any?{|a| a.id.blank? } }
+    @articles_without_agencies, @articles_with_agencies =  @articles.sort_by{|e| [e.try_if_exists(:start_page) || 0, e.try_if_exists(:end_page) || 0, e.document_number]}.partition{|e| e.agencies.all?{|a| a.id.blank? } }
 
     agencies_hsh = {}
     @articles_with_agencies.each do |article|
@@ -50,9 +50,10 @@ class TableOfContentsPresenter
           agencies_hsh[agency.parent_id] ||= AgencyPresenter.new(self, agency.parent)
         end
       end
-      
+
       parent_agency_ids = article.agencies.map(&:parent_id).compact
       article.agencies.reject{|a| parent_agency_ids.include?(a.id)}.each do |agency|
+        next if agency.id.blank?
         agencies_hsh[agency.id].add_article(article)
       end
     end
