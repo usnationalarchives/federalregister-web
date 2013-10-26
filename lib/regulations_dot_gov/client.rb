@@ -7,9 +7,12 @@ class RegulationsDotGov::Client
   include HTTMultiParty
 
   debug_output $stderr
-  # base_uri 'http://www.regulations.gov/api/'
-  base_uri 'http://regstest.erulemaking.net/api/'
+  base_uri 'http://www.regulations.gov/api/v2'
   default_timeout 2
+
+  def self.override_base_uri(uri)
+    base_uri(uri)
+  end
 
   def initialize(get_api_key, post_api_key=nil)
     @get_api_key = get_api_key
