@@ -79,10 +79,10 @@ group :development, :test do
   gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
-  gem 'jasmine',                        '1.3.2'
+  #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3
-  gem 'selenium-webdriver',             '2.35.0'
-  gem 'rubyzip',                        '0.9.9'
+  #gem 'selenium-webdriver',             '2.35.0'
+  #gem 'rubyzip',                        '0.9.9'
 
   gem "vcr",     "~> 2.2.5"
   gem "fakeweb", "~> 1.3.0"
