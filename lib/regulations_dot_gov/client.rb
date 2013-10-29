@@ -9,7 +9,7 @@ class RegulationsDotGov::Client
 
   debug_output $stderr
   base_uri 'http://api.data.gov/regulations/v2/'
-  default_timeout 10
+  default_timeout 20
 
   DOCKET_PATH = '/docket.json'
 

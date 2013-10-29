@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RegulationsDotGov::Client do
-  let(:api_key) { SECRETS['data_dot_gov']['api_key'] }
+  let(:api_key) { 'DEMO_KEY' }
 
   describe '.override_base_uri' do
     it "sets base_uri for RegulationsDotGov::Client" do
