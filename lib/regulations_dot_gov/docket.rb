@@ -1,4 +1,4 @@
-class RegulationsDotGov::Docket < GenericDocument
+class RegulationsDotGov::Docket < RegulationsDotGov::GenericDocument
   def title
     @raw_attributes['title']
   end
