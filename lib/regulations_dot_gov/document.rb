@@ -12,7 +12,7 @@ class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
   end
 
   def comment_due_date
-    val = @metadata["Comment Due Date"]
+    val = @raw_attributes["commentDueDate"]
     if val.present?
       DateTime.parse(val)
     end
@@ -26,5 +26,9 @@ class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
 
   def url
     "http://www.regulations.gov/#!documentDetail;D=#{document_id}"
+  end
+
+  def comment_count
+    @raw_attributes['numCommentsReceived']
   end
 end
