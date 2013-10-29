@@ -1,4 +1,5 @@
 class RegulationsDotGov::Client
+  class APIKeyError < StandardError; end
   class ResponseError < StandardError; end
   class RecordNotFound < ResponseError; end
   class InvalidSubmission < ResponseError; end
@@ -7,22 +8,30 @@ class RegulationsDotGov::Client
   include HTTMultiParty
 
   debug_output $stderr
-  base_uri 'http://www.regulations.gov/api/v2'
-  default_timeout 2
+  base_uri 'http://api.data.gov/regulations/v2/'
+  default_timeout 10
+
+  DOCKET_PATH = '/docket.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
   end
 
-  def initialize(get_api_key, post_api_key=nil)
-    @get_api_key = get_api_key
-    @post_api_key = post_api_key
+  def initialize(api_key=nil)
+    raise APIKeyError, "Must provide an api.data.gov API Key" unless api_key
+    @api_key = api_key
   end
+
+  def docket_endpoint
+    self.class.base_uri + DOCKET_PATH
+  end
+
+  attr_reader :api_key
 
   def find_docket(docket_id)
     begin
-      response = self.class.get('/getdocket/v1.json', :query => {:api_key => @get_api_key, :D => docket_id})
-      RegulationsDotGov::Docket.new(self, response.parsed_response["docket"])
+      response = self.class.get(docket_endpoint, :query => {:api_key => api_key, :D => docket_id})
+      RegulationsDotGov::Docket.new(self, response.parsed_response)
     rescue ResponseError
     end
   end
