@@ -249,7 +249,7 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    vcr (2.2.5)
+    vcr (2.6.0)
     warden (1.2.1)
       rack (>= 1.0)
     watchr (0.7)
@@ -296,5 +296,5 @@ DEPENDENCIES
   thunder_punch (= 0.0.14)
   uglifier
   userstamp!
-  vcr (~> 2.2.5)
+  vcr (~> 2.6.0)
   watchr (= 0.7)
