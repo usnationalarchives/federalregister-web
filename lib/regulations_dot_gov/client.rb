@@ -12,6 +12,7 @@ class RegulationsDotGov::Client
   default_timeout 20
 
   DOCKET_PATH = '/docket.json'
+  COMMENT_PATH = '/comment.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
@@ -24,6 +25,10 @@ class RegulationsDotGov::Client
 
   def docket_endpoint
     self.class.base_uri + DOCKET_PATH
+  end
+
+  def comment_endpoint
+    self.class.base_uri + COMMENT_PATH
   end
 
   attr_reader :api_key
@@ -55,8 +60,8 @@ class RegulationsDotGov::Client
 
   def get_comment_form(docket_id)
     args = {"D" => docket_id}
-    response = self.class.get('/getcommentform/v1.json', :query => args.merge(:api_key => @get_api_key))
-    RegulationsDotGov::CommentForm.new(self, response.parsed_response['commentFormConfig'])
+    response = self.class.get(comment_endpoint, :query => args.merge(:api_key => api_key))
+    RegulationsDotGov::CommentForm.new(self, response.parsed_response)
   end
 
   def get_options(field_name, options ={})
