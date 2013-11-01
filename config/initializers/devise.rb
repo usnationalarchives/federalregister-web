@@ -1,7 +1,7 @@
 @secret_keys = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
 
 Warden::Manager.after_set_user do |user, auth, opts|
-  auth.cookies.permanent["expect_logged_in"] = "1"
+  auth.cookies["expect_logged_in"] = "1"
 end
 
 Warden::Manager.before_logout do |user, auth, opt|
