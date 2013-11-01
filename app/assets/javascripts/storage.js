@@ -1,8 +1,8 @@
 /* determine whether to expect a current user */
 function expect_logged_in() {
-  if ( readCookie('expect_logged_in') == "1" ) {
+  if ( readCookie('expect_signed_in') == "1" ) {
     return true;
-  } else if ( readCookie('expect_logged_in') == "0") {
+  } else if ( readCookie('expect_signed_in') == "0") {
     return false;
   } else {
     return false;
