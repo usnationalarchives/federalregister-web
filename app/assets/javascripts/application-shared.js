@@ -15,6 +15,6 @@
 //= require fr_modal
 //= require form_utils
 //= require subscription
-//= require 'comment'
-//= require 'comment_notifications'
+//= require_asset 'comment'
+//= require_asset 'comment_notifications'
 

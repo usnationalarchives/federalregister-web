@@ -37,14 +37,30 @@ describe RegulationsDotGov::Client do
       docket = client.find_docket(docket_id)
       expect( docket.class ).to be( RegulationsDotGov::Docket )
     end
+
+    it 'performs a get request with proper arguments' do
+      RegulationsDotGov::Client.stub(:get).and_return(OpenStruct.new(:parsed_response => {}))
+
+      RegulationsDotGov::Client.should_receive(:get).with(client.docket_endpoint, :query=>{:D => docket_id})
+
+      client.find_docket(docket_id)
+    end
   end
 
   describe "#get_comment_form" do
-    let(:docket_id) { 'ITC-2013-0207-0001' } 
+    let(:document_id) { 'ITC-2013-0207-0001' } 
 
     it 'returns a new RegulationsDotGov::CommentForm', :vcr do
-      comment_form = client.get_comment_form(docket_id)
+      comment_form = client.get_comment_form(document_id)
       expect( comment_form.class ).to be(RegulationsDotGov::CommentForm)
+    end
+
+    it 'performs a get request with proper arguments' do
+      RegulationsDotGov::Client.stub(:get).and_return(OpenStruct.new(:parsed_response => {}))
+
+      RegulationsDotGov::Client.should_receive(:get).with(client.comment_endpoint, :query=>{:D => document_id})
+
+      client.get_comment_form(document_id)
     end
   end
 

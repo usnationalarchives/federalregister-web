@@ -15,13 +15,13 @@ http_interactions:
       content-type:
       - application/json
       date:
-      - Wed, 30 Oct 2013 21:13:07 GMT
+      - Thu, 31 Oct 2013 18:24:26 GMT
       server:
       - nginx/1.4.2
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '992'
+      - '996'
       content-length:
       - '4809'
       connection:
@@ -70,5 +70,5 @@ http_interactions:
         Steel Wire Garment Hangers from China; Five-Year Review","docketId":"ITC-2013-0207","documentId":"ITC-2013-0207-0001","agencyAcronym":"ITC","docketType":"RULEMAKING","documentType":"NOTICES","commentStartDate":"2013-09-02","commentEndDate":"2013-11-17","agencyName":"International
         Trade Commission","renditionTypes":["pdf","html"],"attachmentCount":0}}'
     http_version: '1.1'
-  recorded_at: Wed, 30 Oct 2013 21:13:11 GMT
+  recorded_at: Thu, 31 Oct 2013 18:24:26 GMT
 recorded_with: VCR 2.6.0

@@ -1,3 +1,14 @@
+# src_dir
+#
+# Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.
+# Default: project root
+#
+# EXAMPLE:
+#
+# src_dir: public
+#
+src_dir: 'my/assets/'
+
 # src_files
 #
 # Return an array of filepaths relative to src_dir to include before jasmine specs.
@@ -11,8 +22,8 @@
 #   - dist/**/*.js
 #
 src_files:
-  - application-shared.js
-  - application.js
+  - 'application-shared.js'
+  - 'application.js'
 
 # stylesheets
 #
@@ -25,8 +36,8 @@ src_files:
 #   - css/style.css
 #   - stylesheets/*.css
 #
-stylesheets:
-  - stylesheets/**/*.css
+#stylesheets:
+#  - '../stylesheets/**/*.css'
 
 # helpers
 #
@@ -39,7 +50,19 @@ stylesheets:
 #   - helpers/**/*.js
 #
 helpers:
-  - helpers/**/*.js
+  - 'helpers/**/*.js'
+
+# spec_dir
+#
+# Spec directory path. Your spec_files must be returned relative to this path.
+# Default: spec/javascripts
+#
+# EXAMPLE:
+#
+# spec_dir: spec/javascripts
+#
+spec_dir: spec/javascripts
+
 
 # spec_files
 #
@@ -54,27 +77,5 @@ helpers:
 spec_files:
   - '**/*[sS]pec.js'
 
-# src_dir
-#
-# Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.
-# Default: project root
-#
-# EXAMPLE:
-#
-# src_dir: public
-#
-src_dir: "app/assets/javascripts"
-
-# spec_dir
-#
-# Spec directory path. Your spec_files must be returned relative to this path.
-# Default: spec/javascripts
-#
-# EXAMPLE:
-#
-# spec_dir: spec/javascripts
-#
-spec_dir: spec/javascripts
-
-asset_paths:
- - "vendor/assets/javascripts"
+#asset_paths:
+# - "vendor/assets/javascripts"

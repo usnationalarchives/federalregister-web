@@ -18,9 +18,12 @@ class RegulationsDotGov::Client
     base_uri(uri)
   end
 
+  cattr_accessor :api_key
+
   def initialize(api_key=nil)
     raise APIKeyError, "Must provide an api.data.gov API Key" unless api_key
     @api_key = api_key
+    self.class.api_key = @api_key
   end
 
   def docket_endpoint
@@ -35,7 +38,7 @@ class RegulationsDotGov::Client
 
   def find_docket(docket_id)
     begin
-      response = self.class.get(docket_endpoint, :query => {:api_key => api_key, :D => docket_id})
+      response = self.class.get(docket_endpoint, :query => {:D => docket_id})
       RegulationsDotGov::Docket.new(self, response.parsed_response)
     rescue ResponseError
     end
@@ -58,9 +61,8 @@ class RegulationsDotGov::Client
     end
   end
 
-  def get_comment_form(docket_id)
-    args = {"D" => docket_id}
-    response = self.class.get(comment_endpoint, :query => args.merge(:api_key => api_key))
+  def get_comment_form(document_id)
+    response = self.class.get(comment_endpoint, :query => {:D => document_id})
     RegulationsDotGov::CommentForm.new(self, response.parsed_response)
   end
 
@@ -124,6 +126,8 @@ class RegulationsDotGov::Client
   end
 
   def self.get(url, options)
+    options[:query].merge!(:api_key => api_key)
+
     begin
       response = super
 
