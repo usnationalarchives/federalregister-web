@@ -32,8 +32,6 @@ class RegulationsDotGov::Client
     self.class.base_uri + COMMENT_PATH
   end
 
-  attr_reader :api_key
-
   def find_docket(docket_id)
     begin
       response = self.class.get(docket_endpoint, :query => {:D => docket_id})
