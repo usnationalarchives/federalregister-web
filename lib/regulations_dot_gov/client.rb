@@ -7,6 +7,8 @@ class RegulationsDotGov::Client
 
   include HTTMultiParty
 
+  cattr_accessor :api_key
+
   debug_output $stderr
   base_uri 'http://api.data.gov/regulations/v2/'
   default_timeout 20
@@ -18,12 +20,8 @@ class RegulationsDotGov::Client
     base_uri(uri)
   end
 
-  cattr_accessor :api_key
-
-  def initialize(api_key=nil)
-    raise APIKeyError, "Must provide an api.data.gov API Key" unless api_key
-    @api_key = api_key
-    self.class.api_key = @api_key
+  def initialize
+    raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key
   end
 
   def docket_endpoint

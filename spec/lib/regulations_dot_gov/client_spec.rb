@@ -1,7 +1,11 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RegulationsDotGov::Client do
-  let(:client) { RegulationsDotGov::Client.new( api_key ) }
+  before(:all) do
+    set_api_key
+  end
+
+  let(:client) { RegulationsDotGov::Client.new() }
 
   before(:each) do
     RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v2/')
@@ -22,11 +26,13 @@ describe RegulationsDotGov::Client do
 
   describe '#new' do
     it "raises an error of no API key is provided" do
-      expect{ RegulationsDotGov::Client.new() }.to raise_exception(RegulationsDotGov::Client::APIKeyError, "Must provide an api.data.gov API Key")
+      RegulationsDotGov::Client.api_key = nil
+      expect{ RegulationsDotGov::Client.new }.to raise_exception(RegulationsDotGov::Client::APIKeyError, "Must provide an api.data.gov API Key")
     end
 
     it "does not raise an error if an API key is provided" do
-      expect{ RegulationsDotGov::Client.new("1234567890") }.not_to raise_exception
+      RegulationsDotGov::Client.api_key = set_api_key
+      expect{ RegulationsDotGov::Client.new }.not_to raise_exception
     end
   end
 
@@ -64,11 +70,11 @@ describe RegulationsDotGov::Client do
     end
   end
 
-  def api_key
+  def set_api_key
     if SECRETS['data_dot_gov'] && SECRETS['data_dot_gov']['api_key']
-      SECRETS['data_dot_gov']['api_key']
+      RegulationsDotGov::Client.api_key = SECRETS['data_dot_gov']['api_key']
     else
-      'DEMO_KEY'
+       RegulationsDotGov::Client.api_key'DEMO_KEY'
     end
   end
 end
