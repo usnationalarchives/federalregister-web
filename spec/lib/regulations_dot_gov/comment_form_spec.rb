@@ -52,7 +52,7 @@ module RegulationsDotGov
         expect( comment_form.comments_open_at ).to eq(DateTime.parse start_date)
       end
     end
-    
+
     describe "#comments_close_at" do
       it "returns an end date" do
         end_date = '2013-11-17'
@@ -109,10 +109,10 @@ module RegulationsDotGov
       it "calls Field.build with the appropriate arguments" do
         agency_acronym = "ITC"
         comment_form = CommentForm.new(client, {'document' => {'agencyAcronym' => agency_acronym}, 'metadataList' => fields})
-        
+
         expect( CommentForm::Field ).to receive(:build).with(client, fields.first, comment_form.agency_acronym)
         expect( CommentForm::Field ).to receive(:build).with(client, fields.last, comment_form.agency_acronym)
-        
+
         comment_form.fields
       end
     end
