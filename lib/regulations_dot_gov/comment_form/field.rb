@@ -1,25 +1,29 @@
 class RegulationsDotGov::CommentForm::Field
-  def self.build(client, attributes, agency_id)
-    klass = case attributes['uiControlType']
+  class InvalidInputError < StandardError; end
+
+  RECOGNIZED_FIELD_TYPES = %w(text picklist combo)
+
+  def self.build(client, attributes, agency_acronym)
+    raise InvalidInputError, "Invalid field type '#{attributes['uiControl']}'." unless RECOGNIZED_FIELD_TYPES.include?(attributes['uiControl'])
+
+    klass = case attributes['uiControl']
             when 'text'
               TextField
             when 'picklist'
               SelectField
             when 'combo'
               ComboField
-            else
-              raise "invalid type of #{attributes['type']} for field!"
             end
 
-    klass.new(client, attributes, agency_id)
+    klass.new(client, attributes, agency_acronym)
   end
 
-  attr_reader :client, :attributes, :agency_id
+  attr_reader :client, :attributes, :agency_acronym
 
-  def initialize(client, attributes, agency_id)
+  def initialize(client, attributes, agency_acronym)
     @client = client
     @attributes = attributes
-    @agency_id = agency_id
+    @agency_id = agency_acronym
   end
 
   def required?
@@ -31,11 +35,11 @@ class RegulationsDotGov::CommentForm::Field
   end
 
   def name
-    attributes["@attributeName"]
+    attributes["attributeName"]
   end
 
   def label
-    attributes["@attributeLabel"]
+    attributes["attributeLabel"]
   end
 
   def hint
