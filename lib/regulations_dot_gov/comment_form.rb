@@ -1,23 +1,25 @@
 class RegulationsDotGov::CommentForm
-  attr_accessor :client, :attributes
+  attr_accessor :client, :attributes, :document_attributes
 
   AGENCY_NAMES = YAML::load_file(Rails.root.join('data', 'regulations_dot_gov_agencies.yml'))
 
   def initialize(client, attributes)
     @client = client
     @attributes = attributes
+    @document_attributes = attributes['document']
   end
 
   def allow_attachments?
+    raise 'not implemented in v2 api!'
     attributes["showAttachment"] == true
   end
 
   def alternative_ways_to_comment
-    attributes["document"]["docComments"]
+    document_attributes["alternateWaysToComment"]
   end
 
   def submit_by
-    DateTime.parse(attributes["commentEndDate"])
+    DateTime.parse( document_attributes["commentEndDate"] )
   end
 
   def posting_guidelines
@@ -25,15 +27,15 @@ class RegulationsDotGov::CommentForm
   end
 
   def document_id
-    attributes['document']['documentId']
+    document_attributes['documentId']
   end
 
   def comments_open_at
-    DateTime.parse(attributes['document']['commentStartDate'])
+    DateTime.parse(document_attributes['commentStartDate'])
   end
 
   def comments_close_at
-    DateTime.parse(attributes['document']['commentEndDate'])
+    DateTime.parse(document_attributes['commentEndDate'])
   end
 
   def has_field?(name)
@@ -41,13 +43,17 @@ class RegulationsDotGov::CommentForm
   end
 
   def fields
-    @fields ||= attributes["fieldList"]["field"].map do |field_attributes|
-      Field.build(client, field_attributes, agency_id)
+    @fields ||= attributes["metadataList"].map do |field_attributes|
+      Field.build(client, field_attributes, agency_acronym)
     end
   end
 
   def agency_name
-    AGENCY_NAMES[agency_id] || agency_id
+    document_attributes['agencyName']
+  end
+
+  def agency_acronym
+    document_attributes['agencyAcronym']
   end
 
   def agency_id
