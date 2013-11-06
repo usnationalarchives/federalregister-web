@@ -30,7 +30,9 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, :with => :server_error
   def server_error(exception)
     Rails.logger.error(exception)
-    notify_honeybadger(exception)
+    honeybadger_options = {:exception => exception}
+    honeybadger_options[:environment_name] = "#{Rails.env}_scanbot" if request.user_agent =~ /ScanAlert/
+    notify_honeybadger(honeybadger_options)
 
     raise exception
   end
