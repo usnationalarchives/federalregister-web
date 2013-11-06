@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, :with => :server_error
   def server_error(exception)
     Rails.logger.error(exception)
-    notify_airbrake(exception)
+    notify_honeybadger(exception)
 
     raise exception
   end

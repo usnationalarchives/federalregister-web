@@ -137,7 +137,7 @@ after "bundler:fix_bundle",      "deploy:migrate"
 after "deploy:migrate",          "assets:precompile"
 after "assets:precompile",       "passenger:restart"
 after "passenger:restart",       "varnish:clear_cache"
-after "varnish:clear_cache",     "airbrake:notify_deploy"
+after "varnish:clear_cache",     "honeybadger:notify_deploy"
 
 
 #############################################################
@@ -186,8 +186,8 @@ end
 # Airbrake Tasks
 #############################################################
 
-namespace :airbrake do
+namespace :honeybadger do
   task :notify_deploy, :roles => [:worker] do
-    run "cd #{current_path} && bundle exec rake airbrake:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`} REVISION=#{real_revision} REPO=#{repository}" 
+    run "cd #{current_path} && bundle exec rake honeybadger:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`} REVISION=#{real_revision} REPO=#{repository}" 
   end
 end

@@ -4,7 +4,7 @@ gem 'rails', '3.2.13'
 gem 'rake',  '0.9.2.2'
 
 gem 'mysql2', '0.3.11'
-gem 'airbrake', '3.0.9'
+gem 'honeybadger'
 
 #gem 'federal_register', '0.5.0'
 #gem 'federal_register', :path => '../federal_register'

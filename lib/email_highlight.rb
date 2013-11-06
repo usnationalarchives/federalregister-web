@@ -91,7 +91,7 @@ class EmailHighlight
     message = "Attempt to use missing or disabled highlight '#{name}' as selected highlight"
 
     if Rails.env == "production"
-      Airbrake.notify(message)
+      Honeybadger.notify(message)
     else
       raise EmailHighlightError, message
     end
