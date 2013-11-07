@@ -88,7 +88,7 @@ class FRMailer < Devise::Mailer
     end
 
     def generic_notification
-      emails =  Array(name@example.com)
+      emails =  %w(name@example.com)
       email_notification = EmailNotification.find('subscription_management_my_fr_accounts')
       FRMailer.generic_notification(users, email_notification.subject, email_notification.html_content, email_notification.text_content, email_notification.category)
     end
