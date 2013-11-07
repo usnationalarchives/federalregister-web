@@ -37,6 +37,16 @@ class ApplicationController < ActionController::Base
     raise exception
   end
 
+  rescue_from ActionView::MissingTemplate, :with => :missing_template
+  def missing_template(exception)
+    if exception.is_a?(ActionView::MissingTemplate) &&
+      !Collector.new(collect_mimes_from_class_level).negotiate_format(request)
+      render :nothing => true, :status => 406
+    else
+      raise exception
+    end
+  end
+
   def after_sign_out_path_for(resource)
     new_session_path
   end
