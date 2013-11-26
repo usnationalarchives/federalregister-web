@@ -10,5 +10,7 @@ class SendgridClient
 
   def remove_from_bounce_list(email)
     self.class.get('/api/bounces.delete.json', :query => {:email => email}).parsed_response
+  rescue
+    nil
   end
 end
