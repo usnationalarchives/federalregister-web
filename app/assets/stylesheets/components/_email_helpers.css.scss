@@ -1,0 +1,19 @@
+form.formtastic,
+form.formtastic .string {
+  .email_suggestion,
+  .email_invalid {
+    font-family: apertura-condensed-1, apertura-condensed-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;;
+    font-size: 13px;
+    font-style: italic;
+
+    margin-left: 5px;
+  }
+
+  .email_suggestion .link {
+      margin: 0;
+      text-decoration: underline;
+      font-weight: bold;
+      color: $fr-blue;
+      cursor: pointer;
+  }
+}
