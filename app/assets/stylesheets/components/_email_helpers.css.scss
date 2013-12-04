@@ -16,4 +16,17 @@ form.formtastic .string {
       color: $fr-blue;
       cursor: pointer;
   }
+
+  .email_invalid {
+    color: $fr-red;
+    font-weight: bold;
+  }
+}
+
+#modal form.subscription {
+  .email_suggestion,
+  .email_invalid {
+    display: block;
+    text-align: right;
+  }
 }

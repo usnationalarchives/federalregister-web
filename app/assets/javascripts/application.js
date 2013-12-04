@@ -5,4 +5,3 @@
 //= require clipping_filters
 //= require subscription_filters
 //= require tipsy
-//= require user_session

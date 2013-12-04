@@ -25,6 +25,14 @@
       color: $white;
     }
   }
+  &.disabled {
+    color: $white;
+
+    &:hover,
+    .hover {
+      background: $fr-gray-15;
+    }
+  }
 
   &.large  { min-width: 200px; }
   &.medium {

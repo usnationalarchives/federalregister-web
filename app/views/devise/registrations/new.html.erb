@@ -2,9 +2,6 @@
 
 <%= render :partial => "devise/shared/tabs" %>
 
-<%= add_handlebars_template('email_suggestion', 'email-suggestion') %>
-<%= add_handlebars_template('email_invalid', 'email-invalid') %>
-
 <div class="signup_bar">
   <%= semantic_form_for resource, :as => resource_name, :url => user_registration_path do |f| %>
 
