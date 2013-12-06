@@ -1,7 +1,7 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
   
   def resend
-    FRMailer.confirmation_instructions(current_user).deliver
+    current_user.send_confirmation_instructions
     redirect_to subscriptions_path, :notice => "Resent confirmation instructions to #{current_user.email}"
   end
 
