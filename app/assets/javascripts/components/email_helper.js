@@ -33,7 +33,7 @@ var EmailHelper = (function() {
       var email = this.input.val(),
           has_error = false,
           error = '',
-          email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+          email_regex = /^([\w\.%\+'\-]+)@([\w\-]+\.)+([\w]{2,})$/;
 
       if(email == '') {
         has_error = true;
