@@ -1,4 +1,6 @@
 MyFr2::Application.configure do
+  APP_HOST_NAME = "www.fr2.local:8080"
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
@@ -9,7 +11,11 @@ MyFr2::Application.configure do
 
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=3600"
+  #config.static_cache_control = "public, max-age=30"
+  config.assets.compile = true
+  config.assets.compress = false
+  config.assets.digest = false
+  config.assets.debug = false
 
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
@@ -36,4 +42,6 @@ MyFr2::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}/my", :protocol => "http://"}
 end
