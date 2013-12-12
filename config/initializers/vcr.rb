@@ -1,6 +1,7 @@
 if defined?(VCR)
   VCR.configure do |c|
     c.default_cassette_options = { :record => :once }
+    c.ignore_hosts '127.0.0.1', 'localhost'
     c.cassette_library_dir = Rails.root.join("spec", "vcr")
     c.hook_into :fakeweb
 
