@@ -79,6 +79,14 @@ group :development, :test do
   gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+
+  gem 'database_cleaner'
+
+  gem 'launchy'
+
   #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3
   #gem 'selenium-webdriver',             '2.35.0'
