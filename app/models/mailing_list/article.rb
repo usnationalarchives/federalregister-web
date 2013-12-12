@@ -23,7 +23,7 @@ class MailingList::Article < MailingList
 
   def results_for_date(date)
     model.search(
-      :conditions => parameters.merge({:publication_date => {:is => date}}),
+      :conditions => parameters.merge({"publication_date" => {"is" => date}}),
       :fields => [
         :abstract,
         :agencies,
