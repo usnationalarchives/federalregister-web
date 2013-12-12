@@ -5,7 +5,7 @@
 </div>
 
 <div class="errors">
-  <p class="errors_header">Are you sure you wish to subscribe to <strong><%= link_to h(@subscription.mailing_list.title), entries_search_path(:conditions => @subscription.search_conditions) %></strong>?</p>
+  <p class="errors_header">Are you sure you wish to subscribe to <strong><%= link_to h(@mailing_list_title), entries_search_path(:conditions => @subscription.search_conditions) %></strong>?</p>
 </div>
 
 <h3>Subscription Options</h3>

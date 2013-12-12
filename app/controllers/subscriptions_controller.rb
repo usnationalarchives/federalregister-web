@@ -14,6 +14,10 @@ class SubscriptionsController < ApplicationController
   def new
     @subscription = Subscription.new(params[:subscription])
     @subscription.search_type ||= 'Entry'
+    
+    @mailing_list_title = @subscription.mailing_list.title
+  rescue FederalRegister::Client::BadRequest
+    render :action => "invalid_subscription"
   end
   
   def create
