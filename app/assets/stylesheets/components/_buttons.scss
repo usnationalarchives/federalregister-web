@@ -11,7 +11,7 @@
     color: $white;
 
     &:hover,
-    &.hover { 
+    &.hover {
       background: $fr-bright-orange;
     }
   }
@@ -20,19 +20,27 @@
     color: $black;
 
     &:hover,
-    &.hover { 
+    &.hover {
       background: $fr-bright-orange;
       color: $white;
     }
   }
+  &.disabled {
+    color: $white;
+
+    &:hover,
+    .hover {
+      background: $fr-gray-15;
+    }
+  }
 
   &.large  { min-width: 200px; }
-  &.medium { 
+  &.medium {
     min-width: 150px;
     padding: 5px;
-    
+
     font-size: 12px;
-    input { 
+    input {
       font-size: 12px;
     }
   }

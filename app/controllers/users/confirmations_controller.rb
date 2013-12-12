@@ -1,7 +1,9 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  
+
   def resend
-    FRMailer.confirmation_instructions(current_user).deliver
+    redirect_to new_user_session_path, :flash => {:error => 'You must be signed in to perform that action'} and return unless current_user
+
+    current_user.send_confirmation_instructions
     redirect_to subscriptions_path, :notice => "Resent confirmation instructions to #{current_user.email}"
   end
 
