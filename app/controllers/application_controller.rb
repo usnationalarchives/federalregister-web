@@ -55,4 +55,8 @@ class ApplicationController < ActionController::Base
     VCR.eject_cassette
     VCR.use_cassette("development") { yield }
   end
+
+  def rescue_action_in_public_with_honeybadger(exception)
+    rescue_action_in_public_without_honeybadger(exception)
+  end
 end
