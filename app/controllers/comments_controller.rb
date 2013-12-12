@@ -60,12 +60,10 @@ class CommentsController < ApplicationController
   end
 
   def load_comment_form
-    client = RegulationsDotGov::Client.new(
-      SECRETS['regulations_dot_gov']['get_token'],
-      SECRETS['regulations_dot_gov']['post_token']
-    )
+    client = RegulationsDotGov::Client.new
+
     if @entry.regulations_dot_gov_url
-      document_id = 'FERC-2012-1415-0001' || @entry.regulations_dot_gov_url.split(/=/).last
+      document_id = @entry.regulations_dot_gov_url.split(/=/).last
       @comment_form = client.get_comment_form(document_id)
     else
       raise ActiveRecord::RecordNotFound
