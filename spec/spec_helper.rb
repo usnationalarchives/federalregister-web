@@ -14,4 +14,8 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
+  config.expect_with :rspec do |c|
+    # Disable the `should` syntax...
+    c.syntax = :expect
+  end
 end

@@ -4,9 +4,13 @@ class RegulationsDotGov::CommentForm::Field::ComboField < RegulationsDotGov::Com
 		'gov_agency' => {:dependent_on => 'gov_agency_type', :values => ['Federal']}
 	}
 
-	def dependent_on
-		mapping[:dependent_on]
-	end
+  def dependent_on
+    attributes['dependsOn']
+  end
+
+  def lookup_name
+    attributes['lookupName']
+  end
 
 	def dependent_values
 		mapping[:values]

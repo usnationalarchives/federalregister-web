@@ -20,7 +20,7 @@ describe RegulationsDotGov::Client do
       url = 'http://example.com/api/v1'
       RegulationsDotGov::Client.override_base_uri(url)
 
-      RegulationsDotGov::Client.base_uri.should eq(url)
+      expect(RegulationsDotGov::Client.base_uri).to eq(url)
     end
   end
 
