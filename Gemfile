@@ -87,6 +87,8 @@ group :development, :test do
 
   gem 'launchy'
 
+  gem 'codeclimate-test-reporter', :require => nil
+
   #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3
   #gem 'selenium-webdriver',             '2.35.0'
