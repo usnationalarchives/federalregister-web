@@ -3,7 +3,7 @@ abbr, acronym { border-bottom: none; }
 div.notice,
 div.warning,
 div.info_warning,
-div.error {
+div.flash.error {
   padding: .5em .5em .25em;
   margin-bottom: 30px;
   text-align: center;
@@ -22,7 +22,7 @@ div.notice {
   border: 1px solid $fr-green;
   }
 div.warning,
-div.error {
+div.flash.error {
   background: $fr-light-red;
   border: 1px solid $fr-red;
   }
