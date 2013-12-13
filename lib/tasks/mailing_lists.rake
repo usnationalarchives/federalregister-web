@@ -9,7 +9,7 @@ namespace :mailing_lists do
           mailing_list.deliver!(date, :force_delivery => ENV['FORCE_DELIVERY'])
         rescue Exception => e
           Rails.logger.warn(e)
-          Airbrake.notify(e)
+          Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
         end
       end
     end
@@ -25,7 +25,7 @@ namespace :mailing_lists do
           mailing_list.deliver!(new_document_numbers)
         rescue Exception => e
           Rails.logger.warn(e)
-          Airbrake.notify(e)
+          Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
         end
       end
     end

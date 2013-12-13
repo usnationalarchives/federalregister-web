@@ -12,9 +12,10 @@
 //= require jquery.fileupload.js
 //= require jquery.fileupload-ui.js
 //= require amplify.store-1.1.0.min.js
+//= require mailcheck.min.js
 //= require fr_modal
 //= require form_utils
 //= require subscription
-//= require 'comment'
-//= require 'comment_notifications'
-
+//= require comment
+//= require comment_notifications
+//= require user_session

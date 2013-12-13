@@ -87,7 +87,7 @@ class Subscription < ApplicationModel
     begin
       SendgridClient.new.remove_from_bounce_list(email)
     rescue StandardError => e
-      Airbrake.notify(e)
+      Honeybadger.notify(e)
     end
   end
 

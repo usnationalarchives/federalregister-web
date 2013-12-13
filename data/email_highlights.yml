@@ -34,7 +34,7 @@ highlights:
   title: Subscribe to Any Search Result
   image: email/search.png
   content: "<strong>Did you know that you can subscribe to any search result?</strong> 
-            After performing any search on FederalRegister.gov you can choose to recieve any future 
+            After performing any search on FederalRegister.gov you can choose to receive any future 
             documents that match your search via email. Just click the subscribe button on the right
             side of the search box."
   priority: 1
@@ -45,7 +45,7 @@ highlights:
   created: '11/30/2012'
   title: Subscribe to an Agency's Documents
   image: email/agency.png
-  content: "<strong>From any agency page on FederalRegister.gov you can choose to recieve email updates 
+  content: "<strong>From any agency page on FederalRegister.gov you can choose to receive email updates 
             of new documents from that agency.</strong> Choices of subscriptions include Documents on 
             Public Inspection, Newly Published Documents, and Documents Deemed Significant."
   priority: 1
@@ -55,7 +55,7 @@ highlights:
   created: '12/3/2012'
   title: What is Public Inspection?
   image: email/clipboards.png
-  content: "<strong>Pubic Inspection gives the public access to Federal agency 
+  content: "<strong>Public Inspection gives the public access to Federal agency 
             documents before they publish in the Federal Register.</strong> It offers a preview of documents 
             scheduled to appear in the next day's Federal Register issue and may also include documents scheduled 
             for later issues, at the request of the issuing agency. 

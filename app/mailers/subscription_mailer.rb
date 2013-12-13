@@ -51,7 +51,6 @@ class SubscriptionMailer < ActionMailer::Base
     @results = ArticleDecorator.decorate(results.to_a)
     toc = TableOfContentsPresenter.new(results)
     @agencies = toc.agencies
-    @articles_without_agencies = toc.articles_without_agencies
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
@@ -79,7 +78,6 @@ class SubscriptionMailer < ActionMailer::Base
     @results = ArticleDecorator.decorate(results.to_a)
     toc = TableOfContentsPresenter.new(results)
     @agencies = toc.agencies
-    @articles_without_agencies = toc.articles_without_agencies
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
@@ -119,15 +117,14 @@ class SubscriptionMailer < ActionMailer::Base
     def entry_mailing_list
       mailing_list = MailingList.find(4) 
       subscriptions = mailing_list.subscriptions
-      results = mailing_list.send(:results_for_date, Date.parse('2013-08-12') )
+      results = mailing_list.send(:results_for_date, Date.parse('2013-10-01') )
       SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)
     end
 
     def public_inspection_document_mailing_list
       mailing_list = MailingList.find(2) 
       subscriptions = mailing_list.subscriptions
-      document_numbers = FederalRegister::PublicInspectionDocument.current.map(&:document_number)
-      results = mailing_list.send(:results_for_document_numbers, document_numbers)
+      results = FederalRegister::PublicInspectionDocument.available_on('2013-09-30')
       SubscriptionMailer.public_inspection_document_mailing_list(mailing_list, results, subscriptions)
     end
   end

@@ -2,7 +2,8 @@ abbr, acronym { border-bottom: none; }
 
 div.notice,
 div.warning,
-div.info_warning {
+div.info_warning,
+div.flash.error {
   padding: .5em .5em .25em;
   margin-bottom: 30px;
   text-align: center;
@@ -20,10 +21,13 @@ div.notice {
   background: $fr-light-green;
   border: 1px solid $fr-green;
   }
-div.warning {
+div.warning,
+div.flash.error {
   background: $fr-light-red;
   border: 1px solid $fr-red;
   }
+div.flash.error { background-image: none; }
+
 div.info_warning {
   background-color: $fr-light-yellow;
   border: 1px solid $fr-golden;

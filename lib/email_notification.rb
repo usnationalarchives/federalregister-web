@@ -68,7 +68,7 @@ class EmailNotification
 
   def self.raise_error(message)
     if Rails.env == "production"
-      Airbrake.notify(message)
+      Honeybadger.notify(message)
     else
       raise EmailNotificationError, message
     end

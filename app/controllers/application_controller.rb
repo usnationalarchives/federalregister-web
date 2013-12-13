@@ -30,9 +30,21 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, :with => :server_error
   def server_error(exception)
     Rails.logger.error(exception)
-    notify_airbrake(exception)
+    honeybadger_options = {:exception => exception}
+    honeybadger_options[:environment_name] = "#{Rails.env}_scanbot" if request.user_agent =~ /ScanAlert/
+    notify_honeybadger(honeybadger_options)
 
     raise exception
+  end
+
+  rescue_from ActionView::MissingTemplate, :with => :missing_template
+  def missing_template(exception)
+    if exception.is_a?(ActionView::MissingTemplate) &&
+      !Collector.new(collect_mimes_from_class_level).negotiate_format(request)
+      render :nothing => true, :status => 406
+    else
+      raise exception
+    end
   end
 
   def after_sign_out_path_for(resource)
@@ -42,5 +54,9 @@ class ApplicationController < ActionController::Base
   def use_vcr
     VCR.eject_cassette
     VCR.use_cassette("development") { yield }
+  end
+
+  def rescue_action_in_public_with_honeybadger(exception)
+    rescue_action_in_public_without_honeybadger(exception)
   end
 end

@@ -3,9 +3,9 @@
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
-  <%= semantic_form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post } do |f| %>
+  <%= semantic_form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :id => "password_reset" } do |f| %>
     <%= devise_error_messages! %>
-  
+
     <%= f.inputs do %>
       <%= f.input :email, :as => :email %>
     <% end %>
