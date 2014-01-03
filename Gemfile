@@ -40,7 +40,10 @@ gem "fog", "~> 1.3.1"
 gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
+
+gem "httparty", "~> 0.12.0"
 gem "httmultiparty"
+
 gem 'sendgrid'
 
 gem "premailer", "1.7.3"
@@ -76,7 +79,7 @@ end
 group :development, :test do 
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
-  gem 'factory_girl_rails',             '~> 1.1.0',      :require => false
+  gem "factory_girl_rails",             "~> 4.0",      :require => false
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
   gem 'capybara'
@@ -88,6 +91,7 @@ group :development, :test do
   gem 'launchy'
 
   gem 'codeclimate-test-reporter', :require => nil
+  gem 'pry'
 
   #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3
