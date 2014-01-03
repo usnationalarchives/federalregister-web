@@ -1,21 +1,14 @@
 class RegulationsDotGov::CommentForm::Field::SelectField < RegulationsDotGov::CommentForm::Field
-  def options
+  def option_values
     parameters = {}
-    if name == 'comment_category'
-      parameters['agency'] = agency_id
-    end
+    #if name == 'comment_category'
+      #parameters['agency'] = agency_id
+    #end
 
-    @options ||= client.get_options(picklist_name, parameters)
-  end 
+    @options ||= client.get_option_elements(name, parameters)
+  end
 
   def default
     options.first(&:default?)
   end
-
-  def picklist_name
-    uri = URI.parse(attributes["uiControlTypeUrl"])
-    query_params = CGI::parse(uri.query)
-    query_params['lookup'].first
-  end
 end
-

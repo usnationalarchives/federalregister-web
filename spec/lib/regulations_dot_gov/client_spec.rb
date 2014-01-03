@@ -54,7 +54,7 @@ describe RegulationsDotGov::Client do
   end
 
   describe "#get_comment_form" do
-    let(:document_id) { 'ITC-2013-0207-0001' } 
+    let(:document_id) { 'ITC-2013-0207-0001' }
 
     it 'returns a new RegulationsDotGov::CommentForm', :vcr do
       comment_form = client.get_comment_form(document_id)
@@ -67,6 +67,23 @@ describe RegulationsDotGov::Client do
       RegulationsDotGov::Client.should_receive(:get).with(client.comment_endpoint, :query=>{:D => document_id})
 
       client.get_comment_form(document_id)
+    end
+  end
+
+  describe "#get_option_elements" do
+    let(:field_name) { 'country' }
+    it "returns an array of option elements for select and combo fields" do
+      options = client.get_option_elements(field_name)
+
+      expect(options.length).to be > 0
+      expect(options.first).to be_kind_of(RegulationsDotGov::CommentForm::Option)
+    end
+
+    it "performs a get request with the required arguments" do
+      response = double(:response).as_null_object
+
+      RegulationsDotGov::Client.should_receive(:get).with(client.lookup_endpoint, :query=>{:field => field_name}).and_return(response)
+      client.get_option_elements(field_name)
     end
   end
 

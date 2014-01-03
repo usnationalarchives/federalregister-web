@@ -31,7 +31,7 @@ module CommentsHelper
     when RegulationsDotGov::CommentForm::Field::SelectField
       options.merge!(
         :as => :select,
-        :collection => field.options,
+        :collection => field.option_values,
         :member_value => :value,
         :member_label => :label
       )

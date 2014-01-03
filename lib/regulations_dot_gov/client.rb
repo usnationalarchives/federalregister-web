@@ -13,8 +13,9 @@ class RegulationsDotGov::Client
   base_uri 'http://api.data.gov/regulations/v2/'
   default_timeout 20
 
-  DOCKET_PATH = '/docket.json'
+  DOCKET_PATH  = '/docket.json'
   COMMENT_PATH = '/comment.json'
+  LOOKUP_PATH  = '/lookup.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
@@ -30,6 +31,10 @@ class RegulationsDotGov::Client
 
   def comment_endpoint
     self.class.base_uri + COMMENT_PATH
+  end
+
+  def lookup_endpoint
+    self.class.base_uri + LOOKUP_PATH
   end
 
   def find_docket(docket_id)
@@ -62,15 +67,16 @@ class RegulationsDotGov::Client
     RegulationsDotGov::CommentForm.new(self, response.parsed_response)
   end
 
-  def get_options(field_name, options ={})
+  def get_option_elements(field_name, options={})
     begin
-      args = options.merge("lookup" => field_name)
-      response = self.class.get('/getlookup/v1.json', :query => args.merge(:api_key => @get_api_key))
+      args = options.merge(:field => field_name)
+      response = self.class.get(lookup_endpoint, :query => args)
 
-      raw_option_attributes = response.parsed_response['lookuplist']['entry']
-      if raw_option_attributes.is_a?(Hash)
-        raw_option_attributes = [raw_option_attributes]
-      end
+      raw_option_attributes = response.parsed_response['list']
+
+      #if raw_option_attributes.is_a?(Hash)
+        #raw_option_attributes = [raw_option_attributes]
+      #end
 
       raw_option_attributes.map do |option_attributes|
         RegulationsDotGov::CommentForm::Option.new(self, option_attributes)

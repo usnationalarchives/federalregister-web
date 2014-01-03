@@ -43,7 +43,7 @@ class RegulationsDotGov::CommentForm
   end
 
   def fields
-    @fields ||= attributes["metadataList"].map do |field_attributes|
+    @fields ||= attributes["fieldList"].map do |field_attributes|
       Field.build(client, field_attributes, agency_acronym)
     end
   end

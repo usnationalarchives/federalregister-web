@@ -108,7 +108,7 @@ module RegulationsDotGov
 
       it "calls Field.build with the appropriate arguments" do
         agency_acronym = "ITC"
-        comment_form = CommentForm.new(client, {'document' => {'agencyAcronym' => agency_acronym}, 'metadataList' => fields})
+        comment_form = CommentForm.new(client, {'document' => {'agencyAcronym' => agency_acronym}, 'fieldList' => fields})
 
         expect( CommentForm::Field ).to receive(:build).with(client, fields.first, comment_form.agency_acronym)
         expect( CommentForm::Field ).to receive(:build).with(client, fields.last, comment_form.agency_acronym)
