@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Regulations.gov comment integration" do
   scenario "User submits a comment for a document that has an open comment period", :js do
-    visit '/articles/2013/11/19/2013-27495/lake-tahoe-basin-management-unit-california-heavenly-mountain-resort-epic-discovery-project'
-
+    visit '/articles/2014/01/01/4242-4242/test-document'
+save_and_open_page
     expect(page).to have_comment_bar('#start_comment')
 
     within('#flash_message.comment') do
