@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
     during_creation.skip_before_filter :verify_authenticity_token
     during_creation.skip_before_filter :authenticate_user!
   end
- 
+
   def index
     @subscriptions = SubscriptionDecorator.decorate(current_user.subscriptions.order("subscriptions.created_at DESC"))
     @article_subscription_count = current_user.subscriptions.article_subscriptions.count
@@ -14,23 +14,23 @@ class SubscriptionsController < ApplicationController
   def new
     @subscription = Subscription.new(params[:subscription])
     @subscription.search_type ||= 'Entry'
-    
+
     @mailing_list_title = @subscription.mailing_list.title
   rescue FederalRegister::Client::BadRequest
     render :action => "invalid_subscription"
   end
-  
+
   def create
     @subscription = Subscription.new(params[:subscription])
-    
+
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
-    
+
     if user_signed_in?
       @subscription.user = current_user
       @subscription.email = current_user.email
     end
-    
+
     if @subscription.save
       if user_signed_in?
         if current_user.confirmed?
@@ -54,10 +54,10 @@ class SubscriptionsController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def confirmation_sent
   end
-  
+
   def confirm
     @subscription = Subscription.find_by_token!(params[:id])
     @subscription.confirm!
@@ -67,14 +67,14 @@ class SubscriptionsController < ApplicationController
       format.json { render :json => { :unsubscribe_url => subscription_path(@subscription)} }
     end
   end
-  
+
   def confirmed
   end
-  
+
   def unsubscribe
     @subscription = Subscription.find_by_token!(params[:id])
   end
-  
+
   def destroy
     @subscription = Subscription.find_by_token!(params[:id])
     @subscription.unsubscribe!
@@ -88,7 +88,7 @@ class SubscriptionsController < ApplicationController
       format.json { render :json => { :resubscribe_url => confirm_subscription_url(@subscription)} }
     end
   end
-  
+
   def unsubscribed
   end
 end
