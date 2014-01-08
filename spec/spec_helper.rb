@@ -11,6 +11,8 @@ require 'factory_girl_rails'
 
 require 'capybara-screenshot/rspec'
 
+require "email_spec"
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -27,6 +29,9 @@ RSpec.configure do |config|
   config.include Features::SessionHelpers, type: :feature
   config.include Features::ClippingHelpers, type: :feature
   config.include Capybara::RSpecMatchers, type: :feature
+
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
 
   config.expect_with :rspec do |c|
     # Disable the `should` syntax...
@@ -51,6 +56,8 @@ RSpec.configure do |config|
       DatabaseCleaner.clean
     end
   end
+
+  config.before(:each) { reset_mailer }
 
   Capybara.run_server = true
   Capybara.server_port = 14000

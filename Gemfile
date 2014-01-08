@@ -98,6 +98,8 @@ group :development, :test do
   #gem 'selenium-webdriver',             '2.35.0'
   #gem 'rubyzip',                        '0.9.9'
 
+  gem 'email_spec'
+
   gem "vcr",     "~> 2.6.0"
   gem "fakeweb", "~> 1.3.0"
 end

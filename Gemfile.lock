@@ -103,6 +103,9 @@ GEM
     draper (0.18.0)
       actionpack (~> 3.2)
       activesupport (~> 3.2)
+    email_spec (1.5.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     excon (0.13.4)
     execjs (1.4.0)
@@ -303,6 +306,7 @@ DEPENDENCIES
   database_cleaner
   devise (= 2.1.2)
   draper (= 0.18.0)
+  email_spec
   factory_girl_rails (~> 4.0)
   fakeweb (~> 1.3.0)
   federal_register!

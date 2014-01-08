@@ -1,5 +1,5 @@
 MyFr2::Application.configure do
-  APP_HOST_NAME = "www.fr2.local:8080"
+  APP_HOST_NAME = "www.fr2.local:8081"
 
   # Settings specified here will take precedence over those in config/application.rb
 
