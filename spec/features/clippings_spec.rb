@@ -18,8 +18,8 @@ feature "Creating clippings" do
       click_nav_item("My FR", "My Clipboard")
 
       # warning message and clipped document should be visible
-      expect(page).to have_selector('.warning.message p', 'These clippings are not permanently saved. Please sign in or sign up to save them permanently.')
-      expect(page).to have_clipping_with_title('Test Document')
+      expect(page).to have_selector('.warning.message p', text: 'These clippings are not permanently saved. Please sign in or sign up to save them permanently.')
+      expect(page).to have_clipping_with_title('Test document')
     end
   end
 
@@ -35,8 +35,8 @@ feature "Creating clippings" do
       manually_sign_up(user.email, user.password)
 
       # message document was saved and the document itself should be visible
-      expect(page).to have_selector('.notice.message p', '1 clipping was in temporary storage. It has been saved to your clipboard.')
-      expect(page).to have_clipping_with_title('Test Document')
+      expect(page).to have_selector('.notice.message p', text: '1 clipping was in temporary storage. It has been saved to your clipboard.')
+      expect(page).to have_clipping_with_title('Test document')
     end
   end
 
@@ -56,8 +56,8 @@ feature "Creating clippings" do
       manually_sign_in(user.email, user.password)
 
       # message document was saved and the document itself should be visible
-      expect(page).to have_selector('.notice.message p', '1 clipping was in temporary storage. It has been saved to your clipboard.')
-      expect(page).to have_clipping_with_title('Test Document')
+      expect(page).to have_selector('.notice.message p', text: '1 clipping was in temporary storage. It has been saved to your clipboard.')
+      expect(page).to have_clipping_with_title('Test document')
 
       # two documents should be clipped
       expect(page).to have_user_util("#doc_count", 2)
@@ -82,7 +82,7 @@ feature "Creating clippings" do
       click_nav_item("My FR", "My Clipboard")
 
       # the document should be visible
-      expect(page).to have_clipping_with_title('Test Document')
+      expect(page).to have_clipping_with_title('Test document')
 
       # two documents should be clipped
       expect(page).to have_user_util("#doc_count", 2)

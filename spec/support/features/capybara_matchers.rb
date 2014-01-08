@@ -13,7 +13,7 @@ module Capybara::RSpecMatchers
 
   def have_clipping_with_title(text)
     within('#clippings') do
-      have_selector('.title a', text)
+      have_selector('.title a', text: text)
     end
   end
 
