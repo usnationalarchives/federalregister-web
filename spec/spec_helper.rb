@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include Features::SessionHelpers, type: :feature
+  config.include Features::ClippingHelpers, type: :feature
   config.include Capybara::RSpecMatchers, type: :feature
 
   config.expect_with :rspec do |c|
@@ -55,8 +56,8 @@ RSpec.configure do |config|
   Capybara.server_port = 14000
   Capybara.app = Rack::Builder.parse_file(File.expand_path('../../config.ru', __FILE__)).first
 
-  Capybara.asset_host = "http://www.fr2.local:8080"
-  Capybara.app_host = "http://www.fr2.local:8080"
+  Capybara.asset_host = "http://www.fr2.local:8081"
+  Capybara.app_host = "http://www.fr2.local:8081"
   Capybara.current_driver = :webkit
   Capybara.javascript_driver = :webkit
   Capybara.default_wait_time = 5

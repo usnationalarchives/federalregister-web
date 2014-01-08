@@ -22,7 +22,7 @@ module ClippingHelper
               :pdf_url]
     field_params = fields.map{|f| "fields[]=#{f.to_s}"}.join('&')
 
-    url = "#{base_url}/#{document_numbers.map}.csv?#{field_params}"
+    url = "#{base_url}/#{document_numbers}.csv?#{field_params}"
 
     content_tag(:a, :href => url) do 
       content_tag(:span, '', :class => "icon-fr2 icon-fr2-download") +
