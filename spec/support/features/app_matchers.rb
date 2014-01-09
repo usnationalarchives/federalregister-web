@@ -6,6 +6,10 @@ module Capybara::RSpecMatchers
     end
   end
 
+  def have_page_title(text)
+    have_selector('h2.title', text: text)
+  end
+
   def have_flash_notice(text)
     have_selector('.flash.notice', text: text)
   end
@@ -16,5 +20,9 @@ module Capybara::RSpecMatchers
 
   def have_fr_warning_message(text='')
     have_selector('.warning.message', text: text)
+  end
+
+  def have_fr_notice_message(text='')
+    have_selector('.notice.message', text: text)
   end
 end
