@@ -4,4 +4,26 @@ module Capybara::RSpecMatchers
       have_selector(element, text: text)
     end
   end
+
+  def have_subscription_filter_enabled(type)
+    within('#subscription-type-filter') do
+      case type
+      when 'Document'
+        have_selector('.sub_article.on')
+      when 'Public Inspection'
+        have_selector('.sub_pi.on')
+      end
+    end
+  end
+
+  def toggle_subscription_filter(type)
+    within('#subscription-type-filter') do
+      case type
+      when 'Document'
+        find('.sub_article').click
+      when 'Public Inspection'
+        find('.sub_pi').click
+      end
+    end
+  end
 end

@@ -54,25 +54,95 @@ feature "Subscriptions" do
       scenario "with 1 document subscription", :js do
         create(:document_subscription, user: user)
 
-        manually_sign_in(user.email, user.password)
+        login_as(user)
         visit "/my/subscriptions"
 
         expect(page).to have_subscriptions_metadata_item('li .entry_subscription_on_page_count', 1)
         expect(page).to have_subscriptions_metadata_item('li .pi_subscription_on_page_count', 0)
 
         expect(page).to have_selector('#subscription-type-filter')
+        expect(page).to have_subscription_filter_enabled('Document')
+        expect(page).to_not have_subscription_filter_enabled('Public Inspection')
       end
 
        scenario "with 1 public inspection document subscription", :js do
         create(:public_inspection_subscription, user: user)
 
-        manually_sign_in(user.email, user.password)
+        login_as(user)
         visit "/my/subscriptions"
 
         expect(page).to have_subscriptions_metadata_item('li .entry_subscription_on_page_count', 0)
         expect(page).to have_subscriptions_metadata_item('li .pi_subscription_on_page_count', 1)
 
         expect(page).to have_selector('#subscription-type-filter')
+        expect(page).to_not have_subscription_filter_enabled('Document')
+        expect(page).to have_subscription_filter_enabled('Public Inspection')
+      end
+
+      context "subscription filters" do
+        scenario "filter the types of subscriptions currently displayed", :js do
+          create(:document_subscription, user: user)
+          create(:public_inspection_subscription, user: user)
+
+          login_as(user)
+          visit "/my/subscriptions"
+
+          expect(page).to have_selector('#subscriptions li', count: 2)
+
+          expect(page).to have_selector('#subscription-type-filter')
+          expect(page).to have_subscription_filter_enabled('Document')
+          expect(page).to have_subscription_filter_enabled('Public Inspection')
+
+          toggle_subscription_filter('Document')
+          expect(page).to_not have_subscription_filter_enabled('Document')
+          expect(page).to have_selector('#subscriptions li', count: 1)
+          expect(page).to have_selector('#subscriptions li[data-doc-type=article]', count: 0)
+
+          toggle_subscription_filter('Document')
+          expect(page).to have_subscription_filter_enabled('Document')
+          expect(page).to have_selector('#subscriptions li', count: 2)
+          expect(page).to have_selector('#subscriptions li[data-doc-type=article]', count: 1)
+
+          toggle_subscription_filter('Public Inspection')
+          expect(page).to_not have_subscription_filter_enabled('Public Inspection')
+          expect(page).to have_selector('#subscriptions li', count: 1)
+          expect(page).to have_selector('#subscriptions li[data-doc-type=public-inspection-document]', count: 0)
+
+          toggle_subscription_filter('Public Inspection')
+          expect(page).to have_subscription_filter_enabled('Public Inspection')
+          expect(page).to have_selector('#subscriptions li', count: 2)
+          expect(page).to have_selector('#subscriptions li[data-doc-type=public-inspection-document]', count: 1)
+        end
+      end
+
+      context "suspending and activating a subscription" do
+        scenario "suspending a subscription", :js do
+          create(:document_subscription, user: user)
+          manually_sign_in(user.email, user.password)
+          visit "/my/subscriptions"
+
+          unsubscribe_link = page.find('#subscriptions .subscription_data a.unsubscribe')
+
+          unsubscribe_link.click
+          expect(page).to have_selector('#subscriptions .subscription_data a.resubscribe')
+
+          reload_page
+          expect(page).to have_selector('#subscriptions .subscription_data a.resubscribe')
+        end
+
+        scenario "activating a subscription", :js do
+          create(:document_subscription, user: user, confirmed_at: nil)
+          manually_sign_in(user.email, user.password)
+          visit "/my/subscriptions"
+
+          unsubscribe_link = page.find('#subscriptions .subscription_data a.resubscribe')
+
+          unsubscribe_link.click
+          expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
+
+          reload_page
+          expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
+        end
       end
     end
   end
