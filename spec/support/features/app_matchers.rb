@@ -9,4 +9,12 @@ module Capybara::RSpecMatchers
   def have_flash_notice(text)
     have_selector('.flash.notice', text: text)
   end
+
+  def have_flash_error(text)
+    have_selector('.flash.error', text: text)
+  end
+
+  def have_fr_warning_message(text='')
+    have_selector('.warning.message', text: text)
+  end
 end
