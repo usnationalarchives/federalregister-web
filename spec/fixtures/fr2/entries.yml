@@ -4,3 +4,15 @@ open_comment:
   publication_date: 2014-01-01
   regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
   comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
+open_comment_2:
+  title: Test Document 2
+  document_number: 4343-4343
+  publication_date: 2014-01-01
+  regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
+  comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
+open_comment_3:
+  title: Test Document 3
+  document_number: 4444-4444
+  publication_date: 2014-01-01
+  regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
+  comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
