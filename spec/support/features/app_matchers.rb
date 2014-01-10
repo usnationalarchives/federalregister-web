@@ -18,11 +18,25 @@ module Capybara::RSpecMatchers
     have_selector('.flash.error', text: text)
   end
 
+  def have_flash_warning(text)
+    have_selector('.flash.warning', text: text)
+  end
+
   def have_fr_warning_message(text='')
     have_selector('.warning.message', text: text)
   end
 
   def have_fr_notice_message(text='')
     have_selector('.notice.message', text: text)
+  end
+
+  def have_modal
+    have_selector('#modal')
+  end
+
+  def have_modal_element(element)
+    within('#modal') do
+      have_selector(element)
+    end
   end
 end

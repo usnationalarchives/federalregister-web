@@ -26,4 +26,14 @@ module Capybara::RSpecMatchers
       end
     end
   end
+
+  def have_subscriptions_item(element, text=nil)
+    within('#subscriptions') do
+      if text
+        have_selector(element, text: text)
+      else
+        have_selector(element)
+      end
+    end
+  end
 end

@@ -2,11 +2,87 @@ require 'spec_helper'
 
 feature "Subscriptions" do
   context "not logged in" do
-    scenario "redirects the user to the sign in page", :js do
+    scenario "visiting 'My Subscriptions' redirects the user to the sign in page", :js do
       visit "/my/subscriptions"
 
       expect(current_path).to eq('/my/sign_in')
       #expect(page).to have_flash_error( I18n.translate('devise.failure.unauthenticated') )
+    end
+
+    context "with an confirmed account" do
+      scenario "creating a new subscription asks the user to login and user can view subscription", :js do
+        user = create(:user, confirmed_at: Time.now - 1.day)
+        visit "/environment"
+
+        subscription_link = page.find('.title a.subscription')
+        subscription_link.click
+
+        expect(page).to have_modal
+
+        within('#subscription_0') do
+          email_input = page.find('#subscription_email')
+          expect( email_input.value ).to eq("")
+          expect( email_input.disabled? ).to be(false)
+
+          fill_in 'subscription_email', with: user.email
+          find('input[type=submit]').click
+        end
+
+        expect(current_path).to eq('/my/sign_in')
+        expect(page).to have_flash_notice('Please sign into to add this subscription to your My FR account.')
+
+        within('form#new_user') do
+          expect( find('#user_email').value ).to eq(user.email)
+
+          fill_in 'user_password', with: user.password
+          click_button 'Sign in'
+        end
+
+        expect(current_path).to eq('/my/subscriptions')
+
+        subscription = SubscriptionOnPage.new('Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
+        expect(page).to have_selector('#subscriptions li', count: 1)
+        expect(page).to have_flash_notice("Successfully added '#{subscription.subscription_title}' to your account")
+
+        expect(subscription.visible?).to be(true)
+        expect(subscription.active?).to be(true)
+      end
+    end
+
+    context "with an unconfirmed account" do
+      scenario "creating a new subscription asks the user to login, but the user can not see their subscriptions", :js do
+        user = create(:user)
+        visit "/environment"
+
+        subscription_link = page.find('.title a.subscription')
+        subscription_link.click
+
+        expect(page).to have_modal
+
+        within('#subscription_0') do
+          email_input = page.find('#subscription_email')
+          expect( email_input.value ).to eq("")
+          expect( email_input.disabled? ).to be(false)
+
+          fill_in 'subscription_email', with: user.email
+          find('input[type=submit]').click
+        end
+
+        expect(current_path).to eq('/my/sign_in')
+        expect(page).to have_flash_notice('Please sign into to add this subscription to your My FR account.')
+
+        within('form#new_user') do
+          expect( find('#user_email').value ).to eq(user.email)
+
+          fill_in 'user_password', with: user.password
+          click_button 'Sign in'
+        end
+
+        expect(current_path).to eq('/my/subscriptions')
+
+        expect(page).to have_selector('#subscriptions li', count: 0)
+        expect(page).to have_flash_warning("Your subscription has been added to your account but you must confirm your email address before we can begin sending you results.")
+      end
     end
   end
 
@@ -143,6 +219,31 @@ feature "Subscriptions" do
           reload_page
           expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
         end
+      end
+
+      scenario "creating a new subscription", :js do
+        manually_sign_in(user.email, user.password)
+        visit "/environment"
+
+        subscription_link = page.find('.title a.subscription')
+        subscription_link.click
+
+        expect(page).to have_modal
+
+        email_input = page.find('#subscription_0 #subscription_email')
+        expect( email_input.value ).to eq(user.email)
+        expect( email_input.disabled? ).to be(true)
+
+        page.find('#subscription_0 input[type=submit]').click
+
+        expect(current_path).to eq('/my/subscriptions')
+        subscription = SubscriptionOnPage.new('Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
+
+        expect(page).to have_selector('#subscriptions li', count: 1)
+        expect(page).to have_flash_notice("Successfully subscribed to '#{subscription.subscription_title}'")
+
+        expect(subscription.visible?).to be(true)
+        expect(subscription.active?).to be(true)
       end
     end
   end
