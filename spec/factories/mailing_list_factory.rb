@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :mailing_list do
-    parameters                  { {:conditions => nil} }
+    parameters                  { Hash.new }
     active_subscriptions_count  1
   end
 

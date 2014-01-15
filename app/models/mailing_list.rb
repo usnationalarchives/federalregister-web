@@ -14,9 +14,9 @@ class MailingList < ApplicationModel
   serialize :parameters, JSON
 
   def title
-    self['title'] || model.search_metadata(parameters.merge(:metadata_only => '1')).description
+    self['title'] || model.search_metadata(conditions: parameters).description
   end
-  
+
   def persist_title
     self.title = title
   end

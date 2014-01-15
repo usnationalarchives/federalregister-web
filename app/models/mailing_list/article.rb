@@ -9,7 +9,7 @@ class MailingList::Article < MailingList
     unless results.empty?
       subscriptions = active_subscriptions
       subscriptions = subscriptions.not_delivered_on(date) unless options[:force_delivery]
-      
+
       subscriptions.find_in_batches(:batch_size => 1000) do |batch_subscriptions|
         SubscriptionMailer.entry_mailing_list(self, results, batch_subscriptions).deliver
       end

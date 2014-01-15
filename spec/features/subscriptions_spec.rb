@@ -9,6 +9,50 @@ feature "Subscriptions" do
       #expect(page).to have_flash_error( I18n.translate('devise.failure.unauthenticated') )
     end
 
+    scenario "subscription modal does not have an email address prefilled and the field is not diabled", :js do
+      user = build(:user)
+      visit "/environment"
+
+      open_subscription_modal_from_title_bar
+      expect(page).to have_modal
+
+      within('#subscription_0') do
+        email_input = page.find('#subscription_email')
+        expect( email_input.value ).to eq("")
+        expect( email_input.disabled? ).to be(false)
+      end
+    end
+
+    scenario "creating a subscription sends an email confirmation for the subscription with a working link to confirm", :js do
+      user = build(:user)
+      visit "/environment"
+
+      open_subscription_modal_from_title_bar
+      expect(page).to have_modal
+
+      within('#subscription_0') do
+        fill_in 'subscription_email', with: user.email
+        find('input[type=submit]').click
+      end
+
+      expect(current_path).to eq('/my/subscriptions/confirmation_sent')
+      expect(page).to have_selector('h3', text: 'Almost done!')
+      expect(page).to have_selector('p', text: 'A confirmation email has been sent; simply click the link in the email to confirm your subscription.')
+      expect(page).to have_selector('h4', text: 'My Federal Register')
+      expect(page).to have_link('get started here', href: "/my/sign_up?user%5Bemail%5D=#{CGI.escape(user.email)}")
+
+      open_last_email_for(user.email)
+
+      expect(current_email).to be_delivered_to(user.email)
+      expect(current_email).to have_subject("[FR] Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment")
+
+      click_email_link_matching(/confirm/)
+
+      expect(current_path).to eq('/my/subscriptions/confirmed')
+      expect(page).to have_selector('h3', text: 'Your subscription has been confirmed!')
+      expect(page).to have_selector('p', text: 'When new articles are published that match your criteria, you will receive email notification.')
+    end
+
     context "with an confirmed account" do
       scenario "creating a new subscription asks the user to login and user can view subscription", :js do
         user = create(:user, confirmed_at: Time.now - 1.day)
@@ -20,10 +64,6 @@ feature "Subscriptions" do
         expect(page).to have_modal
 
         within('#subscription_0') do
-          email_input = page.find('#subscription_email')
-          expect( email_input.value ).to eq("")
-          expect( email_input.disabled? ).to be(false)
-
           fill_in 'subscription_email', with: user.email
           find('input[type=submit]').click
         end
@@ -60,10 +100,6 @@ feature "Subscriptions" do
         expect(page).to have_modal
 
         within('#subscription_0') do
-          email_input = page.find('#subscription_email')
-          expect( email_input.value ).to eq("")
-          expect( email_input.disabled? ).to be(false)
-
           fill_in 'subscription_email', with: user.email
           find('input[type=submit]').click
         end
@@ -225,14 +261,8 @@ feature "Subscriptions" do
         manually_sign_in(user.email, user.password)
         visit "/environment"
 
-        subscription_link = page.find('.title a.subscription')
-        subscription_link.click
-
+        open_subscription_modal_from_title_bar
         expect(page).to have_modal
-
-        email_input = page.find('#subscription_0 #subscription_email')
-        expect( email_input.value ).to eq(user.email)
-        expect( email_input.disabled? ).to be(true)
 
         page.find('#subscription_0 input[type=submit]').click
 
@@ -245,6 +275,62 @@ feature "Subscriptions" do
         expect(subscription.visible?).to be(true)
         expect(subscription.active?).to be(true)
       end
+    end
+
+    scenario "subscription modal has the email address prefilled and the field is diabled", :js do
+      manually_sign_in(user.email, user.password)
+      visit "/environment"
+
+      open_subscription_modal_from_title_bar
+      expect(page).to have_modal
+
+      within('#subscription_0') do
+        email_input = page.find('#subscription_email')
+        expect( email_input.value ).to eq(user.email)
+        expect( email_input.disabled? ).to be(true)
+      end
+    end
+  end
+
+  context "receiving a subscription" do
+    scenario "includes the proper documents and an unsubscribe link", :js do
+      user = create(:user, confirmed_at: 1.day.ago)
+      subscription = create(:document_subscription, user: user)
+
+      subscription.mailing_list.deliver!(Date.parse('2014-01-01'))
+
+      # we use Sendgrid to deliver mailing lists
+      # so we go about this differently for subscriptions
+      open_last_email_for("nobody@federalregister.gov")
+
+      expect_sendgrid_header_data(current_email, "to", ["test_user@example.com"])
+      expect(current_email).to have_subject("[FR] All Articles")
+
+      expect(current_email).to have_body_text('Test Document')
+      expect(current_email).to have_body_text('Test Document 2')
+      expect(current_email).to have_body_text('Test Document 3')
+
+      manage_subscriptions_link = "http://www.fr2.local:8081/my/subscriptions?utm_campaign=utility_links&amp;utm_content=manage_subscription&amp;utm_medium=email&amp;utm_source=federalregister.gov"
+      expect(current_email).to have_body_text(manage_subscriptions_link)
+
+      unsubscribe_link = "http://www.fr2.local:8081/my/subscriptions/(((token)))/unsubscribe"
+      expect(current_email).to have_body_text(unsubscribe_link)
+
+      token = JSON.parse(current_email.header['X-SMTPAPI'].to_s )["sub"]["(((token)))"][0]
+      visit unsubscribe_link.gsub('(((token)))', token)
+
+      expect(current_path).to eq("/my/subscriptions/#{token}/unsubscribe")
+      expect(page).to have_selector('p.errors_header', text: "Are you sure you wish to unsubscribe #{user.email} from #{subscription.mailing_list.title}?")
+
+      click_button "Unsubscribe"
+
+      expect(current_path).to eq("/my/subscriptions/unsubscribed")
+      expect(page).to have_selector('p', text: "You have been successfully unsubscribed from that search result.")
+
+      manually_sign_in(user.email, user.password)
+      visit "/my/subscriptions"
+
+      expect(page).to have_selector('#subscriptions .subscription_data a.resubscribe')
     end
   end
 end
