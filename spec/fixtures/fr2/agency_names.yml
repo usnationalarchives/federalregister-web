@@ -2,3 +2,7 @@ agency_name_1:
   name: Test Agency
   agency: agency_1
   void: false
+agency_name_eop:
+  name: Executive Office of the President
+  agency: agency_eop
+  void: false

@@ -2,4 +2,9 @@ agency_1:
   name: Test Agency
   slug: test-agency
   short_name: TA
-  description: This is a test agency
+  description: This is a test agency.
+agency_eop:
+  name: Executive Office of the President
+  slug: executive-office-of-the-president
+  short_name: EOP
+  description: This is the executive office of the President of the United States.

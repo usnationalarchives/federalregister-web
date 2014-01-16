@@ -10,3 +10,7 @@ agency_name_assignment_3:
   assignable: open_comment_3 (Entry)
   position: 1
   agency_name: agency_name_1
+agency_name_assignment_eop:
+  assignable: presdoc_1 (Entry)
+  position: 1
+  agency_name: agency_name_eop

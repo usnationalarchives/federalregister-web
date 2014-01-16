@@ -4,15 +4,27 @@ open_comment:
   publication_date: 2014-01-01
   regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
   comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
+  granule_class: RULE
 open_comment_2:
   title: Test Document 2
   document_number: 4343-4343
   publication_date: 2014-01-01
   regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
   comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
+  granule_class: PRORULE
 open_comment_3:
   title: Test Document 3
   document_number: 4444-4444
   publication_date: 2014-01-01
   regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
   comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
+  granule_class: NOTICE
+presdoc_1:
+  title: Presidential Document 1
+  document_number: 4545-4545
+  publication_date: 2014-01-01
+  regulationsdotgov_url: ''
+  comment_url: ''
+  granule_class: PRESDOCU
+
+
