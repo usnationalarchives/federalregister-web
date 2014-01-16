@@ -333,7 +333,8 @@
     }
   }
 
-  li.in_folder:hover {
+  li.in_folder:hover,
+  li.in_folder.hover {
     a { 
       color: #6E6E6E; 
       

@@ -395,7 +395,9 @@ $(document).ready(function () {
     });
 
     menu.on('mouseenter', '.menu li.in_folder', function(event) {
-      add_in_folder_mouseenter_events( $(this), this_document_number, menu );
+      $li = $(this);
+      $li.addClass('hover');
+      add_in_folder_mouseenter_events( $li, this_document_number, menu );
     });
 
     menu.on('mouseleave', '.menu li.in_folder', function(event) {
