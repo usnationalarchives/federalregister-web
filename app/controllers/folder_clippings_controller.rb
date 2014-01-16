@@ -79,7 +79,7 @@ class FolderClippingsController < ApplicationController
                                      :doc_count => clippings.count, 
                                      :documents => document_number } }
       else
-        document_numbers = document_number.is_a?(Array) ? document_number : document_number.to_a 
+        document_numbers = Array(document_number)
 
         document_numbers.each do |document_number|
           remove_document_id_from_session(document_number)
