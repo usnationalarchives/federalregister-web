@@ -30,8 +30,8 @@ module Capybara::RSpecMatchers
     have_selector('.notice.message', text: text)
   end
 
-  def have_modal
-    have_selector('#modal')
+  def have_modal(id='#modal')
+    have_selector(id)
   end
 
   def have_modal_element(element)
