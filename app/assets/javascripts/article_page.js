@@ -402,8 +402,10 @@ $(document).ready(function () {
 
     menu.on('mouseleave', '.menu li.in_folder', function(event) {
       var el = $(this);
+
       el.find('a span.delete.icon').remove();
       el.find('a span.goto.icon').remove();
+      el.removeClass('hover');
 
       if ( el.find('a span.checked.icon').length === 0 ) {
         checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
