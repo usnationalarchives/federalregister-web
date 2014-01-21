@@ -1,5 +1,5 @@
 MyFr2::Application.configure do
-  APP_HOST_NAME = "127.0.0.1:8080"
+  APP_HOST_NAME = "www.fr2.local:8080"
 
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -28,7 +28,7 @@ MyFr2::Application.configure do
   # Do not compress assets
   config.assets.compress = false
   config.assets.digest = false
-  config.assets.prefix = "/assets"
+  #config.assets.prefix = "/assets"
   config.assets.precompile = []
 
   # Expands the lines which load the assets
@@ -48,5 +48,5 @@ MyFr2::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings   = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}/my", :protocol => "http://"}
+  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "http://"}
 end

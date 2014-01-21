@@ -49,7 +49,7 @@ module MyFr2
     config.assets.compile = false
 
     # Change path for generated assets
-    config.assets.prefix = "my/assets"
+    #config.assets.prefix = "assets"
 
     # Generate digests for assets URLs
     config.assets.digest = true

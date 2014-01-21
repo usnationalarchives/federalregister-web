@@ -7,7 +7,7 @@
 #
 # src_dir: public
 #
-src_dir: 'my/assets/'
+src_dir: 'assets/'
 
 # src_files
 #

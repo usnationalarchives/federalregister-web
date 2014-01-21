@@ -8,7 +8,6 @@ module MailerHelper
                   ActionMailer::Base.default_url_options[:host]
 
     asset_url = base_url + asset_path(asset)
-    asset_url = asset_url.gsub('/my/my','/my')
   end
 
 end

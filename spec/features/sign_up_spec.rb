@@ -36,7 +36,7 @@ feature "Signing up" do
 
       click_button 'Sign up'
 
-      expect(current_path).to eq('/my/')
+      expect(current_path).to eq('/my')
     end
   end
 
@@ -44,7 +44,7 @@ feature "Signing up" do
     scenario "the user should be sent a confirmation email and be logged in when they click the confirmation link in that email", :js do
       manually_sign_up(user.email, user.password)
 
-      expect(current_path).to eq('/my/')
+      expect(current_path).to eq('/my')
       expect(page).to have_user_util('li', user.email)
       expect(page).to have_flash_notice('Welcome to My FR! You have signed up successfully. Some features of My FR require that you confirm your email address. A message with a confirmation link has been sent to your email address.')
 

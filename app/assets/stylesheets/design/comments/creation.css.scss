@@ -16,7 +16,7 @@
     margin: 0 auto;
     width: 180px;
     display: block;
-    background: url(/my/assets/orange_loader_CCC.gif) 159px 0 no-repeat;
+    background: image-url('orange_loader_CCC.gif') 159px 0 no-repeat;
   }
 }
 
@@ -147,7 +147,7 @@
     .disabled.commit.button:hover { background-color: #CCC; }
     .disabled.commit.button input {
       padding-right: 25px;
-      background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
+      background: image-url('orange_loader_CCC.gif') 180px 2px no-repeat;
     }
   }
 

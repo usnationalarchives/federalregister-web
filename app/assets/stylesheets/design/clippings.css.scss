@@ -112,7 +112,7 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
     margin-right: 0;
 
     display: none;
-    background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
+    background: image-url('orange_loader.gif') 0 0 no-repeat;
   }
 }
 
