@@ -1,12 +1,14 @@
 ## Customize the test machine
 machine:
   ruby:
-    version: 1.9.3-p429
+    version: 1.9.3-p484
   environment:
     RAILS_ENV: test
     RACK_ENV: test
   services:
     - varnish
+  hosts:
+    www.fr2.local: 127.0.0.1
 
 ## Customize dependencies
 dependencies:
@@ -25,13 +27,14 @@ dependencies:
     - cp ../fr2/config/mysql.yml.sample ../fr2/config/mysql.yml
     - cp ../fr2/config/secrets.yml.sample ../fr2/config/secrets.yml
     - cp ../fr2/config/sendgrid.yml.sample ../fr2/config/sendgrid.yml
+    - cp ../fr2/config/test.varnish.yml.sample ../fr2/config/varnish.yml
     - cd ../fr2 && bundle
 
 ## Customize database setup commands
 database:
   override:
-    - 'cd ../fr2 && echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_fr_test\n  adapter: mysql2\n" > config/database.yml'
-    - 'cd ../fr2 && bundle exec rake db:create db:schema:load'
+    - 'cd ../fr2 && echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_fr_test\n  adapter: mysql\n" > config/database.yml'
+    - 'cd ../fr2 && bundle exec rake db:create db:schema:load --trace ASSUME_UNITIALIZED_DB=1'
     - 'echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
     - 'bundle exec rake db:create db:schema:load'
 
@@ -41,8 +44,10 @@ test:
     - cd ../fr2 && bundle exec rake db:fixtures:load FIXTURES_PATH=../my_fr2/spec/fixtures/fr2/
     - cd ../fr2 && rake ts:rebuild
     - cd ../fr2 && rake varnish:start
+    - cd ../fr2 && script/server -p 3002
+    - rails s -p 3001
   override:
     - bundle exec rspec spec
-  post:
-    - bundle exec rake jshint
+  #post:
+  #- bundle exec rake jshint
 
