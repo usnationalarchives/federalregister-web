@@ -27,7 +27,7 @@ dependencies:
     - cp ../fr2/config/sendgrid.yml.sample ../fr2/config/sendgrid.yml
     - cp ../fr2/config/test.varnish.yml.sample ../fr2/config/varnish.yml
     - cd ../fr2 && bundle
-    - cd ../fr2/public/images/icons && git submodule update --init
+    - cd ../fr2 && git submodule update --init
 
 ## Customize database setup commands
 database:
