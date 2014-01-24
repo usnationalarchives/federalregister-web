@@ -5,8 +5,6 @@ machine:
   environment:
     RAILS_ENV: test
     RACK_ENV: test
-  services:
-    - varnish
   hosts:
     www.fr2.local: 127.0.0.1
 
@@ -29,6 +27,7 @@ dependencies:
     - cp ../fr2/config/sendgrid.yml.sample ../fr2/config/sendgrid.yml
     - cp ../fr2/config/test.varnish.yml.sample ../fr2/config/varnish.yml
     - cd ../fr2 && bundle
+    - cd ../fr2/public/images/icons && git submodule update --init
 
 ## Customize database setup commands
 database:
@@ -41,6 +40,7 @@ database:
 ## Customize test commands
 test:
   pre:
+    - cd ../fr2 && mkdir -p tmp/test
     - cd ../fr2 && bundle exec rake db:fixtures:load FIXTURES_PATH=../my_fr2/spec/fixtures/fr2/
     - cd ../fr2 && rake ts:rebuild
     - cd ../fr2 && rake varnish:start
