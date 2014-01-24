@@ -44,8 +44,8 @@ test:
     - cd ../fr2 && bundle exec rake db:fixtures:load FIXTURES_PATH=../my_fr2/spec/fixtures/fr2/
     - cd ../fr2 && rake ts:rebuild
     - cd ../fr2 && rake varnish:start
-    - cd ../fr2 && script/server -p 3002
-    - rails s -p 3001
+    - cd ../fr2 && nohup bash -c "script/server -p 3002 &"
+    - nohup bash -c "rails s -p 3001 &"
   override:
     - bundle exec rspec spec
   #post:
