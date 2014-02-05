@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v2/documents.json?s=ITC-2013-0207-0001&countsOnly=1&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Wed, 05 Feb 2014 22:27:40 GMT
+      server:
+      - nginx/1.4.4
+      set-cookie:
+      - JSESSIONID=bLpoMkGZ9CgpZ0WKJgT-IA45; path=/
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '997'
+      content-length:
+      - '21'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"totalNumRecords":1}'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Feb 2014 22:27:46 GMT
+recorded_with: VCR 2.6.0

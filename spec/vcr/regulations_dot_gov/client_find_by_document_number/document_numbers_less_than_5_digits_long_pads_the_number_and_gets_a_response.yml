@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v2/document.json?federalRegisterNumber=2014-1832&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Wed, 05 Feb 2014 22:47:29 GMT
+      server:
+      - nginx/1.4.4
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '992'
+      content-length:
+      - '71'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"status":404,"code":404,"message":"No document found by id 2014-1832"}'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Feb 2014 22:47:34 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v2/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Wed, 05 Feb 2014 22:47:29 GMT
+      server:
+      - nginx/1.4.4
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '991'
+      content-length:
+      - '881'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"topics":["Air Transportation","Aircraft","Aviation Safety","Incorporation
+        by Reference","Safety"],"numCommentsReceived":0,"frNumber":"2014-01832","pageCount":3,"rin":"Not
+        Assigned","receivedDate":"2014-01-31T00:00:00.000-05:00","cfr":"14 CFR Part
+        39","startEndPage":"5254 - 5256","status":"Posted","title":"Airworthiness
+        Directives: Beechcraft Corporation Airplanes","docketId":"FAA_FRDOC_0001","documentId":"FAA_FRDOC_0001-9732","agencyAcronym":"FAA","docketType":"RULEMAKING","documentType":"RULES","commentStartDate":"2014-01-31T00:00:00.000-05:00","agencyName":"Federal
+        Aviation Administration","attachmentCount":0,"openForComment":false,"commentDueDate":null,"fileFormats":["https://api.data.gov/TEST/regulations/v2/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v2/download?documentId=FAA_FRDOC_0001-9732&contentType=html"]}'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Feb 2014 22:47:35 GMT
+recorded_with: VCR 2.6.0

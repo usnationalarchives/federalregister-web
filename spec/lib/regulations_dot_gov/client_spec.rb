@@ -96,6 +96,37 @@ describe RegulationsDotGov::Client do
     end
   end
 
+  describe "#find_by_document_number" do
+    let(:document_number) { '2014-01832' }
+
+    it "returns a RegulationsDotGov::Document", :vcr do
+      document = client.find_by_document_number(document_number)
+      expect(document).to be_kind_of( RegulationsDotGov::Document )
+      expect(document.federal_register_document_number).to eq(document_number)
+    end
+
+    it 'performs a get request with the proper arguments' do
+      RegulationsDotGov::Client
+        .stub(:get)
+        .and_return(OpenStruct.new(:parsed_response => {}))
+
+      RegulationsDotGov::Client
+        .should_receive(:get)
+        .with(client.document_endpoint, :query=>{:federalRegisterNumber => document_number})
+
+      client.find_by_document_number(document_number)
+    end
+
+    context "document numbers less than 5 digits long" do
+      let(:document_number) { '2014-1832' }
+
+      it 'pads the number and gets a response', :vcr do
+        document = client.find_by_document_number(document_number)
+        expect(document).to be_kind_of( RegulationsDotGov::Document )
+      end
+    end
+  end
+
   describe "#get_comment_form" do
     let(:document_id) { 'ITC-2013-0207-0001' }
 

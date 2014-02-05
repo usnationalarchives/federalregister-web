@@ -85,7 +85,16 @@ describe RegulationsDotGov::Document do
     end
   end
 
-  describe "verify keys" do
+  describe "#federal_register_document_number" do
+    it "returns the federal register document number for a document" do
+      document_number = '2014-01832'
+
+      document = RegulationsDotGov::Document.new(client, {'frNumber' => document_number})
+      expect( document.federal_register_document_number ).to eq(document_number)
+    end
+  end
+
+  context "verify keys" do
     let(:client) { RegulationsDotGov::Client.new() }
 
     before (:each) do

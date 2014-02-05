@@ -31,4 +31,8 @@ class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
   def comment_count
     raw_attributes['numberOfCommentReceived']
   end
+
+  def federal_register_document_number
+    raw_attributes['frNumber']
+  end
 end

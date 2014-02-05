@@ -1,0 +1,35 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v2/docket.json?D=CFPB_FRDOC_0001&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Wed, 05 Feb 2014 21:22:28 GMT
+      server:
+      - nginx/1.4.4
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '996'
+      content-length:
+      - '233'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"title":"Recently Posted CFPB Rules and Notices.","docketId":"CFPB_FRDOC_0001","agency":"Consumer
+        Financial Protection Bureau","agencyAcronym":"CFPB","type":"Rulemaking","docketMetadata":[{"Type":"Rulemaking"}],"numberOfComments":3}'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Feb 2014 21:22:34 GMT
+recorded_with: VCR 2.6.0

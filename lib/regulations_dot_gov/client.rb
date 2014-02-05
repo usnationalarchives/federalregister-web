@@ -16,7 +16,8 @@ class RegulationsDotGov::Client
   DOCKET_PATH  = '/docket.json'
   COMMENT_PATH = '/comment.json'
   LOOKUP_PATH  = '/lookup.json'
-  DOCMENT_SEARCH_PATH  = '/documents.json'
+  DOCUMENT_PATH = '/document.json'
+  DOCUMENT_SEARCH_PATH  = '/documents.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
@@ -38,8 +39,12 @@ class RegulationsDotGov::Client
     self.class.base_uri + LOOKUP_PATH
   end
 
+  def document_endpoint
+    self.class.base_uri + DOCUMENT_PATH
+  end
+
   def document_search_endpoint
-    self.class.base_uri + DOCMENT_SEARCH_PATH
+    self.class.base_uri + DOCUMENT_SEARCH_PATH
   end
 
   def find_docket(docket_id)
@@ -127,8 +132,8 @@ class RegulationsDotGov::Client
   end
 
   def fetch_by_document_number(document_number)
-    response = self.class.get('/getdocument/v1.json', :query => {:api_key => @get_api_key, :FR => document_number})
-    RegulationsDotGov::Document.new(self, response.parsed_response["document"])
+    response = self.class.get(document_endpoint, :query => {:federalRegisterNumber => document_number})
+    RegulationsDotGov::Document.new(self, response.parsed_response)
   end
 
   def self.get(url, options)
