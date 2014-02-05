@@ -75,6 +75,27 @@ describe RegulationsDotGov::Client do
     end
   end
 
+  describe "#count_documents" do
+    let(:keyword) { 'ITC-2013-0207-0001' }
+
+    it "returns a count of documents matching the search", :vcr do
+      count = client.count_documents(:s => keyword)
+      expect(count).to be_kind_of(Integer)
+    end
+
+    it 'performs a get request with the proper arguments' do
+      RegulationsDotGov::Client
+        .stub(:get)
+        .and_return(OpenStruct.new(:parsed_response => {:totalNumRecords => 1}))
+
+      RegulationsDotGov::Client
+        .should_receive(:get)
+        .with(client.document_search_endpoint, :query=>{:s => keyword, :countsOnly => 1})
+
+      client.count_documents(:s => keyword)
+    end
+  end
+
   describe "#get_comment_form" do
     let(:document_id) { 'ITC-2013-0207-0001' }
 

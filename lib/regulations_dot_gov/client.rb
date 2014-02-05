@@ -95,8 +95,8 @@ class RegulationsDotGov::Client
 
   def count_documents(args)
     begin
-      response = self.class.get('/documentsearch/v1.json', :query => args.merge(:api_key => @get_api_key, :countsOnly => 1))
-      response.parsed_response['searchresult']['recordCount']
+      response = self.class.get(document_search_endpoint, :query => args.merge(:countsOnly => 1))
+      response.parsed_response['totalNumRecords']
     rescue ResponseError
       nil
     end
