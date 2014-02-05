@@ -1,5 +1,5 @@
 class RegulationsDotGov::GenericDocument
-  attr_reader :metadata
+  attr_reader :raw_attributes
 
   def initialize(client, raw_attributes)
     @client = client

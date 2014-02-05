@@ -1,25 +1,25 @@
 class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
   def document_id
-    @raw_attributes['documentId']
+    raw_attributes['documentId']
   end
 
   def docket_id
-    @raw_attributes['docketId']
+    raw_attributes['docketId']
   end
 
   def title
-    @raw_attributes['title']
+    raw_attributes['title']
   end
 
   def comment_due_date
-    val = @raw_attributes["commentDueDate"]
+    val = raw_attributes["commentEndDate"]
     if val.present?
       DateTime.parse(val)
     end
   end
 
   def comment_url
-    if @raw_attributes['canCommentOnDocument']
+    if raw_attributes['canComment']
       "http://www.regulations.gov/#!submitComment;D=#{document_id}"
     end
   end
@@ -29,6 +29,6 @@ class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
   end
 
   def comment_count
-    @raw_attributes['numCommentsReceived']
+    raw_attributes['numberOfCommentReceived']
   end
 end

@@ -53,6 +53,28 @@ describe RegulationsDotGov::Client do
     end
   end
 
+  describe '#find_documents' do
+    let(:keyword) { 'ITC-2013-0207-0001' }
+
+    it 'returns an array of RegulationsDotGov::Document', :vcr do
+      documents = client.find_documents(:s => keyword)
+      expect(documents).to be_kind_of(Array)
+      expect(documents.first).to be_kind_of( RegulationsDotGov::Document )
+    end
+
+    it 'performs a get request with the proper arguments' do
+      RegulationsDotGov::Client
+        .stub(:get)
+        .and_return(OpenStruct.new(:parsed_response => {:documents => []}))
+
+      RegulationsDotGov::Client
+        .should_receive(:get)
+        .with(client.document_search_endpoint, :query=>{:s => keyword})
+
+      client.find_documents(:s => keyword)
+    end
+  end
+
   describe "#get_comment_form" do
     let(:document_id) { 'ITC-2013-0207-0001' }
 

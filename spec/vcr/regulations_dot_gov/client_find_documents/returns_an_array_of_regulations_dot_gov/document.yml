@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v2/documents.json?s=ITC-2013-0207-0001&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Tue, 04 Feb 2014 22:24:07 GMT
+      server:
+      - nginx/1.4.4
+      set-cookie:
+      - JSESSIONID=KjwypQiBbcJDIdYDBFaT1IDR; path=/
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '997'
+      content-length:
+      - '1061'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"totalNumRecords":1,"wdm":"DocumentId","documents":[{"documentId":"ITC-2013-0207-0001","documentType":"NOTICES","title":"Antidumping
+        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
+        Steel Wire Garment Hangers from China; Five-Year Review","documentStatus":"Posted","agencyId":"ITC","docketId":"ITC-2013-0207","docketTitle":"Antidumping
+        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
+        Steel Wire Garment Hangers from China; Five-Year Review","postedDate":"2013-09-03T00:00:00.000+0000","commentEndDate":"2013-11-18T00:00:00.000+0000","commentStartDate":"2013-09-03T00:00:00.000+0000","fileFormats":["https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=pdf","https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=html"],"acceptComment":false,"canComment":false,"fromParticipatingAgency":false,"attachmentCount":0,"docketType":"RULEMAKING","numberOfCommentReceived":0}]}'
+    http_version: '1.1'
+  recorded_at: Tue, 04 Feb 2014 22:24:09 GMT
+recorded_with: VCR 2.6.0

@@ -16,6 +16,7 @@ class RegulationsDotGov::Client
   DOCKET_PATH  = '/docket.json'
   COMMENT_PATH = '/comment.json'
   LOOKUP_PATH  = '/lookup.json'
+  DOCMENT_SEARCH_PATH  = '/documents.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
@@ -37,6 +38,10 @@ class RegulationsDotGov::Client
     self.class.base_uri + LOOKUP_PATH
   end
 
+  def document_search_endpoint
+    self.class.base_uri + DOCMENT_SEARCH_PATH
+  end
+
   def find_docket(docket_id)
     begin
       response = self.class.get(docket_endpoint, :query => {:D => docket_id})
@@ -47,12 +52,11 @@ class RegulationsDotGov::Client
 
   def find_documents(args)
     begin
-      response = self.class.get('/documentsearch/v1.json', :query => args.merge(:api_key => @get_api_key))
-      results = response.parsed_response['searchresult']
-      if results['documents'] && results['documents']['document']
-        doc_details = results['documents']['document']
-        doc_details = [doc_details] unless doc_details.is_a?(Array)
-        doc_details.map{|raw_document| RegulationsDotGov::Document.new(self, raw_document)}
+      response = self.class.get(document_search_endpoint, :query => args)
+
+      results = response.parsed_response['documents']
+      if results.present?
+        results.map{|raw_document| RegulationsDotGov::Document.new(self, raw_document)}
       else
         []
       end
