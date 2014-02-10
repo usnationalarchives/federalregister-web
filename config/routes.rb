@@ -72,9 +72,9 @@ MyFr2::Application.routes.draw do
     end
   end
 
-  match "404" => "errors#record_not_found"
-  match "405" => "errors#not_authorized"
-  match "500" => "errors#server_error"
+  match "/404", :to => "errors#record_not_found"
+  match "/405", :to => "errors#not_authorized"
+  match "/500", :to => "errors#server_error"
 
   if Rails.env.development?
     mount FRMailer::Preview => 'fr_mail_view'
