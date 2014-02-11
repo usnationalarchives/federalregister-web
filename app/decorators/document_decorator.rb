@@ -1,0 +1,3 @@
+class DocumentDecorator < ApplicationDecorator
+
+end

@@ -1,0 +1,55 @@
+class DocumentsController < ApplicationController
+  skip_before_filter :authenticate_user!
+
+  def show
+    cache_for 1.day
+
+    @document = FederalRegister::Document.find(params[:document_number])
+
+    if @document
+      #if request.path != entry_path(@entry)
+      #  redirect_to entry_path(@entry), :status => :moved_permanently
+      #else
+        @document = DocumentDecorator.decorate(@document)
+        render
+      #end
+    else
+      #@public_inspection_document = PublicInspectionDocument.find_by_document_number!(params[:document_number])
+      #if request.path != entry_path(@public_inspection_document)
+      #  redirect_to entry_path(@public_inspection_document), :status => :moved_permanently
+      #else
+      #  render :template => 'public_inspection/show'
+      #end
+    end
+  end
+
+  def tiny_url
+    cache_for 1.day
+
+    document_or_pi = FederalRegister::Document.find(params[:document_number])
+    #entry_or_pi = Entry.find_by_document_number(params[:document_number]) ||
+    #              PublicInspectionDocument.find_by_document_number(params[:document_number]) ||
+    #              ((params[:document_number].to_s.to_i.to_s == params[:document_number].to_s) && Entry.find_by_id(params[:document_number]))
+
+    respond_to do |wants|
+      wants.html do
+        url = document_or_pi.html_url
+        if params[:anchor].present?
+          url += '#' + params[:anchor]
+        end
+        redirect_to url, :status => :moved_permanently
+      end
+      wants.pdf do
+        if document_or_pi.is_a?(FederalRegister::Document)
+          redirect_to document_or_pi.source_url(:pdf), :status => :moved_permanently
+        else
+          @public_inspection_document = document_or_pi
+          render :template => "public_inspection/not_published.html.erb",
+                 :layout => "application.html.erb",
+                 :content_type => 'text/html',
+                 :status => :not_found
+        end
+      end
+    end
+  end
+end

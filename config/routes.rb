@@ -1,4 +1,23 @@
 MyFr2::Application.routes.draw do
+
+  get 'documents/:year/:month/:day/:document_number/:slug',
+      to: "documents#show",
+      as: :document,
+      constraints: {
+        year: /\d{4}/,
+        month: /\d{1,2}/,
+        day: /\d{1,2}/,
+        slug: /[^\/]+/
+      }
+
+  # don't break old urls
+  get '/a/:document_number',
+      to: "documents#tiny_url"
+
+  get '/d/:document_number',
+      to: "documents#tiny_url",
+      as: :short_document
+
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
