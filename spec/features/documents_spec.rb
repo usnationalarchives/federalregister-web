@@ -2,29 +2,31 @@ require 'spec_helper'
 
 feature "Document" do
   let(:document) do
-    OpenStruct.new(
-      document_number: "2014-0000",
-      year: "2014",
-      month: "01",
-      day: "01",
-      slug: "test-document",
-      title: "Test Document",
-      type: "Notice",
-      abstract: "This is a test document"
-    )
-  end
-  let(:document_path) do
-    "/documents/#{document.year}/#{document.month}/#{document.day}/#{document.document_number}/#{document.slug}"
+    DocumentDecorator.decorate(FederalRegister::Document.find("4242-4242"))
   end
 
-  before(:each) do
-    FederalRegister::Document.stub(:find).and_return(document)
-  end
+  scenario "visiting a document page", :vcr do
+    visit document.html_url
 
-  scenario "visiting a document page" do
-    visit document_path
+    # meta tags
+    expect(page).to have_meta(:title, document.title)
+    expect(page).to have_meta(:description, document.abstract)
 
-    save_and_open_page
-    expect(page).to have_selector("div.title", text: "Notice")
+
+    # document type bar
+    expect(page).to have_selector("div.title", text: document.type)
+
+
+    # metadata content area
+    expect(page).to have_metadata_content('h1', document.title)
+
+    document.agencies.each do |agency|
+      expect(page).to have_metadata_link_with_content('.metadata', agency.url, agency.name)
+    end
+
+    expect(page).to have_metadata_link_with_content('.metadata', documents_path(document.publication_date), document.publication_date)
+
+    expect(page).to have_metadata_content('.share .clip_for_later form.add_to_clipboard', nil, visible: false)
+    expect(page).to have_metadata_content('.share .clip_for_later #clipping-actions')
   end
 end

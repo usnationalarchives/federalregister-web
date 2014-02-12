@@ -2,3 +2,6 @@
 <% meta_description truncate_words(strip_tags(@document.abstract), :length => 300) %>
 
 <div class="title"><span><%= @document.type %></span></div>
+
+<%= render partial: 'metadata_content_area', locals: {document: @document} %>
+
