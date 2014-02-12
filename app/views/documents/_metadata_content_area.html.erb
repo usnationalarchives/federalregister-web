@@ -9,8 +9,8 @@
         <%= document.agency_names %>
       </span>
       on
-      <%= link_to date_tag(document.publication_date,
-                            datetime: document.publication_date.to_s(:iso)),
+      <%= link_to date_tag( document.formatted_publication_date,
+                            datetime: document.iso_publication_date),
                   documents_path(document.publication_date) %>
     </p>
 

@@ -12,4 +12,12 @@ class DocumentDecorator < ApplicationDecorator
 
     agencies.to_sentence.html_safe
   end
+
+  def formatted_publication_date
+    model.publication_date.to_s(:date)
+  end
+
+  def iso_publication_date
+    model.publication_date.to_s(:iso)
+  end
 end
