@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe DocumentsController do
-  context "GET tiny_url" do
+  context "GET short_document (/d/:document_number)" do
     describe "wants.html" do
       context "when document doesn't exist" do
         it "raises RecordNotFound" do
