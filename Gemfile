@@ -19,7 +19,7 @@ gem 'omniauth-twitter', '0.0.7'
 gem 'strong_parameters'
 
 gem 'formtastic', '2.0.2'
-gem 'draper',     '0.18.0'
+gem "draper", "~> 1.3.0"
 
 gem 'sass-rails',    "~> 3.2.5"
 gem "sass",          "~> 3.2.1"

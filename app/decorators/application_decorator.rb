@@ -1,4 +1,4 @@
-class ApplicationDecorator < Draper::Base
+class ApplicationDecorator < Draper::Decorator
   include ActionView::Helpers::TagHelper
 
   delegate :type, :to => :model
