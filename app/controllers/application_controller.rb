@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  include RouteBuilder
+  helper RouteBuilder
+
   include Userstamp
 
   protect_from_forgery

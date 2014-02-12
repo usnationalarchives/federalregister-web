@@ -1,4 +1,16 @@
 MyFr2::Application.routes.draw do
+  #
+  # Document routes
+  #
+
+  get 'documents/:year/:month/:day',
+      to: "documents#index",
+      as: :documents,
+      constraints: {
+        :year        => /\d{4}/,
+        :month       => /\d{1,2}/,
+        :day         => /\d{1,2}/
+      }
 
   get 'documents/:year/:month/:day/:document_number/:slug',
       to: "documents#show",

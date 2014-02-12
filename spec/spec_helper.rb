@@ -38,6 +38,8 @@ RSpec.configure do |config|
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
 
+  config.include RouteBuilder
+
   config.expect_with :rspec do |c|
     # Disable the `should` syntax...
     c.syntax = :expect
