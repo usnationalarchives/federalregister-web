@@ -1,4 +1,4 @@
 <% page_title @document.title %>
-<% description truncate_words(strip_tags(@document.abstract), :length => 300) %>
+<% meta_description truncate_words(strip_tags(@document.abstract), :length => 300) %>
 
 <div class="title"><span><%= @document.type %></span></div>

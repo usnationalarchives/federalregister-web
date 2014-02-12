@@ -1,7 +1,11 @@
 <!DOCTYPE html>
   <head>
-    <title>My FR <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
+    <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
     <esi:include src="/layout/head_content?page_to_track=<%= yield(:page_to_track) %>" />
+
+    <%# Facebook uses these for parsing when someone adds a link  %>
+    <%= tag(:meta, :name => 'title', :content => yield(:page_title) ) if yield(:page_title) %>
+    <%= tag(:meta, :name => 'description', :content => yield(:description) ) if yield(:description) %>
 
     <%= javascript_include_tag my_asset_path('application.js') %>
   </head>
