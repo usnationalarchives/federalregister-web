@@ -12,9 +12,6 @@ gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_regis
                         :ref => "7500e781ef3b0c68e507512bd3024c30f7c15aea"
 
 gem 'devise', '2.1.2'
-gem 'omniauth', '1.0.1'
-gem 'omniauth-facebook', '1.0.0'
-gem 'omniauth-twitter', '0.0.7'
 
 gem 'strong_parameters'
 
@@ -23,9 +20,6 @@ gem "draper", "~> 1.3.0"
 
 gem 'sass-rails',    "~> 3.2.5"
 gem "sass",          "~> 3.2.1"
-gem 'compass',       '0.12.2'
-gem 'compass-rails', "1.0.3"
-gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'jquery-rails'
@@ -60,9 +54,7 @@ gem 'indefinite_article'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do 
-  gem 'sass-rails',    "~> 3.2.5"
-  gem "sass",          "~> 3.2.1"
+group :assets do
   gem 'compass',       '0.12.2'
   gem 'compass-rails', "1.0.3"
   gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
