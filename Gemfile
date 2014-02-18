@@ -26,6 +26,7 @@ gem "sass",          "~> 3.2.1"
 gem 'compass',       '0.12.2'
 gem 'compass-rails', "1.0.3"
 gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'jquery-rails'
 
@@ -76,7 +77,9 @@ end
 group :development do
 end
 
-group :development, :test do 
+group :development, :test do
+  gem 'stylin', '~> 0.1.0'
+
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
   gem "factory_girl_rails",             "~> 4.0",      :require => false

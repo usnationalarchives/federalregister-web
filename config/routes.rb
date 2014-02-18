@@ -1,4 +1,6 @@
 MyFr2::Application.routes.draw do
+  mount Stylin::Engine => '/styleguides' if Rails.env.development?
+
   #
   # Document routes
   #
