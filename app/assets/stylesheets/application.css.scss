@@ -1,7 +1,24 @@
+// Core bootstrap variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// scope bootstrap styles
+.bootstrap-scope {
+  @import "bootstrap-custom";
+}
+
+
 /* this needs to be in every wrapper file that needs the mixins */
+@import "library";
 @import "mixins";
 
+/* override old, clashing fr2 styles */
+@import "officialness_override";
+
+@import "layout";
+
 @import "components/doc_type_icon_colors";
+@import "components/officialness";
 
 @import "design/patterns.css.scss";
 
@@ -17,3 +34,5 @@
 @import "design/comments/list.css.scss";
 @import "design/subscriptions.css.scss";
 @import "design/subscription_confirmation.css.scss";
+
+@import "design/documents";

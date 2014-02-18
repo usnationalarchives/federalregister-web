@@ -1,0 +1,30 @@
+<div class="col-md-9 doc-content">
+  <%= render partial: "utility_bar", locals: {document: document} %>
+
+  <div class="row">
+    <%= fr_box "Official Document", :official, header: {seal: true} do %>
+
+      <% if document.full_text_xml_url.present? %>
+        <% if document.action.present? %>
+          <h1>Action</h1>
+          <p><%= document.action %></p>
+        <% end %>
+
+        <% if Rails.env.production? || Rails.env.staging? %>
+          <esi:include src="<%= document.abstract_html_url %>" />
+        <% else %>
+          <esi:include src="<%= document.abstract_html_url.slice(0..-17) + document.document_number %>" />
+        <% end %>
+
+        <div id="fulltext_content_area">
+         <% if Rails.env.production? || Rails.env.staging? %>
+            <esi:include src="<%= document.body_html_url %>" />
+          <% else %>
+            <esi:include src="<%= document.body_html_url.slice(0..-17) + document.document_number %>" />
+          <% end %>
+        </div> <!-- end fulltext_content_area area -->
+
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+.doc {
+  position: relative;
+
+  &.doc-official .doc-content{
+    //@extend .fr-box;
+    //@extend .fr-box-official;
+
+    background-image: url(../images/elements/fd-doc-official-seal.png);
+    background-repeat: no-repeat;
+    background-position: 75px 50px;
+  }
+
+  &.doc-inspection .doc-content{
+    //@extend .fr-box;
+    //@extend .fr-box-inspection;
+
+    background-image: url(../images/elements/fd-doc-inspection-seal.png);
+    background-repeat: no-repeat;
+    background-position: 75px 50px;
+  }
+
+  .doc-nav-wrapper {
+    padding-top: 17px;
+    position: absolute;
+    height: 100%;
+    width: 53px;
+    z-index: 3;
+    top: 0;
+    left: -53px;
+  }
+
+  .doc-content {
+    margin-left: 53px;
+    z-index: 1;
+    width: 744px;
+
+    .content-block {
+      padding: 35px 130px 20px 30px !important;
+
+      p {
+        font-family: $font-family-serif;
+        font: 1.063em;
+      }
+
+      h4 {
+        font-size: 1.125em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      h5 { font-size: 1.063em; }
+    }
+  }
+
+  .doc-aside {
+    position: absolute;
+    top:30px;
+    right: 0;
+    z-index: 2;
+    width: 248px;
+
+    .content-block {
+      font-size: 0.938em;
+      line-height: 1.250em;
+
+      h4 {
+        font-size: 1.063em;
+        color: #000;
+        font-weight: 700;
+        margin-top: 0;
+      }
+
+      h5 { padding-left: 5px; }
+
+      p {
+        text-indent: -0.438em;
+        padding-left: 10px;
+
+        a {
+          display: block;
+          padding-left: 5px;
+        }
+      }
+
+      ul li { list-style-type: none; }
+
+      dl {
+        padding: 0 0 0.8125em 0.375em;
+
+        dt { font-weight: 600; }
+
+        dd {
+          margin: 0;
+          text-indent: -.688em;
+          padding-left: 1.125em;
+        }
+      }
+    }
+
+    .row { margin-top: 30px; }
+    .row:first-child { margin-top: 0; }
+  }
+}

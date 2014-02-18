@@ -19,4 +19,14 @@ module ApplicationHelper
   def meta_description(text)
     set_content_for :description, strip_tags(text)
   end
+
+  def pluralize_without_count(count, noun, text = nil)
+    count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
+  end
+
+  def clippy(url)
+    content_tag(:span, class: "clippy_wrapper") do
+      content_tag(:span, url, class: "clippy")
+    end
+  end
 end

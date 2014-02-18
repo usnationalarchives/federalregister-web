@@ -1,0 +1,143 @@
+/*
+A box used for containing other content on Federal Register pages.
+
+Modifiers here control the color of the box elements.
+
+.fr-box-official-alt                - FR Box for Alternate Official Content
+.fr-box-enhanced                    - FR Box for Enhanced Content
+.fr-box-small.fr-box-official-alt   - Small FR Box for Alternate Official Content
+.fr-box-small.fr-box-enhanced       - Small FR Box for Enhanced Content
+
+Styleguide 1.1 FR Boxes
+*/
+
+@mixin fr-doc($main-color, $secondary-color) {
+  // Styles for the fr-box
+  background-color: $secondary-color;
+
+  h4 {
+    color: $main-color;
+  }
+
+  .fr-seal-block {
+    h6 {
+      background-color: $main-color;
+    }
+
+    &.fr-seal-block-header {
+      border-top: 3px solid $main-color;
+
+      .fr-seal-content {
+        &:hover,
+        &.hover {
+          margin-top: 0;
+          background-color: $main-color;
+          position: relative;
+
+          .fr-seal-meta {
+            margin-top: 0;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    &.fr-seal-block-footer {
+      border-bottom: 3px solid $main-color;
+    }
+  }
+}
+
+.fr-box {
+  position:relative;
+  @include fr-doc($color-inactive, $color-inactive-light);
+
+  .content-block {
+    padding: 35px 10px 25px 10px;
+
+    p { font-family: $font-family-sans-serif; }
+  }
+
+  // Establishes the color scheme for boxes that have header/footer seals
+  &.fr-box-official-alt {
+    @include fr-doc($color-official, $color-official-light-alt);
+  }
+  &.fr-box-enhanced {
+    @include fr-doc($color-enhanced, $color-enhanced-light);
+  }
+  &.fr-box-public-inspection {
+    @include fr-doc($color-public-inspection, $color-public-inspection-light);
+  }
+
+  &.fr-box-small {
+    padding-bottom: 0;
+    padding-left:0 !important;
+    .fr-seal-meta {padding-top: 0}
+    .fr-seal-content {
+      p {padding: 10px}
+    }
+  }
+
+  &.fr-box-full {
+    .fr-seal-block {
+      h6 {
+        width: 100%;
+        font-size: 12px;
+      }
+
+      &.fr-seal-block-header { text-align: left; }
+      &.fr-seal-block-footer { display: none; }
+    }
+  }
+}
+
+.fr-seal-block {
+  color: #fff;
+  overflow: inherit;
+  width: 100%;
+
+  h6 {
+    text-transform: uppercase;
+    display: inline-block;
+    font-size:0.83em;
+    font-weight: 700;
+    clear: both;
+    margin: 0;
+  }
+
+  .fr-seal-meta {
+    padding: 15px 15px 20px 15px;
+    margin-top: -10px;
+    display: none;
+
+    p {
+      font-family: $font-family-sans-serif;
+      padding: 10px 130px 0 15px;
+      font-size: 1.125em;
+      color: #fff;
+    }
+  }
+
+  &.fr-seal-block-header {
+    position: absolute;
+
+    h6 {
+      float:left;
+      padding-bottom: 2px;
+      padding-left: 5px;
+      padding-right: 40px;
+    }
+  }
+  &.fr-seal-block-footer {
+    position: absolute;
+    bottom: 0;
+
+    h6 {
+      float:right;
+      padding-top: 3px;
+      padding-right: 5px;
+      padding-left: 40px !important;
+    }
+  }
+}
+

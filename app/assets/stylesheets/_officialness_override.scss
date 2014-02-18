@@ -1,0 +1,61 @@
+.wrapper .row {
+  margin-bottom: 0 !important;
+}
+
+.fr-seal-content {
+  h6 { margin-top: 0 !important;}
+}
+
+/* reinstating original design
+ * overriding the bootstrap that
+ * overrode the original :/
+ */
+.bootstrap-scope {
+  %fr_h1_style {
+    color: $fr-blue;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "apertura-condensed-1","apertura-condensed-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-align: left;
+  }
+
+  %fr_p_style {
+    padding-left: 0;
+    color: #363636;
+    font-family: "athelas-1","athelas-2", "Georgia", serif;
+    font-size: 1.2em;
+  }
+
+  .fr-box-official .content-block {
+    h1 { @extend %fr_h1_style; }
+
+    p { @extend %fr_p_style; }
+
+
+    .header_column {
+      width: 100%;
+      float: none;
+      display: block;
+
+      h1 {
+        @extend .fr_h1_style;
+
+        &#table_of_contents { display: none; }
+
+        a.back_to_top { display: none; }
+      }
+    }
+
+    .body_column {
+      width: 100%;
+      float: none;
+      display: block;
+      margin-left: 0;
+
+      p { @extend %fr_p_style; }
+
+      ul.table_of_contents { display: none; }
+    }
+  }
+}

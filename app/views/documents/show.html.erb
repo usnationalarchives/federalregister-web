@@ -5,3 +5,23 @@
 
 <%= render partial: 'metadata_content_area', locals: {document: @document} %>
 
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+<div class="wrapper">
+  <div class="container fixed">
+    <div class="clearfix"</div>
+
+    <div class="row doc doc-official">
+      <%= render partial: 'page_content', locals: {document: @document} %>
+      <%= render partial: 'document_side_bar', locals: {document: @document} %>
+    </div>
+
+    <div class="clearfix" style="height: 100px;"></div>
+  </div>
+</div>
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->
+

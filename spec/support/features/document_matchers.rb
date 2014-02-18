@@ -25,4 +25,16 @@ module Capybara::RSpecMatchers
       end
     end
   end
+
+  def have_document_details_content(selector, text)
+    within('.doc-details .fr-box.fr-box-small.fr-box-official-alt .metadata_list') do
+      have_selector(selector, text: text)
+    end
+  end
+
+   def have_document_details_link_with_content(selector, url, text)
+    within('.doc-details .fr-box.fr-box-small.fr-box-official-alt .metadata_list') do
+      have_selector(selector + " a[href='#{url}']", text: text)
+    end
+  end
 end

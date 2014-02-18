@@ -1,0 +1,27 @@
+/*
+A box used for containing the main official content on Federal Register pages.
+
+The block header here contains css for the official seal.
+
+.fr-box-official - Used only for official content
+
+Styleguide 1.1.1 FR Box Official
+*/
+
+
+.fr-box {
+  &.fr-box-official {
+    padding-left: 0;
+    @include fr-doc($color-official, $color-official-light);
+
+    .fr-seal-stamp {
+      @include square(100px);
+      margin-right: 20px;
+      float: left;
+      margin-left: 15px;
+      display: inline-block;
+      background-image: url(../images/elements/fd-doc-official-seal-mini-w.png);
+      background-repeat: no-repeat;
+    }
+  }
+}
