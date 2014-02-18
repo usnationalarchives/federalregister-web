@@ -9,25 +9,7 @@
 	font-style: normal;
 }
 
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
-[data-icon]:before {
-	font-family: 'fr2_icons';
-	content: attr(data-icon);
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-}
-
-/* Use the following CSS code if you want to have a class per icon */
-/*
-Instead of a list of all class selectors,
-you can use the generic selector below, but it's slower:
-[class*="icon-fr2-"] {
-*/
-.icon-fr2-flag, .icon-fr2-folder, .icon-fr2-download, .icon-fr2-open_folder, .icon-fr2-correction, .icon-fr2-notice, .icon-fr2-presidential_document, .icon-fr2-proposed_rule, .icon-fr2-rule, .icon-fr2-uncategorized, .icon-fr2-menu_arrow, .icon-fr2-trash_can, .icon-fr2-nav_male_female_user, .icon-fr2-badge_check_mark, .icon-fr2-badge_forward_arrow, .icon-fr2-badge_plus, .icon-fr2-badge_x, .icon-fr2-alert, .icon-fr2-alert_alt, .icon-fr2-document_subscription, .icon-fr2-pi_subscription, .icon-fr2-message_open, .icon-fr2-message, .icon-fr2-rss, .icon-fr2-pc, .icon-fr2-document_open {
+[class^="icon-fr2-"], [class*=" icon-fr2-"] {
 	font-family: 'fr2_icons';
 	speak: none;
 	font-style: normal;
@@ -35,28 +17,29 @@ you can use the generic selector below, but it's slower:
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-.icon-fr2-flag:before {
-	content: "\e000";
-}
-.icon-fr2-folder:before {
-	content: "\e001";
-}
-.icon-fr2-download:before {
-	content: "\e002";
-}
-.icon-fr2-open_folder:before {
-	content: "\e005";
-}
-.icon-fr2-correction:before {
-	content: "\e007";
-}
-.icon-fr2-notice:before {
-	content: "\e008";
-}
+
 .icon-fr2-presidential_document:before {
 	content: "\e009";
+}
+.icon-fr2-menu_arrow:before {
+	content: "\e00d";
+}
+.icon-fr2-pc:before {
+	content: "\e019";
+}
+.icon-fr2-trash_can:before {
+	content: "\e006";
+}
+.icon-fr2-nav_male_female_user:before {
+	content: "\e00e";
+}
+.icon-fr2-uncategorized:before {
+	content: "\e00c";
 }
 .icon-fr2-proposed_rule:before {
 	content: "\e00a";
@@ -64,17 +47,59 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-rule:before {
 	content: "\e00b";
 }
-.icon-fr2-uncategorized:before {
-	content: "\e00c";
+.icon-fr2-download:before {
+	content: "\e002";
 }
-.icon-fr2-menu_arrow:before {
-	content: "\e00d";
+.icon-fr2-folder:before {
+	content: "\e001";
 }
-.icon-fr2-trash_can:before {
-	content: "\e006";
+.icon-fr2-open_folder:before {
+	content: "\e005";
 }
-.icon-fr2-nav_male_female_user:before {
-	content: "\e00e";
+.icon-fr2-flag:before {
+	content: "\e000";
+}
+.icon-fr2-Coins-dollaralt:before {
+	content: "\e600";
+}
+.icon-fr2-Eco:before {
+	content: "\e601";
+}
+.icon-fr2-Globe:before {
+	content: "\e602";
+}
+.icon-fr2-Factory:before {
+	content: "\e603";
+}
+.icon-fr2-Lab:before {
+	content: "\e604";
+}
+.icon-fr2-Medicine:before {
+	content: "\e605";
+}
+.icon-fr2-Temperature:before {
+	content: "\e606";
+}
+.icon-fr2-Molecular:before {
+	content: "\e607";
+}
+.icon-fr2-correction:before {
+	content: "\e007";
+}
+.icon-fr2-notice:before {
+	content: "\e008";
+}
+.icon-fr2-Refresh-7:before {
+	content: "\e608";
+}
+.icon-fr2-Chat:before {
+	content: "\e609";
+}
+.icon-fr2-Network-alt:before {
+	content: "\e60a";
+}
+.icon-fr2-quotes:before {
+	content: "\e60b";
 }
 .icon-fr2-badge_check_mark:before {
 	content: "\e00f";
@@ -94,24 +119,87 @@ you can use the generic selector below, but it's slower:
 .icon-fr2-alert_alt:before {
 	content: "\e014";
 }
-.icon-fr2-document_subscription:before {
-	content: "\e016";
-}
 .icon-fr2-pi_subscription:before {
 	content: "\e003";
 }
 .icon-fr2-message_open:before {
 	content: "\e004";
 }
-.icon-fr2-message:before {
-	content: "\e015";
-}
 .icon-fr2-rss:before {
 	content: "\e017";
 }
-.icon-fr2-pc:before {
-	content: "\e019";
+.icon-fr2-Rate:before {
+	content: "\e60c";
+}
+.icon-fr2-Eye:before {
+	content: "\e60d";
+}
+.icon-fr2-twitter:before {
+	content: "\e60e";
+}
+.icon-fr2-message:before {
+	content: "\e015";
 }
 .icon-fr2-document_open:before {
 	content: "\e018";
+}
+.icon-fr2-document_subscription:before {
+	content: "\e016";
+}
+.icon-fr2-sharing:before {
+	content: "\e60f";
+}
+.icon-fr2-conversation-alt:before {
+	content: "\e610";
+}
+.icon-fr2-print:before {
+	content: "\e611";
+}
+.icon-fr2-map:before {
+	content: "\e612";
+}
+.icon-fr2-Chat2:before {
+	content: "\e613";
+}
+.icon-fr2-bulleted-list:before {
+	content: "\e614";
+}
+.icon-fr2-bookmark:before {
+	content: "\e615";
+}
+.icon-fr2-doc-pdf:before {
+	content: "\e616";
+}
+.icon-fr2-doc-pi-pdf:before {
+	content: "\e617";
+}
+.icon-fr2-doc-xml:before {
+	content: "\e618";
+}
+.icon-fr2-stars:before {
+	content: "\e619";
+}
+.icon-fr2-pen:before {
+	content: "\e61a";
+}
+.icon-fr2-book-alt-2:before {
+	content: "\e61b";
+}
+.icon-fr2-book:before {
+	content: "\e61c";
+}
+.icon-fr2-molecular:before {
+	content: "\e61d";
+}
+.icon-fr2-megaphone:before {
+	content: "\e61e";
+}
+.icon-fr2-legal:before {
+	content: "\e61f";
+}
+.icon-fr2-books:before {
+	content: "\e620";
+}
+.icon-fr2-map-alt:before {
+	content: "\e621";
 }
