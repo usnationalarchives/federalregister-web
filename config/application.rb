@@ -73,6 +73,7 @@ module MyFr2
       *.svg
       *.ttf
       *.woff
+      clippy.swf
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
