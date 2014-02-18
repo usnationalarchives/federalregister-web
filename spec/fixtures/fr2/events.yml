@@ -2,4 +2,7 @@ event_1:
   entry: open_comment
   date: 2015-01-01
   event_type: CommentsClose
-
+event_2:
+  entry: open_comment
+  date: 2014-02-18
+  event_type: EffectiveDate

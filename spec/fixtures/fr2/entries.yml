@@ -5,6 +5,12 @@ open_comment:
   regulationsdotgov_url: 'http://regstest.erulemaking.net/#!documentDetail;D=OSHA_FRDOC_0001-0438'
   comment_url: 'http://regstest.erulemaking.net/#!submitComment;D=OSHA_FRDOC_0001-0438'
   granule_class: RULE
+  dates: "This AD is effective February 18, 2014."
+  action: "Final rule."
+  start_page: 2366
+  end_page: 2368
+  volume: 79
+  regulations_dot_gov_docket_id: APHIS-2008-0043
 open_comment_2:
   title: Test Document 2
   document_number: 4343-4343
@@ -26,5 +32,7 @@ presdoc_1:
   regulationsdotgov_url: ''
   comment_url: ''
   granule_class: PRESDOCU
-
-
+  presidential_document_type_id: 2
+  executive_order_number: 13631
+  signing_date: 2012-12-07
+  executive_order_notes: "See: EO 13544, June 10, 2010; EO 13591, November 23, 2011"
