@@ -3,12 +3,13 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "document routes" do
   let(:document) {
     OpenStruct.new(
-      document_number: "2014-0000",
+      document_number: "2014-00001",
       year: "2014",
       month: "01",
       day: "01",
       slug: "test-document",
-      publication_date: Date.parse("2014-01-01")
+      publication_date: Date.parse("2014-01-01"),
+      body_html_url: "http://www.fr2.local:8081/documents/html/full_text/201/400/001.html"
     )
   }
 
@@ -27,7 +28,8 @@ describe "document routes" do
       document_number: document.document_number
     )
 
-    expect(get: short_document_path(document.document_number)).to route_to(
+    # test RouteBuilder
+    expect(get: short_document_path(document)).to route_to(
       controller: "documents",
       action: "tiny_url",
       document_number: document.document_number
@@ -74,6 +76,5 @@ describe "document routes" do
       month: document.month,
       day: document.day
     )
-
   end
 end
