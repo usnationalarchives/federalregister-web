@@ -1,8 +1,9 @@
 .doc {
   .doc-nav {
-    color: #A7A9AC;
-    background-color: #E6E6E5;
+    color: $utility-nav;
+    background-color: $utility-nav-background;
     height: 100%;
+    padding-top: 25px;
 
     &> li {
       position: relative;
@@ -22,7 +23,7 @@
         &:after {
           border-top: 10px solid transparent;
           border-bottom: 10px solid transparent;
-          border-left: 10px solid #d5d5d5;
+          border-left: 10px solid $utility-nav-hover-background;
           position: absolute;
           content: '';
           right: -30px;
@@ -31,7 +32,7 @@
       }
 
       &.open {
-        background-color: #d5d5d5;
+        background-color: $utility-nav-hover-background;
         color: $color-enhanced;
         border-top: 2px solid $color-enhanced;
         //border-bottom: 2px solid $color-enhanced;
@@ -49,7 +50,7 @@
       }
 
       &:hover, &.hover {
-        background-color: #d5d5d5;
+        background-color: $utility-nav-hover-background;
         color: $color-enhanced;
 
         .icon-fr2 {
@@ -73,6 +74,39 @@
         box-shadow: none;
         padding: 0;
         margin: 0;
+        width: 400px;
+
+        &.fr-box {
+          .content-block {
+            padding: 30px 10px 10px 25px !important;
+
+            ul {
+              margin: 0;
+              list-style: none;
+              text-align: left;
+
+              li {
+                margin: 5px 0;
+                color: darken($utility-nav, 20);
+
+                &:hover {
+                  color: inherit;
+                  a { color: inherit; }
+                }
+
+                .icon-fr2 {
+                  font-size: 22px;
+                  width: 30px;
+                  float: left;
+                  margin-right: 5px;
+
+                  &.icon-fr2-facebook { top: -2px; }
+                }
+              }
+            }
+
+          }
+        }
       }
     }
   }

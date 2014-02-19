@@ -4,7 +4,22 @@
       <i class="icon-fr2 icon-fr2-bookmark" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>Paragraph links and sharing</li>
+          <li>
+            <span class="icon-fr2 icon-fr2-link"></span>
+            <a href="">Link to this paragraph</a>
+          </li>
+          <li>
+            <span class="icon-fr2 icon-fr2-book-alt-2"></span>
+            <span class="page">Printed page: 11791</span>
+          </li>
+          <li>
+            <span class="icon-fr2 icon-fr2-twitter"></span>
+            <a href="">Share this paragraph on Twitter</a>
+          </li>
+          <li>
+            <span class="icon-fr2 icon-fr2-facebook"></span>
+            <a href="">Share this paragraph on Facebook</a>
+          </li>
         </ul>
       <% end %>
     </li>
@@ -31,7 +46,7 @@
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>Make a formal comment</li>
+          <li><a href="#">Submit a public comments on this document</a></li>
         </ul>
       <% end %>
     </li>
@@ -39,15 +54,30 @@
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>View xx formal comments</li>
+          <li><a href="">Read the 192 public comments on this document</a></li>
         </ul>
       <% end %>
     </li>
     <li>
       <i class="icon-fr2 icon-fr2-sharing" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <dl>
+          <dt>Shorter Document Url</dt>
+          <dd><a href="">/d/2014-0001</a></dd>
+        </dl>
         <ul>
-          <li>Share this document</li>
+          <li>
+            <span class="icon-fr2 icon-fr2-email"></span>
+            <a href="">Email this document to a friend</a>
+          </li>
+          <li>
+            <span class="icon-fr2 icon-fr2-twitter"></span>
+            <a href="">Share this document on Twitter</a>
+          </li>
+          <li>
+            <span class="icon-fr2 icon-fr2-facebook"></span>
+            <a href="">Share this document on Facebook</a>
+          </li>
         </ul>
       <% end %>
     </li>
@@ -58,32 +88,45 @@
       <i class="icon-fr2 icon-fr2-print" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>Print this document (print view)</li>
+          <li><a href="">Print this document</a></li>
         </ul>
       <% end %>
     </li>
     <li>
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <h6>This document is available in the following developer friendly formats:</h6>
         <ul>
-          <li>Developer Formats</li>
+          <li><a href="">JSON</a></li>
+          <li><a href="">XML</a></li>
+          <li><a href="">MODS</a></li>
         </ul>
+        <p>More information and documentation can be found on our <a href="">developers page</a>.</p>
       <% end %>
     </li>
     <li class="official">
       <i class="icon-fr2 icon-fr2-doc-pdf" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Official Content", :official, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>View Official PDF (printed format)</li>
+          <li><a href="">View printed version (PDF)</a></li>
         </ul>
       <% end %>
     </li>
     <li class="public-inspection">
       <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Public Inspection", :public_inspection, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
-        <ul>
-          <li>View PDF of document as it appeared on Public Inspection</li>
-        </ul>
+        <span class="fr2-icon fr2-icon-hand fr2-stamp"></span>
+        <div class="content">
+          <p>This <a href="">PDF</a> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
+          <p class="warning">
+            If you are using public inspection listings for legal research, you
+            should verify the contents of the documents against a final, official
+            edition of the Federal Register. <strong> Only official editions of the
+            Federal Register provide legal notice to the public and judicial notice
+            to the courts under <a href="">44 U.S.C. 1507</a>.</strong> Learn more
+            <a href="">here</a>.
+          </p>
+        </div>
       <% end %>
     </li>
   </ul>
