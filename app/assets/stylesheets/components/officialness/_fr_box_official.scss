@@ -15,13 +15,20 @@ Styleguide 1.1.1 FR Box Official
     @include fr-doc($color-official, $color-official-light);
 
     .fr-seal-stamp {
-      @include square(100px);
-      margin-right: 20px;
+      width: 120px;
+      height: 100px;
+
       float: left;
+      margin-right: 20px;
       margin-left: 15px;
-      display: inline-block;
-      background-image: url(../images/elements/fd-doc-official-seal-mini-w.png);
-      background-repeat: no-repeat;
+
+      font-size: 150px;
+
+      .fr-stamp {
+        display: block;
+        position: relative;
+        top: -20px;
+      }
     }
   }
 }

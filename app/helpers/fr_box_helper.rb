@@ -50,7 +50,7 @@ module FrBoxHelper
 
   def fr_box_seal(type)
     content_tag(:div, class: "fr-seal-stamp") do
-      content_tag(:span, "", class: "fr-stamp")
+      content_tag(:span, "", class: "fr-stamp icon-fr2 #{stamp_icon_class_by_type(type)}")
     end
   end
 
@@ -83,6 +83,13 @@ module FrBoxHelper
       "Metadata about the official document that appears to the left of this box"
     when :reg_gov_docket_info
       "This box contains content about this document retrieved from Regulations.gov in order to provide you with more context for this document. The content in this box has not been published in the Federal Register and is only provided for your convenience."
+    end
+  end
+
+  def stamp_icon_class_by_type(type)
+    case type
+    when :official
+      "icon-fr2-NARA1985Seal"
     end
   end
 end
