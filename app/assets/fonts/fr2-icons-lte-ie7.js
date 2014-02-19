@@ -1,6 +1,6 @@
 /* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
 var fr_icons = {
-                'icon-fr2-presidential_document': '&#xe009;',
+		'icon-fr2-presidential_document': '&#xe009;',
 		'icon-fr2-menu_arrow': '&#xe00d;',
 		'icon-fr2-pc': '&#xe019;',
 		'icon-fr2-trash_can': '&#xe006;',
@@ -45,7 +45,6 @@ var fr_icons = {
 		'icon-fr2-conversation-alt': '&#xe610;',
 		'icon-fr2-print': '&#xe611;',
 		'icon-fr2-map': '&#xe612;',
-		'icon-fr2-Chat2': '&#xe613;',
 		'icon-fr2-bulleted-list': '&#xe614;',
 		'icon-fr2-bookmark': '&#xe615;',
 		'icon-fr2-doc-pdf': '&#xe616;',
@@ -60,6 +59,10 @@ var fr_icons = {
 		'icon-fr2-legal': '&#xe61f;',
 		'icon-fr2-books': '&#xe620;',
 		'icon-fr2-map-alt': '&#xe621;',
+		'icon-fr2-NARA1985Seal': '&#xe613;',
+		'icon-fr2-link': '&#xe622;',
+		'icon-fr2-facebook': '&#xe623;',
+		'icon-fr2-message2': '&#xe624;',
 		'0': 0
 		};
 
