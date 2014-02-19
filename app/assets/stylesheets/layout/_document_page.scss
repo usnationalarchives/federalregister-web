@@ -71,7 +71,7 @@
       h5 { padding-left: 5px; }
 
       p {
-        text-indent: -0.438em;
+        text-indent: -10px;
         padding-left: 10px;
 
         a {
@@ -83,14 +83,15 @@
       ul li { list-style-type: none; }
 
       dl {
-        padding: 0 0 0.8125em 0.375em;
+        padding: 0 0 10px 5px;
+        font-size: 13px;
 
-        dt { font-weight: 600; }
+        dt { font-weight: bold; }
 
         dd {
           margin: 0;
-          text-indent: -.688em;
-          padding-left: 1.125em;
+          text-indent: -10px;
+          padding-left: 10px;
         }
       }
     }
