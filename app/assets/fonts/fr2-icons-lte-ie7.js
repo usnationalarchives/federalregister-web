@@ -52,7 +52,6 @@ var fr_icons = {
 		'icon-fr2-doc-xml': '&#xe618;',
 		'icon-fr2-stars': '&#xe619;',
 		'icon-fr2-pen': '&#xe61a;',
-		'icon-fr2-book-alt-2': '&#xe61b;',
 		'icon-fr2-book': '&#xe61c;',
 		'icon-fr2-molecular': '&#xe61d;',
 		'icon-fr2-megaphone': '&#xe61e;',
@@ -62,7 +61,8 @@ var fr_icons = {
 		'icon-fr2-NARA1985Seal': '&#xe613;',
 		'icon-fr2-link': '&#xe622;',
 		'icon-fr2-facebook': '&#xe623;',
-		'icon-fr2-message2': '&#xe624;',
+		'icon-fr2-book-alt-2': '&#xe61b;',
+		'icon-fr2-stop-hand': '&#xe624;',
 		'0': 0
 		};
 
