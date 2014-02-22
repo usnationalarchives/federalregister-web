@@ -4,7 +4,7 @@ class DocumentDecorator < ApplicationDecorator
   def agency_names(options = {})
     autolink = true unless options[:no_links]
 
-    if model.agencies.present?
+    if agencies.present?
       agencies = model.agencies.map{|a| "the #{h.link_to_if autolink, a.name, a.url}" }
     else
       agencies = model.agencies.map(&:name)
@@ -14,37 +14,24 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def presidential_document?
-    model.type == "Presidential Document"
+    type == "Presidential Document"
   end
 
-  def presentable_start_page?
+  def start_page?
     start_page.present? && start_page != 0
-  end
-
-  # 01/01/2014
-  def formatted_publication_date
-    model.publication_date.to_s(:date)
-  end
-  def formatted_effective_date
-    model.effective_on.to_s(:date)
-  end
-
-  # 2014-01-01
-  def iso_publication_date
-    model.publication_date.to_s(:iso)
   end
 
   # Tuesday, December 17th, 2013
   def formal_publication_date
-    model.publication_date.to_s(:formal)
+    publication_date.to_s(:formal)
   end
 
   # Dec 17th, 2013
   def shorter_ordinal_signing_date
-    model.signing_date.to_s(:shorter_ordinal)
+    signing_date.to_s(:shorter_ordinal)
   end
 
-  def human_length
+  def length
     if end_page && start_page
       end_page - start_page + 1
     else
@@ -53,7 +40,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def formatted_cfr_references
-    model.cfr_references.map do |cfr|
+    cfr_references.map do |cfr|
       str = ["#{cfr["title"]} CFR"]
 
       if cfr["chapter"].present?
@@ -69,5 +56,9 @@ class DocumentDecorator < ApplicationDecorator
         str
       end
     end
+  end
+
+  def has_comments?
+    regulations_dot_gov_info['comments_count'] > 0
   end
 end

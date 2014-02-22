@@ -1,4 +1,6 @@
+Date::DATE_FORMATS[:default] = "%m/%d/%Y"
 Date::DATE_FORMATS[:date] = "%m/%d/%Y"
+
 
 # Apr. 22nd, 2011
 Date::DATE_FORMATS[:shorter_ordinal] = lambda { |time| time.strftime("%b #{time.day.ordinalize}, %Y") }
@@ -6,6 +8,7 @@ Date::DATE_FORMATS[:shorter_ordinal] = lambda { |time| time.strftime("%b #{time.
 # "Friday, April 22nd, 2011"
 Date::DATE_FORMATS[:formal] = lambda { |time| time.strftime("%A, %B #{time.day.ordinalize}, %Y") }
 
+Time::DATE_FORMATS[:default] = "%m/%d/%Y at %I:%M %P"
 Time::DATE_FORMATS[:date] = "%m/%d/%Y"
 Time::DATE_FORMATS[:datetime] = "%m/%d/%Y at %I:%M %P"
 

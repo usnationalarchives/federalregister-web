@@ -22,6 +22,11 @@ module Html5Helper
     RUBY
   end
 
+  def date_tag(str, options={})
+    options[:datetime] = options[:datetime].to_s(:iso) if options[:datetime]
+    html5_tag(:date, str, options)
+  end
+
   private
 
   def wrap_html5_content(tag_name, content, options)
