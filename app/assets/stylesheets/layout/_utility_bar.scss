@@ -1,110 +1,180 @@
 .doc {
-  .doc-nav {
+  .doc-nav-wrapper {
     color: $utility-nav;
     background-color: $utility-nav-background;
     height: 100%;
-    padding-top: 25px;
 
-    &> li {
-      position: relative;
-      padding: 8px 0;
-      list-style-type: none;
-      cursor: pointer;
-      border-top: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+    .doc-nav {
+      padding-top: 25px;
+      z-index: 1000;
+      width: 53px;
 
-      .icon-fr2 { font-size: 25px; }
-
-      span.nav-caret {
-        display: none;
-        position: absolute;
-        z-index: 15;
-
-        &:after {
-          border-top: 10px solid transparent;
-          border-bottom: 10px solid transparent;
-          border-left: 10px solid $utility-nav-hover-background;
-          position: absolute;
-          content: '';
-          right: -30px;
-          top: 2px;
-        }
+      &.fixed {
+        position: fixed;
+        top: 25px;
       }
 
-      &.open {
-        background-color: $utility-nav-hover-background;
-        color: $color-enhanced;
-        border-top: 2px solid $color-enhanced;
-        //border-bottom: 2px solid $color-enhanced;
-
-        &.official {
-          color: $color-official;
-          border-top-color: $color-official;
-        }
-        &.public-inspection {
-          color: $color-public-inspection;
-          border-top-color: $color-public-inspection;
-        }
-
-        span.nav-caret { display: inline-block; }
-      }
-
-      &:hover, &.hover {
-        background-color: $utility-nav-hover-background;
-        color: $color-enhanced;
+      &> li {
+        position: relative;
+        padding: 8px 0;
+        list-style-type: none;
+        cursor: pointer;
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
 
         .icon-fr2 {
-          &.icon-fr2-doc-pdf { color: $color-official; }
-          &.icon-fr2-doc-pi-pdf { color: $color-public-inspection; }
+          font-size: 25px;
+
+          .comment_count {
+            display: block;
+            font-size: 14px;
+            top: 22px;
+            left: -14px;
+            text-align: center;
+            width: 53px;
+            position: absolute;
+          }
         }
-      }
 
-      &.divider {
-        padding:0;
-        border:0;
-        margin: 10px auto;
-        width: 30px;
-        border-bottom: 1px solid #c4c4c3;
-      }
+        span.nav-caret {
+          display: none;
+          position: absolute;
+          z-index: 15;
 
-      .dropdown-menu {
-        left: 53px;
-        top: -2px;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-        width: 400px;
+          &:after {
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid $utility-nav-hover-background;
+            position: absolute;
+            content: '';
+            right: -30px;
+            top: 2px;
+          }
+        }
 
-        &.fr-box {
-          .content-block {
-            padding: 30px 10px 10px 25px !important;
+        &.open {
+          background-color: $utility-nav-hover-background;
+          color: $color-enhanced;
+          border-top: 2px solid $color-enhanced;
+          //border-bottom: 2px solid $color-enhanced;
 
-            ul {
-              margin: 0;
-              list-style: none;
+          &.official {
+            color: $color-official;
+            border-top-color: $color-official;
+          }
+          &.public-inspection {
+            color: $color-public-inspection;
+            border-top-color: $color-public-inspection;
+          }
+
+          span.nav-caret { display: inline-block; }
+        }
+
+        &:hover, &.hover {
+          background-color: $utility-nav-hover-background;
+          color: $color-enhanced;
+
+          .icon-fr2 {
+            &.icon-fr2-doc-pdf { color: $color-official; }
+            &.icon-fr2-doc-pi-pdf { color: $color-public-inspection; }
+          }
+        }
+
+        &.divider {
+          padding:0;
+          border:0;
+          margin: 10px auto;
+          width: 30px;
+          border-bottom: 1px solid #c4c4c3;
+        }
+
+        .dropdown-menu {
+          left: 53px;
+          top: -19px;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+          margin: 0;
+          width: 500px;
+          border-left: none;
+          border-top: none;
+          border-right: none;
+
+          .clippy_wrapper {
+            position: relative;
+            top: 2px;
+          }
+
+          &.fr-box {
+            .content-block {
+              padding: 25px 10px 8px 25px !important;
               text-align: left;
+              color: $text;
 
-              li {
-                margin: 5px 0;
-                color: darken($utility-nav, 20);
+              p {
+                font-size: inherit;
+                font-family: inherit;
+                margin: inherit;
+              }
 
-                &:hover {
-                  color: inherit;
-                  a { color: inherit; }
+              ul {
+                margin: 0;
+                list-style: none;
+                text-align: left;
+
+                li {
+                  margin: 5px 0;
+                  color: darken($utility-nav, 20);
+
+                  &:hover {
+                    .icon_fr2 { color: inherit; }
+                    //a { color: inherit; }
+                  }
+
+                  &.with_icon { margin: 10px 0; }
+
+                  .icon-fr2 {
+                    font-size: 22px;
+                    width: 22px;
+                    float: left;
+                    margin-right: 10px;
+
+                    &.icon-fr2-facebook { top: -2px; }
+                  }
                 }
+              }
 
-                .icon-fr2 {
-                  font-size: 22px;
-                  width: 30px;
-                  float: left;
-                  margin-right: 5px;
-
-                  &.icon-fr2-facebook { top: -2px; }
-                }
+              ul.list {
+                list-style-type: square;
+                margin-left: 30px;
+                margin-bottom: 10px;
               }
             }
 
+            &.fr-box-public-inspection {
+              .content-block {
+                overflow: hidden;
+
+                .icon-fr2 {
+                  display: block;
+                  float: left;
+                  font-size: 110px;
+                  position: relative;
+                  left: -15px;
+                  color: $utility-nav;
+                }
+
+                .content {
+                  float: left;
+                  width: 75%;
+
+                  p {
+
+                    &.warning { font-style: italic; }
+                  }
+                }
+              }
+            }
           }
         }
       }

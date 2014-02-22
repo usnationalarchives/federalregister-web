@@ -1,5 +1,5 @@
 <div class="col-md-9 doc-content">
-  <%= render partial: "utility_bar", locals: {document: document} %>
+  <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
 
   <div class="row">
     <%= fr_box "Official Document", :official, header: {seal: true} do %>

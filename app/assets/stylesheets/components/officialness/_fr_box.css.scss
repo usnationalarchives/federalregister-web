@@ -86,7 +86,10 @@ Styleguide 1.1 FR Boxes
       }
 
       &.fr-seal-block-header { text-align: left; }
-      &.fr-seal-block-footer { display: none; }
+      &.fr-seal-block-footer {
+        border-bottom-width: 2px;
+        h6 { display: none; }
+      }
     }
   }
 }

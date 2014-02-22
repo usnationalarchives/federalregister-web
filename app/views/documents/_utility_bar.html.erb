@@ -4,19 +4,19 @@
       <i class="icon-fr2 icon-fr2-bookmark" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-link"></span>
             <a href="">Link to this paragraph</a>
           </li>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-book-alt-2"></span>
             <span class="page">Printed page: 11791</span>
           </li>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-twitter"></span>
             <a href="">Share this paragraph on Twitter</a>
           </li>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-facebook"></span>
             <a href="">Share this paragraph on Facebook</a>
           </li>
@@ -46,15 +46,22 @@
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li><a href="#">Submit a public comments on this document</a></li>
+          <li><a href="#">Submit a public comment on this document</a></li>
         </ul>
       <% end %>
     </li>
     <li>
-      <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown"></i>
+      <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
+        <span class="comment_count"><%= docket_info['comments_count'] %></span>
+      </i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
-          <li><a href="">Read the 192 public comments on this document</a></li>
+          <li>
+          <%= link_to document.has_comments? ?
+                                "Read the #{pluralize(docket_info['comments_count'], 'public comment')} on this document"
+                                : "There are no public comments on this document",
+                      document.regulations_dot_gov_url %>
+          </li>
         </ul>
       <% end %>
     </li>
@@ -62,19 +69,24 @@
       <i class="icon-fr2 icon-fr2-sharing" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <dl>
-          <dt>Shorter Document Url</dt>
-          <dd><a href="">/d/2014-0001</a></dd>
+          <dt>Shorter Document URL</dt>
+          <dd>
+            <%= link_to short_document_url(document),
+                        short_document_url(document),
+                        class: "shorter_url" %>
+            <%= clippy( short_document_url(document) ) %>
+          </dd>
         </dl>
         <ul>
-          <li>
-            <span class="icon-fr2 icon-fr2-email"></span>
+          <li class="with_icon">
+            <span class="icon-fr2 icon-fr2-message"></span>
             <a href="">Email this document to a friend</a>
           </li>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-twitter"></span>
             <a href="">Share this document on Twitter</a>
           </li>
-          <li>
+          <li class="with_icon">
             <span class="icon-fr2 icon-fr2-facebook"></span>
             <a href="">Share this document on Facebook</a>
           </li>
@@ -94,9 +106,9 @@
     </li>
     <li>
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
-        <h6>This document is available in the following developer friendly formats:</h6>
-        <ul>
+      <%= fr_box "Enhanced Content - Developer Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <h5>This document is available in the following developer friendly formats:</h5>
+        <ul class="list">
           <li><a href="">JSON</a></li>
           <li><a href="">XML</a></li>
           <li><a href="">MODS</a></li>
@@ -115,7 +127,7 @@
     <li class="public-inspection">
       <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Public Inspection", :public_inspection, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
-        <span class="fr2-icon fr2-icon-hand fr2-stamp"></span>
+        <span class="icon-fr2 icon-fr2-stop-hand"></span>
         <div class="content">
           <p>This <a href="">PDF</a> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
           <p class="warning">
