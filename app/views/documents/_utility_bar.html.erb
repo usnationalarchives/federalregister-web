@@ -52,7 +52,9 @@
     </li>
     <li>
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
-        <span class="comment_count"><%= docket_info['comments_count'] %></span>
+        <% if docket_info && docket_info['comment_count'] %>
+          <span class="comment_count"><%= docket_info['comments_count'] %></span>
+        <% end %>
       </i>
       <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
