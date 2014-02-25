@@ -8,6 +8,7 @@
 //= require subscription_filters
 //= require tipsy
 //= require article_page
+//= require document_page
 //= require utility_bar
 
 $(document).ready(function() {
