@@ -16,14 +16,25 @@
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
-    font-family: "apertura-condensed-1","apertura-condensed-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    @include apertura-condensed;
+    text-align: left;
+    margin: 0 0 1em;
+    padding-top: 0;
+    text-transform: uppercase;
+    word-wrap: break-word;
+  }
+
+  %fr_h2_style {
+    font-size: 17px;
+    line-height: 1.5em;
+    margin-top: 0;
     text-align: left;
   }
 
   %fr_p_style {
     padding-left: 0;
     color: #363636;
-    font-family: "athelas-1","athelas-2", "Georgia", serif;
+    @include athelas;
     font-size: 1.2em;
   }
 
@@ -38,10 +49,17 @@
       float: none;
       display: block;
 
-      h1 {
-        @extend .fr_h1_style;
+      h1,
+      #table_of_graphics {
+        @extend %fr_h1_style;
 
         &#table_of_contents { display: none; }
+
+        a.back_to_top { display: none; }
+      }
+
+      h2 {
+        @extend %fr_h2_style;
 
         a.back_to_top { display: none; }
       }
