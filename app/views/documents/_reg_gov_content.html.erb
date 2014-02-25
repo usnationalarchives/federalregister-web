@@ -5,8 +5,8 @@
     <dl class="metadata_list">
       <dt>Docket Number:</dt>
       <dd>
-        <%#= link_to docket_info.docket_id,
-                    regulations_dot_gov_docket_url(docket_info.docket_id),
+        <%= link_to docket_info['docket_id'],
+                    regulations_dot_gov_docket_url(docket_info['docket_id']),
                     target: "_blank",
                     class: 'reg_gov_docket' %>
       </dd>
@@ -14,28 +14,55 @@
       <dt>Docket Name:</dt>
       <dd><%= h docket_info["title"] %></dd>
 
-      <% if docket_info["regulation_id_number"].present? %>
+      <% if docket_info['regulation_id_number'].present? %>
         <dt>Docket RIN</dt>
-        <% if false #docket.regulatory_plan.present? %>
-          <dd><%#= link_to docket.regulation_id_number, regulatory_plan_path(docket.regulatory_plan), :title => docket.regulatory_plan.title, :class => "tip_left" %></dd>
+        <% if docket_info['regulatory_plan'].present? && docket_info['regulatory_plan']['html_url'].present? %>
+          <dd>
+            <%= link_to docket_info['regulation_id_number'],
+                        docket_info['regulatory_plan']['html_url'],
+                        :title => docket_info['regulatory_plan']['title'],
+                        :class => "tip_left" %>
+          </dd>
         <% else %>
-          <dd><%= docket.regulation_id_number %></dd>
+          <dd><%= docket_info['regulation_id_number'] %></dd>
         <% end %>
       <% end %>
 
 
-      <%# if document.comment_url.present? || (docket_info.comments_count.present? && docket_info.comments_count > 0) %>
+      <% if docket_info['comments_count'] && docket_info['comments_url'] %>
         <dt>Public Comments:</dt>
-        <dd><%#= link_to pluralize(docket_info.comments_count, 'comment'), regulations_dot_gov_docket_comments_url(docket_info.id), :target => "_blank", :class => 'reg_gov_view_comments' %></dd>
-      <%# end %>
+        <dd>
+          <%= link_to pluralize(docket_info['comments_count'], 'comment'),
+                      docket_info['comments_url'],
+                      :target => "_blank",
+                      :class => 'reg_gov_view_comments' %>
+          </dd>
+      <% end %>
 
-      <% if docket_info["docket_documents"].present? %>
+      <% if docket_info['supporting_documents_count'] &&
+              docket_info['supporting_documents_count'] > 0 %>
+
         <dt>Supporting/Related Materials:</dt>
-        <% docket_info.docket_documents.sort_by(&:id).reverse[0..9].each do |doc| %>
-          <dd><%= link_to truncate_words(doc.title, :length => 65), regulations_dot_gov_document_url(doc.id), :target => "_blank", :title => doc.title, :class => "tip_left reg_gov_supporting_documents" %></dd>
+
+        <% docket_info['supporting_documents'].each do |doc| %>
+        <dd>
+          <%= link_to truncate_words(doc['title'], :length => 65),
+                      regulations_dot_gov_supporting_document_url(doc['id']),
+                      :target => "_blank",
+                      :title => doc['title'],
+                      :class => "tip_left reg_gov_supporting_documents" %>
+        </dd>
         <% end %>
-        <% if docket_info.docket_documents.size > 10 %>
-          <dd><strong><%= link_to "See all #{docket_info.docket_documents_count} supporting documents", regulations_dot_gov_docket_supporting_documents_url(docket.id), :target => "_blank", :class => "tip_left reg_gov_all_supporting_documents" %></strong></dd>
+
+        <% if docket_info['supporting_documents_count'] > 10 %>
+        <dd>
+          <strong>
+            <%= link_to "See all #{docket_info['supporting_documents_count']} supporting documents",
+                        regulations_dot_gov_docket_supporting_documents_url(docket_info['docket_id']),
+                        :target => "_blank",
+                        :class => "tip_left reg_gov_all_supporting_documents" %>
+            </strong>
+        </dd>
         <% end %>
       <% end %>
     </dl>
