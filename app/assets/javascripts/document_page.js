@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var document_height = $('.fr-box.fr-box-official').outerHeight(),
+  var document_height = $('.doc-official .doc-content').outerHeight(),
       sidebar_height = $('.doc-aside.doc-details').outerHeight(),
       amount_document_should_be_lower_than_sidebar = 50,
       side_bar_top_offset = 30;
