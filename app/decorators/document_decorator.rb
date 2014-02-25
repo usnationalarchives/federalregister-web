@@ -58,7 +58,12 @@ class DocumentDecorator < ApplicationDecorator
     end
   end
 
+  def possible_regulations_dot_gov_comments?
+    regulations_dot_gov_info && (comments_close_on.present? || has_comments?)
+  end
+
   def has_comments?
-    regulations_dot_gov_info && regulations_dot_gov_info['comments_count'] > 0
+    regulations_dot_gov_info['comments_count'] > 0
+  end
   end
 end

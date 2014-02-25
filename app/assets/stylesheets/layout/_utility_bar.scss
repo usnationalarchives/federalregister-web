@@ -66,6 +66,11 @@
             color: $color-public-inspection;
             border-top-color: $color-public-inspection;
           }
+          &.unavailable {
+            border-top-color: $color-inactive;
+
+            .icon-fr2 { color: $color-inactive; }
+          }
 
           span.nav-caret { display: inline-block; }
         }

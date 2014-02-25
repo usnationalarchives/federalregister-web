@@ -72,6 +72,8 @@ module FrBoxHelper
       "fr-box-enhanced"
     when :public_inspection
       "fr-box-public-inspection"
+    when :disabled
+      "fr-box-unavailable"
     end
   end
 

@@ -50,19 +50,27 @@
         </ul>
       <% end %>
     </li>
-    <li>
-      <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
-        <% if docket_info && docket_info['comment_count'] %>
+    <li class='<%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
+    <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
+        <% if docket_info && docket_info['comment_count'] && document.commentable? %>
           <span class="comment_count"><%= docket_info['comments_count'] %></span>
         <% end %>
       </i>
-      <%= fr_box "Enhanced Content", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_box  "Enhanced Content",
+                  (document.possible_regulations_dot_gov_comments? ? :enhanced : :disabled),
+                  box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right",
+                             role: "menu"},
+                  header: {hover: false} do %>
         <ul>
           <li>
-          <%= link_to document.has_comments? ?
-                                "Read the #{pluralize(docket_info['comments_count'], 'public comment')} on this document"
-                                : "There are no public comments on this document",
-                      document.regulations_dot_gov_url %>
+            <% if document.possible_regulations_dot_gov_comments? %>
+              <%= link_to document.has_comments? ?
+                                    "Read the #{pluralize(docket_info['comments_count'], 'public comment')} on this document"
+                                    : "There are no public comments on this document",
+                          document.regulations_dot_gov_url %>
+            <% else %>
+              This feature is not available for this document.
+            <% end %>
           </li>
         </ul>
       <% end %>
