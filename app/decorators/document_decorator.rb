@@ -31,6 +31,11 @@ class DocumentDecorator < ApplicationDecorator
     signing_date.to_s(:shorter_ordinal)
   end
 
+  def page_range
+    page = start_page
+    page = "#{page}-#{end_page}" if end_page != start_page
+  end
+
   def length
     if end_page && start_page
       end_page - start_page + 1

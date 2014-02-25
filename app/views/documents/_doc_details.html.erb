@@ -77,10 +77,7 @@
 
         <dt>Page:</dt>
         <dd>
-        <%= document.start_page %>
-        <% if document.end_page != document.start_page %>
-          -<%= document.end_page %>
-        <% end %>
+        <%= document.page_range %>
 
         (<%= pluralize document.length, 'page' %>)
         </dd>
