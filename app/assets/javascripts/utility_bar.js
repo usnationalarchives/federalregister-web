@@ -1,49 +1,137 @@
-function el_top_out_of_viewport($el) {
-  var $window = $(window),
-      docViewTop = $window.scrollTop(),
-      docViewBottom = docViewTop + $window.height(),
-      elemTop = $el.offset().top,
-      elemBottom = elemTop + $el.height();
+var FollowElement = (function() {
+  var FollowElement = function() {
+    this.default_options = {
+      top_offset: 0, /* where the $el starts offset from $el_wrapper */
+      bottom_offset: 0, /* where to consider the bottom of $el to be */
+      throttle_value: 500, /* how often to check whether we need to modify $el */
+      debug: false /* logs messages to console for debugging */
+    };
 
-  //console.log(docViewTop, elemTop);
-  return (docViewTop >= elemTop);
-}
+    this.animating = false;
+  };
 
-function el_bottom_in_viewport($el) {
-  var $window = $(window),
-      docViewTop = $window.scrollTop(),
-      docViewBottom = docViewTop + $window.height(),
-      elemTop = $el.offset().top,
-      elemBottom = elemTop + $el.height();
+  FollowElement.prototype = {
+    init: function($el, $el_wrapper, options) {
+      this.$el = $el;
+      this.$el_wrapper = $el_wrapper;
+      this.$window = $(window);
+      this.previous_scroll = $(window).scrollTop();
+      this.original_offset = $el.offset().top;
 
-  //console.log(docViewTop, elemTop);
-  return (docViewBottom >= elemBottom);
-}
+      if(typeof options === 'object') {
+        this.options = $.extend(this.default_options, options);
+      } else {
+        this.options = this.default_options;
+      }
 
-function el_bottom_out_of_viewport($el) {
-  var $window = $(window),
-      docViewTop = $window.scrollTop(),
-      docViewBottom = docViewTop + $window.height(),
-      elemTop = $el.offset().top,
-      elemBottom = elemTop + $el.height();
+      this.update_on_scroll();
+    },
 
-  //console.log(docViewTop, elemTop);
-  return (docViewBottom <= elemBottom);
-}
+    /* updates properties as the page scrolls, triggers action as appropriate */
+    update_on_scroll: function() {
+      var Scroller = this;
 
+      _.throttle(Scroller.$window.on("scroll", function(event) {
+        var direction = Scroller.scroll_direction(Scroller.previous_scroll),
+            message = '';
 
-function bottom_offset($el) {
-  return $el.offset().top + $el.outerHeight();
-}
+        if( direction === 'up' && Scroller.$window.scrollTop() <= Scroller.original_offset && !Scroller.$el.hasClass('fixed') ){
+          message = 'no follow';
+          return;
+        }
 
-function scroll_direction(previous_scroll) {
-  var current_scroll = $(window).scrollTop();
-  if (current_scroll > previous_scroll){
-    return 'down';
-  } else {
-    return 'up';
-  }
-}
+        if( direction === 'down' ) {
+          if( Scroller.el_top_out_of_viewport(Scroller.$el_wrapper) ) {
+            Scroller.$el.addClass('fixed');
+            Scroller.$el.css('top', Scroller.options.top_offset);
+            message = 'out of top';
+
+            if( Scroller.bottom_offset(Scroller.$el) >= Scroller.bottom_offset(Scroller.$el_wrapper) ) {
+              Scroller.$el.removeClass('fixed');
+              Scroller.$el.css('top', Scroller.bottom_offset(Scroller.$el_wrapper) - Scroller.$el.outerHeight() - Scroller.original_offset - Scroller.options.bottom_offset);
+              message = 'at bottom';
+            }
+          }
+        } else if( direction === 'up' ) {
+          if( Scroller.el_bottom_out_of_viewport(Scroller.$el_wrapper) ) {
+            if( !Scroller.$el.hasClass('fixed') && !Scroller.animating ) {
+              Scroller.animating = true;
+
+              var top = Scroller.$el.position().top + Scroller.options.top_offset - 200;
+              Scroller.$el.animate({
+                top: top
+              }, 100, function() {
+                Scroller.animating = false;
+                Scroller.$el.addClass('fixed');
+                Scroller.$el.css('top', Scroller.options.top_offset);
+              });
+            }
+            message = 'out of bottom';
+
+            if( Scroller.$el.offset().top <= Scroller.original_offset ) {
+              Scroller.$el.removeClass('fixed');
+              Scroller.$el.css('top', 'inherit');
+              message = 'at top';
+            }
+          }
+        }
+
+        Scroller.previous_scroll = Scroller.$window.scrollTop();
+
+        if( Scroller.options.debug ) { console.log(direction, message); }
+      }), this.options.throttle_value);
+    },
+
+    /* returns the bottom of an element based on its offset and height */
+    bottom_offset: function($el) {
+      var Scroller = this,
+          offset = $el.offset().top + $el.outerHeight();
+
+      if( $el == Scroller.$el ) {
+        offset += Scroller.options.bottom_offset;
+      }
+
+      return offset;
+    },
+
+    /* returns whether the page is being scrolled up or down */
+    scroll_direction: function(previous_scroll) {
+      var current_scroll = $(window).scrollTop();
+      if (current_scroll > previous_scroll){
+        return 'down';
+      } else {
+        return 'up';
+      }
+    },
+
+    el_top_out_of_viewport: function($el) {
+      var Scroller = this,
+          docViewTop = Scroller.$window.scrollTop(),
+          elemTop = $el.offset().top;
+
+      return (docViewTop >= elemTop);
+    },
+
+    el_bottom_in_viewport: function($el) {
+      var Scroller = this,
+          docViewTop = Scroller.$window.scrollTop(),
+          docViewBottom = docViewTop + Scroller.$window.height();
+
+      return (docViewBottom >= Scroller.bottom_offset($el));
+    },
+
+    el_bottom_out_of_viewport: function($el) {
+      var Scroller = this,
+          docViewTop = Scroller.$window.scrollTop(),
+          docViewBottom = docViewTop + Scroller.$window.height();
+
+      return (docViewBottom <= Scroller.bottom_offset($el));
+    }
+
+  };
+
+  return FollowElement;
+})();
 
 $(document).ready(function() {
   $('ul.doc-nav li').hover(function() {
@@ -54,56 +142,13 @@ $(document).ready(function() {
     $(this).removeClass('open');
   });
 
-  var previous_scroll = $(window).scrollTop();
-      original_nav_offset = $('.doc-nav').offset().top,
-      animating = false;
-
-  _.throttle($(window).on("scroll", function(event) {
-    var $nav_wrapper = $('.doc-nav-wrapper'),
-        $nav = $nav_wrapper.find('.doc-nav'),
-        message = '',
-        direction = scroll_direction(previous_scroll);
-
-    if( direction === 'up' && $(window).scrollTop() <= original_nav_offset && !$nav.hasClass('fixed') ){
-      return;
-    }
-
-    if( direction === 'down' ) {
-      if( el_top_out_of_viewport($nav_wrapper) ) {
-        $nav.addClass('fixed');
-        $nav.css('top', '25px');
-        message = 'out of top';
-
-        if( bottom_offset($nav) >= bottom_offset($nav_wrapper) ) {
-          message = 'at bottom';
-          $nav.removeClass('fixed');
-          $nav.css('top', bottom_offset($nav_wrapper) - $nav.outerHeight() - original_nav_offset);
-        }
-      }
-    } else if( direction === 'up' ) {
-      if( el_bottom_out_of_viewport($nav_wrapper) ) {
-        message = 'out of bottom';
-        if( !$nav.hasClass('fixed') && !animating ) {
-          animating = true;
-
-          var top = $(window).scrollTop() - $nav.outerHeight()/2 + 25;
-          $nav.animate({
-            top: top
-          }, 100, function() {
-            animating = false;
-            $nav.addClass('fixed');
-            $nav.css('top', '25px');
-          });
-        }
-
-        if( $nav.offset().top <= original_nav_offset ) {
-          message = 'at top';
-          $nav.removeClass('fixed');
-          $nav.css('top', 'inherit');
-        }
-      }
-    }
-
-    previous_scroll = $(window).scrollTop();
-  }), 500);
+  var nav_scroller = new FollowElement();
+  nav_scroller.init($('.doc-nav'),
+                    $('.doc-nav-wrapper'),
+                    {
+                      top_offset: 15,
+                      bottom_offset: 225,
+                      debug: false
+                    }
+                   );
 });
