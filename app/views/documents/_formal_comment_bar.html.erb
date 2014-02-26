@@ -1,0 +1,16 @@
+<div id="flash_message" class="comment">
+  <p>
+    <% if document.document_comment_period_open? %>
+      This article has a comment period that ends <%= days_remaining(document.comments_close_on) %>
+      (<%= document.comments_close_on %>)
+    <% else %>
+      Comments on this article are being accepted at Regulations.gov
+    <% end %>
+
+    <%= document.formal_comment_link %>
+  </p>
+</div>
+
+<% if document.has_comments? %>
+  <p id="comment_count">Read the <%= link_to pluralize(docket_info['comments_count'], 'submitted public comment'), regulations_dot_gov_docket_comments_url(document.docket_id), :target => "_blank" %></p>
+<% end %>
