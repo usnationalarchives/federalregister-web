@@ -68,7 +68,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def has_comments?
-    regulations_dot_gov_info['comments_count'] > 0
+    regulations_dot_gov_info && regulations_dot_gov_info['comments_count'] > 0
   end
   end
 end
