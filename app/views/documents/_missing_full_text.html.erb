@@ -1,0 +1,15 @@
+<div id="flash_message" class="pdf_only">
+  <p>
+    <% if document.publication_date > Date.new(1995,1,1) %>
+      The full text of this document is currently only available in
+      <%= link_to 'PDF format', document.pdf_url %>.
+
+      <%= link_to 'Download PDF', document.pdf_url, :class => "button" %>
+    <% else %>
+      The full text of this document is currently only available in
+      <%= link_to 'a basic text format', document.raw_text_url %>.
+
+      <%= link_to 'View Text', document.raw_text_url, :class => "button" %>
+    <% end %>
+  </p>
+</div>

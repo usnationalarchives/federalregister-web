@@ -39,4 +39,6 @@
 
   <%= render partial: "corrections", locals: {document: document} if document.corrections? %>
 
+  <%= render( partial: "missing_full_text",
+              locals: {document: document}) unless document.has_full_text? %>
 </div>

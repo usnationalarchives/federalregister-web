@@ -85,6 +85,10 @@ class DocumentDecorator < ApplicationDecorator
     comment_url.present? && publication_date.to_time > 4.months.ago
   end
 
+  def has_full_text?
+    full_text_xml_url.present?
+  end
+
   def formal_comment_link
     link_text = "Submit a formal comment"
 
