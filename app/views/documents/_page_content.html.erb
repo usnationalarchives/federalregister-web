@@ -14,14 +14,14 @@
         <% if Rails.env.production? || Rails.env.staging? %>
           <esi:include src="<%= document.abstract_html_url %>" />
         <% else %>
-          <esi:include src="<%= document.abstract_html_url.slice(0..-17) + document.document_number %>" />
+          <esi:include src="<%= document.abstract_html_url.split('abstract/').first + 'abstract/' + document.document_number %>" />
         <% end %>
 
         <div id="fulltext_content_area">
          <% if Rails.env.production? || Rails.env.staging? %>
             <esi:include src="<%= document.body_html_url %>" />
           <% else %>
-            <esi:include src="<%= document.body_html_url.slice(0..-17) + document.document_number %>" />
+            <esi:include src="<%= document.body_html_url.split('full_text/').first + 'full_text/' + document.document_number %>" />
           <% end %>
         </div> <!-- end fulltext_content_area area -->
 
