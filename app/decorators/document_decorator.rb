@@ -103,6 +103,13 @@ class DocumentDecorator < ApplicationDecorator
     h.link_to link_text, href, {id: 'start_comment', class: 'button formal_comment'}.merge(options)
   end
 
+  def comment_link
+    link_text = "Submit a public comment on this document"
+    href = comment_url.present? ? comment_url : '#addresses'
+
+    h.link_to link_text, href
+  end
+
   def corrections?
     correction_of.present? || corrections.present?
   end
