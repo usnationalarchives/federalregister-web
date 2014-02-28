@@ -1,20 +1,9 @@
 class DocumentDecorator < ApplicationDecorator
   delegate_all
 
+  include DocumentDecorator::Shared
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
-
-  def agency_names(options = {})
-    autolink = true unless options[:no_links]
-
-    if agencies.present?
-      agencies = model.agencies.map{|a| "the #{h.link_to_if autolink, a.name, a.url}" }
-    else
-      agencies = model.agencies.map(&:name)
-    end
-
-    agencies.to_sentence.html_safe
-  end
 
   def presidential_document?
     type == "Presidential Document"
@@ -22,11 +11,6 @@ class DocumentDecorator < ApplicationDecorator
 
   def start_page?
     start_page.present? && start_page != 0
-  end
-
-  # Tuesday, December 17th, 2013
-  def formal_publication_date
-    publication_date.to_s(:formal)
   end
 
   # Dec 17th, 2013
