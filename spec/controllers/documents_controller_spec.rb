@@ -9,6 +9,20 @@ describe DocumentsController do
             get :tiny_url, document_number: '2014-0000'
           }.to raise_error(FederalRegister::Client::RecordNotFound)
         end
+
+        context "but public inspection document exists" do
+          let(:pi_document) { OpenStruct.new(document_number: '2014-0001', html_url: "/documents/2014/01/01/2014-0001/test-pi-document") }
+          let(:get_tiny_url) { get :tiny_url, document_number: pi_document.document_number }
+
+          it "redirects to the public inspection page (document page)" do
+            expect{
+              get :tiny_url, document_number: '2014-0001'
+            }.to raise_error(FederalRegister::Client::RecordNotFound)
+
+            expect(FederalRegister::PublicInspectionDocument).to receive(:find).with(pi_document.document_number).and_return(pi_document)
+            expect(get_tiny_url).to redirect_to(pi_document.html_url)
+          end
+        end
       end
 
       context "when document exists" do

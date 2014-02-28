@@ -1,0 +1,50 @@
+<div class="col-md-3 doc-aside doc-details">
+  <div class="row">
+    <%= fr_box_small "Document Details", :public_inspection_doc_details do %>
+      <dl class='metadata_list'>
+        <dt>Filed at:</dt>
+        <dd><%= document.filed_at %></dd>
+
+        <% if document.publication_date.present? %>
+          <dt>Scheduled Publication Date:</dt>
+          <dd>
+            <%= link_to document.formal_publication_date,
+                        documents_path(document.publication_date) %>
+          </dd>
+        <% end %>
+
+        <% if document.agencies.present? %>
+          <dt><%= pluralize_without_count document.agencies.size, 'Agency' %>:</dt>
+
+          <% document.agencies.each do |agency| -%>
+            <dd>
+              <%= link_to_if agency.url.present?, agency.name, agency.url %>
+            </dd>
+          <% end -%>
+        <% end %>
+
+        <% if document.type.present? %>
+          <dt>Document Type:</dt>
+          <dd><%= document.type %></dd>
+        <% end %>
+
+        <% if document.num_pages.present? %>
+          <dt>Pages:</dt>
+          <dd><%= document.num_pages %></dd>
+        <% end %>
+
+        <% if document.docket_numbers.present? %>
+          <dt><%= pluralize_without_count document.docket_numbers.size, 'Agency/Docket Number' %>:</dt>
+          <% document.docket_numbers.each do |docket_number| %>
+            <dd><%= docket_number %></dd>
+          <% end %>
+        <% end %>
+
+        <% if document.document_number.present? %>
+          <dt>Document Number:</dt>
+          <dd class="doc_number"><%= document.document_number %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+  </div>
+</div>

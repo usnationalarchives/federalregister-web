@@ -4,21 +4,23 @@ class DocumentsController < ApplicationController
   def show
     cache_for 1.day
 
-    @document = FederalRegister::Document.find(params[:document_number])
+    begin
+      @document = FederalRegister::Document.find(params[:document_number])
 
-    if @document
       #if request.path != entry_path(@entry)
       #  redirect_to entry_path(@entry), :status => :moved_permanently
       #else
         @document = DocumentDecorator.decorate(@document)
         render
       #end
-    else
-      #@public_inspection_document = PublicInspectionDocument.find_by_document_number!(params[:document_number])
+    rescue FederalRegister::Client::RecordNotFound
+      @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
+
       #if request.path != entry_path(@public_inspection_document)
       #  redirect_to entry_path(@public_inspection_document), :status => :moved_permanently
       #else
-      #  render :template => 'public_inspection/show'
+        @document = PublicInspectionDocumentDecorator.decorate(@document)
+        render template: 'public_inspection/show'
       #end
     end
   end
@@ -26,10 +28,11 @@ class DocumentsController < ApplicationController
   def tiny_url
     cache_for 1.day
 
-    document_or_pi = FederalRegister::Document.find(params[:document_number])
-    #entry_or_pi = Entry.find_by_document_number(params[:document_number]) ||
-    #              PublicInspectionDocument.find_by_document_number(params[:document_number]) ||
-    #              ((params[:document_number].to_s.to_i.to_s == params[:document_number].to_s) && Entry.find_by_id(params[:document_number]))
+    document_or_pi = begin
+                       FederalRegister::Document.find(params[:document_number])
+                     rescue FederalRegister::Client::RecordNotFound
+                       FederalRegister::PublicInspectionDocument.find(params[:document_number])
+                     end
 
     respond_to do |wants|
       wants.html do

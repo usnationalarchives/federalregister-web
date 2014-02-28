@@ -1,0 +1,50 @@
+<div class="col-md-9 doc-content">
+  <%= render partial: "public_inspection/utility_bar", locals: {document: document} %>
+
+  <div class="row">
+    <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+      <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+
+      <div id="fulltext_content_area">
+        <% if document.editorial_note.present? %>
+          <p class="editorial_note">
+            Editorial Note: <%= document.editorial_note %>
+          </p>
+        <% end %>
+
+        <% if document.publication_date.present? %>
+          <p>
+            <span class="icon-fr2 icon-fr2-stop-hand"></span>
+
+            This document is <strong>unpublished</strong>.
+            It is scheduled to be published on <%= document.publication_date %>.
+          </p>
+
+          <p>
+            Once it is published it will be avaialable on this page in an official form.
+            <% if document.pdf_url.present? %>
+              Until then, you can
+              <%= link_to 'download the unpublished', document.pdf_url, class: "pi_warning" %>
+              PDF version.
+            <% end %>
+          </p>
+
+          <p class="pi_notice">
+          Although we make a concerted effort to reproduce the original document
+          in full on our Public Inspection pages, in some cases graphics may not
+          be displayed, and non-substantive markup language may appear alongside
+          substantive text. If you are using public inspection listings for legal
+          research, you should verify the contents of documents against a final,
+          official edition of the Federal Register.
+          <strong>
+            Only official editions of the Federal Register provide legal
+            notice to the public and judicial notice to the courts under 44
+            U.S.C. 1507.
+          </strong>
+          Learn more <%= link_to 'here', public_inspection_learn_path %>.
+          </p>
+        <% end %>
+      </div> <!-- end fulltext_content_area area -->
+    <% end %>
+  </div>
+</div>

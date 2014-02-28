@@ -1,0 +1,49 @@
+<div class="doc-nav-wrapper">
+  <ul class="doc-nav text-center dropdown drop-enhanced">
+    <li class="enhanced">
+      <i class="icon-fr2 icon-fr2-sharing" role="button" data-toggle="dropdown"></i>
+      <%= fr_box "Enhanced Content - Sharing", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <dl>
+          <dt>Shorter Document URL</dt>
+          <dd>
+            <%= link_to short_document_url(document),
+                        short_document_url(document),
+                        class: "shorter_url" %>
+            <%= clippy( short_document_url(document) ) %>
+          </dd>
+        </dl>
+        <ul>
+          <li class="with_icon">
+            <span class="icon-fr2 icon-fr2-twitter"></span>
+            <a href="">Share this document on Twitter</a>
+          </li>
+          <li class="with_icon">
+            <span class="icon-fr2 icon-fr2-facebook"></span>
+            <a href="">Share this document on Facebook</a>
+          </li>
+        </ul>
+      <% end %>
+    </li>
+
+    <li class="public-inspection">
+      <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
+      <%= fr_box "Public Inspection", :public_inspection, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <span class="icon-fr2 icon-fr2-stop-hand"></span>
+        <div class="content">
+          <p>
+            This <%= link_to 'PDF', document.pdf_url %> is the current document
+            as it appeared on Public Inspection on <%= document.filed_at %>.
+          </p>
+          <p class="warning">
+            If you are using public inspection listings for legal research, you
+            should verify the contents of the documents against a final, official
+            edition of the Federal Register. <strong> Only official editions of the
+            Federal Register provide legal notice to the public and judicial notice
+            to the courts under <a href="">44 U.S.C. 1507</a>.</strong>
+            Learn more <%= link_to 'here', public_inspection_learn_path %>.
+          </p>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<div id="metadata_content_area">
+  <h1><%= document.title %></h1>
+
+  <div class="metadata_share_bar">
+
+    <p class="metadata">
+      An <span class="pi_warning">unpublished</span>
+      <%= document.type %>
+      by
+      <span class="agencies">
+        <%= document.agency_names %>
+      </span>
+
+      <% if document.publication_date %>
+        on <%= date_tag( document.publication_date,
+                         datetime: document.publication_date) %>
+      <% end %>
+    </p>
+  </div>
+
+  <%#= render( partial: "formal_comment_bar",
+              locals: {document: document,
+                       docket_info: document.regulations_dot_gov_info}) if document.accepting_comments? %>
+
+  <%#= render partial: "corrections", locals: {document: document} if document.corrections? %>
+
+  <%#= render( partial: "missing_full_text",
+              locals: {document: document}) unless document.has_full_text? %>
+</div>
