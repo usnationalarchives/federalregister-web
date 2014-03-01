@@ -3,9 +3,10 @@ A box used for containing other content on Federal Register pages.
 
 Modifiers here control the color of the box elements.
 
-.fr-box-official-alt                - FR Box for Alternate Official Content
-.fr-box-enhanced                    - FR Box for Enhanced Content
-.fr-box-unavailable                 - FR Box for Currently Unavailable Features
+.fr-box-official                    - Used only for Official Content
+.fr-box-official-alt                - Used for Alternate Official Content
+.fr-box-enhanced                    - Used for Enhanced Content
+.fr-box-unavailable                 - Used for Currently Unavailable Features
 .fr-box-small.fr-box-official-alt   - Small FR Box for Alternate Official Content
 .fr-box-small.fr-box-enhanced       - Small FR Box for Enhanced Content
 .fr-box-small.fr-box-unavailable    - Small FR Box for Currently Unavailable Features
@@ -52,7 +53,40 @@ Styleguide 1.1 FR Boxes
 
 .fr-box {
   position:relative;
+  /* show box as inactive unless we specify the proper box type */
   @include fr-doc($color-inactive, $color-inactive-light);
+
+  .fr-seal-stamp {
+    width: 120px;
+    height: 100px;
+
+    float: left;
+    margin-right: 20px;
+    margin-left: 15px;
+
+    font-size: 150px;
+
+    .fr-stamp {
+      display: block;
+      position: relative;
+      top: -20px;
+    }
+  }
+
+  &.fr-box-public-inspection {
+    .fr-seal-meta {
+      a {
+        color: $white;
+        text-decoration: underline;
+      }
+
+      .fr-seal-stamp {
+        font-size: 125px;
+        color: $public-inspection-fr-stamp;
+        .fr-stamp { top: -10px; }
+      }
+    }
+  }
 
   .content-block {
     padding: 35px 10px 25px 10px;
@@ -60,7 +94,10 @@ Styleguide 1.1 FR Boxes
     p { font-family: $font-family-sans-serif; }
   }
 
-  // Establishes the color scheme for boxes that have header/footer seals
+  // Establishes the color scheme for boxes that have header/footer blocks
+  &.fr-box-official {
+    @include fr-doc($color-official, $color-official-light);
+  }
   &.fr-box-official-alt {
     @include fr-doc($color-official, $color-official-light-alt);
   }
@@ -69,6 +106,9 @@ Styleguide 1.1 FR Boxes
   }
   &.fr-box-public-inspection {
     @include fr-doc($color-public-inspection, $color-public-inspection-light);
+  }
+  &.fr-box-public-inspection-alt {
+    @include fr-doc($color-public-inspection, $color-public-inspection-light-alt);
   }
   &.fr-box-unavailable {
     @include fr-doc($color-inactive, $color-inactive-light);
