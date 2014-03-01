@@ -142,13 +142,15 @@ $(document).ready(function() {
     $(this).removeClass('open');
   });
 
-  var nav_scroller = new FollowElement();
-  nav_scroller.init($('.doc-nav'),
-                    $('.doc-nav-wrapper'),
-                    {
-                      top_offset: 15,
-                      bottom_offset: 225,
-                      debug: false
-                    }
-                   );
+  if( $('.doc-official .doc-nav').length > 0 ) {
+    var nav_scroller = new FollowElement();
+    nav_scroller.init($('.doc-nav'),
+                      $('.doc-nav-wrapper'),
+                      {
+                        top_offset: 15,
+                        bottom_offset: 225,
+                        debug: false
+                      }
+                     );
+  }
 });
