@@ -1,5 +1,5 @@
 <div class="row">
-  <%= fr_box_small "Document Details", :doc_details do %>
+  <%= fr_box_small "Document Details", :official_doc_details do %>
     <dl class='metadata_list'>
       <% if document.publication_date.present? %>
         <dt>Publication Date:</dt>
@@ -35,7 +35,7 @@
       <% end %>
 
       <% if document.type.present? %>
-        <dt>Entry Type:</dt>
+        <dt>Document Type:</dt>
         <dd><%= document.type %></dd>
       <% end %>
 

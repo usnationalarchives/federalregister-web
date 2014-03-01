@@ -1,0 +1,34 @@
+.bootstrap-scope {
+  a.pi_warning {
+    color: $fr-red;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover { color: $fr-red; }
+  }
+}
+
+.pi_warning {
+  color: $fr-red;
+  font-weight: bold;
+}
+
+.fr-box-public-inspection #fulltext_content_area {
+  position: relative;
+  height: 350px;
+
+  .icon-fr2-stop-hand {
+    float: left;
+    font-size: 25px;
+    color: $color-public-inspection;
+    padding-right: 5px;
+  }
+
+  p.pi_notice {
+    font-style: italic;
+    font-size: 12px;
+
+    position:absolute;
+    bottom: 0;
+  }
+}

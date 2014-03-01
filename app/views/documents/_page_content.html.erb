@@ -5,27 +5,26 @@
     <%= fr_box "Official Document", :official, header: {seal: true} do %>
       <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
 
-      <% if document.full_text_xml_url.present? %>
-        <% if document.action.present? %>
-          <h1>Action</h1>
-          <p><%= document.action %></p>
-        <% end %>
+      <div id="fulltext_content_area">
+        <% if document.full_text_xml_url.present? %>
+          <% if document.action.present? %>
+            <h1>Action</h1>
+            <p><%= document.action %></p>
+          <% end %>
 
-        <% if Rails.env.production? || Rails.env.staging? %>
-          <esi:include src="<%= document.abstract_html_url %>" />
-        <% else %>
-          <esi:include src="<%= document.abstract_html_url.split('abstract/').first + 'abstract/' + document.document_number %>" />
-        <% end %>
+          <% if Rails.env.production? || Rails.env.staging? %>
+            <esi:include src="<%= document.abstract_html_url %>" />
+          <% else %>
+            <esi:include src="<%= document.abstract_html_url.split('abstract/').first + 'abstract/' + document.document_number %>" />
+          <% end %>
 
-        <div id="fulltext_content_area">
-         <% if Rails.env.production? || Rails.env.staging? %>
+          <% if Rails.env.production? || Rails.env.staging? %>
             <esi:include src="<%= document.body_html_url %>" />
           <% else %>
             <esi:include src="<%= document.body_html_url.split('full_text/').first + 'full_text/' + document.document_number %>" />
           <% end %>
-        </div> <!-- end fulltext_content_area area -->
-
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="doc-nav-wrapper">
   <ul class="doc-nav text-center dropdown drop-enhanced">
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-bookmark" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Paragraph Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
@@ -23,7 +23,7 @@
         </ul>
       <% end %>
     </li>
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Table of Contents", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
@@ -31,7 +31,7 @@
         </ul>
       <% end %>
     </li>
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-map" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Regulatory Plan", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
@@ -42,7 +42,7 @@
 
     <li class="divider"></li>
 
-    <li class='<%= "unavailable" unless document.accepting_comments? %>'>
+    <li class='enhanced <%= "unavailable" unless document.accepting_comments? %>'>
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
       <%= fr_box  "Enhanced Content - Submit Public Comment",
                   (document.accepting_comments? ? :enhanced : :disabled),
@@ -60,7 +60,7 @@
         </ul>
       <% end %>
     </li>
-    <li class='<%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
+    <li class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
     <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
         <% if docket_info && docket_info['comment_count'] && document.commentable? %>
           <span class="comment_count"><%= docket_info['comments_count'] %></span>
@@ -85,7 +85,7 @@
         </ul>
       <% end %>
     </li>
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-sharing" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Sharing", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <dl>
@@ -116,7 +116,7 @@
 
     <li class="divider"></li>
 
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-print" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Document Print View", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <ul>
@@ -124,7 +124,7 @@
         </ul>
       <% end %>
     </li>
-    <li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Developer Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <h5>This document is available in the following developer friendly formats:</h5>
@@ -149,14 +149,14 @@
       <%= fr_box "Public Inspection", :public_inspection, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <span class="icon-fr2 icon-fr2-stop-hand"></span>
         <div class="content">
-          <p>This <a href="">PDF</a> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
+          <p>This <%= link_to 'PDF', document.public_inspection_pdf_url %> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
           <p class="warning">
             If you are using public inspection listings for legal research, you
             should verify the contents of the documents against a final, official
             edition of the Federal Register. <strong> Only official editions of the
             Federal Register provide legal notice to the public and judicial notice
-            to the courts under <a href="">44 U.S.C. 1507</a>.</strong> Learn more
-            <a href="">here</a>.
+            to the courts under <a href="">44 U.S.C. 1507</a>.</strong>
+            Learn more <%= link_to 'here', public_inspection_learn_path %>.
           </p>
         </div>
       <% end %>

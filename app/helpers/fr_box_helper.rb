@@ -43,7 +43,7 @@ module FrBoxHelper
 
       html +
       content_tag(:div, class: "fr-seal-desc") do
-        content_tag(:p, description_by_type(type))
+        content_tag(:p, description_by_type(type).html_safe)
       end
     end
   end
@@ -66,12 +66,14 @@ module FrBoxHelper
     case type
     when :official
       "fr-box-official"
-    when :doc_details
+    when :official_doc_details
       "fr-box-official-alt"
     when :reg_gov_docket_info, :enhanced
       "fr-box-enhanced"
     when :public_inspection
       "fr-box-public-inspection"
+    when :public_inspection_doc_details
+      "fr-box-public-inspection-alt"
     when :disabled
       "fr-box-unavailable"
     end
@@ -80,11 +82,15 @@ module FrBoxHelper
   def description_by_type(type)
     case type
     when :official
-      "This box contains the official document as published by the Office of the Federal Register"
-    when :doc_details
-      "Metadata about the official document that appears to the left of this box"
+      "This box contains the official Federal Register document as published by the Office of the Federal Register."
+    when :official_doc_details
+      "Metadata about the official Federal Register document that appears to the left of this box."
     when :reg_gov_docket_info
       "This box contains content about this document retrieved from Regulations.gov in order to provide you with more context for this document. The content in this box has not been published in the Federal Register and is only provided for your convenience."
+    when :public_inspection
+      "This box contains an unpublished Public Inspection document. Click #{link_to 'here', public_inspection_learn_path} to learn more about Public Inspection documents."
+    when :public_inspection_doc_details
+      "Metadata about the Public Inspection document that appears to the left of this box."
     end
   end
 
@@ -92,6 +98,8 @@ module FrBoxHelper
     case type
     when :official
       "icon-fr2-NARA1985Seal"
+    when :public_inspection
+      "icon-fr2-stop-hand"
     end
   end
 end

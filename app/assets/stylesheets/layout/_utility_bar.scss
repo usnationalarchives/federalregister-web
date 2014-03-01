@@ -3,6 +3,19 @@
     color: $utility-nav;
     background-color: $utility-nav-background;
     height: 100%;
+  }
+
+  &.doc-public-inspection {
+    .doc-nav-wrapper {
+      color: $utility-nav-pi;
+      background-color: $utility-nav-pi-background;
+    }
+  }
+}
+
+.doc {
+  .doc-nav-wrapper {
+    z-index: 600;
 
     .doc-nav {
       padding-top: 25px;
@@ -65,6 +78,8 @@
           &.public-inspection {
             color: $color-public-inspection;
             border-top-color: $color-public-inspection;
+
+            .fr-box.fr-box-public-inspection { background-color: $color-public-inspection-light-alt; }
           }
           &.unavailable {
             border-top-color: $color-inactive;
@@ -95,7 +110,7 @@
 
         .dropdown-menu {
           left: 53px;
-          top: -19px;
+          top: -18px;
           border-radius: 0;
           box-shadow: none;
           padding: 0;
@@ -182,6 +197,18 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.doc {
+  &.doc-public-inspection {
+    .doc-nav > li {
+      &.open {
+        background-color: $utility-nav-pi-hover-background;
+
+        &.enhanced { background-color: $utility-nav-hover-background-light }
       }
     }
   }

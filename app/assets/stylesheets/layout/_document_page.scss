@@ -1,29 +1,28 @@
 .wrapper .row.doc { margin-bottom: 100px !important; }
 
+%doc-background {
+  position: absolute;
+  top: 25px;
+  left: 100px;
+  font-size: 600px;
+  opacity: 0.10;
+  z-index: 100;
+}
+
 .doc {
   position: relative;
 
-  &.doc-official .doc-content{
-    .fr-seal-block.fr-seal-block-header { z-index: 500; }
-
+  &.doc-official .doc-content .content-block{
+    .doc-background { @extend %doc-background; }
+  }
+  &.doc-public-inspection .doc-content .content-block{
     .doc-background {
-      position: absolute;
-      top: 25px;
-      left: 100px;
-      font-size: 600px;
-      opacity: 0.10;
-      z-index: 100;
+      @extend %doc-background;
+      left: 150px;
+      font-size: 375px;
     }
   }
 
-  &.doc-inspection .doc-content{
-    //@extend .fr-box;
-    //@extend .fr-box-inspection;
-
-    background-image: url(../images/elements/fd-doc-inspection-seal.png);
-    background-repeat: no-repeat;
-    background-position: 75px 50px;
-  }
 
   .doc-nav-wrapper {
     padding-top: 17px;
@@ -40,8 +39,12 @@
     z-index: 1;
     width: 744px;
 
+    .fr-seal-block.fr-seal-block-header { z-index: 500; }
+
     .content-block {
       padding: 35px 130px 20px 30px !important;
+
+      #fulltext_content_area { z-index: 200; }
 
       p {
         font-family: $font-family-serif;
