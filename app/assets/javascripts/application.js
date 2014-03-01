@@ -9,6 +9,7 @@
 //= require tipsy
 //= require article_page
 //= require document_page
+//= require public_inspection
 //= require utility_bar
 
 $(document).ready(function() {
