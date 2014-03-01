@@ -16,6 +16,10 @@ module ApplicationHelper
     end
   end
 
+  def header_type(type)
+    content_for :header_type, type
+  end
+
   def meta_description(text)
     set_content_for :description, strip_tags(text)
   end

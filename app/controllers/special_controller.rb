@@ -1,6 +1,6 @@
 class SpecialController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false 
+  layout false
 
   def user_utils
     if user_signed_in?
@@ -22,6 +22,11 @@ class SpecialController < ApplicationController
 
   def shared_assets
     cache_for 1.day
+  end
+
+  def header
+    cache_for 1.day
+    render template: "special/header/#{params[:type].gsub('-','_')}"
   end
 
   def status

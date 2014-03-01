@@ -32,6 +32,15 @@ MyFr2::Application.routes.draw do
       to: "documents#tiny_url",
       as: :short_document
 
+  #
+  # ESI Routes
+  #
+  get 'special/header/:type',
+      to: 'special#header',
+      constraints: {
+        type: /(official|public-inspection|reader-aids)/
+      }
+
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
