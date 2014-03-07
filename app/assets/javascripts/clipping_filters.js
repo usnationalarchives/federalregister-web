@@ -37,24 +37,27 @@ function filter_clippings_by_type(el) {
 
 $(document).ready( function() {
 
-  $('#doc-type-filter li').each( function() {
-    if ( _.include( doc_type_filters, $(this).data('filter-doc-type') ) ) {
-      $(this).addClass('on');
-      $(this).data('tooltip', 'Hide articles of type ' + $(this).data('filter-doc-type-display') );
-    } else {
-      $(this).addClass('disabled');
-    }
-  });
+  if( $('#clipping-actions #doc-type-filter').length > 0 ) {
+    $('#doc-type-filter li').each( function() {
+        if ( _.include( doc_type_filters, $(this).data('filter-doc-type') ) ) {
+        $(this).addClass('on');
+        $(this).data('tooltip', 'Hide articles of type ' + $(this).data('filter-doc-type-display') );
+      } else {
+        $(this).addClass('disabled');
+      }
+    });
 
-  $('#doc-type-filter li:not(.disabled)').bind('mouseenter', function(event) {
-    $(this).addClass('hover');
-  });
+    $('#doc-type-filter li:not(.disabled)').bind('mouseenter', function(event) {
+      $(this).addClass('hover');
+    });
 
-  $('#doc-type-filter li:not(.disabled)').bind('mouseleave', function(event) {
-    $(this).removeClass('hover');
-  });
+    $('#doc-type-filter li:not(.disabled)').bind('mouseleave', function(event) {
+      $(this).removeClass('hover');
+    });
 
-  $('#doc-type-filter li:not(.disabled)').bind('click', function(event) {
-    filter_clippings_by_type( $(this) );
-  });
+    $('#doc-type-filter li:not(.disabled)').bind('click', function(event) {
+      filter_clippings_by_type( $(this) );
+    });
+  }
+
 });
