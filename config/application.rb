@@ -74,14 +74,16 @@ module MyFr2
       *.ttf
       *.woff
       clippy.swf
-      official_masthead.png
-      official_masthead.svg
+      header/official_masthead.png
+      header/official_masthead.svg
       public_inspection_masthead.png
       public_inspection_masthead.svg
       reader_aids_masthead.png
       reader_aids_masthead.svg
       blue_header_bg.png
       red_header_bg.png
+      search.png
+      search.svg
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages

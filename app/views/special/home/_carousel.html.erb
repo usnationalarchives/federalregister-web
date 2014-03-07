@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="nav-home-carousel">
+
+    <% sections = [
+      [:money, 'Coins-dollaralt', 'Money', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5590/navigation.jpg', 'The Board of Governors of the Federal Reserve System (Board) is proposing to repeal its Regulation DD, 12 CFR part 230, which was issued to implement the Truth in Saving Act (TISA). Title X of the Dodd-Frank Wall Street Reform and Consumer Protection Act (Dodd-Frank Act) transferred rulemaking authority for a number of consumer financial protection laws, including TISA, from the Board to the Bureau of Consumer Financial Protection.'],
+      [:environment, 'Eco', 'Environment', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5636/navigation.jpg', 'NMFS announces final 2014 and 2015 harvest specifications, prohibited species catch allowances, and closures for the groundfish fishery of the Bering Sea and Aleutian Islands management area (BSAI).'],
+      [:world, 'Globe', 'World', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5633/navigation.jpg', 'The Coast Guard is adjusting Great Lakes pilotage rates that were last amended in February 2013. The adjustments establish new base rates, and are made in accordance with a full ratemaking procedure. The Coast Guard is exercising its discretion to establish new base rates to more closely align with recent Canadian rate increases.'],
+      [:science, 'Lab', 'Science & Technology', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5638/navigation.jpg', 'This rulemaking adopts more stringent noise certification standards for helicopters that are certificated in the United States (U.S.). This rule applies to applications for a new helicopter type design. It also allows applicants to upgrade Stage 1 and Stage 2 helicopters to Stage 3 when applying for a supplemental type certificate.'],
+      [:business, 'Factory', 'Business & Industry', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5627/navigation.jpg', 'This rule relaxes the minimum size and grade requirements currently prescribed for grapefruit under the marketing order for oranges and grapefruit grown in Lower Rio Grande Valley in Texas (order). The order is administered locally by the Texas Valley Citrus Committee (Committee).'],
+      [:health, 'Medicine', 'Health & Public Welfare', 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5618/navigation.jpg', 'This proposed rule would require all local educational agencies participating in the National School Lunch Program and/or the School Breakfast Program to meet expanded local school wellness policy requirements consistent with the new requirements set forth in section 204 of the Healthy, Hunger-Free Kids Act of 2010.']
+    ]%>
+
+
+    <%= render  partial: 'special/home/carousel/nav',
+                locals: { sections: sections } %>
+
+    <% canned_searches = {
+      money: [
+        ['Dodd-Frank Wall Steet Reform', 324, 62],
+        ['Stock & Commodities Trading', 506, 23],
+        ['Government Contracts', 52, 67],
+        ['Economic Sanctions & Foreign Assets Control', 569, 35],
+        ['Information Collection Notices', 3884, 24],
+      ],
+      environment: [
+        ['Endangered & Threatened Species', 1009, 62],
+        ['Taking of Marine Mammals', 313, 23],
+        ['Fishery Management', 1507, 67],
+        ['Parks & Recreation', 1228, 35],
+        ['Clean Air Act -- State Implmentation', 669, 24],
+      ],
+      world: [
+        ['Immigration & Border Control', 240, 62],
+        ['International Trade (Anti-Dumping)', 622, 23],
+        ['Cultural Objects Imported for Exhibition', 93, 67],
+        ['Controlled Exports (CCL & USML)', 61, 35],
+        ['Denied Persons & Specially Designated Nationals', 77, 24],
+      ],
+      science: [
+        ['Broadband Policy', 187, 62],
+        ['Energy Efficiency & Renewable Resources', 456, 23],
+        ['Patent, Trademark, and Copyright', 1266, 67],
+        ['Climate Change', 441, 35],
+        ['Airworthiness Directives', 797, 24],
+      ],
+      business: [
+        ['Automobile Safety & Fuel Economy', 42, 62],
+        ['Air Travel', 138, 23],
+        ['Oil and Gas Leasing', 31, 67],
+        ['Trade Adjustment Assistance', 257, 35],
+        ['Plant Protection and Quarantine', 91, 24],
+      ],
+      health: [
+        ['Health Care Reform', 360, 62],
+        ['Veterans Employment & Training', 35, 23],
+        ['Veterans Educational Benefits', 4, 67],
+        ['Disaster Declarations & Assistance', 849, 35],
+        ['Veterans Disability Ratings & Claims', 10, 24],
+      ],
+    }%>
+
+    <% sections.each do |section| %>
+      <%= render  partial: 'special/home/carousel/content',
+                  locals: {
+                    section_name: section[0],
+                    highlight_image: section[3],
+                    highlight_description: section[4],
+                    icon_class: section[1],
+                    canned_searches: canned_searches[section[0]],
+                  } %>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 class SpecialController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false
+  layout false, except: :home
 
   def user_utils
     if user_signed_in?
@@ -27,6 +27,10 @@ class SpecialController < ApplicationController
   def header
     cache_for 1.day
     render template: "special/header/#{params[:type].gsub('-','_')}"
+  end
+
+  def home
+    cache_for 1.day
   end
 
   def status

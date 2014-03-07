@@ -1,0 +1,44 @@
+table {
+  &.fr-table {
+    margin: 30px 0;
+    font-size: 15px;
+
+    thead {
+      margin-bottom: 10px;
+
+      th { border-bottom: 2px solid $fr-gray-50; }
+    }
+
+    tbody {
+      tr {
+        &:hover { background-color: $fr-gray-5; }
+
+        td { border-bottom: 1px solid $fr-gray-10; }
+      }
+    }
+
+    td, th {
+      padding:0 10px;
+      text-align: left;
+
+      &:first-child { padding-right: 0; }
+    }
+
+    td.count_7_days,
+    td.comments_recently_opened { text-align: right; }
+
+    .fr-table-form {
+      margin-bottom: 10px;
+    }
+
+    .icon-fr2-Refresh-7 {
+      font-size: 18px;
+      color: #999;
+    }
+
+    .icon-fr2-Chat {
+      font-size: 18px;
+      color: #b4cf96;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<div class="fr-1-3 fr-push with-icon-header">
+  <h4 class="with-icon">
+    <span class="icon-fr2 icon-fr2-Molecular"></span>
+    Explore Topics
+  </h4>
+
+  <div class="table-search-box">
+    <form>
+      <input type="text" class="form-control fr-table-form" placeholder="Go to a specific topic">
+    </form>
+  </div>
+
+  <table class="fr-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th width="5%" class="past_7_days with-tooltip-s"
+          data-tooltip="Articles Published in the Last 7 Days">
+          <span class="icon-fr2 icon-fr2-Refresh-7"></span>
+        </th>
+        <th width="5%" class="recently_opened with-tooltip-s"
+          data-tooltip="Articles with Comment Periods Opened in the Last 7 Days">
+          <span class="icon-fr2 icon-fr2-Chat"></span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% topics = [
+        ['Air pollution control', 17, 8],
+        ['Air transportation', 37, 19],
+        ['Airspace', 17, 4],
+        ['Aviation safety', 38, 20],
+        ['Environmental protection', 22, 9],
+        ['Flood insurance', 2, 7],
+        ['Government procurement', 8, 7],
+        ['Harbors', 18, 2],
+        ['Imports', 32, 6],
+        ['Income taxes', 1, 1],
+        ['Marine safety', 4, 0],
+        ['Navigation (air)', 19, 4],
+        ['Navigation (water)', 5, 0],
+        ['Waterways', 4, 0],
+        ['Security Measures', 12, 4],
+        ['Volatile organic compounds', 14, 5],
+      ] %>
+      <% topics.each do |topic| %>
+        <tr>
+          <td class="topic_name">
+            <a href=""><%= topic[0] %></a>
+          </td>
+
+          <td class="count_7_days">
+            <a href=""><%= topic[1] %></a>
+          </td>
+
+          <td class="comments_recently_opened">
+            <a href=""><%= topic[2] %></a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

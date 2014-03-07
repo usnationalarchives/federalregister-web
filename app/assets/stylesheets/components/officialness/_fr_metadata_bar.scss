@@ -1,0 +1,146 @@
+@mixin fr-metadata-bar-header($main-color, $secondary-color) {
+  background-color: $secondary-color;
+
+  .fr-head-meta-label {
+    background-color: $main-color;
+    a { color: inherit; }
+  }
+  .fr-head-meta-counts {
+    background-color: $secondary-color;
+    a { color: $main-color; }
+  }
+}
+
+
+.fr-head-metadata-bar {
+  &.fr-head-metadata-bar-official {
+    @include fr-metadata-bar-header($fr-green, $color-enhanced-light);
+
+    .fr-head-meta-label i { color: $color-enhanced-light; }
+    .fr-head-meta-counts li { line-height: 50px; }
+  }
+
+  &.fr-head-metadata-bar-public-inspection {
+    @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
+
+    .fr-head-meta-label-holder {
+      .fr-head-meta-label {
+        padding-left: 28px;
+
+        i {
+          color: $color-public-inspection-light;
+          padding-right: 4px;
+        }
+      }
+
+      .icon-fr2.icon-fr2-stop-hand {
+        font-size: 110px;
+        left: 65px;
+        top: 10px;
+        color: $fr-gray-15;
+      }
+    }
+    .fr-topic-list.with-stats li:hover { color: $fr-gray-40; }
+  }
+
+  .fr-head-meta-label-holder {
+    padding: 0;
+  }
+  .fr-head-meta-label {
+    height: 50px;
+    color: #fff;
+    padding: 0 15px 0 24px;
+
+    i {
+      font-size: 34px;
+      position: relative;
+      top: 7px;
+      margin-right: 5px;
+    }
+
+    h4 {
+      margin: 0 !important;
+      font-weight: 500;
+      display: inline-block;
+      text-decoration: underline;
+    }
+  }
+
+  .fr-head-meta-counts {
+    font-size: 15px;
+
+    .description {
+      .icon-fr2-stop-hand {
+        font-size: 105px;
+        position: relative;
+        top: 20px;
+        left: -5px;
+        color: $fr-gray-20;
+      }
+
+      p {
+        line-height: 18px;
+        font-size: 14px;
+      }
+    }
+
+    ul { padding: 0; }
+
+    li {
+      float: left;
+      list-style-type: none;
+      margin-right: 15px;
+      font-size: 13px;
+
+      &.right {
+        float:right;
+        font-weight: bold;
+
+        .icon-fr2 {
+          height: 17px;
+          width: 17px;
+          position: relative;
+          top: -1px;
+          font-size: 17px;
+          vertical-align: middle;
+
+          &.public-inspection { color: $color-public-inspection; }
+        }
+      }
+    }
+
+    h5 {
+      font-size: 15px;
+      margin-bottom: 3px;
+      color: #444;
+    }
+
+    p {
+      font-family: $font-family-sans-serif;
+      margin: 0;
+      font-size: 15px;
+      padding: 10px 0;
+    }
+
+    a.public-inspection-toggle { color: $fr-red; }
+
+  }
+
+  .public-inspection-list-stats {
+    color: #333;
+    width: 100%;
+
+    i {
+      font-size: 17px;
+      vertical-align: middle;
+      top: -1px;
+      position: relative;
+      margin-right: 3px;
+    }
+
+    div {
+      color: $color-public-inspection;
+      float: right;
+    }
+  }
+}

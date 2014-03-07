@@ -3,6 +3,7 @@
 //= require bootstrap/dropdown
 //= require jquery.clippy.min
 //= require_self
+//= require utils
 //= require add_to_folder
 //= require clippings
 //= require clipping_filters
@@ -12,6 +13,7 @@
 //= require document_page
 //= require public_inspection
 //= require utility_bar
+//= require home_carousel
 
 $(document).ready(function() {
   $('.clippy').clippy({

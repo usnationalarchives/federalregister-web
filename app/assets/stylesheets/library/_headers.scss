@@ -1,0 +1,63 @@
+.with-icon-header {
+  padding-left: 40px;
+}
+
+h3 {
+  &.with-icon {
+    margin-top:0 !important;
+    margin-bottom: 10px;
+    color: #000 !important;
+    border-bottom: 2px solid #000;
+
+    [class^="icon-fr2-"], 
+    [class*=" icon-fr2-"] {
+      font-size: 32px;
+      margin-left: -38px;
+      top: 7px;
+      position: relative;
+    }
+  }
+}
+
+h4 {
+  &.with-icon {
+    margin-top:0 !important;
+    margin-bottom: 10px;
+    color: #000 !important;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+
+    .icon-fr2 {
+      font-size: 32px;
+      margin-left: -38px;
+      top: 7px;
+      position: relative;
+    }
+
+    &.lowercase {
+      font-size: 17px;
+      text-transform: initial;
+
+      .icon-fr2 {
+        font-size: 28px;
+        margin-left: -34px;
+      }
+    }
+
+    a.more-details {
+      float: right;
+      font-weight: normal;
+      font-size: 13px !important;
+      position: relative;
+      top: 15px;
+      margin-right: 5px;
+    }
+  }
+}
+
+h5 {
+  &.underlined {
+    margin-top: 3px !important;
+    border-bottom: 1px solid #000;
+  }
+}

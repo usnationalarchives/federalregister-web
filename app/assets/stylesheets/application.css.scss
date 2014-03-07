@@ -9,8 +9,9 @@
 
 
 /* this needs to be in every wrapper file that needs the mixins */
-@import "library";
 @import "mixins";
+@import "library";
+
 
 /* override old, clashing fr2 styles */
 @import "officialness_override";

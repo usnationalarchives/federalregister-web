@@ -1,0 +1,261 @@
+#pi-metadata-bar {
+  display: none;
+  margin-top: -20px;
+}
+
+.bootstrap-scope .embedded_search.search_bar {
+  width: 100%;
+  padding-left: 50px;
+
+  input#conditions_term {
+    width: 520px;
+    height: 34px;
+    padding: 6px 12px;
+
+    @include border-radius(0);
+    @include rounded-left(4);
+    border-right: 0;
+  }
+
+  input#conditions_submit {
+    background: none;
+    border: 1px solid #CCC;
+    border-left: none;
+    @include rounded-right(4);
+
+    height: 34px;
+    width: 42px;
+    padding: 0;
+
+    /* for reference: background png/svg is $fr-gray-50 */
+    &:hover {
+      background-color: $fr-gray-15;
+    }
+  }
+
+  #doc-type-filter {
+    width: 562px;
+    height: 45px;
+    left: 0;
+
+    ul {
+      overflow: hidden;
+      width: 140px;
+      right: 6px;
+      position: absolute;
+    }
+
+    li {
+      width: 35px;
+      height: 35px;
+
+      &:hover,
+      &.hover,
+      &.on {
+        .icon-fr2 { color: $fr-blue; }
+      }
+
+      .icon-fr2 {
+        font-size: 23px;
+        left: -1px;
+        top: 4px;
+      }
+    }
+  }
+}
+
+.mdrnzr-svg .bootstrap-scope .embedded_search.search_bar {
+  input#conditions_submit {
+    background-image: image-url('embedded_search/search.svg');
+    background-position: 5px 0;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+  }
+}
+
+.mdrnzr-no-svg .bootstrap-scope .embedded_search.search_bar {
+  input#conditions_submit {
+    background-image: image-url('embedded_search/search.png');
+    width: image-width('embedded_search/search.png');
+    height: image-height('embedded_search/search.png');
+  }
+}
+
+
+.nav-home-carousel {
+  @include border-radius(3);
+  background-color: $fr-gray-5;
+
+  ul {
+    margin: 0;
+    padding-right: 0 !important;
+
+    &.nav {
+      width: 20%;
+      float: left;
+      border-right: 2px solid $fr-gray-10;
+
+      li {
+        &:hover,
+        &.hover,
+        &.selected {
+          color: $white;
+          background-color: $fr-nav-orange;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  li {
+    position: relative;
+    color: #999;
+    padding: 15px 0px 15px 55px;
+    font-weight: bold;
+    list-style-type: none;
+    font-size: 16px;
+    line-height: 19px;
+
+    span {
+      position: absolute !important;
+      left: 14px;
+      font-size: 30px;
+      vertical-align: middle;
+      margin-top: -6px;
+
+      &.icon-fr2-Lab,
+      &.icon-fr2-Factory,
+      &.icon-fr2-Medicine {
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .nav-content {
+    float: left;
+    width: 80%;
+    height: 10px;
+    display: none;
+
+    &.selected { display: block; }
+
+    .carousel-indicators {
+      display: table;
+      margin: 0 auto;
+      margin-top: 10px;
+
+      li {
+        @include border-radius(20px);
+        @include square(12px);
+        padding: 0;
+        background-color: $fr-gray-20;
+        display: inline-block;
+        float: left;
+        margin: 0 4px;
+        cursor: pointer;
+
+        &.active { background: $fr-nav-orange; }
+      }
+    }
+
+    .carousel-item {
+      padding: 15px 14px 0 35px;
+
+      img {
+        @include border-radius(10px);
+        width: 382px;
+        height: 200;
+      }
+
+      p {
+        margin-top: 8px;
+        font-size: 14px;
+        margin-top: 8px;
+        line-height: 17px;
+      }
+    }
+
+    .carousel-list {
+      padding-top: 10px;
+      width: 36.666667%;
+
+      i.icon-fr2-Chat { color: $color-enhanced; }
+    }
+  }
+}
+
+.home-search-embedded {
+  padding: 10px 10px 10px 30px;
+  margin-bottom: 0;
+}
+
+.home-aid-box {
+  p.blog {
+    line-height: 20px;
+
+    .icon-fr2-quote {
+      float: left;
+      font-size: 40px;
+      margin-left: -34px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.pres-doc-preview {
+  h4.with-icon .icon-fr2-stars { margin-left: -44px; }
+
+  .fr-list span {
+    display: block;
+
+    &.fr-doc-title {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    &.fr-doc-date {
+      margin-bottom: 7px;
+      color: $fr-gray-30;
+      font-size: 12px;
+      line-height: 13px;
+    }
+  }
+
+  table.fr-table.fr-monthly-overview {
+    float: left;
+    font-size: 14px;
+    margin-bottom: 0;
+
+    &.alpha {
+      width: 130px;
+      margin-right: 10px;
+    }
+
+    th {
+      padding-left: 0;
+      border-bottom: 2px solid;
+    }
+
+    tr {
+      padding: 0;
+
+      &:hover { background-color: inherit; }
+
+      td {
+        padding: 0 0 0 5px;
+        height: 16px;
+        color: $fr-link;
+        border: none;
+
+        &.count {
+          padding: 0;
+          margin: 0;
+          width: 16px;
+          text-align: right;
+        }
+
+        a { padding: 0; }
+      }
+    }
+  }
+}

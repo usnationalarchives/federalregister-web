@@ -8,6 +8,40 @@ $(document).ready(function(){
   $('.doc_uncategorized.add_tipsy').tipsy( {gravity: 'e', fallback: "Uncategorized Document", delayIn: 100, fade: true, offset: 0});
   $('.doc_correct.add_tipsy').tipsy( {gravity: 'e', fallback: "Correction",               delayIn: 100, fade: true, offset: 0});
 
+  /* home page - officialness */
+  /* popular documents */
+  $('.fr-list .rule_type.with-tooltip-e').tipsy({
+    gravity: 'e',
+    delayIn: 100,
+    fade: true,
+    offset: 4,
+    title: function() { return $(this).data('tooltip');}
+  });
+  $('.fr-list .rule_type.with-tooltip-s').tipsy({
+    gravity: 's',
+    delayIn: 100,
+    fade: true,
+    offset: 4,
+    title: function() { return $(this).data('tooltip');}
+  });
+
+  $('.fr-list .fr-link-stats li.with-tooltip').tipsy({
+    gravity: 'e',
+    delayIn: 100,
+    fade: true,
+    offset: 4,
+    title: function() { return $(this).data('tooltip');}
+  });
+
+  /* browse agencies/topics */
+  $('.fr-table .with-tooltip-s').tipsy({
+    gravity: 's',
+    delayIn: 100,
+    fade: true,
+    offset: 4,
+    title: function() { return $(this).data('tooltip');}
+  });
+
   /* checkbox drawers */
   $('#clippings li div.add_to_folder_pane').tipsy( {gravity: 'e', fallback: "Select clipping(s) and modify using menus above", fade: true, offset: -15});
   
