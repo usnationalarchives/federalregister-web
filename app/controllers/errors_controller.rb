@@ -23,6 +23,7 @@ class ErrorsController < ApplicationController
       respond_to do |format|
         format.html { render template: "errors/#{status_code}", status: status_code }
         format.all { render text: text, status: status_code }
+      end
     end
   end
 end
