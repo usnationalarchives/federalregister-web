@@ -2,7 +2,7 @@ MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
 
   #
-  # Document routes
+  # Document
   #
 
   get 'documents/:year/:month/:day',
@@ -41,6 +41,31 @@ MyFr2::Application.routes.draw do
         type: /(official|public-inspection|reader-aids)/
       }
 
+  #
+  # Public Inspection
+  #
+  get 'public-inspection',
+      to: 'public_inspection_documents#public_inspection',
+      as: :public_inspection
+
+  get 'public-inspection/current',
+      to: 'public_inspection_documents#current',
+      as: :current_public_inspection_documents
+
+  get 'public-inspection/:year/:month/:day',
+      to: 'public_inspection_documents#index',
+      as: :public_inspection_documents,
+      constraints: {
+        year: /\d{4}/,
+        month: /\d{1,2}/,
+        day: /\d{1,2}/
+      }
+
+  #
+  # Home
+  #
+  root to: 'special#home'
+
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
@@ -60,7 +85,8 @@ MyFr2::Application.routes.draw do
     match 'special/navigation' => 'special#navigation'
     match 'status' => 'special#status'
 
-    root :to => "clippings#index"
+    root :to => "clippings#index",
+         :as => :my_root
 
     resources :clippings do
       collection do
