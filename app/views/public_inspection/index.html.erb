@@ -1,0 +1,27 @@
+<% header_type 'public-inspection' %>
+
+<div class="title public-inspection">
+  <span>03/03/2014 Public Inspection</span>
+</div>
+
+<%= render partial: 'public_inspection/metadata_summary_bar', locals: {documents: @documents} %>
+
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+<div class="wrapper">
+  <div class="container fixed">
+    <div class="clearfix"></div>
+
+    <div class="row doc doc-public-inspection">
+      <%= render partial: 'public_inspection/table_of_contents', locals: {documents: @documents} %>
+      <%= render partial: 'public_inspection/table_of_contents_sidebar', locals: {documents: @documents} %>
+    </div>
+
+    <div class="clearfix" style="height: 100px;"></div>
+  </div>
+</div>
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->
