@@ -1,6 +1,6 @@
 module FrBoxHelper
 
-  def fr_box(title, type, options, &block)
+  def fr_box(title, type, options={}, &block)
     box_options = options.fetch(:box_html) { Hash.new }
     header_options = options.fetch(:header) { Hash.new }
 
@@ -74,6 +74,8 @@ module FrBoxHelper
       "fr-box-public-inspection"
     when :public_inspection_doc_details
       "fr-box-public-inspection-alt"
+    when :reader_aid
+      "fr-box-reader-aid"
     when :disabled
       "fr-box-unavailable"
     end
@@ -91,6 +93,8 @@ module FrBoxHelper
       "This box contains an unpublished Public Inspection document. Click #{link_to 'here', public_inspection_learn_path} to learn more about Public Inspection documents."
     when :public_inspection_doc_details
       "Metadata about the Public Inspection document that appears to the left of this box."
+    when :reader_aid
+      "This box contains content that is intended to help the user better use FederalRegister.gov and to better understand the ecosystem that surrounds the federal rulemaking process. This box does not contian official Federal Register content and should be used accordingly."
     end
   end
 
