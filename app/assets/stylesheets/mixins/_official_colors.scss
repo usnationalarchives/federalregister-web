@@ -8,6 +8,8 @@ $color-official-light-alt:          #e5f1f8;
 $color-enhanced:                    #A8BF82;
 $color-enhanced-mid:                #c8d8b2;
 $color-enhanced-light:              #e3ecda;
+/* use only for green text on light green bg -- eg hover states */
+$color-enhanced-dark: darken($color-enhanced, 20);
 
 $color-public-inspection:           #8a3737;
 $color-public-inspection-light:     #fbf2f5;

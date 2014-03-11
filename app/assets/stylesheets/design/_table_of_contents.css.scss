@@ -2,7 +2,7 @@
 .bootstrap-scope {
   #date_chooser {
     position: relative;
-    left: -10px;
+    left: 10px;
 
     .calendar {
       th.monthName { text-align: center; }
@@ -13,6 +13,35 @@
 
   .content-block {
     padding-right: 30px !important;
+  }
+}
+
+.fr-subscribe {
+  background-color: $color-enhanced-light;
+  border-top: 1px solid $color-enhanced;
+  border-bottom: 1px solid $color-enhanced;
+  padding: 6px 13px 3px;
+
+  a {
+    color: $text;
+    text-decoration: none;
+
+    &.subscription:hover {
+      background: none;
+      color: $color-enhanced-dark;
+      text-decoration: none;
+    }
+
+    .icon-fr2 {
+      font-size: 16px;
+      top: 1px;
+
+      &.icon-fr2-message {
+        font-size: 20px;
+        top: 3px;
+        position: relative;
+      }
+    }
   }
 }
 
