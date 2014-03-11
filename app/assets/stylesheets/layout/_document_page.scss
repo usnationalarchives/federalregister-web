@@ -35,9 +35,12 @@
   }
 
   .doc-content {
-    margin-left: 53px;
     z-index: 1;
-    width: 744px;
+
+    &.with-utility-nav {
+      margin-left: 53px;
+      width: 744px;
+    }
 
     .fr-seal-block.fr-seal-block-header { z-index: 500; }
 

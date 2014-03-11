@@ -13,6 +13,14 @@
   font-weight: bold;
 }
 
+/* used by info box as well */
+%pi_notice {
+  font-style: italic;
+  font-size: 12px;
+
+  position:absolute;
+  bottom: 0;
+}
 .fr-box-public-inspection #fulltext_content_area {
   position: relative;
   height: 350px;
@@ -24,11 +32,5 @@
     padding-right: 5px;
   }
 
-  p.pi_notice {
-    font-style: italic;
-    font-size: 12px;
-
-    position:absolute;
-    bottom: 0;
-  }
+  p.pi_notice { @extend %pi_notice; }
 }

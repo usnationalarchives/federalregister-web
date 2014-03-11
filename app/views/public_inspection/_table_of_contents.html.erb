@@ -1,24 +1,10 @@
-<div class="col-md-9 doc-content">
-  <div class="row">
-    <div class="info_box">
-      <p>
-        The following documents are on file at the Office of the Federal Register (OFR) 
-        and will be published in the Federal Register on the dates listed. Regular Filing 
-        documents are routinely placed on file at 8:45 a.m. Eastern Time, for publication 
-        in the next day’s Federal Register. Special Filing documents are filed at other 
-        times and/or dates prior to publication. See 
-        <a href="/learn/public-inspection-desk">About Public Inspection</a> for more 
-        information.
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
-      <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
-
-      <%= render partial: 'public_inspection/table_of_contents_documents', locals: {type: 'special'} %>
-      <%= render partial: 'public_inspection/table_of_contents_documents', locals: {type: 'regular'} %>
-    <% end %>
-  </div>
+<div class="col-md-9 doc-content doc-toc">
+  <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+    <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+    <%= render partial: 'public_inspection/table_of_contents_documents', locals: {type: 'special'} %>
+  <% end %>
+  <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+    <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+    <%= render partial: 'public_inspection/table_of_contents_documents', locals: {type: 'regular'} %>
+  <% end %>
 </div>

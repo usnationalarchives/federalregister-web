@@ -1,0 +1,29 @@
+.info-box {
+  padding: 10px;
+  border-top: 4px solid $color-reader-aid;
+  overflow: hidden;
+  margin-left: 15px;
+  margin-right: 15px;
+
+  .col-md-1 { padding-left: 0; }
+  .col-md-11 {
+    position: relative;
+    height: 435px;
+  }
+
+  .icon-fr2-info_circle {
+    font-size: 64px;
+    color: $color-reader-aid;
+  }
+
+  p {
+    padding-bottom: 0;
+    line-height: 18px;
+
+    &.pi_notice {
+      @extend %pi_notice;
+
+      font-size: 15px !important;
+    }
+  }
+}

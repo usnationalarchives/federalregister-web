@@ -17,7 +17,7 @@
     @include fr-metadata-bar-header($fr-green, $color-enhanced-light);
 
     .fr-head-meta-label i { color: $color-enhanced-light; }
-    .fr-head-meta-counts li { line-height: 50px; }
+    .fr-head-meta-counts ul.inline-list li { line-height: 50px; }
   }
 
   &.fr-head-metadata-bar-public-inspection {
@@ -86,6 +86,30 @@
 
     ul { padding: 0; }
 
+    ul.fr-list.fr-list-inline {
+      clear: both;
+
+      div { float: none; }
+
+      h5 {
+        float: left;
+        width: 102px;
+        margin-right: 10px;
+        margin-top: 5px;
+      }
+
+      .public-inspection-list-stats {
+        float: left;
+        width: 200px;
+        margin-top: 5px;
+      }
+
+      .block-content {
+        float: left;
+        padding-bottom: 5px;
+      }
+    }
+
     li {
       float: left;
       list-style-type: none;
@@ -107,6 +131,7 @@
           &.public-inspection { color: $color-public-inspection; }
         }
       }
+
     }
 
     h5 {
