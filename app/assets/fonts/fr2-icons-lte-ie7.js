@@ -67,6 +67,7 @@ var fr_icons = {
 		'icon-fr2-clipboard': '&#xe60c;',
 		'icon-fr2-quote': '&#xe627;',
 		'icon-fr2-help': '&#xe628;',
+		'icon-fr2-info_circle': '&#xe629;',
 		'0': 0
 		};
 
