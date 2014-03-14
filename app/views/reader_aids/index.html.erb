@@ -1,0 +1,41 @@
+<% header_type 'reader-aids' %>
+
+<div class="title reader-aids">
+  <span>Reader Aids</span>
+</div>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="col-md-12 top-level">
+      <%= render partial: 'search_box' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 top-level">
+      <%= fr_box "Reader Aids", :reader_aid do %>
+        <p>
+          Use these helpful, unofficial learning articles, tutorials and videos
+          increase your understanding of the Federal Register ecosystem and
+          improve your FederalRegister.gov skills.
+        </p>
+
+        <%= render partial: 'index_nav' %>
+
+        <div class="row">
+          <div class="col-md-8 alpha">
+            <%= render partial: 'blog_highlights' %>
+            <%= render partial: 'using_federal_register_dot_gov' %>
+            <%= render partial: 'understanding_federal_register' %>
+          </div>
+
+          <div class="col-md-4 omega">
+            <%= render partial: 'recent_site_updates' %>
+            <%= render partial: 'videos_and_tutorials' %>
+            <%= render partial: 'developer_tools' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

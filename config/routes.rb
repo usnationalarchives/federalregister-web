@@ -62,6 +62,13 @@ MyFr2::Application.routes.draw do
       }
 
   #
+  # Reader Aids
+  #
+  get 'reader-aids',
+      to: 'reader_aids#index',
+      as: :reader_aids
+
+  #
   # Home
   #
   root to: 'special#home'

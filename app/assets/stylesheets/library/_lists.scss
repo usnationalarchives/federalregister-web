@@ -1,19 +1,28 @@
+@mixin square_bullets($color) {
+  content: "\25A0";
+  color: $color;
+  padding-right: 7px;
+  top: -2px;
+  position: relative;
+}
+
 .fr-list {
   font-size: 14px;
   list-style-type: none;
+  overflow: hidden;
 
   &.with-bullets {
     dd, li {
       list-style-type: none;
       text-indent: -19px;
       padding-left: 19px;
+    }
 
-      &:before {
-        content: "\25A0";
-        color: $color-public-inspection-light-alt;
-        padding-right: 7px;
-        top: -2px;
-        position: relative;
+    &.reader-aids {
+      dd, li {
+        &:before {
+          @include square_bullets($color-reader-aid);
+        }
       }
     }
   }

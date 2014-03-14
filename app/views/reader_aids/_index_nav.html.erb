@@ -1,0 +1,21 @@
+<div class="row reader-aids-index-nav">
+  <div class="col-md-2">
+    <h4>On This Page</h4>
+  </div>
+
+  <div class="col-md-10">
+    <ul class="fr-list with-bullets reader-aids">
+      <% items = [
+        'Office of the Federal Register Blog',
+        'Using FederalRegister.gov',
+        'Videos & Tutorials',
+        'Recent Site Updates',
+        'Understanding the Federal Register',
+        'Developer Tools',
+      ] %>
+      <% items.each do |item| %>
+        <li><%= link_to item, '' %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
