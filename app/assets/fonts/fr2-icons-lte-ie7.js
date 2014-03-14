@@ -37,9 +37,9 @@ var fr_icons = {
 		'icon-fr2-pi_subscription': '&#xe003;',
 		'icon-fr2-message_open': '&#xe004;',
 		'icon-fr2-message': '&#xe015;',
-		'icon-fr2-rss': '&#xe017;',
 		'icon-fr2-pc': '&#xe019;',
 		'icon-fr2-document_open': '&#xe018;',
+		'icon-fr2-rss': '&#xe017;',
 		'icon-fr2-stop-hand': '&#xe624;',
 		'icon-fr2-facebook': '&#xe623;',
 		'icon-fr2-link': '&#xe622;',
@@ -68,6 +68,9 @@ var fr_icons = {
 		'icon-fr2-quote': '&#xe627;',
 		'icon-fr2-help': '&#xe628;',
 		'icon-fr2-info_circle': '&#xe629;',
+		'icon-fr2-tools': '&#xe62a;',
+		'icon-fr2-movie': '&#xe62b;',
+		'icon-fr2-lightbulb-active': '&#xe62c;',
 		'0': 0
 		};
 
