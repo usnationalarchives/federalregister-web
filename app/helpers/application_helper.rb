@@ -33,4 +33,8 @@ module ApplicationHelper
       content_tag(:span, url, class: "clippy")
     end
   end
+
+  def add_nara_background_seal?(header_type)
+    header_type == 'official'
+  end
 end
