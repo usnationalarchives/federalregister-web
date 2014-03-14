@@ -6,13 +6,13 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
-    <div class="col-md-12 top-level">
+    <div class="col-xs-12 col-md-12 top-level">
       <%= render partial: 'search_box' %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-12 top-level">
+    <div class="col-xs-12 col-md-12 top-level">
       <%= fr_box "Reader Aids", :reader_aid do %>
         <p>
           Use these helpful, unofficial learning articles, tutorials and videos
@@ -23,13 +23,13 @@
         <%= render partial: 'index_nav' %>
 
         <div class="row">
-          <div class="col-md-8 alpha">
+          <div class="col-xs-8 col-md-8 alpha">
             <%= render partial: 'blog_highlights' %>
             <%= render partial: 'using_federal_register_dot_gov' %>
             <%= render partial: 'understanding_federal_register' %>
           </div>
 
-          <div class="col-md-4 omega">
+          <div class="col-xs-4 col-md-4 omega">
             <%= render partial: 'recent_site_updates' %>
             <%= render partial: 'videos_and_tutorials' %>
             <%= render partial: 'developer_tools' %>
