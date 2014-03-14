@@ -6,8 +6,8 @@ h3 {
   &.with-icon {
     margin-top:0 !important;
     margin-bottom: 10px;
-    color: #000 !important;
-    border-bottom: 2px solid #000;
+    color: $text !important;
+    border-bottom: 2px solid $text;
 
     [class^="icon-fr2-"], 
     [class*=" icon-fr2-"] {
@@ -23,9 +23,9 @@ h4 {
   &.with-icon {
     margin-top:0 !important;
     margin-bottom: 10px;
-    color: #000 !important;
+    color: $text !important;
     text-transform: uppercase;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid $text;
 
     .icon-fr2 {
       font-size: 32px;
@@ -58,6 +58,6 @@ h4 {
 h5 {
   &.underlined {
     margin-top: 3px !important;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $text;
   }
 }

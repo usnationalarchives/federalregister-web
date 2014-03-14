@@ -19,6 +19,7 @@
 
   input#conditions_submit {
     background: none;
+    background-color: $fr-gray-5;
     border: 1px solid #CCC;
     border-left: none;
     @include rounded-right(4);
