@@ -4,7 +4,7 @@
   line-height: .9;
   font-size: 2.2em;
   font-weight: 700;
-  height: 21px;
+  height: 25px;
   letter-spacing: 0px;
   margin-bottom: 1em;
 
@@ -20,15 +20,18 @@
     padding: 0 10px;
     margin: 0 25px 0 0;
 
-    top: -3px;
+    top: -1px;
     position: relative;
   }
 }
 
 div.title {
-  @include title_bar($fr-blue, "blue_header_bg.png");
+  @include title_bar($color-official, "blue_title_bar.png");
 
   &.public-inspection {
-    @include title_bar($fr-red, "red_header_bg.png");
+    @include title_bar($color-public-inspection, "red_title_bar.png");
+  }
+  &.reader-aids {
+    @include title_bar($color-reader-aid, "purple_title_bar.png");
   }
 }
