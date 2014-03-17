@@ -3,18 +3,21 @@ module FrBoxHelper
   def fr_box(title, type, options={}, &block)
     box_options = options.fetch(:box_html) { Hash.new }
     header_options = options.fetch(:header) { Hash.new }
+    content_block_options = options.fetch(:content_block_html) { Hash.new }
 
     content_tag(:div, class: "fr-box #{css_class_by_type(type)} #{box_options[:class]}", role: box_options[:role]) do
       fr_box_header(title, type, default_header_options.merge!(header_options)) +
-        content_tag(:div, capture(&block), class: "content-block") +
+        content_tag(:div, capture(&block), class: "content-block #{content_block_options[:class]}") +
         fr_box_footer(title, type)
     end
   end
 
-  def fr_box_small(title, type, &block)
+  def fr_box_small(title, type, options={}, &block)
+    content_block_options = options.fetch(:content_block_html) { Hash.new }
+
     content_tag(:div, class: "fr-box fr-box-small #{css_class_by_type(type)}") do
       fr_box_header(title, type, default_header_options) +
-        content_tag(:div, capture(&block), class: "content-block") +
+        content_tag(:div, capture(&block), class: "content-block #{content_block_options[:class]}") +
         fr_box_footer(title, type)
     end
   end

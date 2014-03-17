@@ -86,14 +86,16 @@
 .nav-home-carousel {
   @include border-radius(3);
   background-color: $fr-gray-5;
+  overflow: hidden;
+  height: 373px;
+
+  .nav-wrapper { padding-left: 0; }
 
   ul {
     margin: 0;
     padding-right: 0 !important;
 
     &.nav {
-      width: 20%;
-      float: left;
       border-right: 2px solid $fr-gray-10;
 
       li {
@@ -111,7 +113,7 @@
   li {
     position: relative;
     color: #999;
-    padding: 15px 0px 15px 55px;
+    padding: 20px 0px 20px 55px;
     font-weight: bold;
     list-style-type: none;
     font-size: 16px;
@@ -124,21 +126,16 @@
       vertical-align: middle;
       margin-top: -6px;
 
-      &.icon-fr2-Lab,
-      &.icon-fr2-Factory,
-      &.icon-fr2-Medicine {
-        margin-top: 3px;
-      }
+      &.icon-fr2-Medicine { margin-top: 3px; }
     }
   }
 
   .nav-content {
-    float: left;
-    width: 80%;
-    height: 10px;
     display: none;
 
     &.selected { display: block; }
+
+    .carousel-wrapper { padding: 15px 29px 0 20px; }
 
     .carousel-indicators {
       display: table;
@@ -160,12 +157,10 @@
     }
 
     .carousel-item {
-      padding: 15px 14px 0 35px;
-
       img {
-        @include border-radius(10px);
-        width: 382px;
-        height: 200;
+        @include border-radius(10);
+        width: 375px;
+        height: 200px;
       }
 
       p {
@@ -177,11 +172,20 @@
     }
 
     .carousel-list {
-      padding-top: 10px;
-      width: 36.666667%;
+      h4.with-icon.lowercase .icon-fr2 {
+        margin-left: -36px;
+        margin-right: 3px;
+      }
 
       i.icon-fr2-Chat { color: $color-enhanced; }
     }
+  }
+}
+
+.bootstrap-scope {
+  .nav-content .row .section.carousel-list {
+    margin-top: 5px;
+    padding-left: 31px;
   }
 }
 
@@ -197,14 +201,18 @@
     .icon-fr2-quote {
       float: left;
       font-size: 40px;
-      margin-left: -34px;
+      margin-left: -39px;
       margin-right: 5px;
+      top: -4px;
     }
   }
 }
 
 .pres-doc-preview {
-  h4.with-icon .icon-fr2-stars { margin-left: -44px; }
+  h4.with-icon .icon-fr2-stars {
+    margin-left: -44px;
+    margin-right: 0px;
+  }
 
   .fr-list span {
     display: block;

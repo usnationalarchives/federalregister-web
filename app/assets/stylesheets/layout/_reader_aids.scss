@@ -1,26 +1,9 @@
 .bootstrap-scope {
   .fr-box.fr-box-reader-aid {
-    .content-block {
-      padding-left: 20px;
-      padding-right: 20px !important;
-    }
-
     p { line-height: 20px; }
 
     .row {
-      [class^="col-"] {
-        &.alpha {
-          padding-left: 0;
-
-          .section { padding-left: 40px; }
-        }
-
-        &.omega { padding-right: 0; }
-      }
-
       .section {
-        padding-left: 20px;
-
         h4 { font-size: 20px; }
         h5 {
           font-size: 16px;
@@ -43,24 +26,26 @@
       }
     }
   }
-}
 
-.reader-aids-index-nav {
-  padding: 10px 10px 0 10px;
-  background-color: $color-reader-aid-med;
+  .reader-aids-index-nav {
+    padding: 10px 10px 0 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: $color-reader-aid-med;
 
-  h4 {
-    text-align: right;
-    margin-top: 2px;
-    font-size: 16px;
-  }
+    h4 {
+      text-align: right;
+      margin-top: 2px;
+      font-size: 16px;
+    }
 
-  ul {
-    overflow: hidden;
+    ul {
+      overflow: hidden;
 
-    li {
-      float: left;
-      width: 33%;
+      li {
+        float: left;
+        width: 33%;
+      }
     }
   }
 }

@@ -6,14 +6,14 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
-    <div class="col-xs-12 col-md-12 top-level">
+    <div class="col-xs-12 col-md-12">
       <%= render partial: 'search_box' %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-md-12 top-level">
-      <%= fr_box "Reader Aids", :reader_aid do %>
+    <div class="col-xs-12 col-md-12">
+      <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
         <p>
           Use these helpful, unofficial learning articles, tutorials and videos
           increase your understanding of the Federal Register ecosystem and
@@ -23,13 +23,13 @@
         <%= render partial: 'index_nav' %>
 
         <div class="row">
-          <div class="col-xs-8 col-md-8 alpha">
+          <div class="col-xs-8 col-md-8 section">
             <%= render partial: 'blog_highlights' %>
             <%= render partial: 'using_federal_register_dot_gov' %>
             <%= render partial: 'understanding_federal_register' %>
           </div>
 
-          <div class="col-xs-4 col-md-4 omega">
+          <div class="col-xs-4 col-md-4 section">
             <%= render partial: 'recent_site_updates' %>
             <%= render partial: 'videos_and_tutorials' %>
             <%= render partial: 'developer_tools' %>

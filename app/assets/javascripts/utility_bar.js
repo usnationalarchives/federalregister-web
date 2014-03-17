@@ -153,4 +153,8 @@ $(document).ready(function() {
                       }
                      );
   }
+
+  if( $('.doc-nav-wrapper').length > 0 ) {
+    $('.doc-nav-wrapper').outerHeight( $('.doc-nav-wrapper').siblings('.fr-box').first().height() + 'px' );
+  }
 });

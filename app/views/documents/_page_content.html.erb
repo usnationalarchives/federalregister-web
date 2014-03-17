@@ -1,7 +1,7 @@
 <div class="col-md-9 doc-content with-utility-bar">
-  <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
-
   <div class="row">
+    <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
+
     <%= fr_box "Official Document", :official, header: {seal: true} do %>
       <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
 
