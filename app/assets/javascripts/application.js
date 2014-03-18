@@ -1,5 +1,5 @@
 //= require jquery_ujs
-//= require modernizr.custom.svg.js
+//= require modernizr.custom.js
 //= require bootstrap/dropdown
 //= require jquery.clippy.min
 //= require_self

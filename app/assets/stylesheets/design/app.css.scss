@@ -5,7 +5,6 @@
   z-index: -1;
   width: 442px;
   height: 442px;
-  opacity: 0.08;
 }
 
 .mdrnzr-svg body > .nara-background-seal {
@@ -17,7 +16,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-
+}
+.mdrnzr-svg.mdrnzr-cssgradients body > .nara-background-seal {
   .nara-background-seal-fade {
     height: 351px;
     width: 442px;
