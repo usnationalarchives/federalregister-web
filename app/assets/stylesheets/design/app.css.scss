@@ -1,13 +1,13 @@
 @mixin background_seal {
   position: absolute;
-  top: -75px;
-  right: 0;
+  top: -125px;
+  left: 750px;
   z-index: -1;
   width: 442px;
   height: 442px;
 }
 
-.mdrnzr-svg body > .nara-background-seal {
+.mdrnzr-svg body .nara-background-seal {
   @include background_seal;
 
   background-image: image-url('header/Nara1985Seal.svg');
@@ -17,7 +17,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-.mdrnzr-svg.mdrnzr-cssgradients body > .nara-background-seal {
+.mdrnzr-svg.mdrnzr-cssgradients body .nara-background-seal {
   .nara-background-seal-fade {
     height: 351px;
     width: 442px;
@@ -32,7 +32,7 @@
     background-repeat: repeat-x;
   }
 }
-.mdrnzr-no-svg body > .nara-background-seal {
+.mdrnzr-no-svg body .nara-background-seal {
   @include background_seal;
 
   width: 450px;

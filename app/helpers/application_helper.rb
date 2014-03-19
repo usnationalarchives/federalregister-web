@@ -37,8 +37,4 @@ module ApplicationHelper
   def bootstrap_context_wrapper(&block)
     render partial: 'special/helpers/bootstrap_context_wrapper', locals: {content: capture(&block)}
   end
-
-  def add_nara_background_seal?(header_type)
-    header_type == 'official'
-  end
 end

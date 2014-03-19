@@ -15,11 +15,6 @@
 
     <esi:include src="/layout/header?header_type=<%= header_type %>" />
 
-    <%= render  partial: 'layouts/nara_background_seal',
-                locals: {
-                  header_type: yield(:header_type).present? ? yield(:header_type) : 'official'
-                }%>
-
     <div id="main">
       <%= yield %>
     </div>
