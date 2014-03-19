@@ -76,7 +76,7 @@
 
 .mdrnzr-no-svg .bootstrap-scope .embedded_search.search_bar {
   input#conditions_submit {
-    background-image: image-url('embedded_search/search.png');
+    background: image-url('embedded_search/search.png') no-repeat 0 0;
     width: image-width('embedded_search/search.png');
     height: image-height('embedded_search/search.png');
   }
