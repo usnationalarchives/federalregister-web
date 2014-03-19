@@ -88,6 +88,7 @@
 
     ul.fr-list.fr-list-inline {
       clear: both;
+      margin-bottom: 0;
 
       div { float: none; }
 
@@ -119,17 +120,6 @@
       &.right {
         float:right;
         font-weight: bold;
-
-        .icon-fr2 {
-          height: 17px;
-          width: 17px;
-          position: relative;
-          top: -1px;
-          font-size: 17px;
-          vertical-align: middle;
-
-          &.public-inspection { color: $color-public-inspection; }
-        }
       }
 
     }
@@ -147,7 +137,23 @@
       padding: 10px 0;
     }
 
-    a.public-inspection-toggle { color: $fr-red; }
+    a.public-inspection-toggle {
+      text-decoration: none !important;
+      color: $fr-gray-70;
+
+      &:hover { color: $color-public-inspection; }
+
+      span.link-text { text-decoration: underline; }
+
+      .icon-fr2 {
+        height: 17px;
+        width: 17px;
+        position: relative;
+        top: -1px;
+        font-size: 17px;
+        vertical-align: middle;
+      }
+    }
 
   }
 
