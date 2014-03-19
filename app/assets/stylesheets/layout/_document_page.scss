@@ -1,3 +1,11 @@
+/* cheating by directly overriding fr2 style
+   this should be moved to myfr2 entirely at some point */
+#metadata_content_area {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 960px;
+}
+
 .wrapper .row.doc { margin-bottom: 100px !important; }
 
 %doc-background {
@@ -67,7 +75,7 @@
   .doc-aside {
     position: absolute;
     top:30px;
-    right: 0;
+    right: 10px;
     z-index: 2;
     width: 248px;
 
