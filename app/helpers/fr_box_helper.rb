@@ -87,17 +87,17 @@ module FrBoxHelper
   def description_by_type(type)
     case type
     when :official
-      "This box contains the official Federal Register document as published by the Office of the Federal Register."
+      "This is the official document as published in the <em>Federal Register</em>."
     when :official_doc_details
-      "Metadata about the official Federal Register document that appears to the left of this box."
+      "Information about this document as published in the <em>Federal Register</em>."
     when :reg_gov_docket_info
-      "This box contains content about this document retrieved from Regulations.gov in order to provide you with more context for this document. The content in this box has not been published in the Federal Register and is only provided for your convenience."
+      "Relevant information about this document from Regulations.gov provides additional context. This information is not part of the official <em>Federal Register</em> document."
     when :public_inspection
-      "This box contains an unpublished Public Inspection document. Click #{link_to 'here', public_inspection_learn_path} to learn more about Public Inspection documents."
+      "Public Inspection documents are unpublished documents. Click #{link_to 'here', public_inspection_learn_path} to learn more about Public Inspection."
     when :public_inspection_doc_details
-      "Metadata about the Public Inspection document that appears to the left of this box."
+      "Additional information about this Public Inspection document."
     when :reader_aid
-      "This box contains content that is intended to help the user better use FederalRegister.gov and to better understand the ecosystem that surrounds the federal rulemaking process. This box does not contian official Federal Register content and should be used accordingly."
+      "Reader Aids help people use FederalRegister.gov and understand the federal rulemaking process. Reader Aids information is not published in the <em>Federal Register</em>."
     end
   end
 

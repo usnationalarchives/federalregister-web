@@ -141,7 +141,8 @@
       text-decoration: none !important;
       color: $fr-gray-70;
 
-      &:hover { color: $color-public-inspection; }
+      &:hover,
+      &.hover { color: $color-public-inspection; }
 
       span.link-text { text-decoration: underline; }
 
