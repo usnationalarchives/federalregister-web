@@ -10,7 +10,7 @@ class RegulationsDotGov::Client
   cattr_accessor :api_key
 
   debug_output $stderr
-  base_uri 'http://api.data.gov/regulations/v2/'
+  base_uri 'http://api.data.gov/regulations/beta/'
   default_timeout 20
 
   DOCKET_PATH  = '/docket.json'
@@ -49,7 +49,7 @@ class RegulationsDotGov::Client
 
   def find_docket(docket_id)
     begin
-      response = self.class.get(docket_endpoint, :query => {:D => docket_id})
+      response = self.class.get(docket_endpoint, :query => {:docketId => docket_id})
       RegulationsDotGov::Docket.new(self, response.parsed_response)
     rescue ResponseError
     end
@@ -61,7 +61,7 @@ class RegulationsDotGov::Client
 
       results = response.parsed_response['documents']
       if results.present?
-        results.map{|raw_document| RegulationsDotGov::Document.new(self, raw_document)}
+        results.map{|raw_document| RegulationsDotGov::SearchDocument.new(self, raw_document)}
       else
         []
       end
@@ -138,6 +138,7 @@ class RegulationsDotGov::Client
 
   def self.get(url, options)
     options[:query].merge!(:api_key => api_key)
+    options[:headers] = {"Accept" => "application/json; charset=UTF-8"}
 
     begin
       response = super

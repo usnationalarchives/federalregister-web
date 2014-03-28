@@ -9,53 +9,82 @@ describe RegulationsDotGov::Document do
 
   describe "#title" do
     it "returns the document title" do
-      document_title = "Notice of Request"
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'title' => document_title}))
+      document_title = {
+        "label" => "Document Title",
+        "value" => "Airworthiness Directives: Beechcraft Corporation Airplanes"
+      }
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'title' => document_title}))
 
-      expect( document.title ).to eq(document_title)
+      expect( document.title ).to eq(document_title["value"])
     end
   end
 
   describe "#docket_id" do
     it "returns the docket id" do
-      docket_id = "EPA-HQ-SFUND-1999-0013"
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'docketId' => docket_id}))
+      docket_id = {
+        "label" => "Docket ID",
+        "value" => "FAA-2013-0611"
+      }
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'docketId' => docket_id}))
 
-      expect( document.docket_id ).to eq(docket_id)
+      expect( document.docket_id ).to eq(docket_id["value"])
     end
   end
 
   describe "#document_id" do
     it "returns the document id" do
-      document_id = "EPA-HQ-SFUND-1999-0013-0084"
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'documentId' => document_id}))
+      document_id = {
+        "label" => "Document ID",
+        "value" => "FAA-2013-0611-0005"
+      }
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'documentId' => document_id}))
 
-      expect( document.document_id ).to eq(document_id)
+      expect( document.document_id ).to eq(document_id["value"])
     end
   end
 
   describe "#url" do
     it "returns the document url on regulations.gov" do
-      document_id = "EPA-HQ-SFUND-1999-0013-0084"
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'documentId' => document_id}))
+      document_id = {
+        "label" => "Document ID",
+        "value" => "FAA-2013-0611-0005"
+      }
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'documentId' => document_id}))
 
-      expect( document.url ).to eq("http://www.regulations.gov/#!documentDetail;D=#{document_id}")
+      expect( document.url ).to eq("http://www.regulations.gov/#!documentDetail;D=#{document_id['value']}")
     end
   end
 
   describe "#comment_url" do
-    let(:document_id) { "EPA-HQ-SFUND-1999-0013-0084" }
+    let(:document_id) {
+      Hash.new(
+        "label" => "Document ID",
+        "value" => "FAA-2013-0611-0005"
+      )
+    }
 
     it "returns the comment url to regulations.gov when comments are open for the document" do
       comments_open = true
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'documentId' => document_id, 'canComment' => comments_open}))
+      document = RegulationsDotGov::Document.new( client,
+                                                  track_response_keys(
+                                                    {'documentId' => document_id,
+                                                    'openForComment' => comments_open}
+                                                  ))
 
-      expect( document.comment_url ).to eq("http://www.regulations.gov/#!submitComment;D=#{document_id}")
+      expect( document.comment_url ).to eq("http://www.regulations.gov/#!submitComment;D=#{document_id['value']}")
     end
 
     it "returns nil when comments are not open for the document" do
       comments_open = false
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'documentId' => document_id, 'canComment' => comments_open}))
+      document = RegulationsDotGov::Document.new( client,
+                                                  track_response_keys(
+                                                    {'documentId' => document_id,
+                                                    'openForComment' => comments_open}
+                                                  ))
 
       expect( document.comment_url ).to eq(nil)
     end
@@ -63,14 +92,17 @@ describe RegulationsDotGov::Document do
 
   describe "#comment_due_date" do
     it "returns the comment due date as a DateTime when present" do
-      comment_due_date = "November 21 2013, at 11:59 PM Eastern Standard Time"
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'commentEndDate' => comment_due_date}))
+      comment_due_date = "2014-04-02T23:59:59-04:00"
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'commentDueDate' => comment_due_date}))
 
       expect( document.comment_due_date ).to eq( DateTime.parse(comment_due_date) )
     end
 
     it "returns nil when the comment due date is not present" do
-      document = RegulationsDotGov::Document.new(client, {})
+      comment_due_date = nil
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'commentDueDate' => comment_due_date}))
 
       expect( document.comment_due_date ).to eq(nil)
     end
@@ -78,19 +110,28 @@ describe RegulationsDotGov::Document do
 
   describe "#comment_count" do
     it "returns the number of comments received for a document" do
-      comment_count = 20
-      document = RegulationsDotGov::Document.new(client, track_response_keys({'numberOfCommentReceived' => comment_count}))
+      number_of_items_recieved = {
+        "label" => "Number of Comments Received",
+        "value" => "20"
+      }
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'numItemsRecieved' => number_of_items_recieved}))
 
-      expect( document.comment_count ).to eq(comment_count)
+      expect( document.comment_count ).to eq(number_of_items_recieved['value'].to_i)
     end
   end
 
   describe "#federal_register_document_number" do
     it "returns the federal register document number for a document" do
-      document_number = '2014-01832'
+      document_number = {
+        "label" => "Federal Register Number",
+        "value" => "2014-01832"
+      }
 
-      document = RegulationsDotGov::Document.new(client, {'frNumber' => document_number})
-      expect( document.federal_register_document_number ).to eq(document_number)
+      document = RegulationsDotGov::Document.new(client,
+                                                 track_response_keys({'federalRegisterNumber' => document_number}))
+
+      expect( document.federal_register_document_number ).to eq(document_number['value'])
     end
   end
 
@@ -98,17 +139,16 @@ describe RegulationsDotGov::Document do
     let(:client) { RegulationsDotGov::Client.new() }
 
     before (:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v2/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
     end
 
     after(:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v2/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
     end
 
     it "ensures all keys used in tests above actually exist in the api response", :vcr do
-      keyword = 'ITC-2013-0207-0001'
-      documents = client.find_documents(:s => keyword)
-      document = documents.first
+      document_number = '2014-01832'
+      document = client.find_by_document_number(document_number)
 
       document_keys = document.raw_attributes.keys
       $response_keys.each do |key|
@@ -119,23 +159,79 @@ describe RegulationsDotGov::Document do
 end
 
 #{
-#  "documentId"=>"ITC-2013-0207-0001",
-#  "documentType"=>"NOTICES",
-#  "title"=> "Antidumping and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.: Steel Wire Garment Hangers from China; Five-Year Review",
-#  "documentStatus"=>"Posted",
-#  "agencyId"=>"ITC",
-#  "docketId"=>"ITC-2013-0207",
-#  "docketTitle"=> "Antidumping and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.: Steel Wire Garment Hangers from China; Five-Year Review",
-#  "postedDate"=>"2013-09-03T00:00:00.000+0000",
-#  "commentEndDate"=>"2013-11-18T00:00:00.000+0000",
-#  "commentStartDate"=>"2013-09-03T00:00:00.000+0000",
-#  "fileFormats"=>
-#   ["https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=pdf",
-#    "https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=html"],
-#  "acceptComment"=>false,
-#  "canComment"=>false,
-#  "fromParticipatingAgency"=>false,
-#  "attachmentCount"=>0,
-#  "docketType"=>"RULEMAKING",
-#  "numberOfCommentReceived"=>0
+#"allowLateComment":false,
+#"commentDueDate":null,
+#"commentStartDate":"2014-01-31T00:00:00-05:00",
+#"fileFormats":[
+#   "https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=pdf",
+#   "https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=html"],
+# "openForComment":false,
+# "postedDate":"2014-01-31T00:00:00-05:00",
+# "receivedDate":"2014-01-31T00:00:00-05:00",
+# "status":"Posted",
+# "topics":["Air Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],
+# "docketTitle":{
+#   "label":"Docket Title",
+#   "value":"2013-CE-019-AD"
+# },
+# "pageCount":{
+#   "label":"Page Count",
+#   "value":"3"
+# },
+# "docketType":{
+#   "label":"Docket Type",
+#   "value":"Rulemaking"
+# },
+# "documentType":{
+#   "label":"Document Type",
+#   "value":"Rule"
+# },
+# "docSubType":{
+#   "label":"Document SubType",
+#   "value":"Final Rule"
+# },
+# "federalRegisterNumber":{
+#   "label":"Federal Register Number",
+#   "value":"2014-01832"
+# },
+# "attachmentCount":{
+#   "label":"Attachment Count",
+#   "value":"0"
+# },
+# "agencyName":{
+#   "label":"Agency Name",
+#   "value":"Federal Aviation Administration"
+# },
+# "rin":{
+#   "label":"RIN",
+#   "value":"Not Assigned"
+# },
+# "title":{
+#   "label":"Document Title",
+#   "value":"Airworthiness Directives: Beechcraft Corporation Airplanes"
+# },
+# "startEndPage":{
+#   "label":"Start End Page",
+#   "value":"5254 - 5256"
+# },
+# "docketId":{
+#   "label":"Docket ID",
+#   "value":"FAA-2013-0611"
+# },
+# "documentId":{
+#   "label":"Document ID",
+#   "value":"FAA-2013-0611-0005"
+# },
+# "numItemsRecieved":{
+#   "label":"Number of Comments Received",
+#   "value":"0"
+# },
+# "cfrPart":{
+#   "label":"CFR Part",
+#   "value":"14 CFR Part 39"
+# },
+# "agencyAcronym":{
+#   "label":"Agency",
+#   "value":"FAA"
+# }
 #}

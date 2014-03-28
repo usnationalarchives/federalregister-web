@@ -54,7 +54,7 @@ describe RegulationsDotGov::Docket do
   end
 
   describe "#supporting_documents" do
-    let(:docket_id) { docket_id = "APHIS-2013-0071" }
+    let(:docket_id) { "EPA-HQ-SFUND-2005-0011" }
     let(:docket)    { RegulationsDotGov::Docket.new(client,
                                                     track_response_keys({'docketId' => docket_id})) }
 
@@ -107,11 +107,11 @@ describe RegulationsDotGov::Docket do
     let(:client) { RegulationsDotGov::Client.new() }
 
     before (:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v2/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
     end
 
     after(:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v2/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
     end
 
     it "ensures all keys used in tests above actually exist in the api response", :vcr do
