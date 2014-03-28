@@ -2,34 +2,36 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/docket.json?D=CFPB_FRDOC_0001&api_key=DEMO_KEY
+    uri: http://api.data.gov/regulations/beta/docket.json?docketId=CFPB_FRDOC_0001&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 200
       message: OK
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Thu, 31 Oct 2013 18:24:25 GMT
+      - Thu, 27 Mar 2014 23:16:29 GMT
       server:
-      - nginx/1.4.2
+      - nginx/1.4.4
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '998'
-      content-length:
-      - '428'
+      - '931'
+      transfer-encoding:
+      - chunked
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"title":"Recently Posted CFPB Rules and Notices.","docketId":"CFPB_FRDOC_0001","agency":"Consumer
-        Financial Protection Bureau","agencyAcronym":"CFPB","rin":"","parentAgency":"","parentAgencyAcronym":"","type":"Rulemaking","docketAbstract":"","docketMetadata":[{"Type":"Rulemaking"}],"cfrCitation":"","priority":"","docketType":"","impactsAndEffects":"","rplanEntry":"","numberOfComments":4,"relatedRins":[],"relatedDockets":[]}'
+      string: ! '{"agency":"Consumer Financial Protection Bureau","agencyAcronym":"CFPB","docketId":"CFPB_FRDOC_0001","numberOfComments":22,"rin":"Not
+        Assigned","title":"Recently Posted CFPB Rules and Notices.","type":"Rulemaking","type":{"label":"Type","value":"Rulemaking"}}'
     http_version: '1.1'
-  recorded_at: Thu, 31 Oct 2013 18:24:25 GMT
+  recorded_at: Thu, 27 Mar 2014 23:16:30 GMT
 recorded_with: VCR 2.6.0

@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/regulations/beta/documents.json?dktid=EPA-HQ-SFUND-2005-0011&dct=SR&so=DESC&sb=docId&api_key=DEMO_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Fri, 28 Mar 2014 20:22:35 GMT
+      server:
+      - nginx/1.4.4
+      set-cookie:
+      - JSESSIONID=LXPaWfH+9Oqvb3GG5EHho3BX; Path=/
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '987'
+      transfer-encoding:
+      - chunked
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"documents":[{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0030","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-11-08T00:00:00-05:00","rin":"Not
+        Assigned","title":"Deletion Docket Index"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0029","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-11-08T00:00:00-05:00","rin":"Not
+        Assigned","title":"FCOR"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0028","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-11-08T00:00:00-05:00","rin":"Not
+        Assigned","title":"Letter to Franklin E. Hill, Director, Superfund Division,
+        USEPA, from Catherine B. Templeton, Director, Department of Health and Environmental
+        Control, South Carolina Department of Health and Environmental Control (DHEC)"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0025","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"FR RCRA Deferrel Policy"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0024","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"SF RCRA Letter"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0023","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"Site Aerial Map"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0022","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"Site Map"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0021","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"Administrative Order"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0020","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"State Concurrence Letter"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0019","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-13T00:00:00-04:00","rin":"Not
+        Assigned","title":"RCRA letter"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0016","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2012-08-20T00:00:00-04:00","rin":"Not
+        Assigned","title":"Superfund Final Close-Out Report: W.R. Grace & Company/Wayne
+        Interim Storage Site, NJ"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0015","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2012-08-20T00:00:00-04:00","rin":"Not
+        Assigned","title":"Letter to Walter Mugdan, USEPA, Region II from Dave Sweeney,
+        Assistant Commissioner, Site Remediation Program, State of New Jersey Department
+        of Environmental Protection,  re: Deletion of W.R. Grace & Company/Wayne Interim
+        Storage Site, Superfund Site NJ"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0012","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2009-08-11T00:00:00-04:00","rin":"Not
+        Assigned","title":"Delilah Road: Bibliography for the Local and Regional Dockets"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0011","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2009-08-11T00:00:00-04:00","rin":"Not
+        Assigned","title":"Superfund Final Close Out Report: Delilah Road Landfill
+        Site, Egg Harbor Township, Atlantic County, New Jersey"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0010","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2009-08-11T00:00:00-04:00","rin":"Not
+        Assigned","title":"Letter to Walter E. Mugdan, Director, USEPA, Region 2 from
+        Irene Kropp, Assistant Commissioner, Site Remediation Program, New Jersey
+        Department of Environmental Protection, re: Deletion of Delilah Road Superfund
+        Site"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0007","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2008-05-08T00:00:00-04:00","rin":"Not
+        Assigned","title":"Responsiveness Summary: Tabernacle Drum Dump Superfund
+        Site, Deletion from the National Priorities List"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0005","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2007-09-24T00:00:00-04:00","rin":"Not
+        Assigned","title":"Tabernacle Drum Dump - Bibliography"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0004","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2007-09-24T00:00:00-04:00","rin":"Not
+        Assigned","title":"Final Close Out Report for the Tabernacle Drum Dump Site,
+        Burlington County, New Jersey"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0003","documentStatus":"Posted","documentType":"Supporting
+        & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2007-09-24T00:00:00-04:00","rin":"Not
+        Assigned","title":"Letter to George Pavlou, Director, Emergency and Remedial
+        Response Division, USEPA, Region II from Irene Kropp, Assistant Commissioner,
+        Site Remediation and Waste Management, New Jersey Department of Environmental
+        Protection"}],"totalNumRecords":19}'
+    http_version: '1.1'
+  recorded_at: Fri, 28 Mar 2014 20:22:39 GMT
+recorded_with: VCR 2.6.0

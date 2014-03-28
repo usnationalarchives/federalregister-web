@@ -2,69 +2,80 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/document.json?federalRegisterNumber=2014-1832&api_key=DEMO_KEY
+    uri: http://api.data.gov/regulations/beta/document.json?federalRegisterNumber=2014-1832&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 404
       message: Not Found
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Wed, 05 Feb 2014 22:47:29 GMT
+      - Thu, 27 Mar 2014 23:16:31 GMT
       server:
       - nginx/1.4.4
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '992'
-      content-length:
-      - '71'
+      - '927'
+      transfer-encoding:
+      - chunked
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"status":404,"code":404,"message":"No document found by id 2014-1832"}'
+      string: ! '{"code":404,"message":"No document found by id 2014-1832","status":404}'
     http_version: '1.1'
-  recorded_at: Wed, 05 Feb 2014 22:47:34 GMT
+  recorded_at: Thu, 27 Mar 2014 23:16:31 GMT
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
+    uri: http://api.data.gov/regulations/beta/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 200
       message: OK
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Wed, 05 Feb 2014 22:47:29 GMT
+      - Thu, 27 Mar 2014 23:16:31 GMT
       server:
       - nginx/1.4.4
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '991'
-      content-length:
-      - '881'
+      - '926'
+      transfer-encoding:
+      - chunked
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"topics":["Air Transportation","Aircraft","Aviation Safety","Incorporation
-        by Reference","Safety"],"numCommentsReceived":0,"frNumber":"2014-01832","pageCount":3,"rin":"Not
-        Assigned","receivedDate":"2014-01-31T00:00:00.000-05:00","cfr":"14 CFR Part
-        39","startEndPage":"5254 - 5256","status":"Posted","title":"Airworthiness
-        Directives: Beechcraft Corporation Airplanes","docketId":"FAA_FRDOC_0001","documentId":"FAA_FRDOC_0001-9732","agencyAcronym":"FAA","docketType":"RULEMAKING","documentType":"RULES","commentStartDate":"2014-01-31T00:00:00.000-05:00","agencyName":"Federal
-        Aviation Administration","attachmentCount":0,"openForComment":false,"commentDueDate":null,"fileFormats":["https://api.data.gov/TEST/regulations/v2/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v2/download?documentId=FAA_FRDOC_0001-9732&contentType=html"]}'
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=pdf","https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
+        Title","value":"2013-CE-019-AD"},"pageCount":{"label":"Page Count","value":"3"},"docketType":{"label":"Docket
+        Type","value":"Rulemaking"},"documentType":{"label":"Document Type","value":"Rule"},"docSubType":{"label":"Document
+        SubType","value":"Final Rule"},"federalRegisterNumber":{"label":"Federal Register
+        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
+        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
+        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
+        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
+        - 5256"},"docketId":{"label":"Docket ID","value":"FAA-2013-0611"},"documentId":{"label":"Document
+        ID","value":"FAA-2013-0611-0005"},"numItemsRecieved":{"label":"Number of Comments
+        Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14 CFR Part
+        39"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
     http_version: '1.1'
-  recorded_at: Wed, 05 Feb 2014 22:47:35 GMT
+  recorded_at: Thu, 27 Mar 2014 23:16:31 GMT
 recorded_with: VCR 2.6.0

@@ -2,39 +2,47 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/documents.json?s=ITC-2013-0207-0001&api_key=DEMO_KEY
+    uri: http://api.data.gov/regulations/beta/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 200
       message: OK
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Wed, 05 Feb 2014 20:25:43 GMT
+      - Fri, 28 Mar 2014 00:00:05 GMT
       server:
       - nginx/1.4.4
-      set-cookie:
-      - JSESSIONID=89erfrO5bY+OMcJMw-W6EVl4; path=/
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '999'
-      content-length:
-      - '1061'
+      - '948'
+      transfer-encoding:
+      - chunked
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"totalNumRecords":1,"wdm":"DocumentId","documents":[{"documentId":"ITC-2013-0207-0001","documentType":"NOTICES","title":"Antidumping
-        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
-        Steel Wire Garment Hangers from China; Five-Year Review","documentStatus":"Posted","agencyId":"ITC","docketId":"ITC-2013-0207","docketTitle":"Antidumping
-        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
-        Steel Wire Garment Hangers from China; Five-Year Review","postedDate":"2013-09-03T00:00:00.000+0000","commentEndDate":"2013-11-18T00:00:00.000+0000","commentStartDate":"2013-09-03T00:00:00.000+0000","fileFormats":["https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=pdf","https://api.data.gov/TEST/regulations/api/contentStreamer?objectId=090000648103902b&disposition=attachment&contentType=html"],"acceptComment":false,"canComment":false,"fromParticipatingAgency":false,"attachmentCount":0,"docketType":"RULEMAKING","numberOfCommentReceived":0}]}'
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=pdf","https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
+        Title","value":"2013-CE-019-AD"},"pageCount":{"label":"Page Count","value":"3"},"docketType":{"label":"Docket
+        Type","value":"Rulemaking"},"documentType":{"label":"Document Type","value":"Rule"},"docSubType":{"label":"Document
+        SubType","value":"Final Rule"},"federalRegisterNumber":{"label":"Federal Register
+        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
+        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
+        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
+        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
+        - 5256"},"docketId":{"label":"Docket ID","value":"FAA-2013-0611"},"documentId":{"label":"Document
+        ID","value":"FAA-2013-0611-0005"},"numItemsRecieved":{"label":"Number of Comments
+        Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14 CFR Part
+        39"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
     http_version: '1.1'
-  recorded_at: Wed, 05 Feb 2014 20:25:48 GMT
+  recorded_at: Fri, 28 Mar 2014 00:00:05 GMT
 recorded_with: VCR 2.6.0
