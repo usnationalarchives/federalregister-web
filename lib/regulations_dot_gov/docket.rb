@@ -28,4 +28,9 @@ class RegulationsDotGov::Docket < RegulationsDotGov::GenericDocument
   def comments_count
     @client.count_documents(:dktid => docket_id, :dct => 'PS')
   end
+
+  # backwards compatibility
+  def metadata
+    {}
+  end
 end

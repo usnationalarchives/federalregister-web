@@ -9,7 +9,10 @@ class RegulationsDotGov::Client
 
   cattr_accessor :api_key
 
-  debug_output $stderr
+  if Rails.env.development? || Rails.env.test?
+    debug_output $stderr
+  end
+
   base_uri 'http://api.data.gov/regulations/beta/'
   default_timeout 20
 
@@ -149,7 +152,7 @@ class RegulationsDotGov::Client
       when 404
         raise RecordNotFound.new(response)
       when 500
-        raise ServerError.new(response.parsed_response['error']['message'])
+        raise ServerError.new(response.parsed_response['message'])
       else
         raise ResponseError.new(response)
       end
