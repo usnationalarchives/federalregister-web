@@ -23,6 +23,9 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fr2-globe:before {
+	content: "\e62f";
+}
 .icon-fr2-delete:before {
 	content: "\e62d";
 }
@@ -116,6 +119,9 @@
 .icon-fr2-bookmark:before {
 	content: "\e615";
 }
+.icon-fr2-nav_male_female_user:before {
+	content: "\e00e";
+}
 .icon-fr2-document_subscription:before {
 	content: "\e016";
 }
@@ -202,9 +208,6 @@
 }
 .icon-fr2-trash_can:before {
 	content: "\e006";
-}
-.icon-fr2-nav_male_female_user:before {
-	content: "\e00e";
 }
 .icon-fr2-badge_check_mark:before {
 	content: "\e00f";

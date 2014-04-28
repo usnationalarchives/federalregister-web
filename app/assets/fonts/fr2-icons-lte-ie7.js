@@ -1,5 +1,6 @@
 /* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
 var fr_icons = {
+		'icon-fr2-globe': '&#xe62f;',
 		'icon-fr2-delete': '&#xe62d;',
 		'icon-fr2-tools': '&#xe62a;',
 		'icon-fr2-movie': '&#xe62b;',
@@ -31,6 +32,7 @@ var fr_icons = {
 		'icon-fr2-map': '&#xe612;',
 		'icon-fr2-bulleted-list': '&#xe614;',
 		'icon-fr2-bookmark': '&#xe615;',
+		'icon-fr2-nav_male_female_user': '&#xe00e;',
 		'icon-fr2-document_subscription': '&#xe016;',
 		'icon-fr2-add': '&#xe62e;',
 		'icon-fr2-Search': '&#xe625;',
@@ -60,7 +62,6 @@ var fr_icons = {
 		'icon-fr2-uncategorized': '&#xe00c;',
 		'icon-fr2-menu_arrow': '&#xe00d;',
 		'icon-fr2-trash_can': '&#xe006;',
-		'icon-fr2-nav_male_female_user': '&#xe00e;',
 		'icon-fr2-badge_check_mark': '&#xe00f;',
 		'icon-fr2-badge_forward_arrow': '&#xe010;',
 		'icon-fr2-badge_plus': '&#xe011;',
