@@ -31,7 +31,19 @@ var commentFormStorage = {
   },
 
   serializeForm: function() {
-    return this.form.find(':input[name!=authenticity_token]').serialize();
+    var form_inputs = this.form.find(':input'),
+        active_inputs;
+
+    form_inputs = form_inputs
+                    .filter(':input[name!=authenticity_token]')
+                    .filter(':input[name!=utf8]')
+                    .filter(':input[name!="comment[confirm_submission]"]');
+
+    active_inputs = _.filter(form_inputs, function(input) {
+      return $(input).val() !== "";
+    });
+
+    return $(active_inputs).serialize();
   },
 
   storeComment: function() {
