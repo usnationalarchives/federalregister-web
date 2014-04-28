@@ -4,7 +4,7 @@ module RegulationsDotGov
   describe CommentForm::Option do
     let(:client) { double(:client) }
     let(:agency_acronym) { 'ITC' }
-    let(:attributes) { {'label' => 'Alabama', 'value' => 'AL'} }
+    let(:attributes) { {'default' => true, 'label' => 'Alabama', 'value' => 'AL'} }
     let(:comment_form_option) { RegulationsDotGov::CommentForm::Option.new(client, attributes) }
 
     describe "#value" do
@@ -20,12 +20,15 @@ module RegulationsDotGov
     end
 
     describe "#default?" do
-      it "returns true if the option is the default"
+      it "returns true if the option is the default" do
+        expect( comment_form_option.option.default? ).to eq( attributes['default'] )
+      end
     end
   end
 end
 
 #{
-#  "label": "Alabama",
-#  "value":"AL"
+#"default":true,
+#"label":"Alabama",
+#"value":"AL"
 #}

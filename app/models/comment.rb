@@ -4,12 +4,16 @@ class Comment < ApplicationModel
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
 
+  AGENCY_POSTING_GUIDELINES_LEXICON = {
+    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#furinf\'>FOR FURTHER INFORMATION CONTACT</a>",
+    'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
+  }
   before_create :send_to_regulations_dot_gov
   before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
-  attr_accessor :secret
+  attr_accessor :secret, :confirm_submission
   attr_reader :attachments, :comment_form
 
   validate :required_fields_are_present
@@ -17,6 +21,10 @@ class Comment < ApplicationModel
   validate :not_too_many_attachments
   validate :attachments_are_uniquely_named
   validate :all_attachments_could_be_found
+
+  validates_inclusion_of :confirm_submission,
+    :in => [true, 1, "1"],
+    :message => "confirmation required"
 
   validates_presence_of :document_number
 
@@ -71,7 +79,8 @@ class Comment < ApplicationModel
         File.open(attachment.decrypt_to(dir))
       end
 
-      self.comment_tracking_number = comment_form.client.submit_comment(args)
+      response = comment_form.client.submit_comment(args)
+      self.comment_tracking_number = response.tracking_number
 
       # TODO: srm dir
     end
@@ -93,7 +102,7 @@ class Comment < ApplicationModel
 
     @comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name)}
 
-    self.encrypted_comment_data = encrypt(@comment_data.to_json) 
+    self.encrypted_comment_data = encrypt(@comment_data.to_json)
   end
 
   def attachments_are_uniquely_named
@@ -124,7 +133,7 @@ class Comment < ApplicationModel
 
   def fields_do_not_exceed_maximum_length
     comment_form.text_fields.each do |field|
-      if field.max_length && @attributes[field.name].length > field.max_length
+      if @attributes[field.name].present? && field.max_length && @attributes[field.name].length > field.max_length
         errors.add(field.name, "cannot exceed #{field.max_length} characters")
       end
     end

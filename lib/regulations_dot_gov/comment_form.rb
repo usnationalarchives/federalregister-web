@@ -7,19 +7,16 @@ class RegulationsDotGov::CommentForm
     @client = client
     @attributes = attributes
     @document_attributes = attributes['document']
+    @field_list = attributes['fieldList']
   end
 
   def allow_attachments?
-    raise 'not implemented in v2 api!'
-    attributes["showAttachment"] == true
+    # attachments are now always allowed
+    true
   end
 
   def alternative_ways_to_comment
     document_attributes["alternateWaysToComment"]
-  end
-
-  def submit_by
-    DateTime.parse( document_attributes["commentEndDate"] )
   end
 
   def posting_guidelines

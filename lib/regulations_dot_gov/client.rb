@@ -13,7 +13,7 @@ class RegulationsDotGov::Client
     debug_output $stderr
   end
 
-  base_uri 'http://api.data.gov/regulations/beta/'
+  base_uri 'http://api.data.gov/TEST/regulations/v3/'
   default_timeout 20
 
   DOCKET_PATH  = '/docket.json'
@@ -27,7 +27,7 @@ class RegulationsDotGov::Client
   end
 
   def initialize
-    raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key
+    raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
 
   def docket_endpoint
@@ -97,8 +97,8 @@ class RegulationsDotGov::Client
   end
 
   def submit_comment(fields)
-    response = self.class.post("/submitcomment/v1.json?api_key=#{@post_api_key}", :body => fields)
-    response.body.sub(/Comment tracking number: /,'')
+    response = self.class.post(comment_endpoint, :body => fields)
+    RegulationsDotGov::CommentFormResponse.new(self, response)
   end
 
   def count_documents(args)
@@ -164,11 +164,15 @@ class RegulationsDotGov::Client
   end
 
   def self.post(url, options)
+    #query = options.fetch(:query){ Hash.new }
+    #options[:query] = query.merge!(:api_key => api_key)
+    url = url + "?api_key=#{api_key}"
+
     begin
       response = super
 
       case response.code
-      when 200
+      when 200, 201
         response
       when 412
         raise InvalidSubmission.new(response.parsed_response['error']['message'])

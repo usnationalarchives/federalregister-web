@@ -15,6 +15,8 @@
     <h2>Next Steps</h2>
 
     <div class="my_fr">
+      <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+
     <% if @current_user %>
       <p>
         <% if @comment.agency_participates_on_regulations_dot_gov? %>
@@ -54,6 +56,7 @@
   
 
     <div class="print">
+      <span class="icon-fr2 icon-fr2-print"></span>
       <p><%= link_to 'Print your comment', '#', 
                      :'data-comment-data' => @comment.comment_data.to_json, 
                      :'data-current-document-details' => {:title  => @comment.article.title,
@@ -62,28 +65,54 @@
                                                           :url    => @comment.article.short_article_url,
                                                           :published => @comment.article.publication_date}.to_json, 
                      :'data-comment-details' => {:tracking_number => @comment.comment_tracking_number,
-                                                 :submission_date => @comment.commented_at}.to_json,
+                                                 :submission_date => Date.today}.to_json,
                      :id => 'print-comment' %> for your records and for any future coorespondence about your
       comment with <%= @comment.agency_name %>.</p>
     </div>
 
     <div class="social_media">
+      <span class="icon-fr2 icon-fr2-sharing"></span>
+
       <p>Public participation is vital to a functioning democracy, get others involved!</p>
       <ul class="media_buttons">
         <li>
           <div class="left">
-            <%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!") %>
+            <%= link_to_twitter(
+              "I just commented on #{@comment.article.short_article_url}."
+            ) %>
           </div>
           <div class="right">
-            <p><%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!", "Create a tweet", false) %>. We'll provide a basic tweet with a link to the article you commented on. You'll be able to customize the message before you tweet.</p>
+            <p>
+              <%= link_to_twitter(
+                "I just commented on #{@comment.article.short_article_url}.",
+                "Create a tweet",
+                false
+              ) %>.
+              We'll provide a basic tweet with a link to the article you
+              commented on. You'll be able to customize the message before
+              you tweet.
+            </p>
           </div>
         </li>
         <li>
           <div class="left">
-            <%= link_to_facebook(@comment.article.short_article_url, @comment.article.title) %>
+            <%= link_to_facebook(
+              @comment.article.short_article_url,
+              @comment.article.title
+            ) %>
           </div>
           <div class="right">
-            <p><%= link_to_facebook(@comment.article.short_article_url, @comment.article.title, "Post to your Facebook wall", false) %>. We'll provide the title of the article you commented on and a link to it. You'll be able to customize your Facebook wall message before it is posted.</p>
+            <p>
+              <%= link_to_facebook(
+                @comment.article.short_article_url,
+                @comment.article.title,
+                "Post to your Facebook wall",
+                false
+              ) %>.
+              We'll provide the title of the article you commented on and a
+              link to it. You'll be able to customize your Facebook wall
+              message before it is posted.
+            </p>
           </div>
         </li>
       </ul>
@@ -91,9 +120,13 @@
 
     <div class="retrieval">
       <p>
-      FederalRegister.gov submits your comment to <a href="http://www.regulations.gov">Regulations.gov</a> and does not store the information provided in your comment. 
-      Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
-      once it has been made public by <%=  @comment.agency_name %>.</p>
+        FederalRegister.gov submits your comment to
+        <a href="http://www.regulations.gov">Regulations.gov</a> and does
+        not store the information provided in your comment.
+        Your comment tracking number can be used to retrieve your comment
+        from <a href="http://www.regulations.gov">Regulations.gov</a>
+        once it has been reviewed made public by <%=  @comment.agency_name %>.
+      </p>
     </div>
 
   </div>

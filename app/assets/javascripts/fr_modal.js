@@ -36,7 +36,7 @@ function display_fr_modal(title, html, el, options) {
 
 $(document).ready(function() {
 
-  $('a.fr_modal').live('click', function (event) {
+  $('#main').on('click', 'a.fr_modal, a.fr_modal_link', function (event) {
       event.preventDefault();
       
       var $link = $(this);
@@ -52,6 +52,10 @@ $(document).ready(function() {
       } else {
         modal_html = $link.data('modal-html');
       }
+
+      $('body').on('click', '#fr_modal a', function(e) {
+        $('#fr_modal').jqmHide();
+      });
 
       display_fr_modal(modal_title, modal_html, $link);
   });

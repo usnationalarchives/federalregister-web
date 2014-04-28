@@ -6,13 +6,14 @@ class CommentDecorator < ApplicationDecorator
 
   def human_error_messages
     if errors.present?
-      "There #{errors.count > 1 ? 'were' : 'was'} #{h.pluralize(errors.count, 'problem')} with your submission. 
-       Please fix them below and submit your comment again."
+      "There #{errors.count > 1 ? 'were' : 'was'}
+       #{h.pluralize(errors.count, 'problem')} with your submission.
+       Please fix #{errors.count > 1 ? 'them' : 'it'} below and re-submit your comment."
     end
   end
 
   def agency_name
-    'the ' + model.agency_name
+    'the ' #+ model.agency_name
   end
 
   def commented_at

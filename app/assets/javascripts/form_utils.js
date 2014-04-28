@@ -1,17 +1,28 @@
 function chars_remaining(input) {
   var $input = $(input),
       $li = $input.closest('li'),
-      max_char = $li.data('max-size');
+      max_chars = $li.data('max-size'),
+      used_chars;
 
-  return max_char - $input.val().length;
+  if( $input.val() !== "" ) {
+    used_chars = $input.val().length;
+  } else {
+    used_chars = 0
+  }
+
+  return max_chars - used_chars;
 }
 
-function add_error(input) {
+function add_char_count_error(input) {
   var  $input = $(input),
        $li = $input.closest('li'),
        warn_threshold = $li.data('size-warn-at');
 
-  return chars_remaining(input) <= warn_threshold;
+  if( $li.hasClass('string') && warn_threshold !== undefined ) {
+    return chars_remaining(input) <= warn_threshold;
+  } else {
+    return false
+  }
 }
 
 function update_character_count(input) {
@@ -21,7 +32,7 @@ function update_character_count(input) {
       remaining = chars_remaining($input),
       text = remaining == 1 ? ' character left' : ' characters left';
 
-  if( add_error($input) ) {
+  if( add_char_count_error($input) ) {
     if( error_field.length === 0 ) {
       $input.after( $('<p>').addClass('inline-errors') );
       error_field = $input.siblings('p.inline-errors').first();
@@ -66,8 +77,8 @@ function validate_field(el) {
   var $el = $(el),
       $input = $el.find('input');
 
-  if( $input !== undefined ) {
-    if( !add_error($input) && $input.val().length > 0 ) {
+  if( $input !== undefined && $input.val() !== undefined ) {
+    if( !add_char_count_error($input) && $input.val().length > 0 ) {
       $el.removeClass('error');
       $el.find('p.inline-errors').text('');
     }

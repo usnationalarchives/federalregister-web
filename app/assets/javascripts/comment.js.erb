@@ -1,5 +1,8 @@
 function add_textarea_expander(field) {
-  $(field).TextAreaExpander(100, 1000);
+  var $field = $(field);
+
+  $field.TextAreaExpander(250, 1000);
+  $field.css('padding-top', '8px');
 }
 
 function form_has_previously_saved_state(document_number) {
@@ -14,6 +17,16 @@ function previously_saved_form_data(document_number) {
 function clear_saved_form_state(document_number) {
   amplify.store(document_number, null);
 }
+
+function add_file_upload_handler() {
+  var add_file_button = $('<div>').addClass('add_file button').text('Add a file').prepend($('<span>').addClass('icon-fr2 icon-fr2-add'));
+  $('#fileupload').after( add_file_button );
+  $('#metadata_content_area').on('click', '.add_file', function() {
+    $('#fileupload').trigger('click');
+  });
+  $('#fileupload').hide();
+}
+
 $(function () {
 
   var comment_form_submission_handler = {
@@ -22,7 +35,7 @@ $(function () {
 
         initialize: function(form) {
           var submission_handler = this;
-          
+
           submission_handler.form = $(form);
           submission_handler.submit_button = submission_handler.form.find('.commit.button');
 
@@ -35,7 +48,7 @@ $(function () {
         },
 
         style_submit_button_on_submit: function() {
-          this.submit_button.addClass('disabled');
+          this.submit_button.addClass('submitting');
           this.submit_button.find('input').disable().attr('value', 'Submitting Comment');
         },
 
@@ -44,7 +57,7 @@ $(function () {
 
           $('.ajax-comment-data').animate({height: '42px'}, 400);
           $('.ajax-comment-data').scrollintoview({duration: 400});
-          comment_form.slideUp(400, function() { 
+          comment_form.slideUp(400, function() {
             comment_form.remove();
 
             var success_page = $('<div>').addClass('comment_wrapper').html(response);
@@ -52,9 +65,10 @@ $(function () {
             $('.ajax-comment-data').append( success_page );
 
             $('.ajax-comment-data').animate({height: success_page.css('height')}, 800);
-            success_page.slideDown(800);            
+            success_page.slideDown(800);
           });
           clear_saved_form_state( $('.comment_form_wrapper').data('comment-document-number') );
+
         },
 
         error: function(response) {
@@ -74,7 +88,7 @@ $(function () {
             data: submission_handler.form.serialize()
           }
           $.extend(settings, options);
-          
+
           $.ajax({
             url: settings.url,
             type: settings.type,
@@ -178,10 +192,18 @@ $(function () {
           form_load_handler.generate_comment_form(response);
 
           form_load_handler.loading_div.fadeOut(600, function() {
-            $('#flash_message.comment p .button').fadeOut(400);
+            var $flash_message = $('#flash_message.comment p');
+            $flash_message.find('.button').fadeOut(400, function() {
+              $flash_message.html(
+                'You are submitting an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
+              );
+            });
+
             $('.ajax-comment-data').css('height', '42px').animate({
               height: form_load_handler.comment_form.css('height')
-            }, 800);
+            }, 800, function() {
+              $('.ajax-comment-data').css('height', 'auto');
+            });
             form_load_handler.comment_form.slideDown(800);
           });
         },
@@ -204,12 +226,17 @@ $(function () {
 
   var commentForm = {
     parseFields: function() {
-      var fields = [];
-      $('#new_comment .inputs > ol > li').each(function(i,elem) {
+      var fields = [],
+          $els = $('#new_comment .inputs > ol > li');
 
-        var list_item = $(elem);
-        var key = list_item.find('label').text().replace('*','');
-        var field = {'label' : key};
+      $els = $els
+          .filter('li:not("#comment_confirmation_text")')
+          .filter('li:not("#comment_confirm_submission_input")');
+
+      $els.each(function(i,elem) {
+        var list_item = $(elem),
+            key = list_item.find('label').text().replace('*',''),
+            field = {'label' : key};
 
         if (list_item.hasClass('combo')) {
           var select = $(list_item.find('select').first());
@@ -227,7 +254,14 @@ $(function () {
           var input = $(list_item.find('select').first());
           field.values = [input.find('option[value="' + input.val() + '"]').first().text()];
         } else if (list_item.hasClass('file')) {
-          field.values = list_item.find('.attachments tr').map(function (i,elem) {return $(elem).data('name')});
+          var attachments = list_item.find('.attachments tr'),
+              attachment_names;
+
+          attachment_names = _.map(attachments, function (el) {
+            return $(el).data('name');
+          });
+
+          field.values = attachment_names.length > 0 ? attachment_names : Array('None attached');
         }
 
         fields.push(field);
@@ -243,8 +277,14 @@ $(function () {
       template(fields);
     };
 
-    $('#metadata_content_area').delegate('.comment_preview', 'click', function(event) {
-      event.preventDefault();
+    /* remove previous events - we're in ajax land so we're binding
+       everything to the metadata_content dom element which persists
+       on the page between form loads and we don't want the old events
+       anymore */
+    $('#metadata_content_area').unbind();
+
+    $('#metadata_content_area').on('click', '.comment_preview', function(e) {
+      e.preventDefault();
 
       var fields = commentForm.parseFields();
       var html   = renderCommentSummary(fields);
@@ -255,7 +295,7 @@ $(function () {
 
       var modal = $(template({"fields":fields}));
       $('body').append(modal);
-      modal.find(".jqmClose").bind('click', function (event) {
+      modal.find(".jqmClose").on('click', function (e) {
         modal.remove();
       });
 
@@ -307,10 +347,17 @@ $(function () {
 
     var commentField = $('#comment_general_comment');
     /* make commentField automatically expand when needed as user types */
-    add_textarea_expander(commentField);
-    
+    //add_textarea_expander(commentField);
+
+    /* remove inline-error when select list changes */
+    $('.formtastic.comment').on('change', 'select', function(e) {
+      var $select = $(this);
+      $select.siblings('.inline-errors').remove();
+      $select.closest('li').removeClass('error');
+    });
+
     var container = $('.attachments tbody');
-    var existing_attachments = $.parseJSON($('.attachments').data("existing"));
+    var existing_attachments = $('.attachments').data("existing");
     var clearoutCommentPlaceholder = function (e, data) {
       if(commentField.val() === attachedCommentMessage && container.children('tr:not(.error)').size() === 0) {
         commentField.val('');
@@ -371,65 +418,85 @@ $(function () {
     $('.formtastic.comment .inputs li').each(function() {
       var $li = $(this);
       if( $li.hasClass('public') ) {
-        $li.find(' > :input').last().after( $('<span>').addClass('public') );
+        $li.find(' > :input').last().after( $('<span>').addClass('public icon-fr2 icon-fr2-globe') );
       }
     });
 
     /* add tipsy for public (world) icon */
-    $('.formtastic.comment .inputs span.public').tipsy( {gravity: 's', fallback: "This field will be publically viewable.", fade: true, offset: 4});
-
-    
-    /* make the file upload button pretty */
-    var add_file_button = $('<div>').addClass('add_file button').text('Add a file');
-    $('#fileupload').after( add_file_button );
-    $('#metadata_content_area').delegate('.add_file', 'click', function() {
-      $('#fileupload').trigger('click');
+    $('.formtastic.comment .inputs span.public').tipsy({
+      gravity: 's',
+      fallback: "Information entered will be viewable on Regulations.gov",
+      fade: true,
+      offset: 4
     });
-    $('#fileupload').hide();
 
+
+    /* make the file upload button pretty */
+    add_file_upload_handler();
 
     /* add events for max characters in a text field */
-    $('#metadata_content_area').delegate('.formtastic.comment li.input[data-max-size]', 'change', function() {
+    $('#metadata_content_area').on('change', '.formtastic.comment li.input[data-max-size]', function() {
       enforce_characters_remaining(this);
     });
-    $('#metadata_content_area').delegate('.formtastic.comment li.input[data-max-size]', 'keyup', function() {
+    $('#metadata_content_area').on('keyup', '.formtastic.comment li.input[data-max-size]', function() {
       enforce_characters_remaining(this);
     });
 
     /* add events to clear validation errors */
-    $('#metadata_content_area').delegate('.formtastic.comment li.error.input', 'keyup', function() {
+    $('#metadata_content_area').on('keyup', '.formtastic.comment li.error.input', function() {
       validate_field(this);
     });
-    $('#metadata_content_area').delegate('.formtastic.comment li.error.input', 'change', function() {
+    $('#metadata_content_area').on('change', '.formtastic.comment li.error.input', function() {
       validate_field(this);
+    });
+
+    /* add event to enable/disable submit button based on confirmation checkbox state */
+    var $submit_button_wrapper = $('.formtastic.comment .button.commit'),
+        $confirmed_checkbox = $('#comment_confirm_submission');
+
+    var set_submit_button_state = function($submit_button_wrapper, confirmed) {
+      if( confirmed ) {
+        $submit_button_wrapper.removeClass('disabled');
+        $submit_button_wrapper.find('input').prop('disabled', false);
+      } else {
+        $submit_button_wrapper.addClass('disabled');
+        $submit_button_wrapper.find('input').prop('disabled', true);
+      }
+    }
+
+    set_submit_button_state($submit_button_wrapper, $confirmed_checkbox.is(':checked'));
+
+    $('#metadata_content_area').on('change', $confirmed_checkbox, function() {
+      set_submit_button_state($submit_button_wrapper, $confirmed_checkbox.is(':checked'));
     });
 
     /* add event to submit form */
-    $('#metadata_content_area').delegate('.formtastic.comment .button.commit:not(.disabled)', 'click', function() {
-      $(this).closest('form').submit();
-    });
-
-    /* handle form submission */
-    $('#metadata_content_area').delegate('.formtastic.comment', 'submit', function(event) {
-      event.preventDefault();
-      var $form = $(this),
+    $('#metadata_content_area').on('click', '.formtastic.comment .button.commit:not(.submitting, .disabled)', function(e) {
+      e.preventDefault();
+      //$(this).closest('form').submit();
+      var $form = $(this).closest('form'),
           handler = comment_form_submission_handler.initialize($form);
 
       handler.submit();
     });
 
+    /* handle form submission */
+    $('#metadata_content_area').on('submit', '.formtastic.comment', function(e) {
+      e.preventDefault();
+    });
+
   };
 
-  $('#metadata_content_area').delegate('a#start_comment[data-comment=1]', 'click', function(event) {
-    event.preventDefault();
+  $('#metadata_content_area').on('click', 'a#start_comment[data-comment=1]', function(e) {
+    e.preventDefault();
     var handler = comment_form_load_handler.initialize();
 
     handler.load();
   });
 
 
-  $('#metadata_content_area').delegate('a#comment-start-over', 'click', function(event) {
-    event.preventDefault();
+  $('#metadata_content_area').on('click', 'a#comment-start-over', function(e) {
+    e.preventDefault();
 
     var document_number = $('.doc_number').text(),
         comment_form = $('.ajax-comment-data');
@@ -437,7 +504,7 @@ $(function () {
     clear_saved_form_state(document_number);
 
     //$('.ajax-comment-data').animate({height: '42px'}, 400);
-    comment_form.slideUp(400, function() { 
+    comment_form.slideUp(400, function() {
       comment_form.remove();
       var handler = comment_form_load_handler.initialize();
 
@@ -445,18 +512,18 @@ $(function () {
     });
   });
 
-  $('#metadata_content_area').delegate('a#print-comment', 'click', function(event) {
-    event.preventDefault();
+  $('#metadata_content_area').on('click', 'a#print-comment', function(e) {
+    e.preventDefault();
 
     var $link = $(this),
 
         modal_title    = 'Print your comment',
         modal_template = $("#comment-print-summary-template"),
         modal_data     = $link.data('comment-data'),
-      
+
         compiled_template = Handlebars.compile( modal_template.html() ),
-        modal_html        = compiled_template(  { fields: modal_data, 
-                                                  document_details: $link.data('current-document-details'), 
+        modal_html        = compiled_template(  { fields: modal_data,
+                                                  document_details: $link.data('current-document-details'),
                                                   comment_details: $link.data('comment-details')
                                                 } );
 
@@ -465,12 +532,12 @@ $(function () {
     $('body').addClass('hide_body_content');
   });
 
-  $('#metadata_content_area').delegate('a#print-comment', 'modalClose', function(event) {
+  $('#metadata_content_area').on('modalClose', 'a#print-comment', function(e) {
     $('body').removeClass('hide_body_content');
   });
 
-  $('body').delegate('#fr_modal .print_button', 'click', function(event) {
-    event.preventDefault();
+  $('body').on('click', '#fr_modal .print_button', function(e) {
+    e.preventDefault();
     window.print();
   });
 

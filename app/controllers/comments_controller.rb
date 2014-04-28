@@ -13,12 +13,15 @@ class CommentsController < ApplicationController
   def index
     @comments = CommentDecorator.decorate(current_user.comments.order('created_at DESC').all)
   end
-  
+
   def new
   end
 
   def reload
-    @comment_reloaded = true
+    # Check to see if there's any other than the current secret
+    # in the comment form store. If not we don't care to show a
+    # 'reloaded' message to the viewer when the form is rendered.
+    @comment_reloaded = params[:comment].except("secret").present?
 
     render :action => :new
   end
@@ -64,6 +67,7 @@ class CommentsController < ApplicationController
 
     if @entry.regulations_dot_gov_url
       document_id = @entry.regulations_dot_gov_url.split(/=/).last
+      document_id = Comment::DOCUMENT_STAND_IN
       @comment_form = client.get_comment_form(document_id)
     else
       raise ActiveRecord::RecordNotFound
