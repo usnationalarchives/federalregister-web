@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/regulations/beta/documents.json?s=ITC-2013-0207-0001&countsOnly=1&api_key=DEMO_KEY
+    uri: http://api.data.gov/TEST/regulations/v3/documents.json?s=ITC-2013-0207-0001&countsOnly=1&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
@@ -17,22 +17,22 @@ http_interactions:
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Thu, 27 Mar 2014 23:16:30 GMT
+      - Wed, 16 Apr 2014 16:32:18 GMT
       server:
-      - nginx/1.4.4
+      - nginx/1.4.7
       set-cookie:
-      - JSESSIONID=iioSekF6O-O8qk6k2FV-lO8X; Path=/
+      - JSESSIONID=xGjCLpUZEEmfloMDJxQAAI6e; path=/
       x-ratelimit-limit:
-      - '1000'
+      - '10000'
       x-ratelimit-remaining:
-      - '929'
-      transfer-encoding:
-      - chunked
+      - '9806'
+      content-length:
+      - '21'
       connection:
       - Close
     body:
       encoding: US-ASCII
       string: ! '{"totalNumRecords":1}'
     http_version: '1.1'
-  recorded_at: Thu, 27 Mar 2014 23:16:30 GMT
+  recorded_at: Wed, 16 Apr 2014 16:32:22 GMT
 recorded_with: VCR 2.6.0

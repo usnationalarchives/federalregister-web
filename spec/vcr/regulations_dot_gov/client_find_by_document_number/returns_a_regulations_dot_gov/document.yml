@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/regulations/beta/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
     body:
       encoding: US-ASCII
       string: ''
@@ -17,32 +17,30 @@ http_interactions:
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Thu, 27 Mar 2014 23:16:31 GMT
+      - Wed, 16 Apr 2014 16:32:19 GMT
       server:
-      - nginx/1.4.4
+      - nginx/1.4.7
       x-ratelimit-limit:
-      - '1000'
+      - '10000'
       x-ratelimit-remaining:
-      - '928'
-      transfer-encoding:
-      - chunked
+      - '9805'
+      content-length:
+      - '1428'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=pdf","https://api.data.gov/regulations/beta/download?documentId=FAA-2013-0611-0005&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
-        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
-        Title","value":"2013-CE-019-AD"},"pageCount":{"label":"Page Count","value":"3"},"docketType":{"label":"Docket
-        Type","value":"Rulemaking"},"documentType":{"label":"Document Type","value":"Rule"},"docSubType":{"label":"Document
-        SubType","value":"Final Rule"},"federalRegisterNumber":{"label":"Federal Register
-        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
-        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
-        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
-        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
-        - 5256"},"docketId":{"label":"Docket ID","value":"FAA-2013-0611"},"documentId":{"label":"Document
-        ID","value":"FAA-2013-0611-0005"},"numItemsRecieved":{"label":"Number of Comments
-        Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14 CFR Part
-        39"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"pageCount":{"label":"Page
+        Count","value":"3"},"docketType":{"label":"Docket Type","value":"Rulemaking"},"documentType":{"label":"Document
+        Type","value":"Rule"},"federalRegisterNumber":{"label":"Federal Register Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment
+        Count","value":"0"},"agencyName":{"label":"Agency Name","value":"Federal Aviation
+        Administration"},"rin":{"label":"RIN","value":"Not Assigned"},"title":{"label":"Document
+        Title","value":"Airworthiness Directives: Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start
+        End Page","value":"5254 - 5256"},"docketId":{"label":"Docket ID","value":"FAA_FRDOC_0001"},"documentId":{"label":"Document
+        ID","value":"FAA_FRDOC_0001-9732"},"agencyAcronym":{"label":"Agency","value":"FAA"},"numItemsRecieved":{"label":"Number
+        of Comments Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14
+        CFR Part 39"}}'
     http_version: '1.1'
-  recorded_at: Thu, 27 Mar 2014 23:16:31 GMT
+  recorded_at: Wed, 16 Apr 2014 16:32:22 GMT
 recorded_with: VCR 2.6.0
