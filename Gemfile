@@ -28,19 +28,20 @@ gem 'compass-rails', "1.0.3"
 gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
 
 gem 'jquery-rails'
+gem 'underscore-rails', '~> 1.6.0'
 
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
 
 gem "capistrano", '2.5.19', :require => false
 gem "thunder_punch", '0.0.14', :require => false
-
+zz
 gem "carrierwave", "0.6.2"
 gem "fog", "~> 1.3.1"
 gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
-
+zz
 gem "httparty", "~> 0.12.0"
 gem "httmultiparty"
 
