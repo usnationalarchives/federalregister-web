@@ -19,3 +19,6 @@
 //= require comment
 //= require comment_notifications
 //= require user_session
+#= require app
+#= require comment_form
+#= require comment_form_handler
