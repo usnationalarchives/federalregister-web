@@ -194,8 +194,9 @@ $(function () {
           form_load_handler.loading_div.fadeOut(600, function() {
             var $flash_message = $('#flash_message.comment p');
             $flash_message.find('.button').fadeOut(400, function() {
+              $flash_message.closest('div').addClass('open');
               $flash_message.html(
-                'You are submitting an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
+                '<div class="byline">You are submitting an official comment to Regulations.gov. <br> Comments are due ' + $('.comment_form_wrapper').data('comment-due') + '.</div> <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
               );
             });
 

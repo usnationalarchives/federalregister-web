@@ -7,11 +7,17 @@
 
 #flash_message.comment {
   z-index: 1000;
+  &.open { height: 60px; }
+
+  p .byline {
+    line-height: 23px;
+    padding-top: 10px;
+  }
 
   img.reg_gov_logo {
     float: right;
     right: 20px;
-    top: 7px;
+    top: -42px;
     position: relative;
   }
 }
