@@ -11,5 +11,5 @@ en:
         active: You will be notified when your comment is made public.
         inactive: You will not notified when your comment is made public.
       followup_document:
-        active: You will be notified when a future article mentions the article you commented on.
-        inactive: You will not be notified when a future article mentions the article you commented on.
+        active: You will be notified when a future document mentions the document you commented on.
+        inactive: You will not be notified when a future document mentions the document you commented on.

@@ -3,7 +3,7 @@ class FoldersController < ApplicationController
   def create
     folder = Folder.new(:name => folder_attributes[:name], :creator_id => current_user.id, :updater_id => current_user.id)
     
-    # document numbers are from the article page
+    # document numbers are from the document page
     document_numbers = folder_attributes[:document_numbers]
 
     # clipping ids are from the clippings/folder pages
@@ -26,7 +26,7 @@ class FoldersController < ApplicationController
     
       folder.reload #ensure our folder object is up-to-date
 
-      # from the article page we need to send back document numbers
+      # from the document page we need to send back document numbers
       # for the clippings pages we need to send back the ids of the clippings
       documents = document_numbers.present? ? folder.document_numbers : clipping_ids
 
