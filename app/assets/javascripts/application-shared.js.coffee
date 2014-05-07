@@ -2,6 +2,8 @@
 //= require underscore
 //= require strftime
 //= require handlebars-1.0.0.rc.3
+#= require app
+
 //= require handlebars_helpers
 //= require storage.js
 //= require analytics.js
@@ -14,11 +16,11 @@
 //= require amplify.store-1.1.0.min.js
 //= require mailcheck.min.js
 //= require fr_modal
-//= require form_utils
+#= require form_utils
 //= require subscription
-//= require comment
 //= require comment_notifications
 //= require user_session
-#= require app
-#= require comment_form
-#= require comment_form_handler
+
+#= require_tree ./components/comments/
+#= require page_specific/comment
+

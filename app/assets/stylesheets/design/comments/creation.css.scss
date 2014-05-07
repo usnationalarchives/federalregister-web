@@ -5,6 +5,10 @@
   position: absolute;
 }
 
+body#entries .form-tooltip {
+  width: 200px;
+}
+
 #flash_message.comment {
   z-index: 1000;
 
@@ -153,7 +157,7 @@
 
   textarea {
     height: auto;
-    width: 573px;
+    width: 634px;
   }
 
   select { width: 380px; }
@@ -266,7 +270,7 @@
     color: #8A3737;
     position: absolute;
     top: 5px;
-    right: 85px;
+    right: 25px;
   }
   p.inline-errors.warning { color: $fr-green; }
 
@@ -296,7 +300,7 @@ div.alternative-comment-modal { margin-left: 0px; }
 
 .formtastic.comment .file {
   span.public {
-    left: 216px;
+    left: 284px;
     top: -4px;
   }
 
@@ -375,7 +379,7 @@ div.alternative-comment-modal { margin-left: 0px; }
 }
 
 table.attachments {
-  width: 579px;
+  width: 638px;
   margin-left: 165px;
 
   tr {
