@@ -92,18 +92,27 @@ class @FR2.CommentFormHandler
     @commentFormEl()
       .find '.inputs span.public'
       .tipsy({
-        gravity: ()->
+        gravity: ->
           $(this).data 'tooltip-gravity'
-        fallback: "Information entered in this field will be publically viewable on Regulations.gov"
+        title: ->
+          tooltip = $(this).siblings('input').data('tooltip')
+          if tooltip?
+            tooltip
+          else
+            "Information entered in this field will be publically viewable on Regulations.gov"
         fade: true
         offset: -8
-        className: 'form-tooltip'
+        className: ->
+          "form-tooltip #{$(this).siblings('input').prop('type')}"
       })
       .mouseenter ()->
         tooltip = $('.tipsy.form-tooltip').first()
 
         if tooltip.hasClass 'tipsy-e'
-          leftPosition = 257
+          if tooltip.hasClass 'file'
+            leftPosition = 250
+          else
+            leftPosition = 257
         else
           leftPosition = 13
 
@@ -177,7 +186,12 @@ class @FR2.CommentFormHandler
     flashMessage
       .find '.button'
       .fadeOut 400, ()->
-        flashMessage.html 'You are submitting an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
+        flashMessage
+          .closest 'div'
+          .addClass 'open'
+
+        flashMessage
+          .html '<div class="byline">You are submitting an official comment to Regulations.gov. <br> Comments are due ' + $('.comment_form_wrapper').data('comment-due') + '.</div> <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
 
   storeComment: ->
     @commentFormStore.storeComment()
