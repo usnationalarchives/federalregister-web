@@ -1,7 +1,7 @@
 #=require app
 
 class @FR2.CommentFormFileUploader
-  ATTACHED_COMMENT_MESSAGE = 'See attached file(s)'
+  @ATTACHED_COMMENT_MESSAGE: 'See attached file(s)'
 
   constructor: (commentFormHandler)->
     @commentFormHandler = commentFormHandler
@@ -32,6 +32,9 @@ class @FR2.CommentFormFileUploader
       .find '.attachments'
       .data 'existing'
 
+  attachedCommentMessage: ->
+    @constructor.ATTACHED_COMMENT_MESSAGE
+
   attachUploader: ->
     @uploaderEl = $( @commentFormEl().find('#fileupload') )
 
@@ -45,7 +48,6 @@ class @FR2.CommentFormFileUploader
           'comment_attachment[secret]': $('#comment_secret').val()
         }
         filesContainer: @attachmentContainer()
-        prependFiles: true
         uploadTemplateId: null
         downloadTemplateId: null
         uploadTemplate: (o)->
@@ -62,16 +64,16 @@ class @FR2.CommentFormFileUploader
   addCompleteEvents: ->
     @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
       if @commentField().val() == ''
-        @commentField().val( @ATTACHED_COMMENT_MESSAGE )
+        @commentField().val( @attachedCommentMessage() )
 
       @commentForm().storeComment()
 
   addDestroyEvents: ->
     @uploaderEl.bind 'fileuploaddestroyed', =>
-      @clearCommentplaceholder()
+      @clearCommentPlaceholder()
 
   clearCommentPlaceholder: ->
-    if @commentField().val() == @ATTACHED_COMMENT_MESSAGE && @attachmentContainer().children('tr:not(.error)').size() == 0
+    if @commentField().val() == @attachedCommentMessage() && @attachmentContainer().children('tr:not(.error)').size() == 0
       @commentField().val ''
 
   displayExistingAttachments: ->
