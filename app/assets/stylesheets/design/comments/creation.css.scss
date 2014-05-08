@@ -173,6 +173,13 @@ body#entries .form-tooltip {
   textarea:focus {
     @include input-focus-box-shadow($fr-green);
   }
+
+  p.inline-hints {
+    background: none;
+    font-style: italic;
+    padding: 0;
+    margin-left: 59px;
+  }
 }
 
 .comment_form_wrapper .instructions p {

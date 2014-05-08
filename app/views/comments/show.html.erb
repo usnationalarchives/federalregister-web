@@ -21,7 +21,7 @@
       <p>
         <% if @comment.agency_participates_on_regulations_dot_gov? %>
           Your comment tracking number has been added to your MyFR account and you will recieve
-          an email notification when your comment has been made public by <%= @comment.agency_name %>.
+          an email notification when your comment has been publically posted by <%= @comment.agency_name %>.
         <% else %>
           Your comment tracking number has been added to your MyFR account; because <%= @comment.agency_name %> does
           not publish comments on Regulations.gov, to check the status of your comment or obtain further information,
@@ -41,8 +41,8 @@
 
       <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>
         <%= f.inputs do %>
-          <%= f.input :comment_publication_notification, :as => :boolean, :label => 'Notify me when my comment is made public.', :input_html => {:checked => true} %>
-          <%= f.input :followup_document_notification, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.', :input_html => {:checked => true} %>
+          <%= f.input :comment_publication_notification, :as => :boolean, :label => 'Notify me when my comment is has been reviewed and publicly posted.', :input_html => {:checked => true} %>
+          <%= f.input :followup_document_notification, :as => :boolean, :label => 'Notify me when a future document mentions the document I commented on.', :input_html => {:checked => true} %>
           <%= f.input :comment_tracking_number, :as => :hidden, :value => @comment.comment_tracking_number %>
           <%= f.input :comment_secret, :as => :hidden, :value => @comment.secret %>
         <% end %>
@@ -88,7 +88,7 @@
                 "Create a tweet",
                 false
               ) %>.
-              We'll provide a basic tweet with a link to the article you
+              We'll provide a basic tweet with a link to the document you
               commented on. You'll be able to customize the message before
               you tweet.
             </p>
@@ -109,7 +109,7 @@
                 "Post to your Facebook wall",
                 false
               ) %>.
-              We'll provide the title of the article you commented on and a
+              We'll provide the title of the document you commented on and a
               link to it. You'll be able to customize your Facebook wall
               message before it is posted.
             </p>
@@ -125,7 +125,7 @@
         not store the information provided in your comment.
         Your comment tracking number can be used to retrieve your comment
         from <a href="http://www.regulations.gov">Regulations.gov</a>
-        once it has been reviewed made public by <%=  @comment.agency_name %>.
+        once it has been reviewed and publicly posted by <%=  @comment.agency_name %>.
       </p>
     </div>
 

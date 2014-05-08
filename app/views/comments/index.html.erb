@@ -41,13 +41,13 @@
 
       <div class="comment_data">
         <dl class="metadata">
-          <dt class="created_at">Your comment submitted on:</dt>
+          <dt class="created_at">Comment submitted on:</dt>
           <dd><%= comment.commented_at %></dd>
 
-          <dt class="comment_tracking_number">Your comment tracking number:</dt>
+          <dt class="comment_tracking_number">Comment tracking number:</dt>
           <dd><%= link_to comment.comment_tracking_number, comment.regulations_dot_gov_comment_search_result_url %></dd>
 
-          <dt class="published_at">Your comment made public on:</dt>
+          <dt class="published_at">Comment posted on:</dt>
           <dd><%= comment.comment_published_at %></dd>
         </dl>
       </div>
