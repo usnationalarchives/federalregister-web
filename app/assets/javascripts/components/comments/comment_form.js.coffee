@@ -23,9 +23,6 @@ class @FR2.CommentForm
     else
       @_commentFormEl
 
-  fileUploader: ->
-    @commentFormHandler.commentFormStore.fileUploader
-
   addFormEvents: ->
     @comboBoxChangeHandler()
     @removeErrorsOnChange()
