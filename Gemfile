@@ -42,7 +42,7 @@ gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
 
-gem "httparty", "~> 0.12.0"
+gem "httparty", "0.11.0"
 gem "httmultiparty"
 
 gem 'sendgrid'
@@ -78,15 +78,18 @@ end
 group :development do
 end
 
-group :development, :test do 
+
+group :development, :test do
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
-  gem "factory_girl_rails",             "~> 4.0",      :require => false
+  gem "factory_girl_rails",             "~> 4.0",      :require => false if RUBY_VERSION == '1.9.3'
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
+  if RUBY_VERSION == '1.9.3'
+    gem 'capybara'
+    gem 'capybara-webkit'
+    gem 'capybara-screenshot'
+  end
 
   gem 'database_cleaner'
 
