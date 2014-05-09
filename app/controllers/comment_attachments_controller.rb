@@ -11,9 +11,13 @@ class CommentAttachmentsController < ApplicationController
     respond_to do |wants|
       wants.json do
         if @comment_attachment.save
-          render :action => "index"
+          render :json => {
+            :files => [@comment_attachment.to_jq_upload]
+          }.to_json
         else
-          render :action => "error"
+          render :json => {
+            :files => [@comment_attachment.to_jq_upload_error]
+          }.to_json
         end
       end
     end

@@ -45,6 +45,22 @@ class CommentAttachment < ApplicationModel
     path
   end
 
+  def to_jq_upload
+    {
+      :name  => original_file_name || attachment_file_name,
+      :size  => file_size || self.attachment.try(:file).try(:size),
+      :token => token,
+    }
+  end
+
+  def to_jq_upload_error
+    {
+      :name  => original_file_name || attachment_file_name,
+      :size  => file_size || self.attachment.try(:file).try(:size),
+      :error => errors.full_messages.to_sentence,
+    }
+  end
+
   private
 
   def generate_token
