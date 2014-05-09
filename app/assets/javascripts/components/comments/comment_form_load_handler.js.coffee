@@ -109,4 +109,4 @@ class @FR2.CommentFormLoadHandler
     @commentFormHandler.commentForm = new FR2.CommentForm('#new_comment', @commentFormHandler)
     @commentForm = @commentFormHandler.commentForm
 
-    @commentFormHandler.commentFormStore.addStorageEvents()
+    @commentFormHandler.addStorageEvents()

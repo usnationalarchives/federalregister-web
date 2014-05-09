@@ -27,7 +27,7 @@ class @FR2.CommentFormHandler
     @formWrapper.unbind()
 
   addEvents: ->
-    @commentPreview()
+    @previewComment()
     @startCommentOver()
 
   decorate: ->
@@ -38,7 +38,7 @@ class @FR2.CommentFormHandler
   commentFormEl: ->
     @commentForm.commentFormEl()
 
-  commentPreview: ->
+  previewComment: ->
     @commentFormEl().on 'click', '.comment_preview', (e)=>
       e.preventDefault()
 
@@ -195,3 +195,6 @@ class @FR2.CommentFormHandler
 
   storeComment: ->
     @commentFormStore.storeComment()
+
+  addStorageEvents: ->
+    @commentFormStore.addStorageEvents()
