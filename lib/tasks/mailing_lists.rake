@@ -1,6 +1,6 @@
 namespace :mailing_lists do
   namespace :articles do
-    desc "Deliver the article mailing list content for a given day"
+    desc "Deliver the document mailing list content for a given day"
     task :deliver, [:date] => :environment do |t, args|
       date = Date.parse(args[:date])
       
