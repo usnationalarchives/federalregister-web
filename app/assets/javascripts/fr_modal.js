@@ -4,7 +4,7 @@ function display_fr_modal(title, html, el, options) {
       var fr_modal = $('#fr_modal');
       fr_modal.remove();
       fr_modal = $('<div id="fr_modal"/>');
-      
+
       fr_modal.html(
         [
         '<a href="#" class="jqmClose">Close</a>',
@@ -18,7 +18,7 @@ function display_fr_modal(title, html, el, options) {
       }
       fr_modal.addClass('jqmWindow');
 
-      var closeModal = function(hash) { 
+      var closeModal = function(hash) {
         el.trigger('modalClose');
         hash.w.remove();
         hash.o.remove();
@@ -30,15 +30,15 @@ function display_fr_modal(title, html, el, options) {
           onShow: this.modalOpen,
           onHide: closeModal
       });
-      
-      fr_modal.centerScreen().jqmShow();
+
+      fr_modal.jqmShow().centerScreen();
   }
 
 $(document).ready(function() {
 
   $('#main').on('click', 'a.fr_modal, a.fr_modal_link', function (event) {
       event.preventDefault();
-      
+
       var $link = $(this);
 
       var modal_title    = $link.data('modal-title'),
@@ -59,5 +59,5 @@ $(document).ready(function() {
 
       display_fr_modal(modal_title, modal_html, $link);
   });
- 
+
 });

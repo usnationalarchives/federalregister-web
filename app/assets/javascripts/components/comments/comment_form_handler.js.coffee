@@ -46,20 +46,25 @@ class @FR2.CommentFormHandler
       html = @renderCommentSummary fields
 
       Handlebars.registerPartial 'comment_summary', $('#comment-summary-template').html()
+
+      modalTitle    = 'Preview your comment'
+      modalTemplate = $('#comment-summary-template')
+      modalData     = fields
+
+      compiledTemplate = Handlebars.compile modalTemplate.html()
+      modalHtml        = compiledTemplate({
+        fields: modalData
+      })
+
       source = $('#comment-summary-template').html()
       template = Handlebars.compile source
 
-      modal = $( template({"fields": fields}) )
-      $('body').append modal
-      modal.find(".jqmClose").on 'click', (e)->
-        modal.remove()
-
-      modal.addClass('jqmWindow alternative-comment-modal')
-      modal.jqm({
-        modal: true,
-        toTop: true
-      })
-      modal.jqmShow().centerScreen()
+      display_fr_modal(
+        modalTitle,
+        modalHtml,
+        $('body'),
+        {modalClass: "comment-preview-modal"}
+      )
 
   renderCommentSummary: (fields)->
     source = $('#comment-summary-template').html()
