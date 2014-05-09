@@ -290,21 +290,6 @@ body#entries .form-tooltip {
   #comment_general_comment_input p.inline-errors { top: inherit; }
 }
 
-div.comment-preview-modal {
-  display: none;
-
-  background-color: white;
-  border: 5px solid #3F5B75;
-  display: none;
-  padding: 1em;
-  position: fixed;
-  top: 5em;
-  width: 500px;
-  }
-div.comment-preview-modal,
-div.alternative-comment-modal { margin-left: 0px; }
-
-
 .formtastic .file.input .label {
   margin-right: 0.8em;
   margin-top: 2px;
@@ -444,6 +429,20 @@ table.attachments {
   color: $fr-gray-60;
 }
 
+div.comment-preview-modal {
+  display: none;
+
+  background-color: white;
+  border: 5px solid #3F5B75;
+  display: none;
+  padding: 1em;
+  position: fixed;
+  top: 5em;
+  width: 500px;
+  }
+div.comment-preview-modal,
+div.alternative-comment-modal { margin-left: 0px; }
+
 #fr_modal.comment-preview-modal,
 #fr_modal.print_modal {
   @extend %fr_modal;
@@ -498,8 +497,6 @@ table.attachments {
     }
   }
 }
-/* jqm seems to be having a hardtime position this so we update the default margin left */
-#fr_modal.print_modal { margin-left: -350px; }
 
 /* COMMENT FORM SUBMIT SUCCESS */
 .tracking_number {
