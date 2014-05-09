@@ -19,6 +19,10 @@ class @FR2.CommentFormSuccessHandler
     flashMessage = $('#flash_message.comment p')
 
     flashMessage
+      .closest 'div'
+      .removeClass 'open'
+
+    flashMessage
       .html 'You have successfully submitted an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="/my/assets/regulations_dot_gov_logo.png" class="reg_gov_logo">'
 
 
@@ -43,7 +47,7 @@ class @FR2.CommentFormSuccessHandler
 
       $('body').addClass 'hide_body_content'
 
-    @formWrapper.on 'modalClose', 'a#print-comment', ->
+    @formWrapper().on 'modalClose', 'a#print-comment', ->
       $('body').removeClass 'hide_body_content'
 
     $('body').on 'click', '#fr_modal .print_button', (e)->

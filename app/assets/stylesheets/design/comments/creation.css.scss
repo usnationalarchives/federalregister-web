@@ -11,6 +11,7 @@ body#entries .form-tooltip {
 
 #flash_message.comment {
   z-index: 1000;
+  height: 46px;
   &.open { height: 60px; }
 
   p .byline {
@@ -21,9 +22,10 @@ body#entries .form-tooltip {
   img.reg_gov_logo {
     float: right;
     right: 20px;
-    top: -42px;
+    top: -37px;
     position: relative;
   }
+  &.open img.reg_gov_logo { top: -42px; }
 }
 
 #metadata_content_area .loading {
