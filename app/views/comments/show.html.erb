@@ -41,10 +41,20 @@
 
       <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>
         <%= f.inputs do %>
-          <%= f.input :comment_publication_notification, :as => :boolean, :label => 'Notify me when my comment is has been reviewed and publicly posted.', :input_html => {:checked => true} %>
-          <%= f.input :followup_document_notification, :as => :boolean, :label => 'Notify me when a future document mentions the document I commented on.', :input_html => {:checked => true} %>
-          <%= f.input :comment_tracking_number, :as => :hidden, :value => @comment.comment_tracking_number %>
-          <%= f.input :comment_secret, :as => :hidden, :value => @comment.secret %>
+          <%= f.input :comment_publication_notification,
+            :as => :boolean,
+            :label => 'Notify me when my comment is has been reviewed and publicly posted.',
+            :input_html => {:checked => true} %>
+          <%= f.input :followup_document_notification,
+            :as => :boolean,
+            :label => 'Notify me when a future document mentions the document I commented on.',
+            :input_html => {:checked => true} %>
+          <%= f.input :comment_tracking_number,
+            :as => :hidden,
+            :value => @comment.comment_tracking_number %>
+          <%= f.input :comment_secret,
+            :as => :hidden,
+            :value => @comment.secret %>
         <% end %>
         <%= f.buttons do %>
           <%= f.commit_button :sign_in, :label => 'Sign In'%>
@@ -53,17 +63,16 @@
       <% end %>
     <% end %>
     </div>
-  
 
     <div class="print">
       <span class="icon-fr2 icon-fr2-print"></span>
-      <p><%= link_to 'Print your comment', '#', 
-                     :'data-comment-data' => @comment.comment_data.to_json, 
+      <p><%= link_to 'Print your comment', '#',
+                     :'data-comment-data' => @comment.comment_data.to_json,
                      :'data-current-document-details' => {:title  => @comment.article.title,
                                                           :agency => @comment.agency_name,
                                                           :type   => @comment.article.type,
                                                           :url    => @comment.article.short_article_url,
-                                                          :published => @comment.article.publication_date}.to_json, 
+                                                          :published => @comment.article.publication_date}.to_json,
                      :'data-comment-details' => {:tracking_number => @comment.comment_tracking_number,
                                                  :submission_date => Date.today}.to_json,
                      :id => 'print-comment' %> for your records and for any future coorespondence about your

@@ -9,7 +9,7 @@ function filter_clippings_by_type(el) {
     el.removeClass('on');
     el.removeClass('hover');
 
-    el.data('tooltip', 'Show articles of type ' + el.data('filter-doc-type-display') );
+    el.data('tooltip', 'Show documents of type ' + el.data('filter-doc-type-display') );
     el.tipsy('hide');
     el.tipsy('show');
 
@@ -19,7 +19,7 @@ function filter_clippings_by_type(el) {
   } else {
     el.addClass('on');
 
-    el.data('tooltip', 'Hide articles of type ' + el.data('filter-doc-type-display') );
+    el.data('tooltip', 'Hide documents of type ' + el.data('filter-doc-type-display') );
     el.tipsy('hide');
     el.tipsy('show');
 
@@ -40,7 +40,7 @@ $(document).ready( function() {
   $('#doc-type-filter li').each( function() {
     if ( _.include( doc_type_filters, $(this).data('filter-doc-type') ) ) {
       $(this).addClass('on');
-      $(this).data('tooltip', 'Hide articles of type ' + $(this).data('filter-doc-type-display') );
+      $(this).data('tooltip', 'Hide documents of type ' + $(this).data('filter-doc-type-display') );
     } else {
       $(this).addClass('disabled');
     }

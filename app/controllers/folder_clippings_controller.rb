@@ -66,7 +66,7 @@ class FolderClippingsController < ApplicationController
     elsif (folder.present? || slug == "my-clippings") && document_number.present?
       # there should only be one clipping per document number in each folder - but we don't
       # currently enforce this (but will in the future), this action can only be triggered 
-      # from the FR2 article view so we want to delete all references to that document in 
+      # from the FR2 document view so we want to delete all references to that document in
       # the given folder.
       folder_id = folder.present? ? folder.id : nil
       

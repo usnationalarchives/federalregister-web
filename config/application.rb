@@ -79,5 +79,8 @@ module MyFr2
     config.exceptions_app = self.routes
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # add passenger process id to logs
+    config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
   end
 end
