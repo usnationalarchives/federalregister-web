@@ -3,7 +3,7 @@ function set_doc_type_search_filter(el) {
     el.removeClass('on');
     el.removeClass('hover');
 
-    el.data('tooltip', 'Limit search articles of type ' + el.data('filter-doc-type-display') );
+    el.data('tooltip', 'Limit search documents of type ' + el.data('filter-doc-type-display') );
     el.tipsy('hide');
     el.tipsy('show');
 
@@ -12,7 +12,7 @@ function set_doc_type_search_filter(el) {
   } else {
     el.addClass('on');
 
-    el.data('tooltip', 'Remove limitation (articles of type ' + el.data('filter-doc-type-display') + ')' );
+    el.data('tooltip', 'Remove limitation (documents of type ' + el.data('filter-doc-type-display') + ')' );
     el.tipsy('hide');
     el.tipsy('show');
 
@@ -27,7 +27,7 @@ $(document).ready( function() {
 
   /* Tooltips by state */
   $('.embedded_search #doc-type-filter li').each( function() {
-    $(this).data('tooltip', 'Limit search to articles of type ' + $(this).data('filter-doc-type-display') );
+    $(this).data('tooltip', 'Limit search to documents of type ' + $(this).data('filter-doc-type-display') );
   });
 
   $('#conditions_type_input input#conditions_type_' + $('.embedded_search #doc-type-filter li').first().data('filter-doc-type')).trigger('calculate_expected_results');

@@ -307,7 +307,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
     window.location.href = "/my/folders/" + folder;
   });
 
-  /* remove article from folder link */
+  /* remove document from folder link */
   delete_span.bind('click', function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -416,7 +416,7 @@ $(document).ready(function () {
   });
 
   /* visually identify the document as flagged if its in a folder */
-  /* this is used on the article page - search is handled above  */
+  /* this is used on the document page - search is handled above  */
   if ( $('body#search').length === 0 ) {
     if( user_folder_details !== undefined && document_number_present(current_document_number, user_folder_details) ) {
       $('div.share li.clip_for_later #add-to-folder .button span.icon').addClass('clipped');

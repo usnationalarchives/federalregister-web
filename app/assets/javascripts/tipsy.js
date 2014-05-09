@@ -21,7 +21,7 @@ $(document).ready(function(){
   /* Subscription Filters */
   $('#subscription-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: true, offset: 2, title: function() { return $(this).data('tooltip');} });
 
-  $('.clipping_data .comment_on').tipsy( {gravity: 's', fade: true, offset: 3, fallback: 'You have officially commented on this article.'} );
+  $('.clipping_data .comment_on').tipsy( {gravity: 's', fade: true, offset: 3, fallback: 'You have officially commented on this document.'} );
 
   $('#comments .comment_count').tipsy( {gravity: 's', delayIn: 500, fade: true, offset: 3, title: function() { return $(this).data('tooltip');} });
   /*** Comment form tipsy is defined in comment.js.erb ***/
