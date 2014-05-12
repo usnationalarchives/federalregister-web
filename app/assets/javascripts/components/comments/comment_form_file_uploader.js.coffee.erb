@@ -8,8 +8,9 @@ class @FR2.CommentFormFileUploader
 
   initialize: ->
     @attachUploader()
-    @addDestroyEvents()
     @addCompleteEvents()
+    @addUploadEvents()
+    @addDestroyEvents()
     @displayExistingAttachments()
     @displayAttachmentErrors()
 
@@ -42,9 +43,15 @@ class @FR2.CommentFormFileUploader
       {
         url: '/my/comment_attachments'
         autoUpload: true
-        maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
-        maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
-        acceptFileTypes:  /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
+        processQueue: [
+          {
+            action: 'validate',
+            always: true,
+            acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
+            maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
+            maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
+          }
+        ]
         formData: {
           'comment_attachment[secret]': $('#comment_secret').val()
         }
@@ -61,6 +68,24 @@ class @FR2.CommentFormFileUploader
           template o
       }
     ).data('blueimpFileupload')
+
+  addUploadEvents: ->
+    @uploaderEl
+      .bind 'fileuploadprocessfail', (e, data)->
+        if data.files.error
+          _.each data.context, (el, index)->
+            error = data.files[index].error
+            $el = $(el)
+            if error
+              $el
+                .closest 'tr'
+                .addClass 'error'
+              $el
+                .find '.progress-bar'
+                .html error
+              $el
+                .find 'button.cancel'
+                .remove()
 
   addCompleteEvents: ->
     @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
