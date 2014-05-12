@@ -3,7 +3,7 @@ class CommentAttachment < ApplicationModel
   require 'open-uri'
 
   ALLOWED_EXTENSIONS = ["bmp", "doc", "xls", "pdf", "gif", "htm", "html", "jpg", "jpeg", "png", "ppt", "rtf", "sgml", "tiff", "tif", "txt" , "wpd", "xml", "docx", "xlsx", "pptx"]
-  MAX_FILE_SIZE = 10_000_000
+  MAX_FILE_SIZE = 10_485_760
 
   attr_accessor :secret
 
