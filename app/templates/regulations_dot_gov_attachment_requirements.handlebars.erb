@@ -1,0 +1,14 @@
+<p>
+  You may attach up to <strong>{{maxAttachments}} files</strong>.
+  The maximum allowable size for any file is <strong>{{maxSize}}</strong>.
+</p>
+
+<p>
+  The following filetypes are permitted:
+</p>
+
+<ul class="file-type-list">
+  {{#each fileTypes}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>

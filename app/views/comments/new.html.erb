@@ -1,7 +1,18 @@
-<%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
-<%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
-<%= add_handlebars_template('comment_summary', 'comment-summary'); %>
-<%= add_handlebars_template('comment_preview', 'comment-preview'); %>
+<%= add_handlebars_template(
+  'comment_attachment_upload',
+  'comment-attachment-upload') %>
+<%= add_handlebars_template(
+  'comment_attachment_complete',
+  'comment-attachment-complete') %>
+<%= add_handlebars_template(
+  'comment_summary',
+  'comment-summary') %>
+<%= add_handlebars_template(
+  'comment_preview',
+  'comment-preview') %>
+<%= add_handlebars_template(
+  'regulations_dot_gov_attachment_requirements',
+  'regulations-dot-gov-attachment-requirements') %>
 
 <% @comment = CommentDecorator.decorate(@comment) %>
 
@@ -62,7 +73,9 @@
         <%= @comment.human_error_messages %>
       </div>
     <% end %>
+
     <%= f.semantic_errors %>
+
     <%= f.inputs do %>
       <li class="input hidden">
         <%= hidden_field_tag(
@@ -88,6 +101,18 @@
           <p class="inline-hints">
             Note: You can attach your comment as a file and/or attach supporting
             documents to your comment.
+            <a href=""
+              class='fr_modal_link'
+              data-modal-title='Attachment Requirements'
+              data-modal-data='<%=
+                {
+                  :maxSize => number_to_human_size(CommentAttachment::MAX_FILE_SIZE),
+                  :fileTypes => CommentAttachment::ALLOWED_EXTENSIONS.sort,
+                  :maxAttachments => Comment::MAX_ATTACHMENTS,
+                }.to_json
+              %>'
+              data-modal-template-name='regulations-dot-gov-attachment-requirements-template'
+            >Attachment Requirements</a>.
           </p>
 
           <%= content_tag(
