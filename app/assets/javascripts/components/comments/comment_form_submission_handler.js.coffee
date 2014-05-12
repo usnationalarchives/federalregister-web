@@ -78,7 +78,7 @@ class @FR2.CommentFormSubmissionHandler
     @ajaxCommentData
       .scrollintoview {duration: 400}
 
-    commentWrapper.slideUp 400, =>
+    commentWrapper.slideUp 400, ->
       commentWrapper.remove()
       replaceWith response
 

@@ -130,7 +130,7 @@ class @FR2.CommentFormHandler
               .position()
               .left + leftPosition
           )
-         .css(
+          .css(
             'top',
             tooltip
               .position()
@@ -142,6 +142,7 @@ class @FR2.CommentFormHandler
 
   improveUploadButton: ->
     addFileButton = $('<div>')
+    addFileButton
       .addClass 'add_file button'
       .text 'Add a file'
       .prepend(
@@ -153,7 +154,7 @@ class @FR2.CommentFormHandler
     @commentFormEl().on 'click', '.add_file', ()=>
       @fileUploadButton().trigger 'click'
 
-    @fileUploadButton().hide();
+    @fileUploadButton().hide()
 
   loadCommentForm: ->
     @commentFormLoadHandler.load()
