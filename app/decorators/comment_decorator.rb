@@ -26,7 +26,7 @@ class CommentDecorator < ApplicationDecorator
     if comment.comment_published_at
       comment.comment_published_at.to_formatted_s(:date)
     else
-      'Not yet published by agency'
+      "Not posted by agency as of #{Date.today}"
     end
   end
 
