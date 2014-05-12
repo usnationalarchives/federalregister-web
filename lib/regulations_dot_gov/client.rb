@@ -13,7 +13,12 @@ class RegulationsDotGov::Client
     debug_output $stderr
   end
 
-  base_uri 'http://api.data.gov/TEST/regulations/v3/'
+  if Rails.env.development? || Rails.env.test?
+    base_uri('http://api.data.gov/TEST/regulations/v3/')
+  elsif Rails.env.staging? || Rails.env.production?
+    base_uri('http://api.data.gov/regulations/v3/')
+  end
+
   default_timeout 20
 
   DOCKET_PATH  = '/docket.json'
@@ -27,6 +32,7 @@ class RegulationsDotGov::Client
   end
 
   def initialize
+    self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
 
