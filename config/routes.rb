@@ -38,15 +38,12 @@ MyFr2::Application.routes.draw do
       post :persist_for_login
     end
   end
-  match 'articles/:document_number/comments/new' => 'comments#new',
-   :as => :new_comment,
-   :via => :get
-  match 'articles/:document_number/comments/reload' => 'comments#reload',
-   :as => :reload_comment,
-   :via => :post
-  match 'articles/:document_number/comments' => 'comments#create',
-   :as => :comment,
-   :via => :post
+  get 'articles/:document_number/comments/new' => 'comments#new',
+   :as => :new_comment
+  post 'articles/:document_number/comments/reload' => 'comments#reload',
+   :as => :reload_comment
+  post 'articles/:document_number/comments' => 'comments#create',
+   :as => :comment
 
   resources :comment_attachments,
     :only => [:create, :destroy]
