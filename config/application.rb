@@ -59,13 +59,13 @@ module MyFr2
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     config.assets.precompile += %w(
-      application-ie.css 
-      application-shared.css 
+      application-ie.css
+      application-shared.css
       application-shared.js
       fr-document-icons-lte-ie7.js
       fr2-icons-lte-ie7.js
-      application-fr2.js 
-      application-ie8lte.css 
+      application-fr2.js
+      application-ie8lte.css
       application-ie7lte.css
       application-fr2.js
       print.css
@@ -80,7 +80,9 @@ module MyFr2
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
-    # add passenger process id to logs
-    config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
+    unless Rails.env.development? || Rails.env.test?
+      # add passenger process id to logs
+      config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
+    end
   end
 end
