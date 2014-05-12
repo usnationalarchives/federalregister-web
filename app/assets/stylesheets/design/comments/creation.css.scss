@@ -294,10 +294,12 @@ body#entries .form-tooltip {
 
 #fr_modal ul.file-type-list {
   margin-left: 20px;
+  overflow: hidden;
 
   li {
     float: left;
-    width: 150px;
+    width: 130px;
+    margin-left: 20px;
   }
 }
 

@@ -8,7 +8,9 @@
 </p>
 
 <ul class="file-type-list">
-  {{#each fileTypes}}
-    <li>{{this}}</li>
-  {{/each}}
+  {{#inColumns fileTypes count=3}}
+    {{#each this}}
+      <li>{{this}}</li>
+    {{/each}}
+  {{/inColumns}}
 </ul>

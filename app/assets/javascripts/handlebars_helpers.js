@@ -1,3 +1,17 @@
+function inGroupsOf(count, arr) {
+  return _.reduce(arr, function(memo, item) {
+    var group = memo[memo.length - 1];
+
+    if( group.length < count ) {
+      group.push( item );
+    } else {
+      memo.push( [item] );
+    }
+
+    return memo;
+  }, [[]]);
+}
+
 Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");
@@ -154,4 +168,32 @@ Handlebars.registerHelper('add_email_to_input', function(email_address) {
 
 Handlebars.registerHelper('count', function(arr) {
   return arr.length;
+});
+
+Handlebars.registerHelper('inGroupsOf', function(count, options) {
+  var count, result;
+
+  count = options.hash['count'];
+  result = inGroupsOf(count, arr);
+
+  return options.fn(result);
+});
+
+Handlebars.registerHelper('inColumns', function(arr, options) {
+  var inEachColumn, perColumnCount, result, count;
+
+  count = options.hash['count'];
+
+  inEachColumn =  Math.floor(arr.length / count);
+
+  if( arr.length % count === 0 ) {
+    perColumnCount = inEachColumn;
+  } else {
+    perColumnCount = inEachColumn + 1;
+  }
+
+  result = inGroupsOf(perColumnCount, arr);
+  result = _.flatten(_.zip.apply(_, result));
+
+  return options.fn(result);
 });
