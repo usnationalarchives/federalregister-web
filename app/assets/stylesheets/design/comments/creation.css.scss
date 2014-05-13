@@ -461,6 +461,8 @@ div.alternative-comment-modal { margin-left: 0px; }
   @extend %fr_modal;
   width: 700px;
 
+  .modal_content { overflow: auto; }
+
   dl dt { width: 200px; }
   dl.comment_details dt { width: 190px; }
   dl dd { width: 450px; }
@@ -476,7 +478,6 @@ div.alternative-comment-modal { margin-left: 0px; }
 
     cursor: pointer;
     padding-left: 27px;
-    /*@include my_fr2-sprite(icon_print_blue, $my_fr2-sprite-dimensions, 0, 0)*/
     }
 
   .document_title {

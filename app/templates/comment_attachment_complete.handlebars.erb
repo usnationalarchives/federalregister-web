@@ -1,5 +1,5 @@
 {{#each files}}
-  <tr class="template-download fade{{#if this.error}} error{{/if}}" data-name="{{this.name}}">
+<tr class="template-download fade{{#if this.error}} error {{else}} complete {{/if}}" data-name="{{this.name}}">
     <td class="name">
       <span>{{this.name}}</span>
       <input type="hidden" name="comment[attachment_tokens][]" value="{{this.token}}" />

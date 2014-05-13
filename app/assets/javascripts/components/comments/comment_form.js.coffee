@@ -8,20 +8,22 @@ class @FR2.CommentForm
       '#comment_confirm_submission_input'
     ]
 
+    @uploadsInProgress = false
+
   initialize: ->
     @addFormEvents()
     @addCommentSecret()
-
-    @setSubmitButtonState(
-      @submitButtonWrapper(),
-      @commentConfirmationCheckbox().is(':checked')
-    )
+    @setSubmitButtonState()
+    @addSubmitButtonWarningModal()
 
   commentFormEl: ->
     if @_commentFormEl == null || @_commentFormEl == undefined || @_commentFormEl == []
       $( @commentFormId )
     else
       @_commentFormEl
+
+  commentFormFileUploader: ->
+    @commentFormHandler.commentFormFileUploader
 
   addFormEvents: ->
     @comboBoxChangeHandler()
@@ -152,22 +154,16 @@ class @FR2.CommentForm
 
   confirmCommentSubmission: ->
     @commentFormEl().on 'change', @commentConfirmationCheckbox(), ()=>
-      @setSubmitButtonState(
-        @submitButtonWrapper(),
-        @commentConfirmationCheckbox().is ':checked'
-      )
+      @setSubmitButtonState()
 
-  setSubmitButtonState: (submitButtonWrapper, confirmed)->
-    if confirmed
-      submitButtonWrapper
-        .removeClass 'disabled'
-        .find 'input'
-        .removeProp 'disabled'
+  setSubmitButtonState: ()->
+    if @commentConfirmationChecked() && @uploaderReady()
+      @enableSubmitButton()
     else
-      submitButtonWrapper
-        .addClass 'disabled'
-        .find 'input'
-        .prop 'disabled', true
+      @disableSubmitButton()
+
+  commentConfirmationChecked: ->
+    @commentConfirmationCheckbox().is ':checked'
 
   formSubmit: ->
     @commentFormEl().on 'click', '.button.commit:not(.submitting, .disabled)', (e)=>
@@ -178,3 +174,44 @@ class @FR2.CommentForm
   storeComment: ->
     @commentFormHandler.storeComment()
 
+  enableSubmitButton: ->
+    @submitButtonWrapper()
+      .removeClass 'disabled'
+      .find 'input'
+      .removeProp 'disabled'
+
+  disableSubmitButton: ->
+    @submitButtonWrapper()
+      .addClass 'disabled'
+      .find 'input'
+      .prop 'disabled', true
+
+  # acts as getter/setter
+  uploaderReady: (status)->
+    if status?
+      @uploaderReadyStatus = status
+      @setSubmitButtonState()
+
+    @uploaderReadyStatus
+
+  getSubmitButtonState: ->
+    if ! @uploaderReady()
+      if @commentFormFileUploader().uploaderHasErrors()
+        "Some of your files have errors. Please remove the files and try again."
+      else if @commentFormFileUploader().uploaderInProgress()
+        "Your files are still being uploaded. Please wait until they are complete and try again."
+    else if ! @commentConfirmationChecked()
+      "Please read and confirm the statement regarding the submission of personal information."
+    else
+      false
+
+  addSubmitButtonWarningModal: ->
+    @submitButtonWrapper().on 'click', (e)=>
+      if @submitButtonWrapper().hasClass 'disabled'
+        e.preventDefault()
+        e.stopPropagation()
+
+        modalTitle = 'Unable to Submit Comment'
+        modalHtml  = @getSubmitButtonState()
+
+        display_fr_modal modalTitle, modalHtml, @submitButtonWrapper()

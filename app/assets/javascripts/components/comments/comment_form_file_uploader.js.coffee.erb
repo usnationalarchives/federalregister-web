@@ -13,6 +13,7 @@ class @FR2.CommentFormFileUploader
     @addDestroyEvents()
     @displayExistingAttachments()
     @displayAttachmentErrors()
+    @commentForm().uploaderReady true
 
   commentForm: ->
     @commentFormHandler.commentForm
@@ -67,13 +68,49 @@ class @FR2.CommentFormFileUploader
           template = Handlebars.compile source;
           template o
       }
-    ).data('blueimpFileupload')
+    )
+    .data('blueimpFileupload')
+
+  attachmentEl: ->
+    $('.attachments tbody')
+
+  filesUploading: ->
+    @attachmentEl()
+      .find '.template-upload'
+      .not '.error'
+      .length > 0
+
+  filesWithErrors: ->
+    @attachmentEl()
+      .find '.template-upload.error'
+      .length > 0
+
+  uploaderInProgress: ->
+    @filesUploading()
+
+  uploaderHasErrors: ->
+    @filesWithErrors()
+
+  uploaderReady: ->
+    ! @uploaderInProgress() && ! @uploaderHasErrors()
+
+  updateUploaderStatus: (event)->
+    if event == 'submit' || event == 'fail'
+      @commentForm().uploaderReady false
+    else if (event == 'complete' || event == 'destroy') && @uploaderReady()
+      @commentForm().uploaderReady true
 
   addUploadEvents: ->
     @uploaderEl
-      .bind 'fileuploadprocessfail', (e, data)->
+      .bind 'fileuploadsubmit', (e, data)=>
+        @updateUploaderStatus 'submit'
+        true
+
+    @uploaderEl
+      .bind 'fileuploadprocessfail', (e, data)=>
+        @updateUploaderStatus 'fail'
         if data.files.error
-          _.each data.context, (el, index)->
+          _.each data.context, (el, index)=>
             error = data.files[index].error
             $el = $(el)
             if error
@@ -84,8 +121,14 @@ class @FR2.CommentFormFileUploader
                 .find '.progress-bar'
                 .html error
               $el
-                .find 'button.cancel'
-                .remove()
+                .find '.button.cancel .action'
+                .text 'Delete'
+
+    # this is triggered when a file with an error is removed
+    # from the file list - go figure...
+    @uploaderEl
+      .bind 'fileuploadfail', (e,data)=>
+        @updateUploaderStatus 'destroy'
 
   addCompleteEvents: ->
     @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
@@ -93,10 +136,13 @@ class @FR2.CommentFormFileUploader
         @commentField().val( @attachedCommentMessage() )
 
       @commentForm().storeComment()
+      @updateUploaderStatus 'complete'
 
   addDestroyEvents: ->
     @uploaderEl.bind 'fileuploaddestroyed', =>
+      console.log 'destroy'
       @clearCommentPlaceholder()
+      @updateUploaderStatus 'destroy'
 
   clearCommentPlaceholder: ->
     if @commentField().val() == @attachedCommentMessage() && @attachmentContainer().children('tr:not(.error)').size() == 0
