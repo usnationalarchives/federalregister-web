@@ -31,6 +31,10 @@ function display_fr_modal(title, html, el, options) {
           onHide: closeModal
       });
 
+      $('body').on('click', '#fr_modal a.jqmClose', function(e) {
+        $('#fr_modal').jqmHide();
+      });
+
       fr_modal.jqmShow().centerScreen();
   }
 
@@ -53,7 +57,7 @@ $(document).ready(function() {
         modal_html = $link.data('modal-html');
       }
 
-      $('body').on('click', '#fr_modal a', function(e) {
+      $('body').on('click', '#fr_modal a.jqmClose', function(e) {
         $('#fr_modal').jqmHide();
       });
 
