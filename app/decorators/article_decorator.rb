@@ -19,7 +19,7 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def publication_date
-    model.publication_date.to_formatted_s(:date)
+    model.publication_date
   end
 
   def publication_date_formally
@@ -27,7 +27,7 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def effective_date
-    model.effective_on.to_formatted_s(:date) if model.effective_on
+    model.effective_on if model.effective_on
   end
 
   def shortened_abstract(length=500)
@@ -66,11 +66,11 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def comments_close_date
-    model.comments_close_on.to_formatted_s(:date) if model.comments_close_on
+    model.comments_close_on if model.comments_close_on
   end
 
   def signing_date
-    model.signing_date.to_formatted_s(:date) if model.signing_date
+    model.signing_date if model.signing_date
   end
 
   def corrected_by

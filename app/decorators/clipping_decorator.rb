@@ -3,7 +3,7 @@ class ClippingDecorator < ApplicationDecorator
 
   def clipped_at
     if clipping.created_at
-      clipping.created_at.to_formatted_s(:date)
+      clipping.created_at
     else
       "<span class='unsaved'>Unsaved</span>".html_safe
     end

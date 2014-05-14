@@ -16,7 +16,7 @@
 
 <% @comment = CommentDecorator.decorate(@comment) %>
 
-<div class="comment_form_wrapper" data-comment-due="<%= @comment_form.comments_close_at.to_s(:datetime) %> EDT">
+<div class="comment_form_wrapper" data-comment-due="<%= @comment_form.comments_close_at.to_s(:datetime_with_zone) %>">
   <div class="instructions">
     <p>
       Thank you for taking the time to create a comment. Your input is important.

@@ -2,7 +2,7 @@
   <ul>
     <li>Clippings: <span class="clippings_on_page_count"><%= clippings.size%></span></li>
     <% if folder.created_at %>
-      <li>Created on: <%= folder.created_at.to_formatted_s(:date) %></li>
+      <li>Created on: <%= folder.created_at %></li>
     <% end %>
 
     <% if clippings.size > 0 %>

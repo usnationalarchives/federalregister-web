@@ -18,13 +18,13 @@ class CommentDecorator < ApplicationDecorator
 
   def commented_at
     if comment.created_at
-      comment.created_at.to_formatted_s(:date)
+      comment.created_at
     end
   end
 
   def comment_published_at
     if comment.comment_published_at
-      comment.comment_published_at.to_formatted_s(:date)
+      comment.comment_published_at
     else
       "Not posted by agency as of #{Date.today}"
     end

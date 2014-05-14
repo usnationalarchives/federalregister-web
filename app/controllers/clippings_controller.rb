@@ -49,8 +49,8 @@ class ClippingsController < ApplicationController
           clipping_details << { :doc_type   => clipping.article.type,
                                 :title      => clipping.article.title,
                                 :url        => clipping.article.html_url,
-                                :pub_date   => clipping.article.publication_date.to_formatted_s(:date),
-                                :created_at => clipping.created_at.to_formatted_s(:date) }
+                                :pub_date   => clipping.article.publication_date,
+                                :created_at => clipping.created_at }
         end
       end
     end
