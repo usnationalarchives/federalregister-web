@@ -19,6 +19,8 @@ class RegulationsDotGov::Client
     base_uri('http://api.data.gov/regulations/v3/')
   end
 
+  caches_api_responses :key_name => "regulations_dot_gov", :expire_in => 3600
+
   default_timeout 20
 
   DOCKET_PATH  = '/docket.json'
@@ -82,7 +84,8 @@ class RegulationsDotGov::Client
 
   def get_comment_form(document_id)
     response = self.class.get(comment_endpoint, :query => {:D => document_id})
-    RegulationsDotGov::CommentForm.new(self, response.parsed_response)
+    response = unwrap_response(response)
+    RegulationsDotGov::CommentForm.new(self, response)
   end
 
   def get_option_elements(field_name, options={})
@@ -90,7 +93,8 @@ class RegulationsDotGov::Client
       args = options.merge(:field => field_name)
       response = self.class.get(lookup_endpoint, :query => args)
 
-      raw_option_attributes = response.parsed_response['list']
+      response = unwrap_response(response)
+      raw_option_attributes = response['list']
 
       #if raw_option_attributes.is_a?(Hash)
         #raw_option_attributes = [raw_option_attributes]
@@ -135,6 +139,10 @@ class RegulationsDotGov::Client
 
   private
 
+  def unwrap_response(response)
+    response.respond_to?(:parsed_response) ? response.parsed_response : response
+  end
+
   def pad_document_number(document_number)
     part_1, part_2 = document_number.split(/-/, 2)
     sprintf("%s-%05d", part_1, part_2.to_i)
@@ -155,6 +163,8 @@ class RegulationsDotGov::Client
       case response.code
       when 200
         response
+      when 0
+        JSON.parse(response)
       when 404
         raise RecordNotFound.new(response)
       when 500
