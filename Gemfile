@@ -45,6 +45,12 @@ gem "json_builder"
 gem "httparty", "0.11.0"
 gem "httmultiparty"
 
+# api caching
+gem 'SystemTimer', :platforms => :ruby_18
+gem 'cachebar', :git => "git@github.com:criticaljuncture/cachebar.git"
+gem 'redis', '~> 3.0.7'
+gem 'redis-namespace'
+
 gem 'sendgrid'
 
 gem "premailer", "1.7.3"
