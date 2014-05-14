@@ -8,6 +8,7 @@ class RegulationsDotGov::Client
   include HTTMultiParty
 
   cattr_accessor :api_key
+  attr_accessor :cache_backups_enabled, :cache_enabled
 
   if Rails.env.development? || Rails.env.test?
     debug_output $stderr
@@ -33,8 +34,12 @@ class RegulationsDotGov::Client
     base_uri(uri)
   end
 
-  def initialize
+  def initialize(options={})
     self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
+
+    @cache_enabled = options.fetch(:cache_enabled) { true }
+    @cache_backups_enabled = options.fetch(:cache_backups_enabled) { false }
+
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
 
@@ -138,6 +143,14 @@ class RegulationsDotGov::Client
   end
 
   private
+
+  def cache_enabled?
+    @cache_enabled
+  end
+
+  def backups_enabled?
+    @cache_backups_enabled
+  end
 
   def unwrap_response(response)
     response.respond_to?(:parsed_response) ? response.parsed_response : response

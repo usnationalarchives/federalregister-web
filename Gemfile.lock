@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git@github.com:criticaljuncture/cachebar.git
-  revision: 89356c8878d09d1d442acfbf208dd8896391316a
+  revision: fd0109248a545c4b6816aad11e61d494314a7d60
   specs:
     cachebar (1.2.0)
       activesupport
@@ -163,7 +163,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    multi_json (1.8.2)
+    multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
