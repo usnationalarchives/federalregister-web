@@ -1,4 +1,4 @@
-if defined?(VCR) #&& Rails.env.test?
+if defined?(VCR) && Rails.env.test?
   VCR.configure do |c|
     c.default_cassette_options = { :record => :new_episodes }
     c.ignore_hosts '127.0.0.1', 'localhost'

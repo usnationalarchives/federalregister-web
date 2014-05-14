@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_stampers
   before_filter :decorate_current_user
 
-  if Rails.env.development?
-    around_filter :use_vcr
-  end
+  #if Rails.env.development?
+  #  around_filter :use_vcr
+  #end
 
   def set_stampers
     User.stamper = self.current_user
