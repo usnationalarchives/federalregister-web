@@ -84,5 +84,17 @@ module MyFr2
       # add passenger process id to logs
       config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
     end
+
+    # Configure HTTParty API caching
+    HTTParty::HTTPCache.logger = Rails.logger
+    HTTParty::HTTPCache.timeout_length = 30 # seconds
+    HTTParty::HTTPCache.cache_stale_backup_time = 120 # seconds
+    HTTParty::HTTPCache.exception_callback = lambda { |exception, api_name, url|
+      Honeybadger.notify_or_ignore(exception, {
+        :component => api_name,
+        :url => url,
+        :cgi_data => ENV
+      })
+    }
   end
 end
