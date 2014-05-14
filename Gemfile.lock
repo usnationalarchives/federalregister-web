@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git@github.com:criticaljuncture/cachebar.git
-  revision: fd0109248a545c4b6816aad11e61d494314a7d60
+  revision: 6f37e98860c4128ffec8883f75598cdd60dd813d
   specs:
     cachebar (1.2.0)
       activesupport

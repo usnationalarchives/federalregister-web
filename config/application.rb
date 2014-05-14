@@ -89,12 +89,5 @@ module MyFr2
     HTTParty::HTTPCache.logger = Rails.logger
     HTTParty::HTTPCache.timeout_length = 30 # seconds
     HTTParty::HTTPCache.cache_stale_backup_time = 120 # seconds
-    HTTParty::HTTPCache.exception_callback = lambda { |exception, api_name, url|
-      Honeybadger.notify_or_ignore(exception, {
-        :component => api_name,
-        :url => url,
-        :cgi_data => ENV
-      })
-    }
   end
 end
