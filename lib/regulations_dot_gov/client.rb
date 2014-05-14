@@ -8,7 +8,7 @@ class RegulationsDotGov::Client
   include HTTMultiParty
 
   cattr_accessor :api_key
-  attr_accessor :cache_backups_enabled, :cache_enabled
+  attr_accessor :cache_backups_enabled, :read_from_cache
 
   if Rails.env.development? || Rails.env.test?
     debug_output $stderr
@@ -37,7 +37,7 @@ class RegulationsDotGov::Client
   def initialize(options={})
     self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
 
-    @cache_enabled = options.fetch(:cache_enabled) { true }
+    @read_from_cache = options.fetch(:read_from_cache) { true }
     @cache_backups_enabled = options.fetch(:cache_backups_enabled) { false }
 
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
@@ -144,8 +144,8 @@ class RegulationsDotGov::Client
 
   private
 
-  def cache_enabled?
-    @cache_enabled
+  def read_from_cache?
+    @read_from_cache
   end
 
   def backups_enabled?
@@ -181,7 +181,7 @@ class RegulationsDotGov::Client
       when 404
         raise RecordNotFound.new(response)
       when 500
-        raise ServerError.new(response.parsed_response['message'])
+        raise ServerError.new(response)
       else
         raise ResponseError.new(response)
       end
@@ -203,8 +203,8 @@ class RegulationsDotGov::Client
       case response.code
       when 200, 201
         response
-      when 412
-        raise InvalidSubmission.new(response.parsed_response['error']['message'])
+      when 406
+        raise InvalidSubmission.new(response)
       when 500
         raise ServerError.new(response)
       else
@@ -212,6 +212,8 @@ class RegulationsDotGov::Client
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
+    rescue Timeout::Error
+      raise ResponseError.new("Request timed out")
     end
   end
 
