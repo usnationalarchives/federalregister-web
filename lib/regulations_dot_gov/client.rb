@@ -153,7 +153,15 @@ class RegulationsDotGov::Client
   end
 
   def unwrap_response(response)
+    self.class.unwrap_response( response )
+  end
+
+  def self.unwrap_response(response)
     response.respond_to?(:parsed_response) ? response.parsed_response : response
+  end
+
+  def self.stringify_response(response)
+    unwrap_response(response).to_json
   end
 
   def pad_document_number(document_number)
@@ -179,11 +187,11 @@ class RegulationsDotGov::Client
       when 0
         JSON.parse(response)
       when 404
-        raise RecordNotFound.new(response)
+        raise RecordNotFound.new( stringify_response(response) )
       when 500
-        raise ServerError.new(response)
+        raise ServerError.new( stringify_response(response) )
       else
-        raise ResponseError.new(response)
+        raise ResponseError.new( stringify_response(response) )
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
@@ -204,11 +212,11 @@ class RegulationsDotGov::Client
       when 200, 201
         response
       when 406
-        raise InvalidSubmission.new(response)
+        raise InvalidSubmission.new( stringify_response(response) )
       when 500
-        raise ServerError.new(response)
+        raise ServerError.new( stringify_response(response) )
       else
-        raise ResponseError.new(response)
+        raise ResponseError.new( stringify_response(response) )
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
