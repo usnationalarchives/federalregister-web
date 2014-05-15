@@ -11,7 +11,8 @@ class CommentAttachment < ApplicationModel
   before_validation :update_attachment_attributes
 
   validates_presence_of :attachment
-  validates :file_size, :numericality => {:less_than => MAX_FILE_SIZE, :message => "must be less than 10MB"}
+  # 16 is a fudge number that is getting added to our uploaded files...
+  validates :file_size, :numericality => {:less_than_or_equal_to => MAX_FILE_SIZE + 16, :message => "must be less than 10MB"}
   validates :file_type, :format => {:with => /^#{ALLOWED_EXTENSIONS.join('|')}$/i, :message => "not allowed"}
 
   mount_uploader :attachment, AttachmentUploader
