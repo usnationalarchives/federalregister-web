@@ -17,26 +17,47 @@
     <div class="my_fr">
       <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
 
-    <% if @current_user %>
+    <% if current_user %>
       <p>
         <% if @comment.agency_participates_on_regulations_dot_gov? %>
           Your comment tracking number has been added to your MyFR account and you will recieve
           an email notification when your comment has been publically posted by <%= @comment.agency_name %>.
         <% else %>
           Your comment tracking number has been added to your MyFR account; because <%= @comment.agency_name %> does
-          not publish comments on Regulations.gov, to check the status of your comment or obtain further information,
+          not publicly post comments on Regulations.gov, to check the status of your comment or obtain further information,
           please follow-up directly with the agency contact listed in the document.
         <% end %>
       </p>
 
       <%= csrf_meta_tag %>
       <ul>
-        <li><span class="description"><%= t('notifications.comment.publication.active') %></span> <%= link_to t('notifications.links.remove'), comment_publication_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
-        <li><span class="description"><%= t('notifications.comment.followup_document.active') %></span> <%= link_to t('notifications.links.remove'), comment_followup_document_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
+        <% if @comment.agency_participates_on_regulations_dot_gov? %>
+          <li>
+            <span class="description">
+              <%= t('notifications.comment.publication.active') %>
+            </span>
+            <%= link_to t('notifications.links.remove'),
+              comment_publication_notifications_url,
+              :'data-comment-tracking-number' => @comment.comment_tracking_number,
+              :method => :delete,
+              :class => 'notifications' %>
+          </li>
+        <% end %>
+        <li>
+          <span class="description">
+            <%= t('notifications.comment.followup_document.active') %>
+          </span>
+          <%= link_to t('notifications.links.remove'),
+            comment_followup_document_notifications_url,
+            :'data-comment-tracking-number' => @comment.comment_tracking_number,
+            :method => :delete,
+            :class => 'notifications' %>
+        </li>
       </ul>
     <% else %>
       <p>
-        Sign in or create a MyFR account to save your comment tracking number and recieve a copy of your comment via email.
+        Sign in or create a MyFR account to save your comment tracking number
+        and recieve a copy of your comment via email.
       </p>
 
       <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>

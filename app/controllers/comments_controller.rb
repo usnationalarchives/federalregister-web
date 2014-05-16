@@ -29,7 +29,10 @@ class CommentsController < ApplicationController
   def create
     if user_signed_in?
       @comment.user = current_user
-      @comment.comment_publication_notification = true
+
+      if @comment.agency_participates_on_regulations_dot_gov?
+        @comment.comment_publication_notification = true
+      end
 
       @comment.build_subscription(current_user, request)
     end
