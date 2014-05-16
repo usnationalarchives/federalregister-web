@@ -37,6 +37,8 @@ class CommentsController < ApplicationController
       @comment.build_subscription(current_user, request)
     end
 
+    @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
+
     if @comment.save
       render_created_comment
     else

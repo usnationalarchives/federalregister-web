@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516001137) do
+ActiveRecord::Schema.define(:version => 20140516224216) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -55,7 +55,14 @@ ActiveRecord::Schema.define(:version => 20140516001137) do
     t.string   "iv"
     t.binary   "encrypted_comment_data"
     t.string   "agency_name"
+    t.boolean  "agency_participating"
   end
+
+  add_index "comments", ["agency_participating"], :name => "index_comments_on_agency_participating"
+  add_index "comments", ["comment_publication_notification"], :name => "index_comments_on_comment_publication_notification"
+  add_index "comments", ["comment_tracking_number"], :name => "index_comments_on_comment_tracking_number"
+  add_index "comments", ["document_number"], :name => "index_comments_on_document_number"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "folders", :force => true do |t|
     t.string   "name"
