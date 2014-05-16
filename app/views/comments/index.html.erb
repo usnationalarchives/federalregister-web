@@ -34,7 +34,8 @@
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
         <div class="<%= comment.article.granule_class || 'uncategorized' %>_metadata_wrapper">
-          <%= render :partial => "clippings/doc_types/#{comment.article.granule_class || 'uncategorized'}", :locals => {:clipping => comment} %>
+          <%= render :partial => "clippings/doc_types/#{comment.article.granule_class || 'uncategorized'}",
+            :locals => {:clipping => comment} %>
         </div>
       </div>
 
@@ -45,7 +46,7 @@
           <dd><%= comment.commented_at %></dd>
 
           <dt class="comment_tracking_number">Comment tracking number:</dt>
-          <dd><%= link_to comment.comment_tracking_number, comment.regulations_dot_gov_comment_search_result_url %></dd>
+          <dd><%= comment.tracking_number_link %></dd>
 
           <dt class="published_at">Comment posted on:</dt>
           <dd><%= comment.comment_published_at %></dd>

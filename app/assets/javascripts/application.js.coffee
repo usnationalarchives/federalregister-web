@@ -5,3 +5,5 @@
 //= require clipping_filters
 //= require subscription_filters
 //= require tipsy
+#= require page_specific/comments
+

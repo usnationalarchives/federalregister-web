@@ -33,4 +33,17 @@ class CommentDecorator < ApplicationDecorator
   def regulations_dot_gov_comment_search_result_url
     "http://www.regulations.gov/#!searchResults;rpp=25;po=0;s=#{comment_tracking_number}"
   end
+
+  def tracking_number_link
+    if agency_participating
+      link_to comment_tracking_number, regulations_dot_gov_comment_search_result_url
+    else
+      content_tag(:span,
+        comment_tracking_number,
+        :class => "tooltip agency-not-participating",
+        :"data-tooltip" => 'This agency does not post comments on Regulations.gov. Please contact the agency for further information.',
+        :"data-tooltip-class" => 'agency-not-participating'
+      )
+    end
+  end
 end
