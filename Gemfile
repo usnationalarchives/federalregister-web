@@ -103,6 +103,7 @@ group :development, :test do
 
   gem 'codeclimate-test-reporter', :require => nil
   gem 'pry'
+  gem 'pry-debugger', :platforms => :ruby_19
 
   #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3
