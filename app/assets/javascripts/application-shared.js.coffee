@@ -18,5 +18,5 @@
 //= require user_session
 
 #= require_tree ./components/comments/
-#= require page_specific/comment
+#= require page_specific/comment_creation
 #= require page_specific/comment_notifications
