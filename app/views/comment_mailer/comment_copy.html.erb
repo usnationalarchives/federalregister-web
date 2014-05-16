@@ -23,8 +23,8 @@
 
   <dl class="comment_contents">
     <% @comment.comment_data.each do |field| %>
-      <dt><%= field['label'] %></dt>
-      <% field['values'].each do |value| %>
+      <dt><%= field[:label] %></dt>
+      <% field[:values].each do |value| %>
         <%= content_tag(:dd, value) %>
       <% end %>
     <% end %>

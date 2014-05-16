@@ -99,7 +99,7 @@ class CommentsController < ApplicationController
   def render_created_comment
     @comment = CommentDecorator.decorate(@comment)
 
-    CommentMailer.comment_copy(user, @comment).deliver if user_signed_in?
+    CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
 
     render :action => :show, :status => 200
   end

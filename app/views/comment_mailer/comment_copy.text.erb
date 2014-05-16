@@ -15,6 +15,6 @@ Comment Submission Date: <%= @comment.commented_at %>
 
 
 <% @comment.comment_data.each do |field| %>
-<%= field['label'] %>: <%= field['values'].join(', ') %>
+<%= field[:label] %>: <%= field[:values].join(', ') %>
 <% end %>
 
