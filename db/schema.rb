@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129201408) do
+ActiveRecord::Schema.define(:version => 20140516001137) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -51,8 +51,6 @@ ActiveRecord::Schema.define(:version => 20121129201408) do
     t.datetime "created_at"
     t.boolean  "comment_publication_notification"
     t.datetime "comment_published_at"
-    t.boolean  "followup_document_notification"
-    t.string   "followup_document_number"
     t.string   "salt"
     t.string   "iv"
     t.binary   "encrypted_comment_data"
@@ -91,7 +89,10 @@ ActiveRecord::Schema.define(:version => 20121129201408) do
     t.date     "last_issue_delivered"
     t.string   "environment"
     t.integer  "user_id"
+    t.integer  "comment_id"
   end
+
+  add_index "subscriptions", ["comment_id"], :name => "index_subscriptions_on_comment_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => ""

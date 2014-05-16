@@ -11,6 +11,7 @@ class Subscription < ApplicationModel
 
   belongs_to :mailing_list
   belongs_to :user
+  belongs_to :comment
   
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?

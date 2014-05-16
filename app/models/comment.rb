@@ -1,5 +1,6 @@
 class Comment < ApplicationModel
   belongs_to :user
+  has_one :subscription
 
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
@@ -14,7 +15,7 @@ class Comment < ApplicationModel
   #after_create :delete_attachments
 
   attr_accessor :secret, :confirm_submission
-  attr_reader :attachments, :comment_form
+  attr_reader :attachments, :comment_form, :followup_document_notification
 
   validate :required_fields_are_present
   validate :fields_do_not_exceed_maximum_length
@@ -93,6 +94,19 @@ class Comment < ApplicationModel
   def respond_to?(name, include_private = false)
     attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
     comment_form.try(:has_field?, attr_name) || super
+  end
+
+  def build_subscription(user, request)
+    self.subscription = Subscription.new.tap do |s|
+      s.search_conditions = {:citing_document_numbers => document_number }
+      s.user = user
+      s.email = user.email
+      s.requesting_ip = request.remote_ip
+      s.environment = Rails.env
+      s.search_type = 'Entry'
+
+      s.confirmed_at = Time.current if user.confirmed?
+    end
   end
 
   private
