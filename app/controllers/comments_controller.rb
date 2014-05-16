@@ -30,7 +30,8 @@ class CommentsController < ApplicationController
     if user_signed_in?
       @comment.user = current_user
       @comment.comment_publication_notification = true
-      @comment.followup_document_notification = true
+
+      @comment.build_subscription(current_user, request)
     end
 
     if @comment.save

@@ -15,9 +15,8 @@
 //= require fr_modal
 #= require form_utils
 //= require subscription
-//= require comment_notifications
 //= require user_session
 
 #= require_tree ./components/comments/
 #= require page_specific/comment
-
+#= require page_specific/comment_notifications

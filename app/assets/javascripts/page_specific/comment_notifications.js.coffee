@@ -14,14 +14,16 @@ $(document).ready ->
         }
         beforeSend: (xhr)->
           xhr
-            .setRequestHeader 'X-CSRF-Token', $('meta[name="csrf-token"]').attr 'content'
-        },
+            .setRequestHeader 'X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')
         success: (response)->
           link
             .html response.link_text
+
           link
             .data 'method', response.method
+
           link
             .closest 'li'
             .find '.description'
               .html response.description
+      })
