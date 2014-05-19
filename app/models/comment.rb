@@ -2,6 +2,19 @@ class Comment < ApplicationModel
   belongs_to :user
   has_one :subscription
 
+  attr_protected :agency_name,
+    :agency_participating,
+    :comment_publication_notification,
+    :comment_published_at,
+    :comment_tracking_number,
+    :created_at,
+    :document_number,
+    :encrypted_comment_data,
+    :id,
+    :iv,
+    :salt,
+    :user_id
+
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
 
@@ -9,6 +22,9 @@ class Comment < ApplicationModel
     'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#furinf\'>FOR FURTHER INFORMATION CONTACT</a>",
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
+
+  DOCUMENT_STAND_IN = 'FDA_FRDOC_0001-4412' #'NRC_FRDOC_0001-4326' #'NSF_FRDOC_0001-1239'
+
   before_create :send_to_regulations_dot_gov
   before_create :persist_comment_data
   # TODO: implement delete_attachments
@@ -73,7 +89,7 @@ class Comment < ApplicationModel
   def send_to_regulations_dot_gov
     Dir.mktmpdir do |dir|
       args = {
-        :comment_on => comment_form.document_id,
+        :comment_on => comment_form.document_id || DOCUMENT_STAND_IN,
         :submit     => "Submit Comment"
       }.merge(attributes.slice(*comment_form.fields.map(&:name)))
 

@@ -118,7 +118,8 @@ class CommentsController < ApplicationController
   end
 
   def build_comment
-    @comment = Comment.new(:document_number => params[:document_number])
+    @comment = Comment.new
+    @comment.document_number = params[:document_number]
     @comment.load_comment_form
 
     @comment.attributes = params[:comment] if params[:comment]
