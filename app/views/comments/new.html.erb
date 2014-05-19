@@ -16,18 +16,18 @@
 
 <% @comment = CommentDecorator.decorate(@comment) %>
 
-<div class="comment_form_wrapper" data-comment-due="<%= @comment_form.comments_close_at.to_s(:datetime_with_zone) %>">
+<div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>">
   <div class="instructions">
     <p>
       Thank you for taking the time to create a comment. Your input is important.
       Regulations.gov has provided
-      <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf">tips for submitting an effective comment</a><%= true || @comment_form.posting_guidelines.present? ? '' : '.' %>
+      <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf">tips for submitting an effective comment</a><%= true || @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
 
-      <% if @comment_form.posting_guidelines %>
+      <% if @comment.comment_form.posting_guidelines %>
         and this agency has also provided
         <a href="#" class="fr_modal_link"
           data-modal-title="Agency Posting Guidelines"
-          data-modal-html="<p><%= @comment_form.posting_guidelines %></p>">
+          data-modal-html="<p><%= @comment.comment_form.posting_guidelines %></p>">
            additional posting guidelines.
         </a>
       <% end %>
@@ -42,10 +42,10 @@
 
     <p>
       You can also view
-      <% if @comment_form.alternative_ways_to_comment.present? %>
+      <% if @comment.comment_form.alternative_ways_to_comment.present? %>
         <a href="#" class="fr_modal_link"
           data-modal-title="Alternative Ways to Comment"
-          data-modal-html="<p><%= @comment_form.alternative_ways_to_comment %></p>">alternative ways to comment</a>.
+          data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">alternative ways to comment</a>.
       <% else %>
         <%= link_to 'alternative ways to comment', '#addresses' %>.
       <% end %>
@@ -54,7 +54,7 @@
 
   <%= semantic_form_for @comment,
     :url => comment_path,
-    :html => {:"data-document-number" => @entry.document_number} do |f| %>
+    :html => {:"data-document-number" => @comment.document_number} do |f| %>
 
     <% if @comment_reloaded %>
       <div class="notice message comment_reloaded">
@@ -79,10 +79,10 @@
           ) %>
       </li>
 
-      <% comment_field = (@comment_form.fields.detect{|field| field.name == 'general_comment'}) %>
+      <% comment_field = (@comment.comment_form.fields.detect{|field| field.name == 'general_comment'}) %>
       <%= f.input comment_field.name, comment_input_field_options(comment_field) %>
 
-      <% if @comment_form.allow_attachments? %>
+      <% if @comment.comment_form.allow_attachments? %>
         <li class="public file input optional">
           <label class="label">Upload File(s)</label>
 
@@ -125,7 +125,7 @@
 
       <hr>
 
-      <% @comment_form.fields.reject{|field| field.name == "general_comment"}.each do |field| %>
+      <% @comment.comment_form.fields.reject{|field| field.name == "general_comment"}.each do |field| %>
         <%= f.input field.name, comment_input_field_options(field) %>
       <% end %>
 

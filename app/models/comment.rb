@@ -30,7 +30,8 @@ class Comment < ApplicationModel
   validates_presence_of :document_number
 
   def article
-    @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(self.document_number) )
+    raise "Document number missing!" unless document_number.present?
+    @article ||= FederalRegister::Article.find(document_number)
   end
 
   def attributes=(hsh)
@@ -104,8 +105,18 @@ class Comment < ApplicationModel
       s.requesting_ip = request.remote_ip
       s.environment = Rails.env
       s.search_type = 'Entry'
+    end
+  end
 
-      s.confirmed_at = Time.current if user.confirmed?
+  def load_comment_form(api_options={})
+    client = RegulationsDotGov::Client.new(api_options)
+
+    if article.comment_url
+      document_id = article.comment_url.split(/=/).last
+      document_id = Comment::DOCUMENT_STAND_IN
+      self.comment_form = client.get_comment_form(document_id)
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 
@@ -155,7 +166,7 @@ class Comment < ApplicationModel
 
   def method_missing(name, *val)
     attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
-    if @comment_form.has_field?(attr_name)
+    if comment_form.has_field?(attr_name)
       @attributes ||= []
 
       if name.to_s =~ /=$/

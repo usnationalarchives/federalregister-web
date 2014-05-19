@@ -5,8 +5,6 @@ class CommentsController < ApplicationController
   with_options(:only => [:new, :reload, :create]) do |during_creation|
     during_creation.layout false
     during_creation.skip_before_filter :authenticate_user!
-    during_creation.before_filter :load_entry
-    during_creation.before_filter :load_comment_form
     during_creation.before_filter :build_comment
  end
 
@@ -40,6 +38,8 @@ class CommentsController < ApplicationController
     @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
 
     if @comment.save
+      @comment.subscription.confirm! if current_user.confirmed?
+
       render_created_comment
     else
       render_error_page
@@ -47,11 +47,11 @@ class CommentsController < ApplicationController
   rescue RegulationsDotGov::Client::InvalidSubmission => exception
     begin
       # reload the form from regs.gov
-      @comment.comment_form = load_comment_form(:read_from_cache => false)
+      @comment.load_comment_form(:read_from_cache => false)
 
       record_regulations_dot_gov_error(
         parse_message(exception.message),
-        @comment.document_id
+        @comment.document_number
       )
 
      # try to save with the updated form from the reload above
@@ -65,7 +65,7 @@ class CommentsController < ApplicationController
     rescue RegulationsDotGov::Client::ResponseError => inner_exception
       record_regulations_dot_gov_error(
         parse_message(inner_exception.message),
-        @comment.document_id
+        @comment.document_number
       )
 
       # show form to user but with message from regulations.gov
@@ -76,11 +76,11 @@ class CommentsController < ApplicationController
   rescue RegulationsDotGov::Client::ResponseError => exception
     record_regulations_dot_gov_error(
       exception,
-      @comment.document_id
+      @comment.document_number
     )
 
     render_error_page(
-      "We had trouble communicating with Regulations.gov; try again or visit #{link_to @comment.article.comment_url, @comment.article.comment_url}"
+      "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.article.comment_url, @comment.article.comment_url}"
     )
   end
 
@@ -117,25 +117,13 @@ class CommentsController < ApplicationController
     render :action => :new, :status => 422
   end
 
-  def load_entry
-    @entry = FederalRegister::Article.find(params[:document_number])
-  end
-
-  def load_comment_form(options={})
-    client = RegulationsDotGov::Client.new(options)
-
-    if @entry.regulations_dot_gov_url
-      document_id = @entry.regulations_dot_gov_url.split(/=/).last
-      document_id = Comment::DOCUMENT_STAND_IN
-      @comment_form = client.get_comment_form(document_id)
-    else
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   def build_comment
-    @comment = Comment.new(:comment_form => @comment_form, :document_number => @entry.document_number)
+    @comment = Comment.new(:document_number => params[:document_number])
+    @comment.load_comment_form
+
     @comment.attributes = params[:comment] if params[:comment]
+    @comment = CommentDecorator.decorate( @comment )
+
     @comment_attachments = @comment.attachments
   end
 

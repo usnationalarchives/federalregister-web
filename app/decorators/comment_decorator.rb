@@ -55,4 +55,8 @@ class CommentDecorator < ApplicationDecorator
        Comment::AGENCY_POSTING_GUIDELINES_LEXICON
     ).html_safe
   end
+
+  def article
+    @article ||= ArticleDecorator.decorate( model.article )
+  end
 end
