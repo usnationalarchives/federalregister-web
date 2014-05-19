@@ -6,10 +6,12 @@ class CommentsController < ApplicationController
     during_creation.layout false
     during_creation.skip_before_filter :authenticate_user!
     during_creation.before_filter :build_comment
- end
+  end
 
   def index
-    @comments = CommentDecorator.decorate(current_user.comments.order('created_at DESC').all)
+    @comments = CommentDecorator.decorate(
+      current_user.comments.order('created_at DESC').all
+    )
   end
 
   def new
