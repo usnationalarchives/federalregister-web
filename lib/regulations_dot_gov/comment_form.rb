@@ -16,7 +16,6 @@ class RegulationsDotGov::CommentForm
   end
 
   def alternative_ways_to_comment
-    # 'not implemented in v3 api!'
     document_attributes["alternateWaysToComment"]
   end
 
@@ -25,7 +24,6 @@ class RegulationsDotGov::CommentForm
   end
 
   def document_id
-    # 'not implemented in v3 api!'
     document_attributes['documentId']
   end
 
@@ -52,21 +50,15 @@ class RegulationsDotGov::CommentForm
   end
 
   def agency_name
-    # 'not implemented in v3 api!'
-    document_attributes['agencyName']
-    'Nuclear Regulatory Commission'
+    attributes['agencyName']
   end
 
   def agency_acronym
-    # 'not implemented in v3 api!'
     document_attributes['agencyAcronym']
-    'NRC'
   end
 
   def agency_id
-    # 'not implemented in v3 api!'
-    document_attributes['agencyId']
-    'NRC'
+    raise 'not implemented in v3 api, use agency_acronym!'
   end
 
   def text_fields
@@ -74,7 +66,6 @@ class RegulationsDotGov::CommentForm
   end
 
   def agency_participates_on_regulations_dot_gov?
-    # 'not implemented in v3 api!'
     attributes["participating"]
   end
 
