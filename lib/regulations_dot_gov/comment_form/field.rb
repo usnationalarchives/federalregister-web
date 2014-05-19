@@ -18,7 +18,7 @@ class RegulationsDotGov::CommentForm::Field
     klass.new(client, attributes, agency_acronym)
   end
 
-  attr_reader :client, :attributes, :agency_acronym
+  attr_reader :client, :attributes, :agency_id
 
   def initialize(client, attributes, agency_acronym)
     @client = client
