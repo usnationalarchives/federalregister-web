@@ -13,7 +13,7 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def agency_name
-    'the ' #+ model.agency_name
+    'the ' + model.agency_name
   end
 
   def commented_at
@@ -45,5 +45,14 @@ class CommentDecorator < ApplicationDecorator
         :"data-tooltip-class" => 'agency-not-participating'
       )
     end
+  end
+
+  def posting_guidelines
+    model.posting_guidelines.gsub(
+       Regexp.new(
+         Comment::AGENCY_POSTING_GUIDELINES_LEXICON.keys.join('|')
+       ),
+       Comment::AGENCY_POSTING_GUIDELINES_LEXICON
+    ).html_safe
   end
 end

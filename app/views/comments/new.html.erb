@@ -23,16 +23,11 @@
       Regulations.gov has provided
       <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf">tips for submitting an effective comment</a><%= true || @comment_form.posting_guidelines.present? ? '' : '.' %>
 
-      <% if true || @comment_form.posting_guidelines %>
+      <% if @comment_form.posting_guidelines %>
         and this agency has also provided
         <a href="#" class="fr_modal_link"
           data-modal-title="Agency Posting Guidelines"
-          data-modal-html="<p><%#= @comment_form.posting_guidelines.gsub(
-             Regexp.new(
-               Comment::AGENCY_POSTING_GUIDELINES_LEXICON.keys.join('|')
-             ),
-             Comment::AGENCY_POSTING_GUIDELINES_LEXICON
-          ).html_safe %></p>">
+          data-modal-html="<p><%= @comment_form.posting_guidelines %></p>">
            additional posting guidelines.
         </a>
       <% end %>
