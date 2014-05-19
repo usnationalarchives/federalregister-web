@@ -4,12 +4,14 @@
 en:
   notifications:
     links:
-      add: Add Notification
-      remove: Remove Notification
+      add: Opt In
+      remove: Opt Out
     comment:
       publication:
-        active: You will be notified when your comment is made public.
-        inactive: You will not notified when your comment is made public.
+        active: You will be notified when your comment has been reviewed and is publicly posted.
+        active_unconfirmed: Once your email address is confirmed, you will be notified when your comment has been reviewed and is publicly posted.
+        inactive: You will not notified when your comment is publicly posted.
       followup_document:
         active: You will be notified when a future document mentions the document you commented on.
+        active_unconfirmed: Once your email address is confirmed, you will be notified when a future document mentions the document you commented on.
         inactive: You will not be notified when a future document mentions the document you commented on.

@@ -20,21 +20,39 @@
     <% if current_user %>
       <p>
         <% if @comment.agency_participates_on_regulations_dot_gov? %>
-          Your comment tracking number has been added to your MyFR account and you will recieve
-          an email notification when your comment has been publically posted by <%= @comment.agency_name %>.
+          Your comment tracking number has been added to your MyFR account.
+          Use this tracking number to find out the status of your comment
+          on Regulations.gov or when communicating with
+          <%= @comment.agency_name %>.
         <% else %>
-          Your comment tracking number has been added to your MyFR account; because <%= @comment.agency_name %> does
-          not publicly post comments on Regulations.gov, to check the status of your comment or obtain further information,
-          please follow-up directly with the agency contact listed in the document.
+          Your comment tracking number has been added to your MyFR account.
+          Because <%= @comment.agency_name %> does not publicly post comments
+          on Regulations.gov, to check the status of your comment or obtain
+          further information please follow-up directly with the agency
+          contact listed in the document.
         <% end %>
       </p>
 
       <%= csrf_meta_tag %>
+
+      <% unless current_user.confirmed? %>
+        <div class="warning message">
+          <p>
+            Your MyFR email address has not yet been confirmed. You will not
+            recieve any notifications until your email address has been
+            confirmed.
+            <%= link_to 'Resend confirmation email', resend_confirmation_path %>.
+          </p>
+        </div>
+      <% end %>
+
       <ul>
         <% if @comment.agency_participates_on_regulations_dot_gov? %>
           <li>
             <span class="description">
-              <%= t('notifications.comment.publication.active') %>
+              <%= current_user.confirmed? ?
+                t('notifications.comment.publication.active') :
+                t('notifications.comment.publication.active_unconfirmed') %>
             </span>
             <%= link_to t('notifications.links.remove'),
               comment_publication_notifications_url,
@@ -45,7 +63,9 @@
         <% end %>
         <li>
           <span class="description">
-            <%= t('notifications.comment.followup_document.active') %>
+            <%= current_user.confirmed? ?
+              t('notifications.comment.followup_document.active') :
+              t('notifications.comment.followup_document.active_unconfirmed') %>
           </span>
           <%= link_to t('notifications.links.remove'),
             comment_followup_document_notifications_url,
@@ -64,7 +84,7 @@
         <%= f.inputs do %>
           <%= f.input :comment_publication_notification,
             :as => :boolean,
-            :label => 'Notify me when my comment is has been reviewed and publicly posted.',
+            :label => 'Notify me when my comment has been reviewed and publicly posted.',
             :input_html => {:checked => true} %>
           <%= f.input :followup_document_notification,
             :as => :boolean,
@@ -154,7 +174,8 @@
         not store the information provided in your comment.
         Your comment tracking number can be used to retrieve your comment
         from <a href="http://www.regulations.gov">Regulations.gov</a>
-        once it has been reviewed and publicly posted by <%=  @comment.agency_name %>.
+        once it has been reviewed and publicly posted by
+        <%= @comment.agency_name %> which may be an indefinite amount of time.
       </p>
     </div>
 
