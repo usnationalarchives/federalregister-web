@@ -16,7 +16,7 @@
 
   <dl class="comment_details">
     <dt>Comment Tracking Number</dt>
-    <dd class="tracking_number"><%= @comment.comment_tracking_number %></dd>
+    <dd class="tracking_number"><%= link_to @comment.comment_tracking_number, "http://www.regulations.gov/#!searchResults;s=#{@comment.comment_tracking_number}" %></dd>
     <dt>Comment Submission Date</dt>
     <dd><%= @comment.commented_at %></dd>
   </dl>
