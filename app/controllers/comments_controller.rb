@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
     @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
 
     if @comment.save
-      @comment.subscription.confirm! if current_user.confirmed?
+      @comment.subscription.confirm! if current_user && current_user.confirmed?
 
       render_created_comment
     else
