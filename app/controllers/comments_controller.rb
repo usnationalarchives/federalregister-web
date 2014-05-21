@@ -130,13 +130,13 @@ class CommentsController < ApplicationController
     @comment_attachments = @comment.attachments
   end
 
-  def record_regulations_dot_gov_error(exception, document_id)
+  def record_regulations_dot_gov_error(exception, document_number)
     Rails.logger.error(exception)
 
     honeybadger_options = {
       :exception => exception,
       :parameters => {
-        :document_number => document_id
+        :document_number => document_number,
       }
     }
     notify_honeybadger(honeybadger_options)
