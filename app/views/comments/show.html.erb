@@ -127,13 +127,13 @@
         <li>
           <div class="left">
             <%= link_to_twitter(
-              "I just commented on #{@comment.article.short_article_url}."
+              "I commented on #{@comment.article.short_article_url}."
             ) %>
           </div>
           <div class="right">
             <p>
               <%= link_to_twitter(
-                "I just commented on #{@comment.article.short_article_url}.",
+                "I commented on #{@comment.article.short_article_url}.",
                 "Create a tweet",
                 false
               ) %>.
@@ -172,10 +172,10 @@
         FederalRegister.gov submitted your comment to
         <a href="http://www.regulations.gov">Regulations.gov</a> and did
         not store the information provided in your comment.
-        Your comment tracking number can be used to retrieve your comment
+        Your comment tracking number may be used to retrieve your comment
         from <a href="http://www.regulations.gov">Regulations.gov</a>
-        once it has been reviewed and publicly posted by
-        <%= @comment.agency_name %> which may be an indefinite amount of time.
+        once it has been reviewed and if it's publicly posted by
+        <%= @comment.agency_name %>.
       </p>
     </div>
 
