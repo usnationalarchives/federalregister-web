@@ -36,9 +36,9 @@ class CommentDecorator < ApplicationDecorator
 
   def tracking_number_link
     if agency_participating
-      link_to comment_tracking_number, regulations_dot_gov_comment_search_result_url
+      h.link_to comment_tracking_number, regulations_dot_gov_comment_search_result_url
     else
-      content_tag(:span,
+      h.content_tag(:span,
         comment_tracking_number,
         :class => "tooltip agency-not-participating",
         :"data-tooltip" => 'This agency does not post comments on Regulations.gov. Please contact the agency for further information.',
