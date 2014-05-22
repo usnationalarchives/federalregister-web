@@ -75,7 +75,7 @@ class @FR2.CommentFormSubmissionHandler
 
     @ajaxCommentData
       .animate {height: '42px'}, 400
-    @ajaxCommentData
+    $('#flash_message.comment')
       .scrollintoview {duration: 400}
 
     commentWrapper.slideUp 400, ->
