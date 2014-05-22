@@ -23,8 +23,6 @@ class Comment < ApplicationModel
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
 
-  DOCUMENT_STAND_IN = 'FDA_FRDOC_0001-4412' #'NRC_FRDOC_0001-4326' #'NSF_FRDOC_0001-1239'
-
   before_create :send_to_regulations_dot_gov
   before_create :persist_comment_data
   # TODO: implement delete_attachments
@@ -89,7 +87,7 @@ class Comment < ApplicationModel
   def send_to_regulations_dot_gov
     Dir.mktmpdir do |dir|
       args = {
-        :comment_on => comment_form.document_id || DOCUMENT_STAND_IN,
+        :comment_on => comment_form.document_id,
         :submit     => "Submit Comment"
       }.merge(attributes.slice(*comment_form.fields.map(&:name)))
 
@@ -129,7 +127,6 @@ class Comment < ApplicationModel
 
     if article.comment_url
       document_id = article.comment_url.split(/=/).last
-      document_id = Comment::DOCUMENT_STAND_IN
       self.comment_form = client.get_comment_form(document_id)
     else
       raise ActiveRecord::RecordNotFound
