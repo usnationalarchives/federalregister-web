@@ -30,7 +30,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
       cipher.encrypt
       cipher.key = model.encryption_key
       cipher.iv  = model.iv
-      
+
       buf = ""
       File.open(current_path, "wb") do |outf|
         File.open(original_file_path, "rb") do |inf|
@@ -42,7 +42,14 @@ class AttachmentUploader < CarrierWave::Uploader::Base
       end
     ensure
       if File.exists?(original_file_path)
-        Cocaine::CommandLine.new("srm", original_file_path).run
+        pid = Process.fork
+        if pid.nil?
+          # In child
+          exec("srm #{original_file_path}")
+        else
+          # In parent
+          Process.detach(pid)
+        end
       end
     end
   end
