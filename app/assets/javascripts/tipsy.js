@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   /* checkbox drawers */
   $('#clippings li div.add_to_folder_pane').tipsy( {gravity: 'e', fallback: "Select clipping(s) and modify using menus above", fade: true, offset: -15});
-  
+
   /* clipping actions */
   $('#clipping-actions #add-to-folder').tipsy( {gravity: 's', fallback: "Select clipping(s) below to move them", fade: true, offset: 2});
   $('#clipping-actions #remove-clipping').tipsy( {gravity: 's', fallback: "Delete selected clipping(s)", fade: true, offset: 2});
@@ -23,6 +23,12 @@ $(document).ready(function(){
 
   $('.clipping_data .comment_on').tipsy( {gravity: 's', fade: true, offset: 3, fallback: 'You have officially commented on this document.'} );
 
-  $('#comments .comment_count').tipsy( {gravity: 's', delayIn: 500, fade: true, offset: 3, title: function() { return $(this).data('tooltip');} });
+  $('#comments .comment_count').tipsy({
+    gravity: 's',
+    delayIn: 500,
+    fade: true,
+    offset: 3,
+    title: function() { return $(this).data('tooltip') }
+  });
   /*** Comment form tipsy is defined in comment.js.erb ***/
 });
