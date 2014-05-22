@@ -4,6 +4,14 @@ class CommentDecorator < ApplicationDecorator
   delegate :agency_participates_on_regulations_dot_gov?,
     :to => :comment_form
 
+  def regulations_dot_gov_base_url
+    if Rails.env.production?
+      "http://www.regulations.gov"
+    else
+      "http://regstest.erulemaking.net"
+    end
+  end
+
   def human_error_messages
     if errors.present?
       "There #{errors.count > 1 ? 'were' : 'was'}
@@ -31,7 +39,7 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def regulations_dot_gov_comment_search_result_url
-    "http://www.regulations.gov/#!searchResults;rpp=25;po=0;s=#{comment_tracking_number}"
+    "#{regulations_dot_gov_base_url}/#!searchResults;rpp=25;po=0;s=#{comment_tracking_number}"
   end
 
   def tracking_number_link
