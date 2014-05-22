@@ -15,3 +15,8 @@ en:
         active: You will be notified when a future document mentions the document you commented on.
         active_unconfirmed: Once your email address is confirmed, you will be notified when a future document mentions the document you commented on.
         inactive: You will not be notified when a future document mentions the document you commented on.
+  comments:
+    comment_count:
+      one: View the 1 publicly posted comment.
+      other: View the %{count} publicly posted comments.
+      none: There are no publicly posted comments.

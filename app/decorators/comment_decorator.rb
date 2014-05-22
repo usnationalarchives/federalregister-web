@@ -67,4 +67,28 @@ class CommentDecorator < ApplicationDecorator
   def article
     @article ||= ArticleDecorator.decorate( model.article )
   end
+
+  def comment_count
+    article.regulations_dot_gov_comment_count
+  end
+
+  def comment_count_tooltip
+    if comment_count == 0
+      h.t('comments.comment_count.none')
+    else
+      h.t('comments.comment_count', :count => comment_count)
+    end
+  end
+
+  def comment_count_link
+    if comment_count > 0
+      h.link_to(
+        comment_count,
+        article.regulations_dot_gov_comments_url,
+        :class => "count"
+      )
+    elsif comment_count == 0
+      h.content_tag(:span, comment_count, :class => "count")
+    end
+  end
 end

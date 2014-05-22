@@ -21,15 +21,10 @@
         <span class="icon-fr2 icon-doctype icon-fr2-<%= comment.article.granule_class || 'uncategorized' %>"></span>
       </div>
 
-      <% comment_count = comment.article.regulations_dot_gov_comment_count %>
-      <% if comment_count = 12 #comment_count >= 0 %>
-        <div class="comment_count" data-tooltip="View the <%= pluralize(comment_count, 'public comment') %>">
-          <span class="icon-fr2 icon-fr2-conversation-alt"></span>
-          <%= link_to comment_count,
-            comment.article.regulations_dot_gov_comments_url,
-            :class => "count" %>
-        </div>
-      <% end %>
+      <div class="comment_count" data-tooltip="<%= comment.comment_count_tooltip %>">
+        <span class="icon-fr2 icon-fr2-conversation-alt"></span>
+        <%= comment.comment_count_link %>
+      </div>
 
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>

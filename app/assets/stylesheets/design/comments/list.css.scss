@@ -28,7 +28,7 @@ ul#comments {
       color: $fr-green;
     }
 
-    a.count {
+    .count {
       width: auto;
       min-width: 8px;
       min-height: 8px;
@@ -53,7 +53,7 @@ ul#comments {
 
     &:hover {
       .icon-fr2 { color: $fr-orange; }
-      a.count { background-color: $fr-orange; }
+      .count { background-color: $fr-orange; }
     }
   }
 
