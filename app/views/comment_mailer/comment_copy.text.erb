@@ -14,6 +14,8 @@ Comment Submission Date: <%= @comment.commented_at %>
 
 
 <% @comment.comment_data.each do |field| %>
-<%= field[:label] %>: <%= field[:values].join(', ') %>
+  <% field.symbolize_keys! %>
+
+  <%= field[:label] %>: <%= field[:values].join(', ') %>
 <% end %>
 
