@@ -124,11 +124,15 @@ class CommentsController < ApplicationController
     @comment.document_number = params[:document_number]
     @comment.load_comment_form
 
-    @comment.attributes = params[:comment] if params[:comment]
-    @comment = CommentDecorator.decorate( @comment )
+    begin
+      @comment.attributes = params[:comment] if params[:comment]
+    rescue => exception
+      record_regulations_dot_gov_error(exception, @comment.document_number)
+    end
 
+    @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
-  end
+    end
 
   def record_regulations_dot_gov_error(exception, document_number)
     Rails.logger.error(exception)
