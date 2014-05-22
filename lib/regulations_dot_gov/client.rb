@@ -14,10 +14,10 @@ class RegulationsDotGov::Client
     debug_output $stderr
   end
 
-  if Rails.env.development? || Rails.env.test? || Rails.env.staging?
-    base_uri('http://api.data.gov/TEST/regulations/v3/')
-  elsif Rails.env.production?
+  if Rails.env.production?
     base_uri('http://api.data.gov/regulations/v3/')
+  else
+    base_uri('http://api.data.gov/TEST/regulations/v3/')
   end
 
   caches_api_responses :key_name => "regulations_dot_gov", :expire_in => 3600
