@@ -28,7 +28,7 @@ class Comment < ApplicationModel
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
-  attr_accessor :secret, :confirm_submission
+  attr_accessor :secret, :confirm_submission, :response
   attr_reader :attachments, :comment_form, :followup_document_notification
 
   validate :required_fields_are_present
@@ -95,7 +95,7 @@ class Comment < ApplicationModel
         File.open(attachment.decrypt_to(dir))
       end
 
-      response = comment_form.client.submit_comment(args)
+      self.response = comment_form.client.submit_comment(args)
       self.comment_tracking_number = response.tracking_number
 
       # TODO: srm dir

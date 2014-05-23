@@ -21,4 +21,8 @@ class RegulationsDotGov::CommentFormResponse
   def status
     @raw_attributes['status']
   end
+
+  def uploaded_files
+    @raw_attributes['uploadedFiles'] || []
+  end
 end

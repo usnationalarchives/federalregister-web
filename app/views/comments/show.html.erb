@@ -3,8 +3,14 @@
 
   <div class="notice message">
     <p class="info">
-      Thank you! Your comment has been submitted to
-      <a href="http://www.regulations.gov">Regulations.gov</a>
+      Thank you! Your comment
+      <% if @comment.response.uploaded_files.present? %>
+        (and its
+          <%= content_tag(:span,
+                pluralize(@comment.response.uploaded_files.size, 'uploaded file'),
+                :data => {:files => @comment.response.uploaded_files}) %>)
+      <% end %>
+      has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a>
       for review by the <%= @comment.agency_name %>.
     </p>
     <p class="comment_tracking_number">
