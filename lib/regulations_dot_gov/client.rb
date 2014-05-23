@@ -20,7 +20,7 @@ class RegulationsDotGov::Client
     base_uri('http://api.data.gov/TEST/regulations/v3/')
   end
 
-  caches_api_responses :key_name => "regulations_dot_gov", :expire_in => 3600
+  caches_api_responses :key_name => "regulations_dot_gov", :expire_in => 7.days
 
   default_timeout 20
 
