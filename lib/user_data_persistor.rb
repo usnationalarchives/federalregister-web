@@ -42,8 +42,10 @@ module UserDataPersistor
       comment.secret = session[:comment_secret]
       comment.comment_publication_notification = session[:comment_publication_notification]
 
+      comment.build_subscription(current_user, request)
+
       if session[:followup_document_notification]
-        comment.build_subscription(current_user, request)
+        comment.subscription.confirm! if current_user.confirmed?
       end
 
       comment.save :validate => false
