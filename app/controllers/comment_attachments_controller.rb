@@ -1,6 +1,6 @@
 class CommentAttachmentsController < ApplicationController
   skip_before_filter :authenticate_user!
-  protect_from_forgery :except => :create 
+  protect_from_forgery :if => :current_user
 
   def create
     @comment_attachment = CommentAttachment.new

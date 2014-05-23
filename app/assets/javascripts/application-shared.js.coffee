@@ -20,3 +20,10 @@
 #= require_tree ./components/comments/
 #= require page_specific/comment_creation
 #= require page_specific/comment_notifications
+
+$(document).ready ->
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  })

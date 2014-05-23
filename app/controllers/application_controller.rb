@@ -59,4 +59,14 @@ class ApplicationController < ActionController::Base
   def rescue_action_in_public_with_honeybadger(exception)
     rescue_action_in_public_without_honeybadger(exception)
   end
+
+  # throw exception rather than just resetting session on XSRF error
+  #   in Rails 4 just use `protect_from_forgery with: exception`
+  def handle_unverified_request
+    if Rails.env.production?
+      reset_session
+    else
+      raise ActionController::InvalidAuthenticityToken
+    end
+  end
 end
