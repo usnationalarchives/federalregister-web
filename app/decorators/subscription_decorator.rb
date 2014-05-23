@@ -51,4 +51,10 @@ class SubscriptionDecorator < ApplicationDecorator
       "No items have matched since subscription started"
     end
   end
+
+  def comment
+    if model.comment.present?
+      @comment ||= CommentDecorator.decorate( model.comment )
+    end
+  end
 end

@@ -50,6 +50,7 @@ class CommentDecorator < ApplicationDecorator
         comment_tracking_number,
         :class => "tooltip agency-not-participating",
         :"data-tooltip" => 'This agency does not post comments on Regulations.gov. Please contact the agency for further information.',
+        :"data-tooltip-gravity" => 'e',
         :"data-tooltip-class" => 'agency-not-participating'
       )
     end
