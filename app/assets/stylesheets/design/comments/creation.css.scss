@@ -310,36 +310,57 @@ body#entries .form-tooltip {
   }
 
 .formtastic.comment .file {
+  .label { float: left; }
+
   span.public {
     left: 284px;
     top: -4px;
   }
 
-  #fileupload {
-    margin-left: 0;
-    width: 381px;
-    }
-
-  .add_file {
-    color: #FFF;
-    height: 23px;
-    padding: 0;
-    padding-top: 3px;
-    padding-left: 5px;
-    min-width: inherit;
-    width: 83px;
-    margin-right: 275px;
+  // in order for the upload button to both have a custom styled button
+  // and to work in IE8 & 9 we have to position the input button above
+  // our custom button and make it transparent. Triggering the fileupload
+  // dialog box with javascript isn't allowed in those browsers.
+  .fileupload-button {
+    position: relative;
+    float: left;
+    width: 88px;
+    overflow: hidden;
     margin-bottom: 10px;
-    font-weight: bold;
-    background-color: $fr-green;
-    text-transform: none;
 
-    .icon-fr2 {
-      padding-right: 5px;
-      top: 1px;
+
+    #fileupload {
+      margin-left: 0;
+      width: 88px;
+      font-size: 200px;
+      position: absolute;
+      line-height: 23px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+      -ms-filter: 'alpha(opacity=0)';
     }
+
+    .add_file {
+      color: #FFF;
+      height: 23px;
+      padding: 0;
+      padding-top: 3px;
+      padding-left: 5px;
+      min-width: inherit;
+      width: 83px;
+      font-weight: bold;
+      background-color: $fr-green;
+      text-transform: none;
+
+      .icon-fr2 {
+        padding-right: 5px;
+        top: 1px;
+      }
+    }
+    .add_file:hover,
+    .add_file.hover { background-color: lighten($fr-green, 10); }
   }
-  .add_file:hover { background-color: lighten($fr-green, 10); }
 
   td.cancel,
   td.delete { vertical-align: middle; }

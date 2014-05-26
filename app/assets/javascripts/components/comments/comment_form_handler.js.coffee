@@ -140,6 +140,9 @@ class @FR2.CommentFormHandler
   fileUploadButton: ->
     @commentFormEl().find '#fileupload'
 
+  fileUploadButtonWrapper: ->
+    @commentFormEl().find '.fileupload-button'
+
   improveUploadButton: ->
     addFileButton = $('<div>')
     addFileButton
@@ -149,12 +152,14 @@ class @FR2.CommentFormHandler
         $('<span>').addClass 'icon-fr2 icon-fr2-add'
       )
 
-    @fileUploadButton().after addFileButton
+    @fileUploadButtonWrapper().append addFileButton
 
-    @commentFormEl().on 'click', '.add_file', ()=>
-      @fileUploadButton().trigger 'click'
+    @fileUploadButton().on 'hover', ()=>
+      addFileButton.toggleClass('hover');
+    #@commentFormEl().on 'click', '.add_file', ()=>
+    #  @fileUploadButton().trigger 'click'
 
-    @fileUploadButton().hide()
+    #@fileUploadButton().hide()
 
   loadCommentForm: ->
     @commentFormLoadHandler.load()
