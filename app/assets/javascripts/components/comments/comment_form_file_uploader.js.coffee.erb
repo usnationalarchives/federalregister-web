@@ -42,8 +42,9 @@ class @FR2.CommentFormFileUploader
 
     @uploader = @uploaderEl.fileupload(
       {
-        url: '/my/comment_attachments'
-        autoUpload: true
+        url: '/my/comment_attachments.json'
+        autoUpload: true,
+        dataType: 'json',
         processQueue: [
           {
             action: 'validate',
