@@ -4,6 +4,7 @@
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+<%= content_tag(:div, flash[:warning].html_safe,  :class => 'flash warning') if flash[:warning]  %>
 
 <h2 class="comment title">
   <span class="icon-fr2 icon-fr2-Chat"></span>
