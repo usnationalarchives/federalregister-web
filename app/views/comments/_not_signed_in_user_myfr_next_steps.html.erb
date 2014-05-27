@@ -1,0 +1,31 @@
+<p>
+  Sign in or create a MyFR account to save your comment tracking number
+  and recieve a copy of your comment via email.
+</p>
+
+<%= semantic_form_for :comment_notifications,
+  :url => persist_for_login_comments_url do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :comment_publication_notification,
+      :as => :boolean,
+      :label => 'Notify me when my comment has been reviewed and publicly posted.',
+      :input_html => {:checked => true} %>
+    <%= f.input :followup_document_notification,
+      :as => :boolean,
+      :label => 'Notify me when a future document mentions the document I commented on.',
+      :input_html => {:checked => true} %>
+    <%= f.input :comment_tracking_number,
+      :as => :hidden,
+      :value => @comment.comment_tracking_number %>
+    <%= f.input :comment_secret,
+      :as => :hidden,
+      :value => @comment.secret %>
+  <% end %>
+
+  <%= f.buttons do %>
+    <%= f.commit_button :sign_in, :label => 'Sign In'%>
+    <%= f.commit_button :sign_up, :label => 'Sign Up'%>
+  <% end %>
+
+<% end %>

@@ -3,22 +3,15 @@
 
   <div class="notice message">
     <p class="info">
-      Thank you! Your comment
-      <% if @comment.response.uploaded_files.present? %>
-        (and its
-          <%= content_tag(:span,
-                pluralize(@comment.response.uploaded_files.size, 'uploaded file'),
-                :data => {:files => @comment.response.uploaded_files}) %>)
-      <% end %>
-      has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a>
+      Thank you! Your comment has been submitted to
+      <a href="http://www.regulations.gov">Regulations.gov</a>
       for review by the <%= @comment.agency_name %>.
     </p>
     <p class="comment_tracking_number">
       Comment Tracking Number:
       <span class="tracking_number">
         <%= link_to @comment.comment_tracking_number,
-          @comment.regulations_dot_gov_comment_search_result_url,
-          :target => '_blank' %>
+          @comment.regulations_dot_gov_comment_search_result_url %>
       </span>
     </p>
   </div>
@@ -28,113 +21,40 @@
 
     <div class="my_fr">
       <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
-
-    <% if current_user %>
-      <p>
-        <% if @comment.agency_participates_on_regulations_dot_gov? %>
-          Your comment tracking number has been added to your MyFR account.
-          Use this tracking number to find out the status of your comment
-          on Regulations.gov or when communicating with
-          <%= @comment.agency_name %>.
-        <% else %>
-          Your comment tracking number has been added to your MyFR account.
-          Because <%= @comment.agency_name %> does not publicly post comments
-          on Regulations.gov, to check the status of your comment or obtain
-          further information please follow-up directly with the agency
-          contact listed in the document.
-        <% end %>
-      </p>
-
-      <%= csrf_meta_tag %>
-
-      <% unless current_user.confirmed? %>
-        <div class="warning message">
-          <p>
-            Your MyFR email address has not yet been confirmed. You will not
-            recieve any notifications until your email address has been
-            confirmed.
-            <%= link_to 'Resend confirmation email', resend_confirmation_path %>.
-          </p>
-        </div>
-      <% end %>
-
-      <ul>
-        <% if @comment.agency_participates_on_regulations_dot_gov? %>
-          <li>
-            <span class="description">
-              <%= current_user.confirmed? ?
-                t('notifications.comment.publication.active') :
-                t('notifications.comment.publication.active_unconfirmed') %>
-            </span>
-            <%= link_to t('notifications.links.remove'),
-              comment_publication_notifications_url,
-              :'data-comment-tracking-number' => @comment.comment_tracking_number,
-              :method => :delete,
-              :class => 'notifications' %>
-          </li>
-        <% end %>
-        <li>
-          <span class="description">
-            <%= current_user.confirmed? ?
-              t('notifications.comment.followup_document.active') :
-              t('notifications.comment.followup_document.active_unconfirmed') %>
-          </span>
-          <%= link_to t('notifications.links.remove'),
-            comment_followup_document_notifications_url,
-            :'data-comment-tracking-number' => @comment.comment_tracking_number,
-            :method => :delete,
-            :class => 'notifications' %>
-        </li>
-      </ul>
-    <% else %>
-      <p>
-        Sign in or create a MyFR account to save your comment tracking number
-        and recieve a copy of your comment via email.
-      </p>
-
-      <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>
-        <%= f.inputs do %>
-          <%= f.input :comment_publication_notification,
-            :as => :boolean,
-            :label => 'Notify me when my comment has been reviewed and publicly posted.',
-            :input_html => {:checked => true} %>
-          <%= f.input :followup_document_notification,
-            :as => :boolean,
-            :label => 'Notify me when a future document mentions the document I commented on.',
-            :input_html => {:checked => true} %>
-          <%= f.input :comment_tracking_number,
-            :as => :hidden,
-            :value => @comment.comment_tracking_number %>
-          <%= f.input :comment_secret,
-            :as => :hidden,
-            :value => @comment.secret %>
-        <% end %>
-        <%= f.buttons do %>
-          <%= f.commit_button :sign_in, :label => 'Sign In'%>
-          <%= f.commit_button :sign_up, :label => 'Sign Up'%>
-        <% end %>
-      <% end %>
-    <% end %>
+      <%= render :partial => 'signed_in_user_myfr_next_steps' if current_user %>
+      <%= render :partial => 'not_signed_in_user_myfr_next_steps' unless current_user %>
     </div>
+
     <div class="print">
       <span class="icon-fr2 icon-fr2-print"></span>
-      <p><%= link_to 'Print your comment', '#',
-                     :'data-comment-data' => @comment.comment_data.to_json,
-                     :'data-current-document-details' => {:title  => @comment.article.title,
-                                                          :agency => @comment.agency_name,
-                                                          :type   => @comment.article.type,
-                                                          :url    => @comment.article.short_article_url,
-                                                          :published => @comment.article.publication_date}.to_json,
-                     :'data-comment-details' => {:tracking_number => @comment.comment_tracking_number,
-                                                 :submission_date => Date.today}.to_json,
-                     :id => 'print-comment' %> for your records and for any future coorespondence about your
-      comment with <%= @comment.agency_name %>.</p>
+      <p>
+        <%= link_to 'Print your comment', '#',
+          :'data-comment-data' => @comment.comment_data.to_json,
+          :'data-current-document-details' => {
+            :title  => @comment.article.title,
+            :agency => @comment.agency_name,
+            :type   => @comment.article.type,
+            :url    => @comment.article.short_article_url,
+            :published => @comment.article.publication_date
+          }.to_json,
+          :'data-comment-details' => {
+            :tracking_number => @comment.comment_tracking_number,
+            :submission_date => Date.today
+          }.to_json,
+          :id => 'print-comment' %>
+        for your records and for any future coorespondence about your
+        comment with <%= @comment.agency_name %>.
+      </p>
     </div>
 
     <div class="social_media">
       <span class="icon-fr2 icon-fr2-sharing"></span>
 
-      <p>Public participation is vital to a functioning democracy, get others involved!</p>
+      <p>
+        Public participation is vital to a functioning democracy,
+        get others involved!
+      </p>
+
       <ul class="media_buttons">
         <li>
           <div class="left">
