@@ -6,6 +6,17 @@
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
 <%= content_tag(:div, flash[:warning].html_safe,  :class => 'flash warning') if flash[:warning]  %>
 
+<% if ! current_user.confirmed? &&
+     flash[:warning].blank? &&
+     @comments.any?{|c| c.subscription.present? || c.comment_publication.notification? } %>
+  <div class="flash warning">
+    Some of your comments have notification subscriptions. You will not receive
+    notification about followup documents until you have confirmed your
+    email address.<br />
+    <%= link_to 'Resend confirmation email', resend_confirmation_path %>.
+  </div>
+<% end %>
+
 <h2 class="comment title">
   <span class="icon-fr2 icon-fr2-Chat"></span>
   My Comments
