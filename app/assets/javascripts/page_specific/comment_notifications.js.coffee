@@ -12,9 +12,6 @@ $(document).ready ->
         data: {
           comment_tracking_number: link.data 'comment-tracking-number'
         }
-        beforeSend: (xhr)->
-          xhr
-            .setRequestHeader 'X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')
         success: (response)->
           link
             .html response.link_text

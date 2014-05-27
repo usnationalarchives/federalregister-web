@@ -2,6 +2,7 @@
 //= require underscore
 //= require strftime
 //= require handlebars-1.0.0.rc.3
+#= require utilities/ajax_setup
 #= require app
 
 //= require handlebars_helpers
@@ -20,10 +21,3 @@
 #= require_tree ./components/comments/
 #= require page_specific/comment_creation
 #= require page_specific/comment_notifications
-
-$(document).ready ->
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    }
-  })
