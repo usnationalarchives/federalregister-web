@@ -44,7 +44,7 @@ module UserDataPersistor
 
       comment.build_subscription(current_user, request)
 
-      if session[:followup_document_notification]
+      if session[:followup_document_notification] == '1'
         comment.subscription.confirm! if current_user.confirmed?
       end
 
@@ -53,14 +53,19 @@ module UserDataPersistor
       CommentMailer.comment_copy(comment.user, comment).deliver
     end
 
+    redirect_location = comments_path
+
+    if session[:followup_document_notification] == '1' && !current_user.confirmed?
+      message = {:warning => "Successfully added your comment on '#{comment.article.title}' to your account, but you will not receive notification about followup documents until you have confirmed your email address. #{view_context.link_to 'Resend confirmation email', resend_confirmation_path}."}
+    else
+      message = {:notice => "Successfully added your comment on '#{comment.article.title}' to your account."}
+    end
+
     # clean up
     session[:comment_tracking_number] = nil
     session[:comment_secret] = nil
     session[:comment_publication_notification] = nil
     session[:followup_document_notification] = nil
-
-    redirect_location = comments_path
-    message = {:notice => "Successfully added your comment on '#{comment.article.title}' to your account."}
 
     return message, redirect_location
   end
