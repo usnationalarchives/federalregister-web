@@ -586,7 +586,10 @@ div.alternative-comment-modal { margin-left: 0px; }
   form {
     padding-left: 90px;
 
-    .inputs { font-size: 1.1em; }
+    .inputs {
+      font-size: 1.1em;
+      margin-bottom: 0;
+    }
     .buttons {
       margin-top: 0;
       margin-left: 0;
@@ -627,7 +630,7 @@ div.alternative-comment-modal { margin-left: 0px; }
   .my_fr {
     .icon-fr2-nav_male_female_user { font-size: 29px; }
 
-    p { margin-botton: 10px; }
+    p { margin-bottom: 10px; }
 
     .formtastic.comment_notifications ol { margin-bottom: 0; }
 
