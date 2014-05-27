@@ -23,4 +23,8 @@ $(document).ready ->
             .closest 'li'
             .find '.description'
               .html response.description
+
+          link
+            .toggleClass 'remove'
+
       })

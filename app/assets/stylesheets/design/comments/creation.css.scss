@@ -603,7 +603,7 @@ div.alternative-comment-modal { margin-left: 0px; }
         width: 100px;
         box-shadow: none;
         font-weight: bold;
-        color: white;
+        color: $white;
         border: none;
         background: none;
         cursor: pointer;
@@ -630,6 +630,44 @@ div.alternative-comment-modal { margin-left: 0px; }
     p { margin-botton: 10px; }
 
     .formtastic.comment_notifications ol { margin-bottom: 0; }
+
+    li {
+      clear: both;
+      overflow: hidden;
+      position: relative;
+      width: 600px;
+
+      &.first {
+        border-bottom: 1px solid #CCC;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+      }
+
+      .description {
+        width: 450px;
+        display: block;
+        padding-left: 10px;
+      }
+      a.notifications {
+        float: right;
+        width: 75px;
+        top: 10px;
+        right: 10px;
+        position: absolute;
+        text-align: center;
+        @include border-radius(5);
+        background-color: $fr-green;
+        color: $white;
+
+        &:hover { background-color: $fr-orange; }
+
+        &.remove {
+          background-color: $fr-red;
+
+          &:hover { background-color: $fr-dark-red; }
+        }
+      }
+    }
   }
 
   .print {
