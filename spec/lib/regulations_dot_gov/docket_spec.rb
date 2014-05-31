@@ -107,11 +107,11 @@ describe RegulationsDotGov::Docket do
     let(:client) { RegulationsDotGov::Client.new() }
 
     before (:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
     end
 
     after(:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
     end
 
     it "ensures all keys used in tests above actually exist in the api response", :vcr do

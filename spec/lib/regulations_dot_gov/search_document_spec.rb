@@ -41,11 +41,11 @@ describe RegulationsDotGov::SearchDocument do
     let(:documents) { docket.supporting_documents }
 
     before (:all) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
     end
 
     after(:all) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
     end
 
     context "verify keys" do
