@@ -7,9 +7,22 @@
   border-bottom:1px solid #CCC;
   }
 #main-content {
-  p.intro { padding-bottom: 20px; }
+  .intro {
+    padding-bottom: 20px;
 
-  .document_title a { 
+    .comment_tracking_number {
+      border: 1px #CCC solid;
+      background-color: #EFEFEF;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+
+      .tracking_number { font-family: courier; }
+    }
+  }
+
+  .document_title a {
     font-size: 1.5em;
     font-weight: bold;
     color: $fr-blue;
@@ -17,7 +30,7 @@
   }
 
   .agency {
-  @extend %bordered;
+    @extend %bordered;
   }
 
   dl {
@@ -36,4 +49,10 @@
     }
   }
 
+  .disclaimer {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 0.9em;
+    font-style: italic;
+  }
 }
