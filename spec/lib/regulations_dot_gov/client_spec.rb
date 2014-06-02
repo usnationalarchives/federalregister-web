@@ -12,7 +12,7 @@ describe RegulationsDotGov::Client do
   end
 
   after(:each) do
-    RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/beta/')
+    RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
   end
 
   describe '.override_base_uri' do
