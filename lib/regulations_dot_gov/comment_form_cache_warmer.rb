@@ -1,5 +1,7 @@
 class RegulationsDotGov::CommentFormCacheWarmer
   def perform
+    start_time = Time.now
+
     client = RegulationsDotGov::Client.new(:read_from_cache => false)
 
     options_to_load = Set.new
@@ -21,6 +23,10 @@ class RegulationsDotGov::CommentFormCacheWarmer
         client.get_option_elements(field_name, 'dependentOnValue' => value)
       end
     end
+
+    end_time = Time.now
+
+    puts "Regulations.gov cache warm complete. {'start_time': #{start_time}, 'end_time': #{end_time}, 'duration': #{end_time - start_time}}"
   end
 
   def documents
@@ -37,7 +43,7 @@ class RegulationsDotGov::CommentFormCacheWarmer
           :accepting_comments_on_regulations_dot_gov => 1
         },
         :per_page => 1000,
-        :fields => [:document_number, :comment_url]
+        :fields => [:document_number]
       )
     end.map(&:results).flatten
   end
