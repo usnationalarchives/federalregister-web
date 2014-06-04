@@ -39,7 +39,7 @@ class Comment < ApplicationModel
 
   validates_inclusion_of :confirm_submission,
     :in => [true, 1, "1"],
-    :message => "confirmation required"
+    :message => "You must confirm the above statement."
 
   validates_presence_of :document_number
 
@@ -149,7 +149,7 @@ class Comment < ApplicationModel
   def required_fields_are_present
     comment_form.fields.select(&:required?).each do |field|
       if @attributes[field.name].blank?
-        errors.add(field.name, "cannot be blank")
+        errors.add(field.name, "You can't leave this field blank")
       end
     end
   end
