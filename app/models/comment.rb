@@ -48,14 +48,6 @@ class Comment < ApplicationModel
     @article ||= FederalRegister::Article.find(document_number)
   end
 
-  def attributes=(hsh)
-    hsh.keys.sort.reverse.each do |key|
-      self.send("#{key}=", hsh[key])
-    end
-
-    hsh
-  end
-
   def attachments
     @attachments ||= []
   end
@@ -106,11 +98,6 @@ class Comment < ApplicationModel
     @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
   end
 
-  def respond_to?(name, include_private = false)
-    attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
-    comment_form.try(:has_field?, attr_name) || super
-  end
-
   def build_subscription(user, request)
     self.subscription = Subscription.new.tap do |s|
       s.search_conditions = {:citing_document_numbers => document_number }
@@ -131,6 +118,17 @@ class Comment < ApplicationModel
     else
       raise ActiveRecord::RecordNotFound
     end
+  end
+
+  def attributes=(attr)
+    super(
+      Hash[ attr.select{|k,v| respond_to?("#{k}=")} ]
+    )
+  end
+
+  def respond_to?(name, include_private = false)
+    attr_name = normalize_attribute(name)
+    comment_form.try(:has_field?, attr_name) || super
   end
 
   private
@@ -178,8 +176,8 @@ class Comment < ApplicationModel
   end
 
   def method_missing(name, *val)
-    attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
-    if comment_form.has_field?(attr_name)
+    attr_name = normalize_attribute(name)
+    if respond_to?( attr_name )
       @attributes ||= []
 
       if name.to_s =~ /=$/
@@ -190,5 +188,9 @@ class Comment < ApplicationModel
     else
       super
     end
+  end
+
+  def normalize_attribute(name)
+    name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
   end
 end
