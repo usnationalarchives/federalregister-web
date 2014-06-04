@@ -104,10 +104,6 @@ class RegulationsDotGov::Client
       response = unwrap_response(response)
       raw_option_attributes = response['list']
 
-      #if raw_option_attributes.is_a?(Hash)
-        #raw_option_attributes = [raw_option_attributes]
-      #end
-
       raw_option_attributes.map do |option_attributes|
         RegulationsDotGov::CommentForm::Option.new(self, option_attributes)
       end
