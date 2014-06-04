@@ -4,8 +4,7 @@ class RegulationsDotGov::CommentFormCacheWarmer
 
     options_to_load = Set.new
     documents.each do |document|
-      document_id = document.attributes["comment_url"].split(';D=').last
-      comment_form = client.get_comment_form(document_id)
+      comment_form = client.get_comment_form(document_number)
 
       options_to_load += comment_form.
         fields.

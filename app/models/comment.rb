@@ -113,8 +113,7 @@ class Comment < ApplicationModel
     client = RegulationsDotGov::Client.new(api_options)
 
     if article.comment_url
-      document_id = article.comment_url.split(/=/).last
-      self.comment_form = client.get_comment_form(document_id)
+      self.comment_form = client.get_comment_form(document_number)
     else
       raise ActiveRecord::RecordNotFound
     end

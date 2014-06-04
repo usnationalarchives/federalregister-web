@@ -87,10 +87,13 @@ class RegulationsDotGov::Client
     end
   end
 
-  def get_comment_form(document_id)
-    response = self.class.get(comment_endpoint, :query => {:D => document_id})
-    response = unwrap_response(response)
-    RegulationsDotGov::CommentForm.new(self, response)
+  def get_comment_form(document_number)
+    begin
+      fetch_comment_form(document_number )
+    rescue RecordNotFound, ServerError => e
+      revised_document_number = pad_document_number(document_number)
+      fetch_comment_form(revised_document_number)
+    end
   end
 
   def get_option_elements(field_name, options={})
@@ -172,6 +175,12 @@ class RegulationsDotGov::Client
   def fetch_by_document_number(document_number)
     response = self.class.get(document_endpoint, :query => {:federalRegisterNumber => document_number})
     RegulationsDotGov::Document.new(self, response.parsed_response)
+  end
+
+  def fetch_comment_form(document_number)
+    response = self.class.get(comment_endpoint, :query => {:federalRegisterNumber => document_number})
+    response = unwrap_response(response)
+    RegulationsDotGov::CommentForm.new(self, response)
   end
 
   def self.get(url, options)

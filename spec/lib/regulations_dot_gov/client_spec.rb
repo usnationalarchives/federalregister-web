@@ -128,19 +128,19 @@ describe RegulationsDotGov::Client do
   end
 
   describe "#get_comment_form" do
-    let(:document_id) { 'CMS_FRDOC_0001-1355' }
+    let(:document_number) { '2014-11486' }
 
     it 'returns a new RegulationsDotGov::CommentForm', :vcr do
-      comment_form = client.get_comment_form(document_id)
+      comment_form = client.get_comment_form(document_number)
       expect( comment_form.class ).to be(RegulationsDotGov::CommentForm)
     end
 
     it 'performs a get request with proper arguments' do
       RegulationsDotGov::Client.stub(:get).and_return(OpenStruct.new(:parsed_response => {}))
 
-      RegulationsDotGov::Client.should_receive(:get).with(client.comment_endpoint, :query=>{:D => document_id})
+      RegulationsDotGov::Client.should_receive(:get).with(client.comment_endpoint, :query=>{:federalRegisterNumber => document_number})
 
-      client.get_comment_form(document_id)
+      client.get_comment_form(document_number)
     end
   end
 
