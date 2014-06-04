@@ -24,17 +24,17 @@ describe RegulationsDotGov::Client do
     end
   end
 
-  describe '#new' do
-    it "raises an error of no API key is provided" do
-      RegulationsDotGov::Client.api_key = nil
-      expect{ RegulationsDotGov::Client.new }.to raise_exception(RegulationsDotGov::Client::APIKeyError, "Must provide an api.data.gov API Key")
-    end
+  #describe '#new' do
+  #  it "raises an error of no API key is provided" do
+  #    RegulationsDotGov::Client.api_key = nil
+  #    expect{ RegulationsDotGov::Client.new }.to raise_exception(RegulationsDotGov::Client::APIKeyError, "Must provide an api.data.gov API Key")
+  #  end
 
-    it "does not raise an error if an API key is provided" do
-      RegulationsDotGov::Client.api_key = set_api_key
-      expect{ RegulationsDotGov::Client.new }.not_to raise_exception
-    end
-  end
+  #  it "does not raise an error if an API key is provided" do
+  #    RegulationsDotGov::Client.api_key = set_api_key
+  #    expect{ RegulationsDotGov::Client.new }.not_to raise_exception
+  #  end
+  #end
 
   describe '#find_docket' do
     let(:docket_id) { 'CFPB_FRDOC_0001' }
