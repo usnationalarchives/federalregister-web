@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=DEMO_KEY
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<DEMO_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -43,4 +43,48 @@ http_interactions:
         CFR Part 39"}}'
     http_version: '1.1'
   recorded_at: Wed, 16 Apr 2014 16:32:22 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:37 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9443'
+      content-length:
+      - '1516'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
+        Title","value":"Recently Posted FAA Rules and Notices."},"pageCount":{"label":"Page
+        Count","value":"3"},"documentType":{"label":"Document Type","value":"Rule"},"docketType":{"label":"Docket
+        Type","value":"Rulemaking"},"federalRegisterNumber":{"label":"Federal Register
+        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
+        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
+        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
+        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
+        - 5256"},"docketId":{"label":"Docket ID","value":"FAA_FRDOC_0001"},"documentId":{"label":"Document
+        ID","value":"FAA_FRDOC_0001-9732"},"cfrPart":{"label":"CFR Part","value":"14
+        CFR Part 39"},"numItemsRecieved":{"label":"Number of Comments Received","value":"0"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:37 GMT
 recorded_with: VCR 2.6.0

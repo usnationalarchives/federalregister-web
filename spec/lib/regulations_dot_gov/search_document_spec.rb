@@ -50,10 +50,10 @@ describe RegulationsDotGov::SearchDocument do
 
     context "verify keys" do
       it "ensures all keys used in tests above actually exist in the api response", :vcr do
-        document_keys = documents.first.raw_attributes.keys
-        $response_keys.each do |key|
-          expect( document_keys.include?(key) ).to be_true,
-            "expected api response to contain #{key}, but did not find it in #{document_keys.inspect}"
+        $response_keys.each do |keys|
+          keys.each do |arr|
+            expect( documents.first.raw_attributes.seek *arr ).to_not be(nil), "expected api response to contain #{arr}, but did not find it."
+          end
         end
       end
     end
@@ -61,7 +61,7 @@ describe RegulationsDotGov::SearchDocument do
     context "verify response values" do
       context "#supporting_documents", :vcr do
         it "returns the proper number of supporting documents" do
-          expect(documents.count).to eq(19)
+          expect(documents.count).to eq(20)
         end
 
         it "returns an array RegulationsDotGov::SearchDocument's" do

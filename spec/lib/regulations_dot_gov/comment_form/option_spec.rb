@@ -21,7 +21,7 @@ module RegulationsDotGov
 
     describe "#default?" do
       it "returns true if the option is the default" do
-        expect( comment_form_option.option.default? ).to eq( attributes['default'] )
+        expect( comment_form_option.default? ).to eq( attributes['default'] )
       end
     end
   end

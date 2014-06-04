@@ -139,20 +139,21 @@ describe RegulationsDotGov::Document do
     let(:client) { RegulationsDotGov::Client.new() }
 
     before (:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v3/')
     end
 
     after(:each) do
-      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/regulations/v3/')
+      RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v3/')
     end
 
     it "ensures all keys used in tests above actually exist in the api response", :vcr do
-      document_number = '2014-01832'
+      document_number = '2014-12912'
       document = client.find_by_document_number(document_number)
 
-      document_keys = document.raw_attributes.keys
-      $response_keys.each do |key|
-        expect( document_keys.include?(key) ).to be_true, "expected api response to contain #{key}, but did not find it in #{document_keys.inspect}"
+      $response_keys.each do |keys|
+        keys.each do |arr|
+          expect( document.raw_attributes.seek *arr ).to_not be(nil), "expected api response to contain #{arr}, but did not find it."
+        end
       end
     end
   end

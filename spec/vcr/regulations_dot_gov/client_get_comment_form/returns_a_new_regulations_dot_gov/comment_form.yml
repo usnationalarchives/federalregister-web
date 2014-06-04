@@ -2,54 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/comment.json?D=CMS_FRDOC_0001-1355&api_key=<DEMO_KEY>
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - application/json; charset=UTF-8
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - application/json;charset=UTF-8
-      date:
-      - Wed, 16 Apr 2014 17:49:39 GMT
-      server:
-      - nginx/1.4.7
-      x-ratelimit-limit:
-      - '10000'
-      x-ratelimit-remaining:
-      - '9805'
-      content-length:
-      - '2835'
-      connection:
-      - Close
-    body:
-      encoding: US-ASCII
-      string: ! '{"document":{"allowLateComment":false,"commentDueDate":"2014-06-16T23:59:59-04:00","commentStartDate":"2014-04-16T00:00:00-04:00","fileFormats":["pdf","html"],"openForComment":true,"postedDate":"2014-04-16T00:00:00-04:00","receivedDate":"2014-04-16T00:00:00-04:00","status":"Posted","topics":["Aged","Grant
-        Programs-Health","Health","Health Facilities","Health Insurance","Health Professions","Health
-        Records","Hospice Care","Hospitals","Incorporation by Reference","Intergovernmental
-        Relations","Kidney Diseases","Medicaid","Medicare","Nursing Homes","Nutrition","Reporting
-        and Recordkeeping Requirements","Safety"]},"fieldList":[{"attributeLabel":"First
-        Name","attributeName":"first_name","maxLength":25,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        first name","uiControl":"text"},{"attributeLabel":"Last Name","attributeName":"last_name","maxLength":25,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        last name","uiControl":"text"},{"attributeLabel":"City","attributeName":"city","maxLength":50,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        city","uiControl":"text"},{"attributeLabel":"Country","attributeName":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=country","maxLength":50,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
-        country","uiControl":"picklist"},{"attributeLabel":"State or Province","attributeName":"us_state","dependsOn":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=us_state&dependentOnValue=","maxLength":50,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
-        state","uiControl":"combo"},{"attributeLabel":"ZIP/Postal Code","attributeName":"zip","maxLength":10,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
-        ZIP/Postal Code","uiControl":"text"},{"attributeLabel":"Email Address","attributeName":"email","maxLength":100,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        email address","uiControl":"text"},{"attributeLabel":"Organization Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
-        organization","uiControl":"text"},{"attributeLabel":"Category","attributeName":"comment_category","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=comment_category&dependentOnValue=","maxLength":200,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Comment
-        category","uiControl":"picklist"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
-        of comment from submitter","uiControl":"text"}]}'
-    http_version: '1.1'
-  recorded_at: Wed, 16 Apr 2014 17:49:43 GMT
-- request:
-    method: get
     uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-1355&api_key=<API_KEY>
     body:
       encoding: US-ASCII
@@ -71,7 +23,7 @@ http_interactions:
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9437'
+      - '9440'
       content-length:
       - '84'
       connection:
@@ -104,7 +56,7 @@ http_interactions:
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9436'
+      - '9439'
       content-length:
       - '84'
       connection:
@@ -113,7 +65,7 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:39 GMT
+  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
 - request:
     method: get
     uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2014-11486&api_key=<API_KEY>
@@ -131,13 +83,13 @@ http_interactions:
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:30:48 GMT
+      - Wed, 04 Jun 2014 17:23:27 GMT
       server:
       - nginx
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9422'
+      - '9428'
       content-length:
       - '2870'
       connection:
@@ -169,5 +121,5 @@ http_interactions:
         of the government agency that the submitter represents","uiControl":"combo"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
         of comment from submitter","uiControl":"text"}],"participating":true}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:30:48 GMT
+  recorded_at: Wed, 04 Jun 2014 17:23:27 GMT
 recorded_with: VCR 2.6.0

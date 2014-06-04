@@ -118,9 +118,10 @@ describe RegulationsDotGov::Docket do
       docket_id = 'CFPB_FRDOC_0001'
       docket = client.find_docket(docket_id)
 
-      docket_keys = docket.raw_attributes.keys
-      $response_keys.each do |key|
-        expect( docket_keys.include?(key) ).to be_true, "expected api response to contain #{key}, but did not find it in #{docket_keys.inspect}"
+      $response_keys.each do |keys|
+        keys.each do |arr|
+          expect( docket.raw_attributes.seek *arr ).to_not be(nil), "expected api response to contain #{arr}, but did not find it."
+        end
       end
     end
   end

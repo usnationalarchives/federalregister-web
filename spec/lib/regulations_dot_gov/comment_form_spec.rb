@@ -45,21 +45,9 @@ module RegulationsDotGov
       end
     end
 
-    describe "#submit_by" do
-      it "returns a date" do
-        end_date = '2013-11-17'
-        comment_form = CommentForm.new(
-          client,
-          track_response_keys({'document' => {'commentDueDate' => end_date}})
-        )
-
-        expect( comment_form.submit_by ).to eq(DateTime.parse end_date)
-      end
-    end
-
     describe "#comments_open_at" do
-      it "returns a start date" do
-        start_date = '2013-09-02'
+      it "returns a start datetime" do
+        start_date = '2014-06-03T00:00:00-04:00'
         comment_form = CommentForm.new(
           client,
           track_response_keys({'document' => {'commentStartDate' => start_date}})
@@ -70,8 +58,8 @@ module RegulationsDotGov
     end
 
     describe "#comments_close_at" do
-      it "returns an end date" do
-        end_date = '2013-11-17'
+      it "returns an end datetime" do
+        end_date = '2014-08-04T23:59:59-04:00'
         comment_form = CommentForm.new(
           client,
           track_response_keys( {'document' => {'commentDueDate' => end_date}} )
@@ -81,12 +69,14 @@ module RegulationsDotGov
       end
     end
 
+    # we don't track_response_keys here as it's a field that's rarely
+    # used by the agency and difficult to find a document with it.
     describe "#posting_guidelines" do
       it "returns a string" do
         guidelines = 'You should post in a certain way...'
         comment_form = CommentForm.new(
           client,
-          track_response_keys( {'postingGuidelines' => guidelines} )
+          {'postingGuidelines' => guidelines}
         )
 
         expect( comment_form.posting_guidelines ).to eq(guidelines)
@@ -110,7 +100,7 @@ module RegulationsDotGov
         agency_name = 'International Trade Commission'
         comment_form = CommentForm.new(
           client,
-          track_response_keys( {'document' => {'agencyName' => agency_name}} )
+          track_response_keys( {'agencyName' => agency_name} )
         )
 
         expect( comment_form.agency_name ).to eq(agency_name)
@@ -154,7 +144,7 @@ module RegulationsDotGov
 
     context "verify keys" do
       let(:client) { RegulationsDotGov::Client.new() }
-      let(:document_id) { 'CMS_FRDOC_0001-1355' }
+      let(:document_number) { '2014-11486' }
 
       before (:each) do
         RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v3/')
@@ -165,7 +155,7 @@ module RegulationsDotGov
       end
 
       it "ensures all keys used in tests above actually exist in the api response", :vcr do
-        comment_form = client.get_comment_form(document_id)
+        comment_form = client.get_comment_form(document_number)
 
         $response_keys.each do |keys|
           keys.each do |arr|
