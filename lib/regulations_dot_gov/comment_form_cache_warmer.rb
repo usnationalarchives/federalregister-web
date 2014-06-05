@@ -2,30 +2,39 @@ class RegulationsDotGov::CommentFormCacheWarmer
   def perform
     start_time = Time.now
 
-    client = RegulationsDotGov::Client.new(:read_from_cache => false)
+    HTTParty::HTTPCache.reading_from_cache(false) do
+      client = RegulationsDotGov::Client.new
 
-    options_to_load = Set.new
-    documents.each do |document|
-      comment_form = client.get_comment_form(document.document_number)
+      options_to_load = Set.new
+      documents.each do |document|
+        begin
+          comment_form = client.get_comment_form(document.document_number)
 
-      options_to_load += comment_form.
-        fields.
-        select{|field| field.is_a?(RegulationsDotGov::CommentForm::Field::SelectField)}.
-        map{|option| [option.name, option.option_parameters]}
-    end
+          options_to_load += comment_form.
+            fields.
+            select{|field| field.is_a?(RegulationsDotGov::CommentForm::Field::SelectField)}.
+            map{|option| [option.name, option.option_parameters]}
+        rescue RegulationsDotGov::Client::ResponseError
+          #noop
+        end
+      end
 
-    options_to_load.each do |field_name, options|
-      client.get_option_elements(field_name, options)
-    end
+      RegulationsDotGov::CommentForm::Field::ComboField::MAPPING.each do |field_name, values|
+        values.each do |value|
+          options_to_load << [field_name, {'dependentOnValue' => value}]
+        end
+      end
 
-    RegulationsDotGov::CommentForm::Field::ComboField::MAPPING.each do |field_name, values|
-      values.each do |value|
-        client.get_option_elements(field_name, 'dependentOnValue' => value)
+      options_to_load.each do |field_name, options|
+        begin
+          client.get_option_elements(field_name, options)
+        rescue RegulationsDotGov::Client::ResponseError
+          #noop
+        end
       end
     end
 
     end_time = Time.now
-
     puts "Regulations.gov cache warm complete. {'start_time': #{start_time}, 'end_time': #{end_time}, 'duration': #{end_time - start_time}}"
   end
 

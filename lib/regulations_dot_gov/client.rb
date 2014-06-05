@@ -20,7 +20,10 @@ class RegulationsDotGov::Client
     base_uri('http://api.data.gov/TEST/regulations/v3/')
   end
 
-  caches_api_responses :key_name => "regulations_dot_gov", :expire_in => 7.days
+  caches_api_responses :key_name => "regulations_dot_gov",
+    :expire_in => 7.days
+
+  HTTParty::HTTPCache.backups_enabled = false
 
   default_timeout 20
 
@@ -36,9 +39,6 @@ class RegulationsDotGov::Client
 
   def initialize(options={})
     self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
-
-    @read_from_cache = options.fetch(:read_from_cache) { true }
-    @cache_backups_enabled = options.fetch(:cache_backups_enabled) { false }
 
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
@@ -143,14 +143,6 @@ class RegulationsDotGov::Client
 
   private
 
-  def read_from_cache?
-    @read_from_cache
-  end
-
-  def backups_enabled?
-    @cache_backups_enabled
-  end
-
   def unwrap_response(response)
     self.class.unwrap_response( response )
   end
@@ -219,7 +211,7 @@ class RegulationsDotGov::Client
       when 406
         raise InvalidSubmission.new( stringify_response(response) )
       when 500
-        raise ServerError.new( stringify_response(response) )
+        raise i stringify_response(response) )
       else
         raise ResponseError.new( stringify_response(response) )
       end

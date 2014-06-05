@@ -110,12 +110,16 @@ class Comment < ApplicationModel
   end
 
   def load_comment_form(api_options={})
-    client = RegulationsDotGov::Client.new(api_options)
+    HTTParty::HTTPCache.reading_from_cache(
+      api_options.fetch(:read_from_cache) { true }
+    ) do
+      client = RegulationsDotGov::Client.new
 
-    if article.comment_url
-      self.comment_form = client.get_comment_form(document_number)
-    else
-      raise ActiveRecord::RecordNotFound
+      if article.comment_url
+        self.comment_form = client.get_comment_form(document_number)
+      else
+        raise ActiveRecord::RecordNotFound
+      end
     end
   end
 
