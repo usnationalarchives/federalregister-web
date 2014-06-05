@@ -211,7 +211,7 @@ class RegulationsDotGov::Client
       when 406
         raise InvalidSubmission.new( stringify_response(response) )
       when 500
-        raise i stringify_response(response) )
+        raise ServerError.new( stringify_response(response) )
       else
         raise ResponseError.new( stringify_response(response) )
       end
