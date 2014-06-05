@@ -21,7 +21,7 @@ class RegulationsDotGov::Client
   end
 
   caches_api_responses :key_name => "regulations_dot_gov",
-    :expire_in => 7.days
+    :expire_in => 1.hour
 
   HTTParty::HTTPCache.backups_enabled = false
 
