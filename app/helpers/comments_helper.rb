@@ -15,7 +15,7 @@ module CommentsHelper
           :as => :text,
           :wrapper_html => {
             :'data-max-size' => field.max_length,
-            :'data-size-warn-at' => 200
+            :'data-size-warn-at' => 250
           }
         )
       else

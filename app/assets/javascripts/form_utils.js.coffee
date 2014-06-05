@@ -1,6 +1,10 @@
 class @FR2.FormUtils
   @enforceCharactersRemaining: (el)->
-    input = $(el).find 'input'
+    if $(el).hasClass('text')
+      input = $(el).find 'textarea'
+    else
+      input = $(el).find 'input'
+
     @updateCharacterCount input
     @visuallyNotifyUser input
 
@@ -20,7 +24,7 @@ class @FR2.FormUtils
     li = $input.closest 'li'
     warnThreshold = li.data 'size-warn-at'
 
-    if li.hasClass('string') && warnThreshold?
+    if (li.hasClass('string') || li.hasClass('text')) && warnThreshold?
       @charactersRemaining(input) <= warnThreshold
     else
       false
