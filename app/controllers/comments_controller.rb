@@ -51,10 +51,7 @@ class CommentsController < ApplicationController
       # reload the form from regs.gov
       @comment.load_comment_form(:read_from_cache => false)
 
-      record_regulations_dot_gov_error(
-        parse_message(exception.message),
-        @comment.document_number
-      )
+      record_regulations_dot_gov_error(exception)
 
      # try to save with the updated form from the reload above
       if @comment.save
@@ -65,10 +62,7 @@ class CommentsController < ApplicationController
         render_error_page
       end
     rescue RegulationsDotGov::Client::ResponseError => inner_exception
-      record_regulations_dot_gov_error(
-        parse_message(inner_exception.message),
-        @comment.document_number
-      )
+      record_regulations_dot_gov_error(inner_exception)
 
       # show form to user but with message from regulations.gov
       render_error_page(
@@ -76,10 +70,7 @@ class CommentsController < ApplicationController
       )
     end
   rescue RegulationsDotGov::Client::ResponseError => exception
-    record_regulations_dot_gov_error(
-      exception,
-      @comment.document_number
-    )
+    record_regulations_dot_gov_error(exception)
 
     render_error_page(
       "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.article.comment_url, @comment.article.comment_url}"
@@ -127,23 +118,16 @@ class CommentsController < ApplicationController
     begin
       @comment.attributes = params[:comment] if params[:comment]
     rescue => exception
-      record_regulations_dot_gov_error(exception, @comment.document_number)
+      record_regulations_dot_gov_error(exception)
     end
 
     @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
     end
 
-  def record_regulations_dot_gov_error(exception, document_number)
+  def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
-
-    honeybadger_options = {
-      :exception => exception,
-      :parameters => {
-        :document_number => document_number,
-      }
-    }
-    notify_honeybadger(honeybadger_options)
+    notify_honeybadger(exception)
   end
 
   # sometimes the message is a json encoded string
