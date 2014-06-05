@@ -4,14 +4,15 @@
   <div class="notice message">
     <p class="info">
       Thank you! Your comment has been submitted to
-      <a href="http://www.regulations.gov">Regulations.gov</a>
+      <a href="http://www.regulations.gov" target="_blank">Regulations.gov</a>
       for review by the <%= @comment.agency_name %>.
     </p>
     <p class="comment_tracking_number">
       Comment Tracking Number:
       <span class="tracking_number">
         <%= link_to @comment.comment_tracking_number,
-          @comment.regulations_dot_gov_comment_search_result_url %>
+          @comment.regulations_dot_gov_comment_search_result_url,
+          :target => :blank %>
       </span>
     </p>
   </div>
@@ -102,7 +103,7 @@
     <div class="retrieval">
       <p>
         Your comment may be viewable on
-        <a href="http://www.regulations.gov">Regulations.gov</a>
+        <a href="http://www.regulations.gov" target="_blank">Regulations.gov</a>
         once <%= @comment.agency_name %>
         has reviewed it. This process is dependent on agency public submission
         policies/procedures and processing times. Use your tracking number to
