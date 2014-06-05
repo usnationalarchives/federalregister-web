@@ -208,7 +208,7 @@ class RegulationsDotGov::Client
       case response.code
       when 200, 201
         response
-      when 406
+      when 400, 406
         raise InvalidSubmission.new( stringify_response(response) )
       when 500
         raise ServerError.new( stringify_response(response) )
