@@ -369,9 +369,9 @@ body#entries .form-tooltip {
 
   button.cancel,
   button.delete {
-    height: 20px;
-    min-width: 60px;
-    width: 60px;
+    height: 22px;
+    min-width: 70px;
+    width: 70px;
 
     padding: 0;
     padding-top: 1px;
@@ -398,7 +398,7 @@ body#entries .form-tooltip {
 
       &.icon-fr2 {
         top: 0px;
-        margin: 0 3px 0 7px;
+        margin: 0 5px 0 7px;
         padding-top: 1px;
       }
     }
@@ -415,6 +415,7 @@ body#entries .form-tooltip {
 table.attachments {
   width: 638px;
   margin-left: 165px;
+  clear: both;
 
   tr {
     margin-top: 5px;
@@ -463,6 +464,10 @@ table.attachments {
   width: 400px;
   font-style: italic;
   color: $fr-gray-60;
+}
+
+.formtastic.comment {
+  hr { clear: both; }
 }
 
 div.comment-preview-modal {
