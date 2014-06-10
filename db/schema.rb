@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516224216) do
+ActiveRecord::Schema.define(:version => 20140610164114) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -50,12 +50,13 @@ ActiveRecord::Schema.define(:version => 20140516224216) do
     t.string   "comment_tracking_number"
     t.datetime "created_at"
     t.boolean  "comment_publication_notification"
-    t.datetime "comment_published_at"
+    t.datetime "checked_comment_publication_at"
     t.string   "salt"
     t.string   "iv"
     t.binary   "encrypted_comment_data"
     t.string   "agency_name"
     t.boolean  "agency_participating"
+    t.string   "comment_document_number"
   end
 
   add_index "comments", ["agency_participating"], :name => "index_comments_on_agency_participating"
