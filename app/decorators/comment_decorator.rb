@@ -42,6 +42,15 @@ class CommentDecorator < ApplicationDecorator
     "#{regulations_dot_gov_base_url}/#!searchResults;rpp=25;po=0;s=#{comment_tracking_number}"
   end
 
+  def posted_comment_url
+    if comment_document_number
+      "#{regulations_dot_gov_base_url}/#!documentDetail;D=#{comment_document_number}"
+    else
+      ""
+    end
+  end
+
+
   def tracking_number_link
     if agency_participating
       h.link_to comment_tracking_number, regulations_dot_gov_comment_search_result_url
