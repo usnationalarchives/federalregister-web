@@ -116,7 +116,10 @@ class CommentsController < ApplicationController
     @comment.load_comment_form
 
     begin
-      @comment.attributes = params[:comment] if params[:comment]
+      if params[:comment]
+        @comment.secret = params[:comment][:secret]
+        @comment.attributes = params[:comment]
+      end
     rescue => exception
       record_regulations_dot_gov_error(exception)
     end
