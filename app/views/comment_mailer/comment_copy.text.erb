@@ -30,6 +30,6 @@ Comment Submission Date: <%= @comment.commented_at %>
   <%= field[:label] %>: <%= field[:values].join(', ') %>
 <% end %>
 
-
-FederalRegister.gov submitted your comment to Regulations.gov and did not store the information provided in your comment.
-Your comment tracking number may be used to retrieve your comment from Regulations.gov once it has been reviewed and if it's publicly posted by <%= @comment.agency_name %>.
+Your comment may be viewable on Regulations.gov once <%= @comment.agency_name %> has reviewed it.
+This process is dependent on agency public submission policies/procedures and processing times.
+Use your tracking number to find out the status of your comment.
