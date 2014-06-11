@@ -1,8 +1,15 @@
 class RegulationsDotGov::Client
   class APIKeyError < StandardError; end
-  class ResponseError < StandardError; end
+  class ResponseError < StandardError
+    attr_reader :code
+    def initialize(message, code=nil)
+      super(message)
+      @code = code
+    end
+  end
   class RecordNotFound < ResponseError; end
   class InvalidSubmission < ResponseError; end
+  class CommentPeriodClosed < ResponseError; end
   class ServerError < ResponseError; end
 
   include HTTMultiParty
@@ -168,7 +175,14 @@ class RegulationsDotGov::Client
   def fetch_comment_form(document_number)
     response = self.class.get(comment_endpoint, :query => {:federalRegisterNumber => document_number})
     response = unwrap_response(response)
-    RegulationsDotGov::CommentForm.new(self, response)
+
+    comment_form = RegulationsDotGov::CommentForm.new(self, response)
+
+    if ! comment_form.open_for_comment?
+      raise CommentPeriodClosed.new('', 409)
+    end
+
+    comment_form
   end
 
   def self.get(url, options)
@@ -185,8 +199,8 @@ class RegulationsDotGov::Client
         JSON.parse(response)
       when 404
         raise RecordNotFound.new( stringify_response(response) )
-      when 500
-        raise ServerError.new( stringify_response(response) )
+      when 500, 503
+        raise ServerError.new( stringify_response(response), response.code )
       else
         raise ResponseError.new( stringify_response(response) )
       end
@@ -210,7 +224,7 @@ class RegulationsDotGov::Client
         response
       when 400, 406
         raise InvalidSubmission.new( stringify_response(response) )
-      when 500
+      when 500, 503
         raise ServerError.new( stringify_response(response) )
       else
         raise ResponseError.new( stringify_response(response) )

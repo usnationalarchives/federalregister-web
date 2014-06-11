@@ -20,3 +20,10 @@ en:
       one: View the 1 publicly posted comment.
       other: View the %{count} publicly posted comments.
       none: There are no publicly posted comments.
+  regulations_dot_gov_errors:
+    service_unavailable:
+      modal_title: Regulations.gov Error
+      modal_html: We're sorry, we are currently unable to communicate with Regulations.gov. <br> You can attempt to view the comment form on Regulations.gov, %{regulations_dot_gov_link}
+    comments_closed:
+      modal_title: Comment Period Closed
+      modal_html: The comment period on this document is closed and comments are no longer being accepted on Regulations.gov. We apologize for any inconvenience.

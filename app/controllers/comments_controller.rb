@@ -126,7 +126,17 @@ class CommentsController < ApplicationController
 
     @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
-    end
+  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed => exception
+    record_regulations_dot_gov_error( exception )
+
+    response.headers['Regulations-Dot-Gov-Problem'] = "1"
+
+    render :json => json_for_regulations_dot_gov_errors(exception),
+      :status => exception.code || 500
+
+    # we're in a before filter here
+    return false
+  end
 
   def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
@@ -144,6 +154,26 @@ class CommentsController < ApplicationController
       end
     rescue JSON::ParserError
       message
+    end
+  end
+
+  def json_for_regulations_dot_gov_errors(exception)
+    if exception.code
+      if exception.code == 503
+        error = 'service_unavailable'
+      elsif exception.code == 409
+        error = 'comments_closed'
+      end
+
+      json = {
+        :modalTitle => t(
+          "regulations_dot_gov_errors.#{error}.modal_title"
+        ),
+        :modalHtml => t(
+          "regulations_dot_gov_errors.#{error}.modal_html",
+          :regulations_dot_gov_link => view_context.link_to(@comment.article.comment_url, @comment.article.comment_url)
+        )
+      }
     end
   end
 end

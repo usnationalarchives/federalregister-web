@@ -35,6 +35,10 @@ class RegulationsDotGov::CommentForm
     Time.zone.parse(document_attributes['commentDueDate'])
   end
 
+  def open_for_comment?
+    document_attributes['openForComment']
+  end
+
   def has_field?(name)
     fields.any?{|f| f.name == name.to_s}
   end

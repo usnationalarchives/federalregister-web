@@ -96,7 +96,16 @@ class @FR2.CommentFormLoadHandler
 
 
   error: (response)->
-    window.location = $(@commentLink()).attr 'href'
+    if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1"
+      responseText = JSON.parse response.responseText
+      modalTitle = responseText.modalTitle
+      modalHtml  = responseText.modalHtml
+    else
+      modalTitle = "We're sorry something went wrong"
+      modalHtml = "We've encountered an error and we have been notified. Please try again later."
+
+    display_fr_modal modalTitle, modalHtml, @commentLink()
+    $('.ajax-comment-data').fadeOut 600
 
   generateCommentForm: (response)->
     @commentFormWrapper = $('<div>')
