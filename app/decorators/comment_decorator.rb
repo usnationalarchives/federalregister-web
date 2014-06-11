@@ -30,9 +30,9 @@ class CommentDecorator < ApplicationDecorator
     end
   end
 
-  def comment_published_at
-    if comment.comment_published_at
-      comment.comment_published_at
+  def comment_posted
+    if comment.comment_document_number
+      "Publically posted - #{h.link_to comment.comment_document_number, posted_comment_url}".html_safe
     else
       "Not posted by agency as of #{Date.today}"
     end
@@ -49,7 +49,6 @@ class CommentDecorator < ApplicationDecorator
       ""
     end
   end
-
 
   def tracking_number_link
     if agency_participating
