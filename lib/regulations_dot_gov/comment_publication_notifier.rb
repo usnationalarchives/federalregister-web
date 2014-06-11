@@ -16,7 +16,7 @@ class RegulationsDotGov::CommentPublicationNotifier
 
   def comments
     Comment.
-      joins(:user).
+      where("comments.user_id IS NOT NULL").
       where(:comment_publication_notification => true).
       where(:created_at => Time.current - 3.months .. Time.current).
       where(:comment_document_number => nil).
