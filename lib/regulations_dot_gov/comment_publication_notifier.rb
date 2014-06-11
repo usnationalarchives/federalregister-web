@@ -7,7 +7,7 @@ class RegulationsDotGov::CommentPublicationNotifier
 
       if documents.size > 0
         comment.comment_document_number = documents.first.document_id
-        # send email
+        CommentMailer.comment_posting_notification(comment.user, comment).deliver
       end
 
       comment.save(:validate => false)
@@ -17,7 +17,8 @@ class RegulationsDotGov::CommentPublicationNotifier
   def comments
     Comment.
       where(:created_at => Time.current - 3.months .. Time.current).
-      where(:comment_document_number => nil)
+      where(:comment_document_number => nil).
+      where(:agency_participating => true)
   end
 
   def client

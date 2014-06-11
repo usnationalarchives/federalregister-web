@@ -75,7 +75,7 @@ class RegulationsDotGov::Client
     begin
       response = self.class.get(document_search_endpoint, :query => args)
 
-      results = response.parsed_response['documents']
+      results = unwrap_response(response)['documents']
       if results.present?
         results.map{|raw_document| RegulationsDotGov::SearchDocument.new(self, raw_document)}
       else
