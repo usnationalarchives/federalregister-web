@@ -7,7 +7,6 @@ class CommentAttachment < ApplicationModel
 
   attr_accessor :secret
 
-  before_create :generate_token
   before_validation :update_attachment_attributes
 
   validates_presence_of :attachment
@@ -63,10 +62,6 @@ class CommentAttachment < ApplicationModel
   end
 
   private
-
-  def generate_token
-    self.token = SecureRandom.hex(32)
-  end
 
   def update_attachment_attributes
     if attachment.present? && (attachment_changed? || new_record?)

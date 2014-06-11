@@ -5,6 +5,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   storage :fog
   store_dir 'comment_attachments'
 
+  process :generate_token
   process :persist_md5
   process :encrypt_file
 
@@ -15,7 +16,15 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "https://s3.amazonaws.com/#{bucket}#{uri.path}?#{uri.query}"
   end
 
+  def filename
+     "#{model.token}.#{file.extension}" if original_filename.present?
+  end
+
   private
+
+  def generate_token
+    model.token = SecureRandom.hex(32)
+  end
 
   def persist_md5
     model.attachment_md5 = Digest::MD5.hexdigest(model.attachment.read)
