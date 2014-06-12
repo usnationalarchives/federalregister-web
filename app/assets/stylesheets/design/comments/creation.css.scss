@@ -204,6 +204,7 @@ body#entries .form-tooltip {
 
     .commit.button {
       background-color: $fr-green;
+      position: relative;
 
       &:hover { background-color: $fr-orange; }
 

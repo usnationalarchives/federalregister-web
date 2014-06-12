@@ -180,11 +180,46 @@ class @FR2.CommentForm
       .find 'input'
       .removeProp 'disabled'
 
+    @submitButtonWrapper()
+      .find '.event-overlay'
+      .remove()
+
   disableSubmitButton: ->
     @submitButtonWrapper()
       .addClass 'disabled'
       .find 'input'
       .prop 'disabled', true
+
+    # FF doesn't propagate events on disabled elements,
+    # it complete ignores them. The overlay gets around that
+    # by sitting over the input to gather the click and then
+    # essentially passing that click on to the proper element
+    overlay = @submitButtonWrapper()
+      .find '.event-overlay'
+
+    if overlay.length == 0
+      overlay = $('<div>').addClass 'event-overlay'
+
+      overlay
+        .css({
+          position: "absolute"
+          top: 0
+          left: 0
+          width: @submitButtonWrapper().outerWidth()
+          height: @submitButtonWrapper().outerHeight()
+          zIndex: 2000
+          # IE needs a color in order for the layer to respond to mouse events
+          backgroundColor: "#FFF"
+          opacity: 0
+        })
+        .on 'click', (e)=>
+          e.preventDefault()
+          e.stopPropagation()
+          @submitButtonWrapper()
+            .trigger 'click'
+
+      @submitButtonWrapper()
+        .append overlay
 
   # acts as getter/setter
   uploaderReady: (status)->
