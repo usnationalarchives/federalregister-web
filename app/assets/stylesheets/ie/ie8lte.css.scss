@@ -43,3 +43,7 @@ div#new-folder-modal .title_bar .icon-fr2 {
 /* sign in form and new folder modal form*/
 #new_user.formtastic fieldset ol,
 .folder.formtastic fieldset ol { margin-left: 0px; }
+
+.formtastic.comment .file .fileupload-button #fileupload {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}

@@ -103,3 +103,10 @@ form.user fieldset.inputs {
     float: left;
   }
 }
+
+.formtastic.comment {
+  .file .fileupload-button #fileupload {
+    filter: alpha(opacity=0);
+  }
+  .comment_preview { top: -10px; }
+}
