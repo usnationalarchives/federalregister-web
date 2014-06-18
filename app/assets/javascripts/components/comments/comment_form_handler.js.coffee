@@ -156,10 +156,6 @@ class @FR2.CommentFormHandler
 
     @fileUploadButton().on 'hover', ()=>
       addFileButton.toggleClass('hover');
-    #@commentFormEl().on 'click', '.add_file', ()=>
-    #  @fileUploadButton().trigger 'click'
-
-    #@fileUploadButton().hide()
 
   loadCommentForm: ->
     @commentFormLoadHandler.load()
