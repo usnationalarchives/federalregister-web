@@ -199,7 +199,7 @@ class RegulationsDotGov::Client
         JSON.parse(response)
       when 404
         raise RecordNotFound.new( stringify_response(response) )
-      when 500, 503
+      when 500, 502, 503
         raise ServerError.new( stringify_response(response), response.code )
       else
         raise ResponseError.new( stringify_response(response) )
@@ -224,7 +224,7 @@ class RegulationsDotGov::Client
         response
       when 400, 406
         raise InvalidSubmission.new( stringify_response(response) )
-      when 500, 503
+      when 500, 502, 503
         raise ServerError.new( stringify_response(response) )
       else
         raise ResponseError.new( stringify_response(response) )

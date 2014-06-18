@@ -159,7 +159,7 @@ class CommentsController < ApplicationController
 
   def json_for_regulations_dot_gov_errors(exception)
     if exception.code
-      if exception.code == 503 || exception.code == 500
+      if [500, 502, 503].include?(exception.code)
         error = 'service_unavailable'
       elsif exception.code == 409
         error = 'comments_closed'
