@@ -4,7 +4,8 @@
 </p>
 
 <%= semantic_form_for :comment_notifications,
-  :url => persist_for_login_comments_url do |f| %>
+  :url => persist_for_login_comments_url,
+  :html => {:target => :blank} do |f| %>
 
   <%= f.inputs do %>
     <%= f.input :comment_publication_notification,
@@ -24,8 +25,8 @@
   <% end %>
 
   <%= f.buttons do %>
-    <%= f.commit_button :sign_in, :label => 'Sign In'%>
-    <%= f.commit_button :sign_up, :label => 'Sign Up'%>
+    <%= f.commit_button :sign_in, :label => 'Sign In', :wrapper_html => {:class => 'comment_form_sign_in'} %>
+    <%= f.commit_button :sign_up, :label => 'Sign Up', :wrapper_html => {:class => 'comment_form_sign_up'}%>
   <% end %>
 
 <% end %>

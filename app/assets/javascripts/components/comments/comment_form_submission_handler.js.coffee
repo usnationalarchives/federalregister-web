@@ -33,9 +33,13 @@ class @FR2.CommentFormSubmissionHandler
       data: @commentFormEl().serialize()
     }
 
+    agency = @commentFormEl().data('agency')
+    documentNumber = @commentFormEl().data('document-number')
+
     submitHandler = this
 
     $.extend settings, options
+
 
     $.ajax {
       url: settings.url
@@ -44,9 +48,26 @@ class @FR2.CommentFormSubmissionHandler
       data: settings.data
       success: (response)->
         submitHandler.success response
+        submitHandler.trackCommentFormSubmissionSuccess()
+
       error: (response)->
+        if response.status == 422
+          submitHandler.trackCommentFormSubmissionError(
+            'Comment: Submit Comment Form Validation Error'
+          )
+        else
+          submitHandler.trackCommentFormSubmissionError(
+            "Comment: Submit Comment Form Error #{response.error}"
+          )
+
         submitHandler.error response
     }
+
+  trackCommentFormSubmissionSuccess: ->
+    @commentFormHandler.trackCommentEvent 'Comment: Submit Comment Form Success'
+
+  trackCommentFormSubmissionError: (category)->
+    @commentFormHandler.trackCommentEvent category
 
   success: (response)->
     @_rollUpCommentAndReplace response, (response)=>

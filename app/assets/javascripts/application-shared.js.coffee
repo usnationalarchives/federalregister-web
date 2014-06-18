@@ -8,6 +8,8 @@
 //= require handlebars_helpers
 //= require storage.js
 //= require analytics.js
+#= require analytics/comments
+
 //= require components
 //= require jquery.textarea-expander.js
 #= require blueimpFileupload

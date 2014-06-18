@@ -11,6 +11,9 @@ class @FR2.CommentFormLoadHandler
   commentLink: ->
     @formWrapper().find 'a#start_comment'
 
+  ajaxCommentData: ->
+    $('.ajax-comment-data')
+
   setup: ->
     @commentDiv = $('<div>')
       .addClass 'ajax-comment-data'
@@ -75,6 +78,12 @@ class @FR2.CommentFormLoadHandler
         loadHandler.error response
     }
 
+  trackCommentFormOpenSuccess: ()->
+    @commentFormHandler.trackCommentEvent 'Comment: Open Comment Form Success'
+
+  trackCommentFormOpenError: (error)->
+    @commentFormHandler.trackCommentEvent "Comment: Open Comment Form #{error}"
+
   success: (response)->
     @generateCommentForm response
 
@@ -83,7 +92,7 @@ class @FR2.CommentFormLoadHandler
     @loadingDiv.fadeOut 600, ()=>
       @commentFormHandler.updateCommentHeader()
 
-      ajaxCommentData = $('.ajax-comment-data')
+      ajaxCommentData = @ajaxCommentData()
       ajaxCommentData
         .css 'height', '42px'
         .animate(
@@ -93,16 +102,19 @@ class @FR2.CommentFormLoadHandler
 
       commentFormWrapper.slideDown 800, ()=>
         @commentFormHandler.commentFormReady()
-
+        @addTrackingEvents()
+        @trackCommentFormOpenSuccess()
 
   error: (response)->
     if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1"
       responseText = JSON.parse response.responseText
       modalTitle = responseText.modalTitle
       modalHtml  = responseText.modalHtml
+      @trackCommentFormOpenError 'Regulations.gov Error'
     else
       modalTitle = "We're sorry something went wrong"
       modalHtml = "We've encountered an error and we have been notified. Please try again later."
+      @trackCommentFormOpenError 'FederalRegister.gov Error'
 
     display_fr_modal modalTitle, modalHtml, @commentLink()
     $('.ajax-comment-data').fadeOut 600
@@ -119,3 +131,28 @@ class @FR2.CommentFormLoadHandler
     @commentForm = @commentFormHandler.commentForm
 
     @commentFormHandler.addStorageEvents()
+
+  addTrackingEvents: ->
+    @ajaxCommentData().on 'click', '.reg_gov_comment_tips', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Comment Tips"
+
+    @ajaxCommentData().on 'click', '.reg_gov_posting_guidelines', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Agency Posting Guidelines Modal"
+
+    @ajaxCommentData().on 'click', '.reg_gov_alternative_ways_to_comment', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Alternative Ways to Comment Modal"
+
+    @ajaxCommentData().on 'click', '.alternative_ways_to_comment.addresses', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: FederalRegister.gov Alternative Ways to Comment"
+
+    @ajaxCommentData().on 'click', '.comment_preview', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Form: Comment Preview Modal"
+
+    @ajaxCommentData().on 'click', '#comment-privacy-policy', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Privacy Policy"
+
+    @ajaxCommentData().on 'click', '#comment-user-notice', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Footer: Regulations.gov User Notice"
+
+    @ajaxCommentData().on 'click', '.attachment_requirements', ()=>
+      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Attachment Requirements Modal"

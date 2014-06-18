@@ -21,15 +21,19 @@
     <p>
       Thank you for taking the time to create a comment. Your input is important.
       Regulations.gov has provided
-      <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf">tips for submitting an effective comment</a><%= true || @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+      <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf"
+        class="reg_gov_comment_tips"
+        target="_blank">
+        tips for submitting an effective comment
+      </a><%= @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
 
       <% if @comment.comment_form.posting_guidelines %>
         and this agency has also provided
-        <a href="#" class="fr_modal_link"
+        <a href="#" class="fr_modal_link reg_gov_posting_guidelines"
           data-modal-title="Agency Posting Guidelines"
           data-modal-html="<p><%= @comment.comment_form.posting_guidelines %></p>">
-           additional posting guidelines.
-        </a>
+           additional posting guidelines
+        </a>.
       <% end %>
     </p>
 
@@ -43,18 +47,25 @@
     <p>
       You can also view
       <% if @comment.comment_form.alternative_ways_to_comment.present? %>
-        <a href="#" class="fr_modal_link"
+        <a href="#" class="fr_modal_link reg_gov_alternative_ways_to_comment"
           data-modal-title="Alternative Ways to Comment"
-          data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">alternative ways to comment</a>.
+          data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">
+          alternative ways to comment
+        </a>.
       <% else %>
-        <%= link_to 'alternative ways to comment', '#addresses' %>.
+        <%= link_to 'alternative ways to comment',
+          '#addresses',
+          :class => 'alternative_ways_to_comment addresses' %>
       <% end %>
     </p>
   </div>
 
   <%= semantic_form_for @comment,
     :url => comment_path,
-    :html => {:"data-document-number" => @comment.document_number} do |f| %>
+    :html => {
+      :"data-document-number" => @comment.document_number,
+      :"data-agency" => @comment.agency_name
+    } do |f| %>
 
     <% if @comment_reloaded %>
       <div class="notice message comment_reloaded">
@@ -98,7 +109,7 @@
             Note: You can attach your comment as a file and/or attach supporting
             documents to your comment.
             <a href=""
-              class='fr_modal_link'
+              class='fr_modal_link attachment_requirements'
               data-modal-title='Attachment Requirements'
               data-modal-data='<%=
                 {
@@ -147,13 +158,28 @@
       <%= f.commit_button "Submit Comment",
         :wrapper_html => {:class => 'disabled'},
         :button_html => {:disabled => 'disabled'} %>
-      <%= content_tag(:li, link_to('Preview Comment', '#', :class => 'comment_preview') ) %>
+      <%= content_tag(
+        :li,
+        link_to(
+          'Preview Comment',
+          '#',
+          :class => 'comment_preview'
+        )
+      ) %>
     <% end %>
 
     <div class="regulations_dot_gov_notices">
       Please review the Regulations.gov
-      <a href="http://www.regulations.gov/#!privacyNotice" id="comment-privacy-policy">privacy notice</a> and
-      <a href="http://www.regulations.gov/#!userNotice" id="comment-user-notice">user notice</a>.
+      <a href="http://www.regulations.gov/#!privacyNotice"
+        id="comment-privacy-policy"
+        target="_blank">
+        privacy notice
+      </a> and
+      <a href="http://www.regulations.gov/#!userNotice"
+        id="comment-user-notice"
+        target="_blank">
+        user notice
+      </a>.
     </div>
   <% end %>
 </div> <!-- end comment_form_wrapper -->

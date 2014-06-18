@@ -19,7 +19,10 @@
       Your MyFR email address has not yet been confirmed. You will not
       recieve any notifications until your email address has been
       confirmed.
-      <%= link_to 'Resend confirmation email', resend_confirmation_path %>.
+      <%= link_to 'Resend confirmation email',
+        resend_confirmation_path,
+        :class => 'resend_email_confirmation',
+        :target => :blank %>.
     </p>
   </div>
 <% end %>
@@ -36,7 +39,7 @@
         comment_publication_notifications_url,
         :'data-comment-tracking-number' => @comment.comment_tracking_number,
         :method => :delete,
-        :class => 'notifications remove' %>
+        :class => 'notifications posting remove' %>
     </li>
   <% end %>
   <li>
@@ -49,6 +52,6 @@
       comment_followup_document_notifications_url,
       :'data-comment-tracking-number' => @comment.comment_tracking_number,
       :method => :delete,
-      :class => 'notifications remove' %>
+      :class => 'notifications followup remove' %>
   </li>
 </ul>

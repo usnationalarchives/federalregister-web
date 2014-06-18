@@ -14,6 +14,7 @@ class @FR2.CommentFormSuccessHandler
 
   add_events: ->
     @printComment()
+    @analytics()
 
   updateCommentHeader: ->
     flashMessage = $('#flash_message.comment p')
@@ -53,3 +54,40 @@ class @FR2.CommentFormSuccessHandler
     $('body').on 'click', '#fr_modal .print_button', (e)->
       e.preventDefault()
       window.print()
+
+  trackCommentEvent: (category)->
+    @commentFormHandler.trackCommentEvent category
+
+  analytics: ->
+    @ajaxCommentData().on 'click', '.tracking_number', ()=>
+      @trackCommentEvent 'Comment Success: Comment Tracking Number'
+
+    @ajaxCommentData().on 'click', '.my_fr .notifications.posting.remove', ()=>
+      @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt Out'
+
+    @ajaxCommentData().on 'click', '.my_fr .notifications.posting', ()=>
+      @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt In'
+
+    @ajaxCommentData().on 'click', '.my_fr .notifications.followup.remove', ()=>
+      @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt Out'
+
+    @ajaxCommentData().on 'click', '.my_fr .notifications.followup', ()=>
+      @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt In'
+
+    @ajaxCommentData().on 'click', '#print-comment', ()=>
+      @trackCommentEvent 'Comment Success: Print Comment'
+
+    @ajaxCommentData().on 'click', '.social_media .twitter', ()=>
+      @trackCommentEvent 'Comment Success: Social Media Twitter'
+
+    @ajaxCommentData().on 'click', '.social_media .facebook', ()=>
+      @trackCommentEvent 'Comment Success: Social Media Facebook'
+
+    @ajaxCommentData().on 'click', '.warning.message .resend_email_confirmation', ()=>
+      @trackCommentEvent 'Comment Success:  MyFR Resend Email Confirmation'
+
+    @ajaxCommentData().on 'click', '.buttons .comment_form_sign_in', ()=>
+      @trackCommentEvent 'Comment Success:  MyFR Sign In'
+
+    @ajaxCommentData().on 'click', '.buttons .comment_form_sign_up', ()=>
+      @trackCommentEvent 'Comment Success:  MyFR Sign Up'

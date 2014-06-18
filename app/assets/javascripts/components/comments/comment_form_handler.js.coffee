@@ -166,16 +166,37 @@ class @FR2.CommentFormHandler
 
   submitCommentForm: ->
     @commentFormStore.storeComment()
+    @trackCommentFormSubmitStart()
     @commentFormSubmissionHandler.submit()
 
   startComment: ->
     @formWrapper.on 'click', 'a#start_comment[data-comment=1]', (e)=>
       e.preventDefault()
+      @trackCommentFormOpenStart()
       @loadCommentForm()
+
+  trackCommentFormOpenStart: ->
+    @trackCommentEvent 'Comment: Open Comment Form Start'
+
+  trackCommentFormStartOver: ->
+    @trackCommentEvent 'Comment: Comment Form Start Over'
+
+  trackCommentFormSubmitStart: ->
+    @trackCommentEvent 'Comment: Submit Comment Form Start'
+
+  trackCommentEvent: (category)->
+    wrapper = $('#flash_message')
+
+    agency = wrapper.data('reggov-agency')
+    documentNumber = wrapper.data('document-number')
+
+    FR2.Analytics.trackCommentEvent category, agency, documentNumber
 
   startCommentOver: ->
     @commentFormEl().on 'click', 'a#comment-start-over', (e)=>
       e.preventDefault()
+
+      @trackCommentFormStartOver()
 
       @commentFormStore.clearSavedFormState()
 
