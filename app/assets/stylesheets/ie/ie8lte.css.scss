@@ -42,8 +42,18 @@ div#new-folder-modal .title_bar .icon-fr2 {
 
 /* sign in form and new folder modal form*/
 #new_user.formtastic fieldset ol,
-.folder.formtastic fieldset ol { margin-left: 0px; }
+.folder.formtastic fieldset ol { margin-left: 0; }
 
-.formtastic.comment .file .fileupload-button #fileupload {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+.formtastic.comment {
+  fieldset ol { margin-left: 0; }
+
+  .file {
+    .fileupload-button #fileupload {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+    }
+
+    button.delete span.icon-fr2 { top: 3px; }
+  }
 }
+
+.comment_notifications.formtastic ol { margin-left: 0; }
