@@ -149,7 +149,7 @@ class @FR2.CommentFormLoadHandler
       @commentFormHandler.trackCommentEvent "Comment Form: Comment Preview Modal"
 
     @ajaxCommentData().on 'click', '#comment-privacy-policy', ()=>
-      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Privacy Policy"
+      @commentFormHandler.trackCommentEvent "Comment Footer: Regulations.gov Privacy Policy"
 
     @ajaxCommentData().on 'click', '#comment-user-notice', ()=>
       @commentFormHandler.trackCommentEvent "Comment Footer: Regulations.gov User Notice"
