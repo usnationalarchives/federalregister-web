@@ -1,0 +1,16 @@
+development:
+  host: 127.0.0.1
+  port: 6379
+  namespace: myFR
+test:
+  host: 127.0.0.1
+  port: 6379
+  namespace: myFRTest
+staging:
+  host: redis.fr2.ec2.internal
+  port: 6379
+  namespace: myFR
+production:
+  host: redis.fr2.ec2.internal
+  port: 6379
+  namespace: myFR
