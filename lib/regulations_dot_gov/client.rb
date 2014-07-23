@@ -177,12 +177,6 @@ class RegulationsDotGov::Client
     response = unwrap_response(response)
 
     comment_form = RegulationsDotGov::CommentForm.new(self, response)
-
-    if ! comment_form.open_for_comment?
-      raise CommentPeriodClosed.new('', 409)
-    end
-
-    comment_form
   end
 
   def self.get(url, options)
@@ -197,6 +191,12 @@ class RegulationsDotGov::Client
         response
       when 0
         JSON.parse(response)
+      when 400
+        if response['openForComment'] && response['openForComment'] == false
+          raise CommentPeriodClosed.new(stringify_response(response), 409)
+        else
+          raise ResponseError.new( stringify_response(response) )
+        end
       when 404
         raise RecordNotFound.new( stringify_response(response) )
       when 500, 502, 503
