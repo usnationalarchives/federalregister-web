@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def new
+    track_ipaddress "comment_opened", request.remote_ip
   end
 
   def reload
@@ -42,8 +43,12 @@ class CommentsController < ApplicationController
     if @comment.save
       @comment.subscription.confirm! if current_user && current_user.confirmed?
 
+      track_ipaddress "comment_post_success", request.remote_ip
+
       render_created_comment
     else
+      track_ipaddress "comment_post_failure", request.remote_ip
+
       render_error_page
     end
   rescue RegulationsDotGov::Client::InvalidSubmission => exception
@@ -177,5 +182,9 @@ class CommentsController < ApplicationController
         )
       }
     end
+  end
+
+  def track_ipaddress(key, ipaddress)
+    $redis.zincrby "#{key}:#{Date.current.to_s(:iso)}", 1, ipaddress
   end
 end
