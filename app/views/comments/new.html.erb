@@ -2,12 +2,19 @@
 
 <div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>">
   <div class="instructions">
-    <% if @comment.comment_form.comments_close_at < Time.now + 1.hour %>
+    <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
       <div class="notice warning">
         <p>
           Comments on this document close in less than 1 hour.
           Ensure that you submit your comment before
           <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
+        </p>
+      </div>
+    <% elsif @comment.comment_form.comments_close_at < Time.now && @comment.comment_form.comments_close_at + 2.hours > Time.now %>
+        <div class="notice warning">
+        <p>
+          Comments on this document may no longer be open.
+          The comment close date was <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
         </p>
       </div>
     <% end %>
