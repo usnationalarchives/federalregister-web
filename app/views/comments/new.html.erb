@@ -1,6 +1,6 @@
 <% @comment = CommentDecorator.decorate(@comment) %>
 
-<div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>">
+<div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
     <% if @comment.comment_form.comments_close_at %>
       <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
