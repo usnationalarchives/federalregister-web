@@ -67,6 +67,17 @@ module RegulationsDotGov
 
         expect( comment_form.comments_close_at ).to eq(DateTime.parse end_date)
       end
+
+      it "returns nil when the attribute is not present" do
+        end_date = ''
+
+        comment_form = CommentForm.new(
+          client,
+          track_response_keys( {'document' => {'commentDueDate' => end_date}} )
+        )
+
+        expect( comment_form.comments_close_at ).to eq(nil)
+      end
     end
 
     # we don't track_response_keys here as it's a field that's rarely
