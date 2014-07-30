@@ -28,11 +28,15 @@ class RegulationsDotGov::CommentForm
   end
 
   def comments_open_at
-    Time.zone.parse(document_attributes['commentStartDate'])
+    if document_attributes['commentStartDate'].present?
+      Time.zone.parse(document_attributes['commentStartDate'])
+    end
   end
 
   def comments_close_at
-    Time.zone.parse(document_attributes['commentDueDate'])
+    if document_attributes['commentDueDate'].present?
+      Time.zone.parse(document_attributes['commentDueDate'])
+    end
   end
 
   def open_for_comment?
