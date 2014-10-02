@@ -2,7 +2,7 @@
 
 <div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
-    <% if Time.current < Time.parse('2014-010-04 20:00 EDT') %>
+    <% if Time.current < Time.parse('2014-10-04 20:00 EDT') %>
      <div class="notice warning">
         <p>
           Regulations.gov will undergo infrastructure maintenance
