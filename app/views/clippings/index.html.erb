@@ -51,12 +51,12 @@
             <dl class="metadata">
               <dt class="created_at">Clipped on:</dt>
               <dd><%= clipping.clipped_at %></dd>
+
+              <% if clipping.commented_on? %>
+                <dt>Comment created on:</dt>
+                <dd><%= clipping.comment.commented_at %></dd>
+              <% end %>
             </dl>
-            <% if clipping.commented_on? %>
-              <div class="comment_on">
-                <%= clipping.comment.commented_at %>
-              </div>
-            <% end %>
           </div>
 
           <div class="add_to_folder_pane">
