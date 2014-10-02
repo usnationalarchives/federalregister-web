@@ -9,7 +9,7 @@ gem 'honeybadger'
 #gem 'federal_register', '0.5.0'
 #gem 'federal_register', :path => '../federal_register'
 gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git", 
-                        :ref => "7500e781ef3b0c68e507512bd3024c30f7c15aea"
+                        :branch => "officialness"
 
 gem 'devise', '2.1.2'
 

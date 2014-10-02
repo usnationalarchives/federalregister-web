@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/criticaljuncture/federal_register.git
+  revision: 2bb80ec8a056a2ca56ee1bb9ce3268ab117e9c51
+  branch: officialness
+  specs:
+    federal_register (0.5.0)
+      httparty (>= 0.7.0)
+
+GIT
   remote: git://github.com/delynn/userstamp.git
   revision: 777633aa564f8457c999ddb96afa4c5ae18d319f
   ref: 777633
@@ -11,12 +19,6 @@ GIT
   specs:
     mail_view (1.0.1)
       tilt
-
-PATH
-  remote: ../federal_register
-  specs:
-    federal_register (0.5.0)
-      httparty (>= 0.7.0)
 
 GEM
   remote: http://rubygems.org/
