@@ -59,7 +59,7 @@ task :production do
   set :rails_env,  "production"
   set :branch, 'production'
   
-  set :gateway, 'federalregister.gov'
+  set :gateway, 'fr2_production'
   
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
@@ -81,7 +81,7 @@ end
 task :staging do
   set :rails_env,  "staging" 
   set :branch, `git branch`.match(/\* (.*)/)[1]
-  set :gateway, 'fr2.criticaljuncture.org'
+  set :gateway, 'fr2_staging'
   
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "my-fr2-server-1.fr2.ec2.internal"
