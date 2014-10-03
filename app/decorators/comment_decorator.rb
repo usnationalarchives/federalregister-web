@@ -25,7 +25,7 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def commented_at
-    if comment.created_at
+    if comment
       comment.created_at
     end
   end
