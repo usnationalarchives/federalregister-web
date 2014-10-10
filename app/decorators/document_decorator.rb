@@ -5,6 +5,10 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
 
+  def slug
+    html_url.split('/').last
+  end
+
   def presidential_document?
     type == "Presidential Document"
   end

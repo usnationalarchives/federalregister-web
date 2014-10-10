@@ -1,6 +1,7 @@
 Date::DATE_FORMATS[:default] = "%m/%d/%Y"
 Date::DATE_FORMATS[:date] = "%m/%d/%Y"
-
+Date::DATE_FORMATS[:day_date] = "%A %d"
+Date::DATE_FORMATS[:month_year] = "%B %Y"
 
 # Apr. 22nd, 2011
 Date::DATE_FORMATS[:shorter_ordinal] = lambda { |time| time.strftime("%b #{time.day.ordinalize}, %Y") }

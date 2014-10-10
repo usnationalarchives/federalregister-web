@@ -95,6 +95,14 @@ MyFr2::Application.routes.draw do
     root :to => "clippings#index",
          :as => :my_root
 
+    resources :agencies, only: [:index, :show]
+
+    get 'agencies/:id/significant.:format',
+      :controller => "agencies",
+      :action => "significant_entries",
+      :conditions => { :method => :get },
+      as: 'significant_entries_agency'
+
     resources :clippings do
       collection do
         post 'bulk_create'

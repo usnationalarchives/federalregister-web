@@ -1,22 +1,5 @@
 class ArticleDecorator < ApplicationDecorator
-  def granule_class
-    case model.type
-    when 'Rule'
-      'rule'
-    when 'Proposed Rule'
-      'proposed_rule'
-    when 'Notice'
-      'notice'
-    when 'Presidential Document'
-      'presidential_document'
-    when 'Uncategorized Document'
-      'uncategorized'
-    when 'Sunshine Act Document'
-      'notice'
-    when 'Correction'
-      'correct'
-    end
-  end
+  include DocumentDecorator::Shared
 
   def publication_date
     model.publication_date.to_formatted_s(:date)

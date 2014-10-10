@@ -1,4 +1,23 @@
 module DocumentDecorator::Shared
+  def granule_class
+    case model.type
+    when 'Rule'
+      'rule'
+    when 'Proposed Rule'
+      'proposed_rule'
+    when 'Notice'
+      'notice'
+    when 'Presidential Document'
+      'presidential_document'
+    when 'Uncategorized Document'
+      'uncategorized'
+    when 'Sunshine Act Document'
+      'notice'
+    when 'Correction'
+      'correct'
+    end
+  end
+
   def agency_names(options = {})
     autolink = true unless options[:no_links]
 
