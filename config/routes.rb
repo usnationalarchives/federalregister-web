@@ -41,6 +41,8 @@ MyFr2::Application.routes.draw do
         type: /(official|public-inspection|reader-aids)/
       }
 
+  get 'esi/reader_aids',
+      to: 'special#reader_aids'
   #
   # Public Inspection
   #

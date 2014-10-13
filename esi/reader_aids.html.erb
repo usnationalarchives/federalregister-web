@@ -1,0 +1,62 @@
+<div class="row home-aid-box">
+  <div classs="col-xs-12 col-md-12">
+    <%= fr_box 'Reader Aids', :reader_aid, content_block_html: {class: 'simple'} do %>
+      <div class="row">
+        <div class="col-xs-8 col-md-8">
+          <p>
+            Increase your understanding of the Federal Register eco-system and
+            improve your FederalRegister.gov skills with these helpful, unofficial
+            educational articles and videos. See more of our reader aids
+            <%= link_to "here", reader_aids_path %>.
+          </p>
+        </div>
+
+        <div class="col-xs-4 col-md-4 section">
+          <p class="blog">
+            <span class="icon-fr2 icon-fr2-quote"></span>
+            Read the <a href="">Office of the Federal Register Blog</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-8 col-md-8 section">
+          <h4 class="with-icon lowercase">
+            <span class="icon-fr2 icon-fr2-help"></span>
+            Using FederalRegister.gov
+            <a href="" class="more-details">view all</a>
+          </h4>
+          <ul class="fr-list with-bullets reader-aids two-col">
+            <% @using_fr_pages.first(3).each do |page| %>
+              <li>
+                <%= link_to page.get(:title), page.get(:link) %>
+              </li>
+            <% end %>
+          </ul>
+          <ul class="fr-list with-bullets reader-aids two-col">
+            <% @using_fr_pages.last(3).each do |page| %>
+              <li>
+                <%= link_to page.get(:title), page.get(:link) %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="col-xs-4 col-md-4 section">
+          <h4 class="with-icon lowercase">
+            <span class="icon-fr2 icon-fr2-pc"></span>
+            Recent Site Updates
+            <a href="" class="more-details">view all</a>
+          </h4>
+          <ul class="fr-list with-bullets reader-aids">
+            <% @recent_update_posts.each do |post| %>
+              <li>
+                <%= link_to post.get(:title), post.get(:link) %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
