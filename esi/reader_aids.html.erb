@@ -29,14 +29,14 @@
           <ul class="fr-list with-bullets reader-aids two-col">
             <% @using_fr_pages.first(3).each do |page| %>
               <li>
-                <%= link_to page.get(:title), page.get(:link) %>
+                <%= link_to page.title, page.link %>
               </li>
             <% end %>
           </ul>
           <ul class="fr-list with-bullets reader-aids two-col">
             <% @using_fr_pages.last(3).each do |page| %>
               <li>
-                <%= link_to page.get(:title), page.get(:link) %>
+                <%= link_to page.title, page.link %>
               </li>
             <% end %>
           </ul>
@@ -51,7 +51,7 @@
           <ul class="fr-list with-bullets reader-aids">
             <% @recent_update_posts.each do |post| %>
               <li>
-                <%= link_to post.get(:title), post.get(:link) %>
+                <%= link_to post.title, post.link %>
               </li>
             <% end %>
           </ul>

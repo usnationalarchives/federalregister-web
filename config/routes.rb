@@ -43,6 +43,24 @@ MyFr2::Application.routes.draw do
 
   get 'esi/reader_aids',
       to: 'special#reader_aids'
+
+  get 'esi/reader_aids/blog_highlights',
+      to: 'reader_aids#blog_highlights'
+
+  get 'esi/reader_aids/using_fr',
+      to: 'reader_aids#using_fr'
+
+  get 'esi/reader_aids/understanding_fr',
+      to: 'reader_aids#understanding_fr'
+
+  get 'esi/reader_aids/recent_updates',
+      to: 'reader_aids#recent_updates'
+
+  get 'esi/reader_aids/videos_and_tutorials',
+      to: 'reader_aids#videos_and_tutorials'
+
+  get 'esi/reader_aids/developer_tools',
+      to: 'reader_aids#developer_tools'
   #
   # Public Inspection
   #
