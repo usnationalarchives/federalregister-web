@@ -25,6 +25,14 @@
         }
       }
     }
+    pre {
+      overflow-x: scroll;
+      white-space: pre;
+      word-wrap: normal;
+    }
+    .page_content li {
+      margin-left: 20px;
+    }
   }
 
   .reader-aids-index-nav {

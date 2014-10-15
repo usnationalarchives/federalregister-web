@@ -21,6 +21,26 @@ class WpApi::Content
     attributes.keys.include?(attr) ? attributes[attr] : nil
   end
 
+  def formatted_title
+    if title
+      title.html_safe
+    else
+      "No title provided."
+    end
+  end
+  
+  def formatted_content
+    content.html_safe if content
+  end
+
+  def formatted_excerpt
+    if excerpt
+      excerpt.html_safe
+    else
+      "No description available."
+    end
+  end
+
   def parent
     @parent ||= Parent.new(attributes['parent'])
   end
@@ -63,7 +83,7 @@ class WpApi::Content
     ]
 
     WHITELISTED_ATTRIBUTES.each do |attribute|
-      define_method(attribute) { attributes[attribute] }
+      define_method(attribute.downcase) { attributes[attribute] }
     end
 
     private

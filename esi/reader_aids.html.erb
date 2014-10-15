@@ -14,7 +14,7 @@
         <div class="col-xs-4 col-md-4 section">
           <p class="blog">
             <span class="icon-fr2 icon-fr2-quote"></span>
-            Read the <a href="">Office of the Federal Register Blog</a>
+            Read the <%= link_to "Office of the Federal Register Blog", reader_aids_section_path('blog-highlights') %>
           </p>
         </div>
       </div>
@@ -24,34 +24,29 @@
           <h4 class="with-icon lowercase">
             <span class="icon-fr2 icon-fr2-help"></span>
             Using FederalRegister.gov
-            <a href="" class="more-details">view all</a>
+            <%= link_to "view all", reader_aids_section_path('using-fr'), class: "more-details" %>
           </h4>
-          <ul class="fr-list with-bullets reader-aids two-col">
-            <% @using_fr_pages.first(3).each do |page| %>
-              <li>
-                <%= link_to page.title, page.link %>
-              </li>
-            <% end %>
-          </ul>
-          <ul class="fr-list with-bullets reader-aids two-col">
-            <% @using_fr_pages.last(3).each do |page| %>
-              <li>
-                <%= link_to page.title, page.link %>
-              </li>
-            <% end %>
-          </ul>
+          <% @using_fr_pages.in_groups_of(3).each do |group| %>
+            <ul class="fr-list with-bullets reader-aids two-col">
+              <% group.each do |page| %>
+                <li>
+                  <%= link_to page.formatted_title, page.link %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
 
         <div class="col-xs-4 col-md-4 section">
           <h4 class="with-icon lowercase">
             <span class="icon-fr2 icon-fr2-pc"></span>
             Recent Site Updates
-            <a href="" class="more-details">view all</a>
+            <%= link_to "view all", reader_aids_section_path('recent-updates'), class: "more-details" %>
           </h4>
           <ul class="fr-list with-bullets reader-aids">
             <% @recent_update_posts.each do |post| %>
               <li>
-                <%= link_to post.title, post.link %>
+                <%= link_to post.formatted_title, post.link %>
               </li>
             <% end %>
           </ul>

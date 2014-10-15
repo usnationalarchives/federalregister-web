@@ -88,6 +88,13 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#index',
       as: :reader_aids
 
+  get 'reader-aids/:section',
+      to: 'reader_aids#view_all',
+      as: :reader_aids_section
+
+  get 'reader-aids/:section/:item',
+      to: 'reader_aids#show',
+      as: :reader_aid
   #
   # Home
   #

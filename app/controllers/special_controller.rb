@@ -39,7 +39,7 @@ class SpecialController < ApplicationController
   end
   
   def reader_aids
-    @using_fr_pages = WpApi::Client.get_pages.find_by_parent("Learn")
+    @using_fr_pages = WpApi::Client.get_pages.find_by_parent("Learn").first(6)
     @recent_update_posts = WpApi::Client.get_posts.posts.first(3)
     render "esi/reader_aids", layout: false
   end
