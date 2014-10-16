@@ -58,7 +58,7 @@ class WpApi::Content
   end
 
   def modified
-    attributes['modified'].to_date
+    attributes['modified'].try(:to_date)
   end
 
   class Author

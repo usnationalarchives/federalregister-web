@@ -5,6 +5,10 @@ class ReaderAidsController < ApplicationController
     @presenter = ReaderAidsPresenter.new({})
   end
 
+  def search
+    @results = WpApi::Client.search(params[:conditions][:term])
+  end
+
   def view_all
     if %w(blog-highlights recent-updates).include?(params[:section])
       @presenter = ReaderAidsPresenter.new(
