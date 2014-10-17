@@ -17,6 +17,7 @@ class SpecialController < ApplicationController
   end
 
   def navigation
+    @reader_aids_sections = ReaderAidsPresenter::SECTIONS
     cache_for 1.day
   end
 

@@ -1,9 +1,24 @@
+<li class="dropdown nav_reader_aids">
+  <a class="top_nav">
+    <span class="icon-fr2 icon-fr2-Directions"></span>
+    Reader Aids
+    <span class="arrow"></span>
+  </a>
+
+  <ul class="subnav myfr2_list">
+    <% @reader_aids_sections.each do |section_slug, section_content| %>
+      <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
+    <% end %>
+  </ul>
+</li>
+
 <li class="dropdown nav_myfr2">
   <a class="myfr2 top_nav">
     <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
     My FR
     <span class="arrow"></span>
   </a>
+
   <ul class="subnav myfr2_list">
     <% if FeatureFlag::REGS_DOT_GOV_COMMENTS_ENABLED %>
       <li id='myfr2-comments'>
