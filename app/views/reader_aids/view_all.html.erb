@@ -1,0 +1,39 @@
+<% header_type 'reader-aids' %>
+<div class="title reader-aids">
+  <span>
+    <span class="icon-fr2 <%= @presenter.icon_class %>"></span>
+    <%= @presenter.title %>
+  </span>
+</div>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="col-xs-3 col-md-3 section">
+      <ul class="fr-list with-bullets reader-aids">
+        <li><%= link_to "All Learn Content", reader_aids_path %></li>
+        <br>
+        <% @presenter.sections.each do |section_identifier, section_data| %>
+          <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-9 col-md-9 section">
+      <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
+        <div class="section">
+          <h4><%= @presenter.title %></h4>
+          <div class="row">
+            <% @presenter.grouped_items.each do |group| %>
+              <div class="col-xs-<%= 12 / @presenter.columns %> col-md-<%= 12 / @presenter.columns %>">
+                <ul class="fr-list">
+                  <% group.each do |item| %>
+                    <%= render partial: 'item', locals: {item: item, presenter: @presenter} %>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="section">
+  <h4 class="with-icon lowercase">
+    <span class="icon-fr2 <%= presenter.icon_class %>"></span>
+    <%= presenter.title %>
+    <%= link_to "view all", reader_aids_section_path(presenter.section_identifier), class: "more-details" if presenter.show_view_all %>
+  </h4>
+  <div class="row">
+    <% presenter.grouped_items.each do |group| %>
+      <div class="col-xs-<%= 12 / presenter.columns %> col-md-<%= 12 / presenter.columns %>">
+        <ul class="fr-list">
+          <% group.each do |item| %>
+            <%= render partial: 'item', locals: {item: item, presenter: presenter} %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

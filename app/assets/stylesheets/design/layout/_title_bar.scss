@@ -33,5 +33,12 @@ div.title {
   }
   &.reader-aids {
     @include title_bar($color-reader-aid, "purple_title_bar.png");
+    span {
+      vertical-align: top;
+      .icon-fr2 {
+        margin-right: 0;
+        padding: 0;
+      }
+    }
   }
 }
