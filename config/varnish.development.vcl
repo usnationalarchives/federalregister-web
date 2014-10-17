@@ -26,7 +26,7 @@ backend blog {
 
 
 sub vcl_fetch {
-  if (req.url ~ "^(/blog|/policy|/learn|/layout/footer_page_list|/layout/navigation_page_list|/layout/homepage_post_list)") {
+  if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
    set beresp.ttl = 120s;
   }
 }
@@ -85,7 +85,7 @@ sub vcl_recv {
     } else if (req.url ~ "^/styleguides(/|$)") {
       set req.backend = my_fr2;
       return(pass);
-    } else if (req.url ~ "^(/special/header|/special/shared_assets|/special/my_fr_assets|/special/user_utils)") {
+    } else if (req.url ~ "^(/special/header|/special/shared_assets|/special/my_fr_assets|/special/user_utils|/special/footer)") {
       set req.backend = my_fr2;
       return(pass);
     } else if (req.url ~ "^/api/") {
@@ -103,7 +103,7 @@ sub vcl_recv {
     } else if (req.url ~ "^(/esi)") {
       set req.backend = my_fr2;
       return (pass);
-    } else if (req.url ~ "^(/blog|/policy|/learn|/layout/footer_page_list|/layout/navigation_page_list|/layout/homepage_post_list)") {
+    } else if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
       set req.http.host = "127.0.0.1";
       set req.backend = blog;
 
@@ -133,7 +133,7 @@ sub vcl_recv {
     # Rewrite top-level wordpress requests to /blog/
     set req.url = regsub(
         req.url,
-        "^/(learn|policy|layout/footer_page_list|layout/navigation_page_list|layout/homepage_post_list)",
+        "^/(learn|policy|layout/navigation_page_list|layout/homepage_post_list)",
         "/blog/\1"
     );
 

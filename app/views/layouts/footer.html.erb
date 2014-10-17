@@ -1,0 +1,21 @@
+<div class="footer" id="footer">
+  <div class="wrapper">
+    <div class="grid_4">
+      <h2>Reader Aids</h2>
+      <ul class="bullets">
+        <% @reader_aids_sections.each do |section_slug, section_content| %>
+          <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
+        <% end %>
+      </ul>  
+    </div>
+
+    <div class="grid_4">
+      <h2>My FR</h2>
+      <ul class="bullets">
+        <% @my_fr_presenter.sections.each do |section_name, url| %>
+          <li><%= link_to section_name, url %></li>
+        <% end %>
+      </ul>  
+    </div>
+  </div>
+</div>

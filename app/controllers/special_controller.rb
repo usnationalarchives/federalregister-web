@@ -43,4 +43,10 @@ class SpecialController < ApplicationController
     @recent_update_posts = WpApi::Client.get_posts.posts.first(3)
     render "esi/reader_aids", layout: false
   end
+
+  def footer
+    @reader_aids_sections = ReaderAidsPresenter::SECTIONS
+    @my_fr_presenter = MyFrPresenter.new
+    render "layouts/footer", layout: false
+  end
 end
