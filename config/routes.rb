@@ -72,6 +72,9 @@ MyFr2::Application.routes.draw do
   # Home
   #
   root to: 'special#home'
+  match 'special/user_utils' => 'special#user_utils'
+  match 'special/shared_assets' => 'special#shared_assets'
+  match 'special/my_fr_assets' => 'special#my_fr_assets'
 
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
@@ -85,9 +88,6 @@ MyFr2::Application.routes.draw do
       get 'resend_confirmation', :to => 'users/confirmations#resend', :as => :resend_confirmation
     end
 
-    match 'special/user_utils' => 'special#user_utils'
-    match 'special/shared_assets' => 'special#shared_assets'
-    match 'special/my_fr_assets' => 'special#my_fr_assets'
     match 'special/fr2_assets' => 'special#fr2_assets'
     match 'special/navigation' => 'special#navigation'
     match 'status' => 'special#status'
