@@ -13,7 +13,7 @@ $filter-disabled-bg-color: #FFFFFF;
   float: none;
   display: block;
 
-  #conditions_term { width: 244px; }
+  #conditions_term { width: 225px; }
 
   .formtastic {
     .simple ul { float: left; }
@@ -25,7 +25,7 @@ $filter-disabled-bg-color: #FFFFFF;
     padding-top: 5px;
     clear: both;
     position: relative;
-    left: 346px;
+    left: 335px;
   }
 }
 
@@ -90,3 +90,18 @@ $filter-disabled-bg-color: #FFFFFF;
   position: relative;
   top: -3px;
   }
+
+
+/* RW: For FR Web-new additions */
+.embedded_search {
+  #conditions_type_input {
+    display: none;
+  }
+  ul, ol {
+    position: absolute;
+    list-style: none;
+  }
+  .simple span#expected_result_count {
+    display: none;
+  }
+}

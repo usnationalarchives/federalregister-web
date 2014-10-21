@@ -1,0 +1,20 @@
+<% topics.each do |topic| %>
+  <li>
+    <h3 id='<%=topic.name%>'><%= topic.name %> <span class='top'><%= link_to 'back to top', "#top" %></h3>
+    <ul>
+    <% documents.select{|e| e.topic_ids.include?(topic.id)}.group_by(&:publication_date).each do |pub_date, documents| %>  
+      <li>
+        <h4><%= link_to pub_date.to_formatted_s(:pretty), documents_path(pub_date) %></h4>
+        <ul class="indent raquo">
+          <% documents.each do |entry| %>  
+            <li><%= link_to truncate_words(entry.title, :length => 100), document_path(entry) %></li>
+          <% end %>
+        </ul> 
+      </li>
+    <% end %>
+    <% if documents.select{|e| e.topic_ids.include?(topic.id)}.empty? %>
+      <li>No articles exist with this topic in the most recent 100 documents</li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
