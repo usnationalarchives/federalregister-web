@@ -8,11 +8,9 @@
   @import "bootstrap-changes";
 }
 
-
 /* this needs to be in every wrapper file that needs the mixins */
 @import "mixins";
 @import "library";
-
 
 /* override old, clashing fr2 styles */
 @import "officialness_override";
@@ -43,4 +41,6 @@
 @import "design/documents";
 @import "design/public_inspection";
 @import "design/table_of_contents";
-@import "design/old/agencies";
+
+/* Old Styles */
+@import "old/agencies";
