@@ -103,6 +103,14 @@ MyFr2::Application.routes.draw do
       :conditions => { :method => :get },
       as: 'significant_entries_agency'
 
+    match '/:section', to: 'sections#show', as: :section
+
+    get 'sections/:id/significant.:format',
+      :controller => "agencies",
+      :action => "significant_entries",
+      :conditions => { :method => :get },
+      as: 'significant_entries_section'
+
     resources :clippings do
       collection do
         post 'bulk_create'
