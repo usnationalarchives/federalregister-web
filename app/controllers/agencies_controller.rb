@@ -3,7 +3,7 @@ class AgenciesController < ApplicationController
   def index
     #cache?
     @agencies = FederalRegister::Agency.all
-    @presenter = AgenciesPresenter.new(@agencies)
+    @presenter = AgenciesPresenter.new(@agencies, params[:id])
   end
 
   def show
