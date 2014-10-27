@@ -1,6 +1,6 @@
 <div class="col-md-9 doc-content with-utility-bar">
   <div class="row">
-    <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
+    <%# render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
 
     <%= fr_box "Official Document", :official, header: {seal: true} do %>
       <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
@@ -11,18 +11,9 @@
             <h1>Action</h1>
             <p><%= document.action %></p>
           <% end %>
-
-          <% if Rails.env.production? || Rails.env.staging? %>
-            <esi:include src="<%= document.abstract_html_url %>" />
-          <% else %>
-            <esi:include src="<%= document.abstract_html_url.split('abstract/').first + 'abstract/' + document.document_number %>" />
-          <% end %>
-
-          <% if Rails.env.production? || Rails.env.staging? %>
-            <esi:include src="<%= document.body_html_url %>" />
-          <% else %>
-            <esi:include src="<%= document.body_html_url.split('full_text/').first + 'full_text/' + document.document_number %>" />
-          <% end %>
+          <!-- RW: Fix this when upgrading varnish -->
+          <esi:include src="<%= document.http_abstract_html_url %>" />
+          <esi:include src="<%= document.http_body_html_url %>" />
         <% end %>
       </div>
     <% end %>
