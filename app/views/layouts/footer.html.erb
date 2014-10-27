@@ -1,5 +1,15 @@
 <div class="footer" id="footer">
   <div class="wrapper">
+
+    <div class="grid_4">
+      <h2>Sections</h2>
+      <ul class="bullets">
+        <% @sections.each do |section_slug, section| %>
+          <li><%= link_to section[:title], "#" %></li>
+        <% end %>
+      </ul>
+    </div>
+
     <div class="grid_4">
       <h2>Reader Aids</h2>
       <ul class="bullets">

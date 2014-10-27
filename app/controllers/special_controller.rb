@@ -2,6 +2,33 @@ class SpecialController < ApplicationController
   skip_before_filter :authenticate_user!
   layout false, except: :home
 
+  SECTIONS = {
+    "money" => {
+      title: "Money",
+      id: 1,
+    },
+    "environment" => {
+      title: "Environment",
+      id: 2,
+    },
+    "world" => {
+      title: "World",
+      id: 3,
+    },
+    "science-and-technology" => {
+      title: "Science and Technology",
+      id: 4,
+    },
+    "business-and-industry" => {
+      title: "Business and Industry",
+      id: 5,
+    },
+    "health-and-public-welfare" => {
+      title: "Health and Public Welfare",
+      id: 6,
+    },
+  }
+
   def user_utils
     if user_signed_in?
       @clipboard_clippings = Clipping.scoped(:conditions => {:folder_id => nil, :user_id => current_user.id}).with_preloaded_articles || []
@@ -18,6 +45,7 @@ class SpecialController < ApplicationController
 
   def navigation
     @reader_aids_sections = ReaderAidsPresenter::SECTIONS
+    @sections = SECTIONS
     cache_for 1.day
   end
 
@@ -48,6 +76,8 @@ class SpecialController < ApplicationController
   def footer
     @reader_aids_sections = ReaderAidsPresenter::SECTIONS
     @my_fr_presenter = MyFrPresenter.new
+    # RW: Move to sections presenter after merge
+    @sections = SECTIONS
     render "layouts/footer", layout: false
   end
 end

@@ -62,6 +62,9 @@ MyFr2::Application.routes.draw do
   get 'esi/reader_aids/developer_tools',
       to: 'reader_aids#developer_tools'
 
+  get 'esi/layouts/navigation/sections',
+    to: 'sections#navigation'
+
   get 'esi/layout/footer',
       to: 'special#footer'
   #

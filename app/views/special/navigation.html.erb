@@ -1,3 +1,17 @@
+<li class="dropdown previewable nav_sections">
+  <a class="sections top_nav">Sections<span class="arrow"></span></a>
+  <div class="subnav">
+    <ul class="left_column">
+      <% @sections.each do |section_slug, section| %>
+        <li id='<%= section_slug %>'><%= link_to section[:title], "#", :class => section_slug %></li>
+      <% end %>
+    </ul>
+    <ul class="right_column">
+      <esi:include src="/esi/layouts/navigation/sections" />
+    </ul>
+  </div>
+</li>
+
 <li class="dropdown nav_reader_aids">
   <a class="top_nav">
     <span class="icon-fr2 icon-fr2-Directions"></span>
