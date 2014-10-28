@@ -163,25 +163,23 @@ class CommentsController < ApplicationController
   end
 
   def json_for_regulations_dot_gov_errors(exception)
-    if exception.code
-      if [500, 502, 503].include?(exception.code)
-        error = 'service_unavailable'
-      elsif exception.code == 409
-        error = 'comments_closed'
-      else
-        error = 'unknown'
-      end
-
-      json = {
-        :modalTitle => t(
-          "regulations_dot_gov_errors.#{error}.modal_title"
-        ),
-        :modalHtml => t(
-          "regulations_dot_gov_errors.#{error}.modal_html",
-          :regulations_dot_gov_link => view_context.link_to(@comment.article.comment_url, @comment.article.comment_url)
-        )
-      }
+    if [500, 502, 503].include?(exception.code)
+      error = 'service_unavailable'
+    elsif exception.code == 409
+      error = 'comments_closed'
+    else
+      error = 'unknown'
     end
+
+    json = {
+      :modalTitle => t(
+        "regulations_dot_gov_errors.#{error}.modal_title"
+      ),
+      :modalHtml => t(
+        "regulations_dot_gov_errors.#{error}.modal_html",
+        :regulations_dot_gov_link => view_context.link_to(@comment.article.comment_url, @comment.article.comment_url)
+      )
+    }
   end
 
   def track_ipaddress(key, ipaddress)

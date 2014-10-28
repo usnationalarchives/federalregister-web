@@ -192,7 +192,7 @@ class RegulationsDotGov::Client
       when 0
         JSON.parse(response)
       when 400
-        if response['openForComment'] && response['openForComment'] == false
+        if response['openForComment'] == false
           raise CommentPeriodClosed.new(stringify_response(response), 409)
         else
           raise ResponseError.new( stringify_response(response) )
