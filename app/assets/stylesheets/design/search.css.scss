@@ -1,0 +1,42 @@
+#search {
+  .search_bar {
+    li { 
+      height: 21px;
+      margin-bottom: 13px;
+      fieldset {
+        float: left;
+        width: 100%;
+      }
+    }
+    .simple span#expected_result_count {
+      display: none;
+    }
+  }
+  .formtastic {
+    .cfr, .zip {
+      label {
+        display: none;
+      }
+    }
+  }
+  .result_set {
+    .pagination {
+      em {
+        border: 1px solid #CCCCCC;
+        line-height: 1;
+        padding: 5px;
+      }
+    }
+  }
+  .facet_hidden {
+    display: none;
+  }
+  .addition {
+    font-weight: bold;
+  }
+  .result_item {
+    .date {
+      font-size: 13px;
+    }
+  }
+}

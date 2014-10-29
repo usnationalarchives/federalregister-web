@@ -47,6 +47,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_hash (0.9.5)
+      activesupport (>= 2.2.2)
     activemodel (3.2.18)
       activesupport (= 3.2.18)
       builder (~> 3.0.0)
@@ -311,6 +313,7 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     watchr (0.7)
+    will_paginate (3.0.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -319,6 +322,7 @@ PLATFORMS
 
 DEPENDENCIES
   SystemTimer
+  active_hash
   bootstrap-sass (~> 3.0.3.0)
   cachebar!
   capistrano (= 2.5.19)
@@ -375,3 +379,4 @@ DEPENDENCIES
   userstamp!
   vcr (~> 2.6.0)
   watchr (= 0.7)
+  will_paginate

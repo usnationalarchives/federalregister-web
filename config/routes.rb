@@ -42,6 +42,50 @@ MyFr2::Application.routes.draw do
       to: "documents#tiny_url",
       as: :short_document
 
+  get 'documents/search',
+    to: 'documents/search#show',
+    as: 'documents_search'
+
+  get 'documents/search/header',
+    to: 'documents/search#header',
+    as: 'documents_search_header'
+
+  get 'documents/search/facets/:facet',
+    to: 'documents/search#facets',
+    as: 'documents_search_facets'
+
+  get 'documents/search/results',
+    to: 'documents/search#results',
+    as: 'documents_search_results'
+
+  get 'documents/search/suggestions',
+    to: 'documents/search#suggestions',
+    as: 'documents_search_suggestions'
+
+  get 'documents/search/help',
+    to: 'documents/search#help',
+    as: 'documents_search_help'
+
+  get 'public-inspection/search',
+    to: 'public_inspection/search#show',
+    as: 'public_inspection_search'
+
+  get 'public_inspection/search/header',
+    to: 'public_inspection/search#header',
+    as: 'public_inspection_search_header'
+
+  get 'public_inspection/search/results',
+    to: 'public_inspection/search#results',
+    as: 'public_inspection_search_results'
+
+  get 'events/search',
+    to: 'events/search#show',
+    as: 'events_search'
+
+  get 'regulatory_plans/search',
+    to: 'regulatory_plans/search#show',
+    as: 'regulatory_plans_search'
+
   #
   # ESI Routes
   #

@@ -12,4 +12,10 @@ module LayoutHelper
   def page_action(identifier)
     content_for :page_action, identifier
   end
+
+  def meta_robots(instructions)
+    content_for(:robots) do
+      tag(:meta, :name => 'ROBOTS', :content => instructions)
+    end
+  end
 end

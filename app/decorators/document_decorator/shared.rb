@@ -18,6 +18,14 @@ module DocumentDecorator::Shared
     end
   end
 
+  def display_type
+    model.
+      type.
+      split(" ").
+      map(&:capitalize).
+      join(" ")
+  end
+
   def agency_names(options = {})
     autolink = true unless options[:no_links]
 

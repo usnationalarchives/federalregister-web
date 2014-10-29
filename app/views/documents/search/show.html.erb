@@ -1,0 +1,38 @@
+<div id="search">
+  <div id="main">
+    <% title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{h @search.term}'" %>
+    <% feed_autodiscovery documents_search_url(params.except(:action).merge(:format => :rss, :order => 'newest')), false, @search.summary, :search_conditions => (params[:conditions].blank? ? {} : @search.valid_conditions).except(:publication_date) %>
+
+    <% if @search.blank? %>
+      <% description 'Easy, powerful search of all Federal Register documents since 1994' %>
+      <% meta_robots("NOFOLLOW") %>
+    <% else %>
+      <% meta_robots("NOINDEX, NOFOLLOW") %>
+    <% end %>
+
+    <% add_javascript :src => 'page_specific/search/search.js' %>
+
+    <div class="title"><span>Search Documents</span></div>
+
+    <esi:include src="/documents/search/header?<%= params.to_param %>" />
+
+    <% unless @search.conditions_blank? %>
+      <% if @search.valid? %>
+        <div class="filters">
+          <esi:include src="<%= documents_search_facets_path(params.except(:action).merge(:facet => 'publication_date')) unless @search.publication_date %>">
+          <%# TODO HELP-RUBY i know this doesn't go here. just wanted to stash it somewhere  %>
+          <!-- <li><%#= sparkline(:data => @search.date_distribution.to_a.sort_by{|date, count| date}.map{|date, count| count}, :alt => "Monthly Distribution" ) %></li> -->
+          <esi:include src="<%= documents_search_facets_path(params.except(:action).merge(:facet => 'type')) unless @search.type.present? %>">
+          <esi:include src="<%= documents_search_facets_path(params.except(:action).merge(:facet => 'agency')) unless @search.agency_ids.present? %>">
+          <esi:include src="<%= documents_search_facets_path(params.except(:action).merge(:facet => 'topic')) unless @search.topic_ids.present? %>">
+          <esi:include src="<%= documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6)) unless @search.section_ids.present? %>">
+        </div>
+
+        <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
+          <esi:include src="<%= documents_search_suggestions_path(params.except(:action)) %>">
+        <% end %>
+        <esi:include src="/documents/search/results?<%= params.to_param %>">
+      <% end %>
+    <% end %>
+  </div>
+</div>

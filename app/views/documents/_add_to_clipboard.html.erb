@@ -1,0 +1,9 @@
+<% semantic_form_for entry.model,  :url => "#", :html => {:method => :post, :class => "add_to_clipboard"} do |f| %>
+  <% f.inputs do %>
+    <%= f.input :document_number, :as => :hidden, :value => entry.document_number %>
+  <% end %>
+  <% f.buttons do %>
+    <%= f.commit_button 'Add to clipboard' %>
+  <% end %>
+<% end %>
+

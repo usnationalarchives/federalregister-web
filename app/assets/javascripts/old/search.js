@@ -13,73 +13,51 @@ $(document).ready(function () {
     toggle_presdocu_types();
 
     var populate_expected_results = function (text) {
-        $('#expected_result_count').removeClass('loading');
-        $('#expected_result_count').text(text).show();
+      $('#expected_result_count').removeClass('loading');
+      $('#expected_result_count').text(text).show();
     };
 
     var indicate_loading = function() {
-        $('#expected_result_count').show().addClass('loading');
+      $('#expected_result_count').show().addClass('loading');
     };
 
     var get_current_url = function() {
-        return 'http://www.federalregister.gov/api/v1/articles.json?' + $("#entry_search_form :input[value!='']:input[name!='utf8']:not([data-show-field]):not('.text-placeholder')").serialize();
-
-        //return '/articles/search/results.js?' + $("#entry_search_form :input[value!='']:input[name!='utf8']:not([data-show-field]):not('.text-placeholder')").serialize();
+      return 'http://www.federalregister.gov/api/v1/articles.json?' + $("#entry_search_form :input[value!='']:not([data-show-field]):not('.text-placeholder')").serialize(); 
     };
     var requests = {};
 
     // ajax-y lookup of number of expected results
     var calculate_expected_results = function () {
-        var form = $('#entry_search_form');
-        var cache = form.data('count_cache') || {};
-        var url = get_current_url();
+      var form = $('#entry_search_form');
+      var cache = form.data('count_cache') || {};
+      var url = get_current_url();
 
-        // don't go back to the server if you've checked this before
-        if (cache[url] === undefined) {
-            // record that this is the current results we're looking for
-            form.data('count_current_url', url);
-            indicate_loading();
+      // don't go back to the server if you've checked this before
+      if (cache[url] === undefined) {
+        // record that this is the current results we're looking for
+        form.data('count_current_url', url);
+        indicate_loading();
 
-            if( requests[url] === undefined ){
-              requests[url] = url;
-
-              $.ajax({
-                url: url,
-                dataType: 'jsonp',
-                success: function(data){
-                  console.log(url);
-                  window.returnData = data
-                  var form = $('#entry_search_form');
-                  var cache = form.data('count_cache') || {};
-                  cache[url] = data.count + " search results";
-
-                  requests[url] = undefined;
-                  form.data('count_cache', cache);
-                  if (form.data('count_current_url') === url) {
-                      populate_expected_results(cache[url]);
-                  }
-                }
-              })
-             // # RW: fix this
-
-             // $.getJSON(url, function(data){
-             //     var form = $('#entry_search_form');
-             //     var cache = form.data('count_cache') || {};
-             //     cache[url] = data.message;
-             //
-             //     requests[url] = undefined;
-             //     form.data('count_cache', cache);
-
-             //     // don't show number if user has already made another request
-             //     if (form.data('count_current_url') === url) {
-             //         populate_expected_results(cache[url]);
-             //     }
-             // });
+        if( requests[url] === undefined ){
+          requests[url] = url;
+          $.ajax({
+            url: url,
+            dataType: 'jsonp',
+            success: function(data){
+              var form = $('#entry_search_form');
+              var cache = form.data('count_cache') || {};
+              cache[url] = data.count + " search results";
+              requests[url] = undefined;
+              form.data('count_cache', cache);
+              if (form.data('count_current_url') === url) {
+                  populate_expected_results(cache[url]);
+              }
             }
-
-        } else {
-            populate_expected_results(cache[url]);
+          });
         }
+      } else {
+          populate_expected_results(cache[url]);
+      }
     };
  
     $('.result_set[data-expected-result-count]').each(function(){

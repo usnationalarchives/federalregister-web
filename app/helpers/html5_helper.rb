@@ -23,7 +23,7 @@ module Html5Helper
   end
 
   def date_tag(str, options={})
-    options[:datetime] = options[:datetime].to_s(:iso) if options[:datetime]
+    options[:datetime] = options[:datetime].to_date.to_s(:iso) if options[:datetime]
     html5_tag(:date, str, options)
   end
 

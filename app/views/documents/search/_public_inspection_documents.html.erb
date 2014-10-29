@@ -1,0 +1,11 @@
+<div class="suggestion">
+  <p class="public_inspection_suggestion">
+    <% url = public_inspection_search_path(:conditions => params[:conditions]) %>
+    <% if @search_details.public_inspection_document_search.count == 1 %>
+      There is <%= link_to "1 publication inspection document", url %> pending publication that matches your search.
+    <% else %>
+      There are <%= link_to "#{@search_details.public_inspection_document_search.count} documents", url %> on Public Inspection scheduled to be published that match your search.
+    <% end %>
+  </p>
+</div>
+

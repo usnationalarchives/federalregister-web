@@ -1,0 +1,15 @@
+<% if @presenter.facets_available %>
+  <h4><%= name %></h4>
+  <ul>
+    <% facets.each_with_index do |facet, index| %>
+      <li class="<%= 'on' if facet.on? %> <%= "#{name}_facet facet_hidden" if index > @presenter.num_facets - 1 %>">
+        <%= link_to "#{facet.name}", search_adding_filter(facet.condition, facet.value), :class => 'facet_name' %>
+        <span class='count'><%= number_with_delimiter facet.count %></span>
+      </li>
+    <% end %>
+    <% if facets.size > @presenter.num_facets %>
+      <li><a href="#" class="toggle" data-target=".<%= name %>_facet.facet_hidden">[more]</a></li>
+    <% end %>
+  </ul>
+<% end %>
+

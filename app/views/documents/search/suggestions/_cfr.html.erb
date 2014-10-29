@@ -1,0 +1,10 @@
+<div class="matching_citation">
+  <p class="matching_citation_header">
+    It looks like you were searching for the Code of Federal Regulations citation: <strong><%= cfr.name %></strong>:
+  </p>
+  <div class="matching_citation_document">
+    <ul>
+      <li><%= link_to 'ECFR', ecfr_url(cfr.title, cfr.part) %></li>
+    </ul>
+  </div>
+</div>
