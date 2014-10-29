@@ -2,7 +2,7 @@ class ReaderAidsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @presenter = ReaderAidsPresenter.new({})
+    @presenter = ReaderAidsPresenter::Base.new
   end
 
   def search
