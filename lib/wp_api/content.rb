@@ -6,7 +6,6 @@ class WpApi::Content
 
   WHITELISTED_ATTRIBUTES = [
     'title',
-    'ID',
     'link',
     'content',
     'excerpt',
@@ -21,6 +20,10 @@ class WpApi::Content
     attributes.keys.include?(attr) ? attributes[attr] : nil
   end
 
+  def id
+    attributes['ID']
+  end
+
   def formatted_title
     if title
       title.html_safe
@@ -28,7 +31,7 @@ class WpApi::Content
       "No title provided."
     end
   end
-  
+
   def formatted_content
     content.html_safe if content
   end
