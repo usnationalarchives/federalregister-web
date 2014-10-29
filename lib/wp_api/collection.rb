@@ -1,7 +1,7 @@
 class WpApi::Collection
-  attr_reader :content, :client
-  def initialize(client, raw_content)
-    @client = client
+  attr_accessor :content
+
+  def initialize(raw_content)
     @content = []
     parse_content(raw_content)
   end
