@@ -1,4 +1,4 @@
-<% header_type 'reader-aids' %> 
+<% header_type 'reader-aids' %>
 <div class="title reader-aids">
   <span>
     <span class="icon-fr2 icon-fr2-Search"></span>
@@ -11,28 +11,36 @@
     <div class="col-xs-12 col-md-12 section">
       <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
         <div class="section search_results">
-          <h4><%= @results.count %> results found in Reader Aids for "<%= @results.display_term %>"</h4>
+          <h4>
+            <%= pluralize @search_presenter.result_count, 'result' %>
+            found in Reader Aids for "<%= @search_presenter.search_term %>"
+          </h4>
+
           <%= link_to "View All Reader Aids", reader_aids_path %>
+
+          <% if false %>
           <ul class="fr-list">
-            <% @results.post_collection.posts.each do |post| %>
+            <% @search_presenter.posts.each do |post| %>
               <li>
                 <h5><%= link_to post.title, post.path %></h5>
                 <%= post.formatted_excerpt %>
               </li>
             <% end %>
           </ul>
-          <ul class="fr-list">
-            <% @results.page_collection.pages_grouped_by_parent.each do |parent, pages| %>
-              <ul class="fr-list">
-                <% pages.each do |page| %>
-                  <li>
-                    <h5><%= link_to page.title, page.path %></h5>
-                    <%= page.formatted_excerpt %>
-                  </li>
-                <% end %>
-              </ul>
-            <% end %>
-          </ul>
+          <% end %>
+
+          <% @search_presenter.grouped_pages.each do |parent, pages| %>
+            <h3><%= @search_presenter.section_title(parent) %></h3>
+            <ul class="fr-list">
+              <% pages.each do |page| %>
+                <li>
+                  <h5><%= link_to page.title, page.path(parent) %></h5>
+                  <%= page.formatted_excerpt %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+
         </div>
       <% end %>
     </div>

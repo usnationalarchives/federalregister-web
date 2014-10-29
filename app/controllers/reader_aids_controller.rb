@@ -7,7 +7,9 @@ class ReaderAidsController < ApplicationController
   end
 
   def search
-    @results = WpApi::Client.search(params[:conditions][:term])
+    @search_presenter = ReaderAidsPresenter::SearchPresenter.new(
+      params[:conditions][:term]
+    )
   end
 
   def view_all
