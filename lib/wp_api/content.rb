@@ -1,5 +1,6 @@
 class WpApi::Content
-  attr_reader :parent, :parent_id, :parent_title, :attributes
+  attr_reader :parent, :attributes
+
   def initialize(attributes)
     @attributes = attributes
   end
@@ -46,14 +47,6 @@ class WpApi::Content
 
   def parent
     @parent ||= Parent.new(attributes['parent'])
-  end
-
-  def parent_id
-    parent.id
-  end
-
-  def parent_title
-    parent.title
   end
 
   def author
