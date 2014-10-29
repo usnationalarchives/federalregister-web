@@ -60,6 +60,14 @@ class WpApi::Content
     @author ||= Author.new(attributes['author'])
   end
 
+  def categories
+    categories = []
+    attributes['terms']['category'].each do |category|
+      categories << category['slug']
+    end
+    categories
+  end
+
   def modified
     attributes['modified'].try(:to_date)
   end
@@ -107,6 +115,10 @@ class WpApi::Content
 
     def id
       attributes['ID']
+    end
+
+    def slug
+      attributes['slug']
     end
 
     private
