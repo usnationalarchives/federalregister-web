@@ -2,7 +2,6 @@ class WpApi::Client
   include HTTParty
   base_uri "https://www.fr2.criticaljuncture.org/blog/wp-json"
 
-  default_options.update(verify: false)
 
   def self.get_pages
     params = "/pages?filter[posts_per_page]=1000"
@@ -30,5 +29,10 @@ class WpApi::Client
       self.get(base_uri + "/posts?filter[posts_per_page]=1000&filter[s]=" + term)
     )
     WpApi::SearchResult.new(term, page_collection, post_collection)
+  end
+  private
+
+  def self.get(uri)
+    super( URI.encode(uri) )
   end
 end
