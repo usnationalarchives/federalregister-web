@@ -8,8 +8,6 @@ class WpApi::Collection
 
   def parse_content(raw_content)
     raw_content.each{|item| content << model.new(item)}
-    content.
-      sort!{|a,b| b.modified <=> a.modified}
   end
 
   def find_by_parent(title)
