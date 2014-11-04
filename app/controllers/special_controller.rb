@@ -44,8 +44,7 @@ class SpecialController < ApplicationController
   end
 
   def navigation
-    @reader_aids_sections = ReaderAidsPresenter::SECTIONS
-    @sections = SECTIONS
+    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
     cache_for 1.day
   end
 
@@ -66,15 +65,9 @@ class SpecialController < ApplicationController
     current_time_on_database = Clipping.connection.select_values("SELECT NOW()").first
     render :text => "Current time is: #{current_time_on_database} (MyFR)"
   end
-  
-  def reader_aids
-    @using_fr_pages = WpApi::Client.get_pages.find_by_parent("Learn").first(6)
-    @recent_update_posts = WpApi::Client.get_posts.posts.first(3)
-    render "esi/reader_aids", layout: false
-  end
 
   def footer
-    @reader_aids_sections = ReaderAidsPresenter::SECTIONS
+    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
     @my_fr_presenter = MyFrPresenter.new
     # RW: Move to sections presenter after merge
     @sections = SECTIONS

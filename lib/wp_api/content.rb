@@ -1,12 +1,12 @@
 class WpApi::Content
-  attr_reader :parent, :parent_id, :parent_title, :attributes
+  attr_reader :parent, :attributes
+
   def initialize(attributes)
     @attributes = attributes
   end
 
   WHITELISTED_ATTRIBUTES = [
     'title',
-    'ID',
     'link',
     'content',
     'excerpt',
@@ -21,6 +21,10 @@ class WpApi::Content
     attributes.keys.include?(attr) ? attributes[attr] : nil
   end
 
+  def id
+    attributes['ID']
+  end
+
   def formatted_title
     if title
       title.html_safe
@@ -28,7 +32,7 @@ class WpApi::Content
       "No title provided."
     end
   end
-  
+
   def formatted_content
     content.html_safe if content
   end
@@ -45,16 +49,16 @@ class WpApi::Content
     @parent ||= Parent.new(attributes['parent'])
   end
 
-  def parent_id
-    parent.id
-  end
-
-  def parent_title
-    parent.title
-  end
-
   def author
     @author ||= Author.new(attributes['author'])
+  end
+
+  def categories
+    categories = []
+    attributes['terms']['category'].each do |category|
+      categories << category['slug']
+    end
+    categories
   end
 
   def modified
@@ -104,6 +108,10 @@ class WpApi::Content
 
     def id
       attributes['ID']
+    end
+
+    def slug
+      attributes['slug']
     end
 
     private

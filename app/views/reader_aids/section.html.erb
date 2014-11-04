@@ -6,7 +6,7 @@
   </h4>
   <div class="row">
     <% presenter.grouped_items.each do |group| %>
-      <div class="col-xs-<%= 12 / presenter.columns %> col-md-<%= 12 / presenter.columns %>">
+      <div class="<%= presenter.css_columns %>">
         <ul class="fr-list">
           <% group.each do |item| %>
             <%= render partial: 'item', locals: {item: item, presenter: presenter} %>
