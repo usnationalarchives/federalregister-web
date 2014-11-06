@@ -1,10 +1,8 @@
-AMAZON_CONFIG = YAML::load(File.open(Rails.root.join('config', 'amazon.yml')))
-
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',       # required
-    :aws_access_key_id      => AMAZON_CONFIG['access_key_id'],
-    :aws_secret_access_key  => AMAZON_CONFIG['secret_access_key']
+    :aws_access_key_id      => SECRETS['aws']['access_key_id'],
+    :aws_secret_access_key  => SECRETS['aws']['secret_access_key']
   }
   config.fog_public    = false
 
