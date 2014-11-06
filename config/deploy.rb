@@ -155,26 +155,6 @@ namespace :apache do
   end
 end
 
-namespace :my_fr2 do
-  desc "Update api keys"
-  task :update_api_keys, :roles => [:app, :worker] do
-    run "/usr/local/s3sync/s3cmd.rb get config.internal.federalregister.gov:api_keys.yml #{current_path}/config/api_keys.yml"
-    find_and_execute_task("apache:restart")
-  end
-  
-  desc "Update secret keys"
-  task :update_secret_keys, :roles => [:app, :worker] do
-    run "/usr/local/s3sync/s3cmd.rb get config.internal.federalregister.gov:my_fr2_secrets.yml #{current_path}/config/secrets.yml"
-    find_and_execute_task("apache:restart")
-  end
-  
-  desc "Update sendgrid keys"
-  task :update_sendgrid_keys, :roles => [:app, :worker] do
-    run "/usr/local/s3sync/s3cmd.rb get config.internal.federalregister.gov:sendgrid.yml #{current_path}/config/sendgrid.yml"
-    find_and_execute_task("apache:restart")
-  end
-end
-
 namespace :assets do
   task :precompile, :roles => [:app, :worker] do
     run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
