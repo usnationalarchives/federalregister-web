@@ -34,12 +34,14 @@ MyFr2::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  secrets = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
+
   smtp_settings = {
    :address        => "smtp.sendgrid.net",
    :port           => "587",
    :domain         => "#{APP_HOST_NAME}",
-   :user_name      => SECRETS['sendgrid']['username'],
-   :password       => SECRETS['sendgrid']['password'],
+   :user_name      => secrets['sendgrid']['username'],
+   :password       => secrets['sendgrid']['password'],
    :authentication => :plain,
    :enable_starttls_auto => false
   }
