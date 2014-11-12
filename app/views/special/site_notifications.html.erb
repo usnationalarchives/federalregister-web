@@ -1,0 +1,7 @@
+<% if @response %>
+  <div class="<%= @response["notification_type"] %>">
+    <p>
+      <%= @response["description"] %>
+    </p>
+  </div>
+<% end %>

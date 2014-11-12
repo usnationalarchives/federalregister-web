@@ -15,6 +15,7 @@ MyFr2::Application.routes.draw do
   match 'special/my_fr_assets' => 'special#my_fr_assets'
   match 'special/fr2_assets' => 'special#fr2_assets'
   match 'special/navigation' => 'special#navigation'
+  match 'special/site_notifications' => 'special#site_notifications', :quiet => true
   match 'status' => 'special#status'
 
   root :to => "clippings#index"
