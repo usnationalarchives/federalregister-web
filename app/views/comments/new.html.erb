@@ -2,7 +2,7 @@
 
 <div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
-    <esi:include src="<%= special_site_notifications_path(:identifier => :comment) %>" />
+    <esi:include src="<%= site_notification_path(:identifier => :comment) %>" />
 
     <% if @comment.comment_form.comments_close_at %>
       <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
