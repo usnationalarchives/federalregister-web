@@ -1,5 +1,5 @@
 <div class="<%= @response["notification_type"] %>">
   <p>
-    <%= @response["description"] %>
+    <%= sanitize @response["description"] %>
   </p>
 </div>
