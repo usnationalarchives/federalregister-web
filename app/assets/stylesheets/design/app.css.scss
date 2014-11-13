@@ -2,6 +2,7 @@ abbr, acronym { border-bottom: none; }
 
 div.notice,
 div.warning,
+div.danger,
 div.info_warning,
 div.flash.error {
   padding: .5em .5em .25em;
@@ -22,6 +23,7 @@ div.notice {
   border: 1px solid $fr-green;
   }
 div.warning,
+div.danger,
 div.flash.error {
   background: $fr-light-red;
   border: 1px solid $fr-red;

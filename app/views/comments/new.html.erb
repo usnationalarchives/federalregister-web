@@ -2,16 +2,7 @@
 
 <div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
-    <% if Time.current < Time.parse('2014-10-04 20:00 EDT') %>
-     <div class="notice warning">
-        <p>
-          Regulations.gov will undergo infrastructure maintenance
-          on Saturday, October 4, from 9 am until 8 pm (ET) and as a
-          result submissions of this comment form may be
-          intermittently unavailable.
-        </p>
-      </div>
-    <% end %>
+    <esi:include src="<%= special_site_notifications_path(:identifier => :comment) %>" />
 
     <% if @comment.comment_form.comments_close_at %>
       <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>

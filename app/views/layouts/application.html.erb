@@ -10,6 +10,7 @@
     <esi:include src="/layout/header" />
 
     <div id="main">
+      <esi:include src="<%= special_site_notifications_path(:identifier => :global) %>" />
       <%= yield %>
     </div>
     

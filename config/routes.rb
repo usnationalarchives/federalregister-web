@@ -16,8 +16,9 @@ MyFr2::Application.routes.draw do
     esi.match 'special/my_fr_assets' => 'special#my_fr_assets'
     esi.match 'special/fr2_assets' => 'special#fr2_assets'
     esi.match 'special/navigation' => 'special#navigation'
+    esi.match 'special/site_notifications' => 'special#site_notifications'
   end
-  
+
   match 'status' => 'special#status'
 
   root :to => "clippings#index"
