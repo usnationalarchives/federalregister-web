@@ -42,6 +42,10 @@ class SpecialController < ApplicationController
     raw_response = HTTParty.get(
       "#{FederalRegister::Base.base_uri}/site_notifications/#{params[:identifier]}"
     )
-    @response = raw_response.parsed_response unless response.code == 404
+    if raw_response.code == 404
+      render :nothing => true
+    else
+      @response = raw_response.parsed_response
+    end
   end
 end
