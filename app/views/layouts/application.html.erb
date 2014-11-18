@@ -8,16 +8,19 @@
     <%= tag(:meta, :name => 'description', :content => yield(:description) ) if yield(:description) %>
 
     <%= javascript_include_tag my_asset_path('application.js') %>
+    <%= yield :feeds %>
   </head>
 
   <body id="my_fr2">
     <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
 
     <esi:include src="/layout/header?header_type=<%= header_type %>" />
+    <esi:include src="<%= site_notification_path(:identifier => :global) %>" />
 
     <div id="main">
-      <esi:include src="<%= site_notification_path(:identifier => :global) %>" />
-      <%= yield %>
+      <div id="<%= yield(:page_controller) %>" class="<%= yield(:page_action) %>">
+        <%= yield %>
+      </div>
     </div>
 
     <esi:include src="/layout/footer" />

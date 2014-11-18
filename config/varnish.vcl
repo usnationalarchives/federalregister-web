@@ -1,11 +1,11 @@
 backend my_fr2 {
-  .host = "127.0.0.1";
+  .host = "localhost";
   .port = "3000";
 }
 
 backend fr2 {
   .host = "www.federalregister.gov";
-  .port = "80";
+  .port = "3000";
 }
 
 sub vcl_recv {
@@ -27,6 +27,8 @@ sub vcl_recv {
     else {
         set req.backend = fr2;
         set req.http.host = "www.federalregister.gov";
+
+        # Ensure we don't get compressed output
         remove req.http.Accept-Encoding;
     }
     

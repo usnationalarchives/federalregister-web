@@ -5,23 +5,23 @@ C{
 }C
 
 backend fr2 {
-  .host = "<%= config['fr2']['host'] || '127.0.0.1' %>";
-  .port = "<%= config['fr2']['port'] || '3000' %>";
+  .host = "127.0.0.1";
+  .port = "3000";
 }
 
 backend my_fr2 {
-  .host = "<%= config['my_fr2']['host'] || '127.0.0.1' %>";
-  .port = "<%= config['my_fr2']['port'] || '3001' %>";
+  .host = "127.0.0.1";
+  .port = "3001";
 }
 
 backend assets_my_fr2 {
-  .host = "<%= config['assets_my_fr2']['host'] || '127.0.0.1' %>";
-  .port = "<%= config['assets_my_fr2']['port'] || '3001' %>";
+  .host = "127.0.0.1";
+  .port = "3001";
 }
 
 backend blog {
-  .host = "<%= config['wordpress']['host'] || '127.0.0.1' %>";
-  .port = "<%= config['wordpress']['port'] || '80' %>";
+  .host = "127.0.0.1";
+  .port = "8000";
 }
 
 
@@ -104,7 +104,7 @@ sub vcl_recv {
       set req.backend = my_fr2;
       return (pass);
     } else if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
-      set req.http.host = "<%= config['wordpress']['host'] || 'fr2.local' %>";
+      set req.http.host = "127.0.0.1";
       set req.backend = blog;
 
       # Don't cache wordpress pages if logged in to wp
@@ -115,7 +115,7 @@ sub vcl_recv {
       set req.backend = my_fr2;
       return(pass);
     } else {
-      set req.http.host = "<%= config['fr2']['host'] || 'fr2-rails.local' %>";
+      set req.http.host = "127.0.0.1";
       set req.backend = fr2;
     }
 
@@ -146,23 +146,18 @@ sub vcl_recv {
     }
 
     # either return lookup for caching or return pass for no caching
-    <% if config['cache'] %>
+    
       # Fetch from cache unless explicitly skipping cache
-      if (req.http.Cookie ~ "skip_cache=<%= skip_cache_key %>") {
+      if (req.http.Cookie ~ "skip_cache=012345678901234567890123456789") {
         return (pass);
       } else {
         return (lookup);
       }
-    <% else %>
-      return (pass);
-    <% end %>
+    
 }
 
 sub vcl_fetch {
-    <% unless config['cache'] %>
-        unset beresp.http.Cache-Control;
-        unset beresp.http.Etag;
-    <% end %>
+    
 
     # Directly serve static content
     if (req.url ~ "^(/images|/javascripts|/flash|/stylesheets|/sitemap)") {
@@ -205,9 +200,9 @@ sub vcl_error {
 }
 
 sub vcl_deliver {
-    <% if config['cache'] %>
+    
         set resp.http.Etag = resp.http.Etag " abgroup=" req.http.X-AB-Group;
-    <% end %>
+    
 
     if (req.http.X-Added-AB-Group) {
         # set resp.http.Set-Cookie = "ab_group=" req.http.X-AB-Group "; path=/";

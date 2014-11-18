@@ -59,6 +59,9 @@ gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 
 gem 'indefinite_article'
 
+gem 'geokit', '1.4.1', :require => 'geokit'
+gem 'rails_autolink'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     cache_for 1.day
 
     begin
-      @document = FederalRegister::Document.find(params[:document_number])
+      @document = FederalRegister::Article.find(params[:document_number])
 
       #if request.path != entry_path(@entry)
       #  redirect_to entry_path(@entry), :status => :moved_permanently

@@ -5,8 +5,23 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
 
+  def slug
+    html_url.split('/').last
+  end
+
   def presidential_document?
     type == "Presidential Document"
+  end
+
+  def http_abstract_html_url
+    # RW: Fix this when upgrading varnish
+    abstract_html_url.
+      gsub("https", "http")
+  end
+
+  def http_body_html_url
+    body_html_url.
+      gsub("https", "http")
   end
 
   def start_page?
@@ -52,5 +67,13 @@ class DocumentDecorator < ApplicationDecorator
 
   def has_full_text?
     full_text_xml_url.present?
+  end
+
+  def human_length
+    if end_page && start_page
+      end_page - start_page + 1
+    else
+      nil
+    end
   end
 end

@@ -1,37 +1,71 @@
 namespace :varnish do
   namespace :config do
-    desc "Regenerate varnish config"
     task :generate do
-      File.open(File.join(Rails.root, 'config', 'varnish.vcl'), 'w') do |f|
-        template_content = IO.read(File.join(Rails.root, 'config', 'varnish.vcl.erb'))
-        yml_path = File.join(Rails.root, 'config', 'varnish.yml')
-        
-        config = {
-          'my_fr2' => {'port' => 3000, 'host' => '127.0.0.1', 'hostname' => 'my-fr2.local'},
-          'fr2' =>    {'port' => 80,   'host' => 'www.federalregister.gov', 'hostname' => 'www.federalregister.gov'}
-        }
-        
-        if File.exists?(yml_path)
-          config.deep_merge!(YAML::load_file(yml_path))
-        end
+      File.open(File.join(Rails.root, 'config', "varnish.#{Rails.env}.vcl"), 'w') do |f|
+        template_content = IO.read(File.join(Rails.root, 'config', "varnish.vcl.erb"))
+        config = varnish_config
+        secrets = YAML::load_file File.join(Rails.root, 'config', 'secrets.yml')
+        skip_cache_key = secrets['varnish']['skip_cache_key']
         f.write ERB.new(template_content).result(binding)
       end
     end
   end
-  
+
   desc "Start varnish, recompiling config if necessary"
   task :start => 'varnish:config:generate' do
-    port = ENV['PORT'] || 8080
-    sh "varnishd -f config/varnish.vcl -a 0.0.0.0:#{port} -s malloc,10M -T 127.0.0.1:6082"
-    puts "please visit http://scc.local:#{port}/"
+     config = varnish_config
+    `varnishd -f config/varnish.#{Rails.env}.vcl -a 0.0.0.0:#{config["port"]} -s malloc,10M -T 127.0.0.1:#{config["management_port"]} -n #{File.join(Rails.root, 'tmp', "#{Rails.env}")} -P #{File.join(Rails.root, 'tmp', "#{Rails.env}_varnish.pid")}`
+    puts "please visit http://fr2.local:#{config["port"]}/"
   end
-  
+
   desc "Stop varnish"
   task :stop do
-    sh "killall varnishd"
-    puts "varnish shutting down..."
+    pid_file_path = File.join(Rails.root, 'tmp', "#{Rails.env}_varnish.pid")
+
+    if File.exists?(pid_file_path)
+      pid = IO.read(pid_file_path).strip
+      `kill -9 #{pid}`
+      puts "varnish shutting down..."
+      FileUtils.rm(pid_file_path)
+    else
+      puts "no pid file at #{pid_file_path}, unable to stop varnish (perhaps not running?)"
+    end
+  end
+
+  task :dump_vcl do
+    puts `varnishd -f config/varnish.#{Rails.env}.vcl -d -C`
   end
 
   desc "Restart varnish"
   task :restart => [:stop, :start]
+
+  def varnish_config
+    yml_path = File.join(Rails.root, 'config', 'varnish.yml')
+    if File.exists?(yml_path)
+      config = YAML::load_file(yml_path)
+      config = config[Rails.env]
+    else
+      config = {:wordpress => {}, :rails => {}, :port => 8080}
+    end
+  end
+
+
+  namespace :expire do
+    desc "Expire everything from varnish"
+    task :everything => :environment do
+      include CacheUtils
+      purge_cache(".*")
+    end
+
+    desc "Expire from varnish pages so that late notice can go up"
+    task :pages_warning_of_late_content => :environment do
+      if Issue.current_issue_is_late?
+        Mailer.deliver_admin_notification("Today's issue #{Time.current.to_date} on #{Rails.env} is late. There may have been a problem!")
+
+        include CacheUtils
+        purge_cache("/")
+        purge_cache("/articles/#{Time.current.to_date.strftime('%Y')}/#{Time.current.to_date.strftime('%m')}")
+      end
+    end
+  end
 end
