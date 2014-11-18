@@ -44,14 +44,14 @@
         <div class="metadata_wrapper">
           <dl class="metadata" id="col-1">
             <dt>
-              <%= link_to content_tag(:span, 'PDF', :class => "pdf small"), 
+              <%= link_to content_tag(:span, 'PDF', :class => "pdf small"),
                           document_path(executive_order, :format => :pdf) %>
             </dt>
-      
+
             <dd><%= pluralize executive_order.human_length, 'page' %></dd>
 
             <dt>
-              <%= link_to content_tag(:span, 'Permalink', :class => "permalink"), 
+              <%= link_to content_tag(:span, 'Permalink', :class => "permalink"),
                           document_path(executive_order) %>
             </dt>
           </dl>

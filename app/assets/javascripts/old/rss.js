@@ -21,8 +21,8 @@ $(document).ready(function () {
           feed.public_inspection_subscription_supported = elem.data('public-inspection-subscription-supported');
         }
 
-        if( elem.data('default-search-type') === "PublicInspectionDocument" ) { 
-          feed.default_to_public_inspection = true; 
+        if( elem.data('default-search-type') === "PublicInspectionDocument" ) {
+          feed.default_to_public_inspection = true;
         } else {
           feed.default_to_entry = true;
         }
@@ -41,7 +41,7 @@ $(document).ready(function () {
           modal: true,
           toTop: true,
           onShow: modalOpen
-      });            
+      });
     }
   }
 

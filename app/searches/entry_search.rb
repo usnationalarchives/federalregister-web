@@ -20,7 +20,7 @@ class EntrySearch < ApplicationSearch
         "#{title} CFR"
       end
     end
-    
+
     def sphinx_citation
       title_int = title.to_i * TITLE_MULTIPLIER
       if part.blank?
@@ -48,7 +48,7 @@ class EntrySearch < ApplicationSearch
       end
     end
   end
-  
+
   TYPES = [
     ['Rule',                  'RULE'    ],
     ['Proposed Rule',         'PRORULE' ],
@@ -56,21 +56,21 @@ class EntrySearch < ApplicationSearch
     ['Presidential Document', 'PRESDOCU']
   ]
   include Geokit::Geocoders
-  
+
   attr_reader :type
   attr_accessor :type, :regulation_id_number, :prior_term
-  
+
   define_filter :regulation_id_number, :label => "Unified Agenda", :phrase => true do |regulation_id_number|
     reg = RegulatoryPlan.find_by_regulation_id_number(regulation_id_number)
     ["RIN #{regulation_id_number}", reg.try(:title)].join(' - ')
   end
-  
+
   def regulatory_plan_title
     if @regulation_id_number.present?
       RegulatoryPlan.find_by_regulation_id_number(@regulation_id_number, :order => "issue DESC").try(:title)
     end
   end
-  
+
   define_filter :agency_ids,
                 :sphinx_type => :with
 
@@ -126,7 +126,7 @@ class EntrySearch < ApplicationSearch
                 :crc32_encode => true do |types|
                   types.map{|type| Entry::ENTRY_TYPES[type]}.to_sentence(:two_words_connector => ' or ', :last_word_connector => ', or ')
                 end
-  
+
   define_filter :presidential_document_type_id,
                 :sphinx_type => :with
 
@@ -139,7 +139,7 @@ class EntrySearch < ApplicationSearch
   define_filter :small_entity_ids,
                 :sphinx_type => :with,
                 :label => "Small Entities Affected"
-  
+
   define_filter :small_entities,
                 :sphinx_type => :with,
                 :model_id_method => :identifier,
@@ -151,10 +151,10 @@ class EntrySearch < ApplicationSearch
                 :label => "Agency Docket" do |docket|
                   docket.join(', ')
                 end
-  
+
   define_filter :significant,
                 :sphinx_type => :with,
-                :label => "Significance" do 
+                :label => "Significance" do
                   "Associated Unified Agenda Deemed Significant Under EO 12866"
                 end
 
@@ -180,14 +180,14 @@ class EntrySearch < ApplicationSearch
 
   define_date_filter :comment_date,
                      :label => "Comment Close Date"
-  
+
   attr_reader :cfr
-  
+
   def cfr=(hsh)
     hsh = hsh.with_indifferent_access
     if hsh.present? && hsh.values.any?(&:present?)
       @cfr = CFR.new(hsh[:title], hsh[:part])
-      
+
       if @cfr.error_message.blank?
         add_filter(
           :value => @cfr.sphinx_citation,
@@ -202,22 +202,22 @@ class EntrySearch < ApplicationSearch
       end
     end
   end
-  
+
   def model
     Entry
   end
-  
+
   def find_options
     {
       :select => "id, title, publication_date, document_number, granule_class, document_file_path, abstract, start_page, end_page, citation, signing_date, executive_order_number, presidential_document_type_id",
       :include => [:agencies, :agency_names],
     }
   end
-  
+
   def supported_orders
     %w(Relevant Newest Oldest)
   end
-  
+
   def order_clause
     case @order
     when 'newest', 'date'
@@ -235,29 +235,29 @@ class EntrySearch < ApplicationSearch
   def sort_mode
     @sort_mode || :extended
   end
-  
+
   def agency_facets
     ApplicationSearch::FacetCalculator.new(:search => self, :model => Agency, :facet_name => :agency_ids).all
   end
   memoize :agency_facets
-  
+
   def section_facets
     ApplicationSearch::FacetCalculator.new(:search => self, :model => Section, :facet_name => :section_ids, :name_attribute => :title).all
   end
   memoize :section_facets
-  
+
   def topic_facets
     ApplicationSearch::FacetCalculator.new(:search => self, :model => Topic, :facet_name => :topic_ids).all
   end
   memoize :topic_facets
-  
+
   def type_facets
     ApplicationSearch::FacetCalculator.new(:search => self, :facet_name => :type, :hash => Entry::ENTRY_TYPES).all().reject do |facet|
       ["UNKNOWN", "CORRECT"].include?(facet.value)
     end
   end
   memoize :type_facets
-  
+
   def date_distribution(options = {})
     options[:since] ||= Date.parse('1994-01-01')
     sphinx_search = ThinkingSphinx::Search.new(sphinx_term,
@@ -290,7 +290,7 @@ class EntrySearch < ApplicationSearch
       :match_mode => :extended
     )
   end
-  
+
   def publication_date_facets
     facets = [30,90,365].map do |n|
       value = n.days.ago.to_date.to_s
@@ -301,7 +301,7 @@ class EntrySearch < ApplicationSearch
         :condition  => :publication_date
       )
     end
-    
+
     if facets.all?{|f| f.count == 0}
       return []
     else
@@ -309,14 +309,14 @@ class EntrySearch < ApplicationSearch
     end
   end
   memoize :publication_date_facets
-  
+
   def regulatory_plan
     if @regulation_id_number
       RegulatoryPlan.find_by_regulation_id_number(@regulation_id_number)
     end
   end
   memoize :regulatory_plan
-  
+
   def matching_entry_citation
     if term.present?
       term.scan(/^\s*(\d+)\s*(?:F\.?R\.?|Fed\.?\s*Reg\.?)\s*([0-9,]+)\s*$/i) do |volume, page|
@@ -327,10 +327,10 @@ class EntrySearch < ApplicationSearch
         return Citation.new(:citation_type => "EO", :part_1 => captures.first.gsub(/,/,'').to_i)
       end
     end
-    
+
     return nil
   end
-  
+
   def suggestion
     if !defined?(@suggestion)
       @suggestion = [
@@ -343,16 +343,16 @@ class EntrySearch < ApplicationSearch
       ].reduce(self) {|suggestion, suggestor| suggestor.new(suggestion).suggestion || suggestion }
       @suggestion = nil if @suggestion == self
     end
-    
+
     @suggestion
   end
-  
+
   def entry_with_document_number
     if term.present?
       return Entry.find_by_document_number(term)
     end
   end
-  
+
   def summary
     if @term.blank? && filters.empty?
       "All Articles"
@@ -366,7 +366,7 @@ class EntrySearch < ApplicationSearch
   
   def filter_summary
     parts = []
-    
+
     [
       ['published', :publication_date],
       ['with an effective date', :effective_date],
@@ -388,15 +388,15 @@ class EntrySearch < ApplicationSearch
       ['affecting Small', :small_entities]
     ].each do |term, filter_condition|
       relevant_filters = filters.select{|f| f.condition == filter_condition}
-    
+
       unless relevant_filters.empty?
         parts << "#{term} #{relevant_filters.map(&:name).to_sentence(:two_words_connector => ' or ', :last_word_connector => ', and ')}"
       end
     end
-    
+
     parts
   end
-  
+
   def results_for_date(date, args = {})
     date = ApplicationSearch::DateSelector.new(:is => date)
     results({:with => {:publication_date => date.sphinx_value}, :per_page => 1000}.merge(args))
@@ -409,7 +409,7 @@ class EntrySearch < ApplicationSearch
   end
 
   private
-  
+
   def set_defaults(options)
     @within = 25
     @order = options[:order] || 'relevant'

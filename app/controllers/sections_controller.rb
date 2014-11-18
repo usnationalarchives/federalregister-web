@@ -19,7 +19,7 @@ class SectionsController < ApplicationController
     cache_for 1.day
     @presenter = SectionPresenter.new(params[:section])
     @section = @presenter.section
-    
+
     respond_to do |wants|
       wants.rss do
         base_url = 'https://www.federalregister.gov/articles/search.rss?'

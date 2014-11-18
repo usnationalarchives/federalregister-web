@@ -55,7 +55,7 @@ class SectionPresenter
         }
       )
       if search.results.present?
-        dates << date 
+        dates << date
         section.documents_by_date[date.to_s(:year_month)] = search.
           results.
           map do |result|
@@ -68,7 +68,7 @@ class SectionPresenter
   end
 
   private
-  
+
   def get_section_id(section)
     sections = {
       "money" => 1,
@@ -77,7 +77,7 @@ class SectionPresenter
       "science-and-technology" => 4,
       "business-and-industry" => 5,
       "health-and-public-welfare" => 6
-    } 
+    }
     sections.fetch(section)
   end
 end

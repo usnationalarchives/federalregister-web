@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def title(text, options = {})
     options.symbolize_keys!
-    
+
     set_content_for :title, strip_tags(text)
     unless options[:body] == false
       set_content_for :precolumn, content_tag(:h1, text)
@@ -27,7 +27,7 @@ module ApplicationHelper
       href: feed_url,
       class: 'subscription_feed'
     }
-    
+
     if options[:search_conditions]
       link_html_options[:'data-search-conditions'] = options.
         fetch(:search_conditions).
@@ -41,7 +41,7 @@ module ApplicationHelper
 
     content_for :feeds, tag(:link, link_html_options)
   end
-  
+
   def page_title(text, options = {})
     options.symbolize_keys!
 

@@ -4,7 +4,7 @@ module LayoutHelper
       "#{column_class}"
     end
   end
-  
+
   def page_controller(identifier)
     content_for :page_controller, identifier
   end
