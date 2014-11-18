@@ -1,0 +1,141 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:45:32 GMT
+      server:
+      - nginx
+      surrogate-control:
+      - max-age=36867
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9414'
+      content-length:
+      - '1541'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/regulations/v3/download?documentId=FAA-2013-0611-0005&contentType=pdf","https://api.data.gov/regulations/v3/download?documentId=FAA-2013-0611-0005&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
+        Title","value":"2013-CE-019-AD"},"pageCount":{"label":"Page Count","value":"3"},"documentType":{"label":"Document
+        Type","value":"Rule"},"docketType":{"label":"Docket Type","value":"Rulemaking"},"docSubType":{"label":"Document
+        SubType","value":"Final Rule"},"federalRegisterNumber":{"label":"Federal Register
+        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
+        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
+        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
+        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
+        - 5256"},"docketId":{"label":"Docket ID","value":"FAA-2013-0611"},"documentId":{"label":"Document
+        ID","value":"FAA-2013-0611-0005"},"numItemsRecieved":{"label":"Number of Comments
+        Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14 CFR Part
+        39"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:45:32 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:46:53 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9411'
+      content-length:
+      - '1516'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
+        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
+        Title","value":"Recently Posted FAA Rules and Notices."},"pageCount":{"label":"Page
+        Count","value":"3"},"documentType":{"label":"Document Type","value":"Rule"},"docketType":{"label":"Docket
+        Type","value":"Rulemaking"},"federalRegisterNumber":{"label":"Federal Register
+        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
+        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
+        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
+        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
+        - 5256"},"docketId":{"label":"Docket ID","value":"FAA_FRDOC_0001"},"documentId":{"label":"Document
+        ID","value":"FAA_FRDOC_0001-9732"},"cfrPart":{"label":"CFR Part","value":"14
+        CFR Part 39"},"numItemsRecieved":{"label":"Number of Comments Received","value":"0"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:46:53 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-12912&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:55:43 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9401'
+      content-length:
+      - '1742'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"allowLateComment":false,"commentDueDate":"2014-07-07T23:59:59-04:00","commentStartDate":"2014-06-04T00:00:00-04:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=EPA_FRDOC_0001-15187&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=EPA_FRDOC_0001-15187&contentType=html"],"openForComment":true,"postedDate":"2014-06-04T00:00:00-04:00","receivedDate":"2014-06-04T00:00:00-04:00","status":"Posted","topics":["Air
+        Pollution Control","Environmental Protection","Incorporation by Reference","Intergovernmental
+        Relations","Lead","Reporting and Recordkeeping Requirements"],"docketTitle":{"label":"Docket
+        Title","value":"Recently Posted EPA Rules and Notices from FR Feed."},"pageCount":{"label":"Page
+        Count","value":"12"},"documentType":{"label":"Document Type","value":"Proposed
+        Rule"},"docketType":{"label":"Docket Type","value":"Rulemaking"},"federalRegisterNumber":{"label":"Federal
+        Register Number","value":"2014-12912"},"attachmentCount":{"label":"Attachment
+        Count","value":"0"},"agencyName":{"label":"Agency Name","value":"Environmental
+        Protection Agency"},"rin":{"label":"RIN","value":"Not Assigned"},"title":{"label":"Document
+        Title","value":"Air Quality State Implementation Plans; Approvals and Promulgations:
+        Missouri; Infrastructure Requirements for the 2008 Lead National Ambient Air
+        Quality Standard"},"startEndPage":{"label":"Start End Page","value":"32200
+        - 32211"},"docketId":{"label":"Docket ID","value":"EPA_FRDOC_0001"},"documentId":{"label":"Document
+        ID","value":"EPA_FRDOC_0001-15187"},"cfrPart":{"label":"CFR Part","value":"40
+        CFR Part 52"},"numItemsRecieved":{"label":"Number of Comments Received","value":"0"},"agencyAcronym":{"label":"Agency","value":"EPA"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:55:43 GMT
+recorded_with: VCR 2.6.0

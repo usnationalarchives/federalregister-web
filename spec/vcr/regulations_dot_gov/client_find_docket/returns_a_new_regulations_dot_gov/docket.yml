@@ -2,34 +2,70 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/docket.json?D=CFPB_FRDOC_0001&api_key=DEMO_KEY
+    uri: http://api.data.gov/TEST/regulations/v3/docket.json?docketId=CFPB_FRDOC_0001&api_key=<DEMO_KEY>
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 200
       message: OK
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Thu, 31 Oct 2013 18:24:25 GMT
+      - Wed, 16 Apr 2014 16:32:16 GMT
       server:
-      - nginx/1.4.2
+      - nginx/1.4.7
       x-ratelimit-limit:
-      - '1000'
+      - '10000'
       x-ratelimit-remaining:
-      - '998'
+      - '9818'
       content-length:
-      - '428'
+      - '237'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"title":"Recently Posted CFPB Rules and Notices.","docketId":"CFPB_FRDOC_0001","agency":"Consumer
-        Financial Protection Bureau","agencyAcronym":"CFPB","rin":"","parentAgency":"","parentAgencyAcronym":"","type":"Rulemaking","docketAbstract":"","docketMetadata":[{"Type":"Rulemaking"}],"cfrCitation":"","priority":"","docketType":"","impactsAndEffects":"","rplanEntry":"","numberOfComments":4,"relatedRins":[],"relatedDockets":[]}'
+      string: ! '{"agency":"Consumer Financial Protection Bureau","agencyAcronym":"CFPB","docketId":"CFPB_FRDOC_0001","numberOfComments":4,"title":"Recently
+        Posted CFPB Rules and Notices.","type":"Rulemaking","type":{"label":"Type","value":"Rulemaking"}}'
     http_version: '1.1'
-  recorded_at: Thu, 31 Oct 2013 18:24:25 GMT
+  recorded_at: Wed, 16 Apr 2014 16:32:20 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/docket.json?docketId=CFPB_FRDOC_0001&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:36 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9446'
+      content-length:
+      - '237'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"agency":"Consumer Financial Protection Bureau","agencyAcronym":"CFPB","docketId":"CFPB_FRDOC_0001","numberOfComments":6,"title":"Recently
+        Posted CFPB Rules and Notices.","type":"Rulemaking","type":{"label":"Type","value":"Rulemaking"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:36 GMT
 recorded_with: VCR 2.6.0

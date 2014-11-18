@@ -18,7 +18,7 @@ class RegulationsDotGov::CommentForm::Field
     klass.new(client, attributes, agency_acronym)
   end
 
-  attr_reader :client, :attributes, :agency_acronym
+  attr_reader :client, :attributes, :agency_id
 
   def initialize(client, attributes, agency_acronym)
     @client = client
@@ -27,11 +27,11 @@ class RegulationsDotGov::CommentForm::Field
   end
 
   def required?
-    attributes["@required"] == "true"
+    attributes["required"]
   end
 
   def publically_viewable?
-    attributes["@publicViewable"] == "true"
+    attributes["publicViewable"]
   end
 
   def name

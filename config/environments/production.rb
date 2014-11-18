@@ -5,9 +5,12 @@ MyFr2::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
-  # Full error reports are disabled and caching is turned on
+  # Full error reports are disabled
   config.consider_all_requests_local       = false
+  # Turn off rack-cache as we set the expires header and use varnish for cache
   config.action_controller.perform_caching = false
+
+  HTTParty::HTTPCache.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false

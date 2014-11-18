@@ -41,14 +41,20 @@ class SubscriptionDecorator < ApplicationDecorator
   end
 
   def subscribed_on
-    created_at.to_formatted_s(:date)
+    created_at
   end
 
   def last_delivered_on
     if last_delivered_at
-      last_delivered_at.to_formatted_s(:date)
+      last_delivered_at
     else
       "No items have matched since subscription started"
+    end
+  end
+
+  def comment
+    if model.comment.present?
+      @comment ||= CommentDecorator.decorate( model.comment )
     end
   end
 end

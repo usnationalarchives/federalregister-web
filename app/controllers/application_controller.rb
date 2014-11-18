@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_stampers
   before_filter :decorate_current_user
 
-  if Rails.env.development?
-    around_filter :use_vcr
-  end
+  #if Rails.env.development?
+  #  around_filter :use_vcr
+  #end
 
   def set_stampers
     User.stamper = self.current_user
@@ -61,5 +61,15 @@ class ApplicationController < ActionController::Base
 
   def rescue_action_in_public_with_honeybadger(exception)
     rescue_action_in_public_without_honeybadger(exception)
+  end
+
+  # throw exception rather than just resetting session on XSRF error
+  #   in Rails 4 just use `protect_from_forgery with: exception`
+  def handle_unverified_request
+    if Rails.env.production?
+      reset_session
+    else
+      raise ActionController::InvalidAuthenticityToken
+    end
   end
 end

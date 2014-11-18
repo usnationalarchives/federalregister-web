@@ -5,9 +5,12 @@ MyFr2::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
-  # Full error reports are disabled and caching is turned on
+  # Full error reports are disabled
   config.consider_all_requests_local       = false
+  # Turn off rack-cache as we set the expires header and use varnish for cache
   config.action_controller.perform_caching = false
+
+  HTTParty::HTTPCache.perform_caching = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
@@ -20,7 +23,7 @@ MyFr2::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new

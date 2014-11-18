@@ -1,28 +1,53 @@
 class RegulationsDotGov::Client
   class APIKeyError < StandardError; end
-  class ResponseError < StandardError; end
+  class ResponseError < StandardError
+    attr_reader :code
+    def initialize(message, code=nil)
+      super(message)
+      @code = code
+    end
+  end
   class RecordNotFound < ResponseError; end
   class InvalidSubmission < ResponseError; end
+  class CommentPeriodClosed < ResponseError; end
   class ServerError < ResponseError; end
 
   include HTTMultiParty
 
   cattr_accessor :api_key
+  attr_accessor :cache_backups_enabled, :read_from_cache
 
-  debug_output $stderr
-  base_uri 'http://api.data.gov/regulations/v2/'
+  if Rails.env.development? || Rails.env.test? || Rails.env.staging?
+    debug_output $stderr
+  end
+
+  if Rails.env.production?
+    base_uri('http://api.data.gov/regulations/v3/')
+  else
+    base_uri('http://api.data.gov/TEST/regulations/v3/')
+  end
+
+  caches_api_responses :key_name => "regulations_dot_gov",
+    :expire_in => 1.hour
+
+  HTTParty::HTTPCache.backups_enabled = false
+
   default_timeout 20
 
   DOCKET_PATH  = '/docket.json'
   COMMENT_PATH = '/comment.json'
   LOOKUP_PATH  = '/lookup.json'
+  DOCUMENT_PATH = '/document.json'
+  DOCUMENT_SEARCH_PATH  = '/documents.json'
 
   def self.override_base_uri(uri)
     base_uri(uri)
   end
 
-  def initialize
-    raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key
+  def initialize(options={})
+    self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
+
+    raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
 
   def docket_endpoint
@@ -37,9 +62,17 @@ class RegulationsDotGov::Client
     self.class.base_uri + LOOKUP_PATH
   end
 
+  def document_endpoint
+    self.class.base_uri + DOCUMENT_PATH
+  end
+
+  def document_search_endpoint
+    self.class.base_uri + DOCUMENT_SEARCH_PATH
+  end
+
   def find_docket(docket_id)
     begin
-      response = self.class.get(docket_endpoint, :query => {:D => docket_id})
+      response = self.class.get(docket_endpoint, :query => {:docketId => docket_id})
       RegulationsDotGov::Docket.new(self, response.parsed_response)
     rescue ResponseError
     end
@@ -47,12 +80,11 @@ class RegulationsDotGov::Client
 
   def find_documents(args)
     begin
-      response = self.class.get('/documentsearch/v1.json', :query => args.merge(:api_key => @get_api_key))
-      results = response.parsed_response['searchresult']
-      if results['documents'] && results['documents']['document']
-        doc_details = results['documents']['document']
-        doc_details = [doc_details] unless doc_details.is_a?(Array)
-        doc_details.map{|raw_document| RegulationsDotGov::Document.new(self, raw_document)}
+      response = self.class.get(document_search_endpoint, :query => args)
+
+      results = unwrap_response(response)['documents']
+      if results.present?
+        results.map{|raw_document| RegulationsDotGov::SearchDocument.new(self, raw_document)}
       else
         []
       end
@@ -62,9 +94,13 @@ class RegulationsDotGov::Client
     end
   end
 
-  def get_comment_form(document_id)
-    response = self.class.get(comment_endpoint, :query => {:D => document_id})
-    RegulationsDotGov::CommentForm.new(self, response.parsed_response)
+  def get_comment_form(document_number)
+    begin
+      fetch_comment_form(document_number )
+    rescue RecordNotFound, ServerError => e
+      revised_document_number = pad_document_number(document_number)
+      fetch_comment_form(revised_document_number)
+    end
   end
 
   def get_option_elements(field_name, options={})
@@ -72,11 +108,8 @@ class RegulationsDotGov::Client
       args = options.merge(:field => field_name)
       response = self.class.get(lookup_endpoint, :query => args)
 
-      raw_option_attributes = response.parsed_response['list']
-
-      #if raw_option_attributes.is_a?(Hash)
-        #raw_option_attributes = [raw_option_attributes]
-      #end
+      response = unwrap_response(response)
+      raw_option_attributes = response['list']
 
       raw_option_attributes.map do |option_attributes|
         RegulationsDotGov::CommentForm::Option.new(self, option_attributes)
@@ -85,14 +118,14 @@ class RegulationsDotGov::Client
   end
 
   def submit_comment(fields)
-    response = self.class.post("/submitcomment/v1.json?api_key=#{@post_api_key}", :body => fields)
-    response.body.sub(/Comment tracking number: /,'')
+    response = self.class.post(comment_endpoint, :body => fields)
+    RegulationsDotGov::CommentFormResponse.new(self, response)
   end
 
   def count_documents(args)
     begin
-      response = self.class.get('/documentsearch/v1.json', :query => args.merge(:api_key => @get_api_key, :countsOnly => 1))
-      response.parsed_response['searchresult']['recordCount']
+      response = self.class.get(document_search_endpoint, :query => args.merge(:countsOnly => 1))
+      response.parsed_response['totalNumRecords']
     rescue ResponseError
       nil
     end
@@ -117,18 +150,38 @@ class RegulationsDotGov::Client
 
   private
 
+  def unwrap_response(response)
+    self.class.unwrap_response( response )
+  end
+
+  def self.unwrap_response(response)
+    response.respond_to?(:parsed_response) ? response.parsed_response : response
+  end
+
+  def self.stringify_response(response)
+    unwrap_response(response).to_json
+  end
+
   def pad_document_number(document_number)
     part_1, part_2 = document_number.split(/-/, 2)
     sprintf("%s-%05d", part_1, part_2.to_i)
   end
 
   def fetch_by_document_number(document_number)
-    response = self.class.get('/getdocument/v1.json', :query => {:api_key => @get_api_key, :FR => document_number})
-    RegulationsDotGov::Document.new(self, response.parsed_response["document"])
+    response = self.class.get(document_endpoint, :query => {:federalRegisterNumber => document_number})
+    RegulationsDotGov::Document.new(self, response.parsed_response)
+  end
+
+  def fetch_comment_form(document_number)
+    response = self.class.get(comment_endpoint, :query => {:federalRegisterNumber => document_number})
+    response = unwrap_response(response)
+
+    comment_form = RegulationsDotGov::CommentForm.new(self, response)
   end
 
   def self.get(url, options)
     options[:query].merge!(:api_key => api_key)
+    options[:headers] = {"Accept" => "application/json; charset=UTF-8"}
 
     begin
       response = super
@@ -136,12 +189,20 @@ class RegulationsDotGov::Client
       case response.code
       when 200
         response
+      when 0
+        JSON.parse(response)
+      when 400
+        if response['openForComment'] == false
+          raise CommentPeriodClosed.new(stringify_response(response), 409)
+        else
+          raise ResponseError.new( stringify_response(response) )
+        end
       when 404
-        raise RecordNotFound.new(response)
-      when 500
-        raise ServerError.new(response.parsed_response['error']['message'])
+        raise RecordNotFound.new( stringify_response(response) )
+      when 500, 502, 503
+        raise ServerError.new( stringify_response(response), response.code )
       else
-        raise ResponseError.new(response)
+        raise ResponseError.new( stringify_response(response) )
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
@@ -151,21 +212,27 @@ class RegulationsDotGov::Client
   end
 
   def self.post(url, options)
+    #query = options.fetch(:query){ Hash.new }
+    #options[:query] = query.merge!(:api_key => api_key)
+    url = url + "?api_key=#{api_key}"
+
     begin
       response = super
 
       case response.code
-      when 200
+      when 200, 201
         response
-      when 412
-        raise InvalidSubmission.new(response.parsed_response['error']['message'])
-      when 500
-        raise ServerError.new(response)
+      when 400, 406
+        raise InvalidSubmission.new( stringify_response(response) )
+      when 500, 502, 503
+        raise ServerError.new( stringify_response(response) )
       else
-        raise ResponseError.new(response)
+        raise ResponseError.new( stringify_response(response) )
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
+    rescue Timeout::Error
+      raise ResponseError.new("Request timed out")
     end
   end
 

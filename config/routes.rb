@@ -1,6 +1,17 @@
 MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
 
+  with_options(:quiet => true) do |esi|
+    esi.match 'special/user_utils' => 'special#user_utils'
+    esi.match 'special/shared_assets' => 'special#shared_assets'
+    esi.match 'special/my_fr_assets' => 'special#my_fr_assets'
+    esi.match 'special/fr2_assets' => 'special#fr2_assets'
+    esi.match 'special/navigation' => 'special#navigation'
+    esi.match 'special/site_notifications/:identifier' => 'special#site_notifications', :as => :site_notification
+  end
+
+  match 'status' => 'special#status'
+
   #
   # Document
   #
@@ -68,6 +79,7 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#index',
       as: :reader_aids
 
+
   #
   # Home
   #
@@ -84,13 +96,6 @@ MyFr2::Application.routes.draw do
       post 'sign_up', :to => 'users/registrations#create', :as => :user_registration
       get 'resend_confirmation', :to => 'users/confirmations#resend', :as => :resend_confirmation
     end
-
-    match 'special/user_utils' => 'special#user_utils'
-    match 'special/shared_assets' => 'special#shared_assets'
-    match 'special/my_fr_assets' => 'special#my_fr_assets'
-    match 'special/fr2_assets' => 'special#fr2_assets'
-    match 'special/navigation' => 'special#navigation'
-    match 'status' => 'special#status'
 
     root :to => "clippings#index",
          :as => :my_root
@@ -114,15 +119,13 @@ MyFr2::Application.routes.draw do
         post :persist_for_login
       end
     end
-    match 'articles/:document_number/comments/new' => 'comments#new',
-     :as => :new_comment,
-     :via => :get
-    match 'articles/:document_number/comments/reload' => 'comments#reload',
-     :as => :reload_comment,
-     :via => :post
-    match 'articles/:document_number/comments' => 'comments#create',
-     :as => :comment,
-     :via => :post
+
+    get 'articles/:document_number/comments/new' => 'comments#new',
+     :as => :new_comment
+    post 'articles/:document_number/comments/reload' => 'comments#reload',
+     :as => :reload_comment
+    post 'articles/:document_number/comments' => 'comments#create',
+     :as => :comment
 
     resources :comment_attachments,
       :only => [:create, :destroy]
@@ -138,11 +141,36 @@ MyFr2::Application.routes.draw do
         get :unsubscribe
         get :confirm
       end
+      match 'articles/:document_number/comments/new' => 'comments#new',
+       :as => :new_comment,
+       :via => :get
+      match 'articles/:document_number/comments/reload' => 'comments#reload',
+       :as => :reload_comment,
+       :via => :post
+      match 'articles/:document_number/comments' => 'comments#create',
+       :as => :comment,
+       :via => :post
 
-      collection do
-        get :confirmation_sent
-        get :confirmed
-        get :unsubscribed
+      resources :comment_attachments,
+        :only => [:create, :destroy]
+
+      resource :comment_publication_notifications,
+        :only => [:create, :destroy]
+
+      resource :comment_followup_document_notifications,
+        :only => [:create, :destroy]
+
+      resources :subscriptions do
+        member do
+          get :unsubscribe
+          get :confirm
+        end
+
+        collection do
+          get :confirmation_sent
+          get :confirmed
+          get :unsubscribed
+        end
       end
     end
   end

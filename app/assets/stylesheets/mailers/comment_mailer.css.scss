@@ -1,0 +1,65 @@
+@import "mixins/_colors.scss";
+
+%bordered {
+  margin-top: 5px;
+  padding: 3px 5px;
+  border-top: 1px solid #CCC;
+  border-bottom:1px solid #CCC;
+}
+
+#main-content {
+  width: 680px;
+  overflow: hidden;
+
+  .intro {
+    padding-bottom: 20px;
+
+    .comment_tracking_number {
+      border: 1px #CCC solid;
+      background-color: #EFEFEF;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+
+      .tracking_number {
+        font-family: courier;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  .document_title a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $fr-blue;
+    text-decoration: none;
+  }
+
+  .agency {
+    @extend %bordered;
+  }
+
+  dl {
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    dt {
+      font-weight: bold;
+      float: left;
+      width: 200px;
+      clear: both;
+    }
+    dd {
+      width: 400px;
+      float: left;
+    }
+  }
+
+  .disclaimer {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 0.9em;
+    font-style: italic;
+  }
+}

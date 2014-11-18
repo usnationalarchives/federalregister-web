@@ -1,4 +1,34 @@
-#flash_message.comment { z-index: 1000; }
+%required_abbr {
+  color: $fr-orange;
+  margin-left: 2px;
+  font-size: 20px;
+  position: absolute;
+}
+
+body#entries .form-tooltip {
+  width: 200px;
+}
+
+#flash_message.comment {
+  z-index: 1000;
+  height: 46px;
+  position: relative;
+
+  &.open { height: 60px; }
+
+  p .byline {
+    line-height: 23px;
+    padding-top: 10px;
+  }
+
+  img.reg_gov_logo {
+    float: right;
+    right: 20px;
+    top: 8px;
+    position: absolute;
+  }
+  &.open img.reg_gov_logo { top: 15px; }
+}
 
 #metadata_content_area .loading {
   height: 23px;
@@ -10,7 +40,7 @@
 
   position: relative;
   z-index: 600;
-  
+
   .loader {
     font-weight: bold;
     margin: 0 auto;
@@ -20,7 +50,7 @@
   }
 }
 
-.ajax-comment-data { 
+.ajax-comment-data {
   background-color: #D7D7D7;
   @include rounded-bottom(6);
   min-height: 48px;
@@ -41,63 +71,85 @@
 .formtastic.comment {
   background-color: #EFEFEF;
   padding: 15px;
-  @include input-box-shadow('#CCC', '#EEE', '#FFF');
   @include border-radius(5);
-}
 
-.formtastic.comment {
-  li.input { 
+  li.input {
+    clear: both;
     margin-bottom: 25px;
-    width: 630px;
+    width: 830px;
+    position: relative;
+
+    &.boolean {
+      margin-left: 240px;
+      width: 400px;
+
+      label {
+        color: $fr-gray-60;
+        font-size: 15px;
+
+        abbr { @extend %required_abbr; }
+      }
+
+      .inline-errors {
+        top: 2px;
+        left: 350px;
+        width: 170px;
+      }
+    }
   }
   li.error {
     background: none;
-    margin: inherit;
     padding: inherit;
   }
-  
+
   li {
     span.public {
-      /*@include my_fr2-sprite(icon_world, $my_fr2-sprite-dimensions, 0, 0);*/
       height: 25px;
       width: 25px;
-      display: inline-block;
-      vertical-align: top;
+
       position: relative;
-      top: 4px;
+      left: 7px;
+      margin: 0;
+
+      display: inline-block;
+      vertical-align: middle;
+
+      font-size: 23px;
+      color: $fr-gray-40;
     }
-    select + span.public { 
-      top: 2px;
-      left: 2px;
+
+    select + span.public {
+      top: 1px;
+      left: 5px;
     }
     textarea + span.public,
-    input[type='file'] + span.public { 
+    input[type='file'] + span.public {
       top: 0px;
+      vertical-align: top;
     }
   }
+
+  li#comment_us_state_input select + span.public { left: 2px; }
 }
 
 .formtastic.comment fieldset {
   .label {
     display: inline-block;
     position: relative;
-    width: 200px;
-    vertical-align: center;
+    width: 150px;
+    vertical-align: middle;
     font-weight: bold;
     font-size: 15px;
   }
 
-  .text .label { 
+  .text .label {
     vertical-align: top;
     position: relative;
     top: 5px;
   }
 
-  .label abbr { 
-    color: $fr-orange;
-    margin-left: 2px;
-    font-size: 20px;
-    position: absolute;
+  .label abbr {
+    @extend %required_abbr;
   }
 }
 
@@ -105,16 +157,17 @@
   input[type='text'],
   select,
   textarea {
-    height: 25px;
+    height: 30px;
     width: 375px;
     font-size: 13px;
+    vertical-align: middle;
     @include input-box-shadow('#CCC', '#EEE', '#FFF');
     @include border-radius(3);
   }
 
-  textarea { 
+  textarea {
     height: auto;
-    width: 373px;
+    width: 634px;
   }
 
   select { width: 380px; }
@@ -123,6 +176,13 @@
   select:focus,
   textarea:focus {
     @include input-focus-box-shadow($fr-green);
+  }
+
+  p.inline-hints {
+    background: none;
+    font-style: italic;
+    padding: 0;
+    margin-left: 59px;
   }
 }
 
@@ -137,17 +197,36 @@
   }
 
 .formtastic.comment {
-  .buttons { 
-    margin-top: 6em;
+  .buttons {
+    margin-top: 0;
+    margin-bottom: 30px;
+    margin-left: 240px;
 
-    .commit.button { background-color: $fr-green; }
-    .commit.button:hover { background-color: $fr-orange; }
+    .commit.button {
+      background-color: $fr-green;
+      position: relative;
 
-    .disabled.commit.button,
-    .disabled.commit.button:hover { background-color: #CCC; }
-    .disabled.commit.button input {
-      padding-right: 25px;
-      background: image-url('orange_loader_CCC.gif') 180px 2px no-repeat;
+      &:hover { background-color: $fr-orange; }
+
+      &.disabled {
+        background-color: $fr-gray-15;
+        cursor: default;
+
+        input { cursor: default; }
+
+        &:hover { background-color: $fr-gray-15; }
+      }
+    }
+
+    .submitting.commit.button {
+      background-color: #CCC;
+
+      &:hover { background-color: #CCC; }
+
+      input {
+        padding-right: 25px;
+        background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
+      }
     }
   }
 
@@ -155,7 +234,7 @@
     position: relative;
     padding: 10px;
     cursor: pointer;
-    
+
     input {
       width: 200px;
       box-shadow: none;
@@ -203,14 +282,192 @@
 .formtastic.comment {
   p.inline-errors {
     background: none;
-    font-size: 1em;
+    font-size: 15px;
+    font-weight: normal;
     line-height: 1.4em;
-    color: $fr-red;
-    text-align: right;
-    padding-right: 40px;
-    padding-top: 5px;
-    }
+    color: #8A3737;
+    position: absolute;
+    top: 5px;
+    right: 25px;
+  }
   p.inline-errors.warning { color: $fr-green; }
+
+  #comment_general_comment_input p.inline-errors { top: inherit; }
+}
+
+#fr_modal ul.file-type-list {
+  margin-left: 20px;
+  overflow: hidden;
+
+  li {
+    float: left;
+    width: 130px;
+    margin-left: 20px;
+  }
+}
+
+.formtastic .file.input .label {
+  margin-right: 0.8em;
+  margin-top: 2px;
+  vertical-align: top;
+  }
+
+.formtastic.comment .file {
+  .label { float: left; }
+
+  span.public {
+    left: 284px;
+    top: -4px;
+  }
+
+  // in order for the upload button to both have a custom styled button
+  // and to work in IE8 & 9 we have to position the input button above
+  // our custom button and make it transparent. Triggering the fileupload
+  // dialog box with javascript isn't allowed in those browsers.
+  .fileupload-button {
+    position: relative;
+    float: left;
+    width: 88px;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+
+    #fileupload {
+      margin-left: 0;
+      width: 88px;
+      font-size: 200px;
+      position: absolute;
+      line-height: 23px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+    }
+
+    .add_file {
+      color: #FFF;
+      height: 23px;
+      padding: 0;
+      padding-top: 3px;
+      padding-left: 5px;
+      min-width: inherit;
+      width: 83px;
+      font-weight: bold;
+      background-color: $fr-green;
+      text-transform: none;
+
+      .icon-fr2 {
+        padding-right: 5px;
+        top: 1px;
+      }
+    }
+    .add_file:hover,
+    .add_file.hover { background-color: lighten($fr-green, 10); }
+  }
+
+  td.cancel,
+  td.delete { vertical-align: middle; }
+
+  button.cancel,
+  button.delete {
+    height: 22px;
+    min-width: 70px;
+    width: 70px;
+
+    padding: 0;
+    padding-top: 1px;
+    border: 0;
+
+    position: relative;
+    top: 1px;
+    left: 20px;
+
+    text-transform: none;
+    font-size: 0.8em;
+    font-weight: bold;
+
+    color: #FFF;
+    background-color: $fr-red;
+
+    &:hover { background-color: lighten($fr-red, 10); }
+
+    span {
+      display: block;
+      float: left;
+      top: -1px;
+      position: relative;
+
+      &.icon-fr2 {
+        top: 0px;
+        margin: 0 5px 0 7px;
+        padding-top: 1px;
+      }
+    }
+
+  }
+
+  tr.upload-error button.cancel { top: 0; }
+  tr.upload-error td.file-error {
+    color: $fr-red;
+    font-weight: bold;
+  }
+}
+
+table.attachments {
+  width: 638px;
+  margin-left: 165px;
+  clear: both;
+
+  tr {
+    margin-top: 5px;
+    border-top: 1px solid #CCC;
+
+    &.error {
+      color: $fr-red;
+      font-weight: bold;
+
+      // remove unwanted cascade
+      display: table-row;
+      background: none;
+    }
+  }
+
+  tr,
+  td.name {
+    padding-left: 0;
+    padding-bottom: 3px;
+  }
+  td.size {
+    text-align: right;
+    width: 75px;
+  }
+}
+
+/* PROGRESS BARS */
+table.attachments {
+  .progress {
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+    width: 250px;
+  }
+
+  td.progress-bar { padding-left: 0; }
+  .progress-striped .bar { background-color: $fr-orange; }
+  .progress-success .bar {
+    @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
+    padding-top: 1px;
+  }
+}
+
+.formtastic.comment .regulations_dot_gov_notices {
+  margin: 0 auto;
+  width: 400px;
+  font-style: italic;
+  color: $fr-gray-60;
+}
+
+.formtastic.comment {
+  hr { clear: both; }
 }
 
 div.comment-preview-modal {
@@ -227,128 +484,12 @@ div.comment-preview-modal {
 div.comment-preview-modal,
 div.alternative-comment-modal { margin-left: 0px; }
 
-
-.formtastic .file.input .label { 
-  margin-right: 0.8em;
-  margin-top: 2px;
-  vertical-align: top;
-  }
-
-.formtastic.comment .file {
-  #fileupload { 
-    margin-left: 0;
-    width: 381px;
-    }
-  
-  .add_file {
-    color: #FFF;
-    height: 20px;
-    padding: 0;
-    padding-top: 2px;
-    padding-left: 27px;
-    min-width: inherit;
-    width: 75px;
-    margin-right: 275px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    background-color: $fr-green;
-    /*@include my_fr2-sprite(icon_upload_add, $my_fr2-sprite-dimensions, 8px, 5px);*/
-    }
-  .add_file:hover { background-color: lighten($fr-green, 10); }
-
-  td.cancel,
-  td.delete { vertical-align: middle; }
-
-  button.cancel, 
-  button.delete {
-    color: #FFF;
-    height: 20px;
-    padding: 0;
-    padding-top: 1px;
-    min-width: 60px;
-    width: 60px;
-    font-weight: bold;
-    background-color: $fr-red;
-    top: 1px;
-    position: relative;
-    text-transform: none;
-    border: 0;
-    font-size: 0.8em;
-    }
-  button.cancel:hover, 
-  button.delete:hover { background-color: lighten($fr-red, 10); }
-
-  button.cancel {
-    /*@include my_fr2-sprite(icon_upload_cancel, $my_fr2-sprite-dimensions, 4px, 4px);*/
-    }
-  button.delete {
-    /*@include my_fr2-sprite(icon_upload_remove, $my_fr2-sprite-dimensions, 4px, 4px);*/
-    }
-  
-  button.cancel span,
-  button.delete span { 
-    padding-left: 10px;
-    top: -1px;
-    position: relative;
-  }
-
-  tr.upload-error button.cancel { top: 0; }
-  tr.upload-error td.file-error { 
-    color: $fr-red;
-    font-weight: bold;
-  }
-}
-
-table.attachments { 
-  width: 640px;
-  margin-left: 215px;
-  
-  tr {
-    margin-top: 5px;
-    border-top: 1px solid #CCC;
-  }
-  tr.upload-error {
-    td { vertical-align: middle; }
-    td.file-error {
-      padding: 0;
-      display: inline-block;
-      width: 215px;
-    }
-  }
-
-  tr,
-  td.name { 
-    padding-left: 0;
-    padding-bottom: 3px;
-  }
-  td.size span {
-    text-align: right;
-    width: 75px;
-    display: inline-block;
-  }
-}
-
-/* PROGRESS BARS */
-table.attachments {
-  .progress {
-    margin-bottom: 0;
-    position: relative;
-    top: 5px;
-    width: 200px;
-  }
-
-  td.progress-bar { padding-left: 0; }
-  .progress-striped .bar { background-color: $fr-orange; }
-  .progress-success .bar {
-    @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
-    padding-top: 1px;
-  }
-}
-
 #fr_modal.comment-preview-modal,
-#fr_modal.print_modal { 
+#fr_modal.print_modal {
   @extend %fr_modal;
   width: 700px;
+
+  .modal_content { overflow: auto; }
 
   dl dt { width: 200px; }
   dl.comment_details dt { width: 190px; }
@@ -365,10 +506,9 @@ table.attachments {
 
     cursor: pointer;
     padding-left: 27px;
-    /*@include my_fr2-sprite(icon_print_blue, $my_fr2-sprite-dimensions, 0, 0)*/
     }
 
-  .document_title { 
+  .document_title {
     font-size: 1.5em;
     line-height: 1.6;
     }
@@ -388,7 +528,7 @@ table.attachments {
     padding: 10px;
     padding-top: 15px;
     margin-bottom: 1.5em;
-    
+
     dd.tracking_number {
       border: 1px #CCC solid;
       border-radius: 6px;
@@ -399,8 +539,6 @@ table.attachments {
     }
   }
 }
-/* jqm seems to be having a hardtime position this so we update the default margin left */
-#fr_modal.print_modal { margin-left: -350px; }
 
 /* COMMENT FORM SUBMIT SUCCESS */
 .tracking_number {
@@ -422,7 +560,7 @@ table.attachments {
     padding: 15px;
     margin-top: 13px;
     @include border-radius(6);
-    
+
     p.info { text-align: left; }
   }
 
@@ -435,7 +573,7 @@ table.attachments {
   }
 }
 
-.comment_wrapper .comment_next_steps { 
+.comment_wrapper .comment_next_steps {
   margin-top: 20px;
   background-color: #EFEFEF;
   padding: 15px;
@@ -450,15 +588,18 @@ table.attachments {
     margin-left: 110px;
     margin-top: 10px;
   }
-  form { 
+  form {
     padding-left: 90px;
 
-    .inputs { font-size: 1.1em; }
+    .inputs {
+      font-size: 1.1em;
+      margin-bottom: 0;
+    }
     .buttons {
       margin-top: 0;
       margin-left: 0;
 
-      .button { 
+      .button {
         padding: 5px;
         color: #FFF;
         height: 20px;
@@ -466,11 +607,11 @@ table.attachments {
         background-color: $fr-green;
       }
       .button:hover { background-color: $fr-orange; }
-      .button input { 
+      .button input {
         width: 100px;
         box-shadow: none;
         font-weight: bold;
-        color: white;
+        color: $white;
         border: none;
         background: none;
         cursor: pointer;
@@ -484,15 +625,63 @@ table.attachments {
 
 .comment_wrapper .social_media .media_buttons { margin-left: 90px; }
 .comment_wrapper .comment_next_steps {
-  .my_fr p {
-    /*@include my_fr2-sprite(icon_myfr, $my_fr2-sprite-dimensions, 25px, 3px);*/
-    margin-botton: 10px;
+  .icon-fr2 {
+    float: left;
+    font-size: 28px;
+    left: 20px;
+    color: $fr-gray-60;
   }
-  .my_fr .formtastic.comment_notifications ol { margin-bottom: 0; }
-  
-  .print { margin-top: 20px; }
-  .print p {
-    /*@include my_fr2-sprite(icon_print, $my_fr2-sprite-dimensions, 26px, 2px);*/
+
+  .my_fr {
+    .icon-fr2-nav_male_female_user { font-size: 29px; }
+
+    p { margin-bottom: 10px; }
+
+    .formtastic.comment_notifications ol { margin-bottom: 0; }
+
+    li {
+      clear: both;
+      overflow: hidden;
+      position: relative;
+      width: 600px;
+
+      &.first {
+        border-bottom: 1px solid #CCC;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+      }
+
+      .description {
+        width: 450px;
+        display: block;
+        padding-left: 10px;
+      }
+      a.notifications {
+        float: right;
+        width: 75px;
+        top: 10px;
+        right: 10px;
+        position: absolute;
+        text-align: center;
+        @include border-radius(5);
+        background-color: $fr-green;
+        color: $white;
+
+        &:hover { background-color: $fr-orange; }
+
+        &.remove {
+          background-color: $fr-red;
+
+          &:hover { background-color: $fr-dark-red; }
+        }
+      }
+    }
+  }
+
+  .print {
+    margin-top: 20px;
+
+    .icon-fr2-print { left: 19px; }
   }
 
   .retrieval {
@@ -501,40 +690,40 @@ table.attachments {
     margin-top: 35px;
     font-size: 0.9em;
     font-style: italic;
-  }
-  .retrieval p { padding: 0 }
 
-  .social_media { margin-top: 15px; }
-  .social_media p {
-    /*@include my_fr2-sprite(icon_radio_tower, $my_fr2-sprite-dimensions, 25px, -2px);*/
+    p { padding: 0 }
   }
 
-  .social_media .media_buttons {
-    li {
-      display: inline-block;
-      margin: 5px 0;
-      overflow: hidden;
-      width: 600px;
-    }
-    .left {
-      float: left;
-      clear: both;
-      width: 32px;
-    }
-    a.button {
-      width: 32px;
-      min-width: initial;
-      position: relative;
-      padding: 0;
-    }
-    .right {
-      float: left;
-      width: 500px;
-    }
-    p {
-      font-size: 1.1em;
-      background: none;
-      padding: 0 10px;
+  .social_media {
+    margin-top: 15px;
+
+    .media_buttons {
+      li {
+        display: inline-block;
+        margin: 5px 0;
+        overflow: hidden;
+        width: 600px;
+      }
+      .left {
+        float: left;
+        clear: both;
+        width: 32px;
+      }
+      a.button {
+        width: 32px;
+        min-width: initial;
+        position: relative;
+        padding: 0;
+      }
+      .right {
+        float: left;
+        width: 500px;
+      }
+      p {
+        font-size: 1.1em;
+        background: none;
+        padding: 0 10px;
+      }
     }
   }
 }

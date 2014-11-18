@@ -60,7 +60,7 @@ class TableOfContentsPresenter
 
     agencies_hsh = {}
     @articles_with_agencies.each do |article|
-      # create article views for all associated agencies, powering the 'See XXX'
+      # create document views for all associated agencies, powering the 'See XXX'
       article.agencies.reject{|x| x.id.nil? }.each do |agency|
         agencies_hsh[agency.name] ||= AgencyPresenter.new(self, agency)
         if options[:always_include_parent_agencies] && agency.parent.present?

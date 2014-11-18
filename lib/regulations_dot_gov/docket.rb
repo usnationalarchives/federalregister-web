@@ -1,10 +1,10 @@
 class RegulationsDotGov::Docket < RegulationsDotGov::GenericDocument
   def title
-    @raw_attributes['title']
+    raw_attributes['title']
   end
 
   def regulation_id_number
-    rin = @raw_attributes['rin']
+    rin = raw_attributes['rin']
 
     if rin.blank? || rin == 'Not Assigned'
       nil
@@ -14,7 +14,7 @@ class RegulationsDotGov::Docket < RegulationsDotGov::GenericDocument
   end
 
   def docket_id
-    @raw_attributes['docketId']
+    raw_attributes['docketId']
   end
 
   def supporting_documents
@@ -27,5 +27,10 @@ class RegulationsDotGov::Docket < RegulationsDotGov::GenericDocument
 
   def comments_count
     @client.count_documents(:dktid => docket_id, :dct => 'PS')
+  end
+
+  # backwards compatibility
+  def metadata
+    {}
   end
 end

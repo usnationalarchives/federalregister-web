@@ -1,6 +1,35 @@
-<% add_css_file_to_mailer('comment_copy.css') %>
+<% add_css_file_to_mailer('comment_mailer.css') %>
 
-<p class="intro">As requested here is a copy of your recent comment.</p>
+<div class="intro">
+  <p>
+    Thank you for creating a comment, your feedback is important.
+    We have successfully submitted your comment to Regulations.gov
+    for review by <%= @comment.agency_name %>.
+  </p>
+
+  <p class="comment_tracking_info">
+    Your comment tracking number is below and can be used to retrieve your
+    comment from Regulations.gov once it has been reviewed and if it is publicly
+    posted by <%= @comment.agency_name %>.
+  </p>
+
+  <p class="comment_tracking_number">
+    Comment Tracking Number:
+    <%= link_to @comment.comment_tracking_number,
+      "http://www.regulations.gov/#!searchResults;s=#{@comment.comment_tracking_number}",
+      :class => 'tracking_number' %>
+  </p>
+
+  <p>
+    As a registered MyFR user you can also view your comment status and manage
+    any followup subscriptions via your
+    <%= link_to 'My Comments page', @fr_comments_url %>.
+  </p>
+</div>
+
+<p>
+  Below are details on the comment you submitted:
+</p>
 
 <div>
   <% article = @comment.article %>
@@ -8,26 +37,37 @@
   <div class="agency">A <%= article.type %> by <%= @comment.agency_name %></div>
 
   <dl class="document_details">
-      <dt>Article Url</dt>
-      <dd><%= link_to article.short_article_url, article.short_article_url %></dd>
-      <dt>Published On</dt>
-      <dd><%= article.publication_date %></dd>
+    <dt>Document URL</dt>
+    <dd><%= link_to article.short_article_url, article.short_article_url %></dd>
+    <dt>Published On</dt>
+    <dd><%= article.publication_date %></dd>
   </dl>
 
   <dl class="comment_details">
-    <dt>Comment Tracking Number</dt>
-    <dd class="tracking_number"><%= @comment.comment_tracking_number %></dd>
     <dt>Comment Submission Date</dt>
     <dd><%= @comment.commented_at %></dd>
   </dl>
 
+
   <dl class="comment_contents">
     <% @comment.comment_data.each do |field| %>
-      <dt><%= field['label'] %></dt>
-      <% field['values'].each do |value| %>
+      <% field.symbolize_keys! %>
+
+      <dt><%= field[:label] %></dt>
+      <% field[:values].each do |value| %>
         <%= content_tag(:dd, value) %>
       <% end %>
     <% end %>
   </dl>
 </div>
 
+<div class="disclaimer">
+  <p>
+    Your comment may be viewable on
+    <a href="http://www.regulations.gov">Regulations.gov</a>
+    once <%= @comment.agency_name %>
+    has reviewed it. This process is dependent on agency public submission
+    policies/procedures and processing times. Use your tracking number to
+    find out the status of your comment.
+  </p>
+</div>

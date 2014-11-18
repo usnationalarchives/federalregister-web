@@ -1,0 +1,170 @@
+#=require app
+
+class @FR2.CommentFormFileUploader
+  @ATTACHED_COMMENT_MESSAGE: 'See attached file(s)'
+
+  constructor: (commentFormHandler)->
+    @commentFormHandler = commentFormHandler
+
+  initialize: ->
+    @attachUploader()
+    @addCompleteEvents()
+    @addUploadEvents()
+    @addDestroyEvents()
+    @displayExistingAttachments()
+    @displayAttachmentErrors()
+    @commentForm().uploaderReady true
+
+  commentForm: ->
+    @commentFormHandler.commentForm
+
+  commentFormEl: ->
+    @commentForm().commentFormEl()
+
+  commentField: ->
+    @commentFormEl()
+      .find '#comment_general_comment'
+
+  attachmentContainer: ->
+    @commentFormEl()
+      .find '.attachments tbody'
+
+  existingAttachments: ->
+    @commentFormEl()
+      .find '.attachments'
+      .data 'existing'
+
+  attachedCommentMessage: ->
+    @constructor.ATTACHED_COMMENT_MESSAGE
+
+  attachUploader: ->
+    @uploaderEl = $( @commentFormEl().find('#fileupload') )
+
+    @uploader = @uploaderEl.fileupload(
+      {
+        url: '/my/comment_attachments.json'
+        autoUpload: true,
+        dataType: 'json',
+        processQueue: [
+          {
+            action: 'validate',
+            always: true,
+            acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
+            maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
+            maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
+          }
+        ]
+        formData: {
+          'comment_attachment[secret]': $('#comment_secret').val()
+          'authenticity_token': @commentFormEl().find('input[name=authenticity_token]').val()
+        }
+        filesContainer: @attachmentContainer()
+        uploadTemplateId: null
+        downloadTemplateId: null
+        uploadTemplate: (o)->
+          source = $("#comment-attachment-upload-template").html()
+          template = Handlebars.compile source
+          template o
+        downloadTemplate: (o)->
+          source = $("#comment-attachment-complete-template").html()
+          template = Handlebars.compile source;
+          template o
+      }
+    )
+    .data('blueimpFileupload')
+
+  attachmentEl: ->
+    $('.attachments tbody')
+
+  filesUploading: ->
+    @attachmentEl()
+      .find '.template-upload'
+      .not '.error'
+      .length > 0
+
+  filesWithErrors: ->
+    @attachmentEl()
+      .find '.template-upload.error'
+      .length > 0
+
+  uploaderInProgress: ->
+    @filesUploading()
+
+  uploaderHasErrors: ->
+    @filesWithErrors()
+
+  uploaderReady: ->
+    ! @uploaderInProgress() && ! @uploaderHasErrors()
+
+  updateUploaderStatus: (event)->
+    if event == 'submit' || event == 'fail'
+      @commentForm().uploaderReady false
+    else if (event == 'complete' || event == 'destroy') && @uploaderReady()
+      @commentForm().uploaderReady true
+
+  addUploadEvents: ->
+    @uploaderEl
+      .bind 'fileuploadsubmit', (e, data)=>
+        @updateUploaderStatus 'submit'
+        true
+
+    @uploaderEl
+      .bind 'fileuploadprocessfail', (e, data)=>
+        @updateUploaderStatus 'fail'
+        if data.files.error
+          _.each data.context, (el, index)=>
+            error = data.files[index].error
+            $el = $(el)
+            if error
+              $el
+                .closest 'tr'
+                .addClass 'error'
+              $el
+                .find '.progress-bar'
+                .html error
+              $el
+                .find '.button.cancel .action'
+                .text 'Delete'
+
+    # this is triggered when a file with an error is removed
+    # from the file list - go figure...
+    @uploaderEl
+      .bind 'fileuploadfail', (e,data)=>
+        @updateUploaderStatus 'destroy'
+
+  addCompleteEvents: ->
+    @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
+      if @commentField().val() == ''
+        @commentField().val( @attachedCommentMessage() )
+
+      @commentForm().storeComment()
+      @updateUploaderStatus 'complete'
+
+  addDestroyEvents: ->
+    @uploaderEl.bind 'fileuploaddestroyed', =>
+      console.log 'destroy'
+      @clearCommentPlaceholder()
+      @updateUploaderStatus 'destroy'
+
+  clearCommentPlaceholder: ->
+    if @commentField().val() == @attachedCommentMessage() && @attachmentContainer().children('tr:not(.error)').size() == 0
+      @commentField().val ''
+
+  displayExistingAttachments: ->
+    @uploader
+      ._renderDownload @existingAttachments()
+      .appendTo @attachmentContainer()
+
+    @clearCommentPlaceholder()
+
+  displayAttachmentErrors: ->
+    priorValidations = @uploader._hasError
+    fileUploader = this
+
+    @uploader._hasError = (file)->
+      _.each fileUploader.attachmentContainer().find('tr'), (i, el)->
+        $el = $(el)
+        if $el.data('name') == file.name
+          file.error = 'A file with the same name has already been attached.'
+
+      priorValidations.call(this, file)

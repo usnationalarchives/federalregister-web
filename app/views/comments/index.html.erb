@@ -1,52 +1,63 @@
-<div class="title"> 
+<div class="title">
   <span>My Comments</span>
 </div>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+<%= content_tag(:div, flash[:warning].html_safe,  :class => 'flash warning') if flash[:warning]  %>
 
-<h2 class="comment title">My Comments</h2>
-<%= render :partial => "comments/comment_metadata_bar", :locals => {:comments => @comments} %>
+<% if ! current_user.confirmed? &&
+     flash[:warning].blank? &&
+     @comments.any?{|c| c.subscription.present? || c.comment_publication.notification? } %>
+  <div class="flash warning">
+    Some of your comments have notification subscriptions. You will not receive
+    notification about followup documents until you have confirmed your
+    email address.<br />
+    <%= link_to 'Resend confirmation email', resend_confirmation_path %>.
+  </div>
+<% end %>
+
+<h2 class="comment title">
+  <span class="icon-fr2 icon-fr2-Chat"></span>
+  My Comments
+</h2>
+<%= render :partial => "comments/comment_metadata_bar",
+  :locals => {:comments => @comments} %>
 
 <ul id="comments">
   <% @comments.each do |comment| %>
-    <li data-doc-id="<%= comment.document_number%>" data-doc-type="<%= comment.article.granule_class %>">
-      <div class="rule_type doc_<%= comment.article.granule_class %> add_tipsy"><%= image_tag '/my/assets/document_icons_large.png' %></div>
-      
-      <% comment_count = comment.article.regulations_dot_gov_comment_count %>
-      <% if comment_count > 0 %>
-        <div class="comment_count"> 
-          <%= link_to comment_count, comment.article.regulations_dot_gov_comments_url, :class => "count", :'data-tooltip' => "View the #{pluralize(comment_count, 'published comment')}" %>
-        </div>
-      <% end %>
-    
+    <li data-doc-id="<%= comment.document_number%>"
+      data-doc-type="<%= comment.article.granule_class %>">
+
+      <div class="rule_type doc_<%= comment.article.granule_class || 'uncategorized' %> add_tipsy">
+        <span class="icon-fr2 icon-doctype icon-fr2-<%= comment.article.granule_class || 'uncategorized' %>"></span>
+      </div>
+
+      <div class="comment_count" data-tooltip="<%= comment.comment_count_tooltip %>">
+        <span class="icon-fr2 icon-fr2-conversation-alt"></span>
+        <%= comment.comment_count_link %>
+      </div>
+
       <div class="document_data">
         <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
-        <dl class="metadata" id="col-1">
-          <dt class="pub_date">Publication Date:</dt>
-          <dd><%= comment.article.publication_date %></dd>
-        </dl>
-        <dl class="metadata" id="col-2">
-          <%= comment.article.agency_dt_dd %>
-        </dl>
-        <dl class="metadata" id="col-3">
-          <dt class="reg_gov_data">Regulations.gov Data:</dt>
-          <dd class="docket_count">Docket: <%= link_to comment.article.regulations_dot_gov_docket_id || 'Unknown', comment.article.regulations_dot_gov_docket_url, :title => comment.article.regulations_dot_gov_docket_title, :class => "tip_under" %></dd>
-          <dd class="public_comment_count">Comment Count: <%= link_to comment.article.regulations_dot_gov_comment_count, comment.article.regulations_dot_gov_comments_url %></dd>
-        </dl>
+        <div class="<%= comment.article.granule_class || 'uncategorized' %>_metadata_wrapper">
+          <%= render :partial => "clippings/doc_types/#{comment.article.granule_class || 'uncategorized'}",
+            :locals => {:clipping => comment} %>
+        </div>
       </div>
+
 
       <div class="comment_data">
         <dl class="metadata">
-          <dt class="created_at">Your comment submitted on:</dt>
+          <dt class="created_at">Comment submitted on:</dt>
           <dd><%= comment.commented_at %></dd>
 
-          <dt class="comment_tracking_number">Your comment tracking number:</dt>
-          <dd><%= link_to comment.comment_tracking_number, comment.regulations_dot_gov_comment_search_result_url %></dd>
+          <dt class="comment_tracking_number">Comment tracking number:</dt>
+          <dd><%= comment.tracking_number_link %></dd>
 
-          <dt class="published_at">Your comment made public on:</dt>
-          <dd><%= comment.comment_published_at %></dd>
-        </dl> 
+          <dt class="published_at">Comment posting status:</dt>
+          <dd><%= comment.comment_posted %></dd>
+        </dl>
       </div>
     </li>
   <% end %>

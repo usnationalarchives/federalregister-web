@@ -6,14 +6,6 @@ module RegulationsDotGov
     let(:agency_acronym) { 'ITC' }
 
     describe '#option_values' do
-      it "returns an array" do
-        attributes = {"uiControl" => "picklist",
-                      "attributeName" => "country"}
-        field = CommentForm::Field.build(client, attributes, agency_acronym)
-
-        #expect(field.option_values.class).to be(Array)
-      end
-
       it "calls get_options on the client with field name and empty parameters" do
         attributes = {"uiControl" => "picklist",
                       "attributeName" => "country"}

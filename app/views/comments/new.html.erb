@@ -1,33 +1,82 @@
-<%= add_handlebars_template('comment_attachment_upload', 'comment-attachment-upload') %>
-<%= add_handlebars_template('comment_attachment_complete', 'comment-attachment-complete') %>
-<%= add_handlebars_template('comment_summary', 'comment-summary'); %>
-<%= add_handlebars_template('comment_preview', 'comment-preview'); %>
-
 <% @comment = CommentDecorator.decorate(@comment) %>
 
-<div class="comment_form_wrapper">
+<div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
-    <p>Thank you for taking the time make a comment, your input is important.</p>
+    <esi:include src="<%= site_notification_path(:identifier => :comment) %>" />
+
+    <% if @comment.comment_form.comments_close_at %>
+      <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
+        <div class="notice warning">
+          <p>
+            Comments on this document close in less than 1 hour.
+            Ensure that you submit your comment before
+            <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
+          </p>
+        </div>
+      <% elsif @comment.comment_form.comments_close_at < Time.now && @comment.comment_form.comments_close_at + 2.hours > Time.now %>
+          <div class="notice warning">
+          <p>
+            Comments on this document may no longer be open.
+            The comment close date was <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+
     <p>
-      Once you have filled in the required fields below you can preview and/or submit your comment to <%= @comment.agency_name %> for review.
-      All comments are considered public and will be posted online once an agency has reviewed them. You can review the
-      <a href="#" id="comment-privacy-policy">privacy policy here</a>
-      <% if  @comment_form.alternative_ways_to_comment.present? %>
-        and 
-        <a href="#" class="fr_modal"
+      Thank you for taking the time to create a comment. Your input is important.
+      Regulations.gov has provided
+      <a href="http://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf"
+        class="reg_gov_comment_tips"
+        target="_blank">
+        tips for submitting an effective comment
+      </a><%= @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+
+      <% if @comment.comment_form.posting_guidelines %>
+        and this agency has also provided
+        <a href="#" class="fr_modal_link reg_gov_posting_guidelines"
+          data-modal-title="Agency Posting Guidelines"
+          data-modal-html="<p><%= @comment.comment_form.posting_guidelines %></p>">
+           additional posting guidelines
+        </a>.
+      <% end %>
+    </p>
+
+    <p>
+      Once you have filled in the required fields below you can preview and/or
+      submit your comment to <%= @comment.agency_name %> for review.
+      All comments are considered public and will be posted online once
+      <%= @comment.agency_name %> has reviewed them.
+    </p>
+
+    <p>
+      You can also view
+      <% if @comment.comment_form.alternative_ways_to_comment.present? %>
+        <a href="#" class="fr_modal_link reg_gov_alternative_ways_to_comment"
           data-modal-title="Alternative Ways to Comment"
-          data-modal-html="<p><%= @comment_form.alternative_ways_to_comment %></p>">alternative ways to comment here</a>.
+          data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">
+          alternative ways to comment
+        </a>.
       <% else %>
-        .
+        <%= link_to 'alternative ways to comment',
+          '#addresses',
+          :class => 'alternative_ways_to_comment addresses' %>
       <% end %>
     </p>
   </div>
 
-  <%= semantic_form_for @comment, :url => comment_path, :html => {:"data-document-number" => @entry.document_number} do |f| %>
+  <%= semantic_form_for @comment,
+    :url => comment_path,
+    :html => {
+      :"data-document-number" => @comment.document_number,
+      :"data-agency" => @comment.agency_name
+    } do |f| %>
+
     <% if @comment_reloaded %>
       <div class="notice message comment_reloaded">
-        It appears that you have attempted to comment on this article before so we've restored your progress. <br />
-        <a href="#" id="comment-start-over">Click here</a> to start over.
+        It appears that you have attempted to comment on this document before
+        so we've restored your progress. <br>
+        <a href="#" id="comment-start-over">Start over</a>.
       </div>
     <% end %>
     <% if @comment.errors.present? %>
@@ -35,29 +84,107 @@
         <%= @comment.human_error_messages %>
       </div>
     <% end %>
+
     <%= f.semantic_errors %>
+
     <%= f.inputs do %>
-      <% @comment_form.fields.each do |field| %>
+      <li class="input hidden">
+        <%= hidden_field_tag(
+            'comment[secret]',
+            params[:comment] && params[:comment][:secret]
+          ) %>
+      </li>
+
+      <% comment_field = (@comment.comment_form.fields.detect{|field| field.name == 'general_comment'}) %>
+      <%= f.input comment_field.name, comment_input_field_options(comment_field) %>
+
+      <% if @comment.comment_form.allow_attachments? %>
+        <li class="public file input optional">
+          <label class="label">Upload File(s)</label>
+
+          <div class="fileupload-button">
+            <input id="fileupload"
+              type="file"
+              name="comment_attachment[attachment]"
+              data-url="/my/comment_attachments"
+              data-tooltip="Files attached to this comment will be publically viewable on Regulations.gov"
+              multiple>
+          </div>
+          <p class="inline-hints">
+            Note: You can attach your comment as a file and/or attach supporting
+            documents to your comment.
+            <a href=""
+              class='fr_modal_link attachment_requirements'
+              data-modal-title='Attachment Requirements'
+              data-modal-data='<%=
+                {
+                  :maxSize => number_to_human_size(CommentAttachment::MAX_FILE_SIZE),
+                  :fileTypes => CommentAttachment::ALLOWED_EXTENSIONS.sort,
+                  :maxAttachments => Comment::MAX_ATTACHMENTS,
+                }.to_json
+              %>'
+              data-modal-template-name='regulations-dot-gov-attachment-requirements-template'
+            >Attachment Requirements</a>.
+          </p>
+
+          <%= content_tag(
+            :table,
+            content_tag(:tbody),
+            :class => "attachments",
+            :"data-existing" => render(
+              :template => "comment_attachments/index",
+              :formats => [:json],
+              :handlers => [:json_builder]
+            )
+          ) %>
+        </li>
+      <% end %>
+
+      <hr>
+
+      <% @comment.comment_form.fields.reject{|field| field.name == "general_comment"}.each do |field| %>
         <%= f.input field.name, comment_input_field_options(field) %>
       <% end %>
 
-      <% if true || @comment_form.allow_attachments? %>
-        <li class="public file input optional">
-          <label class="label">Upload File(s)</label>
-          <%= hidden_field_tag('comment[secret]', params[:comment] && params[:comment][:secret]) %>
-          <input id="fileupload" type="file" name="comment_attachment[attachment]" data-url="/my/comment_attachments" multiple>
+      <hr>
 
-          <%= content_tag(:table,
-                          content_tag(:tbody),
-                          :class => "attachments",
-                          :"data-existing" => render(:template => "comment_attachments/index.json.json_builder")
-                         ) %>
-        </li>
-      <% end %>
+      <li class="boolean input required" id='comment_confirmation_text'>
+        <label for="null">
+          You are filing a document into an official docket. Any personal
+          information included in your <strong>comment text and/or uploaded
+          attachment(s)</strong> may be publicly viewable on the web.
+        </label>
+      </li>
+      <%= f.input :confirm_submission,
+        :as => :boolean,
+        :label => 'I read and understand the statement above.' %>
     <% end %>
     <%= f.buttons do %>
-      <%= f.commit_button "Submit Comment" %>
-      <%= content_tag(:li, link_to('Preview Comment', '#', :class => 'comment_preview') ) %>
+      <%= f.commit_button "Submit Comment",
+        :wrapper_html => {:class => 'disabled'},
+        :button_html => {:disabled => 'disabled'} %>
+      <%= content_tag(
+        :li,
+        link_to(
+          'Preview Comment',
+          '#',
+          :class => 'comment_preview'
+        )
+      ) %>
     <% end %>
+
+    <div class="regulations_dot_gov_notices">
+      Please review the Regulations.gov
+      <a href="http://www.regulations.gov/#!privacyNotice"
+        id="comment-privacy-policy"
+        target="_blank">
+        privacy notice
+      </a> and
+      <a href="http://www.regulations.gov/#!userNotice"
+        id="comment-user-notice"
+        target="_blank">
+        user notice
+      </a>.
+    </div>
   <% end %>
 </div> <!-- end comment_form_wrapper -->

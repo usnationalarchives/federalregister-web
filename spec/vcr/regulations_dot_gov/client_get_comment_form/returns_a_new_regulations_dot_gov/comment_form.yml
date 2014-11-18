@@ -2,73 +2,124 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v2/comment.json?D=ITC-2013-0207-0001&api_key=DEMO_KEY
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-1355&api_key=<API_KEY>
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:38 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9440'
+      content-length:
+      - '84'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-01355&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:38 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9439'
+      content-length:
+      - '84'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2014-11486&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
   response:
     status:
       code: 200
       message: OK
     headers:
       content-type:
-      - application/json
+      - application/json;charset=UTF-8
       date:
-      - Thu, 31 Oct 2013 18:24:26 GMT
+      - Wed, 04 Jun 2014 17:23:27 GMT
       server:
-      - nginx/1.4.2
+      - nginx
       x-ratelimit-limit:
-      - '1000'
+      - '10000'
       x-ratelimit-remaining:
-      - '996'
+      - '9428'
       content-length:
-      - '4809'
+      - '2870'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"metadataList":[{"groupId":"si_name","attributeName":"first_name","attribute":"SUBMITTER_FIRST_NAME","attributeLabel":"First
-        Name","sequence":5100,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        first name","uiControl":"text","maxLength":25,"dependsOn":""},{"groupId":"si_name","attributeName":"last_name","attribute":"SUBMITTER_LAST_NAME","attributeLabel":"Last
-        Name","sequence":5120,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        last name","uiControl":"text","maxLength":25,"dependsOn":""},{"groupId":"si_address","attributeName":"address1","attribute":"ADDRESS1","attributeLabel":"Mailing
-        Address","sequence":5200,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        mailing address line 1","uiControl":"text","maxLength":150,"dependsOn":""},{"groupId":"si_address","attributeName":"city","attribute":"CITY","attributeLabel":"City","sequence":5220,"category":"PUBLIC
-        SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s city","uiControl":"text","maxLength":50,"dependsOn":""},{"groupId":"si_address","attributeName":"country","attribute":"COUNTRY","attributeLabel":"Country","sequence":5230,"category":"PUBLIC
-        SUBMISSIONS","controlLines":"1","lookupName":"country_v","tooltip":"Submitter''s
-        country","uiControl":"picklist","maxLength":50,"dependsOn":""},{"groupId":"si_address","attributeName":"us_state","attribute":"US_STATE","attributeLabel":"State
-        or Province","sequence":5240,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"us_state_v","tooltip":"Submitter''s
-        state","uiControl":"combo","maxLength":50,"dependsOn":"country"},{"groupId":"si_address","attributeName":"zip","attribute":"ZIP","attributeLabel":"ZIP/Postal
-        Code","sequence":5250,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        ZIP/Postal Code","uiControl":"text","maxLength":10,"dependsOn":""},{"groupId":"si_contact","attributeName":"email","attribute":"EMAIL","attributeLabel":"Email
-        Address","sequence":5300,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        email address","uiControl":"text","maxLength":100,"dependsOn":""},{"groupId":"si_organization","attributeName":"organization","attribute":"ORGANIZATION","attributeLabel":"Organization
-        Name","sequence":5400,"category":"PUBLIC SUBMISSIONS","controlLines":"1","lookupName":"","tooltip":"Submitter''s
-        organization","uiControl":"text","maxLength":120,"dependsOn":""},{"groupId":"si_submission","attributeName":"general_comment","attribute":"GENERAL_COMMENT","attributeLabel":"Comment","sequence":5800,"category":"PUBLIC
-        SUBMISSIONS","controlLines":"5","lookupName":"","tooltip":"Text of comment
-        from submitter","uiControl":"text","maxLength":5000,"dependsOn":""}],"postingGuidelines":"","agencyId":"","document":{"numCommentsReceived":0,"frNumber":"2013-21305","receivedDate":"2013-09-03","alternateWaysToComment":"Written
-        submissions. Pursuant to section 207.61 of the Commission''s rules, each interested
-        party response to this notice must provide the information specified below.
-        The deadline for filing such responses is October 3, 2013. Pursuant to section
-        207.62(b) of the Commission''s rules, eligible parties (as specified in Commission
-        rule 207.62(b)(1)) may also file comments concerning the adequacy of responses
-        to the notice of institution and whether the Commission should conduct an
-        expedited or full review. The deadline for filing such comments is November
-        18, 2013. All written submissions must conform with the provisions of sections
-        201.8 and 207.3 of the Commission''s rules and any submissions that contain
-        BPI must also conform with the requirements of sections 201.6 and 207.7 of
-        the Commission''s rules. Regarding electronic filing requirements under the
-        Commission''s rules, see also the Commission''s Handbook on E-Filing, available
-        on the Commission''s Web site at http://edis.usitc.gov. Also, in accordance
-        with sections 201.16(c) and 207.3 of the Commission''s rules, each document
-        filed by a party to the reviewmust be served on all other parties to the review
-        (as identified by either the public or APO service list as appropriate), and
-        a certificate of service must accompany the document (if you are not a party
-        to the review you do not need to serve your response).","title":"Antidumping
-        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
-        Steel Wire Garment Hangers from China; Five-Year Review","docketId":"ITC-2013-0207","documentId":"ITC-2013-0207-0001","agencyAcronym":"ITC","docketType":"RULEMAKING","documentType":"NOTICES","commentStartDate":"2013-09-02","commentEndDate":"2013-11-17","agencyName":"International
-        Trade Commission","renditionTypes":["pdf","html"],"attachmentCount":0}}'
+      string: ! '{"agencyName":"Environmental Protection Agency","document":{"agencyAcronym":"EPA","alternateWaysToComment":"Submit
+        your comments, identified by Docket ID No. EPA-R05- OAR-2014-0274, by one
+        of the following methods: 1. www.regulations.gov: Follow the on-line instructions
+        for submitting comments. 2. Email: blakley.pamela@epa.gov. 3. Fax: (312) 692-2450.
+        4. Mail: Pamela Blakley, Chief, Control Strategies Section, Air Programs Branch
+        (AR-18J), U.S. Environmental Protection Agency, 77 West Jackson Boulevard,
+        Chicago, Illinois 60604. 5. Hand Delivery: Pamela Blakley, Chief, Control
+        Strategies Section, Air Programs Branch (AR-18J), U.S. Environmental Protection
+        Agency, 77 West Jackson Boulevard, Chicago, Illinois 60604. Such deliveries
+        are only accepted during the Regional Office normal hours of operation, and
+        special arrangements should be made for deliveries of boxed information. The
+        Regional Office official hours of business are Monday through Friday, 8:30
+        a.m. to 4:30 p.m., excluding Federal holidays.   Please see the direct final
+        rule which is located in the Rules section of this Federal Register for detailed
+        instructions on how to submit comments.","commentDueDate":"2014-06-23T23:59:59-04:00","commentStartDate":"2014-05-22T00:00:00-04:00","docketType":"RULEMAKING","documentId":"EPA_FRDOC_0001-15140","documentType":"PROPOSED_RULES","openForComment":true,"title":"Air
+        Quality State Implementation Plans; Approvals and Promulgations: Illinois;
+        Revision to the Chicago 8-Hour Ozone Maintenance Plan"},"fieldList":[{"attributeLabel":"Organization
+        Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        organization","uiControl":"text"},{"attributeLabel":"Submitter''s Representative","attributeName":"submitter_rep","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        representative","uiControl":"text"},{"attributeLabel":"Government Agency Type","attributeName":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency_type","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"The
+        type of government agency that the submitter represents","uiControl":"picklist"},{"attributeLabel":"Government
+        Agency","attributeName":"gov_agency","dependsOn":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency&dependentOnValue=","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Name
+        of the government agency that the submitter represents","uiControl":"combo"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
+        of comment from submitter","uiControl":"text"}],"participating":true}'
     http_version: '1.1'
-  recorded_at: Thu, 31 Oct 2013 18:24:26 GMT
+  recorded_at: Wed, 04 Jun 2014 17:23:27 GMT
 recorded_with: VCR 2.6.0

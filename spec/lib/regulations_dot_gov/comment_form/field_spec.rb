@@ -58,6 +58,37 @@ module RegulationsDotGov
         expect( CommentForm::Field.build(client, attributes, agency_acronym).hint ).to eq(attributes['tooltip'])
       end
     end
+
+    describe "#required?" do
+      it "returns true when required" do
+        attributes = {'required' => true,
+                      'uiControl' => 'text'}
+        expect( CommentForm::Field.build(client, attributes, agency_acronym).required? ).to eq(true)
+      end
+
+      it "returns false when not required" do
+        attributes = {'required' => false,
+                      'uiControl' => 'text'}
+
+        expect( CommentForm::Field.build(client, attributes, agency_acronym).required? ).to eq(false)
+      end
+    end
+
+    describe "#publically_viewable?" do
+      it "returns true when the field will be publically viewable" do
+        attributes = {'publicViewable' => true,
+                      'uiControl' => 'text'}
+
+        expect( CommentForm::Field.build(client, attributes, agency_acronym).publically_viewable? ).to eq(true)
+      end
+
+      it "returns false when the field will not be publically viewable" do
+        attributes = {'publicViewable' => false,
+                      'uiControl' => 'text'}
+
+        expect( CommentForm::Field.build(client, attributes, agency_acronym).publically_viewable? ).to eq(false)
+      end
+    end
   end
 end
 

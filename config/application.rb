@@ -27,7 +27,7 @@ module MyFr2
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Eastern Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -59,15 +59,16 @@ module MyFr2
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     config.assets.precompile += %w(
-      application-ie.css 
-      application-shared.css 
+      application-ie.css
+      application-shared.css
       application-shared.js
       fr-document-icons-lte-ie7.js
       fr2-icons-lte-ie7.js
-      application-fr2.js 
-      application-ie8lte.css 
+      application-fr2.js
+      application-ie8lte.css
       application-ie7lte.css
       application-fr2.js
+      ie-shared.js
       print.css
       *.eot
       *.svg
@@ -94,5 +95,15 @@ module MyFr2
     )
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    unless Rails.env.development? || Rails.env.test?
+      # add passenger process id to logs
+      config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
+    end
+
+    # Configure HTTParty API caching
+    HTTParty::HTTPCache.logger = Rails.logger
+    HTTParty::HTTPCache.timeout_length = 30 # seconds
+    HTTParty::HTTPCache.cache_stale_backup_time = 120 # seconds
   end
 end

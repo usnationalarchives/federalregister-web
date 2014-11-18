@@ -1,89 +1,98 @@
 <div class="comment_form_wrapper" data-comment-document-number="<%= @comment.document_number %>">
-  <%= add_handlebars_template('comment_print_summary', 'comment-print-summary'); %>
-
   <div class="notice message">
     <p class="info">
-      Thank you! Your comment has been submitted to <a href="http://www.regulations.gov">Regulations.gov</a>
+      Thank you! Your comment has been submitted to
+      <a href="http://www.regulations.gov" target="_blank">Regulations.gov</a>
       for review by the <%= @comment.agency_name %>.
     </p>
     <p class="comment_tracking_number">
-      Comment Tracking Number: <span class="tracking_number"><%= @comment.comment_tracking_number %></span>
+      Comment Tracking Number:
+      <span class="tracking_number">
+        <%= link_to @comment.comment_tracking_number,
+          @comment.regulations_dot_gov_comment_search_result_url,
+          :target => :blank %>
+      </span>
     </p>
   </div>
 
   <div class="comment_next_steps">
-    <h2>Next Steps</h2>
+    <h2>Optional Next Steps</h2>
 
     <div class="my_fr">
-    <% if @current_user %>
-      <p>
-        <% if @comment.agency_participates_on_regulations_dot_gov? %>
-          Your comment tracking number has been added to your MyFR account and you will recieve
-          an email notification when your comment has been made public by <%= @comment.agency_name %>.
-        <% else %>
-          Your comment tracking number has been added to your MyFR account; because <%= @comment.agency_name %> does
-          not publish comments on Regulations.gov, to check the status of your comment or obtain further information,
-          please follow-up directly with the agency contact listed in the document.
-        <% end %>
-      </p>
-
-      <%= csrf_meta_tag %>
-      <ul>
-        <li><span class="description"><%= t('notifications.comment.publication.active') %></span> <%= link_to t('notifications.links.remove'), comment_publication_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
-        <li><span class="description"><%= t('notifications.comment.followup_document.active') %></span> <%= link_to t('notifications.links.remove'), comment_followup_document_notifications_url, :'data-comment-tracking-number' => @comment.comment_tracking_number, :method => :delete, :class => 'notifications' %></li>
-      </ul>
-    <% else %>
-      <p>
-        Sign in / sign up to save your comment tracking number and recieve a copy of your comment via email.
-      </p>
-
-      <%= semantic_form_for :comment_notifications, :url => persist_for_login_comments_url do |f| %>
-        <%= f.inputs do %>
-          <%= f.input :comment_publication_notification, :as => :boolean, :label => 'Notify me when my comment is made public.', :input_html => {:checked => true} %>
-          <%= f.input :followup_document_notification, :as => :boolean, :label => 'Notify me when a future article mentions the article I commented on.', :input_html => {:checked => true} %>
-          <%= f.input :comment_tracking_number, :as => :hidden, :value => @comment.comment_tracking_number %>
-          <%= f.input :comment_secret, :as => :hidden, :value => @comment.secret %>
-        <% end %>
-        <%= f.buttons do %>
-          <%= f.commit_button :sign_in, :label => 'Sign In'%>
-          <%= f.commit_button :sign_up, :label => 'Sign Up'%>
-        <% end %>
-      <% end %>
-    <% end %>
+      <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+      <%= render :partial => 'signed_in_user_myfr_next_steps' if current_user %>
+      <%= render :partial => 'not_signed_in_user_myfr_next_steps' unless current_user %>
     </div>
-  
 
     <div class="print">
-      <p><%= link_to 'Print your comment', '#', 
-                     :'data-comment-data' => @comment.comment_data.to_json, 
-                     :'data-current-document-details' => {:title  => @comment.article.title,
-                                                          :agency => @comment.agency_name,
-                                                          :type   => @comment.article.type,
-                                                          :url    => @comment.article.short_article_url,
-                                                          :published => @comment.article.publication_date}.to_json, 
-                     :'data-comment-details' => {:tracking_number => @comment.comment_tracking_number,
-                                                 :submission_date => @comment.commented_at}.to_json,
-                     :id => 'print-comment' %> for your records and for any future coorespondence about your
-      comment with <%= @comment.agency_name %>.</p>
+      <span class="icon-fr2 icon-fr2-print"></span>
+      <p>
+        <%= link_to 'Print your comment', '#',
+          :'data-comment-data' => @comment.comment_data.to_json,
+          :'data-current-document-details' => {
+            :title  => @comment.article.title,
+            :agency => @comment.agency_name,
+            :type   => @comment.article.type,
+            :url    => @comment.article.short_article_url,
+            :published => @comment.article.publication_date
+          }.to_json,
+          :'data-comment-details' => {
+            :tracking_number => @comment.comment_tracking_number,
+            :submission_date => Date.today
+          }.to_json,
+          :id => 'print-comment' %>
+        for your records and for any future coorespondence about your
+        comment with <%= @comment.agency_name %>.
+      </p>
     </div>
 
     <div class="social_media">
-      <p>Public participation is vital to a functioning democracy, get others involved!</p>
+      <span class="icon-fr2 icon-fr2-sharing"></span>
+
+      <p>
+        Public participation is vital to a functioning democracy,
+        get others involved!
+      </p>
+
       <ul class="media_buttons">
         <li>
           <div class="left">
-            <%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!") %>
+            <%= link_to_twitter(
+              "I commented on #{@comment.article.short_article_url}."
+            ) %>
           </div>
           <div class="right">
-            <p><%= link_to_twitter("I just commented on #{@comment.article.short_article_url}. You should too!", "Create a tweet", false) %>. We'll provide a basic tweet with a link to the article you commented on. You'll be able to customize the message before you tweet.</p>
+            <p>
+              <%= link_to_twitter(
+                "I commented on #{@comment.article.short_article_url}.",
+                "Create a tweet",
+                false
+              ) %>.
+              We'll provide a basic tweet with a link to the document you
+              commented on. You'll be able to customize the message before
+              you tweet.
+            </p>
           </div>
         </li>
         <li>
           <div class="left">
-            <%= link_to_facebook(@comment.article.short_article_url, @comment.article.title) %>
+            <%= link_to_facebook(
+              @comment.article.short_article_url,
+              @comment.article.title
+            ) %>
           </div>
           <div class="right">
-            <p><%= link_to_facebook(@comment.article.short_article_url, @comment.article.title, "Post to your Facebook wall", false) %>. We'll provide the title of the article you commented on and a link to it. You'll be able to customize your Facebook wall message before it is posted.</p>
+            <p>
+              <%= link_to_facebook(
+                @comment.article.short_article_url,
+                @comment.article.title,
+                "Post to your Facebook wall",
+                false
+              ) %>.
+              We'll provide the title of the document you commented on and a
+              link to it. You'll be able to customize your Facebook wall
+              message before it is posted.
+            </p>
           </div>
         </li>
       </ul>
@@ -91,13 +100,16 @@
 
     <div class="retrieval">
       <p>
-      FederalRegister.gov submits your comment to <a href="http://www.regulations.gov">Regulations.gov</a> and does not store the information provided in your comment. 
-      Your comment tracking number can be used to retrieve your comment from <a href="http://www.regulations.gov">Regulations.gov</a> 
-      once it has been made public by <%=  @comment.agency_name %>.</p>
+        Your comment may be viewable on
+        <a href="http://www.regulations.gov" target="_blank">Regulations.gov</a>
+        once <%= @comment.agency_name %>
+        has reviewed it. This process is dependent on agency public submission
+        policies/procedures and processing times. Use your tracking number to
+        find out the status of your comment.
+      </p>
     </div>
 
   </div>
 
   </div>
-</div> <!-- end comment_form_wrapper -->
-
+</div>

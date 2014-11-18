@@ -1,16 +1,35 @@
 class Comment < ApplicationModel
   belongs_to :user
+  has_one :subscription
+
+  attr_protected :agency_name,
+    :agency_participating,
+    :comment_publication_notification,
+    :comment_published_at,
+    :comment_tracking_number,
+    :created_at,
+    :document_number,
+    :encrypted_comment_data,
+    :id,
+    :iv,
+    :salt,
+    :user_id
 
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
+
+  AGENCY_POSTING_GUIDELINES_LEXICON = {
+    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#furinf\'>FOR FURTHER INFORMATION CONTACT</a>",
+    'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
+  }
 
   before_create :send_to_regulations_dot_gov
   before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
-  attr_accessor :secret
-  attr_reader :attachments, :comment_form
+  attr_accessor :secret, :confirm_submission, :response
+  attr_reader :attachments, :comment_form, :followup_document_notification
 
   validate :required_fields_are_present
   validate :fields_do_not_exceed_maximum_length
@@ -18,18 +37,15 @@ class Comment < ApplicationModel
   validate :attachments_are_uniquely_named
   validate :all_attachments_could_be_found
 
+  validates_inclusion_of :confirm_submission,
+    :in => [true, 1, "1"],
+    :message => "You must confirm the above statement."
+
   validates_presence_of :document_number
 
   def article
-    @article ||= ArticleDecorator.decorate( FederalRegister::Article.find(self.document_number) )
-  end
-
-  def attributes=(hsh)
-    hsh.keys.sort.reverse.each do |key|
-      self.send("#{key}=", hsh[key])
-    end
-
-    hsh
+    raise "Document number missing!" unless document_number.present?
+    @article ||= FederalRegister::Article.find(document_number)
   end
 
   def attachments
@@ -71,7 +87,8 @@ class Comment < ApplicationModel
         File.open(attachment.decrypt_to(dir))
       end
 
-      self.comment_tracking_number = comment_form.client.submit_comment(args)
+      self.response = comment_form.client.submit_comment(args)
+      self.comment_tracking_number = response.tracking_number
 
       # TODO: srm dir
     end
@@ -81,8 +98,39 @@ class Comment < ApplicationModel
     @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
   end
 
+  def build_subscription(user, request)
+    self.subscription = Subscription.new.tap do |s|
+      s.search_conditions = {:citing_document_numbers => document_number }
+      s.user = user
+      s.email = user.email
+      s.requesting_ip = request.remote_ip
+      s.environment = Rails.env
+      s.search_type = 'Entry'
+    end
+  end
+
+  def load_comment_form(api_options={})
+    HTTParty::HTTPCache.reading_from_cache(
+      api_options.fetch(:read_from_cache) { true }
+    ) do
+      client = RegulationsDotGov::Client.new
+
+      if article.comment_url
+        self.comment_form = client.get_comment_form(document_number)
+      else
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+  end
+
+  def attributes=(attr)
+    super(
+      Hash[ attr.select{|k,v| respond_to?("#{k}=")} ]
+    )
+  end
+
   def respond_to?(name, include_private = false)
-    attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
+    attr_name = normalize_attribute(name)
     comment_form.try(:has_field?, attr_name) || super
   end
 
@@ -93,7 +141,7 @@ class Comment < ApplicationModel
 
     @comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name)}
 
-    self.encrypted_comment_data = encrypt(@comment_data.to_json) 
+    self.encrypted_comment_data = encrypt(@comment_data.to_json)
   end
 
   def attachments_are_uniquely_named
@@ -105,7 +153,7 @@ class Comment < ApplicationModel
   def required_fields_are_present
     comment_form.fields.select(&:required?).each do |field|
       if @attributes[field.name].blank?
-        errors.add(field.name, "cannot be blank")
+        errors.add(field.name, "You can't leave this field blank")
       end
     end
   end
@@ -124,15 +172,15 @@ class Comment < ApplicationModel
 
   def fields_do_not_exceed_maximum_length
     comment_form.text_fields.each do |field|
-      if field.max_length && @attributes[field.name].length > field.max_length
+      if @attributes[field.name].present? && field.max_length && @attributes[field.name].length > field.max_length
         errors.add(field.name, "cannot exceed #{field.max_length} characters")
       end
     end
   end
 
   def method_missing(name, *val)
-    attr_name = name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
-    if @comment_form.has_field?(attr_name)
+    attr_name = normalize_attribute(name)
+    if respond_to?( attr_name )
       @attributes ||= []
 
       if name.to_s =~ /=$/
@@ -143,5 +191,9 @@ class Comment < ApplicationModel
     else
       super
     end
+  end
+
+  def normalize_attribute(name)
+    name.to_s.sub(/(?:_before_type_cast)?=?$/,'')
   end
 end

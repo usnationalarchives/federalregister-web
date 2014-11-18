@@ -1,0 +1,57 @@
+<p>
+  <% if @comment.agency_participates_on_regulations_dot_gov? %>
+    Your comment tracking number has been added to your MyFR account.
+    Use this tracking number to find out the status of your comment
+    on Regulations.gov or when communicating with
+    <%= @comment.agency_name %>.
+  <% else %>
+    Your comment tracking number has been added to your MyFR account.
+    Because <%= @comment.agency_name %> does not publicly post comments
+    on Regulations.gov, to check the status of your comment or obtain
+    further information please follow-up directly with the agency
+    contact listed in the document.
+  <% end %>
+</p>
+
+<% unless current_user.confirmed? %>
+  <div class="warning message">
+    <p>
+      Your MyFR email address has not yet been confirmed. You will not
+      recieve any notifications until your email address has been
+      confirmed.
+      <%= link_to 'Resend confirmation email',
+        resend_confirmation_path,
+        :class => 'resend_email_confirmation',
+        :target => :blank %>.
+    </p>
+  </div>
+<% end %>
+
+<ul>
+  <% if @comment.agency_participates_on_regulations_dot_gov? %>
+    <li class="first">
+      <span class="description">
+        <%= current_user.confirmed? ?
+          t('notifications.comment.publication.active') :
+          t('notifications.comment.publication.active_unconfirmed') %>
+      </span>
+      <%= link_to t('notifications.links.remove'),
+        comment_publication_notifications_url,
+        :'data-comment-tracking-number' => @comment.comment_tracking_number,
+        :method => :delete,
+        :class => 'notifications posting remove' %>
+    </li>
+  <% end %>
+  <li>
+    <span class="description">
+      <%= current_user.confirmed? ?
+        t('notifications.comment.followup_document.active') :
+        t('notifications.comment.followup_document.active_unconfirmed') %>
+    </span>
+    <%= link_to t('notifications.links.remove'),
+      comment_followup_document_notifications_url,
+      :'data-comment-tracking-number' => @comment.comment_tracking_number,
+      :method => :delete,
+      :class => 'notifications followup remove' %>
+  </li>
+</ul>

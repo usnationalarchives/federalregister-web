@@ -3,15 +3,15 @@ class CommentAttachment < ApplicationModel
   require 'open-uri'
 
   ALLOWED_EXTENSIONS = ["bmp", "doc", "xls", "pdf", "gif", "htm", "html", "jpg", "jpeg", "png", "ppt", "rtf", "sgml", "tiff", "tif", "txt" , "wpd", "xml", "docx", "xlsx", "pptx"]
-  MAX_FILE_SIZE = 10_000_000
+  MAX_FILE_SIZE = 10_485_760
 
   attr_accessor :secret
 
-  before_create :generate_token
   before_validation :update_attachment_attributes
 
   validates_presence_of :attachment
-  validates :file_size, :numericality => {:less_than => MAX_FILE_SIZE, :message => "must be less than 10MB"}
+  # 16 is a fudge number that is getting added to our uploaded files...
+  validates :file_size, :numericality => {:less_than_or_equal_to => MAX_FILE_SIZE + 16, :message => "must be less than 10MB"}
   validates :file_type, :format => {:with => /^#{ALLOWED_EXTENSIONS.join('|')}$/i, :message => "not allowed"}
 
   mount_uploader :attachment, AttachmentUploader
@@ -45,11 +45,23 @@ class CommentAttachment < ApplicationModel
     path
   end
 
-  private
-
-  def generate_token
-    self.token = SecureRandom.hex(32)
+  def to_jq_upload
+    {
+      :name  => original_file_name || attachment_file_name,
+      :size  => file_size || self.attachment.try(:file).try(:size),
+      :token => token,
+    }
   end
+
+  def to_jq_upload_error
+    {
+      :name  => original_file_name || attachment_file_name,
+      :size  => file_size || self.attachment.try(:file).try(:size),
+      :error => errors.full_messages.to_sentence,
+    }
+  end
+
+  private
 
   def update_attachment_attributes
     if attachment.present? && (attachment_changed? || new_record?)

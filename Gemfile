@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.18'
 gem 'rake',  '0.9.2.2'
 
 gem 'mysql2', '0.3.11'
@@ -23,6 +23,7 @@ gem "sass",          "~> 3.2.1"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'jquery-rails'
+gem 'underscore-rails', '~> 1.6.0'
 
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
@@ -36,8 +37,14 @@ gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
 
-gem "httparty", "~> 0.12.0"
+gem "httparty", "0.11.0"
 gem "httmultiparty"
+
+# api caching
+gem 'SystemTimer', :platforms => :ruby_18
+gem 'cachebar', :git => "git@github.com:criticaljuncture/cachebar.git"
+gem 'redis', '~> 3.0.7'
+gem 'redis-namespace'
 
 gem 'sendgrid'
 
@@ -55,6 +62,10 @@ gem 'indefinite_article'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'sass-rails',    "~> 3.2.5"
+  gem "sass",          "~> 3.2.1"
+
   gem 'compass',       '0.12.2'
   gem 'compass-rails', "1.0.3"
   gem 'oily_png',   "1.0.2"  # C binding for the pure ruby chunky_png used by compass
@@ -74,12 +85,14 @@ group :development, :test do
 
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
-  gem "factory_girl_rails",             "~> 4.0",      :require => false
+  gem "factory_girl_rails",             "~> 4.0",      :require => false if RUBY_VERSION == '1.9.3'
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
+  if RUBY_VERSION == '1.9.3'
+    gem 'capybara'
+    gem 'capybara-webkit'
+    gem 'capybara-screenshot'
+  end
 
   gem 'database_cleaner'
 
@@ -87,6 +100,7 @@ group :development, :test do
 
   gem 'codeclimate-test-reporter', :require => nil
   gem 'pry'
+  gem 'pry-debugger', :platforms => :ruby_19
 
   #gem 'jasmine-rails', '~> 0.4.7'
   # jasmine dependencies - pre ruby1.9.3

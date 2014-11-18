@@ -119,6 +119,7 @@ class Clipping < ActiveRecord::Base
 
   def comment
     return if user.nil?
+
     comment = user.comments.find(:first, 
                    :conditions => {:document_number => self.document_number}
                   )

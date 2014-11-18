@@ -7,8 +7,31 @@
 <%= add_handlebars_template('email_suggestion', 'email-suggestion') %>
 <%= add_handlebars_template('email_invalid', 'email-invalid') %>
 
+<!--[if lte IE 8]>
+<script src="<%= my_asset_path('ie-shared.js') %>"></script>
+<![endif]-->
+
 <!--[if lte IE 7]>
 <script src="<%= my_asset_path('fr2-icons-lte-ie7.js') %>"></script>
 <![endif]-->
 
-<%= csrf_meta_tags %>
+<!-- Comment Feature Templates -->
+<%= add_handlebars_template(
+  'comment_attachment_upload',
+  'comment-attachment-upload') %>
+<%= add_handlebars_template(
+  'comment_attachment_complete',
+  'comment-attachment-complete') %>
+<%= add_handlebars_template(
+  'comment_summary',
+  'comment-summary') %>
+<%= add_handlebars_template(
+  'comment_preview',
+  'comment-preview') %>
+<%= add_handlebars_template(
+  'regulations_dot_gov_attachment_requirements',
+  'regulations-dot-gov-attachment-requirements') %>
+<%= add_handlebars_template(
+  'comment_print_summary',
+  'comment-print-summary') %>
+

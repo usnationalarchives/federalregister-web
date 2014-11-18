@@ -1,6 +1,6 @@
 class CommentAttachmentsController < ApplicationController
   skip_before_filter :authenticate_user!
-  protect_from_forgery :except => :create 
+  protect_from_forgery :if => :current_user
 
   def create
     @comment_attachment = CommentAttachment.new
@@ -9,12 +9,15 @@ class CommentAttachmentsController < ApplicationController
     @comment_attachment.attachment = params[:comment_attachment][:attachment]
 
     respond_to do |wants|
+      # IE8 & 9 require the response to come back as text/html and
+      # only make the request as html...
+      wants.html do
+        render :json => jq_upload_response.to_json,
+          :content_type => 'text/html',
+          :layout => false
+      end
       wants.json do
-        if @comment_attachment.save
-          render :action => "index"
-        else
-          render :action => "error"
-        end
+        render :json => jq_upload_response.to_json
       end
     end
   end
@@ -23,5 +26,15 @@ class CommentAttachmentsController < ApplicationController
     @comment_attachment = CommentAttachment.find_by_token!(params[:id])
     @comment_attachment.destroy
     render :nothing => true
+  end
+
+  private
+
+  def jq_upload_response
+    if @comment_attachment.save
+      {:files => [@comment_attachment.to_jq_upload]}
+    else
+      {:files => [@comment_attachment.to_jq_upload_error]}
+    end
   end
 end

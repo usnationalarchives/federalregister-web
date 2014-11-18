@@ -1,34 +1,34 @@
-h2.comment.title {
-  /*@include my_fr2-sprite(icon_comment_large, $my_fr2-sprite-dimensions, 0, 2);*/
-  }
+body .tipsy.agency-not-participating { width: 250px; }
+
+h2.title {
+  @extend %list_page_title;
+  .icon-fr2.icon-fr2-comment { top: 5px; }
+}
 div#comment_metadata_bar { @extend %list_page_title_metadata_bar; }
 
-ul#comments > li { 
+ul#comments > li {
   @extend %rounded_capsule;
   width: 938px;
-  }
+}
 
 ul#comments {
   div.rule_type { @extend %large_document_icon_frame; }
 
-  div.rule_type.doc_presdocu img { @extend %presdoc_large_icon; }
-  div.rule_type.doc_rule img { @extend %rule_large_icon; }
-  div.rule_type.doc_notice img { @extend %notice_large_icon; }
-  div.rule_type.doc_prorule img { @extend %prorule_large_icon; }
-  div.rule_type.doc_unknown img { @extend %unknown_large_icon; }
-  div.rule_type.doc_correct img { @extend %correct_large_icon; }
-
   .comment_count {
-    left: 20px;
+    left: 15px;
     display: inline-block;
     bottom: 10px;
     position: absolute;
-    width: 35px;
+    width: 53px;
     height: 25px;
 
-    /*@include my_fr2-sprite(icon_comment_medium_green, $my_fr2-sprite-dimensions, 0, 0);*/
+    .icon-fr2.icon-fr2-conversation-alt {
+      font-size: 20px;
+      float: left;
+      color: $fr-green;
+    }
 
-    a.count {
+    .count {
       width: auto;
       min-width: 8px;
       min-height: 8px;
@@ -41,21 +41,35 @@ ul#comments {
       font-weight: bold;
       text-align: center;
       line-height: 13px;
-      
+
       @include border-radius(12);
       margin: 0;
-      margin-left: 17px;
-      
+      margin-left: 5px;
+
       color: #FFF;
       background-color: $fr-green;
       border: 2px solid #FFF;
       }
-    a.count:hover { background-color: $fr-orange; }
+
+    &:hover {
+      .icon-fr2 { color: $fr-orange; }
+      .count { background-color: $fr-orange; }
     }
+  }
 
   .title { @extend %capsule_title; }
-  .comment_data { 
+  .comment_data {
     @extend %capsule_metadata_dash_separated;
     width: 178px;
+
+    dl.metadata {
+      dt {
+        height: auto;
+        line-height: 12px;
+        margin: 10px 0 5px 0;
+
+        &:first-child { margin-top: 0; }
+      }
     }
+  }
 }

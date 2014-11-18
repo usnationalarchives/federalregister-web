@@ -103,5 +103,9 @@ ul#subscriptions .icon-fr2 {
   }
 }
 
-.subscription_data .active { color: $fr-green; }
-.subscription_data .inactive { color: $fr-red; }
+.subscription_data {
+  .active { color: $fr-green; }
+  .inactive { color: $fr-red; }
+}
+
+.tipsy.commented-on-document { width: 600px; }

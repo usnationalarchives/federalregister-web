@@ -12,7 +12,7 @@ function set_doc_type_search_filter(el) {
   } else {
     el.addClass('on');
 
-    el.data('tooltip', 'Remove search limitation (documents of type ' + el.data('filter-doc-type-display') + ')' );
+    el.data('tooltip', 'Remove limitation (documents of type ' + el.data('filter-doc-type-display') + ')' );
     el.tipsy('hide');
     el.tipsy('show');
 

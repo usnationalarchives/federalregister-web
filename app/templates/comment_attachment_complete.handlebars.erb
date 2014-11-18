@@ -1,5 +1,5 @@
 {{#each files}}
-  <tr class="template-download fade{{#if this.error}} error{{/if}}" data-name="{{this.name}}">
+<tr class="template-download fade{{#if this.error}} error {{else}} complete {{/if}}" data-name="{{this.name}}">
     <td class="name">
       <span>{{this.name}}</span>
       <input type="hidden" name="comment[attachment_tokens][]" value="{{this.token}}" />
@@ -14,6 +14,7 @@
     <td class="size"><span>{{human_size this.size}}</span></td>
     <td class="delete">
       <button class="button delete" data-type="DELETE" data-url="/my/comment_attachments/{{this.token}}">
+        <span class="icon-fr2 icon-fr2-delete"></span>
         <span>Delete</span>
       </button>
     </td>

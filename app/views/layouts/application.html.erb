@@ -16,6 +16,7 @@
     <esi:include src="/layout/header?header_type=<%= header_type %>" />
 
     <div id="main">
+      <esi:include src="<%= site_notification_path(:identifier => :global) %>" />
       <%= yield %>
     </div>
 

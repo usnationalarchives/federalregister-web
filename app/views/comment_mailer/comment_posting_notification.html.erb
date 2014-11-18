@@ -1,0 +1,27 @@
+<% add_css_file_to_mailer('comment_mailer.css') %>
+
+<div class="intro">
+  <p>
+    Your comment on
+    <%= link_to @comment.article.title, @comment.article.html_url %>
+    (comment tracking number: <%= @comment.tracking_number_link %>)
+    has been publicly posted on Regulations.gov by <%= @comment.agency_name %>.
+  </p>
+
+  <p class="comment_tracking_info">
+    Your can use the link below to view your posted comment on Regulations.gov.
+  </p>
+
+  <p class="comment_tracking_number">
+    Comment URL:
+    <%= link_to @comment.posted_comment_url,
+      @comment.posted_comment_url,
+      :class => 'tracking_number' %>
+  </p>
+
+  <p>
+    As a registered MyFR user you can also view your comment status and manage
+    any followup subscriptions via your
+    <%= link_to 'My Comments page', @fr_comments_url %>.
+  </p>
+</div>

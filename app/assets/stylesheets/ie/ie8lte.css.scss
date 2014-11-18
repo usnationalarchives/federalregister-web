@@ -1,6 +1,6 @@
 h2.title { padding-bottom: 3px; }
 
-/* fr article clipping menu */
+/* fr document clipping menu */
 .metadata_share_bar .share ul li.clip_for_later { padding-right: 25px; }
 
 /* my fr clippings */
@@ -43,6 +43,20 @@ div#new-folder-modal .title_bar .icon-fr2 {
 /* sign in form and new folder modal form*/
 #new_user.formtastic fieldset ol,
 .folder.formtastic fieldset ol { margin-left: 0px; }
+
+.formtastic.comment {
+  fieldset ol { margin-left: 0; }
+
+  .file {
+    .fileupload-button #fileupload {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+    }
+
+    button.delete span.icon-fr2 { top: 3px; }
+  }
+}
+
+.comment_notifications.formtastic ol { margin-left: 0; }
 
 
 /*********
