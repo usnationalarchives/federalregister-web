@@ -52,6 +52,32 @@ MyFr2::Application.routes.draw do
         type: /(official|public-inspection|reader-aids)/
       }
 
+  get 'esi/reader_aids',
+      to: 'special#reader_aids'
+
+  get 'esi/reader_aids/blog_highlights',
+      to: 'reader_aids#blog_highlights'
+
+  get 'esi/reader_aids/using_fr',
+      to: 'reader_aids#using_fr'
+
+  get 'esi/reader_aids/understanding_fr',
+      to: 'reader_aids#understanding_fr'
+
+  get 'esi/reader_aids/recent_updates',
+      to: 'reader_aids#recent_updates'
+
+  get 'esi/reader_aids/videos_and_tutorials',
+      to: 'reader_aids#videos_and_tutorials'
+
+  get 'esi/reader_aids/developer_tools',
+      to: 'reader_aids#developer_tools'
+
+  get 'esi/layouts/navigation/sections',
+    to: 'sections#navigation'
+
+  get 'esi/layout/footer',
+      to: 'special#footer'
   #
   # Public Inspection
   #
@@ -79,11 +105,25 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#index',
       as: :reader_aids
 
+  get 'reader-aids/search',
+      to: 'reader_aids#search',
+      as: :reader_aids_search
+
+  get 'reader-aids/:section',
+      to: 'reader_aids#view_all',
+      as: :reader_aids_section
+
+  get 'reader-aids/:section/:item',
+      to: 'reader_aids#show',
+      as: :reader_aid
 
   #
   # Home
   #
   root to: 'special#home'
+  match 'special/user_utils' => 'special#user_utils'
+  match 'special/shared_assets' => 'special#shared_assets'
+  match 'special/my_fr_assets' => 'special#my_fr_assets'
 
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",

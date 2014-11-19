@@ -17,6 +17,7 @@ class SpecialController < ApplicationController
   end
 
   def navigation
+    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
     cache_for 1.day
   end
 
@@ -56,5 +57,13 @@ class SpecialController < ApplicationController
     else
       @response = raw_response.parsed_response
     end
+  end
+
+  def footer
+    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
+    @my_fr_presenter = MyFrPresenter.new
+    @sections = SectionPresenter::SECTIONS
+
+    render "layouts/footer", layout: false
   end
 end

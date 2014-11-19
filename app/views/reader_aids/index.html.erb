@@ -1,7 +1,10 @@
 <% header_type 'reader-aids' %>
 
 <div class="title reader-aids">
-  <span>Reader Aids</span>
+  <span>
+    <span class="icon-fr2 icon-fr2-Directions"></span>
+    Reader Aids
+  </span>
 </div>
 
 <%= bootstrap_context_wrapper do %>
@@ -20,19 +23,19 @@
           improve your FederalRegister.gov skills.
         </p>
 
-        <%= render partial: 'index_nav' %>
+        <%= render partial: 'index_nav', locals: {items: @presenter.sections}  %>
 
         <div class="row">
           <div class="col-xs-8 col-md-8 section">
-            <%= render partial: 'blog_highlights' %>
-            <%= render partial: 'using_federal_register_dot_gov' %>
-            <%= render partial: 'understanding_federal_register' %>
+            <esi:include src="/esi/reader_aids/blog_highlights" />
+            <esi:include src="/esi/reader_aids/using_fr" />
+            <esi:include src="/esi/reader_aids/understanding_fr" />
           </div>
 
           <div class="col-xs-4 col-md-4 section">
-            <%= render partial: 'recent_site_updates' %>
-            <%= render partial: 'videos_and_tutorials' %>
-            <%= render partial: 'developer_tools' %>
+            <esi:include src="/esi/reader_aids/recent_updates" />
+            <esi:include src="/esi/reader_aids/videos_and_tutorials" />
+            <esi:include src="/esi/reader_aids/developer_tools" />
           </div>
         </div>
       <% end %>

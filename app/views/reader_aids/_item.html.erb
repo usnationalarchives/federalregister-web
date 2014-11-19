@@ -1,0 +1,11 @@
+<li>
+  <h5><%= link_to item.formatted_title, item.path(presenter.section_identifier) %></h5>
+  <%= item.formatted_excerpt %>
+  <% if presenter.show_authorship? %>
+    <span class="byline">
+      <span class="authorship">
+        <%= link_to item.author.name, item.author.url %> - <%= link_to item.modified, item.path(presenter.section_identifier) %>
+      </span>
+    </span>
+  <% end %>
+</li>

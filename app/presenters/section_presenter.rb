@@ -1,5 +1,33 @@
 class SectionPresenter
   attr_reader :section_id, :documents, :slug, :section
+
+  SECTIONS = {
+    "money" => {
+      title: "Money",
+      id: 1,
+    },
+    "environment" => {
+      title: "Environment",
+      id: 2,
+    },
+    "world" => {
+      title: "World",
+      id: 3,
+    },
+    "science-and-technology" => {
+      title: "Science and Technology",
+      id: 4,
+    },
+    "business-and-industry" => {
+      title: "Business and Industry",
+      id: 5,
+    },
+    "health-and-public-welfare" => {
+      title: "Health and Public Welfare",
+      id: 6,
+    },
+  }
+
   def initialize(slug)
     @section_id = get_section_id(slug)
     @slug = slug
@@ -70,14 +98,6 @@ class SectionPresenter
   private
 
   def get_section_id(section)
-    sections = {
-      "money" => 1,
-      "environment" => 2,
-      "world" => 3,
-      "science-and-technology" => 4,
-      "business-and-industry" => 5,
-      "health-and-public-welfare" => 6
-    }
-    sections.fetch(section)
+    SECTIONS.fetch(section)[:id]
   end
 end

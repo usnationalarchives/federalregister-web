@@ -1,0 +1,48 @@
+<% header_type 'reader-aids' %>
+<div class="title reader-aids">
+  <span>
+    <span class="icon-fr2 icon-fr2-Search"></span>
+    Reader Aids Search
+  </span>
+</div>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 section">
+      <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
+        <div class="section search_results">
+          <h4>
+            <%= pluralize @search_presenter.result_count, 'result' %>
+            found in Reader Aids for "<%= @search_presenter.search_term %>"
+          </h4>
+
+          <%= link_to "View All Reader Aids", reader_aids_path %>
+
+          <% if false %>
+          <ul class="fr-list">
+            <% @search_presenter.posts.each do |post| %>
+              <li>
+                <h5><%= link_to post.title, post.path %></h5>
+                <%= post.formatted_excerpt %>
+              </li>
+            <% end %>
+          </ul>
+          <% end %>
+
+          <% @search_presenter.grouped_pages.each do |parent, pages| %>
+            <h3><%= @search_presenter.section_title(parent) %></h3>
+            <ul class="fr-list">
+              <% pages.each do |page| %>
+                <li>
+                  <h5><%= link_to page.title, page.path(parent) %></h5>
+                  <%= page.formatted_excerpt %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

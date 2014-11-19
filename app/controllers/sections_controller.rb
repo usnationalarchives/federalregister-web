@@ -30,4 +30,8 @@ class SectionsController < ApplicationController
   end
 
   private
+
+  def navigation
+    render "esi/layout/navigation/sections", layout: false
+  end
 end
