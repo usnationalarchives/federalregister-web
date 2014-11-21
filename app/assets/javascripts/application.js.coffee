@@ -18,9 +18,8 @@
 //= require old/search
 //= require old/rss
 
-$(document).ready(function() {
+$(document).ready ()->
   $('.clippy').clippy({
     keep_text: true,
     clippy_path: '/assets/clippy.swf'
   });
-});
