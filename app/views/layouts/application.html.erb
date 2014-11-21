@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
-    <esi:include src="/layout/head_content?page_to_track=<%= yield(:page_to_track) %>" />
+    <%= esi layout_head_content_path(yield(:page_to_track)) %>
 
     <%# Facebook uses these for parsing when someone adds a link  %>
     <%= tag(:meta, :name => 'title', :content => yield(:page_title) ) if yield(:page_title) %>
@@ -14,8 +14,8 @@
   <body id="my_fr2">
     <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
 
-    <esi:include src="/layout/header?header_type=<%= header_type %>" />
-    <esi:include src="<%= site_notification_path(:identifier => :global) %>" />
+    <%= esi layout_header_path(header_type) %>
+    <%= esi site_notification_path(:identifier => :global) %>
 
     <div id="main">
       <div id="<%= yield(:page_controller) %>" class="<%= yield(:page_action) %>">
@@ -23,8 +23,6 @@
       </div>
     </div>
 
+    <%= esi footer_path %>
   </body>
-  <footer>
-    <esi:include src="/esi/layout/footer" />
-  </footer>
 </html>

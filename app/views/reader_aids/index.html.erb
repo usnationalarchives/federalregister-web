@@ -27,15 +27,15 @@
 
         <div class="row">
           <div class="col-xs-8 col-md-8 section">
-            <esi:include src="/esi/reader_aids/blog_highlights" />
-            <esi:include src="/esi/reader_aids/using_fr" />
-            <esi:include src="/esi/reader_aids/understanding_fr" />
+            <%= esi reader_aids_blog_highlights_path %>
+            <%= esi reader_aids_using_fr_path %>
+            <%= esi reader_aids_understanding_fr_path %>
           </div>
 
           <div class="col-xs-4 col-md-4 section">
-            <esi:include src="/esi/reader_aids/recent_updates" />
-            <esi:include src="/esi/reader_aids/videos_and_tutorials" />
-            <esi:include src="/esi/reader_aids/developer_tools" />
+            <%= esi reader_aids_recent_updates_path %>
+            <%= esi reader_aids_videos_and_tutorials_path %>
+            <%= esi reader_aids_developer_tools_path %>
           </div>
         </div>
       <% end %>

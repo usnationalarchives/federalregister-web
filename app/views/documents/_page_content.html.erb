@@ -12,8 +12,8 @@
             <p><%= document.action %></p>
           <% end %>
           <!-- RW: Fix this when upgrading varnish -->
-          <esi:include src="<%= document.http_abstract_html_url %>" />
-          <esi:include src="<%= document.http_body_html_url %>" />
+          <%= esi document.http_abstract_html_url %>
+          <%= esi document.http_body_html_url %>
         <% end %>
       </div>
     <% end %>

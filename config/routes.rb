@@ -7,7 +7,6 @@ MyFr2::Application.routes.draw do
     esi.match 'special/my_fr_assets' => 'special#my_fr_assets'
     esi.match 'special/fr2_assets' => 'special#fr2_assets'
     esi.match 'special/navigation' => 'special#navigation'
-    esi.match 'special/site_notifications/:identifier' => 'special#site_notifications', :as => :site_notification
   end
 
   match 'status' => 'special#status'
@@ -46,38 +45,59 @@ MyFr2::Application.routes.draw do
   #
   # ESI Routes
   #
-  get 'special/header/:type',
+  with_options(:quiet => true) do |esi|
+    esi.get 'special/header/:type',
       to: 'special#header',
       constraints: {
         type: /(official|public-inspection|reader-aids)/
       }
 
-  get 'esi/reader_aids',
-      to: 'special#reader_aids'
+    esi.get 'special/site_notifications/:identifier',
+      to: 'special#site_notifications',
+      as: :site_notification
 
-  get 'esi/reader_aids/blog_highlights',
-      to: 'reader_aids#blog_highlights'
+    esi.get 'esi/reader_aids',
+      to: 'special#reader_aids',
+      as: :home_reader_aids
 
-  get 'esi/reader_aids/using_fr',
-      to: 'reader_aids#using_fr'
+    esi.get 'esi/reader_aids/blog_highlights',
+      to: 'reader_aids#blog_highlights',
+      as: :reader_aids_blog_highlights
 
-  get 'esi/reader_aids/understanding_fr',
-      to: 'reader_aids#understanding_fr'
+    esi.get 'esi/reader_aids/using_fr',
+      to: 'reader_aids#using_fr',
+      as: :reader_aids_using_fr
 
-  get 'esi/reader_aids/recent_updates',
-      to: 'reader_aids#recent_updates'
+    esi.get 'esi/reader_aids/understanding_fr',
+      to: 'reader_aids#understanding_fr',
+      as: :reader_aids_understanding_fr
 
-  get 'esi/reader_aids/videos_and_tutorials',
-      to: 'reader_aids#videos_and_tutorials'
+    esi.get 'esi/reader_aids/recent_updates',
+      to: 'reader_aids#recent_updates',
+      as: :reader_aids_recent_updates
 
-  get 'esi/reader_aids/developer_tools',
-      to: 'reader_aids#developer_tools'
+    esi.get 'esi/reader_aids/videos_and_tutorials',
+      to: 'reader_aids#videos_and_tutorials',
+      as: :reader_aids_videos_and_tutorials
 
-  get 'esi/layouts/navigation/sections',
-    to: 'sections#navigation'
+    esi.get 'esi/reader_aids/developer_tools',
+      to: 'reader_aids#developer_tools',
+      as: :reader_aids_developer_tools
 
-  get 'esi/layout/footer',
-      to: 'special#footer'
+    esi.get 'esi/layouts/navigation/sections',
+      to: 'sections#navigation',
+      as: :navigation_sections
+
+    esi.get 'esi/layouts/navigation/reader-aids',
+      to: 'reader_aids#navigation',
+      as: :navigation_reader_aids
+
+    esi.get 'esi/layout/footer',
+      to: 'special#footer',
+      as: :footer
+  end
+
+
   #
   # Public Inspection
   #

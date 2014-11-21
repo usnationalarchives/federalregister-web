@@ -17,7 +17,8 @@
         <%= render partial: 'special/home/presidential_documents' %>
       </div>
 
-      <esi:include src="/esi/reader_aids" />
+      <%= esi home_reader_aids_path %>
+
       <div class="row">
         <%= render partial: 'special/home/browse_agencies' %>
         <%= render partial: 'special/home/browse_topics' %>
