@@ -1,6 +1,7 @@
 class ReaderAidsController < ApplicationController
   skip_before_filter :authenticate_user!
   before_filter :verify_section_exists, only: :view_all
+  layout false, only: :navigation
 
   def index
     @presenter = ReaderAidsPresenter::Base.new
@@ -80,6 +81,12 @@ class ReaderAidsController < ApplicationController
         section_identifier: 'developer-tools',
       )
     )
+  end
+
+  def navigation
+    cache_for 1.day
+
+    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
   end
 
   private

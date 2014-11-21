@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   skip_before_filter :authenticate_user!
+  layout false, only: :navigation
 
   def show
     @presenter = SectionPresenter.new(params[:section])
@@ -29,9 +30,9 @@ class SectionsController < ApplicationController
     end
   end
 
-  private
-
   def navigation
-    render "esi/layout/navigation/sections", layout: false
+    cache_for 1.day
+
+    @sections = SectionPresenter::SECTIONS
   end
 end

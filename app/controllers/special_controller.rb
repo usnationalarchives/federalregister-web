@@ -17,8 +17,6 @@ class SpecialController < ApplicationController
   end
 
   def navigation
-    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
-    cache_for 1.day
   end
 
   def shared_assets
@@ -45,6 +43,10 @@ class SpecialController < ApplicationController
   def status
     current_time_on_database = Clipping.connection.select_values("SELECT NOW()").first
     render :text => "Current time is: #{current_time_on_database} (MyFR)"
+  end
+
+  def reader_aids
+    render "special/home/reader_aids", layout: false
   end
 
   def site_notifications
