@@ -1,0 +1,83 @@
+/******************************
+
+TOPIC LIST
+
+******************************/
+
+.topic_list_info .title_bar {
+  border-top: none;
+  margin-bottom: 0;
+  margin-top: 7px;
+  padding-top: 0;
+  } 
+.topic_list_info {  
+  border-bottom: 3px solid #385F82;
+  margin-bottom: 1em;
+  position: relative;
+  overflow: hidden;
+  }
+
+.topic_list_container .title_bar {
+  margin-bottom: 0;
+  }
+.topic_count {
+  margin-bottom: 2em;
+  position: relative;
+  }  
+.topic_count h2 {
+  margin-top: 0;
+  }  
+.topic_list_container ul {
+  display: inline-block;
+  list-style: none;
+  margin-right: 1em;
+  margin-bottom: 0;
+  }
+.individual_topic_count {
+  display: inline-block;
+  width: 60px;
+  float: none;
+  color: #565656;
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: right;
+  }  
+.filters .actions {
+  position: relative;
+  }
+.filters .actions li {
+  clear: none;
+  float: none;
+  margin-left: 0;
+  }  
+.filters .actions li:first-child,
+.filters .actions li.firstchild,
+.filters .actions li:last-child, 
+.filters .actions li.lastchild   {
+  margin-left: 0;
+  padding: .25em .5em 0;
+  }
+/******************************
+
+TOPIC LIST
+
+******************************/  
+
+.citation_list {
+  list-style: none;
+  overflow: hidden;
+  }
+
+.citation_list li {
+  margin-bottom: 1em;
+  overflow: hidden;
+  }
+.citation_list .citation_count {
+  font-size:1.3em;
+  font-weight:700;
+  line-height:1.15;
+  }
+  
+  
+

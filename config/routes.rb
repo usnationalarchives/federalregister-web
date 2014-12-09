@@ -204,6 +204,14 @@ MyFr2::Application.routes.draw do
     root :to => "clippings#index",
          :as => :my_root
 
+    resources :topics, only: [:index, :show]
+
+    get 'topics/:id/significant.:format',
+      :controller => "topics",
+      :action => "significant_entries",
+      :conditions => { :method => :get },
+      as: 'significant_entries_topic'
+
     resources :agencies, only: [:index, :show]
 
     get 'agencies/:id/significant.:format',

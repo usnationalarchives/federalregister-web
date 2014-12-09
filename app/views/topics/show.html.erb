@@ -1,0 +1,35 @@
+<% page_controller 'topics' %>
+<% page_action 'show' %>
+<% title @presenter.topic.name %>
+<% description "Browse Federal Register documents  tagged by agencies with the topic '#{@presenter.topic.name}'. Use this topic to learn more about your areas of interest and the regulations that affect the topic '#{@presenter.topic.name}'." %>
+
+<% feed_autodiscovery topic_url(@presenter.topic.identifier, :format => :rss), false, "Documents in this topic", :search_conditions => {:topic_ids => [@presenter.topic.identifier]} %>
+<% feed_autodiscovery significant_entries_topic_url(@presenter.topic.identifier, :format => :rss), false,  "Significant Documents in this topic", :search_conditions => {:topic_ids => [@presenter.topic.identifier], :significant => '1'} %>
+
+<div class="title"><span>Topic</span></div>
+
+<div id="content_area">
+<h1><%= @presenter.topic.name %></h1>
+<p class='search_count'>Showing 1-<%= @presenter.topic.count %> of <%= link_to @presenter.result_count_text, documents_search_path(@presenter.topic_search_conditions) %> since 1994</p>
+
+<%= render :partial => "documents/list", :locals => {:documents => @presenter.topic.documents, :search_params => {:topic => @presenter.topic.identifier}} %>
+
+<p class='search_count'><%= link_to @presenter.more_results_count_text, documents_search_path(@presenter.topic_search_conditions) %></p>
+</div>
+
+<% aside_tag(:id => "sidebar") do %>
+  
+  <% section_tag(:class => 'TOC aside_box') do %>  
+    <h1>On This Page</h1>
+    <ul>
+      <li><%= link_to 'Recent Documents', '#recent_articles' %></li>
+    </ul>
+  <% end -%>
+  
+  <div class='aside_box subscribe'>  
+    <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => {:topic_ids => [@presenter.topic.identifier]}}), :class => 'subscription' %>
+    <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
+  </div>
+  
+  <%= render :partial => 'special/legal_disclaimer' %>
+<% end -%>
