@@ -1,0 +1,41 @@
+<li id="agencies-browse-preview" class="preview">
+  <div class="agency_finder">
+    <h2>Go to a specific agency</h2>
+    <%= form_tag agencies_path, :method => :get, :id => "agency-search-form" do %>
+      <label>Go to a specific agency:</label>
+      <input id="agency-search" class="browse_search" placeholder="Agricultural Marketing Service" data-autocomplete="autocomplete" />
+    <% end %>
+  </div>
+  <div class="agency_browse">
+    <table class="cabinet_agencies default">
+      <thead>
+        <tr>
+          <th><h2>Browse Agencies</h2></th>
+          <th class="past_7_days" data-tooltip="Documents Published in the Last 7 Days"></th>
+          <th class="closing_soon" data-tooltip="Documents with Comment Periods Closing in the Next 7 Days"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @presenter.agencies.each do |agency, index| %>
+          <tr>
+            <td class="agency_name"><%= link_to agency.name, agency_path(agency.identifier) %></td>
+            <td class="count_7_days">
+              <%= link_to agency.entry_counts_since('week'), 
+                  documents_search_path(agency.publication_date_conditions),
+                  :utm_source => 'navigation',
+                  :utm_medium => 'dropdown',
+                  :utm_content => 'agencies_last_7' %>
+            </td>
+            <td class="comments_closing_soon">
+              <%= link_to agency.comment_period_closing_count,
+                  documents_search_path(agency.comment_period_closing_conditions),
+                  :utm_source => 'navigation',
+                  :utm_medium => 'dropdown',
+                  :utm_content => 'agencies_closing_soon' %>
+            </td>
+            <% end %>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</li>

@@ -136,6 +136,10 @@ MyFr2::Application.routes.draw do
       to: 'sections#navigation',
       as: :navigation_sections
 
+    esi.get 'esi/layouts/navigation/agencies',
+      to: 'agencies#navigation',
+      as: :navigation_agencies
+
     esi.get 'esi/layouts/navigation/reader-aids',
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids

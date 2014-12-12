@@ -41,4 +41,9 @@ class AgenciesController < ApplicationController
       end
     end
   end
+
+  def navigation
+    @presenter = Navigation::AgenciesPresenter.new
+    render :partial => "layouts/navigation/agencies", :layout => false
+  end
 end

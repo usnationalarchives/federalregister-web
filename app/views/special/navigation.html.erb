@@ -1,33 +1,61 @@
-<%= esi navigation_sections_path %>
+<ul class="container">
+  <li id='nav-home'><a href="/" class="home" title="Home">Home</a></li>
 
-<%= esi navigation_reader_aids_path %>
+  <%= esi navigation_sections_path %>
+  <li class="dropdown previewable nav_browse">
+    <a class="browse top_nav">Browse<span class="arrow"></span></a>
+    <div class="subnav browse_list">
+      <ul class="left_column">
+        <li id='agencies-browse'>
+          <%= link_to 'Agencies', agencies_path, :class => "agencies" %>
+        </li>
+        <li id='topics-browse'>
+        </li>
+        <li id='current-article-browse'>
+          <%# link_to 'Dates', entries_current_issue_path, :class => "date" %>
+        </li>
+        <li id='public-inspection-browse'>
+          <%# link_to 'Public Inspection', public_inspection_documents_path, :class => "public_inspection" %>
+        </li>
+        <li id='executive-orders-browse'>
+          <%# link_to 'Executive Orders', executive_orders_path, :class => "executive_orders" %>
+        </li>
+      </ul>
+      <ul class="right_column">
+        <%= esi navigation_agencies_path %>
+      </ul>
+    </div>
+  </li>
 
-<li class="dropdown nav_myfr2">
-  <a class="myfr2 top_nav">
-    <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
-    My FR
-    <span class="arrow"></span>
-  </a>
+  <%= esi navigation_reader_aids_path %>
 
-  <ul class="subnav myfr2_list">
-    <li id='myfr2-clipboard'>
-      <%= link_to 'My Clipboard', '/my/clippings', :class => "myfr2-clipboard" %>
-    </li>
+  <li class="dropdown nav_myfr2">
+    <a class="myfr2 top_nav">
+      <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+      My FR
+      <span class="arrow"></span>
+    </a>
 
-    <li id='myfr2-comments'>
-      <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
-    </li>
+    <ul class="subnav myfr2_list">
+      <li id='myfr2-clipboard'>
+        <%= link_to 'My Clipboard', '/my/clippings', :class => "myfr2-clipboard" %>
+      </li>
 
-    <li id='myfr2-subscriptions'>
-      <%= link_to 'My Subscriptions', '/my/subscriptions', :class => "myfr2-subscriptions" %>
-    </li>
+      <li id='myfr2-comments'>
+        <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
+      </li>
 
-    <li id='myfr2-account'>
-      <% if user_signed_in? %>
-        <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
-      <% else %>
-        <%= link_to 'Sign In / Sign Up', new_session_path, :class => "myfr2-auth" %>
-      <% end %>
-    </li>
-  </ul>
-</li>
+      <li id='myfr2-subscriptions'>
+        <%= link_to 'My Subscriptions', '/my/subscriptions', :class => "myfr2-subscriptions" %>
+      </li>
+
+      <li id='myfr2-account'>
+        <% if user_signed_in? %>
+          <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
+        <% else %>
+          <%= link_to 'Sign In / Sign Up', new_session_path, :class => "myfr2-auth" %>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>
