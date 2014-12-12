@@ -79,7 +79,7 @@
       <% section_tag(:class => 'parent_agencies') do %>
         <h1 class="title_bar">Parent Agency</h1>
         <ul class="bullets">
-          <li><%= link_to @agency.parent.name, agency_path(@agency.parent.slug) %></li>
+          <li><%= link_to @agency.parent.name, agency_path(@agency.parent.identifier) %></li>
         </ul>
       <% end -%>
     <% end %>
