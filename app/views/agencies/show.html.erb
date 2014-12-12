@@ -5,8 +5,8 @@
 
 <div class="title"><span>Agency</span></div>
 
-<% feed_autodiscovery agency_url(@agency.slug, :format => :rss), false, "All Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id]} %>
-<% feed_autodiscovery significant_entries_agency_url(@agency.slug, :format => :rss), false, "Significant Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id], :significant => 1} %>
+<% feed_autodiscovery agency_url(@agency.identifier, :format => :rss), false, "All Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id]} %>
+<% feed_autodiscovery significant_entries_agency_url(@agency.identifier, :format => :rss), false, "Significant Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id], :significant => 1} %>
 
 <div class="group">
   <% section_tag(:id => 'agency_description') do %>
@@ -89,7 +89,7 @@
         <h1 class="title_bar">Sub-<%= @agency.children.size > 1 ? 'agency'.pluralize : 'agency' %></h1>
         <ul class="bullets">
           <% @agency.children.each do |agency| %>
-            <li><%= link_to agency.name, agency_path(agency.slug) %></li>
+            <li><%= link_to agency.name, agency_path(agency.identifier) %></li>
           <% end %>
         </ul>
       <% end -%>

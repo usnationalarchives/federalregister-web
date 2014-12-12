@@ -27,7 +27,7 @@ class AgencyDecorator < ApplicationDecorator
     logo[type.to_s + "_url"]
   end
 
-  def slug
+  def identifier
     url.split('/').last
   end
 end

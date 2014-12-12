@@ -8,14 +8,14 @@
 </h1>
  
 <% @agencies.each_with_index do |agency, index| %>
-  <a name="<%= agency.slug %>"></a>
+  <a name="<%= agency.identifier %>"></a>
   <h3><%= agency.name %></h3>
 
   <% if agency.children.present? %>
     <% agency.children.each_with_index do |sub_agency, index| %>
       <div class="sub_agency">
         <i>See</i>
-        <a href="#<%= sub_agency.slug %>" style="font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;"><%= sub_agency.name %></a> 
+        <a href="#<%= sub_agency.identifier %>" style="font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;"><%= sub_agency.name %></a>
         <span class="doc_count">(<%= pluralize(sub_agency.articles.to_a.size, 'document') %>)</span>
       </div>
     <% end %>

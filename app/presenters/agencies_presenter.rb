@@ -3,16 +3,16 @@ class AgenciesPresenter
     :agency,
     :public_inspection_documents
 
-  def initialize(agencies, agency_slug)
+  def initialize(agencies, agency_identifier)
     @agencies = agencies
-    @agency = get_agency(agency_slug)
+    @agency = get_agency(agency_identifier)
   end
 
-  def get_agency(slug)
+  def get_agency(identifier)
     AgencyDecorator.
       new(
         agencies.
-          detect{|a| a.url.split('/').last == slug},
+          detect{|a| a.url.split('/').last == identifier},
         agencies
       )
   end
