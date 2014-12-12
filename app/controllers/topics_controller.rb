@@ -31,4 +31,9 @@ class TopicsController < ApplicationController
       end
     end
   end
+
+  def navigation
+    @presenter = Navigation::TopicsPresenter.new
+    render :partial => "layouts/navigation/topics", :layout => false
+  end
 end

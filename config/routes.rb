@@ -140,6 +140,10 @@ MyFr2::Application.routes.draw do
       to: 'agencies#navigation',
       as: :navigation_agencies
 
+    esi.get 'esi/layouts/navigation/topics',
+      to: 'topics#navigation',
+      as: :navigation_topics
+
     esi.get 'esi/layouts/navigation/reader-aids',
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids

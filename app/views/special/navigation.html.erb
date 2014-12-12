@@ -10,6 +10,7 @@
           <%= link_to 'Agencies', agencies_path, :class => "agencies" %>
         </li>
         <li id='topics-browse'>
+          <%= link_to 'Topics', topics_path, :class => "topics" %>
         </li>
         <li id='current-article-browse'>
           <%# link_to 'Dates', entries_current_issue_path, :class => "date" %>
@@ -23,11 +24,13 @@
       </ul>
       <ul class="right_column">
         <%= esi navigation_agencies_path %>
+        <%= esi navigation_topics_path %>
       </ul>
     </div>
   </li>
 
   <%= esi navigation_reader_aids_path %>
+  <%# RW: each of these will point to a section %>
 
   <li class="dropdown nav_myfr2">
     <a class="myfr2 top_nav">

@@ -1,0 +1,44 @@
+<li id="topics-browse-preview" class="preview">
+  <div class="topic_finder">
+    <h2>Go to a Specific Topic</h2>
+    <%= form_tag topics_path, :method => :get, :id => "topic-search-form" do %>
+      <label>Go to a specific topic:</label>
+      <input id="topic-search" class="browse_search" placeholder="Antidumping" data-autocomplete="autocomplete" />
+    <% end %>
+  </div>
+  <div class="topic_browse">
+    <table class="recent_topics default">
+      <thead>
+        <tr>
+          <th><h2>Browse Topics</h2></th>
+          <th class="past_7_days" data-tooltip="Related Documents Published in the Last 7 Days"></th>
+          <th class="closing_soon" data-tooltip="Related Documents with Comment Periods Closing in the Next 7 Days"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @presenter.topics.each do |topic| %>
+          <tr>
+            <td class="topic_name">
+              <%= link_to topic.name, topic_path(topic) %>
+            </td>
+            <td class="count_7_days">
+              <%= link_to topic.entry_counts_since('week'),
+                  documents_search_path(topic.publication_date_conditions),
+                    :utm_source => 'navigation',
+                    :utm_medium => 'dropdown',
+                    :utm_content => 'topics_with_entries_last_7_days' %>
+            </td>
+            <td class="comments_closing_soon">
+              <%= link_to topic.comment_period_closing_count,
+                  documents_search_path(topic.comment_period_closing_conditions),
+                    :utm_source => 'navigation',
+                    :utm_medium => 'dropdown', 
+                    :utm_content => 'topics_with_comments_closing_soon' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</li>
+
