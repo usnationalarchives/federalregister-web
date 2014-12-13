@@ -10,6 +10,7 @@ class Search < FormObject
     :type,
     :term,
     :docket_id,
+    :agencies,
   ]
 
   DOCUMENT_SEARCH_CONDITIONS = [
@@ -24,7 +25,8 @@ class Search < FormObject
     :cfr,
     :near,
     :topics,
-    :sections
+    :sections,
+    :correction
   ]
 
   def initialize(params)
