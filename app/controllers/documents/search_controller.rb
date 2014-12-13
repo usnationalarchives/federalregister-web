@@ -4,12 +4,12 @@ class Documents::SearchController < SearchController
   def show
     @presenter = SearchPresenter.new(params)
     @search = @presenter.search
-    if valid_search? 
+    if illegal_conditions_present?
       redirect_to documents_search_path(
-        conditions: clean_conditions(@search.valid_conditions),
-        page: params[:page],
-        order: params[:order],
-        format: params[:format]
+        shared_search_params.merge(
+          conditions: clean_conditions(@search.valid_conditions),
+          format: params[:format]
+        )
       )
     else
       respond_to do |wants|
@@ -21,10 +21,12 @@ class Documents::SearchController < SearchController
           render :template => 'documents/index.rss.builder'
         end
         wants.csv do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.csv?" + {conditions: params[:conditions]}.to_param
+          redirect_to "http://www.federalregister.gov/api/v1/articles.csv?" + 
+            shared_search_params.merge(conditions: params[:conditions]).to_param
         end
         wants.json do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.json?" + {conditions: params[:conditions]}.to_param
+          redirect_to "http://www.federalregister.gov/api/v1/articles.json?" + 
+            shared_search_params.merge(conditions: params[:conditions]).to_param
         end
       end
    end
@@ -65,7 +67,11 @@ class Documents::SearchController < SearchController
   end
 
   private
-  def valid_search?
-    blank_conditions?(params[:conditions]) || ((params[:conditions].try(:keys) || []) - @search.valid_conditions.try(:keys)).present?
+  def shared_search_params
+    params.slice(:page, :order, :fields, :per_page)
+  end
+
+  def illegal_conditions_present?
+    blank_conditions?(params[:conditions]) || ((params[:conditions].try(:keys) || []) - @search.valid_conditions.keys).present?
   end
 end
