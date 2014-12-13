@@ -19,9 +19,10 @@ class President < ActiveHash::Base
       :identifier => 'barack-obama',
       :full_name => "Barack Obama",
       :starts_on => Date.new(2009,1,20),
-      :ends_on => Date.new(2013,1,19)
+      :ends_on => Date.current
     }
   ]
+  # RW: manage presidential end date
 
   def year_ranges
     return @year_ranges if @year_ranges
