@@ -220,7 +220,9 @@ MyFr2::Application.routes.draw do
       :conditions => { :method => :get },
       as: 'significant_entries_agency'
 
-    match '/executive-orders', to: 'executive_orders#index'
+    match '/executive-orders',
+      to: 'executive_orders#index',
+      as: 'executive_orders'
 
     match '/executive-orders/:president/:year',
       to: 'executive_orders#by_president_and_year',
