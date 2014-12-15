@@ -1,17 +1,6 @@
 class ExecutiveOrderPresenter
   attr_reader :president, :year, :h
 
-  FIELDS = [
-    :executive_order_number,
-    :title, 
-    :publication_date,
-    :signing_date,
-    :citation,
-    :document_number,
-    :executive_order_notes,
-    :html_url
-  ]
-
   def initialize(options={})
     @president = President.find_by_identifier(options[:president])
     @year = options[:year]
@@ -19,26 +8,15 @@ class ExecutiveOrderPresenter
   end
 
   def link_to_executive_orders_for_format(format, president_identifier=nil)
-    case format
-    when :csv
-      text = "CSV/Excel"
-      fields = FIELDS
-    when :json
-      text = "JSON"
-      fields = FIELDS + %w(full_text_xml_url body_html_url json_url)
-    end
+    text = case format
+           when :json 
+             "JSON"
+           when :csv
+             "CSV/Excel"
+           end
 
     h.link_to text, h.documents_search_path(
-      :conditions => {
-        :type => "PRESDOCU",
-        :presidential_document_type_id => 2,
-        :correction => 0,
-        :president => president_identifier
-      },
-      :fields => fields,
-      :per_page => 1000,
-      :format => format,
-      :order => "executive_order_number"
+      conditions_for_format(format, president_identifier)
     )
   end
 
@@ -57,44 +35,27 @@ class ExecutiveOrderPresenter
     @eo_collection ||= EoCollection.new(president, year)
   end
 
-  class EoCollection
-    attr_reader :president, :year, :date_range
-    def initialize(president, year, year_range=nil)
-      @president = president
-      @year = year
-      @date_range ||= @president.year_ranges[@year]
-    end
+  private
 
-    def results
-      @results ||= FederalRegister::Article.search(
-        conditions: {
-          president: president.identifier,
-          presidential_document_type: 'executive_order',
-          publication_date: {
-            year: year
-          }
-        },
-        fields: FIELDS + ['start_page','end_page'],
-        order: 'executive_order_number',
-        per_page: '200'
-      ).map do |document|
-        unless document.executive_order_number == 0
-          DocumentDecorator.decorate(document) 
-        end
-      end.compact.reverse
-    end
-    alias_method :executive_orders, :results
+  def conditions_for_format(format, president_identifier=nil)
+    fields = case format
+             when :json
+               EoCollection::FIELDS + %w(full_text_xml_url body_html_url json_url)
+             when :csv
+               EoCollection::FIELDS
+             end
 
-    def count
-      results.count
-    end
-
-    def minimum_number
-      results.last.executive_order_number
-    end
-
-    def maximum_number
-      results.first.executive_order_number
-    end
+    {
+      conditions: {
+        type: "PRESDOCU",
+        presidential_document_type_id: 2,
+        correction: 0,
+        president: president_identifier
+      },
+      :fields => fields,
+      :per_page => 1000,
+      :format => format,
+      :order => "executive_order_number"
+    }
   end
 end
