@@ -29,6 +29,31 @@
     </div>
   </li>
 
+  <li class="dropdown nav_search">
+    <a class="search top_nav">Search<span class="arrow"></span></a>
+    <ul class="subnav search_list">
+      <li id='articles-search'>
+        <%= link_to 'Document Search', documents_search_path, :class => "article-search" %>
+      </li>
+      <li id='articles-adv-search'>
+        <%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced'), :class => "advanced-search" %>
+      </li>
+      <li id='regulations-search'>
+        <%= link_to 'Unified Agenda Search', "#", :class => "unified-agenda-search" %>
+        <%# RW: Disabled %>
+        <%# link_to 'Unified Agenda Search', regulatory_plans_search_path, :class => "unified-agenda-search" %>
+      </li>
+      <li id='public-inspection-search'>
+        <%= link_to 'Public Inspection Search', public_inspection_search_path, :class => "public-inspection-search" %>
+      </li>
+      <li id='fr-index-search'>
+        <%# RW: no issue available %>
+        <%# link_to 'FR Index', index_year_path(Issue.current.publication_date.year), :class => "fr-index-search" %>
+        <%= link_to 'FR Index', '#', :class => "fr-index-search" %>
+      </li>
+    </ul>
+  </li>
+
   <%= esi navigation_reader_aids_path %>
   <%# RW: each of these will point to a section %>
 
