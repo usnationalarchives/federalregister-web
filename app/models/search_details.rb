@@ -50,7 +50,7 @@ class SearchDetails
     end
 
     def to_partial_path
-      "documents/search/suggestions/#{self.class.name.underscore.split("/").last}"
+      "search/documents/suggestions/#{self.class.name.underscore.split("/").last}"
     end
 
     class SearchRefinement < Suggestion

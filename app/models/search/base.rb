@@ -1,15 +1,12 @@
-class Search < FormObject
-  attr_reader :params
-  attr_accessor :result_set,
-    :errors,
-    :regulatory_plan_count,
-    :validation_errors,
-    :conditions
+class Search::Base
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
   SEARCH_CONDITIONS = [
     :type,
     :term,
     :docket_id,
+    :agency_ids
   ]
 
   DOCUMENT_SEARCH_CONDITIONS = [
@@ -38,26 +35,30 @@ class Search < FormObject
     @page = 1 if @page < 1 || @page > 50
   end
 
-  def search_details
-    @search_details ||= SearchDetails.new(conditions)
-  end
-
   def results
     begin
       @collection ||= WillPaginate::Collection.create(@page, 20) do |pager|
-        @result_set = FederalRegister::Article.search(
+        @result_set = search_type.search(
           conditions: conditions,
           page: @page,
           order: order, 
           per_page: per_page
         )
         pager.replace(result_set.map{|doc| DocumentDecorator.decorate(doc)})
-        pager.total_entries = entry_count unless pager.total_entries
+        pager.total_entries = document_count unless pager.total_entries
         pager.custom_page_count = result_set.total_pages
       end
     rescue FederalRegister::Client::BadRequest => e
       add_errors(e)
     end
+  end
+
+  def persisted?
+    false
+  end
+
+  def search_details
+    @search_details ||= SearchDetails.new(conditions)
   end
 
   def per_page
@@ -90,7 +91,7 @@ class Search < FormObject
     end
   end
 
-  def entry_count
+  def document_count
     result_metadata.count
   end
 
@@ -122,7 +123,7 @@ class Search < FormObject
   def near
     OpenStruct.new(
       location: conditions[:near].try(:[], :location),
-      within: (conditions[:near].try(:[], :within) || 25)
+      within: (conditions[:near].try(:[], :within))
     )
   end
 
@@ -133,14 +134,6 @@ class Search < FormObject
     )
   end
 
-  FACETS = [:agency, :topic, :section]
-
-  FACETS.each do |facet|
-    define_method("#{facet}_ids") do
-      conditions[facet.to_s.pluralize].present? || conditions["#{facet}_ids"].present?
-    end
-  end
-
   private
 
   def add_errors(error)
@@ -149,4 +142,3 @@ class Search < FormObject
     end
   end
 end
-

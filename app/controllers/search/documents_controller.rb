@@ -1,9 +1,13 @@
-class Documents::SearchController < SearchController
+class Search::DocumentsController < ApplicationController
+  include ConditionsHelper
+  before_filter :load_presenter, except: [:facets, :help]
   skip_before_filter :authenticate_user!
 
+  def header
+    render :layout => false
+  end
+
   def show
-    @presenter = SearchPresenter.new(params)
-    @search = @presenter.search
     if valid_search? 
       redirect_to documents_search_path(
         conditions: clean_conditions(@search.valid_conditions),
@@ -30,9 +34,26 @@ class Documents::SearchController < SearchController
    end
   end
   
+  def results
+    @search_details = @search.search_details
+    #cache_for 1.day
+    respond_to do |wants|
+      wants.html do
+        render :layout => false
+      end
+      wants.js do
+        if @search.valid?
+          render :json => {:count => @search.document_count, :message => render_to_string(:partial => "result_summary.txt.erb")}
+        else
+          render :json => {:errors => @search.validation_errors, :message => "Invalid parameters"}
+        end
+      end
+    end
+  end
+
   def facets
     cache_for 1.day
-    @presenter = SearchFacetPresenter.new(params)
+    @presenter = SearchFacetPresenter::Document.new(params)
     
     if params[:all]
       render :partial => "search/facet", :collection => @presenter.facets, :as => :facet
@@ -43,8 +64,6 @@ class Documents::SearchController < SearchController
   
   def suggestions
     cache_for 1.day
-    @presenter = SearchPresenter.new(params)
-    @search = @presenter.search
     @search_details = @search.search_details
     # RW: necessary?  called from suggestion.html.erb, may have to add when PI is complete
     #if params[:conditions]
@@ -65,6 +84,11 @@ class Documents::SearchController < SearchController
   end
 
   private
+  def load_presenter
+    @presenter = SearchPresenter::Document.new(params)
+    @search = @presenter.search
+  end
+
   def valid_search?
     blank_conditions?(params[:conditions]) || ((params[:conditions].try(:keys) || []) - @search.valid_conditions.try(:keys)).present?
   end

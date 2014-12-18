@@ -1,19 +1,11 @@
-class SearchPresenter
+class SearchPresenter::Base
   attr_accessor :params
   def initialize(params)
     @params = params
   end
 
-  def conditions
-    params["conditions"] || {}
-  end
-
   def supported_orders
     %w(Relevant Newest Oldest)
-  end
-
-  def search
-    @search ||= Search.new(params)
   end
 
   def agencies

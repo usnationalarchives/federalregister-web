@@ -1,0 +1,39 @@
+<% unless @search.valid? %>
+  <div class="errors">
+    <p class="errors_header">The following errors were found with your search: </p>
+    <ul class="bullets">
+      <% @search.validation_errors.values.each do |err| %>
+        <li class=""><%= err %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render :partial => "search/tabs", :locals => {:search => @search, :selected => :public_inspection}%>
+
+<div class="search_bar">
+  <%= semantic_form_for @search, :as => :conditions, :url => public_inspection_search_path, :input_html => params[:conditions], :html => {:action => '/public_inspection/search', :method => :get, :id => "public_inspection_search_form"} do |f| %>
+    <div class="simple">
+      <label>Find</label>
+      <%= f.text_field :term, :placeholder => 'Search term' %>
+      <%= f.submit 'Search' %>
+      
+      <% if false %>
+      <div class="actions">
+        <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => conditions_for_subscription(@search)}), :class => 'subscription' %>
+        <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
+        <%# link_to 'Widget', widget_instructions_path(params.except(:action, :controller)), :class => 'button widget spawn_modal notext', :id => 'widget' %>
+      </div>
+      <% end #false %>
+      
+      <div class="options">
+        <%= link_to 'Show Advanced Search', '#advanced', :id => "toggle_advanced" %>
+        <%= link_to 'Learn More', documents_search_help_path, :class => 'help_link' %>
+      </div>
+      
+    </div>
+    <div class="advanced">
+      <%= render :partial => "advanced", :locals => {:f => f} %>
+    </div>
+  <% end %>
+</div>

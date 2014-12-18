@@ -43,40 +43,44 @@ MyFr2::Application.routes.draw do
       as: :short_document
 
   get 'documents/search',
-    to: 'documents/search#show',
+    to: 'search/documents#show',
     as: 'documents_search'
 
   get 'documents/search/header',
-    to: 'documents/search#header',
+    to: 'search/documents#header',
     as: 'documents_search_header'
 
   get 'documents/search/facets/:facet',
-    to: 'documents/search#facets',
+    to: 'search/documents#facets',
     as: 'documents_search_facets'
 
   get 'documents/search/results',
-    to: 'documents/search#results',
+    to: 'search/documents#results',
     as: 'documents_search_results'
 
   get 'documents/search/suggestions',
-    to: 'documents/search#suggestions',
+    to: 'search/documents#suggestions',
     as: 'documents_search_suggestions'
 
   get 'documents/search/help',
-    to: 'documents/search#help',
+    to: 'search/documents#help',
     as: 'documents_search_help'
 
   get 'public-inspection/search',
-    to: 'public_inspection/search#show',
+    to: 'search/public_inspection_documents#show',
     as: 'public_inspection_search'
 
-  get 'public_inspection/search/header',
-    to: 'public_inspection/search#header',
+  get 'public-inspection/search/header',
+    to: 'search/public_inspection_documents#header',
     as: 'public_inspection_search_header'
 
-  get 'public_inspection/search/results',
-    to: 'public_inspection/search#results',
+  get 'public-inspection/search/results',
+    to: 'search/public_inspection_documents#results',
     as: 'public_inspection_search_results'
+
+  get 'public-inspection/search/facets/:facet',
+    to: 'search/public_inspection_documents#facets',
+    as: 'public_inspection_search_facets'
 
   get 'events/search',
     to: 'events/search#show',

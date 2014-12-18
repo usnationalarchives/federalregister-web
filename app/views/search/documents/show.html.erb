@@ -24,8 +24,8 @@
           <!-- <li><%#= sparkline(:data => @search.date_distribution.to_a.sort_by{|date, count| date}.map{|date, count| count}, :alt => "Monthly Distribution" ) %></li> -->
           <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'type'))) unless @search.type.present? %>
           <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'agency'))) unless @search.agency_ids.present? %>
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'topic'))) unless @search.topic_ids.present? %>
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6))) unless @search.section_ids.present? %>
+          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'topic'))) unless @search.topics.present? %>
+          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6))) unless @search.sections.present? %>
         </div>
 
         <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
