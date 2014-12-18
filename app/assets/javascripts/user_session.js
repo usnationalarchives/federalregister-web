@@ -30,4 +30,13 @@ $(document).ready(function() {
       email_helper.validate_or_suggest();
     }, 500));
   });
+
+  $('form#new_user').on('submit', function(e) {
+    var btn = $(e.target).find('input#registration_btn');
+    btn.attr("disabled", true);
+    setTimeout(function(){
+      btn.closest('ol').find('.loader').css("display", "inline-block");
+      btn.parent().hide();
+    }, 250);
+  });
 });
