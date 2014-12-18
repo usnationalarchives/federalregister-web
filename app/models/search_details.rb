@@ -119,6 +119,18 @@ class SearchDetails
       end
     end
 
+    class DocumentNumber < Suggestion
+      attr_reader :document_number
+      def initialize(options, conditions)
+        @conditions = conditions
+        @document_number = options["document_number"]
+      end
+
+      def document
+        @document ||= DocumentDecorator.decorate(FederalRegister::Article.find(document_number))
+      end
+    end
+
     class CFR < Suggestion
       attr_reader :title, :part, :section, :conditions
       def initialize(options, conditions)
@@ -141,6 +153,7 @@ class SearchDetails
     end
 
     CLASSES = {
+      "document_number" => DocumentNumber,
       "cfr" => CFR,
       "search_refinement" => SearchRefinement,
       "citation" => Citation,

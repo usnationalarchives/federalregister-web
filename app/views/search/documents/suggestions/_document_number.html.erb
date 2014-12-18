@@ -1,0 +1,11 @@
+<div class="matching_citation">
+  
+  <p class="matching_citation_header">It looks like you were searching for the document number <strong><%= document_number.document_number %></strong>.</p>
+  
+  <div class="matching_citation_document">
+    <ul>
+      <%= render :partial => 'search/documents/suggestions/citation_result', :locals => {:document => document_number.document, :page => nil} %>
+    </ul>  
+  </div>
+</div>
+
