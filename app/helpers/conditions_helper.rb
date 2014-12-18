@@ -3,6 +3,7 @@ module ConditionsHelper
     if conditions.is_a?(Hash)
       conditions.each do |k,v|
         conditions[k] = clean_conditions(v) if v.is_a?(Hash)
+        conditions[k] = v.reject{|x| x.blank?} if v.is_a?(Array)
       end
       conditions.delete_if do |k,v|
         if v.is_a?(Array)
