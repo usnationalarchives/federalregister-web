@@ -17,6 +17,14 @@ class SearchDetails
     end.compact.reverse
   end
 
+  def matching_entry_citation
+    suggestions.detect{|x| x.is_a?(SearchDetails::Suggestion::Citation)}
+  end
+
+  def entry_with_document_number
+    suggestions.detect{|x| x.is_a?(SearchDetails::Suggestion::DocumentNumber)}
+  end
+
   def filters
     if response["filters"].present?
       @filters ||= response["filters"].keys.map do |filter_type|

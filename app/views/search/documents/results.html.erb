@@ -1,4 +1,4 @@
-<div class="result_set" data-expected-result-count="<%# render :partial => 'result_summary.txt.erb' %>">
+<div class="result_set" data-expected-result-count="<%= render :partial => 'result_summary.txt.erb', :locals => {:search => @search, :search_details => @search_details} %>">
   <%= render :partial => "search/filters", :locals => {:search_details => @search_details} %>
   
   <% if @search.results.present? %>
