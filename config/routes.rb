@@ -286,6 +286,14 @@ MyFr2::Application.routes.draw do
     resource :comment_followup_document_notifications,
       :only => [:create, :destroy]
 
+    match '/:section', to: 'sections#show', as: :section
+
+    get 'sections/:id/significant.:format',
+      :controller => "agencies",
+      :action => "significant_entries",
+      :conditions => { :method => :get },
+      as: 'significant_entries_section'
+
     resources :subscriptions do
       member do
         get :unsubscribe
