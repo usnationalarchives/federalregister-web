@@ -5,9 +5,9 @@ function add_item_to_folder(el, menu, form) {
   el.find('.loader').show();
   
   form_data = form.serializeArray();
-  form_data.push( {name: "entry[folder]", value: el.data('slug')} );
-
-  document_number = form.find('input#entry_document_number').val();
+  form_data.push( {name: "document[folder]", value: el.data('slug')} );
+  document_number = form.find('input#clipping_document_number').val();
+  form_data.push( {name: "document[document_number]", value: document_number});
   track_clipping_event('add', document_number, el.data('slug'));
 
   $.ajax({
