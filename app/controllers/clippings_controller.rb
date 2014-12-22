@@ -4,16 +4,23 @@ class ClippingsController < ApplicationController
 
   def index
     if user_signed_in? && current_user.clippings.present?
-      clipboard_clippings = Clipping.scoped(:conditions => {:folder_id => nil, :user_id => current_user.id}).with_preloaded_articles
+      clipboard_clippings = Clipping.
+        scoped(:conditions => {:folder_id => nil, :user_id => current_user.id}).
+        with_preloaded_articles.
+        map(&:decorate)
     elsif !user_signed_in? && cookies[:document_numbers].present?
-      clipboard_clippings = Clipping.all_preloaded_from_cookie( cookies[:document_numbers] )
+      clipboard_clippings = Clipping.
+        all_preloaded_from_cookie( cookies[:document_numbers] ).
+        map(&:decorate)
     else
       clipboard_clippings = []
     end
     
     clipboard_clippings ||= []
 
-    @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user.model}).all ) if user_signed_in?
+    @folders   = FolderDecorator.decorate(
+      Folder.scoped(:conditions => {:creator_id => current_user.model}).all
+    ) if user_signed_in?
     @folder    = Folder.new(:name => 'My Clipboard', :slug => "my-clippings")
     @clippings = ClippingDecorator.decorate(clipboard_clippings)
   end
@@ -61,7 +68,7 @@ class ClippingsController < ApplicationController
   private
 
   def clipping_attributes
-    params.require(:entry).permit(:document_number, :folder)
+    params.require(:document).permit(:document_number, :folder)
   end
 
   def add_document_id_to_session(document_number)
