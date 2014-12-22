@@ -76,4 +76,25 @@ class DocumentDecorator < ApplicationDecorator
       nil
     end
   end
+
+  def effective_date
+    effective_on
+  end
+
+  def comments_close_date
+    comments_close_on
+  end
+
+  def pages
+    # RW: placeholder
+    end_page - start_page == 0 ? 1 : end_page - start_page + 1
+  end
+
+  def agency_dt_dd
+    # RW: placeholder
+  end
+
+  def docket_dt_dd
+    # RW: placeholder
+  end
 end
