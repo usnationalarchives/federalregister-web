@@ -95,6 +95,9 @@ MyFr2::Application.routes.draw do
       constraints: {
         type: /(official|public-inspection|reader-aids)/
       }
+    esi.get 'special/header',
+      to: 'special#header',
+      type: 'official'
 
     esi.get 'special/site_notifications/:identifier',
       to: 'special#site_notifications',
