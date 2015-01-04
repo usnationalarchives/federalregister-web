@@ -95,6 +95,7 @@ MyFr2::Application.routes.draw do
       constraints: {
         type: /(official|public-inspection|reader-aids)/
       }
+    # todo: temporary -remove me later
     esi.get 'special/header',
       to: 'special#header',
       type: 'official'
@@ -142,6 +143,9 @@ MyFr2::Application.routes.draw do
     esi.get 'esi/layout/footer',
       to: 'special#footer',
       as: :footer
+    # todo: temporary -remove me later
+    esi.get 'special/footer',
+      to: 'special#footer'
   end
 
 
