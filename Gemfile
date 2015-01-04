@@ -33,8 +33,9 @@ gem 'underscore-rails', '~> 1.6.0'
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
 
-gem "capistrano", '2.5.19', :require => false
+gem "capistrano", '2.15.4', :require => false
 gem "thunder_punch", '0.0.14', :require => false
+gem "rvm-capistrano", "~> 1.5.4", :require => false
 
 gem "carrierwave", "0.6.2"
 gem "fog", "~> 1.3.1"
