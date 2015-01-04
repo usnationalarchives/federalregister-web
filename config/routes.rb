@@ -189,6 +189,33 @@ MyFr2::Application.routes.draw do
   match 'special/shared_assets' => 'special#shared_assets'
   match 'special/my_fr_assets' => 'special#my_fr_assets'
 
+
+  resources :topics, only: [:index, :show]
+
+  get 'topics/:id/significant.:format',
+    :controller => "topics",
+    :action => "significant_entries",
+    :conditions => { :method => :get },
+    as: 'significant_entries_topic'
+
+  resources :agencies, only: [:index, :show]
+
+  get 'agencies/:id/significant.:format',
+    :controller => "agencies",
+    :action => "significant_entries",
+    :conditions => { :method => :get },
+    as: 'significant_entries_agency'
+
+  match '/executive-orders/:president/:year', to: 'executive_orders#by_president_and_year'
+
+  match '/:section', to: 'sections#show', as: :section
+
+  get 'sections/:id/significant.:format',
+    :controller => "agencies",
+    :action => "significant_entries",
+    :conditions => { :method => :get },
+    as: 'significant_entries_section'
+
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
@@ -203,32 +230,6 @@ MyFr2::Application.routes.draw do
 
     root :to => "clippings#index",
          :as => :my_root
-
-    resources :topics, only: [:index, :show]
-
-    get 'topics/:id/significant.:format',
-      :controller => "topics",
-      :action => "significant_entries",
-      :conditions => { :method => :get },
-      as: 'significant_entries_topic'
-
-    resources :agencies, only: [:index, :show]
-
-    get 'agencies/:id/significant.:format',
-      :controller => "agencies",
-      :action => "significant_entries",
-      :conditions => { :method => :get },
-      as: 'significant_entries_agency'
-
-    match '/executive-orders/:president/:year', to: 'executive_orders#by_president_and_year'
-
-    match '/:section', to: 'sections#show', as: :section
-
-    get 'sections/:id/significant.:format',
-      :controller => "agencies",
-      :action => "significant_entries",
-      :conditions => { :method => :get },
-      as: 'significant_entries_section'
 
     resources :clippings do
       collection do
