@@ -165,7 +165,7 @@ GEM
     fssm (0.2.10)
     geokit (1.4.1)
       hoe (>= 1.12.2)
-    hashie (1.2.0)
+    highline (1.6.21)
     hike (1.2.3)
     hoe (3.13.0)
       rake (>= 0.8, < 11.0)
