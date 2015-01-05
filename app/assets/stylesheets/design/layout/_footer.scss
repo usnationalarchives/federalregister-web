@@ -1,0 +1,24 @@
+.site-footer {
+  background: #EEEEEE;
+  border-top: 4px solid $fr-nav-orange;
+  clear: both;
+  overflow: hidden;
+
+  > .wrapper {
+    padding-top: 2em;
+
+    .grid_4 {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style: none;
+  }
+}

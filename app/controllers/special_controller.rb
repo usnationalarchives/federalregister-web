@@ -62,6 +62,8 @@ class SpecialController < ApplicationController
   end
 
   def footer
+    cache_for 1.day
+    
     @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
     @my_fr_presenter = MyFrPresenter.new
     @sections = SectionPresenter::SECTIONS

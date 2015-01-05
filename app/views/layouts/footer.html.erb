@@ -1,5 +1,12 @@
-<div class="footer" id="footer">
+<div class="site-footer" id="footer">
   <div class="wrapper">
+
+    <div class="grid_4">
+      <h2>Home</h2>
+      <ul class="bullets">
+        <li><a href="/" title="Home">Home</a></li>
+      </ul>
+    </div>
 
     <div class="grid_4">
       <h2>Sections</h2>
@@ -11,12 +18,34 @@
     </div>
 
     <div class="grid_4">
+      <h2>Browse</h2>
+      <ul class="bullets">
+        <li><%= link_to "Agencies", agencies_path %></li>
+        <li><%= link_to "Topics", topics_path %></li>
+        <li><%= link_to 'Dates', "" %></li>
+        <li><%= link_to 'Public Inspection', public_inspection_path %></li>
+        <li><%= link_to 'Executive Orders', "" %></li>
+      </ul>
+    </div>
+
+    <div class="grid_4">
+      <h2>Search</h2>
+      <ul class="bullets">
+        <li><%= link_to 'Document Search', documents_search_path %></li>
+        <li><%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced') %></li>
+        <li><%= link_to 'Events Search', "" %></li>
+        <li><%= link_to 'Unified Agenda Search', "" %></li>
+        <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
+      </ul>
+    </div>
+
+    <div class="grid_4">
       <h2>Reader Aids</h2>
       <ul class="bullets">
         <% @reader_aids_sections.each do |section_slug, section_content| %>
           <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
         <% end %>
-      </ul>  
+      </ul>
     </div>
 
     <div class="grid_4">
@@ -25,7 +54,17 @@
         <% @my_fr_presenter.sections.each do |section_name, url| %>
           <li><%= link_to section_name, url %></li>
         <% end %>
-      </ul>  
+      </ul>
     </div>
   </div>
 </div>
+
+<a href="https://federalregister.tenderapp.com/discussion/new?discussion" id="tender" class="trigger_tender">Site Feedback</a>
+
+<script>
+  Tender = {
+    hideToggle: true,
+    widgetToggles: $(".trigger_tender")
+  }
+</script>
+<script src="/javascripts/vendor/tender_widget-20130911.js"></script>
