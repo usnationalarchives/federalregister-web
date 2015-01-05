@@ -1,4 +1,5 @@
 //= require jquery-1.8.3.min
+//= require modernizr.custom.js
 //= require underscore
 //= require strftime
 //= require handlebars-1.0.0.rc.3
