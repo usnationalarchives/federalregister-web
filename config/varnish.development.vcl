@@ -85,7 +85,7 @@ sub vcl_recv {
     } else if (req.url ~ "^/styleguides(/|$)") {
       set req.backend = my_fr2;
       return(pass);
-    } else if (req.url ~ "^(/special/header|/special/shared_assets|/special/my_fr_assets|/special/user_utils|/special/footer)") {
+    } else if (req.url ~ "^(/special/header|/special/shared_assets|/special/my_fr_assets|/special/fr2_assets|/special/user_utils|/special/footer|/special/site_notifications|/special/navigation)") {
       set req.backend = my_fr2;
       return(pass);
     } else if (req.url ~ "^/api/") {
@@ -148,7 +148,7 @@ sub vcl_recv {
     # either return lookup for caching or return pass for no caching
     
       # Fetch from cache unless explicitly skipping cache
-      if (req.http.Cookie ~ "skip_cache=012345678901234567890123456789") {
+      if (req.http.Cookie ~ "skip_cache=1234567890") {
         return (pass);
       } else {
         return (lookup);
