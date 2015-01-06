@@ -47,7 +47,7 @@ module DocumentDecorator::Comments
       num_days = comments_close_on - Time.current.to_date
 
       if num_days > 0
-        "in " + h.pluralize(num_days, 'day')
+        "in " + h.pluralize(num_days.to_i, 'day')
       else
         'today'
       end
