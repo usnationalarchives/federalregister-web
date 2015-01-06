@@ -5,23 +5,15 @@ class DocumentsController < ApplicationController
     cache_for 1.day
 
     begin
-      @document = FederalRegister::Article.find(params[:document_number])
+      @document = FederalRegister::Document.find(params[:document_number])
 
-      #if request.path != entry_path(@entry)
-      #  redirect_to entry_path(@entry), :status => :moved_permanently
-      #else
-        @document = DocumentDecorator.decorate(@document)
-        render
-      #end
+      @document = DocumentDecorator.decorate(@document)
+      render
     rescue FederalRegister::Client::RecordNotFound
       @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
 
-      #if request.path != entry_path(@public_inspection_document)
-      #  redirect_to entry_path(@public_inspection_document), :status => :moved_permanently
-      #else
-        @document = PublicInspectionDocumentDecorator.decorate(@document)
-        render template: 'public_inspection/show'
-      #end
+      @document = PublicInspectionDocumentDecorator.decorate(@document)
+      render template: 'public_inspection/show'
     end
   end
 
