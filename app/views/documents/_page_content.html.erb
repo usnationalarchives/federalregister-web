@@ -11,9 +11,9 @@
             <h1>Action</h1>
             <p><%= document.action %></p>
           <% end %>
-
-          <%= esi document.abstract_html_url %>
-          <%= esi document.body_html_url %>
+          <!-- RW: Fix this when upgrading varnish -->
+          <%= esi document.http_abstract_html_url %>
+          <%= esi document.http_body_html_url %>
         <% end %>
       </div>
     <% end %>

@@ -13,6 +13,17 @@ class DocumentDecorator < ApplicationDecorator
     type == "Presidential Document"
   end
 
+  def http_abstract_html_url
+    # RW: Fix this when upgrading varnish
+    abstract_html_url.
+      gsub("https", "http")
+  end
+
+  def http_body_html_url
+    body_html_url.
+      gsub("https", "http")
+  end
+
   def start_page?
     start_page.present? && start_page != 0
   end
