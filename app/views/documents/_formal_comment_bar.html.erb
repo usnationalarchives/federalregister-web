@@ -1,10 +1,10 @@
 <div id="flash_message" class="comment">
   <p>
     <% if document.document_comment_period_open? %>
-      This article has a comment period that ends <%= days_remaining(document.comments_close_on) %>
+      This article has a comment period that ends <%= document.comment_period_days_remaining %>.
       (<%= document.comments_close_on %>)
     <% else %>
-      Comments on this document are being accepted at Regulations.gov
+      Comments on this document are being accepted at Regulations.gov.
     <% end %>
 
     <%= document.formal_comment_link %>

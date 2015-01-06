@@ -41,4 +41,16 @@ module DocumentDecorator::Comments
 
     h.link_to link_text, href
   end
+
+  def comment_period_days_remaining
+    if document_comment_period_open?
+      num_days = comments_close_on - Time.current.to_date
+
+      if num_days > 0
+        "in " + pluralize(num_days, 'day')
+      else
+        'today'
+      end
+    end
+  end
 end
