@@ -8,7 +8,7 @@ gem 'honeybadger'
 
 #gem 'federal_register', '0.5.0'
 #gem 'federal_register', :path => '../federal_register'
-gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git", 
+gem 'federal_register', :git => "git://github.com/criticaljuncture/federal_register.git",
                         :branch => "officialness"
 
 gem 'devise', '2.1.2'
@@ -89,6 +89,7 @@ end
 
 group :development, :test do
   gem 'stylin', '~> 0.1.0'
+  gem 'rubocop'
 
   gem 'rspec-rails',                    '>= 2.5'
   gem 'watchr',                         '0.7'
