@@ -36,9 +36,9 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   def pages_collection
     @pages_collection ||= WpApi::Client.get_pages(
       filters: {
-        parent_slug: section_identifier,
-        orderby: 'menu_order',
-        order: 'ASC'
+        parent_slug: section_identifier
+        #orderby: 'menu_order',
+        #order: 'ASC'
       }
     )
   end
