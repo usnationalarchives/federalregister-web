@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.18'
 gem 'rake',  '0.9.2.2'
@@ -29,7 +29,7 @@ gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
                  :ref => "777633"
 
 gem "capistrano", '2.15.4', :require => false
-gem "thunder_punch", '0.0.14', :require => false
+gem "thunder_punch", '0.1.3', :require => false
 gem "rvm-capistrano", "~> 1.5.4", :require => false
 
 gem "carrierwave", "0.6.2"
