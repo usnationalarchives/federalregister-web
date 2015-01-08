@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
 
   protected
 
-  def password_required?  
-    (authentications.empty? || password.present?) && super  
+  def password_required?
+    (authentications.empty? || password.present?) && super
   end
 
   def email_required?

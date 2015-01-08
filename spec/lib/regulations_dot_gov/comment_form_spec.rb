@@ -12,14 +12,14 @@ module RegulationsDotGov
       #it "returns true if attachments are allowed" do
         #allow_attachments = true
         #comment_form = RegulationsDotGov::CommentForm.new(client, {'showAttachment' => allow_attachments})
-        
+
         #expect( comment_form.allow_attachments? ).to eq(allow_attachments)
       #end
 
       #it "returns false if attachments are not allowed" do
         #allow_attachments = false
         #comment_form = RegulationsDotGov::CommentForm.new(client, {'showAttachment' => allow_attachments})
-        
+
         #expect( comment_form.allow_attachments? ).to eq(allow_attachments)
       #end
     #end

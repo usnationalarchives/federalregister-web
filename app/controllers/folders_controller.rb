@@ -1,8 +1,8 @@
 class FoldersController < ApplicationController
-  
+
   def create
     folder = Folder.new(:name => folder_attributes[:name], :creator_id => current_user.id, :updater_id => current_user.id)
-    
+
     # document numbers are from the document page
     document_numbers = folder_attributes[:document_numbers]
 
@@ -23,7 +23,7 @@ class FoldersController < ApplicationController
           clipping.update_attributes(:folder_id => folder.id)
         end
       end
-    
+
       folder.reload #ensure our folder object is up-to-date
 
       # from the document page we need to send back document numbers
@@ -47,7 +47,7 @@ class FoldersController < ApplicationController
     raise ActiveRecord::RecordNotFound unless @folder.present?
 
     @clippings = @folder.clippings.present? ? ClippingDecorator.decorate(@folder.clippings) : []
-    
+
     render 'clippings/index', :layout => "application"
   end
 

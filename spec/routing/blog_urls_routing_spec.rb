@@ -12,5 +12,4 @@ describe "fr2 blog routes" do
     expect( public_inspection_table_of_effective_dates_path )
       .to eq("/learn/public-inspection-desk/table-of-effective-dates-time-periods")
   end
-
 end

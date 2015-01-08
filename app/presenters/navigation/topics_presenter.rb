@@ -9,7 +9,7 @@ class Navigation::TopicsPresenter
 
   def topics
     @topics ||= HTTParty.get("https://www.federalregister.gov/api/v1/articles/facets/topic").
-      map do |identifier, data| 
+      map do |identifier, data|
         unless ROUTINE_TOPIC_NAMES.include?(data["name"])
           TopicDecorator::Nav.decorate(Topic.new(identifier, data))
         end

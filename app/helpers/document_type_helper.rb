@@ -2,7 +2,7 @@ module DocumentTypeHelper
   def my_fr_document_filters
     filters = []
     document_types.each_with_index do |(type, label), index|
-      filters <<  content_tag(:li, 
+      filters <<  content_tag(:li,
                               :class => "doc_#{type} #{position_class(index, document_types.length)}",
                               'data-filter-doc-type' => type,
                               'data-filter-doc-type-display' => label) do

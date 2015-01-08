@@ -4,7 +4,7 @@ class CommentFollowupDocumentNotificationsController < ApplicationController
     @comment.subscription.confirm!
 
     respond_to do |format|
-      format.json { render :json => { :link_text => t('notifications.links.remove'), 
+      format.json { render :json => { :link_text => t('notifications.links.remove'),
                                       :method => 'delete',
                                       :description => t('notifications.comment.followup_document.active')} }
     end
@@ -15,7 +15,7 @@ class CommentFollowupDocumentNotificationsController < ApplicationController
     @comment.subscription.unsubscribe!
 
     respond_to do |format|
-      format.json { render :json => { :link_text => t('notifications.links.add'), 
+      format.json { render :json => { :link_text => t('notifications.links.add'),
                                       :method => 'post',
                                       :description => t('notifications.comment.followup_document.inactive')} }
     end

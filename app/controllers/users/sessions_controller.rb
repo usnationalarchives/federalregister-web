@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
     message, redirect_location = persist_user_data
     flash[:notice] = message[:notice] if message[:notice]
     flash[:warning] = message[:warning] if message[:warning]
-        
+
     respond_with resource, :location => redirect_location || after_sign_in_path_for(resource)
   end
 

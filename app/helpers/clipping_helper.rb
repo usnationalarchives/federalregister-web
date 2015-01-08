@@ -1,6 +1,6 @@
 module ClippingHelper
   def document_numbers_for_javascript(clippings)
-    clippings.group_by(&:document_number).map do |document_number, clippings| 
+    clippings.group_by(&:document_number).map do |document_number, clippings|
       folder_array = clippings.map{|c| c.folder.present? ? c.folder.slug : "my-clippings"}.uniq
       { document_number => folder_array }
     end
@@ -24,7 +24,7 @@ module ClippingHelper
 
     url = "#{base_url}/#{document_numbers}.csv?#{field_params}"
 
-    content_tag(:a, :href => url) do 
+    content_tag(:a, :href => url) do
       content_tag(:span, '', :class => "icon-fr2 icon-fr2-download") +
       text
     end

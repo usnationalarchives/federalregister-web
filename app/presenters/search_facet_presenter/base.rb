@@ -18,9 +18,9 @@ class SearchFacetPresenter::Base
   end
 
   def facets_available
-    facets.present? && 
-      !facets.detect{|facet| facet.value == "errors"} && 
-      facets.map(&:count).detect{|x| x != 0} 
+    facets.present? &&
+      !facets.detect{|facet| facet.value == "errors"} &&
+      facets.map(&:count).detect{|x| x != 0}
   end
 
   def num_facets

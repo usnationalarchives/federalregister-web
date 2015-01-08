@@ -1,11 +1,11 @@
 class Folder < ApplicationModel
   include ActiveModel::ForbiddenAttributesProtection
   attr_protected []
-  
+
   stampable
 
   has_many :clippings
-  belongs_to :user, :foreign_key => :creator_id 
+  belongs_to :user, :foreign_key => :creator_id
 
   validates_presence_of :name, :message => "Folder name must not be blank"
   validates_uniqueness_of :name, :scope => :creator_id, :message => Proc.new{|f| "Folder \"#{f[1][:value]}\" already exists"}

@@ -34,5 +34,4 @@ describe "fr2 url routes" do
     # test RouteBuilder
     expect( citation_path(32, 10234) ).to eq("/citation/32/10234")
   end
-
 end

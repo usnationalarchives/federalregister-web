@@ -5,7 +5,7 @@ class Search::Document < Search::Base
     :regulatory_plan_count,
     :validation_errors,
     :conditions
-  
+
   def search_type
     FederalRegister::Article
   end

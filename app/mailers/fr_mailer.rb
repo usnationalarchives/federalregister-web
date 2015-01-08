@@ -1,6 +1,6 @@
 class FRMailer < Devise::Mailer
   include SendGrid
-  
+
   add_template_helper(MailerHelper)
   add_template_helper(AssetHelper)
 
@@ -60,7 +60,7 @@ class FRMailer < Devise::Mailer
     sendgrid_recipients emails
     sendgrid_substitute "(((email)))", emails
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => category
-    
+
     mail(
       :from => "Federal Register <noreply@mail.federalregister.gov>",
       :subject => subject,

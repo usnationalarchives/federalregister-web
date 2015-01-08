@@ -8,7 +8,7 @@ class Facet
     @count      = options[:count]
     @on         = options[:on]
   end
-  
+
   def on?
     @on
   end

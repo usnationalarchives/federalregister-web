@@ -5,7 +5,7 @@ class CommentPublicationNotificationsController < ApplicationController
     @comment.save :validate => false
 
     respond_to do |format|
-      format.json { render :json => { :link_text => t('notifications.links.remove'), 
+      format.json { render :json => { :link_text => t('notifications.links.remove'),
                                       :method => 'delete',
                                       :description => t('notifications.comment.publication.active')} }
     end
@@ -17,7 +17,7 @@ class CommentPublicationNotificationsController < ApplicationController
     @comment.save :validate => false
 
     respond_to do |format|
-      format.json { render :json => { :link_text => t('notifications.links.add'), 
+      format.json { render :json => { :link_text => t('notifications.links.add'),
                                       :method => 'post',
                                       :description => t('notifications.comment.publication.inactive')} }
     end

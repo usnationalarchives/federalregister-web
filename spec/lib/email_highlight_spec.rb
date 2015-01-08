@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EmailHighlight do
-
   it "has valid email highlight definitions" do
     EmailHighlight::HIGHLIGHTS.each do |definition|
       expect( EmailHighlight.valid_definition?(definition) ).to eq(true), "expected valid defintion for #{definition.inspect}, instead got invalid definition"
@@ -29,7 +28,7 @@ describe EmailHighlight do
   describe ".find" do
     let(:awesome_highlight) { FactoryGirl.build(:email_highlight, :name => "awesome_feature") }
 
-    before(:each) do 
+    before(:each) do
       EmailHighlight.stub(:highlights).and_return( [awesome_highlight] )
     end
 
@@ -49,7 +48,7 @@ describe EmailHighlight do
       it "should return nil for a disabled highlight unless proper option is passed" do
         expect( EmailHighlight.find(awesome_highlight.name) ).to be(nil)
       end
-      
+
       it "should return nil for a disabled highlight unless proper option is passed" do
         expect( EmailHighlight.find(awesome_highlight.name, :disabled => true) ).to be(awesome_highlight)
       end
@@ -125,7 +124,7 @@ describe EmailHighlight do
     end
 
     it "takes an exclude option and excludes that item" do
-      # it's possible to get lucky and not happen to pick the one you're 
+      # it's possible to get lucky and not happen to pick the one you're
       # attempting to exclude on any given single run, so 10 times!
       10.times do
         highlights = EmailHighlight.pick(2, :exclude => [old_highlight])
@@ -148,7 +147,7 @@ describe EmailHighlight do
     end
 
     it "returns the selected highlight" do
-      expect( 
+      expect(
         EmailHighlight.highlights_with_selected(1, awesome_highlight.name)
       ).to include(awesome_highlight)
     end

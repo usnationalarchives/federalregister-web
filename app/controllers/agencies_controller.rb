@@ -32,7 +32,7 @@ class AgenciesController < ApplicationController
     cache_for 1.day
     @presenter = AgenciesPresenter.new(FederalRegister::Agency.all)
     @agency = @presenter.agency(params[:id])
-    
+
     respond_to do |wants|
       wants.rss do
         base_url = 'https://www.federalregister.gov/articles/search.rss?'

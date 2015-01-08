@@ -3,7 +3,7 @@ namespace :mailing_lists do
     desc "Deliver the document mailing list content for a given day"
     task :deliver, [:date] => :environment do |t, args|
       date = Date.parse(args[:date])
-      
+
       MailingList::Article.active.find_each do |mailing_list|
         begin
           mailing_list.deliver!(date, :force_delivery => ENV['FORCE_DELIVERY'])

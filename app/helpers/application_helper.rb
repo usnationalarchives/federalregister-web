@@ -32,7 +32,7 @@ module ApplicationHelper
       link_html_options[:'data-search-conditions'] = options.
         fetch(:search_conditions).
         to_json
-      link_html_options[:'data-public-inspection-subscription-supported'] = public_inspection_available 
+      link_html_options[:'data-public-inspection-subscription-supported'] = public_inspection_available
     end
 
     if options[:subscription_default]

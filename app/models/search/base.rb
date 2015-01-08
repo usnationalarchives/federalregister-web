@@ -41,7 +41,7 @@ class Search::Base
         @result_set = search_type.search(
           conditions: conditions,
           page: @page,
-          order: order, 
+          order: order,
           per_page: per_page
         )
         pager.replace(result_set.map{|doc| DocumentDecorator.decorate(doc)})
@@ -84,7 +84,7 @@ class Search::Base
   def result_metadata
     begin
       @result_metadata ||= FederalRegister::Article.search_metadata(
-        conditions: valid_conditions 
+        conditions: valid_conditions
       )
     rescue FederalRegister::Client::BadRequest => e
       add_errors(e)

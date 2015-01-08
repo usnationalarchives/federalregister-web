@@ -1,4 +1,4 @@
-class Search::PublicInspection < Search::Base 
+class Search::PublicInspection < Search::Base
   attr_reader :params
   attr_accessor :result_set,
     :errors,

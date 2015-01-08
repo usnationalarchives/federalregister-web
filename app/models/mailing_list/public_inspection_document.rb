@@ -5,12 +5,12 @@ class MailingList::PublicInspectionDocument < MailingList
 
   def deliver!(document_numbers, options = {})
     return if document_numbers.empty?
-    
+
     results = results_for_document_numbers(document_numbers)
-    
+
     unless results.empty?
       subscriptions = active_subscriptions
-      
+
       subscriptions.find_in_batches(:batch_size => 1000) do |batch_subscriptions|
         SubscriptionMailer.public_inspection_document_mailing_list(self, results, batch_subscriptions).deliver
       end

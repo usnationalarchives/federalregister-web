@@ -359,11 +359,11 @@ class EntrySearch < ApplicationSearch
     else
       parts = filter_summary
       parts.unshift("matching '#{@term}'") if @term.present?
-      
+
       'Articles ' + parts.to_sentence
     end
   end
-  
+
   def filter_summary
     parts = []
 

@@ -22,6 +22,6 @@ class ReaderAidsPresenter::SearchPresenter < ReaderAidsPresenter::Base
   end
 
   def section_title(parent)
-    
+
   end
 end

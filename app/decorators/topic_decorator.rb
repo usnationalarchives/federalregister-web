@@ -1,5 +1,5 @@
 class TopicDecorator < ApplicationDecorator
-  delegate_all 
+  delegate_all
   def initialize(topic)
     super(topic)
   end

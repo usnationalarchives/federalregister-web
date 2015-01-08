@@ -18,7 +18,7 @@ class SubscriptionDecorator < ApplicationDecorator
           when "PublicInspectionDocument"
             "/public-inspection/search#{format if format}"
           end
-    
+
     "#{url}?#{mailing_list.parameters.merge(options).to_query}"
   end
 
@@ -29,7 +29,7 @@ class SubscriptionDecorator < ApplicationDecorator
           when "PublicInspectionDocument"
             "/public-inspection/search/activity/sparkline/weekly"
           end
-    
+
     chart_params = {:chart_options => {:chart_bg_color => 'F5F8F9'}}
 
     "#{url}?#{chart_params.to_query}&#{mailing_list.parameters.to_query}"

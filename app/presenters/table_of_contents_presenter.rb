@@ -28,7 +28,7 @@ class TableOfContentsPresenter
     def article_count
       @article_count ||= articles.size + children.sum(&:article_count)
     end
-    
+
     def articles_by_type_and_toc_subject
       articles.group_by(&:type).sort_by{|type,articles| type}.reverse.map do |type, articles_by_type|
         articles_by_toc_subject = articles_by_type.group_by(&:toc_subject).map do |toc_subject, articles_by_toc_subject|
@@ -72,7 +72,7 @@ class TableOfContentsPresenter
         agency = StubAgencyPresenter.new(self, article.agencies.first)
         agencies_hsh[agency.name] ||= agency
         agencies_hsh[agency.name].add_article(article)
-      end      
+      end
 
       parent_agency_ids = article.agencies.map(&:parent_id).compact
       article.agencies.reject{|a| parent_agency_ids.include?(a.id)}.each do |agency|
@@ -80,7 +80,7 @@ class TableOfContentsPresenter
         agencies_hsh[agency.name].add_article(article)
       end
     end
-    
+
     # generate list of agencies, downcasing to sort appropriately (eg 'Health and Human...' before 'Health Resources...')
     @agencies = agencies_hsh.values.sort_by{|a| a.name.downcase}
   end

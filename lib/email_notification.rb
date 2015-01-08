@@ -61,7 +61,7 @@ class EmailNotification
       notification_definition['html_content'].include?("(((email)))")
       notification_definition['text_content'].present? &&
       notification_definition['text_content'].include?("(((email)))")
-      notification_definition['created'].present? &&      
+      notification_definition['created'].present? &&
       notification_definition['enabled'].to_s.present? &&  #boolean value
       notification_definition['subject'].present?
   end

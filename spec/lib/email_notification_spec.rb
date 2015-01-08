@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EmailNotification do
-
   it "has valid email highlight definitions" do
     EmailNotification::NOTIFICATIONS.each do |definition|
       expect( EmailNotification.valid_definition?(definition) ).to eq(true), "expected valid defintion for #{definition.inspect}, instead got invalid definition"
@@ -20,7 +19,7 @@ describe EmailNotification do
   describe ".find" do
     let(:awesome_notification) { FactoryGirl.build(:email_notification, :name => "awesome_notification") }
 
-    before(:each) do 
+    before(:each) do
       EmailNotification.stub(:notifications).and_return( [awesome_notification] )
     end
 
@@ -40,7 +39,7 @@ describe EmailNotification do
       it "should return nil for a disabled notification unless proper option is passed" do
         expect( EmailNotification.find(awesome_notification.name) ).to be(nil)
       end
-      
+
       it "should return the notification for a disabled notification when proper option is passed" do
         expect( EmailNotification.find(awesome_notification.name, :disabled => true) ).to be(awesome_notification)
       end

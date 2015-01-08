@@ -7,7 +7,7 @@ namespace :email do
 
       email_query = "SELECT users.email
                      FROM subscriptions, users
-                     WHERE subscriptions.user_id IS NOT NULL 
+                     WHERE subscriptions.user_id IS NOT NULL
                        && subscriptions.user_id = users.id
                        && subscriptions.environment = '#{Rails.env}'
                      GROUP BY users.email"

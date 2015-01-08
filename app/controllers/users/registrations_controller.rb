@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
-      
+
         message, redirect_location = persist_user_data
         flash[:notice] = message[:notice] if message[:notice]
         flash[:warning] = message[:warning] if message[:warning]

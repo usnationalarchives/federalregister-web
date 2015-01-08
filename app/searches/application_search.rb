@@ -28,14 +28,14 @@ class ApplicationSearch
   def self.define_filter(filter_name, options = {}, &name_definer)
     attr_reader filter_name
     # refactor to partials...
- 
+
     define_method "#{filter_name}=" do |val|
       if (val.present? && (val.is_a?(String) || val.is_a?(Fixnum))) || (val.is_a?(Array) && !val.all?(&:blank?))
         instance_variable_set("@#{filter_name}", val)
         if val.is_a?(Array)
           val.reject!(&:blank?)
         end
- 
+
         begin
           add_filter options.merge(:value => val, :condition => filter_name, :name_definer => name_definer)
         rescue ApplicationSearch::InputError => e
@@ -48,7 +48,7 @@ class ApplicationSearch
   def self.define_date_filter(filter_name, options = {})
     attr_reader filter_name
     condition = filter_name
- 
+
     define_method "#{filter_name}=" do |hsh|
       if hsh.is_a?(Hash) && hsh.values.any?(&:present?)
         selector = DateSelector.new(hsh)
@@ -109,7 +109,7 @@ class ApplicationSearch
     end
 
     set_defaults(options)
- 
+
     @skip_results = options[:skip_results] || false
     self.per_page = options[:per_page]
 
@@ -157,7 +157,7 @@ class ApplicationSearch
     @filters.select{|f| f.sphinx_type == :conditions }.each do |filter|
       sphinx_conditions[filter.sphinx_attribute] = TermPreprocessor.process_term(filter.sphinx_value)
     end
- 
+
     sphinx_conditions
   end
 
@@ -168,7 +168,7 @@ class ApplicationSearch
     end
     with
   end
- 
+
   def with_all
     with = {}
     @filters.select{|f| f.sphinx_type == :with_all }.each do |filter|
@@ -196,7 +196,7 @@ class ApplicationSearch
   def chainable_results(args = {})
     model.scoped({:conditions => {:id => result_ids(args)}}.recursive_merge(args.slice(:joins, :includes, :select)))
   end
- 
+
   def results(args = {})
     result_array = sphinx_search(sphinx_term,
       search_options.recursive_merge(args)

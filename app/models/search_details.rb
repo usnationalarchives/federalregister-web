@@ -64,7 +64,7 @@ class SearchDetails
     class SearchRefinement < Suggestion
       attr_reader :conditions, :count, :search_summary, :search_conditions
       def initialize(options, conditions)
-        @conditions = conditions 
+        @conditions = conditions
         @search_conditions = options["search_conditions"]
         @count = options["count"]
         @search_summary = options["search_summary"]

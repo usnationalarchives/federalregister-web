@@ -9,7 +9,7 @@
   ## end
 
   #describe '#create' do
-    
+
     #describe 'without user logged in' do
       #before do
         #session[:document_numbers] = nil
@@ -33,7 +33,7 @@
     #describe 'with user logged in' do
       #login_user
 
-      #before do 
+      #before do
         #@document_number = "2011-12345"
       #end
 
@@ -53,6 +53,6 @@
           #post :create, :entry => {:document_number => @document_number}
         #}.should_not change(Clipping, :count).by(1)
       #end
-    #end 
+    #end
   #end
 #end

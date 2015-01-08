@@ -35,7 +35,7 @@ module EncryptionUtils
     cipher = encryption_cipher
     cipher.update(data) + cipher.final
   end
-  
+
   def decrypt(data)
     cipher = decryption_cipher
     cipher.update(data) + cipher.final

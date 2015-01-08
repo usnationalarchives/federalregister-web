@@ -5,13 +5,13 @@ class SubscriptionMailer < ActionMailer::Base
   add_template_helper(AssetHelper)
 
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
-  
+
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 
   def subscription_confirmation(subscription)
     @subscription = subscription
     @utility_links = []
-    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr') 
+    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr')
 
     sendgrid_category "Subscription Confirmation"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription confirmation'
@@ -30,11 +30,11 @@ class SubscriptionMailer < ActionMailer::Base
   def unsubscribe_notice(subscription)
     @subscription = subscription
     @utility_links = []
-    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr') 
+    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr')
 
     sendgrid_category "Subscription Unsubscribe"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription unsubscribe'
-    
+
     mail(
       :to => subscription.email,
       :subject => "[FR] #{subscription.mailing_list.title}"
@@ -42,10 +42,10 @@ class SubscriptionMailer < ActionMailer::Base
       format.text { render('unsubscribe_notice') }
       format.html { Premailer.new( render('unsubscribe_notice', :layout => "mailer/two_col_1_2"),
                                    :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css } 
+                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
     end
   end
-  
+
   def public_inspection_document_mailing_list(mailing_list, results, subscriptions)
     @mailing_list = mailing_list
     @results = ArticleDecorator.decorate(results.to_a)
@@ -61,7 +61,7 @@ class SubscriptionMailer < ActionMailer::Base
     sendgrid_recipients subscriptions.map(&:email)
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'pi subscription mailing list'
-    
+
     mail(
       :subject => "[FR] #{mailing_list.title}",
       :to => 'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
@@ -88,9 +88,9 @@ class SubscriptionMailer < ActionMailer::Base
     sendgrid_recipients subscriptions.map(&:email)
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
-    
+
     toc = TableOfContentsPresenter.new(results)
-    
+
     mail(
       :subject => "[FR] #{mailing_list.title}",
       :to =>  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
@@ -98,7 +98,7 @@ class SubscriptionMailer < ActionMailer::Base
       format.text { render('entry_mailing_list') }
       format.html { Premailer.new( render('entry_mailing_list', :layout => "mailer/simple_leftsidebar"),
                                    :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css } 
+                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
     end
 
   end
@@ -115,14 +115,14 @@ class SubscriptionMailer < ActionMailer::Base
     end
 
     def entry_mailing_list
-      mailing_list = MailingList.find(4) 
+      mailing_list = MailingList.find(4)
       subscriptions = mailing_list.subscriptions
       results = mailing_list.send(:results_for_date, Date.parse('2013-10-01') )
       SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)
     end
 
     def public_inspection_document_mailing_list
-      mailing_list = MailingList.find(2) 
+      mailing_list = MailingList.find(2)
       subscriptions = mailing_list.subscriptions
       results = FederalRegister::PublicInspectionDocument.available_on('2013-09-30')
       SubscriptionMailer.public_inspection_document_mailing_list(mailing_list, results, subscriptions)

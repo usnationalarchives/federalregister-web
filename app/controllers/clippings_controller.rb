@@ -15,7 +15,7 @@ class ClippingsController < ApplicationController
     else
       clipboard_clippings = []
     end
-    
+
     clipboard_clippings ||= []
 
     @folders   = FolderDecorator.decorate(
@@ -39,7 +39,7 @@ class ClippingsController < ApplicationController
     else
       redirect_to clippings_url
     end
-    
+
   end
 
   def bulk_create
@@ -52,7 +52,7 @@ class ClippingsController < ApplicationController
           clipping = Clipping.new(:document_number => document_number,
                                   :user_id => current_user.id)
           clipping.save
-          
+
           clipping_details << { :doc_type   => clipping.article.type,
                                 :title      => clipping.article.title,
                                 :url        => clipping.article.html_url,

@@ -8,7 +8,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   def show
-    if valid_search? 
+    if valid_search?
       redirect_to documents_search_path(
         conditions: clean_conditions(@search.valid_conditions),
         page: params[:page],
@@ -33,7 +33,7 @@ class Search::DocumentsController < ApplicationController
       end
    end
   end
-  
+
   def results
     @search_details = @search.search_details
     #cache_for 1.day
@@ -54,14 +54,14 @@ class Search::DocumentsController < ApplicationController
   def facets
     cache_for 1.day
     @presenter = SearchFacetPresenter::Document.new(params)
-    
+
     if params[:all]
       render :partial => "search/facet", :collection => @presenter.facets, :as => :facet
     else
       render :partial => "search/facets", :locals => {:facets => @presenter.facets, :name => @presenter.facet_name}, :layout => false
     end
   end
-  
+
   def suggestions
     cache_for 1.day
     @search_details = @search.search_details

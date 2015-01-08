@@ -11,7 +11,7 @@ class Clipping < ActiveRecord::Base
     clippings = all
 
     document_numbers = clippings.map{|c| c.document_number}
-    
+
     return unless clippings.present? && document_numbers.present?
 
     clippings = map_articles_to_clipping(clippings, document_numbers)
@@ -62,7 +62,7 @@ class Clipping < ActiveRecord::Base
       clippings.select do |clipping|
         article = articles.find{|a| a.document_number == clipping.document_number}
         if article
-          clipping.article = article 
+          clipping.article = article
         else
           false
         end
@@ -111,7 +111,7 @@ class Clipping < ActiveRecord::Base
   def self.retrieve_document_numbers(cookie_data)
     document_number_array = JSON.parse(cookie_data)
     document_numbers = []
-    document_number_array.each do |doc_hash| 
+    document_number_array.each do |doc_hash|
       doc_hash.each_key{|doc_num| document_numbers << doc_num }
     end
     document_numbers
@@ -120,7 +120,7 @@ class Clipping < ActiveRecord::Base
   def comment
     return if user.nil?
 
-    comment = user.comments.find(:first, 
+    comment = user.comments.find(:first,
                    :conditions => {:document_number => self.document_number}
                   )
     if comment
