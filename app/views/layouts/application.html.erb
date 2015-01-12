@@ -7,7 +7,7 @@
     <%= tag(:meta, :name => 'title', :content => yield(:page_title) ) if yield(:page_title) %>
     <%= tag(:meta, :name => 'description', :content => yield(:description) ) if yield(:description) %>
 
-    <%= javascript_include_tag my_asset_path('application.js') %>
+    <%= javascript_include_tag asset_path('application.js') %>
     <%= yield :feeds %>
   </head>
 

@@ -2,7 +2,6 @@ class FRMailer < Devise::Mailer
   include SendGrid
 
   add_template_helper(MailerHelper)
-  add_template_helper(AssetHelper)
 
   layout "mailer/two_col_1_2"
 
