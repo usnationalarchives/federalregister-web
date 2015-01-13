@@ -18,7 +18,7 @@
   <div id="clipping-actions">
     <div id="doc-type-filter">
       <ul>
-        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.article.granule_class}.uniq.compact.to_json.html_safe %>;</script>
+        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.document.document_type.granule_class}.uniq.compact.to_json.html_safe %>;</script>
 
         <%= my_fr_document_filters %>
       </ul>
@@ -36,14 +36,14 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.article.granule_class || 'uncategorized' %>">
-          <div class="rule_type doc_<%= clipping.article.granule_class || 'uncategorized' %> add_tipsy">
-            <span class="icon-fr2 icon-doctype icon-fr2-<%= clipping.article.granule_class || 'uncategorized' %>"></span>
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.document.document_type.granule_class || 'uncategorized' %>">
+          <div class="rule_type doc_<%= clipping.document.document_type.granule_class || 'uncategorized' %> add_tipsy">
+            <span class="icon-fr2 icon-doctype icon-fr2-<%= clipping.document.document_type.granule_class || 'uncategorized' %>"></span>
           </div>
           <div class="document_data">
-            <div class="title"><%= link_to clipping.article.title, clipping.article.html_url %></div>
-            <div class="<%=clipping.article.granule_class || 'uncategorized' %>_metadata_wrapper">
-              <%= render :partial => "clippings/doc_types/#{clipping.article.granule_class || 'uncategorized'}", :locals => {:clipping => clipping} %>
+            <div class="title"><%= link_to clipping.document.title, clipping.document.html_url %></div>
+            <div class="<%=clipping.document.document_type.granule_class || 'uncategorized' %>_metadata_wrapper">
+              <%= render :partial => "clippings/doc_types/#{clipping.document.document_type.granule_class || 'uncategorized'}", :locals => {:clipping => clipping} %>
             </div>
           </div>
 

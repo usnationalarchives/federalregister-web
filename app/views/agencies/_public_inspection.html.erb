@@ -9,8 +9,8 @@
           <ul class="comments">
             <% docs.sort_by{|doc| doc.title.present? ? doc.title : "#{doc.toc_subject} #{doc.toc_doc}"}.each do |doc| %>
               <li>
-                <div class="rule_type doc_<%= doc.granule_class.downcase %> tipsy mini">
-                  <span class="icon-fr2 icon-doctype icon-fr2-<%= doc.granule_class.downcase %>"></span>
+                <div class="<%= doc.document_type.icon_wrapper_class('mini') %> tipsy">
+                  <span class="<%= doc.document_type.icon_class %>"></span>
                 </div>
                 <%= link_to doc.title.present? ? doc.title : "#{doc.toc_subject} #{doc.toc_doc}", document_path(doc) %>
               </li>

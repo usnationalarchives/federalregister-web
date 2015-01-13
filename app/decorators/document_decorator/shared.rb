@@ -1,29 +1,6 @@
 module DocumentDecorator::Shared
-  def granule_class
-    case model.type
-    when 'Rule'
-      'rule'
-    when 'Proposed Rule'
-      'proposed_rule'
-    when 'Notice'
-      'notice'
-    when 'Presidential Document'
-      'presidential_document'
-    when 'Uncategorized Document'
-      'uncategorized'
-    when 'Sunshine Act Document'
-      'notice'
-    when 'Correction'
-      'correct'
-    end
-  end
-
-  def display_type
-    model.
-      type.
-      split(" ").
-      map(&:capitalize).
-      join(" ")
+  def document_type
+    @document_type ||= DocumentType.new(model.type)
   end
 
   def agency_names(options = {})

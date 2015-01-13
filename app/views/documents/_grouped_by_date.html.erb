@@ -1,17 +1,17 @@
 <div class="section three_col_list">
-<% documents.group_by{|e| e.publication_date.to_s(:year_month)}.sort_by{|date,documents| date}.reverse.each do |unused, documents| %>
+<% documents.group_by{|d| d.publication_date.to_s(:year_month)}.sort_by{|date,documents| date}.reverse.each do |unused, documents| %>
     <h3><%= documents.first.publication_date.to_s(:month_year) %></h3>
     <div class="grouped_by_date">
-    <% documents.group_by{|e| e.publication_date}.sort_by{|date, documents| date}.reverse.each do |pub_date, documents| %>  
+    <% documents.group_by{|d| d.publication_date}.sort_by{|date, documents| date}.reverse.each do |pub_date, documents| %>  
       <div class="date"><%= link_to pub_date.to_formatted_s(:day_date), documents_path(pub_date) %></div>
       <ul class="comments">
-        <% documents.sort_by(&:title).each do |entry| %>
+        <% documents.sort_by(&:title).each do |document| %>
           <li>
-            <div class="rule_type doc_<%= entry.granule_class.downcase %> tipsy mini" 
-              data-tooltip="<%= entry.presidential_document_type.name if entry.presidential_document? %>">
-              <span class="icon-fr2 icon-doctype icon-fr2-<%= entry.granule_class.downcase %>"></span>
+            <div class="<%= document.document_type.icon_wrapper_class %> tipsy mini" 
+              data-tooltip="<%= document.presidential_document_type.name if document.presidential_document? %>">
+              <span class="<%= document.document_type.icon_class %>"></span>
             </div>
-            <%= link_to entry.title, document_path(entry) %>
+            <%= link_to document.title, document_path(document) %>
           </li>
         <% end %>
       </ul>
