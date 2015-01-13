@@ -1,26 +1,26 @@
 <dl class="metadata" id="col-1">
   <dt class="pub_date">Publication Date:</dt>
-  <dd><%= clipping.article.publication_date %></dd>
+  <dd><%= clipping.document.publication_date %></dd>
 
   <dt class="fr_citation">Citation:</dt>
-  <dd><%= clipping.article.citation %></dd>
+  <dd><%= clipping.document.citation %></dd>
 
   <dt class="pages">Pages:</dt>
-  <dd><%= clipping.article.pages %></dd>
+  <dd><%= clipping.document.pages %></dd>
 </dl>
 <dl class="metadata" id="col-2">
-  <%= clipping.article.agency_dt_dd %>
+  <%= clipping.document.agency_dt_dd %>
 </dl>
 <dl class="metadata" id="col-3">
-  <%= clipping.article.docket_dt_dd %>
+  <%= clipping.document.docket_dt_dd %>
 
-  <% if clipping.article.corrections.present? %>
+  <% if clipping.document.corrections.present? %>
     <dt class="corrected_by">Corrected by:</dt>
-    <%= clipping.article.corrected_by %>
+    <%= clipping.document.corrected_by %>
   <% end %>
 
-  <% if clipping.article.correction_of.present? %>
+  <% if clipping.document.correction_of.present? %>
     <dt class="correction_of">Correction of:</dt>
-    <dd><%= clipping.article.corrects %></dd>
+    <dd><%= clipping.document.corrects %></dd>
   <% end %>
 </dl>

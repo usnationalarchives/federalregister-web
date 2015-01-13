@@ -5,24 +5,27 @@ class ClippingsController < ApplicationController
   def index
     if user_signed_in? && current_user.clippings.present?
       clipboard_clippings = Clipping.
-        scoped(:conditions => {:folder_id => nil, :user_id => current_user.id}).
-        with_preloaded_articles.
-        map(&:decorate)
+        scoped(
+          :conditions => {:folder_id => nil, :user_id => current_user.id}
+        ).
+        with_preloaded_articles
     elsif !user_signed_in? && cookies[:document_numbers].present?
       clipboard_clippings = Clipping.
-        all_preloaded_from_cookie( cookies[:document_numbers] ).
-        map(&:decorate)
+        all_preloaded_from_cookie(
+          cookies[:document_numbers]
+        )
     else
       clipboard_clippings = []
     end
 
-    clipboard_clippings ||= []
+    if user_signed_in?
+      @folders = FolderDecorator.decorate_collection(
+        Folder.scoped(:conditions => {:creator_id => current_user.model}).all
+      )
+    end
 
-    @folders   = FolderDecorator.decorate(
-      Folder.scoped(:conditions => {:creator_id => current_user.model}).all
-    ) if user_signed_in?
-    @folder    = Folder.new(:name => 'My Clipboard', :slug => "my-clippings")
-    @clippings = ClippingDecorator.decorate(clipboard_clippings)
+    @folder    = Folder.my_clipboard
+    @clippings = ClippingDecorator.decorate_collection(clipboard_clippings)
   end
 
   def create

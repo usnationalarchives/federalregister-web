@@ -13,6 +13,10 @@ class Folder < ApplicationModel
 
   before_validation :generate_slug
 
+  def self.my_clipboard
+    new(:name => 'My Clipboard', :slug => "my-clippings")
+  end
+
   def self.for_current_user
     scoped(:conditions => {:creator_id => User.stamper}).all
   end
@@ -28,6 +32,7 @@ class Folder < ApplicationModel
   def document_numbers
     clippings.map{|c| c.document_number}
   end
+
   private
 
   def generate_slug

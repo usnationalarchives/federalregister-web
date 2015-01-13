@@ -3,7 +3,6 @@ class ClippingDecorator < ApplicationDecorator
   delegate :size,
            :each,
            :document_number,
-           :document,
            :comment,
            :id,
            :map, to: :clipping
@@ -16,8 +15,8 @@ class ClippingDecorator < ApplicationDecorator
     end
   end
 
-  def article
-    DocumentDecorator.decorate(model.article)
+  def document
+    DocumentDecorator.decorate(model.document)
   end
 
   def commented_on?

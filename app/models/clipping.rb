@@ -14,7 +14,7 @@ class Clipping < ActiveRecord::Base
 
     return unless clippings.present? && document_numbers.present?
 
-    clippings = map_articles_to_clipping(clippings, document_numbers)
+    clippings = map_documents_to_clipping(clippings, document_numbers)
     clippings
   end
 
@@ -37,7 +37,7 @@ class Clipping < ActiveRecord::Base
     clippings
   end
 
-  def self.map_articles_to_clipping(clippings, document_numbers)
+  def self.map_documents_to_clipping(clippings, document_numbers)
     begin
       fields = ["agencies",
                 "citation",
@@ -57,12 +57,16 @@ class Clipping < ActiveRecord::Base
                 "subtype",
                 "title",
                 "type"]
-      articles = (document_numbers.size > 1 ? FederalRegister::Article.find_all(document_numbers, :fields => fields) : [FederalRegister::Article.find(document_numbers.first, :fields => fields)]).map{|x| DocumentDecorator.decorate(x)}
+
+      documents = FederalRegister::Document.find_all(
+        document_numbers,
+        :fields => fields
+      )
 
       clippings.select do |clipping|
-        article = articles.find{|a| a.document_number == clipping.document_number}
-        if article
-          clipping.article = article
+        document = documents.find{|d| d.document_number == clipping.document_number}
+        if document
+          clipping.document = document
         else
           false
         end
@@ -77,15 +81,28 @@ class Clipping < ActiveRecord::Base
   def self.persist_document(user, document_number, folder_name)
     if folder_name == 'my-clippings'
       folder = nil
-      clipping = Clipping.find_by_document_number_and_user_id_and_folder_id(document_number, user.id, nil)
+      clipping = Clipping.where(
+        document_number: document_number,
+        user_id: user.id,
+        folder_id: nil
+      ).first
     else
-      folder = Folder.find_by_creator_id_and_slug(user.id, folder_name)
-      clipping = Clipping.find_by_document_number_and_user_id_and_folder_id(document_number, user.id, folder.id)
+      folder = Folder.where(
+        creator_id: user.id,
+        slug: folder_name
+      ).first
+      clipping = Clipping.where(
+        document_number: document_number,
+        user_id: user.id,
+        folder_id: folder.id
+      ).first
     end
     unless clipping.present?
-      clipping = Clipping.new(:document_number => document_number,
-                              :user_id         => user.id,
-                              :folder          => folder)
+      clipping = Clipping.new(
+        document_number: document_number,
+        user_id: user.id,
+        folder: folder
+      )
       clipping.save
     end
     clipping
@@ -97,15 +114,15 @@ class Clipping < ActiveRecord::Base
     scoped(:conditions => {:user_id => user.id, :id => id}).first
   end
 
-  def article
+  def document
     if document_number
-      @article ||= FederalRegister::Article.find(document_number)
+      @document ||= FederalRegister::Document.find(document_number)
     end
   end
 
-  def article=(article)
-    self.document_number = article.try(:document_number)
-    @article = article
+  def document=(document)
+    self.document_number = document.try(:document_number)
+    @document = document
   end
 
   def self.retrieve_document_numbers(cookie_data)
@@ -120,9 +137,10 @@ class Clipping < ActiveRecord::Base
   def comment
     return if user.nil?
 
-    comment = user.comments.find(:first,
-                   :conditions => {:document_number => self.document_number}
-                  )
+    comment = user.comments.where(
+      document_number: self.document_number
+    ).first
+
     if comment
       CommentDecorator.decorate(comment)
     else
