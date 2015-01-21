@@ -3,12 +3,15 @@ class AgenciesController < ApplicationController
   layout false, only: :navigation
 
   def index
-    #cache?
+    cache_for 1.day
+
     @agencies = FederalRegister::Agency.all
     @presenter = AgenciesPresenter.new(@agencies, params[:id])
   end
 
   def show
+    cache_for 1.day
+
     @presenter = AgenciesPresenter.new(FederalRegister::Agency.all, params[:id])
     @agency = @presenter.agency
     respond_to do |wants|
