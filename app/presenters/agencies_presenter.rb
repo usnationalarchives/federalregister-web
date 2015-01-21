@@ -18,7 +18,7 @@ class AgenciesPresenter
   end
 
   def documents
-    @documents ||= FederalRegister::Article.search(
+    @documents ||= FederalRegister::Document.search(
       conditions: {
         agency_ids: [@agency.id]
       },
@@ -28,7 +28,7 @@ class AgenciesPresenter
   end
 
   def significant_documents
-    @significant_documents ||= FederalRegister::Article.search(
+    @significant_documents ||= FederalRegister::Document.search(
       conditions: {
         agency_ids: [@agency.id],
         significant: '1',
