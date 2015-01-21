@@ -12,7 +12,7 @@ MyFr2::Application.routes.draw do
   match 'status' => 'special#status'
 
   #
-  # Document
+  # Documents
   #
 
   get 'documents/:year/:month/:day',
@@ -42,6 +42,11 @@ MyFr2::Application.routes.draw do
       to: "documents#tiny_url",
       as: :short_document
 
+
+  #
+  # Documents Search
+  #
+
   get 'documents/search',
     to: 'search/documents#show',
     as: 'documents_search'
@@ -66,6 +71,11 @@ MyFr2::Application.routes.draw do
     to: 'search/documents#help',
     as: 'documents_search_help'
 
+
+  #
+  # Public Inspection Documents Search
+  #
+
   get 'public-inspection/search',
     to: 'search/public_inspection_documents#show',
     as: 'public_inspection_search'
@@ -82,9 +92,19 @@ MyFr2::Application.routes.draw do
     to: 'search/public_inspection_documents#facets',
     as: 'public_inspection_search_facets'
 
+
+  #
+  # Events Search
+  #
+
   get 'events/search',
     to: 'events/search#show',
     as: 'events_search'
+
+
+  #
+  # Regulatory Plans Search
+  #
 
   get 'regulatory_plans/search',
     to: 'regulatory_plans/search#show',
@@ -94,6 +114,7 @@ MyFr2::Application.routes.draw do
   # ESI Routes
   #
   with_options(:quiet => true) do |esi|
+    # HEADER
     esi.get 'special/header/:type',
       to: 'special#header',
       constraints: {
@@ -108,6 +129,8 @@ MyFr2::Application.routes.draw do
       to: 'special#site_notifications',
       as: :site_notification
 
+
+    # READER AIDS
     esi.get 'esi/reader_aids',
       to: 'special#reader_aids',
       as: :home_reader_aids
@@ -136,6 +159,9 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#developer_tools',
       as: :reader_aids_developer_tools
 
+
+
+    # NAVIGATION
     esi.get 'esi/layouts/navigation/sections',
       to: 'sections#navigation',
       as: :navigation_sections
@@ -152,6 +178,8 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids
 
+
+    # FOOTER
     esi.get 'esi/layout/footer',
       to: 'special#footer',
       as: :footer
