@@ -42,6 +42,12 @@ sub vcl_recv {
         return (error);
     }
 
+
+    # remove gzip in development
+    if (req.http.Accept-Encoding ~ "gzip") {
+      remove req.http.Accept-Encoding;
+    }
+
     if (req.http.Cookie ~ "(^|;) ?ab_group=\d+(;|$)") {
       if( req.http.Cookie ~ "ab_group=[0-9]+" ) {
         set req.http.X-AB-Group = regsub( req.http.Cookie,    ".*ab_group=", "");
