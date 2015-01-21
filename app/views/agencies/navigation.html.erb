@@ -16,19 +16,25 @@
         </tr>
       </thead>
       <tbody>
-        <% @presenter.agencies.each do |agency, index| %>
+        <% @presenter.agencies.each do |agency| %>
           <tr>
-            <td class="agency_name"><%= link_to agency.name, agency_path(agency.identifier) %></td>
+            <td class="agency_name"><%= link_to agency.name, agency.url %></td>
             <td class="count_7_days">
-              <%= link_to agency.entry_counts_since('week'), 
-                  documents_search_path(agency.publication_date_conditions),
+              <%= link_to_unless agency.document_count == 0,
+                  agency.document_count,
+                  documents_search_path(
+                    agency.document_count_search_conditions
+                  ),
                   :utm_source => 'navigation',
                   :utm_medium => 'dropdown',
                   :utm_content => 'agencies_last_7' %>
             </td>
             <td class="comments_closing_soon">
-              <%= link_to agency.comment_period_closing_count,
-                  documents_search_path(agency.comment_period_closing_conditions),
+              <%= link_to_unless  agency.comment_count == 0,
+                  agency.comment_count,
+                  documents_search_path(
+                    agency.comment_count_search_conditions
+                  ),
                   :utm_source => 'navigation',
                   :utm_medium => 'dropdown',
                   :utm_content => 'agencies_closing_soon' %>

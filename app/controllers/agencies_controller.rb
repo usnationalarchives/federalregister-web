@@ -1,5 +1,7 @@
 class AgenciesController < ApplicationController
   skip_before_filter :authenticate_user!
+  layout false, only: :navigation
+
   def index
     #cache?
     @agencies = FederalRegister::Agency.all
@@ -43,7 +45,7 @@ class AgenciesController < ApplicationController
   end
 
   def navigation
+    cache_for 1.day
     @presenter = Navigation::AgenciesPresenter.new
-    render :partial => "layouts/navigation/agencies", :layout => false
   end
 end

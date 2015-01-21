@@ -1,4 +1,15 @@
 #navigation {
+  .agency_browse,
+  .topic_browse {
+    td.count_7_days,
+    td.comments_closing_soon {
+      font-weight: bold;
+      color: $fr-gray-60;
+
+      & a { color: inherit; }
+    }
+  }
+
   li.dropdown.nav_reader_aids {
     width: 140px;
   }

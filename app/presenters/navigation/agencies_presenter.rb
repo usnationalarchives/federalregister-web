@@ -1,27 +1,62 @@
 class Navigation::AgenciesPresenter
   HIGHLIGHTED_AGENCIES = [
-    "Agriculture Deparment",
-    "Commerce Department",
-    "Defense Department",
-    "Education Department",
-    "Energy Department",
-    "Environmental Protection Agency",
-    "Health and Human Services Department",
-    "Homeland Security Department",
-    "Housing and Urban Development Department",
-    "Interior Department",
-    "Justice Department",
-    "Labor Department",
-    "State Department",
-    "Transportation Department",
-    "Treasury Department",
-    "Veterans Affairs Department"
+    "agriculture-department",
+    "commerce-department",
+    "defense-department",
+    "education-department",
+    "energy-department",
+    "environmental-protection-agency",
+    "health-and-human-services-department",
+    "homeland-security-department",
+    "housing-and-urban-development-department",
+    "interior-department",
+    "justice-department",
+    "labor-department",
+    "state-department",
+    "transportation-department",
+    "treasury-department",
+    "veterans-affairs-department"
   ]
 
   def agencies
-    @agencies ||= FederalRegister::Agency.
-      all.
-      select{|a| HIGHLIGHTED_AGENCIES.include?(a.name)}.
-      map{|a| AgencyDecorator::Nav.decorate(a)}
+    @agencies ||= document_counts.
+      select{|facet| HIGHLIGHTED_AGENCIES.include?(facet.slug)}.
+      map{|facet|
+        Agency.new(
+          name: facet.name,
+          slug: facet.slug,
+          document_count: facet.count,
+          document_count_search_conditions: facet.search_conditions,
+          comment_count: comment_counts.detect{|x| x.slug == agency.slug}.try(:count) || 0,
+          comment_count_search_conditions: comment_counts.detect{|x| x.slug == agency.slug}.try(:search_conditions)
+        )
+      }.
+      map{|agency| AgencyFacetDecorator.decorate(agency)}.
+      sort_by(&:name)
+  end
+
+  class Agency
+    vattr_initialize [
+      :comment_count,
+      :comment_count_search_conditions,
+      :document_count,
+      :document_count_search_conditions,
+      :name,
+      :slug,
+    ]
+  end
+
+  private
+
+  def document_counts
+    AgencyFacet.search(
+      Facets::QueryConditions.published_in_last(1.year)
+    )
+  end
+
+  def comment_counts
+    @comments_counts ||= AgencyFacet.search(
+      Facets::QueryConditions.comment_period_closing_in(1.week)
+    )
   end
 end

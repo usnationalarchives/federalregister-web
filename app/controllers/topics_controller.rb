@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   skip_before_filter :authenticate_user!
+  layout false, only: :navigation
 
   def index
     @presenter = TopicPresenter.new(params[:id])
@@ -33,7 +34,7 @@ class TopicsController < ApplicationController
   end
 
   def navigation
+    cache_for 1.day
     @presenter = Navigation::TopicsPresenter.new
-    render :partial => "layouts/navigation/topics", :layout => false
   end
 end

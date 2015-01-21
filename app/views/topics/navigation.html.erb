@@ -19,20 +19,26 @@
         <% @presenter.topics.each do |topic| %>
           <tr>
             <td class="topic_name">
-              <%= link_to topic.name, topic_path(topic) %>
+              <%= link_to topic.name, topic.url %>
             </td>
             <td class="count_7_days">
-              <%= link_to topic.entry_counts_since('week'),
-                  documents_search_path(topic.publication_date_conditions),
+              <%= link_to_unless topic.document_count == 0,
+                    topic.document_count,
+                    documents_search_path(
+                      topic.document_count_search_conditions
+                    ),
                     :utm_source => 'navigation',
                     :utm_medium => 'dropdown',
                     :utm_content => 'topics_with_entries_last_7_days' %>
             </td>
             <td class="comments_closing_soon">
-              <%= link_to topic.comment_period_closing_count,
-                  documents_search_path(topic.comment_period_closing_conditions),
+              <%= link_to_unless topic.comment_count == 0,
+                    topic.comment_count,
+                    documents_search_path(
+                      topic.comment_count_search_conditions
+                    ),
                     :utm_source => 'navigation',
-                    :utm_medium => 'dropdown', 
+                    :utm_medium => 'dropdown',
                     :utm_content => 'topics_with_comments_closing_soon' %>
             </td>
           </tr>
