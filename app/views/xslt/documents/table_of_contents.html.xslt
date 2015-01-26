@@ -43,5 +43,5 @@
   <xsl:template mode="table_of_contents" match="*[name(.) != 'HD']|text()">
     <xsl:apply-templates mode="table_of_contents"/>
   </xsl:template>
-</xsl:stylesheet>
 
+</xsl:stylesheet>
