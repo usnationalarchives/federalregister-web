@@ -12,7 +12,8 @@
     <% end %>
 
     <%= f.buttons do %>
-      <%= f.commit_button "Sign up" %></div>
+      <%= f.commit_button "Sign up", button_html: {id: "registration_btn"} %>
+      <span class="loader"></span>
     <% end %>
   <% end %>
 </div>
