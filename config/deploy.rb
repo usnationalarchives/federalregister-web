@@ -43,7 +43,7 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 
 set :finalize_deploy, false
 # we don't need this because we have an asset server
-# and we also use varnish as a cache server. Thus 
+# and we also use varnish as a cache server. Thus
 # normalizing timestamps is detrimental.
 set :normalize_asset_timestamps, false
 
@@ -52,10 +52,10 @@ set :migrate_target, :current
 
 
 #############################################################
-# General Settings  
+# General Settings
 #############################################################
 
-set :deploy_to,  "/var/www/apps/#{application}" 
+set :deploy_to,  "/var/www/apps/#{application}"
 
 #############################################################
 # Set Up for Production Environment
@@ -64,19 +64,20 @@ set :deploy_to,  "/var/www/apps/#{application}"
 task :production do
   set :rails_env,  "production"
   set :branch, 'production'
-  
+
   set :gateway, 'fr2_production'
-  
+
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
-  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
-  # Database Settings
-  set :remote_db_name, "#{application}_#{rails_env}"
-  set :db_path,        "#{current_path}/db"
-  set :sql_file_path,  "#{current_path}/db/#{remote_db_name}_#{Time.now.utc.strftime("%Y%m%d%H%M%S")}.sql"
+  role :rvm, "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
+
+  set :github_user_repo, 'usnationalarchives'
+  set :github_project_repo, 'my_fr2'
+  set :github_username, 'usnationalarchives'
+  set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
 
 
@@ -85,34 +86,28 @@ end
 #############################################################
 
 task :staging do
-  set :rails_env,  "staging" 
+  set :rails_env,  "staging"
   set :branch, `git branch`.match(/\* (.*)/)[1]
   set :gateway, 'fr2_staging'
-  
+
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "web.fr2.ec2.internal"
-  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
   role :rvm, "web.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
 
-  # Database Settings
-  set :remote_db_name, "#{application}_#{rails_env}"
-  set :db_path,        "#{current_path}/db"
-  set :sql_file_path,  "#{current_path}/db/#{remote_db_name}_#{Time.now.utc.strftime("%Y%m%d%H%M%S")}.sql"
+  set :github_username, 'criticaljuncture'
+  set :github_user_repo, 'criticaljuncture'
+  set :github_project_repo, 'federalregister-web'
+  set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
-
 
 #############################################################
 # SCM Settings
 #############################################################
-set :scm,              :git          
-set :github_user_repo, 'criticaljuncture'
-set :github_project_repo, 'federalregister-web'
+set :scm,              :git
 set :deploy_via,       :remote_cache
-set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
-set :github_username, 'criticaljuncture' 
 
 
 #############################################################
@@ -136,7 +131,7 @@ set :gem_file_groups, [:deployment, :development, :test]
 #############################################################
 
 # Do not change below unless you know what you are doing!
-# all deployment changes that affect app servers also must 
+# all deployment changes that affect app servers also must
 # be put in the user-scripts files on s3!!!
 
 after "deploy:update_code",      "deploy:set_rake_path"
@@ -176,6 +171,6 @@ end
 
 namespace :honeybadger do
   task :notify_deploy, :roles => [:worker] do
-    run "cd #{current_path} && bundle exec rake honeybadger:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`.chomp} REVISION=#{real_revision} REPO=#{repository}" 
+    run "cd #{current_path} && bundle exec rake honeybadger:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`.chomp} REVISION=#{real_revision} REPO=#{repository}"
   end
 end
