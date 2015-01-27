@@ -1,0 +1,46 @@
+<li id="public-inspection-browse-preview" class="preview">
+  <p class="info">
+    The <%= link_to public_inspection_path,
+      "Public Inspection web page on FederalRegister.gov", target: :blank %>
+    offers a preview of documents scheduled to appear in the next day's
+    <em>Federal Register</em> issue. The Public Inspection page may also
+    include documents scheduled for later issues, at the request of the issuing
+    agency. This gives the public access to important or complex documents
+    before they publish in the <em>Federal Register</em>. See
+    <%= link_to 'About Public Inspection', public_inspection_learn_path %> for
+    more information.
+  </p>
+
+  <% @presenter.filing_types.each do |filing_type| %>
+    <div class="preview_wrapper">
+      <h2>
+        <%= filing_type.name %>
+        <span class="secondary">
+          updated at <%= filing_type.formatted_updated_at %></span>
+      </h2>
+
+      <p class="inspection_counts">
+        <%= link_to pluralize(filing_type.document_count, 'documents'),
+          public_inspection_documents_path(
+            :anchor => filing_type.type
+          ) %>
+        from <%= pluralize(filing_type.agency_count, 'agency') %>.
+
+        <ul class="mini_document_types">
+          <% filing_type.counts_by_type.each do |document_type, count| %>
+            <li>
+              <%= link_to count,
+                public_inspection_search_path(:conditions => {
+                  :type => document_type,
+                  :special_filing => filing_type.special_filing?
+                }) %>
+              <div class="<%= DocumentType.new(document_type).icon_wrapper_class('mini') %> tipsy">
+                <span class="<%= DocumentType.new(document_type).icon_class %>"></span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+  <% end %>
+</li>
