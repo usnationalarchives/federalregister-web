@@ -47,8 +47,8 @@ task :production do
 
   role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
 
-  set :github_user_repo, 'criticaljuncture'
-  set :github_project_repo, 'federalregister-web'
+  set :github_user_repo, 'usnationalarchives'
+  set :github_project_repo, 'my_fr2'
   set :github_username, 'usnationalarchives'
   set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
@@ -65,7 +65,6 @@ task :staging do
 
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "web.fr2.ec2.internal"
-  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
@@ -99,7 +98,6 @@ task :officialness do
   set :github_username, 'criticaljuncture'
   set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
-
 
 #############################################################
 # SCM Settings
@@ -135,7 +133,6 @@ set :varnish_roles, [:proxy]
 #############################################################
 
 # Do not change below unless you know what you are doing!
-
 after "deploy:update_code",     "bundler:bundle"
 after "bundler:bundle",         "deploy:migrate"
 after "deploy:migrate",         "assets:precompile"

@@ -187,6 +187,18 @@ div#new-folder-modal {
   width: 850px;
 }
 
+#new_user {
+  .loader {
+    height: 16px;
+    width: 16px;
+    display: none;
+    padding-bottom: 2px;
+    margin-left: 30px;
+    background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
+    background-position: center 2px;
+  }
+}
+
 .signup_tabs {
   margin-bottom: 0;
   font-size: 1.2em;
