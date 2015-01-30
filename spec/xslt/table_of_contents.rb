@@ -4,7 +4,11 @@ require 'action_controller'
 require 'pry'
 
 # stub rails root so we can run tests without loading the whole environment
-XsltTransform::RAILS_ROOT = File.expand_path(File.join(__FILE__, '../../../'))
+class Rails
+  def self.root
+     File.expand_path(File.join(__FILE__, '../../../'))
+  end
+end
 
 describe "XSLT::TableOfContents" do
   def process(xml, type = "RULE")

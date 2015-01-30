@@ -20,6 +20,9 @@
       list-style-type: none;
       text-indent: -19px;
       padding-left: 19px;
+      &:before {
+        @include square_bullets($fr-gray-30);
+      }
     }
 
     &.reader-aids {

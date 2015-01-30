@@ -103,6 +103,7 @@ group :development, :test do
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
   if RUBY_VERSION == '1.9.3'
+    gem 'zeus'
     gem 'capybara'
     gem 'capybara-webkit'
     gem 'capybara-screenshot'

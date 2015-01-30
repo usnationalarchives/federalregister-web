@@ -77,4 +77,12 @@ describe "document routes" do
       day: document.day
     )
   end
+
+  context "esi routes for compiled html" do
+    it "document_table_of_contents_path return the proper path to the file on disk" do
+      expect(
+        document_table_of_contents_path(document)
+      ).to eql("/documents/html/table_of_contents/201/400/001.html")
+    end
+  end
 end

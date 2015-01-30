@@ -12,7 +12,7 @@ module CitationsHelper
         text = add_public_law_links(text)
         text = add_patent_links(text)
         text = add_omb_control_number_links(text)
-      end
+      end.html_safe
     else
       html
     end

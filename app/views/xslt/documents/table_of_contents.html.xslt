@@ -5,7 +5,7 @@
   <xsl:template name="table_of_contents" match="RULE | NOTICE">
     <xsl:choose>
       <xsl:when test="count(//HD[not(ancestor::NOTE|ancestor::FP)]) &gt; 0">
-        <ul class="table_of_contents">
+        <ul class="table-of-contents fr-list with-bullets">
           <xsl:apply-templates mode="table_of_contents"/>
         </ul>
       </xsl:when>

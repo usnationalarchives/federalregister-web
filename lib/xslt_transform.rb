@@ -1,7 +1,7 @@
 class XsltTransform
   def self.transform_xml(xml, stylesheet, options = {})
     xslt = Nokogiri::XSLT(
-      File.read("#{RAILS_ROOT}/app/views/xslt/#{stylesheet}")
+      File.read("#{Rails.root}/app/views/xslt/#{stylesheet}")
     )
     xslt.transform(Nokogiri::XML(xml), options.to_a.flatten)
   end
@@ -12,6 +12,14 @@ class XsltTransform
 
     Nokogiri::XML(normalize_whitespace(doc),&:noblanks).
       to_html(indent_text: indent_text, indent: indent)
+  end
+
+  def self.xml_for_development(document)
+    document_path = document.full_text_xml_url.split('xml').last
+
+    File.read(
+      File.join(Rails.root, '..', 'federalregister-api-core/data/xml', document_path)
+    )
   end
 
   private
