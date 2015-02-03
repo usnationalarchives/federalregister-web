@@ -11,7 +11,7 @@ class XsltTransform
     indent = options.fetch(:indent) { 2 }
 
     Nokogiri::XML(normalize_whitespace(doc),&:noblanks).
-      to_html(indent_text: indent_text, indent: indent)
+      to_xhtml(indent_text: indent_text, indent: indent)
   end
 
   def self.xml_for_development(document)
