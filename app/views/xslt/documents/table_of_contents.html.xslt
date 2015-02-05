@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:output method="html" omit-xml-declaration="yes" />
   <xsl:include href="app/views/xslt/formatting.html.xslt" />
+  <xsl:include href="app/views/xslt/headers.html.xslt" />
 
   <xsl:template name="table_of_contents" match="RULE | NOTICE">
     <xsl:choose>
@@ -40,27 +42,6 @@
 
   <xsl:template mode="table_of_contents" match="*[name(.) != 'HD']|text()">
     <xsl:apply-templates mode="table_of_contents"/>
-  </xsl:template>
-
-  <xsl:template name="header_level">
-    <xsl:param name="source" />
-    <xsl:choose>
-      <xsl:when test="$source = 'HED'">1</xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="number(translate($source, 'HD', '')) + 1" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template name="header_id">
-    <xsl:choose>
-      <xsl:when test="translate(text(),' ','') = 'ADDRESSES:'">
-        <xsl:text>addresses</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="concat('h-', count(preceding::HD)+1)" />
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 </xsl:stylesheet>
 
