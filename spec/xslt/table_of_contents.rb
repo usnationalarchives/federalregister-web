@@ -9,10 +9,6 @@ describe "XSLT::TableOfContents" do
     )
   end
 
-  def table_of_contents_ul_css
-    "table-of-contents fr-list with-bullets"
-  end
-
   it "creates a table of contents from the headers with appropriate levels" do
     process <<-XML
         <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
