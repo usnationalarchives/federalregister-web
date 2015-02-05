@@ -51,6 +51,25 @@ describe "XSLT::TableOfContents" do
     HTML
   end
 
+  it "creates the proper reference to the addresses header" do
+    process <<-XML
+      <ADD>
+        <HD SOURCE="HED">ADDRESSES:</HD>
+        <P>
+          Federal Communications Commission, 445 12th Street SW., Washington, DC 20554.
+        </P>
+      </ADD>
+    XML
+
+    expect_equivalent <<-HTML
+      <ul class="#{table_of_contents_ul_css}">
+        <li class="level-1">
+          <a href="#addresses">ADDRESSES:</a>
+        </li>
+      </ul>
+    HTML
+  end
+
   it "creates table of contents without AGENCY, ACTION, or SUMMARY headers" do
     process <<-XML
       <AGY>
