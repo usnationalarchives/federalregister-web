@@ -9,6 +9,8 @@ describe "XSLT::TableOfContents" do
     )
   end
 
+  def table_of_contents_ul_css
+    "table-of-contents fr-list with-bullets"
   end
 
   it "creates a table of contents from the headers with appropriate levels" do
@@ -23,7 +25,7 @@ describe "XSLT::TableOfContents" do
     XML
 
     expect_equivalent <<-HTML
-      <ul class="table_of_contents">
+      <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
           <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
         </li>
@@ -72,7 +74,7 @@ describe "XSLT::TableOfContents" do
     XML
 
     expect_equivalent <<-HTML
-      <ul class="table_of_contents">
+      <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
           <a href="#h-4">DATES:</a>
         </li>
@@ -132,7 +134,7 @@ describe "XSLT::TableOfContents" do
     XML
 
     expect_equivalent <<-HTML
-      <ul class="table_of_contents">
+      <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
           <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
         </li>
@@ -155,7 +157,7 @@ describe "XSLT::TableOfContents" do
         XML
 
         expect_equivalent <<-HTML
-          <ul class="table_of_contents">
+          <ul class="#{table_of_contents_ul_css}">
             <li class="level-1">
               <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
             </li>
