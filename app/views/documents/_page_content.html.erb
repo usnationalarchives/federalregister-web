@@ -11,9 +11,14 @@
             <h1>Action</h1>
             <p><%= document.action %></p>
           <% end %>
-          <!-- RW: Fix this when upgrading varnish -->
-          <%= esi document.http_abstract_html_url %>
-          <%= esi document.http_body_html_url %>
+         <% if Rails.env.development? || Rails.env.test? %>
+            <%= XsltTransform.transform_xml(
+                  XsltTransform.xml_for_development(document),
+                  "documents/full_text.html.xslt"
+                ).to_html.html_safe %>
+          <% else %>
+            <%= esi document.http_body_html_url %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
