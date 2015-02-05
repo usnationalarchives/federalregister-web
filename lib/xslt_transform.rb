@@ -10,8 +10,9 @@ class XsltTransform
     indent_text = options.fetch(:indent_text) { " " }
     indent = options.fetch(:indent) { 2 }
 
-    Nokogiri::XML(normalize_whitespace(doc),&:noblanks).
-      to_xhtml(indent_text: indent_text, indent: indent)
+    Nokogiri::XML(normalize_whitespace("<root>#{doc}</root>"),&:noblanks).
+      to_xhtml(indent_text: indent_text, indent: indent).
+      gsub(/^<\/?root>/,'')
   end
 
   def self.xml_for_development(document)
