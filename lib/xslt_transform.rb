@@ -19,7 +19,7 @@ class XsltTransform
     document_path = document.full_text_xml_url.split('xml').last
 
     File.read(
-      File.join(Rails.root, '..', 'federalregister-api-core/data/xml', document_path)
+      File.join(Rails.root, '..', 'federalregister-api-core/data/xml', "#{document_path}xml")
     )
   end
 
