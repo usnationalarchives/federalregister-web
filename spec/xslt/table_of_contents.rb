@@ -186,6 +186,20 @@ describe "XSLT::TableOfContents" do
     HTML
   end
 
+  it "works for presidential documents"
+  it "works for footnotes"
+  #<HD SOURCE="HD2">
+  #C. National Benefits
+  #<SU>3</SU>
+  #<FTREF/>
+  #</HD>
+  #<FTNT>
+  #<P>
+  #<SU>3</SU>
+  #All monetary values in this section are expressed in 2013 dollars and are discounted to 2014.
+  #</P>
+  #</FTNT>
+
   context "document types" do
     %w(RULE NOTICE).each do |doc_type|
       it "creates a table of contents for documents of type #{doc_type}" do

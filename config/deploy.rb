@@ -90,7 +90,7 @@ task :officialness do
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
-  role :rvm, "web.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
+  role :rvm, "web.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
 
   set :github_user_repo, 'criticaljuncture'
   set :github_project_repo, 'federalregister-web'
