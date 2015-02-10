@@ -68,11 +68,12 @@ task :production do
   set :gateway, 'fr2_production'
 
   role :proxy,  "proxy.fr2.ec2.internal"
-  role :app,    "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
+  role :app,    "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
+  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
-  role :rvm, "my-fr2-server-1.fr2.ec2.internal", "my-fr2-server-2.fr2.ec2.internal", "my-fr2-server-3.fr2.ec2.internal", "my-fr2-server-4.fr2.ec2.internal", "my-fr2-server-5.fr2.ec2.internal"
+  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
 
   set :github_user_repo, 'usnationalarchives'
   set :github_project_repo, 'my_fr2'
