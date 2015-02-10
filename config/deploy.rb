@@ -45,7 +45,7 @@ task :production do
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
 
-  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
+  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
 
   set :github_user_repo, 'usnationalarchives'
   set :github_project_repo, 'my_fr2'
