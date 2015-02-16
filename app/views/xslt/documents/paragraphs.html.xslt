@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:include href="../paragraphs.html.xslt" />
-  <xsl:include href="../print_page.html.xslt" />
+  <xsl:include href="../printed_page.html.xslt" />
 
   <xsl:template match="P | FP">
     <!--
@@ -28,16 +28,17 @@
           <xsl:attribute name="id">
             <xsl:call-template name="paragraph_id" />
           </xsl:attribute>
-          <!--
+
           <xsl:attribute name="data-page">
-            <xsl:call-template name="current_page" />
+            <xsl:call-template name="printed_page" />
           </xsl:attribute>
 
+          <!--
           <xsl:if test="name(..) = 'FURINF'">
             <xsl:attribute name="class">furinf</xsl:attribute>
           </xsl:if> -->
 
-          <xsl:apply-templates/>
+          <xsl:apply-templates />
         </p>
         <!-- </xsl:otherwise>
     </xsl:choose> -->

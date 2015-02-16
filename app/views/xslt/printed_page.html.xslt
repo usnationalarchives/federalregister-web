@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
   <!-- return the printed page number for the current node -->
-  <xsl:template name="current_page">
+  <xsl:template name="printed_page">
     <xsl:variable name="current_page">
       <xsl:value-of select="preceding::PRTPAGE[not(ancestor::FTNT)][1]/@P" />
     </xsl:variable>
