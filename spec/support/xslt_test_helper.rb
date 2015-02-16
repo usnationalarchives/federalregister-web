@@ -22,9 +22,10 @@ module XsltTestHelper
 end
 
 # stub rails root so we can run tests without loading the whole environment
-module Rails
-  def self.root
-    File.expand_path(File.join(__FILE__, '../../../'))
+unless Module.const_defined?(:Rails)
+  module Rails
+    def self.root
+      File.expand_path(File.join(__FILE__, '../../../'))
+    end
   end
 end
-
