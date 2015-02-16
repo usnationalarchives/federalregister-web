@@ -10,8 +10,13 @@ class XsltTransform
     indent_text = options.fetch(:indent_text) { " " }
     indent = options.fetch(:indent) { 2 }
 
-    Nokogiri::XML(normalize_whitespace("<root>#{doc}</root>"),&:noblanks).
-      to_xhtml(indent_text: indent_text, indent: indent).
+    xml = Nokogiri::XML(
+      normalize_whitespace("<root>#{doc}</root>"),
+      &:noblanks
+    )
+
+    xml.encoding = "UTF-8"
+    xml.to_xhtml(indent_text: indent_text, indent: indent).
       gsub(/^<\/?root>/,'')
   end
 
