@@ -10,7 +10,7 @@ include XsltTestHelper
 
 describe "XSLT::Diacriticals" do
   before :all do
-    @template = "documents/full_text.html.xslt"
+    @template = "matchers/full_text.html.xslt"
   end
 
   # 2015-01205

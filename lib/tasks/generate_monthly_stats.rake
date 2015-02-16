@@ -7,5 +7,3 @@ namespace :monthly do
     end
   end
 end
-
-FederalRegisterStats.new('2015-01-01').generate

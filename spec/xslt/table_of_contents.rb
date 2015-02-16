@@ -5,7 +5,7 @@ describe "XSLT::TableOfContents" do
   def process(xml, type = "RULE")
     @html = XsltTransform.transform_xml(
       "<#{type}>#{xml}</#{type}>",
-      "documents/table_of_contents.html.xslt"
+      "matchers/table_of_contents.html.xslt"
     )
   end
 

@@ -3,7 +3,7 @@ include XsltTestHelper
 
 describe "XSLT::PrintedPage" do
   before :all do
-    @template = "documents/full_text.html.xslt"
+    @template = "matchers/full_text.html.xslt"
   end
 
   it "uses the first page when there is no current page" do

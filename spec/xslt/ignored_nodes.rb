@@ -3,7 +3,7 @@ include XsltTestHelper
 
 describe "XSLT::IgnoredNodes" do
     before :all do
-    @template = "documents/full_text.html.xslt"
+    @template = "matchers/full_text.html.xslt"
   end
 
   context "nodes in the preamble with no child nodes" do

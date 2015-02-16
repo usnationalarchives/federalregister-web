@@ -5,7 +5,7 @@ describe "XSLT::FullText::Headers" do
   def process(xml, type = "RULE")
     @html = XsltTransform.transform_xml(
       "<#{type}>#{xml}</#{type}>",
-      "documents/full_text.html.xslt"
+      "matchers/full_text.html.xslt"
     )
   end
 

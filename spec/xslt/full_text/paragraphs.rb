@@ -3,7 +3,7 @@ include XsltTestHelper
 
 describe "XSLT::FullText::Paragraphs" do
   before :all do
-    @template = "documents/full_text.html.xslt"
+    @template = "matchers/full_text.html.xslt"
   end
 
   context "basic paragraph creation" do
