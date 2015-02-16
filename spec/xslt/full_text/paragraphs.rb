@@ -2,11 +2,8 @@ require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
 describe "XSLT::FullText::Paragraphs" do
-  def process(xml, type = "RULE")
-    @html = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      "documents/full_text.html.xslt"
-    )
+  before :all do
+    @template = "documents/full_text.html.xslt"
   end
 
   context "basic paragraph creation" do
@@ -16,7 +13,7 @@ describe "XSLT::FullText::Paragraphs" do
       XML
 
       expect_equivalent <<-HTML
-        <p id="p-1">In a final rule published in the Federal Register</p>
+        <p id="p-1" data-page="1000">In a final rule published in the Federal Register</p>
       HTML
     end
 
@@ -26,7 +23,7 @@ describe "XSLT::FullText::Paragraphs" do
       XML
 
       expect_equivalent <<-HTML
-        <p id="p-1">In a final rule published in the Federal Register</p>
+        <p id="p-1" data-page="1000">In a final rule published in the Federal Register</p>
       HTML
     end
 
@@ -39,10 +36,10 @@ describe "XSLT::FullText::Paragraphs" do
       XML
 
       expect_equivalent <<-HTML
-        <p id="p-1">In a final rule published in the Federal Register</p>
-        <p id="p-2">Paragraph 2...</p>
-        <p id="p-3">Paragraph 3...</p>
-        <p id="p-4">Paragraph 4...</p>
+        <p id="p-1" data-page="1000">In a final rule published in the Federal Register</p>
+        <p id="p-2" data-page="1000">Paragraph 2...</p>
+        <p id="p-3" data-page="1000">Paragraph 3...</p>
+        <p id="p-4" data-page="1000">Paragraph 4...</p>
       HTML
     end
   end

@@ -14,7 +14,8 @@
          <% if Rails.env.development? || Rails.env.test? %>
             <%= XsltTransform.transform_xml(
                   XsltTransform.xml_for_development(document),
-                  "documents/full_text.html.xslt"
+                  "documents/full_text.html.xslt",
+                  'first_page' => (document.start_page.to_s)
                 ).to_html.html_safe %>
           <% else %>
             <%= esi document.http_body_html_url %>

@@ -4,6 +4,14 @@ module XsltTestHelper
   require 'action_controller'
   require 'pry'
 
+  def process(xml, type="RULE")
+    @html = XsltTransform.transform_xml(
+      "<#{type}>#{xml}</#{type}>",
+      @template,
+      'first_page' => "1000"
+    )
+  end
+
   def expect_equivalent(expected_output)
     expect(
       XsltTransform.standardized_html(@html.to_xml)

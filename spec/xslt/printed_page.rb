@@ -1,13 +1,9 @@
 require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
-describe "XSLT::PrintPage" do
-  def process(xml, type = "RULE")
-    @html = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      "documents/full_text.html.xslt",
-      'first_page' => "6963"
-    )
+describe "XSLT::PrintedPage" do
+  before :all do
+    @template = "documents/full_text.html.xslt"
   end
 
   it "uses the first page when there is no current page" do
@@ -18,7 +14,7 @@ describe "XSLT::PrintPage" do
     XML
 
     expect_equivalent <<-HTML
-      <p id="p-1" data-page="6963">
+      <p id="p-1" data-page="1000">
         Paragraph on the first printed page of the document.
       </p>
     HTML
@@ -26,21 +22,21 @@ describe "XSLT::PrintPage" do
 
   it "uses the current page when there is a page defined" do
     process <<-XML
-      <PRTPAGE P="6964"/>
+      <PRTPAGE P="1001"/>
       <P>
         Paragraph on the second printed page of the document.
       </P>
-      <PRTPAGE P="6965"/>
+      <PRTPAGE P="1002"/>
       <P>
         Paragraph on the third printed page of the document.
       </P>
     XML
 
     expect_equivalent <<-HTML
-      <p id="p-1" data-page="6964">
+      <p id="p-1" data-page="1001">
         Paragraph on the second printed page of the document.
       </p>
-      <p id="p-2" data-page="6965">
+      <p id="p-2" data-page="1002">
         Paragraph on the third printed page of the document.
       </p>
     HTML

@@ -2,11 +2,8 @@ require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
 describe "XSLT::IgnoredNodes" do
-  def process(xml, type = "RULE")
-    @html = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      "documents/full_text.html.xslt"
-    )
+    before :all do
+    @template = "documents/full_text.html.xslt"
   end
 
   context "nodes in the preamble with no child nodes" do
@@ -110,11 +107,11 @@ describe "XSLT::IgnoredNodes" do
 
         expect_equivalent <<-HTML
           <h1 id="h-1">AGENCY:</h1>
-          <p id="p-1">Animal and Plant Health Inspection Service, USDA.</p>
+          <p id="p-1" data-page="1000">Animal and Plant Health Inspection Service, USDA.</p>
 
           <h3 id="h-2">Some document header:</h3>
-          <p id="p-2">Additional stuff...</p>
-          <p id="p-3">Additional stuff...</p>
+          <p id="p-2" data-page="1000">Additional stuff...</p>
+          <p id="p-3" data-page="1000">Additional stuff...</p>
         HTML
       end
 
@@ -132,11 +129,11 @@ describe "XSLT::IgnoredNodes" do
 
         expect_equivalent <<-HTML
           <h1 id="h-1">ACTION:</h1>
-          <p id="p-1">Final rule; technical amendment.</p>
+          <p id="p-1" data-page="1000">Final rule; technical amendment.</p>
 
           <h3 id="h-2">Some document header:</h3>
-          <p id="p-2">Additional stuff...</p>
-          <p id="p-3">Additional stuff...</p>
+          <p id="p-2" data-page="1000">Additional stuff...</p>
+          <p id="p-3" data-page="1000">Additional stuff...</p>
         HTML
       end
     end
