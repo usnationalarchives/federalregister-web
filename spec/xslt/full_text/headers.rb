@@ -2,11 +2,8 @@ require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
 describe "XSLT::FullText::Headers" do
-  def process(xml, type = "RULE")
-    @html = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      "matchers/full_text.html.xslt"
-    )
+  before :all do
+    @template = "matchers/full_text.html.xslt"
   end
 
   context "basic header creation" do
@@ -122,6 +119,18 @@ describe "XSLT::FullText::Headers" do
       <h1 id="h-3">SUMMARY:</h1>
       <h1 id="h-4">DATES:</h1>
       <h1 id="h-5">FOR FURTHER INFORMATION CONTACT:</h1>
+    HTML
+  end
+
+  it "correctly creates the header for List of Subject elements" do
+    process <<-XML
+      <LSTSUB>
+        <HD SOURCE="HED">List of Subjects in 9 CFR Part 78</HD>
+      </LSTSUB>
+    XML
+
+    expect_equivalent <<-HTML
+      <h2 id="h-1" class="list-of-subjects">List of Subjects in 9 CFR Part 78</h2>
     HTML
   end
 end
