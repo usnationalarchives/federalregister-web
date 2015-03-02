@@ -9,4 +9,11 @@
       <xsl:apply-templates />
     </em>
   </xsl:template>
+
+  <xsl:template match="E[@T=03]">
+    <strong>
+      <xsl:apply-templates />
+    </strong>
+  </xsl:template>
+
 </xsl:stylesheet>
