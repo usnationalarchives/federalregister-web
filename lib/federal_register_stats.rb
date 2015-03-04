@@ -17,7 +17,7 @@ class FederalRegisterStats
     @beginning_of_month = @date.beginning_of_month
     @end_of_month = @date.end_of_month
 
-    credentials = YAML.load_file('../config/database.yml')[env]
+    credentials = YAML.load_file('config/database.yml')[env]
 
     @mysql = Mysql2::Client.new(
       :host => credentials['host'],
