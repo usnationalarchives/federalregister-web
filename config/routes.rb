@@ -178,6 +178,9 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids
 
+    esi.get 'esi/layouts/navigation/public-inspection',
+      to: 'public_inspection#navigation',
+      as: :navigation_public_inspection
 
     # FOOTER
     esi.get 'esi/layout/footer',
