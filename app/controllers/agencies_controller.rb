@@ -4,7 +4,6 @@ class AgenciesController < ApplicationController
 
   def index
     cache_for 1.day
-
     @agencies = FederalRegister::Agency.all
     @presenter = AgenciesPresenter.new(@agencies, params[:id])
   end
@@ -49,6 +48,6 @@ class AgenciesController < ApplicationController
 
   def navigation
     cache_for 1.day
-    @presenter = Navigation::AgenciesPresenter.new
+    @presenter = Facets::AgenciesPresenter.new
   end
 end

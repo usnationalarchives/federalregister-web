@@ -15,33 +15,12 @@
           <th class="closing_soon" data-tooltip="Documents with Comment Periods Closing in the Next 7 Days"></th>
         </tr>
       </thead>
-      <tbody>
-        <% @presenter.agencies.each do |agency| %>
-          <tr>
-            <td class="agency_name"><%= link_to agency.name, agency.url %></td>
-            <td class="count_7_days">
-              <%= link_to_unless agency.document_count == 0,
-                  agency.document_count,
-                  documents_search_path(
-                    agency.document_count_search_conditions
-                  ),
-                  :utm_source => 'navigation',
-                  :utm_medium => 'dropdown',
-                  :utm_content => 'agencies_last_7' %>
-            </td>
-            <td class="comments_closing_soon">
-              <%= link_to_unless  agency.comment_count == 0,
-                  agency.comment_count,
-                  documents_search_path(
-                    agency.comment_count_search_conditions
-                  ),
-                  :utm_source => 'navigation',
-                  :utm_medium => 'dropdown',
-                  :utm_content => 'agencies_closing_soon' %>
-            </td>
-            <% end %>
-          </tr>
-      </tbody>
+      <%= render partial: 'facets/agencies/explore', 
+           locals: {
+             agencies: @presenter.agencies_for_exploration, 
+             source: 'navigation',
+             medium: 'explore'
+           } %>
     </table>
   </div>
 </li>

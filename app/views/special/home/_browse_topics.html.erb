@@ -3,12 +3,9 @@
     <span class="icon-fr2 icon-fr2-Molecular"></span>
     Explore Topics
   </h4>
-
-  <div class="table-search-box">
-    <form>
-      <input type="text" class="form-control fr-table-form" placeholder="Go to a specific topic">
-    </form>
-  </div>
+  <%= form_tag topics_path, :method => :get, :id => "topic-search-form" do %>
+    <input id="topic-search" class="form-control" placeholder="Go to a specific topic" data-autocomplete="autocomplete" />
+  <% end %>
 
   <table class="fr-table">
     <thead>
@@ -24,41 +21,12 @@
         </th>
       </tr>
     </thead>
-
     <tbody>
-      <% topics = [
-        ['Air pollution control', 17, 8],
-        ['Air transportation', 37, 19],
-        ['Airspace', 17, 4],
-        ['Aviation safety', 38, 20],
-        ['Environmental protection', 22, 9],
-        ['Flood insurance', 2, 7],
-        ['Government procurement', 8, 7],
-        ['Harbors', 18, 2],
-        ['Imports', 32, 6],
-        ['Income taxes', 1, 1],
-        ['Marine safety', 4, 0],
-        ['Navigation (air)', 19, 4],
-        ['Navigation (water)', 5, 0],
-        ['Waterways', 4, 0],
-        ['Security Measures', 12, 4],
-        ['Volatile organic compounds', 14, 5],
-      ] %>
-      <% topics.each do |topic| %>
-        <tr>
-          <td class="topic_name">
-            <a href=""><%= topic[0] %></a>
-          </td>
-
-          <td class="count_7_days">
-            <a href=""><%= topic[1] %></a>
-          </td>
-
-          <td class="comments_recently_opened">
-            <a href=""><%= topic[2] %></a>
-          </td>
-        </tr>
-      <% end %>
+      <%= render partial: 'facets/topics/explore', locals: {
+        topics: @topics_presenter.topics,
+        source: 'home page', 
+        medium: 'explore' 
+      } %>    
     </tbody>
   </table>
 </div>
