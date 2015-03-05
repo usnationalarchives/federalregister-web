@@ -30,6 +30,8 @@ class SpecialController < ApplicationController
 
   def home
     cache_for 1.day
+    @agencies_presenter = Facets::AgenciesPresenter.new
+    @topics_presenter = Facets::TopicsPresenter.new
   end
 
   def fr2_assets

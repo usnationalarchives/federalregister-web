@@ -35,6 +35,6 @@ class TopicsController < ApplicationController
 
   def navigation
     cache_for 1.day
-    @presenter = Navigation::TopicsPresenter.new
+    @presenter = Facets::TopicsPresenter.new
   end
 end

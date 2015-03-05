@@ -1,4 +1,4 @@
-class Navigation::TopicsPresenter
+class Facets::TopicsPresenter
   ROUTINE_TOPICS = [
     "administrative-practice-tprocedure",
     "aircraft",

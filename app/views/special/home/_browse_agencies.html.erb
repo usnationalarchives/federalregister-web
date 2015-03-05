@@ -4,11 +4,9 @@
     Explore Agencies
   </h4>
 
-  <div class="table-search-box">
-    <form>
-      <input type="text" class="form-control fr-table-form" placeholder="Go to a specific agency">
-    </form>
-  </div>
+  <%= form_tag agencies_path, :method => :get, :id => "agency-search-form-explore" do %>
+    <input id="agency-search-explore" class="form-control" placeholder="Go to a specific agency" data-autocomplete="autocomplete" />
+  <% end %>
 
   <table class="fr-table">
     <thead>
@@ -24,41 +22,13 @@
         </th>
       </tr>
     </thead>
-
     <tbody>
-      <% cabinet_agencies = [
-        ['Agriculture Department', 32, 21],
-        ['Commerce Department', 75, 9],
-        ['Defense Department', 22, 9],
-        ['Education Department', 10, 10],
-        ['Energy Department', 44, 7],
-        ['Environmental Protection Agency', 29, 22],
-        ['Health and Human Services Department', 80, 15],
-        ['Homeland Security Department', 27, 9],
-        ['Housing and Urban Development Department', 16, 1],
-        ['Interior Department', 38, 20],
-        ['Justice Department', 10, 0],
-        ['Labor Department', 16, 14],
-        ['State Department', 3, 2],
-        ['Transportation Department', 91, 66],
-        ['Treasury Department', 30, 19],
-        ['Veterans Affairs Department', 7, 3],
-      ] %>
-      <% cabinet_agencies.each do |agency| %>
-        <tr>
-          <td class="agency_name">
-            <a href=""><%= agency[0] %></a>
-          </td>
-
-          <td class="count_7_days">
-            <a href=""><%= agency[1] %></a>
-          </td>
-
-          <td class="comments_recently_opened">
-            <a href=""><%= agency[2] %></a>
-          </td>
-        </tr>
-      <% end %>
+      <%= render partial: 'facets/agencies/explore', 
+           locals: {
+             agencies: @agencies_presenter.agencies_for_exploration, 
+             source: 'home page',
+             medium: 'explore'
+           } %>
     </tbody>
   </table>
 </div>
