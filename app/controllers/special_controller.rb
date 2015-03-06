@@ -47,10 +47,6 @@ class SpecialController < ApplicationController
     render :text => "Current time is: #{current_time_on_database} (MyFR)"
   end
 
-  def reader_aids
-    render "special/home/reader_aids", layout: false
-  end
-
   def site_notifications
     cache_for 1.minute
     raw_response = HTTParty.get(
