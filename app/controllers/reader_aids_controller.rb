@@ -26,6 +26,23 @@ class ReaderAidsController < ApplicationController
     )
   end
 
+  def homepage
+    cache_for 1.hour
+    @presenter_for_using_fr = ReaderAidsPresenter::SectionPresenter.new(
+      section_identifier: 'using-federalregister-gov',
+      display_count: 8,
+      columns: 2
+    )
+    @presenter_for_recent_updates = ReaderAidsPresenter::SectionPresenter.new(
+      display_count: 4,
+      section_identifier: 'recent-updates',
+      category: 'site-updates',
+      columns: 1
+    )
+
+    render "special/home/reader_aids", layout: false
+  end
+
   def blog_highlights
     render_section(
       ReaderAidsPresenter::SectionPresenter.new(

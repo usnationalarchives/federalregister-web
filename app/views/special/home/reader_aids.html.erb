@@ -7,79 +7,27 @@
             Increase your understanding of the Federal Register eco-system and
             improve your FederalRegister.gov skills with these helpful, unofficial
             educational articles and videos. See more of our reader aids
-            <a href="">here</a>.
+            <%= link_to "here", reader_aids_path %>.
           </p>
         </div>
 
         <div class="col-xs-4 col-md-4 section">
           <p class="blog">
             <span class="icon-fr2 icon-fr2-quote"></span>
-            Read the <a href="">Office of the Federal Register Blog</a>
+            Read the <%= link_to 'Office of the Federal Register Blog', reader_aids_section_path("office-of-the-federal-register-blog") %>
           </p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-8 col-md-8 section">
-          <h4 class="with-icon lowercase">
-            <span class="icon-fr2 icon-fr2-help"></span>
-            Using FederalRegister.gov
-            <a href="" class="more-details">view all</a>
-          </h4>
-          <ul class="fr-list with-bullets reader-aids two-col">
-            <li>
-              <a href="">Advanced Search Tips and Techniques</a>
-            </li>
-            <li>
-              <a href="">Understanding Public Inspection Documents</a>
-            </li>
-            <li>
-              The <a href="">Completeness of Coverage Since 1994</a>
-              and <a href="">Finding Older Documents</a>
-            </li>
-            <li>
-              <a href="">How Federal Register Documents affect the Code of Federal Regulations</a>
-            </li>
-          </ul>
-          <ul class="fr-list with-bullets reader-aids two-col">
-            <li>
-              <a href="">Subscription options</a>
-              and <a href="">Managing Subscriptions</a>
-            </li>
-            <li>
-              The <a href="">History of the Federal Register</a>
-            </li>
-            <li>
-              Finding <a href="">Public Meetings & Workshops</a>
-            </li>
-            <li>
-              <a href="">Understanding the Public Commenting Process</a>
-            </li>
-          </ul>
+          <%= render partial: 'reader_aids/homepage_section', layout: false, locals: {presenter: @presenter_for_using_fr} %>
         </div>
-
         <div class="col-xs-4 col-md-4 section">
-          <h4 class="with-icon lowercase">
-            <span class="icon-fr2 icon-fr2-pc"></span>
-            Recent Site Updates
-            <a href="" class="more-details">view all</a>
-          </h4>
-          <ul class="fr-list with-bullets reader-aids">
-            <li>
-              <a href="">New Federal Register Index</a>
-            </li>
-            <li>
-              <a href="">Improved Display of Proposed Rule Amendments</a>
-            </li>
-            <li>
-              <a href="">Improved Display of Regulatory Text</a>
-            </li>
-            <li>
-              <a href="">MyFR, Agency, and Document Page Updates</a>
-            </li>
-          </ul>
+          <%= render partial: 'reader_aids/homepage_section', layout: false, locals: {presenter: @presenter_for_recent_updates} %>
         </div>
       </div>
+
     <% end %>
   </div>
 </div>

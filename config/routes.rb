@@ -132,7 +132,7 @@ MyFr2::Application.routes.draw do
 
     # HOME PAGE
     esi.get 'esi/home/reader_aids',
-      to: 'special#reader_aids',
+      to: 'reader_aids#homepage',
       as: :home_reader_aids
 
     esi.get 'esi/home/explore_agencies',
