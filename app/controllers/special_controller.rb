@@ -44,10 +44,6 @@ class SpecialController < ApplicationController
     render :text => "Current time is: #{current_time_on_database} (MyFR)"
   end
 
-  def reader_aids
-    render "special/home/reader_aids", layout: false
-  end
-
   def explore_agencies
     cache_for 1.day
     @presenter = Facets::AgenciesPresenter.new
