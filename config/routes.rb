@@ -135,6 +135,11 @@ MyFr2::Application.routes.draw do
       to: 'special#reader_aids',
       as: :home_reader_aids
 
+    #TEST ESI ROUTE
+    esi.get 'esi/reader_aids/homepage',
+      to: 'reader_aids#homepage',
+      as: :homepage_reader_aids
+
     esi.get 'esi/reader_aids/blog_highlights',
       to: 'reader_aids#blog_highlights',
       as: :reader_aids_blog_highlights
