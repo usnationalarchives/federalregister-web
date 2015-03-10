@@ -16,8 +16,8 @@ class Navigation::TopicsPresenter
           slug: facet.slug,
           document_count: facet.count,
           document_count_search_conditions: facet.search_conditions,
-          comment_count: comment_counts.detect{|x| x.slug == agency.slug}.try(:count) || 0,
-          comment_count_search_conditions: comment_counts.detect{|x| x.slug == agency.slug}.try(:search_conditions)
+          comment_count: comment_counts.detect{|x| x.slug == facet.slug}.try(:count) || 0,
+          comment_count_search_conditions: comment_counts.detect{|x| x.slug == facet.slug}.try(:search_conditions)
         )
       }.
       map{|topic| TopicFacetDecorator.decorate(topic)}.
