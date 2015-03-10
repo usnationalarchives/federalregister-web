@@ -19,4 +19,15 @@ class Facets::QueryConditions
       }
     }
   end
+
+  def self.published_within(start_date, end_date)
+    {
+      conditions: {
+        publication_date: {
+          gte: start_date.to_s(:iso),
+          lte: end_date.to_s(:iso)
+        }
+      }
+    }
+  end
 end

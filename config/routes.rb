@@ -178,6 +178,10 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids
 
+    # PRESIDENTIAL DOCUMENTS
+    esi.get 'esi/presidential_documents',
+      to: 'presidential_documents#homepage',
+      as: :presidential_documents
 
     # FOOTER
     esi.get 'esi/layout/footer',
