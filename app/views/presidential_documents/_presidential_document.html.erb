@@ -1,0 +1,17 @@
+<li>
+  <span class="fr-doc-title"> <%= "Executive Order #{documents["executive_order"].executive_order_number}" %> </span>
+  <%= link_to documents["executive_order"].title, documents["executive_order"].html_url, :class => "fr-link" %>
+  <span class="fr-doc-date"> <%= documents["executive_order"].publication_date.to_s(:formal) %> </span>
+</li>
+
+<li>
+  <span class="fr-doc-title">Proclamation</span>
+  <%= link_to documents["proclamation"].title, documents["proclamation"].html_url, :class => "fr-link" %>
+  <span class="fr-doc-date"> <%= documents["proclamation"].publication_date.to_s(:formal) %> </span>
+</li>
+
+<li>
+  <span class="fr-doc-title">Notice</span>
+  <%= link_to documents["notice"].title, documents["notice"].html_url, :class => "fr-link" %>
+  <span class="fr-doc-date"> <%= documents["notice"].publication_date.to_s(:formal) %> </span>
+</li>

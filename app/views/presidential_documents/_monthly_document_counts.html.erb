@@ -1,0 +1,31 @@
+<thead>
+  <tr>
+    <th colspan="2"> <%= date.to_s(:month_year) %> </th>
+  </tr>
+</thead>
+
+<tbody>
+  <% { 
+    "executive_order" => "Executive Order", 
+    "proclamation" => "Proclamation",
+    "notice" => "Notice",
+    "memorandum" => "Memorandum"
+    }.each do |subtype, subtype_string|
+  %>
+
+    <tr>
+      <% if month_counts[subtype].present? %>
+        <td class="count"> 
+          <%= month_counts[subtype].document_count %>
+        </td>
+        <td>
+          <%= link_to( subtype_string.pluralize(month_counts[subtype].document_count), documents_search_path(month_counts[subtype].document_count_search_conditions)) %>
+        </td>
+      <% else %>
+        <td class="count"> 0 </td>
+        <td> <%= subtype_string + "s" %> </td>
+      <% end %>
+    </tr>
+
+  <% end %>
+</tbody>

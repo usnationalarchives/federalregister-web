@@ -1,0 +1,21 @@
+<div class="col-xs-4 col-md-4 section with-icon-header pres-doc-preview">
+  <h4 class="with-icon">
+    <span class="icon-fr2 icon-fr2-stars"></span>
+    Presidential Documents
+  </h4>
+
+  <ul class="fr-list">
+    <%= render partial: 'presidential_documents/presidential_document', locals: {documents: @presenter.latest_document_by_type(2.months) } %>
+  </ul>
+
+  <% [Date.current, Date.current - 1.month].each_with_index do |date, index| %>
+    <table class="fr-table fr-monthly-overview <%= "alpha" if index == 0 %> ">
+      <% if @presenter.document_counts_for(date).empty? %>
+        <%= render partial: 'presidential_documents/empty_monthly_document_counts',locals: {date: date, month_counts: @presenter.document_counts_for(date) } %>
+      <% else %>
+        <%= render partial: 'presidential_documents/monthly_document_counts', locals: {date: date, month_counts: @presenter.document_counts_for(date) } %>
+      <% end %>
+    </table>
+  <% end %>
+
+</div>

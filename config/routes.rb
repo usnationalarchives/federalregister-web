@@ -143,6 +143,10 @@ MyFr2::Application.routes.draw do
       to: 'special#explore_topics',
       as: :home_explore_topics
 
+    esi.get 'esi/home/presidential_documents',
+      to: 'presidential_documents#homepage',
+      as: :home_presidential_documents
+
 
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
@@ -191,6 +195,7 @@ MyFr2::Application.routes.draw do
     esi.get 'esi/layouts/navigation/public-inspection',
       to: 'public_inspection#navigation',
       as: :navigation_public_inspection
+
 
     # FOOTER
     esi.get 'esi/layout/footer',
