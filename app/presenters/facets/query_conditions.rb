@@ -14,7 +14,20 @@ class Facets::QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: time_frame.ago.to_date.to_s(:iso)
+          gte: (DocumentIssue.current_date - time_frame).to_s(:iso)
+        }
+      }
+    }
+  end
+
+  def self.comments_opened_in_last(time_frame)
+    {
+      conditions: {
+        publication_date: {
+          gte: (DocumentIssue.current_date - time_frame).to_s(:iso)
+        },
+        comment_date: {
+          gte: Date.current.to_s(:iso),
         }
       }
     }
