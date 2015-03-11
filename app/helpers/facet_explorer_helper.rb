@@ -1,9 +1,11 @@
 module FacetExplorerHelper
   def facet_explorer(args={})
-    content_tag :div, class: 'facet-explorer' do
-      facet_explorer_header( args.fetch(:header) ) +
-      facet_explorer_search( args.fetch(:search) ) +
-      facet_explorer_table( args.fetch(:table) )
+    content_tag :div, class: 'bootstrap-scope' do
+      content_tag :div, class: 'facet-explorer' do
+        facet_explorer_header( args.fetch(:header) ) +
+        facet_explorer_search( args.fetch(:search) ) +
+        facet_explorer_table( args.fetch(:table) )
+      end
     end
   end
 

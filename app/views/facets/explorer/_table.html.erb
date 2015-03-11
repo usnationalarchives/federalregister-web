@@ -20,21 +20,21 @@
           <%= link_to_unless item.document_count == 0,
               item.document_count,
               documents_search_path(
-                item.document_count_search_conditions
-              ),
-              :utm_source => utm_source,
-              :utm_medium => utm_medium,
-              :utm_content => "#{utm_content_type}_with_documents_last_7" %>
+                item.document_count_search_conditions,
+                :utm_source => utm_source,
+                :utm_medium => utm_medium,
+                :utm_content => "#{utm_content_type}_with_documents_last_7"
+              ) %>
         </td>
         <td class="comments_closing_soon">
           <%= link_to_unless  item.comment_count == 0,
               item.comment_count,
               documents_search_path(
-                item.comment_count_search_conditions
-              ),
-              :utm_source => utm_source,
-              :utm_medium => utm_medium,
-              :utm_content => "#{utm_content_type}_with_comments_closing_soon" %>
+                item.comment_count_search_conditions,
+                :utm_source => utm_source,
+                :utm_medium => utm_medium,
+                :utm_content => "#{utm_content_type}_with_comments_closing_soon"
+              ) %>
         </td>
       </tr>
     <% end %>

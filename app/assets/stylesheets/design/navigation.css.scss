@@ -212,20 +212,23 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
     }
   }
 
+  %right_column_header {
+    margin-left: 5px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $fr-gray-40;
+    font-size: 15px;
+    color: $fr-gray-40;
+    word-spacing: 2px;
+  }
+
   .right_column {
     li > h2,
     .finder h2,
-    table.default h2,
     .preview_wrapper h2 {
-      margin-left: 5px;
-      padding-left: 5px;
-      text-transform: uppercase;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      border-bottom: 1px solid $fr-gray-40;
-      font-size: 15px;
-      color: $fr-gray-40;
-      word-spacing: 2px;
+      @extend %right_column_header;
     }
 
     h2 {
@@ -245,6 +248,45 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
         top: 1px;
         font-size: 12px;
         word-spacing: initial;
+      }
+    }
+
+    .bootstrap-scope {
+      .facet-explorer {
+        h4 {
+          @extend %right_column_header;
+          color: $fr-gray-60;
+          border-bottom: 2px solid $fr-gray-60;
+        }
+
+        .fr-table {
+          margin-left: 5px;
+
+          td {
+            font-weight: bold;
+            font-size: 13px;
+            color: $fr-gray-60;
+            padding: 0;
+            padding-right: 15px;
+
+            a { padding-right: 0; }
+          }
+
+          .icon-fr2 {
+            padding-left: 12px;
+          }
+        }
+
+        input[placeholder] {
+          &::input-placeholder,
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &:-moz-placeholder,
+          &:-ms-input-placeholder {
+            color: $fr-gray-70;
+            font-style: italic;
+          }
+        }
       }
     }
 
