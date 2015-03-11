@@ -15,13 +15,13 @@ class Facets::AgenciesPresenter
     "state-department",
     "transportation-department",
     "treasury-department",
-    "veterans-affairs-department"
+    "veterans-affairs-department",
   ]
 
   def agencies_for_exploration
-    @agencies ||= document_counts. #We receive back a hash of counts (Facet search results come back in JSON and get wrapepd into a Ruby obj)
-      select{|facet| HIGHLIGHTED_AGENCIES.include?(facet.slug)}. #Selecting the highlighted slugs
-      map{|facet| #creating new agencies 
+    @agencies ||= document_counts.
+      select{|facet| HIGHLIGHTED_AGENCIES.include?(facet.slug)}.
+      map{|facet|
         Agency.new(
           name: facet.name,
           slug: facet.slug,
@@ -31,14 +31,12 @@ class Facets::AgenciesPresenter
           comment_count_search_conditions: comment_counts.detect{|x| x.slug == facet.slug}.try(:search_conditions)
         )
       }.
-      map{|agency| AgencyFacetDecorator.decorate(agency)}. # We pass to a decorator
-      sort_by(&:name) #Sorting by name
+      map{|agency| AgencyFacetDecorator.decorate(agency)}.
+      sort_by(&:name)
   end
 
-  # See lines above for alternate initialization sequence, error message is also a little nicer
-  # You can call all the respective methods
   class Agency
-    vattr_initialize [ 
+    vattr_initialize [
       :comment_count,
       :comment_count_search_conditions,
       :document_count,
@@ -52,7 +50,7 @@ class Facets::AgenciesPresenter
 
   def document_counts
     AgencyFacet.search(
-      Facets::QueryConditions.published_in_last(1.year)
+      Facets::QueryConditions.published_in_last(1.week)
     )
   end
 

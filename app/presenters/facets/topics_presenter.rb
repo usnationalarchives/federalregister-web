@@ -3,10 +3,10 @@ class Facets::TopicsPresenter
     "administrative-practice-tprocedure",
     "aircraft",
     "reporting-recordkeeping-requirements",
-    "safety"
+    "safety",
   ]
 
-  def topics
+  def topics_for_exploration
     @topics ||= document_counts.
       reject{|facet| ROUTINE_TOPICS.include?(facet.slug)}.
       slice(0..9).
@@ -45,7 +45,7 @@ class Facets::TopicsPresenter
 
   def document_counts
     TopicFacet.search(
-      Facets::QueryConditions.published_in_last(1.year)
+      Facets::QueryConditions.published_in_last(1.week)
     )
   end
 end
