@@ -32,8 +32,8 @@ class SpecialController < ApplicationController
   end
 
   def current_issue
-    @doc_presenter = DocumentIssuePresenter.new(Date.current - 5.days)
-    @pi_presenter = HomepagePublicInspectionIssuePresenter.new(Date.current)
+    @doc_presenter = DocumentIssuePresenter.new(Date.current - 2.days)
+    @pi_presenter = HomepagePublicInspectionIssuePresenter.new(Date.current - 2.days)
     render partial: 'metadata_bar'
   end
 

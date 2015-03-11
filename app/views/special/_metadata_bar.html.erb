@@ -75,25 +75,41 @@
           <ul class="fr-list with-stats">
             <li>
               <h5>Special Filing</h5>
-              <span>updated at 03:14PM, on <%= Date.today.to_s(:formal) %></span>
+              <span>updated at ?, on <%= Date.today.to_s(:formal) %></span>
               <div class="public-inspection-list-stats">
-                <a href="#" class="link">13 documents</a> from ? agencies
+                <%= "#{@pi_presenter.special_filing_count.total_count} #{'documents'.pluralize(@pi_presenter.special_filing_count) }" %> from ? agencies
                 <div>
-                  <a href="#"><i class="icon-fr2 icon-fr2-notice rule_type with-tooltip-s" data-tooltip="Notices"></i>10</a>
-                  <a href="#"><i class="icon-fr2 icon-fr2-proposed_rule rule_type with-tooltip-s" data-tooltip="Proposed Rules"></i>2</a>
-                  <a href="#"><i class="icon-fr2 icon-fr2-rule rule_type with-tooltip-s" data-tooltip="Rules"></i>1</a>
+                  <% HomepagePublicInspectionIssuePresenter::FILING_DISPLAY_INFO.each do |filing_type, view_names | %>
+
+                    <% if @pi_presenter.special_filing_counts[filing_type] != 0 %>
+                      <%= link_to documents_search_path(@pi_presenter.special_filing_counts[filing_type].search_conditions) do %>
+                        <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> <%= @pi_presenter.special_filing_counts[filing_type].count %>
+                        <% end %>
+                    <% else %>
+                      <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> 0
+                    <% end %>
+
+                  <% end %>
                 </div>
               </div>
             </li>
             <li>
               <h5>Regular Filing</h5>
-              <span>updated at 08:45AM, on <%= Date.today.to_s(:formal) %></span>
+              <span>updated at ?, on <%= Date.today.to_s(:formal) %></span>
               <div class="public-inspection-list-stats">
                 <%= "#{@pi_presenter.regular_filing_count.total_count} #{'documents'.pluralize(@pi_presenter.regular_filing_count) }" %> from ? agencies
                 <div>
-                  <a href="#"><i class="icon-fr2 icon-fr2-notice rule_type with-tooltip-s" data-tooltip="Notices"></i>82</a>
-                  <a href="#"><i class="icon-fr2 icon-fr2-proposed_rule rule_type with-tooltip-s" data-tooltip="Proposed Rules"></i>9</a>
-                  <a href="#"><i class="icon-fr2 icon-fr2-rule rule_type with-tooltip-s" data-tooltip="Rules"></i>15</a>
+                  <% HomepagePublicInspectionIssuePresenter::FILING_DISPLAY_INFO.each do |filing_type, view_names | %>
+
+                    <% if @pi_presenter.regular_filing_counts[filing_type] != 0 %>
+                      <%= link_to documents_search_path(@pi_presenter.regular_filing_counts[filing_type].search_conditions) do %>
+                        <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> <%= @pi_presenter.regular_filing_counts[filing_type].count %>
+                        <% end %>
+                    <% else %>
+                      <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> 0
+                    <% end %>
+
+                  <% end %>
                 </div>
             </li>
           </ul>
