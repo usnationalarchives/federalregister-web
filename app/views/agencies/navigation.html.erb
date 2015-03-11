@@ -1,26 +1,13 @@
 <li id="agencies-browse-preview" class="preview">
-  <div class="agency_finder">
-    <h2>Go to a specific agency</h2>
-    <%= form_tag agencies_path, :method => :get, :id => "agency-search-form" do %>
-      <label>Go to a specific agency:</label>
-      <input id="agency-search" class="browse_search" placeholder="Agricultural Marketing Service" data-autocomplete="autocomplete" />
-    <% end %>
-  </div>
-  <div class="agency_browse">
-    <table class="cabinet_agencies default">
-      <thead>
-        <tr>
-          <th><h2>Browse Agencies</h2></th>
-          <th class="past_7_days" data-tooltip="Documents Published in the Last 7 Days"></th>
-          <th class="closing_soon" data-tooltip="Documents with Comment Periods Closing in the Next 7 Days"></th>
-        </tr>
-      </thead>
-      <%= render partial: 'facets/agencies/explore', 
-           locals: {
-             agencies: @presenter.agencies_for_exploration, 
-             source: 'navigation',
-             medium: 'explore'
-           } %>
-    </table>
-  </div>
+  <%= facet_explorer(
+      header: {icon: "", title: "Explore Agencies"},
+      search: {url: topics_path, placeholder: "Go to a specific agency (try 'Agricultural Marketing Service')"},
+      table: {
+        items: @presenter.agencies_for_exploration,
+        header_count_width: '10%',
+        utm_source: 'navigation',
+        utm_medium: 'explore',
+        utm_content_type: 'agencies'
+      }
+    ) %>
 </li>

@@ -1,32 +1,13 @@
-<div class="col-xs-4 col-md-4 section with-icon-header">
-  <h4 class="with-icon">
-    <span class="icon-fr2 icon-fr2-Molecular"></span>
-    Explore Topics
-  </h4>
-  <%= form_tag topics_path, :method => :get, :id => "topic-search-form" do %>
-    <input id="topic-search" class="form-control" placeholder="Go to a specific topic" data-autocomplete="autocomplete" />
-  <% end %>
-
-  <table class="fr-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th width="5%" class="past_7_days with-tooltip-s"
-          data-tooltip="Articles Published in the Last 7 Days">
-          <span class="icon-fr2 icon-fr2-Refresh-7"></span>
-        </th>
-        <th width="5%" class="recently_opened with-tooltip-s"
-          data-tooltip="Articles with Comment Periods Opened in the Last 7 Days">
-          <span class="icon-fr2 icon-fr2-Chat"></span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: 'facets/topics/explore', locals: {
-        topics: @topics_presenter.topics,
-        source: 'home page', 
-        medium: 'explore' 
-      } %>    
-    </tbody>
-  </table>
+<div class="col-xs-6 col-md-6 section with-icon-header">
+  <%= facet_explorer(
+      header: {icon: "icon-fr2-Molecular", title: "Explore Topics"},
+      search: {url: topics_path, placeholder: "Go to a specific topic"},
+      table: {
+        items: @topics_presenter.topics_for_exploration,
+        header_count_width: '5%',
+        utm_source: 'homepage',
+        utm_medium: 'explore',
+        utm_content_type: 'topics'
+      }
+    ) %>
 </div>
