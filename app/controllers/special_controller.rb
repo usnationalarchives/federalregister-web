@@ -29,9 +29,6 @@ class SpecialController < ApplicationController
   end
 
   def home
-    cache_for 1.day
-    @agencies_presenter = Facets::AgenciesPresenter.new
-    @topics_presenter = Facets::TopicsPresenter.new
   end
 
   def fr2_assets
@@ -49,6 +46,18 @@ class SpecialController < ApplicationController
 
   def reader_aids
     render "special/home/reader_aids", layout: false
+  end
+
+  def explore_agencies
+    cache_for 1.day
+    @presenter = Facets::AgenciesPresenter.new
+    render "special/home/explore_agencies"
+  end
+
+  def explore_topics
+    cache_for 1.day
+    @presenter = Facets::TopicsPresenter.new
+    render "special/home/explore_topics"
   end
 
   def site_notifications

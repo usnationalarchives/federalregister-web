@@ -130,11 +130,21 @@ MyFr2::Application.routes.draw do
       as: :site_notification
 
 
-    # READER AIDS
-    esi.get 'esi/reader_aids',
+    # HOME PAGE
+    esi.get 'esi/home/reader_aids',
       to: 'special#reader_aids',
       as: :home_reader_aids
 
+    esi.get 'esi/home/explore_agencies',
+      to: 'special#explore_agencies',
+      as: :home_explore_agencies
+
+    esi.get 'esi/home/explore_topics',
+      to: 'special#explore_topics',
+      as: :home_explore_topics
+
+
+    # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
       to: 'reader_aids#blog_highlights',
       as: :reader_aids_blog_highlights
