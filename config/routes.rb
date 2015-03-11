@@ -129,6 +129,11 @@ MyFr2::Application.routes.draw do
       to: 'special#site_notifications',
       as: :site_notification
 
+    # CURRENT ISSUE
+    esi.get 'esi/current_issue',
+      to: 'special#current_issue',
+      as: :current_issue
+
 
     # HOME PAGE
     esi.get 'esi/home/reader_aids',

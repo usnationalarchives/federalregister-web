@@ -31,6 +31,12 @@ class SpecialController < ApplicationController
   def home
   end
 
+  def current_issue
+    @doc_presenter = DocumentIssuePresenter.new(Date.current - 5.days)
+    @pi_presenter = HomepagePublicInspectionIssuePresenter.new(Date.current)
+    render partial: 'metadata_bar'
+  end
+
   def fr2_assets
     cache_for 1.day
   end
