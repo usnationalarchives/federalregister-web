@@ -5,7 +5,7 @@
     <span class="arrow"></span>
   </a>
 
-  <ul class="subnav myfr2_list">
+  <ul class="subnav reader-aids-list">
     <% @reader_aids_sections.each do |section_slug, section_content| %>
       <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
     <% end %>
