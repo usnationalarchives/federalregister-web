@@ -1,26 +1,902 @@
 #navigation {
-  .agency_browse,
-  .topic_browse {
-    td.count_7_days,
-    td.comments_closing_soon {
-      font-weight: bold;
-      color: $fr-gray-60;
+  border-top: 4px solid #fbb829;
 
-      & a { color: inherit; }
+  .container {
+    background: $nav-background-color;
+    border: 1px solid $nav-border-color;
+    border-top: none;
+
+    @include rounded-bottom(4px);
+    box-shadow: 0 3px 5px $fr-gray-40;
+
+    height: 30px;
+    list-style: none;
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+    z-index: 1200;
+  }
+
+  li {
+    &:first-child { border-left: none; }
+    &:last-child { border-right: 1px solid $nav-border-color; }
+
+    border-left: 1px solid $nav-border-color;
+    float: left;
+
+    &.dropdown {
+      height: 31px;
+      width: 89px;
+    }
+
+    &.nav-home { width: 36px; }
+    &.nav_sections { width: 112px; }
+    &.nav_browse { width: 106px; }
+    &.nav_search { width: 102px; }
+    &.nav_blog { width:85px; }
+    &.nav_myfr2 { width: 75px; }
+
+    a.with-icon { padding-left: 35px; }
+  }
+
+  a {
+    color: $fr-gray-60;
+    cursor: pointer;
+    display: block;
+
+    @extend basic_font;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 32px;
+
+    padding: 0 10px;
+
+    &:hover,
+    &.hover {
+      color: $fr-bright-orange;
+    }
+  }
+}
+
+/******************************
+
+NAV DROPDOWN
+
+******************************/
+#navigation {
+  li.dropdown {
+    position: relative;
+
+    &.nav_reader_aids { width: 140px; }
+
+    &.dropdown.nav_myfr2 {
+      width: 105px;
+      padding-left: 0;
+    }
+
+    a { padding-right: 5px; }
+
+    .arrow {
+      /*background: image-url('icons/header/dropdown-off.png') no-repeat left 50%;*/
+      display: inline;
+      height: 34px;
+      float: right;
+      margin-left: 10px;
+      width: 8px;
+    }
+    &:hover .arrow,
+    &.hover .arrow {
+      /*background: image-url('icons/header/dropdown-hover.png') no-repeat left 50%;*/
+    }
+
+    &:hover .subnav,
+    &.hover .subnav {
+      display: block;
+    }
+  }
+}
+
+/******************************
+
+NAV DROPDOWN SUBNAV
+
+******************************/
+#navigation .subnav {
+  background: $white;
+  border: 1px solid $nav-border-color;
+
+  @include rounded-bottom(4px);
+  box-shadow: 0 3px 5px $fr-gray-40;
+
+  display: none;
+  left: -22px;
+  position: absolute;
+  top: 30px;
+  width: 200px;
+  z-index: 5555;
+
+  &.search-list { width: 230px; }
+  &.browse-list { width: 150px; }
+  &.reader-aids-list { width: 250px; }
+
+  li {
+    border: none; //reset other borders
+    border-top: 1px solid $nav-border-color;
+    float: none;
+    list-style: none;
+
+    &:last-child a { border-bottom: none; }
+  }
+
+  a {
+    border-top: 1px solid $white;
+    border-bottom: 1px solid $white;
+    color: $fr-gray-60;
+    line-height: 30px;
+  }
+}
+
+/*
+  Because of js timeouts on the previewable menu items we
+  don't want css hovers here so we change them back to default.
+  These need to be defined here, in this order, for the cascade
+  to work properly.
+ */
+#navigation .previewable .subnav a:hover {
+  background-color: inherit;
+  border-top-color: inherit;
+  border-bottom-color: inherit;
+  color: $fr-gray-60;
+}
+#navigation .subnav a:hover,
+#navigation .subnav a.hover,
+#navigation .previewable .subnav a.hover {
+  background-color: $fr-gray-10;
+  border-top-color: $white;
+  border-bottom-color: $white;
+  color: $fr-bright-orange;
+}
+
+
+/**************************************
+
+NAV DROPDOWN PREVIEWABLE SUBNAV
+
+**************************************/
+#navigation .previewable .subnav {
+  width: 605px;
+  margin-left: 21px;
+
+  ul {
+    margin: 0;
+    display: inline-block;
+  }
+
+  .left_column {
+    width: 190px;
+
+    li {
+      width: 194px;
+      height: 57px;
+      vertical-align: middle;
+
+      a {
+        border: none;
+        padding-top: 13px;
+        height: 45px;
+      }
     }
   }
 
-  li.dropdown.nav_reader_aids {
-    width: 140px;
+  .right_column {
+    border-left: 1px solid $nav-border-color;
+    vertical-align: top;
+    width: 405px;
+
+    li {
+      border: none;
+
+      &.preview { display: none; }
+
+      &#money_preview { display: list-item; }
+    }
+
+    a {
+      border: none;
+
+      &:hover {
+        background: none;
+        border: none;
+        color: $fr-bright-orange;
+      }
+    }
   }
 
-  li.dropdown.nav_myfr2 {
-    width: 105px;
-    padding-left: 0;
+  .right_column {
+    li > h2,
+    .finder h2,
+    table.default h2,
+    .preview_wrapper h2 {
+      margin-left: 5px;
+      padding-left: 5px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid $fr-gray-40;
+      font-size: 15px;
+      color: $fr-gray-40;
+      word-spacing: 2px;
+    }
+
+    h2 {
+      .supplemental,
+      .secondary {
+        color: $fr-gray-60;
+        float: right;
+        font-size: 12px;
+      }
+
+      .secondary {
+        text-transform: none;
+        font-style: italic;
+        font-weight: normal;
+        position: relative;
+        padding-right: 3px;
+        top: 1px;
+        font-size: 12px;
+        word-spacing: initial;
+      }
+    }
+
+    //TODO: shouldn't be needed once sprites are removed
+    .browse { background: none; }
   }
 
+  .right_column {
+    table.default {
+      width: 390px;
+      margin: 10px 0 10px 5px;
+
+      h2 {
+        padding-left: 0;
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+
+      tr,
+      th,
+      td { padding: 0; }
+
+      th {
+        border-bottom: 1px solid $fr-gray-40;
+
+        &.past_7_days,
+        &.closing_soon {
+          width: 40px;
+          height: 23px;
+        }
+      }
+
+      td {
+        &:first-child {
+          padding: 2px 0 2px 10px;
+
+          a {
+            color: $fr-link-dark;
+            &:hover { color: $fr-bright-orange; }
+          }
+        }
+      }
+
+      .count_7_days,
+      .comments_closing_soon {
+        text-align: center;
+        font-weight: bold;
+        color: $fr-gray-60;
+
+        a { color: inherit; }
+      }
+
+      a {
+        display: inline;
+        border-bottom: none;
+        border-top: none;
+        font-size: 12px;
+        padding: 0;
+        line-height: 14px;
+
+        &:hover { color: $fr-bright-orange; }
+      }
+    }
+  }
+
+  .right_column {
+    form {
+      margin-left: 15px;
+      overflow: hidden;
+
+      input.browse_search {
+        border: 1px solid $fr-gray-40;
+        width: 370px;
+        height: 18px;
+        padding-left: 10px;
+      }
+    }
+
+    p.info {
+      padding: 10px 10px 5px 10px;
+      font-size: 1.1em;
+      line-height: 1.1em;
+    }
+  }
+}
+
+#navigation .previewable {
+  .preview_wrapper {
+    p {
+      padding: 0 5px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+      line-height: 14px;
+    }
+
+    a {
+      color: $fr-link-dark;
+      font-weight: bold;
+      display: inline-block;
+      border: none;
+      font-size: 12px;
+      padding: 0;
+      line-height: 14px;
+
+      &:hover { color: $fr-bright-orange; }
+    }
+  }
+
+  p.info a {
+    color: $fr-link-dark;
+    font-family: inherit;
+    font-weight: normal;
+    display: inline-block;
+    border: none;
+    line-height: 1.1em;
+    padding: 0;
+
+    &:hover { color: $fr-bright-orange; }
+  }
+}
+
+#navigation {
   .icon-fr2 {
     top: 4px;
     font-size: 21px;
+  }
+}
+
+
+/**************************************
+
+SECTION SUGGESTED SEARCHES
+
+**************************************/
+#navigation .preview {
+  .suggested_searches {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 100px;
+  }
+
+  .row { margin-bottom: 10px; }
+
+  .suggested_search {
+    float: left;
+    width: 190px;
+
+    h1 {
+      line-height: 10px;
+      width: auto;
+    }
+
+    a {
+      color: $fr-link-dark;
+      padding: 0;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
+
+
+/**************************************
+
+ SECTION CAROUSEL
+
+**************************************/
+#navigation .preview #carousel_wrapper,
+#navigation .preview #carousel_scroller li,
+#navigation .preview  .carousel_rounded_box {
+  width: 400px;
+  height: 175px;
+  border: none;
+}
+
+#navigation .preview #carousel_wrapper {
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+#navigation .preview .carousel_rounded_box {
+  border-radius: 10px;
+
+  img {
+    width: 400px;
+    height: 175px;
+  }
+}
+
+#navigation .preview #carousel_scroller li {
+  div.bg,
+  div.text_wrapper {
+    top: 9px;
+    width: 100%;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  div.text_wrapper {
+    h2 { width: 95%; }
+
+    a {
+      line-height: 16px;
+      font-size: 14px;
+      color: $white;
+      border: none;
+      display: inline-block;
+      padding: 0;
+      width: 95%;
+    }
+
+    .date {
+      background: none;
+      padding-left: 0;
+    }
+  }
+
+  div.attribution,
+  div.attribution.bg {
+    top: auto;
+    bottom: 10px;
+    font-size: 11px;
+    width: auto;
+    line-height: 10px;
+  }
+
+  div.attribution {
+    &.bg { padding: 1px 2px; }
+
+    a {
+      font-size: 11px;
+      line-height: 14px;
+      border: none;
+    }
+  }
+
+  p.metadata,
+  p.summary { display: none; }
+}
+
+
+/**************************************
+
+SECTION DAILY STATS
+
+**************************************/
+#navigation .preview .daily_stats {
+  border-top: 1px solid #EEE;
+  font-weight: bold;
+  color: #C3C3C3;
+  margin-bottom: 3px;
+
+  li {
+    padding-top: 5px;
+    width: 200px;
+    display: inline-block;
+    height: 25px;
+  }
+
+  a {
+    font-weight: bold;
+    color: #C3C3C3;
+  }
+
+  .count {
+    top: -3px;
+    position: relative;
+    padding-right: 5px;
+    width: 40px;
+    font-size: 23px;
+    text-align: right;
+  }
+
+  .details {
+    line-height: 11px;
+    display: inline-block;
+    width: 114px;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+}
+
+/**********************************************
+
+BROWSE AGENCIES
+
+most styles for browse agencies are generic
+and under the subnav section above
+
+**********************************************/
+
+
+/**************************************
+
+BROWSE DATES
+
+**************************************/
+#current-article-browse-preview {
+  .significant {
+    float: left;
+
+    a {
+      line-height: 14px;
+      color: $fr-link-dark;
+    }
+  }
+}
+
+#navigation .previewable {
+  .fr_stats h2,
+  .calendar_holder h2,
+  .date_input_holder h2 {
+    margin-left: 5px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #979797;
+    font-size: 1.1em;
+    color: #979797;
+  }
+
+
+
+  .right_column .fr_stats .statistics li {
+    font-size: 15px;
+    color: #5F6061;
+    font-weight: bold;
+    line-height: 20px;
+    display: inline-block;
+  }
+
+  .fr_stats .statistics a {
+    line-height: 12px;
+    color: $fr-link-dark;
+
+    &:hover {
+      background: none;
+      color: $fr-bright-orange;
+    }
+  }
+}
+
+#navigation .previewable {
+  #date_chooser { margin-left: 10px; }
+
+  .calendar_holder,
+  .date_input_holder {
+    display: inline-block;
+    width: 400px;
+    margin-bottom: 12px;
+  }
+
+  .calendar_holder {
+    table { margin-bottom: 10px; }
+
+    table.calendar {
+      &:first-child { margin-right: 20px; }
+
+      width: 185px;
+      float: left;
+
+      a {
+        line-height: 20px;
+        padding: 0;
+        font-weight: 700;
+        color: $fr-link-dark;
+      }
+
+      td a:hover {
+        background-color: $fr-bright-orange;
+        color: $white;
+      }
+
+      tr.calendar_nav {
+        th.cal_prev a,
+        th.cal_next a,
+        th.cal_prev,
+        th.cal_next {
+          color: $fr-gray-70;
+          font-weight: bold;
+          font-size: 12px;
+          border: none;
+          line-height: 18px;
+        }
+
+        a {
+          color: $fr-link-dark;
+          &:hover { color: $fr-bright-orange; }
+        }
+      }
+    }
+  }
+}
+
+#navigation .previewable .date_input_holder {
+  input#search { width: 325px; }
+  input[type="submit"] {
+    margin-left: 5px;
+    width: 35px;
+    height: 22px;
+  }
+}
+
+
+/**************************************
+
+BROWSE EXECUTIVE ORDERS
+
+**************************************/
+#navigation .previewable {
+  .pres_holder .photo {
+    width: 50px;
+    height: 65px;
+    border: 1px solid #333;
+    margin: 10px 0 0 5px;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  #barack-obama .photo {
+    //background: transparent url('/images/presidential_photos/Barack_Obama_sm.jpg') 0 0 no-repeat;
+  }
+
+  #george-w-bush .photo {
+    //background: transparent url('/images/presidential_photos/George_W_Bush_sm.jpg') 0 0 no-repeat;
+  }
+
+  #william-j-clinton .photo {
+    //background: transparent url('/images/presidential_photos/Bill_Clinton_sm.jpg') 0 0 no-repeat;
+  }
+
+  .pres_details {
+    width: 340px;
+    display: inline-block;
+  }
+
+  #executive-orders-browse-preview ol {
+    margin: 0;
+
+    &.children,
+    &.recent {
+      margin: 10px;
+    }
+  }
+
+  .pres_holder {
+    li,
+    li a,
+    li span {
+      padding: 0;
+      display: inline-block;
+      line-height: 14px;
+    }
+
+    li.executive_order_wrapper {
+      vertical-align: top;
+
+      .eo_number {
+        width: 65px;
+        vertical-align: top;
+        padding-top: 2px;
+        font-weight: bold;
+      }
+
+      a {
+        line-height: 16px;
+        font-size: 12px;
+        font-weight: 500;
+        color: $fr-link-dark;
+        width: 250px;
+
+        &:hover { color: $fr-bright-orange; }
+      }
+    }
+
+    ol.children li {
+      width: 61px;
+      font-weight: bold;
+      font-size: 13px;
+
+      a {
+        color: $fr-link-dark;
+        font-size: 12px;
+
+        &:hover { color: $fr-bright-orange; }
+      }
+    }
+  }
+}
+
+
+/**************************************
+
+PUBLIC INSPECTION BROWSE PREVIEW
+
+**************************************/
+#navigation .previewable {
+  #public-inspection-browse-preview {
+    height: 280px;
+
+    p.info {
+      margin: 10px 0 10px 7px;
+      padding: 5px 12px 5px 15px;
+      background-color: $fr-gray-5;
+    }
+
+    .preview_wrapper {
+      overflow: hidden;
+      clear: both
+    }
+  }
+
+  .inspection_counts { float: left; }
+
+  .mini_document_types a {
+    vertical-align: top;
+    display: inline-block;
+    padding: 0;
+    padding-top: 2px;
+  }
+}
+
+
+/**************************************************
+
+BROWSE BLOG
+
+some styles are in the generic subnav section
+**************************************************/
+#navigation .previewable {
+  .subnav.blog_list {
+    width: 395px;
+
+    .right_column { width: 395px; }
+  }
+
+  #blog-browse-preview {
+    h1 a {
+      line-height: 14px;
+      padding-left: 0;
+      color: $fr-gray-40;
+    }
+
+    h2 {
+      border: none;
+      margin-left: 0;
+      padding-left: 0;
+
+      a {
+        color: $fr-link-dark;
+        text-transform: none;
+        font-size: 13px;
+        line-height: 14px;
+        padding-left: 0;
+
+        &:hover { color: $fr-bright-orange; }
+      }
+    }
+
+    ul {
+      margin-left: 10px;
+
+      .metadata {
+        font-size: 1.1em;
+        padding-bottom: 0;
+        font-style: italic;
+        margin-left: 5px;
+      }
+
+      .post_content {
+        display: block;
+        margin-left: 5px;
+        font-size: 1.15em;
+        line-height: 1.3em;
+        padding-right: 5px;
+
+        a {
+          font-size: 0.8em;
+          position: relative;
+          float: right;
+          top: -5px;
+        }
+      }
+    }
+  }
+}
+
+#navigation .view_all {
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+  position: relative;
+  top: -7px;
+}
+
+
+/******************************
+
+SEARCH
+
+******************************/
+#navigation .inline_search {
+  border-left: 0;
+  float: right;
+  height: 30px;
+}
+
+#navigation .search_form {
+  background: $white;
+  border: 1px solid $fr-gray-30;
+  border-radius: 3px;
+
+  height: 20px;
+  margin: 4px 5px 0;
+  position: relative;
+  width: 210px;
+
+  label { display: none; }
+
+  input {
+    border: none;
+    float: left;
+  }
+
+  #term {
+    padding: 3px 0 0 5px;
+    width: 175px;
+
+    &.placeholder,
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-placeholder {
+      color: $fr-gray-70;
+    }
+  }
+
+  .search_btn {
+    //background: sprite-image('icons/header/search-off.png', 0, 0, 50px) no-repeat;
+    cursor: pointer;
+    display: block;
+    //height: image-height('icons/header/search-off.png');
+    font-size: 0;
+    //@include hide-text;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    //width: image-width('icons/header/search-off.png');
+
+    &:hover {
+      //background: sprite-image('icons/header/search-hover.png', 0, 0, 50px) no-repeat;
+    }
   }
 }

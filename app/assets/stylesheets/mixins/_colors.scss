@@ -1,8 +1,8 @@
 $fr-blue:      #5697CF;
 $fr-dark-blue: #3f5b75;
 
-$fr-orange:         #B88659;
-$fr-nav-orange:  #e4a529;
+$fr-orange:     #B88659;
+$fr-nav-orange: #e4a529;
 
 $fr-green:       #7aa13d;
 $fr-light-green: #D7E5C2;
@@ -18,6 +18,7 @@ $fr-light-yellow: #fcf8e3;
 $fr-bright-orange: #F77825; /* menu and subscription icons */
 
 $fr-link: #428BCA;
+$fr-link-dark: darken($fr-link, 10);
 
 /* base */
 $white: #FFFFFF;
