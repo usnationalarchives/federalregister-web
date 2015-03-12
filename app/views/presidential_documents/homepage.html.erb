@@ -5,16 +5,21 @@
   </h4>
 
   <ul class="fr-list">
-    <%= render partial: 'presidential_documents/presidential_document', locals: {documents: @presenter.latest_document_by_type(2.months) } %>
+    <%= render partial: 'presidential_document',
+      locals: {
+        documents: @presenter.latest_document_by_type,
+        subtypes: @presenter.subtypes_for_homepage
+      } %>
   </ul>
 
-  <% [Date.current, Date.current - 1.month].each_with_index do |date, index| %>
+  <% [Date.today - 1.month, Date.today].each_with_index do |date, index| %>
     <table class="fr-table fr-monthly-overview <%= "alpha" if index == 0 %> ">
-      <% if @presenter.document_counts_for(date).empty? %>
-        <%= render partial: 'presidential_documents/empty_monthly_document_counts',locals: {date: date, month_counts: @presenter.document_counts_for(date) } %>
-      <% else %>
-        <%= render partial: 'presidential_documents/monthly_document_counts', locals: {date: date, month_counts: @presenter.document_counts_for(date) } %>
-      <% end %>
+      <%= render partial: 'monthly_document_counts',
+        locals: {
+          date: date,
+          month_counts: @presenter.document_counts_for(date),
+          subtypes: @presenter.subtypes
+        } %>
     </table>
   <% end %>
 

@@ -3,7 +3,6 @@ class PresidentialDocumentsController < ApplicationController
 
   def homepage
     @presenter = PresidentialDocumentsPresenter.new
-    render "presidential_documents/homepage", layout: false
+    render layout: false
   end
-
 end
