@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/criticaljuncture/federal_register.git
-  revision: ab0b3b1fedd1587728aaecb5c6872f21d7c9175f
-  branch: officialness
+  revision: f2deb2b7c8b02b6c36532a485704b39fb2f4a802
+  ref: officialness
   specs:
     federal_register (0.5.0)
       httparty (>= 0.7.0)
@@ -208,7 +208,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
