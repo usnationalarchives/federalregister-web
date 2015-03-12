@@ -1,69 +1,92 @@
 class PresidentialDocumentsPresenter
   SUBTYPES =  {
-    "determination" => "Determination", 
-    "executive_order" => "Executive Order", 
+    "determination" => "Determination",
+    "executive_order" => "Executive Order",
     "memorandum" => "Memorandum",
     "notice" => "Notice",
     "proclamation" => "Proclamation"
   }
 
-  def latest_document_by_type(time_ago)
-    subtypes_for_homepage = SUBTYPES.select{|subtype, subtype_string| ["executive_order", "notice", "proclamation"].include? subtype} #Filtering the hash down
-    docs = nil
-    grouped_results = nil 
-    
-    start_date = time_ago.months.ago
-    end_date = Time.now
-    loop do 
-      docs = search_for_docs(start_date, end_date)
-      grouped_results = docs.group_by(&:subtype)
-      needed_subtypes = subtypes_for_homepage.values
-      returned_subtypes = grouped_results.keys
-      break if (needed_subtypes - returned_subtypes).empty? == true 
-      start_date -= 2.months
+  def subtypes
+    SUBTYPES
+  end
+
+  def subtypes_for_homepage
+    @subtypes ||= SUBTYPES.select{|subtype, subtype_string|
+      ["executive_order", "notice", "proclamation"].include? subtype
+    }
+  end
+
+  def latest_document_by_type(time_frame=2.months, ensure_complete=true)
+    start_date = Date.today - time_frame
+    end_date = Date.today
+
+    results = build_results(start_date, end_date)
+
+    if ensure_complete
+      until required_subtypes_present?(results)
+        end_date = start_date
+        start_date -= time_frame
+
+        results = build_results(start_date, end_date, results)
+      end
     end
 
-    results = {}
-    subtypes_for_homepage.each do |subtype, subtype_string|
-      results[subtype] = grouped_results[subtype_string].first
-    end
     results
   end
- 
-  def document_counts_for(date_in_month)
-    start_date = date_in_month.beginning_of_month
-    end_date = date_in_month.end_of_month
+
+  def document_counts_for(date)
+    start_date = date.beginning_of_month
+    end_date = date.end_of_month
+
     doc_counts = document_counts(start_date, end_date).
       map{ |facet|
-        PresidentialDocumentTypes.new(
+        PresidentialDocumentTypeFacet.new(
           name: facet.name,
           document_type: facet.slug,
           document_count: facet.count,
-          document_count_search_conditions: facet.search_conditions #It breaks at this point: Ask Bob
+          document_count_search_conditions: facet.search_conditions
         )
       }
     Hash[doc_counts.map {|pres_doc| [pres_doc.document_type, pres_doc]}]
   end
 
-    class PresidentialDocumentTypes
-      vattr_initialize [
-        :name,
-        :document_type,
-        :document_count,
-        :document_count_search_conditions,
-      ]
+  class PresidentialDocumentTypeFacet
+    vattr_initialize [
+      :name,
+      :document_type,
+      :document_count,
+      :document_count_search_conditions,
+    ]
+  end
+
+  private
+
+  def build_results(start_date, end_date, previous_results={})
+    docs = presidential_documents_for(start_date, end_date).
+      group_by(&:subtype)
+
+    subtypes_for_homepage.each do |subtype, subtype_string|
+      next if previous_results[subtype]
+
+      previous_results[subtype] = docs[subtype_string].first
     end
 
-#======================================================================
-  private
+    previous_results
+  end
+
+  def required_subtypes_present?(docs)
+    (subtypes_for_homepage.keys - docs.keys).empty?
+  end
+
 
   def document_counts(start_date, end_date)
     PresidentialDocumentsFacet.search(
       Facets::QueryConditions.published_within(start_date, end_date)
-    ) 
+    )
   end
 
-  def search_for_docs(start_date, end_date)
+  def presidential_documents_for(start_date, end_date)
     FederalRegister::Document.search(
       conditions: {
         type: 'PRESDOCU',
