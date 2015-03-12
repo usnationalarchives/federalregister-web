@@ -192,17 +192,10 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#navigation',
       as: :navigation_reader_aids
 
-<<<<<<< HEAD
     esi.get 'esi/layouts/navigation/public-inspection',
       to: 'public_inspection#navigation',
       as: :navigation_public_inspection
 
-=======
-    # PRESIDENTIAL DOCUMENTS
-    esi.get 'esi/presidential_documents',
-      to: 'presidential_documents#homepage',
-      as: :presidential_documents
->>>>>>> 7814e4a7b37be01e0d0a45599296e6bdb535cc01
 
     # FOOTER
     esi.get 'esi/layout/footer',
