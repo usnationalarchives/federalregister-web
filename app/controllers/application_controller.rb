@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_stampers
   before_filter :decorate_current_user
 
-  #if Rails.env.development?
-  #  around_filter :use_vcr
-  #end
+  if Rails.env.development? && Settings.vcr.enabled
+    around_filter :use_vcr
+  end
 
   def set_stampers
     User.stamper = self.current_user
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cache_for(time)
-    unless Rails.env.development?
+    if !Rails.env.development? || Settings.varnish.enable_cache_headers
       expires_in time, :public => true
     end
   end
@@ -55,8 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def use_vcr
-    VCR.eject_cassette
-    VCR.use_cassette("development") { yield }
+    VCR.use_cassette(Settings.vcr.cassette) { yield }
   end
 
   def rescue_action_in_public_with_honeybadger(exception)
