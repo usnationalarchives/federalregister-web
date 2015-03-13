@@ -87,7 +87,6 @@ task :officialness do
 
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "web.fr2.ec2.internal"
-  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
@@ -123,6 +122,8 @@ set :honeybadger_user, `git config --global github.user`.chomp
 # Recipe role setup
 #############################################################
 
+set :deploy_roles, [:app, :worker]
+set :bundler_roles, [:app, :worker]
 set :db_migration_roles, [:worker]
 set :asset_roles, [:app, :worker]
 set :varnish_roles, [:proxy]
