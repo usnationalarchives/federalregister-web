@@ -9,3 +9,7 @@ tags
 .sass-cache/
 public/assets
 spec/vcr/*.yml
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

@@ -88,6 +88,7 @@ end
 
 group :development do
   gem 'passenger', '~> 4.0.57'
+  gem 'rails_config'
 end
 
 group :development, :test do

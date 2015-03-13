@@ -263,6 +263,8 @@ GEM
       bundler (~> 1.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
+    rails_config (0.4.2)
+      activesupport (>= 3.0)
     railties (3.2.18)
       actionpack (= 3.2.18)
       activesupport (= 3.2.18)
@@ -399,6 +401,7 @@ DEPENDENCIES
   pry-remote
   rails (= 3.2.18)
   rails_autolink
+  rails_config
   rake (= 0.9.2.2)
   redis (~> 3.0.7)
   redis-namespace
