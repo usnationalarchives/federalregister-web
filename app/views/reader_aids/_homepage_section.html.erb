@@ -10,7 +10,8 @@
         <ul class="fr-list with-bullets reader-aids">
           <% group.each do |item| %>
             <li>
-              <%= link_to item.formatted_title, item.path(presenter.section_identifier) %>
+              <%= link_to item.formatted_title,
+                item.path(presenter.section_identifier) %>
             </li>
           <% end %>
         </ul>

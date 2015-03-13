@@ -21,10 +21,12 @@
 
       <div class="row">
         <div class="col-xs-8 col-md-8 section">
-          <%= render partial: 'reader_aids/homepage_section', layout: false, locals: {presenter: @presenter_for_using_fr} %>
+          <%= render template: 'reader_aids/section',
+            locals: {presenter: @using_fr_presenter} %>
         </div>
         <div class="col-xs-4 col-md-4 section">
-          <%= render partial: 'reader_aids/homepage_section', layout: false, locals: {presenter: @presenter_for_recent_updates} %>
+          <%= render template: 'reader_aids/section',
+            locals: {presenter: @recent_updates_presenter} %>
         </div>
       </div>
 

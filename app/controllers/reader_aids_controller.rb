@@ -1,7 +1,7 @@
 class ReaderAidsController < ApplicationController
   skip_before_filter :authenticate_user!
   before_filter :verify_section_exists, only: :view_all
-  layout false, only: :navigation
+  layout false, only: [:navigation, :homepage]
 
   def index
     @presenter = ReaderAidsPresenter::Base.new
@@ -28,19 +28,21 @@ class ReaderAidsController < ApplicationController
 
   def homepage
     cache_for 1.hour
-    @presenter_for_using_fr = ReaderAidsPresenter::SectionPresenter.new(
+    @using_fr_presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: 'using-federalregister-gov',
       display_count: 8,
-      columns: 2
+      columns: 2,
+      item_partial: 'reader_aids/homepage_item',
+      item_ul_class: "with-bullets reader-aids"
     )
-    @presenter_for_recent_updates = ReaderAidsPresenter::SectionPresenter.new(
+    @recent_updates_presenter = ReaderAidsPresenter::SectionPresenter.new(
       display_count: 4,
       section_identifier: 'recent-updates',
       category: 'site-updates',
-      columns: 1
+      columns: 1,
+      item_partial: 'reader_aids/homepage_item',
+      item_ul_class: "with-bullets reader-aids"
     )
-
-    render "special/home/reader_aids", layout: false
   end
 
   def blog_highlights
