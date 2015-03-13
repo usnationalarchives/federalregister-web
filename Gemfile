@@ -68,6 +68,9 @@ gem 'will_paginate'
 
 gem 'attr_extras', '~> 3.2.0'
 
+# make app wide settings easier
+gem 'rails_config'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -88,7 +91,6 @@ end
 
 group :development do
   gem 'passenger', '~> 4.0.57'
-  gem 'rails_config'
 end
 
 group :development, :test do
