@@ -1,4 +1,11 @@
 class DocumentIssuePresenter
+  DOCUMENT_TYPES = {
+    "NOTICE" => "Notice",
+    "PRORULE" => "Proposed Rule",
+    "RULE" => "Rule",
+    "PRESDOCU" => "Presidential Document"
+  }
+
   attr_reader :date
 
   def initialize(date)
@@ -31,6 +38,10 @@ class DocumentIssuePresenter
 
   def page_count
     #TBD
+  end
+
+  def document_types
+    DOCUMENT_TYPES
   end
 
   private

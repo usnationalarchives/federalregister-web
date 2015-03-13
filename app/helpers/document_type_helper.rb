@@ -15,6 +15,24 @@ module DocumentTypeHelper
     filters.join("\n").html_safe
   end
 
+  def document_type_icon(type)
+    document_type = DocumentType.new(type)
+    content_tag(:div,
+      class: "#{document_type.icon_wrapper_class('mini')} tooltip",
+      "data-tooltip" => document_type.type) do
+        content_tag(:span, '', class: document_type.icon_class)
+      end
+  end
+
+  def document_type_icon_with_count(type, count)
+    document_type = DocumentType.new(type)
+    content_tag(:i,
+      class: "icon-fr2 icon-fr2-#{document_type.icon_class} rule_type with-tooltip-s",
+      "data-tooltip" => document_type.display_type ) do #TODO: Get rid of unnecessary do loop
+    end
+  end
+
+
   private
 
   def document_types

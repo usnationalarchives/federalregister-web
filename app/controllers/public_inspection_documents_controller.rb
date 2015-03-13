@@ -22,5 +22,6 @@ class PublicInspectionDocumentsController < ApplicationController
   def navigation
     #cache_for 1.day
     @presenter = PublicInspectionIssuePresenter.new
+    render template: 'public_inspection/navigation'
   end
 end

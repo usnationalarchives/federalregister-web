@@ -3,7 +3,7 @@ $(document).ready(function(){
     e.preventDefault();
 
     var link = $(this);
-    var linkTarget = $( link.data('target') );
+    var linkTarget = $( link.data('toggleTarget') );
 
     linkTarget.toggle();
 

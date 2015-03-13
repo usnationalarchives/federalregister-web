@@ -4,15 +4,17 @@
     <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <i class="icon-fr2-calendar-alt"></i>
-        <h4> <%= link_to "Current Issue (ESI)", documents_search_path(:conditions => {:publication_date => {:is => Date.current}}) %> </h4>
+        <h4> <%= link_to "Current Issue", documents_search_path(:conditions => {
+               :publication_date => {:is => Date.current}
+             }) %> </h4>
       </div>
     </div>
     <div class="col-xs-9 col-md-9 fr-head-meta-counts">
       <ul class="inline-list">
-        <% {"NOTICE" => "Notice", "PRORULE" => "Proposed Rule", "RULE" => "Rule"}.each do |type, string_type| %>
+        <% @doc_presenter.document_types.each do |type, string_type| %>
           <li>
             <% if @doc_presenter.document_counts[type] != 0 %>
-              <%= link_to @doc_presenter.document_counts[type].count.to_s + " " +
+              <%= link_to_unless @doc_presenter.document_counts[type].count==0, @doc_presenter.document_counts[type].count.to_s + " " +
                   string_type.pluralize(@doc_presenter.document_counts[type].count),
                 documents_search_path( @doc_presenter.document_counts[type].search_conditions ) %>
             <% else %>
@@ -20,14 +22,14 @@
             <% end %>
           </li>
         <% end %>
+
           <li>
             <%= link_to_unless @doc_presenter.significant_documents.count == 0,
-              @doc_presenter.significant_documents.count.to_s + " " + "Significant Document".
-                pluralize(@doc_presenter.significant_documents.count),
+              "#{@doc_presenter.significant_documents.count.to_s} #{'Significant Document'.
+                pluralize(@doc_presenter.significant_documents.count)}",
               documents_search_path(@doc_presenter.significant_documents.search_conditions) %>
           </li>
 
-        <li><a href="" class="link">? Presidential Document</a></li>
         <li><strong>?</strong> Pages</li>
         <li class="right">
           <a href=""
@@ -50,7 +52,7 @@
     <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <i class="icon-fr2-clipboard"></i>
-        <h4><a href="">Public Inspection</a></h4>
+        <h4><%= link_to "Public Inspection", home_reader_aids_path %></h4>
       </div>
 
       <span class="icon-fr2 icon-fr2-stop-hand"></span>
@@ -67,7 +69,7 @@
               of the issuing agency.
             </p>
             <p>
-              <%= link_to "Learn more about public inspection here.", 'reader_aids_using_fr_path' %>
+              <%= link_to "Learn more about public inspection here.", reader_aids_using_fr_path %>
             </p>
           </div>
         </div>
@@ -75,42 +77,33 @@
           <ul class="fr-list with-stats">
             <li>
               <h5>Special Filing</h5>
-              <span>updated at ?, on <%= Date.today.to_s(:formal) %></span>
+              <span>updated on <%= "#{@pi_presenter.special_filings.formatted_updated_at} (TBD)"  %></span>
               <div class="public-inspection-list-stats">
-                <%= "#{@pi_presenter.special_filing_count.total_count} #{'documents'.pluralize(@pi_presenter.special_filing_count) }" %> from ? agencies
+                <%= link_to_unless @pi_presenter.special_filings.total_count==0, "#{@pi_presenter.special_filings.total_count} #{'documents'.pluralize(@pi_presenter.special_filings.total_count) }", documents_search_path(@pi_presenter.special_filings.total_count_search_conditions)  %> from ? agencies
                 <div>
-                  <% HomepagePublicInspectionIssuePresenter::FILING_DISPLAY_INFO.each do |filing_type, view_names | %>
-
-                    <% if @pi_presenter.special_filing_counts[filing_type] != 0 %>
-                      <%= link_to documents_search_path(@pi_presenter.special_filing_counts[filing_type].search_conditions) do %>
-                        <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> <%= @pi_presenter.special_filing_counts[filing_type].count %>
-                        <% end %>
-                    <% else %>
-                      <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> 0
+                  <% @pi_presenter.special_filings.counts_by_identifier.each do |doc_type| %>
+                      <%= link_to documents_search_path(doc_type.search_parameters) do %>
+                        <%= document_type_icon_with_count(doc_type.identifier, doc_type.count) %>
+                        <%= doc_type.count %>
                     <% end %>
-
                   <% end %>
                 </div>
               </div>
             </li>
             <li>
-              <h5>Regular Filing</h5>
-              <span>updated at ?, on <%= Date.today.to_s(:formal) %></span>
+          <h5>Regular Filing</h5>
+              <span>updated on <%= "#{@pi_presenter.regular_filings.formatted_updated_at} (TBD)"  %></span>
               <div class="public-inspection-list-stats">
-                <%= "#{@pi_presenter.regular_filing_count.total_count} #{'documents'.pluralize(@pi_presenter.regular_filing_count) }" %> from ? agencies
+                <%= link_to_unless @pi_presenter.regular_filings.total_count==0, "#{@pi_presenter.regular_filings.total_count} #{'documents'.pluralize(@pi_presenter.regular_filings.total_count) }", documents_search_path(@pi_presenter.regular_filings.total_count_search_conditions)  %> from ? agencies
                 <div>
-                  <% HomepagePublicInspectionIssuePresenter::FILING_DISPLAY_INFO.each do |filing_type, view_names | %>
-
-                    <% if @pi_presenter.regular_filing_counts[filing_type] != 0 %>
-                      <%= link_to documents_search_path(@pi_presenter.regular_filing_counts[filing_type].search_conditions) do %>
-                        <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> <%= @pi_presenter.regular_filing_counts[filing_type].count %>
-                        <% end %>
-                    <% else %>
-                      <i class="icon-fr2 icon-fr2-<%= view_names[:icon] %> rule_type with-tooltip-s" data-tooltip="<%= view_names[:tooltip] %>"></i> 0
+                  <% @pi_presenter.regular_filings.counts_by_identifier.each do |doc_type| %>
+                      <%= link_to documents_search_path(doc_type.search_parameters) do %>
+                        <%= document_type_icon_with_count(doc_type.identifier, doc_type.count) %>
+                        <%= doc_type.count %>
                     <% end %>
-
                   <% end %>
                 </div>
+              </div>
             </li>
           </ul>
         </div>
