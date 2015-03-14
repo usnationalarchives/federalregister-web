@@ -1,7 +1,7 @@
 <li id="public-inspection-browse-preview" class="preview">
   <p class="info">
-    The <%= link_to public_inspection_path,
-      "Public Inspection web page on FederalRegister.gov", target: :blank %>
+    The 
+    <%= link_to "Public Inspection web page on FederalRegister.gov",public_inspection_path%>
     offers a preview of documents scheduled to appear in the next day's
     <em>Federal Register</em> issue. The Public Inspection page may also
     include documents scheduled for later issues, at the request of the issuing
@@ -11,7 +11,7 @@
     more information.
   </p>
 
-  <% @presenter.filing_types.each do |filing_type| %>
+  <% @pi_presenter.all_filings.each do |filing_type| %>
     <div class="preview_wrapper">
       <h2>
         <%= filing_type.name %>
@@ -20,27 +20,22 @@
       </h2>
 
       <p class="inspection_counts">
-        <%= link_to pluralize(filing_type.document_count, 'documents'),
-          public_inspection_documents_path(
-            :anchor => filing_type.type
-          ) %>
-        from <%= pluralize(filing_type.agency_count, 'agency') %>.
+        <%= link_to_unless filing_type.total_count==0, "#{filing_type.total_count} #{'documents'.pluralize(filing_type.total_count) }", documents_search_path(filing_type.total_count_search_conditions)  %> from ? agencies
 
         <ul class="mini_document_types">
-          <% filing_type.counts_by_type.each do |document_type, count| %>
+          <% filing_type.counts_by_identifier.each do |doc_type| %>
             <li>
-              <%= link_to count,
-                public_inspection_search_path(:conditions => {
-                  :type => document_type,
-                  :special_filing => filing_type.special_filing?
-                }) %>
-              <div class="<%= DocumentType.new(document_type).icon_wrapper_class('mini') %> tipsy">
-                <span class="<%= DocumentType.new(document_type).icon_class %>"></span>
-              </div>
+              <%= link_to documents_search_path(doc_type.search_conditions) do %>
+                  <%= doc_type.count %>
+                <div class="<%= DocumentType.new(doc_type.slug).icon_wrapper_class('mini') %> tipsy">
+                <span class="<%= DocumentType.new(doc_type.slug).icon_class %>"></span>
+                </div>
+              <% end %>
             </li>
           <% end %>
         </ul>
       </p>
     </div>
   <% end %>
+
 </li>

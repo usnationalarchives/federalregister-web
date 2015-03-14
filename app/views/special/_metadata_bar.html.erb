@@ -73,38 +73,28 @@
             </p>
           </div>
         </div>
+
         <div class="col-xs-6 col-md-6">
           <ul class="fr-list with-stats">
-            <li>
-              <h5>Special Filing</h5>
-              <span>updated on <%= "#{@pi_presenter.special_filings.formatted_updated_at} (TBD)"  %></span>
-              <div class="public-inspection-list-stats">
-                <%= link_to_unless @pi_presenter.special_filings.total_count==0, "#{@pi_presenter.special_filings.total_count} #{'documents'.pluralize(@pi_presenter.special_filings.total_count) }", documents_search_path(@pi_presenter.special_filings.total_count_search_conditions)  %> from ? agencies
-                <div>
-                  <% @pi_presenter.special_filings.counts_by_identifier.each do |doc_type| %>
-                      <%= link_to documents_search_path(doc_type.search_parameters) do %>
-                        <%= document_type_icon_with_count(doc_type.identifier, doc_type.count) %>
-                        <%= doc_type.count %>
+
+            <% @pi_presenter.all_filings.each do |filing_type| %>
+              <li>
+                <h5><%= filing_type.name %></h5>
+                <span>updated on <%= "#{filing_type.formatted_updated_at} TBD"  %></span>
+                <div class="public-inspection-list-stats">
+                  <%= link_to_unless filing_type.total_count==0, "#{filing_type.total_count} #{'documents'.pluralize(filing_type.total_count) }", documents_search_path(filing_type.total_count_search_conditions)  %> from TBD agencies
+                  <div>
+                    <% filing_type.counts_by_identifier.each do |doc_type| %>
+                        <%= link_to documents_search_path(doc_type.search_conditions) do %>
+                          <%= document_type_icon_with_count(doc_type.slug, doc_type.count) %>
+                          <%= doc_type.count %>
+                      <% end %>
                     <% end %>
-                  <% end %>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-          <h5>Regular Filing</h5>
-              <span>updated on <%= "#{@pi_presenter.regular_filings.formatted_updated_at} (TBD)"  %></span>
-              <div class="public-inspection-list-stats">
-                <%= link_to_unless @pi_presenter.regular_filings.total_count==0, "#{@pi_presenter.regular_filings.total_count} #{'documents'.pluralize(@pi_presenter.regular_filings.total_count) }", documents_search_path(@pi_presenter.regular_filings.total_count_search_conditions)  %> from ? agencies
-                <div>
-                  <% @pi_presenter.regular_filings.counts_by_identifier.each do |doc_type| %>
-                      <%= link_to documents_search_path(doc_type.search_parameters) do %>
-                        <%= document_type_icon_with_count(doc_type.identifier, doc_type.count) %>
-                        <%= doc_type.count %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </li>
+              </li>
+            <% end %>
+
           </ul>
         </div>
       </div>
@@ -114,3 +104,4 @@
     <div class="clearfix"></div>
   </div>
 </div>
+

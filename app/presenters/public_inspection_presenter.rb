@@ -6,6 +6,10 @@ class PublicInspectionPresenter
     @special_filings = SpecialFilings.new(date)
   end
 
+  def all_filings
+    [@regular_filings, @special_filings]
+  end
+
   class BasicFilings
     attr_reader :agency_count, :count
 
@@ -25,41 +29,30 @@ class PublicInspectionPresenter
     end
 
     def counts_by_identifier
-      regular_filing_counts.map do |doc_set| #Adjust naming conventions and removing get.
-        DocumentTypeFacet.new(
-          {},
-          {},
-          {
-          :count => doc_set.count,
-          :search_parameters => doc_set.result_set.conditions,
-          :identifier => doc_set.slug
-          }
-        )
-      end.sort_by{|doc_set|doc_set.identifier}
+      regular_filing_counts.sort_by{|facet|facet.slug}
+    end
+
+    def total_count
+      regular_filing_counts.inject(0){|total_sum, filing| total_sum + filing.count }
     end
 
     def total_count_search_conditions
-      if regular_filing_counts.first #check for nil
-        regular_filing_counts.first.result_set.conditions
-      else
-        nil
-      end
+      regular_filing_counts.first.search_conditions if regular_filing_counts.first
     end
 
     def agency_count
       # Bob will be working on the endpoint and we'll have to do a count of how many different keys there are
     end
 
-
-    def total_count
-      regular_filing_counts.inject(0){|total_sum, filing| total_sum + filing.count }
+    def name
+      "Regular Filing"
     end
 
 
     private
     def regular_filing_counts
-      @regular_filings ||= FederalRegister::Facet::PublicInspectionDocument::Type.
-        search(:conditions => {:special_filing => 0, :filed_at => {:is => @date }})
+      @regular_filings ||= PublicInspectionFacet.
+        search(Facets::QueryConditions.regular_filing_published_on(@date))
     end
 
   end
@@ -73,56 +66,30 @@ class PublicInspectionPresenter
     end
 
     def counts_by_identifier
-      special_filing_counts.map do |doc_set| #Adjust naming conventions and removing get.
-        DocumentTypeFacet.new(
-          {},
-          {},
-          {
-          :count => doc_set.count,
-          :search_parameters => doc_set.result_set.conditions,
-          :identifier => doc_set.slug
-          }
-        )
-      end.sort_by{|doc_set|doc_set.identifier}
+      special_filing_counts.sort_by{|facet|facet.slug}
+    end
+
+    def total_count
+      special_filing_counts.inject(0){|total_sum, filing| total_sum + filing.count }
     end
 
     def total_count_search_conditions
-      special_filing_counts.first.result_set.conditions if special_filing_counts.first #check for nil
+      special_filing_counts.first.search_conditions if special_filing_counts.first
     end
 
     def agency_count
       # Bob will be working on the endpoint and we'll have to do a count of how many different keys there are
     end
 
-
-    def total_count
-      special_filing_counts.inject(0){|total_sum, filing| total_sum + filing.count }
+    def name
+      "Special Filing"
     end
-
+    
 
     private
       def special_filing_counts
-        @special_filings ||= FederalRegister::Facet::PublicInspectionDocument::Type.
-          search(:conditions => {:special_filing => 1, :filed_at => {:is => date }})
+        @special_filings ||= PublicInspectionFacet.
+          search(Facets::QueryConditions.special_filing_published_on(@date))
       end
     end
 end
-
-
-    # class DocType
-    #   vattr_initialize [
-    #     :count,
-    #     :identifier,
-    #     :search_conditions,
-    #   ]
-    # end
-
-    # def counts_by_identifier
-    #   get_regular_filing_counts.map do |doc_set| #Adjust naming conventions and removing get.
-    #     DocType.new(
-    #       count: doc_set.count,
-    #       search_conditions: doc_set.result_set.conditions,
-    #       identifier: doc_set.slug
-    #     )#.sort_by{|doc_set| doc_set.identifier}
-    #   end
-    # end

@@ -8,9 +8,9 @@ $(document).ready(function(){
     linkTarget.toggle();
 
     if (linkTarget.css('display') == 'none') {
-      link.text(link.data('show-text') || 'more');
+      link.text(link.data('show-text') || 'View Public Inspection');
     } else {
-      link.text(link.data('hide-text') || 'hide');
+      link.text(link.data('hide-text') || 'Hide Public Inspection');
     }
   });
 });

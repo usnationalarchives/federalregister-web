@@ -54,4 +54,27 @@ class Facets::QueryConditions
       }
     }
   end
+
+  def self.regular_filing_published_on(date)
+    {
+      conditions: {
+        special_filing: 0,
+        filed_at: {
+          is: date.to_s(:iso)
+        }
+      }
+    }
+  end
+
+  def self.special_filing_published_on(date)
+    {
+      conditions: {
+        special_filing: 1,
+        filed_at: {
+          is: date.to_s(:iso)
+        }
+      }
+    }
+  end
+
 end
