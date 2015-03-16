@@ -55,6 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def use_vcr
+    VCR.eject_cassette
     VCR.use_cassette(Settings.vcr.cassette) { yield }
   end
 
