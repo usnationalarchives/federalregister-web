@@ -50,4 +50,6 @@ if defined?(VCR) && Rails.env.development? && Settings.vcr.enabled
       end
     end
   end
+
+  VCR.insert_cassette(Settings.vcr.cassette)
 end
