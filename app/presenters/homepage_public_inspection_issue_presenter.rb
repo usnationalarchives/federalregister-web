@@ -1,8 +1,9 @@
 class HomepagePublicInspectionIssuePresenter
+
   FILING_DISPLAY_INFO = { 
-    "NOTICE" => {:icon => "notice", :tooltip => "Notices"},
-    "PRORULE" => {:icon => "proposed_rule", :tooltip => "Proposed Rules" },
-    "RULE" => {:icon => "rule" , :tooltip => "Rules" }
+    "NOTICE" => {"icon" => "notice", "tooltip" => "Notices"},
+    "PRORULE" => {"icon" => "proposed_rule", "tooltip" => "Proposed Rules" },
+    "RULE" => {"icon" => "rule" , "tooltip" => "Rules" }
   }
 
   attr_reader :date
@@ -42,7 +43,7 @@ class HomepagePublicInspectionIssuePresenter
         :slug,
       ]
     end
-
+    
   def regular_filing_count
     if get_regular_filing_counts.first # Guarding against empty hash
       search_conditions = get_regular_filing_counts.first.result_set.conditions 
@@ -79,12 +80,12 @@ class HomepagePublicInspectionIssuePresenter
 
   private
   def get_regular_filing_counts
-    @filings = FederalRegister::Facet::PublicInspectionDocument::Type.
+    @regular_filings ||= FederalRegister::Facet::PublicInspectionDocument::Type.
       search(:conditions => {:special_filing => 0, :filed_at => {:is => date }})
   end
 
   def get_special_filing_counts
-    @filings = FederalRegister::Facet::PublicInspectionDocument::Type.
+    @special_filings ||= FederalRegister::Facet::PublicInspectionDocument::Type.
       search(:conditions => {:special_filing => 1, :filed_at => {:is => date }})
   end
 end
