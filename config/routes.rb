@@ -196,6 +196,9 @@ MyFr2::Application.routes.draw do
       to: 'public_inspection_documents#navigation',
       as: :navigation_public_inspection
 
+    esi.get 'esi/layouts/navigation/executive-orders',
+      to: 'executive_orders#navigation',
+      as: :executive_orders
 
     # FOOTER
     esi.get 'esi/layout/footer',

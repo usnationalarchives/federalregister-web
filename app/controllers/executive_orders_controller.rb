@@ -9,4 +9,9 @@ class ExecutiveOrdersController < ApplicationController
     @president = @presenter.president
     @eo_collection = @presenter.eo_collection
   end
+
+  def navigation
+    @presenter = ExecutiveOrderNavPresenter.new
+    render template: "executive_orders/navigation", layout: false
+  end
 end
