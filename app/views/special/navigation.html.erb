@@ -23,13 +23,14 @@
             <%= link_to 'Public Inspection', current_public_inspection_documents_path, :class => "public_inspection with-icon" %>
           </li>
           <li id='executive-orders-browse'>
-            <%# link_to 'Executive Orders', executive_orders_path, :class => "executive_orders with-icon" %>
+            <%= link_to 'Executive Orders', executive_orders_path, :class => "executive_orders with-icon" %>
           </li>
         </ul>
         <ul class="right_column">
           <%= esi navigation_agencies_path %>
           <%= esi navigation_topics_path %>
           <%= esi navigation_public_inspection_path %>
+          <%= esi executive_orders_path %>
         </ul>
       </div>
     </li>

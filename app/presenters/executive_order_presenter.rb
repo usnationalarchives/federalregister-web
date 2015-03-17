@@ -1,7 +1,8 @@
 class ExecutiveOrderPresenter
   attr_reader :president, :year, :eo_collection
   def initialize(options={})
-    @president = President.new(options.fetch(:president))
+    #@president = President.new(options.fetch(:president))
+    @president = President.find_by_identifier(options.fetch(:president))
     @year = options.fetch(:year)
   end
 
@@ -56,14 +57,14 @@ class ExecutiveOrderPresenter
     end
   end
 
-  class President
-    attr_reader :identifier
-    def initialize(identifier)
-      @identifier = identifier
-    end
+  # class President
+  #   attr_reader :identifier
+  #   def initialize(identifier)
+  #     @identifier = identifier
+  #   end
 
-    def full_name
-      identifier.split("-").map(&:capitalize).join(" ")
-    end
-  end
+  #   def full_name
+  #     identifier.split("-").map(&:capitalize).join(" ")
+  #   end
+  # end
 end

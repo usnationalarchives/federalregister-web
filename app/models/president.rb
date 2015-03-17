@@ -19,9 +19,20 @@ class President < ActiveHash::Base
       :identifier => 'barack-obama',
       :full_name => "Barack Obama",
       :starts_on => Date.new(2009,1,20),
-      :ends_on => Date.new(2013,1,19)
+      :ends_on => Date.new(2017,1,19)
     }
   ]
+
+  def photo_title
+    case identifier
+    when 'barack-obama'
+      "Photo Courtesy, WhiteHouse.gov"
+    when 'george-w-bush'
+      "Photo Courtesy, George W. Bush Presidential Library"
+    when 'william-j-clinton'
+      "Photo Courtesy, William J. Clinton Presidential Library"
+    end
+  end
 
   def year_ranges
     return @year_ranges if @year_ranges
