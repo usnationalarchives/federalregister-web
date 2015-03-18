@@ -1,0 +1,17 @@
+<li id="document-dates-browse-preview" class="preview">
+  <h2>
+    Current Issue
+  </h2>
+    <div class="calendar_holder">
+    <h2>Explore</h2>
+    <div id="date_chooser">
+      <div id="calendar_wrapper" class="cal_double">
+        <%= render template: "documents/by_month", locals: {date: Date.current - 1.month} %>
+        <%= render template: "documents/by_month", locals: {date: Date.current} %>
+      </div>
+    </div>
+  </div>
+  <h2>
+    Go to a Specific Date
+  </h2>
+</li>

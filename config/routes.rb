@@ -24,6 +24,16 @@ MyFr2::Application.routes.draw do
         :day         => /\d{1,2}/
       }
 
+# TEST ROUTES FOR CALENDAR
+  get 'documents/:year/:month/',
+      to: "documents#by_month",
+      as: :entries_by_month,
+      constraints: {
+        :year        => /\d{4}/,
+        :month       => /\d{1,2}/
+      }
+# TEST ROUTES FOR CALENDAR END
+
   get 'documents/:year/:month/:day/:document_number/:slug',
       to: "documents#show",
       as: :document,
@@ -199,6 +209,9 @@ MyFr2::Application.routes.draw do
     esi.get 'esi/layouts/navigation/public-inspection',
       to: 'public_inspection_documents#navigation',
       as: :navigation_public_inspection
+    esi.get 'esi/layouts/navigation/document_dates',
+      to: 'document_dates#document_dates_navigation',
+      as: :navigation_document_dates
 
     esi.get 'esi/layouts/navigation/executive-orders',
       to: 'executive_orders#navigation',

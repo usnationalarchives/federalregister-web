@@ -47,4 +47,27 @@ class DocumentsController < ApplicationController
       end
     end
   end
+
+  def by_month
+    # cache_for 1.day
+    begin
+      @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
+    rescue ArgumentError
+      raise ActiveRecord::RecordNotFound
+    end
+
+    if params[:current_date]
+      @current_date = Date.parse(params[:current_date])
+    end
+
+    # @entry_dates = Entry.all(
+    #   :select => "distinct(publication_date)",
+    #   :conditions => {:publication_date => @date .. @date.end_of_month}
+    # ).map(&:publication_date)
+
+    @table_class = params[:table_class]
+
+    render :layout => false
+
+  end
 end

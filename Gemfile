@@ -71,6 +71,8 @@ gem 'attr_extras', '~> 3.2.0'
 # make app wide settings easier
 gem 'rails_config'
 
+gem 'calendar_helper'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
