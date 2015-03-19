@@ -2,16 +2,26 @@
   <h2>
     Current Issue
   </h2>
-    <div class="calendar_holder">
+  <div class="date_input_holder">
+    <h2>Go to a specific date</h2>
+    <!-- TODO: CHANGE THE ROOT PATH TO THE SEARCH PATH, BROKEN OTHERWISE -->
+    <%= form_tag documents_date_search_path, :method => :get, :id => "date_selector" do %>
+      <label>Go to a specific date:</label>
+      <%= text_field_tag :search, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+      <%= submit_tag 'Go' %>
+    <% end %>
+  </div>
+
+  <div class="calendar_holder">
     <h2>Explore</h2>
     <div id="date_chooser">
       <div id="calendar_wrapper" class="cal_double">
-        <%= render template: "documents/by_month", locals: {date: Date.current - 1.month} %>
-        <%= render template: "documents/by_month", locals: {date: Date.current} %>
+        <%= esi entries_by_month_test_path((Date.current - 1.month).year,
+        (Date.current - 1.month).month) %>
+        <%= esi entries_by_month_test_path(Date.current.year,Date.current.month) %>
+        <% #TODO: Consider ISO conversion here %>
       </div>
     </div>
   </div>
-  <h2>
-    Go to a Specific Date
-  </h2>
+
 </li>

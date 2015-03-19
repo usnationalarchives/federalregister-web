@@ -48,6 +48,26 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def date_search #Brandon's attempt at processing the AJAX
+    begin
+      date = Date.parse(params[:search] || '', :context => :past).try(:to_date )
+    rescue ArgumentError
+      render :text => "We couldn't understand that date.", :status => 422
+    end
+
+    if date.present?
+      # if Entry.published_on(date).count > 0
+        if request.xhr?
+          render :text => documents_by_date_path(date)
+        else
+          redirect_to entries_by_date_url(date)
+        end
+      # else
+      #   render :text => "There is no issue published on #{date}.", :status => 404
+      # end
+    end
+  end
+
   def by_month
     # cache_for 1.day
     begin
@@ -60,14 +80,23 @@ class DocumentsController < ApplicationController
       @current_date = Date.parse(params[:current_date])
     end
 
-    # @entry_dates = Entry.all(
-    #   :select => "distinct(publication_date)",
-    #   :conditions => {:publication_date => @date .. @date.end_of_month}
-    # ).map(&:publication_date)
+    @entry_dates = FederalRegister::Facet::Document::Daily.search(
+      {:conditions =>
+        {:publication_date =>
+          {:gte => @date.beginning_of_month,
+           :lte => @date.end_of_month
+          }
+        }
+      }
+    ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
 
     @table_class = params[:table_class]
 
     render :layout => false
+  end
 
+  def by_date
+    # cache_for 1.day
+    # prep_issue_view(parse_date_from_params)
   end
 end

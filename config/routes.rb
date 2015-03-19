@@ -26,13 +26,27 @@ MyFr2::Application.routes.draw do
 
 # TEST ROUTES FOR CALENDAR
   get 'documents/:year/:month/',
-      to: "documents#by_month",
-      as: :entries_by_month,
-      constraints: {
-        :year        => /\d{4}/,
-        :month       => /\d{1,2}/
-      }
-# TEST ROUTES FOR CALENDAR END
+    to: "documents#by_month",
+    as: :entries_by_month,
+    constraints: {
+      :year        => /\d{4}/,
+      :month       => /\d{1,2}/
+    }
+
+  get 'documents/:year/:month/:day',
+    to: "documents#by_date",
+    as: :documents_by_date,
+    constraints: {
+      :year        => /\d{4}/,
+      :month       => /\d{1,2}/,
+      :day         => /\d{1,2}/
+    }
+
+  get 'documents/date_search',
+    to: "documents#date_search",
+    as: :documents_date_search,
+    :conditions => {:method => :get}
+# /END TEST ROUTES FOR CALENDAR
 
   get 'documents/:year/:month/:day/:document_number/:slug',
       to: "documents#show",
@@ -51,7 +65,6 @@ MyFr2::Application.routes.draw do
   get '/d/:document_number',
       to: "documents#tiny_url",
       as: :short_document
-
 
   #
   # Documents Search
@@ -124,6 +137,17 @@ MyFr2::Application.routes.draw do
   # ESI Routes
   #
   with_options(:quiet => true) do |esi|
+
+    #TEST ESI ROUTES START
+    esi.get 'esi/documents/:year/:month',
+    to: 'documents#by_month',
+    as: :entries_by_month_test,
+    constraints: {
+      :year        => /\d{4}/,
+      :month       => /\d{1,2}/
+    }
+    #/TEST ESI ROUTES END
+
     # HEADER
     esi.get 'special/header/:type',
       to: 'special#header',
