@@ -11,17 +11,16 @@
     </div>
     <div class="col-xs-9 col-md-9 fr-head-meta-counts">
       <ul class="inline-list">
-        <% @doc_presenter.document_types.each do |type, string_type| %>
-          <li>
-            <% if @doc_presenter.document_counts[type] != 0 %>
-              <%= link_to_unless @doc_presenter.document_counts[type].count==0, @doc_presenter.document_counts[type].count.to_s + " " +
-                  string_type.pluralize(@doc_presenter.document_counts[type].count),
-                documents_search_path( @doc_presenter.document_counts[type].search_conditions ) %>
-            <% else %>
-              <%= "0 #{string_type.pluralize(0)}"  %>
+
+          <% if @doc_presenter.any_document_counts?%>
+            <% @doc_presenter.document_counts.each do |doc_type| %>
+            <li>
+              <%= link_to "#{doc_type.count} #{doc_type.name.pluralize(doc_type.count)}", documents_search_path(doc_type.search_conditions) %>
+            </li>
             <% end %>
-          </li>
-        <% end %>
+          <% else %>
+            <li> No documents published today</li>
+          <% end %>
 
           <li>
             <%= link_to_unless @doc_presenter.significant_documents.count == 0,

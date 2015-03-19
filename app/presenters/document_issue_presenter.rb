@@ -12,19 +12,35 @@ class DocumentIssuePresenter
     @date = date
   end
 
-  def document_counts
-    hash = Hash.new(0)
-    DocumentTypeFacet.
-      search(:conditions => {:publication_date => {:is => date}}).each do |type|
-        hash[type.slug] = type
-      end
-    hash
+  def any_document_counts?
+    !document_counts.empty?
   end
+
+  def document_counts
+   DocumentTypeFacet.
+      search(:conditions => {:publication_date => {:is => date}}).map { |doc_type_facet|
+        DocCount.new(
+          slug: doc_type_facet.attributes["slug"],
+          count: doc_type_facet.attributes["count"],
+          search_conditions: doc_type_facet.search_conditions,
+          name: document_types[doc_type_facet.attributes["slug"]]
+        )
+      }
+  end
+
+    class DocCount
+      vattr_initialize [
+        :slug,
+        :count,
+        :search_conditions,
+        :name
+      ]
+    end
 
   def significant_documents
     SignificantDocument.new(
       object: retrieve_significant_docs,
-      count: retrieve_significant_docs.inject(0){|sum, d| sum += d.count; sum},
+      count: retrieve_significant_docs.inject(0){|sum, d| sum += d.attributes["count"]; sum},
       search_conditions: retrieve_significant_docs.conditions
       )
   end
