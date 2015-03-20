@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/criticaljuncture/calendar_helper.git
+  revision: 5fa77163c8cddfdffc06660280c502e32e2dbcc7
+  branch: master
+  specs:
+    calendar_helper (0.2.5)
+      open4
+
+GIT
   remote: git://github.com/criticaljuncture/federal_register.git
   revision: f2deb2b7c8b02b6c36532a485704b39fb2f4a802
   branch: officialness #ref: officialness
@@ -81,8 +89,6 @@ GEM
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     builder (3.0.4)
-    calendar_helper (0.2.6)
-      open4
     capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
@@ -381,7 +387,7 @@ DEPENDENCIES
   attr_extras (~> 3.2.0)
   bootstrap-sass (~> 3.0.3.0)
   cachebar!
-  calendar_helper
+  calendar_helper!
   capistrano (= 2.15.4)
   capybara
   capybara-screenshot
