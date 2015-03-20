@@ -76,6 +76,7 @@ class DocumentsController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
+    @current_date = Date.current
     if params[:current_date]
       @current_date = Date.parse(params[:current_date])
     end

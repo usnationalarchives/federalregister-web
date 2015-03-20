@@ -1,27 +1,44 @@
 <li id="document-dates-browse-preview" class="preview">
-  <h2>
-    Current Issue
-  </h2>
-  <div class="date_input_holder">
-    <h2>Go to a specific date</h2>
-    <!-- TODO: CHANGE THE ROOT PATH TO THE SEARCH PATH, BROKEN OTHERWISE -->
-    <%= form_tag documents_date_search_path, :method => :get, :id => "date_selector" do %>
-      <label>Go to a specific date:</label>
-      <%= text_field_tag :search, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
-      <%= submit_tag 'Go' %>
-    <% end %>
-  </div>
+    <div class="fr_stats">
+      <h2> Current Issue 
+      <span class="supplemental"><%= "TODO: 99"%> Pages</span>
+      </h2>
 
-  <div class="calendar_holder">
-    <h2>Explore</h2>
-    <div id="date_chooser">
-      <div id="calendar_wrapper" class="cal_double">
-        <%= esi entries_by_month_test_path((Date.current - 1.month).year,
-        (Date.current - 1.month).month) %>
-        <%= esi entries_by_month_test_path(Date.current.year,Date.current.month) %>
-        <% #TODO: Consider ISO conversion here %>
+      <% if @doc_presenter.any_significant_documents? %>
+        <p class="significant">
+          <span></span>
+          <%= link_to "#{@doc_presenter.significant_documents.count} #{pluralize_without_count @doc_presenter.significant_documents.count, "Significant Document"}", documents_search_path(:conditions => {:significant => 1, :publication_date => {:is => @doc_presenter.date}}) %>
+        </p>
+      <% end %>
+
+      <ul class="current_issue statistics mini_document_types">
+        <% @doc_presenter.document_counts.each do |doc_type| %>
+          <li>
+            <%= link_to doc_type.count, documents_search_path(doc_type.search_conditions) %>
+            <%= mini_icon(doc_type.slug) %>
+          </li>
+        <% end %>
+      </ul>
+
+    <div class="date_input_holder">
+      <h2>Go to a specific date</h2>
+      <%= form_tag documents_date_search_path, :method => :get, :id => "date_selector" do %>
+        <label>Go to a specific date:</label>
+        <%= text_field_tag :search, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+        <%= submit_tag 'Go' %>
+      <% end %>
+    </div>
+
+    <div class="calendar_holder">
+      <h2>Explore</h2>
+      <div id="date_chooser">
+        <div id="calendar_wrapper" class="cal_double">
+          <%= esi entries_by_month_test_path( (Date.current - 1.month).year,
+          (Date.current - 1.month).month, :table_class => 'no_select cal_first') %>
+          <%= esi entries_by_month_test_path(Date.current.year, Date.current.month, :table_class => 'no_select cal_last') %>
+          <% #TODO: Consider ISO conversion here %>
+        </div>
       </div>
     </div>
-  </div>
 
 </li>
