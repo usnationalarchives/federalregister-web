@@ -1,91 +1,67 @@
 class TableOfContentsPresenter
+
   class AgencyPresenter
-    attr_reader :agency, :articles, :article_count
-    delegate :id, :parent_id, :url, :to => :agency
+    attr_reader :agency, :entries, :entry_count
+    delegate :name, :slug, :to_param, :to => :agency
 
     def initialize(toc_view, agency)
       @toc_view = toc_view
       @agency = agency
-      @articles = []
+      @entries = []
     end
 
-    def add_article(article)
-      @articles << article
-    end
-
-    def name
-      agency.name
-    end
-
-    def slug
-      url.sub(/^.*\//,'')
+    def add_entry(entry)
+      @entries << entry
     end
 
     def children
-      @children ||= @toc_view.agencies.select{|a| a.parent_id == id}
+      @children ||= @toc_view.agencies.select{|a| agency.children.include?(a.agency) }
     end
 
-    def article_count
-      @article_count ||= articles.size + children.sum(&:article_count)
+    def entry_count
+      @entry_count ||= entries.size + children.sum(&:entry_count)
     end
 
-    def articles_by_type_and_toc_subject
-      articles.group_by(&:type).sort_by{|type,articles| type}.reverse.map do |type, articles_by_type|
-        articles_by_toc_subject = articles_by_type.group_by(&:toc_subject).map do |toc_subject, articles_by_toc_subject|
-          [toc_subject, articles_by_toc_subject.sort_by{|e| [e.toc_doc.try(:downcase) || '', (e.toc_doc || e.title)]}]
+    def entries_by_type_and_toc_subject
+      entries.group_by(&:entry_type).sort_by{|type,entries| type}.reverse.map do |type, entries_by_type|
+        entries_by_toc_subject = entries_by_type.group_by(&:toc_subject).map do |toc_subject, entries_by_toc_subject|
+          [toc_subject, entries_by_toc_subject.sort_by{|e| [e.toc_doc.try(:downcase) || '', (e.toc_doc || e.title)]}]
         end
-        [type, articles_by_toc_subject]
+        [type, entries_by_toc_subject]
       end
     end
+
   end
 
-  class StubAgencyPresenter < AgencyPresenter
-    def name
-      agency.attributes["raw_name"]
-    end
 
-    def slug
-      name.downcase.gsub(/\W+/,'-')
-    end
-
-    def children
-      []
-    end
-  end
-
-  attr_accessor :agencies, :agency_ids, :articles_with_agencies, :articles
-  def initialize(articles, options = {})
-    @articles = ArticleDecorator.decorate(articles)
-    @articles_with_agencies =  @articles.sort_by{|e| [e.try_if_exists(:start_page) || 0, e.try_if_exists(:end_page) || 0, e.document_number]}
+  attr_accessor :entries_without_agencies, :agencies, :agency_ids, :entries_with_agencies, :entries
+  def initialize(entries, options = {})
+    @entries = entries
+    @entries_without_agencies, @entries_with_agencies =  entries.sort_by{|e| [e.start_page || 0, e.end_page || 0, e.id]}.partition{|e| e.agencies.blank? }
 
     agencies_hsh = {}
-    @articles_with_agencies.each do |article|
-      # create document views for all associated agencies, powering the 'See XXX'
-      article.agencies.reject{|x| x.id.nil? }.each do |agency|
-        agencies_hsh[agency.name] ||= AgencyPresenter.new(self, agency)
+    @entries_with_agencies.each do |entry|
+      # create entry views for all associated agencies, powering the 'See XXX'
+      entry.agencies.each do |agency|
+        agencies_hsh[agency.id] ||= AgencyPresenter.new(self, agency)
         if options[:always_include_parent_agencies] && agency.parent.present?
-          agencies_hsh[agency.parent.name] ||= AgencyPresenter.new(self, agency.parent)
+          agencies_hsh[agency.parent_id] ||= AgencyPresenter.new(self, agency.parent)
         end
       end
 
-      if article.agencies.all?{|a| a.id.nil?}
-        agency = StubAgencyPresenter.new(self, article.agencies.first)
-        agencies_hsh[agency.name] ||= agency
-        agencies_hsh[agency.name].add_article(article)
-      end
-
-      parent_agency_ids = article.agencies.map(&:parent_id).compact
-      article.agencies.reject{|a| parent_agency_ids.include?(a.id)}.each do |agency|
-        next if agency.id.blank?
-        agencies_hsh[agency.name].add_article(article)
+      entry.agencies.excluding_parents.each do |agency|
+        agencies_hsh[agency.id].add_entry(entry)
       end
     end
 
     # generate list of agencies, downcasing to sort appropriately (eg 'Health and Human...' before 'Health Resources...')
     @agencies = agencies_hsh.values.sort_by{|a| a.name.downcase}
+
+    # preload all child agencies for performance
+    Agency.preload_associations(@agencies.map(&:agency), :children)
   end
 
-  def article_count
-    @article_count ||= @articles.size
+  def entry_count
+    @entry_count ||= @entries.size
   end
 end

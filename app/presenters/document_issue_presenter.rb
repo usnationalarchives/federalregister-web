@@ -6,10 +6,31 @@ class DocumentIssuePresenter
     "PRESDOCU" => "Presidential Document"
   }
 
-  attr_reader :date
+  attr_reader :date, :options
 
-  def initialize(date)
+  def initialize(date, options={})
     @date = date
+    @options = options
+  end
+
+  def metadata_bar_name
+    current_issue_page? ? "Current Issue" : date
+  end
+
+  def current_issue_page?
+    options["toc_page"] != true
+  end
+
+  def entry_dates_for_month
+    FederalRegister::Facet::Document::Daily.search(
+      {:conditions =>
+        {:publication_date =>
+          {:gte => @date.beginning_of_month,
+           :lte => @date.end_of_month
+          }
+        }
+      }
+    ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
   end
 
   def document_counts

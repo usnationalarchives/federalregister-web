@@ -23,13 +23,13 @@ $(document).ready(function () {
           }
         }
     }
-    
+
     add_year_dropdown();
-    
+
     $('table.calendar .nav').live('click', function (event) {
         event.stopPropagation();
         event.preventDefault();
-       
+
         var nav_item = $(this);
         var cal =  nav_item.closest('table.calendar');
         var cal_wrapper = cal.closest('#calendar_wrapper');
@@ -38,7 +38,7 @@ $(document).ready(function () {
         if( cal.hasClass('no_select') ) {
           href = href + '?table_class=no_select';
         }
-               
+
         var xhr_requests = [];
         if( cal_wrapper.hasClass('cal_double') ) {
           var direction = cal.hasClass('cal_first') ? 'backward' : 'forward';
@@ -77,7 +77,7 @@ $(document).ready(function () {
               $('#navigation .previewable table.cal_last').find('.cal_prev').html('');
             }
           });
-          
+
        } else {
           cal_wrapper.load(href, '', add_year_dropdown);
        }
@@ -90,11 +90,11 @@ $(document).ready(function () {
       $('#calendar_wrapper').load('/articles/' + $(this).val() + '/' + $(".calendar").attr("data-calendar-month"),'', add_year_dropdown);
     });
 
-        
+
     $('.calendar td.late').live('click', function() {
       window.alert("Today's issue is currently unavailable; we apologize for any inconvenience.");
     });
-    
+
     $('#date_selector').submit(function () {
         var form = $(this);
         var path = $(this).attr('action');

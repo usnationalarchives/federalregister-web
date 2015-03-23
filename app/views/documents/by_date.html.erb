@@ -1,0 +1,52 @@
+<div class="bootstrap-scope">
+  <%# feed_autodiscovery entries_url(:format => :rss), 'All Documents from the Federal Register', :search_conditions => {} %>
+
+  <% if controller.action_name == 'current_issue' %>
+    <% description "Today Federal Register issue, including notices, proposed and final rules, and presidential documents." %>
+  <% else %>
+    <% description "Notices, proposed and final rules, and presidential documents published in the Federal Register on #{@publication_date.to_formatted_s(:pretty)}." %>
+  <% end %>
+
+  <% title "Documents for #{@publication_date.to_formatted_s(:pretty)}" %>
+  <div class="title"><span><%= @publication_date %> Issue</span></div>
+
+  <%= render :partial => "special/metadata_bar", :locals => {:test_var => "arbitrary_value"} %>
+
+  <div class="row">
+
+    <div class="col-xs-8 col-md-8 section">
+      <!-- <div id="content_area"> -->
+      <!-- TODO: Implement TOC Stuff-->
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repella
+      <!-- </div> --> <!-- END CONTENT AREA -->
+    </div>
+
+    <div class="col-xs-4 col-md-4 section">
+      <% aside_tag(:id => 'sidebar') do %>
+
+        <% section_tag(:id => 'date_chooser') do %>
+          <div id="calendar_wrapper">
+            <%= esi entries_by_month_test_path(@publication_date.year, @publication_date.month) %>
+
+            <%= form_tag documents_date_search_path, :method => :get, :id => "date_selector" do %>
+              <label>Go to a specific date:</label>
+              <%= text_field_tag :search, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+              <%= submit_tag 'Go' %>
+            <% end %>
+          </div>
+
+          <div class='aside_box subscribe'> 
+            <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => {}}), :class => 'subscription subscription_action' %>
+            <%#= add_template('subscription_modal', 'subscription-modal') %>
+          </div>
+        <% end %> <!-- section_tag -->
+      <% end -%> <!-- aside_tag -->
+    </div>
+
+  </div>
+
+
+
+
+
+</div> <!-- .bootstrap-scope -->

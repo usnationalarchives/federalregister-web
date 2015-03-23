@@ -98,6 +98,30 @@ class DocumentsController < ApplicationController
 
   def by_date
     # cache_for 1.day
-    # prep_issue_view(parse_date_from_params)
+    prep_issue_view(parse_date_from_params)
+  end
+
+  private
+
+  def parse_date_from_params
+    year  = params[:year]
+    month = params[:month]
+    day   = params[:day]
+    begin
+      Date.parse("#{year}-#{month}-#{day}")
+    rescue ArgumentError
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
+  def prep_issue_view(date)
+    @publication_date = date
+    @doc_presenter = DocumentIssuePresenter.new(date, "toc_page" => true)
+    @pi_presenter = PublicInspectionPresenter.new(date)
+    # @issue = Issue.completed.find_by_publication_date!(@publication_date)
+
+    # toc = TableOfContentsPresenter.new(@issue.entries.scoped(:include => [:agencies, :agency_names]))
+    # @entries_without_agencies = toc.entries_without_agencies
+    # @agencies = toc.agencies
   end
 end
