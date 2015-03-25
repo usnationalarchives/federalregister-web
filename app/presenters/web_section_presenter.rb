@@ -48,4 +48,8 @@ def all_sections
   SECTIONS
 end
 
+def all_section_slugs
+  all_sections.keys
+end
+
 end
