@@ -14,10 +14,13 @@
       <ul class="list-unstyled row">
         <% @presenter.suggested_searches.first(4).each do |suggested_search| %>
           <li class="col-xs-6">
-            <h6><%= suggested_search.title %></h6>
+            <h6><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h6>
             <%= truncate(suggested_search.description, length: 300).html_safe %>
             <% suggested_search.search_conditions %><br>
             <%= suggested_search.documents_in_last_year %> in the last year
+            <% suggested_search.example_documents.first(2).each do |example_doc| %>
+              <%= link_to(example_doc.title, example_doc.html_url) %>
+            <% end %>
           </li>
         <% end %>
       </ul>
