@@ -10,7 +10,6 @@ gem 'honeybadger'
 #gem 'federal_register', :path => '../federal_register'
 gem 'federal_register', :git => "git@github.com:criticaljuncture/federal_register.git",
                         :ref => "officialness"
-
 gem 'devise', '2.1.2'
 
 gem 'strong_parameters'
@@ -133,4 +132,8 @@ group :development, :test do
   gem 'rb-fsevent', require: false
   # OSX notifications
   gem 'terminal-notifier-guard', require: false
+end
+
+group :test do
+  gem 'spork', '~> 1.0rc'
 end

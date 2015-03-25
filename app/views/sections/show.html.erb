@@ -9,23 +9,31 @@
     <!-- Break out canned searches into partial later -->
     <h4>Suggested <%= @presenter.section_title %> Searches</h4>
 
+
     <div class="row">
       <ul class="list-unstyled row">
         <% @presenter.suggested_searches.first(4).each do |suggested_search| %>
           <li class="col-xs-6">
             <h6><%= suggested_search.title %></h6>
-            <%= suggested_search.description.html_safe %>
-            <% suggested_search.search_conditions %>
+            <%= truncate(suggested_search.description, length: 300).html_safe %>
+            <% suggested_search.search_conditions %><br>
             <%= suggested_search.documents_in_last_year %> in the last year
           </li>
         <% end %>
       </ul>
     </div>
 
+    <div class="row">
+      <ul class="list-unstyled row">
       <% @presenter.suggested_searches.drop(4).each do |suggested_search|  %>
-        <h6><%= suggested_search.title %></h6>
-        <% suggested_search.search_conditions %>
-        <%= suggested_search.documents_in_last_year %> in the last year
-      <% end %>
+        <li class="col-xs-4">
+          <h6><%= suggested_search.title %></h6>
+          <% suggested_search.search_conditions %>
+          <p><%= suggested_search.documents_in_last_year %> in the last year</p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
   </div> <!-- content_area -->
 </div> <!-- bootstrap-scope -->
