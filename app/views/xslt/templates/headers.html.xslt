@@ -53,4 +53,31 @@
     </xsl:element>
   </xsl:template>
 
+
+  <!-- Manually build a header by passing in variables for name, level, and
+       class. Used to create headers for things like List of Subjects, etc. -->
+  <xsl:template name="manual_header">
+    <xsl:param name="name"/>
+    <xsl:param name="level" value="1"/>
+
+    <xsl:param name="id">
+      <xsl:call-template name="header_id" />
+    </xsl:param>
+
+    <xsl:param name="class" select="''"/>
+      <xsl:element name="{concat('h', $level)}">
+        <xsl:attribute name="id">
+          <xsl:value-of select="$id"/>
+        </xsl:attribute>
+
+        <xsl:if test="$class">
+          <xsl:attribute name="class">
+            <xsl:value-of select="$class"/>
+          </xsl:attribute>
+        </xsl:if>
+
+        <xsl:value-of select="$name"/>
+      </xsl:element>
+  </xsl:template>
+
 </xsl:stylesheet>
