@@ -41,7 +41,7 @@ def section_title
 end
 
 def suggested_searches
-  @suggested_searches ||= FederalRegister::SuggestedSearch.search(conditions: {sections: [@slug]})[slug]
+  @suggested_searches ||= SuggestedSearch.search(conditions: {sections: [@slug]})[slug]
 end
 
 def all_sections
