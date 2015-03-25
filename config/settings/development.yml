@@ -7,6 +7,7 @@ vcr:
   re_record_interval: 7 #days
   log_output: false
 varnish:
-  enable_cache_headers: false
+  enable_cache_headers: true
+  ignore_paths: ""
 federal_register:
   api_url: 'http://127.0.0.1:8080/api/v1'
