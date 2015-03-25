@@ -69,7 +69,9 @@ class PresidentialDocumentsPresenter
     subtypes_for_homepage.each do |subtype, subtype_string|
       next if previous_results[subtype]
 
-      previous_results[subtype] = docs[subtype_string].first
+      if docs[subtype_string].present?
+        previous_results[subtype] = docs[subtype_string].first
+      end
     end
 
     previous_results
