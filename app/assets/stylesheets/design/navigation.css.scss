@@ -1,5 +1,6 @@
 #navigation {
   border-top: 4px solid #fbb829;
+  z-index: 1000;
 
   .container {
     background: $nav-background-color;
@@ -227,7 +228,8 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
   .right_column {
     li > h2,
     .finder h2,
-    .preview_wrapper h2 {
+    .preview_wrapper h2,
+    .preview h2 {
       @extend %right_column_header;
     }
 
@@ -707,6 +709,8 @@ BROWSE EXECUTIVE ORDERS
     margin: 10px 0 0 5px;
     vertical-align: top;
     display: inline-block;
+    top: 2px;
+    position: relative;
   }
 
   #barack-obama .photo {
