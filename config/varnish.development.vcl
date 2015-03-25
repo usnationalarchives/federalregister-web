@@ -103,7 +103,7 @@ sub vcl_recv {
     } else if (req.url ~ "^(/documents|/d/|/a/)") {
       set req.backend = my_fr2;
       return (pass);
-    } else if (req.url ~ "^(/public-inspection|/reader-aids)") {
+    } else if (req.url ~ "^(/public-inspection|/reader-aids|/executive-orders)") {
       set req.backend = my_fr2;
       return (pass);
     } else if (req.url ~ "^(/esi)") {
