@@ -10,7 +10,7 @@
     </em>
   </xsl:template>
 
-  <xsl:template match="E[@T=03]">
+  <xsl:template match="E[@T=04]">
     <strong>
       <xsl:apply-templates />
     </strong>
