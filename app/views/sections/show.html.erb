@@ -1,42 +1,73 @@
+<div class="title">
+  <span><span class="icon-fr2 icon-fr2-Coins-dollaralt"></span><%= @presenter.section_title %></span>
+</div>
+
 <div class="bootstrap-scope">
 
-  <%= title("Arbitrary Section") %>
-  <%= description("arbitrary description") %>
+  <h1>
+    <span class="icon-fr2 icon-fr2-Search"></span>
+    Suggested <%= @presenter.section_title %> Searches
+  </h1>
 
-  <h1> <%= @presenter.section_title %> </h1>
-  <div id="content_area">
-
-    <!-- Break out canned searches into partial later -->
-    <h4>Suggested <%= @presenter.section_title %> Searches</h4>
-
-
-    <div class="row">
-      <ul class="list-unstyled row">
-        <% @presenter.suggested_searches.first(4).each do |suggested_search| %>
-          <li class="col-xs-6">
-            <h6><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h6>
-            <%= truncate(suggested_search.description, length: 300).html_safe %>
-            <% suggested_search.search_conditions %><br>
-            <%= suggested_search.documents_in_last_year %> in the last year
+  <div class="row">
+    <ul class="list-unstyled">
+      <% @presenter.suggested_searches.first(4).each do |suggested_search| %>
+        <li class="col-xs-6 suggested-search-height">
+          <h6><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h6>
+          <%= suggested_search.documents_in_last_year %> in the last year
+          <%= truncate_words(suggested_search.description, length: 280).html_safe %>
+          <% suggested_search.search_conditions %>
+          <ul class="list-unstyled">
             <% suggested_search.example_documents.first(2).each do |example_doc| %>
-              <%= link_to(example_doc.title, example_doc.html_url) %>
+            <li>
+              <span class="icon-fr2 icon-fr2-document_open"></span>
+              <%= link_to(truncate_words(example_doc.title, :length => 120),
+                example_doc.html_url) %>
+            </li>
             <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul class="list-unstyled row">
+    <% @presenter.suggested_searches.drop(4).each do |suggested_search|  %>
+      <li class="col-xs-4">
+        <h6>
+        <%= link_to(suggested_search.title,
+        documents_search_path(:conditions => suggested_search.search_conditions)) %>
+        </h6>
+        <p><%= suggested_search.documents_in_last_year %> in the last year</p>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <h1> Browse The Last Five Days </h1>
+  <div class="row">
+    <div class="col-xs-2">
+      <ul class="list-unstyled">
+        <% @presenter.last_five_days_hash.each do |date,results| %>
+          <li><%= link_to(date, '')%></li>
+        <% end %>
+        <li>
+          <span class="icon-fr2 icon-fr2-Search"></span>
+          <%= link_to("Search to see older documents.", documents_search_path) %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-xs-10">
+      <ul class="list-unstyled row">
+        <% @presenter.last_five_days_hash[@presenter.date].each do |doc| %>
+          <li class="col-xs-6 recent-docs-height">
+          <%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %>
+          <p><%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %></p>
           </li>
         <% end %>
       </ul>
     </div>
+  </div>
 
-    <div class="row">
-      <ul class="list-unstyled row">
-      <% @presenter.suggested_searches.drop(4).each do |suggested_search|  %>
-        <li class="col-xs-4">
-          <h6><%= suggested_search.title %></h6>
-          <% suggested_search.search_conditions %>
-          <p><%= suggested_search.documents_in_last_year %> in the last year</p>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-
-  </div> <!-- content_area -->
 </div> <!-- bootstrap-scope -->

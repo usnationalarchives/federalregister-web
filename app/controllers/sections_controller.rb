@@ -2,20 +2,25 @@ class SectionsController < ApplicationController
   skip_before_filter :authenticate_user!
   layout false, only: :navigation
 
-  def show
-    @presenter = SectionPresenter.new(params[:section])
-    @section = @presenter.section
 
-    respond_to do |wants|
-      wants.html
-      wants.rss do
-        base_url = 'https://www.federalregister.gov/articles/search.rss?'
-        options = "conditions[sections]=#{@section.id}&order=newest.com"
-        redirect_to base_url + options, status: :moved_permanently
-      end
-    end
+  def show
+    @presenter = SectionPagePresenter.new(params[:section], Date.current)
   end
 
+  # def old_show_action
+  #   @presenter = SectionPresenter.new(params[:section])
+  #   @section = @presenter.section
+
+  #   respond_to do |wants|
+  #     wants.html
+  #     wants.rss do
+  #       base_url = 'https://www.federalregister.gov/articles/search.rss?'
+  #       options = "conditions[sections]=#{@section.id}&order=newest.com"
+  #       redirect_to base_url + options, status: :moved_permanently
+  #     end
+  #   end
+  # end
+  
   def significant_entries
     cache_for 1.day
     @presenter = SectionPresenter.new(params[:section])
