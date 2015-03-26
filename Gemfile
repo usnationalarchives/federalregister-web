@@ -137,7 +137,3 @@ group :development, :test do
   # OSX notifications
   gem 'terminal-notifier-guard', require: false
 end
-
-group :test do
-  gem 'spork', '~> 1.0rc'
-end
