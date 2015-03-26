@@ -1,5 +1,5 @@
 namespace :mailing_lists do
-  namespace :articles do
+  namespace :documents do
     desc "Deliver the document mailing list content for a given day"
     task :deliver, [:date] => :environment do |t, args|
       date = Date.parse(args[:date])
