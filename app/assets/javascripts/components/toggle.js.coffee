@@ -6,10 +6,11 @@ $(document).ready ->
     link.on trigger, (e)->
       e.preventDefault()
 
-      linkTarget = $( link.data('toggle-target') )
+      linkTarget = $( link.data 'toggle-target' )
       linkTarget.toggle()
 
+      textTarget = $( link.data 'toggle-text-node') || link
       if linkTarget.css('display') == 'none'
-        link.text link.data('toggle-show-text') || 'show'
+        textTarget.text link.data('toggle-show-text') || 'show'
       else
-        link.text link.data('toggle-hide-text') || 'hide'
+        textTarget.text link.data('toggle-hide-text') || 'hide'
