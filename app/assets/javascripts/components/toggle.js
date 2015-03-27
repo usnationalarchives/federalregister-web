@@ -3,14 +3,14 @@ $(document).ready(function(){
     e.preventDefault();
 
     var link = $(this);
-    var linkTarget = $( link.data('toggleTarget') );
+    var linkTarget = $( link.data('toggle-target') );
 
     linkTarget.toggle();
 
     if (linkTarget.css('display') == 'none') {
-      link.text(link.data('show-text') || 'View Public Inspection');
+      link.text(link.data('toggle-show-text') || 'show');
     } else {
-      link.text(link.data('hide-text') || 'Hide Public Inspection');
+      link.text(link.data('toggle-hide-text') || 'hide');
     }
   });
 });
