@@ -1,39 +1,47 @@
 class SectionPagePresenter
-  attr_reader :slug, :date, :suggested_searches
+  attr_reader :date, :icon_name, :slug, :suggested_searches
   class InvalidSection < StandardError; end
 
   SECTIONS = {
       "money" => {
         title: "Money",
         id: 1,
-        icon: "icon-fr2-Coins-dollaralt"
+        icon: "Coins-dollaralt"
       },
       "environment" => {
         title: "Environment",
         id: 2,
+        icon: "Eco"
       },
       "world" => {
         title: "World",
         id: 3,
+        icon: "Globe"
       },
       "science-and-technology" => {
         title: "Science and Technology",
         id: 4,
+        icon: "Lab"
       },
       "business-and-industry" => {
         title: "Business and Industry",
         id: 5,
+        icon: "Factory"
       },
       "health-and-public-welfare" => {
         title: "Health and Public Welfare",
         id: 6,
+        icon: "Medicine"
       },
     }
-
   def initialize(slug, date)
     raise InvalidSection unless all_section_slugs.include?(slug)
     @slug = slug
     @date = date
+  end
+
+  def icon_name
+    all_sections[slug][:icon]
   end
 
   def section_title

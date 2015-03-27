@@ -1,51 +1,58 @@
 <div class="title">
-  <span><span class="icon-fr2 icon-fr2-Coins-dollaralt"></span><%= @presenter.section_title %></span>
+  <span><span class="<%= ("icon-fr2 icon-fr2-#{@presenter.icon_name}") %>"></span><%= @presenter.section_title %></span>
+  <%= link_to '', new_subscription_path(''), :class => 'subscription tipsy', :title => 'Subscribe by Email or RSS' %>
+  <%#= add_template('subscription_modal', 'subscription-modal') %>
 </div>
 
 <div class="bootstrap-scope">
-
-  <h1>
+  <h3>
     <span class="icon-fr2 icon-fr2-Search"></span>
     Suggested <%= @presenter.section_title %> Searches
-  </h1>
+  </h3>
 
   <div class="row">
     <ul class="list-unstyled">
-      <% @presenter.suggested_searches.first(4).each do |suggested_search| %>
-        <li class="col-xs-6 suggested-search-height">
-          <h6><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h6>
-          <%= suggested_search.documents_in_last_year %> in the last year
-          <%= truncate_words(suggested_search.description, length: 280).html_safe %>
-          <% suggested_search.search_conditions %>
-          <ul class="list-unstyled">
-            <% suggested_search.example_documents.first(2).each do |example_doc| %>
-            <li>
-              <span class="icon-fr2 icon-fr2-document_open"></span>
-              <%= link_to(truncate_words(example_doc.title, :length => 120),
-                example_doc.html_url) %>
+      <% @presenter.suggested_searches.first(4).in_groups_of(2).each do |two_item_row| %>
+        <div class="row">
+          <% two_item_row.compact.each do |suggested_search| %>
+            <li class="col-xs-6 suggested-search-height">
+              <h4><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h4>
+              <%= suggested_search.documents_in_last_year %> in the last year
+              <%= truncate_words(suggested_search.description, length: 280).html_safe %>
+              <% suggested_search.search_conditions %>
+              <ul class="list-unstyled">
+                <% suggested_search.example_documents.first(2).each do |example_doc| %>
+                <li>
+                  <span class="icon-fr2 icon-fr2-document_open"></span>
+                  <%= link_to(truncate_words(example_doc.title, :length => 120),
+                    example_doc.html_url) %>
+                </li>
+                <% end %>
+              </ul>
             </li>
-            <% end %>
-          </ul>
-        </li>
+          <% end %>
+        </div>
       <% end %>
     </ul>
   </div>
 
-  <div class="row">
     <ul class="list-unstyled row">
-    <% @presenter.suggested_searches.drop(4).each do |suggested_search|  %>
-      <li class="col-xs-4">
-        <h6>
-        <%= link_to(suggested_search.title,
-        documents_search_path(:conditions => suggested_search.search_conditions)) %>
-        </h6>
-        <p><%= suggested_search.documents_in_last_year %> in the last year</p>
-      </li>
-      <% end %>
+    <% @presenter.suggested_searches.drop(4).in_groups_of(3).each do |three_item_row|  %>
+      <div class="row">
+        <% three_item_row.compact.each do |suggested_search| %>
+          <li class="col-xs-4">
+            <h4>
+              <%= link_to(suggested_search.title,
+              documents_search_path(:conditions => suggested_search.search_conditions)) %>
+              </h4>
+              <%= suggested_search.documents_in_last_year %> in the last year
+          </li>
+        <% end %>
+        </div> <!-- row -->
+    <% end %>
     </ul>
-  </div>
 
-  <h1> Browse The Last Five Days </h1>
+  <h3> Browse The Last Five Days </h3>
   <div class="row">
     <div class="col-xs-2">
       <ul class="list-unstyled">
@@ -58,15 +65,21 @@
         </li>
       </ul>
     </div>
+
     <div class="col-xs-10">
       <ul class="list-unstyled row">
-        <% @presenter.last_five_days_hash[@presenter.date].each do |doc| %>
-          <li class="col-xs-6 recent-docs-height">
-          <%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %>
-          <p><%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %></p>
-          </li>
+        <% @presenter.last_five_days_hash[@presenter.date].in_groups_of(2).each do |two_item_row| %>
+          <div class="row">
+          <% two_item_row.compact.each do |doc|%>
+            <li class="col-xs-6">
+              <h5><%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %></h5>
+              <%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %>
+            </li>
+          <% end %>
+          </div>
         <% end %>
       </ul>
+
     </div>
   </div>
 
