@@ -10,7 +10,6 @@ MyFr2::Application.routes.draw do
   #
   # Documents
   #
-
   get 'documents/:year/:month/:day',
       to: "document_issues#show",
       as: :document_issue,
@@ -208,7 +207,10 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#developer_tools',
       as: :reader_aids_developer_tools
 
-
+    # SUGGESTED SEARCHES
+    esi.get 'esi/:slug',
+      to: 'suggested_searches#show',
+      as: :suggested_searches
 
     # NAVIGATION
     esi.get 'esi/layouts/navigation/sections',

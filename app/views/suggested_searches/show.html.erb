@@ -1,0 +1,27 @@
+<div class="title">
+  <span><span class="icon-fr2 icon-fr2-Search"></span>Suggested Search</span>
+</div>
+<h1><%= @presenter.title %></h1>
+<%= @presenter.description.html_safe %>
+<%= link_to "Customize this search", documents_search_path(conditions: @presenter.search_conditions) %>
+<%= link_to "Subscribe", new_subscription_path %> <!-- TODO: Ensure subscriptions are being generated with proper params. -->
+Showing 1-<%= @presenter.total_docs %> of <%= link_to("X results",'') %> since 1994
+View more <%= link_to(@presenter.section,'') %> searches
+<ul id='suggested-search-list'>
+<% @presenter.documents.first(20).each do |doc| %>
+  <li>
+  <div class="search_result_wrapper">
+    <h4><%= link_to(doc.title, doc.html_url) %></h4>
+    <!-- Insert Icon Here -->
+
+    <div class="metadata">
+    <%= "#{doc.type.with_indefinite_article(true)} by the #{doc.agency_names} on #{doc.publication_date}".html_safe %>
+    <%= link_to("PDF", doc.pdf_url) %>
+    </div>
+    <p class="result_info">
+      <%= truncate_words(doc.abstract, :length => 350) %>
+    </p>
+  </div>
+  </li>
+<% end %>
+</ul>
