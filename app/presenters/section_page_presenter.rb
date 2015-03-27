@@ -1,5 +1,6 @@
 class SectionPagePresenter
   attr_reader :slug, :date, :suggested_searches
+  class InvalidSection < StandardError; end
 
   SECTIONS = {
       "money" => {
@@ -30,12 +31,9 @@ class SectionPagePresenter
     }
 
   def initialize(slug, date)
-    if all_sections[slug] == nil
-      raise "Invalid slug.  Valid slugs are #{all_sections.keys}"
-    else
-      @slug = slug
-      @date = date
-    end
+    raise InvalidSection unless all_section_slugs.include?(slug)
+    @slug = slug
+    @date = date
   end
 
   def section_title
@@ -50,7 +48,7 @@ class SectionPagePresenter
     SECTIONS
   end
 
-  def self.all_section_slugs
+  def all_section_slugs
     all_sections.keys
   end
 

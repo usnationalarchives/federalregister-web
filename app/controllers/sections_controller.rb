@@ -4,7 +4,12 @@ class SectionsController < ApplicationController
 
 
   def show
+    begin
     @presenter = SectionPagePresenter.new(params[:section], Date.current)
+
+    rescue SectionPagePresenter::InvalidSection
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   # def old_show_action
