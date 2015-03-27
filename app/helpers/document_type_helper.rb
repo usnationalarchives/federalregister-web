@@ -32,6 +32,15 @@ module DocumentTypeHelper
       class: "#{document_type.icon_class} cj-tooltip",
       "data-tooltip" => document_type.type
     )
+
+  def suggested_search_icon_helper(type)
+    document_type = DocumentType.new(type)
+    content_tag(:div,
+      class: "#{document_type.icon_wrapper_class} tipsy original-title") do
+        content_tag(:h2,
+          content_tag(:span, '', class: "icon-fr2 icon-doctype icon-fr2-#{document_type.granule_class}")
+          )
+    end
   end
 
   private
