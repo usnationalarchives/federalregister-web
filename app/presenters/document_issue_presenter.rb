@@ -12,58 +12,48 @@ class DocumentIssuePresenter
     @date = date
   end
 
-  def any_document_counts?
-    !document_counts.empty?
-  end
-
   def document_counts
-   DocumentTypeFacet.
-      search(:conditions => {:publication_date => {:is => date}}).map { |doc_type_facet|
-        DocCount.new(
-          slug: doc_type_facet.attributes["slug"],
-          count: doc_type_facet.attributes["count"],
-          search_conditions: doc_type_facet.search_conditions,
-          name: document_types[doc_type_facet.attributes["slug"]]
-        )
-      }
-  end
-
-    class DocCount
-      vattr_initialize [
-        :slug,
-        :count,
-        :search_conditions,
-        :name
-      ]
-    end
-
-  def significant_documents
-    SignificantDocument.new(
-      object: retrieve_significant_docs,
-      count: retrieve_significant_docs.inject(0){|sum, d| sum += d.attributes["count"]; sum},
-      search_conditions: retrieve_significant_docs.conditions
+   @document_counts ||= DocumentTypeFacet.
+      search(
+        conditions: {
+          publication_date: {is: date}
+        }
       )
   end
-    class SignificantDocument
-      vattr_initialize [
-        :object,
-        :count,
-        :search_conditions
-      ]
+
+  def significant_document_counts
+    SignificantDocument.new(documents: significant_docs)
+  end
+
+  class SignificantDocument
+    vattr_initialize [:documents]
+
+    def name
+      'Significant Document'
     end
+
+    def count
+      @count = documents.inject(0){|sum, d| sum += d.count; sum}
+    end
+
+    def search_conditions
+      documents.conditions
+    end
+  end
 
   def page_count
     #TBD
   end
 
-  def document_types
-    DOCUMENT_TYPES
-  end
-
   private
-  def retrieve_significant_docs
-    @significant_docs ||= DocumentTypeFacet.search(:conditions => {:significant => 1, :publication_date => {:is => date}})
-  end
 
+  def significant_docs
+    @significant_docs ||= DocumentTypeFacet.search(
+      conditions: {
+        significant: 1,
+        publication_date: {is: date}
+      }
+    )
+  end
 end
 

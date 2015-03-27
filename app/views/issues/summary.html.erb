@@ -12,21 +12,22 @@
     <div class="col-xs-9 col-md-9 fr-head-meta-counts">
       <ul class="inline-list">
 
-          <% if @doc_presenter.any_document_counts?%>
-            <% @doc_presenter.document_counts.each do |doc_type| %>
+          <% @doc_presenter.document_counts.each do |doc_type| %>
             <li>
-              <%= link_to "#{doc_type.count} #{doc_type.name.pluralize(doc_type.count)}", documents_search_path(doc_type.search_conditions) %>
+              <%= link_to pluralize(doc_type.count, doc_type.name),
+                documents_search_path(doc_type.search_conditions) %>
             </li>
-            <% end %>
-          <% else %>
-            <li> No documents published today</li>
           <% end %>
 
           <li>
-            <%= link_to_unless @doc_presenter.significant_documents.count == 0,
-              "#{@doc_presenter.significant_documents.count.to_s} #{'Significant Document'.
-                pluralize(@doc_presenter.significant_documents.count)}",
-              documents_search_path(@doc_presenter.significant_documents.search_conditions) %>
+            <%= link_to_unless @doc_presenter.significant_document_counts.count == 0,
+              pluralize(
+                @doc_presenter.significant_document_counts.count,
+                @doc_presenter.significant_document_counts.name
+              ),
+              documents_search_path(
+                @doc_presenter.significant_document_counts.search_conditions
+              ) %>
           </li>
 
         <li><strong>?</strong> Pages</li>
