@@ -129,11 +129,6 @@ MyFr2::Application.routes.draw do
       to: 'special#site_notifications',
       as: :site_notification
 
-    # CURRENT ISSUE
-    esi.get 'esi/current_issue',
-      to: 'special#current_issue',
-      as: :current_issue
-
 
     # HOME PAGE
     esi.get 'esi/home/reader_aids',
@@ -141,16 +136,20 @@ MyFr2::Application.routes.draw do
       as: :home_reader_aids
 
     esi.get 'esi/home/explore_agencies',
-      to: 'special#explore_agencies',
+      to: 'agencies#explore_agencies',
       as: :home_explore_agencies
 
     esi.get 'esi/home/explore_topics',
-      to: 'special#explore_topics',
+      to: 'topics#explore_topics',
       as: :home_explore_topics
 
     esi.get 'esi/home/presidential_documents',
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
+
+    esi.get 'esi/home/current_issue',
+      to: 'issues#summary',
+      as: :home_current_issue_summary
 
 
     # READER AIDS

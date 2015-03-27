@@ -16,6 +16,9 @@ class SpecialController < ApplicationController
     end
   end
 
+  def home
+  end
+
   def navigation
   end
 
@@ -26,15 +29,6 @@ class SpecialController < ApplicationController
   def header
     cache_for 1.day
     render template: "special/header/#{params[:type].gsub('-','_')}"
-  end
-
-  def home
-  end
-
-  def current_issue
-    @doc_presenter = DocumentIssuePresenter.new(Date.current)
-    @pi_presenter = PublicInspectionPresenter.new(Date.current)
-    render partial: 'metadata_bar'
   end
 
   def fr2_assets
@@ -48,18 +42,6 @@ class SpecialController < ApplicationController
   def status
     current_time_on_database = Clipping.connection.select_values("SELECT NOW()").first
     render :text => "Current time is: #{current_time_on_database} (MyFR)"
-  end
-
-  def explore_agencies
-    cache_for 1.day
-    @presenter = Facets::AgenciesPresenter.new
-    render "special/home/explore_agencies"
-  end
-
-  def explore_topics
-    cache_for 1.day
-    @presenter = Facets::TopicsPresenter.new
-    render "special/home/explore_topics"
   end
 
   def site_notifications

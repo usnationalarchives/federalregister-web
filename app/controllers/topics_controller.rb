@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false, only: :navigation
+  layout false, only: [:navigation, :explore_topics]
 
   def index
     @presenter = TopicPresenter.new(params[:id])
@@ -34,6 +34,11 @@ class TopicsController < ApplicationController
   end
 
   def navigation
+    cache_for 1.day
+    @presenter = Facets::TopicsPresenter.new
+  end
+
+  def explore_topics
     cache_for 1.day
     @presenter = Facets::TopicsPresenter.new
   end
