@@ -1,7 +1,14 @@
+<% @presenter.feed_urls.each do |feed| %>
+  <%= feed_autodiscovery feed.url,
+    feed.public_inspection_search_possible,
+    feed.description,
+    search_conditions: feed.search_conditions %>
+<% end %>
+
 <div class="title">
   <span><span class="<%= ("icon-fr2 icon-fr2-#{@presenter.icon_name}") %>"></span><%= @presenter.section_title %></span>
-  <%= link_to '', new_subscription_path(''), :class => 'subscription tipsy', :title => 'Subscribe by Email or RSS' %>
-  <%#= add_template('subscription_modal', 'subscription-modal') %>
+  <%= link_to '', '', :class => 'subscription tipsy', :title => 'Subscribe by Email or RSS' %>
+  <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>
 
 <div class="bootstrap-scope">
@@ -16,10 +23,10 @@
         <div class="row">
           <% two_item_row.compact.each do |suggested_search| %>
             <li class="col-xs-6 suggested-search-height">
-              <h4><%= link_to(suggested_search.title, documents_search_path(:conditions => suggested_search.search_conditions) ) %></h4>
+              <h4><%= link_to(suggested_search.title, suggested_searches_path(suggested_search.slug) ) %></h4>
               <%= suggested_search.documents_in_last_year %> in the last year
               <%= truncate_words(suggested_search.description, length: 280).html_safe %>
-              <% suggested_search.search_conditions %>
+              <%# suggested_search.search_conditions %>
               <ul class="list-unstyled">
                 <% suggested_search.example_documents.first(2).each do |example_doc| %>
                 <li>
@@ -68,15 +75,19 @@
 
     <div class="col-xs-10">
       <ul class="list-unstyled row">
-        <% @presenter.last_five_days_hash[@presenter.date].in_groups_of(2).each do |two_item_row| %>
-          <div class="row">
-          <% two_item_row.compact.each do |doc|%>
-            <li class="col-xs-6">
-              <h5><%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %></h5>
-              <%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %>
-            </li>
-          <% end %>
-          </div>
+        <% @presenter.last_five_days_hash.each do |date,docs| %>
+          <div class="row documents_published_on_<%= date %>"> <!-- hidden class can be added -->
+            <% docs.in_groups_of(2).each do |two_item_row|%>
+              <div class="row">
+              <% two_item_row.compact.each do |doc| %>
+                <li class="col-xs-6">
+                  <h5><%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %></h5>
+                  <%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %>
+                </li>
+              <% end %>
+              </div> <!-- row -->
+            <% end %>
+          </div> <!-- row documents_published_on -->
         <% end %>
       </ul>
 

@@ -1,15 +1,24 @@
+<% @presenter.feed_urls.each do |feed| %>
+  <%= feed_autodiscovery documents_search_url(conditions: @presenter.search_conditions, format: :rss),
+    feed.public_inspection_search_possible,
+    feed.description,
+    search_conditions: feed.search_conditions %>
+<% end %>
+
 <div class="title">
   <span><span class="icon-fr2 icon-fr2-Search"></span>Suggested Search</span>
+  <%= link_to '', '', :class => 'subscription tipsy', :title => 'Subscribe to this search by Email or RSS' %>
+  <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>
+
 <h1><%= @presenter.title %></h1>
-<%= @presenter.description.html_safe %>
+<%= @presenter.description.html_safe %> <!-- iterate through description -->
 
 <p id="search-actions">
   <%= link_to "Customize this search", documents_search_path(conditions: @presenter.search_conditions), :class => "search" %>
-  <%= link_to "Subscribe", new_subscription_path, :class => "search_subscription subscription" %> <!-- TODO: Ensure subscriptions are being generated with proper params. -->
 </p>
 <p class="section_link">
-Showing 1-<%= @presenter.docs_returned_total %> of <%= link_to("#{@presenter.docs_overall_total} results",'') %> since 1994</p>
-<p class="section_link">View more <%= link_to(@presenter.section,'') %> searches</p>
+Showing 1-<%= @presenter.docs_returned_total %> of <%= link_to("#{@presenter.docs_overall_total} results", documents_search_path(conditions: @presenter.search_conditions) ) %> since 1994</p>
+<p class="section_link">View more <%= link_to(@presenter.section_name,section_path(@presenter.section_slug) ) %> searches</p>
 
 <%= render partial: 'document_results', locals: {documents: @presenter.documents.first(20)} %>

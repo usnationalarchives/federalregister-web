@@ -24,3 +24,5 @@ render_documents_from_raw_xml: true
 
 # urls for mailers, redirects, etc
 fr_comment_url: 'http://127.0.0.1:8080/my/comments'
+rss_helper:
+  url: "federalregister.gov"

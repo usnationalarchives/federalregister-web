@@ -4,7 +4,7 @@
     <ul class="left_column">
       <% @section_presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>'>
-          <%= link_to presenter.section_title, "#", :class => "#{presenter.slug} with-icon" %>
+          <%= link_to presenter.section_title, section_path(presenter.slug), :class => "#{presenter.slug} with-icon" %>
         </li>
       <% end %>
     </ul>
@@ -17,7 +17,7 @@
                 <% searches.each do |suggested_search| %>
                     <div class="info suggested_search">
                       <h1>
-                        <%= link_to suggested_search.title, suggested_searches_path(suggested_search) %>
+                        <%= link_to suggested_search.title, suggested_searches_path(suggested_search.slug) %>
                         <span class="result_count"><%= suggested_search.documents_in_last_year %> in the last year</span>
                       </h1>
                      </div>
