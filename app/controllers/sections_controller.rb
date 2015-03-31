@@ -4,12 +4,21 @@ class SectionsController < ApplicationController
 
 
   def show
-    begin
-    @presenter = SectionPagePresenter.new(params[:section], Date.current)
+    cache_for 1.day
 
-    rescue SectionPagePresenter::InvalidSection
-      raise ActiveRecord::RecordNotFound
-    end
+    respond_to do |format|
+      begin
+      @presenter = SectionPagePresenter.new(params[:section], Date.current)
+
+      format.html
+      format.rss do
+        redirect_to RSSUrlBuilder.new(@presenter.slug).url, status: :moved_permanently
+      end
+
+      rescue SectionPagePresenter::InvalidSection
+        raise ActiveRecord::RecordNotFound
+      end
+      end
   end
 
   # def old_show_action
@@ -25,7 +34,7 @@ class SectionsController < ApplicationController
   #     end
   #   end
   # end
-  
+
   def significant_entries
     cache_for 1.day
     @presenter = SectionPresenter.new(params[:section])
@@ -42,7 +51,7 @@ class SectionsController < ApplicationController
 
   def navigation
     cache_for 1.day
-
-    @sections = SectionPresenter::SECTIONS
+    @section_presenters = SectionPagePresenter::SECTIONS.map{
+      |slug,value| SectionPagePresenter.new(slug, DocumentIssue.current_date - 1.year)}
   end
 end

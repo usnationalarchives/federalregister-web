@@ -16,3 +16,4 @@ class Section < ActiveHash::Base
     slug
   end
 end
+#class Section < FederalRegister::Section - implement as .highlights class method

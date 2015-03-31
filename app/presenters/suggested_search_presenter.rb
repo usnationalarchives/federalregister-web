@@ -2,9 +2,9 @@ class SuggestedSearchPresenter
   attr_reader :suggested_search, :section
   class InvalidSuggestedSearch < StandardError; end
 
-  def initialize(suggested_search)
-    raise InvalidSuggestedSearch unless suggested_search.is_a? SuggestedSearch #TODO: Evaluate validation here.
-    @suggested_search = suggested_search
+  def initialize(slug)
+    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug) #TODO: Evaluate validation here.
+    @suggested_search = SuggestedSearch.find(slug)
   end
 
   def description
@@ -16,17 +16,52 @@ class SuggestedSearchPresenter
       results.map{|document| DocumentDecorator.decorate(document)}
   end
 
+  def feed_urls
+    feeds = []
+    feeds << FeedAutoDiscovery.new(
+      url: '',
+      public_inspection_search_possible: public_inspection_search_possible?,
+      description: modal_description,
+      search_conditions: search_conditions
+    )
+    feeds
+  end
+
   def search_conditions
     suggested_search.search_conditions
   end
 
-  def section
-    "Test Section" #TODO: Implement from TBD API parameter
+  def section_slug
+    suggested_search.section
+  end
+
+  def section_name
+    result = Section.search.find{|section|section.slug==suggested_search.section}
+    result.name if result.present?
+  end
+
+  def modal_description
+    "Documents matching '#{terms}'" #There should be a helper to account for
+    #sections and descriptions
+  end
+
+  def public_inspection_search_possible?
+    begin
+      FederalRegister::PublicInspectionDocument.search_metadata(search_conditions)
+      true
+    rescue FederalRegister::Client::BadRequest
+      false
+    end
+  end
+
+  def terms
+    search_conditions["term"]
   end
 
   def title
-    @suggested_search.title
+    suggested_search.title
   end
+
 
   def docs_returned_total
     documents.count

@@ -1,47 +1,78 @@
 class SectionPagePresenter
-  attr_reader :date, :icon_name, :slug, :suggested_searches
+  attr_reader :date, :icon_name, :search_conditions,:slug, :suggested_searches
   class InvalidSection < StandardError; end
 
+  #TODO: Refactor the SECTIONS constant so we're using the API in lieu of hardcoding.
   SECTIONS = {
       "money" => {
         title: "Money",
-        id: 1,
         icon: "Coins-dollaralt"
       },
       "environment" => {
         title: "Environment",
-        id: 2,
         icon: "Eco"
       },
       "world" => {
         title: "World",
-        id: 3,
         icon: "Globe"
       },
       "science-and-technology" => {
         title: "Science and Technology",
-        id: 4,
         icon: "Lab"
       },
       "business-and-industry" => {
         title: "Business and Industry",
-        id: 5,
         icon: "Factory"
       },
       "health-and-public-welfare" => {
         title: "Health and Public Welfare",
-        id: 6,
         icon: "Medicine"
       },
     }
+
   def initialize(slug, date)
     raise InvalidSection unless all_section_slugs.include?(slug)
     @slug = slug
     @date = date
   end
 
+  def public_inspection_search_possible?
+    begin
+      FederalRegister::PublicInspectionDocument.search_metadata(search_conditions)
+      true
+    rescue FederalRegister::Client::BadRequest
+      false
+    end
+  end
+
+  def feed_urls
+    feeds = []
+    feeds << FeedAutoDiscovery.new(
+      url: "/#{slug}/significant.rss",
+      public_inspection_search_possible: public_inspection_search_possible?,
+      description: "Significant Documents in #{section_title}",
+      search_conditions: {sections: slug, significant: 1}
+    )
+    feeds << FeedAutoDiscovery.new(
+      url: "/#{slug}.rss",
+      public_inspection_search_possible: public_inspection_search_possible?,
+      description: "All Documents in #{section_title}",
+      search_conditions: {sections: slug}
+    )
+    feeds
+  end
+
   def icon_name
     all_sections[slug][:icon]
+  end
+
+  def search_conditions
+    {
+      conditions:
+      {
+        sections: slug
+      }
+    }
   end
 
   def section_title
@@ -64,19 +95,25 @@ class SectionPagePresenter
     dates_array = (self.date - 4.days..self.date).to_a
     hsh={}
     dates_array.each {|date|
-      hsh[date] = FederalRegister::Document.search(
-        conditions: {
-          sections: [slug],
-          publication_date: {
-            is: date.to_date
-          }
-        },
-        order: 'newest',
-        per_page: 40).
+      hsh[date] = last_five_days.
         results.map{|document| DocumentDecorator.decorate(document)
       }
     }
     hsh
+  end
+
+  private
+  def last_five_days
+    @api_results ||= FederalRegister::Document.search(
+      conditions: {
+        sections: [slug],
+        publication_date: {
+          is: date.to_date
+        }
+      },
+      order: 'newest',
+      per_page: 40
+    )
   end
 
 

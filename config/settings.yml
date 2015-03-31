@@ -15,3 +15,6 @@ fr_comment_url: 'https://www.federalregister.gov/my/comments'
 
 # generic switch for deciding when to raise exception or notify honeybadger
 notify_honeybager: true
+
+rss_helper:
+  url: "https://www.federalregister.gov"
