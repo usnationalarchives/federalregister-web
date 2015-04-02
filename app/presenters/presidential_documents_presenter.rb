@@ -84,7 +84,7 @@ class PresidentialDocumentsPresenter
 
   def document_counts(start_date, end_date)
     PresidentialDocumentsFacet.search(
-      Facets::QueryConditions.published_within(start_date, end_date)
+      QueryConditions::Document.published_within(start_date, end_date)
     )
   end
 

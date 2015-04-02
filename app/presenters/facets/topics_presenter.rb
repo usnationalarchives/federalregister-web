@@ -39,13 +39,13 @@ class Facets::TopicsPresenter
 
   def comment_counts
     @comment_counts ||= TopicFacet.search(
-      Facets::QueryConditions.comment_period_closing_in(1.week)
+      QueryConditions::Document.comment_period_closing_in(1.week)
     )
   end
 
   def document_counts
-    TopicFacet.search(
-      Facets::QueryConditions.published_in_last(1.week)
+    @document_counts ||= TopicFacet.search(
+      QueryConditions::Document.published_in_last(1.week)
     )
   end
 end

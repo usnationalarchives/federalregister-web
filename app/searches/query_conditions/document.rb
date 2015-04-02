@@ -1,4 +1,4 @@
-class Facets::QueryConditions
+class QueryConditions::Document < QueryConditions
   def self.comment_period_closing_in(time_frame)
     {
       conditions: {
@@ -14,7 +14,7 @@ class Facets::QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: (DocumentIssue.current_date - time_frame).to_s(:iso)
+          gte: (DocumentIssue.current.publication_date - time_frame).to_s(:iso)
         }
       }
     }
@@ -24,7 +24,7 @@ class Facets::QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: (DocumentIssue.current_date - time_frame).to_s(:iso)
+          gte: (DocumentIssue.current.publication_date - time_frame).to_s(:iso)
         },
         comment_date: {
           gte: Date.current.to_s(:iso),
@@ -43,38 +43,4 @@ class Facets::QueryConditions
       }
     }
   end
-
-  def self.published_within(start_date, end_date)
-    {
-      conditions: {
-        publication_date: {
-          gte: start_date.to_s(:iso),
-          lte: end_date.to_s(:iso)
-        }
-      }
-    }
-  end
-
-  def self.regular_filing_published_on(date)
-    {
-      conditions: {
-        special_filing: 0,
-        filed_at: {
-          is: date.to_s(:iso)
-        }
-      }
-    }
-  end
-
-  def self.special_filing_published_on(date)
-    {
-      conditions: {
-        special_filing: 1,
-        filed_at: {
-          is: date.to_s(:iso)
-        }
-      }
-    }
-  end
-
 end
