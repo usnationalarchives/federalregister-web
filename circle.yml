@@ -13,9 +13,7 @@ dependencies:
   pre:
     - npm install -g jshint
     - gem update --system 1.8.25
-    - cp config/amazon.yml.sample config/amazon.yml
     - cp config/secrets.yml.sample config/secrets.yml
-    - cp config/sendgrid.yml.sample config/sendgrid.yml
     #- cd .. && git clone git@github.com:criticaljuncture/fr2
     #- cd ../fr2 && git checkout officialness
     #- cp ../fr2/config/amazon.yml.sample ../fr2/config/amazon.yml
