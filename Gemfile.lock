@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/criticaljuncture/federal_register.git
-  revision: f2deb2b7c8b02b6c36532a485704b39fb2f4a802
-  ref: officialness
-  specs:
-    federal_register (0.5.0)
-      httparty (>= 0.7.0)
-
-GIT
   remote: git://github.com/delynn/userstamp.git
   revision: 777633aa564f8457c999ddb96afa4c5ae18d319f
   ref: 777633
@@ -22,6 +14,14 @@ GIT
       httparty (~> 0.11.0)
       redis
       redis-namespace
+
+GIT
+  remote: git@github.com:criticaljuncture/federal_register.git
+  revision: cb56349d143e9778377cf428b24f9b4989104521
+  ref: officialness
+  specs:
+    federal_register (0.5.0)
+      httparty (>= 0.7.0)
 
 GIT
   remote: https://github.com/37signals/mail_view.git
