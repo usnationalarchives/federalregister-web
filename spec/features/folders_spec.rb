@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "MyFR Folders" do
+feature "MyFR Folders", :no_ci do
   let(:user) { create(:user) }
 
   scenario "creating a folder via the move to folder menu", :js do

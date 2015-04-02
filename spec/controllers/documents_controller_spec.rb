@@ -15,10 +15,6 @@ describe DocumentsController do
           let(:get_tiny_url) { get :tiny_url, document_number: pi_document.document_number }
 
           it "redirects to the public inspection page (document page)" do
-            expect{
-              get :tiny_url, document_number: '2014-0001'
-            }.to raise_error(FederalRegister::Client::RecordNotFound)
-
             expect(FederalRegister::PublicInspectionDocument).to receive(:find).with(pi_document.document_number).and_return(pi_document)
             expect(get_tiny_url).to redirect_to(pi_document.html_url)
           end

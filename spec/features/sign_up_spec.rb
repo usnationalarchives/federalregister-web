@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Signing up" do
+feature "Signing up", :no_ci do
   let(:user) { build(:user) }
 
   context "unsuccessful sign up attempt" do

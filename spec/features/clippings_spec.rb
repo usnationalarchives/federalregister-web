@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Creating clippings" do
+feature "Creating clippings", :no_ci do
   context "a non-logged in user" do
     scenario "should show as clipped on the page, in the user_utils area, and be available in my clippings", :js do
       visit '/articles/2014/01/01/4242-4242/test-document'

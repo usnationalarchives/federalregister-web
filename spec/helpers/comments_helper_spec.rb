@@ -19,7 +19,7 @@ describe CommentsHelper do
     context "when the field is a text field" do
       describe "and max length is 2000" do
         let(:max_length) { 2000 }
-        let(:warn_at) { 200 }
+        let(:warn_at) { 250 }
         let(:field) { build(:comment_form_text_field, :max_length => max_length) }
         let(:options) { comment_input_field_options(field) }
 

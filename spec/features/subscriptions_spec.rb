@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Subscriptions" do
+feature "Subscriptions", :no_ci do
   context "not logged in" do
     scenario "visiting 'My Subscriptions' redirects the user to the sign in page", :js do
       visit "/my/subscriptions"

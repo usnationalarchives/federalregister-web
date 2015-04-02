@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Document" do
+feature "Document", :no_ci do
   let(:document) do
     DocumentDecorator.decorate(FederalRegister::Document.find("4242-4242"))
   end

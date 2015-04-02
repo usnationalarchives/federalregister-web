@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Signing in" do
+feature "Signing in", :no_ci do
   let(:user) { FactoryGirl.create(:user) }
 
   scenario "providing incorrect password" do
