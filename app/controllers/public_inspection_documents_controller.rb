@@ -17,8 +17,9 @@ class PublicInspectionDocumentsController < ApplicationController
   end
 
   def navigation
-    #cache_for 1.day
-    @pi_presenter = PublicInspectionPresenter.new(Date.current)
-    render template: 'public_inspection/navigation'
+    cache_for 1.day
+    @pi_presenter = PublicInspectionIssuePresenter.new(
+      PublicInspectionDocumentIssue.current.publication_date
+    )
   end
 end
