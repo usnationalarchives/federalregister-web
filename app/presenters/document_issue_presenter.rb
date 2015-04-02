@@ -42,10 +42,26 @@ class DocumentIssuePresenter
   end
 
   def page_count
-    #TBD
+    return @page_count if @page_count
+
+    sorted = documents.sort_by(&:start_page)
+    if sorted.present?
+      @page_count = sorted.last.end_page - sorted.first.start_page + 1 #inclusive
+    else
+      @page_count = 0
+    end
   end
 
   private
+
+  def documents
+    @documents ||= FederalRegister::Document.search(
+      conditions: {
+        publication_date: {is: date},
+      },
+      fields: [:end_page, :publication_date, :start_page],
+    )
+  end
 
   def significant_docs
     @significant_docs ||= DocumentTypeFacet.search(
