@@ -1,39 +1,51 @@
 class PublicInspectionIssuePresenter
-  attr_reader :regular_filings, :special_filings
+  attr_reader :agencies, :date, :regular_filings, :special_filings
 
-  def initialize(date=nil)
-    if date
-      result_set = FederalRegister::PublicInspectionDocument.available_on(date)
-    else
-      result_set = FederalRegister::PublicInspectionDocument.current
-    end
+  def initialize(date)
+    @date = date.is_a?(Date) ? date : Date.parse(date)
+    @regular_filings = RegularFilings.new(@date, self)
+    @special_filings = SpecialFilings.new(@date, self)
+    @agencies = {}
+  end
 
-    @regular_filings = RegularFilings.new(result_set)
-    @special_filings = SpecialFilings.new(result_set)
+  def all_filings
+    [@regular_filings, @special_filings]
+  end
+
+  def issue
+    @issue ||= PublicInspectionDocumentIssue.available_on(date)
   end
 
   class BasicFilings
-    attr_reader :agency_count, :count
-
-    def agency_count
-      documents.group_by{|d| d.agencies.last.name}.count
-    end
-
-    def document_count
-      documents.count
-    end
-
-    def counts_by_type
-      documents.group_by(&:type).map{|k,v| {k => v.count}}
+    attr_reader :publication_date, :public_inspection_issue
+    def initialize(date, presenter)
+      @publication_date = date
+      @public_inspection_issue = presenter.issue
     end
 
     def formatted_updated_at
-      updated_at.to_s(:time_then_date)
+      filings.last_updated_at.to_s(:time_then_date)
+    end
+
+    def agency_count
+      filings.agencies
+    end
+
+    def document_count
+      filings.documents
     end
 
     def type
-      name.downcase.gsub(' ', '-')
+      @type ||= name.downcase.gsub(' ', '-')
     end
+
+    def filing_facets
+      @filing_facets ||= PublicInspectionIssueTypeFacet.search(
+        QueryConditions::PublicInspectionDocument.
+          published_on(publication_date)
+      ).first
+    end
+
 
     def special_filing?
       type == 'special-filing'
@@ -41,32 +53,52 @@ class PublicInspectionIssuePresenter
   end
 
   class RegularFilings < BasicFilings
-    attr_reader :documents, :updated_at
-
-    def initialize(result_set)
-      @documents = DocumentDecorator.decorate_collection(
-        result_set.results.select{|d| d.filing_type == 'regular'}
-      )
-      @updated_at = result_set.special_filings_updated_at
-    end
-
     def name
       "Regular Filing"
+    end
+
+    def search_conditions(type=nil)
+      conditions = QueryConditions::PublicInspectionDocument.regular_filing
+      if type
+        conditions.deep_merge!(
+          {
+            conditions: {type: DocumentType.new(type).granule_class}
+          }
+        )
+      end
+    end
+
+    def filings
+      public_inspection_issue.regular_filings
+    end
+
+    def document_type_facets
+      filing_facets.regular_filings.document_types
     end
   end
 
   class SpecialFilings < BasicFilings
-    attr_reader :documents, :updated_at
-
-    def initialize(result_set)
-      @documents = DocumentDecorator.decorate_collection(
-        result_set.results.select{|d| d.filing_type == 'special'}
-      )
-      @updated_at = result_set.special_filings_updated_at
-    end
-
     def name
       "Special Filing"
+    end
+
+    def search_conditions(type=nil)
+      conditions = QueryConditions::PublicInspectionDocument.special_filing
+      if type
+        conditions.deep_merge!(
+          {
+            conditions: {type: DocumentType.new(type).granule_class}
+          }
+        )
+      end
+    end
+
+    def filings
+      public_inspection_issue.special_filings
+    end
+
+    def document_type_facets
+      filing_facets.regular_filings.document_types
     end
   end
 end

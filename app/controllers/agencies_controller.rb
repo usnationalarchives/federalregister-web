@@ -1,6 +1,6 @@
 class AgenciesController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false, only: :navigation
+  layout false, only: [:navigation, :explore_agencies]
 
   def index
     cache_for 1.day
@@ -47,6 +47,11 @@ class AgenciesController < ApplicationController
   end
 
   def navigation
+    cache_for 1.day
+    @presenter = Facets::AgenciesPresenter.new
+  end
+
+  def explore_agencies
     cache_for 1.day
     @presenter = Facets::AgenciesPresenter.new
   end

@@ -4,23 +4,22 @@ class PublicInspectionDocumentsController < ApplicationController
 
   def index
     cache_for 1.day
-
-    render
   end
 
   def current
     cache_for 1.day
     @documents = []
-
-    render template: 'public_inspection/index'
   end
 
   def public_inspection
-    redirect_to current_public_inspection_documents_path, status: :moved_permanently
+    redirect_to current_public_inspection_documents_path,
+      status: :moved_permanently
   end
 
   def navigation
-    #cache_for 1.day
-    @presenter = PublicInspectionIssuePresenter.new
+    cache_for 1.day
+    @pi_presenter = PublicInspectionIssuePresenter.new(
+      PublicInspectionDocumentIssue.current.publication_date
+    )
   end
 end

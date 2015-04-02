@@ -15,6 +15,15 @@ module DocumentTypeHelper
     filters.join("\n").html_safe
   end
 
+  def document_type_icon(type, options={})
+    document_type = DocumentType.new(type)
+    content_tag(:div,
+      class: "#{document_type.icon_wrapper_class(options[:size])} tooltip",
+      "data-tooltip" => document_type.type) do
+        content_tag(:span, '', class: document_type.icon_class)
+      end
+  end
+
   private
 
   def document_types

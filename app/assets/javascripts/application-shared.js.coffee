@@ -11,7 +11,7 @@
 //= require analytics.js
 #= require analytics/comments
 
-//= require components
+#= require components
 //= require jquery.textarea-expander.js
 #= require blueimpFileupload
 //= require amplify.store-1.1.0.min.js
