@@ -1,0 +1,9 @@
+<li id="public-inspection-browse-preview" class="preview">
+  <%= render partial: 'issues/public_inspection_description' %>
+
+  <ul>
+    <%= render partial: 'issues/public_inspection_filing_types',
+          locals: {presenter: @pi_presenter} %>
+  </ul>
+
+</li>
