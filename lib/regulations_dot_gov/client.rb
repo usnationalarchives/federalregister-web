@@ -17,7 +17,7 @@ class RegulationsDotGov::Client
   cattr_accessor :api_key
   attr_accessor :cache_backups_enabled, :read_from_cache
 
-  if Rails.env.development? || Rails.env.test? || Rails.env.staging?
+  if Settings.regulations_dot_gov.debug_output_enabled
     debug_output $stderr
   end
 
