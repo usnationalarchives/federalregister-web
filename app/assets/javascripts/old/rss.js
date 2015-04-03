@@ -1,3 +1,5 @@
+/* global user_email_address, modalOpen, EmailHelper */
+
 $(document).ready(function () {
   function generate_dialog() {
     if ($('#modal').size() === 0) {

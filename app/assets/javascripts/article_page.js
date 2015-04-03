@@ -4,6 +4,7 @@ function add_item_to_folder(el, menu, form) {
   el.find('.icon.checked').hide();
   el.find('.loader').show();
 
+  var form_data, document_number;
   form_data = form.serializeArray();
   form_data.push( {name: "document[folder]", value: el.data('slug')} );
   document_number = form.find('input#clipping_document_number').val();
@@ -21,7 +22,7 @@ function add_item_to_folder(el, menu, form) {
       /* visually mark the icon as in at least one folder */
       /* and increment the document count                 */
       menu.find('.button span.icon').addClass('clipped');
-      if ( el.data('slug') == "my-clippings" ) {
+      if ( el.data('slug') === "my-clippings" ) {
         update_user_clipped_document_count(stored_document_numbers);
       }
       else {
@@ -36,7 +37,7 @@ function add_item_to_folder(el, menu, form) {
 
 function insert_new_folder_into_menu(menu, response) {
   if ( $("#add-to-folder-menu-li-fr2-template") ) {
-    template = Handlebars.compile( $("#add-to-folder-menu-li-fr2-template").html() );
+    var template = Handlebars.compile( $("#add-to-folder-menu-li-fr2-template").html() );
     menu.find('.menu ul')
       .append( $(template(response)).css('opacity', 0)
         .animate({ opacity: 1.0 }, 1500)
@@ -47,6 +48,7 @@ function insert_new_folder_into_menu(menu, response) {
  * in the other menus on the page but need to modify the template */
 function insert_new_folder_into_other_menu(menu, response) {
   if ( $("#add-to-folder-menu-li-fr2-template") ) {
+    var template, new_li;
     template = Handlebars.compile( $("#add-to-folder-menu-li-fr2-template").html() );
     new_li = $( template(response) );
     menu.find('.menu ul').append( new_li );
@@ -95,6 +97,7 @@ function display_new_folder_modal( menu, document_number ) {
   menu.find('.menu li#new-folder').addClass('hover');
 
   /* decide which modal to show */
+  var modal_template, modal;
   if ( expect_logged_in() ) {
     if ( $('#new-folder-modal-template') ) {
       modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
@@ -116,6 +119,7 @@ function display_new_folder_modal( menu, document_number ) {
   }
 
   /* place our data in the modal form */
+  var form;
   form = modal.find('form.folder');
   form.data('document-number', document_number);
   form.data('menu', menu);
@@ -143,6 +147,7 @@ function display_new_folder_modal( menu, document_number ) {
 }
 
 function create_new_folder(form) {
+  var menu, document_number;
   menu = form.data('menu');
   document_number = form.data('document-number');
 
@@ -156,7 +161,7 @@ function create_new_folder(form) {
   $('#new-folder-modal .folder_create').show();
 
   /* submit data and handle response or failure */
-  form_data = form.serializeArray();
+  var form_data = form.serializeArray();
   form_data.push( {name: "folder[document_numbers][]", value: document_number} );
 
   $.ajax({
@@ -198,7 +203,7 @@ function create_new_folder(form) {
           /* add new folder to all the other menus if we're on a search page */
           if ( $('body#search').length !== 0 ) {
             $('#clipping-actions.fr2 .add_to_folder').each( function() {
-              other_menu = $(this);
+              var other_menu = $(this);
               if ( other_menu.data('active-menu') !== true ) {
                 insert_new_folder_into_other_menu( other_menu, response);
               }
@@ -224,7 +229,7 @@ function create_new_folder(form) {
     .fail(function(response) {
       $('#new-folder-modal .folder_create').hide();
 
-      responseText = $.parseJSON( response.responseText );
+      var responseText = $.parseJSON( response.responseText );
       $('#new-folder-modal .folder_error p .message').html(
         responseText.errors[0]
       );
@@ -256,7 +261,7 @@ function remove_document_from_folder(folder_li, document_number, menu) {
     folder_li.find('a span.icon').remove();
 
     /* add back our checked icon and bind the proper events to it*/
-    checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
+    var checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
     folder_li.find('a').append( checked_span );
     if( $('body').hasClass('fonts_ie7_lte') ) {
       addIconViaJS(checked_span, 'icon-fr2-badge_check_mark');
@@ -268,10 +273,10 @@ function remove_document_from_folder(folder_li, document_number, menu) {
 
     if( folder_li.data('slug') !== 'my-clippings' ) {
       /* decrement the docs in folders count */
-      documents_in_folders = $('#user_utils #document-count-holder #user_documents_in_folders_count');
+      var documents_in_folders = $('#user_utils #document-count-holder #user_documents_in_folders_count');
       documents_in_folders.html( parseInt(documents_in_folders.html(), 0) - response.folder.doc_count );
     } else {
-      documents_in_clipboard = $('#user_utils #document-count-holder #doc_count');
+      var documents_in_clipboard = $('#user_utils #document-count-holder #doc_count');
       documents_in_clipboard.html( parseInt(documents_in_clipboard.html(), 0) - response.folder.doc_count );
     }
 
@@ -283,7 +288,8 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
   el.find('a span.checked.icon').remove();
 
   /* add the goto and delete buttons/icons */
-  var link = el.find('a');
+  var link, goto_span, delete_span;
+  link = el.find('a');
 
   goto_span = $('<span>').addClass('goto icon icon-fr2 icon-fr2-badge_forward_arrow');
   link.append( goto_span );
@@ -303,7 +309,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
     event.preventDefault();
     event.stopPropagation();
 
-    folder = $(this).closest('li').data('slug');
+    var folder = $(this).closest('li').data('slug');
     window.location.href = "/my/folders/" + folder;
   });
 
@@ -330,7 +336,7 @@ $(document).ready(function () {
   }
 
   /* get current document */
-  current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
+  var current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
 
 
   /*                    *
@@ -339,7 +345,7 @@ $(document).ready(function () {
 
   /* compile template */
   if ( $("#add-to-folder-menu-fr2-template") ) {
-    add_to_folder_menu_fr2_template = Handlebars.compile( $("#add-to-folder-menu-fr2-template").html() );
+    var add_to_folder_menu_fr2_template = Handlebars.compile( $("#add-to-folder-menu-fr2-template").html() );
   }
   /* add current document number to the folder details */
   user_folder_details.current_document_number = current_document_number;
@@ -367,7 +373,7 @@ $(document).ready(function () {
     /* allow icon to be clicked as a shortcut for adding current document to the clipboard */
     menu.on('click', '.button .icon', function(event) {
       /* check if already in clipboard */
-      not_in_clipboard = $(menu).find('.menu li[data-slug="my-clippings"].not_in_folder').length !== 0;
+      var not_in_clipboard = $(menu).find('.menu li[data-slug="my-clippings"].not_in_folder').length !== 0;
       if ( not_in_clipboard ) {
         $(menu).find('.menu li[data-slug="my-clippings"]').trigger('click');
       }
@@ -395,7 +401,7 @@ $(document).ready(function () {
     });
 
     menu.on('mouseenter', '.menu li.in_folder', function(event) {
-      $li = $(this);
+      var $li = $(this);
       $li.addClass('hover');
       add_in_folder_mouseenter_events( $li, this_document_number, menu );
     });
@@ -408,7 +414,7 @@ $(document).ready(function () {
       el.removeClass('hover');
 
       if ( el.find('a span.checked.icon').length === 0 ) {
-        checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
+        var checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
         el.find('a').append( checked_span );
 
         if( $('body').hasClass('fonts_ie7_lte') ) {

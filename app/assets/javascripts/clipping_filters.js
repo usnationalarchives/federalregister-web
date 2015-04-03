@@ -1,6 +1,8 @@
+/* global doc_type_filters:true */
+
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
 
 function filter_clippings_by_type(el) {
   var doc_type = el.data('filter-doc-type');
@@ -13,7 +15,7 @@ function filter_clippings_by_type(el) {
     el.tipsy('hide');
     el.tipsy('show');
 
-    index = _.indexOf(doc_type_filters, doc_type);
+    var index = _.indexOf(doc_type_filters, doc_type);
     doc_type_filters[index] = null;
     doc_type_filters = _.compact(doc_type_filters);
   } else {
@@ -26,7 +28,7 @@ function filter_clippings_by_type(el) {
     doc_type_filters.push( doc_type );
   }
 
-  documents_to_hide = _.filter( $('#clippings li'), function(clipping) {
+  var documents_to_hide = _.filter( $('#clippings li'), function(clipping) {
                         return ! _.include(doc_type_filters, $(clipping).data('doc-type') );
                       });
 

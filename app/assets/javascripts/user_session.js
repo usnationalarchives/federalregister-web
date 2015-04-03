@@ -1,3 +1,5 @@
+/* global EmailHelper */
+
 $(document).ready(function() {
   var email_helper = new EmailHelper();
 

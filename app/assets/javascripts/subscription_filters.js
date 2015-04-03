@@ -1,3 +1,5 @@
+/* global subscription_type_filters:true */
+
 function filter_subscriptions_by_type(el) {
   var doc_type = el.data('filter-doc-type');
 
@@ -9,7 +11,7 @@ function filter_subscriptions_by_type(el) {
     el.tipsy('hide');
     el.tipsy('show');
 
-    index = _.indexOf(subscription_type_filters, doc_type);
+    var index = _.indexOf(subscription_type_filters, doc_type);
     subscription_type_filters[index] = null;
     subscription_type_filters = _.compact(subscription_type_filters);
   } else {
@@ -22,7 +24,7 @@ function filter_subscriptions_by_type(el) {
     subscription_type_filters.push( doc_type );
   }
 
-  subscriptions_to_hide = _.filter( $('#subscriptions li'), function(subscription) {
+  var subscriptions_to_hide = _.filter( $('#subscriptions li'), function(subscription) {
                         return ! _.include(subscription_type_filters, $(subscription).data('doc-type') );
                       });
 

@@ -35,12 +35,12 @@ var EmailHelper = (function() {
           error = '',
           email_regex = /^([\w\.%\+'\-]+)@([\w\-]+\.)+([\w]{2,})$/;
 
-      if(email == '') {
+      if(email === '') {
         has_error = true;
         error = 'blank';
       } else if( !email_regex.test(email) ) {
         has_error = true;
-        error = 'invalid'
+        error = 'invalid';
       }
 
       return {has_error: has_error, error: error};
@@ -74,14 +74,14 @@ var EmailHelper = (function() {
     },
 
     enable_form: function() {
-      var $submit = this.input.closest('form').find('input[type=submit]')
+      var $submit = this.input.closest('form').find('input[type=submit]');
 
       $submit.enable();
       $submit.closest('li').removeClass('disabled');
     },
 
     disable_form: function() {
-      var $submit = this.input.closest('form').find('input[type=submit]')
+      var $submit = this.input.closest('form').find('input[type=submit]');
 
       $submit.disable();
       $submit.closest('li').addClass('disabled');

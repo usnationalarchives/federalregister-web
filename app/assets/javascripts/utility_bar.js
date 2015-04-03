@@ -78,7 +78,7 @@ var FollowElement = (function() {
 
         Scroller.previous_scroll = Scroller.$window.scrollTop();
 
-        if( Scroller.options.debug ) { console.log(direction, message); }
+        if( Scroller.options.debug ) { console.log(direction, message); } // jshint ignore:line
       }), this.options.throttle_value);
     },
 
@@ -87,7 +87,7 @@ var FollowElement = (function() {
       var Scroller = this,
           offset = $el.offset().top + $el.outerHeight();
 
-      if( $el == Scroller.$el ) {
+      if( $el === Scroller.$el ) {
         offset += Scroller.options.bottom_offset;
       }
 

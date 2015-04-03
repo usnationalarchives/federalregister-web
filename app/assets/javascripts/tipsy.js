@@ -62,7 +62,7 @@ $(document).ready(function(){
     delayIn: 500,
     fade: true,
     offset: 3,
-    title: function() { return $(this).data('tooltip') }
+    title: function() { return $(this).data('tooltip'); }
   });
   /*** Comment form tipsy is defined in comment.js.erb ***/
 });

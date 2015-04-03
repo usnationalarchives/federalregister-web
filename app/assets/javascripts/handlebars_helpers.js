@@ -12,6 +12,7 @@ function inGroupsOf(count, arr) {
   }, [[]]);
 }
 
+/* jshint ignore:start */
 Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");
@@ -23,6 +24,7 @@ Handlebars.registerHelper("debug", function(optionalValue) {
     console.log(optionalValue);
   }
 });
+/* jshint ignore:end */
 
 Handlebars.registerHelper('unlessMyClipboard', function(block) {
   if( this.slug === "my-clippings" ) {
@@ -173,7 +175,7 @@ Handlebars.registerHelper('count', function(arr) {
 Handlebars.registerHelper('inColumns', function(arr, options) {
   var inEachColumn, perColumnCount, result, count;
 
-  count = options.hash['count'];
+  count = options.hash.count;
 
   inEachColumn =  Math.floor(arr.length / count);
 

@@ -19,18 +19,18 @@ $(document).ready(function () {
    * so that it's hidden */
   $('ul#clippings li div.add_to_folder_pane').each( function() {
     $(this).height( $(this).closest('ul#clippings li').innerHeight() );
-    input_el = $(this).find('input').last();
+    var input_el = $(this).find('input').last();
     input_el.css('margin-top', ($(this).height() / 2) - (input_el.height() / 2));
   });
 
   /* Add/Jump to Folder Menu */
   if ( $("#add-to-folder-menu-template").length > 0 ) {
-    add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
+    var add_to_folder_menu_template = Handlebars.compile( $("#add-to-folder-menu-template").html() );
 
     $( add_to_folder_menu_template(user_folder_details) ).insertAfter( '#clipping-actions #doc-type-filter' );
   }
   if ( $("#jump-to-folder-menu-template").length > 0 ) {
-    jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
+    var jump_to_folder_menu_template = Handlebars.compile( $("#jump-to-folder-menu-template").html() );
 
     $( jump_to_folder_menu_template(user_folder_details) ).insertAfter('#clipping-actions #doc-type-filter');
   }
@@ -52,12 +52,13 @@ $(document).ready(function () {
   /* remove clipping */
   $('#clipping-actions').on('click', '#remove-clipping', function(event) {
 
-    clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) {
+    var clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) {
                       return $(input).closest('li').data('doc-id');
                    });
 
-    current_folder_slug = $('h2.title').data('folder-slug');
+    var current_folder_slug = $('h2.title').data('folder-slug');
 
+    var form, form_data;
     form = $('form#folder_clippings');
     form_data = form.serializeArray();
     form_data.push( {name: "folder_clippings[clipping_ids]", value: clipping_ids} );

@@ -1,8 +1,8 @@
 /* determine whether to expect a current user */
 function expect_logged_in() {
-  if ( readCookie('expect_signed_in') == "1" ) {
+  if ( readCookie('expect_signed_in') === "1" ) {
     return true;
-  } else if ( readCookie('expect_signed_in') == "0") {
+  } else if ( readCookie('expect_signed_in') === "0") {
     return false;
   } else {
     return false;
@@ -11,17 +11,17 @@ function expect_logged_in() {
 
 function update_user_clipped_document_count(stored_documents) {
   //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0;
-  document_count = parseInt( $('#document-count #doc_count').html() );
+  var document_count = parseInt( $('#document-count #doc_count').html(), 10 );
   $('#document-count #doc_count').html( document_count + 1 );
 }
 
 function update_user_folder_count(folder_object) {
-  folder_count = parseInt( $('#document-count-holder #user_folder_count').html() );
+  var folder_count = parseInt( $('#document-count-holder #user_folder_count').html(), 10 );
   $('#user_folder_count').html( folder_count + 1 );
   }
 
 function update_user_folder_document_count(folder_object) {
-  folder_docs_count = parseInt( $('#document-count-holder #user_documents_in_folders_count').html() );
+  var folder_docs_count = parseInt( $('#document-count-holder #user_documents_in_folders_count').html(), 10 );
   $('#user_documents_in_folders_count').html( folder_docs_count + 1 );
   }
 
@@ -38,7 +38,7 @@ function document_number_present(document_number, user_folder_details) {
 }
 
 function show_folder_success(response) {
-  new_p = $('<p>').append(
+  var new_p = $('<p>').append(
     'Successfully created folder "' + response.folder.name + '"'
   ).append(
     $('<span>').addClass('icon-fr2 icon-fr2-badge_check_mark')
@@ -63,6 +63,7 @@ function closeOnEscape(hash) {
   });
 }
 
+/* jshint ignore:start */
 var myfr2_jqmHandlers = {
   href: "",
   timer: "",
@@ -75,3 +76,4 @@ var myfr2_jqmHandlers = {
       hash.o.remove();
   }
 };
+/* jshint ignore:end */

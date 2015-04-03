@@ -50,8 +50,9 @@ $(document).ready(function() {
           modal_data     = $link.data('modal-data');
 
       /* ensure template exists on page */
+      var modal_html;
       if ( modal_template.length > 0 ) {
-        compiled_template = Handlebars.compile( modal_template.html() );
+        var compiled_template = Handlebars.compile( modal_template.html() );
         modal_html = compiled_template( modal_data );
       } else {
         modal_html = $link.data('modal-html');

@@ -1,3 +1,4 @@
+/* global modalOpen */
 $(document).ready(function () {
     var toggle_presdocu_types = function() {
       var type_checkboxes = $('.presidential_dependent');

@@ -15,7 +15,7 @@ function get_page_type() {
 }
 
 function get_folder_type(folder_slug) {
-  if( folder_slug == 'my-clippings' ) {
+  if( folder_slug === 'my-clippings' ) {
     return 'clipboard';
   } else {
     return 'folder';
@@ -24,6 +24,7 @@ function get_folder_type(folder_slug) {
 
 function track_clipping_event(action, document_number, folder_slug) {
   /* current actions: add, remove */
+  var user_state, page_type, folder_type, label;
 
   user_state  = get_user_state();
   page_type   = get_page_type();
@@ -36,6 +37,7 @@ function track_clipping_event(action, document_number, folder_slug) {
 
 function track_folder_event(action, document_count) {
   /* current actions: create */
+  var user_state, page_type, folder_type, label;
 
   user_state  = "logged_in";
   page_type   = get_page_type();
