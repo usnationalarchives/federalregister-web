@@ -170,15 +170,6 @@ Handlebars.registerHelper('count', function(arr) {
   return arr.length;
 });
 
-Handlebars.registerHelper('inGroupsOf', function(count, options) {
-  var count, result;
-
-  count = options.hash['count'];
-  result = inGroupsOf(count, arr);
-
-  return options.fn(result);
-});
-
 Handlebars.registerHelper('inColumns', function(arr, options) {
   var inEachColumn, perColumnCount, result, count;
 
