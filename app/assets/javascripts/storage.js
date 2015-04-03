@@ -10,7 +10,7 @@ function expect_logged_in() {
 }
 
 function update_user_clipped_document_count(stored_documents) {
-  //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0; 
+  //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0;
   document_count = parseInt( $('#document-count #doc_count').html() );
   $('#document-count #doc_count').html( document_count + 1 );
 }
@@ -38,10 +38,10 @@ function document_number_present(document_number, user_folder_details) {
 }
 
 function show_folder_success(response) {
-  new_p = $('<p>').append( 
+  new_p = $('<p>').append(
     'Successfully created folder "' + response.folder.name + '"'
-  ).append( 
-    $('<span>').addClass('icon-fr2 icon-fr2-badge_check_mark') 
+  ).append(
+    $('<span>').addClass('icon-fr2 icon-fr2-badge_check_mark')
   );
   $('#new-folder-modal .folder_success p').replaceWith( new_p );
   $('#new-folder-modal .folder_success').show();

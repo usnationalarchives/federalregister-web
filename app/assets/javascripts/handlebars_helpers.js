@@ -16,7 +16,7 @@ Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");
   console.log(this);
- 
+
   if (optionalValue) {
     console.log("Value");
     console.log("====================");
@@ -79,7 +79,7 @@ Handlebars.registerHelper('createDd', function(item) {
 
 Handlebars.registerHelper('add_email_to_input', function(email_address) {
   var result = "";
-  
+
   if( email_address !== "" ) {
    result = "disabled=disabled value=" + email_address;
   }
@@ -104,17 +104,17 @@ Handlebars.registerHelper('formatted_date', function(date) {
 });
 
 Handlebars.registerHelper('pluralize', function(number, single, plural) {
-  if( number === 1 ) { 
+  if( number === 1 ) {
     return single;
-  } else { 
+  } else {
     return plural;
   }
 });
 
 Handlebars.registerHelper('pluralize_array', function(arr, single, plural) {
-  if( arr.length === 1 ) { 
+  if( arr.length === 1 ) {
     return single;
-  } else { 
+  } else {
     return plural;
   }
 });
@@ -158,7 +158,7 @@ Handlebars.registerHelper('createDd', function(item) {
 
 Handlebars.registerHelper('add_email_to_input', function(email_address) {
   var result = "";
-  
+
   if( email_address !== "" ) {
    result = "disabled=disabled value=" + email_address;
   }

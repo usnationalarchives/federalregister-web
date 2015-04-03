@@ -22,7 +22,7 @@ $(document).ready(function () {
     };
 
     var get_current_url = function() {
-      return 'http://www.federalregister.gov/api/v1/articles.json?' + $("#entry_search_form :input[value!='']:not([data-show-field]):not('.text-placeholder')").serialize(); 
+      return 'http://www.federalregister.gov/api/v1/articles.json?' + $("#entry_search_form :input[value!='']:not([data-show-field]):not('.text-placeholder')").serialize();
     };
     var requests = {};
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
           populate_expected_results(cache[url]);
       }
     };
- 
+
     $('.result_set[data-expected-result-count]').each(function(){
         var text = $(this).attr('data-expected-result-count');
 
@@ -76,11 +76,11 @@ $(document).ready(function () {
     $('#entry_search_form select, #entry_search_form input').bind('blur', function(event) {
       $(this).trigger('calculate_expected_results');
     });
- 
+
     $('#entry_search_form input[type=checkbox]').bind('click', function(){
       $(this).trigger('calculate_expected_results');
     });
- 
+
     // onchange doesn't trigger until blur, and onclick wasn't firing correctly either...
     //    so we poll for the current value. In FF, this fires when you hover over an
     //    item in the list, so it's a bit chatty, but seems ok.
@@ -98,7 +98,7 @@ $(document).ready(function () {
         clearInterval(poller);
         $(this).data('poller','');
     });
- 
+
     // basic check for pause between events
     var typewatch = (function(){
       var timer = 0;
@@ -107,14 +107,14 @@ $(document).ready(function () {
         timer = setTimeout(callback, ms);
       };
     }());
- 
+
     $('#entry_search_form input[type=text]').keyup(function () {
         // only trigger if stopped typing for more than half a second
         typewatch(function () {
             $("#entry_search_form").trigger('calculate_expected_results');
         }, 500);
     });
- 
+
     $('.clear_form').click(function(){
         var form = $('#entry_search_form');
         form.find('input[type=text],input[type=hidden]').val('');
@@ -127,7 +127,7 @@ $(document).ready(function () {
         $(this).trigger('calculate_expected_results');
         return false;
     });
- 
+
     $('a.load_facet').live('click',
     function () {
         var anchor = $(this);
@@ -162,25 +162,25 @@ $(document).ready(function () {
         trigger: '.results a.add_to_calendar',
         onShow: modalOpen
     });
- 
+
     $(".date_options .date").hide();
 
     $("input[data-show-field]").bind('change', function(event) {
       var parent_fieldset = $(this).closest("fieldset");
-      parent_fieldset.find(".date").hide().find(":input").disable(); 
+      parent_fieldset.find(".date").hide().find(":input").disable();
       if ($(this).attr('checked')) {
           parent_fieldset.find("." + $(this).attr("data-show-field")).show().find(":input").enable();
       }
       $(this).trigger('calculate_expected_results');
     });
     $(".date_options input[data-show-field]:checked").trigger("change");
- 
+
     // preselect date type radio button based on current values
     $("input[data-show-field]").each(function(){
         var type_radio_button = $(this);
         var parent_fieldset = type_radio_button.closest("fieldset");
         var matching_inputs = parent_fieldset.find("." + $(this).attr("data-show-field") + ' :input');
- 
+
         matching_inputs.each(function(){
             if ($(this).val() !== '' && !$(this).hasClass('text-placeholder')) {
                 type_radio_button.attr('checked', 'checked');
@@ -193,7 +193,7 @@ $(document).ready(function () {
     $(".range_start input").after("<span> to </span>");
     $(".cfr li:first-child input").after("<span> CFR </span>");
     $(".zip li:first-child input").after("<span> within </span>");
- 
+
     $(".formtastic select[multiple]").hide().bsmSelect({
       removeClass: 'remove'
     });
@@ -201,7 +201,7 @@ $(document).ready(function () {
     $("#conditions_agency_ids").bind('change', function(event) {
       $(this).trigger('calculate_expected_results');
     });
- 
+
     $("input[data-autocomplete]#article-agency-search").each(function(){
         var input = $(this);
         input.autocomplete({

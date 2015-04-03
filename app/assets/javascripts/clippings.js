@@ -9,15 +9,15 @@ function hide_clipping_menu( el ) {
 
 $(document).ready(function () {
 
-  /* set the size of the clipping data div to match the size of the 
+  /* set the size of the clipping data div to match the size of the
    * document data div (which we assume is larger) so that we get our
    * nice dashed border seperating the two */
-  $('ul#clippings li div.clipping_data').each( function() { 
+  $('ul#clippings li div.clipping_data').each( function() {
     $(this).height( $(this).siblings('div.document_data').height() );
   });
-  /* also set the size of the add to folder pane and slide it to the left 
+  /* also set the size of the add to folder pane and slide it to the left
    * so that it's hidden */
-  $('ul#clippings li div.add_to_folder_pane').each( function() { 
+  $('ul#clippings li div.add_to_folder_pane').each( function() {
     $(this).height( $(this).closest('ul#clippings li').innerHeight() );
     input_el = $(this).find('input').last();
     input_el.css('margin-top', ($(this).height() / 2) - (input_el.height() / 2));
@@ -51,13 +51,13 @@ $(document).ready(function () {
 
   /* remove clipping */
   $('#clipping-actions').on('click', '#remove-clipping', function(event) {
-    
-    clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) { 
-                      return $(input).closest('li').data('doc-id'); 
+
+    clipping_ids = _.map( $('form#folder_clippings input:checked'), function(input) {
+                      return $(input).closest('li').data('doc-id');
                    });
-  
+
     current_folder_slug = $('h2.title').data('folder-slug');
-    
+
     form = $('form#folder_clippings');
     form_data = form.serializeArray();
     form_data.push( {name: "folder_clippings[clipping_ids]", value: clipping_ids} );
@@ -76,12 +76,12 @@ $(document).ready(function () {
             _.each( response.folder.documents, function(doc_id) {
               $("#clippings li[data-doc-id='" + doc_id + "']").remove();
             });
-  
+
             update_clippings_on_page_count( response.folder.doc_count );
             update_add_folder_count( response, 'remove' );
             update_jump_folder_count( response, 'remove' );
             update_user_util_counts( response.folder.doc_count, response.folder.slug, false, 'delete' );
-          }, 
+          },
           600);
       });
   });

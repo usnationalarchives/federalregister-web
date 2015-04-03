@@ -3,7 +3,7 @@
 function add_item_to_folder(el, menu, form) {
   el.find('.icon.checked').hide();
   el.find('.loader').show();
-  
+
   form_data = form.serializeArray();
   form_data.push( {name: "document[folder]", value: el.data('slug')} );
   document_number = form.find('input#clipping_document_number').val();
@@ -23,7 +23,7 @@ function add_item_to_folder(el, menu, form) {
       menu.find('.button span.icon').addClass('clipped');
       if ( el.data('slug') == "my-clippings" ) {
         update_user_clipped_document_count(stored_document_numbers);
-      } 
+      }
       else {
         update_user_folder_document_count(response);
       }
@@ -177,7 +177,7 @@ function create_new_folder(form) {
 
 
       $('#new-folder-modal .folder_create').hide();
-      show_folder_success(response); 
+      show_folder_success(response);
       update_user_util_folders(response);
 
       /* hide the modal about 1 second after success */
@@ -189,7 +189,7 @@ function create_new_folder(form) {
           form.show();
         },
         1200);
-      
+
       /* place the new folder in the flag menu and renable hover functionality */
       setTimeout(function () {
           insert_new_folder_into_menu(menu, response);
@@ -213,7 +213,7 @@ function create_new_folder(form) {
           menu.bind('mouseleave', function() {
             hide_clippings_menu( $(this) );
           });
-          
+
           /* close the hover menu */
           hide_clippings_menu( menu );
           menu.find('.menu li#new-folder').removeClass('hover');
@@ -223,13 +223,13 @@ function create_new_folder(form) {
     })
     .fail(function(response) {
       $('#new-folder-modal .folder_create').hide();
-      
+
       responseText = $.parseJSON( response.responseText );
       $('#new-folder-modal .folder_error p .message').html(
         responseText.errors[0]
       );
       $('#new-folder-modal .folder_error').show();
-      
+
       form.siblings('p').show();
       form.show();
     });
@@ -238,7 +238,7 @@ function create_new_folder(form) {
 function remove_document_from_folder(folder_li, document_number, menu) {
   folder_li.find('a span.icon').hide();
   folder_li.find('a span.loader').show();
-  
+
   track_clipping_event('remove', document_number, folder_li.data('slug'));
 
   $.ajax({
@@ -250,11 +250,11 @@ function remove_document_from_folder(folder_li, document_number, menu) {
     }
   }).success(function(response) {
     folder_li.removeClass('in_folder').addClass('not_in_folder');
-    
+
     /* remove loader as well as goto and delete icons */
     folder_li.find('a span.loader').hide();
     folder_li.find('a span.icon').remove();
-    
+
     /* add back our checked icon and bind the proper events to it*/
     checked_span = $('<span>').addClass('checked icon icon-fr2 icon-fr2-badge_check_mark');
     folder_li.find('a').append( checked_span );
@@ -284,13 +284,13 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
 
   /* add the goto and delete buttons/icons */
   var link = el.find('a');
-  
+
   goto_span = $('<span>').addClass('goto icon icon-fr2 icon-fr2-badge_forward_arrow');
   link.append( goto_span );
-  
+
   delete_span = $('<span>').addClass('delete icon icon-fr2 icon-fr2-badge_x');
   link.append( delete_span );
-  
+
   if( $('body').hasClass('fonts_ie7_lte') ) {
     addIconViaJS(goto_span, 'icon-fr2-badge_forward_arrow');
     addIconViaJS(delete_span, 'icon-fr2-badge_x');
@@ -302,7 +302,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
   goto_span.bind('click', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     folder = $(this).closest('li').data('slug');
     window.location.href = "/my/folders/" + folder;
   });
@@ -311,7 +311,7 @@ function add_in_folder_mouseenter_events( el, document_number, menu ) {
   delete_span.bind('click', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     remove_document_from_folder( el, document_number, menu );
   });
 }
@@ -331,8 +331,8 @@ $(document).ready(function () {
 
   /* get current document */
   current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
-  
-  
+
+
   /*                    *
   *  Add to Folder Menu *
   *                     */
@@ -343,7 +343,7 @@ $(document).ready(function () {
   }
   /* add current document number to the folder details */
   user_folder_details.current_document_number = current_document_number;
-  
+
 
   $('div.share li.clip_for_later').each( function () {
     var this_document_number = current_document_number;
@@ -373,7 +373,7 @@ $(document).ready(function () {
       }
     });
 
-    menu.find('.menu li, .menu li a').bind('click', function(event) { event.preventDefault(); }); 
+    menu.find('.menu li, .menu li a').bind('click', function(event) { event.preventDefault(); });
 
     /* enable saving to folder */
     menu.find('.menu li.not_in_folder').bind('click', function(event) {

@@ -7,7 +7,7 @@ function update_current_folder_page_counts( count ) {
   current_folder_slug = $('h2.title').data('folder-slug');
   jump_to_folder_inner   = $('#jump-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner');
   add_to_folder_inner    = $('#add-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner');
-  
+
   jump_to_folder_inner.html( parseInt(jump_to_folder_inner.html(), 0) - count );
   add_to_folder_inner.html( parseInt(add_to_folder_inner.html(), 0) - count );
   }
@@ -42,13 +42,13 @@ function update_user_util_counts( count, slug, new_folder, action ) {
     if ( new_folder ) {
       folder_count = holder.find('#user_folder_count');
       folder_count.html( parseInt(folder_count.html(), 0) + 1);
-    } 
+    }
     if ( action !== 'delete' ) {
       /* increase documents in folders count */
       documents_in_folders = holder.find('#user_documents_in_folders_count');
       documents_in_folders.html( parseInt(documents_in_folders.html(), 0) + count );
     }
-  } 
+  }
   else {
     /* we're moving items from a folder to the clipboard */
     if ( slug === "my-clippings" ) {
@@ -76,7 +76,7 @@ function add_items_to_folder(el) {
 
   var loader         = link.find('.loader');
   var document_count = link.find('.document_count');
-  
+
   document_count.toggle();
   loader.toggle();
 
@@ -97,7 +97,7 @@ function add_items_to_folder(el) {
       update_span = $('<span>').addClass('update').html("+" + response.folder.doc_count);
       link.append( update_span );
       update_span.animate({opacity: 1}, 1200);
-      
+
       /* cross fade the update and the count of documents in the folder */
       /* fade out the documents that were moved                         */
       setTimeout(function() {
@@ -107,7 +107,7 @@ function add_items_to_folder(el) {
           $("#clippings li[data-doc-id='" + doc_id + "']").animate({opacity: 0}, 600);
         });
       }, 1200);
-      
+
       /* remove the documents that were moved from the dom (after they've faded out */
       setTimeout(function() {
         _.each( response.folder.documents, function(doc_id) {
@@ -135,12 +135,12 @@ function insert_new_folders_into_clipping_menus(response) {
 
     new_jump_to_folder_li.find('a').attr('href', "/my/folders/"+response.folder.slug);
     $('#clipping-actions #jump-to-folder .menu ul').append( new_jump_to_folder_li );
-    
+
     /* toggle the document count and place the update span in its place */
     link = new_folder_li.find('a');
     document_count = link.find('.document_count');
     document_count.toggle();
-    
+
     update_span = $('<span>').addClass('update').html("+" + response.folder.doc_count).css('opacity', 1);
     link.append( update_span );
 
@@ -185,7 +185,7 @@ function create_new_folder_with_items( form, clipping_ids ) {
             form.show();
           },
           800);
-        
+
         setTimeout(function() {
             /* insert the newly created folder */
             insert_new_folders_into_clipping_menus(response);
@@ -205,7 +205,7 @@ function create_new_folder_with_items( form, clipping_ids ) {
             _.each( response.folder.documents, function(doc_id) {
               $("#clippings li[data-doc-id='" + doc_id + "']").remove();
             });
-            
+
             update_clippings_on_page_count( response.folder.doc_count );
             update_current_folder_page_counts( response.folder.doc_count );
             update_user_util_counts( response.folder.doc_count, response.folder.slug, true );
@@ -227,7 +227,7 @@ function create_new_folder_with_items( form, clipping_ids ) {
       })
       .fail( function(response) {
         $('new-folder-modal .folder_create').hide();
-      
+
         responseText = $.parseJSON( response.responseText);
         $('#new-folder-modal .folder_error p .message').html(responseText.errors[0]);
         $('#new-folder-modal .folder_error').show();
@@ -250,7 +250,7 @@ $(document).ready(function() {
   /* new folder creation */
   $('#add-to-folder .menu li#new-folder').live('click', function(event) {
     event.preventDefault();
-    
+
     /* disable the hover menu and keep open */
     $('#clipping-actions').off('mouseleave', '#add-to-folder');
     $('#clipping-actions #add-to-folder').addClass('hover');
@@ -276,7 +276,7 @@ $(document).ready(function() {
         $('body').append( modal );
       }
     }
-    
+
     if ( modal.is('#new-folder-modal') ) {
       var selected_clipping_count = $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked').length,
           text = "";
@@ -287,7 +287,7 @@ $(document).ready(function() {
 
       modal.find('p.instructions span#fyi').html(text);
     }
-  
+
     /* attach events to the modal close */
     modal.find(".jqmClose").bind('click', function (event) {
       menu = $('#clipping-actions #add-to-folder');
@@ -316,8 +316,8 @@ $(document).ready(function() {
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
 
-    clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) { 
-                      return $(input).closest('li').data('doc-id'); 
+    clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) {
+                      return $(input).closest('li').data('doc-id');
                    });
     create_new_folder_with_items( $(this), clipping_ids );
   });

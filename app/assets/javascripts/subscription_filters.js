@@ -28,7 +28,7 @@ function filter_subscriptions_by_type(el) {
 
   $('#subscriptions li').show();
   $(subscriptions_to_hide).hide();
-  
+
 }
 
 $(document).ready( function() {

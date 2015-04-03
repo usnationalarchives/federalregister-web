@@ -32,7 +32,7 @@ function filter_clippings_by_type(el) {
 
   $('#clippings li').show();
   $(documents_to_hide).hide();
-  
+
 }
 
 $(document).ready( function() {
