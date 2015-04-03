@@ -12,6 +12,7 @@ machine:
 dependencies:
   pre:
     - npm install -g jshint
+    - npm install -g coffeelint
     - gem update --system 1.8.25
     - cp config/secrets.yml.sample config/secrets.yml
     - mkdir log/test/ && touch log/test/vcr.log
@@ -48,6 +49,4 @@ test:
   override:
     - bundle exec rspec spec --tag ~no_ci
     - bundle exec rake jshint
-  #post:
-  #- bundle exec rake jshint
-
+    - coffeelint app/assets/javascripts/*.coffee
