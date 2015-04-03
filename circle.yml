@@ -14,6 +14,7 @@ dependencies:
     - npm install -g jshint
     - gem update --system 1.8.25
     - cp config/secrets.yml.sample config/secrets.yml
+    - mkdir log/test/ && touch log/test/vcr.log
     #- cd .. && git clone git@github.com:criticaljuncture/fr2
     #- cd ../fr2 && git checkout officialness
     #- cp ../fr2/config/amazon.yml.sample ../fr2/config/amazon.yml
