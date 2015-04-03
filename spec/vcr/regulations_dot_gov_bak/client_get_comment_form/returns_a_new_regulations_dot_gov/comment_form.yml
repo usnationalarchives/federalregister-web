@@ -1,0 +1,125 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-1355&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:38 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9440'
+      content-length:
+      - '84'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-01355&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:38 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9439'
+      content-length:
+      - '84'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2014-11486&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:23:27 GMT
+      server:
+      - nginx
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9428'
+      content-length:
+      - '2870'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"agencyName":"Environmental Protection Agency","document":{"agencyAcronym":"EPA","alternateWaysToComment":"Submit
+        your comments, identified by Docket ID No. EPA-R05- OAR-2014-0274, by one
+        of the following methods: 1. www.regulations.gov: Follow the on-line instructions
+        for submitting comments. 2. Email: blakley.pamela@epa.gov. 3. Fax: (312) 692-2450.
+        4. Mail: Pamela Blakley, Chief, Control Strategies Section, Air Programs Branch
+        (AR-18J), U.S. Environmental Protection Agency, 77 West Jackson Boulevard,
+        Chicago, Illinois 60604. 5. Hand Delivery: Pamela Blakley, Chief, Control
+        Strategies Section, Air Programs Branch (AR-18J), U.S. Environmental Protection
+        Agency, 77 West Jackson Boulevard, Chicago, Illinois 60604. Such deliveries
+        are only accepted during the Regional Office normal hours of operation, and
+        special arrangements should be made for deliveries of boxed information. The
+        Regional Office official hours of business are Monday through Friday, 8:30
+        a.m. to 4:30 p.m., excluding Federal holidays.   Please see the direct final
+        rule which is located in the Rules section of this Federal Register for detailed
+        instructions on how to submit comments.","commentDueDate":"2014-06-23T23:59:59-04:00","commentStartDate":"2014-05-22T00:00:00-04:00","docketType":"RULEMAKING","documentId":"EPA_FRDOC_0001-15140","documentType":"PROPOSED_RULES","openForComment":true,"title":"Air
+        Quality State Implementation Plans; Approvals and Promulgations: Illinois;
+        Revision to the Chicago 8-Hour Ozone Maintenance Plan"},"fieldList":[{"attributeLabel":"Organization
+        Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        organization","uiControl":"text"},{"attributeLabel":"Submitter''s Representative","attributeName":"submitter_rep","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        representative","uiControl":"text"},{"attributeLabel":"Government Agency Type","attributeName":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency_type","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"The
+        type of government agency that the submitter represents","uiControl":"picklist"},{"attributeLabel":"Government
+        Agency","attributeName":"gov_agency","dependsOn":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency&dependentOnValue=","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Name
+        of the government agency that the submitter represents","uiControl":"combo"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
+        of comment from submitter","uiControl":"text"}],"participating":true}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:23:27 GMT
+recorded_with: VCR 2.6.0

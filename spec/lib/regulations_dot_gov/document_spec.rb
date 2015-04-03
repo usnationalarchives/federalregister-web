@@ -147,7 +147,7 @@ describe RegulationsDotGov::Document do
     end
 
     it "ensures all keys used in tests above actually exist in the api response", :vcr do
-      document_number = '2014-12912'
+      document_number = '2015-03236'
       document = client.find_by_document_number(document_number)
 
       $response_keys.each do |keys|

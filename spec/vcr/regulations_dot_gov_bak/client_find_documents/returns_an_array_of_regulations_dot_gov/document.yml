@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/documents.json?s=ITC-2013-0207-0001&api_key=<DEMO_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      content-type:
+      - text/html;charset=utf-8
+      date:
+      - Wed, 16 Apr 2014 16:32:17 GMT
+      server:
+      - nginx/1.4.7
+      set-cookie:
+      - JSESSIONID=r0pb1efsqkUkzc0P+MbHgZ5f; path=/
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9809'
+      content-length:
+      - '2342'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '<html><head><title>JBoss Web/7.0.17.Final - Error report</title><style><!--H1
+        {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;}
+        H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;}
+        H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;}
+        BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;}
+        B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;}
+        P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A
+        {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP
+        Status 500 - org.codehaus.jackson.map.JsonMappingException: Failed to instantiate
+        standard serializer (of type org.codehaus.jackson.map.ser.std.NullSerializer):
+        Class org.codehaus.jackson.map.ser.BasicSerializerFactory can not access a
+        member of class org.codehaus.jackson.map.ser.std.NullSerializer with modifiers
+        &quot;private&quot; (through reference chain: gov.regulations.common.models.SearchResultModel[&quot;documents&quot;]-&gt;java.util.ArrayList[0])</h1><HR
+        size="1" noshade="noshade"><p><b>type</b> Status report</p><p><b>message</b>
+        <u>org.codehaus.jackson.map.JsonMappingException: Failed to instantiate standard
+        serializer (of type org.codehaus.jackson.map.ser.std.NullSerializer): Class
+        org.codehaus.jackson.map.ser.BasicSerializerFactory can not access a member
+        of class org.codehaus.jackson.map.ser.std.NullSerializer with modifiers &quot;private&quot;
+        (through reference chain: gov.regulations.common.models.SearchResultModel[&quot;documents&quot;]-&gt;java.util.ArrayList[0])</u></p><p><b>description</b>
+        <u>The server encountered an internal error (org.codehaus.jackson.map.JsonMappingException:
+        Failed to instantiate standard serializer (of type org.codehaus.jackson.map.ser.std.NullSerializer):
+        Class org.codehaus.jackson.map.ser.BasicSerializerFactory can not access a
+        member of class org.codehaus.jackson.map.ser.std.NullSerializer with modifiers
+        &quot;private&quot; (through reference chain: gov.regulations.common.models.SearchResultModel[&quot;documents&quot;]-&gt;java.util.ArrayList[0]))
+        that prevented it from fulfilling this request.</u></p><HR size="1" noshade="noshade"><h3>JBoss
+        Web/7.0.17.Final</h3></body></html>'
+    http_version: '1.1'
+  recorded_at: Wed, 16 Apr 2014 16:32:21 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/documents.json?s=ITC-2013-0207-0001&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Wed, 04 Jun 2014 17:18:37 GMT
+      server:
+      - nginx
+      set-cookie:
+      - JSESSIONID=3pzSNrehjgQjpUuZx2oVtJSC; path=/
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9445'
+      content-length:
+      - '745'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"documents":[{"agencyAcronym":"ITC","allowLateComment":false,"attachmentCount":0,"commentDueDate":"2013-11-17T23:59:59-05:00","commentStartDate":"2013-09-02T20:00:00-04:00","docketId":"ITC-2013-0207","docketTitle":"Antidumping
+        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
+        Steel Wire Garment Hangers from China; Five-Year Review","docketType":"Rulemaking","documentId":"ITC-2013-0207-0001","documentStatus":"Posted","documentType":"Notice","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2013-09-02T20:00:00-04:00","title":"Antidumping
+        and Countervailing Duty Investigations; Results, Extensions, Amendments, etc.:
+        Steel Wire Garment Hangers from China; Five-Year Review"}],"totalNumRecords":1}'
+    http_version: '1.1'
+  recorded_at: Wed, 04 Jun 2014 17:18:37 GMT
+recorded_with: VCR 2.6.0

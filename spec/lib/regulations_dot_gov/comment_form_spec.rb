@@ -155,7 +155,7 @@ module RegulationsDotGov
 
     context "verify keys" do
       let(:client) { RegulationsDotGov::Client.new() }
-      let(:document_number) { '2014-11486' }
+      let(:document_number) { '2015-03236' }
 
       before (:each) do
         RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v3/')

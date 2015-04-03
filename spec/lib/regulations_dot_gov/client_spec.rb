@@ -54,7 +54,7 @@ describe RegulationsDotGov::Client do
   end
 
   describe '#find_documents' do
-    let(:keyword) { 'ITC-2013-0207-0001' }
+    let(:keyword) { 'ITC-2015-0074-0001' }
 
     it 'returns an array of RegulationsDotGov::Document', :vcr do
       documents = client.find_documents(:s => keyword)
@@ -97,7 +97,7 @@ describe RegulationsDotGov::Client do
   end
 
   describe "#find_by_document_number" do
-    let(:document_number) { '2014-01832' }
+    let(:document_number) { '2015-07647' }
 
     it "returns a RegulationsDotGov::Document", :vcr do
       document = client.find_by_document_number(document_number)
@@ -118,7 +118,7 @@ describe RegulationsDotGov::Client do
     end
 
     context "document numbers less than 5 digits long" do
-      let(:document_number) { '2014-1832' }
+      let(:document_number) { '2015-7647' }
 
       it 'pads the number and gets a response', :vcr do
         document = client.find_by_document_number(document_number)
@@ -128,7 +128,7 @@ describe RegulationsDotGov::Client do
   end
 
   describe "#get_comment_form" do
-    let(:document_number) { '2014-11486' }
+    let(:document_number) { '2015-03236' }
 
     it 'returns a new RegulationsDotGov::CommentForm', :vcr do
       comment_form = client.get_comment_form(document_number)

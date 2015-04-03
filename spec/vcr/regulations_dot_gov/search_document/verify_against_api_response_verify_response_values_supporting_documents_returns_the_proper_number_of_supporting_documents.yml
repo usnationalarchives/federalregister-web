@@ -14,25 +14,37 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      accept-ranges:
+      - bytes
+      age:
+      - '0'
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:45:35 GMT
+      - Fri, 03 Apr 2015 21:14:37 GMT
       server:
       - nginx
       set-cookie:
-      - JSESSIONID=tE92r9+4y-R77isuuK5b0iJd; Path=/
+      - JSESSIONID=FAFNOjhPNDM0VvCBH3jmc6c-; Path=/
+      vary:
+      - Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9413'
+      - '9523'
+      x-varnish:
+      - '2231810'
       transfer-encoding:
       - chunked
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"documents":[{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0033","documentStatus":"Posted","documentType":"Supporting
+      string: ! '{"documents":[{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
+        to National Oil and Hazardous Substance Contingency Plan; National Priorities
+        List","docketType":"Rulemaking","documentId":"EPA-HQ-SFUND-2005-0011-0033","documentStatus":"Posted","documentType":"Supporting
         & Related Material","numberOfCommentReceived":0,"openForComment":false,"postedDate":"2014-04-02T00:00:00-04:00","rin":"Not
         Assigned","title":"Eau Claire Municipal Well Field Deletion Docket"},{"agencyAcronym":"EPA","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":null,"docketId":"EPA-HQ-SFUND-2005-0011","docketTitle":"Amendment
         to National Oil and Hazardous Substance Contingency Plan; National Priorities
@@ -127,5 +139,5 @@ http_interactions:
         Site Remediation and Waste Management, New Jersey Department of Environmental
         Protection"}],"totalNumRecords":20}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:45:35 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:42 GMT
 recorded_with: VCR 2.6.0

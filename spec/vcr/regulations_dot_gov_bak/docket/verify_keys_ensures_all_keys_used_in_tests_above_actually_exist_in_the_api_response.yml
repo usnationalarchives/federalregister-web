@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/docket.json?docketId=CFPB_FRDOC_0001&api_key=<API_KEY>
+    uri: http://api.data.gov/regulations/v3/docket.json?docketId=CFPB_FRDOC_0001&api_key=<API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -14,36 +14,24 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      accept-ranges:
-      - bytes
-      age:
-      - '0'
-      cache-control:
-      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Fri, 03 Apr 2015 21:14:27 GMT
+      - Wed, 04 Jun 2014 17:18:39 GMT
       server:
       - nginx
-      vary:
-      - Accept-Encoding, Accept-Encoding
-      via:
-      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9538'
-      x-varnish:
-      - '2264720'
+      - '9435'
       content-length:
-      - '258'
+      - '259'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"agency":"Consumer Financial Protection Bureau","agencyAcronym":"CFPB","docketId":"CFPB_FRDOC_0001","numberOfComments":0,"rin":"Not
+      string: ! '{"agency":"Consumer Financial Protection Bureau","agencyAcronym":"CFPB","docketId":"CFPB_FRDOC_0001","numberOfComments":24,"rin":"Not
         Assigned","title":"Recently Posted CFPB Rules and Notices.","type":"Rulemaking","type":{"label":"Type","value":"Rulemaking"}}'
     http_version: '1.1'
-  recorded_at: Fri, 03 Apr 2015 21:14:32 GMT
+  recorded_at: Wed, 04 Jun 2014 17:18:39 GMT
 recorded_with: VCR 2.6.0

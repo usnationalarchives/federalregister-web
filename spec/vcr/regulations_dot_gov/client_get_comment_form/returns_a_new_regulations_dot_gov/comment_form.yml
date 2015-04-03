@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-1355&api_key=<API_KEY>
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2014-11486&api_key=<API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -11,61 +11,40 @@ http_interactions:
       - application/json; charset=UTF-8
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 404
+      message: Not Found
     headers:
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:18:38 GMT
+      - Fri, 03 Apr 2015 21:14:31 GMT
       server:
       - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9440'
+      - '9531'
+      x-varnish:
+      - '2231799'
       content-length:
-      - '84'
+      - '226'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
+      string: ! '{"code":404,"message":"You are trying to submit a comment on the
+        document, (2014-11486), which does not exist. We apologize for any inconvenience.
+        Please use our search to find another document open for comment.","status":404}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
-- request:
-    method: get
-    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=CMS_FRDOC_0001-01355&api_key=<API_KEY>
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - application/json; charset=UTF-8
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      content-type:
-      - application/json;charset=UTF-8
-      date:
-      - Wed, 04 Jun 2014 17:18:38 GMT
-      server:
-      - nginx
-      x-ratelimit-limit:
-      - '10000'
-      x-ratelimit-remaining:
-      - '9439'
-      content-length:
-      - '84'
-      connection:
-      - Close
-    body:
-      encoding: US-ASCII
-      string: ! '{"code":500,"message":"Internal Server Error, please try again later.","status":500}'
-    http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:36 GMT
 - request:
     method: get
     uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2014-11486&api_key=<API_KEY>
@@ -77,49 +56,102 @@ http_interactions:
       - application/json; charset=UTF-8
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:23:27 GMT
+      - Fri, 03 Apr 2015 21:14:32 GMT
       server:
       - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9428'
+      - '9530'
+      x-varnish:
+      - '2026063'
       content-length:
-      - '2870'
+      - '226'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"agencyName":"Environmental Protection Agency","document":{"agencyAcronym":"EPA","alternateWaysToComment":"Submit
-        your comments, identified by Docket ID No. EPA-R05- OAR-2014-0274, by one
-        of the following methods: 1. www.regulations.gov: Follow the on-line instructions
-        for submitting comments. 2. Email: blakley.pamela@epa.gov. 3. Fax: (312) 692-2450.
-        4. Mail: Pamela Blakley, Chief, Control Strategies Section, Air Programs Branch
-        (AR-18J), U.S. Environmental Protection Agency, 77 West Jackson Boulevard,
-        Chicago, Illinois 60604. 5. Hand Delivery: Pamela Blakley, Chief, Control
-        Strategies Section, Air Programs Branch (AR-18J), U.S. Environmental Protection
-        Agency, 77 West Jackson Boulevard, Chicago, Illinois 60604. Such deliveries
-        are only accepted during the Regional Office normal hours of operation, and
-        special arrangements should be made for deliveries of boxed information. The
-        Regional Office official hours of business are Monday through Friday, 8:30
-        a.m. to 4:30 p.m., excluding Federal holidays.   Please see the direct final
-        rule which is located in the Rules section of this Federal Register for detailed
-        instructions on how to submit comments.","commentDueDate":"2014-06-23T23:59:59-04:00","commentStartDate":"2014-05-22T00:00:00-04:00","docketType":"RULEMAKING","documentId":"EPA_FRDOC_0001-15140","documentType":"PROPOSED_RULES","openForComment":true,"title":"Air
-        Quality State Implementation Plans; Approvals and Promulgations: Illinois;
-        Revision to the Chicago 8-Hour Ozone Maintenance Plan"},"fieldList":[{"attributeLabel":"Organization
-        Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        organization","uiControl":"text"},{"attributeLabel":"Submitter''s Representative","attributeName":"submitter_rep","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
-        representative","uiControl":"text"},{"attributeLabel":"Government Agency Type","attributeName":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency_type","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"The
-        type of government agency that the submitter represents","uiControl":"picklist"},{"attributeLabel":"Government
-        Agency","attributeName":"gov_agency","dependsOn":"gov_agency_type","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=gov_agency&dependentOnValue=","maxLength":200,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Name
-        of the government agency that the submitter represents","uiControl":"combo"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
-        of comment from submitter","uiControl":"text"}],"participating":true}'
+      string: ! '{"code":404,"message":"You are trying to submit a comment on the
+        document, (2014-11486), which does not exist. We apologize for any inconvenience.
+        Please use our search to find another document open for comment.","status":404}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:23:27 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:38 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?federalRegisterNumber=2015-03236&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      accept-ranges:
+      - bytes
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Fri, 03 Apr 2015 21:25:47 GMT
+      server:
+      - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9516'
+      x-varnish:
+      - '14719'
+      transfer-encoding:
+      - chunked
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"agencyName":"International Trade Commission","document":{"agencyAcronym":"ITC","alternateWaysToComment":"ADDRESSES:
+        All Commission offices, including the Commission''s hearing rooms, are located
+        in the United States International Trade Commission Building, 500 E Street
+        SW., Washington, DC. All written submissions should be addressed to the Secretary,
+        United States International Trade Commission, 500 E Street SW., Washington,
+        DC 20436. The public record for this investigation may be viewed on the Commission''s
+        electronic docket (EDIS) at http://www.usitc.gov/secretary/edis.htm.","commentDueDate":"2015-04-20T23:59:59-04:00","commentStartDate":"2015-02-18T00:00:00-05:00","docketType":"RULEMAKING","documentId":"ITC-2015-0032-0001","documentType":"NOTICES","openForComment":true,"title":"Proposed
+        Recommendations: Recommended Modifications in the Harmonized Tariff Schedule
+        to Conform With Amendments to the Harmonized System Recommended by the World
+        Customs Organization, etc."},"fieldList":[{"attributeLabel":"First Name","attributeName":"first_name","maxLength":25,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        first name","uiControl":"text"},{"attributeLabel":"Last Name","attributeName":"last_name","maxLength":25,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        last name","uiControl":"text"},{"attributeLabel":"Mailing Address","attributeName":"address1","maxLength":150,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        mailing address line 1","uiControl":"text"},{"attributeLabel":"City","attributeName":"city","maxLength":50,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        city","uiControl":"text"},{"attributeLabel":"Country","attributeName":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=country","maxLength":50,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        country","uiControl":"picklist"},{"attributeLabel":"State or Province","attributeName":"us_state","dependsOn":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=us_state&dependentOnValue=","maxLength":50,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        state","uiControl":"combo"},{"attributeLabel":"ZIP/Postal Code","attributeName":"zip","maxLength":10,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        ZIP/Postal Code","uiControl":"text"},{"attributeLabel":"Email Address","attributeName":"email","maxLength":100,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        email address","uiControl":"text"},{"attributeLabel":"Organization Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        organization","uiControl":"text"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
+        of comment from submitter","uiControl":"text"}],"participating":false}'
+    http_version: '1.1'
+  recorded_at: Fri, 03 Apr 2015 21:25:52 GMT
 recorded_with: VCR 2.6.0

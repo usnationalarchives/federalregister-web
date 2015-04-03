@@ -2,41 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/documents.json?s=ITC-2013-0207-0001&countsOnly=1&api_key=<DEMO_KEY>
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - application/json; charset=UTF-8
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - application/json;charset=UTF-8
-      date:
-      - Wed, 16 Apr 2014 16:32:18 GMT
-      server:
-      - nginx/1.4.7
-      set-cookie:
-      - JSESSIONID=xGjCLpUZEEmfloMDJxQAAI6e; path=/
-      x-ratelimit-limit:
-      - '10000'
-      x-ratelimit-remaining:
-      - '9806'
-      content-length:
-      - '21'
-      connection:
-      - Close
-    body:
-      encoding: US-ASCII
-      string: ! '{"totalNumRecords":1}'
-    http_version: '1.1'
-  recorded_at: Wed, 16 Apr 2014 16:32:22 GMT
-- request:
-    method: get
     uri: http://api.data.gov/TEST/regulations/v3/documents.json?s=ITC-2013-0207-0001&countsOnly=1&api_key=<API_KEY>
     body:
       encoding: US-ASCII
@@ -49,25 +14,37 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      accept-ranges:
+      - bytes
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:18:37 GMT
+      - Fri, 03 Apr 2015 21:14:28 GMT
       server:
       - nginx
       set-cookie:
-      - JSESSIONID=bOUUx0QaGj5lMwPL8UQvZZKj; path=/
+      - JSESSIONID=8DUKmUhvi0rCKkPS734YuvAl; Path=/
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9444'
+      - '9536'
+      x-varnish:
+      - '2272920'
       content-length:
       - '21'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"totalNumRecords":1}'
+      string: ! '{"totalNumRecords":0}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:37 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:33 GMT
 recorded_with: VCR 2.6.0

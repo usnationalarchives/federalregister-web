@@ -2,82 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-1832&api_key=<DEMO_KEY>
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - application/json; charset=UTF-8
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      content-type:
-      - application/json;charset=UTF-8
-      date:
-      - Wed, 16 Apr 2014 16:32:19 GMT
-      server:
-      - nginx/1.4.7
-      x-ratelimit-limit:
-      - '10000'
-      x-ratelimit-remaining:
-      - '9802'
-      content-length:
-      - '71'
-      connection:
-      - Close
-    body:
-      encoding: US-ASCII
-      string: ! '{"code":404,"message":"No document found by id 2014-1832","status":404}'
-    http_version: '1.1'
-  recorded_at: Wed, 16 Apr 2014 16:32:23 GMT
-- request:
-    method: get
-    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<DEMO_KEY>
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - application/json; charset=UTF-8
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - application/json;charset=UTF-8
-      date:
-      - Wed, 16 Apr 2014 16:32:20 GMT
-      server:
-      - nginx/1.4.7
-      x-ratelimit-limit:
-      - '10000'
-      x-ratelimit-remaining:
-      - '9801'
-      content-length:
-      - '1428'
-      connection:
-      - Close
-    body:
-      encoding: US-ASCII
-      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
-        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"pageCount":{"label":"Page
-        Count","value":"3"},"docketType":{"label":"Docket Type","value":"Rulemaking"},"documentType":{"label":"Document
-        Type","value":"Rule"},"federalRegisterNumber":{"label":"Federal Register Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment
-        Count","value":"0"},"agencyName":{"label":"Agency Name","value":"Federal Aviation
-        Administration"},"rin":{"label":"RIN","value":"Not Assigned"},"title":{"label":"Document
-        Title","value":"Airworthiness Directives: Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start
-        End Page","value":"5254 - 5256"},"docketId":{"label":"Docket ID","value":"FAA_FRDOC_0001"},"documentId":{"label":"Document
-        ID","value":"FAA_FRDOC_0001-9732"},"agencyAcronym":{"label":"Agency","value":"FAA"},"numItemsRecieved":{"label":"Number
-        of Comments Received","value":"0"},"cfrPart":{"label":"CFR Part","value":"14
-        CFR Part 39"}}'
-    http_version: '1.1'
-  recorded_at: Wed, 16 Apr 2014 16:32:23 GMT
-- request:
-    method: get
     uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-1832&api_key=<API_KEY>
     body:
       encoding: US-ASCII
@@ -90,25 +14,36 @@ http_interactions:
       code: 404
       message: Not Found
     headers:
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:18:37 GMT
+      - Fri, 03 Apr 2015 21:14:30 GMT
       server:
       - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9442'
+      - '9534'
+      x-varnish:
+      - '2026058'
       content-length:
-      - '71'
+      - '99'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"code":404,"message":"No document found by id 2014-1832","status":404}'
+      string: ! '{"code":404,"message":"The ID (2014-1832) requested was not found
+        or does not exist.","status":404}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:37 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:35 GMT
 - request:
     method: get
     uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2014-01832&api_key=<API_KEY>
@@ -120,37 +55,137 @@ http_interactions:
       - application/json; charset=UTF-8
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
+      age:
+      - '1'
+      cache-control:
+      - max-age=600, public
       content-type:
       - application/json;charset=UTF-8
       date:
-      - Wed, 04 Jun 2014 17:18:37 GMT
+      - Fri, 03 Apr 2015 21:14:31 GMT
       server:
       - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
       x-ratelimit-limit:
       - '10000'
       x-ratelimit-remaining:
-      - '9441'
+      - '9532'
+      x-varnish:
+      - 2026061 2272924
       content-length:
-      - '1516'
+      - '100'
       connection:
       - Close
     body:
       encoding: US-ASCII
-      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2014-01-31T00:00:00-05:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=FAA_FRDOC_0001-9732&contentType=html"],"openForComment":false,"postedDate":"2014-01-31T00:00:00-05:00","receivedDate":"2014-01-31T00:00:00-05:00","status":"Posted","topics":["Air
-        Transportation","Aircraft","Aviation Safety","Incorporation by Reference","Safety"],"docketTitle":{"label":"Docket
-        Title","value":"Recently Posted FAA Rules and Notices."},"pageCount":{"label":"Page
-        Count","value":"3"},"documentType":{"label":"Document Type","value":"Rule"},"docketType":{"label":"Docket
-        Type","value":"Rulemaking"},"federalRegisterNumber":{"label":"Federal Register
-        Number","value":"2014-01832"},"attachmentCount":{"label":"Attachment Count","value":"0"},"agencyName":{"label":"Agency
-        Name","value":"Federal Aviation Administration"},"rin":{"label":"RIN","value":"Not
-        Assigned"},"title":{"label":"Document Title","value":"Airworthiness Directives:
-        Beechcraft Corporation Airplanes"},"startEndPage":{"label":"Start End Page","value":"5254
-        - 5256"},"docketId":{"label":"Docket ID","value":"FAA_FRDOC_0001"},"documentId":{"label":"Document
-        ID","value":"FAA_FRDOC_0001-9732"},"cfrPart":{"label":"CFR Part","value":"14
-        CFR Part 39"},"numItemsRecieved":{"label":"Number of Comments Received","value":"0"},"agencyAcronym":{"label":"Agency","value":"FAA"}}'
+      string: ! '{"code":404,"message":"The ID (2014-01832) requested was not found
+        or does not exist.","status":404}'
     http_version: '1.1'
-  recorded_at: Wed, 04 Jun 2014 17:18:38 GMT
+  recorded_at: Fri, 03 Apr 2015 21:14:35 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2015-7647&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Fri, 03 Apr 2015 21:25:46 GMT
+      server:
+      - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9519'
+      x-varnish:
+      - '2030215'
+      content-length:
+      - '99'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":404,"message":"The ID (2015-7647) requested was not found
+        or does not exist.","status":404}'
+    http_version: '1.1'
+  recorded_at: Fri, 03 Apr 2015 21:25:51 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/document.json?federalRegisterNumber=2015-07647&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      accept-ranges:
+      - bytes
+      age:
+      - '10459'
+      cache-control:
+      - max-age=600, public
+      content-type:
+      - application/json;charset=UTF-8
+      date:
+      - Fri, 03 Apr 2015 21:25:47 GMT
+      server:
+      - nginx
+      vary:
+      - Accept-Encoding, Accept-Encoding
+      via:
+      - 1.1 varnish-v4
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9517'
+      x-varnish:
+      - 1698433 2020763
+      content-length:
+      - '1456'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"allowLateComment":false,"commentDueDate":null,"commentStartDate":"2015-04-03T00:00:00-04:00","fileFormats":["https://api.data.gov/TEST/regulations/v3/download?documentId=ITC-2015-0074-0001&contentType=pdf","https://api.data.gov/TEST/regulations/v3/download?documentId=ITC-2015-0074-0001&contentType=html"],"openForComment":false,"postedDate":"2015-04-03T00:00:00-04:00","receivedDate":"2015-04-03T00:00:00-04:00","status":"Posted","docketTitle":{"label":"Docket
+        Title","value":"Investigations; Determinations, Modifications, and Rulings,
+        etc.: Certain Wireless Standard Compliant Electronic Devices,  Including Communication
+        Devices and Tablet Computers"},"title":{"label":"Document Title","value":"Investigations;
+        Determinations, Modifications, and Rulings, etc.: Certain Wireless Standard
+        Compliant Electronic Devices,  Including Communication Devices and Tablet
+        Computers"},"documentType":{"label":"Document Type","value":"Notice"},"docketType":{"label":"Docket
+        Type","value":"Rulemaking"},"docketId":{"label":"Docket ID","value":"ITC-2015-0074"},"federalRegisterNumber":{"label":"Federal
+        Register Number","value":"2015-07647"},"attachmentCount":{"label":"Attachment
+        Count","value":"0"},"agencyName":{"label":"Agency Name","value":"International
+        Trade Commission"},"documentId":{"label":"Document ID","value":"ITC-2015-0074-0001"},"agencyAcronym":{"label":"Agency","value":"ITC"},"numItemsRecieved":{"label":"Number
+        of Comments Received","value":"0"}}'
+    http_version: '1.1'
+  recorded_at: Fri, 03 Apr 2015 21:25:51 GMT
 recorded_with: VCR 2.6.0
