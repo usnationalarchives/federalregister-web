@@ -292,7 +292,8 @@ MyFr2::Application.routes.draw do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
                                          :sessions => "users/sessions",
-                                         :registrations => "users/registrations" } do
+                                         :registrations => "users/registrations" }
+    devise_scope :user do
       get 'sign_in', :to => 'users/sessions#new', :as => :new_session
       get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_session
       get 'sign_up', :to => 'users/registrations#new', :as => :user_registration
