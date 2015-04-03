@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :comment_form_state_option, class: RegulationsDotGov::CommentForm::Option do
-    ignore do
+    transient do
       attrs { {"value" => generate(:state_value), "label" => generate(:state_label)} }
       client ""
     end

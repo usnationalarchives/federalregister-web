@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment_form_combo_field, class: RegulationsDotGov::CommentForm::Field::ComboField do
-    ignore do
+    transient do
       client ""
 
       attribute_name "us_state"

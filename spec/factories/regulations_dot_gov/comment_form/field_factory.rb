@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment_form_field, class: RegulationsDotGov::CommentForm::Field do
-    ignore do
+    transient do
       client ""
       attrs {
               { "attributeName"  => "first_name",

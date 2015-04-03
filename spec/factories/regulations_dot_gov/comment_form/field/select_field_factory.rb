@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment_form_select_field, class: RegulationsDotGov::CommentForm::Field::SelectField do
-    ignore do
+    transient do
       client ""
 
       attribute_name "country"
