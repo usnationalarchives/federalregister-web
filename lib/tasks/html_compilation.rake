@@ -2,13 +2,22 @@ namespace :documents do
   namespace :html do
     namespace :compile do
       desc "Converts XSLT into various html representations for a set of FR document numbers"
-      task :all, [:document_numbers] => :environment do |t, args|
-        Rake::Task["documents:html:compile:table_of_contents"].invoke(args[:document_numbers])
-      end
+      task :all, [:document_numbers] => %w(
+        table_of_contents
+        extract_table_xml
+      )
 
       task :table_of_contents, [:document_numbers] => :environment do |t, args|
         HtmlCompilator::TableOfContents.compile(
           parse_document_numbers(args[:document_numbers])
+        )
+      end
+
+      task :extract_table_xml, [:document_numbers] => :environment do |t, args|
+        raise "DATE not provided via ENV" unless ENV['DATE']
+        TableXmlExtractor.compile(
+          parse_document_numbers(args[:document_numbers]),
+          ENV['DATE']
         )
       end
 

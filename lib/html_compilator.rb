@@ -23,12 +23,16 @@ class HtmlCompilator
 
   private
 
+  def federalregister_api_core_data_dir
+    "#{Rails.root}/../federalregister-api-core/data"
+  end
+
   def federalregister_api_core_xml_dir
-    "#{Rails.root}/../federalregister-api-core/data/xml"
+    "#{federalregister_api_core_data_dir}/xml"
   end
 
   def federalregister_api_core_html_dir
-    "#{Rails.root}/../federalregister-api-core/data/documents/html"
+    "#{federalregister_api_core_data_dir}/documents/html"
   end
 
   def document_xml_path
