@@ -2,6 +2,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" omit-xml-declaration="yes" />
 
+  <xsl:include href="app/views/xslt/templates/formatting.html.xslt" />
+
   <xsl:include href="app/views/xslt/matchers/diacriticals.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/typeface.html.xslt" />

@@ -15,7 +15,7 @@ describe "XSLT::FullText::Headers" do
 
     expect_equivalent <<-HTML
       <p id="p-1" data-page="1000">
-        In a final rule published in the<strong>Federal Register</strong>on November 10
+        In a final rule published in the <strong>Federal Register</strong> on November 10
       </p>
     HTML
   end
