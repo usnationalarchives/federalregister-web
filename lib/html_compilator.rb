@@ -52,4 +52,22 @@ class HtmlCompilator
     parts.pop
     parts.join('/')
   end
+
+  def table_xml_dir
+    table_dir('xml')
+  end
+
+  def table_html_dir
+    table_dir('html')
+  end
+
+  def table_dir(format)
+    [
+      federalregister_api_core_data_dir,
+      'tables',
+      format,
+      date.strftime("%Y/%m/%d"),
+      document_number
+    ].join("/")
+  end
 end

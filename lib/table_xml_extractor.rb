@@ -30,16 +30,6 @@ class TableXmlExtractor < HtmlCompilator
 
   private
 
-  def table_xml_dir
-    [
-      federalregister_api_core_data_dir,
-      'tables',
-      'xml',
-      date.strftime("%Y/%m/%d"),
-      document_number
-    ].join("/")
-  end
-
   def table_xml_path(i)
     "#{table_xml_dir}/#{i+1}.xml"
   end

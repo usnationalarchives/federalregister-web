@@ -5,6 +5,7 @@ namespace :documents do
       task :all, [:document_numbers] => %w(
         table_of_contents
         extract_table_xml
+        tables
       )
 
       task :table_of_contents, [:document_numbers] => :environment do |t, args|
@@ -16,6 +17,14 @@ namespace :documents do
       task :extract_table_xml, [:document_numbers] => :environment do |t, args|
         raise "DATE not provided via ENV" unless ENV['DATE']
         TableXmlExtractor.compile(
+          parse_document_numbers(args[:document_numbers]),
+          ENV['DATE']
+        )
+      end
+
+      task :tables, [:document_numbers] => :environment do |t, args|
+        raise "DATE not provided via ENV" unless ENV['DATE']
+        HtmlCompilator::Tables.compile(
           parse_document_numbers(args[:document_numbers]),
           ENV['DATE']
         )

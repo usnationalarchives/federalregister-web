@@ -4,7 +4,7 @@ class HtmlCompilator::Tables::Table
   attr_reader :node
 
   def self.compile(xml_file_path)
-    file = File.open(path)
+    file = File.open(xml_file_path)
     node = Nokogiri::XML(file).root
     new(node).to_html
   end
