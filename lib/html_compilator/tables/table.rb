@@ -54,4 +54,11 @@ class HtmlCompilator::Tables::Table
   def h
     @h ||= ActionView::Base.new
   end
+
+  def transform(xml)
+    @text_transformer ||= Nokogiri::XSLT(
+      File.read("#{Rails.root}/app/views/xslt/matchers/full_text.html.xslt")
+    )
+    @text_transformer.transform(Nokogiri::XML(xml)).to_s.strip.html_safe
+  end
 end

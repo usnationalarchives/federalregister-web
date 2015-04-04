@@ -8,7 +8,7 @@ class HtmlCompilator::Tables::BodyCell
   end
 
   def body
-    node.text
+    row.table.transform(node.to_xml)
   end
 
   def colspan

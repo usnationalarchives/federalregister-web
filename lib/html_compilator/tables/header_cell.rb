@@ -33,6 +33,6 @@ class HtmlCompilator::Tables::HeaderCell
   end
 
   def body
-    @node.text + level.to_s
+    table.transform(node.to_xml)
   end
 end
