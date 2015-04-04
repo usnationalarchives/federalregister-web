@@ -1,33 +1,33 @@
-  %fr_h1_style {
-    color: $fr-blue;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    @include apertura-condensed;
-    text-align: left;
-    margin: 0 0 1em;
-    padding-top: 0;
-    text-transform: uppercase;
-    word-wrap: break-word;
-  }
+%fr_h1_style {
+  color: $fr-blue;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  @include apertura-condensed;
+  text-align: left;
+  margin: 0 0 1em;
+  padding-top: 0;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
 
-  %fr_h2_style {
-    font-size: 18px;
-    line-height: 1.5em;
-    margin-top: 0;
-    text-align: left;
-  }
+%fr_h2_style {
+  font-size: 18px;
+  line-height: 1.5em;
+  margin-top: 0;
+  text-align: left;
+}
 
-  %fr_p_style {
-    padding-left: 0;
-    color: #363636;
-    @include athelas;
-    font-size: 1.2em;
-  }
+%fr_p_style {
+  padding-left: 0;
+  color: #363636;
+  @include athelas;
+  font-size: 1.2em;
+}
 
-  .fr-box-official .content-block {
-    h1 { @extend %fr_h1_style; }
-    h2 { @extend %fr_h2_style; }
+.fr-box-official .content-block {
+  h1 { @extend %fr_h1_style; }
+  h2 { @extend %fr_h2_style; }
 
-    p { @extend %fr_p_style; }
-  }
+  p { @extend %fr_p_style; }
+}
