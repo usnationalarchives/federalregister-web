@@ -37,7 +37,10 @@
 @import "design/subscriptions.css.scss";
 @import "design/subscription_confirmation.css.scss";
 
-@import "design/documents";
+.bootstrap-scope {
+  @import "design/documents/**";
+}
+
 @import "design/public_inspection";
 @import "design/table_of_contents";
 @import "design/search";
