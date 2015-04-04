@@ -9,7 +9,9 @@ module XsltTestHelper
     @transformed = XsltTransform.transform_xml(
       "<#{type}>#{xml}</#{type}>",
       @template,
-      'first_page' => "1000"
+      'first_page' => "1000",
+      'document_number' => '2014-12345',
+      'publication_date' => '2014-10-15',
     )
   end
 

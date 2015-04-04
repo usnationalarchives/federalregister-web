@@ -3,7 +3,7 @@ class XsltTransform
     xslt = Nokogiri::XSLT(
       File.read("#{Rails.root}/app/views/xslt/#{stylesheet}")
     )
-    xslt.transform(Nokogiri::XML(xml), options.to_a.flatten)
+    xslt.transform(Nokogiri::XML(xml), options.map{|k,v| [k,v.inspect]}.flatten)
   end
 
   def self.standardized_html(doc, options={})

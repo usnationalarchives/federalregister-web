@@ -15,7 +15,9 @@
             <%= XsltTransform.transform_xml(
                   XsltTransform.xml_for_development(document),
                   "matchers/full_text.html.xslt",
-                  'first_page' => (document.start_page.to_s)
+                  'first_page' => (document.start_page.to_s),
+                  'document_number' => document.document_number,
+                  'publication_date' => document.publication_date.to_s(:iso)
                 ).to_html.html_safe %>
           <% else %>
             <%= esi document.http_body_html_url %>
