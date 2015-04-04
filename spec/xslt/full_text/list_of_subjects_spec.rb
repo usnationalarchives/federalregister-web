@@ -1,7 +1,7 @@
 require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
-describe "XSLT::FullText::ListOfSubjects" do
+describe "XSLT::FullText::ListOfSubjects", :no_ci do
   before :all do
     @template = "matchers/full_text.html.xslt"
   end
