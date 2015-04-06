@@ -47,7 +47,8 @@ describe HtmlCompilator::Tables do
       parse <<-XML
         <GPOTABLE>
           <BOXHD>
-            <CHED H="1"><E T="03">strong</E> disagreement</ENT>
+            <CHED H="1"><E T="03">strong</E> disagreement</CHED>
+            <CHED H="1">First Line<LI>Second Line</LI></CHED>
           </ROW>
         </GPOTABLE>
       XML
@@ -55,6 +56,10 @@ describe HtmlCompilator::Tables do
 
     it "performs transformation" do
       expect(table.header_rows.first.cells.first.body).to eql '<em>strong</em> disagreement'
+    end
+
+    it "inserts a space around <LI> (linebreak) tags" do
+      expect(table.header_rows.first.cells.second.body).to eql 'First Line Second Line'
     end
   end
 end
