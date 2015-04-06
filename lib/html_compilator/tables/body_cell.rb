@@ -32,6 +32,19 @@ class HtmlCompilator::Tables::BodyCell
     1
   end
 
+  def alignment
+    case (node.attr("A") || '').match(/^(\D)/).try(:[], 1)
+    when 'R'
+      :right
+    when 'L'
+      :left
+    when 'J'
+      :justify
+    when nil
+      :center
+    end
+  end
+
   def stub?
     index == 0
   end
