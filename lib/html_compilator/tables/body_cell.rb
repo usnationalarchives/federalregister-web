@@ -9,7 +9,20 @@ class HtmlCompilator::Tables::BodyCell
   end
 
   def to_html
-    h.content_tag(:td, body, :colspan => colspan)
+    h.content_tag(:td, body, td_attributes)
+  end
+
+  def td_attributes
+    {}.tap do |attributes|
+      attributes[:colspan] = colspan if colspan > 1
+      attributes[:class] = css_classes.join(" ")
+    end
+  end
+
+  def css_classes
+    [
+      alignment
+    ]
   end
 
   def body
@@ -41,15 +54,40 @@ class HtmlCompilator::Tables::BodyCell
     when 'J'
       :justify
     when nil
-      :center
+      column.alignment
     end
   end
 
   def stub?
+    # ask the column if it is a stub?
     index == 0
   end
 
   def index
     @index ||= row.cells.index(self)
+  end
+
+  def column
+    table.columns[start_column_index]
+  end
+
+  def start_column_index
+    if previous_cell.nil?
+      0
+    else
+      previous_cell.end_column_index + 1
+    end
+  end
+
+  def end_column_index
+    start_column_index + colspan - 1
+  end
+
+  def previous_cell
+    if index == 0
+      nil
+    else
+      row.cells[index-1]
+    end
   end
 end

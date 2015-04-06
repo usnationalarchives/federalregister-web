@@ -41,6 +41,10 @@ class HtmlCompilator::Tables::Table
     }
   end
 
+  def columns
+    @columns ||= HtmlCompilator::Tables::Column.generate(:table => self)
+  end
+
   def captions
     @captions ||= HtmlCompilator::Tables::Caption.generate(:table => self)
   end
