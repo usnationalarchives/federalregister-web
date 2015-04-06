@@ -40,11 +40,25 @@ class HtmlCompilator::Tables::Table
           }
         end
       }
+
+      h.concat h.content_tag(:tfoot) {
+        footer_rows.each do |row|
+          h.concat h.content_tag(:tr) {
+            row.cells.each do |cell|
+              h.concat h.content_tag(:td, cell.body, colspan: cell.colspan)
+            end
+          }
+        end
+      } if footer_rows.present?
     }
   end
 
   def captions
     @captions ||= HtmlCompilator::Tables::Caption.generate(:table => self)
+  end
+
+  def footer_rows
+    @footer_rows ||= HtmlCompilator::Tables::FooterRow.generate(:table => self)
   end
 
   def header_rows
