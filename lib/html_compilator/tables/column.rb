@@ -17,7 +17,7 @@ class HtmlCompilator::Tables::Column
     if figure?
       :right
     else
-      :center
+      :left
     end
   end
 

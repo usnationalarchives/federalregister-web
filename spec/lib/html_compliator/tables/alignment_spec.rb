@@ -28,6 +28,34 @@ describe HtmlCompilator::Tables do
       end
     end
 
+    context "table body" do
+      it "reads the alignment from the A attributes" do
+        table = parse <<-XML
+          <GPOTABLE CDEF="s1,1">
+            <ROW>
+              <ENT I="21">Center</ENT>
+              <ENT>Right</ENT>
+            </ROW>
+
+            <ROW>
+              <ENT I="25">Center</ENT>
+              <ENT>Right</ENT>
+            </ROW>
+
+            <ROW>
+              <ENT I="28">Center</ENT>
+            </ROW>
+          </GPOTABLE>
+        XML
+
+        expect(table.body_rows.map{|r| r.cells.map(&:alignment)}).to eql([
+          [:center, :right],
+          [:center, :right],
+          [:center],
+        ])
+      end
+    end
+
     context "it uses the column type from the GPOTABLE CDEF attribute" do
       it "works fine for basic attributes" do
         table = parse <<-XML
@@ -46,14 +74,14 @@ describe HtmlCompilator::Tables do
         XML
 
         expect(table.body_rows.first.cells.map(&:alignment)).to eql([
-          :center,
-          :center,
-          :center,
-          :center,
-          :center,
+          :left,
+          :left,
+          :left,
+          :left,
+          :left,
           :right,
           :right,
-          :center,
+          :left,
         ])
       end
 
@@ -70,10 +98,10 @@ describe HtmlCompilator::Tables do
         XML
 
         expect(table.body_rows.first.cells.map(&:alignment)).to eql([
-          :center,
-          :center,
+          :left,
+          :left,
           :right,
-          :center,
+          :left,
         ])
       end
     end

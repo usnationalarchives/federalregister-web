@@ -46,15 +46,20 @@ class HtmlCompilator::Tables::BodyCell
   end
 
   def alignment
-    case (node.attr("A") || '').match(/^(\D)/).try(:[], 1)
-    when 'R'
-      :right
-    when 'L'
-      :left
-    when 'J'
-      :justify
-    when nil
-      column.alignment
+    case node.attr('I')
+    when '21','25','28'
+      :center
+    else
+      case (node.attr("A") || '').match(/^(\D)/).try(:[], 1)
+      when 'R'
+        :right
+      when 'L'
+        :left
+      when 'J'
+        :justify
+      when nil
+        column.alignment
+      end
     end
   end
 
