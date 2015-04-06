@@ -15,7 +15,7 @@
         <% @doc_presenter.document_counts.each do |doc_type| %>
           <li>
             <%= link_to doc_type.count, documents_search_path(doc_type.search_conditions) %>
-            <%= mini_icon(doc_type.slug) %>
+            <%= document_type_icon(doc_type.slug, size: 'mini') %>
           </li>
         <% end %>
       </ul>
