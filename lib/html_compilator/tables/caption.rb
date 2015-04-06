@@ -10,10 +10,15 @@ class HtmlCompilator::Tables::Caption
   end
 
   attr_reader :table, :node
+  delegate :h, :to => :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @node = options.fetch(:node)
+  end
+
+  def to_html
+    h.content_tag(:p, body, class: type)
   end
 
   def type

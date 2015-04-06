@@ -10,10 +10,17 @@ class HtmlCompilator::Tables::Footer
   end
 
   attr_reader :table, :node
+  delegate :h, :to => :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @node = options.fetch(:node)
+  end
+
+  def to_html
+    h.content_tag(:tr) {
+      h.concat h.content_tag(:td, body, colspan: table.num_columns)
+    }
   end
 
   def body

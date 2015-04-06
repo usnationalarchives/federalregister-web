@@ -17,35 +17,25 @@ class HtmlCompilator::Tables::Table
     h.content_tag(:table, :border => 1) {
       h.concat h.content_tag(:caption) {
         captions.each do |caption|
-          h.concat h.content_tag(:p, caption.body, class: caption.type)
+          h.concat caption.to_html
         end
       } if captions.present?
 
       h.concat h.content_tag(:thead) {
         header_rows.each do |row|
-          h.concat h.content_tag(:tr) {
-            row.cells.each do |cell|
-              h.concat h.content_tag(:th, cell.body, :colspan => cell.colspan, :rowspan => cell.rowspan)
-            end
-          }
+          h.concat row.to_html
         end
       }
 
       h.concat h.content_tag(:tbody) {
         body_rows.each do |row|
-          h.concat h.content_tag(:tr) {
-            row.cells.each do |cell|
-              h.concat h.content_tag(:td, cell.body, colspan: cell.colspan)
-            end
-          }
+          h.concat row.to_html
         end
       }
 
       h.concat h.content_tag(:tfoot) {
         footers.each do |footer|
-          h.concat h.content_tag(:tr) {
-            h.concat h.content_tag(:td, footer.body, colspan: num_columns)
-          }
+          h.concat footer.to_html
         end
       } if footers.present?
     }

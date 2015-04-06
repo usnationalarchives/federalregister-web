@@ -28,8 +28,18 @@ class HtmlCompilator::Tables::HeaderRow
   end
 
   attr_reader :table, :cells
+  delegate :h, :to => :table
+
   def initialize(options)
     @table = options.fetch(:table)
     @cells = options.fetch(:cells)
+  end
+
+  def to_html
+    h.content_tag(:tr) {
+      cells.each do |cell|
+        h.concat cell.to_html
+      end
+    }
   end
 end

@@ -1,10 +1,15 @@
 class HtmlCompilator::Tables::HeaderCell
   attr_reader :table, :node
   attr_accessor :descendants, :row, :max_level
+  delegate :h, :to => :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @node = options.fetch(:node)
+  end
+
+  def to_html
+    h.content_tag(:th, body, :colspan => colspan, :rowspan => rowspan)
   end
 
   def children
