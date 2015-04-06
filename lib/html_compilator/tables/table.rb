@@ -15,6 +15,12 @@ class HtmlCompilator::Tables::Table
 
   def to_html
     h.content_tag(:table, :border => 1) {
+      h.concat h.content_tag(:caption) {
+        captions.each do |caption|
+          h.concat h.content_tag(:p, caption.body, class: caption.type)
+        end
+      } if captions.present?
+
       h.concat h.content_tag(:thead) {
         header_rows.each do |row|
           h.concat h.content_tag(:tr) {
@@ -35,6 +41,10 @@ class HtmlCompilator::Tables::Table
         end
       }
     }
+  end
+
+  def captions
+    @captions ||= HtmlCompilator::Tables::Caption.generate(:table => self)
   end
 
   def header_rows
