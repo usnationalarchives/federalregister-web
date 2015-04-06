@@ -42,14 +42,12 @@ class HtmlCompilator::Tables::Table
       }
 
       h.concat h.content_tag(:tfoot) {
-        footer_rows.each do |row|
+        footers.each do |footer|
           h.concat h.content_tag(:tr) {
-            row.cells.each do |cell|
-              h.concat h.content_tag(:td, cell.body, colspan: cell.colspan)
-            end
+            h.concat h.content_tag(:td, footer.body, colspan: num_columns)
           }
         end
-      } if footer_rows.present?
+      } if footers.present?
     }
   end
 
@@ -57,8 +55,8 @@ class HtmlCompilator::Tables::Table
     @captions ||= HtmlCompilator::Tables::Caption.generate(:table => self)
   end
 
-  def footer_rows
-    @footer_rows ||= HtmlCompilator::Tables::FooterRow.generate(:table => self)
+  def footers
+    @footers ||= HtmlCompilator::Tables::Footer.generate(:table => self)
   end
 
   def header_rows

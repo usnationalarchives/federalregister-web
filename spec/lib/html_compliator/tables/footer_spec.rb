@@ -16,17 +16,7 @@ describe HtmlCompilator::Tables do
         </GPOTABLE>
       XML
 
-      expect(table.footer_rows.map{|r| r.cells.first.body}).to eql(["Note 1","Note 2"])
-    end
-
-    it "spans the entire table width" do
-      table = parse <<-XML
-        <GPOTABLE COLS="4">
-          <TNOTE>Note 1</TNOTE>
-        </GPOTABLE>
-      XML
-
-      expect(table.footer_rows.first.cells.first.colspan).to eql 4
+      expect(table.footers.map(&:body)).to eql(["Note 1","Note 2"])
     end
 
     it "supports formatting" do
@@ -36,7 +26,7 @@ describe HtmlCompilator::Tables do
         </GPOTABLE>
       XML
 
-      expect(table.footer_rows.first.cells.first.body).to eql "<em>New</em> note"
+      expect(table.footers.first.body).to eql "<em>New</em> note"
     end
   end
 end

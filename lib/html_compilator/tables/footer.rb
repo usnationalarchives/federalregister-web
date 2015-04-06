@@ -1,4 +1,4 @@
-class HtmlCompilator::Tables::FooterRow
+class HtmlCompilator::Tables::Footer
   def self.generate(options)
     table = options.fetch(:table)
     table.node.xpath('TNOTE').map do |node|
@@ -16,7 +16,7 @@ class HtmlCompilator::Tables::FooterRow
     @node = options.fetch(:node)
   end
 
-  def cells
-    [HtmlCompilator::Tables::FooterCell.new(row: self, node: node)]
+  def body
+    table.transform(node.to_xml)
   end
 end
