@@ -88,7 +88,7 @@ sub vcl_recv {
       return(pass);
     } else <% end %>if (req.url ~ "^/assets/") {
       set req.backend = assets_my_fr2;
-      return(lookup);
+      return(pass);
     } else if (req.url ~ "^/my(/|$)") {
       set req.backend = my_fr2;
       return(pass);

@@ -5,7 +5,7 @@
     <%= fr_box "Official Document", :official, header: {seal: true} do %>
       <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
 
-      <div id="fulltext_content_area">
+      <div id="fulltext_content_area" class="doc-content-area">
         <% if document.full_text_xml_url.present? %>
           <% if document.action.present? %>
             <h1>Action</h1>
