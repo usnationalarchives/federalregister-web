@@ -13,6 +13,7 @@ describe HtmlCompilator::Tables do
         table = parse <<-XML
           <GPOTABLE>
             <ROW>
+              <ENT A="0">Middle</ENT>
               <ENT A="L0">Left</ENT>
               <ENT A="R0">Right</ENT>
               <ENT A="J0">Justify</ENT>
@@ -21,6 +22,7 @@ describe HtmlCompilator::Tables do
         XML
 
         expect(table.body_rows.first.cells.map(&:alignment)).to eql([
+          :center,
           :left,
           :right,
           :justify
@@ -89,7 +91,7 @@ describe HtmlCompilator::Tables do
         table = parse <<-XML
           <GPOTABLE CDEF="s3,r3,xl3,xs3,xls3,3,3.3,tr3">
             <ROW>
-              <ENT A="3">Stub</ENT>
+              <ENT A="R3">Stub</ENT>
               <ENT>Special Reading</ENT>
               <ENT A="1">Figure</ENT>
               <ENT>Tracing</ENT>
@@ -98,9 +100,9 @@ describe HtmlCompilator::Tables do
         XML
 
         expect(table.body_rows.first.cells.map(&:alignment)).to eql([
-          :left,
-          :left,
           :right,
+          :left,
+          :center,
           :left,
         ])
       end

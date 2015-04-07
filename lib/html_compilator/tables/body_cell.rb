@@ -33,14 +33,18 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
     when '21','25','28'
       :center
     else
-      case (node.attr("A") || '').match(/^(\D)/).try(:[], 1)
-      when 'R'
-        :right
-      when 'L'
-        :left
-      when 'J'
-        :justify
-      when nil
+      if node.attr("A")
+        case node.attr("A").match(/^(\D)/).try(:[], 1)
+        when 'R'
+          :right
+        when 'L'
+          :left
+        when 'J'
+          :justify
+        when nil
+          :center
+        end
+      else
         start_column.alignment
       end
     end
