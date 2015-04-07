@@ -28,7 +28,7 @@ class HtmlCompilator::Tables::Cell
       classes << "border-top-#{border_top}" if border_top
       classes << "border-bottom-#{border_bottom}" if border_bottom
       classes << "border-left-#{border_left}" if border_left
-      classes << "border-right-#{border_right}" if border_right
+      classes << "border-right-#{border_right}" if border_right && border_right != :none
     end
   end
 
@@ -42,6 +42,10 @@ class HtmlCompilator::Tables::Cell
     else
       previous_cell_in_row.end_column_index + 1
     end
+  end
+
+  def index
+    row.all_cells.index(self)
   end
 
   def previous_cell_in_row

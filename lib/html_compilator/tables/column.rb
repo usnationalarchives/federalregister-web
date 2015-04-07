@@ -26,7 +26,14 @@ class HtmlCompilator::Tables::Column
   end
 
   def border_right
-    nil
+    case code[-1]
+    when 'b'
+      :bold
+    when 'p'
+      :double
+    when 'n'
+      :none
+    end
   end
 
   def index

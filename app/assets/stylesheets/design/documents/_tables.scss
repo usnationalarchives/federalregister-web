@@ -9,17 +9,46 @@
     .center {
       text-align: center;
     }
+
+    $border-color: $dark-grey;
+
     .border-top-single {
-      border-top: 1px solid $dark-grey;
+      border-top: 1px solid $border-color;
     }
     .border-bottom-single {
-      border-bottom: 1px solid $dark-grey;
+      border-bottom: 1px solid $border-color;
     }
     .border-left-single {
-      border-left: 1px solid $dark-grey;
+      border-left: 1px solid $border-color;
     }
     .border-right-single {
-      border-right: 1px solid $dark-grey;
+      border-right: 1px solid $border-color;
+    }
+
+    .border-top-double {
+      border-top: 4px double $border-color;
+    }
+    .border-bottom-double {
+      border-bottom: 4px double $border-color;
+    }
+    .border-left-double {
+      border-left: 4px double $border-color;
+    }
+    .border-right-double {
+      border-right: 4px double $border-color;
+    }
+
+    .border-top-bold {
+      border-top: 2px solid $border-color;
+    }
+    .border-bottom-bold {
+      border-bottom: 2px solid $border-color;
+    }
+    .border-left-bold {
+      border-left: 2px solid $border-color;
+    }
+    .border-right-bold {
+      border-right: 2px solid $border-color;
     }
   }
 }

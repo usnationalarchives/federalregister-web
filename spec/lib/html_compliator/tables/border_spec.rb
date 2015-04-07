@@ -46,7 +46,7 @@ describe HtmlCompilator::Tables do
 
       it "handles extra headers" do
         table = parse <<-XML
-          <GPOTABLE COLS="2" OPTS="L2">
+          <GPOTABLE COLS="2" CDEF="1,1" OPTS="L2">
           <BOXHD>
           <CHED H="1">A</CHED>
           <CHED H="1">B</CHED>
@@ -178,6 +178,49 @@ describe HtmlCompilator::Tables do
           :double,
         ]
       end
+    end
+  end
+
+  context "CDEF rules" do
+    let(:table) do
+      parse <<-XML
+        <GPOTABLE COLS="5" CDEF="1,1b,1p,1n,1" OPTS="L2">
+          <BOXHD>
+            <CHED H="1">A</CHED>
+            <CHED H="1">B</CHED>
+            <CHED H="1">C</CHED>
+            <CHED H="1">D</CHED>
+            <CHED H="1">E</CHED>
+          </BOXHD>
+          <ROW>
+            <ENT>A</ENT>
+            <ENT>B</ENT>
+            <ENT>C</ENT>
+            <ENT>D</ENT>
+            <ENT>E</ENT>
+          </ROW>
+        </GPOTABLE>
+      XML
+    end
+
+    it "has the correct header rules" do
+      expect(table.header_rows.first.cells.map(&:border_right)).to eql [
+        :single,
+        :bold,
+        :double,
+        :none,
+        nil
+      ]
+    end
+
+    it "has the correct body rules" do
+      expect(table.body_rows.first.cells.map(&:border_right)).to eql [
+        :single,
+        :bold,
+        :double,
+        :none,
+        nil
+      ]
     end
   end
 end

@@ -34,10 +34,14 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
   end
 
   def border_right
-    if last_cell_in_row?
-      table.rules.include?(:side) ? :single : nil
+    if end_column.border_right
+      end_column.border_right
     else
-      table.rules.include?(:down) ? :single : nil
+      if last_cell_in_row?
+        table.rules.include?(:side) ? :single : nil
+      else
+        table.rules.include?(:down) ? :single : nil
+      end
     end
   end
 
@@ -71,14 +75,10 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
   def start_column_index
     if parent
       parent.start_column_index +
-        previous_siblings.sum(&:rowspan)
+        previous_siblings.sum(&:colspan)
     else
       super
     end
-  end
-
-  def index
-    @index ||= row.all_cells.index(self)
   end
 
   def first_cell_in_row?

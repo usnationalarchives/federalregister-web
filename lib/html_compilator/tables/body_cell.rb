@@ -68,20 +68,20 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
   end
 
   def border_right
-    if last_cell_in_row?
-      table.rules.include?(:side) ? :single : nil
+    if end_column.border_right
+      end_column.border_right
     else
-      table.rules.include?(:down) ? :single : nil
+      if last_cell_in_row?
+        table.rules.include?(:side) ? :single : nil
+      else
+        table.rules.include?(:down) ? :single : nil
+      end
     end
   end
 
   def stub?
     # ask the column if it is a stub?
     index == 0
-  end
-
-  def index
-    @index ||= row.cells.index(self)
   end
 
   def start_column_index
