@@ -21,6 +21,10 @@ class HtmlCompilator::Tables::BodyRow
     end
   end
 
+  def all_cells
+    cells
+  end
+
   def expanded_stub_width
     @expanded_stub_width ||= node.attr('EXPSTB').try(:to_i) ||
       prior_row.try(:expanded_stub_width) ||

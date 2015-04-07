@@ -10,7 +10,7 @@ describe HtmlCompilator::Tables do
   context "basic header structure" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE COLS="5">
           <BOXHD>
             <CHED H="1"/>
             <CHED H="1">Mango</CHED>
@@ -44,7 +44,7 @@ describe HtmlCompilator::Tables do
   context "crazy header structure" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE COLS="6">
           <BOXHD>
             <CHED H="1">A</CHED>
             <CHED H="1">B</CHED>
@@ -81,6 +81,19 @@ describe HtmlCompilator::Tables do
         [1, 1, 1, 1]
       ]
     end
+  end
+
+  it "ignores extra headers" do
+    table = parse(<<-XML)
+      <GPOTABLE COLS="2">
+        <BOXHD>
+          <CHED H="1">A</CHED>
+          <CHED H="1">B</CHED>
+          <CHED H="1">C</CHED>
+        </BOXHD>
+      </GPOTABLE>
+    XML
+    expect(table.header_rows.first.cells.map(&:body)).to eql %w(A B)
   end
 
   context "basic body" do

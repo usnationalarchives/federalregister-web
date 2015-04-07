@@ -51,11 +51,6 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
     @descendants
   end
 
-  def parent
-    children
-    @parent
-  end
-
   def colspan
     if children.present?
       children.sum(&:colspan)
@@ -83,7 +78,7 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
   end
 
   def index
-    @index ||= row.cells.index(self)
+    @index ||= row.all_cells.index(self)
   end
 
   def first_cell_in_row?

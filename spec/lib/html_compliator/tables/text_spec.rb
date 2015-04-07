@@ -45,7 +45,7 @@ describe HtmlCompilator::Tables do
   context "transformation of header cell text" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE COLS="2">
           <BOXHD>
             <CHED H="1"><E T="03">strong</E> disagreement</CHED>
             <CHED H="1">First Line<LI>Second Line</LI></CHED>

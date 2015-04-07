@@ -9,8 +9,8 @@ describe HtmlCompilator::Tables do
 
   context "Table borders" do
     context "table header" do
-      let(:table) do
-        parse <<-XML
+      it "parses simple rows" do
+        table =parse <<-XML
           <GPOTABLE COLS="3" OPTS="L2(1)" CDEF="1,1,1">
             <BOXHD>
               <CHED H="1">A</CHED>
@@ -20,9 +20,7 @@ describe HtmlCompilator::Tables do
             </BOXHD>
           </GPOTABLE>
         XML
-      end
 
-      it "parses simple rows" do
         expect(table.header_rows.first.cells.map(&:border_classes)).to eql([
           %w(border-top-single border-bottom-single border-right-single),
           %w(border-top-single border-bottom-single),
@@ -30,9 +28,37 @@ describe HtmlCompilator::Tables do
       end
 
       it "handles rows after rowspans" do
+        table = parse <<-XML
+          <GPOTABLE COLS="3" OPTS="L2(1)" CDEF="1,1,1">
+            <BOXHD>
+              <CHED H="1">A</CHED>
+              <CHED H="1">B</CHED>
+              <CHED H="2">BA</CHED>
+              <CHED H="2">BB</CHED>
+            </BOXHD>
+          </GPOTABLE>
+        XML
         expect(table.header_rows.second.cells.map(&:border_classes)).to eql([
           %w(border-bottom-single border-right-single),
           %w(border-bottom-single ),
+        ])
+      end
+
+      it "handles extra headers" do
+        table = parse <<-XML
+          <GPOTABLE COLS="2" OPTS="L2">
+          <BOXHD>
+          <CHED H="1">A</CHED>
+          <CHED H="1">B</CHED>
+          <CHED H="2">BA</CHED>
+          <CHED H="2">BB</CHED>
+          </BOXHD>
+          </GPOTABLE>
+        XML
+
+        expect(table.header_rows.first.cells.map(&:border_classes)).to eql([
+          %w(border-top-single border-bottom-single border-right-single),
+          %w(border-top-single border-bottom-single),
         ])
       end
     end

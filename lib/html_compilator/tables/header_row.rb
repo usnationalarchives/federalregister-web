@@ -27,16 +27,24 @@ class HtmlCompilator::Tables::HeaderRow
     end
   end
 
-  attr_reader :table, :cells
+  attr_reader :table
   delegate :h, :to => :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @cells = options.fetch(:cells)
 
-    cells.each do |cell|
+    @cells.each do |cell|
       cell.row = self
     end
+  end
+
+  def all_cells
+    @cells
+  end
+
+  def cells
+    @cells.reject{|x| x.start_column_index + 1 > table.num_columns}
   end
 
   def to_html

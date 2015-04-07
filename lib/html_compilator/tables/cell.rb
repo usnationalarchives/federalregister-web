@@ -48,12 +48,16 @@ class HtmlCompilator::Tables::Cell
     if index == 0
       nil
     else
-      row.cells[index-1]
+      row.all_cells[index-1]
     end
   end
 
   def end_column
-    table.columns[start_column_index]
+    if end_column_index >= table.columns.size
+      table.columns.last
+    else
+      table.columns[end_column_index]
+    end
   end
 
   def end_column_index
@@ -61,6 +65,6 @@ class HtmlCompilator::Tables::Cell
   end
 
   def last_cell_in_row?
-    end_column_index + 1 == table.num_columns
+    end_column_index + 1 >= table.num_columns
   end
 end
