@@ -24,4 +24,20 @@ class HtmlCompilator::Tables::Column
   def figure?
     code =~ /^\d/
   end
+
+  def border_right
+    nil
+  end
+
+  def index
+    table.columns.index(self)
+  end
+
+  def first?
+    index == 0
+  end
+
+  def last?
+    index + 1 == table.columns.size
+  end
 end

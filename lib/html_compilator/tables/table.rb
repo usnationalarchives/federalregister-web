@@ -54,7 +54,7 @@ class HtmlCompilator::Tables::Table
   end
 
   def header_rows
-    HtmlCompilator::Tables::HeaderRow.generate(:table => self, :node => node.xpath('BOXHD'))
+    @header_rows ||= HtmlCompilator::Tables::HeaderRow.generate(:table => self, :node => node.xpath('BOXHD'))
   end
 
   def body_rows
@@ -76,5 +76,38 @@ class HtmlCompilator::Tables::Table
       File.read("#{Rails.root}/app/views/xslt/matchers/table_contents.html.xslt")
     )
     @text_transformer.transform(Nokogiri::XML(xml)).to_s.strip.html_safe
+  end
+
+  def options
+    @options ||= (node.attr("OPTS") || '').split(',')
+  end
+
+  def rules
+    return @rules if @rules
+    rule_option = options.
+      map{|x| x.sub(/\(.*\)/,'')}.
+      detect{|x| %w(L0 L1 L2 L3 L4 L5 L6).include?(x) }
+    @rules = case rule_option
+    when "L0"
+      []
+    when "L1"
+      [:horizonal]
+    when "L2"
+      [:horizonal, :down]
+    when "L3"
+      [:horizonal, :side]
+    when "L4"
+      [:horizonal, :down, :side]
+    when "L5"
+      # documented as "trim side only", but not really in use
+      #  and doesn't make sense on the web
+      [:horizonal, :side]
+    when "L6"
+      # documented as "trim side only", but not really in use
+      #  and doesn't make sense on the web
+      [:horizonal, :down, :side]
+    else
+      [] # not specified; what is the default?
+    end
   end
 end

@@ -9,5 +9,17 @@
     .center {
       text-align: center;
     }
+    .border-top-single {
+      border-top: 1px solid $dark-grey;
+    }
+    .border-bottom-single {
+      border-bottom: 1px solid $dark-grey;
+    }
+    .border-left-single {
+      border-left: 1px solid $dark-grey;
+    }
+    .border-right-single {
+      border-right: 1px solid $dark-grey;
+    }
   }
 }

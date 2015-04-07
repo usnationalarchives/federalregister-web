@@ -1,4 +1,4 @@
-class HtmlCompilator::Tables::BodyCell
+class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
   attr_reader :row, :node
   delegate :expanded_stub_width, :table, :to => :row
   delegate :h, :to => :table
@@ -8,25 +8,8 @@ class HtmlCompilator::Tables::BodyCell
     @node = options.fetch(:node)
   end
 
-  def to_html
-    h.content_tag(:td, body, td_attributes)
-  end
-
-  def td_attributes
-    {}.tap do |attributes|
-      attributes[:colspan] = colspan if colspan > 1
-      attributes[:class] = css_classes.join(" ")
-    end
-  end
-
-  def css_classes
-    [
-      alignment
-    ]
-  end
-
-  def body
-    row.table.transform(node.to_xml)
+  def element
+    :td
   end
 
   def colspan
@@ -58,8 +41,33 @@ class HtmlCompilator::Tables::BodyCell
       when 'J'
         :justify
       when nil
-        column.alignment
+        start_column.alignment
       end
+    end
+  end
+
+  def border_top
+  end
+
+  def border_bottom
+    if table.rules.include?(:horizonal) && row.last?
+      :single
+    else
+      row.border_bottom_for_index(start_column_index)
+    end
+  end
+
+  def border_left
+    if start_column.first?
+      table.rules.include?(:side) ? :single : nil
+    end
+  end
+
+  def border_right
+    if last_cell_in_row?
+      table.rules.include?(:side) ? :single : nil
+    else
+      table.rules.include?(:down) ? :single : nil
     end
   end
 
@@ -72,27 +80,11 @@ class HtmlCompilator::Tables::BodyCell
     @index ||= row.cells.index(self)
   end
 
-  def column
-    table.columns[start_column_index]
-  end
-
   def start_column_index
-    if previous_cell.nil?
+    if previous_cell_in_row.nil?
       0
     else
-      previous_cell.end_column_index + 1
-    end
-  end
-
-  def end_column_index
-    start_column_index + colspan - 1
-  end
-
-  def previous_cell
-    if index == 0
-      nil
-    else
-      row.cells[index-1]
+      previous_cell_in_row.end_column_index + 1
     end
   end
 end

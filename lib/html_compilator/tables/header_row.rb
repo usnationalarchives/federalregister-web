@@ -33,6 +33,10 @@ class HtmlCompilator::Tables::HeaderRow
   def initialize(options)
     @table = options.fetch(:table)
     @cells = options.fetch(:cells)
+
+    cells.each do |cell|
+      cell.row = self
+    end
   end
 
   def to_html
@@ -41,5 +45,17 @@ class HtmlCompilator::Tables::HeaderRow
         h.concat cell.to_html
       end
     }
+  end
+
+  def index
+    table.header_rows.index(self)
+  end
+
+  def first?
+    index == 0
+  end
+
+  def last?
+    index + 1 == table.header_rows.size
   end
 end

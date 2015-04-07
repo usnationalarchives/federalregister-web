@@ -27,10 +27,29 @@ class HtmlCompilator::Tables::BodyRow
       0
   end
 
+  CODE_VALUES = {'n' => nil, 's' => :single, 'd' => :double, 'b' => :bold}
+
+  def border_bottom_for_index(i)
+    codes = (node.attr('RUL') || '').split(/,/)
+
+    if codes.last =~ /&sqdrt;/
+      val = codes.last.sub!(/&sqdrt;/,'')
+      codes.fill(val, codes.size, table.num_columns-1)
+    end
+    CODE_VALUES[codes[i]]
+  end
+
   def prior_row
-    index = table.body_rows.index(self)
     if index > 0
       table.body_rows[index-1]
     end
+  end
+
+  def index
+    @index ||= table.body_rows.index(self)
+  end
+
+  def last?
+    index+1 == table.body_rows.size
   end
 end
