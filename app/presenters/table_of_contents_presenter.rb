@@ -1,67 +1,57 @@
 class TableOfContentsPresenter
+  attr_reader :table_of_contents_data
 
-  class AgencyPresenter
-    attr_reader :agency, :entries, :entry_count
-    delegate :name, :slug, :to_param, :to => :agency
-
-    def initialize(toc_view, agency)
-      @toc_view = toc_view
-      @agency = agency
-      @entries = []
-    end
-
-    def add_entry(entry)
-      @entries << entry
-    end
-
-    def children
-      @children ||= @toc_view.agencies.select{|a| agency.children.include?(a.agency) }
-    end
-
-    def entry_count
-      @entry_count ||= entries.size + children.sum(&:entry_count)
-    end
-
-    def entries_by_type_and_toc_subject
-      entries.group_by(&:entry_type).sort_by{|type,entries| type}.reverse.map do |type, entries_by_type|
-        entries_by_toc_subject = entries_by_type.group_by(&:toc_subject).map do |toc_subject, entries_by_toc_subject|
-          [toc_subject, entries_by_toc_subject.sort_by{|e| [e.toc_doc.try(:downcase) || '', (e.toc_doc || e.title)]}]
-        end
-        [type, entries_by_toc_subject]
-      end
-    end
-
+  def initialize(date=nil)
+    url = 'http://localhost:3000/documents/table_of_contents/json/2015/02/25.json'
+    #TODO: Dynamically generate url using Settings.federal_register.local, etc.
+    @table_of_contents_data = HTTParty.get(url)
   end
 
+  def lookup_document(doc_number)
+    get_documents.results.find{|doc| doc.document_number == doc_number}
+  end
 
-  attr_accessor :entries_without_agencies, :agencies, :agency_ids, :entries_with_agencies, :entries
-  def initialize(entries, options = {})
-    @entries = entries
-    @entries_without_agencies, @entries_with_agencies =  entries.sort_by{|e| [e.start_page || 0, e.end_page || 0, e.id]}.partition{|e| e.agencies.blank? }
+  def agencies
+    table_of_contents_data["agencies"]
+  end
 
-    agencies_hsh = {}
-    @entries_with_agencies.each do |entry|
-      # create entry views for all associated agencies, powering the 'See XXX'
-      entry.agencies.each do |agency|
-        agencies_hsh[agency.id] ||= AgencyPresenter.new(self, agency)
-        if options[:always_include_parent_agencies] && agency.parent.present?
-          agencies_hsh[agency.parent_id] ||= AgencyPresenter.new(self, agency.parent)
-        end
+  def documents
+    get_documents
+  end
+
+  def render_a_partial
+    render :partial => "table_of_contents_doc_details", locals: {document: "Stubbed Document" , title: "Stubbed Out Title"}
+  end
+
+  def test_doc_objects
+    agencies[2]["document_categories"].first["documents"]
+  end
+
+  def display_level(docs=test_doc_objects, level=1)
+    docs.group_by{|doc| doc["subject_#{level}"]}.each do |subject_heading, docs|
+      indent = "  " * level
+
+      finished_docs, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
+
+      puts indent + subject_heading if subject_heading
+      finished_docs.each do |doc|
+
+        puts indent + "doc=" + doc["document_numbers"].first #render partial here
       end
 
-      entry.agencies.excluding_parents.each do |agency|
-        agencies_hsh[agency.id].add_entry(entry)
+      unless nested_docs.empty?
+        display_level(nested_docs, level+1) if level < 3
       end
     end
-
-    # generate list of agencies, downcasing to sort appropriately (eg 'Health and Human...' before 'Health Resources...')
-    @agencies = agencies_hsh.values.sort_by{|a| a.name.downcase}
-
-    # preload all child agencies for performance
-    Agency.preload_associations(@agencies.map(&:agency), :children)
   end
 
-  def entry_count
-    @entry_count ||= @entries.size
+  private
+
+  def get_documents
+    @documents ||= Document.search(QueryConditions.toc_conditions("February 25, 2015".to_date))
   end
+
 end
+
+
+# {"document_categories"=>[{"name"=>"NOTICES", "documents"=>[{"subject_1"=>"Charter Renewals:", "subject_2"=>"Global Development Council,", "document_numbers"=>["2015-03807"]}]}]}

@@ -1,6 +1,10 @@
 class DocumentsController < ApplicationController
   skip_before_filter :authenticate_user!
 
+  def index
+    @presenter = TableOfContentsPresenter.new
+  end
+
   def show
     cache_for 1.day
 
