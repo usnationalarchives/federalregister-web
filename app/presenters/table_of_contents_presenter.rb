@@ -23,22 +23,9 @@ class TableOfContentsPresenter
     end_page - start_page + 1
   end
 
-  # def find_last_subject(document)
-  #   subject_number = 3
-  #   while document["subject_number_#{subject_number}"].nil?
-  #     subject_number -= 1
-  #   end
-  #   document.send("subject_" + subject_number.to_s)
-  # end
-
-  # def test_doc_objects
-  #   agencies[2]["document_categories"].first["documents"]
-  # end
-
   private
 
   def api_documents
-    # @documents ||= Document.search(QueryConditions.toc_conditions("February 25, 2015".to_date))
     @documents ||= Document.search(QueryConditions.published_on("February 25, 2015".to_date).
       merge(per_page: 1000, fields: ['start_page', 'end_page', 'pdf_url','document_number','html_url'])
     )
