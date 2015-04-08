@@ -2,11 +2,8 @@ require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
 describe "XSLT::TableOfContents" do
-  def process(xml, type = "RULE")
-    @html = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      "matchers/table_of_contents.html.xslt"
-    )
+  before :all do
+    @template = "matchers/table_of_contents.html.xslt"
   end
 
   def table_of_contents_ul_css
