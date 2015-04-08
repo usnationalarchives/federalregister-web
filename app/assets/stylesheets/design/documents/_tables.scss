@@ -1,5 +1,11 @@
 .doc-content-area {
   table {
+    display: block;
+    background-color: $color-official-light-alt;
+    padding: 10px;
+    width: 100%;
+    overflow: scroll;
+
     .right {
       text-align: right;
     }
