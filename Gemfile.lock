@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/criticaljuncture/calendar_helper.git
-  revision: 5fa77163c8cddfdffc06660280c502e32e2dbcc7
+  revision: d1f55c2aa2730b936c2958033cbe2f241f39efa1
   branch: master
   specs:
-    calendar_helper (0.2.5)
+    calendar_helper (0.2.6)
       open4
 
 GIT
