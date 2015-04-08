@@ -25,10 +25,8 @@ describe "XSLT::PrintPage" do
       <PRTPAGE P="1001"/>
     XML
 
-    expect_equivalent <<-HTML
-      <span class="printed-page" id="page-1000" data-page="1000"> </span>
-      <span class="printed-page" id="page-1001" data-page="1001"> </span>
-    HTML
+    expect(html).to have_tag("span#page-1000")
+    expect(html).to have_tag("span#page-1001")
   end
 end
 
