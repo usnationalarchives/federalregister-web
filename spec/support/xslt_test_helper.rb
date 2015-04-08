@@ -3,9 +3,10 @@ module XsltTestHelper
   require 'xslt_transform'
   require 'action_controller'
   require 'pry'
+  require 'spec_helper'
 
   def process(xml, type="RULE")
-    @html = XsltTransform.transform_xml(
+    @transformed = XsltTransform.transform_xml(
       "<#{type}>#{xml}</#{type}>",
       @template,
       'first_page' => "1000"
@@ -14,10 +15,14 @@ module XsltTestHelper
 
   def expect_equivalent(expected_output)
     expect(
-      XsltTransform.standardized_html(@html.to_xml)
+      XsltTransform.standardized_html(html)
     ).to eql(
       XsltTransform.standardized_html(expected_output)
     )
+  end
+
+  def html
+    @transformed.to_xml
   end
 end
 
