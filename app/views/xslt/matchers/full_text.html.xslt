@@ -8,10 +8,11 @@
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/typeface.html.xslt" />
 
+  <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/print_page.html.xslt" />
-  <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/signature.html.xslt" />
 
   <xsl:template match="/">
     <xsl:apply-templates />
