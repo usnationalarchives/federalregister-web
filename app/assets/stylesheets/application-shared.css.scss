@@ -1,5 +1,5 @@
-/* this needs to be in every wrapper file that needs the mixins */
-@import "mixins/**";
+// mixins/colors/other library items
+@import "essential";
 
 @import "fonts.scss";
 @import "components.scss";

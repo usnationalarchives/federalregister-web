@@ -8,9 +8,8 @@
   @import "bootstrap-changes";
 }
 
-/* this needs to be in every wrapper file that needs the mixins */
-@import "mixins/**";
-@import "library";
+// mixins/colors/other library items
+@import "essential";
 
 /* override old, clashing fr2 styles */
 @import "officialness_override";
