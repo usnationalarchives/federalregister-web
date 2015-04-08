@@ -15,11 +15,10 @@
        that we don't show as part of the document or display via other means -->
 
   <!-- These tags only contain text nodes -->
-  <xsl:template match="AGENCY | SUBAGY | CFR | DEPDOC | RIN | SUBJECT">
-  </xsl:template>
+  <xsl:template match="AGENCY | SUBAGY | CFR | DEPDOC | RIN | SUBJECT" />
+
   <!-- These tags contain other child nodes -->
-  <xsl:template match="AGY[count(child::P) &lt; 2] | ACT[count(child::P) &lt; 2]">
-  </xsl:template>
+  <xsl:template match="AGY[count(child::P) &lt; 2] | ACT[count(child::P) &lt; 2]" />
 
 
 
