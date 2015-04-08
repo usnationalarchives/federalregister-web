@@ -7,7 +7,7 @@
     border: 1px solid $nav-border-color;
     border-top: none;
 
-    @include rounded-bottom(4px);
+    @include rounded-bottom(4);
     box-shadow: 0 3px 5px $fr-gray-40;
 
     height: 30px;
@@ -45,7 +45,7 @@
     cursor: pointer;
     display: block;
 
-    @extend basic_font;
+    @include basic_font;
     font-size: 13px;
     font-weight: bold;
     line-height: 32px;
