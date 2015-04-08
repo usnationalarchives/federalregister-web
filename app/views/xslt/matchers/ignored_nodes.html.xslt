@@ -22,7 +22,7 @@
 
 
   <!-- Ignore tags we handle explicitely elsewhere -->
-  <xsl:template match="FTNT" />
+  <xsl:template match="FTNT | FRDOC | BILCOD" />
 
   <!-- Ignore tags usually found elsewhere in a document -->
   <!--

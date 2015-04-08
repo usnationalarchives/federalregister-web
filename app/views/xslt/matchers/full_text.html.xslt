@@ -8,6 +8,7 @@
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/typeface.html.xslt" />
 
+  <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />
@@ -18,5 +19,6 @@
     <xsl:apply-templates />
 
     <xsl:call-template name="footnotes" />
+    <xsl:call-template name="end_matter" />
   </xsl:template>
 </xsl:stylesheet>
