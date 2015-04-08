@@ -2,7 +2,7 @@ require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
 describe "XSLT::IgnoredNodes" do
-    before :all do
+  before :all do
     @template = "matchers/full_text.html.xslt"
   end
 
