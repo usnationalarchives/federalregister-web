@@ -21,10 +21,12 @@
   <xsl:template match="AGY[count(child::P) &lt; 2] | ACT[count(child::P) &lt; 2]" />
 
 
+  <!-- Ignore tags we handle explicitely elsewhere -->
+  <xsl:template match="FTNT" />
 
   <!-- Ignore tags usually found elsewhere in a document -->
   <!--
-    <xsl:template match="FTNT | CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | FTREF | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES">
+    <xsl:template match="CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | FTREF | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES">
     </xsl:template>
   -->
 </xsl:stylesheet>
