@@ -6,7 +6,14 @@ namespace :documents do
         table_of_contents
         extract_table_xml
         tables
+        full_text
       )
+
+      task :full_text, [:document_numbers] => :environment do |t, args|
+        HtmlCompilator::DocumentFullText.compile(
+          parse_document_numbers(args[:document_numbers])
+        )
+      end
 
       task :table_of_contents, [:document_numbers] => :environment do |t, args|
         HtmlCompilator::TableOfContents.compile(
