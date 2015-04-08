@@ -127,4 +127,6 @@ group :development, :test do
 
   gem "vcr",     "~> 2.6.0"
   gem "fakeweb", "~> 1.3.0"
+
+  gem 'rspec-html-matchers', '~> 0.5.0'
 end
