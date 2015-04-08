@@ -1,0 +1,12 @@
+<div class='toc-documents'>
+  <% documents.each do |document| %>
+    <% document = @presenter.lookup_document(document) %>
+    <h7><%= link_to(subject, document.html_url) %></h7>
+    <p>
+      <%= link_to "PDF", document.pdf_url %>
+      <%= document_page_range(document) %>
+      (<%= pluralize(page_count(document), "Page") %>)
+      <%= "[FR DOC #: #{document.document_number}]" %>
+    </p>
+  <% end %>
+</div>

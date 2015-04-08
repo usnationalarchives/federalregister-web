@@ -1,6 +1,5 @@
 <% @presenter.agencies.each do |agency| %>
   <h2><%= agency["name"] %></h2>
-
   <div id= <%= agency["slug"] %> >
   <% if agency["see_also"].present? %>
     <% agency["see_also"].each do |see_also_obj| %>
@@ -8,43 +7,9 @@
     <% end %>
   <% end %>
 
-
-  <% def display_level(docs=@presenter.test_doc_objects, level=1) %>
-    <% docs.group_by{|doc| doc["subject_#{level}"]}.each do |subject_heading, docs|%>
-     <%# indent = "  " * level%>
-     <% heading_level = 3 + level %>
-
-      <%finished_docs, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}%>
-
-      <%#= indent + subject_heading if subject_heading%>
-      <h<%=heading_level%>> <%= subject_heading if subject_heading %> </h<%=heading_level%>>
-
-      <% finished_docs.each do |doc|%>
-        <%#puts indent + "doc=" + doc["document_numbers"].first #render partial here%>
-        <%#= "doc=" + doc["document_numbers"].first %>
-        <% binding.pry %>
-        <%= render :partial => "table_of_contents_doc_details",
-            locals: { document: @presenter.lookup_document(doc["document_numbers"].first) } %>
-      <%end %>
-
-      <%unless nested_docs.empty? %>
-        <%display_level(nested_docs, level+1) if level < 3 %>
-      <%end%>
-    <%end %>
-  <%end %>
-
   <% agency["document_categories"].each do |doc_category| %>
-    <div class="arbitrary2">
     <h3><%= doc_category["name"] %></h3>
-
-    <% display_level(doc_category["documents"]) %>
-
-
-
-    <%= render :partial => "table_of_contents_doc_details", locals: {document: "Stubbed Document" , title: "Stubbed Out Title"} %>
-
-    <%#= @presenter.display_level(doc_category["documents"], 1) %>
-    </div>
+    <%= display_hierarchy(doc_category["documents"]) %>
   <% end %>
   </div>
 <% end %>
