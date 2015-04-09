@@ -74,7 +74,7 @@
   h2 {
     @include apertura-condensed;
     font-size: 22px;
-    color: $color-public-inspection;
+    color: $color-official;
     text-transform: none;
     font-weight: bold;
   }
@@ -251,3 +251,69 @@
     }
   }
 }
+
+/* TEST FORMATTING */
+
+.bootstrap-scope .doc-document-issue {
+  .title_bar {
+    border-top: 3px solid $color-official;
+    color: $color-official;
+
+    h2 {
+      margin: 0;
+      a { color: $color-official; }
+    }
+  }
+
+  .test_cat_margin {
+    margin-left: 8px;
+  }
+
+  .test_toc_margin {
+    margin-left: 20px;
+  }
+
+  .fr-subscribe-brandon-test {
+    background-color: $color-enhanced-light;
+    border-top: 1px solid $color-enhanced;
+    border-bottom: 1px solid $color-enhanced;
+    padding: 6px 13px 3px;
+
+    a {
+      color: $text;
+      text-decoration: none;
+
+      &.subscription:hover {
+        background: none;
+        color: $color-enhanced-dark;
+        text-decoration: none;
+      }
+
+      .icon-fr2 {
+        font-size: 16px;
+        top: 1px;
+
+        &.icon-fr2-message {
+          font-size: 20px;
+          top: 3px;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  .row.no-bottom-margin{
+    /* Bootstrap looks to make margin-bottom !important, need to overrwrite */
+    margin-bottom: 0px !important;
+  }
+
+  ul.test_font_style {
+    font-size: 12px;
+    a {
+      font-size: 12px;
+    }
+
+  }
+}
+
+

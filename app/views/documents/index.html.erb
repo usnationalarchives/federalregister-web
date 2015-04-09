@@ -10,23 +10,29 @@
 
   <div class="wrapper">
     <div class="container fixed">
-      <%#= render partial: 'public_inspection/metadata_summary_bar', locals: {documents: @documents} %>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <%= render partial: 'issues/document_summary',
+              locals: {presenter: @doc_presenter} %>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-content doc-toc">
-          <%#= render partial: 'public_inspection/info_box' %>
+          <div class="row doc doc-document-issue">
+            <%= render partial: 'document_issue/table_of_contents', locals: {presenter: @presenter} %>
+            <%#= render partial: 'public_inspection/table_of_contents', locals: {documents: @documents} %>
+            <%#= render partial: 'public_inspection/table_of_contents_sidebar', locals: {documents: @documents} %>
+          </div>
+
         </div>
         <div class="col-xs-3 col-md-3">
-          <%#= render partial: 'public_inspection/subscribe' %>
+          <%= render partial: 'document_issue/subscribe' %>
           <%#= render partial: 'public_inspection/calendar' %>
         </div>
       </div>
 
-      <div class="row doc doc-public-inspection">
-        <%= render partial: 'document_issue/table_of_contents', locals: {presenter: @presenter} %>
-        <%#= render partial: 'public_inspection/table_of_contents', locals: {documents: @documents} %>
-        <%#= render partial: 'public_inspection/table_of_contents_sidebar', locals: {documents: @documents} %>
-      </div>
 
       <div class="clearfix" style="height: 100px;"></div>
     </div>

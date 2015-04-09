@@ -16,9 +16,11 @@ module DocumentIssueHelper
       docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
         docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
         tags = []
-        tags << content_tag("h#{level+3}", subject_heading) if nested_docs.present?
+        tags << content_tag("h#{level+3}", subject_heading, class: "test_toc_margin") if nested_docs.present?
 
-        tags << content_tag(:div, class: "subject-#{level}") do
+        # tags << content_tag(:div, content_tag("h#{level+3}", subject_heading, class: "test_toc_margin"), class: "test_toc_margin")
+
+        tags << content_tag(:div, class: "test_toc_margin") do
           str = []
           docs_only_at_this_level.each do |doc|
             str << render(partial: "table_of_contents_doc_details",
@@ -32,7 +34,7 @@ module DocumentIssueHelper
           str.join("\n").html_safe
         end
 
-        tags.flatten #check flatten #document issue helper.  #
+        tags.flatten #check flatten #document issue helper.
       end.join("\n").html_safe
     end
 
