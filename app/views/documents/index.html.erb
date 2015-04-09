@@ -1,15 +1,37 @@
-<% @presenter.agencies.each do |agency| %>
-  <h2><%= agency["name"] %></h2>
-  <div id= <%= agency["slug"] %> >
-  <% if agency["see_also"].present? %>
-    <% agency["see_also"].each do |see_also_obj| %>
-      See <%= link_to(see_also_obj["name"], anchor: see_also_obj["slug"]) %><br>
-    <% end %>
-  <% end %>
+<%# header_type 'document-issue' %>
 
-  <% agency["document_categories"].each do |doc_category| %>
-    <h3><%= doc_category["name"] %></h3>
-    <%= display_hierarchy(doc_category["documents"]) %>
-  <% end %>
+<div class="title document-issue">
+  <span>Stubbed <%= @presenter.date %> Issue</span>
+</div>
+
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+  <div class="wrapper">
+    <div class="container fixed">
+      <%#= render partial: 'public_inspection/metadata_summary_bar', locals: {documents: @documents} %>
+
+      <div class="row">
+        <div class="col-xs-9 col-md-9 doc-content doc-toc">
+          <%#= render partial: 'public_inspection/info_box' %>
+        </div>
+        <div class="col-xs-3 col-md-3">
+          <%#= render partial: 'public_inspection/subscribe' %>
+          <%#= render partial: 'public_inspection/calendar' %>
+        </div>
+      </div>
+
+      <div class="row doc doc-public-inspection">
+        <%= render partial: 'document_issue/table_of_contents', locals: {presenter: @presenter} %>
+        <%#= render partial: 'public_inspection/table_of_contents', locals: {documents: @documents} %>
+        <%#= render partial: 'public_inspection/table_of_contents_sidebar', locals: {documents: @documents} %>
+      </div>
+
+      <div class="clearfix" style="height: 100px;"></div>
+    </div>
   </div>
-<% end %>
+
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->

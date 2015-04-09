@@ -1,0 +1,22 @@
+<div class="col-xs-9 col-md-9 doc-content doc-toc">
+<% @presenter.agencies.each do |agency| %>
+  <div class="title_bar">
+    <h2 id=<%=agency["slug"]%>> <%= link_to agency["name"], agency_path(agency["slug"]) %></h2>
+    <%= link_to("Back to Top", {anchor: 'agency["slug"]',class: "back_to_top"} ) %>
+  </div>
+  <% if agency["see_also"].present? %>
+    <ul>
+      <% agency["see_also"].each do |see_also_obj| %>
+      <li><span class="see">See</span>
+         <%= link_to(see_also_obj["name"], anchor: see_also_obj["slug"]) %><br>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% agency["document_categories"].each do |doc_category| %>
+    <h3><%= doc_category["name"] %></h3>
+    <%= display_hierarchy(doc_category["documents"]) %>
+  <% end %>
+<% end %>
+</div>

@@ -1,10 +1,11 @@
 class TableOfContentsPresenter
-  attr_reader :table_of_contents_data
+  attr_reader :table_of_contents_data, :date
 
   def initialize(date=nil)
     url = 'http://localhost:3000/documents/table_of_contents/json/2015/02/25.json'
     #TODO: Dynamically generate url using Settings.federal_register.local, etc.
     @table_of_contents_data = HTTParty.get(url)
+    @date = "February 25, 2015".to_date
   end
 
   def lookup_document(doc_number)
