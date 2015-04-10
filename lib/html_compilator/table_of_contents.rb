@@ -1,9 +1,22 @@
 class HtmlCompilator::TableOfContents < HtmlCompilator
-  def self.compile(document_numbers)
-    document_numbers.each do |document_number|
-      type = "table_of_contents"
-      xslt_template = "matchers/table_of_contents.html.xslt"
-      new(document_number, type, xslt_template).compile
-    end
+  attr_reader :document
+
+  def self.compile(document, save=true)
+    @document = document
+
+    compilator = new(document, document.publication_date)
+    save ? compilator.perform : compilator.compile
+  end
+
+  def type
+    'full_text'
+  end
+
+  def xslt_template
+    "matchers/table_of_contents.html.xslt"
+  end
+
+  def xslt_variables
+    {}
   end
 end

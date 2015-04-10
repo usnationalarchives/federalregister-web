@@ -27,10 +27,7 @@
       <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Table of Contents", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <% if Rails.env.development? || Rails.env.test? %>
-          <%= XsltTransform.transform_xml(
-                XsltTransform.xml_for_development(document),
-                "matchers/table_of_contents.html.xslt"
-              ).to_html.html_safe %>
+          <%= HtmlCompilator::TableOfContents.compile(document, false).html_safe %>
         <% else %>
           <%= esi document_table_of_contents_url(document) %>
         <% end %>

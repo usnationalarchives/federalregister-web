@@ -1,73 +1,42 @@
 class HtmlCompilator
-  attr_reader :document_number, :type, :xslt_template
+  attr_reader :date, :document
 
-  def initialize(document_number, type, xslt_template)
-    @document_number = document_number
-    @type = type
-    @xslt_template = xslt_template
+  delegate :document_folder_path, :document_html_path, :document_xml_path,
+    to: :path_manager
+
+  def initialize(document, date)
+    @document = document
+    @date = date
+  end
+
+  def perform
+    save(compile)
   end
 
   def compile
-    html = XsltTransform.standardized_html(
+    XsltTransform.standardized_html(
       XsltTransform.transform_xml(
-        File.read(document_xml_path),
-        xslt_template
+        File.read(document_xml_path(type)),
+        xslt_template,
+        xslt_variables
       ).to_xml
     )
+  end
 
-    FileUtils.mkdir_p(document_folder_path)
+  def save(html)
+    FileUtils.mkdir_p(
+      document_folder_path(type, 'html')
+    )
     File.open document_html_path, 'w' do |f|
       f.write(html)
     end
   end
 
-  private
-
-  def federalregister_api_core_data_dir
-    "#{Rails.root}/../federalregister-api-core/data"
+  def path_manager
+    @path_manager ||= XsltPathManager.new(document.document_number, date)
   end
 
-  def federalregister_api_core_xml_dir
-    "#{federalregister_api_core_data_dir}/xml"
-  end
-
-  def federalregister_api_core_html_dir
-    "#{federalregister_api_core_data_dir}/documents/html"
-  end
-
-  def document_xml_path
-    "#{federalregister_api_core_xml_dir}/#{document_file_path}.xml"
-  end
-
-  def document_html_path
-    "#{federalregister_api_core_html_dir}/#{type}/#{document_file_path}.html"
-  end
-
-  def document_file_path
-    document_number.sub(/-/,'').scan(/.{0,3}/).reject(&:blank?).join('/')
-  end
-
-  def document_folder_path
-    parts = document_html_path.split('/')
-    parts.pop
-    parts.join('/')
-  end
-
-  def table_xml_dir
-    table_dir('xml')
-  end
-
-  def table_html_dir
-    table_dir('html')
-  end
-
-  def table_dir(format)
-    [
-      federalregister_api_core_data_dir,
-      'tables',
-      format,
-      date.strftime("%Y/%m/%d"),
-      document_number
-    ].join("/")
+  def xslt_variables
+    {}
   end
 end

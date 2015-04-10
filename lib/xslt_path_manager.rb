@@ -1,0 +1,61 @@
+class XsltPathManager
+  attr_reader :date, :document_number
+
+  def initialize(document_number, date)
+    @document_number = document_number
+    @date = date.is_a?(Date) ? date : Date.parse(date)
+  end
+
+
+  def document_xml_path(type)
+    "#{document_dir(type, 'xml')}/#{document_number}.xml"
+  end
+
+  def document_html_path(type)
+    "#{document_dir(type, 'html')}/#{document_number}.html"
+  end
+
+  def document_dir(type, format)
+    data_dir(type, format)
+  end
+
+
+  def table_xml_path(index)
+    "#{table_xml_dir}/#{index+1}.xml"
+  end
+
+  def table_html_path(index)
+    "#{table_html_dir}/#{index+1}.html"
+  end
+
+  def table_xml_dir
+    table_dir('xml')
+  end
+
+  def table_html_dir
+    table_dir('html')
+  end
+
+  def table_dir(format)
+    File.join(
+      data_dir('tables', format),
+      document_number
+    )
+  end
+
+  private
+
+  def federalregister_api_core_document_data_path
+    "#{Rails.root}/../federalregister-api-core/data/documents"
+  end
+
+  def data_dir(type, format)
+    File.join(
+      federalregister_api_core_document_data_path,
+      type,
+      format,
+      date.strftime("%Y/%m/%d")
+    )
+  end
+
+end

@@ -10,15 +10,19 @@ namespace :documents do
       )
 
       task :full_text, [:document_numbers] => :environment do |t, args|
-        HtmlCompilator::DocumentFullText.compile(
+        documents(
           parse_document_numbers(args[:document_numbers])
-        )
+        ).each do |document|
+          HtmlCompilator::DocumentFullText.compile(document)
+        end
       end
 
       task :table_of_contents, [:document_numbers] => :environment do |t, args|
-        HtmlCompilator::TableOfContents.compile(
+        documents(
           parse_document_numbers(args[:document_numbers])
-        )
+        ).each do |document|
+          HtmlCompilator::TableOfContents.compile(document)
+        end
       end
 
       task :extract_table_xml, [:document_numbers] => :environment do |t, args|
@@ -39,6 +43,13 @@ namespace :documents do
 
       def parse_document_numbers(doc_nums)
         @doc_nums ||= doc_nums.split(" ")
+      end
+
+      def documents(doc_nums)
+        FederalRegister::Document.find_all(
+          doc_nums.join(','),
+          fields: %w(document_number publication_date start_page)
+        )
       end
     end
   end

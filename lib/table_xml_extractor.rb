@@ -1,4 +1,7 @@
-class TableXmlExtractor < HtmlCompilator
+class TableXmlExtractor
+  delegate :document_xml_path, :table_xml_dir, :table_xml_path
+    to: :path_manager
+
   def self.compile(document_numbers, date_str)
     date = Date.parse(date_str)
     document_numbers.each do |document_number|
@@ -30,7 +33,7 @@ class TableXmlExtractor < HtmlCompilator
 
   private
 
-  def table_xml_path(i)
-    "#{table_xml_dir}/#{i+1}.xml"
+  def path_manager
+    @path_manager ||= XsltPathManager.new(document.document_number, date)
   end
 end

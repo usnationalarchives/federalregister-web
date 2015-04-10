@@ -1,4 +1,7 @@
 class HtmlCompilator::Tables < HtmlCompilator
+  delegate :table_html_dir, :table_html_path, :table_xml_dir,
+    to: :path_manager
+
   def self.compile(document_numbers, date_str)
     date = Date.parse(date_str)
 
@@ -23,9 +26,8 @@ class HtmlCompilator::Tables < HtmlCompilator
 
     xml_paths.each do |xml_path|
       i = xml_path.split('/').last.to_i
-      html_file_path = "#{table_html_dir}/#{i}.html"
 
-      File.open(html_file_path, 'w') do |f|
+      File.open(table_html_path(i), 'w') do |f|
         f.write HtmlCompilator::Tables::Table.compile(xml_path)
       end
     end

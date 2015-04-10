@@ -1,9 +1,26 @@
 class HtmlCompilator::DocumentFullText < HtmlCompilator
-  def self.compile(document_numbers)
-    document_numbers.each do |document_number|
-      type = "full_text"
-      xslt_template = "matchers/full_text.html.xslt"
-      new(document_number, type, xslt_template).compile
-    end
+  attr_reader :document
+
+  def self.compile(document, save=true)
+    @document = document
+
+    compilator = new(document, document.publication_date)
+    save ? compilator.perform : compilator.compile
+  end
+
+  def type
+    'full_text'
+  end
+
+  def xslt_template
+    "matchers/full_text.html.xslt"
+  end
+
+  def xslt_variables
+    {
+      'first_page' => (document.start_page.to_s),
+      'document_number' => document.document_number,
+      'publication_date' => document.publication_date.to_s(:iso)
+    }
   end
 end
