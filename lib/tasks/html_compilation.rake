@@ -13,7 +13,7 @@ namespace :documents do
         documents(
           parse_document_numbers(args[:document_numbers])
         ).each do |document|
-          HtmlCompilator::DocumentFullText.compile(document)
+          HtmlCompilator::DocumentFullText.perform(document)
         end
       end
 
@@ -21,7 +21,7 @@ namespace :documents do
         documents(
           parse_document_numbers(args[:document_numbers])
         ).each do |document|
-          HtmlCompilator::TableOfContents.compile(document)
+          HtmlCompilator::TableOfContents.perform(document)
         end
       end
 

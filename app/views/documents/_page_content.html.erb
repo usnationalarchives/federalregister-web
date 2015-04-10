@@ -13,7 +13,7 @@
           <% end %>
 
           <% if Rails.env.development? || Rails.env.test? %>
-            <%= HtmlCompilator::DocumentFullText.compile(document, false).html_safe %>
+            <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
           <% else %>
             <%= esi document.http_body_html_url %>
           <% end %>

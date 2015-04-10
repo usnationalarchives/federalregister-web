@@ -1,11 +1,14 @@
 class HtmlCompilator::DocumentFullText < HtmlCompilator
   attr_reader :document
 
-  def self.compile(document, save=true)
+  def self.perform(document)
     @document = document
+    new(document, document.publication_date).perform
+  end
 
-    compilator = new(document, document.publication_date)
-    save ? compilator.perform : compilator.compile
+  def self.compile(document)
+    @document = document
+    new(document, document.publication_date).compile
   end
 
   def type
