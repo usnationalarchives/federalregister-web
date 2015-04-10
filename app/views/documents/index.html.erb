@@ -1,5 +1,3 @@
-<%# header_type 'document-issue' %>
-
 <div class="title document-issue">
   <span>Stubbed <%= @presenter.date %> Issue</span>
 </div>
@@ -20,19 +18,22 @@
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-content doc-toc">
-          <div class="row doc doc-document-issue">
-            <%= render partial: 'document_issue/table_of_contents', locals: {presenter: @presenter} %>
-            <%#= render partial: 'public_inspection/table_of_contents', locals: {documents: @documents} %>
-            <%#= render partial: 'public_inspection/table_of_contents_sidebar', locals: {documents: @documents} %>
-          </div>
-
         </div>
         <div class="col-xs-3 col-md-3">
           <%= render partial: 'document_issue/subscribe' %>
-          <%#= render partial: 'public_inspection/calendar' %>
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-9 col-md-9 doc-content doc-toc">
+          <div class="row doc doc-document-issue">
+            <%= render partial: 'document_issue/table_of_contents', locals: {presenter: @presenter} %>
+          </div>
+        </div>
+        <div class="col-xs-3 col-md-3">
+          <%= render partial: 'document_issue/agency_count_bar', locals: {presenter: @presenter} %>
+        </div>
+      </div>
 
       <div class="clearfix" style="height: 100px;"></div>
     </div>

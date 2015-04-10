@@ -13,4 +13,9 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   def publication_date
     Date.parse(slug)
   end
+
+  def self.published_on(date)
+    DocumentIssue.search(QueryConditions.published_on(date.to_date)).results
+  end
+
 end

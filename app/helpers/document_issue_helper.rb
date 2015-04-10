@@ -8,6 +8,11 @@ module DocumentIssueHelper
     end
   end
 
+  def issue_pdf_url(date)
+    "http://www.gpo.gov/fdsys/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
+  end
+
+
   def page_count(document)
     document.end_page - document.start_page + 1
   end
@@ -17,9 +22,6 @@ module DocumentIssueHelper
         docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
         tags = []
         tags << content_tag("h#{level+3}", subject_heading, class: "test_toc_margin") if nested_docs.present?
-
-        # tags << content_tag(:div, content_tag("h#{level+3}", subject_heading, class: "test_toc_margin"), class: "test_toc_margin")
-
         tags << content_tag(:div, class: "test_toc_margin") do
           str = []
           docs_only_at_this_level.each do |doc|

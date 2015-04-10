@@ -2,10 +2,15 @@ class DocumentsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @presenter = TableOfContentsPresenter.new
-    @doc_presenter = DocumentIssuePresenter.new(
-      DocumentIssue.current.publication_date
-    )
+    parsed_date = Date.parse("#{params["year"]}-#{params["month"]}-#{params["day"]}")
+    if DocumentIssue.published_on(parsed_date).empty?
+      raise ActiveRecord::RecordNotFound
+    else
+      @presenter = TableOfContentsPresenter.new
+      @doc_presenter = DocumentIssuePresenter.new(
+        DocumentIssue.current.publication_date
+      )
+    end
   end
 
   def show
