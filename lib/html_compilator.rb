@@ -1,4 +1,6 @@
 class HtmlCompilator
+  class MissingXmlFile < StandardError; end
+
   attr_reader :date, :document
 
   delegate :document_folder_path, :document_html_path, :document_xml_path,
@@ -10,17 +12,25 @@ class HtmlCompilator
   end
 
   def perform
-    save(compile)
+    begin
+      save(compile)
+    rescue MissingXmlFile => error
+      Honeybadger.notify(error)
+    end
   end
 
   def compile
-    XsltTransform.standardized_html(
-      XsltTransform.transform_xml(
-        File.read(document_xml_path(type)),
-        xslt_template,
-        xslt_variables
-      ).to_xml
-    )
+    if File.exists? document_xml_path(type)
+      XsltTransform.standardized_html(
+        XsltTransform.transform_xml(
+          File.read(document_xml_path(type)),
+          xslt_template,
+          xslt_variables
+        ).to_xml
+      )
+    else
+      raise MissingXmlFile, document_xml_path(type)
+    end
   end
 
   def save(html)
