@@ -69,7 +69,7 @@ describe XsltPathManager do
 
     it "#table_xml_path returns the proper xml file reference" do
       expect(
-        path_manager.table_xml_path(0)
+        path_manager.table_xml_path(1)
       ).to eq(
         "#{Rails.root}/../federalregister-api-core/data/documents/tables/xml/2015/01/02/2015-01234/1.xml"
       )
@@ -77,7 +77,7 @@ describe XsltPathManager do
 
     it "#table_html_path returns the proper html file_reference" do
       expect(
-        path_manager.table_html_path(0)
+        path_manager.table_html_path(1)
       ).to eq(
         "#{Rails.root}/../federalregister-api-core/data/documents/tables/html/2015/01/02/2015-01234/1.html"
       )

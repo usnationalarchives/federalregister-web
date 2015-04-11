@@ -27,7 +27,7 @@ class TableXmlExtractor
       if tables.present?
         FileUtils.mkdir_p(table_xml_dir)
         tables.each_with_index do |table_node, i|
-          File.open(table_xml_path(i), 'w'){|f| f.write(table_node.to_xml) }
+          File.open(table_xml_path(i+1), 'w'){|f| f.write(table_node.to_xml) }
         end
       end
     else

@@ -21,11 +21,11 @@ class XsltPathManager
 
 
   def table_xml_path(index)
-    "#{table_xml_dir}/#{index+1}.xml"
+    "#{table_xml_dir}/#{index}.xml"
   end
 
   def table_html_path(index)
-    "#{table_html_dir}/#{index+1}.html"
+    "#{table_html_dir}/#{index}.html"
   end
 
   def table_xml_dir
