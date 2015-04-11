@@ -1,4 +1,4 @@
-class HtmlCompilator::Tables < HtmlCompilator
+class HtmlCompilator::Tables
   delegate :table_html_dir, :table_html_path, :table_xml_dir,
     to: :path_manager
 
@@ -31,5 +31,11 @@ class HtmlCompilator::Tables < HtmlCompilator
         f.write HtmlCompilator::Tables::Table.compile(xml_path)
       end
     end
+  end
+
+  private
+
+  def path_manager
+    @path_manager ||= XsltPathManager.new(document_number, date)
   end
 end
