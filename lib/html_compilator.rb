@@ -3,7 +3,7 @@ class HtmlCompilator
 
   attr_reader :date, :document
 
-  delegate :document_folder_path, :document_html_path, :document_xml_path,
+  delegate :document_dir, :document_html_path, :document_xml_path,
     to: :path_manager
 
   def initialize(document, date)
@@ -35,9 +35,9 @@ class HtmlCompilator
 
   def save(html)
     FileUtils.mkdir_p(
-      document_folder_path(type, 'html')
+      document_dir(type, 'html')
     )
-    File.open document_html_path, 'w' do |f|
+    File.open document_html_path(type), 'w' do |f|
       f.write(html)
     end
   end

@@ -47,7 +47,7 @@ namespace :documents do
 
       def documents(doc_nums)
         FederalRegister::Document.find_all(
-          doc_nums.join(','),
+          doc_nums,
           fields: %w(document_number publication_date start_page)
         )
       end
