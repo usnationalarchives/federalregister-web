@@ -14,12 +14,18 @@ class HtmlCompilator::Tables::Table
   end
 
   def to_html
-    h.content_tag(:table, :border => 1) {
+    h.content_tag(:table) {
       h.concat h.content_tag(:caption) {
         captions.each do |caption|
           h.concat caption.to_html
         end
       } if captions.present?
+
+      h.concat h.content_tag(:colgroup) {
+        columns.each do |column|
+          h.concat column.to_html
+        end
+      }
 
       h.concat h.content_tag(:thead) {
         header_rows.each do |row|
@@ -65,6 +71,10 @@ class HtmlCompilator::Tables::Table
 
   def num_columns
     node.attr("COLS").to_i
+  end
+
+  def total_width_in_points
+    columns.sum(&:width_in_points)
   end
 
   def h

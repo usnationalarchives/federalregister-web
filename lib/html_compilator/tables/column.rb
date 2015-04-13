@@ -7,10 +7,23 @@ class HtmlCompilator::Tables::Column
   end
 
   attr_reader :table, :code
+  delegate :h, to: :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @code = options.fetch(:code)
+  end
+
+  def to_html
+    h.tag(:col, style: "width: #{sprintf("%.1f", percentage_width*100)}%")
+  end
+
+  def percentage_width
+    width_in_points.to_f / table.total_width_in_points
+  end
+
+  def width_in_points
+    code.gsub(/\D/,'').to_i
   end
 
   def alignment
