@@ -2,6 +2,7 @@
 /bin/*
 db/*.sqlite3
 log/*.log
+log/test
 tmp/
 config/*.yml
 .screenrc
