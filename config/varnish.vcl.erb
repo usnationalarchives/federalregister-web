@@ -101,7 +101,7 @@ sub vcl_recv {
     } else if (req.url ~ "^/api/") {
       set req.backend = fr2;
       return (lookup);
-    } else if (req.url ~ "^(/documents/(html|tables)/)") {
+    } else if (req.url ~ "^(/documents/(full_text|mods|tables)/)") {
       set req.backend = fr2;
       return (lookup);
     } else if (req.url ~ "^(/documents|/d/|/a/)") {
