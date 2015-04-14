@@ -1,4 +1,38 @@
 class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
+  # key is the ENT I attribute value
+  # the first value is how much to ident
+  # the second value is whether it should be a hanging indent
+  INDENTATION_RULES = {
+     1 => [0, true],
+     2 => [1, true],
+     3 => [2, true],
+     4 => [3, true],
+     5 => [4, true],
+     6 => [5, true],
+     7 => [6, true],
+     8 => [7, true],
+     9 => [8, true],
+    10 => [9, true],
+    11 => [0, true],
+    12 => [1, true],
+    13 => [2, true],
+    14 => [3, true],
+    15 => [4, true],
+    16 => [5, true],
+    17 => [6, true],
+    18 => [7, true],
+    19 => [8, true],
+    20 => [9, true],
+    22 => [0, true],
+    24 => [1, false],
+    25 => [0, false],
+    26 => [0, true],
+    27 => [0, false],
+    29 => [1, false],
+    31 => [0, true],
+    38 => [0, true],
+    50 => [0, false],
+  }
   attr_reader :row, :node
   delegate :expanded_stub_width, :table, :to => :row
   delegate :h, :to => :table
@@ -10,6 +44,26 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
 
   def element
     :td
+  end
+
+  def css_classes
+    super + stub_classes
+  end
+
+  def stub_classes
+    if stub?
+      if primary_indentation && primary_indentation > 0
+        if hanging_indentation
+          ["primary-indent-hanging-#{primary_indentation}"]
+        else
+          ["primary-indent-#{primary_indentation}"]
+        end
+      else
+        []
+      end
+    else
+      []
+    end
   end
 
   def colspan
@@ -77,6 +131,16 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
         table.rules.include?(:down) ? :single : nil
       end
     end
+  end
+
+  def primary_indentation
+    cell_i = node.attr("I").to_i
+    INDENTATION_RULES[cell_i].try(:first)
+  end
+
+  def hanging_indentation
+    cell_i = node.attr("I").to_i
+    INDENTATION_RULES[cell_i].try(:last)
   end
 
   def stub?

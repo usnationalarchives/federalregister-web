@@ -1,10 +1,13 @@
 .doc-content-area {
+  .table-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
   table {
     display: block;
     background-color: $color-official-light-alt;
     padding: 10px;
-    table-layout: fixed;
-    width: 100%;
 
     .right {
       text-align: right;
@@ -18,43 +21,26 @@
 
     $border-color: $dark-grey;
 
-    .border-top-single {
-      border-top: 1px solid $border-color;
-    }
-    .border-bottom-single {
-      border-bottom: 1px solid $border-color;
-    }
-    .border-left-single {
-      border-left: 1px solid $border-color;
-    }
-    .border-right-single {
-      border-right: 1px solid $border-color;
-    }
-
-    .border-top-double {
-      border-top: 4px double $border-color;
-    }
-    .border-bottom-double {
-      border-bottom: 4px double $border-color;
-    }
-    .border-left-double {
-      border-left: 4px double $border-color;
-    }
-    .border-right-double {
-      border-right: 4px double $border-color;
+    @each $side in top bottom left right {
+      .border-#{$side}-single {
+        border-#{$side}: 1px solid $border-color;
+      }
+      .border-#{$side}-bold {
+        border-#{$side}: 2px solid $border-color;
+      }
+      .border-#{$side}-double {
+        border-#{$side}: 4px double $border-color;
+      }
     }
 
-    .border-top-bold {
-      border-top: 2px solid $border-color;
-    }
-    .border-bottom-bold {
-      border-bottom: 2px solid $border-color;
-    }
-    .border-left-bold {
-      border-left: 2px solid $border-color;
-    }
-    .border-right-bold {
-      border-right: 2px solid $border-color;
+    @each $level in 0,1,2,3,4,5,6,7,8,9 {
+      .primary-indent-#{$level} {
+        padding-left: #{$level * 2}em;
+      }
+      .primary-indent-hanging-#{$level} {
+        padding-left: #{($level * 2) + 1}em;
+        text-indent: -1em;
+      }
     }
   }
 }
