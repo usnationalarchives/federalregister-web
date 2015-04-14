@@ -7,7 +7,10 @@
   <xsl:include href="app/views/xslt/matchers/text/all.html.xslt" />
 
 
-  <xsl:template name="table_of_contents" match="RULE | NOTICE">
+  <!-- ignore all the text modes until we process them later without a 'mode' -->
+  <xsl:template mode="table_of_contents" match="text()|@*" />
+
+  <xsl:template name="table_of_contents" match="/">
     <xsl:choose>
       <xsl:when test="count(//HD[not(ancestor::NOTE|ancestor::FP)]) &gt; 0">
         <ul class="table-of-contents fr-list with-bullets">
@@ -22,7 +25,7 @@
 
   <xsl:template match="HD[@SOURCE='HED' or @SOURCE='HD1' or @SOURCE = 'HD2' or @SOURCE = 'HD3' or @SOURCE = 'HD4'][not(ancestor::NOTE|ancestor::FP|ancestor::AUTH)]" mode="table_of_contents">
     <xsl:choose>
-      <xsl:when test="text() = 'AGENCY:' or text() = 'ACTION:' or text() = 'SUMMARY:'"/>
+      <xsl:when test="text() = 'AGENCY:'"/>
       <xsl:otherwise>
         <li>
           <xsl:attribute name="class">
@@ -43,7 +46,4 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template mode="table_of_contents" match="*[name(.) != 'HD']|text()">
-    <xsl:apply-templates mode="table_of_contents"/>
-  </xsl:template>
 </xsl:stylesheet>
