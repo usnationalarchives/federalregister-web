@@ -29,7 +29,7 @@
         <% if Rails.env.development? || Rails.env.test? %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
         <% else %>
-          <%= esi document_table_of_contents_path(document) %>
+          <%= esi document_table_of_contents_url(document) %>
         <% end %>
       <% end %>
     </li>
