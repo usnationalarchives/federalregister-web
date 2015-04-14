@@ -67,7 +67,7 @@ describe "XSLT::TableOfContents" do
     HTML
   end
 
-  it "creates table of contents without AGENCY, ACTION, or SUMMARY headers" do
+  it "creates table of contents without AGENCY header" do
     process <<-XML
       <AGY>
         <HD SOURCE="HED">AGENCY:</HD>
@@ -91,6 +91,12 @@ describe "XSLT::TableOfContents" do
 
     expect_equivalent <<-HTML
       <ul class="#{table_of_contents_ul_css}">
+        <li class="level-1">
+          <a href="#h-2">ACTION:</a>
+        </li>
+        <li class="level-1">
+          <a href="#h-3">SUMMARY:</a>
+        </li>
         <li class="level-1">
           <a href="#h-4">DATES:</a>
         </li>
