@@ -4,7 +4,7 @@
 
   <xsl:template match="E[@T=02]">
     <xsl:call-template name="optional_preceding_whitespace" />
-    <strong class="small-caps">
+    <strong class="minor-caps">
       <xsl:apply-templates />
     </strong>
     <xsl:call-template name="optional_following_whitespace" />
@@ -28,9 +28,9 @@
 
   <xsl:template match="E[@T=34]">
     <xsl:call-template name="optional_preceding_whitespace" />
-    <em class="small-caps">
+    <span class="small-caps">
       <xsl:apply-templates />
-    </em>
+    </span>
     <xsl:call-template name="optional_following_whitespace" />
   </xsl:template>
 

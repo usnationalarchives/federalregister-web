@@ -7,7 +7,7 @@ describe "XSLT::FullText::Typeface" do
   end
 
   context "<E> node attributes" do
-    it "formats T=02 as strong with small-caps class" do
+    it "formats T=02 as strong with minor-caps class" do
       process <<-XML
         <P>
           The street address for the Docket Operations office is in the
@@ -18,7 +18,7 @@ describe "XSLT::FullText::Typeface" do
 
       expect_equivalent <<-HTML
         <p id="p-1" data-page="1000">
-          The street address for the Docket Operations office is in the <strong class="small-caps">ADDRESSES</strong> section.
+          The street address for the Docket Operations office is in the <strong class="minor-caps">ADDRESSES</strong> section.
         </p>
       HTML
     end
@@ -55,7 +55,7 @@ describe "XSLT::FullText::Typeface" do
       HTML
     end
 
-    it "formats T=34 as emphasis" do
+    it "formats T=34 as a span with a small-caps class" do
       process <<-XML
         <P>
           applicability determination before use of the minor NSR tools.
@@ -66,7 +66,7 @@ describe "XSLT::FullText::Typeface" do
 
       expect_equivalent <<-HTML
         <p id="p-1" data-page="1000">
-          applicability determination before use of the minor NSR tools. <em class="small-caps">Alaska Admin. Code</em> tit. 18, 50.502, approved 72 FR 45378 (August 14, 2007); 7
+          applicability determination before use of the minor NSR tools. <span class="small-caps">Alaska Admin. Code</span> tit. 18, 50.502, approved 72 FR 45378 (August 14, 2007); 7
         </p>
       HTML
     end
