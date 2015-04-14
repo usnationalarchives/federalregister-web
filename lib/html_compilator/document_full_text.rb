@@ -11,7 +11,11 @@ class HtmlCompilator::DocumentFullText < HtmlCompilator
     new(document, document.publication_date).compile
   end
 
-  def type
+  def html_type
+    'full_text'
+  end
+
+  def xml_type
     'full_text'
   end
 

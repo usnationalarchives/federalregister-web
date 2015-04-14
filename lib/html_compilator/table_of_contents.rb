@@ -11,7 +11,11 @@ class HtmlCompilator::TableOfContents < HtmlCompilator
     new(document, document.publication_date).compile
   end
 
-  def type
+  def html_type
+    'table_of_contents'
+  end
+
+  def xml_type
     'full_text'
   end
 
