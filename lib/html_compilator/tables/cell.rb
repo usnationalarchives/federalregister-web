@@ -44,10 +44,6 @@ class HtmlCompilator::Tables::Cell
     end
   end
 
-  def index
-    row.all_cells.index(self)
-  end
-
   def previous_cell_in_row
     if index == 0
       nil

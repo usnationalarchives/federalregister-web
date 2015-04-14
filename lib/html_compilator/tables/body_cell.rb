@@ -33,13 +33,14 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
     38 => [0, true],
     50 => [0, false],
   }
-  attr_reader :row, :node
+  attr_reader :row, :node, :index
   delegate :expanded_stub_width, :table, :to => :row
   delegate :h, :to => :table
 
   def initialize(options)
     @row = options.fetch(:row)
     @node = options.fetch(:node)
+    @index = options.fetch(:index)
   end
 
   def element

@@ -45,6 +45,10 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
     end
   end
 
+  def index
+    row.all_cells.index(self)
+  end
+
   def descendants=(descendants)
     @descendants = descendants
 
