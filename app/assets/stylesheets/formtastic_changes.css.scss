@@ -1,7 +1,7 @@
-form.user { 
+form.user {
   font-size: 16px;
   margin-top: 15px;
-  font-family: "athelas-1","athelas-2", "Georgia", serif;  
+  @include calluna;
   }
 
 form.user p.inline-errors {
@@ -31,14 +31,14 @@ form.user div.error {
   }
 }
 
-form.user fieldset.inputs li.error { 
+form.user fieldset.inputs li.error {
   color: $fr-red;
   background: none;
 
   input { border: 1px solid $fr-red; }
 }
 
-form.user fieldset.inputs input { 
+form.user fieldset.inputs input {
   width: 200px;
   vertical-align: top;
   }
