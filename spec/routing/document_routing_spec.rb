@@ -9,7 +9,7 @@ describe "document routes" do
       day: "01",
       slug: "test-document",
       publication_date: Date.parse("2014-01-01"),
-      body_html_url: "http://www.fr2.local:8081/documents/html/full_text/201/400/001.html"
+      body_html_url: "http://www.fr2.local:8081/documents/full_text/html/2014/01/01/2014-00001.html"
     )
   }
 
@@ -82,7 +82,7 @@ describe "document routes" do
     it "document_table_of_contents_path return the proper path to the file on disk" do
       expect(
         document_table_of_contents_path(document)
-      ).to eql("/documents/html/table_of_contents/201/400/001.html")
+      ).to eql("/documents/table_of_contents/html/2014/01/01/2014-00001.html")
     end
   end
 end

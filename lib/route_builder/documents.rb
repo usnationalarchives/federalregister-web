@@ -26,8 +26,8 @@ module RouteBuilder::Documents
   end
 
   add_static_route :document_table_of_contents do |document|
-    file_path = document.body_html_url.split('full_text').last
+    file_path = document.body_html_url.split('full_text/').last
 
-    "/documents/html/table_of_contents#{file_path}"
+    "/documents/table_of_contents/#{file_path}"
   end
 end
