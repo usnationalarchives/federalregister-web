@@ -22,11 +22,9 @@
 
 
   <!-- Ignore tags we handle explicitely elsewhere -->
-  <xsl:template match="FTNT | FRDOC | BILCOD" />
+  <xsl:template match="FTNT | FTREF | FRDOC | BILCOD" />
 
   <!-- Ignore tags usually found elsewhere in a document -->
-  <!--
-    <xsl:template match="CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | FTREF | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES">
-    </xsl:template>
-  -->
+  <xsl:template match="CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES" />
+
 </xsl:stylesheet>
