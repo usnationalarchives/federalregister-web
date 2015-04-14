@@ -14,36 +14,32 @@ class HtmlCompilator::Tables::Table
   end
 
   def to_html
-    h.content_tag(:table) {
-      h.concat h.content_tag(:caption) {
-        captions.each do |caption|
-          h.concat caption.to_html
-        end
-      } if captions.present?
+    h.content_tag(:div, :class => "table-wrapper") {
+      h.content_tag(:table, :class => table_classes.join(' '), data: {point_width: total_width_in_points}) {
+        h.concat h.content_tag(:caption) {
+          captions.each do |caption|
+            h.concat caption.to_html
+          end
+        } if captions.present?
 
-      h.concat h.content_tag(:colgroup) {
-        columns.each do |column|
-          h.concat column.to_html
-        end
+        h.concat h.content_tag(:thead) {
+          header_rows.each do |row|
+            h.concat row.to_html
+          end
+        }
+
+        h.concat h.content_tag(:tbody) {
+          body_rows.each do |row|
+            h.concat row.to_html
+          end
+        }
+
+        h.concat h.content_tag(:tfoot) {
+          footers.each do |footer|
+            h.concat footer.to_html
+          end
+        } if footers.present?
       }
-
-      h.concat h.content_tag(:thead) {
-        header_rows.each do |row|
-          h.concat row.to_html
-        end
-      }
-
-      h.concat h.content_tag(:tbody) {
-        body_rows.each do |row|
-          h.concat row.to_html
-        end
-      }
-
-      h.concat h.content_tag(:tfoot) {
-        footers.each do |footer|
-          h.concat footer.to_html
-        end
-      } if footers.present?
     }
   end
 
@@ -71,6 +67,12 @@ class HtmlCompilator::Tables::Table
 
   def num_columns
     node.attr("COLS").to_i
+  end
+
+  def table_classes
+    [].tap do |classes|
+      classes << 'wide' if total_width_in_points > 250
+    end
   end
 
   def total_width_in_points
