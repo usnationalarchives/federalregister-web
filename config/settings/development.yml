@@ -13,3 +13,7 @@ federal_register:
   api_url: 'http://127.0.0.1:8080/api/v1'
 regulations_dot_gov:
   debug_output_enabled: true
+
+
+# APPLICATION SETTINGS
+render_documents_from_raw_xml: true

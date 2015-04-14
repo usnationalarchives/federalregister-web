@@ -26,7 +26,7 @@
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Table of Contents", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
-        <% if Rails.env.development? || Rails.env.test? %>
+        <% if Settings.render_documents_from_raw_xml %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
         <% else %>
           <%= esi document_table_of_contents_path(document) %>
