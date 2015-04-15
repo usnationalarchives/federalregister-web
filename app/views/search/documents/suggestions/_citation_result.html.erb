@@ -1,5 +1,5 @@
 <li class="result_item">
-  <h4><%= link_to sanitize(document.title, :tags => %w(span), :attributes => %w(class)), document_path(document) %></h4>
+  <h4><%= link_to sanitize(document.title, :tags => %w(span), :attributes => %w(class)), document_issue_path(document) %></h4>
 
   <div class="result_info">
     <span class="excerpts"><%= truncate_words(document.abstract, :length => 200) %></span>
@@ -8,7 +8,7 @@
     <li>
       <%= document.display_type.indefinite_article.capitalize %> <span class='document_type'><%= document.display_type %></span>
       by <%= document.agency_names %> on
-      <%= link_to date_tag(document.publication_date, :datetime => document.publication_date.to_s(:iso)), documents_path(document.publication_date) %>
+      <%= link_to date_tag(document.publication_date, :datetime => document.publication_date.to_s(:iso)), document_issue_path(document.publication_date) %>
     </li>
     <li class="pdf"><%= link_to 'PDF', document.pdf_url, :class => 'button format pdf small' %></li>
     <%# RW: pages and whitespace need to be cleaned up here %>

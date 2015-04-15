@@ -59,19 +59,10 @@ describe "document routes" do
     )
   end
 
-  it "documents/:year/:month/:day routes to DocumentsController#index" do
+  it "documents/:year/:month/:day routes to DocumentIssuesController#show" do
     expect(get: "documents/#{document.year}/#{document.month}/#{document.day}").to route_to(
-      controller: "documents",
-      action: "index",
-      year: document.year,
-      month: document.month,
-      day: document.day
-    )
-
-    #test RouteBuilder
-    expect(get: documents_path(document.publication_date)).to route_to(
-      controller: "documents",
-      action: "index",
+      controller: "document_issues",
+      action: "show",
       year: document.year,
       month: document.month,
       day: document.day

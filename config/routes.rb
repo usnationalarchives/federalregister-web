@@ -85,6 +85,20 @@ MyFr2::Application.routes.draw do
     to: 'search/documents#help',
     as: 'documents_search_help'
 
+  #
+  # Public Inspection Documents
+  #
+
+  get 'public-inspection/:year/:month/:day',
+      to: "public_inspection_document_issues#show",
+      as: :public_inspection_issue,
+      constraints: {
+        :year        => /\d{4}/,
+        :month       => /\d{1,2}/,
+        :day         => /\d{1,2}/
+      }
+
+
 
   #
   # Public Inspection Documents Search

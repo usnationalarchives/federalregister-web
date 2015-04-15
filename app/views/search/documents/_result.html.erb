@@ -23,7 +23,7 @@
     <li>
       <%= document.display_type.indefinite_article.capitalize %> <span class='entry_type'><%= document.display_type %></span>
       by <%= document.agency_names %> on
-      <%= link_to date_tag(document.publication_date, :datetime => document.publication_date.to_s(:iso)), documents_path(document.publication_date) %>
+      <%= link_to date_tag(document.publication_date, :datetime => document.publication_date.to_s(:iso)), document_issue_path(document.publication_date) %>
     </li>
     <li class="pdf"><%= link_to 'PDF', document.pdf_url, :class => 'button format pdf small' %></li>
   </ul>  
