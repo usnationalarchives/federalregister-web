@@ -11,7 +11,7 @@ describe HtmlCompilator::Tables do
     context "table header" do
       it "parses simple rows" do
         table =parse <<-XML
-          <GPOTABLE COLS="3" OPTS="L2(1)" CDEF="1,1,1">
+          <GPOTABLE COLS="3" OPTS="L2(,,,,)" CDEF="1,1,1">
             <BOXHD>
               <CHED H="1">A</CHED>
               <CHED H="1">B</CHED>
@@ -59,6 +59,24 @@ describe HtmlCompilator::Tables do
         expect(table.header_rows.first.cells.map(&:border_classes)).to eql([
           %w(border-top-single border-bottom-single border-right-single),
           %w(border-top-single border-bottom-single),
+        ])
+      end
+
+      it "handles rule width options" do
+        table =parse <<-XML
+          <GPOTABLE COLS="3" OPTS="L2(0,)" CDEF="1,1,1">
+            <BOXHD>
+              <CHED H="1">A</CHED>
+              <CHED H="1">B</CHED>
+              <CHED H="2">BA</CHED>
+              <CHED H="2">BB</CHED>
+            </BOXHD>
+          </GPOTABLE>
+        XML
+
+        expect(table.header_rows.first.cells.map(&:border_classes)).to eql([
+          %w(border-bottom-single border-right-single),
+          %w(border-bottom-single),
         ])
       end
     end

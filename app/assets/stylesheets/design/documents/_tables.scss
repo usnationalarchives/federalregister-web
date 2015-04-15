@@ -2,12 +2,24 @@
   .table-wrapper {
     width: 100%;
     overflow-x: scroll;
+
+    table.wide {
+      max-width: initial;
+    }
   }
 
   table {
     display: block;
     background-color: $color-official-light-alt;
     padding: 10px;
+
+    th {
+      vertical-align: middle;
+    }
+
+    th,td {
+      padding: 6px;
+    }
 
     .right {
       text-align: right;
