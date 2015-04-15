@@ -29,6 +29,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def parse_date_from_params
+    year  = params[:year]
+    month = params[:month]
+    day   = params[:day]
+    begin
+      Date.parse("#{year}-#{month}-#{day}")
+    rescue ArgumentError
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
 
   rescue_from Exception, :with => :server_error
   def server_error(exception)

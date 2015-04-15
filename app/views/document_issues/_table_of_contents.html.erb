@@ -20,7 +20,7 @@
   <% agency["document_categories"].each do |doc_category| %>
     <div class="test_toc_margin">
       <h3 class="category"><%= doc_category["name"] %></h3>
-      <%= display_hierarchy(doc_category["documents"]) %>
+      <%= display_hierarchy(doc_category["documents"],1, partial_name: @presenter.document_partial_name) %>
     </div>
   <% end %>
 <% end %>
