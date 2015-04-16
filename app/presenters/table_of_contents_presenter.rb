@@ -65,6 +65,8 @@ class TableOfContentsPresenter
         @child_agencies ||= attributes['see_also'].map do |child_agency|
           presenter.agencies[child_agency['slug']]
         end
+      else
+        []
       end
     end
 
@@ -72,26 +74,24 @@ class TableOfContentsPresenter
       attributes["document_categories"]
     end
 
-    def document_count_without_child_agencies
-      return @document_count_without_child_agencies if @document_count_without_child_agencies
-      doc_count = 0
-      attributes["document_categories"].each do |doc_cat| #TODO: Refactor to nested injects?
-        doc_cat["documents"].each do |doc|
-          doc_count += doc["document_numbers"].size
-        end
+    def document_count_with_child_agencies
+      return @document_count_with_child_agencies if @document_count_with_child_agencies
+
+      @document_count_with_child_agencies = child_agencies.inject(document_count) do |sum, child_agency|
+        sum += child_agency.document_count
+        sum
       end
-      @document_count_without_child_agencies = doc_count
     end
 
     def document_count
       return @document_count if @document_count
-      return @document_count = document_count_without_child_agencies if child_agencies.nil?
-      child_document_counts = child_agencies.inject(0) do |sum, child_agency|
-        sum += child_agency.document_count
+
+      @document_count = attributes["document_categories"].inject(0) do |sum, doc_cat|
+        doc_cat["documents"].each do |doc|
+          sum += doc["document_numbers"].size
+        end
         sum
       end
-
-      @document_count = document_count_without_child_agencies + child_document_counts
     end
 
     def find_specific_agency_documents(doc_numbers)
@@ -100,7 +100,7 @@ class TableOfContentsPresenter
 
     private
 
-    def document_numbers #TODO: refactor to inject
+    def document_numbers
       return @document_numbers if @document_numbers
       doc_numbers = []
       attributes["document_categories"].each do |doc_cat| #TODO: Refactor to nested injects?

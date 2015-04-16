@@ -11,7 +11,7 @@
       <% agency.child_agencies.each do |child_agency| %>
         <li><span class="see">See</span>
           <%= link_to(child_agency.name, anchor: child_agency.slug) %>
-          <span class="count_pill"><%= child_agency.document_count %></span>
+          <span class="count_pill"><%= child_agency.document_count_with_child_agencies %></span>
         </li>
       <% end %>
     </ul>
