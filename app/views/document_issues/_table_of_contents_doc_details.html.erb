@@ -1,6 +1,5 @@
 <div class='toc-documents'>
   <% documents.each do |document| %>
-    <% document = @presenter.lookup_document(document) %>
     <h7><%= link_to(subject, document.html_url) %></h7>
     <div class="row no-bottom-margin">
       <ul class="col-xs-2 col-md-2 test_font_style">

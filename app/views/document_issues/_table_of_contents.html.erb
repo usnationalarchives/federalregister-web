@@ -1,26 +1,26 @@
-<% @presenter.agencies.each do |agency| %>
+<% agencies.each do |slug, agency| %>
   <div class="title_bar">
-    <h2 id=<%=agency["slug"]%> > 
-      <%= link_to(agency["name"], agency_path(agency["slug"]), class: "test_toc_margin" ) %>
+    <h2 id=<%=agency.slug%> >
+      <%= link_to(agency.name, agency_path(agency), class: "test_toc_margin" ) %>
     </h2>
     <%= link_to("Back to Top", '#main',{class: "back_to_top"} ) %>
   </div>
 
-  <% if agency["see_also"].present? %>
+  <% if agency.child_agencies.present? %>
     <ul>
-      <% agency["see_also"].each do |see_also_obj| %>
+      <% agency.child_agencies.each do |child_agency| %>
         <li><span class="see">See</span>
-          <%= link_to(see_also_obj["name"], anchor: see_also_obj["slug"]) %>
-          <span class="count_pill"><%= @presenter.agency_count(see_also_obj["slug"]) %></span>
+          <%= link_to(child_agency.name, anchor: child_agency.slug) %>
+          <span class="count_pill"><%= child_agency.document_count %></span>
         </li>
       <% end %>
     </ul>
   <% end %>
 
-  <% agency["document_categories"].each do |doc_category| %>
+  <% agency.document_categories.each do |doc_category| %>
     <div class="test_toc_margin">
       <h3 class="category"><%= doc_category["name"] %></h3>
-      <%= display_hierarchy(doc_category["documents"],1, partial_name: @presenter.document_partial_name) %>
+      <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
     </div>
   <% end %>
 <% end %>

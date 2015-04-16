@@ -1,11 +1,9 @@
 class TableOfContentsPresenter
   attr_reader :table_of_contents_data, :date
 
-  def initialize(date)#="February 25, 2015")
-    @date = date.to_date
+  def initialize(date)
+    @date = date
     @table_of_contents_data = HTTParty.get(url)
-    # Example of Static JSON
-    # url = 'http://localhost:3000/documents/table_of_contents/json/2015/02/25.json'
   end
 
   def url
@@ -18,30 +16,17 @@ class TableOfContentsPresenter
     base_uri + "/documents/table_of_contents/json/#{date.strftime('%Y')}/#{date.strftime('%m')}/#{date.strftime('%d')}.json"
   end
 
+  def document_partial
+    'document_issues/table_of_contents_doc_details'
+  end
+
   def lookup_document(doc_number)
     api_documents.results.find{|doc| doc.document_number == doc_number}
   end
 
   def agencies
-    table_of_contents_data["agencies"]
-  end
-
-  def agency_count(agency_slug)
-    agency_counts[agency_slug][:count]
-  end
-
-  def agency_counts
-    @agency_info ||= begin
-      hsh = {}
-      agencies.map do |agency|
-        doc_count=0
-        agency["document_categories"].each do |doc_cat|
-          doc_cat["documents"].each do |doc|
-            doc_count += doc["document_numbers"].size 
-          end
-        end
-        hsh[agency["slug"]] = {name: agency["name"] ,count: doc_count }
-      end
+    @agencies ||= table_of_contents_data["agencies"].inject({}) do |hsh, agency_hash|
+      hsh[agency_hash['slug']] = Agency.new(agency_hash, self)
       hsh
     end
   end
@@ -53,6 +38,88 @@ class TableOfContentsPresenter
   def page_count(start_page, end_page)
     end_page - start_page + 1
   end
+
+
+  class Agency
+    attr_reader :attributes, :presenter
+
+    def initialize(attributes, presenter)
+      @attributes = attributes
+      @presenter = presenter
+    end
+
+    def name
+      attributes['name']
+    end
+
+    def slug
+      attributes['slug']
+    end
+
+    def to_param
+      slug
+    end
+
+    def child_agencies
+      if attributes['see_also']
+        @child_agencies ||= attributes['see_also'].map do |child_agency|
+          presenter.agencies[child_agency['slug']]
+        end
+      end
+    end
+
+    def document_categories
+      attributes["document_categories"]
+    end
+
+    def document_count_without_child_agencies
+      return @document_count_without_child_agencies if @document_count_without_child_agencies
+      doc_count = 0
+      attributes["document_categories"].each do |doc_cat| #TODO: Refactor to nested injects?
+        doc_cat["documents"].each do |doc|
+          doc_count += doc["document_numbers"].size
+        end
+      end
+      @document_count_without_child_agencies = doc_count
+    end
+
+    def document_count
+      return @document_count if @document_count
+      return @document_count = document_count_without_child_agencies if child_agencies.nil?
+      child_document_counts = child_agencies.inject(0) do |sum, child_agency|
+        sum += child_agency.document_count
+        sum
+      end
+
+      @document_count = document_count_without_child_agencies + child_document_counts
+    end
+
+    def find_specific_agency_documents(doc_numbers)
+      doc_numbers.map {|doc_num| documents[doc_num]}
+    end
+
+    private
+
+    def document_numbers #TODO: refactor to inject
+      return @document_numbers if @document_numbers
+      doc_numbers = []
+      attributes["document_categories"].each do |doc_cat| #TODO: Refactor to nested injects?
+        doc_cat["documents"].each do |doc|
+          doc_numbers << doc["document_numbers"]
+        end
+      end
+      @document_numbers = doc_numbers.flatten
+    end
+
+    def documents
+      @documents ||= document_numbers.inject({}) do |hsh, doc_num|
+        hsh[doc_num] = presenter.documents.results.find{|doc| doc.document_number == doc_num}
+        hsh
+      end
+    end
+
+  end
+
 
   private
 
