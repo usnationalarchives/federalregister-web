@@ -1,0 +1,27 @@
+<% documents.each do |document| %>
+  <dt>
+    <%= link_to(subject, document.html_url) %>
+    <div class="details">
+      <div class="column file_info">
+        <%= link_to "<span class='icon-fr2 icon-fr2-doc-pdf'> PDF <span>".html_safe, document.pdf_url %>
+        <a href="/articles/2014/03/04/2014-04591/2014-annual-review-and-adjustment-great-lakes-pilotage-rates"><span class="permalink">Permalink</span></a>
+      </div>
+      <div class="column dates">
+        <span class="filed_at"> Filed on: <%= document.filed_at %></span>
+        <span class="publication_date">
+            Schd. Pub. Date:
+              <%= document.publication_date %>
+        </span>
+      </div>
+      <div class="column doc_numbers">
+        <span class="document_number">
+          FR Document: <%= link_to(document.document_number,"/a/#{document.document_number}") %>
+        </span>
+        <span class="docket_id"><%= document.docket_numbers.to_sentence %></span>
+      </div>
+    </div>
+  </dt>
+<% end %>
+
+
+

@@ -1,0 +1,16 @@
+<div class="col-xs-9 col-md-9 doc-content doc-toc">
+  <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+    <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+    <%= render partial: 'public_inspection_document_issues/table_of_contents_documents',
+      locals: { type: "special",
+                special_filing_agencies: special_filing_agencies,
+                document_partial: document_partial } %>
+  <% end %>
+  <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+    <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+    <%= render partial: 'public_inspection_document_issues/table_of_contents_documents',
+      locals: { type: "regular",
+                regular_filing_agencies: regular_filing_agencies,
+                document_partial: document_partial } %>
+  <% end %>
+</div>

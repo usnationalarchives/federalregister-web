@@ -1,0 +1,45 @@
+<% header_type 'public-inspection' %>
+
+<div class="title public-inspection">
+  <span><%= @regular_filings_presenter.date %> Public Inspection</span>
+</div>
+
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+  <div class="wrapper">
+    <div class="container fixed">
+      <%#= render partial: 'public_inspection/metadata_summary_bar', locals: {documents: @documents} %>
+
+      <div class="row">
+        <div class="col-xs-9 col-md-9 doc-content doc-toc">
+          <%= render partial: 'info_box' %>
+        </div>
+        <div class="col-xs-3 col-md-3">
+          <%= render partial: 'subscribe' %>
+          <%#= render partial: 'public_inspection/calendar' %>
+        </div>
+      </div>
+
+    <div class="row doc doc-public-inspection">
+        <%= render partial: 'table_of_contents',
+            locals: {
+              special_filing_agencies: @special_filings_presenter.agencies,
+              regular_filing_agencies: @regular_filings_presenter.agencies,
+              document_partial: @regular_filings_presenter.document_partial
+            } %>
+        <%= render partial: 'table_of_contents_sidebar',
+            locals: {
+              special_filing_agencies: @special_filings_presenter.agencies,
+              regular_filing_agencies: @regular_filings_presenter.agencies,
+            } %>
+      </div>
+
+      <div class="clearfix" style="height: 100px;"></div>
+    </div>
+  </div>
+
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->

@@ -2,7 +2,7 @@ class TableOfContentsPresenter
   attr_reader :table_of_contents_data, :date
 
   def initialize(date)
-    @date = date
+    @date = date.to_date
     @table_of_contents_data = HTTParty.get(url)
   end
 
@@ -12,10 +12,6 @@ class TableOfContentsPresenter
 
   def document_partial
     'document_issues/table_of_contents_doc_details'
-  end
-
-  def lookup_document(doc_number)
-    api_documents.results.find{|doc| doc.document_number == doc_number}
   end
 
   def agencies

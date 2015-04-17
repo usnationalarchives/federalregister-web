@@ -1,0 +1,61 @@
+<div class="<%= type %>">
+<% if type =='special' %>
+  <h2 id="special-filing">
+    Special Filing
+    <span class="updated_at">STUBBED: updated at 11:15 AM, on Monday, March 3rd, 2014</span>
+  </h2>
+
+  <% special_filing_agencies.each do |slug, agency| %>
+  <div class="title_bar">
+    <h2 id=<%#="special-filing-#{agency.slug}"%>><%=link_to(agency.name,agency_path(agency))%></h2>
+    <a href="#special-filing" class="back_to_top">Back to Top</a>
+  </div>
+
+    <% if agency.child_agencies %>
+      <ul>
+        <% agency.child_agencies.each do |child_agency| %>
+          <li><span class="see">See</span> <a href=<%="#special-filing-#{child_agency.slug}"%>><%= child_agency.name %></a> <span class="count_pill">1</span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% agency.document_categories.each do |doc_category| %>
+      <dl>
+        <div class="test_category">
+          <h3 class="category"><%= doc_category["name"] %></h3>
+          <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
+        </div>
+      </dl>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <h2 id="regular-filing">
+    Regular Filing
+    <span class="updated_at">STUBBED: updated at 08:45 AM, on Monday, March 3rd, 2014</span>
+  </h2>
+  <% regular_filing_agencies.each do |slug, agency| %>
+  <div class="title_bar">
+    <h2 id=<%="regular-filing-#{agency.slug}"%>><%=link_to(agency.name,agency_path(agency))%></h2>
+    <a href="#regular-filing" class="back_to_top">Back to Top</a>
+  </div>
+
+    <% if agency.child_agencies %>
+      <ul>
+        <% agency.child_agencies.each do |child_agency| %>
+          <li><span class="see">See</span> <a href=<%="#regular-filing-#{child_agency.slug}"%>><%= child_agency.name %></a> <span class="count_pill">1</span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% agency.document_categories.each do |doc_category| %>
+      <dl>
+        <div class="test_toc_margin">
+          <h3 class="category"><%= doc_category["name"] %></h3>
+          <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
+        </div>
+      </dl>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
