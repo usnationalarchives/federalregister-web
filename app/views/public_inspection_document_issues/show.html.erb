@@ -10,7 +10,11 @@
 
   <div class="wrapper">
     <div class="container fixed">
-      <%#= render partial: 'public_inspection/metadata_summary_bar', locals: {documents: @documents} %>
+      <div class="public-inspection-summary-bar" >
+        <%= render partial: 'issues/public_inspection_document_summary',
+          locals: {presenter: @pi_presenter} %>
+      </div>
+
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-content doc-toc">
@@ -26,8 +30,10 @@
         <%= render partial: 'table_of_contents',
             locals: {
               special_filing_agencies: @special_filings_presenter.agencies,
+              special_filing_updated_at: @pi_presenter.special_filings.formatted_updated_at,
               regular_filing_agencies: @regular_filings_presenter.agencies,
-              document_partial: @regular_filings_presenter.document_partial
+              regular_filing_updated_at: @pi_presenter.regular_filings.formatted_updated_at,
+              document_partial: @regular_filings_presenter.document_partial,
             } %>
         <%= render partial: 'table_of_contents_sidebar',
             locals: {

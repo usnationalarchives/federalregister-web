@@ -13,12 +13,12 @@
     <div class="col-xs-9 col-md-9 fr-head-meta-counts">
       <div class="row">
         <div class="col-xs-6 col-md-6">
-          <%= render partial: 'public_inspection_description' %>
+          <%= render partial: 'issues/public_inspection_description' %>
         </div>
 
         <div class="col-xs-6 col-md-6">
           <ul class="fr-list with-stats">
-            <%= render partial: 'public_inspection_filing_types',
+            <%= render partial: 'issues/public_inspection_filing_types',
               locals: {presenter: presenter} %>
           </ul>
         </div>

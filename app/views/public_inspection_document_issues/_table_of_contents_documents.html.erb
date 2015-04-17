@@ -2,7 +2,7 @@
 <% if type =='special' %>
   <h2 id="special-filing">
     Special Filing
-    <span class="updated_at">STUBBED: updated at 11:15 AM, on Monday, March 3rd, 2014</span>
+    <span class="updated_at">updated at <%= updated_at %></span>
   </h2>
 
   <% special_filing_agencies.each do |slug, agency| %>
@@ -32,7 +32,7 @@
 <% else %>
   <h2 id="regular-filing">
     Regular Filing
-    <span class="updated_at">STUBBED: updated at 08:45 AM, on Monday, March 3rd, 2014</span>
+    <span class="updated_at">updated at <%= updated_at %></span>
   </h2>
   <% regular_filing_agencies.each do |slug, agency| %>
   <div class="title_bar">

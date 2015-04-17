@@ -4,6 +4,7 @@
     <%= render partial: 'public_inspection_document_issues/table_of_contents_documents',
       locals: { type: "special",
                 special_filing_agencies: special_filing_agencies,
+                updated_at: special_filing_updated_at,
                 document_partial: document_partial } %>
   <% end %>
   <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
@@ -11,6 +12,7 @@
     <%= render partial: 'public_inspection_document_issues/table_of_contents_documents',
       locals: { type: "regular",
                 regular_filing_agencies: regular_filing_agencies,
+                updated_at: regular_filing_updated_at,
                 document_partial: document_partial } %>
   <% end %>
 </div>

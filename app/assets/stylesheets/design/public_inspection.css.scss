@@ -34,3 +34,7 @@
 
   p.pi_notice { @extend %pi_notice; }
 }
+
+.public-inspection-summary-bar #pi-metadata-bar{
+  display: block;
+}
