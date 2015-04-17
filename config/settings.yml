@@ -1,2 +1,3 @@
 regulations_dot_gov:
   debug_output_enabled: false
+render_documents_from_raw_xml: false
