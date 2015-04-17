@@ -17,7 +17,7 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
 
   def border_top
     if table.rules.include?(:horizonal) && row.first?
-      :single
+      table.top_border_style
     end
   end
 
@@ -43,6 +43,10 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
         table.rules.include?(:down) ? :single : nil
       end
     end
+  end
+
+  def index
+    row.all_cells.index(self)
   end
 
   def descendants=(descendants)

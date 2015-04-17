@@ -14,30 +14,32 @@ class HtmlCompilator::Tables::Table
   end
 
   def to_html
-    h.content_tag(:table, :border => 1) {
-      h.concat h.content_tag(:caption) {
-        captions.each do |caption|
-          h.concat caption.to_html
-        end
-      } if captions.present?
+    h.content_tag(:div, :class => "table-wrapper") {
+      h.content_tag(:table, :class => table_classes.join(' '), data: {point_width: total_width_in_points}) {
+        h.concat h.content_tag(:caption) {
+          captions.each do |caption|
+            h.concat caption.to_html
+          end
+        } if captions.present?
 
-      h.concat h.content_tag(:thead) {
-        header_rows.each do |row|
-          h.concat row.to_html
-        end
+        h.concat h.content_tag(:thead) {
+          header_rows.each do |row|
+            h.concat row.to_html
+          end
+        }
+
+        h.concat h.content_tag(:tbody) {
+          body_rows.each do |row|
+            h.concat row.to_html
+          end
+        }
+
+        h.concat h.content_tag(:tfoot) {
+          footers.each do |footer|
+            h.concat footer.to_html
+          end
+        } if footers.present?
       }
-
-      h.concat h.content_tag(:tbody) {
-        body_rows.each do |row|
-          h.concat row.to_html
-        end
-      }
-
-      h.concat h.content_tag(:tfoot) {
-        footers.each do |footer|
-          h.concat footer.to_html
-        end
-      } if footers.present?
     }
   end
 
@@ -67,6 +69,16 @@ class HtmlCompilator::Tables::Table
     node.attr("COLS").to_i
   end
 
+  def table_classes
+    [].tap do |classes|
+      classes << 'wide' if total_width_in_points > 250
+    end
+  end
+
+  def total_width_in_points
+    columns.sum(&:width_in_points)
+  end
+
   def h
     @h ||= ActionView::Base.new
   end
@@ -79,35 +91,67 @@ class HtmlCompilator::Tables::Table
   end
 
   def options
-    @options ||= (node.attr("OPTS") || '').split(',')
+    # handle options with parens, like OPTS="L2(1,2,3),4"
+    @options ||= (node.attr("OPTS") || '').split(/,(?![^\(]*\))/)
+  end
+
+  def rule_option
+    options.
+      detect{|x| x =~ /^L\d\(|$/ }
   end
 
   def rules
     return @rules if @rules
-    rule_option = options.
-      map{|x| x.sub(/\(.*\)/,'')}.
-      detect{|x| %w(L0 L1 L2 L3 L4 L5 L6).include?(x) }
-    @rules = case rule_option
-    when "L0"
-      []
-    when "L1"
-      [:horizonal]
-    when "L2"
-      [:horizonal, :down]
-    when "L3"
-      [:horizonal, :side]
-    when "L4"
-      [:horizonal, :down, :side]
-    when "L5"
-      # documented as "trim side only", but not really in use
-      #  and doesn't make sense on the web
-      [:horizonal, :side]
-    when "L6"
-      # documented as "trim side only", but not really in use
-      #  and doesn't make sense on the web
-      [:horizonal, :down, :side]
+    if rule_option
+      @rules = case rule_option.sub(/\(.*\)/,'')
+      when "L0"
+        []
+      when "L1"
+        [:horizonal]
+      when "L2"
+        [:horizonal, :down]
+      when "L3"
+        [:horizonal, :side]
+      when "L4"
+        [:horizonal, :down, :side]
+      when "L5"
+        # documented as "trim side only", but not really in use
+        #  and doesn't make sense on the web
+        [:horizonal, :side]
+      when "L6"
+        # documented as "trim side only", but not really in use
+        #  and doesn't make sense on the web
+        [:horizonal, :down, :side]
+      else
+        raise "invalid rule option #{rule_option}"
+      end
     else
-      [] # not specified; what is the default?
+      @rules = [] # not specified; what is the default?
     end
+  end
+
+  def top_border_style
+    case rule_widths[0]
+    when 0
+      nil
+    when 4,5,10
+      :single
+    when 20
+      :bold
+    else
+      :single
+    end
+  end
+
+  def rule_widths
+    rule_widths = [10,3,3,5,4,3]
+    if rule_option && rule_option =~ /\(/
+      values = rule_option.sub(/^.*\(/, '').sub(/\)/, '').split(',')
+      values.each_with_index do |v, i|
+        rule_widths[i] = v.to_i if v.present?
+      end
+    end
+
+    rule_widths
   end
 end

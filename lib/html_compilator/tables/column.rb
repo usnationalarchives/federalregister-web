@@ -7,10 +7,20 @@ class HtmlCompilator::Tables::Column
   end
 
   attr_reader :table, :code
+  delegate :h, to: :table
 
   def initialize(options)
     @table = options.fetch(:table)
     @code = options.fetch(:code)
+  end
+
+  def width_in_points
+    if code =~ /\D/
+      code.gsub(/\D/,'').to_i
+    else
+      # figure columns are given as the number figures, not in points
+      code.to_i * 5
+    end
   end
 
   def alignment

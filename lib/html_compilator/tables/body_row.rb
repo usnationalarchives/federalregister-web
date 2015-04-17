@@ -16,9 +16,14 @@ class HtmlCompilator::Tables::BodyRow
   end
 
   def cells
-    @cells ||= node.xpath('ENT').map do |node|
-      HtmlCompilator::Tables::BodyCell.new(:row => self, :node => node)
+    return @cells if @cells
+
+    provided_cells = []
+    node.xpath('ENT').each_with_index do |node, i|
+      provided_cells << HtmlCompilator::Tables::BodyCell.new(:row => self, :node => node, :index => i)
     end
+
+    @cells = append_missing_cells(provided_cells)
   end
 
   def all_cells
@@ -55,5 +60,16 @@ class HtmlCompilator::Tables::BodyRow
 
   def last?
     index+1 == table.body_rows.size
+  end
+
+  def append_missing_cells(cells)
+    (cells.sum(&:colspan) ... table.num_columns).each do |i|
+      cells << HtmlCompilator::Tables::BodyCell.new(
+        :row => self,
+        :node => HtmlCompilator::Tables::StubNode.new,
+        :index => i
+      )
+    end
+    cells
   end
 end
