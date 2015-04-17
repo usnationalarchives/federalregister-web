@@ -34,3 +34,6 @@ class XsltTransform
     doc.gsub(/\s+/, ' ')
   end
 end
+
+Nokogiri::XSLT.register "http://federalregister.gov/functions", XsltFunctions
+

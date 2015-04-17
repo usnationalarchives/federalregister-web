@@ -100,24 +100,66 @@ describe "XSLT::FullText::Footnotes" do
 
 
   context "rendering the footnote references in the body of the document" do
-    before :each do
-      process <<-XML
-        <P>
-          <SU>2</SU>
-          <FTREF/>
-        </P>
-      XML
-    end
+    context "when footnotes are marked up as <SU> tags" do
+      before :each do
+        process <<-XML
+          <P>
+            <SU>2</SU>
+            <FTREF/>
+          </P>
+        XML
+      end
 
-    it "creates a superscript" do
-      expect(html).to have_tag("sup#citation-2", count: 1)
-    end
+      it "creates a superscript" do
+        expect(html).to have_tag("sup#citation-2", count: 1)
+      end
 
-    it "creates an internal link to the footnote in the text" do
-      expect(html).to have_tag("sup") do
-        with_tag "a.footnote-reference", with: {href: '#footnote-2'} do
-          with_text /2/
+      it "creates an internal link to the footnote in the text" do
+        expect(html).to have_tag("sup") do
+          with_tag "a.footnote-reference", with: {href: '#footnote-2'} do
+            with_text /2/
+          end
         end
+      end
+    end
+
+    context "when footnotes are marked up as <E T='51'> tags" do
+      it "properly converts multiple footnotes in a superscript tag with multiple links" do
+        process <<-XML
+          <P>
+            MitraClip System meets the substantial clinical improvement criterion based on clinical studies
+            <E T="51">4 5 6 7</E>
+            <FTREF/>
+            that have consistently...
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            MitraClip System meets the substantial clinical improvement criterion 
+            based on clinical studies[<sup><a class="footnote-reference" href="#footnote-4">4</a>
+            <a class="footnote-reference" href="#footnote-5">5</a>
+            <a class="footnote-reference" href="#footnote-6">6</a>
+            <a class="footnote-reference" href="#footnote-7">7</a></sup>]
+            that have consistently...
+          </p>
+        HTML
+      end
+
+      it "properly converts a single footnote into a superscript tag" do
+        process <<-XML
+          <HD SOURCE="HD1">
+            II. Fees for FY 2015
+            <E T="51">1</E>
+            <FTREF/>
+          </HD>
+        XML
+
+        expect_equivalent <<-HTML
+          <h2 id="h-1">
+            II. Fees for FY 2015[<sup><a class="footnote-reference" href="#footnote-1">1</a></sup>]
+          </h2>
+        HTML
       end
     end
   end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fr="http://federalregister.gov/functions" extension-element-prefixes="fr">
 
   <xsl:template mode="footnotes" match="FTNT">
     <xsl:variable name="number">
@@ -41,6 +41,12 @@
       </a>]
     </sup>
   </xsl:template>
+
+  <xsl:template match="E[@T=51 and following-sibling::*[1][self::FTREF]]">
+    <xsl:copy-of select="fr:multiple_footnotes(text())"/>
+  </xsl:template>
+
+
 
   <xsl:template match="SU[ancestor::FTNT]">
     <xsl:apply-templates />.
