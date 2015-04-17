@@ -2,7 +2,7 @@ class TableOfContentsPresenter
   attr_reader :table_of_contents_data, :date
 
   def initialize(date)
-    @date = date.to_date
+    @date = date.is_a?(Date) ? date : Date.parse(date)
     @table_of_contents_data = HTTParty.get(url)
   end
 

@@ -30,22 +30,14 @@ describe "public inspection document routes" do
   end
 
 
-  it "public-inspection/:year/:month/:day routes to PublicInspectionDocumentsController#index" do
+  it "public-inspection/:year/:month/:day routes to PublicInspectionDocumentsController#show" do
     expect(get: "public-inspection/#{pi_document.year}/#{pi_document.month}/#{pi_document.day}").to route_to(
-      controller: "public_inspection_documents",
-      action: "index",
+      controller: "public_inspection_document_issues",
+      action: "show",
       year: pi_document.year,
       month: pi_document.month,
       day: pi_document.day,
     )
 
-    # test RouteBuilder
-    expect(get: public_inspection_documents_path(pi_document.publication_date)).to route_to(
-      controller: "public_inspection_documents",
-      action: "index",
-      year: pi_document.year,
-      month: pi_document.month,
-      day: pi_document.day,
-    )
   end
 end
