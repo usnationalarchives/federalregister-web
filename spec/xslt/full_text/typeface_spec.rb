@@ -18,7 +18,8 @@ describe "XSLT::FullText::Typeface" do
 
       expect_equivalent <<-HTML
         <p id="p-1" data-page="1000">
-          The street address for the Docket Operations office is in the <strong class="minor-caps">ADDRESSES</strong> section.
+          The street address for the Docket Operations office is in the
+          <strong class="minor-caps">ADDRESSES</strong> section.
         </p>
       HTML
     end
@@ -36,7 +37,9 @@ describe "XSLT::FullText::Typeface" do
 
       expect_equivalent <<-HTML
         <p id="p-1" data-page="1000">
-          For service information identified in this AD, contact Airbus SAS email <em>airworthiness.A330@airbus.com;</em> Internet <em>http://www.airbus.com.</em> You may view this referenced service...
+          For service information identified in this AD, contact Airbus SAS
+          email <em>airworthiness.A330@airbus.com;</em> Internet
+          <em>http://www.airbus.com.</em> You may view this referenced service...
         </p>
       HTML
     end
@@ -66,7 +69,9 @@ describe "XSLT::FullText::Typeface" do
 
       expect_equivalent <<-HTML
         <p id="p-1" data-page="1000">
-          applicability determination before use of the minor NSR tools. <span class="small-caps">Alaska Admin. Code</span> tit. 18, 50.502, approved 72 FR 45378 (August 14, 2007); 7
+          applicability determination before use of the minor NSR tools.
+          <span class="small-caps">Alaska Admin. Code</span> tit. 18, 50.502,
+          approved 72 FR 45378 (August 14, 2007); 7
         </p>
       HTML
     end
