@@ -8,6 +8,7 @@
   <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/list_of_subjects.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/print_page.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/signature.html.xslt" />
