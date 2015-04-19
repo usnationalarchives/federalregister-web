@@ -1,6 +1,4 @@
 MyFr2::Application.configure do
-  APP_HOST_NAME = "www.fr2.local:8081"
-
   # Settings specified here will take precedence over those in config/application.rb
 
   config.log_level = :debug
@@ -45,5 +43,5 @@ MyFr2::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "http://"}
+  config.action_mailer.default_url_options = {:host => "#{Settings.app_url}", :protocol => "http://"}
 end

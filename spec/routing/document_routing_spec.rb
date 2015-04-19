@@ -9,7 +9,7 @@ describe "document routes" do
       day: "01",
       slug: "test-document",
       publication_date: Date.parse("2014-01-01"),
-      body_html_url: "http://www.fr2.local:8081/documents/full_text/html/2014/01/01/2014-00001.html"
+      body_html_url: "#{Settings.fr_comment_url}/documents/full_text/html/2014/01/01/2014-00001.html"
     )
   }
 

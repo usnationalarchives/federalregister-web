@@ -6,7 +6,7 @@ machine:
     RAILS_ENV: test
     RACK_ENV: test
   hosts:
-    www.fr2.local: 127.0.0.1
+    www.fr2.dev: 127.0.0.1
 
 ## Customize dependencies
 dependencies:

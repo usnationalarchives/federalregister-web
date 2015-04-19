@@ -12,7 +12,7 @@ class CommentMailer < ActionMailer::Base
     @comment = CommentDecorator.decorate( comment )
     @utility_links = [['manage my subscriptions', subscriptions_url()]]
     @highlights = EmailHighlight.pick(2)
-    @fr_comments_url = fr_comment_url_by_environment
+    @fr_comments_url = Settings.fr_comment_url
 
     sendgrid_category "Comment Copy"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'comment copy email'
@@ -33,7 +33,7 @@ class CommentMailer < ActionMailer::Base
     @comment = CommentDecorator.decorate( comment )
     @utility_links = [["view documents I've comment on", comments_url()]]
     @highlights = EmailHighlight.pick(2)
-    @fr_comments_url = fr_comment_url_by_environment
+    @fr_comments_url = Settings.fr_comment_url
 
     sendgrid_category "Comment Posting Notification"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'comment publication notification email'
@@ -72,18 +72,6 @@ class CommentMailer < ActionMailer::Base
         comment.secret = '6mge902mb11t6g'
         CommentMailer.comment_posting_notification(user, comment)
       }
-    end
-  end
-
-  private
-
-  def fr_comment_url_by_environment
-    if Rails.env.staging?
-      "https://fr2.criticaljuncture.org/my/comments"
-    elsif Rails.env.development?
-      "www.fr2.local:8080/my/comments"
-    else
-      "https://www.federalregister.gov/my/comments"
     end
   end
 end

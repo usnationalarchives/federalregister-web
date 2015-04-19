@@ -16,4 +16,10 @@ regulations_dot_gov:
 
 
 # APPLICATION SETTINGS
+
+# document page full text rendering - false means use esi's
 render_documents_from_raw_xml: true
+
+# urls for mailers, redirects, etc
+app_url: 'http://www.fr2.dev:8080'
+fr_comment_url: 'http://www.fr2.dev:8080/my/comments'

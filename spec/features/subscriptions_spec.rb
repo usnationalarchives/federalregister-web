@@ -310,10 +310,10 @@ feature "Subscriptions", :no_ci do
       expect(current_email).to have_body_text('Test Document 2')
       expect(current_email).to have_body_text('Test Document 3')
 
-      manage_subscriptions_link = "http://www.fr2.local:8081/my/subscriptions?utm_campaign=utility_links&amp;utm_content=manage_subscription&amp;utm_medium=email&amp;utm_source=federalregister.gov"
+      manage_subscriptions_link = "#{Settings.fr_comment_url}/my/subscriptions?utm_campaign=utility_links&amp;utm_content=manage_subscription&amp;utm_medium=email&amp;utm_source=federalregister.gov"
       expect(current_email).to have_body_text(manage_subscriptions_link)
 
-      unsubscribe_link = "http://www.fr2.local:8081/my/subscriptions/(((token)))/unsubscribe"
+      unsubscribe_link = "#{Settings.fr_comment_url}/my/subscriptions/(((token)))/unsubscribe"
       expect(current_email).to have_body_text(unsubscribe_link)
 
       token = JSON.parse(current_email.header['X-SMTPAPI'].to_s )["sub"]["(((token)))"][0]

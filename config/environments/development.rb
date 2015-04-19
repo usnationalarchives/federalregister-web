@@ -1,6 +1,4 @@
 MyFr2::Application.configure do
-  APP_HOST_NAME = "www.fr2.local:8080"
-
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -39,7 +37,7 @@ MyFr2::Application.configure do
   smtp_settings = {
    :address        => "smtp.sendgrid.net",
    :port           => "587",
-   :domain         => "#{APP_HOST_NAME}",
+   :domain         => "#{Settings.app_url}",
    :user_name      => secrets['sendgrid']['username'],
    :password       => secrets['sendgrid']['password'],
    :authentication => :plain,
@@ -49,5 +47,5 @@ MyFr2::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings   = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "http://"}
+  config.action_mailer.default_url_options = {:host => "#{Settings.app_url}", :protocol => "http://"}
 end

@@ -1,0 +1,2 @@
+# urls for mailers, redirects, etc - where routes aren't available
+fr_comment_url: 'https://fr-official.criticaljuncture.org/my/comments'
