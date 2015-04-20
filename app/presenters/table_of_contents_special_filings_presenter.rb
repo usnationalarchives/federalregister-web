@@ -16,7 +16,8 @@ class TableOfContentsSpecialFilingsPresenter < TableOfContentsPresenter
   def documents
     @special_filings_data ||= FederalRegister::PublicInspectionDocument.search(query_conditions_special_filings.
       merge(per_page: 1000,
-            fields: ['pdf_url','document_number','html_url','filed_at','docket_numbers','publication_date']
+            fields: ['pdf_url','pdf_file_size','num_pages','document_number',
+                     'html_url','filed_at','docket_numbers','publication_date']
       )
     )
   end

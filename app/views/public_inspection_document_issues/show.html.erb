@@ -22,7 +22,10 @@
         </div>
         <div class="col-xs-3 col-md-3">
           <%= render partial: 'subscribe' %>
-          <%#= render partial: 'public_inspection/calendar' %>
+          <%= esi public_inspection_documents_by_month_path(
+            @regular_filings_presenter.date.strftime('%Y'),
+            @regular_filings_presenter.date.strftime('%m'),
+            current_date: @regular_filings_presenter.date.to_s(:iso) ) %>
         </div>
       </div>
 

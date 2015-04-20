@@ -98,7 +98,7 @@ class PublicInspectionIssuePresenter
     end
 
     def document_type_facets
-      filing_facets.regular_filings.document_types
+      filing_facets.special_filings.document_types
     end
   end
 end

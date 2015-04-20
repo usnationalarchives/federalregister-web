@@ -49,8 +49,9 @@
   h3 {
     @extend %table-of-contents-header;
     font-size: 17px;
-    //text-transform: uppercase;
-    color: $text
+    margin-left: 7px;
+    font-weight: bold;
+    color: $text;
   }
 
   h4 {
@@ -111,6 +112,9 @@
   }
 
   dl {
+    margin-left: 0px;
+    font-size: 16px;
+
     dt, dd { float: left; }
 
     dt {

@@ -87,7 +87,6 @@ MyFr2::Application.routes.draw do
       }
 
 
-
   #
   # Public Inspection Documents Search
   #
@@ -132,13 +131,22 @@ MyFr2::Application.routes.draw do
   with_options(:quiet => true) do |esi|
 
     #CALENDAR
-    esi.get 'esi/document_issues_by_month/:year/:month',
-    to: 'document_issues#by_month',
-    as: :document_issues_by_month,
-    constraints: {
-      :year        => /\d{4}/,
-      :month       => /\d{1,2}/
-    }
+    esi.get 'esi/document_issues/:year/:month',
+      to: 'document_issues#by_month',
+      as: :document_issues_by_month,
+      constraints: {
+        :year        => /\d{4}/,
+        :month       => /\d{1,2}/
+      }
+
+    esi.get 'esi/public_inspection_issues/:year/:month',
+      to: 'public_inspection_document_issues#by_month',
+      as: :public_inspection_documents_by_month,
+      constraints: {
+        :year        => /\d{4}/,
+        :month       => /\d{1,2}/
+      }
+
 
     # HEADER
     esi.get 'special/navigation',
@@ -265,6 +273,7 @@ MyFr2::Application.routes.draw do
         month: /\d{1,2}/,
         day: /\d{1,2}/
       }
+
 
   #
   # Reader Aids
