@@ -1,11 +1,11 @@
 <div class="col-xs-3 col-md-3 doc-toc-nav">
   <%= fr_box "Special Filing", :public_inspection, header: {hover: false} do %>
-    <%= render partial: 'public_inspection_documents/table_of_contents_nav',
+    <%= render partial: 'public_inspection_document_issues/table_of_contents_nav',
     locals: {type: 'special', special_filing_agencies: special_filing_agencies} %>
   <% end %>
 
   <%= fr_box "Regular Filing", :public_inspection, header: {hover: false} do %>
-    <%= render partial: 'public_inspection_documents/table_of_contents_nav',
+    <%= render partial: 'public_inspection_document_issues/table_of_contents_nav',
     locals: {type: 'regular', regular_filing_agencies: regular_filing_agencies} %>
   <% end %>
 </div>
