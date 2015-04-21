@@ -1,9 +1,14 @@
 regulations_dot_gov:
   # don't output calls to reg.gov in stdout
   debug_output_enabled: false
+federal_register:
+  api_url: 'https://www.federalregister.gov/api/v1'
+  base_uri: 'https://www.federalregister.gov'
 
 # document page full text rendering - false means use esi's
 render_documents_from_raw_xml: false
 
+
 # urls for mailers, redirects, etc - where routes aren't available
+app_url: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'

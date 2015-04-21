@@ -1,0 +1,7 @@
+federal_register:
+  api_url: 'https://www.federalregister.gov/api/v1'
+  base_uri: 'https://www.federalregister.gov'
+
+# urls for mailers, redirects, etc - where routes aren't available
+app_url: 'https://www.federalregister.gov'
+fr_comment_url: 'https://www.federalregister.gov/my/comments'

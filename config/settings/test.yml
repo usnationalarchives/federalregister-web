@@ -1,2 +1,9 @@
+federal_register:
+  api_url: 'http://www.fr2.dev:8081/api/v1'
+  base_uri: 'http://www.fr2.dev:8081'
+
 # APPLICATION SETTINGS
 app_url: 'http://www.fr2.dev:8081'
+
+# urls for mailers, redirects, etc - where routes aren't available
+fr_comment_url: 'http://www.fr2.dev:8081/my/comments'

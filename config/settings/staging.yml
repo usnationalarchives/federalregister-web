@@ -1,2 +1,9 @@
+federal_register:
+  api_url: 'https://fr2.criticaljuncture.org/api/v1'
+  base_uri: 'https://fr2.criticaljuncture.org'
+
+# APPLICATION SETTINGS
+app_url: 'https://fr2.criticaljuncture.org'
+
 # urls for mailers, redirects, etc - where routes aren't available
 fr_comment_url: 'https://fr2.criticaljuncture.org/my/comments'

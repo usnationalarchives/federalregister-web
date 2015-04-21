@@ -11,16 +11,16 @@ varnish:
   ignore_paths: ""
 federal_register:
   api_url: 'http://127.0.0.1:8080/api/v1'
-  base_uri: 'http://localhost:3000/'
+  base_uri: 'http://127.0.0.1:8080'
 regulations_dot_gov:
   debug_output_enabled: true
 
 
 # APPLICATION SETTINGS
+app_url: 'http://127.0.0.1:8080'
 
 # document page full text rendering - false means use esi's
 render_documents_from_raw_xml: true
 
 # urls for mailers, redirects, etc
-app_url: 'http://www.fr2.dev:8080'
-fr_comment_url: 'http://www.fr2.dev:8080/my/comments'
+fr_comment_url: 'http://127.0.0.1:8080/my/comments'
