@@ -17,7 +17,7 @@
     @include fr-metadata-bar-header($fr-green, $color-enhanced-light);
 
     .fr-head-meta-label i { color: $color-enhanced-light; }
-    .fr-head-meta-counts ul.inline-list li { line-height: 50px; }
+    .fr-head-meta-counts ul.fr-list.fr-list-inline li { line-height: 50px; }
   }
 
   &.fr-head-metadata-bar-public-inspection {
