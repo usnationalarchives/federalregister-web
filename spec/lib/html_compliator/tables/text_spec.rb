@@ -10,7 +10,7 @@ describe HtmlCompilator::Tables do
   context "transformation of body cell text" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE CDEF="6,6,6,6">
           <ROW>
             <ENT>A</ENT>
             <ENT>B <E T="03">strong</E> young one</ENT>
@@ -45,7 +45,7 @@ describe HtmlCompilator::Tables do
   context "transformation of header cell text" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE COLS="2">
+        <GPOTABLE COLS="2" CDEF="6,6">
           <BOXHD>
             <CHED H="1"><E T="03">strong</E> disagreement</CHED>
             <CHED H="1">First Line<LI>Second Line</LI></CHED>

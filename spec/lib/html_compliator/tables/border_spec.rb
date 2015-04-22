@@ -147,7 +147,7 @@ describe HtmlCompilator::Tables do
     context "reads from the ROW RUL attribute" do
       let(:table) do
         parse <<-XML
-          <GPOTABLE COLS="4">
+          <GPOTABLE COLS="4" CDEF="6,6,6,6">
             <ROW RUL="n,s,d,b">
               <ENT>A</ENT>
               <ENT>B</ENT>

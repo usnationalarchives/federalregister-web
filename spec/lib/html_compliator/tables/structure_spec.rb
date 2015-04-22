@@ -10,7 +10,7 @@ describe HtmlCompilator::Tables do
   context "basic header structure" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE COLS="5">
+        <GPOTABLE COLS="5" CDEF="6,6,6,6,6">
           <BOXHD>
             <CHED H="1"/>
             <CHED H="1">Mango</CHED>
@@ -44,7 +44,7 @@ describe HtmlCompilator::Tables do
   context "crazy header structure" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE COLS="6">
+        <GPOTABLE COLS="6" CDEF="6,6,6,6,6,6">
           <BOXHD>
             <CHED H="1">A</CHED>
             <CHED H="1">B</CHED>
@@ -85,7 +85,7 @@ describe HtmlCompilator::Tables do
 
   it "ignores extra headers" do
     table = parse(<<-XML)
-      <GPOTABLE COLS="2">
+      <GPOTABLE COLS="2" CDEF="6,6">
         <BOXHD>
           <CHED H="1">A</CHED>
           <CHED H="1">B</CHED>
@@ -99,7 +99,7 @@ describe HtmlCompilator::Tables do
   context "basic body" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE CDEF="6,6,6,6">
           <ROW>
             <ENT>A</ENT>
             <ENT>B</ENT>
@@ -131,7 +131,7 @@ describe HtmlCompilator::Tables do
   context "Body colspans; (A 'spanner designators')" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE CDEF="6,6,6">
           <ROW>
             <ENT>A</ENT>
             <ENT A="1">BC</ENT>
@@ -159,7 +159,7 @@ describe HtmlCompilator::Tables do
   context "Body centerheads across entire table I=28" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE COLS="4">
+        <GPOTABLE COLS="4" CDEF="6,6,6,6">
           <ROW>
             <ENT I="28">ABCD</ENT>
           </ROW>
@@ -185,7 +185,7 @@ describe HtmlCompilator::Tables do
   context "support for expanded stub body columns (EXPSTB)" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE>
+        <GPOTABLE CDEF="6,6,6,6">
           <ROW EXPSTB="2">
             <ENT>ABC</ENT>
             <ENT>D</ENT>

@@ -11,7 +11,7 @@ describe HtmlCompilator::Tables do
     context "table body" do
       it "reads the alignment from the A attributes" do
         table = parse <<-XML
-          <GPOTABLE>
+          <GPOTABLE CDEF="6,6,6,6">
             <ROW>
               <ENT A="0">Middle</ENT>
               <ENT A="L0">Left</ENT>

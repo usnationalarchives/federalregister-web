@@ -66,7 +66,7 @@ class HtmlCompilator::Tables::Table
   end
 
   def num_columns
-    node.attr("COLS").to_i
+    columns.size
   end
 
   def table_classes
