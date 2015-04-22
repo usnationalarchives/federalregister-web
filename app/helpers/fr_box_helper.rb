@@ -67,7 +67,7 @@ module FrBoxHelper
 
   def css_class_by_type(type)
     case type
-    when :official
+    when :official, :official_toc
       "fr-box-official"
     when :official_doc_details
       "fr-box-official-alt"
@@ -90,6 +90,8 @@ module FrBoxHelper
       "This is the official document as published in the <em>Federal Register</em>."
     when :official_doc_details
       "Information about this document as published in the <em>Federal Register</em>."
+    when :official_toc
+      "This is the official table of contents as published in the <em>Federal Register</em>."
     when :reg_gov_docket_info
       "Relevant information about this document from Regulations.gov provides additional context. This information is not part of the official <em>Federal Register</em> document."
     when :public_inspection
@@ -103,7 +105,7 @@ module FrBoxHelper
 
   def stamp_icon_class_by_type(type)
     case type
-    when :official
+    when :official, :official_toc
       "icon-fr2-NARA1985Seal"
     when :public_inspection
       "icon-fr2-stop-hand"
