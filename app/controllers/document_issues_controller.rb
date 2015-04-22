@@ -3,6 +3,7 @@ class DocumentIssuesController < ApplicationController
 
   def show
     parsed_date = parse_date_from_params
+
     if DocumentIssue.published_on(parsed_date).empty?
       raise ActiveRecord::RecordNotFound
     else
@@ -10,5 +11,4 @@ class DocumentIssuesController < ApplicationController
       @doc_presenter = DocumentIssuePresenter.new(parsed_date)
     end
   end
-
 end
