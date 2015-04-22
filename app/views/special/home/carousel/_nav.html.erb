@@ -1,9 +1,0 @@
-<ul class="nav">
-  <% sections.each do |section| %>
-    <li class="<%= 'selected' if section[0] == :environment %>"
-        data-toggle-target="#home-carousel-content-<%= section[0].to_s %>">
-      <span class="icon-fr2-<%= section[1] %>"></span>
-      <%= section[2] %>
-    </li>
-  <% end %>
-</ul>
