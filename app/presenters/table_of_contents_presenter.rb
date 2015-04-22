@@ -104,7 +104,7 @@ class TableOfContentsPresenter
     def document_numbers
       return @document_numbers if @document_numbers
       doc_numbers = []
-      attributes["document_categories"].each do |doc_cat| #TODO: Refactor to nested injects?
+      attributes["document_categories"].each do |doc_cat|
         doc_cat["documents"].each do |doc|
           doc_numbers << doc["document_numbers"]
         end
