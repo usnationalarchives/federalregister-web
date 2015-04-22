@@ -29,11 +29,6 @@ class TableOfContentsPresenter
     api_documents
   end
 
-  def page_count(start_page, end_page)
-    end_page - start_page + 1
-  end
-
-
   class Agency
     attr_reader :attributes, :presenter
 
