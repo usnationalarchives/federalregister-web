@@ -1,4 +1,4 @@
-class QueryConditions::Document < QueryConditions
+class QueryConditions::DocumentConditions < QueryConditions
   def self.comment_period_closing_in(time_frame)
     {
       conditions: {

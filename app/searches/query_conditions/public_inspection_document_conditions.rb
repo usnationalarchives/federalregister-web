@@ -1,4 +1,4 @@
-class QueryConditions::PublicInspectionDocument < QueryConditions
+class QueryConditions::PublicInspectionDocumentConditions < QueryConditions
   def self.regular_filing
     {
       conditions: {

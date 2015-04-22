@@ -41,7 +41,7 @@ class PublicInspectionIssuePresenter
 
     def filing_facets
       @filing_facets ||= PublicInspectionIssueTypeFacet.search(
-        QueryConditions::PublicInspectionDocument.
+        QueryConditions::PublicInspectionDocumentConditions.
           published_on(publication_date)
       ).first
     end
@@ -58,7 +58,7 @@ class PublicInspectionIssuePresenter
     end
 
     def search_conditions(type=nil)
-      conditions = QueryConditions::PublicInspectionDocument.regular_filing
+      conditions = QueryConditions::PublicInspectionDocumentConditions.regular_filing
       if type
         conditions.deep_merge!(
           {
@@ -83,7 +83,7 @@ class PublicInspectionIssuePresenter
     end
 
     def search_conditions(type=nil)
-      conditions = QueryConditions::PublicInspectionDocument.special_filing
+      conditions = QueryConditions::PublicInspectionDocumentConditions.special_filing
       if type
         conditions.deep_merge!(
           {

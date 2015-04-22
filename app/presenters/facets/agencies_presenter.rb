@@ -50,13 +50,13 @@ class Facets::AgenciesPresenter
 
   def document_counts
     AgencyFacet.search(
-      QueryConditions::Document.published_in_last(1.week)
+      QueryConditions::DocumentConditions.published_in_last(1.week)
     )
   end
 
   def comment_counts
     @comments_counts ||= AgencyFacet.search(
-      QueryConditions::Document.comment_period_closing_in(1.week)
+      QueryConditions::DocumentConditions.comment_period_closing_in(1.week)
     )
   end
 end
