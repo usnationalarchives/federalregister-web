@@ -1,15 +1,24 @@
 <div class='toc-documents'>
   <% documents.each do |document| %>
     <h7><%= link_to(subject, document.html_url) %></h7>
-    <div class="row no-bottom-margin">
-      <ul class="col-xs-2 col-md-2 test_font_style">
-        <li> <%= link_to "<span class='icon-fr2 icon-fr2-doc-pdf'> PDF <span>".html_safe, document.pdf_url %> </li>
-        <li>(<%= pluralize(page_count(document), "Page") %>)</li>
-      </ul>
-      <ul class="col-xs-3 col-md-3 test_font_style">
-        <li><%= "FR Document: #{document.document_number}" %></li>
-        <li><%= document_page_range(document)%></li>
-      </ul>
+    <div class="row toc-document-metadata">
+      <dl class="col-xs-4 col-md-4">
+        <dt>
+          <%= link_to document.pdf_url do %>
+            <span class="icon-fr2 icon-fr2-doc-pdf"></span> PDF
+          <% end %>
+        </dt>
+        <dd>
+          (<%= pluralize(document.length, "Page") %>)
+        </dd>
+      </dl>
+      <dl class="col-xs-4 col-md-4">
+        <dt>FR Document:</dt>
+        <dd><%= link_to document.document_number, document.html_url %></dd>
+
+        <dt>Pages:</dt>
+        <dd><%= document.page_range %></dd>
+      </dl>
     </div>
   <% end %>
 </div>
