@@ -1,54 +1,7 @@
-/* calendar */
-.bootstrap-scope {
-  #date_chooser {
-    position: relative;
-    left: 10px;
-
-    .calendar {
-      th.monthName { text-align: center; }
-      tr.calendar_nav th,
-      .dayName th { padding-left: 10px; }
-    }
-  }
-
-  .content-block {
-    padding-right: 30px !important;
-  }
-}
-
-.fr-subscribe {
-  background-color: $color-enhanced-light;
-  border-top: 1px solid $color-enhanced;
-  border-bottom: 1px solid $color-enhanced;
-  padding: 6px 13px 3px;
-
-  a {
-    color: $text;
-    text-decoration: none;
-
-    &.subscription:hover {
-      background: none;
-      color: $color-enhanced-dark;
-      text-decoration: none;
-    }
-
-    .icon-fr2 {
-      font-size: 16px;
-      top: 1px;
-
-      &.icon-fr2-message {
-        font-size: 20px;
-        top: 3px;
-        position: relative;
-      }
-    }
-  }
-}
-
 /* Meta data for document */
 .bootstrap-scope .doc-toc {
   @include apertura-condensed;
-  margin-left: -15px;
+  padding-left: 0;
 
   #regular-filing { padding-top: 0; }
 
@@ -71,67 +24,108 @@
     }
   }
 
-  h2 {
+  %table-of-contents-header {
     @include apertura-condensed;
-    font-size: 22px;
-    color: $color-official;
-    text-transform: none;
     font-weight: bold;
+    margin-left: 0;
+  }
+
+  %table-of-contents-link {
+    color: $fr-link-dark;
+
+    &:hover {
+      text-decoration: none;
+      color: $fr-orange;
+    }
+  }
+
+  h2 {
+    @extend %table-of-contents-header;
+    font-size: 26px;
+    color: $color-official;
+    border-bottom: 2px solid $color-official;
   }
 
   h3 {
-    @include apertura-condensed;
+    @extend %table-of-contents-header;
     font-size: 17px;
-    text-transform: uppercase;
-    margin-left: 15px;
-    font-weight: bold;
-    color: $text;
+    //text-transform: uppercase;
+    color: $text
   }
 
-  .title_bar {
-    border-top: 3px solid $color-public-inspection;
-    color: $color-public-inspection;
-
-    h2 {
-      margin: 0;
-      a { color: $color-public-inspection; }
-    }
-
-    .back_to_top {
-      position: absolute;
-      top: 1px;
-      right: 5px;
-      text-transform: none;
-      font-size: 11px;
-    }
+  h4 {
+    @extend %table-of-contents-header;
+    font-size: 15px;
+    color: $fr-link-dark;
   }
 
   .content-block {
-    padding: 35px 30px 20px 30px !important;
+    padding: 35px 20px 20px 20px !important;
+
+    a { @extend %table-of-contents-link; }
+
+    ul {
+      margin-left: 0;
+      list-style: none;
+
+      &.see-references {
+        font-size: 14px;
+      }
+    }
   }
 
-  ul {
-    font-size: 16px;
-    list-style: none;
-    margin-left: 25px;
+  /* each level of hierarchy gets an additional indentation
+     which creates our hierarchy */
+  .toc-category-level,
+  .toc-subject-level {
+    margin-left: 20px;
+  }
 
-    a { font-size: 16px; }
+  /* add and additional level of indentation to documents that
+     only have one level of heirarchy. This allows all columns
+     to align and makes the table much easier to scan */
+  .toc-level-1 > .toc-documents {
+    margin-left: 20px;
+  }
+
+  .toc-documents {
+    font-size: 14px;
+
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      @extend %table-of-contents-link;
+    }
+
+    .toc-document-metadata {
+      /* Bootstrap looks to make margin-bottom !important, need to overrwrite */
+      margin-bottom: 0px !important;
+
+      font-size: 13px;
+
+      a {
+        font-size: 13px;
+        font-weight: normal;
+      }
+    }
   }
 
   dl {
-    margin-left: 30px;
-    font-size: 16px;
+    dt, dd { float: left; }
 
-    dt,
-    dd {
+    dt {
       clear: both;
-
-      a { color: $fr-link-dark; }
+      margin-right: 5px;
+      font-weight: 500; //medium
+    }
+    dd {
+      top: 1px;
+      position: relative;
     }
 
     dd { font-weight: normal; }
 
-    div.details {
+/*    div.details {
       padding-bottom: 10px;
       overflow: hidden;
       width: 659px;
@@ -162,15 +156,15 @@
       }
 
       .document_number { display: block; }
-    }
+    } */
   }
 
-  .public_inspection {
+/*  .public_inspection {
     h3 {
       clear: both;
     }
     dl div.details a { font-weight: normal; }
-  }
+  } */
 
   div.editorial_note {
     clear: both;
@@ -205,52 +199,4 @@
     //background: sprite-image('icons/icon_permalink_hover.png', -1px, 0, 50px) no-repeat;
   }
 }
-
-.bootstrap-scope {
-  .doc-toc,
-  .doc-toc-nav {
-    .fr-box { margin-bottom: 20px; }
-
-    .count_pill {
-      @include border-radius(5);
-      background-color: $color-public-inspection-light-alt;
-      color: $color-public-inspection;
-      border: 1px solid lighten($color-public-inspection, 40);
-      font-size: 12px;
-      font-weight: bold;
-      width: 30px;
-      height: 18px;
-    }
-  }
-}
-
-.bootstrap-scope .doc-toc-nav {
-  padding: 0;
-
-  .content-block {
-    padding-right: 10px !important;
-    font-size: 14px;
-  }
-  ul {
-    list-style: none;
-    margin-left: 0;
-
-    li {
-      margin: 5px 0;
-      padding-right: 40px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid $color-public-inspection-light-alt;
-      position: relative;
-
-      span.count_pill {
-        position: absolute;
-        right: 0;
-        top: 2px;
-        line-height: 15px;
-      }
-    }
-  }
-}
-
-/* TEST FORMATTING */
 

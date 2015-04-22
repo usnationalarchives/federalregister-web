@@ -1,15 +1,13 @@
 <% agencies.each do |slug, agency| %>
-  <div class="title_bar">
-    <h2 id=<%=agency.slug%> >
-      <%= link_to(agency.name, agency_path(agency), class: "test_toc_margin" ) %>
+    <h2 id="<%= agency.slug %>">
+      <%= link_to agency.name, agency_path(agency) %>
     </h2>
-    <%= link_to("Back to Top", '#main',{class: "back_to_top"} ) %>
-  </div>
 
   <% if agency.child_agencies.present? %>
-    <ul>
+    <ul class="see-references">
       <% agency.child_agencies.each do |child_agency| %>
-        <li><span class="see">See</span>
+        <li>
+          <em>See</em>
           <%= link_to(child_agency.name, anchor: child_agency.slug) %>
           <span class="count_pill"><%= child_agency.document_count_with_child_agencies %></span>
         </li>
@@ -18,8 +16,8 @@
   <% end %>
 
   <% agency.document_categories.each do |doc_category| %>
-    <div class="test_toc_margin">
-      <h3 class="category"><%= doc_category["name"] %></h3>
+    <div class="toc-category-level">
+      <h3><%= doc_category["name"].titlecase %></h3>
       <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
     </div>
   <% end %>
