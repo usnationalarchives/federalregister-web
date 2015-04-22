@@ -43,6 +43,11 @@
 
 abbr, acronym { border-bottom: none; }
 
+a:hover,
+.bootstrap-scope a:hover {
+  text-decoration: none;
+}
+
 div.notice,
 div.warning,
 div.danger,
