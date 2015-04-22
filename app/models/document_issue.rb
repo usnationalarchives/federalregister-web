@@ -18,4 +18,7 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
     DocumentIssue.search(QueryConditions.published_on(date.to_date)).results
   end
 
+  def self.pdf_download_available?(date)
+    date > Date.parse('1995-01-01')
+  end
 end
