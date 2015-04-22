@@ -20,4 +20,9 @@ module SubscriptionHelper
     ].join("\n").html_safe
   end
 
+  def subscribe_box(search_conditions={})
+    render partial: 'components/subscribe_box', locals: {
+      search_conditions: search_conditions
+    }
+  end
 end
