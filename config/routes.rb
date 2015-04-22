@@ -159,16 +159,6 @@ MyFr2::Application.routes.draw do
       :year        => /\d{4}/,
       :month       => /\d{1,2}/
     }
-
-    get 'esi/documents/:year/:month/:day',
-      to: "documents#by_date",
-      as: :documents_by_date,
-      constraints: {
-      :year        => /\d{4}/,
-      :month       => /\d{1,2}/,
-      :day         => /\d{1,2}/
-    }
-
     #/TEST ESI ROUTES END
 
     # HEADER

@@ -1,18 +1,6 @@
 class DocumentsController < ApplicationController
   skip_before_filter :authenticate_user!
 
-  def index
-    parsed_date = Date.parse("#{params["year"]}-#{params["month"]}-#{params["day"]}")
-    if DocumentIssue.published_on(parsed_date).empty?
-      raise ActiveRecord::RecordNotFound
-    else
-      @presenter = TableOfContentsPresenter.new
-      @doc_presenter = DocumentIssuePresenter.new(
-        DocumentIssue.current.publication_date
-      )
-    end
-  end
-
   def show
     cache_for 1.day
 
@@ -106,34 +94,5 @@ class DocumentsController < ApplicationController
     @table_class = params[:table_class]
 
     render :layout => false
-  end
-
-  def by_date
-    cache_for 1.day
-    prep_issue_view(parse_date_from_params)
-  end
-
-  private
-
-  def parse_date_from_params
-    year  = params[:year]
-    month = params[:month]
-    day   = params[:day]
-    begin
-      Date.parse("#{year}-#{month}-#{day}")
-    rescue ArgumentError
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
-  def prep_issue_view(date)
-    @publication_date = date
-    @doc_presenter = DocumentIssuePresenter.new(date, "toc_page" => true)
-    @pi_presenter = PublicInspectionPresenter.new(date)
-    # @issue = Issue.completed.find_by_publication_date!(@publication_date)
-
-    # toc = TableOfContentsPresenter.new(@issue.entries.scoped(:include => [:agencies, :agency_names]))
-    # @entries_without_agencies = toc.entries_without_agencies
-    # @agencies = toc.agencies
   end
 end
