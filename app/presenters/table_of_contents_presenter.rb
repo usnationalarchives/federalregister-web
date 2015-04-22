@@ -7,13 +7,7 @@ class TableOfContentsPresenter
   end
 
   def url
-    base_uri =
-      if Rails.env.development?
-        Settings.federal_register.base_uri
-      else
-        'https://www.federalregister.gov'
-      end
-    base_uri + "/documents/table_of_contents/json/#{date.strftime('%Y')}/#{date.strftime('%m')}/#{date.strftime('%d')}.json"
+    "#{Settings.federal_register.base_uri}/document_issues/json/#{date.to_s(:ymd)}.json"
   end
 
   def document_partial
