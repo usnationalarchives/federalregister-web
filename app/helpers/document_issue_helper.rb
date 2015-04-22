@@ -1,19 +1,6 @@
 module DocumentIssueHelper
-
-  def document_page_range(document)
-    if document.end_page == document.start_page
-      "Page #{document.start_page}"
-    else
-      "Pages #{document.start_page} - #{document.end_page}"
-    end
-  end
-
   def issue_pdf_url(date)
     "http://www.gpo.gov/fdsys/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
-  end
-
-  def page_count(document)
-    document.end_page - document.start_page + 1
   end
 
   def display_hierarchy(docs, agency, options={})

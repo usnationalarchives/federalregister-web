@@ -26,7 +26,19 @@ class TableOfContentsPresenter
   end
 
   def documents
-    api_documents
+    @documents ||= Document.search(
+      QueryConditions.published_on(date).
+        merge(
+         per_page: 1000,
+          fields: [
+            :document_number,
+            :end_page,
+            :html_url,
+            :pdf_url,
+            :start_page,
+          ]
+        )
+    ).results.map{|d| DocumentDecorator.decorate(d)}
   end
 
   class Agency
@@ -102,20 +114,9 @@ class TableOfContentsPresenter
 
     def documents
       @documents ||= document_numbers.inject({}) do |hsh, doc_num|
-        hsh[doc_num] = presenter.documents.results.find{|doc| doc.document_number == doc_num}
+        hsh[doc_num] = presenter.documents.find{|doc| doc.document_number == doc_num}
         hsh
       end
     end
-
   end
-
-
-  private
-
-  def api_documents
-    @documents ||= Document.search(QueryConditions.published_on(date.to_date).
-      merge(per_page: 1000, fields: ['start_page', 'end_page', 'pdf_url','document_number','html_url'])
-    )
-  end
-
 end
