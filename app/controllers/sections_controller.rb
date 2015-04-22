@@ -35,6 +35,11 @@ class SectionsController < ApplicationController
   #   end
   # end
 
+  def homepage
+    @date = DocumentIssue.current_date
+    render layout: false
+  end
+
   def significant_entries
     cache_for 1.day
     @presenter = SectionPresenter.new(params[:section])
@@ -51,7 +56,8 @@ class SectionsController < ApplicationController
 
   def navigation
     cache_for 1.day
-    @section_presenters = SectionPagePresenter::SECTIONS.map{
-      |slug,value| SectionPagePresenter.new(slug, DocumentIssue.current_date - 1.year)}
+    @section_presenters = SectionSlug.all.map do |section|
+      SectionPagePresenter.new(section.slug, DocumentIssue.current_date - 1.year)
+    end
   end
 end

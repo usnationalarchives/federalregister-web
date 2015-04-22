@@ -2,38 +2,10 @@ class SectionPagePresenter
   attr_reader :date, :icon_name, :search_conditions,:slug, :suggested_searches
   class InvalidSection < StandardError; end
 
-  #TODO: Refactor the SECTIONS constant so we're using the API in lieu of hardcoding.
-  SECTIONS = {
-      "money" => {
-        title: "Money",
-        icon: "Coins-dollaralt"
-      },
-      "environment" => {
-        title: "Environment",
-        icon: "Eco"
-      },
-      "world" => {
-        title: "World",
-        icon: "Globe"
-      },
-      "science-and-technology" => {
-        title: "Science and Technology",
-        icon: "Lab"
-      },
-      "business-and-industry" => {
-        title: "Business and Industry",
-        icon: "Factory"
-      },
-      "health-and-public-welfare" => {
-        title: "Health and Public Welfare",
-        icon: "Medicine"
-      },
-    }
-
   def initialize(slug, date)
     raise InvalidSection unless all_section_slugs.include?(slug)
     @slug = slug
-    @date = date
+    @date = date.is_a?(Date) ? date : Date.parse(date)
   end
 
   def public_inspection_search_possible?
@@ -63,7 +35,7 @@ class SectionPagePresenter
   end
 
   def icon_name
-    all_sections[slug][:icon]
+    SectionSlug.find_by_slug(slug).try(:icon)
   end
 
   def search_conditions
@@ -76,19 +48,15 @@ class SectionPagePresenter
   end
 
   def section_title
-    all_sections[slug][:title]
+    SectionSlug.find_by_slug(slug).try(:title)
   end
 
   def suggested_searches
     @suggested_searches ||= SuggestedSearch.search(conditions: {sections: [@slug]})[slug]
   end
 
-  def all_sections
-    SECTIONS
-  end
-
   def all_section_slugs
-    all_sections.keys
+    SectionSlug.all.map(&:slug)
   end
 
   def last_five_days_hash

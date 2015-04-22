@@ -1,0 +1,9 @@
+<ul class="nav">
+  <% sections.each do |section| %>
+    <li class="<%= 'selected' if section.slug == "environment" %>"
+        data-toggle-target="#home-carousel-content-<%= section.slug %>">
+      <span class="icon-fr2-<%= section.icon %>"></span>
+      <%= section.title %>
+    </li>
+  <% end %>
+</ul>

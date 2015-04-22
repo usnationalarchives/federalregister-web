@@ -1,0 +1,50 @@
+<div id="home-carousel-content-<%= slug %>" class="nav-content <%= 'selected' if section_name == "Environment" %>">
+  <div class="row">
+
+    <div class="col-xs-7 col-md-7 carousel-wrapper">
+      <div class="carousel-item">
+        <div>
+          <img src="<%= highlight_image %>">
+        </div>
+
+        <ol class="carousel-indicators">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+
+        <div class="clearfix"></div>
+
+        <p><%= highlight_description %></p>
+      </div>
+    </div>
+
+    <div class="col-xs-5 col-md-5 section carousel-list">
+      <h4 class="with-icon lowercase">
+        <span class="icon-fr2 icon-fr2-<%= icon_class %>"></span>
+        Suggested Searches
+        <%= link_to "view all", section_path(slug), class: "more-details" %>
+        <a href="" class="more-details">view all</a>
+      </h4>
+
+      <ul class="fr-list with-stats">
+        <% canned_searches.first(5).each do |search| %>
+          <li>
+            <%= link_to(search.title, suggested_searches_path(search.slug)) %>
+            <ul>
+              <li><%= pluralize(search.documents_in_last_year, 'document') %>
+                      in the last year</li>
+              <li>
+                <i class="icon-fr2-Chat"></i>
+                <%= search.count_comments_open_for_comment %>
+                    open for comment
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

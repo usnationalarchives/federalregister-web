@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="nav-home-carousel">
+    <div class="col-xs-3 col-md-3 nav-wrapper">
+      <%= render  partial: 'sections/carousel/nav',
+                  locals: { sections: SectionSlug.all } %>
+    </div>
+    <div class="col-xs-9 col-md-9">
+    <% section_presenters = SectionSlug.all.map do |section|
+         SectionPagePresenter.new(section.slug, @date)
+       end %>
+    <% section_presenters.each do |section| %>
+      <%= render  partial: 'sections/carousel/content',
+                  locals: {
+                    section_name: section.section_title,
+                    slug: section.slug,
+                    #TODO: Remove stubbed image and description
+                    highlight_image: 'https://s3.amazonaws.com/lede-photos.federalregister.gov/5590/navigation.jpg',
+                    highlight_description: 'Stubbed description',
+                    icon_class: section.icon_name,
+                    canned_searches: section.suggested_searches,
+                  } %>
+    <% end %>
+    </div>
+  </div>
+</div>

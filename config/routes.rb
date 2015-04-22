@@ -181,6 +181,9 @@ MyFr2::Application.routes.draw do
       to: 'issues#summary',
       as: :home_current_issue_summary
 
+    esi.get 'esi/home/sections',
+      to: 'sections#homepage',
+      as: :home_sections
 
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
