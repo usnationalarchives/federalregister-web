@@ -42,7 +42,7 @@ namespace :documents do
       end
 
       def parse_document_numbers(doc_nums)
-        @doc_nums ||= doc_nums.split(" ")
+        @doc_nums ||= doc_nums.split(';')
       end
 
       def documents(doc_nums)
