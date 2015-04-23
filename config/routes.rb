@@ -330,7 +330,15 @@ MyFr2::Application.routes.draw do
 
   match '/executive-orders/:president/:year', to: 'executive_orders#by_president_and_year'
 
-  match '/:section', to: 'sections#show', as: :section
+  #
+  # Sections
+  #
+  get '/:section',
+    to: 'sections#show',
+    as: :section,
+    constraints: {
+      section: Regexp.new(Section.slugs.join("|"))
+    }
 
   get 'sections/:id/significant.:format',
     :controller => "agencies",
@@ -338,6 +346,9 @@ MyFr2::Application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_section'
 
+  #
+  # My FR
+  #
   scope 'my' do
     devise_for :users, :controllers => { :passwords => "users/passwords",
                                          :confirmations => "users/confirmations",
