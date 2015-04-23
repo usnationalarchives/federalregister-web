@@ -76,4 +76,14 @@ describe "document routes" do
       ).to eql("/documents/table_of_contents/html/2014/01/01/2014-00001.html")
     end
   end
+
+  it "generates a document issue path for a document" do
+    expect(get: document_issue_path(document)).to route_to(
+      controller: "document_issues",
+      action: "show",
+      year: document.year,
+      month: document.month,
+      day: document.day
+    )
+  end
 end

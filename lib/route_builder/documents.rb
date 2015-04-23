@@ -11,6 +11,14 @@ module RouteBuilder::Documents
     }
   end
 
+  add_route :document_issue do |document|
+    {
+      year:             (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%Y'),
+      month:            (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%m'),
+      day:              (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%d'),
+    }
+  end
+
   add_route :short_document do |document|
     {
       document_number: document.document_number,
