@@ -19,7 +19,7 @@ class AgencyDecorator < ApplicationDecorator
   end
 
   def logo_file_name
-    #logic around logo file name
+    #TODO: logic around logo file name
     logo
   end
 

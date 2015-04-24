@@ -3,7 +3,7 @@
     <h3><%= documents.first.publication_date.to_s(:month_year) %></h3>
     <div class="grouped_by_date">
     <% documents.group_by{|d| d.publication_date}.sort_by{|date, documents| date}.reverse.each do |pub_date, documents| %>  
-      <div class="date"><%= link_to pub_date.to_formatted_s(:day_date), document_issue_path(pub_date) %></div>
+      <div class="date"><%= link_to pub_date.to_formatted_s(:day_date), document_issue_path(documents.first) %></div>
       <ul class="comments">
         <% documents.sort_by(&:title).each do |document| %>
           <li>
