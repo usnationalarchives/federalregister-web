@@ -18,16 +18,24 @@ class HtmlCompilator::Tables::BodyRow
   def cells
     return @cells if @cells
 
-    provided_cells = []
+    @cells = []
+    start_column_index = 0
     node.xpath('ENT').each_with_index do |node, i|
-      provided_cells << HtmlCompilator::Tables::BodyCell.new(:row => self, :node => node, :index => i)
+      cell = HtmlCompilator::Tables::BodyCell.new(
+        :row => self,
+        :node => node,
+        :index => i,
+        :start_column_index => start_column_index
+      )
+      @cells << cell
+      start_column_index += cell.colspan
     end
-
-    @cells = append_missing_cells(provided_cells)
+    @cells = append_missing_cells(@cells)
+    @cells = @cells.select{|x| x.start_column }
   end
 
   def all_cells
-    cells
+    @cells
   end
 
   def expanded_stub_width
@@ -67,7 +75,8 @@ class HtmlCompilator::Tables::BodyRow
       cells << HtmlCompilator::Tables::BodyCell.new(
         :row => self,
         :node => HtmlCompilator::Tables::StubNode.new,
-        :index => i
+        :index => i,
+        :start_column_index => cells.last.end_column_index + 1
       )
     end
     cells

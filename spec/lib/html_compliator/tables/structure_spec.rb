@@ -131,7 +131,7 @@ describe HtmlCompilator::Tables do
   context "Body colspans; (A 'spanner designators')" do
     let(:table) do
       parse <<-XML
-        <GPOTABLE CDEF="6,6,6">
+        <GPOTABLE CDEF="6,6,6,6">
           <ROW>
             <ENT>A</ENT>
             <ENT A="1">BC</ENT>
@@ -222,6 +222,21 @@ describe HtmlCompilator::Tables do
 
     it "resets the stub column if re-specified" do
       expect(table.body_rows.last.cells.first.colspan).to eql(1)
+    end
+  end
+
+  context "malformed tables" do
+    it "handles cells after an I=28" do
+      table = parse <<-XML
+        <GPOTABLE CDEF="6,6" COLS="2">
+          <ROW>
+          <ENT I="28">AB</ENT>
+          <ENT/>
+          </ROW>
+        </GPOTABLE>
+      XML
+
+      expect(table.body_rows.first.cells.map(&:colspan)).to eql([2])
     end
   end
 end

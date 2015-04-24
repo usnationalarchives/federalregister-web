@@ -36,14 +36,6 @@ class HtmlCompilator::Tables::Cell
     table.columns[start_column_index]
   end
 
-  def start_column_index
-    if previous_cell_in_row.nil?
-      0
-    else
-      previous_cell_in_row.end_column_index + 1
-    end
-  end
-
   def previous_cell_in_row
     if index == 0
       nil

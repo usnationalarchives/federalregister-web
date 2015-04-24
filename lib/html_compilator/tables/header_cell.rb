@@ -81,7 +81,11 @@ class HtmlCompilator::Tables::HeaderCell < HtmlCompilator::Tables::Cell
       parent.start_column_index +
         previous_siblings.sum(&:colspan)
     else
-      super
+      if previous_cell_in_row.nil?
+        0
+      else
+        previous_cell_in_row.end_column_index + 1
+      end
     end
   end
 

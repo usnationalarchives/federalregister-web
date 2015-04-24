@@ -33,7 +33,7 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
     38 => [0, true],
     50 => [0, false],
   }
-  attr_reader :row, :node, :index
+  attr_reader :row, :node, :index, :start_column_index
   delegate :expanded_stub_width, :table, :to => :row
   delegate :h, :to => :table
 
@@ -41,6 +41,7 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
     @row = options.fetch(:row)
     @node = options.fetch(:node)
     @index = options.fetch(:index)
+    @start_column_index = options.fetch(:start_column_index)
   end
 
   def element
@@ -147,13 +148,5 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
   def stub?
     # ask the column if it is a stub?
     index == 0
-  end
-
-  def start_column_index
-    if previous_cell_in_row.nil?
-      0
-    else
-      previous_cell_in_row.end_column_index + 1
-    end
   end
 end
