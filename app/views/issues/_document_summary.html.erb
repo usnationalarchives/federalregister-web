@@ -26,13 +26,13 @@
       <% end %>
 
       <li>
-        <%= link_to_unless presenter.significant_document_counts.count == 0,
+        <%= link_to_unless presenter.any_significant_documents?,
           pluralize(
-            presenter.significant_document_counts.count,
-            presenter.significant_document_counts.name
+            presenter.significant_documents.count,
+            presenter.significant_documents.name
           ),
           documents_search_path(
-            presenter.significant_document_counts.search_conditions
+            presenter.significant_documents.search_conditions
           ) %>
       </li>
 

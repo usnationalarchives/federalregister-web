@@ -1,15 +1,8 @@
 class DocumentIssuePresenter
-  DOCUMENT_TYPES = {
-    "NOTICE" => "Notice",
-    "PRORULE" => "Proposed Rule",
-    "RULE" => "Rule",
-    "PRESDOCU" => "Presidential Document"
-  }
-
   attr_reader :date, :options
 
   def initialize(date, options={})
-    @date = date
+    @date = date.is_a?(Date) ? date : Date.parse(date)
     @options = options
   end
 
@@ -42,12 +35,16 @@ class DocumentIssuePresenter
       )
   end
 
-  def significant_document_counts
-    SignificantDocument.new(documents: significant_docs)
+  def significant_documents
+    @significant_documents ||= SignificantDocument.new(date)
+  end
+
+  def any_significant_documents?
+    significant_documents.count > 0
   end
 
   class SignificantDocument
-    vattr_initialize [:documents]
+    vattr_initialize :date
 
     def name
       'Significant Document'
@@ -59,6 +56,15 @@ class DocumentIssuePresenter
 
     def search_conditions
       documents.conditions
+    end
+
+    def documents
+      @documents ||= DocumentTypeFacet.search(
+        conditions: {
+          significant: 1,
+          publication_date: {is: date}
+        }
+      )
     end
   end
 
@@ -81,15 +87,6 @@ class DocumentIssuePresenter
         publication_date: {is: date},
       },
       fields: [:end_page, :publication_date, :start_page],
-    )
-  end
-
-  def significant_docs
-    @significant_docs ||= DocumentTypeFacet.search(
-      conditions: {
-        significant: 1,
-        publication_date: {is: date}
-      }
     )
   end
 end

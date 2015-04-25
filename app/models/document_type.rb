@@ -6,24 +6,21 @@ class DocumentType
   end
 
   def granule_class
-    @granule_class ||= case type.downcase
-    when 'rule'
+    @granule_class ||= case type
+    when 'Rule'
       'rule'
-    when 'proposed rule'
+    when 'Proposed Rule'
       'proposed_rule'
-    when 'notice'
+    when 'Notice'
       'notice'
-    when 'presidential document'
+    when 'Presidential Document'
       'presidential_document'
-    when 'uncategorized document'
+    when 'Uncategorized Document'
       'uncategorized'
-    when 'sunshine act document'
+    when 'Sunshine Act Document'
       'notice'
-    when 'correction'
+    when 'Correction'
       'correct'
-
-    when 'prorule'
-      'proposed_rule'
     end
   end
 
