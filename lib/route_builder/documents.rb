@@ -36,10 +36,14 @@ module RouteBuilder::Documents
   private
 
   def self.date_from_object(document_like_object)
-    (
-      document_like_object.try(:publication_date) ||
-      document_like_object.try(:filed_at) ||
-      Date.current
-    ).to_date
+    if document_like_object.is_a?(Date)
+      document_like_object
+    else
+      (
+        document_like_object.try(:publication_date) ||
+        document_like_object.try(:filed_at) ||
+        Date.current
+      ).to_date
+    end
   end
 end
