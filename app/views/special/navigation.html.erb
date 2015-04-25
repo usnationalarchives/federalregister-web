@@ -17,7 +17,7 @@
             <%= link_to 'Topics', topics_path, :class => "topics with-icon" %>
           </li>
           <li id='document-dates-browse'>
-            <%= link_to 'Dates', navigation_document_dates_path, :class => "date with-icon" %>
+            <%= link_to 'Dates', document_issue_path(DocumentIssue.current), :class => "date with-icon" %>
           </li>
           <li id='public-inspection-browse'>
             <%= link_to 'Public Inspection', current_public_inspection_documents_path, :class => "public_inspection with-icon" %>
@@ -29,7 +29,7 @@
         <ul class="right_column">
           <%= esi navigation_agencies_path %>
           <%= esi navigation_topics_path %>
-          <%= esi navigation_document_dates_path %>
+          <%= esi navigation_document_issue_path %>
           <%= esi navigation_public_inspection_path %>
           <%= esi executive_orders_path %>
         </ul>

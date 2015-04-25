@@ -147,23 +147,14 @@ MyFr2::Application.routes.draw do
   #
   with_options(:quiet => true) do |esi|
 
-    #TEST ESI ROUTES START
-    esi.get 'esi/documents/:year/:month',
-    to: 'documents#by_month',
-    as: :entries_by_month_test,
+    #CALENDAR
+    esi.get 'esi/document_issues_by_month/:year/:month',
+    to: 'document_issues#by_month',
+    as: :document_issues_by_month,
     constraints: {
       :year        => /\d{4}/,
       :month       => /\d{1,2}/
     }
-
-    esi.get 'esi/documents/:year/:month',
-    to: 'documents#by_month',
-    as: :entries_by_month_test,
-    constraints: {
-      :year        => /\d{4}/,
-      :month       => /\d{1,2}/
-    }
-    #/TEST ESI ROUTES END
 
     # HEADER
     esi.get 'special/header/:type',
@@ -250,9 +241,10 @@ MyFr2::Application.routes.draw do
     esi.get 'esi/layouts/navigation/public-inspection',
       to: 'public_inspection_documents#navigation',
       as: :navigation_public_inspection
-    esi.get 'esi/layouts/navigation/document_dates',
-      to: 'document_dates#document_dates_navigation',
-      as: :navigation_document_dates
+
+    esi.get 'esi/layouts/navigation/document_issue',
+      to: 'document_issues#navigation',
+      as: :navigation_document_issue
 
     esi.get 'esi/layouts/navigation/executive-orders',
       to: 'executive_orders#navigation',
