@@ -2,20 +2,22 @@ module RouteBuilder::Documents
   extend RouteBuilder::Utils
 
   add_route :document do |document|
+    date = date_from_object(document)
     {
-      year:             (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%Y'),
-      month:            (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%m'),
-      day:              (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%d'),
+      year:             date.strftime('%Y'),
+      month:            date.strftime('%m'),
+      day:              date.strftime('%d'),
       document_number:  document.document_number,
       slug:             document.slug,
     }
   end
 
-  add_route :document_issue do |document|
+  add_route :document_issue do |document_issue_or_document|
+    date = date_from_object(document_issue_or_document)
     {
-      year:             (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%Y'),
-      month:            (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%m'),
-      day:              (document.publication_date || (document.filed_at || Date.current).to_date ).strftime('%d'),
+      year:   date.strftime('%Y'),
+      month:  date.strftime('%m'),
+      day:    date.strftime('%d'),
     }
   end
 
@@ -29,5 +31,15 @@ module RouteBuilder::Documents
     file_path = document.body_html_url.split('full_text/').last
 
     "/documents/table_of_contents/#{file_path}"
+  end
+
+  private
+
+  def self.date_from_object(document_like_object)
+    (
+      document_like_object.try(:publication_date) ||
+      document_like_object.try(:filed_at) ||
+      Date.current
+    ).to_date
   end
 end
