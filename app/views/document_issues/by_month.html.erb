@@ -5,8 +5,18 @@
     # ugly hack to punch in data attributes
     :table_class => "calendar #{@table_class}\" data-calendar-year=\"#{@date.year}\" data-calendar-month=\"#{@date.month}\" data-year-start=\"1994\" data-year-end=\"#{Time.now.year}\"",
     # :previous_month_text => @date.months_ago(1)   > Entry.earliest_publication_date ? link_to('&laquo; Prev', entries_by_month_path(@date.months_ago(1)), :class => 'nav')   : "",
-    :previous_month_text => link_to('Prev', entries_by_month_test_path(@date.months_ago(1).year, @date.months_ago(1).month ),class: "nav"),
-    # :next_month_text     => @date.months_since(1) <= Issue.current.publication_date ? link_to('Next &raquo;', entries_by_month_path(@date.months_since(1)), :class => 'nav') : "",
+    previous_month_text: link_to(
+      '&laquo; Prev'.html_safe,
+      document_issues_by_month_path(@date.months_ago(1).year, @date.months_ago(1).month),
+      class: "nav"
+    ),
+    next_month_text: @date.months_since(1) <= DocumentIssue.current.publication_date ? 
+      link_to(
+        'Next &raquo;'.html_safe,
+        document_issues_by_month_path(@date.months_since(1).year, @date.months_since(1).month),
+        class: 'nav'
+      )
+      : "",
     :abbrev => (0..0),
     :month_name_class => "monthName year_#{@date.year}",
   ) do |d|
@@ -14,10 +24,10 @@
       [d.mday, {:class => "weekend"}]
     # elsif d == Time.current.to_date && Issue.current_issue_is_late?
     #   [d.mday, {:class => "late" }]
-    elsif d == @current_date.to_date
-      [link_to(d.mday, ''), {:class => "current" }]
-    elsif @entry_dates.include?(d)
-      [link_to(d.mday, ''), {:class => "published" }] #TODO: Change path here
+    elsif d == DocumentIssue.current.publication_date
+      [link_to(d.mday, document_issue_path(d)), {:class => "current" }]
+    elsif @document_dates.include?(d)
+      [link_to(d.mday, document_issue_path(d)), {:class => "published" }] #TODO: Change path here
     # elsif holiday = Holiday.find_by_date(d)
     #   [d.mday, {:class => "holiday", :title => holiday.name}]
     else

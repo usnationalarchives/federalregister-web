@@ -67,32 +67,4 @@ class DocumentsController < ApplicationController
       # end
     end
   end
-
-  def by_month
-    cache_for 1.day
-    begin
-      @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    rescue ArgumentError
-      raise ActiveRecord::RecordNotFound
-    end
-
-    @current_date = Date.current
-    if params[:current_date]
-      @current_date = Date.parse(params[:current_date])
-    end
-
-    @entry_dates = FederalRegister::Facet::Document::Daily.search(
-      {:conditions =>
-        {:publication_date =>
-          {:gte => @date.beginning_of_month,
-           :lte => @date.end_of_month
-          }
-        }
-      }
-    ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
-
-    @table_class = params[:table_class]
-
-    render :layout => false
-  end
 end

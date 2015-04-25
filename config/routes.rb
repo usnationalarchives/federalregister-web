@@ -29,14 +29,6 @@ MyFr2::Application.routes.draw do
       }
 
 # TEST ROUTES FOR CALENDAR
-  get 'documents/:year/:month/',
-    to: "documents#by_month",
-    as: :entries_by_month,
-    constraints: {
-      :year        => /\d{4}/,
-      :month       => /\d{1,2}/
-    }
-
   get 'documents/date_search',
     to: "documents#date_search",
     as: :documents_date_search,

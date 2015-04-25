@@ -1,6 +1,6 @@
 class DocumentIssuesController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false, only: :navigation
+  layout false, only: [:by_month, :navigation]
 
   def show
     cache_for 1.day
@@ -12,6 +12,28 @@ class DocumentIssuesController < ApplicationController
       @presenter = TableOfContentsPresenter.new(parsed_date)
       @doc_presenter = DocumentIssuePresenter.new(parsed_date)
     end
+  end
+
+  def by_month
+    cache_for 1.day
+
+    begin
+      @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
+    rescue ArgumentError
+      raise ActiveRecord::RecordNotFound
+    end
+
+    @document_dates = FederalRegister::Facet::Document::Daily.search(
+      {:conditions =>
+        {:publication_date =>
+          {:gte => @date.beginning_of_month,
+           :lte => @date.end_of_month
+          }
+        }
+      }
+    ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
+
+    @table_class = params[:table_class]
   end
 
   def navigation
