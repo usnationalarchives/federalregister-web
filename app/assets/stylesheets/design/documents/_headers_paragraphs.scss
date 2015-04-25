@@ -29,6 +29,7 @@
 .fr-box-official .content-block {
   h1 { @extend %fr_h1_style; }
   h2 { @extend %fr_h2_style; }
+  h3 { font-size: 15px; }
 
   p { @extend %fr_p_style; }
 }
