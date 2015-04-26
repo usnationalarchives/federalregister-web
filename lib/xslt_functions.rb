@@ -5,8 +5,9 @@ class XsltFunctions
     footnotes = nodes.first.content.split(' ')
 
     Nokogiri::XML::Builder.with(doc) do |doc|
-      doc.text "["
       doc.sup {
+        doc.text "["
+
         footnotes.each do |footnote|
           doc.a(
             class: "footnote-reference",
@@ -14,9 +15,11 @@ class XsltFunctions
           ) {
             doc.text footnote
           }
+
+          doc.text ", " if footnotes.last != footnote
         end
+        doc.text "]"
       }
-      doc.text "]"
     end
 
     doc.children

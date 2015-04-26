@@ -137,10 +137,10 @@ describe "XSLT::FullText::Footnotes" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             MitraClip System meets the substantial clinical improvement criterion 
-            based on clinical studies[<sup><a class="footnote-reference" href="#footnote-4">4</a>
-            <a class="footnote-reference" href="#footnote-5">5</a>
-            <a class="footnote-reference" href="#footnote-6">6</a>
-            <a class="footnote-reference" href="#footnote-7">7</a></sup>]
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4">4</a>,
+            <a class="footnote-reference" href="#footnote-5">5</a>,
+            <a class="footnote-reference" href="#footnote-6">6</a>,
+            <a class="footnote-reference" href="#footnote-7">7</a>]</sup>
             that have consistently...
           </p>
         HTML
@@ -157,7 +157,7 @@ describe "XSLT::FullText::Footnotes" do
 
         expect_equivalent <<-HTML
           <h2 id="h-1">
-            II. Fees for FY 2015[<sup><a class="footnote-reference" href="#footnote-1">1</a></sup>]
+            II. Fees for FY 2015<sup>[<a class="footnote-reference" href="#footnote-1">1</a>]</sup>
           </h2>
         HTML
       end
