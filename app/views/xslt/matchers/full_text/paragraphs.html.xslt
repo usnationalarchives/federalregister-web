@@ -3,7 +3,7 @@
   <xsl:include href="../../templates/paragraphs.html.xslt" />
   <xsl:include href="../../templates/printed_page.html.xslt" />
 
-  <xsl:template match="P | FP">
+  <xsl:template match="P | FP[not(@*)]">
     <!--
     <xsl:choose>
       <xsl:when test="starts-with(text(),'&#x2022;')">
@@ -42,6 +42,48 @@
         </p>
         <!-- </xsl:otherwise>
     </xsl:choose> -->
+  </xsl:template>
+
+  <xsl:template match="FP[@SOURCE='FP-1']">
+    <p class="flush-paragraph flush-paragraph-1">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="FP[@SOURCE='FP-2']">
+    <p class="flush-paragraph flush-paragraph-2">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="FP[@SOURCE='FP1-2']">
+    <p class="flush-paragraph flush-paragraph-1-2">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
   </xsl:template>
 
 </xsl:stylesheet>

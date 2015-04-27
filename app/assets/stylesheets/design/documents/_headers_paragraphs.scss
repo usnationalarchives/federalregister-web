@@ -1,35 +1,61 @@
-%fr_h1_style {
-  color: $fr-blue;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  @include apertura-condensed;
-  text-align: left;
-  margin: 0 0 1em;
-  padding-top: 0;
-  text-transform: uppercase;
+%fr_header_style {
   word-wrap: break-word;
-}
-
-%fr_h2_style {
-  font-size: 18px;
-  line-height: 1.5em;
   margin-top: 0;
+  font-size: 18px;
   text-align: left;
-}
-
-%fr_p_style {
-  padding-left: 0;
-  color: #363636;
-  @include calluna;
-  font-size: 1.2em;
-  line-height: 1.6em;
 }
 
 .fr-box-official .content-block {
-  h1 { @extend %fr_h1_style; }
-  h2 { @extend %fr_h2_style; }
+  h1 {
+    @extend %fr_header_style;
+
+    color: $fr-blue;
+    @include apertura-condensed;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 1em;
+    padding-top: 0;
+  }
+
+  h2 {
+    @extend %fr_header_style;
+
+    line-height: 1.5em;
+    text-align: left;
+  }
+
   h3 { font-size: 15px; }
 
-  p { @extend %fr_p_style; }
+  p {
+    padding-left: 0;
+
+    color: #363636;
+    @include calluna;
+    font-size: 1.2em;
+    line-height: 1.6em;
+
+    &.flush-paragraph {
+      padding-bottom: 0;
+      margin-bottom: 0 !important;
+
+      &.flush-paragraph-1 {
+        margin-left: 1em !important;
+        text-indent: -1.15em;
+        padding-left: 1em;
+      }
+
+      &.flush-paragraph-2 {
+        margin-left: 2em !important;
+        text-indent: -2.5em;
+        padding-left: 2.5em;
+      }
+
+      &.flush-paragraph-1-2 {
+        margin-left: 2em !important;
+        text-indent: -1.15em;
+        padding-left: 1.15em;
+      }
+    }
+  }
 }
