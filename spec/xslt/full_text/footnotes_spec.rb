@@ -71,14 +71,10 @@ describe "XSLT::FullText::Footnotes" do
 
     expect_equivalent <<-HTML
       <p id="p-1" data-page="1000">
-        <sup id="citation-1">
-          [<a class="footnote-reference" href="#footnote-1">1</a>]
-        </sup>
+        <sup>[<a class="footnote-reference" href="#footnote-1" id="citation-1">1</a>] </sup>
       </p>
       <p id="p-3" data-page="1000">
-        <sup id="citation-2">
-          [<a class="footnote-reference" href="#footnote-2">2</a>]
-        </sup>
+        <sup>[<a class="footnote-reference" href="#footnote-2" id="citation-2">2</a>] </sup>
       </p>
       <h1 id="footnotes">Footnotes</h1>
       <div class="footnotes">
@@ -111,12 +107,12 @@ describe "XSLT::FullText::Footnotes" do
       end
 
       it "creates a superscript" do
-        expect(html).to have_tag("sup#citation-2", count: 1)
+        expect(html).to have_tag("sup", count: 1)
       end
 
       it "creates an internal link to the footnote in the text" do
         expect(html).to have_tag("sup") do
-          with_tag "a.footnote-reference", with: {href: '#footnote-2'} do
+          with_tag "a.footnote-reference", with: {href: '#footnote-2', id: "citation-2"} do
             with_text /2/
           end
         end
@@ -137,10 +133,10 @@ describe "XSLT::FullText::Footnotes" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             MitraClip System meets the substantial clinical improvement criterion 
-            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4">4</a>,
-            <a class="footnote-reference" href="#footnote-5">5</a>,
-            <a class="footnote-reference" href="#footnote-6">6</a>,
-            <a class="footnote-reference" href="#footnote-7">7</a>] </sup>
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4" id="citation-4">4</a>,
+            <a class="footnote-reference" href="#footnote-5" id="citation-5">5</a>,
+            <a class="footnote-reference" href="#footnote-6" id="citation-6">6</a>,
+            <a class="footnote-reference" href="#footnote-7" id="citation-7">7</a>] </sup>
             that have consistently...
           </p>
         HTML
@@ -157,14 +153,14 @@ describe "XSLT::FullText::Footnotes" do
 
         expect_equivalent <<-HTML
           <h2 id="h-1">
-            II. Fees for FY 2015<sup>[<a class="footnote-reference" href="#footnote-1">1</a>] </sup>
+            II. Fees for FY 2015<sup>[<a class="footnote-reference" href="#footnote-1" id="citation-1">1</a>] </sup>
           </h2>
         HTML
       end
 
       # addresses bug that was accumulating footnotes as it moved down the document
       it "does not stack footnotes" do
-                process <<-XML
+        process <<-XML
           <P>
             MitraClip System meets the substantial clinical improvement criterion
             <E T="51">2 3</E>
@@ -179,12 +175,12 @@ describe "XSLT::FullText::Footnotes" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             MitraClip System meets the substantial clinical improvement
-            criterion<sup>[<a class="footnote-reference" href="#footnote-2">2</a>,
-            <a class="footnote-reference" href="#footnote-3">3</a>] </sup>
-            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4">4</a>,
-            <a class="footnote-reference" href="#footnote-5">5</a>,
-            <a class="footnote-reference" href="#footnote-6">6</a>,
-            <a class="footnote-reference" href="#footnote-7">7</a>] </sup>
+            criterion<sup>[<a class="footnote-reference" href="#footnote-2" id="citation-2">2</a>,
+            <a class="footnote-reference" href="#footnote-3" id="citation-3">3</a>] </sup>
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4" id="citation-4">4</a>,
+            <a class="footnote-reference" href="#footnote-5" id="citation-5">5</a>,
+            <a class="footnote-reference" href="#footnote-6" id="citation-6">6</a>,
+            <a class="footnote-reference" href="#footnote-7" id="citation-7">7</a>] </sup>
             that have consistently...
           </p>
         HTML

@@ -12,7 +12,8 @@ class XsltFunctions
         footnotes.each do |footnote|
           doc.a(
             class: "footnote-reference",
-            href: "#footnote-#{footnote}"
+            href: "#footnote-#{footnote}",
+            id: "citation-#{footnote}"
           ) {
             doc.text footnote
           }

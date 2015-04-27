@@ -22,30 +22,11 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="SU[following-sibling::FTREF]">
-    <xsl:variable name="number">
-      <xsl:value-of select="text()"/>
-    </xsl:variable>
 
-    <sup>
-      <xsl:attribute name="id">
-        <xsl:value-of select="concat('citation-', $number)"/>
-      </xsl:attribute>
-
-      [<a class="footnote-reference">
-        <xsl:attribute name="href">
-          #footnote-<xsl:value-of select="$number"/>
-        </xsl:attribute>
-
-        <xsl:apply-templates />
-      </a>]
-    </sup>
-  </xsl:template>
-
-  <xsl:template match="E[@T=51 and following-sibling::*[1][self::FTREF]]">
+  <xsl:template match="E[@T=51 and following-sibling::*[1][self::FTREF]]
+    | SU[following-sibling::FTREF]">
     <xsl:copy-of select="fr:multiple_footnotes(text())"/>
   </xsl:template>
-
 
 
   <xsl:template match="SU[ancestor::FTNT]">
