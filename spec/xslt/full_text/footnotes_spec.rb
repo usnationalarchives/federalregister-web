@@ -161,6 +161,34 @@ describe "XSLT::FullText::Footnotes" do
           </h2>
         HTML
       end
+
+      # addresses bug that was accumulating footnotes as it moved down the document
+      it "does not stack footnotes" do
+                process <<-XML
+          <P>
+            MitraClip System meets the substantial clinical improvement criterion
+            <E T="51">2 3</E>
+            <FTREF/>
+            based on clinical studies
+            <E T="51">4 5 6 7</E>
+            <FTREF/>
+            that have consistently...
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            MitraClip System meets the substantial clinical improvement
+            criterion<sup>[<a class="footnote-reference" href="#footnote-2">2</a>,
+            <a class="footnote-reference" href="#footnote-3">3</a>] </sup>
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4">4</a>,
+            <a class="footnote-reference" href="#footnote-5">5</a>,
+            <a class="footnote-reference" href="#footnote-6">6</a>,
+            <a class="footnote-reference" href="#footnote-7">7</a>] </sup>
+            that have consistently...
+          </p>
+        HTML
+      end
     end
   end
 end

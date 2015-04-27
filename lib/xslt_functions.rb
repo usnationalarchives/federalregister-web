@@ -4,7 +4,8 @@ class XsltFunctions
   def multiple_footnotes(nodes)
     footnotes = nodes.first.content.split(' ')
 
-    Nokogiri::XML::Builder.with(doc) do |doc|
+    document = blank_document
+    Nokogiri::XML::Builder.with(document) do |doc|
       doc.sup {
         doc.text "["
 
@@ -22,13 +23,14 @@ class XsltFunctions
       }
     end
 
-    doc.children
+    document.children
   end
 
   def list_of_subjects(nodes)
     topics = nodes.first.content.split(',').map{|t| t.strip.gsub('.', '')}
 
-    Nokogiri::XML::Builder.with(doc) do |doc|
+    document = blank_document
+    Nokogiri::XML::Builder.with(document) do |doc|
       doc.ul {
         topics.each do |topic|
           doc.li {
@@ -42,12 +44,12 @@ class XsltFunctions
       }
     end
 
-    doc.children
+    document.children
   end
 
   private
 
-  def doc
-    @doc ||= Nokogiri::XML::DocumentFragment.parse ""
+  def blank_document
+    Nokogiri::XML::DocumentFragment.parse ""
   end
 end
