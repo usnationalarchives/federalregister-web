@@ -18,7 +18,7 @@ class XsltFunctions
 
           doc.text ", " if footnotes.last != footnote
         end
-        doc.text "]"
+        doc.text "] "
       }
     end
 
