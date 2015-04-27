@@ -186,6 +186,29 @@ describe "XSLT::FullText::Footnotes" do
         HTML
       end
     end
+
+    # TODO BB: this turns out to be fairly difficult to implement
+    # leaving the test but marking as no_ci for now
+    context "whitespace before a footnote", :no_ci do
+      it "trims the trailing whitespace when a footnote follows a formatted" do
+        process <<-XML
+          <P>
+            According to
+            <E T="03">Morse,</E>
+            <SU>15</SU>
+            <FTREF/>
+            78 percent of falls
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            According to <em>Morse,</em><sup>[<a class="footnote-reference" href="#footnote-15" id="citation-15">15</a>] </sup>
+            78 percent of falls
+          </p>
+        HTML
+      end
+    end
   end
 end
 
