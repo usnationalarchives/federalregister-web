@@ -192,12 +192,10 @@ describe "XSLT::FullText::Footnotes" do
     context "whitespace before a footnote", :no_ci do
       it "trims the trailing whitespace when a footnote follows a formatted" do
         process <<-XML
-          <P>
-            According to
-            <E T="03">Morse,</E>
+          <P>According to<E T="03">Morse,</E>
             <SU>15</SU>
-            <FTREF/>
-            78 percent of falls
+
+            <FTREF/>78 percent of falls
           </P>
         XML
 
