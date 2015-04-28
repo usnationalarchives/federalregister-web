@@ -56,6 +56,14 @@
         text-indent: -1.15em;
         padding-left: 1.15em;
       }
+
+      &.flush-paragraph-dash {
+        &:after {
+          content: "_____________________________________________________________";
+        }
+
+        &.flush-paragraph-no-wrap { white-space: nowrap; }
+      }
     }
   }
 }

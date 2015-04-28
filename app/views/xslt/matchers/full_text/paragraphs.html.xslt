@@ -86,4 +86,44 @@
     </p>
   </xsl:template>
 
+  <xsl:template match="FP[@SOURCE='FP-DASH']">
+    <p>
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:attribute name="class">
+        <xsl:if test="string-length(.) &gt; 50">flush-paragraph flush-paragraph-dash</xsl:if>
+        <xsl:if test="string-length(.) &lt;= 50">flush-paragraph flush-paragraph-dash flush-paragraph-no-wrap</xsl:if>
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="FP[
+    not(@SOURCE='FP-DASH')
+    and (
+      following-sibling::*[1][self::FP][@SOURCE='FP-DASH']
+      or
+      preceding-sibling::*[1][self::FP][@SOURCE='FP-DASH']
+    )
+    ]">
+    <p class="flush-paragraph">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
 </xsl:stylesheet>
