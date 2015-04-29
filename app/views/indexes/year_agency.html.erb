@@ -1,3 +1,7 @@
+<%= add_handlebars_template('fr_index_entry_popover', 'fr-index-entry-popover') %>
+<%= add_handlebars_template('fr_index_entry_popover_content',
+                            'fr-index-entry-popover-content') %>
+
 <div class="title document-issue">
   <span><%= @presenter.year %> FR Index</span>
 </div>
@@ -12,7 +16,11 @@
       <div class="row">
         <div class="col-xs-12 col-md-12">
           <%= render partial: 'indexes/agency_year_header',
-              locals: {agency_year: @presenter.year} %>
+              locals: {year: @presenter.year,
+                       agency_name: @presenter.agency_name,
+                       agency_slug: @presenter.agency_slug,
+                       document_type_counts: @presenter.document_type_counts
+                      } %>
         </div>
       </div>
 
@@ -26,14 +34,6 @@
               } %>
             </div>
           <% end %>
-        </div>
-        <div class="col-xs-3 col-md-3 doc-toc-nav">
-          <%#= fr_box "Documents by Agency", :official_doc_details, header: {hover: false} do %>
-            <%#= render partial: 'document_issues/agency_count_bar', locals: {
-                date: @presenter.date,
-                agencies: @presenter.agencies
-              } %>
-          <%# end %>
         </div>
       </div>
 

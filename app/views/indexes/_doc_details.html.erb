@@ -1,20 +1,33 @@
 <div class='toc-documents'>
-  <% documents.each do |document| %>
-    <h7><%= link_to(subject, document.html_url) %></h7>
-    <div class="row toc-document-metadata">
-      <dl class="col-xs-3 col-md-3">
-        <dt>Published</dt>
-        <dd><%= link_to(document.publication_date, document.html_url) %></dd>
-      </dl>
-      <dl class="col-xs-3 col-md-3">
-        <dt>FR Document</dt>
-        <dd><%= link_to(document.document_number, document.html_url) %></dd>
-      </dl>
-      <dl class="col-xs-3 col-md-3">
-        <dt>Pages</dt>
-        <dd><%= link_to(document.page_range, document.pdf_url) %>
-            <%= pluralize(document.length, "Page") %></dd>
-      </dl>
-    </div>
+  <% first_document = true %>
+  <% documents.group_by{|d|d.publication_date.to_date.month}.each do |month, grouped_documents| %>
+    <% grouped_documents.each_with_index do |document, index| %>
+      <h7>
+        <% if first_document %>
+          <% first_document = false %>
+          <%= link_to(subject, document.html_url) %>
+        <% end %>
+      </h7>
+      <div class="row toc-document-metadata">
+        <dl class="col-xs-3 col-md-3">
+          <% if index == 0%>
+            <%= Date::MONTHNAMES[month] %>
+          <% end %>
+        </dl>
+        <dl class="col-xs-3 col-md-3">
+          <dt>Published</dt>
+          <dd><%= link_to(document.publication_date, document.html_url) %></dd>
+        </dl>
+        <dl class="col-xs-3 col-md-3">
+          <dt>FR Document</dt>
+          <dd><%= link_to(document.document_number, document.html_url) %></dd>
+        </dl>
+        <dl class="col-xs-3 col-md-3">
+          <dt>Pages</dt>
+          <dd><%= link_to(document.page_range, document.pdf_url) %>
+              <%= pluralize(document.length, "Page") %></dd>
+        </dl>
+      </div>
+    <% end %>
   <% end %>
 </div>

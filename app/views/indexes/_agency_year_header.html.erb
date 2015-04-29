@@ -1,12 +1,14 @@
 <div id="fr-index-agency-metadata" class="page_summary">
   <h1>
-    <%= link_to "Stubbed Agency Name", '', :class => 'agency' %>
-    <%= link_to "Return to the agency list for the #{agency_year.year} FR Index", '', :class => "return_to_index" %>
+    <%= link_to agency_name, '', :class => 'agency' %>
+    <!-- BC TODO: Link to live path -->
   </h1>
+  <%= link_to "Return to the agency list for the #{year} FR Index", year_agency_path(year, agency_slug)  %>
 
   <hr />
 
-  <%#= render :partial => 'embedded_search', :locals => {:search => @search, :agency_year => agency_year} %>
+  <!-- BB TODO: Turn this into a helper and allow arbitrary conditions to be passed. -->
+  <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
   <%# if agency_year.last_published %>
     <%#= link_to "Download Approved #{agency_year.last_published.to_s(:month_year)} #{agency_year.name} Index (PDF)", agency_year.published_pdf_path, :class => "pdf_link" %>
@@ -16,10 +18,10 @@
 
   <p>
     <%# if agency_year.current_year? %>
-      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the Stubbed Agency Name<%#= agency_year.agency.name %> has published 
-      <%#= pluralize agency_year.entry_count, "document" %> in <%= agency_year.year %>.
+      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the <%= agency_name %> has published 
+      <%#= pluralize agency_year.entry_count, "document" %> in <%= year %>.
     <%# else %>
-      In Stubbed year<%#= agency_year.year %> the <%#= agency_year.agency.name %> published <%#= pluralize agency_year.entry_count, "document" %>.
+      In <%= year %> the <%= agency_name %> published <%#= pluralize agency_year.entry_count, "document" %>.
     <%# end %>
   </p>
 
@@ -29,12 +31,12 @@
       <th>Documents Published</th>
       <th>Subjects Covered</th>
     </tr>
-    <%# agency_year.document_types.each do |document_type| %>
+    <% document_type_counts.each do |document_type| %>
     <tr>
-      <td class="type">Stubbed Type<%#= link_to document_type.name.pluralize, "#fr-index-#{document_type.name.pluralize.downcase}" %></td>
-      <td class="entry_count"> Stubbed Entry Count<%#= document_type.entry_count %></td>
-      <td class="subject_count"> Stubbed Subject Count<%#= document_type.grouping_count %></td>
+      <td class="type"> <%= link_to document_type.name.pluralize, "#fr-index-#{document_type.name.pluralize.downcase}" %></td>
+      <td class="entry_count"> <%= document_type.count %></td>
+      <td class="subject_count"> ?<%#= document_type.grouping_count %></td>
     </tr>
-    <%# end %>
+    <% end %>
   </table>
 </div>

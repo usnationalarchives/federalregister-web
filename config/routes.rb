@@ -368,7 +368,8 @@ MyFr2::Application.routes.draw do
   #
   get '/index/:year/:agency_slug',
     :controller => "indexes",
-    :action => "year_agency"
+    :action => "year_agency",
+    as: 'year_agency'
 
   #
   # My FR
