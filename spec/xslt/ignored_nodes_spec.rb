@@ -51,15 +51,6 @@ describe "XSLT::IgnoredNodes" do
 
       expect_equivalent '<h1 id="h-1">Not Ignored</h1>'
     end
-
-    it "ignores the SUBJECT node" do
-      process <<-XML
-        <SUBJECT>Brucellosis Class Free States and Certified Brucellosis-Free Herds</SUBJECT>
-        <HD SOURCE="HED">Not Ignored</HD>
-      XML
-
-      expect_equivalent '<h1 id="h-1">Not Ignored</h1>'
-    end
   end
 
   context "nodes in the preamble that have child nodes" do
