@@ -2,7 +2,7 @@ class DocumentDecorator < ApplicationDecorator
   delegate_all
 
   include DocumentDecorator::Shared
-  
+
   include DocumentDecorator::Agencies
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
@@ -38,7 +38,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def page_range
-    start_page == end_page ? end_page : "#{start_page}-#{end_page}"
+    end_page != start_page ? "#{start_page}-#{end_page}" : start_page
   end
 
   def pages
