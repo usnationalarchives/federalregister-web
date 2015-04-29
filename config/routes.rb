@@ -364,6 +364,13 @@ MyFr2::Application.routes.draw do
     as: :suggested_search
 
   #
+  # FR Index
+  #
+  get '/index/:year/:agency_slug',
+    :controller => "indexes",
+    :action => "year_agency"
+
+  #
   # My FR
   #
   scope 'my' do

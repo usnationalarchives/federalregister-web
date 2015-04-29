@@ -1,0 +1,46 @@
+<div class="title document-issue">
+  <span><%= @presenter.year %> FR Index</span>
+</div>
+
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+  <div class="wrapper">
+    <div class="container fixed">
+
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <%= render partial: 'indexes/agency_year_header',
+              locals: {agency_year: @presenter.year} %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-12 doc-toc">
+          <%= fr_box "Documents", :official_toc, header: {seal: true} do %>
+            <div class="doc doc-document-issue">
+              <%= render partial: 'document_issues/table_of_contents', locals: {
+                agencies: @presenter.agency,
+                document_partial: @presenter.document_partial
+              } %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-xs-3 col-md-3 doc-toc-nav">
+          <%#= fr_box "Documents by Agency", :official_doc_details, header: {hover: false} do %>
+            <%#= render partial: 'document_issues/agency_count_bar', locals: {
+                date: @presenter.date,
+                agencies: @presenter.agencies
+              } %>
+          <%# end %>
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 100px;"></div>
+    </div>
+  </div>
+
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->
