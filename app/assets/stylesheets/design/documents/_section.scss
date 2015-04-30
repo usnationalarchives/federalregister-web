@@ -1,0 +1,44 @@
+$sectno-width: 15%;
+$subject-width: 85%;
+
+.regulatory-table-of-contents,
+.section {
+  a:visited { color: $color-official; }
+}
+
+.regulatory-table-of-contents {
+  .fr-list.fr-list-inline {
+    lh {
+      &.sectno-header {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      &.sectno-header-1 { font-size: 18px; }
+      &.sectno-header-2 { font-size: 16px; }
+      &.sectno-header-3 { font-size: 14px; }
+    }
+
+
+    dt { width: $sectno-width; }
+    dd { width: $subject-width; }
+  }
+}
+
+.section {
+  .sectno-reference,
+  .section-subject {
+    font-weight: bold;
+    font-size: 14px;
+    float: left;
+  }
+
+  .sectno-reference { width: $sectno-width; }
+
+  .section-subject {
+    width: $subject-width;
+    margin-bottom: 10px;
+  }
+}
+

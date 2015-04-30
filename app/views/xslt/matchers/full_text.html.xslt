@@ -11,6 +11,7 @@
   <xsl:include href="app/views/xslt/matchers/full_text/list_of_subjects.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/print_page.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/section.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/signature.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/subject.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/tables.html.xslt" />
