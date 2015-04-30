@@ -21,13 +21,15 @@ class HtmlCompilator
 
   def compile
     if File.exists? document_xml_path(xml_type)
-      XsltTransform.standardized_html(
+      # BB TODO: this removes html entities which we need in the view
+      # ideally we find a way for this to work but turning it off for now
+      #XsltTransform.standardized_html(
         XsltTransform.transform_xml(
           File.read(document_xml_path(xml_type)),
           xslt_template,
           xslt_variables
         ).to_xml
-      )
+      #)
     else
       raise MissingXmlFile, document_xml_path(xml_type)
     end
