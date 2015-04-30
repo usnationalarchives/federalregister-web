@@ -15,6 +15,19 @@
     color: #b462a2;
   }
 
+  &.fr-list-inline {
+    lh, dt, dd {
+      float: left;
+    }
+
+    lh, dt {
+      clear: both;
+    }
+
+    dt { width: 25%; }
+    dd { width: 75%; }
+  }
+
   &.with-bullets {
     dd, li {
       list-style-type: none;
