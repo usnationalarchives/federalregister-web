@@ -126,11 +126,11 @@ group :development, :test do
 
   gem 'rspec-html-matchers', '~> 0.5.0'
 
-  # gem needed for guard on OSX
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard'
   #auto test runner
   gem 'guard-rspec', require: false
+  # gem needed for guard on OSX
+  gem 'rb-fsevent', require: false
   # OSX notifications
-  gem 'terminal-notifier-guard', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'terminal-notifier-guard', require: false
 end
