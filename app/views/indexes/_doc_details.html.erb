@@ -5,28 +5,39 @@
       <h7>
         <% if first_document %>
           <% first_document = false %>
-          <%= link_to(subject, document.html_url) %>
+          <%= link_to(subject, "#", class: "toggle",
+          :'data-toggle-target' =>
+            ".#{documents.map(&:document_number).join('-')}" ) %>
         <% end %>
       </h7>
       <div class="row toc-document-metadata">
-        <dl class="col-xs-3 col-md-3">
-          <% if index == 0%>
-            <%= Date::MONTHNAMES[month] %>
-          <% end %>
-        </dl>
-        <dl class="col-xs-3 col-md-3">
-          <dt>Published</dt>
-          <dd><%= link_to(document.publication_date, document.html_url) %></dd>
-        </dl>
-        <dl class="col-xs-3 col-md-3">
-          <dt>FR Document</dt>
-          <dd><%= link_to(document.document_number, document.html_url) %></dd>
-        </dl>
-        <dl class="col-xs-3 col-md-3">
-          <dt>Pages</dt>
-          <dd><%= link_to(document.page_range, document.pdf_url) %>
-              <%= pluralize(document.length, "Page") %></dd>
-        </dl>
+        <div style="display:none" class=<%= documents.map(&:document_number).join('-') %> >
+        <!-- TODO: truncate the size of id's for sufficiently unique combinations -->
+          <dl class="col-xs-1 col-md-1">
+          </dl>
+          <dl class="col-xs-2 col-md-2">
+            <% if index == 0%>
+              <%= Date::MONTHNAMES[month] %>
+            <% end %>
+          </dl>
+          <dl class="col-xs-3 col-md-3">
+            <dt>Published</dt>
+            <dd><%= link_to(document.publication_date, document.html_url) %></dd>
+          </dl>
+          <dl class="col-xs-3 col-md-3">
+            <dt>FR Document</dt>
+            <dd><%= link_to(document.document_number, document.html_url) %></dd>
+          </dl>
+          <dl class="col-xs-3 col-md-3">
+            <dt>Pages</dt>
+            <dd><%= link_to(document.page_range, document.pdf_url) %>
+                (<%= pluralize(document.length, "Page") %>)</dd>
+            <%= fr_icon("globe") if false %>
+            <% if document.regulations_dot_gov_info %>
+            <%= fr_icon("alert") if document.regulations_dot_gov_info["comments_count"] > 0 %>
+            <% end %>
+          </dl>
+        </div>
       </div>
     <% end %>
   <% end %>

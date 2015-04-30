@@ -17,12 +17,13 @@
   <hr />
 
   <p>
-    <%# if agency_year.current_year? %>
-      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the <%= agency_name %> has published 
-      <%#= pluralize agency_year.entry_count, "document" %> in <%= year %>.
-    <%# else %>
-      In <%= year %> the <%= agency_name %> published <%#= pluralize agency_year.entry_count, "document" %>.
-    <%# end %>
+    <% if year == Date.current.strftime("%Y")%>
+    <!-- TODO: Are we sure year input is integer -->
+      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the <%= agency_name %> has published
+      <%= pluralize total_document_count, "document" %> in <%= year %>.
+    <% else %>
+      In <%= year %> the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.
+    <% end %>
   </p>
 
   <table>

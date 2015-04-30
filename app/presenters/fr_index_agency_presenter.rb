@@ -14,6 +14,13 @@ class FrIndexAgencyPresenter
     document_index["name"]
   end
 
+  def total_document_count
+    @total_count ||= document_type_counts.inject(0) do |sum, doc_facet|
+      sum+=doc_facet.count
+      sum
+    end
+  end
+
   def document_type_counts
     @document_type_counts ||= DocumentTypeFacet.
       search(
@@ -54,11 +61,13 @@ class FrIndexAgencyPresenter
         per_page: 1000, #TODO: This could present an issue for longer time periods.
         fields: [
           :document_number,
+          :start_page,
           :end_page,
           :html_url,
           :publication_date,
+          :significant,
           :pdf_url,
-          :start_page,
+          :regulations_dot_gov_info
         ]
       }
     ).results.map{|d| DocumentDecorator.decorate(d)}
