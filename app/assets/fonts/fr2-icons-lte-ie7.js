@@ -1,5 +1,6 @@
 /* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
 var fr_icons = {
+		'icon-fr2-star': '&#xe632;',
 		'icon-fr2-Directions': '&#xe630;',
 		'icon-fr2-add': '&#xe62e;',
 		'icon-fr2-movie': '&#xe62b;',
@@ -64,6 +65,7 @@ var fr_icons = {
 		'icon-fr2-book': '&#xe61c;',
 		'icon-fr2-book-alt-2': '&#xe61b;',
 		'icon-fr2-stars': '&#xe619;',
+		'icon-fr2-doc-generic': '&#xe631;',
 		'icon-fr2-doc-xml': '&#xe618;',
 		'icon-fr2-doc-pi-pdf': '&#xe617;',
 		'icon-fr2-doc-pdf': '&#xe616;',
