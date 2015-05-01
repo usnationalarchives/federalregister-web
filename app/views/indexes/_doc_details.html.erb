@@ -6,8 +6,8 @@
         <% if first_document %>
           <% first_document = false %>
           <%= link_to(subject, "#", class: "toggle",
-          :'data-toggle-target' =>
-            ".#{documents.map(&:document_number).join('-')}" ) %>
+          :'data-toggle-target' => ".#{documents.map(&:document_number).join('-')}" ) %>
+          <%= content_tag("span", documents.size, class: "count_pill") if documents.size > 1 %>
         <% end %>
       </h7>
       <div class="row toc-document-metadata">

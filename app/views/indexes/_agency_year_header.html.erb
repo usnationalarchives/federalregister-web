@@ -7,7 +7,7 @@
 
   <hr />
 
-  <!-- BB TODO: Turn this into a helper and allow arbitrary conditions to be passed. -->
+  <!-- B.B. TODO: Turn this into a helper and allow arbitrary conditions to be passed. -->
   <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
   <%# if agency_year.last_published %>
@@ -32,11 +32,11 @@
       <th>Documents Published</th>
       <th>Subjects Covered</th>
     </tr>
-    <% document_type_counts.each do |document_type| %>
+    <% document_types.each do |document_type| %>
     <tr>
       <td class="type"> <%= link_to document_type.name.pluralize, "#fr-index-#{document_type.name.pluralize.downcase}" %></td>
-      <td class="entry_count"> <%= document_type.count %></td>
-      <td class="subject_count"> ?<%#= document_type.grouping_count %></td>
+      <td class="entry_count"> <%= document_type.document_count %></td>
+      <td class="subject_count"> <%= document_type.subject_count %></td>
     </tr>
     <% end %>
   </table>
