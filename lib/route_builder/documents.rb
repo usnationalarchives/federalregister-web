@@ -33,6 +33,10 @@ module RouteBuilder::Documents
     "/documents/table_of_contents/#{file_path}"
   end
 
+  add_static_route :document_api do |document|
+    "/api/v1/documents/#{document.document_number}"
+  end
+
   private
 
   def self.date_from_object(document_like_object)
