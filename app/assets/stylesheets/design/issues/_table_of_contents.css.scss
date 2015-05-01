@@ -130,6 +130,8 @@
      to align and makes the table much easier to scan */
   .toc-level-1 > .toc-documents {
     margin-left: 25px;
+
+    .toc-document-metadata { margin-left: 10px; }
   }
 
   .toc-documents {
