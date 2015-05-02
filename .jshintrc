@@ -34,6 +34,7 @@
       "document_number_present",
       "expect_logged_in",
       "hide_clipping_menu",
+      "fr_index_popover_handler",
       "myfr2_jqmHandlers",
       "readCookie",
       "set_clipped_icon_status",
