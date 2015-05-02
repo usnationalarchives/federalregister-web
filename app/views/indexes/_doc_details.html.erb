@@ -3,35 +3,61 @@
     <%= link_to(subject, "#", class: "toggle",
     'data-toggle-target' => "##{documents.first.document_number}", 'data-toggle-text-node' => "" ) %>
     <%= content_tag("span", documents.size, class: "count_pill") if documents.size > 1 %>
+    <% if documents.any? {|doc|doc.regulations_dot_gov_info["comments_count"] >= 1 unless doc.regulations_dot_gov_info.nil?} %>
+      <span class="tooltip" data-tooltip="Contains documents that have received public comments">
+        <%= fr_icon("Chat")%>
+      </span>
+    <% end %>
+    <% if documents.any? {|doc| doc.significant} %>
+      <span class="tooltip" data-tooltip="Contains documents that have been deemed significant under EO 12866">
+        <%= fr_icon("Star")%>
+      </span>
+    <% end %>
   </h7>
   <div id="<%= documents.first.document_number %>" class="toc-metadata-wrapper">
     <% documents.group_by{|d|d.publication_date.to_date.month}.each do |month, grouped_documents| %>
       <% grouped_documents.each_with_index do |document, index| %>
         <div class="row toc-document-metadata">
-            <dl class="col-xs-1 col-md-1">
-            </dl>
-            <dl class="col-xs-2 col-md-2">
-              <% if index == 0%>
+          <div class="with-ajax-popover" data-document-title="<%=document.title%>" data-document-number="<%= document.document_number %>">
+            <div class="col-xs-1 col-md-1">
+            <!-- TODO: Check to see whether indexes.scss.css margin needs adjustment to resolve alignment -->
+            </div>
+            <div class="col-xs-2 col-md-2">
+              <% if index == 0 %>
                 <%= Date::MONTHNAMES[month] %>
               <% end %>
-            </dl>
-            <dl class="col-xs-3 col-md-3">
-              <dt>Published</dt>
-              <dd><%= link_to(document.publication_date, document.html_url) %></dd>
-            </dl>
-            <dl class="col-xs-3 col-md-3">
-              <dt>FR Document</dt>
-              <dd><%= link_to(document.document_number, document.html_url) %></dd>
-            </dl>
-            <dl class="col-xs-3 col-md-3">
-              <dt>Pages</dt>
-              <dd><%= link_to(document.page_range, document.pdf_url) %>
-                  (<%= pluralize(document.length, "Page") %>)</dd>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <dl>
+                <dt>Published</dt>
+                <dd><%= link_to(document.publication_date, document.html_url) %></dd>
+              </dl>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <dl>
+                <dt>FR Document</dt>
+                <dd class="document_number"><%= link_to(document.document_number, document.html_url) %></dd>
+              </dl>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <dl>
+                <dt>Pages</dt>
+                <dd><%= link_to(document.page_range, document.pdf_url) %>
+                    (<%= pluralize(document.length, "Page") %>)</dd>
+              </dl>
               <%= fr_icon("globe") if false %>
               <% if document.regulations_dot_gov_info %>
-              <%= fr_icon("alert") if document.regulations_dot_gov_info["comments_count"] > 0 %>
+                <span class="tooltip" data-tooltip="Has received public comments">
+                  <%= fr_icon("Chat") if document.regulations_dot_gov_info["comments_count"] > 0 %>
+                </span>
               <% end %>
-            </dl>
+              <% if document.significant %>
+                <span class="tooltip" data-tooltip="Has been deemed significant under EO 12866">
+                  <%= fr_icon("Star") if document.significant %>
+                </span>
+              <% end %>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>
