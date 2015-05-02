@@ -103,6 +103,7 @@ class FrIndexAgencyPresenter
           :html_url,
           :publication_date,
           :significant,
+          :title,
           :pdf_url,
           :regulations_dot_gov_info
         ]
