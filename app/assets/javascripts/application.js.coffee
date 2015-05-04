@@ -16,6 +16,7 @@
 #= require old/agency_list
 #= require old/search
 #= require old/rss
+#= require_tree ./documents
 
 $(document).ready ()->
   $('.clippy').clippy({

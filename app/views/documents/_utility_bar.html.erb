@@ -127,6 +127,24 @@
       <% end %>
     </li>
     <li class="enhanced">
+      <i class="icon-fr2 icon-fr2-doc-generic" role="button" data-toggle="dropdown"></i>
+      <%= fr_box "Enhanced Content - Document Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+        <p>
+          These tools are designed to help you understand the official document
+          better and aid in comparing the online edition to the print edition.
+        </p>
+
+        <ul class="list">
+          <li>
+            <%= link_to 'Display Printed Page Elements', "#", id: "display-print-page" %>
+          </li>
+          <li>
+            <%= link_to 'Display Non-Printed Markup Elements', '#', id: "display-unprinted-elements" %>
+          </li>
+        </ul>
+      <% end %>
+    </li>
+    <li class="enhanced">
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
       <%= fr_box "Enhanced Content - Developer Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
         <h5>This document is available in the following developer friendly formats:</h5>
