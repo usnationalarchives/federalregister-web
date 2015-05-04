@@ -27,7 +27,8 @@
   <% agency.document_categories.each do |doc_category| %>
     <h3><%= doc_category["type"].try(:titlecase) %></h3>
 
-    <div class="toc-category-level">
+    <div class="toc-category-level"
+      id=<%= "#{agency.slug}-#{doc_category["type"]}".downcase %>>
       <%= display_hierarchy(
         doc_category["documents"],
         agency,

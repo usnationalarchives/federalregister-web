@@ -32,9 +32,9 @@
       <th>Documents Published</th>
       <th>Subjects Covered</th>
     </tr>
-    <% document_types.each do |document_type| %>
+    <% document_types.try(:each) do |document_type| %>
     <tr>
-      <td class="type"> <%= link_to document_type.name.pluralize, "#fr-index-#{document_type.name.pluralize.downcase}" %></td>
+      <td class="type"> <%= link_to document_type.name.pluralize, "##{agency_slug}-#{document_type.type}".downcase %></td>
       <td class="entry_count"> <%= document_type.document_count %></td>
       <td class="subject_count"> <%= document_type.subject_count %></td>
     </tr>
