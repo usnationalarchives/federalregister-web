@@ -18,14 +18,8 @@ module RouteBuilder::Fr2Urls
     "/citation/#{vol}/#{page}"
   end
 
-  def layout_head_content_path(page_to_track=nil)
-    path = "/layout/head_content"
-
-    if page_to_track
-      path = "#{path}?page_to_track=#{page_to_track}"
-    end
-
-    path
+  def layout_head_content_path
+    "/layout/head_content"
   end
 
   def layout_header_path(header_type)

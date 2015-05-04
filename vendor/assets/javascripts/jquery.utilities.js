@@ -1,12 +1,12 @@
 /* Agency list view sorting - see commit 1ea203ff */
-jQuery.extend(  
-    jQuery.expr[':'], {  
-        regex: function(a, i, m, r) {  
-            var r = new RegExp(m[3], 'i');  
-            return r.test(jQuery(a).text());  
-        }  
-    }  
-);  
+jQuery.extend(
+    jQuery.expr[':'], {
+        regex: function(a, i, m, r) {
+            var r = new RegExp(m[3], 'i');
+            return r.test(jQuery(a).text());
+        }
+    }
+);
 
 jQuery.extend(
   jQuery.expr[':'], {
@@ -33,13 +33,13 @@ jQuery.fn.centerScreen = function(loaded) {
   var obj = this;
   if(!loaded) {
     obj.css('left', $(window).width()/2-this.outerWidth()/2);
-    $(window).resize(function(){ 
-      obj.centerScreen(!loaded); 
+    $(window).resize(function(){
+      obj.centerScreen(!loaded);
     });
   } else {
     obj.stop();
     obj.animate(
       { left: $(window).width()/2-this.outerWidth()/2 }, 200, 'linear');
     }
-    return obj;  
+    return obj;
   };

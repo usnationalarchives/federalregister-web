@@ -1,0 +1,19 @@
+<script>
+  document.getElementsByTagName('body')[0].className += ' has_js'
+</script>
+
+<a href="#main" title="Skip to Content" class="skip_to_content">
+  Skip to Content
+</a>
+
+<div id="print-disclaimer"></div>
+
+<div class="header" id="header_refresh">
+  <div class="header_wrapper">
+    <%= esi navigation_path %>
+    <%= esi user_utils_path %>
+
+    <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
+    <%= esi header_path(header_type) %>
+  </div>
+</div>

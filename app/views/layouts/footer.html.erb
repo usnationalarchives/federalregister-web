@@ -61,10 +61,5 @@
 
 <a href="https://federalregister.tenderapp.com/discussion/new?discussion" id="tender" class="trigger_tender">Site Feedback</a>
 
-<script>
-  Tender = {
-    hideToggle: true,
-    widgetToggles: $(".trigger_tender")
-  }
-</script>
-<script src="/javascripts/vendor/tender_widget-20130911.js"></script>
+<%= render :partial => 'layouts/google_analytics',
+  :custom_page_to_track => @page_to_track %>

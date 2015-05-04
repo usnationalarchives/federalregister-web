@@ -1,26 +1,60 @@
 <!DOCTYPE html>
   <head>
     <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
-    <%= esi layout_head_content_path(yield(:page_to_track)) %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="government federal register executive rulings notices" />
+
+
+    <!-- Tell search engines to use the proper hostname and protocol -->
+    <%= tag(:link, :rel  => 'canonical', :href => 'https://www.federalregister.gov' + request.fullpath.sub(/\/$/,'')) %>
+
+
+    <link rel="Shortcut Icon" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+
+    <script src="https://use.typekit.net/rgf3yox.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
 
     <%# Facebook uses these for parsing when someone adds a link  %>
+    <%# TODO: for facebook image below, show curated image if present %>
+    <link rel="image_src" href="https://www.federalregister.gov/images/fbdisplay.jpg" />
+
+    <meta name="medium" content="news" />
+
     <%= tag(:meta, :name => 'title', :content => yield(:page_title) ) if yield(:page_title) %>
     <%= tag(:meta, :name => 'description', :content => yield(:description) ) if yield(:description) %>
 
+
+    <%= esi layout_head_content_path %>
+    <%= stylesheet_link_tag asset_path('application.css') %>
+
+    <!--[if IE 9]>
+      <%= stylesheet_link_tag "ie9", :media => :screen %>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <%= stylesheet_link_tag "ie", :media => :screen %>
+    <![endif]-->
+
     <%= javascript_include_tag asset_path('application.js') %>
+
+    <%= yield :robots %>
+    <%= yield :javascripts %>
     <%= yield :feeds %>
+
+    <%= add_handlebars_template('flickr_exit_modal', 'flickr-exit-modal') %>
+    <%= add_handlebars_template('print_disclaimer', 'print-disclaimer') %>
   </head>
 
-  <body id="my_fr2">
-    <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
+  <body id="<%= controller_name %>" class="<%= action_name %>">
+    <%= render partial: 'layouts/site_header' %>
 
-    <%= esi layout_header_path(header_type) %>
     <%= esi site_notification_path(:identifier => :global) %>
 
     <div id="main">
-      <div id="<%= yield(:page_controller) %>" class="<%= yield(:page_action) %>">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
 
     <%= esi footer_path %>

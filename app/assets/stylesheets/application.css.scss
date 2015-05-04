@@ -14,8 +14,14 @@
 /* override old, clashing fr2 styles */
 @import "officialness_override";
 
+@import "design/navigation";
+@import "design/modals/subscriptions";
+@import "design/tender_interstitial_modal";
+
+@import "design/layout";
 @import "layout";
 
+@import "fonts.scss";
 @import "components/**/*";
 
 @import "design/patterns.css.scss";

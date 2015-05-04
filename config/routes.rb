@@ -1,19 +1,11 @@
 MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
 
-  with_options(:quiet => true) do |esi|
-    esi.match 'special/user_utils' => 'special#user_utils'
-    esi.match 'special/shared_assets' => 'special#shared_assets'
-    esi.match 'special/my_fr_assets' => 'special#my_fr_assets'
-    esi.match 'special/fr2_assets' => 'special#fr2_assets'
-    esi.match 'special/navigation' => 'special#navigation'
-  end
+  match 'status', to: 'special#status'
 
-  match 'status' => 'special#status'
-
-  match "/404", :to => "errors#record_not_found"
-  match "/405", :to => "errors#not_authorized"
-  match "/500", :to => "errors#server_error"
+  match "/404", to: "errors#record_not_found"
+  match "/405", to: "errors#not_authorized"
+  match "/500", to: "errors#server_error"
 
   #
   # Documents
@@ -23,9 +15,9 @@ MyFr2::Application.routes.draw do
       to: "document_issues#show",
       as: :document_issue,
       constraints: {
-        :year        => /\d{4}/,
-        :month       => /\d{1,2}/,
-        :day         => /\d{1,2}/
+        year:  /\d{4}/,
+        month: /\d{1,2}/,
+        day:   /\d{1,2}/
       }
 
 # TEST ROUTES FOR CALENDAR
@@ -39,10 +31,10 @@ MyFr2::Application.routes.draw do
       to: "documents#show",
       as: :document,
       constraints: {
-        year: /\d{4}/,
+        year:  /\d{4}/,
         month: /\d{1,2}/,
-        day: /\d{1,2}/,
-        slug: /[^\/]+/
+        day:   /\d{1,2}/,
+        slug:  /[^\/]+/
       }
 
   # don't break old urls
@@ -149,15 +141,20 @@ MyFr2::Application.routes.draw do
     }
 
     # HEADER
+    esi.get 'special/navigation',
+      to: 'special#navigation',
+      as: :navigation
+
+    esi.get 'special/user_utils',
+      to: 'special#user_utils',
+      as: :user_utils
+
     esi.get 'special/header/:type',
       to: 'special#header',
+      as: :header,
       constraints: {
         type: /(official|public-inspection|reader-aids)/
       }
-    # todo: temporary -remove me later
-    esi.get 'special/header',
-      to: 'special#header',
-      type: 'official'
 
     esi.get 'special/site_notifications/:identifier',
       to: 'special#site_notifications',
@@ -295,9 +292,6 @@ MyFr2::Application.routes.draw do
   # Home
   #
   root to: 'special#home'
-  match 'special/user_utils' => 'special#user_utils'
-  match 'special/shared_assets' => 'special#shared_assets'
-  match 'special/my_fr_assets' => 'special#my_fr_assets'
 
 
   resources :topics, only: [:index, :show]
