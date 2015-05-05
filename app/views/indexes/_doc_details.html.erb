@@ -3,14 +3,16 @@
     <%= link_to(subject, "#", class: "toggle",
     'data-toggle-target' => "##{documents.first.document_number}", 'data-toggle-text-node' => "" ) %>
     <%= content_tag("span", documents.size, class: "count_pill") if documents.size > 1 %>
-    <% if documents.any? {|doc|doc.regulations_dot_gov_info["comments_count"] >= 1 unless doc.regulations_dot_gov_info.nil?} %>
+    <% if documents.any? {|doc|doc.regulations_dot_gov_info["comments_count"] >=
+         1 unless doc.regulations_dot_gov_info.nil?} %>
       <span class="tooltip" data-tooltip="Contains documents that have received public comments">
         <%= fr_icon("Chat")%>
       </span>
     <% end %>
     <% if documents.any? {|doc| doc.significant} %>
-      <span class="tooltip" data-tooltip="Contains documents that have been deemed significant under EO 12866">
-        <%= fr_icon("Star")%>
+      <span class="tooltip"
+         data-tooltip="Contains documents that have been deemed significant under EO 12866">
+         <%= fr_icon("Star")%>
       </span>
     <% end %>
   </h7>

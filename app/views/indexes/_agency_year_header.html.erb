@@ -2,15 +2,18 @@
   <h1>
     <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
   </h1>
-  <%= link_to "Return to the agency list for the #{year} FR Index", index_year_path(year) %>
+  <%= link_to "Return to the agency list for the #{year} FR Index", index_year_path(year), class: "return-to-index" %>
 
   <hr />
 
   <!-- B.B. TODO: Turn this into a helper and allow arbitrary conditions to be passed. -->
   <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
+  <!-- B.C. TODO: Connect description/link to live API endpoint once developed. -->
   <%# if agency_year.last_published %>
-    <%#= link_to "Download Approved #{agency_year.last_published.to_s(:month_year)} #{agency_year.name} Index (PDF)", agency_year.published_pdf_path, :class => "pdf_link" %>
+    <%= link_to root_path do %>
+      <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= agency_name %> Index (PDF)
+    <% end %>
   <%# end %>
 
   <hr />
@@ -21,7 +24,7 @@
       As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the <%= agency_name %> has published
       <%= pluralize total_document_count, "document" %> in <%= year %>.
     <% else %>
-      In <%= year %> the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.
+      In <%= year %>, the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.
     <% end %>
   </p>
 
@@ -34,8 +37,8 @@
     <% document_types.try(:each) do |document_type| %>
     <tr>
       <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
-      <td class="entry_count"> <%= document_type.document_count %></td>
-      <td class="subject_count"> <%= document_type.subject_count %></td>
+      <td class="entry-count"> <%= document_type.document_count %></td>
+      <td class="subject-count"> <%= document_type.subject_count %></td>
     </tr>
     <% end %>
   </table>

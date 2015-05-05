@@ -11,3 +11,23 @@
     color: $fr-orange;
   }
 }
+
+#fr-index-agency-metadata {
+  .agency {
+    font-size: 25px;
+    float: left;
+  }
+
+  .return-to-index {
+    float: right;
+  }
+
+  .entry-count {
+    text-align: center;
+  }
+
+  .subject-count {
+    text-align: center;
+  }
+}
+
