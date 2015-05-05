@@ -8,19 +8,7 @@ class FrIndexAgencyPresenter
     raise ActiveRecord::RecordNotFound if @document_index.code == 404
   end
 
-  def document_type_slugs #TODO: Locate definitive place for this info.
-    {
-      "Proposed Rules"=>"PRORULE",
-      "Rules"=>"RULE",
-      "Presidential Documents"=>"PRESDOCU",
-      "Notices"=>"NOTICE",
-      "Corrections"=>"CORRECT",
-      "Sunshines"=>"SUNSHINE",
-      "Unknown"=>"UNKNOWN"
-    }
-  end
-
-  class DocumentType
+  class DocumentTypeRepresentation #Better way to distinguish this and a top-level class?
     vattr_initialize [
       :name,
       :slug,
@@ -33,12 +21,12 @@ class FrIndexAgencyPresenter
   def document_types
     return nil if document_index["document_categories"].nil?
     document_index["document_categories"].map do |category|
-      slug = document_type_slugs[category["name"]]
-      DocumentType.new(
-        name: category["name"],
-        slug: slug,
-        anchor_link: "##{agency_slug}-#{category["name"]}".downcase.gsub(' ','-'),
-        document_count: document_type_counts[slug],
+      granule_class = DocumentType.new(category["type"]).new_granule_class
+      DocumentTypeRepresentation.new(
+        name: category["type"].pluralize,
+        granule_class: granule_class,
+        anchor_link: "##{agency_slug}-#{category["type"]}".downcase.gsub(' ','-'),
+        document_count: document_type_counts[granule_class],
         subject_count: category["documents"].group_by{|d|d["subject_1"]}.keys.size,
       )
     end
