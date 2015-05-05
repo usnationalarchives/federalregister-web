@@ -11,8 +11,8 @@
     <div class="grid_4">
       <h2>Sections</h2>
       <ul class="bullets">
-        <% @sections.each do |section_slug, section| %>
-          <li><%= link_to section[:title], "#" %></li>
+        <% @sections.each do |section| %>
+          <li><%= link_to section.title, section_path(section) %></li>
         <% end %>
       </ul>
     </div>

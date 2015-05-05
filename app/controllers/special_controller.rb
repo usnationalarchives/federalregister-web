@@ -61,8 +61,8 @@ class SpecialController < ApplicationController
 
     @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
     @my_fr_presenter = MyFrPresenter.new
-    @sections = SectionPresenter::SECTIONS
+    @sections = Section.all
 
-    render "layouts/footer", layout: false
+    render "layouts/footer"
   end
 end
