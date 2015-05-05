@@ -13,6 +13,7 @@ namespace :jshint do
     files = Rake::FileList.new
     files.include File.join(js_root_dir, '**', '*.js')
     %w(
+      tender_widget_custom.js
     ).each{|f| files.exclude(File.join(js_root_dir,f))}
 
     sh "jshint #{files.join(' ')} --config #{config_file}" do |ok, res|

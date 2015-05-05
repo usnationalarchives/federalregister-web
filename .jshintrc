@@ -23,10 +23,13 @@
       "_",
       "_gaq",
       "strftime",
+      "CJ",
+      "Tender",
 
       // Some methods defined across files; should prob be refactored
       "addIconViaJS",
       "add_item_to_folder",
+      "closeOnEscape",
       "document_number_present",
       "expect_logged_in",
       "hide_clipping_menu",
