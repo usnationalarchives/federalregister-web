@@ -28,11 +28,3 @@
 
 # BETTER SELECT MULTIPLE PLUGIN
 #= require jquery.bsmselect
-
-#= require_self
-
-Tender = {
-  hideToggle: true,
-  widgetToggles: $(".trigger_tender")
-}
-#= require tender_widget-20130911

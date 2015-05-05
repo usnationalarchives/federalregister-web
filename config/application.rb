@@ -69,6 +69,7 @@ module MyFr2
       application-ie7lte.css
       application-fr2.js
       ie-shared.js
+      tender_widget_custom.js
       print.css
       *.eot
       *.svg

@@ -39,6 +39,7 @@
 
 # Namespaced JS Classes
 #= require utilities/cj_tooltip
+#= require utilities/modal
 
 $(document).ready ()->
   $('.clippy').clippy({
