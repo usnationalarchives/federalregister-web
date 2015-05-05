@@ -1,9 +1,8 @@
 <div id="fr-index-agency-metadata" class="page_summary">
   <h1>
-    <%= link_to agency_name, '', :class => 'agency' %>
-    <!-- BC TODO: Link to live path -->
+    <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
   </h1>
-  <%= link_to "Return to the agency list for the #{year} FR Index", year_agency_path(year, agency_slug)  %>
+  <%= link_to "Return to the agency list for the #{year} FR Index", index_year_path(year) %>
 
   <hr />
 
@@ -34,7 +33,7 @@
     </tr>
     <% document_types.try(:each) do |document_type| %>
     <tr>
-      <td class="type"> <%= link_to document_type.name.pluralize, "##{agency_slug}-#{document_type.type}".downcase %></td>
+      <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
       <td class="entry_count"> <%= document_type.document_count %></td>
       <td class="subject_count"> <%= document_type.subject_count %></td>
     </tr>

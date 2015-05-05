@@ -5,33 +5,41 @@ class FrIndexAgencyPresenter
     @year = year.to_i
     @agency_slug = agency_slug
     @document_index = HTTParty.get(url)
+    raise ActiveRecord::RecordNotFound if @document_index.code == 404
+  end
+
+
+  def document_type_slugs #TODO: Locate definitive place for this info.
+    {
+      "Proposed Rules"=>"PRORULE",
+      "Rules"=>"RULE",
+      "Presidential Documents"=>"PRESDOCU",
+      "Notices"=>"NOTICE",
+      "Corrections"=>"CORRECT",
+      "Sunshines"=>"SUNSHINE",
+      "Unknown"=>"UNKNOWN"
+    }
   end
 
   class DocumentType
     vattr_initialize [
       :name,
-      :type,
+      :slug,
       :document_count,
-      :subject_count
+      :anchor_link,
+      :subject_count,
     ]
   end
 
-  def document_type_names #TODO: Locate definitive place for this info.
-    {
-      "NOTICE" => "Notice",
-      "PRESDOCU" => "Presidential Document",
-      "PRORULE" => "Proposed Rule",
-      "RULE" => "Rule",
-      "UNKNOWN" => "Unknown",
-    }
-  end
-
   def document_types
+    return nil if document_index["document_categories"].nil?
     document_index["document_categories"].map do |category|
+      slug = document_type_slugs[category["name"]]
       DocumentType.new(
-        name: document_type_names[category["name"]], #TODO: Change source data to definitive location
-        type: category["name"],
-        document_count: document_type_counts[category["name"]],
+        name: category["name"],
+        slug: slug,
+        anchor_link: "##{agency_slug}-#{category["name"]}".downcase.gsub(' ','-'),
+        document_count: document_type_counts[slug],
         subject_count: category["documents"].group_by{|d|d["subject_1"]}.keys.size,
       )
     end
@@ -59,10 +67,11 @@ class FrIndexAgencyPresenter
           },
           agencies: [agency_slug]
         }
-      ).inject({}) do |hsh, facet|
-          hsh[facet.slug]= facet.count
-          hsh
-        end
+      ).
+      inject({}) do |hsh, facet|
+        hsh[facet.slug]= facet.count
+        hsh
+    end
   end
 
   def doc_counts_by_category
@@ -81,12 +90,17 @@ class FrIndexAgencyPresenter
     'indexes/doc_details'
   end
 
+  class Agency < TableOfContentsPresenter::Agency #TODO: Move TableOfContentsPresenter::Agency into
+    #higher class to maximize re-use.
+  end
+
   def agency
     @agency ||= {agency_slug => Agency.new(document_index, self) }
   end
 
   def documents
-    @documents ||= Document.search(
+    return @documents if @documents
+    results = Document.search(
       {
         conditions: {
           publication_date: {
@@ -95,7 +109,7 @@ class FrIndexAgencyPresenter
           },
           agencies: agency_slug
         },
-        per_page: 1000, #TODO: This could present an issue for longer time periods.
+        per_page: 1000,
         fields: [
           :document_number,
           :start_page,
@@ -108,15 +122,16 @@ class FrIndexAgencyPresenter
           :regulations_dot_gov_info
         ]
       }
-    ).results.map{|d| DocumentDecorator.decorate(d)}
+    )
+
+    all_documents = []
+    loop do
+      results.each {|d| all_documents << DocumentDecorator.decorate(d)}
+      break if results.next == nil
+      results = results.next
+    end
+    @documents = all_documents
   end
 
-
-
-  # reload!;FrIndexAgencyPresenter.new(2014,"treasury-department").document_type_counts
-
-  class Agency < TableOfContentsPresenter::Agency #TODO: Move TableOfContentsPresenter::Agency into
-    #higher class to maximize re-use.
-  end
 
 end

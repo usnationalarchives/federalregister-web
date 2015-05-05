@@ -28,7 +28,7 @@
     <h3><%= doc_category["type"].try(:titlecase) %></h3>
 
     <div class="toc-category-level"
-      id=<%= "#{agency.slug}-#{doc_category["type"]}".downcase %>>
+      id=<%= "#{agency.slug}-#{doc_category["type"]}".downcase.gsub(' ','-') %>>
       <%= display_hierarchy(
         doc_category["documents"],
         agency,
