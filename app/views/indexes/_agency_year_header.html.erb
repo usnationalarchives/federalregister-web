@@ -1,3 +1,5 @@
+<!-- B.C. TODO: Remove and replace with class-based descendant selector
+called index-agency-page-summary -->
 <div id="fr-index-agency-metadata" class="page_summary">
   <h1>
     <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
@@ -21,8 +23,8 @@
   <p>
     <% if year == Date.current.strftime("%Y")%>
     <!-- TODO: Are we sure year input is integer -->
-      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the <%= agency_name %> has published
-      <%= pluralize total_document_count, "document" %> in <%= year %>.
+      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the
+      <%= agency_name %> has published <%= pluralize total_document_count, "document" %> in <%= year %>.
     <% else %>
       In <%= year %>, the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.
     <% end %>

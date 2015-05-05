@@ -8,7 +8,6 @@ class FrIndexAgencyPresenter
     raise ActiveRecord::RecordNotFound if @document_index.code == 404
   end
 
-
   def document_type_slugs #TODO: Locate definitive place for this info.
     {
       "Proposed Rules"=>"PRORULE",
@@ -50,11 +49,10 @@ class FrIndexAgencyPresenter
   end
 
   def total_document_count
-    total=0
-    @total_count ||= document_type_counts.each do |type, count|
-      total+=count
+    @total_count ||= document_type_counts.inject(0) do |sum, (type, count)|
+      sum += count
+      sum
     end
-    total
   end
 
   def document_type_counts
@@ -71,7 +69,7 @@ class FrIndexAgencyPresenter
       inject({}) do |hsh, facet|
         hsh[facet.slug]= facet.count
         hsh
-    end
+      end
   end
 
   def doc_counts_by_category
@@ -90,8 +88,8 @@ class FrIndexAgencyPresenter
     'indexes/doc_details'
   end
 
-  class Agency < TableOfContentsPresenter::Agency #TODO: Move TableOfContentsPresenter::Agency into
-    #higher class to maximize re-use.
+  class Agency < TableOfContentsPresenter::Agency #TODO: Should we move TableOfContentsPresenter::Agency into
+    #higher class to maximize re-use?
   end
 
   def agency

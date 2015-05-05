@@ -12,6 +12,7 @@
   }
 }
 
+// TODO: Change this CSS to a class-based descendant selector
 #fr-index-agency-metadata {
   .agency {
     font-size: 25px;
@@ -28,6 +29,98 @@
 
   .subject-count {
     text-align: center;
+  }
+}
+
+.tipsy.tipsy_inner {
+  .entry_details {
+    color: black;
+  }
+
+  .popover-title {
+    color: black;
+  }
+}
+
+
+/* popover customizations */
+
+.tipsy-n.popover .tipsy-inner {
+  padding: 3px;
+  width: 580px;
+  overflow: hidden;
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
+
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+
+  color: #000;
+  font-size: 1.5em;
+
+  .popover-title {
+    font-size: 16px;
+    padding: 9px 15px;
+    line-height: 1;
+    background-color: whiteSmoke;
+    border-top: none;
+    border-bottom: 1px solid #EEE;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 0;
+  }
+
+  .popover-content {
+    padding: 14px;
+    background-color: white;
+    border-radius: 0 0 3px 3px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+
+    .loading {
+      background-position-x: 220px;
+      background-position-y: 7px;
+      padding-left: 20px;
+      //background: #fff image-url('ajax-loader.gif') no-repeat 80px 1px;
+    }
+
+    dl {
+      margin: 0;
+      font-size: 14px;
+      overflow: hidden;
+
+      dt {
+        text-align: right;
+        width: 75px;
+        float: left;
+        clear: both;
+        margin-bottom: 10px;
+
+        &.significant,
+        &.comment_open,
+        &.comments_received {
+          margin-top: 3px;
+          height: 15px;
+        }
+
+        &.significant {
+          //background: sprite-image('icons/icon_significant_entry_index.png', 60px, 0, 50px) no-repeat;
+        }
+        &.comment_open {
+          //background: sprite-image('icons/icon_comment_index_green.png', 60px, 0, 50px) no-repeat;
+        }
+        &.comments_received {
+          //background: sprite-image('icons/icon_comment_index_gray.png', 59px, 0, 50px) no-repeat;
+        }
+      }
+
+      dd {
+        margin-bottom: 10px;
+        text-align: left;
+        width: 445px;
+        float: left;
+      }
+    }
   }
 }
 
