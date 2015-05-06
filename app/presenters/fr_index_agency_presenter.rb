@@ -21,7 +21,7 @@ class FrIndexAgencyPresenter
   def document_types
     return nil if document_index["document_categories"].nil?
     document_index["document_categories"].map do |category|
-      granule_class = DocumentType.new(category["type"]).new_granule_class
+      granule_class = DocumentType.new(category["type"]).granule_class
       DocumentTypeRepresentation.new(
         name: category["type"].pluralize,
         granule_class: granule_class,

@@ -62,7 +62,7 @@ class PublicInspectionIssuePresenter
       if type
         conditions.deep_merge!(
           {
-            conditions: {type: DocumentType.new(type).granule_class}
+            conditions: {type: DocumentType.new(type).identifier}
           }
         )
       end
@@ -87,7 +87,7 @@ class PublicInspectionIssuePresenter
       if type
         conditions.deep_merge!(
           {
-            conditions: {type: DocumentType.new(type).granule_class}
+            conditions: {type: DocumentType.new(type).identifier}
           }
         )
       end
