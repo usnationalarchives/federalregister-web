@@ -1,3 +1,6 @@
+# Legacy tooltip code that seems to be broken in some areas
+# moving to using the class based tooltip below but leaving
+# this until it can be refactored and tested. TODO: BB
 $(document).ready ->
   $('.tooltip')
     .tipsy({
@@ -31,3 +34,5 @@ $(document).ready ->
           'top',
           elPosition.top - (tooltipHeight / 2) + (elHeight / 4)
         )
+
+

@@ -47,8 +47,11 @@ $(document).ready ()->
     clippy_path: '/assets/clippy.swf'
   })
 
-  CJ.Tooltip.addFancyTooltip(
+  CJ.Tooltip.addTooltip(
     '.cj-tooltip',
-    {gravity: 's'},
-    {position: 'centerTop'}
+    {
+      gravity: 's'
+      offset: 5
+      opacity: 0.9
+    }
   )
