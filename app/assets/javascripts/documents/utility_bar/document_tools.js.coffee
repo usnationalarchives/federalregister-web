@@ -23,7 +23,7 @@ $(document).ready ->
         printedPage.text " "
       else
         element.addClass 'blocked'
-        printedPage.text " Printed Page #{printedPage.data 'page'}"
+        printedPage.text " Start Printed Page #{printedPage.data 'page'}"
 
     printPageDisplayed = !printPageDisplayed
 

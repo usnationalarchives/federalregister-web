@@ -27,31 +27,6 @@
 
   h3 { font-size: 15px; }
 
-  .printed-page-wrapper {
-    .printed-page.icon-fr2 {
-      font-size: 12px;
-      display: inline-block;
-      margin: 0 5px;
-    }
-
-    &.blocked {
-      display: block;
-      color: #AAA;
-      margin: 15px auto;
-      width: 584px;
-
-      .printed-page-border {
-        border-bottom: 1px solid #CCC;
-        width: 37%;
-        display: inline-block;
-      }
-
-      .printed-page {
-        top: 4px;
-      }
-    }
-  }
-
   p {
     padding-left: 0;
 

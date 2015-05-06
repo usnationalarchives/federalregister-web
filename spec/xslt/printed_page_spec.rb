@@ -13,11 +13,7 @@ describe "XSLT::PrintedPage" do
       </P>
     XML
 
-    expect_equivalent <<-HTML
-      <p id="p-1" data-page="1000">
-        Paragraph on the first printed page of the document.
-      </p>
-    HTML
+    expect(html).to have_tag("p", with: {'data-page' => '1000'})
   end
 
   it "uses the current page when there is a page defined" do
@@ -32,19 +28,7 @@ describe "XSLT::PrintedPage" do
       </P>
     XML
 
-    expect_equivalent <<-HTML
-      <span class="printed-page" id="page-1001" data-page="1001"> </span>
-
-      <p id="p-1" data-page="1001">
-        Paragraph on the second printed page of the document.
-      </p>
-
-      <span class="printed-page" id="page-1002" data-page="1002"> </span>
-
-      <p id="p-2" data-page="1002">
-        Paragraph on the third printed page of the document.
-      </p>
-    HTML
+    expect(html).to have_tag("p", with: {'data-page' => '1001'})
+    expect(html).to have_tag("p", with: {'data-page' => '1002'})
   end
-
 end

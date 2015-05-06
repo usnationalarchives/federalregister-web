@@ -11,17 +11,20 @@
         so we just ignore the PRTPAGE found in footnotes here. -->
   <xsl:template match="PRTPAGE[not(ancestor::FTNT)]">
     <span class="printed-page-wrapper unprinted-element">
-      <span class="printed-page-border"></span>
-      <span class="printed-page icon-fr2 icon-fr2-doc-generic">
+      <span class="unprinted-element-border"></span>
+      <span class="printed-page icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="id">
           <xsl:text>page-</xsl:text><xsl:value-of select="@P" />
         </xsl:attribute>
         <xsl:attribute name="data-page">
           <xsl:value-of select="@P" />
         </xsl:attribute>
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="concat('Start Printed Page ', @P)" />
+        </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="printed-page-border"></span>
+      <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
 

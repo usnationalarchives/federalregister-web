@@ -94,26 +94,31 @@ div.notice.message p {
   line-height: 25px;
   }
 
-span.unsaved { 
+span.unsaved {
   color: $fr-red;
   font-weight: bold;
   }
+
+.tipsy {
+  font-size: 12px;
+  @include apertura-condensed;
+}
 
 div#account-needed-modal {
   .title_bar .icon-fr2 { top: -4px; }
 }
 
-div#new-folder-modal { 
-  form { 
+div#new-folder-modal {
+  form {
     margin-top: 10px;
-    
-    fieldset label { 
+
+    fieldset label {
       color: #565656;
       font-weight: 700;
       font-size: 1.05em;
     }
 
-    fieldset.inputs { 
+    fieldset.inputs {
       float: left;
       margin-bottom: 0;
       position: relative;
@@ -127,12 +132,12 @@ div#new-folder-modal {
         z-index: 2;
       }
 
-      input[type=text] { 
+      input[type=text] {
         padding: 1px 5px 1px 25px;
       }
     }
 
-    fieldset.buttons { 
+    fieldset.buttons {
       margin: 0;
       padding-left: 10px;
     }
@@ -183,7 +188,7 @@ div#new-folder-modal {
 }
 
 
-.signup_tabs, 
+.signup_tabs,
 .signup_bar {
   display: inline;
   float: left;
@@ -220,7 +225,7 @@ div#new-folder-modal {
     vertical-align: middle;
     padding: 0 10px;
   }
- 
+
   li.on {
     background: #F1F1F1;
     @include rounded-bottom(6);

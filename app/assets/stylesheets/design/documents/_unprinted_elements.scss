@@ -1,0 +1,28 @@
+.unprinted-element {
+  .printed-page.icon-fr2 {
+    font-size: 12px;
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  &.blocked {
+    display: block;
+    color: $fr-gray-40;
+    margin: 15px auto;
+    width: 584px;
+
+    .unprinted-element-border {
+      border-bottom: 1px solid $fr-gray-40;
+      width: 37%;
+      display: inline-block;
+    }
+
+    &.printed-page-wrapper .unprinted-element-border {
+      width: 35%;
+    }
+
+    .printed-page {
+      top: 4px;
+    }
+  }
+}

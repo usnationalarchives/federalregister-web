@@ -11,9 +11,11 @@ describe "XSLT::PrintPage" do
       <PRTPAGE P="1000"/>
     XML
 
-    expect_equivalent <<-HTML
-      <span class="printed-page" id="page-1000" data-page="1000"> </span>
-    HTML
+    expect(html).to have_tag("span", with: {
+      'data-page' => '1000',
+      class: 'printed-page icon-fr2 icon-fr2-doc-generic cj-tooltip',
+      id: "page-1000"
+    })
   end
 
   it "ignores PRTPAGE nodes inside of footnotes" do
