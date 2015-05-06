@@ -63,7 +63,6 @@ module MyFr2
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     config.assets.precompile += %w(
       application-ie.css
-      application-shared.css
       application-shared.js
       fr-document-icons-lte-ie7.js
       fr2-icons-lte-ie7.js

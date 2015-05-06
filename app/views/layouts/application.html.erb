@@ -30,12 +30,14 @@
     <%= esi layout_head_content_path %>
     <%= stylesheet_link_tag asset_path('application.css') %>
 
-    <!--[if IE 9]>
-      <%= stylesheet_link_tag "ie9", :media => :screen %>
+    <!--[if lte IE 9]>
+      <%= stylesheet_link_tag asset_path('application-ie.css'), :media => "all" %>
     <![endif]-->
-
-    <!--[if lt IE 9]>
-      <%= stylesheet_link_tag "ie", :media => :screen %>
+    <!--[if lte IE 8]>
+      <%= stylesheet_link_tag asset_path('application-ie8lte.css'), :media => "all" %>
+    <![endif]-->
+    <!--[if lte IE 7]>
+      <%= stylesheet_link_tag asset_path('application-ie7lte.css'), :media => "all" %>
     <![endif]-->
 
     <%= javascript_include_tag asset_path('application.js') %>

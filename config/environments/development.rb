@@ -26,7 +26,6 @@ MyFr2::Application.configure do
   # Do not compress assets
   config.assets.compress = false
   config.assets.digest = false
-  #config.assets.prefix = "/assets"
   config.assets.precompile = []
 
   # Expands the lines which load the assets
