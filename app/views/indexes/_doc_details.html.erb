@@ -5,12 +5,12 @@
     <%= content_tag("span", documents.size, class: "count_pill") if documents.size > 1 %>
     <% if documents.any? {|doc|doc.regulations_dot_gov_info["comments_count"] >=
          1 unless doc.regulations_dot_gov_info.nil?} %>
-      <span class="tooltip" data-tooltip="Contains documents that have received public comments">
+      <span class="cj-tooltip" data-tooltip="Contains documents that have received public comments">
         <%= fr_icon("Chat")%>
       </span>
     <% end %>
     <% if documents.any? {|doc| doc.significant} %>
-      <span class="tooltip"
+      <span class="cj-tooltip"
          data-tooltip="Contains documents that have been deemed significant under EO 12866">
          <%= fr_icon("Star")%>
       </span>
@@ -50,12 +50,12 @@
               </dl>
               <%= fr_icon("globe") if false %>
               <% if document.regulations_dot_gov_info %>
-                <span class="tooltip" data-tooltip="Has received public comments">
+                <span class="cj-tooltip" data-tooltip="Has received public comments">
                   <%= fr_icon("Chat") if document.regulations_dot_gov_info["comments_count"] > 0 %>
                 </span>
               <% end %>
               <% if document.significant %>
-                <span class="tooltip" data-tooltip="Has been deemed significant under EO 12866">
+                <span class="cj-tooltip" data-tooltip="Has been deemed significant under EO 12866">
                   <%= fr_icon("Star") if document.significant %>
                 </span>
               <% end %>
