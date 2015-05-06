@@ -1,35 +1,58 @@
 $(document).ready ->
-  printPageDisplayed = false
-
   $('.doc-nav-wrapper').delegate 'a#display-print-page', 'click', (event)->
     event.preventDefault()
-    link = $(this)
+    FR2.DocumentTools.togglePrintedPage $(this)
 
-    if printPageDisplayed
+
+  $('.doc-nav-wrapper').delegate 'a#display-unprinted-elements', 'click', (event)->
+    event.preventDefault()
+    FR2.DocumentTools.toggleNonPrintedElements $(this)
+
+class @FR2.DocumentTools
+
+  @printPageDisplayed = false
+  @nonPrintedElementsDisplayed = false
+
+  @togglePrintedPage: (link)->
+    @toggleLinkText link, @printPageDisplayed
+
+    @toggleElements(
+      $('.printed-page-wrapper.unprinted-element-wrapper'),
+      @printPageDisplayed
+    )
+
+    @printPageDisplayed = !@printPageDisplayed
+
+
+  @toggleNonPrintedElements: (link)->
+    @toggleLinkText link, @nonPrintedElementsDisplayed
+
+    @toggleElements(
+      $('.unprinted-element-wrapper').not('.printed-page-wrapper'),
+      @nonPrintedElementsDisplayed
+    )
+
+    @nonPrintedElementsDisplayed = !@nonPrintedElementsDisplayed
+
+
+  @toggleLinkText: (link, displayed)->
+    if displayed
       link.
         text link.text().replace(/^Hide/, 'Display')
     else
       link.
         text link.text().replace(/^Display/, 'Hide')
 
-    _.each $('.printed-page-wrapper.unprinted-element'), (el)->
+  @toggleElements: (elements, displayed)->
+    _.each elements, (el)->
       element = $(el)
-      printedPage = element.find '.printed-page'
+      nonPrintedElement = element.find '.unprinted-element'
 
-      if printPageDisplayed
+      if displayed
         element
           .removeClass 'blocked'
 
-        printedPage.text " "
+        nonPrintedElement.text " "
       else
         element.addClass 'blocked'
-        printedPage.text " Start Printed Page #{printedPage.data 'page'}"
-
-    printPageDisplayed = !printPageDisplayed
-
-
-  unprintedElementsDisplayed = false
-
-  $('.doc-nav-wrapper').delegate 'a#display-unprinted-elements', 'click', (event)->
-    event.preventDefault()
-
+        nonPrintedElement.text " #{nonPrintedElement.data 'tooltip'}"

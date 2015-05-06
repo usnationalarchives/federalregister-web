@@ -10,9 +10,9 @@
         We collect all footnotes at the bottom of the document and link them,
         so we just ignore the PRTPAGE found in footnotes here. -->
   <xsl:template match="PRTPAGE[not(ancestor::FTNT)]">
-    <span class="printed-page-wrapper unprinted-element">
+    <span class="printed-page-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="printed-page icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="printed-page unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="id">
           <xsl:text>page-</xsl:text><xsl:value-of select="@P" />
         </xsl:attribute>
@@ -27,5 +27,4 @@
       <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
-
 </xsl:stylesheet>
