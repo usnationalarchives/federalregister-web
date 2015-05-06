@@ -6,6 +6,8 @@
         not printed. We offer these as an enhancement to aid the
         user in understanding the document. -->
 
+  <!-- SIG nodes are handled in the signature matcher -->
+
   <xsl:template match="PREAMB">
     <span class="unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
@@ -31,5 +33,6 @@
       <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
+
 </xsl:stylesheet>
 

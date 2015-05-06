@@ -2,9 +2,31 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="SIG">
+    <span class="unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'Start Signature'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+
     <div class="signature">
       <xsl:apply-templates />
     </div>
+
+    <span class="unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'End Signature'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
   </xsl:template>
 
   <xsl:template match="DATED[ancestor::SIG]">

@@ -1,20 +1,8 @@
-/* <PSIG> */
 .fr-box-official {
   #fulltext_content_area {
-    .signature_header {
-      padding-left: 20px;
-      float: right;
-      height: 40px;
-      width: 7px;
-      //background: sprite-image('icons/icon_pen.png', 0, 1px, 200px) no-repeat;
-    }
-
-    .signature {
-      margin-left: 4px;
-      border-left: 4px solid #7B8687;
+    div.signature {
+      margin-left: 75px;
       margin-bottom: 20px;
-      padding-left: 10px;
-      padding-right: 10px;
       width: 430px;
 
       p {
@@ -22,14 +10,23 @@
         width: auto;
         padding-top: 2px;
         padding-bottom: 2px;
-      }
+        margin-bottom: 0;
 
-      p.signature_date {
-        padding-top: 0;
-        margin-bottom: 10px;
+        &.signature-date {
+          padding-top: 0;
+          margin-bottom: 10px;
+        }
+
+        &.signature-name {
+          font-weight: bold;
+          padding-bottom: 0;
+        }
+
+        &.signature-title {
+          font-style: italic;
+          padding-top: 0;
+        }
       }
-      p.name { font-weight: bold; }
-      p.title { font-style: italic; }
     }
   }
 }
