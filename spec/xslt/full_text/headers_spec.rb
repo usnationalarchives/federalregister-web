@@ -94,23 +94,21 @@ describe "XSLT::FullText::Headers" do
 
   it "ignores the appropriate nodes in the PREAMB tag returning the only proper headers" do
     process <<-XML
-      <PREAMB>
-        <AGY>
-          <HD SOURCE="HED">AGENCY:</HD>
-        </AGY>
-        <ACT>
-          <HD SOURCE="HED">ACTION:</HD>
-        </ACT>
-        <SUM>
-          <HD SOURCE="HED">SUMMARY:</HD>
-        </SUM>
-        <EFFDATE>
-          <HD SOURCE="HED">DATES:</HD>
-        </EFFDATE>
-        <FURINF>
-          <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
-        </FURINF>
-      </PREAMB>
+      <AGY>
+        <HD SOURCE="HED">AGENCY:</HD>
+      </AGY>
+      <ACT>
+        <HD SOURCE="HED">ACTION:</HD>
+      </ACT>
+      <SUM>
+        <HD SOURCE="HED">SUMMARY:</HD>
+      </SUM>
+      <EFFDATE>
+        <HD SOURCE="HED">DATES:</HD>
+      </EFFDATE>
+      <FURINF>
+        <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
+      </FURINF>
     XML
 
     # note: the header id's increase but start at 3
