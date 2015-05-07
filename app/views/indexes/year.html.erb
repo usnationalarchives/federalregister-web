@@ -1,0 +1,42 @@
+<div class="title">
+  <span><%= @presenter.year %> FR Index</span>
+</div>
+
+
+<!-- BOOTSTRAP SCOPE START -->
+<div class="bootstrap-scope">
+<!-- BOOTSTRAP SCOPE START -->
+
+  <div class="wrapper">
+    <div class="container fixed">
+
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <ul>
+            <% @presenter.agency_representations.each do |agency| %>
+              <li>
+                <%= agency.name %>
+                <%= agency.count %>
+              </li>
+              <% agency.see_also_references.each do |child_agency| %>
+
+                <%= child_agency.name %>
+                <%= child_agency.count %>
+              <% end %>
+            <% end %> 
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-12 doc-toc">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 100px;"></div>
+    </div>
+  </div>
+
+<!-- BOOTSTRAP SCOPE END -->
+</div>
+<!-- BOOTSTRAP SCOPE END -->
