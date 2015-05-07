@@ -2,7 +2,10 @@
   display:none;
 
   /* printed page is always displayed but only in icon form */
-  &.printed-page-wrapper { display: inline; }
+  &.printed-page-wrapper {
+    display: inline;
+    color: $fr-gray-40;
+  }
 
   .icon-fr2 {
     font-size: 12px;
@@ -13,9 +16,14 @@
   /* for when we display these 'unprinted' items */
   &.blocked {
     display: block;
-    color: $fr-gray-40;
+    color: $color-enhanced-dark;
     margin: 15px auto;
     width: 584px;
+
+
+    /* override color here as these elements were present in the published
+       document even if they weren't 'printed' */
+    &.printed-page-wrapper { color: $fr-gray-40; }
 
     /* customizing wrapper width for auto centering of block
        usually when appearing in another element */
@@ -25,7 +33,7 @@
 
 
     .unprinted-element-border {
-      border-bottom: 1px solid $fr-gray-40;
+      border-bottom: 1px solid $color-enhanced-dark;
       width: 37%;
       display: inline-block;
     }
@@ -35,10 +43,30 @@
       width: 35%;
     }
 
-    &.supplemental-info-wrapper .unprinted-element-border {
-      width: 33%;
+    &.supplemental-info-wrapper {
+      .unprinted-element-border { width: 32%; }
+      .unprinted-element { width: 200px; }
     }
 
+    &.part-wrapper {
+      .unprinted-element-border { width: 42%; }
+      .unprinted-element { width: 75px; }
+    }
+
+    &.amend-part-wrapper {
+      .unprinted-element-border { width: 36%; }
+      .unprinted-element { width: 150px; }
+    }
+
+    &.preamble-wrapper,
+    &.subpart-wrapper,
+    &.authority-wrapper {
+      .unprinted-element-border { width: 40%; }
+      .unprinted-element { width: 100px; }
+    }
+
+    &.preamble-wrapper .unprinted-element { width: 106px; }
+    /* end border width customization */
 
     .unprinted-element {
       top: 4px;
