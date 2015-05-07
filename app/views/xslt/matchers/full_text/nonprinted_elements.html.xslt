@@ -9,7 +9,7 @@
   <!-- SIG nodes are handled in the signature matcher -->
 
   <xsl:template match="PREAMB">
-    <span class="unprinted-element-wrapper">
+    <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="data-tooltip">
@@ -22,7 +22,7 @@
 
     <xsl:apply-templates />
 
-    <span class="unprinted-element-wrapper">
+    <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="data-tooltip">
