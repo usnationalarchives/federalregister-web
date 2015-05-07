@@ -39,25 +39,23 @@ describe "XSLT::NonPrintedElements" do
       </SIG>
     XML
 
-    expect_equivalent <<-HTML
-      <span class="unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-          <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip"
-            data-tooltip="Start Signature"> </span>
-        <span class="unprinted-element-border"></span>
-      </span>
+    expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
+          with: {"data-tooltip" => "Start Signature"}
+      end
+    end
 
-      <div class="signature">
-        Some text nodes and other content nodes
-      </div>
+    expect(html).to have_tag("div.signature") do
+      with_text /Some text nodes and other content nodes/
+    end
 
-      <span class="unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-          <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip"
-            data-tooltip="End Signature"> </span>
-        <span class="unprinted-element-border"></span>
-      </span>
-    HTML
+    expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
+          with: {"data-tooltip" => "End Signature"}
+      end
+    end
   end
 
   it "creates the proper elements for SUPLINF" do
@@ -67,23 +65,21 @@ describe "XSLT::NonPrintedElements" do
       </SUPLINF>
     XML
 
-    expect_equivalent <<-HTML
-      <span class="unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-          <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip"
-            data-tooltip="Start Supplemental Information"> </span>
-        <span class="unprinted-element-border"></span>
-      </span>
+    expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+          with: {"data-tooltip" => "Start Supplemental Information"}
+      end
+    end
 
-      Some text nodes and other content nodes
+    #BB TODO: is this the right matcher here? check when online again
+    expect(html).to match("Some text nodes and other content nodes")
 
-      <span class="unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-          <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip"
-            data-tooltip="End Supplemental Information"> </span>
-        <span class="unprinted-element-border"></span>
-      </span>
-    HTML
-  end
+    expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+          with: {"data-tooltip" => "End Supplemental Information"}
+      end
+    end  end
 end
 

@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="SUPLINF">
-    <span class="unprinted-element-wrapper">
+    <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="data-tooltip">
@@ -15,7 +15,7 @@
 
     <xsl:apply-templates />
 
-    <span class="unprinted-element-wrapper">
+    <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
         <xsl:attribute name="data-tooltip">

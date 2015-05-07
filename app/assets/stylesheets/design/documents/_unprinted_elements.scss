@@ -1,6 +1,7 @@
 .unprinted-element-wrapper {
   display:none;
 
+  /* printed page is always displayed but only in icon form */
   &.printed-page-wrapper { display: inline; }
 
   .icon-fr2 {
@@ -9,11 +10,19 @@
     margin: 0 5px;
   }
 
+  /* for when we display these 'unprinted' items */
   &.blocked {
     display: block;
     color: $fr-gray-40;
     margin: 15px auto;
     width: 584px;
+
+    /* customizing wrapper width for auto centering of block
+       usually when appearing in another element */
+    &.signature-wrapper {
+      width: 540px;
+    }
+
 
     .unprinted-element-border {
       border-bottom: 1px solid $fr-gray-40;
@@ -21,9 +30,15 @@
       display: inline-block;
     }
 
+    /* customizing border widths as needed */
     &.printed-page-wrapper .unprinted-element-border {
       width: 35%;
     }
+
+    &.supplemental-info-wrapper .unprinted-element-border {
+      width: 33%;
+    }
+
 
     .unprinted-element {
       top: 4px;

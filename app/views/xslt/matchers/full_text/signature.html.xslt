@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="SIG">
-    <span class="unprinted-element-wrapper">
+    <span class="signature-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
         <xsl:attribute name="data-tooltip">
@@ -17,7 +17,7 @@
       <xsl:apply-templates />
     </div>
 
-    <span class="unprinted-element-wrapper">
+    <span class="signature-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
         <xsl:attribute name="data-tooltip">

@@ -18,6 +18,22 @@ describe "XSLT::PrintPage" do
     })
   end
 
+  it "creates the proper structure for displaying the icons, etc." do
+    process <<-XML
+      <PRTPAGE P="1000"/>
+    XML
+
+    expect(html).to have_tag("span.printed-page-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.printed-page.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+          with: {"data-tooltip" => "Start Printed Page 1000"} do
+
+          with_text " "
+        end
+      end
+    end
+  end
+
   it "ignores PRTPAGE nodes inside of footnotes" do
     process <<-XML
       <PRTPAGE P="1000" />
