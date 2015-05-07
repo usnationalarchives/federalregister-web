@@ -66,18 +66,6 @@ describe "XSLT::IgnoredNodes" do
 
         expect_equivalent '<h1 id="h-2">Not Ignored</h1>'
       end
-
-      it "ignores the ACT node" do
-        process <<-XML
-          <ACT>
-            <HD SOURCE="HED">ACTION:</HD>
-            <P>Final rule; technical amendment.</P>
-          </ACT>
-          <HD SOURCE="HED">Not Ignored</HD>
-        XML
-
-        expect_equivalent '<h1 id="h-2">Not Ignored</h1>'
-      end
     end
 
     # this is obviously not how things *should* be
@@ -99,28 +87,6 @@ describe "XSLT::IgnoredNodes" do
         expect_equivalent <<-HTML
           <h1 id="h-1">AGENCY:</h1>
           <p id="p-1" data-page="1000">Animal and Plant Health Inspection Service, USDA.</p>
-
-          <h3 id="h-2">Some document header:</h3>
-          <p id="p-2" data-page="1000">Additional stuff...</p>
-          <p id="p-3" data-page="1000">Additional stuff...</p>
-        HTML
-      end
-
-      it "does not ignore the contents of the ACT node" do
-        process <<-XML
-          <ACT>
-            <HD SOURCE="HED">ACTION:</HD>
-            <P>Final rule; technical amendment.</P>
-
-            <HD SOURCE="HD2">Some document header:</HD>
-            <P>Additional stuff...</P>
-            <P>Additional stuff...</P>
-          </ACT>
-        XML
-
-        expect_equivalent <<-HTML
-          <h1 id="h-1">ACTION:</h1>
-          <p id="p-1" data-page="1000">Final rule; technical amendment.</p>
 
           <h3 id="h-2">Some document header:</h3>
           <p id="p-2" data-page="1000">Additional stuff...</p>

@@ -7,11 +7,6 @@
 
       <div id="fulltext_content_area" class="doc-content-area">
         <% if document.full_text_xml_url.present? %>
-          <% if document.action.present? %>
-            <h1>Action</h1>
-            <p><%= document.action %></p>
-          <% end %>
-
           <% if Settings.render_documents_from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
           <% else %>

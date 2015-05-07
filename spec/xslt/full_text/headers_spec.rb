@@ -114,6 +114,7 @@ describe "XSLT::FullText::Headers" do
     # note: the header id's increase but start at 3
     # see app/views/xslt/headers.html.xslt for explanation
     expect_equivalent <<-HTML
+      <h1 id="h-2">ACTION:</h1>
       <h1 id="h-3">SUMMARY:</h1>
       <h1 id="h-4">DATES:</h1>
       <h1 id="h-5">FOR FURTHER INFORMATION CONTACT:</h1>
