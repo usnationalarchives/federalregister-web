@@ -10,14 +10,13 @@
         of the document -->
 
 
-
   <!-- Ignore tags usually found in the preamble of a document <PREAMB>
        that we don't show as part of the document or display via other means -->
 
   <!-- These tags only contain text nodes -->
   <xsl:template match="AGENCY | SUBAGY | CFR | DEPDOC | RIN" />
 
-  <!-- These tags contain other child nodes -->
+  <!-- These tags don't contain other child nodes so we'll ignore them too -->
   <xsl:template match="AGY[count(child::P) &lt; 2]" />
 
 

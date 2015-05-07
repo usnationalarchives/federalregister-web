@@ -10,20 +10,30 @@ describe "XSLT::FullText::ListOfSubjects" do
     process <<-XML
       <LSTSUB>
         <HD SOURCE="HED">List of Subjects in 9 CFR Part 78</HD>
-        <P>Animal diseases, Bison, Cattle, Transportation.</P>
+        <P>Animal diseases, Bison, Cattle.</P>
       </LSTSUB>
     XML
 
-    expect_equivalent <<-HTML
-      <h2 id="h-1" class="list-of-subjects">List of Subjects in 9 CFR Part 78</h2>
-      <div class="subject-list">
-        <ul>
-          <li><a href="/topics/animal-diseases">Animal diseases</a></li>
-          <li><a href="/topics/bison">Bison</a></li>
-          <li><a href="/topics/cattle">Cattle</a></li>
-          <li><a href="/topics/transportation">Transportation</a></li>
-        </ul>
-      </div>
-    HTML
+    # header
+    expect(html).to have_tag("h2.list-of-subjects") do
+      with_text "List of Subjects in 9 CFR Part 78"
+    end
+
+    # list items
+    expect(html).to have_tag("div.subject-list") do
+      with_tag("li a", with: {href: "/topics/animal-diseases"}) do
+        with_text "Animal diseases"
+      end
+    end
+    expect(html).to have_tag("div.subject-list") do
+      with_tag("li a", with: {href: "/topics/bison"}) do
+        with_text "Bison"
+      end
+    end
+    expect(html).to have_tag("div.subject-list") do
+      with_tag("li a", with: {href: "/topics/cattle"}) do
+        with_text "Cattle"
+      end
+    end
   end
 end

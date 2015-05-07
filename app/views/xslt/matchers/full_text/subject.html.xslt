@@ -3,7 +3,7 @@
 
   <xsl:template match="SUBJECT[not(ancestor::CONTENTS) and not(ancestor::SECTION)]">
     <xsl:call-template name="manual_header">
-      <xsl:with-param name="name" select="'SUBJECT'"/>
+      <xsl:with-param name="name" select="'SUBJECT:'"/>
       <xsl:with-param name="level" select="1"/>
       <xsl:with-param name="class" select="'document-subject'"/>
     </xsl:call-template>

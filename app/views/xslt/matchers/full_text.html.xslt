@@ -5,15 +5,19 @@
   <xsl:include href="app/views/xslt/matchers/text/all.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
 
+  <xsl:include href="app/views/xslt/matchers/full_text/amend_part.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/authority.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/list_of_subjects.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/nonprinted_elements.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/part.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/print_page.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/section.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/signature.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/subpart.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/supplemental_info.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/subject.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/tables.html.xslt" />
