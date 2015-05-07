@@ -59,5 +59,31 @@ describe "XSLT::NonPrintedElements" do
       </span>
     HTML
   end
+
+  it "creates the proper elements for SUPLINF" do
+    process <<-XML
+      <SUPLINF>
+        Some text nodes and other content nodes
+      </SUPLINF>
+    XML
+
+    expect_equivalent <<-HTML
+      <span class="unprinted-element-wrapper">
+        <span class="unprinted-element-border"></span>
+          <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip"
+            data-tooltip="Start Supplemental Information"> </span>
+        <span class="unprinted-element-border"></span>
+      </span>
+
+      Some text nodes and other content nodes
+
+      <span class="unprinted-element-wrapper">
+        <span class="unprinted-element-border"></span>
+          <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip"
+            data-tooltip="End Supplemental Information"> </span>
+        <span class="unprinted-element-border"></span>
+      </span>
+    HTML
+  end
 end
 
