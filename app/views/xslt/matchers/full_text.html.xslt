@@ -5,7 +5,6 @@
   <xsl:include href="app/views/xslt/matchers/text/all.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
 
-  <xsl:include href="app/views/xslt/matchers/full_text/action.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
@@ -17,6 +16,7 @@
   <xsl:include href="app/views/xslt/matchers/full_text/signature.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/subject.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/tables.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/text_only_nodes.html.xslt" />
 
   <xsl:template match="/">
     <xsl:apply-templates />
