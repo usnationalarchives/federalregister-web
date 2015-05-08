@@ -48,6 +48,31 @@ class XsltFunctions
     document.children
   end
 
+  def amendment_part(nodes)
+    document = blank_document
+
+    node_text = nodes.first.content
+    match = node_text.strip.match(/^(\d+\.) (.*)/)
+
+    if match
+      part_number, part_text = match[1], match[2]
+
+      Nokogiri::XML::Builder.with(document) do |doc|
+        doc.span(class: 'amendment-part-number') {
+          doc.text part_number
+        }
+        doc.span(class: 'amendment-part-text') {
+          doc.text " #{part_text}"
+        }
+      end
+    else
+      Nokogiri::XML::Builder.with(document) do |doc|
+        doc.text node_text
+      end
+    end
+
+    document.children
+  end
   private
 
   def blank_document

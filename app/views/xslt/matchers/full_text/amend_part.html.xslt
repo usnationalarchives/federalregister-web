@@ -13,7 +13,9 @@
       <span class="unprinted-element-border"></span>
     </span>
 
-    <xsl:apply-templates />
+    <div class="amendment-part">
+      <xsl:copy-of select="fr:amendment_part(text())"/>
+    </div>
 
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
@@ -26,4 +28,5 @@
       <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
+
 </xsl:stylesheet>
