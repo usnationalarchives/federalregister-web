@@ -2,34 +2,43 @@
   <span><%= @presenter.year %> FR Index</span>
 </div>
 
-
 <!-- BOOTSTRAP SCOPE START -->
 <div class="bootstrap-scope">
 <!-- BOOTSTRAP SCOPE START -->
 
-  <div class="wrapper">
+  <div class="wrapper index-of-indexes-page">
     <div class="container fixed">
-
-      <div class="row">
-        <div class="col-xs-12 col-md-12">
-          <ul>
-            <% @presenter.agency_representations.each do |agency| %>
-              <li>
-                <%= agency.name %>
-                <%= agency.count %>
-              </li>
-              <% agency.see_also_references.each do |child_agency| %>
-
-                <%= child_agency.name %>
-                <%= child_agency.count %>
-              <% end %>
-            <% end %> 
-          </ul>
-        </div>
-      </div>
+      <%= render partial: "index_year_header",
+            locals: {
+              year: @presenter.year,
+              agency_first_letters: @presenter.agency_representations_by_first_letter.keys
+      } %>
 
       <div class="row">
         <div class="col-xs-12 col-md-12 doc-toc">
+          <%= fr_box "Agencies", :official_toc, header: {seal: true} do %>
+            <div class="doc doc-document-issue">
+              <ul>
+                <% @presenter.agency_representations_by_first_letter.each do |letter, agencies| %>
+                  <p id=<%="letter-#{letter}"%> > <%= letter.upcase %> </p>
+                    <% agencies.each do |agency| %>
+                    <li>
+                      <%= link_to(agency.name, year_agency_path(@presenter.year,agency.slug) )%>
+                      <span class="count_pill" data-tooltip="<%="Documents published in #{@presenter.year}" %>"> <%= agency.count %> </span>
+                    </li>
+                    <ul class="see-also">
+                      <% agency.see_also_references.each do |child_agency| %>
+                        <li>
+                        <em class="see">See</em> <%= link_to(child_agency.name, year_agency_path(@presenter.year, child_agency.slug) )%>
+                        <span class="count_pill" data-tooltip="<%="Documents published in #{@presenter.year}" %>"><%= child_agency.count %></span>
+                        </li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         </div>
       </div>
 

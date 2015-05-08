@@ -376,7 +376,11 @@ MyFr2::Application.routes.draw do
     :action => "year_agency",
     as: 'year_agency'
 
-  #
+  get '/select_index_year',
+    :controller => "indexes",
+    :action => "select_index_year",
+    as: 'select_index_year'
+  
   # My FR
   #
   scope 'my' do
