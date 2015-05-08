@@ -13,9 +13,13 @@
       <span class="unprinted-element-border"></span>
     </span>
 
-    <div class="amendment-part">
+    <p class="amendment-part">
+      <xsl:attribute name="id">
+        <xsl:call-template name="amdpar_paragraph_id" />
+      </xsl:attribute>
+
       <xsl:copy-of select="fr:amendment_part(text())"/>
-    </div>
+    </p>
 
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
