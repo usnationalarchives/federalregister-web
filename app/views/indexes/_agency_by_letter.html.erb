@@ -1,0 +1,29 @@
+<h1 id=<%="letter-#{letter}"%> > <%= letter.upcase %> </h1>
+  <ul class="parent-agency">
+  <% agencies.each do |agency| %>
+    <li>
+      <%= link_to(agency.name,
+            year_agency_path(@presenter.year,agency.slug) )%>
+      <span
+        class="count_pill"
+        data-tooltip=
+        "<%="Documents published in #{@presenter.year}" %>" >
+        <%= agency.count %>
+      </span>
+      <ul class="see-also">
+        <% agency.see_also_references.each do |child_agency| %>
+          <li>
+          <em> See </em>
+          <%= link_to(child_agency.name,
+            year_agency_path(@presenter.year, child_agency.slug) )%>
+          <span class="count_pill"
+             data-tooltip=
+             "<%="Documents published in #{@presenter.year}" %>">
+             <%= child_agency.count %>
+          </span>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  </ul>
