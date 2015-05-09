@@ -4,6 +4,7 @@ class FrIndexIndexPagePresenter
   attr_reader :year
 
   def initialize(year)
+    raise ActiveRecord::RecordNotFound if year.to_i < 2013
     @year = year.to_i
   end
 

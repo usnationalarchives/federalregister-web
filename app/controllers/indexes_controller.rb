@@ -9,9 +9,9 @@ class IndexesController < ApplicationController
   end
 
   def year
+    raise ActiveRecord::RecordNotFound if params[:year].match(/\A(19|20)\d{2}\z/).nil?
     cache_for 1.day
     @presenter = FrIndexIndexPagePresenter.new(params[:year])
-    #B.C. TODO: Rescue if agency/year is invalid.
   end
 
   def select_index_year
