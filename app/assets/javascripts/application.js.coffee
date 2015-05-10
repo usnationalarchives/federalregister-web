@@ -53,5 +53,7 @@ $(document).ready ()->
       gravity: 's'
       offset: 5
       opacity: 0.9
+      delay: 0.3
+      fade: true
     }
   )

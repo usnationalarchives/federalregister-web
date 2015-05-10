@@ -1,0 +1,21 @@
+.doc-content-area .stars {
+  font-size: 26px;
+  overflow: hidden;
+  width: 100%;
+  height: 26px;
+  margin: 10px 0;
+  color: $color-official-light;
+
+  span {
+    width: 20%;
+    display: inline-block;
+    text-align: center;
+
+    &:before {
+      color: $fr-gray-70;
+      font-size: 12px;
+      top: -12px;
+      position: relative;
+    }
+  }
+}

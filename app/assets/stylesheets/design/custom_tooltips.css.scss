@@ -1,0 +1,8 @@
+/* in our current setup these need to be outside the usual bootstrap-scope
+   as they are placed immediately inside the <body> tag */
+
+.tipsy.stars-tooltip {
+  .tipsy-inner {
+    max-width: 400px;
+  }
+}
