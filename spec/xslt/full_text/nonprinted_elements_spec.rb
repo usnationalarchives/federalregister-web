@@ -31,6 +31,31 @@ describe "XSLT::NonPrintedElements" do
     end
   end
 
+  it "creates the proper elements for APPENDIX" do
+    process <<-XML
+      <APPENDIX>
+        Some text nodes and other content nodes
+      </APPENDIX>
+    XML
+
+    expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+          with: {"data-tooltip" => "Start Appendix"}
+      end
+    end
+
+    #BB TODO: is this the right matcher here? check when online again
+    expect(html).to match("Some text nodes and other content nodes")
+
+    expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+          with: {"data-tooltip" => "End Appendix"}
+      end
+    end
+  end
+
   it "creates the proper elements for SIG" do
     process <<-XML
       <SIG>

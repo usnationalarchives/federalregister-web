@@ -34,5 +34,30 @@
     </span>
   </xsl:template>
 
+  <xsl:template match="APPENDIX">
+    <span class="appendix-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'Start Appendix'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+
+    <xsl:apply-templates />
+
+    <span class="appendix-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'End Appendix'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+  </xsl:template>
 </xsl:stylesheet>
 

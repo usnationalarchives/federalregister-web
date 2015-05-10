@@ -59,13 +59,21 @@
     }
 
     &.preamble-wrapper,
+    &.appendix-wrapper,
     &.subpart-wrapper,
     &.authority-wrapper {
       .unprinted-element-border { width: 40%; }
-      .unprinted-element { width: 100px; }
     }
 
-    &.preamble-wrapper .unprinted-element { width: 106px; }
+    &.preamble-wrapper,
+    &.appendix-wrapper {
+      .unprinted-element { width: 106px; }
+    }
+
+    &.subpart-wrapper,
+    &.authority-wrapper {
+      .unprinted-element { width: 100px; }
+    }
     /* end border width customization */
 
     .unprinted-element {
