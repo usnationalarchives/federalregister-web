@@ -12,18 +12,23 @@ $(document).ready ->
           sidebar_height + amount_document_should_be_lower_than_sidebar + side_bar_top_offset
         )
 
-  CJ.Tooltip.addFancyTooltip(
-    $('.stars.cj-fancy-tooltip'),
-    {
-      className: 'stars-tooltip'
-      gravity: 's'
-      opacity: 0.9
-      delay: 0.3
-      fade: true
-    },
-    {
-      position: 'centerTop'
-      horizontalOffset: -10
-      verticalOffset: -10
-    }
-  )
+    CJ.Tooltip.addFancyTooltip(
+      $('.stars.cj-fancy-tooltip'),
+      {
+        className: 'stars-tooltip'
+        delay: 0.3
+        fade: true
+        gravity: 's'
+        html: true
+        opacity: 1
+        title: ()->
+          Handlebars.compile(
+            $("#stars-#{$(this).data('star-count')}-tooltip-template").html()
+          )({})
+      },
+      {
+        position: 'centerTop'
+        horizontalOffset: -10
+        verticalOffset: -10
+      }
+    )

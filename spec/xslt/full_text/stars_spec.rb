@@ -12,8 +12,7 @@ describe "XSLT::FullText::Stars" do
     XML
 
     expect_equivalent <<-HTML
-      <div class="stars cj-fancy-tooltip"
-        data-tooltip="To aid in clearity only the relevant information is included as part of this document. 'Stars' represent the content that hasn't been included and is not being modified by this document.">
+      <div class="stars cj-fancy-tooltip" data-star-count="5">
         <span class="icon-fr2 icon-fr2-star">* </span>
         <span class="icon-fr2 icon-fr2-star">* </span>
         <span class="icon-fr2 icon-fr2-star">* </span>

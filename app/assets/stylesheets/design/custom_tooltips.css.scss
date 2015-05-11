@@ -2,7 +2,16 @@
    as they are placed immediately inside the <body> tag */
 
 .tipsy.stars-tooltip {
+  .tipsy-arrow {
+    border-top-color: $color-enhanced;
+  }
+
   .tipsy-inner {
-    max-width: 400px;
+    max-width: 500px;
+    font-size: 11px;
+    text-align: left;
+    background-color: $color-enhanced-light;
+    overflow: hidden;
+    padding: 0;
   }
 }
