@@ -33,7 +33,7 @@ class Clipping < ActiveRecord::Base
   def self.all_preloaded_from_cookie(cookie_data)
     document_numbers = retrieve_document_numbers(cookie_data)
     clippings = document_numbers.map{|doc_num| Clipping.new(:document_number => doc_num) }
-    clippings = map_articles_to_clipping(clippings, document_numbers)
+    clippings = map_documents_to_clipping(clippings, document_numbers)
     clippings
   end
 
