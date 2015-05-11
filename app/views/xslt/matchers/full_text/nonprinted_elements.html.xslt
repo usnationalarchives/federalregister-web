@@ -59,5 +59,32 @@
       <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
+
+  <xsl:template match="FURINF">
+    <span class="further-info-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'Start Further Info'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+
+    <xsl:apply-templates />
+
+    <span class="further-info-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip">
+          <xsl:value-of select="'End Further Info'" />
+        </xsl:attribute>
+        <xsl:text> </xsl:text>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+  </xsl:template>
+
 </xsl:stylesheet>
 

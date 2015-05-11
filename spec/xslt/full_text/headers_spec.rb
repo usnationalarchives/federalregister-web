@@ -113,11 +113,20 @@ describe "XSLT::FullText::Headers" do
 
     # note: the header id's increase but start at 3
     # see app/views/xslt/headers.html.xslt for explanation
-    expect_equivalent <<-HTML
-      <h1 id="h-2">ACTION:</h1>
-      <h1 id="h-3">SUMMARY:</h1>
-      <h1 id="h-4">DATES:</h1>
-      <h1 id="h-5">FOR FURTHER INFORMATION CONTACT:</h1>
-    HTML
+    expect(html).to have_tag('h1#h-2') do
+      with_text "ACTION:"
+    end
+
+    expect(html).to have_tag('h1#h-3') do
+      with_text "SUMMARY:"
+    end
+
+    expect(html).to have_tag('h1#h-4') do
+      with_text "DATES:"
+    end
+
+    expect(html).to have_tag('h1#h-5') do
+      with_text "FOR FURTHER INFORMATION CONTACT:"
+    end
   end
 end

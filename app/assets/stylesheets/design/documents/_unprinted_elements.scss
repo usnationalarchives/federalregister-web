@@ -58,6 +58,15 @@
       .unprinted-element { width: 150px; }
     }
 
+    &.further-info-wrapper {
+      .unprinted-element-border { width: 38%; }
+      .unprinted-element { width: 130px; }
+    }
+
+    &.list-of-subject-wrapper {
+      .unprinted-element { width: 141px; }
+    }
+
     &.preamble-wrapper,
     &.appendix-wrapper,
     &.subpart-wrapper,
