@@ -6,11 +6,11 @@ class DocumentIssuesController < ApplicationController
     cache_for 1.day
     parsed_date = parse_date_from_params
 
-    if DocumentIssue.published_on(parsed_date).empty?
-      raise ActiveRecord::RecordNotFound
-    else
+    if DocumentIssue.published_on(parsed_date).has_documents?
       @presenter = TableOfContentsPresenter.new(parsed_date)
       @doc_presenter = DocumentIssuePresenter.new(parsed_date)
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 
