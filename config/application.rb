@@ -62,30 +62,32 @@ module MyFr2
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     config.assets.precompile += %w(
-      application-ie.css
-      application-shared.js
-      fr-document-icons-lte-ie7.js
       fr2-icons-lte-ie7.js
-      application-fr2.js
+      ie-shared.js
+      search.js
+      tender_widget_custom.js
+
+      application-ie.css
       application-ie8lte.css
       application-ie7lte.css
-      application-fr2.js
-      ie-shared.js
-      tender_widget_custom.js
       print.css
+
       *.eot
       *.svg
       *.ttf
       *.woff
       clippy.swf
-      header/official_masthead.png
-      header/official_masthead.svg
+
+      official_masthead.png
+      official_masthead.svg
       public_inspection_masthead.png
       public_inspection_masthead.svg
       reader_aids_masthead.png
       reader_aids_masthead.svg
+
       blue_header_bg.png
       red_header_bg.png
+
       search.png
       search.svg
     )
