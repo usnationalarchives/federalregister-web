@@ -13,9 +13,9 @@ $(document).ready ->
         )
 
     CJ.Tooltip.addFancyTooltip(
-      $('.stars.cj-fancy-tooltip'),
+      $('.document-markup.cj-fancy-tooltip'),
       {
-        className: 'stars-tooltip'
+        className: 'document-markup-tooltip'
         delay: 0.3
         fade: true
         gravity: 's'
@@ -23,7 +23,7 @@ $(document).ready ->
         opacity: 1
         title: ()->
           Handlebars.compile(
-            $("#stars-#{$(this).data('star-count')}-tooltip-template").html()
+            $( $(this).data('tooltip-template') ).html()
           )({})
       },
       {

@@ -5,7 +5,7 @@
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Amendment Part'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -24,7 +24,7 @@
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Amendment Part'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>

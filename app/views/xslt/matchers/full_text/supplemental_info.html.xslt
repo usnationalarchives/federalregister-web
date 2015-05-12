@@ -5,7 +5,7 @@
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Supplemental Information'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -18,7 +18,7 @@
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Supplemental Information'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>

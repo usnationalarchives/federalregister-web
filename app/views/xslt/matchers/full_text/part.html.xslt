@@ -5,7 +5,7 @@
     <span class="part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="part unprinted-element icon-fr2 icon-fr2-book cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Part'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -18,7 +18,7 @@
     <span class="part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="part unprinted-element icon-fr2 icon-fr2-book cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Part'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>

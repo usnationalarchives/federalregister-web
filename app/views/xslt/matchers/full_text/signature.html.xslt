@@ -5,7 +5,7 @@
     <span class="signature-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Signature'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -20,7 +20,7 @@
     <span class="signature-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Signature'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>

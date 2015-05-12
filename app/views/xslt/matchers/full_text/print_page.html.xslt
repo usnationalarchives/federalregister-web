@@ -19,7 +19,7 @@
         <xsl:attribute name="data-page">
           <xsl:value-of select="@P" />
         </xsl:attribute>
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="concat('Start Printed Page ', @P)" />
         </xsl:attribute>
         <xsl:text> </xsl:text>

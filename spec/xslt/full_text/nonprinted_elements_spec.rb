@@ -15,18 +15,17 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Preamble"}
+        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
+          with: {"data-text" => "Start Preamble"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Preamble"}
+        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
+          with: {"data-text" => "End Preamble"}
       end
     end
   end
@@ -41,17 +40,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Further Info"}
+          with: {"data-text" => "Start Further Info"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Further Info"}
+          with: {"data-text" => "End Further Info"}
       end
     end
   end
@@ -66,17 +64,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Appendix"}
+          with: {"data-text" => "Start Appendix"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Appendix"}
+          with: {"data-text" => "End Appendix"}
       end
     end
   end
@@ -91,7 +88,7 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
-          with: {"data-tooltip" => "Start Signature"}
+          with: {"data-text" => "Start Signature"}
       end
     end
 
@@ -102,7 +99,7 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
-          with: {"data-tooltip" => "End Signature"}
+          with: {"data-text" => "End Signature"}
       end
     end
   end
@@ -117,17 +114,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Supplemental Information"}
+          with: {"data-text" => "Start Supplemental Information"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Supplemental Information"}
+          with: {"data-text" => "End Supplemental Information"}
       end
     end
   end
@@ -142,17 +138,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-tooltip",
-          with: {"data-tooltip" => "Start List of Subjects"}
+          with: {"data-text" => "Start List of Subjects"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-tooltip",
-          with: {"data-tooltip" => "End List of Subjects"}
+          with: {"data-text" => "End List of Subjects"}
       end
     end
   end
@@ -167,17 +162,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.part.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-tooltip" => "Start Part"}
+          with: {"data-text" => "Start Part"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.part.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-tooltip" => "End Part"}
+          with: {"data-text" => "End Part"}
       end
     end
   end
@@ -192,17 +186,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Amendment Part"}
+          with: {"data-text" => "Start Amendment Part"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Amendment Part"}
+          with: {"data-text" => "End Amendment Part"}
       end
     end
   end
@@ -217,17 +210,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Authority"}
+          with: {"data-text" => "Start Authority"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "End Authority"}
+          with: {"data-text" => "End Authority"}
       end
     end
   end
@@ -242,17 +234,16 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-tooltip" => "Start Sub-Part"}
+          with: {"data-text" => "Start Sub-Part"}
       end
     end
 
-    #BB TODO: is this the right matcher here? check when online again
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-tooltip" => "End Sub-Part"}
+          with: {"data-text" => "End Sub-Part"}
       end
     end
   end

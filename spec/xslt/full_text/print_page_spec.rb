@@ -26,7 +26,7 @@ describe "XSLT::PrintPage" do
     expect(html).to have_tag("span.printed-page-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.printed-page.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
-          with: {"data-tooltip" => "Start Printed Page 1000"} do
+          with: {"data-text" => "Start Printed Page 1000"} do
 
           with_text " "
         end

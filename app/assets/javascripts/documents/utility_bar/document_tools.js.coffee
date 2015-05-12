@@ -55,4 +55,4 @@ class @FR2.DocumentTools
         nonPrintedElement.text " "
       else
         element.addClass 'blocked'
-        nonPrintedElement.text " #{nonPrintedElement.data 'tooltip'}"
+        nonPrintedElement.text " #{nonPrintedElement.data 'text'}"

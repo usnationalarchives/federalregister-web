@@ -11,10 +11,15 @@
   <xsl:template match="PREAMB">
     <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#preamble-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Preamble'" />
         </xsl:attribute>
+
         <xsl:text> </xsl:text>
       </span>
       <span class="unprinted-element-border"></span>
@@ -24,10 +29,15 @@
 
     <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#preamble-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Preamble'" />
         </xsl:attribute>
+
         <xsl:text> </xsl:text>
       </span>
       <span class="unprinted-element-border"></span>
@@ -38,7 +48,7 @@
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Appendix'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -51,7 +61,7 @@
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Appendix'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -64,7 +74,7 @@
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Further Info'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
@@ -77,7 +87,7 @@
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
-        <xsl:attribute name="data-tooltip">
+        <xsl:attribute name="data-text">
           <xsl:value-of select="'End Further Info'" />
         </xsl:attribute>
         <xsl:text> </xsl:text>
