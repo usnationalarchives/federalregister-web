@@ -90,7 +90,7 @@
           <% end %>
         </li>
         <li id='fr-index-search'>
-          <%= link_to("", class: "fr-index-search") do %>
+          <%= link_to(index_year_path(DocumentIssue.current.publication_date.year), class: "fr-index-search") do %>
             <%= fr_icon('indent') %>
             FR Index
           <% end %>

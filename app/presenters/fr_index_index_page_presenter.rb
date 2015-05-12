@@ -42,20 +42,35 @@ class FrIndexIndexPagePresenter
     end
   end
 
+  def agency_representations_by_first_letter
+    @agency_representations_by_first_letter ||=
+      Hash[ agency_representations.group_by{|a|a.name[0]}.sort_by{|k,v|k} ]
+  end
+
+  def index_json_url
+    "#{Settings.federal_register.base_uri}fr_index/#{year}/index.json"
+  end
+
+  def self.available_years
+    min_year = 2013
+    (min_year..Date.today.year).to_a.reverse
+  end
+
+  def date_last_issue_published
+    DocumentIssue.last_issue_published(year)
+  end
+
+  private
+
   def process_see_also(child_agencies)
     return [] if child_agencies.nil?
     child_agencies.map do |child_agency|
-      OpenStruct.new(
+      AgencyRepresentation.new(
         name: child_agency["name"],
         slug: child_agency["slug"],
         count: agency_slug_facet_mappings[child_agency["slug"]],
       )
     end
-  end
-
-  def agency_representations_by_first_letter
-    @agency_representations_by_first_letter ||=
-      Hash[ agency_representations.group_by{|a|a.name[0]}.sort_by{|k,v|k} ]
   end
 
   def agency_slug_facet_mappings
@@ -79,8 +94,5 @@ class FrIndexIndexPagePresenter
     )
   end
 
-  def index_json_url
-    "#{Settings.federal_register.base_uri}/master_fr_index/#{year}.json"
-  end
 
 end

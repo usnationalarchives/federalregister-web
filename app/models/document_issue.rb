@@ -20,6 +20,17 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
     date > Date.parse('1995-01-01')
   end
 
+  def self.last_issue_published(year)
+    facet = search(
+      QueryConditions::DocumentConditions.published_within(
+        gte: Date.new(year,1,1),
+        lte: Date.new(year,12,31)
+      )
+    ).results.reverse.detect{|result_set| result_set.count > 0}
+
+    facet.slug.to_date if facet
+  end
+
   def publication_date
     Date.parse(slug)
   end

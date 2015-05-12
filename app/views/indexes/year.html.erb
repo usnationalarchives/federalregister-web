@@ -11,7 +11,9 @@
       <%= render partial: "index_year_header",
             locals: {
               year: @presenter.year,
-              agency_first_letters: @presenter.agency_representations_by_first_letter.keys
+              agency_first_letters: @presenter.agency_representations_by_first_letter.keys,
+              available_years: @presenter.class.available_years,
+              date_last_issue_published: @presenter.date_last_issue_published
             }%>
 
       <div class="row">
