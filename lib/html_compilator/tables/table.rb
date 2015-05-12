@@ -97,7 +97,7 @@ class HtmlCompilator::Tables::Table
 
   def rule_option
     options.
-      detect{|x| x =~ /^L\d\(|$/ }
+      detect{|x| x =~ /^L\d(?:\(|$)/ }
   end
 
   def rules
