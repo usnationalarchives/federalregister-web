@@ -8,7 +8,7 @@ class IndexesController < ApplicationController
 
   def year
     cache_for 1.day
-    @presenter = FrIndexIndexPagePresenter.new(params[:year])
+    @presenter = FrIndexPresenter.new(params[:year])
   end
 
   def select_index_year

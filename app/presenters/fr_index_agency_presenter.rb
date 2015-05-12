@@ -1,4 +1,4 @@
-class FrIndexAgencyPresenter
+class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   attr_reader :year, :agency_slug, :document_index
 
   def initialize(year, agency_slug)

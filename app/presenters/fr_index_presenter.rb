@@ -1,4 +1,4 @@
-class FrIndexIndexPagePresenter
+class FrIndexPresenter
   attr_reader :year, :index
 
   def initialize(year)
@@ -51,13 +51,13 @@ class FrIndexIndexPagePresenter
     "#{Settings.federal_register.base_uri}fr_index/#{year}/index.json"
   end
 
+  def date_last_issue_published
+    DocumentIssue.last_issue_published(year)
+  end
+
   def self.available_years
     min_year = 2013
     (min_year..Date.today.year).to_a.reverse
-  end
-
-  def date_last_issue_published
-    DocumentIssue.last_issue_published(year)
   end
 
   private
