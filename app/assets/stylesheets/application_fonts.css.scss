@@ -1,0 +1,48 @@
+/*
+-----------------------------------------------
+Typesetting for FederalRegister.gov
+16px @ 1:1.125 (major-second)
+----------------------------------------------- */
+$modular-scale-ratio: $major-second; //1.125;
+$modular-scale-base: 16px;
+
+body {
+  font-size: 16px; /* Scale origin */
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+.wf-active body { @include gesta; }
+
+.wf-active .bootstrap-scope {
+  .fr-box-official,
+  .fr-box-public-inspection {
+    .content-block {
+      @include calluna;
+
+      h1, h2, h3, h4, h5 {
+        @include apertura-condensed;
+        color: $fr-gray-80;
+        font-weight: bold;
+        word-wrap: break-word;
+        text-align: left;
+        margin: 1em 0 0.5em;
+        line-height: 1.3em;
+      }
+
+      p {
+        font-family: inherit;
+        color: $fr-gray-80;
+        margin: 0 0 1.5em;
+        line-height: 1.7em;
+        padding: 0;
+      }
+
+      h1 { font-size: modular-scale(3); }
+      h2 { font-size: modular-scale(2); }
+      h3 { font-size: modular-scale(1); }
+      h4 { font-size: modular-scale(0); }
+      p { font-size: modular-scale(0); }
+    }
+  }
+}

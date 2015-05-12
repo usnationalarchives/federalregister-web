@@ -2,17 +2,23 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
+// vendor
+@import "jquery.tipsy";
+
+// mixins/colors/other library items
+@import "essential";
+
+// Font sizes based on ratios
+$em-base: 16px;
+@import 'bourbon/modular-scale';
+@import 'application_fonts';
+
 // scope bootstrap styles
 .bootstrap-scope {
   @import "bootstrap-custom";
   @import "bootstrap-changes";
 }
 
-// vendor
-@import "jquery.tipsy";
-
-// mixins/colors/other library items
-@import "essential";
 
 /* override old, clashing fr2 styles */
 @import "officialness_override";

@@ -1,40 +1,10 @@
-%fr_header_style {
-  word-wrap: break-word;
-  margin-top: 0;
-  font-size: 18px;
-  text-align: left;
-}
+
+
 
 .fr-box-official .content-block {
-  h1 {
-    @extend %fr_header_style;
-
-    color: $fr-blue;
-    @include apertura-condensed;
-
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0 0 1em;
-    padding-top: 0;
-  }
-
-  h2 {
-    @extend %fr_header_style;
-
-    line-height: 1.5em;
-    text-align: left;
-  }
-
-  h3 { font-size: 15px; }
+  h1 { text-transform: uppercase; }
 
   p {
-    padding-left: 0;
-
-    color: #363636;
-    @include calluna;
-    font-size: 14px;
-    line-height: 1.6em;
-
     &.flush-paragraph {
       padding-bottom: 0;
       margin-bottom: 0 !important;
