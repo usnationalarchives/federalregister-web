@@ -1,29 +1,26 @@
-<!-- B.C. TODO: Remove and replace with class-based descendant selector
-called index-agency-page-summary -->
-<div id="fr-index-agency-metadata" class="page_summary">
-  <h1>
-    <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
-  </h1>
-  <%= link_to "Return to the agency list for the #{year} FR Index", index_year_path(year), class: "return-to-index" %>
-
+<div class="fr-index-agency-metadata page_summary">
+  <div class="clearfix">
+    <h1 class="header-title pull-left">
+      <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
+    </h1>
+    <%= link_to "Return to the agency list for the #{year} FR Index",
+          index_year_path(year), class: "pull-right" %>
+  </div>
   <hr />
 
-  <!-- B.B. TODO: Turn this into a helper and allow arbitrary conditions to be passed. -->
+  <!-- B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. -->
   <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
-  <!-- B.C. TODO: Connect description/link to live API endpoint once developed. -->
-  <%# if agency_year.last_published %>
+  <!-- B.B. TODO: Bob to look into implementation details. -->
     <%= link_to root_path do %>
       <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= agency_name %> Index (PDF)
     <% end %>
-  <%# end %>
 
   <hr />
 
   <p>
-    <% if year == Date.current.strftime("%Y")%>
-    <!-- TODO: Are we sure year input is integer -->
-      As of <strong>Stubbed Date<%#= agency_year.max_date.strftime("%B %e, %Y") %></strong> the
+    <% if year == Date.current.strftime("%Y").to_i %>
+      As of <strong><%= DocumentIssue.current.publication_date.to_s(:shorter_ordinal) %></strong> the
       <%= agency_name %> has published <%= pluralize total_document_count, "document" %> in <%= year %>.
     <% else %>
       In <%= year %>, the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.

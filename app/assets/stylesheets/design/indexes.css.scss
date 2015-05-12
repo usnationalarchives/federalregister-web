@@ -32,15 +32,9 @@
   }
 }
 
-// TODO: Change this CSS to a class-based descendant selector
-#fr-index-agency-metadata {
+.fr-index-agency-metadata {
   .agency {
     font-size: 25px;
-    float: left;
-  }
-
-  .return-to-index {
-    float: right;
   }
 
   .entry-count {

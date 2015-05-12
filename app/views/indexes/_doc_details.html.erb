@@ -23,7 +23,6 @@
           <div class="with-ajax-popover" data-document-title="<%=document.title%>"
                data-document-number="<%= document.document_number %>">
             <div class="col-xs-1 col-md-1">
-            <!-- TODO: Check to see whether indexes.scss.css margin needs adjustment to resolve alignment -->
             </div>
             <div class="col-xs-1 col-md-1">
               <% if index == 0 %>
@@ -39,7 +38,9 @@
             <div class="col-xs-3 col-md-3">
               <dl>
                 <dt>FR Document</dt>
-                <dd class="document_number"><%= link_to(document.document_number, document.html_url) %></dd>
+                <dd class="document_number">
+                  <%= link_to(document.document_number, document.html_url) %>
+                </dd>
               </dl>
             </div>
             <div class="col-xs-3 col-md-3">
@@ -48,6 +49,8 @@
                 <dd><%= link_to(document.page_range, document.pdf_url) %>
                     (<%= pluralize(document.length, "Page") %>)</dd>
               </dl>
+            </div>
+            <div class="col-xs-1 col-md-1">
               <%= fr_icon("globe") if false %>
               <% if document.regulations_dot_gov_info %>
                 <span class="cj-tooltip" data-tooltip="Has received public comments">

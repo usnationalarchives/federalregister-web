@@ -8,7 +8,7 @@ class FrIndexAgencyPresenter
     raise ActiveRecord::RecordNotFound if @document_index.code == 404
   end
 
-  class DocumentTypeRepresentation #Better way to distinguish this and a top-level class?
+  class DocumentTypeRepresentation
     vattr_initialize [
       :name,
       :slug,
@@ -76,8 +76,7 @@ class FrIndexAgencyPresenter
     'indexes/doc_details'
   end
 
-  class Agency < TableOfContentsPresenter::Agency #TODO: Should we move TableOfContentsPresenter::Agency into
-    #higher class to maximize re-use?
+  class Agency < TableOfContentsPresenter::Agency
   end
 
   def agency
