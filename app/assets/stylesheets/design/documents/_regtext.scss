@@ -1,0 +1,35 @@
+.section {
+  overflow: hidden;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.authority {
+  margin-left: 20px;
+
+  .auth-header {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+.amendment-part {
+  clear: both;
+  overflow: hidden;
+
+  .amendment-part-number {
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 18px;
+    top: -2px;
+    position: relative;
+  }
+
+  .amendment-part-text {
+    margin-left: 10px;
+    float: left;
+    display: block;
+    width: 80%;
+  }
+}

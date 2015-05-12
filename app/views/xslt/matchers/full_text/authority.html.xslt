@@ -13,7 +13,17 @@
       <span class="unprinted-element-border"></span>
     </span>
 
-    <xsl:apply-templates />
+    <p class="authority">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
 
     <span class="authority-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>

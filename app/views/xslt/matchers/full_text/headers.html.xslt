@@ -14,4 +14,10 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="HD[@SOURCE='HED' and ancestor::AUTH]">
+    <span class="auth-header">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
 </xsl:stylesheet>

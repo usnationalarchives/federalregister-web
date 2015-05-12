@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fr="http://federalregister.gov/functions" extension-element-prefixes="fr">
   <xsl:include href="../../templates/paragraphs.html.xslt" />
   <xsl:include href="../../templates/printed_page.html.xslt" />
 
-  <xsl:template match="P | FP[not(@*)]">
+  <xsl:template match="P[not(ancestor::AUTH)] | P[not(ancestor::LSTSUB)] | FP[not(@*)]">
     <!--
     <xsl:choose>
       <xsl:when test="starts-with(text(),'&#x2022;')">
@@ -124,6 +124,18 @@
 
       <xsl:apply-templates />
     </p>
+  </xsl:template>
+
+  <xsl:template match="P[ancestor::AUTH]">
+    <span class="auth-content">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="P[ancestor::LSTSUB]">
+    <div class="subject-list">
+      <xsl:copy-of select="fr:list_of_subjects(text())"/>
+    </div>
   </xsl:template>
 
 </xsl:stylesheet>
