@@ -29,7 +29,7 @@ describe "XSLT::FullText::Signature" do
   end
 
   it "adds the signature name to the wrapper" do
-        expect(html).to have_tag('div.signature') do
+    expect(html).to have_tag('div.signature') do
       with_tag "p.signature-name" do
         with_text /Alfred V. Almanza,/
       end
@@ -37,7 +37,7 @@ describe "XSLT::FullText::Signature" do
   end
 
   it "adds the signature title to the wrapper" do
-        expect(html).to have_tag('div.signature') do
+    expect(html).to have_tag('div.signature') do
       with_tag "p.signature-title" do
         with_text /Acting Administrator./
       end

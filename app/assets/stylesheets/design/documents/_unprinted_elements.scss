@@ -25,13 +25,6 @@
        document even if they weren't 'printed' */
     &.printed-page-wrapper { color: $fr-gray-40; }
 
-    /* customizing wrapper width for auto centering of block
-       usually when appearing in another element */
-    &.signature-wrapper {
-      width: 540px;
-    }
-
-
     .unprinted-element-border {
       border-bottom: 1px solid $color-enhanced-dark;
       width: 37%;
@@ -65,6 +58,11 @@
 
     &.list-of-subject-wrapper {
       .unprinted-element { width: 141px; }
+    }
+
+    &.signature-wrapper {
+      .unprinted-element-border { width: 39%; }
+      .unprinted-element { width: 110px; }
     }
 
     &.preamble-wrapper,
