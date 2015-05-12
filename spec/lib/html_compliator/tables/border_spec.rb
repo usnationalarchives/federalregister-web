@@ -11,7 +11,7 @@ describe HtmlCompilator::Tables do
     context "table header" do
       it "parses simple rows" do
         table =parse <<-XML
-          <GPOTABLE COLS="3" OPTS="L2(,,,,)" CDEF="1,1,1">
+          <GPOTABLE COLS="3" OPTS="tp0,L2(,,,,)" CDEF="1,1,1">
             <BOXHD>
               <CHED H="1">A</CHED>
               <CHED H="1">B</CHED>
