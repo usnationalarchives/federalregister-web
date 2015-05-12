@@ -11,20 +11,18 @@
       <%= render partial: "index_year_header",
             locals: {
               year: @presenter.year,
-              agency_first_letters: @presenter.
-                agency_representations_by_first_letter.keys } %>
+              agency_first_letters: @presenter.agency_representations_by_first_letter.keys
+            }%>
 
       <div class="row">
         <div class="col-xs-12 col-md-12 doc-toc">
           <%= fr_box "Agencies", :official_toc, header: {seal: true} do %>
               <% @presenter.agency_representations_by_first_letter.each do
-                   |letter, agencies| %>
-
-              <%= render partial: "agency_by_letter",
-                    locals: {
-                      letter: letter,
-                      agencies: agencies } %>
-
+                |letter, agencies| %>
+                <%= render partial: "agency_by_letter",
+                      locals: {
+                        letter: letter,
+                        agencies: agencies } %>
             <% end %>
           <% end %>
         </div>

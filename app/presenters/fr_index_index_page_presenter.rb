@@ -1,25 +1,10 @@
-require 'ostruct'
-
 class FrIndexIndexPagePresenter
-  attr_reader :year
+  attr_reader :year, :index
 
   def initialize(year)
     raise ActiveRecord::RecordNotFound if year.to_i < 2013
     @year = year.to_i
-  end
-
-  def see_also_references
-    hsh = {}
-    agencies.each do |agency|
-      if agency.parent_id.present?
-        if hsh[id_to_slug_improved(agency.parent_id)].nil?
-          hsh[id_to_slug_improved(agency.parent_id)] = [id_to_slug_improved(agency.id)]
-        else
-          hsh[id_to_slug_improved(agency.parent_id)] << id_to_slug_improved(agency.id)
-        end
-      end
-    end
-    hsh
+    @index = HTTParty.get(index_json_url)
   end
 
   class AgencyRepresentation
@@ -31,53 +16,53 @@ class FrIndexIndexPagePresenter
     ]
   end
 
+  def agency_representations
+    @agency_representations ||= index["agencies"].map do |agency|
+      if agency["slug"].present?
+        AgencyRepresentation.new(
+          name: agency["name"],
+          slug: agency["slug"],
+          count: agency_slug_facet_mappings[agency["slug"]],
+          see_also_references: process_see_also(agency["see_also"])
+        )
+      else
+        AgencyRepresentation.new(
+          name: agency["name"],
+          slug: agency["slug"],
+          count: 0,
+          see_also_references: [
+            AgencyRepresentation.new(
+              name: agency["see_also"].first["name"],
+              slug: agency["see_also"].first["slug"],
+              count: 0
+            )
+          ]
+        )
+      end
+    end
+  end
+
+  def process_see_also(child_agencies)
+    return [] if child_agencies.nil?
+    child_agencies.map do |child_agency|
+      OpenStruct.new(
+        name: child_agency["name"],
+        slug: child_agency["slug"],
+        count: agency_slug_facet_mappings[child_agency["slug"]],
+      )
+    end
+  end
+
   def agency_representations_by_first_letter
     @agency_representations_by_first_letter ||=
       Hash[ agency_representations.group_by{|a|a.name[0]}.sort_by{|k,v|k} ]
   end
 
-  def agency_representations
-    @agency_representations ||= agency_facets.map do |agency_facet|
-      AgencyRepresentation.new(
-        name: agency_facet.name,
-        slug: agency_facet.slug,
-        count: agency_facet.count,
-        see_also_references: see_also_processor(agency_facet.slug)
-      )
-    end.sort_by{|agency_representation|agency_representation.name}
-  end
-
-  def see_also_processor(slug)
-    child_agency_slugs = see_also_references[slug]
-    return [] if child_agency_slugs.nil?
-    results = []
-    child_agency_slugs.each do |child_agency_slug|
-      agency_facet = agency_facets.find{|agency_facet|agency_facet.slug == child_agency_slug}
-      if agency_facet && agency_facet.count > 0
-        results << OpenStruct.new(name: agency_facet.name,
-                                  slug: agency_facet.slug,
-                                  count: agency_facet.count)
-      end
-    end
-    results
-  end
-
-  def id_to_slug_improved(agency_id)
-    agency_slug_id_mappings[agency_id]
-  end
-
-  def agency_slug_id_mappings
-    @agency_slug_id_mappings ||= agencies.inject({}) do |hsh,agency|
-      hsh[agency.id] = agency.slug
+  def agency_slug_facet_mappings
+    @agency_slug_facet_mappings ||= agency_facets.inject({}) do |hsh,facet|
+      hsh[facet.slug] = facet.count
       hsh
     end
-  end
-
-
-  private
-
-  def agencies
-    @agencies ||= FederalRegister::Agency.all
   end
 
   def agency_facets
@@ -92,6 +77,10 @@ class FrIndexIndexPagePresenter
         per_page: 1000
       }
     )
+  end
+
+  def index_json_url
+    "#{Settings.federal_register.base_uri}/master_fr_index/#{year}.json"
   end
 
 end

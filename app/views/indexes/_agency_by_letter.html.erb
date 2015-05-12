@@ -2,25 +2,33 @@
   <ul class="parent-agency">
   <% agencies.each do |agency| %>
     <li>
-      <%= link_to(agency.name,
-            year_agency_path(@presenter.year,agency.slug) )%>
-      <span
-        class="count_pill"
-        data-tooltip=
-        "<%="Documents published in #{@presenter.year}" %>" >
-        <%= agency.count %>
-      </span>
+      <% if agency.slug.present? %>
+        <%= link_to(agency.name, year_agency_path(@presenter.year, agency.slug), id: agency.slug )%>
+      <% else %>
+        <%= agency.name %>
+      <% end %>
+      <% if agency.count > 1 %>
+        <span
+          class="count_pill"
+          data-tooltip=
+          "<%="Documents published in #{@presenter.year}" %>" >
+          <%= agency.count %>
+        </span>
+      <% end %>
       <ul class="see-also">
         <% agency.see_also_references.each do |child_agency| %>
           <li>
-          <em> See </em>
-          <%= link_to(child_agency.name,
-            year_agency_path(@presenter.year, child_agency.slug) )%>
-          <span class="count_pill"
-             data-tooltip=
-             "<%="Documents published in #{@presenter.year}" %>">
-             <%= child_agency.count %>
-          </span>
+            <em> See </em>
+            <%= link_to(child_agency.name, agency.slug.nil? ?
+             "##{child_agency.slug}" : year_agency_path(@presenter.year, child_agency.slug) )%>
+
+            <% if child_agency.count > 1 && agency.slug.present?  %>
+              <span class="count_pill"
+                 data-tooltip=
+                 "<%="Documents published in #{@presenter.year}" %>">
+                 <%= child_agency.count %>
+              </span>
+            <% end %>
           </li>
         <% end %>
       </ul>
