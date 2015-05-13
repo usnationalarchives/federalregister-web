@@ -13,6 +13,8 @@ $em-base: 16px;
 @import 'bourbon/modular-scale';
 @import 'application_fonts';
 
+@import 'application_colors';
+
 // scope bootstrap styles
 .bootstrap-scope {
   @import "bootstrap-custom";

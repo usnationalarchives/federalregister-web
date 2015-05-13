@@ -12,7 +12,28 @@ body {
   font-weight: 300;
 }
 
-.wf-active body { @include gesta; }
+.wf-active body {
+  @include gesta;
+
+  h1, h2, h3, h4, h5 {
+    line-height: 1.3em;
+    margin: 1em 0 0.5em;
+  }
+}
+
+.wf-active .metadata-content-area {
+  @include apertura-condensed;
+
+  h1 {
+    color: $fr-gray-80;
+    font-size: modular-scale(6);
+    font-family: inherit;
+  }
+
+  .metadata_share_bar {
+    font-size: modular-scale(1);
+  }
+}
 
 .wf-active .bootstrap-scope {
   .fr-box-official,
@@ -22,17 +43,13 @@ body {
 
       h1, h2, h3, h4, h5 {
         @include apertura-condensed;
-        color: $fr-gray-80;
         font-weight: bold;
         word-wrap: break-word;
         text-align: left;
-        margin: 1em 0 0.5em;
-        line-height: 1.3em;
       }
 
       p {
         font-family: inherit;
-        color: $fr-gray-80;
         margin: 0 0 1.5em;
         line-height: 1.7em;
         padding: 0;

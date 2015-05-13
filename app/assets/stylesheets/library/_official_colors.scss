@@ -19,12 +19,6 @@ $color-reader-aid:                  #b462a2;
 $color-reader-aid-med:              #fbdfeb;
 $color-reader-aid-light:            #f7eff6;
 
-$med-grey:  #A7A9AC;
-$dark-grey: #363636;
-
-$fr-link-dark:  #015BA2;
-
-$text: $dark-grey;
 $public-inspection-fr-stamp: $color-public-inspection-light;
 
 $utility-nav:                         $med-grey;
@@ -40,3 +34,15 @@ $utility-nav-pi-hover-background: $color-public-inspection-light-alt;
 /* navigation */
 $nav-background-color: #FEFEFE;
 $nav-border-color: #CECECE;
+
+/* BASICS */
+
+/* links */
+$link: $fr-link-dark;
+$link-hover: $fr-orange;
+$link-visited: $fr-link;
+
+/* text */
+$text: $dark-grey;
+$header: $dark-grey;
+

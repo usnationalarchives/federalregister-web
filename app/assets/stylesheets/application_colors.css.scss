@@ -1,0 +1,12 @@
+body {
+  color: $text;
+
+  a {
+    color: $link;
+
+    &:hover { color: $link-hover; }
+    &:visited { color: $link-visited; }
+  }
+
+  h1, h2, h3, h4, h5, h6, h7 { color: $header; }
+}
