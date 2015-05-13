@@ -60,6 +60,12 @@ module ApplicationHelper
     set_content_for :description, strip_tags(text)
   end
 
+  def open_graph_metadata(options={})
+    set_content_for :og_type, strip_tags(options[:type]) if options[:type]
+    set_content_for :og_published_time, strip_tags(options[:published_time]) if options[:published_time]
+    set_content_for :og_image, strip_tags(options[:image_url]) if options[:image_url]
+  end
+
   def pluralize_without_count(count, noun, text = nil)
     count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
   end

@@ -1,0 +1,14 @@
+<%= tag(:meta, :property => 'og:title',
+      :content => yield(:page_title).present? ? yield(:page_title) : "Federal Register" ) %>
+<%= tag(:meta, :property => 'og:site_name',
+      :content => "Federal Register" ) %>
+<%= tag(:meta, :property => 'og:image',
+      :content => "https://www.federalregister.gov/images/fbdisplay.jpg" ) %>
+<%= tag(:meta, :property => 'og:url',
+      :content => request.url ) %>
+<%= tag(:meta, :property => 'og:description',
+      :content => yield(:description).present? ? yield(:description) : "Search, browse and learn about the Federal Register. Federal Register 2.0 is the unofficial daily publication for rules, proposed rules, and notices of Federal agencies and organizations, as well as executive orders and other presidential documents."  ) %>
+<%= tag(:meta, :property => 'og:type',
+      :content => yield(:og_type) ) if yield(:og_type).present? %>
+<%= tag(:meta, :property => 'article:published_time',
+      :content => yield(:og_published_time) ) if yield(:og_published_time).present? %>

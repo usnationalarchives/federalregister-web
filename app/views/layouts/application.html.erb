@@ -16,15 +16,7 @@
     <script src="https://use.typekit.net/rgf3yox.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
 
-    <!-- Open Graph Tags -->
-    <%= tag(:meta, :property => 'og:title', :content => yield(:page_title) ? "Federal Register" : yield(:page_title) ) %>
-    <%= tag(:meta, :property => 'og:site_name', :content => "Federal Register" ) %>
-    <!-- TODO: Facebook recommends image with at least 1200 x 630 resolution -->
-    <%= tag(:meta, :property => 'og:image', :content => "https://www.federalregister.gov/images/fbdisplay.jpg" ) %>
-    <%= tag(:meta, :property => 'og:url', :content => request.url ) %>
-    <%= tag(:meta, :property => 'og:description', :content => "Search, browse and learn about the Federal Register. Federal Register 2.0 is the unofficial daily publication for rules, proposed rules, and notices of Federal agencies and organizations, as well as executive orders and other presidential documents." ) %>
-
-
+    <%= render partial: 'layouts/open_graph_metadata' %>
     <%# Facebook uses these for parsing when someone adds a link  %>
     <%# TODO: for facebook image below, show curated image if present %>
     <link rel="image_src" href="https://www.federalregister.gov/images/fbdisplay.jpg" />
