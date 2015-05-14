@@ -24,6 +24,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fr2-home:before {
+	content: "\e633";
+}
+
 .icon-fr2-star:before {
 	content: "\e632";
 }
@@ -331,3 +335,4 @@
 .icon-fr2-document_subscription:before {
 	content: "\e016";
 }
+
