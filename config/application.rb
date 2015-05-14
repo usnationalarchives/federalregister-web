@@ -78,6 +78,9 @@ module MyFr2
       *.woff
       clippy.swf
 
+      Barack_Obama_sm.jpg
+      Bill_Clinton_sm.jpg
+      George_W_Bush_sm.jpg
       official_masthead.png
       official_masthead.svg
       public_inspection_masthead.png
