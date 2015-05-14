@@ -35,11 +35,13 @@
 #= require old/agency_list
 #= require old/search
 #= require old/rss
+#= require scrollMonitor
 #= require_tree ./documents
 
 # Namespaced JS Classes
 #= require utilities/cj_tooltip
 #= require utilities/modal
+#= require utilities/element_scroller
 
 $(document).ready ()->
   $('.clippy').clippy({
