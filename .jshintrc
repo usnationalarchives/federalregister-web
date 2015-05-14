@@ -24,6 +24,7 @@
       "_gaq",
       "strftime",
       "CJ",
+      "FR2",
       "Tender",
 
       // Some methods defined across files; should prob be refactored
