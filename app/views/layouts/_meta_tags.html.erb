@@ -1,9 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="government federal register executive rulings notices" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="medium" content="news" />
+
+<%= tag(:meta, :name => 'title', :content => yield(:page_title) ) if yield(:page_title) %>
+<%= tag(:meta, :name => 'description', :content => yield(:description) ) if yield(:description) %>
+
+<!-- Open Graph Tags -->
 <%= tag(:meta, :property => 'og:title',
       :content => yield(:page_title).present? ? yield(:page_title) : "Federal Register" ) %>
 <%= tag(:meta, :property => 'og:site_name',
       :content => "Federal Register" ) %>
 <%= tag(:meta, :property => 'og:image',
-      :content => "https://www.federalregister.gov/images/fbdisplay.jpg" ) %>
+      :content => yield(:og_image).present? ? yield(:og_image) :
+      "https://www.federalregister.gov/images/fbdisplay.jpg" ) %>
 <%= tag(:meta, :property => 'og:url',
       :content => request.url ) %>
 <%= tag(:meta, :property => 'og:description',
