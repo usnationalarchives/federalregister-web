@@ -7,23 +7,42 @@
     <%= esi navigation_sections_path %>
 
     <li class="dropdown previewable nav_browse">
-      <a class="browse top_nav with-icon">Browse<span class="arrow"></span></a>
+      <%= link_to(agencies_path, class: "browse top_nav") do %>
+        <%= fr_icon('Eye') %>
+        Browse
+        <span class="arrow"></span>
+      <% end %>
       <div class="subnav browse-list">
         <ul class="left_column">
           <li id='agencies-browse'>
-            <%= link_to 'Agencies', agencies_path, :class => "agencies with-icon" %>
+            <%= link_to(agencies_path, class: "agencies with-icon") do %>
+              <%= fr_icon('Network-alt') %>
+              Agencies
+            <% end %>
           </li>
           <li id='topics-browse'>
-            <%= link_to 'Topics', topics_path, :class => "topics with-icon" %>
+            <%= link_to(topics_path, class: "topics with-icon") do %>
+              <%= fr_icon('molecular') %>
+              Topics
+            <% end %>
           </li>
           <li id='document-dates-browse'>
-            <%= link_to 'Dates', document_issue_path(DocumentIssue.current), :class => "date with-icon" %>
+            <%= link_to(document_issue_path(DocumentIssue.current), class: "date with-icon") do %>
+              <%= fr_icon('calendar-alt') %>
+              Dates
+            <% end %>
           </li>
           <li id='public-inspection-browse'>
-            <%= link_to 'Public Inspection', current_public_inspection_documents_path, :class => "public_inspection with-icon" %>
+            <%= link_to(current_public_inspection_documents_path, class: "public_inspection with-icon") do %>
+              <%= fr_icon('clipboard') %>
+              Public Inspection
+            <% end %>
           </li>
           <li id='executive-orders-browse'>
-            <%= link_to 'Executive Orders', executive_orders_path, :class => "executive_orders with-icon" %>
+            <%= link_to(executive_orders_path, class: "executive_orders with-icon") do %>
+              <%= fr_icon('stars') %>
+              Executive Orders
+            <% end %>
           </li>
         </ul>
         <ul class="right_column">
@@ -37,7 +56,12 @@
     </li>
 
     <li class="dropdown nav_search">
-      <a class="search top_nav with-icon">Search<span class="arrow"></span></a>
+      <a class="search top_nav">
+        <%= fr_icon('Search') %>
+        Search
+        <span class="arrow"></span>
+      </a>
+
       <ul class="subnav search-list">
         <li id='articles-search'>
           <%= link_to 'Document Search', documents_search_path, :class => "article-search with-icon" %>
