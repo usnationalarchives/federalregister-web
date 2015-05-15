@@ -36,7 +36,7 @@ class SectionsController < ApplicationController
   # end
 
   def homepage
-    @date = DocumentIssue.current_date
+    @date = DocumentIssue.current.publication_date
     render layout: false
   end
 
@@ -57,7 +57,8 @@ class SectionsController < ApplicationController
   def navigation
     cache_for 1.day
     @section_presenters = SectionSlug.all.map do |section|
-      SectionPagePresenter.new(section.slug, DocumentIssue.current_date - 1.year)
+      SectionPagePresenter.new(section.slug, DocumentIssue.current.publication_date - 1.year)
+      #TODO: Remove stubbed date
     end
   end
 end
