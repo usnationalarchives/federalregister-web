@@ -12,7 +12,7 @@
       <%= link_to('', class: "browse top_nav") do %>
         <%= fr_icon('Eye') %>
         Browse
-        <span class="arrow"></span>
+        <%= fr_icon('menu_arrow', class: "arrow") %>
       <% end %>
       <div class="subnav browse-list">
         <ul class="left_column">
@@ -59,9 +59,9 @@
 
     <li class="dropdown nav_search">
       <a class="top_nav">
-        <%= fr_icon('Search') %>
+        <%= fr_icon('Search', class: "magnifying-glass-icon") %>
         Search
-        <span class="arrow"></span>
+        <%= fr_icon('menu_arrow', class: "arrow") %>
       </a>
 
       <ul class="subnav search-list">
@@ -104,6 +104,7 @@
       <a class="myfr2 top_nav">
         <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
         My FR
+        <%= fr_icon('menu_arrow', class: "arrow") %>
         <span class="arrow"></span>
       </a>
 

@@ -80,9 +80,12 @@ NAV DROPDOWN
     .arrow {
       /*background: image-url('icons/header/dropdown-off.png') no-repeat left 50%;*/
       display: inline;
-      height: 34px;
       float: right;
+      font-size: 10px;
+      height: 34px;
       margin-left: 10px;
+      position: relative;
+      top: 11px;
       width: 8px;
     }
     &:hover .arrow,
@@ -94,6 +97,11 @@ NAV DROPDOWN
     &.hover .subnav {
       display: block;
     }
+
+    .magnifying-glass-icon{
+      font-size: 18px;
+    }
+
   }
 }
 
@@ -772,16 +780,20 @@ BROWSE EXECUTIVE ORDERS
   }
 }
 
-#barack-obama .photo {
-  background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg','image') 0 0 no-repeat;
-}
+#navigation {
 
-#george-w-bush .photo {
-  background: transparent asset-url('presidential_photos/George_W_Bush_sm.jpg','image') 0 0 no-repeat;
-}
+  #barack-obama .photo {
+    background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg','image') 0 0 no-repeat;
+  }
 
-#william-j-clinton .photo {
-  background: transparent asset-url('presidential_photos/Bill_Clinton_sm.jpg','image') 0 0 no-repeat;
+  #george-w-bush .photo {
+    background: transparent asset-url('presidential_photos/George_W_Bush_sm.jpg','image') 0 0 no-repeat;
+  }
+
+  #william-j-clinton .photo {
+    background: transparent asset-url('presidential_photos/Bill_Clinton_sm.jpg','image') 0 0 no-repeat;
+  }
+
 }
 
 /**************************************
