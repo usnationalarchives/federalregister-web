@@ -1,5 +1,9 @@
 <li class="dropdown previewable nav_sections">
-  <a class="sections top_nav with-icon">Sections<span class="arrow"></span></a>
+  <%= link_to('', class: "sections top_nav") do %>
+    <%= fr_icon('thumbnails') %>
+    Sections
+    <span class="arrow"></span>
+  <% end %>
   <div class="subnav">
     <ul class="left_column">
       <% @sections.each do |section_slug, section| %>

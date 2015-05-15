@@ -1,15 +1,15 @@
 <div class="nav" id="navigation">
   <ul class="container">
     <li id='nav-home' class="nav-home">
-      <%= link_to(root_path, class: "icon-fr2 icon-fr2-home") do %>
-        <%#= fr_icon('home') %>
+      <%= link_to(root_path, class: "home") do %>
+        <%= fr_icon('home') %>
       <% end %>
     </li>
 
     <%= esi navigation_sections_path %>
 
     <li class="dropdown previewable nav_browse">
-      <%= link_to(agencies_path, class: "browse top_nav") do %>
+      <%= link_to('', class: "browse top_nav") do %>
         <%= fr_icon('Eye') %>
         Browse
         <span class="arrow"></span>
@@ -18,7 +18,7 @@
         <ul class="left_column">
           <li id='agencies-browse'>
             <%= link_to(agencies_path, class: "agencies with-icon") do %>
-              <%= fr_icon('Network-alt') %>
+              <%= fr_icon('mindmap') %>
               Agencies
             <% end %>
           </li>
@@ -85,7 +85,7 @@
         </li>
         <li id='public-inspection-search'>
           <%= link_to("public_inspection_search_path", class: "unified-agenda-search") do %>
-            <%= fr_icon('merge') %>
+            <%= fr_icon('clipboards') %>
             Public Inspection Search
           <% end %>
         </li>
