@@ -94,7 +94,7 @@ sub vcl_recv {
       return(pass);
     } else if (req.url ~ "^/styleguides") {
       set req.backend = my_fr2;
-      return(pass);
+      return(lookup);
     } else if (req.url ~ "^/api/") {
       set req.backend = fr2;
       return (lookup);
