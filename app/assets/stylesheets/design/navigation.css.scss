@@ -714,15 +714,15 @@ BROWSE EXECUTIVE ORDERS
   }
 
   #barack-obama .photo {
-    //background: transparent url('/images/presidential_photos/Barack_Obama_sm.jpg') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg','image') 0 0 no-repeat;
   }
 
   #george-w-bush .photo {
-    //background: transparent url('/images/presidential_photos/George_W_Bush_sm.jpg') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/George_W_Bush_sm.jpg','image') 0 0 no-repeat;
   }
 
   #william-j-clinton .photo {
-    //background: transparent url('/images/presidential_photos/Bill_Clinton_sm.jpg') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/Bill_Clinton_sm.jpg','image') 0 0 no-repeat;
   }
 
   .pres_details {
