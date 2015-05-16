@@ -1,3 +1,4 @@
+# encoding: utf-8
 require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
@@ -144,6 +145,41 @@ describe "XSLT::FullText::Paragraphs" do
           with: {class: 'flush-paragraph'}) do
             with_text "Address of Principal Executive Offices:"
           end
+      end
+
+
+      context "nodes that start with a bullet '&#x2022;'" do
+        it "renders P nodes as list elements and removes bullets" do
+          process <<-XML
+            <P>&#x2022; Geospatial Privacy</P>
+            <P>&#x2022; 3D Elevation Program</P>
+            <P>&#x2022; Leadership Dialogue</P>
+          XML
+
+          expect_equivalent <<-HTML
+            <ul class="bullets">
+              <li id="p-1" data-page="1000">Geospatial Privacy</li>
+              <li id="p-2" data-page="1000">3D Elevation Program</li>
+              <li id="p-3" data-page="1000">Leadership Dialogue</li>
+            </ul>
+          HTML
+        end
+
+        it "renders FP nodes as list elements and removes bullets" do
+          process <<-XML
+            <FP SOURCE="FP-1">&#x2022; Geospatial Privacy</FP>
+            <FP SOURCE="FP-2">&#x2022; 3D Elevation Program</FP>
+            <FP SOURCE="FP1-2">&#x2022; Leadership Dialogue</FP>
+          XML
+
+          expect_equivalent <<-HTML
+            <ul class="bullets">
+              <li id="p-1" data-page="1000">Geospatial Privacy</li>
+              <li id="p-2" data-page="1000">3D Elevation Program</li>
+              <li id="p-3" data-page="1000">Leadership Dialogue</li>
+            </ul>
+          HTML
+        end
       end
     end
   end
