@@ -369,6 +369,10 @@ MyFr2::Application.routes.draw do
       end
     end
 
+    get 'test_page/',
+      to: "document_issues#test_page",
+      as: :test_page
+
     get 'articles/:document_number/comments/new' => 'comments#new',
      :as => :new_comment
     post 'articles/:document_number/comments/reload' => 'comments#reload',
