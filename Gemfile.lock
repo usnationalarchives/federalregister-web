@@ -41,6 +41,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.1)
     SystemTimer (1.2.3)
     actionmailer (3.2.18)
       actionpack (= 3.2.18)
@@ -148,7 +149,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    excon (0.13.4)
+    excon (0.45.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.5.0)
@@ -158,16 +159,102 @@ GEM
       railties (>= 3.0.0)
     fakeweb (1.3.0)
     ffi (1.9.8)
-    fog (1.3.1)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
+    fog (1.30.0)
+      fog-atmos
+      fog-aws (~> 0.0)
+      fog-brightbox (~> 0.4)
+      fog-core (~> 1.27, >= 1.27.4)
+      fog-ecloud
+      fog-google (>= 0.0.2)
+      fog-json
+      fog-local
+      fog-powerdns (>= 0.1.1)
+      fog-profitbricks
+      fog-radosgw (>= 0.0.2)
+      fog-riakcs
+      fog-sakuracloud (>= 0.0.4)
+      fog-serverlove
+      fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-xml (~> 0.1.1)
+      ipaddress (~> 0.5)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-aws (0.2.2)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-brightbox (0.7.1)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto (~> 0.0.2)
+    fog-core (1.30.0)
       builder
-      excon (~> 0.13.0)
-      formatador (~> 0.2.0)
+      excon (~> 0.45)
+      formatador (~> 0.2)
       mime-types
-      multi_json (~> 1.0)
-      net-scp (~> 1.0.4)
+      net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-      nokogiri (~> 1.5.0)
-      ruby-hmac
+    fog-ecloud (0.1.1)
+      fog-core
+      fog-xml
+    fog-google (0.0.5)
+      fog-core
+      fog-json
+      fog-xml
+    fog-json (1.0.1)
+      fog-core (~> 1.0)
+      multi_json (~> 1.0)
+    fog-local (0.2.1)
+      fog-core (~> 1.27)
+    fog-powerdns (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+    fog-profitbricks (0.0.2)
+      fog-core
+      fog-xml
+      nokogiri
+    fog-radosgw (0.0.4)
+      fog-core (>= 1.21.0)
+      fog-json
+      fog-xml (>= 0.0.1)
+    fog-riakcs (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-sakuracloud (1.0.1)
+      fog-core
+      fog-json
+    fog-serverlove (0.1.2)
+      fog-core
+      fog-json
+    fog-softlayer (0.4.6)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.1)
+      fog-core
+      fog-json
+    fog-terremark (0.1.0)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.1.0)
+      fission
+      fog-core
+    fog-voxel (0.1.0)
+      fog-core
+      fog-xml
+    fog-xml (0.1.2)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
     formtastic (2.0.2)
       rails (~> 3.0)
@@ -205,6 +292,8 @@ GEM
     i18n (0.7.0)
     indefinite_article (0.2.0)
       activesupport
+    inflecto (0.0.2)
+    ipaddress (0.8.0)
     jeweler (1.8.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
@@ -231,19 +320,21 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.2)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.18)
     nenv (0.2.0)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
+    net-ssh (2.9.2)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.5.11)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -337,7 +428,6 @@ GEM
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
-    ruby-hmac (0.4.0)
     ruby-progressbar (1.7.1)
     rvm-capistrano (1.5.5)
       capistrano (~> 2.15.4)
@@ -423,7 +513,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fakeweb (~> 1.3.0)
   federal_register!
-  fog (~> 1.3.1)
+  fog
   formtastic (= 2.0.2)
   geokit (= 1.4.1)
   guard
@@ -437,6 +527,7 @@ DEPENDENCIES
   launchy
   mail_view!
   mysql2 (= 0.3.18)
+  nokogiri (~> 1.6.6)
   passenger (~> 4.0.57)
   pbkdf2
   pickup (= 0.0.8)

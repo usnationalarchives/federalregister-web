@@ -33,7 +33,7 @@ gem "thunder_punch", '0.1.3', :require => false
 gem "rvm-capistrano", "~> 1.5.4", :require => false
 
 gem "carrierwave", "0.6.2"
-gem "fog", "~> 1.3.1"
+gem "fog"
 gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
@@ -67,6 +67,10 @@ gem 'rails_autolink'
 gem 'will_paginate'
 
 gem 'attr_extras', '~> 3.2.0'
+
+# xslt parsing
+gem 'nokogiri', '~> 1.6.6'
+
 
 # make app wide settings easier
 gem 'rails_config'
