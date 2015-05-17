@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
 
   def show
     cache_for 1.day
-    @presenter = SectionPagePresenter.new(params[:section], DocumentIssue.current.publication_date - 1.year)
+    @presenter = SectionPagePresenter.new(params[:section], DocumentIssue.current.publication_date)
 
     respond_to do |format|
       format.html
@@ -40,8 +40,7 @@ class SectionsController < ApplicationController
   def navigation
     cache_for 1.day
     @section_presenters = SectionSlug.all.map do |section|
-      SectionPagePresenter.new(section.slug, DocumentIssue.current.publication_date - 1.year)
-      #TODO: Remove stubbed date
+      SectionPagePresenter.new(section.slug, DocumentIssue.current.publication_date)
     end
   end
 end
