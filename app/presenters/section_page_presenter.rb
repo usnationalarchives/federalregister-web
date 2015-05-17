@@ -59,30 +59,33 @@ class SectionPagePresenter
     SectionSlug.all.map(&:slug)
   end
 
-  def last_five_days_hash
-    dates_array = (self.date - 4.days..self.date).to_a
-    hsh={}
-    dates_array.each {|date|
-      hsh[date] = last_five_days.
-        results.map{|document| DocumentDecorator.decorate(document)
-      }
-    }
-    hsh
-  end
-
-  private
-  def last_five_days
-    @api_results ||= FederalRegister::Document.search(
+  def last_five_days_docs
+    @documents_from_last_five_days ||= FederalRegister::Document.search(
       conditions: {
         sections: [slug],
         publication_date: {
-          is: date.to_date
+          gte: last_five_dates_with_doc_counts.last,
+          lte: last_five_dates_with_doc_counts.first
         }
       },
-      order: 'newest',
-      per_page: 40
-    )
+      per_page: 1000
+    ).group_by{|doc|doc.publication_date.to_s(:iso)}
   end
 
+
+  private
+
+  def last_five_dates_with_doc_counts
+    @last_five_dates_with_doc_counts ||= DocumentIssue.search(
+      {:conditions =>
+        {:publication_date =>
+          {:gte => (date - 10.days).to_s(:iso),
+           :lte => date.to_s(:iso)
+          }
+        }
+      }
+    ).select{|facet| facet.count > 0}.map{|facet| facet.slug}.
+    reverse.first(5)
+  end
 
 end
