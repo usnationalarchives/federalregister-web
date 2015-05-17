@@ -5,35 +5,18 @@ class SectionsController < ApplicationController
 
   def show
     cache_for 1.day
+    @presenter = SectionPagePresenter.new(params[:section], DocumentIssue.current.publication_date - 1.year)
 
     respond_to do |format|
-      begin
-      @presenter = SectionPagePresenter.new(params[:section], Date.current)
-
       format.html
       format.rss do
         redirect_to RSSUrlBuilder.new(@presenter.slug).url, status: :moved_permanently
       end
+    end
 
-      rescue SectionPagePresenter::InvalidSection
-        raise ActiveRecord::RecordNotFound
-      end
-      end
+    rescue SectionPagePresenter::InvalidSection
+      raise ActiveRecord::RecordNotFound
   end
-
-  # def old_show_action
-  #   @presenter = SectionPresenter.new(params[:section])
-  #   @section = @presenter.section
-
-  #   respond_to do |wants|
-  #     wants.html
-  #     wants.rss do
-  #       base_url = 'https://www.federalregister.gov/articles/search.rss?'
-  #       options = "conditions[sections]=#{@section.id}&order=newest.com"
-  #       redirect_to base_url + options, status: :moved_permanently
-  #     end
-  #   end
-  # end
 
   def homepage
     @date = DocumentIssue.current.publication_date
