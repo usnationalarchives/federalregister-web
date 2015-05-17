@@ -69,7 +69,8 @@ class SectionPagePresenter
         }
       },
       per_page: 1000
-    ).group_by{|doc|doc.publication_date.to_s(:iso)}
+    ).map{|document| DocumentDecorator.decorate(document)}.
+        group_by{|doc|doc.publication_date.to_s(:iso)}
   end
 
 
