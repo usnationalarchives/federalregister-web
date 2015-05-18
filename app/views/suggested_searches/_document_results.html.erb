@@ -1,7 +1,7 @@
 <ul id='suggested-search-list'>
   <% documents.each do |doc| %>
     <li>
-    <h3><%= document_type_icon(doc.type,nil) %></h3>
+    <h3><%= document_type_icon(doc.type) %></h3>
     <div class="search_result_wrapper">
       <h4><%= link_to(doc.title, doc.html_url) %></h4>
 
