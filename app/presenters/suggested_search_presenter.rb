@@ -36,8 +36,7 @@ class SuggestedSearchPresenter
   end
 
   def section_name
-    result = Section.search.find{|section|section.slug==suggested_search.section}
-    result.name if result.present?
+    Section.find_by_slug(suggested_search.section).try(:title)
   end
 
   def modal_description
