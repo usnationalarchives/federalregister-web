@@ -12,8 +12,7 @@
   </span>
   <%= link_to '', class: 'subscription cj-tooltip', data:
         {tooltip:'Subscribe by Email or RSS'} do
-          fr_icon('rss')
-          fr_icon('message')
+          fr_icon('rss') + fr_icon('message')
         end %>
   <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>

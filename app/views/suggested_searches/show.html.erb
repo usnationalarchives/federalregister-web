@@ -8,9 +8,11 @@
 <% end %>
 
 <div class="title">
-  <span><span class="icon-fr2 icon-fr2-Search"></span>Suggested Search</span>
-  <%= link_to '', '', :class => 'subscription tipsy',
-                      :title => 'Subscribe to this search by Email or RSS' %>
+  <span><% fr_icon('Search') %>Suggested Search</span>
+  <%= link_to '', class: 'subscription cj-tooltip', data:
+        {tooltip:'Subscribe by Email or RSS'} do
+          fr_icon('rss') + fr_icon('message')
+        end %>
   <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>
 
