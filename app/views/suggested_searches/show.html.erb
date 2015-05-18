@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="title">
-  <span><% fr_icon('Search') %>Suggested Search</span>
+  <span><%= fr_icon('Search') %>Suggested Search</span>
   <%= link_to '', class: 'subscription cj-tooltip', data:
         {tooltip:'Subscribe by Email or RSS'} do
           fr_icon('rss') + fr_icon('message')
@@ -16,16 +16,22 @@
   <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>
 
-<h1><%= @presenter.title %></h1>
-<%= @presenter.description.html_safe %>
 
-<p id="search-actions">
-  <%= link_to "Customize this search",
-        documents_search_path(conditions: @presenter.search_conditions),
-        :class => "search" %>
-</p>
-<p class="section_link">
-Showing 1-<%= @presenter.docs_returned_total %> of <%= link_to("#{@presenter.docs_overall_total} results", documents_search_path(conditions: @presenter.search_conditions) ) %> since 1994</p>
-<p class="section_link">View more <%= link_to(@presenter.section_name,section_path(@presenter.section_slug) ) %> searches</p>
+  <h1><%= @presenter.title %></h1>
+  <%= @presenter.description.html_safe %>
 
-<%= render partial: 'document_results', locals: {documents: @presenter.documents.first(20)} %>
+  <p id="search-actions">
+    <%= link_to documents_search_path(conditions: @presenter.search_conditions),
+      class: "search" do
+        fr_icon('Search') + "Customize this search"
+      end %>
+  </p>
+  <hr>
+  <div class="bootstrap-scope suggested-search-show-page"> <!-- bootstrap-scope -->
+  <div class="clearfix">
+    <p class="section_link pull-left">
+    Showing 1-<%= @presenter.docs_returned_total %> of <%= link_to("#{@presenter.docs_overall_total} results", documents_search_path(conditions: @presenter.search_conditions) ) %> since 1994</p>
+    <p class="section_link pull-right">View more <%= link_to(@presenter.section_name,section_path(@presenter.section_slug) ) %> searches</p>
+  </div>
+  <%= render partial: 'document_results', locals: {documents: @presenter.documents.first(20)} %>
+</div> <!-- bootstrap-scope -->
