@@ -51,6 +51,14 @@ class FoldersController < ApplicationController
     render 'clippings/index', :layout => "application"
   end
 
+  def destroy
+    folder = Folder.find(params[:id])
+    if folder && folder.creator_id == current_user.id && folder.documents.empty?
+      folder.destroy
+    end
+    redirect_to '/my' #TODO: Populate with 2
+  end
+
   private
 
   def folder_attributes
