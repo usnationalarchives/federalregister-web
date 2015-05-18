@@ -3,7 +3,7 @@ class SuggestedSearchPresenter
   class InvalidSuggestedSearch < StandardError; end
 
   def initialize(slug)
-    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug) #TODO: Evaluate validation here.
+    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug)
     @suggested_search = SuggestedSearch.find(slug)
   end
 

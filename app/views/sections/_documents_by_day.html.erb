@@ -11,7 +11,8 @@
         <% end %>
         <li>
           <%= fr_icon('Search') %>
-          <%= link_to("Search to see older documents.", documents_search_path) %>
+          <%= link_to("Search to see older documents.",
+                documents_search_path(conditions: search_conditions)) %>
         </li>
       </ul>
     </div>

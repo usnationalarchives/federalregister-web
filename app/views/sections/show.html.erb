@@ -10,8 +10,11 @@
     <%= fr_icon(@presenter.icon_name) %>
     <%= @presenter.section_title %>
   </span>
-  <%= link_to '', '', :class => 'subscription tipsy',
-        :title => 'Subscribe by Email or RSS' %>
+  <%= link_to '', class: 'subscription cj-tooltip', data:
+        {tooltip:'Subscribe by Email or RSS'} do
+          fr_icon('rss')
+          fr_icon('message')
+        end %>
   <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
 </div>
 
@@ -70,5 +73,7 @@
     </ul>
 
   <%= render partial: 'documents_by_day', locals: {
-        last_five_days_docs: @presenter.last_five_days_docs } %>
+        last_five_days_docs: @presenter.last_five_days_docs,
+        search_conditions: @presenter.search_conditions
+        } %>
 </div> <!-- bootstrap-scope -->
