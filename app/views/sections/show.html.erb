@@ -38,7 +38,7 @@
               <ul class="list-unstyled ">
                 <% suggested_search.example_documents.first(2).each do |example_doc| %>
                 <li class="suggested-search-bulleted">
-                  <span class="icon-fr2 icon-fr2-<%=DocumentType.new(example_doc.type).granule_class%> tooltip" data-tooltip=<%= example_doc.type %>></span>
+                  <span class="icon-fr2 icon-fr2-<%=DocumentType.new(example_doc.type).granule_class%> tooltip" data-tooltip="<%= example_doc.type %>"></span>
                   <%= link_to(truncate_words(example_doc.title, :length => 120),
                     example_doc.html_url) %>
                 </li>
