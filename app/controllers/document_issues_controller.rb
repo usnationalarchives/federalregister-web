@@ -2,9 +2,6 @@ class DocumentIssuesController < ApplicationController
   skip_before_filter :authenticate_user!
   layout false, only: [:by_month, :navigation]
 
-  def test_page
-  end
-
   def show
     cache_for 1.day
     parsed_date = parse_date_from_params
