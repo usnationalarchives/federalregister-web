@@ -4,19 +4,6 @@
     <% if folder.created_at %>
       <li>Created on: <%= folder.created_at %></li>
     <% end %>
-    <li>
-      <% if folder.id.present? %>
-      <!-- Non-AJAX --> 
-      <%#= link_to(folder_path(folder.id), :method => :delete, :id => "delete-folder") do
-            content_tag(:span, "Delete Current Folder", :class => "icon-fr2 icon-fr2-trash_can")
-          end %>
-      <%# end %>
-
-      <%= link_to('', :id => "delete-folder") do
-            content_tag(:span, "Delete Current Folder", :class => "icon-fr2 icon-fr2-trash_can")
-          end %>
-      <% end %>
-    </li>
     <% if clippings.size > 0 %>
       <li class="download">
         <%= csv_download_tag('Download clippings as CSV', clippings) %>

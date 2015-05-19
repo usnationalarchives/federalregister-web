@@ -10,6 +10,12 @@
 <h2 class="title" data-folder-slug="<%= @folder.slug %>">
   <span class="icon-fr2 <%= @folder.slug == 'my-clippings' ? 'icon-fr2-flag' : 'icon-fr2-folder' %>"></span>
   <%= @folder.name %>
+    <% if @folder.id.present? %>
+      <%= link_to('', :id => "delete-folder") do
+            content_tag(:span, "", :class => "icon-fr2 icon-fr2-trash_can tooltip",
+              :data => {:tooltip => "Delete this folder", :'tooltip-gravity' => 'e'})
+          end %>
+    <% end %>
 </h2>
 
 <%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
