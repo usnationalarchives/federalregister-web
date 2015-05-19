@@ -54,11 +54,12 @@ class FoldersController < ApplicationController
   def destroy
     folder = Folder.find_by_slug(params[:id])
     if folder && folder.creator_id == current_user.id && folder.document_numbers.empty?
-      folder.destroy
-    end
-    respond_to do |format|
-      format.html {redirect_to '/my'} #TODO: Populate with helper-based path
-      format.js
+      if folder.destroy
+        redirect_to '/my'
+      else
+        flash[:error] = "There was a problem deleting the folder: #{folder.errors}"
+        redirect_to :back
+      end
     end
   end
 
