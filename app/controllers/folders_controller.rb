@@ -52,11 +52,14 @@ class FoldersController < ApplicationController
   end
 
   def destroy
-    folder = Folder.find(params[:id])
-    if folder && folder.creator_id == current_user.id && folder.documents.empty?
+    folder = Folder.find_by_slug(params[:id])
+    if folder && folder.creator_id == current_user.id && folder.document_numbers.empty?
       folder.destroy
     end
-    redirect_to '/my' #TODO: Populate with 2
+    respond_to do |format|
+      format.html {redirect_to '/my'} #TODO: Populate with helper-based path
+      format.js
+    end
   end
 
   private

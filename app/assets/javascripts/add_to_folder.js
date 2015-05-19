@@ -319,8 +319,29 @@ $(document).ready(function() {
     var theTemplateScript = $("#confirm-folder-delete-modal-template").html();
     var theTemplate = Handlebars.compile (theTemplateScript);
     $(document.body).append (theTemplate (theData));
-    $("#confirm-folder-delete-modal").toggle()
+    $('#confirm-folder-delete-modal').jqm({
+        modal: true,
+        toTop: true,
+        onShow: myfr2_jqmHandlers.show,
+        onHide: myfr2_jqmHandlers.hide
+    });
+    $('#confirm-folder-delete-modal').jqmShow().centerScreen();
+
+    $('#confirm-folder-deletion').on('click', function(){
+      $.ajax({
+        url: window.location.href,
+        type: 'DELETE',
+        success: redirectToMyClippings
+      });
+    });
   });
+
+  function redirectToMyClippings() {
+    alert("We made it to the JS callback")
+    window.location.href = "/my";
+  }
+
+
 
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();

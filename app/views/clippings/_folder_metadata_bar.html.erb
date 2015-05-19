@@ -6,7 +6,13 @@
     <% end %>
     <li>
       <% if folder.id.present? %>
-      <%= link_to(folder_path(folder.id), :method => :delete) do
+      <!-- Non-AJAX --> 
+      <%#= link_to(folder_path(folder.id), :method => :delete, :id => "delete-folder") do
+            content_tag(:span, "Delete Current Folder", :class => "icon-fr2 icon-fr2-trash_can")
+          end %>
+      <%# end %>
+
+      <%= link_to('', :id => "delete-folder") do
             content_tag(:span, "Delete Current Folder", :class => "icon-fr2 icon-fr2-trash_can")
           end %>
       <% end %>
