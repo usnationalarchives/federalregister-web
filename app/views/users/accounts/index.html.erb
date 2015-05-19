@@ -1,0 +1,20 @@
+<div class="bootstrap-scope">
+  <div class="title">
+    <span>My Account</span>
+  </div>
+
+  <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
+  <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+
+  <h2 class="title">
+    <span class="icon-fr2 icon-fr2-flag"></span>
+    Reset Email Address
+  </h2>
+
+
+  Need to change the email address registered to your account?  Enter a new address below and a new email confirmation will be sent.
+  <%= form_tag(account_path(1), :method => 'PUT') do %>
+    <%= text_field_tag "email" %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+</div>
