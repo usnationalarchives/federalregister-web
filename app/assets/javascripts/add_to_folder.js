@@ -313,6 +313,15 @@ $(document).ready(function() {
     modal.jqmShow().centerScreen();
   });
 
+  $('#delete-folder').on('click', function(event){
+    event.preventDefault();
+    var theData = {numClippings: $('#clippings li').size()};
+    var theTemplateScript = $("#confirm-folder-delete-modal-template").html();
+    var theTemplate = Handlebars.compile (theTemplateScript);
+    $(document.body).append (theTemplate (theData));
+    $("#confirm-folder-delete-modal").toggle()
+  });
+
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
 
