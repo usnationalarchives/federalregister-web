@@ -55,7 +55,8 @@ class FoldersController < ApplicationController
     folder = Folder.find_by_slug(params[:id])
     if folder && folder.creator_id == current_user.id && folder.document_numbers.empty?
       if folder.destroy
-        redirect_to '/my'
+        flash[:notice] = "The folder was successfully deleted."
+        redirect_to clippings_path
       else
         flash[:error] = "There was a problem deleting the folder: #{folder.errors}"
         redirect_to :back

@@ -7,9 +7,8 @@ h2.title {
     top: 1px;
     color: $fr-gray-20;
     font-size: 23px;
-  }
-  .icon-fr2.icon-fr2-trash_can:hover {
-    color: $fr-orange;
+
+    &:hover { color: $fr-orange; }
   }
 }
 

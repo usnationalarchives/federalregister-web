@@ -320,7 +320,7 @@ $(document).ready(function() {
           numClippings: $('#clippings li').size(),
           folderSlug: $('h2.title').data().folderSlug
     };
-    var modalTemplateScript = $("#confirm-folder-delete-modal-template").html();
+    var modalTemplateScript = $("#folder-delete-modal-template").html();
     var handlebarsModal = Handlebars.compile (modalTemplateScript);
     $(document.body).append (handlebarsModal (folderData));
     $('#confirm-folder-delete-modal').jqm({
