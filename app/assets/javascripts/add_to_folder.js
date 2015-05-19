@@ -313,12 +313,16 @@ $(document).ready(function() {
     modal.jqmShow().centerScreen();
   });
 
+  // delete a folder
   $('#delete-folder').on('click', function(event){
     event.preventDefault();
-    var theData = {numClippings: $('#clippings li').size()};
-    var theTemplateScript = $("#confirm-folder-delete-modal-template").html();
-    var theTemplate = Handlebars.compile (theTemplateScript);
-    $(document.body).append (theTemplate (theData));
+    var folderData = {
+          numClippings: $('#clippings li').size(),
+          folderSlug: $('h2.title').data().folderSlug
+    };
+    var modalTemplateScript = $("#confirm-folder-delete-modal-template").html();
+    var handlebarsModal = Handlebars.compile (modalTemplateScript);
+    $(document.body).append (handlebarsModal (folderData));
     $('#confirm-folder-delete-modal').jqm({
         modal: true,
         toTop: true,
@@ -326,22 +330,7 @@ $(document).ready(function() {
         onHide: myfr2_jqmHandlers.hide
     });
     $('#confirm-folder-delete-modal').jqmShow().centerScreen();
-
-    $('#confirm-folder-deletion').on('click', function(){
-      $.ajax({
-        url: window.location.href,
-        type: 'DELETE',
-        success: redirectToMyClippings
-      });
-    });
   });
-
-  function redirectToMyClippings() {
-    alert("We made it to the JS callback")
-    window.location.href = "/my";
-  }
-
-
 
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
