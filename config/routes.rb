@@ -1,5 +1,5 @@
 MyFr2::Application.routes.draw do
-  devise_for :users, :controllers => { :passwords => "users/passwords", 
+  devise_for :users, :controllers => { :passwords => "users/passwords",
                                        :confirmations => "users/confirmations",
                                        :sessions => "users/sessions",
                                        :registrations => "users/registrations" } do
@@ -23,7 +23,9 @@ MyFr2::Application.routes.draw do
 
   root :to => "clippings#index"
 
-  resources :accounts, :only => [:index,:update], :controller => "users/accounts"
+  resources :accounts,
+    :only => [:index, :update],
+    :controller => "users/accounts"
 
   resources :clippings do
     collection do

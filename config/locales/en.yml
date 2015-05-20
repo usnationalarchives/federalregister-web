@@ -30,3 +30,7 @@ en:
     unknown:
       modal_title: ""
       modal_html: "We're sorry we are currently unable to communicate with Regulations.gov. <br> You may want try again in a few moments or attempt to comment via Regulations.gov: %{regulations_dot_gov_link}"
+  user:
+    accounts:
+      email_change_success: "A confirmation email has been sent to %{email}"
+      email_change_failure: "We were unable to change your email to: '%{email}'. Please verify you've entered a valid email address and try again."
