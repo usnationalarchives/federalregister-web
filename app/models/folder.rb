@@ -33,6 +33,11 @@ class Folder < ApplicationModel
     clippings.map{|c| c.document_number}
   end
 
+  def empty?
+    document_numbers.empty?
+  end
+
+
   private
 
   def generate_slug

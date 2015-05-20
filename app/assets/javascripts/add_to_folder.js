@@ -343,9 +343,12 @@ $(document).ready(function() {
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
 
-    var clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) {
-                      return $(input).closest('li').data('doc-id');
-                   });
+    var clipping_ids = _.map(
+      $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'),
+      function(input) {
+        return $(input).closest('li').data('doc-id');
+      }
+    );
     create_new_folder_with_items( $(this), clipping_ids );
   });
 

@@ -4,7 +4,6 @@
     <% if folder.created_at %>
       <li>Created on: <%= folder.created_at %></li>
     <% end %>
-
     <% if clippings.size > 0 %>
       <li class="download">
         <%= csv_download_tag('Download clippings as CSV', clippings) %>

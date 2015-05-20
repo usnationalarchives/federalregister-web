@@ -344,6 +344,10 @@ MyFr2::Application.routes.draw do
     root :to => "clippings#index",
          :as => :my_root
 
+    resources :accounts,
+      :only => [:index, :update],
+      :controller => "users/accounts"
+
     resources :clippings do
       collection do
         post 'bulk_create'

@@ -14,8 +14,10 @@ class MailingList::PublicInspectionDocument < MailingList
       subscriptions.find_in_batches(:batch_size => 1000) do |batch_subscriptions|
         SubscriptionMailer.public_inspection_document_mailing_list(self, results, batch_subscriptions).deliver
       end
-      Rails.logger.info("delivered mailing_lists/#{id} to #{subscriptions.count} subscribers (#{results.size} public inspection documents})")
+      Rails.logger.info("[#{Time.now.in_time_zone}] delivered mailing_lists/#{id} to #{subscriptions.count} subscribers (#{results.size} public inspection documents})")
     end
+
+    Rails.logger.info("[#{Time.now.in_time_zone}] did not deliver mailing_lists/#{id} (#{title}) for public inspection documents")
   end
 
   private

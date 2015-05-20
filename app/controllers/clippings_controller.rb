@@ -19,9 +19,7 @@ class ClippingsController < ApplicationController
     end
 
     if user_signed_in?
-      @folders = FolderDecorator.decorate_collection(
-        Folder.scoped(:conditions => {:creator_id => current_user.model}).all
-      )
+      @folders = FolderDecorator.decorate( current_user.folders )
     end
 
     @folder    = Folder.my_clipboard

@@ -1,0 +1,44 @@
+<div class="title">
+  <span>My Account</span>
+</div>
+
+<%= content_tag(:div, flash[:notice], :class => 'flash notice') if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  :class => 'flash error') if flash[:error] %>
+
+<div class="user-account">
+  <h2 class="title">
+    <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+    Change Email Address
+  </h2>
+  <p>
+    Need to change the email address associated with your account?
+    Enter a new email address below and an email confirmation will
+    be sent to the supplied address. Your password will not change.
+  </p>
+  <p class="warning">
+    <strong>Warning:</strong>
+    Once you submit a request to change your email you will no longer be
+    able to sign in with your previous email address. Additionally we will
+    no longer deliver your subscriptions until your new email address has
+    been confirmed so be sure to check your inbox for the confirmation email.
+  </p>
+
+
+  <%= form_tag account_path(current_user), :method => 'PUT',
+    :class => "formtastic user-email-change" do %>
+    <fieldset class="inputs"><ol>
+      <li class="string input required stringish" id="user_email_input">
+        <%= text_field_tag("email", nil,
+          :id => "user_email",
+          :name => 'user[email]',
+          :class => "email-input") %>
+      </li>
+    </ol></fieldset>
+
+    <fieldset class="buttons"><ol>
+      <li class="commit button">
+        <%= submit_tag "Submit", :class => "fr_button medium primary" %>
+      </li>
+    </ol></fieldset>
+  <% end %>
+</div>

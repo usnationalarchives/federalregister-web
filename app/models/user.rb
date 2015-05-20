@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :clippings
   has_many :comments
   has_many :subscriptions
+  has_many :folders, :foreign_key => :creator_id
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

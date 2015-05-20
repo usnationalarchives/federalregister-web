@@ -2,6 +2,19 @@ h2.title {
   @extend %list_page_title;
   
   .icon-fr2.icon-fr2-flag { top: 5px; }
+
+  div.folder-actions {
+    float: right;
+    top: 8px;
+    position: relative;
+
+    .icon-fr2.icon-fr2-trash_can {
+      color: $fr-gray-30;
+      font-size: 23px;
+
+      &:hover { color: $fr-orange; }
+    }
+  }
 }
 
 li.download a .icon-fr2-download { 
@@ -89,6 +102,22 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 #clippings li div.add_to_folder_pane input {
   margin-left: 7px;
   }
+
+#delete-folder-modal {
+  .icon-fr2.icon-fr2-trash_can {
+    position: relative;
+    top: -1px;
+    margin-right: 2px;
+    font-size: 28px;
+  }
+
+  .delete-folder-modal-button {
+    float: right;
+    margin: 12px 12px 12px 12px;
+    background-color: $fr-red;
+    color: white;
+  }
+}
 
 /***********************************
 * Moving clippings between folders *

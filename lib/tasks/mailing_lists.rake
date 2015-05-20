@@ -22,6 +22,7 @@ namespace :mailing_lists do
 
       MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
         begin
+          Rails.logger.info("[#{Time.now.in_time_zone}] checking mailing list #{mailing_list.id} :: #{mailing_list.title}")
           mailing_list.deliver!(new_document_numbers)
         rescue Exception => e
           Rails.logger.warn(e)

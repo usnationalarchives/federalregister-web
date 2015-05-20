@@ -17,6 +17,8 @@ class MailingList::Article < MailingList
 
       Rails.logger.info("delivered mailing_lists/#{id} to #{subscriptions.count} subscribers (#{results.size} articles})")
     end
+
+    Rails.logger.info("[#{Time.now.in_time_zone}] did not deliver mailing_lists/#{id} (#{title}) for published documents")
   end
 
   private
