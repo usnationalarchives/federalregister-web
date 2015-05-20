@@ -15,6 +15,17 @@ $(document).ready(function() {
     email_helper.validate_or_suggest();
   });
 
+  //Change Email Address Page
+  $('form #user_email').on('blur', function() {
+    var $input = $(this);
+
+    if( !email_helper.initialized ) {
+      email_helper.initialize($input);
+    }
+
+    email_helper.validate_or_suggest();
+  });
+
   $('form#password_reset').on('input onpropertychange', '#user_email', function() {
     var $input = $(this);
 
