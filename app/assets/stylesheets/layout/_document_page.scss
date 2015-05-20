@@ -53,11 +53,22 @@
     .fr-seal-block.fr-seal-block-header { z-index: 500; }
 
     .content-block {
-      padding: 35px 130px 20px 30px !important;
+      padding: 35px 30px 20px 30px !important;
 
       #fulltext_content_area {
         z-index: 200;
         position: relative;
+
+        /* We want the first part of our documents to wrap
+           properly around the meta-data bar. This bit of
+           code causes that to happen by stategically placing
+           an empty div in the correct position */
+        &.doc-content-area .content-wrap-enforcement {
+          position: relative;
+          float: right;
+          width: 105px;
+          height: 550px;
+        }
       }
 
       p {

@@ -32,3 +32,9 @@ $(document).ready ->
         verticalOffset: -10
       }
     )
+
+
+    $('.doc-content-area .content-wrap-enforcement').css(
+      'height',
+       $('.doc-aside.doc-details').height() + 'px'
+    )
