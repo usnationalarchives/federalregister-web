@@ -10,6 +10,7 @@
   <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />
+  <xsl:include href="app/views/xslt/matchers/full_text/images.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/list_of_subjects.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/nonprinted_elements.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/paragraphs.html.xslt" />

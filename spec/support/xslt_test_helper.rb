@@ -12,6 +12,8 @@ module XsltTestHelper
       'first_page' => "1000",
       'document_number' => '2014-12345',
       'publication_date' => '2014-10-15',
+      'image_identifiers' => ["EP01MY09.019","EP01MY09.020"],
+      'image_base_url' => 'https://s3.amazonaws.com/images.federalregister.gov/:identifier/:style.png'
     )
   end
 
