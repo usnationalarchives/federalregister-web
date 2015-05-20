@@ -313,30 +313,11 @@ $(document).ready(function() {
     modal.jqmShow().centerScreen();
   });
 
-  // delete a folder
-  $('#delete-folder').on('click', function(event){
-    event.preventDefault();
-    var folderData = {
-          numClippings: $('#clippings li').size(),
-          folderSlug: $('h2.title').data().folderSlug
-    };
-    var modalTemplateScript = $("#folder-delete-modal-template").html();
-    var handlebarsModal = Handlebars.compile (modalTemplateScript);
-    $(document.body).append (handlebarsModal (folderData));
-    $('#confirm-folder-delete-modal').jqm({
-        modal: true,
-        toTop: true,
-        onShow: myfr2_jqmHandlers.show,
-        onHide: myfr2_jqmHandlers.hide
-    });
-    $('#confirm-folder-delete-modal').jqmShow().centerScreen();
-  });
-
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();
 
-    clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) { 
-                      return $(input).closest('li').data('doc-id'); 
+    clipping_ids = _.map( $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked'), function(input) {
+                      return $(input).closest('li').data('doc-id');
                    });
     create_new_folder_with_items( $(this), clipping_ids );
   });

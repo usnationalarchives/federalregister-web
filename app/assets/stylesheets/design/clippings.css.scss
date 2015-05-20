@@ -2,13 +2,18 @@ h2.title {
   @extend %list_page_title;
   
   .icon-fr2.icon-fr2-flag { top: 5px; }
-  .icon-fr2.icon-fr2-trash_can {
-    position: relative;
-    top: 1px;
-    color: $fr-gray-20;
-    font-size: 23px;
 
-    &:hover { color: $fr-orange; }
+  div.folder-actions {
+    float: right;
+    top: 8px;
+    position: relative;
+
+    .icon-fr2.icon-fr2-trash_can {
+      color: $fr-gray-30;
+      font-size: 23px;
+
+      &:hover { color: $fr-orange; }
+    }
   }
 }
 
@@ -98,10 +103,12 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   margin-left: 7px;
   }
 
-#confirm-folder-delete-modal {
+#delete-folder-modal {
   .icon-fr2.icon-fr2-trash_can {
     position: relative;
     top: -1px;
+    margin-right: 2px;
+    font-size: 28px;
   }
 
   .delete-folder-modal-button {

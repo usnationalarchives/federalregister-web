@@ -3,6 +3,7 @@
 </div>
 
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
+<%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
@@ -10,12 +11,15 @@
 <h2 class="title" data-folder-slug="<%= @folder.slug %>">
   <span class="icon-fr2 <%= @folder.slug == 'my-clippings' ? 'icon-fr2-flag' : 'icon-fr2-folder' %>"></span>
   <%= @folder.name %>
-    <% if @folder.id.present? %>
+
+  <% if @folder.id.present? %>
+    <div class="folder-actions">
       <%= link_to('', :id => "delete-folder") do
             content_tag(:span, "", :class => "icon-fr2 icon-fr2-trash_can tooltip",
               :data => {:tooltip => "Delete this folder", :'tooltip-gravity' => 'e'})
           end %>
-    <% end %>
+    </div>
+  <% end %>
 </h2>
 
 <%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>

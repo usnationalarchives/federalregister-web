@@ -42,23 +42,26 @@ class FoldersController < ApplicationController
   end
 
   def show
-    @folders   = FolderDecorator.decorate( Folder.scoped(:conditions => {:creator_id => current_user.id}).all )
-    @folder    = Folder.find_by_user_and_slug(current_user, params[:id])
-    raise ActiveRecord::RecordNotFound unless @folder.present?
+    @folders   = FolderDecorator.decorate( current_user.folders )
+    @folder    = current_user.folders.find_by_slug( params[:id] )
+
+    raise ActiveRecord::RecordNotFound unless @folder
 
     @clippings = @folder.clippings.present? ? ClippingDecorator.decorate(@folder.clippings) : []
-    
+
     render 'clippings/index', :layout => "application"
   end
 
   def destroy
-    folder = Folder.find_by_slug(params[:id])
-    if folder && folder.creator_id == current_user.id && folder.document_numbers.empty?
+    folder = current_user.folders.find_by_slug(params[:id])
+
+    if folder && folder.empty?
+      folder_name = folder.name
       if folder.destroy
-        flash[:notice] = "The folder was successfully deleted."
+        flash[:notice] = t('user.folders.delete.success', :name => folder_name)
         redirect_to clippings_path
       else
-        flash[:error] = "There was a problem deleting the folder: #{folder.errors}"
+        flash[:error] = t('user.folders.delete.failure', :name => folder_name)
         redirect_to :back
       end
     end

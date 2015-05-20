@@ -34,3 +34,7 @@ en:
     accounts:
       email_change_success: "A confirmation email has been sent to %{email}"
       email_change_failure: "We were unable to change your email to: '%{email}'. Please verify you've entered a valid email address and try again."
+    folders:
+      delete:
+        success: "The folder '%{name}' was successfully deleted."
+        failure: "There was a problem deleting the folder '%{name}'. Please try again later."

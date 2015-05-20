@@ -1,6 +1,7 @@
 //= require jquery_ujs
 //= require_self
 #= require utilities/tooltip
+//= require folder_actions
 //= require add_to_folder
 //= require clippings
 //= require clipping_filters
