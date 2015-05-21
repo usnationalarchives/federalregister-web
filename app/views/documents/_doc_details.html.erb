@@ -39,11 +39,6 @@
         <dd><%= document.type %></dd>
       <% end %>
 
-      <% if document.action.present? %>
-        <dt>Action:</dt>
-        <dd><%= document.action %></dd>
-      <% end %>
-
       <% if document.presidential_document? %>
         <% if document.subtype.present? %>
           <dt>Presidential Document Type:</dt>
