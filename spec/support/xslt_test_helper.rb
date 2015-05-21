@@ -6,14 +6,18 @@ module XsltTestHelper
   require 'spec_helper'
 
   def process(xml, type="RULE")
-    @transformed = XsltTransform.transform_xml(
-      "<#{type}>#{xml}</#{type}>",
-      @template,
+    default_xslt_vars = {
       'first_page' => "1000",
       'document_number' => '2014-12345',
       'publication_date' => '2014-10-15',
-      'image_identifiers' => "EP01MY09.019 EP01MY09.020",
-      'image_base_url' => 'https://s3.amazonaws.com/images.federalregister.gov/:identifier/:style.png'
+      'image_identifiers' => ""
+    }
+    @xslt_vars ||= {}
+    
+    @transformed = XsltTransform.transform_xml(
+      "<#{type}>#{xml}</#{type}>",
+      @template,
+      default_xslt_vars.merge!(@xslt_vars)
     )
   end
 

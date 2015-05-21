@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:fr="http://federalregister.gov/functions" extension-element-prefixes="fr">
   <xsl:include href="../../templates/utils.html.xslt" />
 
   <xsl:template match="GPH/GID">
@@ -45,8 +45,7 @@
         </p>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>Missing</xsl:text>
-        <!--<xsl:call-template name="missing_graphic" />-->
+        <xsl:copy-of select="fr:missing_graphic(text(), $document_number, $publication_date)" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

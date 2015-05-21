@@ -73,6 +73,30 @@ class XsltFunctions
 
     document.children
   end
+
+  def missing_graphic(nodes, document_number, publication_date)
+    document = blank_document
+    node_text = nodes.first.content
+
+    Honeybadger.notify(
+      error_class: 'HTML::Compilator',
+      error_message: "Missing Graphic #{node_text} for FR Doc #{document_number} on #{publication_date}",
+      parameters: {
+        graphic_identifier: node_text,
+        document_number: document_number,
+        publication_date: publication_date
+      }
+    )
+
+    Nokogiri::XML::Builder.with(document) do |doc|
+      doc.p(class: 'missing-graphic') {
+        doc.text "[Missing Graphic #{node_text}]"
+      }
+    end
+
+    document.children
+  end
+
   private
 
   def blank_document
