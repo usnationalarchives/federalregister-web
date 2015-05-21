@@ -34,7 +34,23 @@ $(document).ready ->
     )
 
 
+    # at the top of a document the document details box overlaps the
+    # docuement content area. we want to force the content at the top
+    # of the document to wrap early where this overlap is happening
     $('.doc-content-area .content-wrap-enforcement').css(
       'height',
        $('.doc-aside.doc-details').height() + 'px'
+    )
+
+    # footnotes can have multiple references within the text. if you are
+    # using the back to content link after having come from a reference,
+    # we want to do our best to send you back where you came from
+    $('.doc-content-area').delegate('.footnote .back', 'click', (event)->
+
+      anchor = window.location.href.split('#')[1]
+      footnoteId = $(this).closest('div.footnote').attr('id')
+
+      if anchor != undefined && anchor == footnoteId
+        event.preventDefault()
+        window.history.back()
     )
