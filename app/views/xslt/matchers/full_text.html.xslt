@@ -21,7 +21,6 @@
   <xsl:include href="app/views/xslt/matchers/full_text/stars.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/subpart.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/supplemental_info.html.xslt" />
-  <xsl:include href="app/views/xslt/matchers/full_text/subject.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/tables.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/text_only_nodes.html.xslt" />
 

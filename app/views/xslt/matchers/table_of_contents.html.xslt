@@ -45,13 +45,4 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
-  <xsl:template match="SUBJECT" mode="table_of_contents">
-    <li class="level-1">
-      <a href="#h-subject">
-        <xsl:text>SUBJECT:</xsl:text>
-      </a>
-    </li>
-  </xsl:template>
-
 </xsl:stylesheet>

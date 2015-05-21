@@ -14,14 +14,14 @@
        that we don't show as part of the document or display via other means -->
 
   <!-- These tags only contain text nodes -->
-  <xsl:template match="AGENCY | SUBAGY | CFR | DEPDOC | RIN" />
+  <xsl:template match="SUBJECT | AGENCY | SUBAGY | CFR | DEPDOC | RIN" />
 
   <!-- These tags don't contain other child nodes so we'll ignore them too -->
   <xsl:template match="AGY[count(child::P) &lt; 2]" />
 
 
   <!-- Ignore tags we handle explicitely elsewhere -->
-  <xsl:template match="BILCOD | FRDOC | FTNT | FTREF | SUBJECT" />
+  <xsl:template match="BILCOD | FRDOC | FTNT | FTREF" />
 
   <!-- Ignore tags usually found elsewhere in a document -->
   <xsl:template match="CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES" />

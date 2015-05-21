@@ -7,6 +7,16 @@ describe "XSLT::IgnoredNodes" do
   end
 
   context "nodes in the preamble with no child nodes" do
+    # it's the same as the document title
+    it "ignores the SUBJECT node" do
+      process <<-XML
+        <SUBJECT>Federal Plan Requirements for Sewage Sludge</SUBJECT>
+        <HD SOURCE="HED">Not Ignored</HD>
+      XML
+
+      expect_equivalent '<h1 id="h-1">Not Ignored</h1>'
+    end
+
     it "ignores the AGENCY node" do
       process <<-XML
         <AGENCY TYPE="F">DEPARTMENT OF AGRICULTURE</AGENCY>
