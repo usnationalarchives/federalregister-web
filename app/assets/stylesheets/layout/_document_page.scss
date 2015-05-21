@@ -70,19 +70,6 @@
           height: 550px;
         }
       }
-
-      p {
-        font-family: $font-family-serif;
-        font: 1.063em;
-      }
-
-      h4 {
-        font-size: 1.125em;
-        text-transform: uppercase;
-        font-weight: 800;
-      }
-
-      h5 { font-size: 1.063em; }
     }
   }
 
@@ -94,13 +81,8 @@
     width: 248px;
 
     .content-block {
-      font-size: 0.938em;
-      line-height: 1.250em;
-
       h4 {
-        font-size: 1.063em;
         color: #000;
-        font-weight: 700;
         margin-top: 0;
       }
 
@@ -120,7 +102,7 @@
 
       dl {
         padding: 0 0 10px 5px;
-        font-size: 13px;
+        font-size: modular-scale(-1);
 
         dt { font-weight: bold; }
 
