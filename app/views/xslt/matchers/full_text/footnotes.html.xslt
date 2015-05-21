@@ -15,7 +15,8 @@
 
       <a class="back">
         <xsl:attribute name="href">
-          #citation-<xsl:value-of select="$number"/>
+          <xsl:text>#citation-</xsl:text>
+          <xsl:value-of select="$number"/>
         </xsl:attribute>
         Back to Context
       </a>
@@ -25,7 +26,7 @@
 
   <xsl:template match="E[@T=51 and following-sibling::*[1][self::FTREF]]
     | SU[following-sibling::FTREF]">
-    <xsl:copy-of select="fr:multiple_footnotes(text())"/>
+    <xsl:copy-of select="fr:footnotes(text())"/>
   </xsl:template>
 
 

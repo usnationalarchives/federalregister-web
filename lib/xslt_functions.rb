@@ -1,7 +1,7 @@
 class XsltFunctions
   # GPO will occassionally include multiple footnotes in a single node
   # we need to break them out in order to link them properly.
-  def multiple_footnotes(nodes)
+  def footnotes(nodes)
     footnotes = nodes.first.content.split(' ')
 
     document = blank_document
