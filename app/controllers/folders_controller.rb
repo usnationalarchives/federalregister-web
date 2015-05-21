@@ -55,7 +55,7 @@ class FoldersController < ApplicationController
   def destroy
     folder = current_user.folders.find_by_slug(params[:id])
 
-    if folder && folder.empty?
+    if folder && folder.deletable?
       folder_name = folder.name
       if folder.destroy
         flash[:notice] = t('user.folders.delete.success', :name => folder_name)

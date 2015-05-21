@@ -33,7 +33,7 @@ class Folder < ApplicationModel
     clippings.map{|c| c.document_number}
   end
 
-  def empty?
+  def deletable?
     document_numbers.empty?
   end
 
