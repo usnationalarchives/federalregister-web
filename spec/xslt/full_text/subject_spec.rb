@@ -12,7 +12,7 @@ describe "XSLT::FullText::Subject" do
     XML
 
     expect_equivalent <<-HTML
-      <h1 id="h-1" class="document-subject">SUBJECT:</h1>
+      <h1 id="h-subject" class="document-subject">SUBJECT:</h1>
       <p id="p-1" data-page="1000">Federal Plan Requirements for Sewage Sludge Incineration Units Constructed on or Before October 14, 2010</p>
     HTML
   end

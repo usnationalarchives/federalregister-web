@@ -6,6 +6,7 @@
       <xsl:with-param name="name" select="'SUBJECT:'"/>
       <xsl:with-param name="level" select="1"/>
       <xsl:with-param name="class" select="'document-subject'"/>
+      <xsl:with-param name="id" select="'h-subject'" />
     </xsl:call-template>
 
     <p>
