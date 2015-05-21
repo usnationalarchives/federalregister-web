@@ -183,26 +183,4 @@ describe "XSLT::TableOfContents" do
   #All monetary values in this section are expressed in 2013 dollars and are discounted to 2014.
   #</P>
   #</FTNT>
-
-  context "document types" do
-    %w(RULE NOTICE).each do |doc_type|
-      it "creates a table of contents for documents of type #{doc_type}" do
-        process <<-XML, doc_type
-          <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
-          <HD SOURCE="HD1">Background</HD>
-        XML
-
-        expect_equivalent <<-HTML
-          <ul class="#{table_of_contents_ul_css}">
-            <li class="level-1">
-              <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
-            </li>
-            <li class="level-2">
-              <a href="#h-2">Background</a>
-            </li>
-          </ul>
-        HTML
-      end
-    end
-  end
 end
