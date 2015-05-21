@@ -5,7 +5,7 @@ class FolderClippingsController < ApplicationController
   def create
     slug         = params[:folder_clippings][:folder_slug]
     clipping_ids = params[:folder_clippings][:clipping_ids]
-    folder       = Folder.find_by_user_and_slug(current_user, slug)
+    folder       = current_user.folders.find_by_slug(slug)
     
     # my-clippings is a "nil" folder
     if (folder.present? || slug == "my-clippings") && clipping_ids.present?
@@ -34,7 +34,7 @@ class FolderClippingsController < ApplicationController
 
   def delete
     slug         = params[:folder_clippings][:folder_slug]
-    folder       = user_signed_in? ? Folder.find_by_user_and_slug(current_user, slug) : nil
+    folder       = user_signed_in? ? current_user.folders.find_by_slug(slug) : nil
 
     if params[:folder_clippings][:clipping_ids].present? && !params[:folder_clippings][:document_numbers].present?
       clipping_ids = params[:folder_clippings][:clipping_ids].split(',')
