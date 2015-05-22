@@ -1,18 +1,14 @@
-.subject-list {
-  font-size: 14px;
+ul.subject-list {
   margin-bottom: 30px;
+  margin-left: 40px;
+  list-style-type: disc;
 
-  ul {
-    margin-left: 40px;
-    list-style-type: disc;
+  a {
+    color: $fr-link;
 
-    a {
-      color: $fr-link;
-
-      &:hover {
-        color: $fr-orange;
-        text-decoration: none;
-      }
+    &:hover {
+      color: $fr-orange;
+      text-decoration: none;
     }
   }
 }

@@ -32,7 +32,9 @@ class XsltFunctions
 
     document = blank_document
     Nokogiri::XML::Builder.with(document) do |doc|
-      doc.ul {
+      doc.ul(
+        class: 'subject-list'
+      ) {
         topics.each do |topic|
           doc.li {
             doc.a(

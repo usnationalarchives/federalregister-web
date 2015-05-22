@@ -27,4 +27,21 @@
     </span>
   </xsl:template>
 
+  <xsl:template match="CFR[ancestor::LSTSUB]">
+    <xsl:variable name="id">
+      <xsl:call-template name="string_replace_all">
+        <xsl:with-param name="text" select="text()" />
+        <xsl:with-param name="replace" select="' '" />
+        <xsl:with-param name="by" select="'-'" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:call-template name="manual_header">
+      <xsl:with-param name="name" select="text()"/>
+      <xsl:with-param name="level" select="2"/>
+      <xsl:with-param name="class" select="'cfr-subjects'"/>
+      <xsl:with-param name="id" select="concat('los-', $id)" />
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>

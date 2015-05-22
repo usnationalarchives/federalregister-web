@@ -170,17 +170,68 @@ describe "XSLT::TableOfContents" do
     HTML
   end
 
+  it "creates entries for LSTSUB and LSTSUB/CFR" do
+    process <<-XML
+      <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
+      <LSTSUB>
+        <HD SOURCE="HED">List of Subjects</HD>
+        <CFR>40 CFR Part 52</CFR>
+        <P>Environmental protectven'ion, Air pollution control, Incorporation by reference, Intergovernmental relations, Nitrogen dioxide, Ozone, Reporting and recordkeeping requirements, Volatile organic compounds.</P>
+        <CFR>40 CFR Part 81</CFR>
+        <P>Environmental protection, Air pollution control.</P>
+      </LSTSUB>
+    XML
+
+    expect(html).to have_tag('li.level-1') do
+      with_tag('a') do
+        with_text "List of Subjects"
+      end
+    end
+
+    expect(html).to have_tag('li.level-2') do
+      with_tag('a', with:{ href: '#los-40-CFR-Part-52'}) do
+        with_text "40 CFR Part 52"
+      end
+    end
+
+    expect(html).to have_tag('li.level-2') do
+      with_tag('a', with:{ href: '#los-40-CFR-Part-81'}) do
+        with_text "40 CFR Part 81"
+      end
+    end
+  end
+
   it "works for presidential documents"
-  it "works for footnotes"
-  #<HD SOURCE="HD2">
-  #C. National Benefits
-  #<SU>3</SU>
-  #<FTREF/>
-  #</HD>
-  #<FTNT>
-  #<P>
-  #<SU>3</SU>
-  #All monetary values in this section are expressed in 2013 dollars and are discounted to 2014.
-  #</P>
-  #</FTNT>
+
+  context "footnotes" do
+    it "creates entries for footnotes when present" do
+      process <<-XML
+        <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
+        <FTNT>
+          <P>
+            <SU>1</SU>
+            Footnote 1
+          </P>
+        </FTNT>
+        <FTNT>
+          <P>
+            <SU>2</SU>
+            Footnote 2
+          </P>
+        </FTNT>
+      XML
+
+      expect(html).to have_tag('li.level-1') do
+        with_tag 'a', count: 1, text: "Footnotes"
+      end
+    end
+
+    it "does not create entries for footnotes when none are present" do
+      process <<-XML
+        <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
+      XML
+
+      expect(html).not_to have_tag('a', with: {href: '#footnotes'})
+    end
+  end
 end

@@ -141,9 +141,7 @@
   </xsl:template>
 
   <xsl:template match="P[ancestor::LSTSUB]">
-    <div class="subject-list">
-      <xsl:copy-of select="fr:list_of_subjects(text())"/>
-    </div>
+    <xsl:copy-of select="fr:list_of_subjects(text())"/>
   </xsl:template>
 
 </xsl:stylesheet>
