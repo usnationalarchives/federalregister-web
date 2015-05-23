@@ -80,10 +80,8 @@ describe "XSLT::FullText::Typeface" do
       it "convert to italic superscript tags" do
         process <<-XML
           <P>
-            is the number of units produced for sale in the United States of each
-            <E T="03">i</E>
-            <E T="53">th</E>
-            unique footprint within each model
+            is the number of units produced for sale in the United States of each<E T="03">i</E>
+            <E T="53">th</E>unique footprint within each model
           </P>
         XML
 
@@ -94,6 +92,26 @@ describe "XSLT::FullText::Typeface" do
           </p>
         HTML
       end
+    end
+
+    it "converts T=51 superscripts with appropriate space in simple usage" do
+      process <<-XML
+        <P>determination for the proposed X<E T="51">2</E>and VOC sub-area</P>
+      XML
+
+      expect_equivalent <<-HTML
+        <p id="p-1" data-page="1000">determination for the proposed X<sup>2</sup> and VOC sub-area</p>
+      HTML
+    end
+
+    it "converts T=52 subscripts with appropriate space in simple usage" do
+      process <<-XML
+        <P>determination for the proposed NO<E T="52">X</E>and VOC sub-area</P>
+      XML
+
+      expect_equivalent <<-HTML
+        <p id="p-1" data-page="1000">determination for the proposed NO<sub>X</sub> and VOC sub-area</p>
+      HTML
     end
 
     context "both T=52 and T=53" do
@@ -124,10 +142,8 @@ describe "XSLT::FullText::Typeface" do
       it "converts to an italic subscript tag" do
         process <<-XML
           <P>
-            produced for sale in the United States, and
-            <E T="03">TARGET</E>
-            <E T="54">i</E>
-            is the corresponding fuel economy target
+            produced for sale in the United States, and<E T="03">TARGET</E>
+            <E T="54">i</E>is the corresponding
           </P>
         XML
 
@@ -135,7 +151,6 @@ describe "XSLT::FullText::Typeface" do
           <p id="p-1" data-page="1000">
             produced for sale in the United States, and
             <em>TARGET</em><sub><em>i</em></sub> is the corresponding
-            fuel economy target
           </p>
         HTML
       end
