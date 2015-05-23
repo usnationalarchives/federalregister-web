@@ -49,10 +49,10 @@ describe "XSLT::FullText::ListOfSubjects" do
         </LSTSUB>
       XML
 
-      expect(html).to have_tag('h2.cfr-subjects#los-40-CFR-Part-52') do
+      expect(html).to have_tag('h3.cfr-subjects#los-40-CFR-Part-52') do
         with_text "40 CFR Part 52"
       end
-      expect(html).to have_tag('h2.cfr-subjects#los-40-CFR-Part-81') do
+      expect(html).to have_tag('h3.cfr-subjects#los-40-CFR-Part-81') do
         with_text "40 CFR Part 81"
       end
     end

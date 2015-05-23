@@ -3,11 +3,9 @@
     overflow: scroll;
     height: 300px;
 
+    @include custom-bullets($color-enhanced, "19px");
+    
     li {
-      &:before {
-        @include square_bullets($color-enhanced);
-      }
-
       &.level-2 { margin-left: 15px; }
       &.level-3 { margin-left: 30px; }
       &.level-4 { margin-left: 45px; }

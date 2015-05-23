@@ -1,0 +1,16 @@
+@mixin custom-bullets($color, $indent:"15px", $el:"li", $content:"\25A0") {
+  list-style-type: none;
+
+  #{$el} {
+    padding-left: unquote($indent);
+    text-indent: unquote("-" + $indent);
+
+    &:before {
+      content: $content;
+      color: $color;
+      padding-right: 7px;
+      top: -2px;
+      position: relative;
+    }
+  }
+}

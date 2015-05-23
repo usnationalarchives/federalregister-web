@@ -1,7 +1,9 @@
+ul.bullets,
 ul.subject-list {
   margin-bottom: 30px;
-  margin-left: 40px;
-  list-style-type: disc;
+  margin-left: 25px;
+
+  @include custom-bullets($color-official);
 
   a {
     color: $fr-link;

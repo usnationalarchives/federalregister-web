@@ -38,7 +38,7 @@
 
     <xsl:call-template name="manual_header">
       <xsl:with-param name="name" select="text()"/>
-      <xsl:with-param name="level" select="2"/>
+      <xsl:with-param name="level" select="3"/>
       <xsl:with-param name="class" select="'cfr-subjects'"/>
       <xsl:with-param name="id" select="concat('los-', $id)" />
     </xsl:call-template>
