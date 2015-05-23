@@ -10,7 +10,7 @@ describe "XSLT::FullText::Images" do
     before :all do
       @xslt_vars = {
         'image_identifiers' => "EP01MY09.019",
-        'image_base_url' => 'https://s3.amazonaws.com/images.federalregister.gov/:identifier/:style.png'
+        'image_base_url' => "https://s3.amazonaws.com/#{Rails.env}.graphics.federalregister.gov/:identifier/:style.png"
       }
     end
 
@@ -38,7 +38,7 @@ describe "XSLT::FullText::Images" do
       expect(html).to have_tag 'a', with: {
           class: 'document-graphic-link',
           id: 'g-1',
-          href: 'https://s3.amazonaws.com/images.federalregister.gov/EP01MY09.019/original.png'
+          href: "https://s3.amazonaws.com/#{Rails.env}.graphics.federalregister.gov/EP01MY09.019/original.png"
         }
     end
 
@@ -51,7 +51,7 @@ describe "XSLT::FullText::Images" do
 
       expect(html).to have_tag 'img', with: {
           class: 'document-graphic-image full',
-          src: 'https://s3.amazonaws.com/images.federalregister.gov/EP01MY09.019/large.png'
+          src: "https://s3.amazonaws.com/#{Rails.env}.graphics.federalregister.gov/EP01MY09.019/large.png"
         }
     end
 
