@@ -4,7 +4,7 @@
   <xsl:template match="SUPLINF">
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Supplemental Information'" />
         </xsl:attribute>
@@ -16,7 +16,7 @@
 
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Supplemental Information'" />
         </xsl:attribute>
@@ -26,4 +26,3 @@
   </xsl:template>
 
 </xsl:stylesheet>
-

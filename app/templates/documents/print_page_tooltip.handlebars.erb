@@ -1,0 +1,13 @@
+<%= fr_box "Printed Page",
+  :official,
+  box_html: {
+    class: "fr-box-full",
+    role: "menu"
+  },
+  header: {hover: false} do %>
+
+  <p>
+    The text following this element occured on page {{page}} of the
+    print and PDF versions of this document.
+  </p>
+<% end %>

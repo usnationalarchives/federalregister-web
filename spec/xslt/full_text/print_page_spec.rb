@@ -13,7 +13,7 @@ describe "XSLT::PrintPage" do
 
     expect(html).to have_tag("span", with: {
       'data-page' => '1000',
-      class: 'printed-page icon-fr2 icon-fr2-doc-generic cj-tooltip',
+      class: 'printed-page icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip',
       id: "page-1000"
     })
   end
@@ -25,7 +25,7 @@ describe "XSLT::PrintPage" do
 
     expect(html).to have_tag("span.printed-page-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.printed-page.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.printed-page.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Printed Page 1000"} do
 
           with_text " "
@@ -47,4 +47,3 @@ describe "XSLT::PrintPage" do
     expect(html).to have_tag("span#page-1001")
   end
 end
-

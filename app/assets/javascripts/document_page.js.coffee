@@ -24,7 +24,7 @@ $(document).ready ->
         title: ()->
           Handlebars.compile(
             $( $(this).data('tooltip-template') ).html()
-          )({})
+          )( $(this).data('tooltip-data') || {} )
       },
       {
         position: 'centerTop'

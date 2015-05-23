@@ -113,7 +113,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Supplemental Information"}
       end
     end
@@ -122,7 +122,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Supplemental Information"}
       end
     end
@@ -249,4 +249,3 @@ describe "XSLT::NonPrintedElements" do
   end
 
 end
-

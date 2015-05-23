@@ -85,14 +85,19 @@ Styleguide 1.1 FR Boxes
 
   .content-block {
     padding: 35px 10px 25px 10px;
+    color: $text;
+    font-size: modular-scale(0);
 
     &.simple {
       padding-left: 20px;
       padding-right: 20px !important;
     }
 
+    p {
+      @include gesta;
 
-    p { font-family: $font-family-sans-serif; }
+      &:last-child { padding-bottom: 0; }
+    }
   }
 
   // Establishes the color scheme for boxes that have header/footer blocks
@@ -131,7 +136,9 @@ Styleguide 1.1 FR Boxes
     .fr-seal-block {
       h6 {
         width: 100%;
-        font-size: 12px;
+        color: $white;
+        font-size: modular-scale(-2);
+        font-family: inherit;
       }
 
       &.fr-seal-block-header { text-align: left; }
@@ -144,14 +151,14 @@ Styleguide 1.1 FR Boxes
 }
 
 .fr-seal-block {
-  color: #fff;
+  color: $white;
   overflow: inherit;
   width: 100%;
+  @include gesta;
 
   h6 {
     text-transform: uppercase;
     display: inline-block;
-    font-size:0.83em;
     font-weight: 700;
     clear: both;
     margin: 0;

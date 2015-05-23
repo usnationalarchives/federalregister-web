@@ -12,16 +12,29 @@
   <xsl:template match="PRTPAGE[not(ancestor::FTNT)]">
     <span class="printed-page-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="printed-page unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="printed-page unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="id">
           <xsl:text>page-</xsl:text><xsl:value-of select="@P" />
         </xsl:attribute>
+
         <xsl:attribute name="data-page">
           <xsl:value-of select="@P" />
         </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="concat('Start Printed Page ', @P)" />
         </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#print-page-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-data">
+          <xsl:text>{"page": </xsl:text>
+          <xsl:value-of select="@P" />
+          <xsl:text>}</xsl:text>
+        </xsl:attribute>
+
         <xsl:text> </xsl:text>
       </span>
     </span>
