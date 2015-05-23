@@ -22,7 +22,6 @@
 
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
 
     <xsl:apply-templates />
@@ -40,7 +39,6 @@
 
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
 
@@ -53,7 +51,6 @@
         </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
 
     <xsl:apply-templates />
@@ -66,7 +63,6 @@
         </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
 
@@ -79,7 +75,6 @@
         </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
 
     <xsl:apply-templates />
@@ -92,9 +87,7 @@
         </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
 
 </xsl:stylesheet>
-

@@ -24,7 +24,6 @@
         </xsl:attribute>
         <xsl:text> </xsl:text>
       </span>
-      <span class="unprinted-element-border"></span>
     </span>
   </xsl:template>
 </xsl:stylesheet>

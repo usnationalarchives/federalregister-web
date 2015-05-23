@@ -44,7 +44,7 @@ class @FR2.DocumentTools
         text link.text().replace(/^Display/, 'Hide')
 
   @toggleElements: (elements, displayed)->
-    _.each elements, (el)->
+    _.each elements, (el)=>
       element = $(el)
       nonPrintedElement = element.find '.unprinted-element'
 
@@ -56,3 +56,15 @@ class @FR2.DocumentTools
       else
         element.addClass 'blocked'
         nonPrintedElement.text " #{nonPrintedElement.data 'text'}"
+        @setWrapperWidth(element)
+
+  @setWrapperWidth: (element)->
+    contentWrapEnforcementEl = $('.content-wrap-enforcement')
+
+    wrapRange = {
+      top: contentWrapEnforcementEl.offset().top
+      bottom: contentWrapEnforcementEl.offset().top + contentWrapEnforcementEl.outerHeight()
+    }
+
+    if element.offset().top >= wrapRange.top && element.offset().top <= wrapRange.bottom
+      element.addClass('content-wrap')

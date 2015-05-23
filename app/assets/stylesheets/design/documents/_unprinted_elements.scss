@@ -1,10 +1,14 @@
+$printed-page-color: $color-official;
+$unprinted-element-color: $color-enhanced-dark;
+
 .unprinted-element-wrapper {
-  display:none;
+  display: none;
+  position: relative;
 
   /* printed page is always displayed but only in icon form */
   &.printed-page-wrapper {
     display: inline;
-    color: $fr-gray-40;
+    color: $printed-page-color;
   }
 
   .icon-fr2 {
@@ -16,75 +20,44 @@
   /* for when we display these 'unprinted' items */
   &.blocked {
     display: block;
-    color: $color-enhanced-dark;
-    margin: 15px auto;
-    width: 584px;
+    color: $unprinted-element-color;
+    margin: 20px 0 10px;
 
+    &.content-wrap { width: 578px; }
 
-    /* override color here as these elements were present in the published
+    /* override color here as the print elements were present in the published
        document even if they weren't 'printed' */
-    &.printed-page-wrapper { color: $fr-gray-40; }
+    &.printed-page-wrapper {
+      color: $printed-page-color;
+      .unprinted-element-border { border-color: $printed-page-color; }
+    }
 
     .unprinted-element-border {
-      border-bottom: 1px solid $color-enhanced-dark;
-      width: 37%;
-      display: inline-block;
+      border-bottom: 1px solid $unprinted-element-color;
+      position: absolute;
+      width: 100%;
+      top: 0;
     }
-
-    /* customizing border widths as needed */
-    &.printed-page-wrapper .unprinted-element-border {
-      width: 35%;
-    }
-
-    &.supplemental-info-wrapper {
-      .unprinted-element-border { width: 32%; }
-      .unprinted-element { width: 200px; }
-    }
-
-    &.part-wrapper {
-      .unprinted-element-border { width: 42%; }
-      .unprinted-element { width: 75px; }
-    }
-
-    &.amend-part-wrapper {
-      .unprinted-element-border { width: 36%; }
-      .unprinted-element { width: 150px; }
-    }
-
-    &.further-info-wrapper {
-      .unprinted-element-border { width: 38%; }
-      .unprinted-element { width: 130px; }
-    }
-
-    &.list-of-subject-wrapper {
-      .unprinted-element { width: 141px; }
-    }
-
-    &.signature-wrapper {
-      .unprinted-element-border { width: 39%; }
-      .unprinted-element { width: 110px; }
-    }
-
-    &.preamble-wrapper,
-    &.appendix-wrapper,
-    &.subpart-wrapper,
-    &.authority-wrapper {
-      .unprinted-element-border { width: 40%; }
-    }
-
-    &.preamble-wrapper,
-    &.appendix-wrapper {
-      .unprinted-element { width: 106px; }
-    }
-
-    &.subpart-wrapper,
-    &.authority-wrapper {
-      .unprinted-element { width: 100px; }
-    }
-    /* end border width customization */
 
     .unprinted-element {
-      top: 4px;
+      position: relative;
+      display: block;
+      top: -6px;
+      background-color: #F7FAFB;
+      margin: 0 auto;
+      z-index: 100;
     }
+
+    &.printed-page-wrapper      .unprinted-element { width: 180px; }
+    &.supplemental-info-wrapper .unprinted-element { width: 208px; }
+    &.part-wrapper              .unprinted-element { width:  75px; }
+    &.amend-part-wrapper        .unprinted-element { width: 150px; }
+    &.further-info-wrapper      .unprinted-element { width: 125px; }
+    &.list-of-subjects-wrapper  .unprinted-element { width: 140px; }
+    &.signature-wrapper         .unprinted-element { width: 113px; }
+    &.preamble-wrapper          .unprinted-element { width: 113px; }
+    &.appendix-wrapper          .unprinted-element { width: 113px; }
+    &.subpart-wrapper           .unprinted-element { width: 113px; }
+    &.authority-wrapper         .unprinted-element { width: 113px; }
   }
 }
