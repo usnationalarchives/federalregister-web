@@ -40,7 +40,7 @@ describe "XSLT::FullText::Footnotes" do
 
     it "adds a link back to the original footnote reference in the document" do
       expect(html).to have_tag("a.back", with: {href: '#citation-1'}) do
-        with_text /Back to Context/
+        with_text /Back to Citation/
       end
     end
   end
@@ -82,13 +82,13 @@ describe "XSLT::FullText::Footnotes" do
           <p id="p-2" data-page="1000">
             1. Footnote 1 text
           </p>
-          <a class="back" href="#citation-1"> Back to Context </a>
+          <a class="back" href="#citation-1"> Back to Citation </a>
         </div>
         <div class="footnote" id="footnote-2">
           <p id="p-4" data-page="1000">
             2. Footnote 2 text
           </p>
-          <a class="back" href="#citation-2"> Back to Context </a>
+          <a class="back" href="#citation-2"> Back to Citation </a>
         </div>
       </div>
     HTML
@@ -132,7 +132,7 @@ describe "XSLT::FullText::Footnotes" do
 
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
-            MitraClip System meets the substantial clinical improvement criterion 
+            MitraClip System meets the substantial clinical improvement criterion
             based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4" id="citation-4">4</a>,
             <a class="footnote-reference" href="#footnote-5" id="citation-5">5</a>,
             <a class="footnote-reference" href="#footnote-6" id="citation-6">6</a>,
@@ -209,4 +209,3 @@ describe "XSLT::FullText::Footnotes" do
     end
   end
 end
-

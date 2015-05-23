@@ -56,7 +56,7 @@ $em-base: 16px;
 @import "design/custom_tooltips";
 
 .bootstrap-scope {
-  @import "design/documents/**";
+  @import "design/documents/*";
 }
 
 @import "design/public_inspection";

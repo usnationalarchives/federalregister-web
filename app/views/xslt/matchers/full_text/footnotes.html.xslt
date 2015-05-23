@@ -18,7 +18,7 @@
           <xsl:text>#citation-</xsl:text>
           <xsl:value-of select="$number"/>
         </xsl:attribute>
-        Back to Context
+        Back to Citation
       </a>
     </div>
   </xsl:template>

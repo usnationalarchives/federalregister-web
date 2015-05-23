@@ -4,6 +4,7 @@ ul.subject-list {
   margin-left: 25px;
 
   @include custom-bullets($color-official);
+  li:before { top: 0px; }
 
   a {
     color: $fr-link;

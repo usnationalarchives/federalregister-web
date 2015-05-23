@@ -1,6 +1,18 @@
+#footnotes {
+  margin-top: 3em;
+}
+
 .footnote {
   font-style: italic;
   margin-bottom: 20px;
 
-  p { margin-bottom: 0 !important; }
+  p {
+    margin-bottom: 0 !important;
+    line-height: 1.5em !important;
+  }
+
+  a.back {
+    font-style: normal;
+    font-size: modular-scale(-1);
+  }
 }
