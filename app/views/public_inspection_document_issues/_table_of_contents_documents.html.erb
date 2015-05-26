@@ -1,61 +1,37 @@
-<div class="<%= type %>">
-<% if type =='special' %>
-  <h2 id="special-filing">
-    Special Filing
-    <span class="updated_at">updated at <%= updated_at %></span>
+<% agencies.each do |slug, agency| %>
+  <h2 id="<%= "#{type}-filing-#{agency.slug}" %>">
+    <%= link_to agency.name, agency_path(agency) %>
   </h2>
 
-  <% special_filing_agencies.each do |slug, agency| %>
-  <div class="title_bar">
-    <h2 id=<%#="special-filing-#{agency.slug}"%>><%=link_to(agency.name,agency_path(agency))%></h2>
-    <a href="#special-filing" class="back_to_top">Back to Top</a>
-  </div>
-
-    <% if agency.child_agencies %>
-      <ul>
-        <% agency.child_agencies.each do |child_agency| %>
-          <li><span class="see">See</span> <a href=<%="#special-filing-#{child_agency.slug}"%>><%= child_agency.name %></a> <span class="count_pill">1</span></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <% agency.document_categories.each do |doc_category| %>
-      <dl>
-        <div class="test_category">
-          <h3 class="category"><%= doc_category["name"] %></h3>
-          <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
-        </div>
-      </dl>
-    <% end %>
+  <% if agency.child_agencies.present? %>
+    <ul class="see-references">
+      <% agency.child_agencies.each do |child_agency| %>
+        <li>
+          <em>See</em>
+          <%= link_to(
+            child_agency.name,
+            anchor: "##{type}-filing-#{child_agency.slug}"
+          ) %>
+          <span class="count_pill">
+            <%= child_agency.document_count_with_child_agencies %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
-<% else %>
-  <h2 id="regular-filing">
-    Regular Filing
-    <span class="updated_at">updated at <%= updated_at %></span>
-  </h2>
-  <% regular_filing_agencies.each do |slug, agency| %>
-  <div class="title_bar">
-    <h2 id=<%="regular-filing-#{agency.slug}"%>><%=link_to(agency.name,agency_path(agency))%></h2>
-    <a href="#regular-filing" class="back_to_top">Back to Top</a>
-  </div>
-
-    <% if agency.child_agencies %>
-      <ul>
-        <% agency.child_agencies.each do |child_agency| %>
-          <li><span class="see">See</span> <a href=<%="#regular-filing-#{child_agency.slug}"%>><%= child_agency.name %></a> <span class="count_pill">1</span></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <% agency.document_categories.each do |doc_category| %>
-      <dl>
-        <div class="test_toc_margin">
-          <h3 class="category"><%= doc_category["name"] %></h3>
-          <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
-        </div>
-      </dl>
-    <% end %>
+  <% agency.document_categories.each do |doc_category| %>
+    <h3>
+      <%#= document_type_icon(doc_category["name"]) %>
+      <%= doc_category["name"].titlecase %>
+    </h3>
+    <div class="toc-category-level">
+      <%= display_hierarchy(
+        doc_category["documents"],
+        agency,
+        level: 1,
+        document_partial: document_partial
+      ) %>
+    </div>
   <% end %>
 <% end %>
-</div>

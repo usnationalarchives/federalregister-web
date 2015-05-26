@@ -141,7 +141,7 @@ MyFr2::Application.routes.draw do
 
     esi.get 'esi/public_inspection_issues/:year/:month',
       to: 'public_inspection_document_issues#by_month',
-      as: :public_inspection_documents_by_month,
+      as: :public_inspection_issues_by_month,
       constraints: {
         :year        => /\d{4}/,
         :month       => /\d{1,2}/

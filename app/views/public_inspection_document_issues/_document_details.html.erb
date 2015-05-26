@@ -1,32 +1,45 @@
-<% documents.each do |document| %>
-  <dt>
-    <%= link_to(subject, document.html_url) %>
-    <div class="details">
-      <div class="column file_info">
-        <%= link_to "<span class='icon-fr2 icon-fr2-doc-pdf'> PDF <span>".html_safe, document.pdf_url %>
-        - <%= number_to_human_size(document.pdf_file_size) %>;
-          <%= pluralize document.num_pages, 'page' %>
-          <%= link_to short_document_url(document) do %>
-            <span class="permalink">Permalink</span>
+<div class="toc-documents">
+  <% documents.each do |document| %>
+    <h7><%= link_to subject, document.html_url %></h7>
+
+    <div class="row toc-document-metadata">
+      <dl class="col-xs-6 col-md-6">
+        <dt>Filed on:</dt>
+        <dd><%= document.filed_at %></dd>
+
+        <dt>Scheduled Pub. Date:</dt>
+        <dd><%= document.publication_date %></dd>
+
+        <dt>FR Document:</dt>
+        <dd>
+          <%= link_to document.document_number, short_document_path(document) %>
+        </dd>
+
+        <% if document.docket_numbers.present? %>
+          <dt><%= "Agency Docket".pluralize(document.docket_numbers) %>:</dt>
+          <dd><%= document.docket_numbers.join(",") %></dd>
+        <% end %>
+      </dl>
+
+      <dl class="col-xs-6 col-md-6">
+        <dt class="pi-pdf">
+          <%= link_to document.pdf_url do %>
+            <%= fr_icon 'doc-pdf' %> PDF
           <% end %>
-      </div>
-      <div class="column dates">
-        <span class="filed_at"> Filed on: <%= document.filed_at %></span>
-        <span class="publication_date">
-          Scheduled Pub. Date:
-          <%= link_to(document.publication_date, document_issue_path(
-            document.publication_date.strftime('%Y'),
-            document.publication_date.strftime('%m'),
-            document.publication_date.strftime('%d'),
-            anchor: document.document_number)) %>
-        </span>
-      </div>
-      <div class="column doc_numbers">
-        <span class="document_number">
-          FR Document: <%= link_to(document.document_number,"/a/#{document.document_number}") %>
-        </span>
-        <span class="docket_id"><%= document.docket_numbers.join(",") %></span>
-      </div>
+        </dt>
+        <dd>
+          <%= pluralize document.num_pages, "Page" %>
+          (<%= number_to_human_size document.pdf_file_size %>)
+        </dd>
+
+        <dt class="permalink">
+          <%= link_to short_document_url(document) do %>
+            <%= fr_icon 'link' %> Permalink
+          <% end %>
+        </dt>
+        <dd></dd>
+      </dl>
+
     </div>
-  </dt>
-<% end %>
+  <% end %>
+</div>

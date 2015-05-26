@@ -5,8 +5,7 @@ class TableOfContentsSpecialFilingsPresenter < TableOfContentsPresenter
   end
 
   def url
-    base_uri = Rails.env.development? ? Settings.federal_register.base_uri : 'https://www.federalregister.gov'
-    "#{base_uri}data/public_inspection_issues/json/#{date.strftime('%Y/%m/%d')}/special_filing.json"
+    "#{Settings.federal_register.base_uri}/public_inspection_issues/json/#{date.strftime('%Y/%m/%d')}/special_filing.json"
   end
 
   def document_partial

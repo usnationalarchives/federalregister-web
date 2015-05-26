@@ -1,7 +1,7 @@
 <% header_type 'public-inspection' %>
 
 <div class="title public-inspection">
-  <span><%= @regular_filings_presenter.date %> Public Inspection</span>
+  <span><%= @regular_filings_presenter.date %> Public Inspection List</span>
 </div>
 
 <!-- BOOTSTRAP SCOPE START -->
@@ -10,39 +10,104 @@
 
   <div class="wrapper">
     <div class="container fixed">
-      <div class="public-inspection-summary-bar" >
-        <%= render partial: 'issues/public_inspection_document_summary',
-          locals: {presenter: @pi_presenter} %>
-      </div>
 
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <%= render partial: 'issues/public_inspection_document_summary',
+              locals: {presenter: @pi_presenter} %>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-content doc-toc">
           <%= render partial: 'info_box' %>
         </div>
-        <div class="col-xs-3 col-md-3">
-          <%= render partial: 'subscribe' %>
-          <%= esi public_inspection_documents_by_month_path(
-            @regular_filings_presenter.date.strftime('%Y'),
-            @regular_filings_presenter.date.strftime('%m'),
-            current_date: @regular_filings_presenter.date.to_s(:iso) ) %>
+        <div class="col-xs-3 col-md-3 doc-subscribe">
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <%= subscribe_box(search_type: 'PublicInspectionDocument') %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <%= esi public_inspection_issues_by_month_path(
+                @regular_filings_presenter.date.strftime('%Y'),
+                @regular_filings_presenter.date.strftime('%m'),
+                current_date: @regular_filings_presenter.date.to_s(:iso)
+              ) %>
+            </div>
+          </div>
         </div>
       </div>
 
-    <div class="row doc doc-public-inspection">
-        <%= render partial: 'table_of_contents',
-            locals: {
-              special_filing_agencies: @special_filings_presenter.agencies,
-              special_filing_updated_at: @pi_presenter.special_filings.formatted_updated_at,
-              regular_filing_agencies: @regular_filings_presenter.agencies,
-              regular_filing_updated_at: @pi_presenter.regular_filings.formatted_updated_at,
-              document_partial: @regular_filings_presenter.document_partial,
-            } %>
-        <%= render partial: 'table_of_contents_sidebar',
-            locals: {
-              special_filing_agencies: @special_filings_presenter.agencies,
-              regular_filing_agencies: @regular_filings_presenter.agencies,
-            } %>
+      <div class="row">
+        <div class="col-xs-9 col-md-9 doc-toc">
+          <%= fr_box "Special Filing Table of Contents", :public_inspection, header: {seal: true} do %>
+            <div class="doc doc-document-issue">
+              <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+
+              <h1 id="special-filing">
+                Special Filing
+                <span class="updated_at">
+                  updated at
+                  <%= @pi_presenter.special_filings.formatted_updated_at %>
+                </span>
+              </h1>
+
+              <%= render partial: 'table_of_contents_documents',
+                locals: {
+                  type: "special",
+                  agencies: @special_filings_presenter.agencies,
+                  document_partial: @special_filings_presenter.document_partial
+                } %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-xs-3 col-md-3 doc-toc-nav">
+          <%= fr_box "Special Filing Agencies", :public_inspection, header: {hover: false} do %>
+            <%= render partial: 'table_of_contents_nav',
+              locals: {
+                type: 'special',
+                agencies: @special_filings_presenter.agencies
+              } %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-9 col-md-9 doc-toc">
+          <%= fr_box "Regular Filing Table of Contents", :public_inspection, header: {seal: true} do %>
+            <div class="doc doc-document-issue">
+              <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+
+              <h1 id="regular-filing">
+                Regular Filing
+                <span class="updated_at">
+                  updated at
+                  <%= @pi_presenter.regular_filings.formatted_updated_at %>
+                </span>
+              </h1>
+
+              <%= render partial: 'table_of_contents_documents',
+                locals: {
+                  type: "regular",
+                  agencies: @regular_filings_presenter.agencies,
+                  document_partial: @regular_filings_presenter.document_partial
+                } %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-xs-3 col-md-3 doc-toc-nav">
+          <%= fr_box "Regular Filing Agencies", :public_inspection, header: {hover: false} do %>
+            <%= render partial: 'table_of_contents_nav',
+              locals: {
+                type: 'regular',
+                agencies: @regular_filings_presenter.agencies
+              } %>
+          <% end %>
+        </div>
       </div>
 
       <div class="clearfix" style="height: 100px;"></div>

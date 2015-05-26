@@ -9,7 +9,9 @@
         <li>
           <em>See</em>
           <%= link_to(child_agency.name, anchor: child_agency.slug) %>
-          <span class="count_pill"><%= child_agency.document_count_with_child_agencies %></span>
+          <span class="count_pill">
+            <%= child_agency.document_count_with_child_agencies %>
+          </span>
         </li>
       <% end %>
     </ul>
@@ -18,7 +20,12 @@
   <% agency.document_categories.each do |doc_category| %>
     <div class="toc-category-level">
       <h3><%= doc_category["name"].titlecase %></h3>
-      <%= display_hierarchy(doc_category["documents"], agency, level: 1, document_partial: document_partial) %>
+      <%= display_hierarchy(
+        doc_category["documents"],
+        agency,
+        level: 1,
+        document_partial: document_partial
+      ) %>
     </div>
   <% end %>
 <% end %>

@@ -23,4 +23,8 @@ class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIs
   def publication_date
     Date.parse(slug)
   end
+
+  def self.available_for?(date)
+    available_on(date) && available_on(date).regular_filings.documents > 0
+  end
 end

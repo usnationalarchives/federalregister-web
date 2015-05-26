@@ -5,9 +5,10 @@
   padding: 3px 13px 13px;
 
   a {
+    font-size: modular-scale(-1);
     color: $text;
     text-decoration: none;
-    width: 125px;
+    width: 130px;
     margin: 0 auto;
     display: block;
 

@@ -1,6 +1,9 @@
 /* Meta data for document */
 .bootstrap-scope .doc-toc {
-  @include apertura-condensed;
+  h1, h2, h3, h4, h5, h6, h7 {
+    color: $text;
+  }
+
   padding-left: 0;
 
   #regular-filing { padding-top: 0; }
@@ -11,23 +14,15 @@
     position: relative;
 
     &> h2 {
-      font-size: 26px;
-      font-weight: bold;
       color: $text-color;
 
       span.updated_at {
-        font-size: 12px;
+        font-size: modular-scale(-2);
         display: block;
         font-weight: normal;
         font-style: italic;
       }
     }
-  }
-
-  %table-of-contents-header {
-    @include apertura-condensed;
-    font-weight: bold;
-    margin-left: 0;
   }
 
   %table-of-contents-link {
@@ -39,26 +34,36 @@
     }
   }
 
-  h2 {
-    @extend %table-of-contents-header;
-    font-size: 26px;
-    color: $color-official;
-    border-bottom: 2px solid $color-official;
+
+  h3 { margin-left: 7px; }
+
+  .fr-box-official {
+    h2 {
+      color: $color-official;
+      border-bottom: 2px solid $color-official;
+    }
+
+    h4 {
+      color: $fr-link-dark;
+    }
   }
 
-  h3 {
-    @extend %table-of-contents-header;
-    font-size: 17px;
-    margin-left: 7px;
-    font-weight: bold;
-    color: $text;
+  .fr-box-public-inspection {
+    h2 {
+      color: $color-public-inspection;
+      border-bottom: 2px solid $color-public-inspection;
+    }
+
+    a {
+      color: $color-public-inspection;
+
+      &:hover {
+        text-decoration: none;
+        color: darken($color-public-inspection, 20);
+      }
+    }
   }
 
-  h4 {
-    @extend %table-of-contents-header;
-    font-size: 15px;
-    color: $fr-link-dark;
-  }
 
   .content-block {
     padding: 35px 20px 20px 20px !important;
@@ -90,11 +95,10 @@
   }
 
   .toc-documents {
-    font-size: 14px;
+    font-size: modular-scale(0);
 
     a {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: modular-scale(0);
       @extend %table-of-contents-link;
     }
 
@@ -102,18 +106,14 @@
       /* Bootstrap looks to make margin-bottom !important, need to overrwrite */
       margin-bottom: 0px !important;
 
-      font-size: 13px;
-
-      a {
-        font-size: 13px;
-        font-weight: normal;
-      }
+      a { font-weight: normal; }
     }
   }
 
   dl {
     margin-left: 0px;
-    font-size: 16px;
+    font-size: modular-scale(0);
+    @include apertura-condensed;
 
     dt, dd { float: left; }
 
@@ -122,53 +122,14 @@
       margin-right: 5px;
       font-weight: 500; //medium
     }
+
     dd {
       top: 1px;
       position: relative;
-    }
-
-    dd { font-weight: normal; }
-
-/*    div.details {
-      padding-bottom: 10px;
-      overflow: hidden;
-      width: 659px;
       font-weight: normal;
-      font-size: 14px;
     }
-
-    dt > div.details .column.file_info { width: 185px; }
-
-    div.column {
-      position: relative;
-      width: 185px;
-      margin-right: 10px;
-      float: left;
-      display: block;
-
-      &.dates { width: 220px; }
-      &.doc_numbers { margin-right: 0; }
-
-      .small { font-size: inherit; }
-
-      .pdf {
-        color: $color-public-inspection;
-        &:hover {
-          font-weight: bold;
-          text-decoration: underline;
-        }
-      }
-
-      .document_number { display: block; }
-    } */
   }
 
-/*  .public_inspection {
-    h3 {
-      clear: both;
-    }
-    dl div.details a { font-weight: normal; }
-  } */
 
   div.editorial_note {
     clear: both;
@@ -176,12 +137,6 @@
     font-size: 14px;
     margin-left: 20px;
     line-height: 18px;
-  }
-
-  span.pdf.small {
-    //background: sprite-image('icons/icon_pdf_small.png', 0, 3px, 50px) no-repeat;
-    padding-left: 20px;
-    display: inline-block;
   }
 
   span.new_document {
@@ -192,15 +147,4 @@
     position: absolute;
     left: -20px;
   }
-
-  span.permalink {
-    //background: sprite-image('icons/icon_permalink.png', -1px, 0, 50px) no-repeat;
-    padding-left: 20px;
-    display: block;
-  }
-
-  span.permalink:hover {
-    //background: sprite-image('icons/icon_permalink_hover.png', -1px, 0, 50px) no-repeat;
-  }
 }
-

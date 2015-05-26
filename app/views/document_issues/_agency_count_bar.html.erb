@@ -9,7 +9,9 @@
   <% agencies.each do |slug, agency| %>
     <li>
       <%= link_to agency.name, anchor: agency.slug  %>
-      <span class="count_pill"><%= agency.document_count_with_child_agencies %></span>
+      <span class="count_pill">
+        <%= agency.document_count_with_child_agencies %>
+      </span>
     </li>
   <% end %>
 </ul>

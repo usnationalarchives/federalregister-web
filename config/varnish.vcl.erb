@@ -98,7 +98,7 @@ sub vcl_recv {
     } else if (req.url ~ "^/api/") {
       set req.backend = fr2;
       return (lookup);
-    } else if (req.url ~ "^(/documents/(full_text|mods|tables|table_of_contents)/|/document_issues/(json|xml)/)") {
+    } else if (req.url ~ "^(/documents/(full_text|mods|tables|table_of_contents)/|/document_issues/(json|xml)/|/public_inspection_issues/json/)") {
       set req.backend = fr2;
       return (lookup);
     } else if (req.url ~ "^(/layout/head_content|/stylesheets/|/javascripts/)") {
@@ -222,4 +222,3 @@ sub vcl_deliver {
         }C
     }
 }
-

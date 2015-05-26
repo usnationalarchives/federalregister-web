@@ -1,19 +1,10 @@
-<% if type == 'special' %>
-  <ul>
-    <% special_filing_agencies.each do |agency_slug, agency| %>
-      <li>
-        <%= link_to(agency.name, "#special-filing-#{agency.slug}"  )%>
-        <span class="count_pill"> <%= agency.document_count_with_child_agencies %> </span>
-      </li>
-    <% end %>
-  </ul>
-<% elsif type == "regular" %>
-  <ul>
-    <% regular_filing_agencies.each do |agency_slug, agency| %>
-      <li>
-        <%= link_to(agency.name, "#regular-filing-#{agency.slug}"  )%>
-        <span class="count_pill"> <%= agency.document_count_with_child_agencies %> </span>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<ul>
+  <% agencies.each do |slug, agency| %>
+    <li>
+      <%= link_to agency.name, anchor: "#{type}-filing-#{agency.slug}" %>
+      <span class="count_pill">
+        <%= agency.document_count_with_child_agencies %>
+      </span>
+    </li>
+  <% end %>
+</ul>

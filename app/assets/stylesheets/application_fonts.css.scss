@@ -15,10 +15,12 @@ body {
 .wf-active body {
   @include gesta;
 
-  h1, h2, h3, h4, h5 {
+  h1, h2, h3, h4, h5, h6, h7 {
     line-height: 1.3em;
     margin: 1em 0 0.5em;
   }
+
+  h7 { display: block; } /* h7 not defined by most browsers */
 }
 
 .wf-active .metadata-content-area {
@@ -66,5 +68,31 @@ body {
       h4 { font-size: modular-scale(0); }
       p { font-size: modular-scale(0); }
     }
+  }
+}
+
+.wf-active .bootstrap-scope .doc-toc {
+  .fr-box-official,
+  .fr-box-public-inspection {
+    h1, h2, h3, h4, h5, h6, h7 {
+      @include apertura-condensed;
+      font-weight: bold;
+      word-wrap: break-word;
+      margin-left: 0;
+      line-height: 1.5;
+    }
+
+    h1 { font-size: modular-scale(5); }
+    h2 {
+      font-size: modular-scale(4);
+      line-height: 1.2;
+    }
+    h3 { font-size: modular-scale(3); }
+    h4 { font-size: modular-scale(2); }
+    h5 { font-size: modular-scale(1); }
+    h6 { font-size: modular-scale(0); }
+    h7 { font-size: modular-scale(0); }
+
+    dl, dt, dd { font-size: modular-scale(0); }
   }
 }

@@ -1,11 +1,12 @@
 <div class='toc-documents'>
   <% documents.each do |document| %>
-    <h7><%= link_to(subject, document.html_url) %></h7>
+    <h7><%= link_to subject, document.html_url %></h7>
+
     <div class="row toc-document-metadata">
       <dl class="col-xs-4 col-md-4">
         <dt>
           <%= link_to document.pdf_url do %>
-            <span class="icon-fr2 icon-fr2-doc-pdf"></span> PDF
+            <%= fr_icon 'doc-pdf' %> PDF
           <% end %>
         </dt>
         <dd>
