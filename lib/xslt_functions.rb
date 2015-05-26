@@ -51,6 +51,8 @@ class XsltFunctions
   end
 
   def amendment_part(nodes)
+    return "" unless nodes.present?
+    
     document = blank_document
 
     node_text = nodes.first.content
