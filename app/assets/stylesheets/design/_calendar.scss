@@ -1,0 +1,68 @@
+.calendar {
+  border-collapse: separate;
+  width: 218px;
+
+  thead tr.calendar_nav {
+    height: 18px;
+
+    th.cal_prev,
+    th.cal_next {
+      background: none;
+    }
+  }
+
+  th.monthName {
+    font-size: modular-scale(2);
+
+    select { margin-left: 10px; }
+  }
+
+  .dayName th {
+    width: 30px;
+    border-top: 1px solid $fr-gray-80;
+    border-bottom: 1px solid $fr-gray-80;
+
+    abbr { border-bottom: none; }
+  }
+
+  tbody td { border: 1px solid $white; }
+
+  td,
+  th {
+    padding: 0;
+    table-layout: fixed;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  td a {
+    display: block;
+    font-weight: 700;
+  }
+
+  .weekend { background: $fr-gray-20; }
+
+  .late {
+    background: $fr-light-red;
+    cursor: pointer;
+  }
+
+  .holiday { background: $fr-orange; }
+
+  .published a {
+    color: $color-enhanced-dark;
+    background: $color-enhanced-light;
+
+    &:hover {
+      background: $color-enhanced-dark;
+      color: $white;
+    }
+  }
+
+  .current a {
+    color: $white;
+    background: $color-enhanced-dark;
+  }
+
+  .otherMonth { background: $fr-gray-10; }
+}
