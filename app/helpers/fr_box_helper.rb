@@ -33,7 +33,7 @@ module FrBoxHelper
   def fr_box_header(title, type, options)
     content_tag(:div, class: "fr-seal-block fr-seal-block-header") do
       content_tag(:div, class: "fr-seal-content") do
-        description = options[:hover] ? fr_box_header_description(type, options[:seal]) : "".html_safe
+        description = options[:hover] ? fr_box_header_description(type, options) : "".html_safe
 
         content_tag(:h6, title) +
           description
@@ -41,19 +41,23 @@ module FrBoxHelper
     end
   end
 
-  def fr_box_header_description(type, seal)
+  def fr_box_header_description(type, options={})
     content_tag(:div, class: "row fr-seal-meta") do
-      html = seal ? fr_box_seal(type) : "".html_safe
+      html = options[:seal] ? fr_box_seal(type) : "".html_safe
 
       html +
-      content_tag(:div, class: "fr-seal-desc") do
-        content_tag(:p, description_by_type(type).html_safe)
+      content_tag(:div, class: "fr-seal-desc col-md-9 col-xs-9") do
+        if options[:description]
+          options[:description].html_safe
+        else
+          content_tag(:p, description_by_type(type).html_safe)
+        end
       end
     end
   end
 
   def fr_box_seal(type)
-    content_tag(:div, class: "fr-seal-stamp") do
+    content_tag(:div, class: "fr-seal-stamp col-md-3 col-xs-3") do
       content_tag(:span, "", class: "fr-stamp icon-fr2 #{stamp_icon_class_by_type(type)}")
     end
   end

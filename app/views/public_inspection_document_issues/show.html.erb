@@ -42,7 +42,16 @@
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-toc">
-          <%= fr_box "Special Filing Table of Contents", :public_inspection, header: {seal: true} do %>
+          <%= fr_box "Special Filing Table of Contents",
+            :public_inspection,
+            header: {
+              seal: true,
+              description: "<p>Public Inspection documents are unpublished documents.
+                Click #{link_to 'here', public_inspection_learn_path} to learn
+                more about Public Inspection.</p>
+                <p>Special Filing documents are filed at various times and/or
+                dates prior to publication.</p>"
+            } do %>
             <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
 
             <div class="doc doc-document-issue">
@@ -77,7 +86,17 @@
 
       <div class="row">
         <div class="col-xs-9 col-md-9 doc-toc">
-          <%= fr_box "Regular Filing Table of Contents", :public_inspection, header: {seal: true} do %>
+          <%= fr_box "Regular Filing Table of Contents",
+            :public_inspection,
+            header: {
+              seal: true,
+              description: "<p>Public Inspection documents are unpublished documents.
+                Click #{link_to 'here', public_inspection_learn_path} to learn
+                more about Public Inspection.</p>
+                <p>Regular Filing documents are routinely placed on file at
+                8:45 a.m. Eastern Time, for publication in the next day’s
+                Federal Register.</p>"
+            } do %>
             <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
 
             <div class="doc doc-document-issue">
