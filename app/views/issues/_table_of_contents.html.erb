@@ -14,7 +14,9 @@
             child_agency.name,
             anchor: "##{[type, child_agency.slug].compact.join('-')}"
           ) %>
-          <span class="count_pill">
+          <span class="count_pill cj-tooltip"
+            data-tooltip="<%= pluralize(child_agency.document_count_with_child_agencies, 'Document') %>"
+            data-tooltip-gravity="w">
             <%= child_agency.document_count_with_child_agencies %>
           </span>
         </li>

@@ -52,7 +52,8 @@
         </div>
         <div class="col-xs-3 col-md-3 doc-toc-nav">
           <%= fr_box_small "Documents by Agency", :official_doc_details, header: {hover: false} do %>
-            <%= render partial: 'document_issues/agency_count_bar', locals: {
+            <%= render partial: 'issues/toc_agency_nav', locals: {
+                type: 'doc',
                 date: @presenter.date,
                 agencies: @presenter.agencies
               } %>

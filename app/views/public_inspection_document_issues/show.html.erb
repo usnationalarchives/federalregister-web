@@ -75,9 +75,9 @@
 
         <div class="col-xs-3 col-md-3 doc-toc-nav">
           <%= fr_box_small "Special Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
-            <%= render partial: 'table_of_contents_nav',
+            <%= render partial: 'issues/toc_agency_nav',
               locals: {
-                type: 'special',
+                type: 'special-filing',
                 agencies: @special_filings_presenter.agencies
               } %>
           <% end %>
@@ -120,9 +120,9 @@
 
         <div class="col-xs-3 col-md-3 doc-toc-nav">
           <%= fr_box_small "Regular Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
-            <%= render partial: 'table_of_contents_nav',
+            <%= render partial: 'issues/toc_agency_nav',
               locals: {
-                type: 'regular',
+                type: 'regular-filing',
                 agencies: @regular_filings_presenter.agencies
               } %>
           <% end %>
