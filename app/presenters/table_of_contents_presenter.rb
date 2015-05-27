@@ -91,8 +91,19 @@ class TableOfContentsPresenter
       end
     end
 
-    def find_specific_agency_documents(doc_numbers)
-      doc_numbers.map {|doc_num| documents[doc_num]}
+    def load_documents(doc_numbers)
+      doc_numbers.map do |doc_num|
+        doc = documents[doc_num]
+
+        unless doc
+          Honeybadger.notify(
+            error_class: "Missing document number for table of contents",
+            error_message: "Document number #{doc_num} not found for #{name}"
+          )
+        end
+
+        doc
+      end.compact
     end
 
     private

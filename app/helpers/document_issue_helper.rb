@@ -16,7 +16,7 @@ module DocumentIssueHelper
           str << render(partial: document_partial,
             locals: {
               subject: subject_heading,
-              documents: agency.find_specific_agency_documents(doc["document_numbers"])
+              documents: agency.load_documents(doc["document_numbers"])
               })
         end
         str << display_hierarchy(nested_docs, agency, options={level: level+1, document_partial: document_partial}) if nested_docs.present?
