@@ -12,3 +12,6 @@ render_documents_from_raw_xml: false
 # urls for mailers, redirects, etc - where routes aren't available
 app_url: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
+
+# generic switch for deciding when to raise exception or notify honeybadger
+notify_honeybager: true
