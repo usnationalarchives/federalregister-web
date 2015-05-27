@@ -24,26 +24,22 @@ class DocumentDecorator < ApplicationDecorator
       gsub("https", "http")
   end
 
-  def start_page?
-    start_page.present? && start_page != 0
-  end
-
   # Dec 17th, 2013
   def shorter_ordinal_signing_date
     signing_date.to_s(:shorter_ordinal)
   end
 
-  def page_range
-    page = start_page
-    page = "#{page}-#{end_page}" if end_page != start_page
+  # Page Count/Range methods
+  def start_page?
+    start_page.present? && start_page != 0
   end
 
-  def length
-    if end_page && start_page
-      end_page - start_page + 1
-    else
-      nil
-    end
+  def page_range
+    start_page == end_page ? end_page : "#{start_page}-#{end_page}"
+  end
+
+  def pages
+    end_page - start_page + 1
   end
 
   def formatted_cfr_references
@@ -69,25 +65,12 @@ class DocumentDecorator < ApplicationDecorator
     full_text_xml_url.present?
   end
 
-  def human_length
-    if end_page && start_page
-      end_page - start_page + 1
-    else
-      nil
-    end
-  end
-
   def effective_date
     effective_on
   end
 
   def comments_close_date
     comments_close_on
-  end
-
-  def pages
-    # RW: placeholder
-    end_page - start_page == 0 ? 1 : end_page - start_page + 1
   end
 
   def agency_dt_dd

@@ -65,7 +65,7 @@
         </div>
 
         <div class="col-xs-3 col-md-3 doc-toc-nav">
-          <%= fr_box_small "Special Filing Agencies", :public_inspection, header: {hover: false} do %>
+          <%= fr_box_small "Special Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
             <%= render partial: 'table_of_contents_nav',
               locals: {
                 type: 'special',
@@ -100,7 +100,7 @@
         </div>
 
         <div class="col-xs-3 col-md-3 doc-toc-nav">
-          <%= fr_box_small "Regular Filing Agencies", :public_inspection, header: {hover: false} do %>
+          <%= fr_box_small "Regular Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
             <%= render partial: 'table_of_contents_nav',
               locals: {
                 type: 'regular',

@@ -37,12 +37,22 @@
       border: 1px solid $color-official;
     }
 
-    .fr-box-public-inspection {
-      .count_pill {
-        background-color: $color-public-inspection-light-alt;
-        color: $color-public-inspection;
-        border: 1px solid lighten($color-public-inspection, 40);
-      }
+    .fr-box-official-alt .count_pill {
+      background-color: $color-official-light;
+      color: $color-official;
+      border: 1px solid lighten($color-official, 20);
+    }
+
+    .fr-box-public-inspection .count_pill {
+      background-color: $color-public-inspection-light-alt;
+      color: $color-public-inspection;
+      border: 1px solid lighten($color-public-inspection, 40);
+    }
+
+    .fr-box-public-inspection-alt .count_pill {
+      background-color: $color-public-inspection-light;
+      color: $color-public-inspection;
+      border: 1px solid lighten($color-public-inspection, 40);
     }
   }
 }
@@ -58,7 +68,7 @@
     }
   }
 
-  .fr-box-public-inspection {
+  .fr-box-public-inspection-alt {
     a {
       color: $color-public-inspection;
       &:hover { color: darken($color-public-inspection, 20); }

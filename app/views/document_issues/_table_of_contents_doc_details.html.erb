@@ -4,21 +4,22 @@
 
     <div class="row toc-document-metadata">
       <dl class="col-xs-6 col-md-6">
-        <dt>
-          <%= link_to document.pdf_url do %>
-            <%= fr_icon 'doc-pdf' %> PDF
-          <% end %>
-        </dt>
-        <dd>
-          (<%= pluralize(document.length, "Page") %>)
-        </dd>
-      </dl>
-      <dl class="col-xs-6 col-md-6">
         <dt>FR Document:</dt>
         <dd><%= link_to document.document_number, document.html_url %></dd>
 
         <dt>Pages:</dt>
         <dd><%= document.page_range %></dd>
+      </dl>
+
+      <dl class="col-xs-6 col-md-6">
+        <dt class="toc-pdf">
+          <%= link_to document.pdf_url do %>
+            <%= fr_icon 'doc-pdf' %> PDF
+          <% end %>
+        </dt>
+        <dd>
+          (<%= pluralize(document.pages, "Page") %>)
+        </dd>
       </dl>
     </div>
   <% end %>

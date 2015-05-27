@@ -72,9 +72,8 @@
 
         <dt>Page:</dt>
         <dd>
-        <%= document.page_range %>
-
-        (<%= pluralize document.length, 'page' %>)
+          <%= document.page_range %>
+          (<%= pluralize document.pages, 'page' %>)
         </dd>
       <% end %>
 
