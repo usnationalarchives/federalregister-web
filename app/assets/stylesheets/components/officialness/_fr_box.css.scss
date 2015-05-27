@@ -78,7 +78,7 @@ Styleguide 1.1 FR Boxes
       .fr-seal-stamp {
         font-size: 125px;
         color: $public-inspection-fr-stamp;
-        .fr-stamp { top: -10px; }
+        .fr-stamp { top: 10px; }
       }
     }
   }
@@ -181,10 +181,10 @@ Styleguide 1.1 FR Boxes
     display: none;
 
     p {
-      font-family: $font-family-sans-serif;
       padding: 10px 130px 0 15px;
-      font-size: 1.125em;
-      color: #fff;
+      @include apertura-condensed;
+      font-size: modular-scale(0);
+      color: $white;
     }
   }
 }
