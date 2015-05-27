@@ -19,12 +19,12 @@
 
   p {
     padding-bottom: 0;
-    line-height: 18px;
+    line-height: 1.5;
+  }
 
-    &.pi_notice {
-      @extend %pi_notice;
-
-      font-size: 15px !important;
-    }
+  .pi_notice {
+    @extend %pi_notice;
+    font-size: modular-scale(-1) !important;
+    line-height: 1.3;
   }
 }

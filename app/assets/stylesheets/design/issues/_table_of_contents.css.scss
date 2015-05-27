@@ -1,10 +1,11 @@
 /* Meta data for document */
 .bootstrap-scope .doc-toc {
+  position: relative;
+  padding-left: 0;
+
   h1, h2, h3, h4, h5, h6, h7 {
     color: $text;
   }
-
-  padding-left: 0;
 
   #regular-filing { padding-top: 0; }
 
@@ -36,6 +37,7 @@
 
 
   h3 { margin-left: 7px; }
+  h4 { text-transform: none !important; }
 
   .fr-box-official {
     h2 {
@@ -46,6 +48,8 @@
     h4 {
       color: $fr-link-dark;
     }
+
+    .icon-fr2.icon-doctype { color: $color-official; }
   }
 
   .fr-box-public-inspection {
@@ -53,6 +57,8 @@
       color: $color-public-inspection;
       border-bottom: 2px solid $color-public-inspection;
     }
+
+    .icon-fr2.icon-doctype { color: $color-public-inspection; }
 
     a {
       color: $color-public-inspection;
@@ -64,9 +70,36 @@
     }
   }
 
+/* Positioning icons in the background of the document toc's */
+  %toc-doc-background {
+    position: absolute;
+    top: 25px;
+    left: 100px;
+    font-size: 600px;
+    z-index: 0;
+    color: #E7DFE2;
+  }
+
+  .fr-box-official .content-block {
+    .doc-background { @extend %toc-doc-background; }
+  }
+  .fr-box-public-inspection .content-block {
+    .doc-background {
+      @extend %toc-doc-background;
+      left: 150px;
+      font-size: 375px;
+    }
+  }
 
   .content-block {
     padding: 35px 20px 20px 20px !important;
+    
+    h1 { margin-top: 0; }
+
+    .icon-fr2 {
+      display: inline-block;
+      font-size: modular-scale(1);
+    }
 
     a { @extend %table-of-contents-link; }
 
@@ -84,14 +117,14 @@
      which creates our hierarchy */
   .toc-category-level,
   .toc-subject-level {
-    margin-left: 20px;
+    margin-left: 25px;
   }
 
-  /* add and additional level of indentation to documents that
+  /* add an additional level of indentation to documents that
      only have one level of heirarchy. This allows all columns
      to align and makes the table much easier to scan */
   .toc-level-1 > .toc-documents {
-    margin-left: 20px;
+    margin-left: 25px;
   }
 
   .toc-documents {
@@ -121,10 +154,15 @@
       clear: both;
       margin-right: 5px;
       font-weight: 500; //medium
+
+      &.pi-pdf,
+      &.permalink {
+        .icon-fr2 { font-size: modular-scale(-1); }
+      }
     }
 
     dd {
-      top: 1px;
+      top: 0px;
       position: relative;
       font-weight: normal;
     }

@@ -3,7 +3,7 @@
     <h7><%= link_to subject, document.html_url %></h7>
 
     <div class="row toc-document-metadata">
-      <dl class="col-xs-4 col-md-4">
+      <dl class="col-xs-6 col-md-6">
         <dt>
           <%= link_to document.pdf_url do %>
             <%= fr_icon 'doc-pdf' %> PDF
@@ -13,7 +13,7 @@
           (<%= pluralize(document.length, "Page") %>)
         </dd>
       </dl>
-      <dl class="col-xs-4 col-md-4">
+      <dl class="col-xs-6 col-md-6">
         <dt>FR Document:</dt>
         <dd><%= link_to document.document_number, document.html_url %></dd>
 

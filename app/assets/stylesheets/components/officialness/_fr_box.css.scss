@@ -19,7 +19,7 @@ Styleguide 1.1 FR Boxes
   background-color: $secondary-color;
 
   .fr-seal-block {
-    h6 { background-color: $main-color; }
+    h6 {background-color: $main-color; }
 
     &.fr-seal-block-header {
       border-top: 3px solid $main-color;
@@ -157,11 +157,22 @@ Styleguide 1.1 FR Boxes
   @include gesta;
 
   h6 {
-    text-transform: uppercase;
     display: inline-block;
+    text-transform: uppercase;
+    font-size: modular-scale(-2) !important;
     font-weight: 700;
     clear: both;
-    margin: 0;
+    margin: 0 !important;
+    color: inherit !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: underline !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
   }
 
   .fr-seal-meta {
@@ -176,7 +187,9 @@ Styleguide 1.1 FR Boxes
       color: #fff;
     }
   }
+}
 
+.fr-seal-block {
   &.fr-seal-block-header {
     position: absolute;
 
@@ -198,4 +211,8 @@ Styleguide 1.1 FR Boxes
       padding-left: 40px !important;
     }
   }
+}
+.fr-box-small .fr-seal-block {
+  &.fr-seal-block-header h6 { padding-right: 20px; }
+  &.fr-seal-block-footer h6 { padding-left: 20px !important; }
 }

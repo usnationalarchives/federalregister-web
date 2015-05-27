@@ -29,13 +29,15 @@
       font-weight: bold;
       width: 30px;
       height: 18px;
+    }
 
+    .fr-box-official .count_pill {
       background-color: $color-official-light-alt;
       color: $color-official;
       border: 1px solid $color-official;
     }
 
-    &.public-inspection {
+    .fr-box-public-inspection {
       .count_pill {
         background-color: $color-public-inspection-light-alt;
         color: $color-public-inspection;
@@ -47,15 +49,28 @@
 
 .bootstrap-scope .doc-toc-nav {
   padding-right: 0;
+  @include apertura-condensed;
 
-  a {
-    color: $fr-link-dark;
-    &:hover { color: $fr-orange; }
+  .fr-box-official {
+    a {
+      color: $fr-link-dark;
+      &:hover { color: $fr-orange; }
+    }
+  }
+
+  .fr-box-public-inspection {
+    a {
+      color: $color-public-inspection;
+      &:hover { color: darken($color-public-inspection, 20); }
+    }
   }
 
   .content-block {
     padding-right: 10px !important;
-    font-size: 14px;
+    font-size: modular-scale(-1);
+    font-family: inherit !important;
+    font-weight: 500; //medium
+    line-height: 1.4;
   }
 
   .download-wrapper {

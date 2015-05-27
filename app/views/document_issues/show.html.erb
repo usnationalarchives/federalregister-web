@@ -27,7 +27,11 @@
           </div>
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <%# BB TODO: calendar does here %>
+              <%= esi document_issues_by_month_path(
+                @doc_presenter.date.strftime('%Y'),
+                @doc_presenter.date.strftime('%m'),
+                current_date: @doc_presenter.date.to_s(:iso)
+              ) %>
             </div>
           </div>
         </div>
@@ -45,7 +49,7 @@
           <% end %>
         </div>
         <div class="col-xs-3 col-md-3 doc-toc-nav">
-          <%= fr_box "Documents by Agency", :official_doc_details, header: {hover: false} do %>
+          <%= fr_box_small "Documents by Agency", :official_doc_details, header: {hover: false} do %>
             <%= render partial: 'document_issues/agency_count_bar', locals: {
                 date: @presenter.date,
                 agencies: @presenter.agencies

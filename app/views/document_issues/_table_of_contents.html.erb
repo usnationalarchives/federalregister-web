@@ -19,7 +19,7 @@
 
   <% agency.document_categories.each do |doc_category| %>
     <div class="toc-category-level">
-      <h3><%= doc_category["name"].titlecase %></h3>
+      <h3><%= doc_category["type"].titlecase %></h3>
       <%= display_hierarchy(
         doc_category["documents"],
         agency,

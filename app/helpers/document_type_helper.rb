@@ -24,6 +24,16 @@ module DocumentTypeHelper
       end
   end
 
+  def simple_document_type_icon(type, options={})
+    document_type = DocumentType.new(type)
+    content_tag(
+      :span,
+      '',
+      class: "#{document_type.icon_class} cj-tooltip",
+      "data-tooltip" => document_type.type
+    )
+  end
+
   private
 
   def document_types

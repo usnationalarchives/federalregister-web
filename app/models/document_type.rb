@@ -7,30 +7,32 @@ class DocumentType
 
   def identifier
     @identifier ||= case type
-    when 'Rule'
+    when 'Rule', 'Rules'
       'rule'
-    when 'Proposed Rule'
+    when 'Proposed Rule', 'Proposed Rules'
       'proposed_rule'
-    when 'Notice'
+    when 'Notice', 'Notices'
       'notice'
-    when 'Presidential Document'
+    when 'Presidential Document', 'Presidential Documents'
       'presidential_document'
     when 'Uncategorized Document'
       'uncategorized'
     when 'Sunshine Act Document'
       'notice'
-    when 'Correction'
+    when 'Correction', 'Corrections'
       'correct'
-    when 'Administrative Order' #NOTE: Only used by the Table of Contents when GPO groups by memorandum, determination, etc.
+    when 'Administrative Order'
+    #NOTE: Only used by the Table of Contents when GPO groups by
+    # memorandum, determination, etc.
       'administrative_order'
     end
   end
 
   def granule_class
     @granule_class ||= case type
-      when "Rule"
+      when "Rule", "Rules"
         "RULE"
-      when "Proposed Rule"
+      when "Proposed Rule", "Proposed Rules"
         "PRORULE"
       when "Notice"
         "NOTICE"
