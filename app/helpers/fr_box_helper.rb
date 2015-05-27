@@ -13,14 +13,14 @@ module FrBoxHelper
   end
 
   def fr_box_small(title, type, options={}, &block)
-    content_block_options = options.fetch(:content_block_html) { Hash.new }
-    header_options = options.fetch(:header) { Hash.new }
-    
-    content_tag(:div, class: "fr-box fr-box-small #{css_class_by_type(type)}") do
-      fr_box_header(title, type, default_header_options.merge!(header_options)) +
-        content_tag(:div, capture(&block), class: "content-block #{content_block_options[:class]}") +
-        fr_box_footer(title, type)
+    #inject the small boc class
+    if options[:box_html] && options[:box_html][:class]
+      options[:box_html][:class] += "fr-box-small"
+    else
+      options.deep_merge!(box_html: {class: "fr-box-small"})
     end
+
+    fr_box(title, type, options, &block)
   end
 
   def default_header_options
