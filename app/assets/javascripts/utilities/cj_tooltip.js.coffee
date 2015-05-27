@@ -5,6 +5,8 @@ class @CJ.Tooltip
       className: 'tooltip'
       title: ()->
         $(this).data('tooltip')
+      gravity: ()->
+        $(this).data('tooltip-gravity') || 's'
     }
     _.extend tipsyOptions, tooltipOptions
 
@@ -16,6 +18,8 @@ class @CJ.Tooltip
       className: 'tooltip'
       title: ()->
         $(this).data('tooltip')
+      gravity: ()->
+        $(this).data('tooltip-gravity') || 's'
     }
     _.extend tipsyOptions, tooltipOptions
 
