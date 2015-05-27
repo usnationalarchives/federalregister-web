@@ -13,13 +13,12 @@ class DocumentType
       'proposed_rule'
     when 'Notice', 'Notices'
       'notice'
-    when 'Presidential Document',
-      'Presidential Documents',
-      'Determination',
-      'Memorandum',
-      'Executive Order',
-      'Proclamation',
-      'Presidential Order'
+    when 'Presidential Document', 'Presidential Documents',
+      'Determination', 'Determinations',
+      'Memorandum', 'Memorandums',
+      'Executive Order', 'Executive Orders',
+      'Proclamation', 'Proclamations',
+      'Presidential Order', 'Presidential Orders'
 
       'presidential_document'
     when 'Uncategorized Document'
@@ -28,7 +27,7 @@ class DocumentType
       'notice'
     when 'Correction', 'Corrections'
       'correct'
-    when 'Administrative Order'
+    when 'Administrative Order', 'Administrative Orders'
       # Only used by the Table of Contents when GPO groups
       # presdocs of type memorandum, determination, etc.
       'presidential_document'
@@ -36,7 +35,10 @@ class DocumentType
       message = "unknown document type #{type}"
 
       if Settings.notify_honeybager
-        Honeybadger.notify(message)
+        Honeybadger.notify(
+          error_class: "Unkown Document Type",
+          error_message: message
+        )
       else
         raise message.inspect
       end
