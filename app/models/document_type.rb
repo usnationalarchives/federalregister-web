@@ -13,7 +13,14 @@ class DocumentType
       'proposed_rule'
     when 'Notice', 'Notices'
       'notice'
-    when 'Presidential Document', 'Presidential Documents'
+    when 'Presidential Document',
+      'Presidential Documents',
+      'Determination',
+      'Memorandum',
+      'Executive Order',
+      'Proclamation',
+      'Presidential Order'
+
       'presidential_document'
     when 'Uncategorized Document'
       'uncategorized'
@@ -22,9 +29,19 @@ class DocumentType
     when 'Correction', 'Corrections'
       'correct'
     when 'Administrative Order'
-    #NOTE: Only used by the Table of Contents when GPO groups by
-    # memorandum, determination, etc.
-      'administrative_order'
+      # Only used by the Table of Contents when GPO groups
+      # presdocs of type memorandum, determination, etc.
+      'presidential_document'
+    else
+      message = "unknown document type #{type}"
+
+      if Settings.notify_honeybager
+        Honeybadger.notify(message)
+      else
+        raise message.inspect
+      end
+
+      "uncategorized"
     end
   end
 
@@ -44,7 +61,24 @@ class DocumentType
         "UNKNOWN"
       when "Sunshine Act Document"
         "SUNSHINE"
-    end
+      end
+  end
+
+  def presdocu_granule_class(subtype)
+    @presdocu_granule_class ||= case subtype
+      when 'Determination'
+        "DETERM"
+      when 'Executive Order'
+        'EXECORD'
+      when 'Memorandum'
+        'PRMEMO'
+      when "Notice"
+        "PRNOTICE"
+      when 'Proclamation'
+        'PROCLA'
+      when 'Presidential Order'
+        'PRORDER'
+      end
   end
 
   def display_type
@@ -55,10 +89,10 @@ class DocumentType
   end
 
   def icon_wrapper_class(size=nil)
-    "rule_type doc_#{identifier.downcase} #{size}"
+    "rule_type doc_#{identifier} #{size}"
   end
 
   def icon_class
-    "icon-fr2 icon-doctype icon-fr2-#{identifier.downcase}"
+    "icon-fr2 icon-doctype icon-fr2-#{identifier}"
   end
 end

@@ -44,7 +44,7 @@
         <div class="col-xs-9 col-md-9 doc-toc">
           <%= fr_box "Special Filing Table of Contents", :public_inspection, header: {seal: true} do %>
             <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
-            
+
             <div class="doc doc-document-issue">
               <h1 id="special-filing">
                 Special Filing
@@ -54,9 +54,9 @@
                 </span>
               </h1>
 
-              <%= render partial: 'table_of_contents_documents',
+              <%= render partial: 'issues/table_of_contents',
                 locals: {
-                  type: "special",
+                  type: "special-filing",
                   agencies: @special_filings_presenter.agencies,
                   document_partial: @special_filings_presenter.document_partial
                 } %>
@@ -89,9 +89,9 @@
                 </span>
               </h1>
 
-              <%= render partial: 'table_of_contents_documents',
+              <%= render partial: 'issues/table_of_contents',
                 locals: {
-                  type: "regular",
+                  type: "regular-filing",
                   agencies: @regular_filings_presenter.agencies,
                   document_partial: @regular_filings_presenter.document_partial
                 } %>
