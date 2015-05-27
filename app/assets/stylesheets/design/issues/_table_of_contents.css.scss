@@ -3,10 +3,6 @@
   position: relative;
   padding-left: 0;
 
-  h1, h2, h3, h4, h5, h6, h7 {
-    color: $text;
-  }
-
   #regular-filing { padding-top: 0; }
 
   .special,
@@ -35,9 +31,15 @@
     }
   }
 
-
   h3 { margin-left: 7px; }
-  h4 { text-transform: none !important; }
+  h4 {
+    text-transform: none !important;
+    line-height: 1.3 !important;
+  }
+
+  .fr-box {
+    h2 { margin-top: 2em !important; }
+  }
 
   .fr-box-official {
     h2 {
@@ -115,7 +117,10 @@
 
   /* each level of hierarchy gets an additional indentation
      which creates our hierarchy */
-  .toc-category-level { margin-left: 35px; }
+  .toc-category-level {
+    margin-left: 25px;
+    margin-bottom: 15px;
+  }
   .toc-subject-level { margin-left: 25px; }
 
   /* add an additional level of indentation to documents that
@@ -157,6 +162,8 @@
       &.permalink {
         .icon-fr2 { font-size: modular-scale(-1); }
       }
+
+      &.permalink .icon-fr2 { left: -1px; }
     }
 
     dd {

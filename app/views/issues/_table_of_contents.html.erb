@@ -23,10 +23,7 @@
   <% end %>
 
   <% agency.document_categories.each do |doc_category| %>
-    <h3>
-      <%= simple_document_type_icon(doc_category["type"]) %>
-      <%= doc_category["type"].titlecase %>
-    </h3>
+    <h3><%= doc_category["type"].titlecase %></h3>
 
     <div class="toc-category-level">
       <%= display_hierarchy(

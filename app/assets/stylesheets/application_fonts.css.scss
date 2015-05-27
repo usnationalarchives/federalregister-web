@@ -80,6 +80,8 @@ body {
       word-wrap: break-word;
       margin-left: 0;
       line-height: 1.5;
+      margin: 0.5em 0 0.5em;
+      color: $text;
     }
 
     h1 { font-size: modular-scale(4); }
@@ -89,6 +91,8 @@ body {
     h5 { font-size: modular-scale(1); }
     h6 { font-size: modular-scale(0); }
     h7 { font-size: modular-scale(0); }
+
+    h7 { line-height: 1.2; }
 
     dl, dt, dd { font-size: modular-scale(0); }
   }
