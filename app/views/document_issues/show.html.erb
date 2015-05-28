@@ -11,8 +11,7 @@
 
       <div class="row">
         <div class="col-xs-12 col-md-12">
-          <%= render partial: 'issues/document_summary',
-              locals: {presenter: @doc_presenter} %>
+          <%= esi issue_summary_path(date: @presenter.date.to_s(:iso)) %>
         </div>
       </div>
 
@@ -28,9 +27,9 @@
           <div class="row">
             <div class="col-xs-12 col-md-12">
               <%= esi document_issues_by_month_path(
-                @doc_presenter.date.strftime('%Y'),
-                @doc_presenter.date.strftime('%m'),
-                current_date: @doc_presenter.date.to_s(:iso)
+                @presenter.date.strftime('%Y'),
+                @presenter.date.strftime('%m'),
+                current_date: @presenter.date.to_s(:iso)
               ) %>
             </div>
           </div>

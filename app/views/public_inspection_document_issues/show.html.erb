@@ -13,8 +13,10 @@
 
       <div class="row">
         <div class="col-xs-12 col-md-12">
-          <%= render partial: 'issues/public_inspection_document_summary',
-              locals: {presenter: @pi_presenter} %>
+          <%= esi issue_summary_path(
+            path: 'pi',
+            date: @presenter.date.to_s(:iso)
+          ) %>
         </div>
       </div>
 
@@ -31,9 +33,9 @@
           <div class="row">
             <div class="col-xs-12 col-md-12">
               <%= esi public_inspection_issues_by_month_path(
-                @regular_filings_presenter.date.strftime('%Y'),
-                @regular_filings_presenter.date.strftime('%m'),
-                current_date: @regular_filings_presenter.date.to_s(:iso)
+                @presenter.date.strftime('%Y'),
+                @presenter.date.strftime('%m'),
+                current_date: @presenter.date.to_s(:iso)
               ) %>
             </div>
           </div>
@@ -59,7 +61,7 @@
                 Special Filing
                 <span class="updated_at">
                   updated at
-                  <%= @pi_presenter.special_filings.formatted_updated_at %>
+                  <%= @presenter.special_filings.formatted_updated_at %>
                 </span>
               </h1>
 
@@ -104,7 +106,7 @@
                 Regular Filing
                 <span class="updated_at">
                   updated at
-                  <%= @pi_presenter.regular_filings.formatted_updated_at %>
+                  <%= @presenter.regular_filings.formatted_updated_at %>
                 </span>
               </h1>
 

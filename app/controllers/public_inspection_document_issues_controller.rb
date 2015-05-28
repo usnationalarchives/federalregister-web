@@ -6,7 +6,7 @@ class PublicInspectionDocumentIssuesController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    @pi_presenter = PublicInspectionIssuePresenter.new(parse_date_from_params)
+    @presenter = PublicInspectionIssuePresenter.new(parse_date_from_params)
     @special_filings_presenter = TableOfContentsSpecialFilingsPresenter.new(parse_date_from_params)
     @regular_filings_presenter = TableOfContentsRegularFilingsPresenter.new(parse_date_from_params)
   end

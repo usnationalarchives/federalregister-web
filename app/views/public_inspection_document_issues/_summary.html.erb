@@ -1,0 +1,76 @@
+<!-- issue public inspection metadata -->
+<div id="pi-metadata-bar" class="row pi-metadata-bar <%= home ? 'home' : '' %>">
+  <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
+    <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
+      <div class="fr-head-meta-label">
+        <i class="icon-fr2-clipboard"></i>
+        <h4>
+          <%= link_to(
+            home ? "Public Inspection" : presenter.date,
+            public_inspection_issue_path(presenter.date)
+          )%>
+        </h4>
+      </div>
+
+      <% if home %>
+        <span class="icon-fr2 icon-fr2-stop-hand"></span>
+      <% end %>
+    </div>
+
+    <div class="col-xs-9 col-md-9 fr-head-meta-counts">
+      <div class="row">
+        <% if home %>
+          <div class="col-xs-6 col-md-6">
+            <div class="description">
+              <p>
+                The <a href="">Public Inspection page</a> on FederalRegister.gov
+                offers a preview of documents scheduled to appear in the next day's
+                Federal Register issue. The Public Inspection page may also
+                include documents scheduled for later issues, at the request
+                of the issuing agency.
+              </p>
+              <p>
+                <%= link_to "Learn more about public inspection here.",
+                  reader_aids_using_fr_path %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="col-xs-<%= home ? 6 : 12 %> col-md-<%= home ? 6 : 12 %>">
+          <ul class="fr-list with-stats row">
+            <% presenter.all_filings.each do |filing_type| %>
+              <li class="col-xs-<%= home ? 12 : 6 %> col-md-<%= home ? 12 : 6 %>">
+                <h5><%= filing_type.name %></h5>
+                <div class="filings-updated">
+                  updated on <%= filing_type.formatted_updated_at %>
+                </div>
+                <div class="public-inspection-list-stats">
+                  <%= link_to_unless filing_type.document_count == 0,
+                    pluralize(filing_type.document_count, 'document'),
+                    public_inspection_search_path(filing_type.search_conditions)
+                  %>
+                  from <%= pluralize(filing_type.agency_count, 'agency') %>
+
+                  <ul class="document-stats">
+                    <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
+                      <li>
+                        <%= link_to pluralize(facet.count, facet.name),
+                          public_inspection_search_path(
+                            filing_type.search_conditions(facet.name)
+                          )
+                        %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+</div>

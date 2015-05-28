@@ -148,6 +148,12 @@ MyFr2::Application.routes.draw do
       }
 
 
+    # ISSUES
+    esi.get 'esi/issues/summary',
+      to: 'issues#summary',
+      as: :issue_summary
+
+
     # HEADER
     esi.get 'special/navigation',
       to: 'special#navigation',
@@ -185,11 +191,6 @@ MyFr2::Application.routes.draw do
     esi.get 'esi/home/presidential_documents',
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
-
-    esi.get 'esi/home/current_issue',
-      to: 'issues#summary',
-      as: :home_current_issue_summary
-
 
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',

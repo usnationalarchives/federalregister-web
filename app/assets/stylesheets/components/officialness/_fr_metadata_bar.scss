@@ -7,7 +7,11 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
+    margin-top: 8px;
+
     a { color: $main-color; }
+
+    .fr-list { margin: 1px 0 0 0; }
   }
 }
 
@@ -17,7 +21,6 @@
     @include fr-metadata-bar-header($fr-green, $color-enhanced-light);
 
     .fr-head-meta-label i { color: $color-enhanced-light; }
-    .fr-head-meta-counts ul.fr-list.fr-list-inline li { line-height: 50px; }
   }
 
   &.fr-head-metadata-bar-public-inspection {
@@ -34,22 +37,23 @@
       }
 
       .icon-fr2.icon-fr2-stop-hand {
-        font-size: 110px;
+        font-size: 115px;
         left: 65px;
-        top: 10px;
+        top: 5px;
         color: $fr-gray-15;
       }
     }
     .fr-topic-list.with-stats li:hover { color: $fr-gray-40; }
   }
 
-  .fr-head-meta-label-holder {
-    padding: 0;
-  }
+  .row { margin-bottom: 0 !important; }
+
+  .fr-head-meta-label-holder { padding: 0; }
+
   .fr-head-meta-label {
-    height: 50px;
+    height: 60px;
     color: #fff;
-    padding: 0 15px 0 24px;
+    padding: 4px 15px 0 24px;
 
     i {
       font-size: 34px;
@@ -67,28 +71,14 @@
   }
 
   .fr-head-meta-counts {
-    font-size: 15px;
+    font-size: modular-scale(0);
 
-    .description {
-      .icon-fr2-stop-hand {
-        font-size: 105px;
-        position: relative;
-        top: 20px;
-        left: -5px;
-        color: $fr-gray-20;
-      }
-
-      p {
-        line-height: 18px;
-        font-size: 14px;
-      }
-    }
+    .row { margin-bottom: 0 !important; }
 
     ul { padding: 0; }
 
-    ul.fr-list.fr-list-inline {
+    .fr-list.fr-list-inline {
       clear: both;
-      margin-bottom: 0;
 
       div { float: none; }
 
@@ -96,12 +86,6 @@
         float: left;
         width: 102px;
         margin-right: 10px;
-        margin-top: 5px;
-      }
-
-      .public-inspection-list-stats {
-        float: left;
-        width: 200px;
         margin-top: 5px;
       }
 
@@ -115,64 +99,102 @@
       float: left;
       list-style-type: none;
       margin-right: 15px;
-      font-size: 13px;
-
-      &.right {
-        float:right;
-        font-weight: bold;
-      }
-
+      font-size: modular-scale(-1);
     }
 
     h5 {
-      font-size: 15px;
+      font-size: modular-scale(0);
       margin-bottom: 3px;
       color: #444;
     }
 
     p {
-      font-family: $font-family-sans-serif;
+      @include apertura-condensed;
       margin: 0;
-      font-size: 15px;
+      font-size: modular-scale(0);
       padding: 10px 0;
     }
-
-    a.public-inspection-toggle {
-      text-decoration: none !important;
-      color: $fr-gray-70;
-
-      &:hover,
-      &.hover { color: $color-public-inspection; }
-
-      span.link-text { text-decoration: underline; }
-
-      .icon-fr2 {
-        height: 17px;
-        width: 17px;
-        position: relative;
-        top: -1px;
-        font-size: 17px;
-        vertical-align: middle;
-      }
-    }
-
   }
 
+  a.public-inspection-toggle {
+    text-decoration: none !important;
+    color: $fr-gray-70;
+    font-weight: bold;
+
+    top: 16px;
+    position: relative;
+
+    &:hover,
+    &.hover { color: $color-public-inspection; }
+
+    span.link-text { text-decoration: underline; }
+
+    .icon-fr2 {
+      height: 17px;
+      width: 17px;
+      position: relative;
+      top: -1px;
+      font-size: 17px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.pi-metadata-bar {
+  .fr-head-metadata-bar {
+    .fr-head-meta-counts {
+      margin-top: 0;
+
+      .row { margin-bottom: 0 !important; }
+
+      li { margin-right: 0; }
+
+      .description {
+        .icon-fr2-stop-hand {
+          font-size: 105px;
+          position: relative;
+          top: 20px;
+          left: -5px;
+          color: $fr-gray-20;
+        }
+
+        p {
+          line-height: 1.5;
+          font-size: modular-scale(-1);
+        }
+      }
+    }
+  }
+  .fr-list.with-stats {
+    margin-top: 4px !important;
+
+    li {
+      width: inherit;
+      padding: 1px 15px 0;
+      margin-bottom: 3px;
+
+      h5 { margin: 0; }
+    }
+  }
+
+  .filings-updated {
+    font-size: modular-scale(-2);
+    font-style: italic;
+  }
   .public-inspection-list-stats {
     color: #333;
     width: 100%;
+    float: left;
+    margin-top: 5px;
 
-    i {
-      font-size: 17px;
-      vertical-align: middle;
-      top: -1px;
-      position: relative;
-      margin-right: 3px;
-    }
+    .document-stats {
+      margin: 0;
+      margin-top: 3px;
 
-    div {
-      color: $color-public-inspection;
-      float: right;
+      li {
+        padding: 0;
+        margin-right: 7px;
+      }
     }
   }
 }

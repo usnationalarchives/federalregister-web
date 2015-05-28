@@ -1,0 +1,61 @@
+<!-- issue document metadata -->
+<div class="row fr-head-metadata-bar fr-head-metadata-bar-official">
+  <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
+    <div class="fr-head-meta-label">
+      <i class="icon-fr2-calendar-alt"></i>
+      <h4>
+        <%= link_to home ? "Current Issue" : presenter.date,
+          document_issue_path(presenter.date)
+        %>
+      </h4>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-md-6 fr-head-meta-counts">
+    <ul class="fr-list fr-list-inline">
+      <% presenter.document_counts.sort_by(&:name).each do |doc_type| %>
+        <li>
+          <%= link_to pluralize(doc_type.count, doc_type.name),
+            documents_search_path(doc_type.search_conditions) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <ul class="fr-list fr-list-inline">
+      <li>
+        <%= link_to_if presenter.any_significant_documents?,
+          pluralize(
+            presenter.significant_documents.count,
+            presenter.significant_documents.name
+          ),
+          documents_search_path(
+            presenter.significant_documents.search_conditions
+          ) %>
+      </li>
+
+      <li class='page-count'>
+        <%= pluralize(presenter.page_count, 'Page') %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-xs-3 col-md-3">
+    <% if @home %>
+      <a href=""
+        class="link public-inspection-toggle toggle"
+        data-toggle-target="#pi-metadata-bar"
+        data-toggle-show-text="View Public Inspection"
+        data-toggle-hide-text="Hide Public Inspection"
+        data-toggle-text-node=".link-text">
+        <span class="icon-fr2 icon-fr2-clipboard public-inspection"></span>
+        <span class="link-text">View Public Inspection</span>
+      </a>
+    <% else %>
+      <%= link_to public_inspection_issue_path(presenter.date),
+        class: "link public-inspection-toggle" do %>
+        <span class="icon-fr2 icon-fr2-clipboard public-inspection"></span>
+        <span class="link-text">Go to Public Inspection</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

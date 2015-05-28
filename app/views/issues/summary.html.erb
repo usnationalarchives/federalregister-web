@@ -1,4 +1,15 @@
-<%= render partial: 'document_summary',
-  locals: {presenter: @doc_presenter} %>
-<%= render partial: 'public_inspection_document_summary',
-  locals: {presenter: @pi_presenter} %>
+<% unless @pi %>
+  <%= render partial: 'document_issues/summary',
+    locals: {
+      presenter: @doc_presenter,
+      home: @home
+    } %>
+<% end %>
+
+<% if @home || @pi %>
+  <%= render partial: 'public_inspection_document_issues/summary',
+    locals: {
+      presenter: @pi_presenter,
+      home: @home
+    } %>
+<% end %>
