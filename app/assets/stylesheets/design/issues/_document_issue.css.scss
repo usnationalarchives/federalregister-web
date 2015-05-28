@@ -57,11 +57,15 @@
   }
 }
 
+.bootstrap-scope .doc-toc {
+  .doc-background { left: 125px !important; }
+}
+
 .bootstrap-scope .doc-toc-nav {
   padding-right: 0;
   @include apertura-condensed;
 
-  .fr-box-official {
+  .fr-box-official-alt {
     a {
       color: $fr-link-dark;
       &:hover { color: $fr-orange; }
@@ -126,11 +130,5 @@
 
   &.public-inspection {
     ul li { border-bottom: 1px solid $color-public-inspection-light-alt; }
-  }
-}
-
-.bootstrap-scope .doc-toc {
-  .test_toc_margin {
-    margin-left: 20px;
   }
 }
