@@ -2,7 +2,7 @@
   <%= link_to new_subscription_path(:subscription => {:search_conditions => search_conditions}),
     :class => 'subscription subscription_action' do %>
 
-    <%= fr_icon('rss') %><%= fr_icon('message') %> Subscribe
+    <%= fr_icon('message') %><%= fr_icon('rss') %> Subscribe
   <% end %>
 
   <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
