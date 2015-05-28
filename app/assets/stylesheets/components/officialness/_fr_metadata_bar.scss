@@ -168,6 +168,12 @@
   .fr-list.with-stats {
     margin-top: 4px !important;
 
+    .public-inspection-list-stats {
+      /* explicitely set as the cascade is causing problems
+       here due to percentages higher in the chain */
+      width: 316px;
+    }
+
     li {
       width: inherit;
       padding: 1px 15px 0;
