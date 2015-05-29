@@ -21,7 +21,7 @@ module DocumentTypeHelper
       class: "#{document_type.icon_wrapper_class(options[:size])} tooltip",
       "data-tooltip" => document_type.type) do
         content_tag(:span, '', class: document_type.icon_class)
-      end
+    end
   end
 
   def simple_document_type_icon(type, options={})
@@ -32,6 +32,7 @@ module DocumentTypeHelper
       class: "#{document_type.icon_class} cj-tooltip",
       "data-tooltip" => document_type.type
     )
+  end
 
   def suggested_search_icon_helper(type)
     document_type = DocumentType.new(type)

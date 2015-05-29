@@ -6,75 +6,93 @@
   <% end %>
   <div class="subnav">
     <ul class="left_column">
-      <% @section_presenters.each do |presenter| %>
+      <% @presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>'>
-          <%= link_to presenter.section_title, section_path(presenter.slug), :class => "#{presenter.slug}" %>
+          <%= link_to presenter.title,
+            section_path(presenter.slug),
+            class: presenter.slug %>
         </li>
       <% end %>
     </ul>
     <ul class="right_column">
-      <% @section_presenters.each do |presenter| %>
+      <% @presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>-preview' class="preview">
           <div class="suggested_searches">
-            <% presenter.suggested_searches.first(4).in_groups_of(2,false).each_with_index do |searches, index| %>
-              <div class="row <%= index == 0 ? 'first' : '' %>">
-                <% searches.each do |suggested_search| %>
+            <% presenter.
+                suggested_searches.
+                first(4).
+                in_groups_of(2,false).
+                each do |searches| %>
+
+              <% if presenter.highlighted_documents.present? %>
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                    <%#= render :partial => 'sections/carousel', :locals => {:entries => @highlighted_entries, :image_size => :navigation} %>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <% searches.each do |suggested_search| %>
                     <div class="info suggested_search">
                       <h1>
-                        <%= link_to suggested_search.title, suggested_searches_path(suggested_search.slug) %>
-                        <span class="result_count"><%= suggested_search.documents_in_last_year %> in the last year</span>
+                        <%= link_to suggested_search.title,
+                          suggested_search_path(suggested_search.slug) %>
+                        <span class="result_count">
+                          <%= suggested_search.documents_in_last_year %>
+                          in the last year
+                        </span>
                       </h1>
                      </div>
                   <% end %>
-              </div> <!-- .row -->
-            <% end %>
-          </div> <!-- .suggested_searches -->
-        <li>
-      <% end %>
-
-      <% if false # not yet implemented via api %>
-      <% @sections.each do |section| %>
-        <li id='<%= section.slug %>-preview' class="preview">
-          <% @highlighted_entries = section.highlighted_entries(IssueApproval.latest_publication_date).with_lede_photo.limit(1) %>
-          <% if @highlighted_entries.present? %>
-            <%= render :partial => 'sections/carousel', :locals => {:entries => @highlighted_entries, :image_size => :navigation} %>
-          <% end %>
-          <div class="suggested_searches">
-            <% section.suggested_searches.active.in_order.limit(4).in_groups_of(2,false).each_with_index do |searches, index| %>
-              <div class="row <%= index == 0 ? 'first' : '' %>">
-                <% searches.each do |suggested_search| %>
-                    <div class="info suggested_search">
-                      <h1>
-                        <%= link_to suggested_search.title, suggested_search_path(suggested_search) %>
-                        <span class="result_count"><%= suggested_search.search.count_in_last_n_days(365) %> in the last year</span>
-                      </h1>
-                     </div>
-                  <% end %>
-              </div> <!-- .row -->
+                </div>
+              </div>
             <% end %>
           </div> <!-- .suggested_searches -->
 
-          <div class="daily_stats">
-            <ul>
-              <li class="new_articles">
-                <% conditions = {:publication_date => {:is => @issue.publication_date}, :section_ids => [section.id]} %>
-                <% link_to entries_search_path(:conditions => conditions, :utm_source => 'navigation', :utm_medium => 'dropdown', :utm_content => 'new_articles') do %>
-                  <span class="count"><%= count = EntrySearch.new(:conditions => conditions).count %></span>
-                  <span class="details"><%= pluralize_without_count(count, 'New Articles') %> In this Issue</span>
-                <% end %>
-              </li>
-              <li class="closing_soon">
-                <% conditions = {:comment_date => {:gte => @date, :lte => 1.week.from_now.to_date}, :section_ids => [section.id]} %>
-                <% link_to entries_search_path(:conditions => conditions, :utm_source => 'homepage', :utm_medium => 'slideshow', :utm_content => 'comments_closing') do %>
-                  <span class="count"><%= count = EntrySearch.new(:conditions => conditions).count %></span>
-                  <span class="details"><%= pluralize_without_count(count, 'Comment Period') %> Ending Soon</span>
-                <% end %>
-              </li>
-            </ul>
+          <div class="daily_stats row">
+            <div class="col-xs-6 col-md-6 new_articles">
+              <%= link_to documents_search_path(
+                :conditions => presenter.new_document_conditions,
+                :utm_source => 'navigation',
+                :utm_medium => 'dropdown',
+                :utm_content => 'new_articles'
+              ) do %>
+                <span class="count">
+                  <%= presenter.new_documents %>
+                </span>
+                <span class="details">
+                  <%= pluralize_without_count(
+                    presenter.new_documents,
+                    'New Document'
+                  ) %>
+                  In this Issue
+                </span>
+              <% end %>
+            </div>
+            <div class="col-xs-6 col-md-6 open-comment-periods">
+              <%= link_to documents_search_path(
+                :conditions => presenter.open_comment_period_conditions,
+                :utm_source => 'navigation',
+                :utm_medium => 'dropdown',
+                :utm_content => 'comment_periods_open'
+              ) do %>
+                <span class="count">
+                  <%= presenter.open_comment_periods %>
+                </span>
+                <span class="details">
+                  <%= pluralize_without_count(
+                    presenter.open_comment_periods,
+                    'Document'
+                  ) %>
+                  Open for Comment
+                </span>
+              <% end %>
+            </div>
           </div> <!-- .daily_stats -->
         </li>
       <% end %>
-      <% end #--if false%>
     </ul>
   </div>
 </li>

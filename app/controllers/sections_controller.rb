@@ -51,7 +51,8 @@ class SectionsController < ApplicationController
 
   def navigation
     cache_for 1.day
-    @section_presenters = SectionPagePresenter::SECTIONS.map{
-      |slug,value| SectionPagePresenter.new(slug, DocumentIssue.current_date - 1.year)}
+    @presenters = Section.all.map do |section|
+      SectionPagePresenter.new(section, DocumentIssue.current.publication_date - 1.year)
+    end
   end
 end

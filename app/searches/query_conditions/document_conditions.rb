@@ -43,4 +43,21 @@ class QueryConditions::DocumentConditions < QueryConditions
       }
     }
   end
+
+  def self.published_on(date)
+    {
+      conditions: {
+        publication_date: {is: date.to_s(:iso)},
+      }
+    }
+  end
+
+  def self.with_open_comment_periods_on(date)
+    {
+      conditions: {
+        comment_date: {gte: date.to_s(:iso)},
+        publication_date: {lte: date.to_s(:iso)}
+      }
+    }
+  end
 end

@@ -1,39 +1,32 @@
 class SectionPagePresenter
-  attr_reader :date, :icon_name, :search_conditions,:slug, :suggested_searches
+  attr_reader :date, :search_conditions, :section
   class InvalidSection < StandardError; end
 
-  #TODO: Refactor the SECTIONS constant so we're using the API in lieu of hardcoding.
-  SECTIONS = {
-      "money" => {
-        title: "Money",
-        icon: "Coins-dollaralt"
-      },
-      "environment" => {
-        title: "Environment",
-        icon: "Eco"
-      },
-      "world" => {
-        title: "World",
-        icon: "Globe"
-      },
-      "science-and-technology" => {
-        title: "Science and Technology",
-        icon: "Lab"
-      },
-      "business-and-industry" => {
-        title: "Business and Industry",
-        icon: "Factory"
-      },
-      "health-and-public-welfare" => {
-        title: "Health and Public Welfare",
-        icon: "Medicine"
-      },
-    }
+  delegate :icon, :slug, :suggested_searches, :title, to: :@section
 
-  def initialize(slug, date)
-    raise InvalidSection unless all_section_slugs.include?(slug)
-    @slug = slug
+  def initialize(section, date)
+    @section = section
     @date = date
+  end
+
+  def new_documents
+    @new_documents ||= section.new_documents_for(date)
+  end
+
+  def new_document_conditions
+    section.new_documents_for_date_conditions(date)
+  end
+
+  def open_comment_periods
+    @open_documents ||= section.documents_with_open_comment_periods_for(date)
+  end
+
+  def open_comment_period_conditions
+    section.documents_with_open_comment_periods_for_date_conditions(date)
+  end
+
+  def highlighted_documents
+    section.highlighted_documents_for(date)
   end
 
   def public_inspection_search_possible?
@@ -62,10 +55,6 @@ class SectionPagePresenter
     feeds
   end
 
-  def icon_name
-    all_sections[slug][:icon]
-  end
-
   def search_conditions
     {
       conditions:
@@ -73,22 +62,6 @@ class SectionPagePresenter
         sections: slug
       }
     }
-  end
-
-  def section_title
-    all_sections[slug][:title]
-  end
-
-  def suggested_searches
-    @suggested_searches ||= SuggestedSearch.search(conditions: {sections: [@slug]})[slug]
-  end
-
-  def all_sections
-    SECTIONS
-  end
-
-  def all_section_slugs
-    all_sections.keys
   end
 
   def last_five_days_hash

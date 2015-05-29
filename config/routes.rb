@@ -191,6 +191,7 @@ MyFr2::Application.routes.draw do
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
 
+
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
       to: 'reader_aids#blog_highlights',
@@ -216,10 +217,6 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#developer_tools',
       as: :reader_aids_developer_tools
 
-    # SUGGESTED SEARCHES
-    esi.get 'esi/:slug',
-      to: 'suggested_searches#show',
-      as: :suggested_searches
 
     # NAVIGATION
     esi.get 'esi/layouts/navigation/sections',
@@ -337,6 +334,13 @@ MyFr2::Application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_section'
 
+
+  #
+  # Suggested searches
+  #
+  get '/:slug',
+    to: 'suggested_searches#show',
+    as: :suggested_search
 
   #
   # My FR
