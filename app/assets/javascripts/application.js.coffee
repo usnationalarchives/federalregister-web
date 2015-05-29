@@ -33,9 +33,12 @@
 #= require public_inspection
 #= require utility_bar
 #= require home_carousel
+
 #= require old/agency_list
 #= require old/search
 #= require old/rss
+#= require old/navigation
+
 #= require scrollMonitor
 #= require_tree ./documents
 
