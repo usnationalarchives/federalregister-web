@@ -1,7 +1,7 @@
 <div class="nav" id="navigation">
   <ul class="container">
     <li id='nav-home' class="nav-home">
-      <%= link_to(root_path, class: "home") do %>
+      <%= link_to(root_path, class: "home", 'aria-label' => 'Home') do %>
         <%= fr_icon('home') %>
       <% end %>
     </li>
@@ -12,36 +12,36 @@
       <%= link_to('', class: "browse top_nav") do %>
         <%= fr_icon('Eye') %>
         Browse
-        <%= fr_icon('menu_arrow', class: "arrow") %>
+        <%= fr_icon('menu_arrow') %>
       <% end %>
       <div class="subnav browse-list">
         <ul class="left_column">
           <li id='agencies-browse'>
-            <%= link_to(agencies_path, class: "agencies with-icon") do %>
+            <%= link_to(agencies_path, class: "agencies") do %>
               <%= fr_icon('mindmap') %>
               Agencies
             <% end %>
           </li>
           <li id='topics-browse'>
-            <%= link_to(topics_path, class: "topics with-icon") do %>
+            <%= link_to(topics_path, class: "topics") do %>
               <%= fr_icon('molecular') %>
               Topics
             <% end %>
           </li>
           <li id='document-dates-browse'>
-            <%= link_to(document_issue_path(DocumentIssue.current), class: "date with-icon") do %>
+            <%= link_to(document_issue_path(DocumentIssue.current), class: "dates") do %>
               <%= fr_icon('calendar-alt') %>
               Dates
             <% end %>
           </li>
           <li id='public-inspection-browse'>
-            <%= link_to(current_public_inspection_documents_path, class: "public_inspection with-icon") do %>
+            <%= link_to(current_public_inspection_documents_path, class: "public-inspection") do %>
               <%= fr_icon('clipboard') %>
               Public Inspection
             <% end %>
           </li>
           <li id='executive-orders-browse'>
-            <%= link_to(executive_orders_path, class: "executive_orders with-icon") do %>
+            <%= link_to(executive_orders_path, class: "executive-orders") do %>
               <%= fr_icon('stars') %>
               Executive Orders
             <% end %>
@@ -59,9 +59,9 @@
 
     <li class="dropdown nav_search">
       <a class="top_nav">
-        <%= fr_icon('Search', class: "magnifying-glass-icon") %>
+        <%= fr_icon('Search') %>
         Search
-        <%= fr_icon('menu_arrow', class: "arrow") %>
+        <%= fr_icon('menu_arrow') %>
       </a>
 
       <ul class="subnav search-list">
@@ -84,7 +84,7 @@
           <%# end %>
         </li>
         <li id='public-inspection-search'>
-          <%= link_to("public_inspection_search_path", class: "unified-agenda-search") do %>
+          <%= link_to("public_inspection_search_path", class: "public-inspection-search") do %>
             <%= fr_icon('clipboards') %>
             Public Inspection Search
           <% end %>
@@ -104,7 +104,7 @@
       <a class="myfr2 top_nav">
         <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
         My FR
-        <%= fr_icon('menu_arrow', class: "arrow") %>
+        <%= fr_icon('menu_arrow') %>
         <span class="arrow"></span>
       </a>
 
@@ -127,7 +127,7 @@
 
         <li id='myfr2-session'>
           <% if user_signed_in? %>
-            <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth with-icon"  %>
+            <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
           <% else %>
             <%= link_to 'Sign In / Sign Up', new_session_path, :class => "myfr2-auth" %>
           <% end %>
