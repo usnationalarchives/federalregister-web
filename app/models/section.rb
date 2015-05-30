@@ -59,7 +59,7 @@ class Section < ActiveHash::Base
       conditions: {
         publication_date: {is: date.to_s(:iso)}
       }
-    )[slug]
+    )[slug].highlighted_documents
   end
 
   def new_documents_for(date)

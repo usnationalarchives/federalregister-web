@@ -17,20 +17,24 @@
     <ul class="right_column">
       <% @presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>-preview' class="preview">
+
+          <% if presenter.highlighted_documents.present? %>
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <%= carousel(
+                  Array(presenter.highlighted_documents.first),
+                  image_size: 'navigation'
+                  ) %>
+              </div>
+            </div>
+          <% end %>
+
           <div class="suggested_searches">
             <% presenter.
                 suggested_searches.
                 first(4).
                 in_groups_of(2,false).
                 each do |searches| %>
-
-              <% if presenter.highlighted_documents.present? %>
-                <div class="row">
-                  <div class="col-xs-12 col-md-12">
-                    <%#= render :partial => 'sections/carousel', :locals => {:entries => @highlighted_entries, :image_size => :navigation} %>
-                  </div>
-                </div>
-              <% end %>
 
               <div class="row">
                 <div class="col-xs-12 col-md-12">
