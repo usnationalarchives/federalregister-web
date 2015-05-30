@@ -4,6 +4,7 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Shared
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
+  include DocumentDecorator::Agencies
 
   def slug
     html_url.split('/').last
