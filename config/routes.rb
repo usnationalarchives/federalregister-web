@@ -76,13 +76,22 @@ MyFr2::Application.routes.draw do
   # Public Inspection Documents
   #
 
+  # legacy route that redirects to current
+  get 'public-inspection',
+      to: 'public_inspection_document_issues#public_inspection',
+      as: :public_inspection
+
+  get 'public-inspection/current',
+    to: "public_inspection_document_issues#current",
+    as: :current_public_inspection_issue
+
   get 'public-inspection/:year/:month/:day',
       to: "public_inspection_document_issues#show",
       as: :public_inspection_issue,
       constraints: {
-        :year        => /\d{4}/,
-        :month       => /\d{1,2}/,
-        :day         => /\d{1,2}/
+        year:  /\d{4}/,
+        month: /\d{1,2}/,
+        day:   /\d{1,2}/
       }
 
 
@@ -252,27 +261,6 @@ MyFr2::Application.routes.draw do
       to: 'special#footer',
       as: :footer
   end
-
-
-  #
-  # Public Inspection
-  #
-  get 'public-inspection',
-      to: 'public_inspection_documents#public_inspection',
-      as: :public_inspection
-
-  get 'public-inspection/current',
-      to: 'public_inspection_documents#current',
-      as: :current_public_inspection_documents
-
-  get 'public-inspection/:year/:month/:day',
-      to: 'public_inspection_documents#index',
-      as: :public_inspection_documents,
-      constraints: {
-        year: /\d{4}/,
-        month: /\d{1,2}/,
-        day: /\d{1,2}/
-      }
 
 
   #

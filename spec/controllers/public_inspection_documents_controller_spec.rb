@@ -6,8 +6,7 @@ describe PublicInspectionDocumentsController, :no_ci do
       #binding.pry
       expect{
         get :public_inspection
-      }.to redirect_to(current_public_inspection_documents_path)
+      }.to redirect_to(current_public_inspection_issue_path)
     end
   end
 end
-

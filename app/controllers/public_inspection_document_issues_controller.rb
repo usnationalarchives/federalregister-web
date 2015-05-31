@@ -11,6 +11,17 @@ class PublicInspectionDocumentIssuesController < ApplicationController
     @regular_filings_presenter = TableOfContentsRegularFilingsPresenter.new(parse_date_from_params)
   end
 
+  def current
+    cache_for 1.day
+
+  end
+
+  # legacy
+  def public_inspection
+    redirect_to current_public_inspection_issue_path,
+      status: :moved_permanently
+  end
+
   def by_month
     cache_for 1.day
     begin
@@ -35,5 +46,4 @@ class PublicInspectionDocumentIssuesController < ApplicationController
 
     render :layout => false
   end
-
 end
