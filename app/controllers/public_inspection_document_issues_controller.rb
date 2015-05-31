@@ -46,4 +46,11 @@ class PublicInspectionDocumentIssuesController < ApplicationController
 
     render :layout => false
   end
+
+  def navigation
+    cache_for 1.day
+    @pi_presenter = PublicInspectionIssuePresenter.new(
+      PublicInspectionDocumentIssue.current.publication_date
+    )
+  end
 end

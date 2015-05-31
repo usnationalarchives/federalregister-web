@@ -245,7 +245,7 @@ MyFr2::Application.routes.draw do
       as: :navigation_reader_aids
 
     esi.get 'esi/layouts/navigation/public-inspection',
-      to: 'public_inspection_documents#navigation',
+      to: 'public_inspection_document_issues#navigation',
       as: :navigation_public_inspection
 
     esi.get 'esi/layouts/navigation/document_issue',
