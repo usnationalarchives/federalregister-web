@@ -2,18 +2,20 @@ class PublicInspectionDocumentIssuesController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def show
+    cache_for 1.day
     unless PublicInspectionDocumentIssue.available_for?(parse_date_from_params)
       raise ActiveRecord::RecordNotFound
     end
 
-    @presenter = PublicInspectionIssuePresenter.new(parse_date_from_params)
-    @special_filings_presenter = TableOfContentsSpecialFilingsPresenter.new(parse_date_from_params)
-    @regular_filings_presenter = TableOfContentsRegularFilingsPresenter.new(parse_date_from_params)
+    build_pil_presenters(parse_date_from_params)
   end
 
   def current
     cache_for 1.day
 
+    build_pil_presenters(PublicInspectionDocumentIssue.current.publication_date)
+
+    render :show
   end
 
   # legacy
@@ -24,6 +26,7 @@ class PublicInspectionDocumentIssuesController < ApplicationController
 
   def by_month
     cache_for 1.day
+
     begin
       @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
     rescue ArgumentError
@@ -49,8 +52,17 @@ class PublicInspectionDocumentIssuesController < ApplicationController
 
   def navigation
     cache_for 1.day
+
     @pi_presenter = PublicInspectionIssuePresenter.new(
       PublicInspectionDocumentIssue.current.publication_date
     )
+  end
+
+  private
+
+  def build_pil_presenters(date)
+    @presenter = PublicInspectionIssuePresenter.new(date)
+    @special_filings_presenter = TableOfContentsSpecialFilingsPresenter.new(date)
+    @regular_filings_presenter = TableOfContentsRegularFilingsPresenter.new(date)
   end
 end
