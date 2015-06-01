@@ -32,7 +32,22 @@
     padding-right: 5px;
   }
 
-  p.pi_notice { @extend %pi_notice; }
+  p.pi_notice {
+    @extend %pi_notice;
+    width: 575px;
+    text-align: justify;
+  }
+}
+
+.doc-details .fr-box-public-inspection-alt {
+  a {
+    color: $color-public-inspection;
+
+    &:hover {
+      text-decoration: none;
+      color: darken($color-public-inspection, 20);
+    }
+  }
 }
 
 .public-inspection-summary-bar #pi-metadata-bar{

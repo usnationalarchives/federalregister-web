@@ -1,11 +1,13 @@
 <div class="col-md-9 doc-content with-utility-bar">
   <div class="row">
-    <%= render partial: "public_inspection/utility_bar", locals: {document: document} %>
+    <%= render partial: "public_inspection_documents/utility_bar", locals: {document: document} %>
 
     <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
       <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
 
-      <div id="fulltext_content_area">
+      <div id="fulltext_content_area" class="doc-content-area">
+        <div class="content-wrap-enforcement"></div>
+
         <% if document.editorial_note.present? %>
           <p class="editorial_note">
             Editorial Note: <%= document.editorial_note %>
@@ -30,18 +32,18 @@
           </p>
 
           <p class="pi_notice">
-          Although we make a concerted effort to reproduce the original document
-          in full on our Public Inspection pages, in some cases graphics may not
-          be displayed, and non-substantive markup language may appear alongside
-          substantive text. If you are using public inspection listings for legal
-          research, you should verify the contents of documents against a final,
-          official edition of the Federal Register.
-          <strong>
-            Only official editions of the Federal Register provide legal
-            notice to the public and judicial notice to the courts under
-            <a href="">44 U.S.C. 1507</a>.
-          </strong>
-          Learn more <%= link_to 'here', public_inspection_learn_path %>.
+            Although we make a concerted effort to reproduce the original document
+            in full on our Public Inspection pages, in some cases graphics may not
+            be displayed, and non-substantive markup language may appear alongside
+            substantive text. If you are using public inspection listings for legal
+            research, you should verify the contents of documents against a final,
+            official edition of the Federal Register.
+            <strong>
+              Only official editions of the Federal Register provide legal
+              notice to the public and judicial notice to the courts under
+              <a href="">44 U.S.C. 1507</a>.
+            </strong>
+            Learn more <%= link_to 'here', public_inspection_learn_path %>.
           </p>
         <% end %>
       </div> <!-- end fulltext_content_area area -->

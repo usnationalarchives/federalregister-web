@@ -1,4 +1,4 @@
-<div id="metadata_content_area">
+<div id="metadata_content_area" class="metadata-content-area">
   <h1><%= document.title %></h1>
 
   <div class="metadata_share_bar">
@@ -17,13 +17,4 @@
       <% end %>
     </p>
   </div>
-
-  <%#= render( partial: "formal_comment_bar",
-              locals: {document: document,
-                       docket_info: document.regulations_dot_gov_info}) if document.accepting_comments? %>
-
-  <%#= render partial: "corrections", locals: {document: document} if document.corrections? %>
-
-  <%#= render( partial: "missing_full_text",
-              locals: {document: document}) unless document.has_full_text? %>
 </div>
