@@ -94,6 +94,7 @@ module MyFr2
       search.png
       search.svg
 
+      regulations_dot_gov_logo.png
       regulations_dot_gov_logo_sidebar.png
     )
 
