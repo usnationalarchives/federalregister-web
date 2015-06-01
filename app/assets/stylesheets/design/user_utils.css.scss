@@ -4,7 +4,8 @@
   width: 960px;
   height: 22px;
   padding: 5px 10px 0 0;
-  
+  font-size: modular-scale(-1);
+
   #document-count-holder {
     display: inline-block;
     margin-right: 30px;
@@ -27,13 +28,13 @@
     a#document-in-folders-count { margin-left: 10px; }
 
     a#document-count:hover,
-    a#document-in-folders-count:hover { 
-      color: #B88659; 
+    a#document-in-folders-count:hover {
+      color: #B88659;
     }
 
     a#document-count span,
-    a#document-in-folders-count span { 
-      display: inline-block; 
+    a#document-in-folders-count span {
+      display: inline-block;
     }
   }
 
