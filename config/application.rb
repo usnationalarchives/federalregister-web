@@ -93,6 +93,8 @@ module MyFr2
 
       search.png
       search.svg
+
+      regulations_dot_gov_logo_sidebar.png
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
