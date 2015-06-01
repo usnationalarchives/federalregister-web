@@ -3,18 +3,18 @@ class DocumentsController < ApplicationController
 
   def show
     cache_for 1.day
-#binding.pry
-    #begin
-      #@document = FederalRegister::Document.find(params[:document_number])
 
-      #@document = DocumentDecorator.decorate(@document)
-      #render
-    #rescue FederalRegister::Client::RecordNotFound
+    begin
+      @document = FederalRegister::Document.find(params[:document_number])
+
+      @document = DocumentDecorator.decorate(@document)
+      render
+    rescue FederalRegister::Client::RecordNotFound
       @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
 
       @document = PublicInspectionDocumentDecorator.decorate(@document)
       render template: 'public_inspection_documents/show'
-    #end
+    end
   end
 
   def tiny_url
