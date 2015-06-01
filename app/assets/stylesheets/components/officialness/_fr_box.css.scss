@@ -98,6 +98,11 @@ Styleguide 1.1 FR Boxes
 
       &:last-child { padding-bottom: 0; }
     }
+
+    a {
+      color: $fr-link-dark;
+      &:hover {color: $fr-orange; }
+    }
   }
 
   // Establishes the color scheme for boxes that have header/footer blocks
