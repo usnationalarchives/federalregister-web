@@ -1,5 +1,5 @@
 .fr-list {
-  font-size: 14px;
+  font-size: modular-scale(0);
   list-style-type: none;
   overflow: hidden;
   li a.active {
@@ -51,7 +51,7 @@
       margin: 0;
       color: $fr-gray-40;
       font-weight: normal;
-      font-size: 13px;
+      font-size: modular-scale(-1);
       line-height: 17px;
     }
 
@@ -67,7 +67,7 @@
     .fr-link {
       float: left;
       width: 90%;
-      font-size: 16px;
+      font-size: modular-scale(0);
     }
 
     ul.fr-link-stats {
@@ -94,7 +94,7 @@
       }
 
       span {
-        font-size: 15px;
+        font-size: modular-scale(0);
       }
     }
   }

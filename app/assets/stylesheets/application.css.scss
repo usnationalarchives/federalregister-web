@@ -8,12 +8,6 @@
 // mixins/colors/other library items
 @import "essential";
 
-// Font sizes based on ratios
-$em-base: 16px;
-@import 'bourbon/modular-scale';
-@import 'application_fonts';
-
-@import 'application_colors';
 
 // scope bootstrap styles
 .bootstrap-scope {
@@ -67,4 +61,4 @@ $em-base: 16px;
 @import "design/utility_bar";
 @import "design/issues/document_issue";
 @import "design/calendar";
-@import "old/**"; 
+@import "old/**";

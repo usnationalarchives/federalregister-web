@@ -1,4 +1,12 @@
 @import "mixins/**";
 @import "library/_colors";
 @import "library/_official_colors";
+
+// Font sizes based on ratios
+$em-base: 16px;
+@import 'bourbon/modular-scale';
+@import 'application_fonts';
+
+@import 'application_colors';
+
 @import "library/**";
