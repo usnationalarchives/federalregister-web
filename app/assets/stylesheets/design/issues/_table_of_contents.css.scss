@@ -82,12 +82,13 @@
     .doc-background {
       @extend %toc-doc-background;
       top: 5px;
+      left: 125px;
     }
   }
   .fr-box-public-inspection .content-block {
     .doc-background {
       @extend %toc-doc-background;
-      left: 150px;
+      left: 180px;
       font-size: 375px;
     }
   }
