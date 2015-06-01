@@ -9,7 +9,7 @@ class TableOfContentsSpecialFilingsPresenter < TableOfContentsPresenter
   end
 
   def document_partial
-    'public_inspection_document_issues/document_details.html.erb'
+    'public_inspection_document_issues/document_details'
   end
 
   def documents
