@@ -1,6 +1,12 @@
 <% page_title @document.title %>
-<% meta_description truncate_words(strip_tags(@document.abstract), :length => 300) %>
-<% open_graph_metadata(type: "article", published_time: @document.publication_date.to_s(:iso) %>
+<% meta_description truncate_words(
+    strip_tags(@document.abstract),
+    :length => 300
+  ) %>
+<% open_graph_metadata(
+    type: "article",
+    published_time: @document.publication_date.to_s(:iso)
+  ) %>
 <%= add_handlebars_template('interstitial_tender_modal', 'interstitial-tender-modal') %>
 
 <div class="title"><span><%= @document.type %></span></div>
@@ -26,4 +32,3 @@
 <!-- BOOTSTRAP SCOPE END -->
 </div>
 <!-- BOOTSTRAP SCOPE END -->
-
