@@ -1,0 +1,41 @@
+  <h3 class="title-bar-documents"> Browse The Last Five Days </h3>
+  <div class="row">
+
+    <div class="col-xs-2">
+      <ul class="list-unstyled">
+        <% last_five_days_docs.each do |date,results| %>
+          <li class="text-center">
+            <%= link_to(date, '#',class: "toggle",
+                  data: {:'toggle-target' => "#documents_published_on_#{date}"})%>
+          </li>
+        <% end %>
+        <li>
+          <%= fr_icon('Search') %>
+          <%= link_to("Search to see older documents.",
+                documents_search_path(conditions: search_conditions)) %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-10">
+      <ul class="list-unstyled">
+        <% last_five_days_docs.each do |date,docs| %>
+          <div class="row" id="documents_published_on_<%= date %>">
+            <% docs.in_groups_of(2).each do |two_item_row|%>
+              <div class="row">
+              <% two_item_row.compact.each do |doc| %>
+                <li class="col-xs-6">
+                  <h5 class="example-doc"><%= link_to(truncate_words(doc.title, :length => 280),
+                    doc.html_url, ) %>
+                  </h5>
+                  <%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %>
+                </li>
+              <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>

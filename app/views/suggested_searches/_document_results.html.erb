@@ -1,18 +1,20 @@
 <ul id='suggested-search-list'>
   <% documents.each do |doc| %>
     <li>
-    <h3><%= document_type_icon(doc.type,nil) %></h3>
-    <div class="search_result_wrapper">
-      <h4><%= link_to(doc.title, doc.html_url) %></h4>
+      <h3><%= document_type_icon doc.type %></h3>
 
-      <div class="metadata">
-      <%= "#{doc.type.with_indefinite_article(true)} by the #{doc.agency_names} on #{link_to(doc.publication_date,'')}".html_safe %>  <!-- TODO: Date should point to by_date path -->
-      <%= link_to("PDF", doc.pdf_url) %>
+      <div class="search_result_wrapper">
+        <h4><%= link_to doc.title, doc.html_url %></h4>
+
+        <div class="metadata">
+          <%= document.agency_name_sentence %>
+          <%= link_to("PDF", doc.pdf_url) %>
+        </div>
+
+        <p class="result_info">
+          <%= truncate_words(doc.abstract, :length => 350) %>
+        </p>
       </div>
-      <p class="result_info">
-        <%= truncate_words(doc.abstract, :length => 350) %>
-      </p>
-    </div>
     </li>
   <% end %>
 </ul>

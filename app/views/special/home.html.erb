@@ -9,7 +9,7 @@
     <div class="container fixed">
       <%= esi issue_summary_path(path: 'home') %>
       <%= render partial: 'special/home/embedded_search' %>
-      <%= render partial: 'special/home/carousel' %>
+      <%= esi home_sections_path %>
 
       <div class="row">
         <%= render partial: 'special/home/popular_documents' %>

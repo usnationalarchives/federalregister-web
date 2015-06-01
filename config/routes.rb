@@ -200,6 +200,20 @@ MyFr2::Application.routes.draw do
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
 
+    esi.get 'esi/home/current_issue',
+      to: 'issues#summary',
+      as: :home_current_issue_summary
+
+    esi.get 'esi/home/sections',
+      to: 'sections#homepage',
+      as: :home_sections
+
+
+    # SUGGESTED SEARCHES
+    esi.get 'esi/suggested_searches/:slug',
+      to: 'suggested_searches#show',
+      as: :suggested_searches
+
 
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
@@ -388,6 +402,12 @@ MyFr2::Application.routes.draw do
 
     resource :comment_followup_document_notifications,
       :only => [:create, :destroy]
+
+    get 'sections/:id/significant.:format',
+      :controller => "agencies",
+      :action => "significant_entries",
+      :conditions => { :method => :get },
+      as: 'significant_entries_section'
 
     resources :subscriptions do
       member do

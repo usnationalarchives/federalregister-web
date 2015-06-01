@@ -3,7 +3,8 @@ class SuggestedSearchPresenter
   class InvalidSuggestedSearch < StandardError; end
 
   def initialize(slug)
-    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug) #TODO: Evaluate validation here.
+    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug)
+
     @suggested_search = SuggestedSearch.find(slug)
   end
 
@@ -36,8 +37,7 @@ class SuggestedSearchPresenter
   end
 
   def section_name
-    result = Section.search.find{|section|section.slug==suggested_search.section}
-    result.name if result.present?
+    Section.find_by_slug(suggested_search.section).try(:title)
   end
 
   def modal_description
@@ -72,11 +72,11 @@ class SuggestedSearchPresenter
   end
 
   private
+
   def raw_api_documents
     @api_documents ||= FederalRegister::Document.search(
       conditions: search_conditions,
       order: 'newest',
       per_page: 20)
   end
-
 end

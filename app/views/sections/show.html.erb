@@ -6,34 +6,46 @@
 <% end %>
 
 <div class="title">
-  <span><span class="<%= ("icon-fr2 icon-fr2-#{@presenter.icon_name}") %>"></span><%= @presenter.section_title %></span>
-  <%= link_to '', '', :class => 'subscription tipsy', :title => 'Subscribe by Email or RSS' %>
-  <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
+  <span>
+    <%= fr_icon(@presenter.icon_name) %>
+    <%= @presenter.section_title %>
+  </span>
 </div>
 
-<div class="bootstrap-scope">
-  <h3>
-    <span class="icon-fr2 icon-fr2-Search"></span>
+<div class="bootstrap-scope section-show-page"> <!-- bootstrap-scope -->
+  <h3 class="suggested-search-title-bar">
+    <%= fr_icon('Search') %>
     Suggested <%= @presenter.section_title %> Searches
   </h3>
 
   <div class="row">
     <ul class="list-unstyled">
-      <% @presenter.suggested_searches.first(4).in_groups_of(2).each do |two_item_row| %>
+      <% @presenter.suggested_searches.
+            first(4).
+            in_groups_of(2).
+            each do |two_item_row| %>
+
         <div class="row">
           <% two_item_row.compact.each do |suggested_search| %>
-            <li class="col-xs-6 suggested-search-height">
-              <h4><%= link_to(suggested_search.title, suggested_searches_path(suggested_search.slug) ) %></h4>
+            <li class="col-xs-6">
+              <h4 class="suggested-search">
+                <%= link_to(suggested_search.title,
+                      suggested_searches_path(suggested_search.slug) ) %>
+              </h4>
+
               <%= suggested_search.documents_in_last_year %> in the last year
               <%= truncate_words(suggested_search.description, length: 280).html_safe %>
+
               <%# suggested_search.search_conditions %>
-              <ul class="list-unstyled">
+
+              <ul class="list-unstyled ">
                 <% suggested_search.example_documents.first(2).each do |example_doc| %>
-                <li>
-                  <span class="icon-fr2 icon-fr2-document_open"></span>
-                  <%= link_to(truncate_words(example_doc.title, :length => 120),
-                    example_doc.html_url) %>
-                </li>
+                  <li class="suggested-search-bulleted">
+                    <span class="<%= DocumentType.new(example_doc.type).icon_class %>"></span>
+
+                    <%= link_to(truncate_words(example_doc.title, :length => 120),
+                      example_doc.html_url) %>
+                  </li>
                 <% end %>
               </ul>
             </li>
@@ -43,55 +55,31 @@
     </ul>
   </div>
 
-    <ul class="list-unstyled row">
-    <% @presenter.suggested_searches.drop(4).in_groups_of(3).each do |three_item_row|  %>
-      <div class="row">
-        <% three_item_row.compact.each do |suggested_search| %>
-          <li class="col-xs-4">
-            <h4>
-              <%= link_to(suggested_search.title,
-              documents_search_path(:conditions => suggested_search.search_conditions)) %>
-              </h4>
-              <%= suggested_search.documents_in_last_year %> in the last year
-          </li>
-        <% end %>
-        </div> <!-- row -->
-    <% end %>
-    </ul>
+  <% @presenter.
+        suggested_searches.
+        drop(4).
+        in_groups_of(3).
+        each do |three_item_row| %>
 
-  <h3> Browse The Last Five Days </h3>
-  <div class="row">
-    <div class="col-xs-2">
-      <ul class="list-unstyled">
-        <% @presenter.last_five_days_hash.each do |date,results| %>
-          <li><%= link_to(date, '')%></li>
-        <% end %>
-        <li>
-          <span class="icon-fr2 icon-fr2-Search"></span>
-          <%= link_to("Search to see older documents.", documents_search_path) %>
-        </li>
-      </ul>
+    <div class="row">
+      <% three_item_row.compact.each do |suggested_search| %>
+        <div class="col-xs-4">
+          <h4 class="suggested-search">
+            <%= link_to suggested_search.title,
+              documents_search_path(
+                :conditions => suggested_search.search_conditions
+              ) %>
+          </h4>
+
+          <%= suggested_search.documents_in_last_year %> in the last year
+        </div>
+      <% end %>
     </div>
+  <% end %>
 
-    <div class="col-xs-10">
-      <ul class="list-unstyled row">
-        <% @presenter.last_five_days_hash.each do |date,docs| %>
-          <div class="row documents_published_on_<%= date %>"> <!-- hidden class can be added -->
-            <% docs.in_groups_of(2).each do |two_item_row|%>
-              <div class="row">
-              <% two_item_row.compact.each do |doc| %>
-                <li class="col-xs-6">
-                  <h5><%= link_to(truncate_words(doc.title, :length => 280), doc.html_url) %></h5>
-                  <%= "#{doc.type.with_indefinite_article(true)} by #{doc.agency_names}".html_safe %>
-                </li>
-              <% end %>
-              </div> <!-- row -->
-            <% end %>
-          </div> <!-- row documents_published_on -->
-        <% end %>
-      </ul>
-
-    </div>
-  </div>
-
+  <%= render partial: 'documents_by_day',
+    locals: {
+      last_five_days_docs: @presenter.last_five_days_docs,
+      search_conditions: @presenter.search_conditions
+    } %>
 </div> <!-- bootstrap-scope -->

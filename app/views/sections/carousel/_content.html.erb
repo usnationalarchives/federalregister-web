@@ -1,4 +1,4 @@
-<div id="home-carousel-content-<%= section_name %>" class="nav-content <%= 'selected' if section_name == :environment %>">
+<div id="home-carousel-content-<%= slug %>" class="nav-content <%= 'selected' if section_name == "Environment" %>">
   <div class="row">
 
     <div class="col-xs-7 col-md-7 carousel-wrapper">
@@ -24,18 +24,21 @@
       <h4 class="with-icon lowercase">
         <span class="icon-fr2 icon-fr2-<%= icon_class %>"></span>
         Suggested Searches
+        <%= link_to "view all", section_path(slug), class: "more-details" %>
         <a href="" class="more-details">view all</a>
       </h4>
 
       <ul class="fr-list with-stats">
-        <% canned_searches.each do |search| %>
+        <% canned_searches.first(5).each do |search| %>
           <li>
-            <a href=""><%= search[0] %></a>
+            <%= link_to(search.title, suggested_searches_path(search.slug)) %>
             <ul>
-              <li><%= pluralize(search[1], 'document') %> in the last year</li>
+              <li><%= pluralize(search.documents_in_last_year, 'document') %>
+                      in the last year</li>
               <li>
                 <i class="icon-fr2-Chat"></i>
-                <%= search[2] %> open for comment
+                <%= search.documents_with_open_comment_periods %>
+                    open for comment
               </li>
             </ul>
           </li>
