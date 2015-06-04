@@ -28,7 +28,15 @@
 
 @import "fonts.scss";
 
-@import "components/*";
+
+@import "components/buttons";
+@import "components/doc_type_icon_colors";
+@import "components/modal";
+@import "components/embedded_search";
+@import "components/modals";
+@import "components/email_helpers";
+@import "components/carousel";
+
 
 @import "design/patterns.css.scss";
 
