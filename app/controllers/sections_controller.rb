@@ -23,7 +23,10 @@ class SectionsController < ApplicationController
   end
 
   def homepage
-    @date = DocumentIssue.current.publication_date
+    @presenters = Section.all.map do |section|
+      SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
+    end
+
     render layout: false
   end
 

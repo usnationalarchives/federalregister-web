@@ -1,0 +1,5 @@
+$(document).ready ()->
+  new HomeSectionPreviewManager('.home-section-preview')
+
+  _.each $('.carousel-home .carousel-wrapper'), (carouselWrapper)->
+    new CarouselScroller(carouselWrapper)

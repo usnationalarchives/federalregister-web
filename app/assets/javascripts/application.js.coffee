@@ -32,7 +32,10 @@
 #= require document_page
 #= require public_inspection
 #= require utility_bar
-#= require home_carousel
+
+# Homepage
+#= require home/home_section_preview_manager
+#= require home/sections
 
 #= require old/agency_list
 #= require old/search

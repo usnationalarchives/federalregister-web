@@ -1,5 +1,5 @@
-<div id='carousel_wrapper' class="carousel_wrapper <%= html_options[:wrapper_class] %>">
-  <div id='carousel_scroller'>
+<div id="<%= html_options[:wrapper_id] %>" class="carousel-wrapper <%= html_options[:wrapper_class] %>">
+  <div class='carousel-scroller'>
     <ul>
       <% highlights.each do |highlight| %>
         <% next unless highlight.photo.present? %>
@@ -7,15 +7,14 @@
           d.document_number == highlight.document_number
         }.first %>
         <li>
-          <div class='carousel_rounded_box'>
-            <div class='text_wrapper'>
+          <div class='carousel-rounded-box'>
+            <div class='text-wrapper'>
               <h2>
+                <%= simple_document_type_icon document.type %>
                 <%= link_to highlight.curated_title, highlight.html_url %>
               </h2>
               <p class="metadata" >
-                <%= document.type.with_indefinite_article(true) %>
-                by
-                <%= document.agency_name_sentence %>
+                by <%= document.agency_name_sentence %>
                 on
                 <%= link_to date_tag(
                     document.publication_date,
@@ -25,11 +24,13 @@
                 %>
               </p>
 
-              <p class="summary">
-                <%= truncate_words(highlight.curated_abstract, :length => 500) %>
-              </p>
+              <% if description == "inside" %>
+                <p class="summary">
+                  <%= truncate_words(highlight.curated_abstract.strip, length: 500) %>
+                </p>
+              <% end %>
             </div>
-            <div class='bg'></div>
+            <div class='text-wrapper-bg'></div>
 
             <% if highlight.photo['credit'].present? %>
               <div class='attribution'>
@@ -37,25 +38,33 @@
                 <%= link_to highlight.photo['credit']['name'],
                   highlight.photo['credit']['url'] %>
               </div>
-              <div class='attribution bg'></div>
+              <div class='attribution-bg'></div>
             <% end %>
 
             <%= image_tag highlight.photo['urls'][image_size] %>
           </div>
+
+          <% if description == "outside" %>
+            <p class="summary">
+              <%= truncate_words(highlight.curated_abstract.strip, length: 265) %>
+            </p>
+          <% end %>
         </li>
       <% end %>
     </ul>
-  </div> <!-- carousel_scroller -->
+  </div> <!-- carousel-scroller -->
 
-  <div id="carousel-nav">
-    <div id="prev">&larr;</div>
-    <ul id="indicator">
+  <div class="carousel-nav">
+    <div class="prev"><%= fr_icon 'menu_arrow' %></div>
+    <ul class="indicator">
       <% highlights.each_with_index do |highlight, index| %>
-        <li class="<%= index == 0 ? 'active' : '' %>"><%= index + 1 %></li>
+        <li class="<%= index == 0 ? 'active' : '' %>"
+          data-carousel-page=<%= index %>>
+        </li>
       <% end %>
     </ul>
-    <div id="next">&rarr;</div>
+    <div class="next"><%= fr_icon 'menu_arrow' %></div>
   </div>
-  <div id="carousel-nav-bg"></div>
+  <!--<div class="carousel-nav-bg"></div>-->
 
 </div> <!-- carousel_wrapper -->

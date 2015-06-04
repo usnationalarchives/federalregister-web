@@ -1,46 +1,20 @@
-@mixin carousel($width, $height, $item_count, $embed_width) {
+@mixin carousel($width, $aspect_ratio, $item_count, $embed_width, $embed_height: undefined) {
+  $height: $width / $aspect_ratio;
+
   .carousel-wrapper {
-    width: $width + 'px';
-    height: $height + 'px';
+    width: unquote($width + 'px');
+    height: if(embed_height == undefined, unquote($height + 'px'), unquote($embed_height + 'px'));
     position: relative;  /* On older OS versions "position" and "z-index" must be defined, */
     z-index: 1;          /* it seems that recent webkit is less picky and works anyway. */
     overflow: hidden;
 
     background: $white;
-    @include border-radius(10);
 
-
-    &.carousel-wrapper-large {
-      margin: 0 65px;
-      margin-bottom: 20px;
-    }
-
-    &.carousel-wrapper-home {
-      margin: 0 35px;
-      margin-bottom: 20px;
-    }
-
-
-    .carousel_scroller {
-      width: ($item_count * $embed_width) + 'px';
+    .carousel-scroller {
+      width: unquote( ($item_count * $embed_width) + 'px');
       height: 100%;
       float: left;
       padding: 0;
-
-      .carousel_rounded_box {
-        width: $width;
-        height: $height;
-        background: $white;
-        @include border-radius(18);
-        overflow: hidden;
-      }
-
-      .text_wrapper {
-        position: absolute;
-        width: 60%;
-        z-index: 1000;
-        padding: 10px;
-      }
 
       ul {
         list-style: none;
@@ -57,177 +31,255 @@
         box-sizing: border-box;
         display: block;
         float: left;
-        width: $width;
-        height: $height;
+        width: unquote($width + 'px');
+        height: if(embed_height == undefined, unquote($height + 'px'), unquote($embed_height + 'px'));
         position:relative;
+      }
+    }
+
+    .carousel-rounded-box {
+      width: unquote($width + 'px');
+      height: unquote($height + 'px');
+      background: $white;
+      border-radius: 9px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: unquote($width + 'px');
+        height: unquote($height + 'px');
+      }
+
+      .text-wrapper {
+        position: absolute;
+        width: 60%;
+        z-index: 1000;
+        padding: 10px;
 
         h2 {
-          font-size: 1.5em;
+          font-size: modular-scale(2);
           font-weight: normal;
-          line-height: 1em;
+          line-height: 1;
           padding: 0;
           margin: 0;
-          z-index: 1000;
+
+          .icon-fr2 {
+            font-size: 40px;
+            float: left;
+            display: inline-block;
+            margin-right: 10px;
+            height: 100%;
+            color: #5797CE;
+          }
 
           a {
+            display: inline-block;
+            width: 85%;
+
             color: $white;
-            &:hover { color: $fr-link; }
+            &:hover { color: $fr-nav-orange; }
           }
         }
 
-        div.bg {
-          position: absolute;
-          background: $black;
-          opacity: 0.6;
-          padding: 10px;
-          width: 500px;
-          height: 180px;
+        p {
+          color: white;
+          padding: 0;
+          margin: 0;
+
+          &.metadata {
+            font-size: modular-scale(-1);
+            line-height: 1.3;
+            margin: 10px 0 10px 50px;
+
+            a {
+              color: $white;
+              &:hover { color: $fr-nav-orange; }
+            }
+          }
+
+          &.summary {
+            font-size: modular-scale(0);
+            margin-bottom: 15px;
+          }
+
+          &.comments_close {
+            top: 285px;
+            padding: 0;
+            margin: 0;
+            font-size: modular-scale(0);
+            padding-left: 25px;
+            margin-top: 5px;
+          }
         }
       }
+
+      .text-wrapper-bg {
+        position: absolute;
+        background: $black;
+        opacity: 0.6;
+        width: 100px;
+        height: 100px;
+        border-bottom-right-radius: 3px;
+      }
+    }
+
+    /* outside of the rounded box - home page usage */
+    p.summary {
+      background-color: $fr-gray-5;
+      font-size: modular-scale(-1);
+      line-height: 1.4;
+      margin: 25px 0 0 0;
+      padding: 0 5px;
+    }
+  }
+
+  .carousel-nav {
+    position: absolute;
+    width: 125px;
+    z-index: 1000;
+    top: 264px;
+    left: 164px;
+
+    .prev,
+    .next {
+      font-weight: bold;
+      font-size: modular-scale(0);
+      padding: 0;
+      width: 25px;
+      position: relative;
+      cursor: pointer;
+      color: $fr-gray-40;
+
+      &:hover { color: $fr-nav-orange; }
+    }
+
+    .prev {
+      float: left;
+      transform: rotate(90deg);
+      top: -4px;
+    }
+
+    .next {
+      float: right;
+      transform: rotate(-90deg);
+      top: -13px;
+    }
+
+    .indicator,
+    .indicator > li {
+      display: block;
+      float: left;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .indicator > li {
+      width: 9px;
+      height: 9px;
+      border-radius: 0px;
+      background: $fr-gray-40;
+      overflow: hidden;
+      margin-right: 4px;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background: $fr-nav-orange;
+      }
+
+      &:last-child { margin: 0; }
+    }
+  }
+
+  .carousel-nav-bg {
+    position: absolute;
+    background: $black;
+    opacity: 0.6;
+    z-index:999;
+    top: 332px;
+    height: 18px;
+    width: 250px;
+    left: 275px;
+    border-radius: 9px 9px 0 0;
+  }
+}
+
+
+
+.carousel-large {
+  @include carousel(800, 1.77, 6, 960);
+
+  .carousel-wrapper {
+    margin: 0 65px;
+    margin-bottom: 20px;
+  }
+}
+
+.carousel-home {
+  @include carousel(450, 1.77, 6, 500, 360);
+
+  .carousel-wrapper {
+    margin: 10px 35px 20px;
+    background: $fr-gray-5;
+
+    .carousel-scroller .text-wrapper {
+      width: 90%;
+
+      h2 { font-size: modular-scale(2); }
     }
   }
 }
 
-.carousel-wrapper {
-  &.carousel-wrapper-large {
-    @include carousel(800, 350, 5, 960);
-  }
+.carousel-nav {
+  @include carousel(393, 1.77, 1, 470);
 
-  &.carousel-wrapper-home {
-    @include carousel(382, 200, 5, 400);
-  }
-
-  &.carousel-wrapper-nav {
-    @include carousel(400, 175, 1, 470);
+  .carousel-wrapper {
+    margin: 0 35px;
+    margin-bottom: 20px;
   }
 }
 
 
-
-#carousel_scroller p {
-  color:white;
-  padding: 0;
-  margin: 0;
-  z-index: 1000;
-  }
-#carousel_scroller p.metadata {
-  font-size: 1.2em;
-  font-family: Georgia, serif;
-  margin-bottom: 10px;
-  }
-#carousel_scroller p.metadata a {
-  color: $fr-link;
-  }
-#carousel_scroller p.summary {
-  font-family: "athelas-1","athelas-2", "Georgia", serif;
-  font-size: 1.1em;
-  margin-bottom: 15px;
-  }
-#carousel_scroller div.summary_bg {
-  top: 200px;
-  height: 132px;
-  width: 60%;
-  }
-#carousel_scroller p.comments_close {
-  top: 285px;
-  padding: 0;
-  margin: 0;
-  font-size: 1.1em;
-  padding-left: 25px;
-  margin-top: 5px;
+.carousel-scroller {
+  div.summary_bg {
+    top: 200px;
+    height: 132px;
+    width: 60%;
   }
 
-#carousel_scroller li div.attribution {
-  position: absolute;
-  right: 0px;
-  top: 15px;
-  z-index: 1000;
-  color: #babbcc;
+  .attribution {
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    z-index: 1000;
+    padding-left: 10px;
+    font-size: modular-scale(-1);
+    color: $fr-gray-30;
+
+    a {
+      color: $fr-gray-30;
+      z-index: 1000;
+      padding-right: 5px;
+
+      &:hover {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .attribution-bg {
+    position: absolute;
+    background: $black;
+    opacity: 0.6;
+    padding: 10px 10px 9px 0;
+    width: 170px;
+    height: 10px;
+    right: 0px;
+    bottom: 10px;
+    z-index: 25;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
 }
-#carousel_scroller li div.attribution a {
-  color: $fr-gray-30;
-  z-index: 1000;
-  padding-right: 10px;
-}
-#carousel_scroller li div.attribution a:hover {
-  color: white;
-  text-decoration: underline;
-  }
-
-#carousel_scroller li div.attribution.bg {
-  position: absolute;
-  background: $black;
-  opacity: 0.6;
-  padding: 10px 10px 9px 0;
-  width: 170px;
-  height: 10px;
-  right: 0px;
-  top: 16px;
-  z-index: 25;
-  }
-
-#carousel-nav-bg {
-  position: absolute;
-  background: $black;
-  opacity: 0.6;
-  z-index:999;
-  top: 332px;
-  height: 18px;
-  width: 250px;
-  left: 275px;
-  border-radius: 18px 18px 0 0;
-  }
-
-#carousel-nav {
-  position: absolute;
-  width: 175px;
-  z-index: 1000;
-  top: 325px;
-  left: 326px;
-  }
-
-#prev, #next {
-  float: left;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0;
-  width: 42px;
-  cursor: pointer;
-  color: $white;
-  }
-
-#next {
-  float: right;
-  padding-left: 5px;
-  }
-
-#indicator, #indicator > li {
-  display: block;
-  float: left;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  }
-
-#indicator {
-  width:75px;
-  padding:12px 0 0 0;
-  }
-
-#indicator > li {
-  text-indent: -9999em;
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background: #ddd;
-  overflow: hidden;
-  margin-right: 4px;
-  }
-
-#indicator > li.active {
-  background: #888;
-  }
-
-#indicator > li:last-child {
-  margin: 0;
-  }

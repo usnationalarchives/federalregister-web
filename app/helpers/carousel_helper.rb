@@ -19,7 +19,8 @@ module CarouselHelper
         Array(documents)
       ),
       html_options: options.fetch(:html_options){ {} },
-      image_size: options.fetch(:image_size){ "large" }
+      image_size: options.fetch(:image_size){ "large" },
+      description: options.fetch(:description){ 'inside' }
     }
   end
 end

@@ -83,109 +83,84 @@
 }
 
 
-.nav-home-carousel {
+.home-section-preview {
   @include border-radius(3);
   background-color: $fr-gray-5;
   overflow: hidden;
-  height: 373px;
-
-  .nav-wrapper { padding-left: 0; }
+  height: 374px;
 
   ul {
-    margin: 0;
-    padding-right: 0 !important;
-
-    &.nav {
-      border-right: 2px solid $fr-gray-10;
-
-      li {
-        &:hover,
-        &.hover,
-        &.selected {
-          color: $white;
-          background-color: $fr-nav-orange;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  li {
-    position: relative;
-    color: #999;
-    padding: 20px 0px 20px 55px;
-    font-weight: bold;
     list-style-type: none;
-    font-size: 16px;
-    line-height: 19px;
-
-    span {
-      position: absolute !important;
-      left: 14px;
-      font-size: 30px;
-      vertical-align: middle;
-      margin-top: -6px;
-
-      &.icon-fr2-Medicine { margin-top: 3px; }
-    }
+    margin: 0;
   }
+}
 
-  .nav-content {
-    display: none;
+.home-section-preview {
+  .home-section-preview-nav {
+    padding: 0;
+    border-right: 1px solid $fr-gray-20;
 
-    &.selected { display: block; }
+    li {
+      color: $fr-gray-40;
+      padding: 12px 7px;
+      font-weight: 500;
+      font-size: modular-scale(0);
+      border-bottom: 1px solid $fr-gray-20;
 
-    .carousel-wrapper { padding: 15px 29px 0 20px; }
+      &:last-child { border-bottom: none; }
 
-    .carousel-indicators {
-      display: table;
-      margin: 0 auto;
-      margin-top: 10px;
-
-      li {
-        @include border-radius(20px);
-        @include square(12px);
-        padding: 0;
-        background-color: $fr-gray-20;
-        display: inline-block;
-        float: left;
-        margin: 0 4px;
+      &:hover,
+      &.hover,
+      &.selected {
+        color: $white;
+        background-color: $fr-nav-orange;
         cursor: pointer;
-
-        &.active { background: $fr-nav-orange; }
-      }
-    }
-
-    .carousel-item {
-      img {
-        @include border-radius(10);
-        width: 375px;
-        height: 200px;
       }
 
-      p {
-        margin-top: 8px;
-        font-size: 14px;
-        margin-top: 8px;
-        line-height: 17px;
-      }
-    }
+      .icon-fr2 {
+        display: inline-block;
+        font-size: 30px;
 
-    .carousel-list {
-      h4.with-icon.lowercase .icon-fr2 {
-        margin-left: -36px;
-        margin-right: 3px;
+        &.icon-fr2-Coins-dollaralt { top: 2px; }
       }
 
-      i.icon-fr2-Chat { color: $color-enhanced; }
+      .section-title {
+        top: -5px;
+        line-height: 1.2;
+        position: relative;
+        display: inline-block;
+        width: 110px;
+      }
+
+      &.wrap {
+        .icon-fr2 { top: -2px; }
+        .section-title { top: 1px; }
+      }
     }
   }
 }
 
-.bootstrap-scope {
-  .nav-content .row .section.carousel-list {
+.home-section-preview {
+  .home-section-preview-content {
+    display: none;
+
+    &.selected { display: block; }
+  }
+
+  .home-section-preview-carousel {
+    padding: 0;
+    padding-right: 20px;
+  }
+
+  .home-section-preview-suggested-searches {
     margin-top: 5px;
-    padding-left: 31px;
+
+    h4.with-icon.lowercase .icon-fr2 {
+      margin-left: -36px;
+      margin-right: 3px;
+    }
+
+    .icon-fr2-Chat { color: $color-enhanced; }
   }
 }
 

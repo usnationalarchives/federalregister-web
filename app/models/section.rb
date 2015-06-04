@@ -20,19 +20,19 @@ class Section < ActiveHash::Base
     },
     {
       id: 4,
-      title: 'Science and Technology',
+      title: 'Science & Technology',
       slug: 'science-and-technology',
       icon: 'Lab'
     },
     {
       id: 5,
-      title: 'Business and Industry',
+      title: 'Business & Industry',
       slug: 'business-and-industry',
       icon: 'Factory'
     },
     {
       id: 6,
-      title: 'Health and Public Welfare',
+      title: 'Health & Public Welfare',
       slug: 'health-and-public-welfare',
       icon: 'Medicine'
     },

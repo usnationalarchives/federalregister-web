@@ -28,3 +28,6 @@
 
 # BETTER SELECT MULTIPLE PLUGIN
 #= require jquery.bsmselect
+
+# CAROUSEL
+#= require iscroll

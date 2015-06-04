@@ -1,9 +1,12 @@
-<ul class="nav">
-  <% sections.each do |section| %>
-    <li class="<%= 'selected' if section.slug == "environment" %>"
-        data-toggle-target="#home-carousel-content-<%= section.slug %>">
-      <span class="icon-fr2-<%= section.icon %>"></span>
-      <%= section.title %>
+<ul>
+  <% Section.all.each do |section| %>
+    <li class="<%= section.title.length > 12 ? 'wrap' : '' %>"
+        data-section="<%= section.slug %>"
+        data-toggle-target="#home-section-preview-content-<%= section.slug %>">
+      <%= fr_icon section.icon %>
+      <span class="section-title">
+        <%= section.title %>
+      </span>
     </li>
   <% end %>
 </ul>

@@ -10,6 +10,6 @@ module DocumentDecorator::Agencies
       agencies = document.agency_names.map
     end
 
-    agencies.present? ? agencies.to_sentence : ''
+    agencies.present? ? agencies.to_sentence.html_safe : ''
   end
 end
