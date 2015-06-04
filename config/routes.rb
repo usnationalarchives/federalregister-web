@@ -387,11 +387,11 @@ MyFr2::Application.routes.draw do
       end
     end
 
-    get 'articles/:document_number/comments/new' => 'comments#new',
+    get 'documents/:document_number/comments/new' => 'comments#new',
      :as => :new_comment
-    post 'articles/:document_number/comments/reload' => 'comments#reload',
+    post 'documents/:document_number/comments/reload' => 'comments#reload',
      :as => :reload_comment
-    post 'articles/:document_number/comments' => 'comments#create',
+    post 'documents/:document_number/comments' => 'comments#create',
      :as => :comment
 
     resources :comment_attachments,
@@ -414,36 +414,11 @@ MyFr2::Application.routes.draw do
         get :unsubscribe
         get :confirm
       end
-      match 'articles/:document_number/comments/new' => 'comments#new',
-       :as => :new_comment,
-       :via => :get
-      match 'articles/:document_number/comments/reload' => 'comments#reload',
-       :as => :reload_comment,
-       :via => :post
-      match 'articles/:document_number/comments' => 'comments#create',
-       :as => :comment,
-       :via => :post
 
-      resources :comment_attachments,
-        :only => [:create, :destroy]
-
-      resource :comment_publication_notifications,
-        :only => [:create, :destroy]
-
-      resource :comment_followup_document_notifications,
-        :only => [:create, :destroy]
-
-      resources :subscriptions do
-        member do
-          get :unsubscribe
-          get :confirm
-        end
-
-        collection do
-          get :confirmation_sent
-          get :confirmed
-          get :unsubscribed
-        end
+      collection do
+        get :confirmation_sent
+        get :confirmed
+        get :unsubscribed
       end
     end
   end
