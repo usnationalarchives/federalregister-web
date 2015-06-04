@@ -149,6 +149,7 @@
       position: relative;
       cursor: pointer;
       color: $fr-gray-40;
+      background: none;
 
       &:hover { color: $fr-nav-orange; }
     }
