@@ -450,38 +450,7 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
   }
 }
 
-
-/**************************************
-
-SECTION SUGGESTED SEARCHES
-
-**************************************/
-#navigation .preview {
-  .suggested_searches {
-    margin-left: 10px;
-    margin-bottom: 10px;
-    height: 100px;
-  }
-
-  .row { margin-bottom: 10px; }
-
-  .suggested_search {
-    float: left;
-    width: 190px;
-
-    h1 {
-      line-height: 10px;
-      width: auto;
-    }
-
-    a {
-      color: $fr-link-dark;
-      padding: 0;
-      font-size: 12px;
-      line-height: 16px;
-    }
-  }
-}
+@import 'navigation/sections';
 
 
 /**************************************
@@ -562,47 +531,6 @@ SECTION SUGGESTED SEARCHES
   p.summary { display: none; }
 }
 
-
-/**************************************
-
-SECTION DAILY STATS
-
-**************************************/
-#navigation .preview .daily_stats {
-  border-top: 1px solid #EEE;
-  font-weight: bold;
-  color: #C3C3C3;
-  margin-bottom: 3px;
-
-  li {
-    padding-top: 5px;
-    width: 200px;
-    display: inline-block;
-    height: 25px;
-  }
-
-  a {
-    font-weight: bold;
-    color: #C3C3C3;
-  }
-
-  .count {
-    top: -3px;
-    position: relative;
-    padding-right: 5px;
-    width: 40px;
-    font-size: 23px;
-    text-align: right;
-  }
-
-  .details {
-    line-height: 11px;
-    display: inline-block;
-    width: 114px;
-    font-size: 10px;
-    text-transform: uppercase;
-  }
-}
 
 /**********************************************
 

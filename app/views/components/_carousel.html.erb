@@ -54,17 +54,18 @@
     </ul>
   </div> <!-- carousel-scroller -->
 
-  <div class="carousel-nav">
-    <div class="prev"><%= fr_icon 'menu_arrow' %></div>
-    <ul class="indicator">
-      <% highlights.each_with_index do |highlight, index| %>
-        <li class="<%= index == 0 ? 'active' : '' %>"
-          data-carousel-page=<%= index %>>
-        </li>
-      <% end %>
-    </ul>
-    <div class="next"><%= fr_icon 'menu_arrow' %></div>
-  </div>
-  <!--<div class="carousel-nav-bg"></div>-->
+  <% if highlights.count > 1 %>
+    <div class="carousel-nav">
+      <div class="prev"><%= fr_icon 'menu_arrow' %></div>
+      <ul class="indicator">
+        <% highlights.each_with_index do |highlight, index| %>
+          <li class="<%= index == 0 ? 'active' : '' %>"
+            data-carousel-page=<%= index %>>
+          </li>
+        <% end %>
+      </ul>
+      <div class="next"><%= fr_icon 'menu_arrow' %></div>
+    </div>
+  <% end %>
 
 </div> <!-- carousel_wrapper -->

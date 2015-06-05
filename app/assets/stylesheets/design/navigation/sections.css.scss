@@ -1,0 +1,104 @@
+// override a style from old app (-api-core)
+#navigation .row {
+  margin-bottom: 10px;
+}
+
+//hack until we are full bootstrap
+#navigation .bootstrap-scope {
+  .wrapper {
+    .row { margin-bottom: 10px !important; }
+  }
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+
+    .col-* {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+/**************************************
+
+SECTION SUGGESTED SEARCHES
+
+**************************************/
+#navigation .preview {
+  .suggested_searches {
+    padding: 0;
+  }
+
+  .suggested_search {
+    padding: 10px;
+    line-height: 1.2;
+
+    h1 {
+      font-size: modular-scale(0);
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: $fr-link-dark;
+      padding: 0;
+      line-height: inherit;
+      font-size: inherit;
+
+      &:hover { color: $fr-nav-orange !important;}
+    }
+
+    .result_count {
+      font-size: modular-scale(-1);
+      font-style: italic;
+      color: $fr-gray-60;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+
+/**************************************
+
+SECTION DAILY STATS
+
+**************************************/
+#navigation .preview .daily_stats {
+  border-top: 1px solid $fr-gray-20;
+  font-weight: bold;
+  color: $fr-gray-40;
+  margin-bottom: 3px;
+
+  // bootstrap hack
+  &.row {
+    margin-bottom: 3px !important;
+    padding-top: 3px;
+  }
+
+  a {
+    font-weight: inherit;
+    color: $fr-gray-40;
+
+    &:hover { color: $fr-nav-orange !important; }
+  }
+
+  .count {
+    padding-right: 5px;
+    width: 40px;
+    font-size: modular-scale(5);
+    text-align: right;
+    margin: 0;
+  }
+
+  .details {
+    line-height: 11px;
+    display: inline-block;
+    width: 114px;
+    font-size: modular-scale(-3);
+    text-transform: uppercase;
+    position: relative;
+    top: 4px;
+  }
+}
