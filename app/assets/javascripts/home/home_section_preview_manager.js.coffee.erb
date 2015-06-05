@@ -4,7 +4,10 @@ class @HomeSectionPreviewManager
   constructor: (previewBox)->
     @previewBox = $(previewBox)
     @attachBehavior()
-    @setUpCarousel()
+
+    @carousels = {}
+    @setUpCarousels()
+
     @selectRandomSection()
 
   selectRandomSection: ()->
@@ -39,6 +42,8 @@ class @HomeSectionPreviewManager
     _.each $('.home-section-preview .home-section-preview-content'), (content)->
       $(content).hide();
 
-  setUpCarousel: ()->
-    _.each $('.home-section-preview-content .carousel-rounded-box'), (box)->
-      new CarouselBox(box)
+  setUpCarousels: ()->
+    _.each $('.carousel-home .carousel-wrapper'), (carouselWrapper)->
+      new CarouselScroller(carouselWrapper)
+    #_.each $('.home-section-preview-content .carousel-rounded-box'), (box)->
+      #new CarouselBox(box)

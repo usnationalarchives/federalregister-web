@@ -24,11 +24,15 @@
 
           <% if presenter.highlighted_documents.present? %>
             <div class="row">
-              <div class="col-xs-12 col-md-12">
+              <div class="col-xs-12 col-md-12 carousel-nav">
                 <%= carousel(
                   Array(presenter.highlighted_documents.first),
                   image_size: 'navigation',
-                  html_options: {wrapper_class: 'carousel-wrapper-nav'}
+                  html_options: {
+                    wrapper_class: 'carousel-wrapper-nav',
+                    wrapper_id: "nav-carousel-#{presenter.slug}"
+                  },
+                  description: 'none'
                   ) %>
               </div>
             </div>

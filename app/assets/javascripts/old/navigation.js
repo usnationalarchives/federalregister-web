@@ -1,12 +1,3 @@
-function setup_preview_scroller( text_wrapper ) {
-  var text_bg = text_wrapper.siblings('div.bg').first();
-  text_bg.css('height', text_wrapper.height());
-
-  var attribution    = text_wrapper.siblings('div.attribution').first();
-  var attribution_bg = text_wrapper.siblings('div.bg.attribution').first();
-  attribution_bg.css('width', attribution.width()).css('height', attribution.height());
-}
-
 function setup_previewable_nav(el) {
     /* hide all other sections and show the first */
     var nav_sections = el.closest('.dropdown');
@@ -16,10 +7,7 @@ function setup_previewable_nav(el) {
     var preview = nav_sections.find('.right_column li').first();
     preview.show();
 
-    /* ensure that sections get setup properly */
-    if( el.hasClass('sections') ) {
-      setup_preview_scroller( preview.find('.text_wrapper') );
-    }
+    preview.find('.carousel-rounded-box').trigger('show');
 }
 
 $(document).ready( function() {
@@ -84,7 +72,8 @@ $(document).ready( function() {
                             $('#navigation .subnav .right_column li.preview').hide();
                             var preview = $('#navigation .subnav .right_column').find('#' + el.attr('id') + '-preview');
                             preview.show();
-                            setup_preview_scroller( preview.find('.text_wrapper') );
+                            preview.find('.carousel-rounded-box').trigger('show');
+                            //setup_preview_scroller( preview.find('.text_wrapper') );
                           }, 300);
 
   });
@@ -188,4 +177,8 @@ $(document).ready( function() {
   $('#navigation .previewable table.cal_first').find('.cal_next').html('');
   $('#navigation .previewable table.cal_last').find('.cal_prev').html('');
 
+  /* Setup the section navigation preview carousels */
+  _.each($('.carousel-nav .carousel-wrapper'), function(carouselWrapper) {
+    new CarouselScroller(carouselWrapper);
+  });
 });

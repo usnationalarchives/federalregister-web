@@ -278,10 +278,9 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
     word-spacing: 2px;
   }
 
-  .right_column {
+  &.browse-list .right_column {
     li > h2,
     .finder h2,
-    .preview_wrapper h2,
     .preview h2 {
       @extend %right_column_header;
     }
@@ -431,27 +430,6 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 }
 
 #navigation .previewable {
-  .preview_wrapper {
-    p {
-      padding: 0 5px;
-      margin-left: 10px;
-      margin-bottom: 15px;
-      line-height: 14px;
-    }
-
-    a {
-      color: $fr-link-dark;
-      font-weight: bold;
-      display: inline-block;
-      border: none;
-      font-size: 12px;
-      padding: 0;
-      line-height: 14px;
-
-      &:hover { color: $fr-bright-orange; }
-    }
-  }
-
   p.info a {
     color: $fr-link-dark;
     font-family: inherit;
@@ -854,11 +832,6 @@ PUBLIC INSPECTION BROWSE PREVIEW
       margin: 10px 0 10px 7px;
       padding: 5px 12px 5px 15px;
       background-color: $fr-gray-5;
-    }
-
-    .preview_wrapper {
-      overflow: hidden;
-      clear: both
     }
   }
 
