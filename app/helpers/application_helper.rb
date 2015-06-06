@@ -75,8 +75,4 @@ module ApplicationHelper
       content_tag(:span, url, class: "clippy")
     end
   end
-
-  def bootstrap_context_wrapper(&block)
-    render partial: 'special/helpers/bootstrap_context_wrapper', locals: {content: capture(&block)}
-  end
 end
