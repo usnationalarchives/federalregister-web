@@ -48,14 +48,14 @@
                     in_columns(2).
                     each do |searches| %>
 
-                  <div class="col-xs-6 col-md-6 suggested_searches">
+                  <div class="col-xs-6 col-md-6 suggested-searches">
                     <% searches.each do |suggested_search| %>
-                      <div class="suggested_search">
+                      <div class="suggested-search">
                         <h1>
                           <%= link_to suggested_search.title,
                             suggested_search_path(suggested_search.slug) %>
                         </h1>
-                        <p class="result_count">
+                        <p class="result-count">
                           <%= suggested_search.documents_in_last_year %>
                           documents in the last year
                         </p>

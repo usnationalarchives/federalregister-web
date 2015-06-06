@@ -42,13 +42,13 @@ class SectionPagePresenter
     feeds << FeedAutoDiscovery.new(
       url: "/#{slug}/significant.rss",
       public_inspection_search_possible: public_inspection_search_possible?,
-      description: "Significant Documents in #{section_title}",
+      description: "Significant Documents in #{section.title}",
       search_conditions: {sections: slug, significant: 1}
     )
     feeds << FeedAutoDiscovery.new(
       url: "/#{slug}.rss",
       public_inspection_search_possible: public_inspection_search_possible?,
-      description: "All Documents in #{section_title}",
+      description: "All Documents in #{section.title}",
       search_conditions: {sections: slug}
     )
     feeds

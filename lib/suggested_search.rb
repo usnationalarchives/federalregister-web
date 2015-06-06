@@ -1,6 +1,6 @@
 class SuggestedSearch < FederalRegister::SuggestedSearch
 
-  def example_documents
+  def documents
     FederalRegister::Document.search(:conditions => search_conditions).results
   end
 

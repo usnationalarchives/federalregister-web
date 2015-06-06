@@ -1,0 +1,73 @@
+<div class="suggested-searches">
+  <h3 class="with-icon">
+    <%= fr_icon('Search') %>
+    Suggested <%= @presenter.title %> Searches
+  </h3>
+
+  <% suggested_searches.
+        first(4).
+        in_groups_of(2, false).
+        each do |searches| %>
+    <div class="row">
+
+      <% searches.each do |suggested_search| %>
+        <div class="<%= bootstrap_col(xs: 6, md: 6) %>">
+          <h4>
+            <%= link_to(suggested_search.title,
+                  suggested_searches_path(suggested_search.slug) ) %>
+          </h4>
+
+          <p class="result-count">
+            <%= suggested_search.documents_in_last_year %>
+            documents in the last year
+          </p>
+
+          <div class="description">
+            <%= truncate_words(
+                suggested_search.description,
+                length: 280
+              ).html_safe %>
+          </div>
+
+          <ul class="fr-list with-custom-bullets">
+            <% suggested_search.documents.first(2).each do |document| %>
+              <li>
+                <%= simple_document_type_icon document.type %>
+                <%= link_to(
+                    truncate_words(document.title, :length => 120),
+                    document.html_url
+                  ) %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+
+  <% suggested_searches.
+        drop(4).
+        in_groups_of(3, false).
+        each do |searches| %>
+    <div class="row secondary-searches">
+
+      <% searches.each do |suggested_search| %>
+        <div class="<%= bootstrap_col(xs: 4, md: 4) %>">
+          <div class="separator"></div>
+          <h6>
+            <%= link_to suggested_search.title,
+              documents_search_path(
+                :conditions => suggested_search.search_conditions
+              ) %>
+          </h6>
+
+          <p class="result-count">
+            <%= suggested_search.documents_in_last_year %>
+            documents in the last year
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

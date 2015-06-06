@@ -26,11 +26,11 @@ SECTION SUGGESTED SEARCHES
 
 **************************************/
 #navigation .preview {
-  .suggested_searches {
+  .suggested-searches {
     padding: 0;
   }
 
-  .suggested_search {
+  .suggested-search {
     padding: 10px;
     line-height: 1.2;
 
@@ -49,7 +49,7 @@ SECTION SUGGESTED SEARCHES
       &:hover { color: $fr-nav-orange !important;}
     }
 
-    .result_count {
+    .result-count {
       font-size: modular-scale(-1);
       font-style: italic;
       color: $fr-gray-60;

@@ -1,15 +1,15 @@
 .with-icon-header {
-  padding-left: 40px;
+  padding-left: 40px !important;
 }
 
 h3 {
   &.with-icon {
-    margin-top:0 !important;
+    margin-top: 0 !important;
     margin-bottom: 10px;
     color: $text !important;
     border-bottom: 2px solid $text;
 
-    [class^="icon-fr2-"], 
+    [class^="icon-fr2-"],
     [class*=" icon-fr2-"] {
       font-size: 32px;
       margin-left: -38px;
