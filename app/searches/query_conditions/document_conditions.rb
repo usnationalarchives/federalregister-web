@@ -3,8 +3,8 @@ class QueryConditions::DocumentConditions < QueryConditions
     {
       conditions: {
         comment_date: {
-          gte: Date.current.to_s(:iso),
-          lte: time_frame.from_now.to_date.to_s(:iso)
+          gte: iso(Date.current),
+          lte: iso(time_frame.from_now.to_date)
         }
       }
     }
@@ -14,7 +14,7 @@ class QueryConditions::DocumentConditions < QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: (DocumentIssue.current.publication_date - time_frame).to_s(:iso)
+          gte: iso(DocumentIssue.current.publication_date - time_frame)
         }
       }
     }
@@ -24,10 +24,10 @@ class QueryConditions::DocumentConditions < QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: (DocumentIssue.current.publication_date - time_frame).to_s(:iso)
+          gte: iso(DocumentIssue.current.publication_date - time_frame)
         },
         comment_date: {
-          gte: Date.current.to_s(:iso),
+          gte: iso(Date.current),
         }
       }
     }
@@ -37,8 +37,8 @@ class QueryConditions::DocumentConditions < QueryConditions
     {
       conditions: {
         publication_date: {
-          gte: start_date.to_s(:iso),
-          lte: end_date.to_s(:iso)
+          gte: iso(start_date),
+          lte: iso(end_date)
         }
       }
     }
@@ -47,7 +47,7 @@ class QueryConditions::DocumentConditions < QueryConditions
   def self.published_on(date)
     {
       conditions: {
-        publication_date: {is: date.to_s(:iso)},
+        publication_date: {is: iso(date)},
       }
     }
   end
@@ -55,8 +55,8 @@ class QueryConditions::DocumentConditions < QueryConditions
   def self.with_open_comment_periods_on(date)
     {
       conditions: {
-        comment_date: {gte: date.to_s(:iso)},
-        publication_date: {lte: date.to_s(:iso)}
+        comment_date: {gte: iso(date)},
+        publication_date: {lte: iso(date)}
       }
     }
   end

@@ -29,7 +29,7 @@ module DocumentTypeHelper
     content_tag(
       :span,
       '',
-      class: "#{document_type.icon_class} cj-tooltip",
+      class: "#{document_type.icon_class} #{document_type.icon_wrapper_class(options[:size])} cj-tooltip",
       "data-tooltip" => document_type.type
     )
   end

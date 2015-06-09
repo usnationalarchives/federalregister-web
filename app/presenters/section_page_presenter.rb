@@ -30,7 +30,7 @@ class SectionPagePresenter
 
   def public_inspection_search_possible?
     begin
-      FederalRegister::PublicInspectionDocument.search_metadata(search_conditions)
+      PublicInspectionDocument.search_metadata(search_conditions)
       true
     rescue FederalRegister::Client::BadRequest
       false
@@ -63,33 +63,30 @@ class SectionPagePresenter
     }
   end
 
-  def last_five_days_docs
-    @documents_from_last_five_days ||= FederalRegister::Document.search(
-      conditions: {
-        sections: [slug],
-        publication_date: {
-          gte: last_five_dates_with_doc_counts.last,
-          lte: last_five_dates_with_doc_counts.first
-        }
-      },
-      per_page: 1000
-    ).map{|document| DocumentDecorator.decorate(document)}.
-        group_by{|doc|doc.publication_date.to_s(:iso)}
+  def documents_in_last_five_issues
+    @documents_from_last_five_days ||= Document.search(
+    QueryConditions::DocumentConditions.
+      published_within(
+        last_five_issues_with_doc_counts.last,
+        last_five_issues_with_doc_counts.first
+      ).deep_merge!(
+        conditions: {
+          sections: [slug]
+        },
+        per_page: 1000
+      )
+    ).
+      map{|document| DocumentDecorator.decorate(document)}.
+      group_by{|doc| doc.publication_date}
   end
 
-
-  private
-
-  def last_five_dates_with_doc_counts
+  def last_five_issues_with_doc_counts
     @last_five_dates_with_doc_counts ||= DocumentIssue.search(
-      {:conditions =>
-        {:publication_date =>
-          {:gte => (date - 10.days).to_s(:iso),
-           :lte => date.to_s(:iso)
-          }
-        }
-      }
-    ).select{|facet| facet.count > 0}.map{|facet| facet.slug}.
-    reverse.first(5)
+      QueryConditions::DocumentConditions.
+        published_within(date - 10.days, date)
+    ).
+      select{|facet| facet.count > 0}.
+      map{|facet| facet.slug}.
+      reverse.first(5)
   end
 end

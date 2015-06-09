@@ -1,0 +1,70 @@
+<div class="documents-by-date">
+  <h3 class="with-icon">
+    <%= fr_icon 'doc-generic' %>
+    Browse The Last Five Days
+  </h3>
+
+
+  <div class="row">
+
+    <div class="<%= bootstrap_col(xs: 2, md: 2) %>">
+      <ul class="fr-list day-nav"
+        role="tablist" aria-label="Documents from last 5 days">
+
+        <% index = 0 %>
+        <% documents_by_date.each do |date, documents| %>
+          <li class="<%= 'active' if index == 0 %>">
+            <%= link_to '#', class: "toggle",
+              data: {
+                'toggle-target' => "#documents-published-on-#{date.to_s(:iso)}",
+                'toggle-trigger' => 'click'
+              } do %>
+
+              <div class="weekday"><%= date.strftime('%A') %>,</div>
+              <div class="month-day">
+                <%= date.strftime('%B') %> <%= date.day.ordinalize %>
+              </div>
+            <% end %>
+          </li>
+          <% index += 1 %>
+        <% end %>
+
+        <li>
+          <%= fr_icon 'Search' %>
+          <%= link_to "Search to see older documents.",
+                documents_search_path(conditions: search_conditions) %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="<%= bootstrap_col(xs: 10, md: 10) %>">
+        <% index = 0 %>
+        <% documents_by_date.each do |date, documents| %>
+          <div class="document-date-wrapper <%= index == 0 ? 'active' : '' %>"
+            id="documents-published-on-<%= date.to_s(:iso) %>">
+            <% documents.in_groups_of(2, false).each do |documents|%>
+              <div class="row">
+                <% documents.each do |document| %>
+                  <div class="<%= bootstrap_col(xs: 6, md: 6) %>">
+                    <h6 class="<%= index == 0 ? '' : 'with-document-separator' %>">
+                      <%= simple_document_type_icon document.type %>
+                      <%= link_to(
+                        truncate_words(document.title, :length => 280),
+                        document.html_url
+                      ) %>
+                    </h6>
+
+                    <div class="agencies">
+                      by <%= document.agency_name_sentence %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <% index += 1 %>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+
+  </div>
+</div>

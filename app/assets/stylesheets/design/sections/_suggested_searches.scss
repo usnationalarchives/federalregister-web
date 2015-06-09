@@ -1,0 +1,51 @@
+.suggested-searches {
+  h3 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  h4 { margin-bottom: 0 !important; }
+
+  p.result-count {
+    font-size: modular-scale(-1);
+    font-style: italic;
+    color: $fr-gray-60;
+    margin: 0 0 1em 0;
+  }
+
+  .description {
+    height: 100px;
+    margin-bottom: 1em;
+  }
+
+  .fr-list.with-custom-bullets {
+    margin-bottom: 0;
+
+    li {
+      margin-bottom: 5px;
+      margin-left: 22px;
+      text-indent: -22px;
+
+      .icon-fr2 {
+        color: $color-official;
+        font-size: 18px;
+        top: 2px;
+      }
+    }
+  }
+
+  .secondary-searches {
+    &.row { margin-bottom: 1em; }
+
+    h6 {
+      margin-top: 0.5em;
+      margin-bottom: 5px;
+    }
+
+    .separator {
+      @extend %document-separator;
+    }
+
+    p.result-count { margin-bottom: 0; }
+  }
+}

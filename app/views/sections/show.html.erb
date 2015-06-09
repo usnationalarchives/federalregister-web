@@ -7,7 +7,7 @@
 
 <div class="title">
   <span>
-    <%= fr_icon(@presenter.icon) %>
+    <%= fr_icon @presenter.icon %>
     <%= @presenter.title %>
   </span>
 </div>
@@ -20,12 +20,15 @@
           suggested_searches: @presenter.suggested_searches
         } %>
     </div>
-  <div>
+  </div>
 
-  <%= render partial: 'documents_by_day',
-    locals: {
-      last_five_days_docs: @presenter.last_five_days_docs,
-      search_conditions: @presenter.search_conditions
-    } %>
-
+  <div class="row">
+    <div class="<%= bootstrap_col(xs: 12, md: 12) %> with-icon-header">
+      <%= render partial: 'documents_by_date',
+        locals: {
+          documents_by_date: @presenter.documents_in_last_five_issues,
+          search_conditions: @presenter.search_conditions
+        } %>
+    </div>
+  </div>
 <% end %>
