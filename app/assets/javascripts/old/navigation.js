@@ -179,6 +179,6 @@ $(document).ready( function() {
 
   /* Setup the section navigation preview carousels */
   _.each($('.carousel-nav .carousel-wrapper'), function(carouselWrapper) {
-    new CarouselScroller(carouselWrapper);
+    new FR2.CarouselScroller(carouselWrapper);
   });
 });

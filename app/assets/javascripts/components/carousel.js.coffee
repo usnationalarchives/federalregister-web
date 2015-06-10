@@ -1,4 +1,4 @@
-class @CarouselScroller
+class @FR2.CarouselScroller
   constructor: (carousel)->
     @carousel = $(carousel)
     @nav = @carousel.find('.carousel-nav')
@@ -78,9 +78,9 @@ class @CarouselScroller
   setupCarouselItems: ()->
     # Each item needs some behaviors added so we create an instance for each
     _.each @carousel.find('.carousel-rounded-box'), (box)=>
-      new CarouselItem(box, this)
+      new FR2.CarouselItem(box, this)
 
-class @CarouselItem
+class @FR2.CarouselItem
   textWrapperBgPadding = 10
   attributionBgPadding = 5
 

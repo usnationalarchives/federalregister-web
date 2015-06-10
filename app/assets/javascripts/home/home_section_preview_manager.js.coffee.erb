@@ -1,4 +1,4 @@
-class @HomeSectionPreviewManager
+class @FR2.HomeSectionPreviewManager
   sections = <%= Section.all.map(&:slug) %>
 
   constructor: (previewBox)->
@@ -44,6 +44,4 @@ class @HomeSectionPreviewManager
 
   setUpCarousels: ()->
     _.each $('.carousel-home .carousel-wrapper'), (carouselWrapper)->
-      new CarouselScroller(carouselWrapper)
-    #_.each $('.home-section-preview-content .carousel-rounded-box'), (box)->
-      #new CarouselBox(box)
+      new FR2.CarouselScroller(carouselWrapper)
