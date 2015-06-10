@@ -14,8 +14,10 @@
         <% index = 0 %>
         <% documents_by_date.each do |date, documents| %>
           <li class="<%= 'active' if index == 0 %>">
-            <%= link_to '#', class: "toggle",
+            <%= link_to '#', class: "toggle-all",
               data: {
+                'toggle-all-target' => ".document-date-wrapper",
+                'toggle-all-targeters' => '.fr-list.day-nav li',
                 'toggle-target' => "#documents-published-on-#{date.to_s(:iso)}",
                 'toggle-trigger' => 'click'
               } do %>
@@ -30,8 +32,7 @@
         <% end %>
 
         <li>
-          <%= fr_icon 'Search' %>
-          <%= link_to "Search to see older documents.",
+          <%= link_to "Search <br> to see older documents.".html_safe,
                 documents_search_path(conditions: search_conditions) %>
         </li>
       </ul>
