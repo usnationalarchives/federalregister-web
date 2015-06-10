@@ -2,6 +2,7 @@ class @FR2.CarouselScroller
   constructor: (carousel)->
     @carousel = $(carousel)
     @nav = @carousel.find('.carousel-nav')
+    @carouselItems = []
 
     # Used for navigation behaviors
     @firstPage = 0
@@ -78,7 +79,14 @@ class @FR2.CarouselScroller
   setupCarouselItems: ()->
     # Each item needs some behaviors added so we create an instance for each
     _.each @carousel.find('.carousel-rounded-box'), (box)=>
-      new FR2.CarouselItem(box, this)
+      @carouselItems.push(
+        new FR2.CarouselItem box, this
+      )
+
+  # convenience method for triggering carousel item behaviors
+  show: ()->
+    _.each @carouselItems, (item)->
+      item.show()
 
 class @FR2.CarouselItem
   textWrapperBgPadding = 10
@@ -113,3 +121,7 @@ class @FR2.CarouselItem
           .css 'width', attribution.width() + attributionBgPadding
 
         @box.data('setup-complete', true)
+
+  # convenience method for triggering show behavior
+  show: ()->
+    $(@box).trigger 'show'

@@ -13,6 +13,20 @@
 </div>
 
 <%= bootstrap_context_wrapper do %>
+
+  <div class="row">
+    <div class="<%= bootstrap_col(xs: 8, md: 8) %> carousel-large">
+      <%= carousel(
+        @presenter.highlighted_documents,
+        image_size: 'large',
+        html_options: {
+          wrapper_class: 'carousel-wrapper-large',
+          wrapper_id: "section-carousel-#{@presenter.slug}"
+        }
+      ) %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="<%= bootstrap_col(xs: 12, md: 12) %> with-icon-header">
       <%= render partial: 'suggested_searches',

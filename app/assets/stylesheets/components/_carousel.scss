@@ -123,15 +123,6 @@
         border-bottom-right-radius: 3px;
       }
     }
-
-    /* outside of the rounded box - home page usage */
-    p.summary {
-      background-color: $fr-gray-5;
-      font-size: modular-scale(-1);
-      line-height: 1.4;
-      margin: 25px 0 0 0;
-      padding: 0 5px;
-    }
   }
 
   .carousel-nav {
@@ -210,16 +201,47 @@
 
 
 .carousel-large {
-  @include carousel(800, 1.77, 6, 960);
+  @include carousel(800, 1.77, 6, 960, 480);
 
   .carousel-wrapper {
     margin: 0 65px;
     margin-bottom: 20px;
+
+    .text-wrapper { overflow: hidden; }
+
+    .summary {
+      padding-top: 30px !important;
+      padding-bottom: 10px !important;
+      position: relative;
+      margin: 0 !important;
+    }
+  }
+
+  .carousel-nav {
+    position: relative;
+    top: -20px;
+    left: 0;
+    width: 142px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .prev,
+    .next {
+      top: -2px;
+      font-size: 18px;
+    }
+    .prev { top: -2px; }
+    .next { top: -9px; }
+
+    .indicator > li {
+      width: 12px;
+      height: 12px;
+    }
   }
 }
 
 .carousel-home {
-  @include carousel(450, 1.77, 6, 500, 360);
+@include carousel(450, 1.77, 6, 500, 360);
 
   .carousel-wrapper {
     margin: 10px 35px 20px;
@@ -229,6 +251,14 @@
       width: 90%;
 
       h2 { font-size: modular-scale(2); }
+    }
+
+    p.summary {
+      background-color: $fr-gray-5;
+      font-size: modular-scale(-1);
+      margin: 25px 0 0 0;
+      padding: 0 5px;
+      line-height: 1.4;
     }
   }
 }
