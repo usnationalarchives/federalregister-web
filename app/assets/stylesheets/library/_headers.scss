@@ -25,6 +25,7 @@ h4 {
     margin-bottom: 10px;
     color: $text !important;
     text-transform: uppercase;
+    font-size: modular-scale(1) !important;
     border-bottom: 2px solid $text;
 
     .icon-fr2 {
