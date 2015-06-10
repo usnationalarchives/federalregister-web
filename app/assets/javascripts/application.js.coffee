@@ -49,6 +49,7 @@
 #= require utilities/cj_tooltip
 #= require utilities/modal
 #= require utilities/element_scroller
+#= require utilities/toggle
 
 $(document).ready ()->
   $('.clippy').clippy({
