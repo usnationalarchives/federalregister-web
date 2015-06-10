@@ -16,7 +16,7 @@
 #clipping-actions {
   .action_menu {
     width: 168px;
-    position: absolute; 
+    position: absolute;
     margin: 0;
     top: 3px;
     font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -29,18 +29,18 @@
       top: -3px;
     }
 
-    .icon-fr2-menu_arrow { 
+    .icon-fr2-menu_arrow {
       font-size: 13px;
       top: -2px;
     }
   }
-  #add-to-folder { 
+  #add-to-folder {
     right: 32px;
-    width: 190px;
+    width: 203px;
   }
-  
+
   #jump-to-folder {
-    right: 211px;
+    right: 234px;
   }
 }
 
@@ -51,8 +51,9 @@
     position: relative;
     left: 10px;
     height: 20px;
-    width: 139px;
+    width: 149px;
     padding: 3px 2px 0 5px;
+    font-size: modular-scale(-1);
 
     background-color: #FFF;
     border: #CCC 1px solid;
@@ -60,7 +61,7 @@
     z-index: 1001;
   }
 
-  #add-to-folder .button { width: 160px; }
+  #add-to-folder .button { width: 173px; }
 }
 
 #clipping-actions {
@@ -92,16 +93,16 @@
 
   @include rounded-bottom(6);
   }
-#clipping-actions #add-to-folder .menu { 
-  right: 28px; 
+#clipping-actions #add-to-folder .menu {
+  right: 28px;
   padding: 2px 6px 5px 6px;
 }
 
 #clipping-actions {
   #add-to-folder.hover,
   #jump-to-folder.hover {
-    .menu { 
-      display: block; 
+    .menu {
+      display: block;
 
       ul {
         background-color: #FFF;
@@ -129,7 +130,7 @@
     background-color: #FFF;
     margin: 0;
     border: #DDD 1px solid;
-  
+
    li {
       padding: 1px 5px;
       border-bottom: #CCC 1px dashed;
@@ -181,7 +182,7 @@
 #clipping-actions #remove-clipping {
   width: 18px;
   height: 23px;
-  
+
   position: absolute;
   top: 3px;
   right: 6px;
@@ -196,8 +197,8 @@
   z-index: 1000;
 
   .icon-fr2-trash_can {
-    left: -2px;
-    top: -4px;
+    left: -1px;
+    top: -1px;
   }
   .icon-fr2-trash_can:hover { color: $fr-red; }
 }
@@ -211,7 +212,7 @@
   border: none;
   position: relative;
   margin-right: 0px;
- 
+
   .icon-fr2 { text-indent: 0; }
 
   #add-to-folder {
@@ -219,7 +220,7 @@
     width: 55px;
     left: 0px;
     margin: 0;
-  
+
     .button {
       width: 55px;
       height: 27px;
@@ -230,7 +231,7 @@
 
       z-index: 100;
 
-      
+
       .icon-fr2-flag {
         color: #6E6E6E;
         top: -6px;
@@ -264,14 +265,14 @@
   /* the .hover class is used by javascript and is needed because of   *
    * javascript triggered hover interactions that don't play well with *
    * mouse position and css hover states - we get a flickering menu!   */
-   
+
   #add-to-folder.hover {
     top: -1px;
     left: -1px;
     height: 36px;
     background-color: #EEE;
 
-    
+
     .button {
       background-color: #EEE;
       border: #CCC 1px solid;
@@ -294,20 +295,20 @@
     .icon-fr2 { top: 3px; }
   }
 
-  li#new-folder.hover { 
+  li#new-folder.hover {
     color: $fr-orange;
-    a { color: $fr-orange; } 
+    a { color: $fr-orange; }
   }
 }
 
 
 
-#clipping-actions.fr2 div.menu ul { 
+#clipping-actions.fr2 div.menu ul {
   width: 200px;
   position: relative;
 
   @include border-radius(6);
-  li { 
+  li {
     float: none;
     display: list-item;
     clear: both;
@@ -323,9 +324,9 @@
     }
   }
 
-  li.in_folder { 
+  li.in_folder {
     cursor: default;
-    
+
     a {
       .icon-fr2.icon-fr2-badge_check_mark.checked { color: $fr-green; }
       .icon-fr2.icon-fr2-badge_x.delete,
@@ -335,9 +336,9 @@
 
   li.in_folder:hover,
   li.in_folder.hover {
-    a { 
-      color: #6E6E6E; 
-      
+    a {
+      color: #6E6E6E;
+
       .icon-fr2.icon-fr2-badge_x.delete { display: inline-block; }
       .icon-fr2.icon-fr2-badge_x.delete:hover { color: $fr-red; }
 
@@ -349,7 +350,7 @@
     }
   }
 }
-  
+
 #clipping-actions.fr2 div.menu {
   a {
     span.name { white-space: normal; }
