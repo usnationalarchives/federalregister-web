@@ -1,6 +1,6 @@
 h2.title {
   @extend %list_page_title;
-  
+
   .icon-fr2.icon-fr2-flag { top: 5px; }
 
   div.folder-actions {
@@ -17,7 +17,7 @@ h2.title {
   }
 }
 
-li.download a .icon-fr2-download { 
+li.download a .icon-fr2-download {
   margin-right: 5px;
   font-size: 15px;
 }
@@ -30,12 +30,16 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 #clippings div.rule_type { @extend %large_document_icon_frame; }
 
-.document_data { 
+.document_data {
   @extend %capsule_data;
   @extend %capsule_metadata_wrapper;
 }
 
-#clippings .title { @extend %capsule_title }
+#clippings h2.title {
+  @extend %capsule_title;
+  width: 100%;
+  font-weight: 500;
+}
 
 #clippings .presdocu_metadata_wrapper dl#col-2 dt {
   clear: both;
@@ -144,4 +148,3 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
     background: image-url('orange_loader.gif') 0 0 no-repeat;
   }
 }
-
