@@ -43,9 +43,9 @@ class Comment < ApplicationModel
 
   validates_presence_of :document_number
 
-  def article
+  def document
     raise "Document number missing!" unless document_number.present?
-    @article ||= FederalRegister::Article.find(document_number)
+    @document ||= DocumentDecorator.decorate(Document.find(document_number))
   end
 
   def attachments
@@ -115,7 +115,7 @@ class Comment < ApplicationModel
     ) do
       client = RegulationsDotGov::Client.new
 
-      if article.comment_url
+      if document.comment_url
         self.comment_form = client.get_comment_form(document_number)
       else
         raise ActiveRecord::RecordNotFound

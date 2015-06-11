@@ -1,6 +1,4 @@
 h2.title {
-  @extend %list_page_title;
-
   .icon-fr2.icon-fr2-flag { top: 5px; }
 
   div.folder-actions {
@@ -8,7 +6,7 @@ h2.title {
     top: 8px;
     position: relative;
 
-    .icon-fr2.icon-fr2-trash_can {
+    .icon-fr2-trash_can {
       color: $fr-gray-30;
       font-size: 23px;
 
@@ -35,11 +33,6 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   @extend %capsule_metadata_wrapper;
 }
 
-#clippings h2.title {
-  @extend %capsule_title;
-  width: 100%;
-  font-weight: 500;
-}
 
 #clippings .presdocu_metadata_wrapper dl#col-2 dt {
   clear: both;

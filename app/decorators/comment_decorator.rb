@@ -1,6 +1,6 @@
 class CommentDecorator < ApplicationDecorator
   decorates :comment
-
+  delegate_all
   delegate :agency_participates_on_regulations_dot_gov?,
     :to => :comment_form
 
@@ -73,12 +73,8 @@ class CommentDecorator < ApplicationDecorator
     ).html_safe
   end
 
-  def article
-    @article ||= ArticleDecorator.decorate( model.article )
-  end
-
   def comment_count
-    article.regulations_dot_gov_comment_count
+    document.comment_count
   end
 
   def comment_count_tooltip
@@ -93,7 +89,7 @@ class CommentDecorator < ApplicationDecorator
     if comment_count > 0
       h.link_to(
         comment_count,
-        article.regulations_dot_gov_comments_url,
+        posted_comment_url,
         :class => "count"
       )
     elsif comment_count == 0

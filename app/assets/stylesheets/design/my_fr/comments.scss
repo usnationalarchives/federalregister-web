@@ -1,9 +1,12 @@
+.main-title-bar h1.my-comments {
+  .icon-fr2 { font-size: modular-scale(6); }
+}
+
+h2.title .icon-fr2-comment { top: 5px; }
+
 body .tipsy.agency-not-participating { width: 250px; }
 
-h2.title {
-  @extend %list_page_title;
-  .icon-fr2.icon-fr2-comment { top: 5px; }
-}
+
 div#comment_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 ul#comments > li {

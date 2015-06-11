@@ -1,0 +1,11 @@
+@import 'patterns/my_fr';
+
+h2.title {
+  @extend %page-title;
+
+  margin-bottom: 10px !important;
+}
+
+@import './my_fr/clippings';
+@import './my_fr/comments';
+@import './my_fr/subscriptions';

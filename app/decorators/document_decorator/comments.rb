@@ -4,7 +4,11 @@ module DocumentDecorator::Comments
   end
 
   def has_comments?
-    regulations_dot_gov_info && regulations_dot_gov_info['comments_count'] > 0
+    comment_count > 0
+  end
+
+  def comment_count
+    regulations_dot_gov_info && regulations_dot_gov_info['comments_count']
   end
 
   def accepting_comments?

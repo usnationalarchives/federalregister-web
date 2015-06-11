@@ -1,26 +1,33 @@
-/*** PAGE TITLES ***/
-%list_page_title {
-  border-bottom: 1px solid #CCC;
+// PAGE TITLES
+%page-title {
+  @include gesta;
+
+  border-bottom: 1px solid $fr-gray-30;
+  color: $fr-blue;
+  font-size: modular-scale(4);
+  font-weight: 500;
+  line-height: 1.1;
   margin: 0;
-  line-height: 1.1em;
   padding-top: 5px;
+  width: 100%;
 
   .icon-fr2 {
     color: $fr-blue;
-    top: 4px;
     font-size: 34px;
+    top: 4px;
   }
 }
+
 %list_page_title_metadata_bar {
   margin-bottom: 2em;
 
-  ul { 
+  ul {
     font-weight: 700;
     color: #666;
     list-style: none;
     font-size: 13px;
 
-    li { 
+    li {
       display: inline-block;
       margin-right: 20px;
       }
@@ -70,5 +77,3 @@
     margin-left: 171px;
     }
 }
-
-

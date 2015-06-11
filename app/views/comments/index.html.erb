@@ -18,20 +18,19 @@
 <% end %>
 
 <h2 class="comment title">
-  <span class="icon-fr2 icon-fr2-Chat"></span>
+  <%= fr_icon 'Chat' %>
   My Comments
 </h2>
+
 <%= render :partial => "comments/comment_metadata_bar",
   :locals => {:comments => @comments} %>
 
 <ul id="comments">
   <% @comments.each do |comment| %>
     <li data-doc-id="<%= comment.document_number%>"
-      data-doc-type="<%= comment.article.granule_class %>">
+      data-doc-type="<%= comment.document.document_type.identifier %>">
 
-      <div class="rule_type doc_<%= comment.article.granule_class || 'uncategorized' %> add_tipsy">
-        <span class="icon-fr2 icon-doctype icon-fr2-<%= comment.article.granule_class || 'uncategorized' %>"></span>
-      </div>
+      <%= document_type_icon(comment.document.document_type) %>
 
       <div class="comment_count" data-tooltip="<%= comment.comment_count_tooltip %>">
         <span class="icon-fr2 icon-fr2-conversation-alt"></span>

@@ -46,14 +46,18 @@
   <ul id="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>" data-doc-type="<%= clipping.document.document_type.granule_class || 'uncategorized' %>">
-          <div class="rule_type doc_<%= clipping.document.document_type.granule_class || 'uncategorized' %> add_tipsy">
-            <span class="icon-fr2 icon-doctype icon-fr2-<%= clipping.document.document_type.granule_class || 'uncategorized' %>"></span>
-          </div>
+        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>"
+          data-doc-type="<%= clipping.document.document_type.identifier || 'uncategorized' %>">
+          <%= document_type_icon(clipping.document.document_type) %>
+
           <div class="document_data">
-            <div class="title"><%= link_to clipping.document.title, clipping.document.html_url %></div>
-            <div class="<%=clipping.document.document_type.granule_class || 'uncategorized' %>_metadata_wrapper">
-              <%= render :partial => "clippings/doc_types/#{clipping.document.document_type.granule_class || 'uncategorized'}", :locals => {:clipping => clipping} %>
+            <div class="title">
+              <%= link_to clipping.document.title, clipping.document.html_url %>
+            </div>
+
+            <div class="<%=clipping.document.document_type.identifier || 'uncategorized' %>_metadata_wrapper">
+              <%= render :partial => "clippings/doc_types/#{clipping.document.document_type.identifier || 'uncategorized'}",
+                :locals => {:clipping => clipping} %>
             </div>
           </div>
 
