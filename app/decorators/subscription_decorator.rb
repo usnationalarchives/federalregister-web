@@ -1,5 +1,6 @@
 class SubscriptionDecorator < ApplicationDecorator
   decorates :subscription
+  delegate_all
 
   def type
     mailing_list.type.split('::').last

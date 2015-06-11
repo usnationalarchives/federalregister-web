@@ -1,5 +1,7 @@
 class UserDecorator < ApplicationDecorator
   decorates :user
+  delegate_all
+  
   delegate :clippings,
            :id,
            :email,
