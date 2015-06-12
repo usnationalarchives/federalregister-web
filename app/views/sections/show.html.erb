@@ -5,12 +5,10 @@
     search_conditions: feed.search_conditions %>
 <% end %>
 
-<div class="title">
-  <span>
-    <%= fr_icon @presenter.icon %>
-    <%= @presenter.title %>
-  </span>
-</div>
+<% title header_class: 'sections' do %>
+  <%= fr_icon @presenter.icon %>
+  <%= @presenter.title %>
+<% end %>
 
 <%= bootstrap_context_wrapper do %>
 

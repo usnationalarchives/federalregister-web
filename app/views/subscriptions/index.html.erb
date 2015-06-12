@@ -1,6 +1,7 @@
-<div class="title"> 
-  <span>My Subscriptions</span>
-</div>
+<% title header_class: 'my-subscriptions' do %>
+  <%= fr_icon 'message_open' %>
+  My Subscriptions
+<% end %>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
@@ -39,4 +40,3 @@
 <% else %>
     <%= render :partial => 'subscriptions/messages/not_confirmed' %>
 <% end %>
-

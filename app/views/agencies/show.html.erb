@@ -1,9 +1,11 @@
 <% page_controller 'agencies' %>
 <% page_action 'show' %>
-<% title @agency.name %>
 <% description description_for_agency(@agency) %>
 
-<div class="title"><span>Agency</span></div>
+<% title do %>
+  <%= fr_icon 'mindmap' %>
+  Agency
+<% end %>
 
 <% feed_autodiscovery agency_url(@agency.identifier, :format => :rss), false, "All Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id]} %>
 <% feed_autodiscovery significant_entries_agency_url(@agency.identifier, :format => :rss), false, "Significant Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id], :significant => 1} %>
@@ -83,7 +85,7 @@
         </ul>
       <% end -%>
     <% end %>
- 
+
     <% if @agency.children.present? %>
       <% section_tag(:class => 'sub_agencies') do %>
         <h1 class="title_bar">Sub-<%= @agency.children.size > 1 ? 'agency'.pluralize : 'agency' %></h1>

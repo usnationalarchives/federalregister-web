@@ -1,9 +1,9 @@
-<div class="title">
-  <span><%= DocumentIssue.current.publication_date.to_s(:formal_no_year) %></span>
-</div>
 <!-- BOOTSTRAP SCOPE START -->
 <div class="bootstrap-scope">
 <!-- BOOTSTRAP SCOPE START -->
+<% title do %>
+  <%= DocumentIssue.current.publication_date.to_s(:formal_no_year) %>
+<% end %>
 
   <div class="wrapper">
     <div class="container fixed">

@@ -1,31 +1,44 @@
 @mixin title_bar($color, $background-image) {
-  color: #fff;
   clear: both;
-  line-height: .9;
-  font-size: 2.2em;
-  font-weight: 700;
-  height: 25px;
-  letter-spacing: 0px;
-  margin-bottom: 1em;
-
-  margin-left: -999px;
-  padding-left: 999px;
   text-align: right;
+  margin-bottom: 2em;
 
-  background: image-url($background-image) repeat-x scroll left top;
+  .bar {
+    height: 25px;
+    display: inline-block;
+    background: image-url($background-image) repeat-x scroll left top;
 
-  span {
-    background: #fff;
+    &.left {
+      margin-left: -1999px;
+      padding-left: 1999px;
+    }
+
+    &.right { width: 25px; }
+  }
+
+  h1 {
     color: $color;
-    padding: 0 10px;
-    margin: 0 25px 0 0;
+    font-size: modular-scale(4);
+    font-weight: 500;
+    @include gesta;
 
-    top: -1px;
+    display: inline-block;
     position: relative;
+    top: -4px;
+    height: 25px;
+    padding: 0 10px;
+    margin: 0 !important;
+
+    .icon-fr2 {
+      color: $color;
+      font-size: modular-scale(5);
+      top: 4px;
+      position: relative;
+    }
   }
 }
 
-div.title {
+.main-title-bar {
   @include title_bar($color-official, "blue_title_bar.png");
 
   &.public-inspection {

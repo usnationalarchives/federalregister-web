@@ -6,13 +6,28 @@ module ApplicationHelper
     content_for(name, content, &block)
   end
 
-  def title(text, options = {})
-    options.symbolize_keys!
+  def title(args = {}, &block)
+    text = args.fetch(:text){ '' }
+    header_class = args.fetch(:header_class){ '' }
+    
+    if block_given?
+      unless @content_for_page_title
+        page_title(capture(&block))
+      end
 
-    set_content_for :title, strip_tags(text)
-    unless options[:body] == false
-      set_content_for :precolumn, content_tag(:h1, text)
+      set_content_for :title_bar, content_tag(:h1, class: header_class, &block)
+    else
+      # set the html title if we haven't already
+      unless @content_for_page_title
+        page_title(text)
+      end
+
+      set_content_for :title_bar, content_tag(:h1, text, class: header_class)
     end
+  end
+
+  def page_title(text, options = {})
+    set_content_for :page_title, strip_tags(text)
   end
 
   def description(text)
@@ -40,16 +55,6 @@ module ApplicationHelper
     end
 
     content_for :feeds, tag(:link, link_html_options)
-  end
-
-  def page_title(text, options = {})
-    options.symbolize_keys!
-
-    content_for :page_title, strip_tags(text)
-
-    unless options[:body] == false
-      set_content_for :precolumn, content_tag(:h1, text)
-    end
   end
 
   def header_type(type)

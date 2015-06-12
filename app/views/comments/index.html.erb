@@ -1,6 +1,7 @@
-<div class="title">
-  <span>My Comments</span>
-</div>
+<% title header_class: 'my-comments' do %>
+  <%= fr_icon 'Chat' %>
+  My Comments
+<% end %>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
@@ -38,9 +39,9 @@
       </div>
 
       <div class="document_data">
-        <div class="title"><%= link_to comment.article.title, comment.article.html_url %></div>
-        <div class="<%= comment.article.granule_class || 'uncategorized' %>_metadata_wrapper">
-          <%= render :partial => "clippings/doc_types/#{comment.article.granule_class || 'uncategorized'}",
+        <div class="title"><%= link_to comment.document.title, comment.document.html_url %></div>
+        <div class="<%= comment.document.document_type.identifier || 'uncategorized' %>_metadata_wrapper">
+          <%= render :partial => "clippings/doc_types/#{comment.document.document_type.identifier || 'uncategorized'}",
             :locals => {:clipping => comment} %>
         </div>
       </div>
@@ -61,4 +62,3 @@
     </li>
   <% end %>
 </ul>
-

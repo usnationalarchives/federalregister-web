@@ -3,5 +3,12 @@
   padding-top: 15px;
 }
 
+.main-title-bar h1.sections {
+  .icon-fr2 { font-size: modular-scale(6); }
+
+  .icon-fr2-Coins-dollaralt { top: 5px; }
+  .icon-fr2-globe { font-size: modular-scale(5); }
+}
+
 @import "./sections/suggested_searches";
 @import "./sections/documents_by_date";

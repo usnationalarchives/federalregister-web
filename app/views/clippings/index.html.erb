@@ -1,6 +1,7 @@
-<div class="title">
-  <span>My Clippings</span>
-</div>
+<% title do %>
+  <%= fr_icon 'flag' %>
+  My Clippings
+<% end %>
 
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 <%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
@@ -90,5 +91,3 @@
     <% end %>
   </ul>
 <% end %>
-
-
