@@ -3,7 +3,9 @@ class TopicsController < ApplicationController
   layout false, only: [:navigation, :explore_topics]
 
   def index
-    @presenter = TopicPresenter.new(params[:id])
+    cache_for 1.day
+    
+    @topics = TopicFacet.search.sort{|a, b| a.name <=> b.name}
   end
 
   def show

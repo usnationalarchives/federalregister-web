@@ -64,13 +64,12 @@
   </div>
 
   <ul id="topic_list">
-    <% @presenter.topics.each do |topic| %>
       <li>
         <span class="individual_topic_count" title="Number of associated documents"><%= topic.count %></span> 
-        <%= link_to topic.name, topic_path(topic.identifier) %>
+    <% @topics.each do |topic| %>
+        <%= link_to topic.name, topic_path(topic.slug) %>
       </li>
     <% end %>
   </ul>
-</div>
 </div>
 

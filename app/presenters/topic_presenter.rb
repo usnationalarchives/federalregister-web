@@ -8,12 +8,6 @@ class TopicPresenter
     @topic ||= topics.detect{|topic| topic.identifier == topic_identifier}
   end
 
-  def topics
-    @topics ||= HTTParty.get("https://www.federalregister.gov/api/v1/articles/facets/topic").
-      map{|identifier, data| Topic.new(identifier, data)}.
-      sort{|a, b| a.name <=> b.name}
-  end
-
   def invalid_topic?
     topic.blank? || topic.request.response.code != "200"
   end
