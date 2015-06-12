@@ -53,6 +53,7 @@
 #= require utilities/modal
 #= require utilities/element_scroller
 #= require utilities/toggle
+#= require utilities/list_item_filter
 
 $(document).ready ()->
   $('.clippy').clippy({

@@ -2,6 +2,8 @@
 <% page_action 'index' %>
 <% description "Federal agencies add topics to the documents they publish in the Federal Register. Use these topics to learn more about your areas of interest and the regulations that affect them." %>
 
+<% add_javascript src: 'page_specific/topics' %>
+
 <% title do %>
   <%= fr_icon 'Molecular' %>
   Topics
@@ -51,7 +53,7 @@
           <a class="dec" href="#dec">Dec</a>
         </li>
       </ul>
-      <ul>  
+      <ul>
         <li>Popularity</li>
         <li>
           <a class="pop-asc" href="#pop-asc">Asc</a>
@@ -64,12 +66,15 @@
   </div>
 
   <ul id="topic_list">
-      <li>
-        <span class="individual_topic_count" title="Number of associated documents"><%= topic.count %></span> 
     <% @topics.each do |topic| %>
+      <li data-filter-alpha="<%= topic.name.first %>"
+        data-filter-live="<%= topic.name %>">
+        <span class="individual_topic_count"
+          title="Number of associated documents">
+          <%= topic.count %>
+        </span>
         <%= link_to topic.name, topic_path(topic.slug) %>
       </li>
     <% end %>
   </ul>
 </div>
-
