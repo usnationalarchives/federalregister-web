@@ -42,7 +42,9 @@ $link: $fr-link-dark;
 $link-hover: $fr-orange;
 $link-visited: $fr-link;
 
+$public-inspection-link: $color-public-inspection;
+$public-inspection-link-hover: darken($color-public-inspection, 20);
+
 /* text */
 $text: $dark-grey;
 $header: $dark-grey;
-
