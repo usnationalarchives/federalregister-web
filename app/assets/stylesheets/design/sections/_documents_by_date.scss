@@ -19,7 +19,7 @@
       border-radius: 2px;
 
       &.active,
-      &:hover { background-color: $fr-bright-orange; }
+      &:hover { background-color: $fr-nav-orange; }
 
       &:visited,
       &:focus { text-decoration: none; }
@@ -57,8 +57,8 @@
   }
 
   .agencies {
-    font-size: modular-scale(-1);
-    width: 88%;
+    font-size: modular-scale(0);
+    width: 89%;
     float: right;
   }
 }

@@ -1,29 +1,23 @@
-<!-- BOOTSTRAP SCOPE START -->
-<div class="bootstrap-scope">
-<!-- BOOTSTRAP SCOPE START -->
 <% title do %>
   <%= DocumentIssue.current.publication_date.to_s(:formal_no_year) %>
 <% end %>
 
-  <div class="wrapper">
-    <div class="container fixed">
-      <%= esi issue_summary_path(path: 'home') %>
-      <%= render partial: 'special/home/embedded_search' %>
-      <%= esi home_sections_path %>
+<%= bootstrap_context_wrapper do %>
 
-      <div class="row">
-        <%= render partial: 'special/home/popular_documents' %>
-        <%= esi home_presidential_documents_path %>
-      </div>
-      <%= esi home_reader_aids_path %>
+  <%= esi issue_summary_path(path: 'home') %>
+  <%= render partial: 'special/home/embedded_search' %>
+  <%= esi home_sections_path %>
 
-      <div class="row">
-        <%= esi home_explore_agencies_path %>
-        <%= esi home_explore_topics_path %>
-      </div>
-    </div>
+  <div class="row">
+    <%= render partial: 'special/home/popular_documents' %>
+    <%= esi home_presidential_documents_path %>
   </div>
 
-<!-- BOOTSTRAP SCOPE END -->
-</div>
-<!-- BOOTSTRAP SCOPE END -->
+  <%= esi home_reader_aids_path %>
+
+  <div class="row">
+    <%= esi home_explore_agencies_path %>
+    <%= esi home_explore_topics_path %>
+  </div>
+
+<% end %>

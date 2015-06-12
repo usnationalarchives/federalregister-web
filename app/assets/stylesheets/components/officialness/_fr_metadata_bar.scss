@@ -7,11 +7,11 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
-    margin-top: 8px;
+    margin-top: 9px;
 
     a { color: $main-color; }
 
-    .fr-list { margin: 1px 0 0 0; }
+    .fr-list { margin: 3px 0 0 0; }
   }
 }
 
@@ -25,6 +25,10 @@
 
   &.fr-head-metadata-bar-public-inspection {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
+    a {
+      color: $public-inspection-link;
+      &:hover { color: $public-inspection-link-hover; }
+    }
 
     .fr-head-meta-label-holder {
       .fr-head-meta-label {
@@ -121,7 +125,7 @@
     color: $fr-gray-70;
     font-weight: bold;
 
-    top: 16px;
+    top: 20px;
     position: relative;
 
     &:hover,

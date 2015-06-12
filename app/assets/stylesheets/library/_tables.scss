@@ -1,7 +1,11 @@
 table {
   &.fr-table {
     margin: 30px 0;
-    font-size: 15px;
+    font-size: modular-scale(0);
+
+    tr td {
+      padding: 5px 0px;
+    }
 
     thead {
       margin-bottom: 10px;
