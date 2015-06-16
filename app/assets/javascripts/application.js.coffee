@@ -35,7 +35,6 @@
 
 # Homepage
 #= require home/home_section_preview_manager
-#= require home/sections
 
 # Sections
 #= require sections

@@ -1,3 +1,6 @@
+<% page_title "Home - #{DocumentIssue.current.publication_date.to_s(:formal_no_year)}" %>
+<% add_javascript src: 'page_specific/homepage' %>
+
 <% title do %>
   <%= DocumentIssue.current.publication_date.to_s(:formal_no_year) %>
 <% end %>
