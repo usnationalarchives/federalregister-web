@@ -1,6 +1,7 @@
 class TopicDecorator < ApplicationDecorator
   delegate_all
-  def initialize(topic)
-    super(topic)
+
+  def url
+    h.topic_path(slug)
   end
 end

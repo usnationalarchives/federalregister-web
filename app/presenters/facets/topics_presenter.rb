@@ -11,7 +11,7 @@ class Facets::TopicsPresenter
       reject{|facet| ROUTINE_TOPICS.include?(facet.slug)}.
       slice(0..9).
       map{|facet|
-        Topic.new(
+        TopicFacet.new(
           name: facet.name,
           slug: facet.slug,
           document_count: facet.count,
@@ -20,11 +20,11 @@ class Facets::TopicsPresenter
           comment_count_search_conditions: comment_counts.detect{|x| x.slug == facet.slug}.try(:search_conditions)
         )
       }.
-      map{|topic| TopicFacetDecorator.decorate(topic)}.
+      map{|topic| TopicDecorator.decorate(topic)}.
       sort_by(&:name)
   end
 
-  class Topic
+  class TopicFacet
     vattr_initialize [
       :comment_count,
       :comment_count_search_conditions,
@@ -38,13 +38,13 @@ class Facets::TopicsPresenter
   private
 
   def comment_counts
-    @comment_counts ||= TopicFacet.search(
+    @comment_counts ||= Topic.search(
       QueryConditions::DocumentConditions.comment_period_closing_in(1.week)
     )
   end
 
   def document_counts
-    @document_counts ||= TopicFacet.search(
+    @document_counts ||= Topic.search(
       QueryConditions::DocumentConditions.published_in_last(1.week)
     )
   end

@@ -1,20 +1,31 @@
-class Topic
-  attr_reader :name, :identifier, :count
-  def initialize(identifier, data)
-    @name = data["name"]
-    @identifier = identifier
-    @count = data["count"]
+class Topic < FederalRegister::Facet::Topic
+  def self.search(conditions={})
+    super(conditions)
   end
 
-  def request
-    @request ||= HTTParty.get(
-      "https://www.federalregister.gov/api/v1/articles?conditions[topics][]=#{identifier}"
-    )
+  def total_document_count
+    @document_count ||= FederalRegister::Document.search(
+        search_conditions.deep_merge!(
+          metadata_only: true
+        )
+      ).count
   end
 
   def documents
-    @documents ||= request["results"].map do |result|
-      DocumentDecorator.decorate(FederalRegister::Article.new(result))
-    end
+    @documents ||= FederalRegister::Document.search(
+        search_conditions.deep_merge!(
+          per_page: 50
+        )
+      ).map{ |document|
+        DocumentDecorator.decorate(document)
+      }
+  end
+
+  def search_conditions
+    result_set.conditions.deep_merge(
+      conditions: {
+        topics: slug
+      }
+    )
   end
 end

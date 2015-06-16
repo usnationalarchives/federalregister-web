@@ -4,22 +4,19 @@ class TopicsController < ApplicationController
 
   def index
     cache_for 1.day
-    
-    @topics = TopicFacet.search.sort{|a, b| a.name <=> b.name}
+
+    @topics = Topic.search.sort{|a, b| a.name <=> b.name}
   end
 
   def show
     @presenter = TopicPresenter.new(params[:id])
-    if @presenter.invalid_topic?
-      raise ActiveRecord::RecordNotFound
-    else
-      respond_to do |wants|
-        wants.html
-        wants.rss do
-          redirect_to "https://www.federalregister.gov/articles/search.rss?conditions[topics][]=#{@presenter.topic.slug}",
-            status: :moved_permanently
-        end
-      end
+
+    respond_to do |wants|
+      wants.html
+      wants.rss {
+        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[topics][]=#{@presenter.topic.slug}",
+          status: :moved_permanently
+      }
     end
   end
 
@@ -29,7 +26,7 @@ class TopicsController < ApplicationController
 
     respond_to do |wants|
       wants.rss do
-        redirect_to "https://www.federalregister.gov/articles/search.rss?conditions[topics][]=#{@presenter.topic.slug}&conditions[significant]=1",
+        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[topics][]=#{@presenter.topic.slug}&conditions[significant]=1",
           status: :moved_permanently
       end
     end
