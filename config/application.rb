@@ -69,6 +69,7 @@ module MyFr2
 
       page_specific/homepage.js.coffee
       page_specific/topics.js.coffee
+      page_specific/sections.js.coffee
 
       application-ie.css
       application-ie8lte.css
