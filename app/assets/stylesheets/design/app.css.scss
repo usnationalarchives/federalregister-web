@@ -246,3 +246,14 @@ div#new-folder-modal {
   }
 
 .small_content_wrapper { min-height: 400px; }
+
+.small_stack {
+  color: $fr-dark-blue;
+  display: inline-block;
+  font-size: modular-scale(-2);
+  line-height: 1;
+  margin-right: .5em;
+  text-align: right;
+  text-transform: uppercase;
+  font-variant: small-caps;
+}

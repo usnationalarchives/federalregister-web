@@ -23,6 +23,8 @@ class SectionsController < ApplicationController
   end
 
   def homepage
+    cache_for 1.day
+    
     @presenters = Section.all.map do |section|
       SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
     end
