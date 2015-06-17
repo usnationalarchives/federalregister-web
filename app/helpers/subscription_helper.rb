@@ -25,4 +25,14 @@ module SubscriptionHelper
       search_conditions: search_conditions
     }
   end
+
+  def subscribe_link(search_conditions={})
+    link_to(new_subscription_path(
+        subscription: {search_conditions: search_conditions}
+      ),
+      class: 'subscription subscription_action') do
+
+      "#{fr_icon('message')} #{fr_icon('rss')} Subscribe".html_safe
+    end
+  end
 end
