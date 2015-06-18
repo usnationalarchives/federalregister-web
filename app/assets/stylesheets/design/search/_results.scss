@@ -1,0 +1,52 @@
+.search-result-documents {
+  list-style: none;
+
+  .search-result-document {
+    margin-bottom: 2em;
+
+    &:last-child {
+      margin-bottom: 0.5em;
+
+      .document-wrapper {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &.official {
+    .search-result-document {
+      .icon-doctype { color: $color-official; }
+    }
+  }
+
+  &.public-inspection {
+    .search-result-document {
+      .icon-doctype { color: $color-public-inspection; }
+    }
+  }
+
+  .icon-doctype {
+    float: left;
+    font-size: modular-scale(3);
+    top: 1px;
+    width: 5%;
+  }
+
+  .document-wrapper {
+    float: left;
+    width: 90%;
+    border-bottom: 1px solid $fr-gray-20;
+    padding-bottom: 1.25em;
+
+    h5 {
+      margin-top: 0;
+      margin-bottom: 0.25em;
+    }
+
+    .metadata { margin-bottom: 1.5em; }
+    .description {
+      @include calluna;
+    }
+  }
+}

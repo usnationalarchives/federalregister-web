@@ -1,6 +1,9 @@
+@import 'search/results_header';
+@import 'search/results';
+
 #search {
   .search_bar {
-    li { 
+    li {
       height: 21px;
       margin-bottom: 13px;
       fieldset {

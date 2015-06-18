@@ -1,0 +1,21 @@
+<ul class="search-result-documents <%= type %> row">
+  <% documents.each do |document| %>
+    <li class="<%= bootstrap_col(xs: 12, md: 12) %> search-result-document">
+      <%= simple_document_type_icon document.type %>
+
+      <div class="document-wrapper">
+        <h5>
+          <%= link_to document.title, document.html_url %>
+        </h5>
+
+        <p class="metadata">
+          by <%= document.agency_name_sentence %>
+        </p>
+
+        <p class="description">
+          <%= truncate_words(document.abstract, :length => 350) %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>

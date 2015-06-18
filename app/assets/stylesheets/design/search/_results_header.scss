@@ -1,0 +1,15 @@
+.search-results-header {
+  overflow: hidden;
+  
+  &.top {
+    border-bottom: 1px solid $fr-gray-60;
+    margin-bottom: 1em;
+  }
+
+  &.bottom {
+    border-top: 1px solid $fr-gray-60;
+    margin-top: 1em;
+  }
+
+  p { margin-bottom: 0; }
+}

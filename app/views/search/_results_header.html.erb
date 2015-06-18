@@ -1,0 +1,18 @@
+<div class="search-results-header <%= placement %>">
+  <p class="section_link pull-left">
+    Showing 1-<%= result_count %> of
+    <%= link_to(
+      pluralize(total_documents, "result"),
+      documents_search_path(conditions: search_conditions)
+    )%>
+    since 1994
+  </p>
+
+  <% if section.present? %>
+    <p class="section_link pull-right">
+      View more
+      <%= link_to section.title, section_path(section.slug) %>
+      searches
+    </p>
+  <% end %>
+</div>
