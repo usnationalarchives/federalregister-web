@@ -1,0 +1,25 @@
+.frequency-wrapper {
+  background: $white;
+  border: 1px solid $fr-gray-15;
+  border-radius: 5px;
+  color: $black;
+  padding: 10px 15px 5px;
+
+  .frequency-header {
+    margin: 0 auto;
+    width: 270px;
+  }
+
+  .frequency-spark-lines {
+    font-size: modular-scale(-1);
+    font-weight: 500;
+    list-style: none;
+    margin-top: 1em;
+    text-align: center;
+
+    li {
+      display:inline;
+      margin-right: 15px;
+    }
+  }
+}

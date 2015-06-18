@@ -53,23 +53,14 @@
 
         <div class="row">
           <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-            <div class='frequency-wrapper'>
-              <h5 class='frequency-header'>Matching Document Frequency</h5>
-              <ul class='frequency-spark-lines'>
-                <li>
-                  <%= @presenter.weekly_sparkline.title %>
-                  <%= @presenter.weekly_sparkline.image_tag %>
-                </li>
-                <li>
-                  <%= @presenter.monthly_sparkline.title %>
-                  <%= @presenter.monthly_sparkline.image_tag %>
-                </li>
-                <li>
-                  <%= @presenter.quarterly_sparkline.title %>
-                  <%= @presenter.quarterly_sparkline.image_tag %>
-                </li>
-              </ul>
-            </div>
+            <%= document_frequency_sparklines(
+              'Matching Document Frequency',
+              [
+                @presenter.weekly_sparkline,
+                @presenter.monthly_sparkline,
+                @presenter.quarterly_sparkline,
+              ]
+            ) %>
           </div>
         </div>
       </div>
