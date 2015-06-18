@@ -89,7 +89,7 @@ end
 # end
 
 group :development do
-  gem 'passenger', '~> 4.0.57'
+  gem 'passenger', '~> 5.0.10'
 end
 
 group :development, :test do
