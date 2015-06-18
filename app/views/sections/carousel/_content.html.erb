@@ -25,7 +25,7 @@
     <ul class="fr-list with-stats">
       <% presenter.suggested_searches.first(5).each do |search| %>
         <li>
-          <%= link_to(search.title, suggested_searches_path(search.slug)) %>
+          <%= link_to(search.title, suggested_search_path(search.slug)) %>
           <ul>
             <li>
               <%= pluralize(search.documents_in_last_year, 'document') %>

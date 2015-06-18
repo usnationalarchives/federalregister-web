@@ -209,12 +209,6 @@ MyFr2::Application.routes.draw do
       as: :home_sections
 
 
-    # SUGGESTED SEARCHES
-    esi.get 'esi/suggested_searches/:slug',
-      to: 'suggested_searches#show',
-      as: :suggested_searches
-
-
     # READER AIDS
     esi.get 'esi/reader_aids/blog_highlights',
       to: 'reader_aids#blog_highlights',

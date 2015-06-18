@@ -14,7 +14,8 @@
         <div class="<%= bootstrap_col(xs: 6, md: 6) %>">
           <h4>
             <%= link_to(suggested_search.title,
-                  suggested_searches_path(suggested_search.slug) ) %>
+                suggested_search_path(suggested_search.slug)
+              ) %>
           </h4>
 
           <p class="result-count">
@@ -56,9 +57,8 @@
         <div class="<%= bootstrap_col(xs: 4, md: 4) %>">
           <div class="separator"></div>
           <h6>
-            <%= link_to suggested_search.title,
-              documents_search_path(
-                :conditions => suggested_search.search_conditions
+            <%= link_to(suggested_search.title,
+                suggested_search_path(suggested_search.slug)
               ) %>
           </h6>
 
