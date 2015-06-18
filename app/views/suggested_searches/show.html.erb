@@ -1,3 +1,8 @@
+<% meta_description truncate_words(
+    strip_tags(@presenter.description),
+    :length => 300
+  ) %>
+
 <% @presenter.feed_urls.each do |feed| %>
   <%= feed_autodiscovery documents_search_url(
       conditions: @presenter.search_conditions,
@@ -8,42 +13,107 @@
     search_conditions: feed.search_conditions %>
 <% end %>
 
-<div class="title">
-  <span><%= fr_icon('Search') %> Suggested Search</span>
-  <%= subscribe_box %>
-</div>
+<% title do %>
+  <%= fr_icon('Search') %>
+  Suggested Search
+<% end %>
 
-<h1><%= @presenter.title %></h1>
-<%= @presenter.description.html_safe %>
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
 
-<p id="search-actions">
-  <%= link_to documents_search_path(conditions: @presenter.search_conditions),
-    :class => "search" do %>
-      <%= fr_icon('Search') %> Customize this search
-  <% end %>
-</p>
+      <div class="page-summary">
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <h1>
+              <%= @presenter.title %>
+            </h1>
 
-<hr>
+            <div class="search-actions">
+              <p class="pull-left">
+                <%= link_to documents_search_path(
+                      conditions: @presenter.search_conditions,
+                      order: "newest", skip_results: '1', anchor: 'advanced'
+                    ),
+                    class: "search" do %>
+                    <%= fr_icon('Search') %>
+                    Customize this search
+                <% end %>
+              </p>
 
-<div class="bootstrap-scope suggested-search-show-page"> <!-- bootstrap-scope -->
-  <div class="clearfix">
-    <p class="section_link pull-left">
-      Showing 1-<%= @presenter.docs_returned_total %> of
-      <%= link_to
-        pluralize(@presenter.docs_overall_total, "result"),
-        documents_search_path(conditions: @presenter.search_conditions)
-      %>
-      since 1994
-    </p>
+              <p class="subscribe-wrapper pull-right">
+                <%= subscribe_link(@presenter.search_conditions) %>
+              </p>
+            </div>
 
-    <p class="section_link pull-right">
-      View more
-      <%= link_to @presenter.section_name, section_path(@presenter.section_slug) %>
-      searches
-    </p>
+            <%= auto_link simple_format(@presenter.description) %>
+            <%#= add_citation_links(auto_link(simple_format(@canned_search.description))) %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+            <div class='frequency-wrapper'>
+              <h5 class='frequency-header'>Matching Document Frequency</h5>
+              <ul class='frequency-spark-lines'>
+                <li>
+                  <%= @presenter.weekly_sparkline.title %>
+                  <%= @presenter.weekly_sparkline.image_tag %>
+                </li>
+                <li>
+                  <%= @presenter.monthly_sparkline.title %>
+                  <%= @presenter.monthly_sparkline.image_tag %>
+                </li>
+                <li>
+                  <%= @presenter.quarterly_sparkline.title %>
+                  <%= @presenter.quarterly_sparkline.image_tag %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-results-wrapper">
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+            <%= render partial: 'search/results_header',
+              locals: {
+                placement: 'top',
+                result_count: @presenter.documents.count,
+                search_conditions: @presenter.search_conditions,
+                section: @presenter.section,
+                total_documents: @presenter.total_documents,
+              } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+            <%= render partial: 'search/results',
+              locals: {
+                type: :official,
+                documents: @presenter.documents
+              }
+            %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+            <%= render partial: 'search/results_header',
+              locals: {
+                placement: 'bottom',
+                result_count: @presenter.documents.count,
+                search_conditions: @presenter.search_conditions,
+                section: @presenter.section,
+                total_documents: @presenter.total_documents,
+              } %>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <%= render partial: 'document_results',
-    locals: {documents: @presenter.documents.first(20)}
-  %>
-</div> <!-- bootstrap-scope -->
+<% end %>

@@ -2,10 +2,13 @@ class SuggestedSearchPresenter
   attr_reader :suggested_search, :section
   class InvalidSuggestedSearch < StandardError; end
 
+  delegate :search_conditions, :title, to: :@suggested_search
+
   def initialize(slug)
     raise InvalidSuggestedSearch unless SuggestedSearch.find(slug)
 
     @suggested_search = SuggestedSearch.find(slug)
+    @section = Section.find_by_slug(@suggested_search.section)
   end
 
   def description
@@ -13,8 +16,11 @@ class SuggestedSearchPresenter
   end
 
   def documents
-    raw_api_documents.
-      results.map{|document| DocumentDecorator.decorate(document)}
+    @documents ||= Document.search(
+      conditions: search_conditions,
+      order: 'newest',
+      per_page: 20
+    ).map{|document| DocumentDecorator.decorate(document)}
   end
 
   def feed_urls
@@ -26,18 +32,6 @@ class SuggestedSearchPresenter
       search_conditions: search_conditions
     )
     feeds
-  end
-
-  def search_conditions
-    suggested_search.search_conditions
-  end
-
-  def section_slug
-    suggested_search.section
-  end
-
-  def section_name
-    Section.find_by_slug(suggested_search.section).try(:title)
   end
 
   def modal_description
@@ -58,25 +52,40 @@ class SuggestedSearchPresenter
     search_conditions["term"]
   end
 
-  def title
-    suggested_search.title
-  end
-
-
-  def docs_returned_total
-    documents.count
-  end
-
-  def docs_overall_total
-    raw_api_documents.count
-  end
-
-  private
-
-  def raw_api_documents
-    @api_documents ||= FederalRegister::Document.search(
+  def total_documents
+    @total_documents ||= Document.search(
       conditions: search_conditions,
-      order: 'newest',
-      per_page: 20)
+      metadata_only: true
+    ).count
+  end
+
+  def weekly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_in_last(1.year).
+        deep_merge!(search_conditions),
+      period: :weekly,
+      title: 'Last year, weekly'
+    )
+  end
+
+  def monthly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_in_last(5.years).
+        deep_merge!(search_conditions),
+      period: :monthly,
+      title: 'Last 5 years, monthly'
+    )
+  end
+
+  def quarterly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_within('1994-01-01', DocumentIssue.current.publication_date).
+        deep_merge!(search_conditions),
+      period: :quarterly,
+      title: 'Since 1994, quarterly'
+    )
   end
 end
