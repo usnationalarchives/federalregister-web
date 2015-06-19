@@ -1,47 +1,50 @@
 @mixin background_seal {
+  height: 442px;
+  left: 750px;
   position: absolute;
   top: -125px;
-  left: 750px;
-  z-index: -1;
   width: 442px;
-  height: 442px;
+  z-index: -1;
 }
 
 .mdrnzr-svg body .nara-background-seal {
   @include background_seal;
 
+  background-clip: content-box;
   background-image: image-url('header/Nara1985Seal.svg');
   background-position: 0 0;
-  background-clip: content-box;
-  background-position: center;
+  background-position: center; // scss-lint:disable DuplicateProperty
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .mdrnzr-svg.mdrnzr-cssgradients body .nara-background-seal {
   .nara-background-seal-fade {
-    height: 351px;
-    width: 442px;
-    position: absolute;
-    bottom: 0px;
     background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    background-image: -webkit-linear-gradient(bottom, #FFF, rgba(255, 255, 255, 0));
     background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background-image: -webkit-linear-gradient(bottom, $white, rgba(255, 255, 255, 0));
     background-image: linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
     background-repeat: repeat-x;
+    bottom: 0px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
+    height: 351px;
+    position: absolute;
+    width: 442px;
   }
 }
+
 .mdrnzr-no-svg body .nara-background-seal {
   @include background_seal;
 
-  width: 450px;
-  height: 450px;
   background: image-url('header/Nara1985Seal.png') no-repeat right top;
+  height: 450px;
+  width: 450px;
 }
 
 
-abbr, acronym { border-bottom: none; }
+abbr,
+acronym { border-bottom: 0; }
 
 a:hover,
 .bootstrap-scope a:hover {
@@ -53,30 +56,37 @@ div.warning,
 div.danger,
 div.info_warning,
 div.flash.error {
-  padding: .5em .5em .25em;
-  margin-bottom: 30px;
-  text-align: center;
+  border-radius: 6;
   float: none;
-  @include border-radius(6);
+  margin-bottom: 30px;
+  padding: 0.5em 0.5em 0.25em;
+  text-align: center;
 }
+
 div.message {
-  /* reset border radius */
+  // reset border radius
+  border-radius: 0;
+  // apply our style
+  @include rounded-bottom(6); // scss-lint:disable DeclarationOrder
+}
 
-  @include border-radius(0);
-
-  /* apply our style */
-  @include rounded-bottom(6);
-  }
 div.notice {
   background: $fr-light-green;
   border: 1px solid $fr-green;
+
+  &.message p {
+    line-height: 25px;
+    padding-bottom: 1em;
   }
+}
+
 div.warning,
 div.danger,
 div.flash.error {
   background: $fr-light-red;
   border: 1px solid $fr-red;
-  }
+}
+
 div.flash.error { background-image: none; }
 
 div.info_warning {
@@ -84,24 +94,16 @@ div.info_warning {
   border: 1px solid $fr-golden;
 }
 
-div.notice.message p {
-  padding-bottom: 1em;
-  line-height: 25px;
-  }
 
-div.notice.message p {
-  padding-bottom: 1em;
-  line-height: 25px;
-  }
 
 span.unsaved {
   color: $fr-red;
   font-weight: bold;
-  }
+}
 
 .tipsy {
-  font-size: 12px;
   @include apertura-condensed;
+  font-size: 12px;
 }
 
 div#account-needed-modal {
@@ -113,9 +115,9 @@ div#new-folder-modal {
     margin-top: 10px;
 
     fieldset label {
-      color: #565656;
-      font-weight: 700;
+      color: $fr-gray-70;
       font-size: 1.05em;
+      font-weight: 700;
     }
 
     fieldset.inputs {
@@ -124,11 +126,11 @@ div#new-folder-modal {
       position: relative;
 
       .icon-fr2 {
-        position: absolute;
-        top: 1px;
-        color: #999999;
+        color: $fr-gray-40;
         font-size: 21px;
         left: 100px;
+        position: absolute;
+        top: 1px;
         z-index: 2;
       }
 
@@ -151,24 +153,25 @@ div#new-folder-modal {
   .folder_create,
   .folder_success {
     display: none;
-    text-align: center;
     margin-top: 20px;
+    text-align: center;
   }
 
   .folder_success {
     .icon-fr2-badge_check_mark {
-      top: 4px;
-      left: 10px;
       color: $fr-green;
       font-size: 20px;
+      left: 10px;
+      top: 4px;
     }
   }
+
   .folder_create .loader {
-    height: 16px;
-    width: 16px;
-    top: 1px;
-    margin-left: 10px;
     background: image-url('orange_loader.gif') 0 0 no-repeat;
+    height: 16px;
+    margin-left: 10px;
+    top: 1px;
+    width: 16px;
   }
 
   .folder_error {
@@ -199,51 +202,52 @@ div#new-folder-modal {
 
 #new_user {
   .loader {
-    height: 16px;
-    width: 16px;
-    display: none;
-    padding-bottom: 2px;
-    margin-left: 30px;
-    background: url(/my/assets/orange_loader.gif) 0 0 no-repeat;
+    background: image-url('orange_loader.gif') 0 0 no-repeat;
     background-position: center 2px;
+    display: none;
+    height: 16px;
+    margin-left: 30px;
+    padding-bottom: 2px;
+    width: 16px;
   }
 }
 
 .signup_tabs {
-  margin-bottom: 0;
   font-size: 1.2em;
+  margin-bottom: 0;
   outline: 0;
 
   li {
+    -moz-box-orient: vertical;
+    display: -moz-inline-box;
+    display: inline-block;
+
     list-style-image: none;
     list-style-type: none;
     margin-left: 0px;
-    white-space: nowrap;
-    display: -moz-inline-box;
-    -moz-box-orient: vertical;
-    display: inline-block;
-    vertical-align: middle;
     padding: 0 10px;
-  }
+    vertical-align: middle;
+    white-space: nowrap;
 
-  li.on {
-    background: #F1F1F1;
-    @include rounded-bottom(6);
-    margin-bottom: -1em;
-    padding-bottom: 1em;
-    padding-top: 0.25em;
+    &.on {
+      @include rounded-bottom(6);
+      background: $fr-gray-5;
+      margin-bottom: -1em;
+      padding-bottom: 1em;
+      padding-top: 0.25em;
+    }
   }
 }
 
 .signup_bar {
-  background: #F1F1F1;
-  @include border-radius(6);
+  background: $fr-gray-5;
+  border-radius: 6;
   margin-bottom: 5em;
+  overflow: hidden;
   padding: 1em 0;
   padding-left: 25px;
-  overflow: hidden;
   position: relative;
-  }
+}
 
 .small_content_wrapper { min-height: 400px; }
 
@@ -251,9 +255,9 @@ div#new-folder-modal {
   color: $fr-dark-blue;
   display: inline-block;
   font-size: modular-scale(-2);
+  font-variant: small-caps;
   line-height: 1;
-  margin-right: .5em;
+  margin-right: 0.5em;
   text-align: right;
   text-transform: uppercase;
-  font-variant: small-caps;
 }
