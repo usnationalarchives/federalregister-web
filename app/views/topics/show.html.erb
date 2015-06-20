@@ -1,38 +1,96 @@
 <% page_controller 'topics' %>
 <% page_action 'show' %>
-<% page_title "Topics - #{@presenter.topic.name}" %>
-<% description "Browse Federal Register documents  tagged by agencies with the topic '#{@presenter.topic.name}'. Use this topic to learn more about your areas of interest and the regulations that affect the topic '#{@presenter.topic.name}'." %>
+<% page_title "Topics - #{@presenter.name}" %>
+<% description "Browse Federal Register documents tagged by agencies with the topic '#{@presenter.name}'. Use this topic to learn more about your areas of interest and the regulations that affect the topic '#{@presenter.name}'." %>
 
-<% feed_autodiscovery topic_url(@presenter.topic.identifier, :format => :rss), false, "Documents in this topic", :search_conditions => {:topic_ids => [@presenter.topic.identifier]} %>
-<% feed_autodiscovery significant_entries_topic_url(@presenter.topic.identifier, :format => :rss), false,  "Significant Documents in this topic", :search_conditions => {:topic_ids => [@presenter.topic.identifier], :significant => '1'} %>
+<% feed_autodiscovery topic_url(@presenter.slug, :format => :rss), false, "Documents in this topic", :search_conditions => {:topic_ids => [@presenter.slug]} %>
+<% feed_autodiscovery significant_entries_topic_url(@presenter.slug, :format => :rss), false,  "Significant Documents in this topic", :search_conditions => {:topic_ids => [@presenter.slug], :significant => '1'} %>
 
 <% title do %>
   <%= fr_icon 'Molecular' %>
   Topics
 <% end %>
 
-<div id="content_area">
-<h1><%= @presenter.topic.name %></h1>
-<p class='search_count'>Showing 1-<%= @presenter.topic.count %> of <%= link_to @presenter.result_count_text, documents_search_path(@presenter.topic_search_conditions) %> since 1994</p>
+<%= bootstrap_context_wrapper do %>
+  <div class="row topics">
+    <div class="<%= bootstrap_col(xs: 12, md:12) %>">
 
-<%= render :partial => "documents/list", :locals => {:documents => @presenter.topic.documents, :search_params => {:topic => @presenter.topic.identifier}} %>
+      <div class="page-summary">
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <h1>
+              <%= @presenter.name %>
+            </h1>
 
-<p class='search_count'><%= link_to @presenter.more_results_count_text, documents_search_path(@presenter.topic_search_conditions) %></p>
-</div>
+            <div class="search-actions">
+              <p class="subscribe-wrapper pull-right">
+                <%= subscribe_link(@presenter.search_conditions) %>
+              </p>
+            </div>
+          </div>
+        </div>
 
-<% aside_tag(:id => "sidebar") do %>
-  
-  <% section_tag(:class => 'TOC aside_box') do %>  
-    <h1>On This Page</h1>
-    <ul>
-      <li><%= link_to 'Recent Documents', '#recent_articles' %></li>
-    </ul>
-  <% end -%>
-  
-  <div class='aside_box subscribe'>  
-    <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => {:topic_ids => [@presenter.topic.identifier]}}), :class => 'subscription' %>
-    <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
+        <% if @presenter.total_document_count > 0 %>
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+              <%= document_frequency_sparklines(
+                'Matching Document Frequency',
+                [
+                  @presenter.weekly_sparkline,
+                  @presenter.monthly_sparkline,
+                  @presenter.quarterly_sparkline,
+                ]
+              ) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @presenter.total_document_count > 0 %>
+        <div class="search-results-wrapper">
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+              <%= render partial: 'search/results_header',
+                locals: {
+                  per_page: @presenter.per_page,
+                  placement: 'top',
+                  result_count: @presenter.documents.count,
+                  search_conditions: @presenter.search_conditions,
+                  section: false,
+                  total_documents: @presenter.total_document_count,
+                } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+              <%= render partial: 'search/results',
+                locals: {
+                  type: :official,
+                  documents: @presenter.documents
+                }
+              %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+              <%= render partial: 'search/results_header',
+                locals: {
+                  per_page: @presenter.per_page,
+                  placement: 'bottom',
+                  result_count: @presenter.documents.count,
+                  search_conditions: @presenter.search_conditions,
+                  section: false,
+                  total_documents: @presenter.total_document_count,
+                } %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <p>No documents exist with this topic.</p>
+      <% end %>
+    </div>
+
   </div>
-  
-  <%= render :partial => 'special/legal_disclaimer' %>
-<% end -%>
+<% end %>

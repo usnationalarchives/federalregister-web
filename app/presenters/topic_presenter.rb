@@ -1,26 +1,46 @@
 class TopicPresenter
   attr_reader :topic
+  class InvalidTopic < StandardError; end
 
   delegate :documents,
     :name,
+    :per_page,
     :search_conditions,
     :slug,
     :total_document_count, to: :@topic
 
   def initialize(slug)
     @topic = Topic.search.detect{|topic| topic.slug == slug}
-
-    raise ActiveRecord::RecordNotFound unless @topic
+    raise InvalidTopic unless @topic
   end
 
-  def search_header
-    content_tag(:p, class: 'search_count') do
-      "Showing 1-#{documents.count} of" +
-      link_to(
-        pluralize(total_document_count, 'result'),
-        documents_search_path(topic.search_conditions)
-      ) +
-      ""
-    end.html_safe
+  def weekly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_in_last(1.year).
+        deep_merge!(search_conditions),
+      period: :weekly,
+      title: 'Last year, weekly'
+    )
+  end
+
+  def monthly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_in_last(5.years).
+        deep_merge!(search_conditions),
+      period: :monthly,
+      title: 'Last 5 years, monthly'
+    )
+  end
+
+  def quarterly_sparkline
+    SparklinePresenter.new(
+      QueryConditions::DocumentConditions.
+        published_within('1994-01-01', DocumentIssue.current.publication_date).
+        deep_merge!(search_conditions),
+      period: :quarterly,
+      title: 'Since 1994, quarterly'
+    )
   end
 end

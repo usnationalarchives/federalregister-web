@@ -18,6 +18,8 @@ class TopicsController < ApplicationController
           status: :moved_permanently
       }
     end
+  rescue TopicPresenter::InvalidTopic
+    raise ActiveRecord::RecordNotFound
   end
 
   def significant_entries

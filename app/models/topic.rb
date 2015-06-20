@@ -4,7 +4,7 @@ class Topic < FederalRegister::Facet::Topic
   end
 
   def total_document_count
-    @document_count ||= FederalRegister::Document.search(
+    @document_count ||= ::Document.search(
         search_conditions.deep_merge!(
           metadata_only: true
         )
@@ -12,9 +12,9 @@ class Topic < FederalRegister::Facet::Topic
   end
 
   def documents
-    @documents ||= FederalRegister::Document.search(
+    @documents ||= ::Document.search(
         search_conditions.deep_merge!(
-          per_page: 50
+          per_page: per_page
         )
       ).map{ |document|
         DocumentDecorator.decorate(document)
@@ -27,5 +27,9 @@ class Topic < FederalRegister::Facet::Topic
         topics: slug
       }
     )
+  end
+
+  def per_page
+    20
   end
 end
