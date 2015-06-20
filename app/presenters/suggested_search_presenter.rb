@@ -5,9 +5,9 @@ class SuggestedSearchPresenter
   delegate :search_conditions, :title, to: :@suggested_search
 
   def initialize(slug)
-    raise InvalidSuggestedSearch unless SuggestedSearch.find(slug)
-
     @suggested_search = SuggestedSearch.find(slug)
+    raise InvalidSuggestedSearch unless @suggested_search
+
     @section = Section.find_by_slug(@suggested_search.section)
   end
 
@@ -19,8 +19,12 @@ class SuggestedSearchPresenter
     @documents ||= Document.search(
       conditions: search_conditions,
       order: 'newest',
-      per_page: 20
+      per_page: per_page
     ).map{|document| DocumentDecorator.decorate(document)}
+  end
+
+  def per_page
+    20
   end
 
   def feed_urls

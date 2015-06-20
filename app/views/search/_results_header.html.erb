@@ -1,18 +1,30 @@
 <div class="search-results-header <%= placement %>">
-  <p class="section_link pull-left">
+  <p class="pull-left">
     Showing 1-<%= result_count %> of
     <%= link_to(
       pluralize(total_documents, "result"),
       documents_search_path(conditions: search_conditions)
     )%>
-    since 1994
+    since 1994.
+
+    <% documents_left = total_documents - result_count %>
+    <% if documents_left > 0 %>
+      View
+      <%= link_to "#{documents_left} more",
+        documents_search_path(
+          conditions: search_conditions,
+          per_page: per_page,
+          page: 2
+        ) %>
+      <%= "result".pluralize(documents_left) %>.
+    <% end %>
   </p>
 
   <% if section.present? %>
-    <p class="section_link pull-right">
+    <p class="pull-right">
       View more
       <%= link_to section.title, section_path(section.slug) %>
-      searches
+      searches.
     </p>
   <% end %>
 </div>
