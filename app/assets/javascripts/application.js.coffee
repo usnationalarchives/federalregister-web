@@ -36,7 +36,6 @@
 # Homepage
 #= require home/home_section_preview_manager
 
-#= require old/agency_list
 #= require old/search
 #= require old/rss
 #= require old/navigation
