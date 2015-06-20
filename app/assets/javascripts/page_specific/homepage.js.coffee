@@ -1,2 +1,2 @@
 $(document).ready ()->
-    new FR2.HomeSectionPreviewManager('.home-section-preview')
+  new FR2.HomeSectionPreviewManager('.home-section-preview')

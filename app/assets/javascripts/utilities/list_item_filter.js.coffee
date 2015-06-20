@@ -58,7 +58,7 @@ class @FR2.ListItemFilter
         items.show()
       else
         matchingItems = _.filter items, (item)->
-           return $(item).data('filter-alpha').match(new RegExp(el.data('filter-regex')))
+          return $(item).data('filter-alpha').match(new RegExp(el.data('filter-regex')))
 
         items.hide()
         $(matchingItems).show()
@@ -78,7 +78,7 @@ class @FR2.ListItemFilter
         items.show()
       else
         matchingItems = _.filter items, (item)->
-           return $(item).data('filter-live').match(new RegExp("\\b#{input.val()}", 'i'))
+          return $(item).data('filter-live').match(new RegExp("\\b#{input.val()}", 'i'))
 
         items.hide()
         $(matchingItems).show()

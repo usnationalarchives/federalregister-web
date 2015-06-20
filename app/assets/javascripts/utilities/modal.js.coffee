@@ -15,7 +15,7 @@ class @CJ.Modal
       $('body')
         .append "<div id='#{options.modalId.slice(1)}'/>"
 
-      currentModal = $(options.modalId);
+      currentModal = $(options.modalId)
       currentModal
         .addClass options.modalClass
 
@@ -37,7 +37,4 @@ class @CJ.Modal
     })
 
 
-    currentModal.jqmShow().centerScreen();
-
-
-
+    currentModal.jqmShow().centerScreen()
