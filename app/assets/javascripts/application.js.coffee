@@ -50,6 +50,7 @@
 #= require utilities/element_scroller
 #= require utilities/toggle
 #= require utilities/list_item_filter
+#= require utilities/list_item_sorter
 
 $(document).ready ()->
   $('.clippy').clippy({

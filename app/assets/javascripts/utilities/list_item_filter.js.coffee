@@ -4,7 +4,8 @@ class @FR2.ListItemFilter
       filters: {
         alphabetical: true
         liveFilter: true
-      }
+      },
+      filterCountTarget: null
     }
 
   constructor: (itemList, options)->
@@ -17,32 +18,41 @@ class @FR2.ListItemFilter
     if @settings.filters.liveFilter
       @addLiveFilter()
 
-  notifyFilterReset: (skipFilter)->
+  notifyFilterUpdate: (skipFilter)->
     _.each @settings.filters, (active, filter)=>
       if filter != skipFilter && active == true
         @resetFilter filter
+
+    @updateFilterCount()
 
   resetFilter: (filter)->
     switch filter
       when 'alphabetical'
         @alphaFilter.find('li').removeClass('on')
+
+        if @liveFilter.find('input').val() == ''
+          @alphaFilter
+            .find 'li'
+            .first()
+            .addClass 'on'
+
       when 'liveFilter'
         @liveFilter.find('input').val('')
 
   addAlphaFilter: ()->
-    @alphaFilter = $('.list-item-filter.alphabetical') # set filter for later use
+    @alphaFilter = $('.list-item-filter.alphabetical-filter') # set filter for later use
     listItemFilter = this
 
     items = @itemList.find('> li')
 
-    @alphaFilter.on 'click', 'li a', (event)->
+    @alphaFilter.on 'click', 'li', (event)->
       event.preventDefault()
-      listItemFilter.notifyFilterReset('alphabetical')
 
-      el = $(this)
+      li = $(this)
+      el = li.find 'a'
 
       listItemFilter.alphaFilter.find('li').removeClass('on')
-      el.closest('li').addClass('on')
+      li.addClass('on')
 
       if el.data('regex') == 'all'
         items.show()
@@ -53,15 +63,15 @@ class @FR2.ListItemFilter
         items.hide()
         $(matchingItems).show()
 
+      listItemFilter.notifyFilterUpdate('alphabetical')
+
   addLiveFilter: ()->
-    @liveFilter = $('.live-filter')
+    @liveFilter = $('.list-item-filter.live-filter')
     input = @liveFilter.find('input')
 
     input.val('')
 
     input.on 'keyup', (event)=>
-      @notifyFilterReset('liveFilter')
-
       items = @itemList.find('> li')
 
       if input.val() == ''
@@ -72,6 +82,13 @@ class @FR2.ListItemFilter
 
         items.hide()
         $(matchingItems).show()
+
+      @notifyFilterUpdate('liveFilter')
+
+  updateFilterCount: ()->
+    if @settings.filterCountTarget
+      $(@settings.filterCountTarget)
+        .html @itemList.find('> li:visible').size()
 
 
 class @FR2.TopicListFilter extends @FR2.ListItemFilter
