@@ -1,0 +1,18 @@
+<div class="row filterable-list-info">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h2 class="pull-left">
+      <span class="small-stack">
+        <%= title.html_safe %>
+      </span>
+      <span id="item-count" class="item-count">
+        <%= item_count %>
+      </span>
+    </h2>
+
+    <div class="item-sorters pull-right">
+      <% sorters.each do |sorter| %>
+        <%= render partial: "components/filterable_list/sorters/#{sorter}" %>
+      <% end %>
+    </div>
+  </div>
+</div>

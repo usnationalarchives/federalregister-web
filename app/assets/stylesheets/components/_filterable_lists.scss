@@ -1,0 +1,94 @@
+.filterable-list-container {
+  ul { list-style: none; }
+
+  .filterable-list-info {
+    border-bottom: 3px solid $fr-dark-blue;
+    margin-bottom: 1em;
+    overflow: hidden;
+    position: relative;
+
+    h2 {
+      color: $fr-dark-blue;
+      margin-bottom: 0;
+      margin-top: 0;
+
+      .item-count { font-size: 32px; }
+    }
+  }
+
+  .filterable-list {
+    .unmatched > a {
+      color: $fr-gray-50;
+    }
+  }
+}
+
+// generic style for filter/sorter buttons
+%list-item-button {
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: 500;
+  margin: 5px;
+  padding: 2px 5px;
+
+  a:focus,
+  a:visited { text-decoration: none; }
+
+  &:hover,
+  &.on {
+    background-color: $fr-dark-blue;
+
+    a { color: $white; }
+  }
+}
+
+.item-filters {
+  h4 {
+    border-bottom: 2px solid $fr-dark-blue;
+    color: $fr-dark-blue;
+    margin-top: 16px !important;
+  }
+
+  ul {
+    list-style: none;
+
+    &.list-item-filter.live-filter {
+      input { width: 93%; }
+    }
+
+    &.list-item-filter.alphabetical-filter,
+    &.list-item-filter.sub-agency-filter {
+      li {
+        @extend %list-item-button;
+      }
+    }
+  }
+}
+
+.item-sorters {
+  position: relative;
+  top: 5px;
+
+  .item-sorter {
+    display: inline-block;
+    margin-right: 10px;
+
+    &:last-child { margin-right: 0; }
+
+    h5 {
+      float: left;
+      margin: 0 10px 0 0 !important;
+      position: relative;
+      top: 5px;
+    }
+
+    ul {
+      float: left;
+      margin: 0;
+
+      li {
+        @extend %list-item-button;
+      }
+    }
+  }
+}

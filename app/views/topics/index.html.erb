@@ -15,92 +15,44 @@
     <div class="<%= bootstrap_col(xs: 4, md: 4) %> item-filters">
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <h4>Topic Filter</h4>
-          <ul class="list-item-filter live-filter">
-            <li>
-              <label for="live_filter_topics" class="hide">Filter Topics</label>
-              <input title="Filter topics" placeholder="Filter Topics"
-                id="live-filter-topics">
-            </li>
-          </ul>
+          <%= render partial: 'components/filterable_list/filters/live_filter',
+            locals: { type: 'Topic' } %>
         </div>
       </div>
 
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <h4>Alphabetical</h4>
-          <ul class="list-item-filter alphabetical-filter">
-            <li class="all on"><a href="#">ALL</a></li>
-
-            <% %w( A-B C D-E F G-J K-M N O-P Q-T U-Z).each do |group| %>
-              <li>
-                <a href="#" data-filter-regex="^[<%= group %>]"><%= group %></a>
-              </li>
-            <% end %>
-          </ul>
+          <%= render partial: 'components/filterable_list/filters/alphabetical' %>
         </div>
       </div>
     </div>
 
-    <div class="<%= bootstrap_col(xs: 8, md: 8) %> topic-list-container">
+    <div class="<%= bootstrap_col(xs: 8, md: 8) %> filterable-list-container">
+      <%= render partial: "components/filterable_list/header", locals: {
+        item_count: @topics.count,
+        sorters: ['alphabetical', 'count'],
+        title: 'Topics <span>Found</span>'
+      } %>
 
-        <div class="row topic-list-info">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-            <h2 class="pull-left">
-              <span class="small-stack">
-                Topics <span>Found</span>
-              </span>
-              <span id="topic-count" class="topic-count">
-                <%= @topics.count %>
-              </span>
-            </h2>
+      <%= render layout: "components/filterable_list/items", locals: {
+        dom_class: 'topic-list',
+        dom_id: 'topic-list'
+      } do %>
+        <% @topics.each do |topic| %>
+          <li data-filter-alpha="<%= topic.name.first %>"
+              data-filter-live="<%= topic.name %>"
+              data-sorter-text="<%= topic.name %>"
+              data-sorter-count="<%= topic.count %>">
 
-            <div class="item-sorters pull-right">
-              <div class="item-sorter">
-                <h5>Alpha</h5>
-                <ul class="list-item-sorter alphabetical-sorter">
-                  <li class="on">
-                    <a class="asc" href="#" data-sort-direction="asc">Asc</a>
-                  </li>
-                  <li>
-                    <a class="dec" href="#" data-sort-direction="desc">Dec</a>
-                  </li>
-                </ul>
-              </div>
+            <span class="topic-document-count"
+              title="Number of associated documents">
+              <%= topic.count %>
+            </span>
 
-              <div class="item-sorter">
-                <h5>Popularity</h5>
-                <ul class="list-item-sorter count-sorter">
-                  <li>
-                    <a class="pop-asc" href="#" data-sort-direction="asc">Asc</a>
-                  </li>
-                  <li>
-                    <a class="pop-dec" href="#" data-sort-direction="desc">Dec</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <ul id="topic_list" class="<%= bootstrap_col(xs: 12, md: 12) %> topic-list">
-            <% @topics.each do |topic| %>
-              <li data-filter-alpha="<%= topic.name.first %>"
-                  data-filter-live="<%= topic.name %>"
-                  data-sorter-text="<%= topic.name %>"
-                  data-sorter-count="<%= topic.count %>">
-
-                <span class="topic-document-count"
-                  title="Number of associated documents">
-                  <%= topic.count %>
-                </span>
-
-                <%= link_to topic.name, topic_path(topic.slug) %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+            <%= link_to topic.name, topic_path(topic.slug) %>
+          </li>
+        <% end %>
+      <% end %>
 
     </div>
   </div>

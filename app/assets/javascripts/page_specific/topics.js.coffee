@@ -1,9 +1,4 @@
 $(document).ready ()->
-  new FR2.TopicListFilter(
-    '#topic_list',
-    {"filterCountTarget": '#topic-count'}
-  )
+  new FR2.TopicListFilter('#topic-list')
 
-  new FR2.TopicListSorter(
-    '#topic_list'
-  )
+  new FR2.TopicListSorter('#topic-list')
