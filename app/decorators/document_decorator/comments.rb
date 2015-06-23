@@ -4,7 +4,7 @@ module DocumentDecorator::Comments
   end
 
   def has_comments?
-    comment_count > 0
+    comment_count && comment_count > 0
   end
 
   def comment_count
