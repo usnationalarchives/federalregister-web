@@ -67,9 +67,14 @@ module MyFr2
       search.js
       tender_widget_custom.js
 
-      page_specific/homepage.js.coffee
-      page_specific/topics.js.coffee
-      page_specific/sections.js.coffee
+      page_specific/agencies.js
+      page_specific/agency.js
+      page_specific/comment_creation.js
+      page_specific/comment_notifications.js
+      page_specific/homepage.js
+      page_specific/sections.js
+      page_specific/topics.js
+
 
       application-ie.css
       application-ie8lte.css
