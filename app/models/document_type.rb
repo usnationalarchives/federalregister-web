@@ -26,7 +26,7 @@ class DocumentType
     when 'Sunshine Act Document'
       'notice'
     when 'Correction', 'Corrections'
-      'correct'
+      'correction'
     when 'Administrative Order', 'Administrative Orders'
       # Only used by the Table of Contents when GPO groups
       # presdocs of type memorandum, determination, etc.
