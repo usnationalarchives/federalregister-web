@@ -1,9 +1,13 @@
 <div class="search-results-header <%= placement %>">
   <p class="pull-left">
     Showing 1-<%= result_count %> of
+    <% search_path = type == :public_inspection ?
+      documents_search_path(conditions: search_conditions)
+      :
+      public_inspection_search_path(conditions: search_conditions) %>
     <%= link_to(
       pluralize(total_documents, "result"),
-      documents_search_path(conditions: search_conditions)
+      search_path
     )%>
     since 1994.
 

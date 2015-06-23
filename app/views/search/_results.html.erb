@@ -10,6 +10,9 @@
 
         <p class="metadata">
           by <%= document.agency_name_sentence %>
+          on
+          <%= link_to document.publication_date,
+            document_issue_path(document) %>.
         </p>
 
         <p class="description">
