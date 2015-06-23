@@ -12,11 +12,11 @@ module AgencyHelper
 
   def description_for_agency(agency)
     if agency.name == 'The White House Office'
-      agency_string_1 = "#{@agency.name}"
-      agency_string_2 = "#{@agency.name}"
+      agency_string_1 = "#{agency.name}"
+      agency_string_2 = "#{agency.name}"
     else
-      agency_string_1 = "The #{@agency.name}"
-      agency_string_2 = "the #{@agency.name}"
+      agency_string_1 = "The #{agency.name}"
+      agency_string_2 = "the #{agency.name}"
     end
 
     "#{agency_string_1} publishes articles in the Federal Register. Explore most recent and most cited articles published by #{agency_string_2}."
