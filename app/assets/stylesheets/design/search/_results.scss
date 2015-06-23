@@ -1,3 +1,8 @@
+// bootstrap override
+.wrapper .row.search-result-documents {
+  margin-bottom: 0 !important;
+}
+
 .search-result-documents {
   list-style: none;
 
