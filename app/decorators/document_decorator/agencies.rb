@@ -4,12 +4,14 @@ module DocumentDecorator::Agencies
 
     if document.agencies.present?
       agencies = document.excluding_parent_agencies.map{|a|
+        next if a.name.nil?
+
         "the #{h.link_to_if autolink, a.name, h.agency_path(a)}"
       }
     elsif document.agency_names.present?
       agencies = document.agency_names.map
     end
 
-    agencies.present? ? agencies.to_sentence.html_safe : ''
+    agencies.present? ? agencies.compact.to_sentence.html_safe : ''
   end
 end
