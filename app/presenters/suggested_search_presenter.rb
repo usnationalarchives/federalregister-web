@@ -86,7 +86,7 @@ class SuggestedSearchPresenter
   def quarterly_sparkline
     SparklinePresenter.new(
       QueryConditions::DocumentConditions.
-        published_within('1994-01-01', DocumentIssue.current.publication_date).
+        published_since('1994-01-01').
         deep_merge!(search_conditions),
       period: :quarterly,
       title: 'Since 1994, quarterly'

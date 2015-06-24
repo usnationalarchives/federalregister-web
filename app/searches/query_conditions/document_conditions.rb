@@ -60,4 +60,8 @@ class QueryConditions::DocumentConditions < QueryConditions
       }
     }
   end
+
+  def self.published_since(date)
+    published_within(date, DocumentIssue.current.publication_date)
+  end
 end
