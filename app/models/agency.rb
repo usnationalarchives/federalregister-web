@@ -82,17 +82,19 @@ class Agency < FederalRegister::Agency
     parent_id.present?
   end
 
-  def parent_agency
-    @parent_agency ||= ::Agency.find(parent_id) if parent_agency?
+  def parent_agency(fields=[])
+    return nil unless parent_id
+
+    @parent ||= Agency.find(parent_id, fields.present? ? {fields: fields} : {})
   end
 
   def child_agencies?
-      child_ids.present?
+    child_ids.present?
   end
 
-  def child_agencies
-    if child_agencies?
-      @child_agencies ||= child_ids.map{|id| ::Agency.find(id)}
-    end
+  def child_agencies(fields=[])
+    return [] unless child_ids.present?
+
+    @children ||= Agency.find(child_ids.join(','), fields.present? ? {fields: fields} : {})
   end
 end

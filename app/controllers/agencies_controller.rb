@@ -4,8 +4,8 @@ class AgenciesController < ApplicationController
 
   def index
     cache_for 1.day
-    @agencies = FederalRegister::Agency.all
-    @presenter = AgenciesPresenter.new(@agencies, params[:id])
+
+    @presenter = AgenciesPresenter.new
   end
 
   def show
