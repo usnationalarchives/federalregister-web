@@ -15,7 +15,7 @@
   <div class="row topics">
     <div class="<%= bootstrap_col(xs: 12, md:12) %>">
 
-      <div class="page-summary">
+      <div class="topic-header">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <h1>
@@ -29,8 +29,10 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <% if @presenter.total_document_count > 0 %>
+      <% if @presenter.total_document_count > 0 %>
+        <div class="page-summary">
           <div class="row">
             <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
               <%= document_frequency_sparklines(
@@ -43,8 +45,8 @@
               ) %>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <% if @presenter.total_document_count > 0 %>
         <%= embedded_search_results @presenter %>
