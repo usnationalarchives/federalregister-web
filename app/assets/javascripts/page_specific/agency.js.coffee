@@ -4,7 +4,7 @@ $(document).ready ()->
   $(agencyLogo).load ()->
     marginNeeded = agencyLogo.height() / 4
 
-    $('.page-summary h1')
+    $('.agency-header h1')
       .attr 'style', "margin-top: #{marginNeeded}px !important"
 
     agencyLogo
