@@ -1,13 +1,21 @@
 .agencies {
-  .page-summary {
+  .agency-header {
     h1 {
       padding-left: 10px;
+      border-bottom: 2px solid $fr-gray-20;
+      margin-bottom: .25em !important;
     }
 
     .agency-logo {
+      background-color: #FFF;
       float: left;
+      padding-left: 5px;
       padding-right: 10px;
     }
+  }
+
+  .page-summary {
+    .description { margin: 10px 0; }
 
     .sub-agency-list {
       dt { width: 15%; }

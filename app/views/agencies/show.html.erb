@@ -17,7 +17,7 @@
   <div class="row agencies">
     <div class="<%= bootstrap_col(xs: 12, md:12) %>">
 
-      <div class="page-summary">
+      <div class="agency-header">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <h1>
@@ -35,7 +35,9 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="page-summary">
         <% if @presenter.total_document_count > 0 %>
           <div class="row">
             <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
@@ -54,12 +56,18 @@
         <div class="row">
           <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
             <% if @presenter.agency.description.present? %>
-              <%= auto_link(
-                simple_format(@presenter.agency.description)
-              ).html_safe %>
-              <%#= add_citation_links(auto_link(simple_format(@presenter.agency.description))).html_safe %>
+              <div class="description">
+                <%= auto_link(
+                  simple_format(@presenter.agency.description)
+                ).html_safe %>
+                <%#= add_citation_links(auto_link(simple_format(@presenter.agency.description))).html_safe %>
+              </div>
             <% end %>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
             <dl class="fr-list fr-list-inline sub-agency-list">
               <% if @presenter.agency_url.present? %>
                 <dt>Agency URL:</dt>
@@ -76,9 +84,9 @@
 
               <% if @presenter.agency.child_agencies? %>
                 <dt>
-                  <%= pluralize_without_count @presenter.agency.child_agencies.size, 'Sub-agency'%>:
+                  <%= pluralize_without_count @presenter.agency.child_agencies(['name', 'url']).size, 'Sub-agency'%>:
                 </dt>
-                <% @presenter.agency.child_agencies.each do |agency| %>
+                <% @presenter.agency.child_agencies(['name', 'url']).each do |agency| %>
                   <dd>
                     <%= link_to agency.name, agency.url %>
                   </dd>
