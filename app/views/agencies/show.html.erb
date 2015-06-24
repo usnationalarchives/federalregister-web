@@ -1,34 +1,186 @@
 <% page_controller 'agencies' %>
 <% page_action 'show' %>
-<% description description_for_agency(@agency) %>
+<% page_title "Agencies - #{@presenter.agency.name}" %>
+<% description description_for_agency(@presenter.agency) %>
+
+<% feed_autodiscovery agency_url(@presenter.agency.slug, :format => :rss), false, "All Articles by #{@presenter.agency.name}", :search_conditions => {:agency_ids => [@presenter.agency.id]} %>
+<% feed_autodiscovery significant_entries_agency_url(@presenter.agency.slug, :format => :rss), false, "Significant Articles by #{@presenter.agency.name}", :search_conditions => {:agency_ids => [@presenter.agency.id], :significant => 1} %>
+
+<% add_javascript src: 'page_specific/agency' %>
 
 <% title do %>
   <%= fr_icon 'mindmap' %>
   Agency
 <% end %>
 
-<% feed_autodiscovery agency_url(@agency.identifier, :format => :rss), false, "All Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id]} %>
-<% feed_autodiscovery significant_entries_agency_url(@agency.identifier, :format => :rss), false, "Significant Articles by #{@agency.name}", :search_conditions => {:agency_ids => [@agency.id], :significant => 1} %>
+<%= bootstrap_context_wrapper do %>
+  <div class="row agencies">
+    <div class="<%= bootstrap_col(xs: 12, md:12) %>">
 
+      <div class="page-summary">
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <h1>
+              <% if @presenter.agency.logo.present? %>
+                <%= image_tag @presenter.agency.logo_url(:thumb),
+                  class: 'agency-logo' %>
+              <% end %>
+              <%= @presenter.name %>
+            </h1>
+
+            <div class="search-actions">
+              <p class="subscribe-wrapper pull-right">
+                <%= subscribe_link(@presenter.search_conditions) %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <% if @presenter.total_document_count > 0 %>
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+              <%= document_frequency_sparklines(
+                'Published Document Frequency',
+                [
+                  @presenter.weekly_sparkline,
+                  @presenter.monthly_sparkline,
+                  @presenter.quarterly_sparkline,
+                ]
+              ) %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+            <% if @presenter.agency.description.present? %>
+              <%= auto_link(
+                simple_format(@presenter.agency.description)
+              ).html_safe %>
+              <%#= add_citation_links(auto_link(simple_format(@presenter.agency.description))).html_safe %>
+            <% end %>
+
+            <dl class="fr-list fr-list-inline sub-agency-list">
+              <% if @presenter.agency_url.present? %>
+                <dt>Agency URL:</dt>
+                <dd><%= link_to(@presenter.agency_url, @presenter.agency_url) %></dd>
+              <% end %>
+
+              <% if @presenter.agency.parent_agency? %>
+                <dt>Parent Agency</dt>
+                <dd>
+                  <%= link_to @presenter.agency.parent_agency.name,
+                    @presenter.agency.parent_agency.url %>
+                </dd>
+              <% end %>
+
+              <% if @presenter.agency.child_agencies? %>
+                <dt>
+                  <%= pluralize_without_count @presenter.agency.child_agencies.size, 'Sub-agency'%>:
+                </dt>
+                <% @presenter.agency.child_agencies.each do |agency| %>
+                  <dd>
+                    <%= link_to agency.name, agency.url %>
+                  </dd>
+                <% end %>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-eq-height">
+        <div class="<%= bootstrap_col(xs: 8, md: 8) %>">
+          <%= render :partial => 'embedded_search', locals: {
+            search: @search,
+            agency: @presenter.agency
+          } %>
+        </div>
+
+        <div class="<%= bootstrap_col(xs: 4, md: 4) %> jump-menu">
+          <h6>On this Page</h6>
+
+          <ul class="fr-list with-bullets enhanced">
+            <% if @presenter.total_public_inspection_document_count > 0 %>
+              <li>
+                <%= link_to 'Documents on Public Inspection', '#pi-documents' %>
+              </li>
+            <% end %>
+
+            <% if @presenter.total_significant_document_count > 0 %>
+              <li>
+                <%= link_to 'Significant Documents', '#significant-documents' %>
+              </li>
+            <% end %>
+
+            <% if @presenter.total_document_count > 0 %>
+              <li>
+                <%= link_to 'Recently Published Documents', '#documents' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <% if @presenter.total_public_inspection_document_count > 0 %>
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
+            id='pi-documents'>
+            <%= embedded_search_results_with_stacked_header(
+              @presenter.public_inspection_document_results,
+              "Pending <span>Publication</span>",
+              "Documents on Public Inspection",
+              document_type: :public_inspection) %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @presenter.total_significant_document_count > 0 %>
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
+            id='significant-documents'>
+
+            <%= embedded_search_results_with_stacked_header(
+              @presenter.significant_document_results,
+              "Listing <span>of</span>",
+              "Significant Documents") %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @presenter.total_document_count > 0 %>
+        <div class="row">
+          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
+            id='documents'>
+            <%= embedded_search_results_with_stacked_header(
+              @presenter.document_results,
+              "Listing <span>of</span>",
+              "Recently Published Documents") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if false %>
 <div class="group">
-  <% section_tag(:id => 'agency_description') do %>
-
-    <div class="header group <%= @agency.logo_file_name.present? ? 'with_image' : 'without_image' %>">
-      <h1><%= @agency.name %></h1>
-      <% if @agency.logo_file_name.present? %>
-        <%= image_tag @agency.logo_url(:thumb), :class => 'agency_seal' %>
+    <div class="header group <%= @presenter.agency.logo.present? ? 'with_image' : 'without_image' %>">
+      <h1><%= @presenter.agency.name %></h1>
+      <% if @presenter.agency.logo.present? %>
+        <%= image_tag @presenter.agency.logo_url(:thumb), :class => 'agency_seal' %>
       <% end %>
     </div>
 
-    <%= render :partial => 'embedded_search', :locals => {:search => @search, :agency => @agency} %>
+    <%= render :partial => 'embedded_search', :locals => {:search => @search, :agency => @presenter.agency} %>
 
     <%= content_tag(:p) do %>
-      Agency URL: <%= link_to(@agency.url, @agency.url) %>
-    <% end if @agency.url.present? %>
+      Agency URL: <%= link_to(@presenter.agency.url, @presenter.agency.url) %>
+    <% end if @presenter.agency.url.present? %>
 
     <div id="agency-description-wrapper">
-      <% if @agency.description.present? %>
-        <%= add_citation_links(auto_link(simple_format(@agency.description))).html_safe %>
+      <% if @presenter.agency.description.present? %>
+        <%= add_citation_links(auto_link(simple_format(@presenter.agency.description))).html_safe %>
       <% else %>
         <p>Description coming soon.</p>
       <% end %>
@@ -37,60 +189,33 @@
     <% if @presenter.documents.present?%>
       <p>
         This agency has published
-        <%= link_to pluralize(number_with_delimiter(@presenter.documents.count), 'article'), entries_search_path(:conditions => {:agency_ids => [@agency.id]}, :skip_results => 1, :anchor => 'advanced') %>
+        <%= link_to pluralize(number_with_delimiter(@presenter.documents.count), 'article'), entries_search_path(:conditions => {:agency_ids => [@presenter.agency.id]}, :skip_results => 1, :anchor => 'advanced') %>
         since 1994.
       </p>
     <% end %>
-  <% end %>
 
   <% aside_tag(:id => 'sidebar') do %>
-    <% if @presenter.significant_documents.present? || @presenter.documents.present? || @comments_closing.present? || @comments_opening.present? %>
-      <% section_tag(:class => 'TOC aside_box') do %>
-        <h1>On This Page</h1>
-        <ul>
-          <% if @presenter.public_inspection_documents.present? %>
-            <li><%= link_to 'Documents Pending Publication', '#public_inspection' %></li>
-          <% end %>
-
-          <% if @presenter.significant_documents.present? %>
-            <li><%= link_to 'Most Recent Significant Regulations', '#significant_regulations' %></li>
-          <% end %>
-
-          <% if @presenter.documents.present? %>
-            <li><%= link_to 'Recent Articles', '#recent_articles' %></li>
-          <% end %>
-
-          <% if @comments_closing.present? %>
-            <li><%= link_to 'Comment Periods Closing', '#comment-period-closing' %>
-          <% end %>
-
-          <% if @comments_opening.present? %>
-            <li><%= link_to 'Comment Periods Opening', '#comment-period-opening' %>
-          <% end %>
-        </ul>
-      <% end -%>
-    <% end %>
     <div class='aside_box subscribe'>
-      <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => {:agency_ids => [@agency.id]}}), :class => 'subscription' %>
+      <%= link_to 'Subscribe', new_subscription_path(:subscription => {:search_conditions => {:agency_ids => [@presenter.agency.id]}}), :class => 'subscription' %>
       <%= add_handlebars_template('subscription_modal', 'subscription-modal') %>
     </div>
 
     <%= render :partial => 'special/legal_disclaimer' %>
 
-    <% if @agency.parent.present? %>
+    <% if @presenter.agency.parent.present? %>
       <% section_tag(:class => 'parent_agencies') do %>
         <h1 class="title_bar">Parent Agency</h1>
         <ul class="bullets">
-          <li><%= link_to @agency.parent.name, agency_path(@agency.parent.identifier) %></li>
+          <li><%= link_to @presenter.agency.parent.name, agency_path(@presenter.agency.parent.identifier) %></li>
         </ul>
       <% end -%>
     <% end %>
 
-    <% if @agency.children.present? %>
+    <% if @presenter.agency.children.present? %>
       <% section_tag(:class => 'sub_agencies') do %>
-        <h1 class="title_bar">Sub-<%= @agency.children.size > 1 ? 'agency'.pluralize : 'agency' %></h1>
+        <h1 class="title_bar">Sub-<%= @presenter.agency.children.size > 1 ? 'agency'.pluralize : 'agency' %></h1>
         <ul class="bullets">
-          <% @agency.children.each do |agency| %>
+          <% @presenter.agency.children.each do |agency| %>
             <li><%= link_to agency.name, agency_path(agency.identifier) %></li>
           <% end %>
         </ul>
@@ -104,20 +229,20 @@
   <%= render :partial => "public_inspection" %>
 <% end %>
 
-<% if @significant_documents.present? %>
+<%# if @significant_documents.present? %>
   <div class="group" id="significant_regulations">
     <h2 class="title_bar"><span class="small_stack">Most <span>Recent</span></span> Significant Regulations</h2>
-    <%= render :partial => 'documents/grouped_by_date', :locals => {:documents => @significant_documents}%>
+    <%#= render :partial => 'documents/grouped_by_date', :locals => {:documents => @significant_documents}%>
   </div>
-  <% if @significant_documents.count > 40 %>
-    <%= link_to "See More", entries_search_path(:conditions => {:agency_ids => [@agency.id], :significant => 1}, :page => 3, :order => "newest"), :class => 'action_button' %>
-  <% end %>
-<% end %>
+  <%# if @significant_documents.count > 40 %>
+    <%#= link_to "See More", entries_search_path(:conditions => {:agency_ids => [@presenter.agency.id], :significant => 1}, :page => 3, :order => "newest"), :class => 'action_button' %>
+  <%# end %>
+<%# end %>
 
 <% if @presenter.documents.present? %>
-  <%= render :partial => 'documents/list', :locals => {:list_type => 'agency', :documents => @presenter.documents, :search_params => {:agency_id => @agency.id}} %>
+  <%= render :partial => 'documents/list', :locals => {:list_type => 'agency', :documents => @presenter.documents, :search_params => {:agency_id => @presenter.agency.id}} %>
   <% if @presenter.documents.count > 40 %>
-    <% link_to "See More", entries_search_path(:conditions => {:agency_ids => [@agency.id]}, :page => 3, :order => "newest"), :class => 'action_button' %>
+    <% link_to "See More", entries_search_path(:conditions => {:agency_ids => [@presenter.agency.id]}, :page => 3, :order => "newest"), :class => 'action_button' %>
   <% end %>
 <% end %>
 
@@ -142,4 +267,4 @@
     <% end %>
   </div>
 <% end %>
-
+<% end %>

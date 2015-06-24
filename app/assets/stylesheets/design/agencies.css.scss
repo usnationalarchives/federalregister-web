@@ -1,0 +1,37 @@
+.agencies {
+  .page-summary {
+    h1 {
+      padding-left: 10px;
+    }
+
+    .agency-logo {
+      float: left;
+      padding-right: 10px;
+    }
+
+    .sub-agency-list {
+      dt { width: 15%; }
+      dd { width: 85%; }
+      dd + dd { margin-left: 15%; }
+    }
+  }
+
+  // doesn't work with <= IE9
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .jump-menu {
+    background-color: $color-enhanced-light;
+    border-bottom: 1px solid $color-enhanced;
+    border-top: 1px solid $color-enhanced;
+    margin-right: 15px;
+
+    h6 { margin-top: 5px; }
+
+    .fr-list { margin-left: 10px; }
+  }
+}

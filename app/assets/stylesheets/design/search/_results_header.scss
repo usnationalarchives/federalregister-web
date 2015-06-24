@@ -1,6 +1,6 @@
 .search-results-header {
   overflow: hidden;
-  
+
   &.top {
     border-bottom: 1px solid $fr-gray-60;
     margin-bottom: 1em;
@@ -12,4 +12,16 @@
   }
 
   p { margin-bottom: 0; }
+}
+
+.stacked-embedded-search-result-header {
+  h1 {
+    border-bottom: 2px solid $fr-dark-blue;
+    color: $fr-dark-blue;
+    font-size: modular-scale(6) !important;
+    margin-bottom: 0 !important;
+  }
+  .search-results-header {
+    border: 0;
+  }
 }

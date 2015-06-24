@@ -47,46 +47,7 @@
       </div>
 
       <% if @presenter.total_document_count > 0 %>
-        <div class="search-results-wrapper">
-          <div class="row">
-            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-              <%= render partial: 'search/results_header',
-                locals: {
-                  per_page: @presenter.per_page,
-                  placement: 'top',
-                  result_count: @presenter.documents.count,
-                  search_conditions: @presenter.search_conditions,
-                  section: false,
-                  total_documents: @presenter.total_document_count,
-                } %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-              <%= render partial: 'search/results',
-                locals: {
-                  type: :official,
-                  documents: @presenter.documents
-                }
-              %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-              <%= render partial: 'search/results_header',
-                locals: {
-                  per_page: @presenter.per_page,
-                  placement: 'bottom',
-                  result_count: @presenter.documents.count,
-                  search_conditions: @presenter.search_conditions,
-                  section: false,
-                  total_documents: @presenter.total_document_count,
-                } %>
-            </div>
-          </div>
-        </div>
+        <%= embedded_search_results @presenter %>
       <% else %>
         <p>No documents exist with this topic.</p>
       <% end %>

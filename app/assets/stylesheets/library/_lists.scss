@@ -28,6 +28,11 @@
       @include custom-bullets($color-reader-aid, "19px");
       @include custom-bullets($color-reader-aid, "19px", "dd");
     }
+
+    &.enhanced {
+      @include custom-bullets($color-enhanced, "19px");
+      @include custom-bullets($color-enhanced, "19px", "dd");
+    }
   }
 
   &.two-col {

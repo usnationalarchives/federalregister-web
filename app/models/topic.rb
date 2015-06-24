@@ -16,7 +16,7 @@ class Topic < FederalRegister::Facet::Topic
         search_conditions.deep_merge!(
           per_page: per_page
         )
-      ).map{ |document|
+      ).map{|document|
         DocumentDecorator.decorate(document)
       }
   end
@@ -25,7 +25,8 @@ class Topic < FederalRegister::Facet::Topic
     result_set.conditions.deep_merge(
       conditions: {
         topics: slug
-      }
+      },
+      order: 'newest'
     )
   end
 
