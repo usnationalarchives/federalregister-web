@@ -18,3 +18,5 @@ config/environments/*.local.yml
 vcr/*
 
 config/varnish.development.vcl
+
+node_modules/*
