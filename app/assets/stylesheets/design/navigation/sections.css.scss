@@ -13,9 +13,11 @@
     margin-left: 0;
     margin-right: 0;
 
-    .col-* {
-      padding-left: 0;
-      padding-right: 0;
+    @each $colspan in 1,2,3,4,5,6,7,8,9,10,11,12 {
+      .col-#{colspan} {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 }

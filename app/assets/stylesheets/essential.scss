@@ -1,12 +1,24 @@
-@import "mixins/**";
-@import "library/_colors";
-@import "library/_official_colors";
+@import "mixins/bullets";
+@import "mixins/css3_utils";
+@import "mixins/fonts";
+@import "mixins/progress";
+@import "mixins/rounded";
+@import "mixins/shadows";
+
+@import "library/colors.scss";
+@import "library/official_colors";
 
 // Font sizes based on ratios
 $em-base: 16px;
 @import 'bourbon/modular-scale';
-@import 'application_fonts';
+@import 'application_fonts.css.scss';
 
-@import 'application_colors';
+@import 'application_colors.css.scss';
 
-@import "library/**";
+@import "library/headers.scss";
+@import "library/layout.scss";
+@import "library/lists.scss";
+@import "library/official_colors.scss";
+@import "library/tables.scss";
+@import "library/typeface.scss";
+@import "library/utils.scss";

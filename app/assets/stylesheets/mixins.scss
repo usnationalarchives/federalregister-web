@@ -1,7 +1,5 @@
-@import "mixins/_css3_utils.scss";
-@import "mixins/_rounded.scss";
-@import "mixins/_colors.scss";
-@import "mixins/_shadows.scss";
-@import "mixins/_progress.scss";
-@import "mixins/_official_colors.scss";
-@import "mixins/_fonts.scss";
+@import "mixins/css3_utils";
+@import "mixins/rounded";
+@import "mixins/shadows";
+@import "mixins/progress";
+@import "mixins/fonts";

@@ -14,26 +14,31 @@
 /* override old, clashing fr2 styles */
 @import "officialness_override";
 
-@import "design/navigation";
+@import "design/navigation.css.scss";
 @import "design/modals/subscriptions";
-@import "design/tender_interstitial_modal";
+@import "design/tender_interstitial_modal.css.scss";
 
 @import "design/layout";
 @import "layout";
 
-@import "fonts.scss";
+@import "fonts";
 
 
 @import "components/buttons";
 @import "components/carousel";
 @import "components/doc_type_icon_colors";
-@import "components/email_helpers";
-@import "components/embedded_search";
+@import "components/email_helpers.css.scss";
+@import "components/embedded_search.css.scss";
 @import "components/filterable_lists";
 @import "components/frequency_sparklines";
 @import "components/modal";
 @import "components/modals";
-@import "components/officialness/*";
+
+@import "components/officialness/fr_box.css.scss";
+@import "components/officialness/fr_info_box.scss";
+@import "components/officialness/fr_metadata_bar.scss";
+@import "components/officialness/fr_search_box.css.scss";
+
 @import "components/subscribe_box";
 
 
@@ -52,24 +57,35 @@
 @import "design/comments/creation.css.scss";
 @import "design/progress_bar.css.scss";
 
-@import "design/sections";
-@import "design/suggested_searches";
-@import "design/my_fr";
+@import "design/sections.css.scss";
+@import "design/suggested_searches.css.scss";
+@import "design/my_fr.css.scss";
 
 @import "design/subscription_confirmation.css.scss";
 
-@import "design/custom_tooltips";
+@import "design/custom_tooltips.css.scss";
 
 .bootstrap-scope {
-  @import "design/documents/*";
+  @import "design/documents/end_matter.scss";
+  @import "design/documents/footnotes.scss";
+  @import "design/documents/headers_paragraphs.scss";
+  @import "design/documents/images.scss";
+  @import "design/documents/lists.scss";
+  @import "design/documents/note.scss";
+  @import "design/documents/regtext.scss";
+  @import "design/documents/section.scss";
+  @import "design/documents/signature.scss";
+  @import "design/documents/stars.scss";
+  @import "design/documents/tables.scss";
+  @import "design/documents/unprinted_elements.scss";
 }
 
-@import "design/public_inspection";
-@import "design/issues/table_of_contents";
-@import "design/search";
-@import "design/topics";
+@import "design/public_inspection.css.scss";
+@import "design/issues/table_of_contents.css.scss";
+@import "design/search.css.scss";
+@import "design/topics.css.scss";
 
 @import "design/utility_bar";
-@import "design/issues/document_issue";
+@import "design/issues/document_issue.css.scss";
 @import "design/calendar";
-@import "old/**";
+//@import "old/**";
