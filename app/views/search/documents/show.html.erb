@@ -1,4 +1,4 @@
-<% title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{h @search.term}'" %>
+<% page_title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{@search.term}'" %>
 <% feed_autodiscovery documents_search_url(params.except(:action).merge(:format => :rss, :order => 'newest')), false, @search.summary, :search_conditions => (params[:conditions].blank? ? {} : @search.valid_conditions).except(:publication_date) %>
 
 <% if @search.blank? %>
@@ -10,29 +10,34 @@
 
 <% add_javascript :src => 'search.js' %>
 
-<div id="search">
-  <div id="main">
-    <div class="title"><span>Search Documents</span></div>
+<%= title do %>
+  <%= fr_icon 'Search' %>
+  Search
+<% end %>
 
-    <%= esi(documents_search_header_path(params)) %>
+<%= bootstrap_context_wrapper do %>
+  <div class="row document-search search">
+    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+      <%= esi(documents_search_header_path(params)) %>
 
-    <% unless @search.conditions_blank? %>
-      <% if @search.valid? %>
-        <div class="filters">
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'publication_date'))) unless @search.publication_date.present? %>
-          <%# TODO HELP-RUBY i know this doesn't go here. just wanted to stash it somewhere  %>
-          <!-- <li><%#= sparkline(:data => @search.date_distribution.to_a.sort_by{|date, count| date}.map{|date, count| count}, :alt => "Monthly Distribution" ) %></li> -->
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'type'))) unless @search.type.present? %>
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'agency'))) unless @search.agency_ids.present? %>
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'topic'))) unless @search.topics.present? %>
-          <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6))) unless @search.sections.present? %>
-        </div>
+      <% unless @search.conditions_blank? %>
+        <% if @search.valid? %>
+          <div class="filters">
+            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'publication_date'))) unless @search.publication_date.present? %>
+            <%# TODO HELP-RUBY i know this doesn't go here. just wanted to stash it somewhere  %>
+            <!-- <li><%#= sparkline(:data => @search.date_distribution.to_a.sort_by{|date, count| date}.map{|date, count| count}, :alt => "Monthly Distribution" ) %></li> -->
+            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'type'))) unless @search.type.present? %>
+            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'agency'))) unless @search.agency_ids.present? %>
+            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'topic'))) unless @search.topics.present? %>
+            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6))) unless @search.sections.present? %>
+          </div>
 
-        <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
-          <%= esi(documents_search_suggestions_path(params.except(:action))) %>
+          <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
+            <%= esi(documents_search_suggestions_path(params.except(:action))) %>
+          <% end %>
+          <%= esi(documents_search_results_path(params)) %>
         <% end %>
-        <%= esi(documents_search_results_path(params)) %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

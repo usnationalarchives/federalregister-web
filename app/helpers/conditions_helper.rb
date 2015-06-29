@@ -17,7 +17,8 @@ module ConditionsHelper
   end
 
   def blank_conditions?(conditions)
-    return false if conditions.nil?
+    return true if conditions.nil?
+
     if conditions.is_a?(Hash)
       conditions.detect do |k,v|
         if conditions.is_a?(Hash)

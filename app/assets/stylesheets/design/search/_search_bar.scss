@@ -1,0 +1,123 @@
+.search-bar {
+  @include rounded-right(5);
+  background: $fr-gray-10;
+  border-bottom-left-radius: 5px;
+  border: 1px solid $fr-gray-20;
+  clear: both;
+  margin-bottom: 1em;
+  overflow: hidden;
+  padding: 1em 0;
+  position: relative;
+
+  .actions {
+    right: 1em;
+    text-align: right;
+    top: 2.5em;
+
+
+    .other-formats {
+      font-size: modular-scale(0);
+      display: block;
+      margin-top: 10px;
+
+      a {
+        color: $fr-link-dark;
+        font-weight: 500;
+
+        &:visited { color: $fr-link-dark; }
+        &:hover { color: $fr-orange; }
+      }
+    }
+  }
+
+  .button { background-color: $white; }
+
+  label,
+  .label {
+    @include apertura-condensed;
+    display: block;
+    float: left;
+    font-size: modular-scale(1);
+    margin-left: 1em;
+    margin-top: 8px;
+  }
+
+  label { margin-right: 0.5em; }
+
+  .label {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+
+  .search-term {
+    border: 1px solid $fr-gray-20;
+    display: block;
+    float: left;
+    height: 40px;
+    padding: 5px;
+    width: 400px;
+  }
+
+  #conditions_type {
+    display: block;
+    float: left;
+    margin-top: 4px;
+  }
+
+  select { margin-right: 5px; }
+
+  .search-submit {
+    @include rounded-right(5);
+    background-color: $fr-gray-5;
+    border: 1px solid $fr-gray-20;
+    border-left: 0;
+    cursor: pointer;
+    float: left;
+    height: 40px;
+
+    &:hover {
+      background-color: $fr-gray-15;
+
+      .icon-fr2 { color: $fr-orange; }
+    }
+
+    .icon-fr2 {
+      color: $text;
+      font-size: modular-scale(3);
+      top: 2px;
+    }
+  }
+
+  .search-options {
+    clear: both;
+    float: left;
+    margin-left: 4em;
+    margin-top: 10px;
+    width: 400px;
+  }
+}
+
+.search-bar {
+  .search-result-count {
+    @include apertura-condensed;
+    background: $fr-gray-2;
+    border-radius: 5px;
+    border: 1px solid $fr-gray-20;
+    color: $fr-orange;
+    display: none;
+    float: left;
+    font-size: modular-scale(0);
+    font-weight: 500;
+    height: 40px;
+    line-height: 32px;
+    margin-left: 5px;
+    padding: 3px 1em;
+    width: auto;
+
+    &.loading {
+      background-image: image-url('ajax-loader.gif');
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+  }
+}

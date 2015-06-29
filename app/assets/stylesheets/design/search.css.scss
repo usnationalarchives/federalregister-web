@@ -1,8 +1,11 @@
+@import 'search/advanced';
+@import 'search/tabs';
+@import 'search/search_bar';
 @import 'search/results_header';
 @import 'search/results';
 
-#search {
-  .search_bar {
+.search {
+  .search-bar {
     li {
       height: 21px;
       margin-bottom: 13px;
