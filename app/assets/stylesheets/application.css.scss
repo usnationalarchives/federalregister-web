@@ -1,9 +1,4 @@
-// Core bootstrap variables and mixins
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-// vendor
-@import "jquery.tipsy";
+@import "vendor.css.scss";
 
 // mixins/colors/other library items
 @import "essential";
