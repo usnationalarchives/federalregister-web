@@ -47,7 +47,7 @@ $(document).ready(function () {
             success: function(data){
               var form = $('#entry_search_form');
               var cache = form.data('count_cache') || {};
-              cache[url] = data.count + " search results";
+              cache[url] = data.count + " matching documents";
               requests[url] = undefined;
               form.data('count_cache', cache);
               if (form.data('count_current_url') === url) {
@@ -266,4 +266,3 @@ $(document).ready(function () {
       toggleAdvanced(location.hash === "#advanced");
     }).trigger('hashchange');
 });
-
