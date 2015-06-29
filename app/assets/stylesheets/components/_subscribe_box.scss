@@ -35,3 +35,27 @@
     }
   }
 }
+
+.subscription.subscription_action {
+  color: $fr-link-dark;
+  font-weight: 500;
+  text-transform: none;
+
+  &:visited { color: $fr-link-dark; }
+  &:hover { color: $fr-orange; }
+
+  .icon-fr2 {
+    position: relative;
+
+    &.icon-fr2-message {
+      font-size: 22px;
+      top: 3px;
+      margin-right: 1px;
+    }
+
+    &.icon-fr2-rss {
+      font-size: 15.5px;
+      top: 0px;
+    }
+  }
+}
