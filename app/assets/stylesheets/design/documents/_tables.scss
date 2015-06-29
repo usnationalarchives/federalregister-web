@@ -30,7 +30,7 @@
       text-align: center;
     }
 
-    $border-color: $dark-grey;
+    $border-color: $dark-gray;
 
     @each $side in top bottom left right {
       .border-#{$side}-single {
