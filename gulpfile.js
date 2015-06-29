@@ -55,7 +55,7 @@ gulp.task('sass', ['getAssetPaths'], function() {
   return gulp.src('./app/assets/stylesheets/application.css.scss')
     .pipe(sourcemaps.init())
     .pipe(
-      sass({includePaths: config.sass.includePaths})
+      sass({includePaths: config.sass.includePaths}).on('error', sass.logError)
     )
     .pipe(sourcemaps.write())
     .pipe(rename("application.css"))
