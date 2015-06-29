@@ -27,3 +27,7 @@ fr_comment_url: 'http://127.0.0.1:8080/my/comments'
 
 # generic switch for deciding when to raise exception or notify honeybadger
 notify_honeybager: false
+
+# using browser sync
+browser_sync:
+  enabled: false
