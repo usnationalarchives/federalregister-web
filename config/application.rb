@@ -53,6 +53,7 @@ module MyFr2
 
     # Configure load paths for SASS
     config.sass.load_paths << "#{Rails.root}/vendor/assets/stylesheets/"
+    config.sass.load_paths << "#{Rails.root}/app/assets/fonts"
 
     # Generate digests for assets URLs
     config.assets.digest = true
