@@ -5,8 +5,17 @@
       Search All Federal Register Documents Since 1994
     </h3>
 
-    <form action="/articles/search" class="formtastic conditions" id="entry_search_form" method="get">
-      <input id="conditions_term" class="form-control" name="conditions[term]" placeholder="Search term or citation" size="30" type="text">
+    <%= semantic_form_for @search,
+      as: :conditions,
+      url: documents_search_path,
+      html: {method: :get, id: "entry_search_form"} do |f| %>
+    <!-- <form action="/articles/search" class="formtastic conditions" id="entry_search_form" method="get"> -->
+      <!-- <input id="conditions_term" class="form-control" name="conditions[term]" placeholder="Search term or citation" size="30" type="text"> -->
+
+      <label>Find</label>
+      <%= f.text_field :term,
+        class: 'search-term',
+        placeholder: 'Search term or citation' %>
 
       <ul>
         <li class="hidden optional" id="conditions_agency_ids_input">
@@ -14,7 +23,11 @@
         </li>
       </ul>
 
-      <input id="conditions_submit" name="commit" type="submit" value="Search">
+      <%= f.button fr_icon('Search').html_safe,
+        class: 'search-submit',
+        id: 'conditions_submit',
+        "aria-label" => 'Search' %>
+
       <span id="expected_result_count"></span>
 
       <div id="doc-type-filter">
@@ -35,6 +48,7 @@
       </div>
 
       <li class="check_boxes optional" id="conditions_type_input"><fieldset><legend class="label"><label for="conditions_type">Document Category</label></legend><ol><li><label for="conditions_type_rule"><input name="conditions[type][]" type="hidden" value=""><input id="conditions_type_rule" name="conditions[type][]" type="checkbox" value="RULE"> Rule</label></li><li><label for="conditions_type_prorule"><input name="conditions[type][]" type="hidden" value=""><input id="conditions_type_prorule" name="conditions[type][]" type="checkbox" value="PRORULE"> Proposed Rule</label></li><li><label for="conditions_type_notice"><input name="conditions[type][]" type="hidden" value=""><input id="conditions_type_notice" name="conditions[type][]" type="checkbox" value="NOTICE"> Notice</label></li><li><label for="conditions_type_presdocu"><input name="conditions[type][]" type="hidden" value=""><input id="conditions_type_presdocu" name="conditions[type][]" type="checkbox" value="PRESDOCU"> Presidential Document</label></li></ol></fieldset></li>
-    </form>
+    <!-- </form> -->
+    <% end %>
   </div>
 </div>

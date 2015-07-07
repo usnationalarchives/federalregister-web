@@ -2,6 +2,8 @@ class Search::Base
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
+  include ConditionsHelper
+
   SEARCH_CONDITIONS = [
     :type,
     :term,
@@ -28,7 +30,7 @@ class Search::Base
     @params = params
     @errors = {}
     @validation_errors = {}
-    @conditions = params[:conditions] || {}
+    @conditions = clean_conditions(params[:conditions]) || {}
 
     # Set Page
     @page = params[:page].to_i
@@ -44,7 +46,7 @@ class Search::Base
           order: order,
           per_page: per_page
         )
-        pager.replace(result_set.map{|doc| DocumentDecorator.decorate(doc)})
+        pager.replace(DocumentDecorator.decorate_collection(result_set))
         pager.total_entries = document_count unless pager.total_entries
         pager.custom_page_count = result_set.total_pages
       end

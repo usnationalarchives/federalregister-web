@@ -9,6 +9,7 @@
 <% end %>
 
 <% add_javascript :src => 'search.js' %>
+<%# add_javascript src: 'page_specific/search.js' %>
 
 <%= title do %>
   <%= fr_icon 'Search' %>
@@ -18,26 +19,53 @@
 <%= bootstrap_context_wrapper do %>
   <div class="row document-search search">
     <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-      <%= esi(documents_search_header_path(params)) %>
+
+
+          <%= esi(documents_search_header_path(params)) %>
 
       <% unless @search.conditions_blank? %>
         <% if @search.valid? %>
-          <div class="filters">
-            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'publication_date'))) unless @search.publication_date.present? %>
-            <%# TODO HELP-RUBY i know this doesn't go here. just wanted to stash it somewhere  %>
-            <!-- <li><%#= sparkline(:data => @search.date_distribution.to_a.sort_by{|date, count| date}.map{|date, count| count}, :alt => "Monthly Distribution" ) %></li> -->
-            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'type'))) unless @search.type.present? %>
-            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'agency'))) unless @search.agency_ids.present? %>
-            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'topic'))) unless @search.topics.present? %>
-            <%= esi(documents_search_facets_path(params.except(:action).merge(:facet => 'section', :num_facets => 6))) unless @search.sections.present? %>
-          </div>
+          <div class="row">
+            <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
+              <div class="filters">
+                <%= esi( documents_search_facets_path(
+                    params.except(:action).merge(:facet => 'publication_date')
+                  )
+                ) unless @search.publication_date.present? %>
 
-          <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
-            <%= esi(documents_search_suggestions_path(params.except(:action))) %>
-          <% end %>
-          <%= esi(documents_search_results_path(params)) %>
+                <%= esi( documents_search_facets_path(
+                    params.except(:action).merge(:facet => 'type')
+                  )
+                ) unless @search.type.present? %>
+
+                <%= esi( documents_search_facets_path(
+                    params.except(:action).merge(:facet => 'agency')
+                  )
+                ) unless @search.agency_ids.present? %>
+
+                <%= esi( documents_search_facets_path(
+                    params.except(:action).merge(:facet => 'topic')
+                  )
+                ) unless @search.topics.present? %>
+
+                <%= esi( documents_search_facets_path(
+                    params.except(:action).merge(:facet => 'section', :num_facets => 6)
+                  )
+                ) unless @search.sections.present? %>
+              </div>
+            </div>
+
+            <div class="<%= bootstrap_col(xs: 9, md: 9) %>">
+              <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
+                <%= esi(documents_search_suggestions_path(params.except(:action))) %>
+              <% end %>
+
+              <%= esi(documents_search_results_path(params)) %>
+            </div>
+          </div>
         <% end %>
       <% end %>
+
     </div>
   </div>
 <% end %>

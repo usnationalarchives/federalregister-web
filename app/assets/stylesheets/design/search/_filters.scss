@@ -1,0 +1,42 @@
+.search .filters {
+  h4 {
+    text-transform: uppercase;
+  }
+
+  ul {
+    border-bottom: 1px solid $fr-gray-10;
+    list-style-type: none;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+
+    li {
+      clear: both;
+      overflow: hidden;
+      position: relative;
+
+      a {
+        &.facet-name {
+          display: block;
+          float: left;
+          width: 160px;
+        }
+      }
+
+      .facet-document-count {
+        display: block;
+        text-align: right;
+      }
+
+      &.on .facet_name {
+        color: $text;
+        padding-left: 17px;
+        width: 143px;
+      }      
+    }
+
+    .zip {
+      border: 1px solid #ccc;
+      width: 75px;
+    }
+  }
+}

@@ -1,12 +1,17 @@
-<% if search_details.filters.present? %>
-<ul class="active_filter_list">
-  <% search_details.filters.each do |filter| %>
-  <li>
-    <span class="type"><%= filter.value %></span>
-    <span class="name"><%= h filter.name %></span>
-    <%= link_to 'Remove', search_removing_filter(filter.condition, filter.value), :title => 'Remove Filter', :class => 'remove' %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
+<div class="row">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <ul class="active_filter_list">
+      <% filters.each do |filter| %>
+        <li>
+          <span class="type"><%= filter.value %></span>
+          <span class="name"><%= filter.name %></span>
 
+          <%= link_to 'Remove',
+            search_removing_filter(filter.condition, filter.value),
+            title: 'Remove Filter',
+            class: 'remove' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

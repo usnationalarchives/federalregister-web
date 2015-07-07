@@ -1,0 +1,36 @@
+<div class="search_info search-info filterable-list-container">
+  <div class="row filterable-list-info">
+    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+      <h2 class="pull-left">
+        <span class="small-stack">
+          Documents <span>Found</span>
+        </span>
+        <span id="item-count" class="item-count">
+          <%= number_with_delimiter search.document_count %>
+        </span>
+      </h2>
+
+      <ul class="actions">
+        <% supported_orders.each do |order| %>
+          <% if search.order.present? %>
+            <li class="<%= 'on' if search.order == order.downcase || (search.order == "relevance" && order == "Relevant") %>">
+              <%= link_to order,
+                params.
+                  merge(order: order.downcase, action: :show).
+                  except(:page),
+                class: '' %>
+            </li>
+          <% else %>
+            <li class="<%= 'on' if order == 'Relevant' %>">
+              <%= link_to order,
+                params.
+                  merge(order: order.downcase, action: :show).
+                  except(:page),
+                class: '' %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

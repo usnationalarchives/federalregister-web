@@ -8,7 +8,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   def show
-    if !valid_search?
+    if !clean_conditions?
       redirect_to documents_search_path(
         conditions: clean_conditions(@search.valid_conditions),
         page: params[:page],
@@ -89,10 +89,7 @@ class Search::DocumentsController < ApplicationController
     @search = @presenter.search
   end
 
-  def valid_search?
-    blank_conditions?(params[:conditions]) ||
-      (
-        (params[:conditions].try(:keys) || []) - @search.valid_conditions.try(:keys)
-      ).present?
+  def clean_conditions?
+    params[:conditions] == clean_conditions(params[:conditions])
   end
 end

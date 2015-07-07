@@ -1,39 +1,42 @@
-<div class="result_set" data-expected-result-count="<%= render :partial => 'result_summary.txt.erb', :locals => {:search => @search, :search_details => @search_details} %>">
-  <%= render :partial => "search/filters", :locals => {:search_details => @search_details} %>
-  
-  <% if @search.results.present? %>
-    <div class="search_info">
-      <div class="article_count">
-        <h2 class="title_bar"><span class="small_stack">Documents <span>Found</span></span> <%= number_with_delimiter @search.document_count %></h2>
+<div class="row result_set result-set"
+  data-expected-result-count="<%= @search.result_metadata.count %>">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+
+    <% if @search_details.filters.present? %>
+      <%= render partial: "search/filters", locals: {
+          filters: @search_details.filters
+        } %>
+    <% end %>
+
+    <% if @search.results.present? %>
+      <%= render partial: 'search_info', locals: {
+        supported_orders: @presenter.supported_orders,
+        search: @search
+      } %>
+
+      <div class="row">
+        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+          <%= will_paginate @search.results, params: {action: :show},  renderer: BootstrapPagination::Rails %>
+        </div>
       </div>
 
-      <ul class="actions">
-        <% @presenter.supported_orders.each do |order| %>
-          <% if @search.order.present? %>
-            <li class="<%= 'on' if @search.order == order.downcase || (@search.order == "relevance" && order == "Relevant") %>">
-              <%= link_to order, params.merge(:order => order.downcase, :action => :show).except(:page), :class => '' %>
-            </li>
-          <% else %>
-            <li class="<%= 'on' if order == 'Relevant' %>">
-              <%= link_to order, params.merge(:order => order.downcase, :action => :show).except(:page), :class => '' %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-    
-    <%= will_paginate @search.results, :params => {:action => :show} %>
+      <%= render partial: 'search/results',
+        locals: {
+          type: :official,
+          documents: @search.results
+        }
+      %>
 
-    <ol class="results">
-      <%= render :partial => 'result', :collection => @search.results, :as => :document, :locals => {:search => @search} %>
-    </ol>
+      <div class="row">
+        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+          <%= will_paginate @search.results, params: {action: :show},  renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
 
-    <%= will_paginate @search.results, :params => {:action => :show} %>
-    
-  <% else %>
-    <div class="errors">
-      <p class="errors_header">No articles were found.</p>
-    </div>  
-  <% end %>
+    <% else %>
+      <div class="errors">
+        <p class="errors_header">No articles were found.</p>
+      </div>
+    <% end %>
+  </div>
 </div>
-  

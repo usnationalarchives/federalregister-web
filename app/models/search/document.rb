@@ -7,7 +7,7 @@ class Search::Document < Search::Base
     :conditions
 
   def search_type
-    FederalRegister::Document
+    ::Document
   end
 
   #FACETS.each do |facet|

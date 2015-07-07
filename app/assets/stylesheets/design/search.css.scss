@@ -1,8 +1,10 @@
 @import 'search/advanced';
-@import 'search/tabs';
-@import 'search/search_bar';
+@import 'search/filters';
+@import 'search/pagination';
 @import 'search/results_header';
 @import 'search/results';
+@import 'search/search_bar';
+@import 'search/tabs';
 
 .search {
   .search-bar {

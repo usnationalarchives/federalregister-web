@@ -73,6 +73,7 @@ module MyFr2
       page_specific/comment_creation.js
       page_specific/comment_notifications.js
       page_specific/homepage.js
+      page_specific/search.js
       page_specific/sections.js
       page_specific/topics.js
 

@@ -1,11 +1,11 @@
 .tabs {
-  margin-bottom: 0;
   font-size: modular-scale(0);
+  margin-bottom: 0;
   outline: 0;
 
   li {
     @include rounded-top(5);
-    background-color: $fr-gray-5;
+    background-color: $fr-gray-2;
     display: inline-block;
     list-style-image: none;
     list-style-type: none;
@@ -18,19 +18,19 @@
       @include apertura-condensed;
       color: $text-inactive;
       font-weight: 500;
-      margin-bottom: .5em;
-      top: 3px;
+      margin-bottom: 0.5em;
       position: relative;
+      top: 3px;
     }
   }
 
   .on {
     background-color: $fr-gray-10;
     border: 1px solid $fr-gray-20;
-    z-index: 100;
-    top: 1px;
-    position: relative;
     border-bottom: 0;
+    position: relative;
+    top: 1px;
+    z-index: 100;
 
 
     a {
@@ -40,8 +40,8 @@
   }
 
   .number_of_results {
-    font-weight: normal;
     font-size: modular-scale(-1);
+    font-weight: normal;
     margin: -5px 0 -5px 5px;
   }
 }

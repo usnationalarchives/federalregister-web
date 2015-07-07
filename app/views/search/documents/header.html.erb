@@ -22,7 +22,7 @@
     as: :conditions,
     url: documents_search_path,
     input_html: params[:conditions],
-    html: {action: '/documents/search', method: :get, id: "entry_search_form"} do |f| %>
+    html: {method: :get, id: "entry_search_form"} do |f| %>
 
     <div class="simple">
       <label>Find</label>

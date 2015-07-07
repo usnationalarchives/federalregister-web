@@ -1,0 +1,16 @@
+.search .result_set .pagination {
+  margin: 20px auto;
+  display: block;
+  overflow: hidden;
+
+  span,
+  a {
+    border: 1px solid $fr-gray-20;
+    padding: 5px 10px;
+  }
+
+  .active span {
+    background-color: $fr-nav-orange;
+    color: $white;
+  }
+}

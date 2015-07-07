@@ -2,7 +2,7 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
   attr_reader :params
 
   def search_type
-    FederalRegister::Article
+    ::Document
   end
 
   def publication_date_facets
@@ -29,6 +29,7 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
   def self.define_facet(facet)
     plural = facet.to_s.pluralize
     define_method("#{facet}_facets") do
+
       HTTParty.get("https://www.federalregister.gov/api/v1/articles/facets/#{facet}?#{params.to_param}").
         map do |slug, data|
           Facet.new(
