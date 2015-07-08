@@ -7,23 +7,32 @@ module ApplicationHelper
   end
 
   def title(args = {}, &block)
-    text = args.fetch(:text){ '' }
     header_class = args.fetch(:header_class){ '' }
-    
+    text = args.fetch(:text){ '' }
+    title_bar_class = args.fetch(:title_bar_class){ '' }
+
     if block_given?
       unless @content_for_page_title
         page_title(capture(&block))
       end
 
-      set_content_for :title_bar, content_tag(:h1, class: header_class, &block)
+      header = content_tag(:h1, class: header_class, &block)
     else
       # set the html title if we haven't already
       unless @content_for_page_title
         page_title(text)
       end
 
-      set_content_for :title_bar, content_tag(:h1, text, class: header_class)
+      header = content_tag(:h1, text, class: header_class)
     end
+
+    title_bar = content_tag(:div, class: "main-title-bar #{title_bar_class}") do
+      content_tag(:div, '', class: 'bar left') +
+        header +
+        content_tag(:div, '', class: 'bar right')
+    end
+
+    set_content_for :title_bar, title_bar
   end
 
   def page_title(text, options = {})

@@ -45,13 +45,7 @@
     <%= esi site_notification_path(:identifier => :global) %>
 
     <div id="main">
-      <% if yield(:title_bar) %>
-        <div class="main-title-bar">
-          <div class="bar left"></div>
-          <%= yield(:title_bar) %>
-          <div class="bar right"></div>
-        </div>
-      <% end %>
+      <%= yield(:title_bar) %>
 
       <%= yield %>
     </div>
