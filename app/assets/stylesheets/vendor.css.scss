@@ -2,5 +2,13 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
+// scope bootstrap styles
+.bootstrap-scope {
+  @import "bootstrap-custom";
+}
+
 // vendor
 @import "jquery.tipsy.css.scss";
+
+// icon fonts
+@import "fonts";

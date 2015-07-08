@@ -11,7 +11,7 @@
     position: relative;
 
     &> h2 {
-      color: $text-color;
+      color: $text;
 
       span.updated_at {
         font-size: modular-scale(-2);

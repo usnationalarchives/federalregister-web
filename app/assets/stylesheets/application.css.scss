@@ -1,15 +1,10 @@
-@import "vendor.css.scss";
-
 // mixins/colors/other library items
 @import "essential";
 
-
-// scope bootstrap styles
+// scope bootstrap style changes
 .bootstrap-scope {
-  @import "bootstrap-custom";
   @import "bootstrap-changes";
 }
-
 
 /* override old, clashing fr2 styles */
 @import "officialness_override";
@@ -20,9 +15,6 @@
 
 @import "design/layout";
 @import "layout";
-
-@import "fonts";
-
 
 @import "components/buttons";
 @import "components/carousel";

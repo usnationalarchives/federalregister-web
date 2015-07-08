@@ -82,6 +82,7 @@ module MyFr2
       application-ie8lte.css
       application-ie7lte.css
       print.css
+      vendor.css
 
       *.eot
       *.svg
