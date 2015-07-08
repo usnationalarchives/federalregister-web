@@ -5,18 +5,14 @@
     :length => 300
   ) %>
 
-<div class="title public-inspection">
-  <span>Public Inspection :: <%= @document.type %></span>
-</div>
+<%= title title_bar_class: "public-inspection" do %>
+  <%= fr_icon @document.document_type.identifier %>
+  Public Inspection :: <%= @document.type %>
+<% end %>
 
 <%= render partial: 'public_inspection_documents/metadata_content_area', locals: {document: @document} %>
 
-<!-- BOOTSTRAP SCOPE START -->
-<div class="bootstrap-scope">
-<!-- BOOTSTRAP SCOPE START -->
-
-<div class="wrapper">
-  <div class="container fixed">
+<%= bootstrap_context_wrapper do %>
     <div class="clearfix"></div>
 
     <div class="row doc doc-public-inspection">
@@ -25,8 +21,4 @@
     </div>
 
     <div class="clearfix" style="height: 100px;"></div>
-  </div>
-</div>
-<!-- BOOTSTRAP SCOPE END -->
-</div>
-<!-- BOOTSTRAP SCOPE END -->
+<% end %>
