@@ -14,12 +14,14 @@ class ReaderAidsController < ApplicationController
   end
 
   def view_all
+    cache_for 1.hour
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section]
     )
   end
 
   def show
+    cache_for 1.hour
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section],
       item_identifier: params[:item]
@@ -111,6 +113,8 @@ class ReaderAidsController < ApplicationController
   private
 
   def render_section(presenter)
+    cache_for 1.hour
+
     render "section",
       layout: false,
       locals: { presenter: presenter }

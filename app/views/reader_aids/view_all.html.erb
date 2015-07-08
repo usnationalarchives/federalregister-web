@@ -1,10 +1,10 @@
 <% header_type 'reader-aids' %>
-<div class="title reader-aids">
-  <span>
-    <span class="icon-fr2 <%= @presenter.icon_class %>"></span>
-    <%= @presenter.title %>
-  </span>
-</div>
+<% page_title "Reader Aids :: #{@presenter.title}" %>
+
+<%= title title_bar_class: "reader-aids" do %>
+  <%= fr_icon @presenter.icon_class %>
+  <%= @presenter.title %>
+<% end %>
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
