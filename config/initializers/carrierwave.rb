@@ -1,8 +1,9 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
-    :provider               => 'AWS',       # required
     :aws_access_key_id      => SECRETS['aws']['access_key_id'],
-    :aws_secret_access_key  => SECRETS['aws']['secret_access_key']
+    :aws_secret_access_key  => SECRETS['aws']['secret_access_key'],
+    :persistent             => false,
+    :provider               => 'AWS',       # required
   }
   config.fog_public    = false
 

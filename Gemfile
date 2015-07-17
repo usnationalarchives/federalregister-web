@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.22'
 gem 'rake',  '0.9.2.2'
 
 gem 'mysql2', '0.3.18'
@@ -10,6 +10,7 @@ gem 'honeybadger'
 #gem 'federal_register', :path => '../federal_register'
 gem 'federal_register', :git => "git@github.com:criticaljuncture/federal_register.git",
                         :ref => "officialness"
+
 gem 'devise', '2.1.2'
 
 gem 'strong_parameters'
@@ -31,8 +32,8 @@ gem "capistrano", '2.15.4', :require => false
 gem "thunder_punch", '0.1.3', :require => false
 gem "rvm-capistrano", "~> 1.5.4", :require => false
 
-gem "carrierwave", "0.6.2"
-gem "fog"
+gem "carrierwave", "0.10.0"
+gem "fog", "~> 1.32.0"
 gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
