@@ -10,6 +10,9 @@ class @FR2.CommentFormHandler
 
     @startComment()
 
+    if window.location.hash == "#open-comment"
+      @openCommentFromUrlHash()
+
   commentFormReady: ->
     @removeEvents()
 
@@ -160,6 +163,18 @@ class @FR2.CommentFormHandler
   loadCommentForm: ->
     @commentFormLoadHandler.load()
 
+  openCommentFromUrlHash: ->
+    # we want the dom element so we can check for existence rather than
+    # a jquery empty set []
+    link = @formWrapper.find('a#start_comment[data-comment=1]').get(0)
+
+    if link
+      $(link).trigger 'click'
+    else
+      modalTitle = "Comment submission not available"
+      modalHtml = "This document is not open for comment or is not available for comment submission on FederalRegister.gov. You may want to check the DATES, ADDRESSES, or FOR FURTHER INFORMATION CONTACT sections of this document."
+      display_fr_modal modalTitle, modalHtml, $('a#start_comment')
+
   submitCommentForm: ->
     @commentFormStore.storeComment()
     @trackCommentFormSubmitStart()
@@ -168,6 +183,8 @@ class @FR2.CommentFormHandler
   startComment: ->
     @formWrapper.on 'click', 'a#start_comment[data-comment=1]', (e)=>
       e.preventDefault()
+
+      window.location.hash = '#open-comment'
       @trackCommentFormOpenStart()
       @loadCommentForm()
 
