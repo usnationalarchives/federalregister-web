@@ -9,13 +9,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   process :persist_md5
   process :encrypt_file
 
-  # this shouldn't be necesary, but carrierwave really wants to use the hostname...
-  def url(*args)
-    uri = URI.parse( super )
-    bucket = uri.host.sub(/\.s3\.amazonaws\.com$/,'')
-    "https://s3.amazonaws.com/#{bucket}#{uri.path}?#{uri.query}"
-  end
-
   def filename
      "#{model.token}.#{file.extension}" if original_filename.present?
   end
