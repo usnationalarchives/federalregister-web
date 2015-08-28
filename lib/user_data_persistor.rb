@@ -35,7 +35,17 @@ module UserDataPersistor
 
   # allowing user to sign in / sign up after comment had been submitted
   def associate_comment_with_user_at_sign_in_up
-    comment = Comment.where(:user_id => nil, :comment_tracking_number => session[:comment_tracking_number]).first
+    if session[:comment_tracking_number].present?
+      comment = Comment.where(
+        :user_id => nil,
+        :comment_tracking_number => session[:comment_tracking_number]
+      ).first
+    else
+      comment = Comment.where(
+        :user_id => nil,
+        :submission_key => session[:submission_key]
+      ).first
+    end
 
     if comment
       comment.user = current_user
@@ -65,6 +75,7 @@ module UserDataPersistor
     session[:comment_tracking_number] = nil
     session[:comment_secret] = nil
     session[:comment_publication_notification] = nil
+    session[:submission_key] = nil
     session[:followup_document_notification] = nil
 
     return message, redirect_location

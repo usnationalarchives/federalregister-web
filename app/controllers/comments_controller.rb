@@ -83,7 +83,7 @@ class CommentsController < ApplicationController
   end
 
   def persist_for_login
-    %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification).each do |field|
+    %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification submission_key).each do |field|
       session[field] = params[:comment_notifications][field]
     end
 
