@@ -13,6 +13,7 @@ class Comment < ApplicationModel
     :id,
     :iv,
     :salt,
+    :submission_key,
     :user_id
 
   include EncryptionUtils

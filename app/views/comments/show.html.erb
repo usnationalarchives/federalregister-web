@@ -6,21 +6,23 @@
       for review by the <%= @comment.agency_name %>.
     </p>
 
-    <p class="comment_tracking_number">
-      <% if @comment.agency_participating? %>
+    <% if @comment.agency_participating? %>
+      <p class="comment_tracking_number">
         Comment Tracking Number:
         <span class="tracking_number">
           <%= link_to @comment.comment_tracking_number,
             @comment.regulations_dot_gov_comment_search_result_url,
             :target => :blank %>
         </span>
-      <% else %>
-        <%= @comment.agency_name %> does not publish comments on Regulations.gov.
+      </p>
+    <% else %>
+      <p class="info">
+        <%= @comment.agency_name(true) %> does not publish comments on Regulations.gov.
         To check the status of your comment or obtain further information, please
         follow-up directly with the agency contact listed in the document
         you submitted a comment for.
-      <% end %>
-    </p>
+      </p>
+    <% end %>
   </div>
 
   <div class="comment_next_steps">
@@ -119,7 +121,7 @@
         </p>
       <% else %>
         <p>
-          <%= @comment.agency_name %> does not publish comments on Regulations.gov.
+          <%= @comment.agency_name(true) %> does not publish comments on Regulations.gov.
           To check the status of your comment or obtain further information, please
           follow-up directly with the agency contact listed in the document
           you submitted a comment for.

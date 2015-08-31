@@ -34,11 +34,13 @@
   </dl>
 
   {{#unless agency_participating}}
+    {{#with document_details}}
     <p>
       {{agency}} does not publish comments on Regulations.gov.
       To check the status of your comment or obtain further information, please
       follow-up directly with the agency contact listed in the document
       you submitted a comment for.
     </p>
+    {{/with}}
   {{/unless}}
 </div>
