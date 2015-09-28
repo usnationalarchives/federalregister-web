@@ -55,6 +55,8 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     @posts_collection = WpApi::Client.get_posts(config)
     if section_identifier == 'office-of-the-federal-register-blog'
       @posts_collection.content = @posts_collection.posts.reject{|p| p.categories.include?('site-updates')}
+    elsif section_identifier == 'recent-updates'
+      @posts_collection.content = @posts_collection.posts.select{|p| p.categories.include?('site-updates')}
     end
     @posts_collection
   end
