@@ -32,7 +32,7 @@ class TableOfContentsPresenter
     def articles_by_type_and_toc_subject
       articles.group_by(&:type).sort_by{|type,articles| type}.reverse.map do |type, articles_by_type|
         articles_by_toc_subject = articles_by_type.group_by(&:toc_subject).map do |toc_subject, articles_by_toc_subject|
-          [toc_subject, articles_by_toc_subject.sort_by{|e| [e.toc_doc.try(:downcase) || '', (e.toc_doc || e.title)]}]
+          [toc_subject, articles_by_toc_subject.sort_by{|e| [e.toc_doc.try(:downcase) || '', (e.toc_doc || e.title).downcase]}]
         end
         [type, articles_by_toc_subject]
       end
