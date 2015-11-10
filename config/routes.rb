@@ -296,6 +296,9 @@ MyFr2::Application.routes.draw do
   root to: 'special#home'
 
 
+  #
+  # Topics
+  #
   resources :topics, only: [:index, :show]
 
   get 'topics/:id/significant.:format',
@@ -304,6 +307,10 @@ MyFr2::Application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_topic'
 
+
+  #
+  # Agencies
+  #
   resources :agencies, only: [:index, :show]
 
   get 'agencies/:id/significant.:format',
@@ -312,7 +319,18 @@ MyFr2::Application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_agency'
 
-  match '/executive-orders/:president/:year', to: 'executive_orders#by_president_and_year'
+
+  #
+  # Executive Orders
+  #
+  match '/executive-orders',
+    to: 'executive_orders#index',
+    as: 'executive_orders'
+
+  match '/executive-orders/:president/:year',
+    to: 'executive_orders#by_president_and_year',
+    as: 'executive_orders_by_president_and_year'
+
 
   #
   # Sections

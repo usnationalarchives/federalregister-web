@@ -9,7 +9,7 @@ class Search::Base
     :term,
     :docket_id,
     :agency_ids
-  ]
+
 
   DOCUMENT_SEARCH_CONDITIONS = [
     :publication_date,
@@ -23,7 +23,8 @@ class Search::Base
     :cfr,
     :near,
     :topics,
-    :sections
+    :sections,
+    :correction
   ]
 
   def initialize(params)

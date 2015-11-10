@@ -22,6 +22,7 @@ class President < ActiveHash::Base
       :ends_on => Date.new(2017,1,19)
     }
   ]
+  # RW: manage presidential end date - Obama's is hardcoded
 
   def photo_title
     case identifier

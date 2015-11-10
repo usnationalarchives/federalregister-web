@@ -10,10 +10,10 @@ class Search::DocumentsController < ApplicationController
   def show
     if !clean_conditions?
       redirect_to documents_search_path(
-        conditions: clean_conditions(@search.valid_conditions),
-        page: params[:page],
-        order: params[:order],
-        format: params[:format]
+        shared_search_params.merge(
+          conditions: clean_conditions(@search.valid_conditions),
+          format: params[:format]
+        )
       )
     else
       respond_to do |wants|
@@ -25,10 +25,12 @@ class Search::DocumentsController < ApplicationController
           render :template => 'documents/index.rss.builder'
         end
         wants.csv do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.csv?" + {conditions: params[:conditions]}.to_param
+          redirect_to "http://www.federalregister.gov/api/v1/articles.csv?" +
+            shared_search_params.merge(conditions: params[:conditions]).to_param
         end
         wants.json do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.json?" + {conditions: params[:conditions]}.to_param
+          redirect_to "http://www.federalregister.gov/api/v1/articles.json?" +
+            shared_search_params.merge(conditions: params[:conditions]).to_param
         end
       end
    end
@@ -84,6 +86,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   private
+
   def load_presenter
     @presenter = SearchPresenter::Document.new(params)
     @search = @presenter.search
