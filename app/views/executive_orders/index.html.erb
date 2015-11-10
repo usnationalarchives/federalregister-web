@@ -1,15 +1,17 @@
 <% page_controller 'executive_orders' %>
 <% page_action 'index' %>
-<% title 'Executive Orders' %>
 
-<div class="title"><span>Presidential Documents</span></div>
+<% title do %>
+  <%= fr_icon 'stars' %>
+  Executive Orders
+<% end %>
 
 <div class="page_summary">
   <h1>Executive Orders</h1>
   <hr />
 
   <p>
-    The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR). 
+    The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR).
     The OFR numbers each order consecutively as part of a series, and publishes it in the daily Federal Register shortly after receipt.
   </p>
 
@@ -23,7 +25,7 @@
         <%= @presenter.link_to_executive_orders_for_format(:json) %>
       </span>
     </li>
-  
+
     <% @presidents.each do |president| %>
       <li>
         <span class="title"><%= president.full_name %></span>
@@ -58,4 +60,3 @@
     </ul>
   </div>
 <% end %>
-
