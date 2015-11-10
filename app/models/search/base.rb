@@ -8,8 +8,8 @@ class Search::Base
     :type,
     :term,
     :docket_id,
-    :agency_ids
-
+    :agency_ids,
+  ]
 
   DOCUMENT_SEARCH_CONDITIONS = [
     :publication_date,
