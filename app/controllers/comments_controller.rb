@@ -83,7 +83,7 @@ class CommentsController < ApplicationController
   end
 
   def persist_for_login
-    %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification).each do |field|
+    %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification submission_key).each do |field|
       session[field] = params[:comment_notifications][field]
     end
 
@@ -97,11 +97,18 @@ class CommentsController < ApplicationController
   private
 
   def render_created_comment
+    add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
+
     @comment = CommentDecorator.decorate(@comment)
 
     CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
 
     render :action => :show, :status => 200
+  end
+
+  # generate a stub submission key until these are returned from regulations.gov
+  def add_submission_key
+    @comment.update_attribute(:submission_key, "FR2-#{SecureRandom.hex}")
   end
 
   def render_error_page(error=nil)

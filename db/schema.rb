@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140610164114) do
+ActiveRecord::Schema.define(:version => 20150828215943) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20140610164114) do
     t.string   "agency_name"
     t.boolean  "agency_participating"
     t.string   "comment_document_number"
+    t.string   "submission_key"
   end
 
   add_index "comments", ["agency_participating"], :name => "index_comments_on_agency_participating"
@@ -78,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20140610164114) do
   create_table "mailing_lists", :force => true do |t|
     t.text     "parameters"
     t.string   "title"
-    t.integer  "active_subscriptions_count"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "active_subscriptions_count", :default => 0, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "type"
   end
 
@@ -91,10 +92,10 @@ ActiveRecord::Schema.define(:version => 20140610164114) do
     t.string   "token"
     t.datetime "confirmed_at"
     t.datetime "unsubscribed_at"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.datetime "last_delivered_at"
-    t.integer  "delivery_count"
+    t.integer  "delivery_count",       :default => 0, :null => false
     t.date     "last_issue_delivered"
     t.string   "environment"
     t.integer  "user_id"

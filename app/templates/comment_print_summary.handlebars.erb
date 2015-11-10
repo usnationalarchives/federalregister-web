@@ -5,7 +5,7 @@
     <div class="document_title">{{title}}</div>
     <div class="agency">A {{type}} by {{agency}}</div>
 
-    <dl class="document_details">  
+    <dl class="document_details">
         <dt>Document URL</dt>
         <dd>{{url}}</dd>
         <dt>Published On</dt>
@@ -15,8 +15,10 @@
 
   {{#with comment_details}}
     <dl class="comment_details">
-      <dt>Comment Tracking Number</dt>
-      <dd class="tracking_number">{{tracking_number}}</dd>
+      {{#if agency_participating}}
+        <dt>Comment Tracking Number</dt>
+        <dd class="tracking_number">{{tracking_number}}</dd>
+      {{/if}}
       <dt>Comment Submission Date</dt>
       <dd>{{submission_date}}</dd>
     </dl>
@@ -30,4 +32,15 @@
       {{/each}}
     {{/each}}
   </dl>
+
+  {{#unless agency_participating}}
+    {{#with document_details}}
+    <p>
+      {{agency}} does not publish comments on Regulations.gov.
+      To check the status of your comment or obtain further information, please
+      follow-up directly with the agency contact listed in the document
+      you submitted a comment for.
+    </p>
+    {{/with}}
+  {{/unless}}
 </div>

@@ -1,5 +1,5 @@
 <p>
-  Sign in or create a MyFR account to save your comment tracking number
+  Sign in or create a MyFR account to save your comment submission
   and recieve a copy of your comment via email.
 </p>
 
@@ -8,17 +8,28 @@
   :html => {:target => :blank} do |f| %>
 
   <%= f.inputs do %>
-    <%= f.input :comment_publication_notification,
-      :as => :boolean,
-      :label => 'Notify me when my comment has been reviewed and publicly posted.',
-      :input_html => {:checked => true} %>
+    <% if @comment.agency_participating? %>
+      <%= f.input :comment_publication_notification,
+        :as => :boolean,
+        :label => 'Notify me when my comment has been reviewed and publicly posted.',
+        :input_html => {:checked => true} %>
+    <% end %>
+
     <%= f.input :followup_document_notification,
       :as => :boolean,
       :label => 'Notify me when a future document mentions the document I commented on.',
       :input_html => {:checked => true} %>
-    <%= f.input :comment_tracking_number,
+
+    <% if @comment.agency_participating? %>
+      <%= f.input :comment_tracking_number,
+        :as => :hidden,
+        :value => @comment.comment_tracking_number %>
+    <% end %>
+
+    <%= f.input :submission_key,
       :as => :hidden,
-      :value => @comment.comment_tracking_number %>
+      :value => @comment.submission_key %>
+
     <%= f.input :comment_secret,
       :as => :hidden,
       :value => @comment.secret %>

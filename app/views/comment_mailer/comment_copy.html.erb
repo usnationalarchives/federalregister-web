@@ -7,22 +7,34 @@
     for review by <%= @comment.agency_name %>.
   </p>
 
-  <p class="comment_tracking_info">
-    Your comment tracking number is below and can be used to retrieve your
-    comment from Regulations.gov once it has been reviewed and if it is publicly
-    posted by <%= @comment.agency_name %>.
-  </p>
+  <% if @comment.agency_participating? %>
+    <p class="comment_tracking_info">
+      Your comment tracking number is below and can be used to retrieve your
+      comment from Regulations.gov once it has been reviewed and if it is publicly
+      posted by <%= @comment.agency_name %>.
+    </p>
 
-  <p class="comment_tracking_number">
-    Comment Tracking Number:
-    <%= link_to @comment.comment_tracking_number,
-      "http://www.regulations.gov/#!searchResults;s=#{@comment.comment_tracking_number}",
-      :class => 'tracking_number' %>
-  </p>
+    <p class="comment_tracking_number">
+        Comment Tracking Number:
+        <%= link_to @comment.comment_tracking_number,
+          "http://www.regulations.gov/#!searchResults;s=#{@comment.comment_tracking_number}",
+          :class => 'tracking_number' %>
+    </p>
+  <% else %>
+    <p>
+      <%= @comment.agency_name(true) %> does not publish comments on Regulations.gov.
+      To check the status of your comment or obtain further information, please
+      follow-up directly with the agency contact listed in the document
+      you submitted a comment for.
+    </p>
+  <% end %>
 
   <p>
-    As a registered MyFR user you can also view your comment status and manage
-    any followup subscriptions via your
+    As a registered MyFR user you can
+    <% if @comment.agency_participating? %>
+      also view your comment status and
+    <% end %>
+    manage any followup subscriptions via your
     <%= link_to 'My Comments page', @fr_comments_url %>.
   </p>
 </div>
@@ -62,12 +74,21 @@
 </div>
 
 <div class="disclaimer">
-  <p>
-    Your comment may be viewable on
-    <a href="http://www.regulations.gov">Regulations.gov</a>
-    once <%= @comment.agency_name %>
-    has reviewed it. This process is dependent on agency public submission
-    policies/procedures and processing times. Use your tracking number to
-    find out the status of your comment.
-  </p>
+  <% if @comment.agency_participating? %>
+    <p>
+      Your comment may be viewable on
+      <a href="http://www.regulations.gov">Regulations.gov</a>
+      once <%= @comment.agency_name %>
+      has reviewed it. This process is dependent on agency public submission
+      policies/procedures and processing times. Use your tracking number to
+      find out the status of your comment.
+    </p>
+  <% else %>
+    <p>
+      <%= @comment.agency_name(true) %> does not publish comments on Regulations.gov.
+      To check the status of your comment or obtain further information, please
+      follow-up directly with the agency contact listed in the document
+      you submitted a comment for.
+    </p>
+  <% end %>
 </div>
