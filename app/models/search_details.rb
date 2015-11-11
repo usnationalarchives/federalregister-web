@@ -7,7 +7,7 @@ class SearchDetails
 
   def response
     @response ||= HTTParty.get(
-      "https://www.federalregister.gov/api/v1/articles/search-details?#{{:conditions => conditions}.to_param}"
+      api_documents_search_details_url({conditions: conditions}.to_param)
     ).to_hash
   end
 

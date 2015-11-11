@@ -9,7 +9,9 @@ class SearchFacetPresenter::PublicInspection < SearchFacetPresenter::Base
 #  def self.define_facet(facet)
 #    plural = facet.to_s.pluralize
 #    define_method("#{facet}_facets") do
-#      HTTParty.get("https://www.federalregister.gov/api/v1/public_inspection/facets/#{facet}?#{params.to_param}").
+#      HTTParty.get(
+#        api_pi_documents_facet_url(facet, params.to_param)
+#      ).
 #        map do |slug, data|
 #          Facet.new(
 #            value: slug,

@@ -33,7 +33,7 @@ $(document).ready(function () {
     var get_current_url = function() {
       var url;
       if( searchForm().attr('id').match('entry') ) {
-        url = '/articles/search/results.js?';
+        url = '/documents/search/results.js?';
       } else if ( searchForm().attr('id').match('public_inspection') ) {
         url = '/public-inspection/search/results.js?';
       }

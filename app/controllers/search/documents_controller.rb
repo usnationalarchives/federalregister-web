@@ -25,12 +25,14 @@ class Search::DocumentsController < ApplicationController
           render :template => 'documents/index.rss.builder'
         end
         wants.csv do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.csv?" +
+          redirect_to api_documents_csv_url(
             shared_search_params.merge(conditions: params[:conditions]).to_param
+          )
         end
         wants.json do
-          redirect_to "http://www.federalregister.gov/api/v1/articles.json?" +
+          redirect_to api_documents_json_url(
             shared_search_params.merge(conditions: params[:conditions]).to_param
+          )
         end
       end
    end
