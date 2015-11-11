@@ -1,5 +1,13 @@
 /* global modalOpen */
 $(document).ready(function () {
+    var searchForm = function() {
+      if( $('#entry_search_form').length > 0 ) {
+        return $('#entry_search_form');
+      } else if ($('#public_inspection_search_form').length > 0 ) {
+        return $('#public_inspection_search_form');
+      }
+    };
+
     var toggle_presdocu_types = function() {
       var type_checkboxes = $('.presidential_dependent');
       if ($('#conditions_type_presdocu').attr('checked')) {
@@ -14,78 +22,83 @@ $(document).ready(function () {
     toggle_presdocu_types();
 
     var populate_expected_results = function (text) {
-      $('#expected_result_count').removeClass('loading');
-      $('#expected_result_count').text(text).show();
+        $('#expected_result_count').removeClass('loading');
+        $('#expected_result_count').text(text).show();
     };
 
     var indicate_loading = function() {
-      $('#expected_result_count').show().addClass('loading');
+        $('#expected_result_count').show().addClass('loading');
     };
 
     var get_current_url = function() {
-      return 'http://www.federalregister.gov/api/v1/articles.json?' + $("#entry_search_form :input[value!='']:not([data-show-field]):not('.text-placeholder')").serialize();
+      var url;
+      if( searchForm().attr('id').match('entry') ) {
+        url = '/articles/search/results.js?';
+      } else if ( searchForm().attr('id').match('public_inspection') ) {
+        url = '/public-inspection/search/results.js?';
+      }
+
+      return url + searchForm().find(":input[value!='']:not([data-show-field]):not('.text-placeholder')").serialize();
     };
     var requests = {};
 
     // ajax-y lookup of number of expected results
     var calculate_expected_results = function () {
-      var form = $('#entry_search_form');
-      var cache = form.data('count_cache') || {};
-      var url = get_current_url();
+        var cache = searchForm().data('count_cache') || {};
+        var url = get_current_url();
 
-      // don't go back to the server if you've checked this before
-      if (cache[url] === undefined) {
-        // record that this is the current results we're looking for
-        form.data('count_current_url', url);
-        indicate_loading();
+        // don't go back to the server if you've checked this before
+        if (cache[url] === undefined) {
+            // record that this is the current results we're looking for
+            searchForm().data('count_current_url', url);
+            indicate_loading();
 
-        if( requests[url] === undefined ){
-          requests[url] = url;
-          $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            success: function(data){
-              var form = $('#entry_search_form');
-              var cache = form.data('count_cache') || {};
-              cache[url] = data.count + " matching documents";
-              requests[url] = undefined;
-              form.data('count_cache', cache);
-              if (form.data('count_current_url') === url) {
-                  populate_expected_results(cache[url]);
-              }
+            if( requests[url] === undefined ){
+              requests[url] = url;
+
+              $.getJSON(url, function(data){
+                  var cache = searchForm().data('count_cache') || {};
+                  cache[url] = data.message;
+
+                  requests[url] = undefined;
+                  searchForm().data('count_cache', cache);
+
+                  // don't show number if user has already made another request
+                  if (searchForm().data('count_current_url') === url) {
+                      populate_expected_results(cache[url]);
+                  }
+              });
             }
-          });
+
+        } else {
+            populate_expected_results(cache[url]);
         }
-      } else {
-          populate_expected_results(cache[url]);
-      }
     };
 
     $('.result_set[data-expected-result-count]').each(function(){
         var text = $(this).attr('data-expected-result-count');
 
-        var form = $('#entry_search_form');
-        var cache = form.data('count_cache') || {};
+        var cache = searchForm().data('count_cache') || {};
         var url = get_current_url();
         cache[url] = text;
-        form.data('count_cache', cache);
+        searchForm().data('count_cache', cache);
         populate_expected_results(text);
     });
 
-    $('#entry_search_form').bind('calculate_expected_results', calculate_expected_results);
+    searchForm().bind('calculate_expected_results', calculate_expected_results);
 
-    $('#entry_search_form select, #entry_search_form input').bind('blur', function(event) {
+    searchForm().find('select, input').bind('blur', function(event) {
       $(this).trigger('calculate_expected_results');
     });
 
-    $('#entry_search_form input[type=checkbox]').bind('click', function(){
+    searchForm().find('input[type=checkbox]').bind('click', function(){
       $(this).trigger('calculate_expected_results');
     });
 
     // onchange doesn't trigger until blur, and onclick wasn't firing correctly either...
     //    so we poll for the current value. In FF, this fires when you hover over an
     //    item in the list, so it's a bit chatty, but seems ok.
-    $('#entry_search_form select').bind('focus', function(){
+    searchForm().find('select').bind('focus', function(){
         var elem = $(this);
         var callback = function() {
             elem.trigger('calculate_expected_results');
@@ -94,7 +107,7 @@ $(document).ready(function () {
         $(this).data('poller', poller);
     });
 
-    $('#entry_search_form select').bind('blur', function(){
+    searchForm().find('select').bind('blur', function(){
         var poller = $(this).data('poller');
         clearInterval(poller);
         $(this).data('poller','');
@@ -109,22 +122,21 @@ $(document).ready(function () {
       };
     }());
 
-    $('#entry_search_form input[type=text]').keyup(function () {
+    searchForm().find('input[type=text]').keyup(function () {
         // only trigger if stopped typing for more than half a second
         typewatch(function () {
-            $("#entry_search_form").trigger('calculate_expected_results');
+            searchForm().trigger('calculate_expected_results');
         }, 500);
     });
 
     $('.clear_form').click(function(){
-        var form = $('#entry_search_form');
-        form.find('input[type=text],input[type=hidden]').val('');
-        form.find('input[type=radio],input[type=checkbox]').removeAttr('checked').change();
-        form.find('select option:eq(0)').attr('selected','selected');
-        form.find('#conditions_agency_ids option').remove();
-        form.find('#conditions_within option:eq(3)').attr('selected','selected');
-        $('#entry_search_form .bsmListItem').remove();
-        $('#entry_search_form .date').hide().find("input").val('');
+        searchForm().find('input[type=text],input[type=hidden]').val('');
+        searchForm().find('input[type=radio],input[type=checkbox]').removeAttr('checked').change();
+        searchForm().find('select option:eq(0)').attr('selected','selected');
+        searchForm().find('#conditions_agency_ids option').remove();
+        searchForm().find('#conditions_within option:eq(3)').attr('selected','selected');
+        searchForm().find('.bsmListItem').remove();
+        searchForm().find('.date').hide().find("input").val('');
         $(this).trigger('calculate_expected_results');
         return false;
     });
@@ -157,12 +169,12 @@ $(document).ready(function () {
         });
     }
 
-    $('#modal').centerScreen().jqm({
+    $('#modal').jqm({
         ajax: '@href',
         ajaxText: 'Loading...',
         trigger: '.results a.add_to_calendar',
         onShow: modalOpen
-    });
+    }).centerScreen();
 
     $(".date_options .date").hide();
 
@@ -203,7 +215,7 @@ $(document).ready(function () {
       $(this).trigger('calculate_expected_results');
     });
 
-    $("input[data-autocomplete]#article-agency-search").each(function(){
+    $("input[data-autocomplete]#document-agency-search").each(function(){
         var input = $(this);
         input.autocomplete({
         minLength: 3,
