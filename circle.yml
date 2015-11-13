@@ -46,7 +46,14 @@ test:
     #- cd ../fr2 && rake varnish:start
     #- cd ../fr2 && nohup bash -c "script/server -p 3002 &"
     #- nohup bash -c "rails s -p 3001 &"
+
+  post:
+    - >
+      if [ -n "${RUN_REGGOV_BUILD}" ]; then
+        bundle exec rspec spec --tag reg_gov
+      fi
+
   override:
-    - bundle exec rspec spec --tag ~no_ci ~reg_gov
+    - bundle exec rspec spec --tag ~no_ci --tag ~reg_gov
     - bundle exec rake jshint
     - coffeelint -r app/assets/javascripts/
