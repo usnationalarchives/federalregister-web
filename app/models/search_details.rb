@@ -102,7 +102,7 @@ class SearchDetails
 
       def matching_fr_entries
         if document_numbers.count > 1
-          FederalRegister::Article.find_all(document_numbers).map do |doc|
+          FederalRegister::Document.find_all(document_numbers).map do |doc|
             DocumentDecorator.decorate(doc)
           end
         else

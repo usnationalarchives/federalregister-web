@@ -86,7 +86,7 @@ class Search::Base
 
   def result_metadata
     begin
-      @result_metadata ||= FederalRegister::Article.search_metadata(
+      @result_metadata ||= FederalRegister::Document.search_metadata(
         conditions: valid_conditions
       )
     rescue FederalRegister::Client::BadRequest => e
