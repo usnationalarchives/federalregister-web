@@ -47,6 +47,6 @@ test:
     #- cd ../fr2 && nohup bash -c "script/server -p 3002 &"
     #- nohup bash -c "rails s -p 3001 &"
   override:
-    - bundle exec rspec spec --tag ~no_ci
+    - bundle exec rspec spec --tag ~no_ci ~reg_gov
     - bundle exec rake jshint
     - coffeelint -r app/assets/javascripts/

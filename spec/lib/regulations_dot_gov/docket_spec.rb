@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe RegulationsDotGov::Docket do
+describe RegulationsDotGov::Docket, :reg_gov do
   before(:all) do
     $response_keys = Array.new
   end

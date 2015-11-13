@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe RegulationsDotGov::Client do
+describe RegulationsDotGov::Client, :reg_gov do
   before(:all) do
     set_api_key
   end
@@ -165,7 +165,7 @@ describe RegulationsDotGov::Client do
     if SECRETS['data_dot_gov'] && SECRETS['data_dot_gov']['api_key']
       RegulationsDotGov::Client.api_key = SECRETS['data_dot_gov']['api_key']
     else
-       RegulationsDotGov::Client.api_key'DEMO_KEY'
+      RegulationsDotGov::Client.api_key'DEMO_KEY'
     end
   end
 end

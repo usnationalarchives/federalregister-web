@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 module RegulationsDotGov
-  describe CommentForm do
+  describe CommentForm, :reg_gov do
     before(:all) do
       $response_keys = Array.new
     end

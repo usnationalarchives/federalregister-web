@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
 module RegulationsDotGov
-  describe CommentForm::Option do
+  describe CommentForm::Option, :reg_gov do
     let(:client) { double(:client) }
     let(:agency_acronym) { 'ITC' }
     let(:attributes) { {'default' => true, 'label' => 'Alabama', 'value' => 'AL'} }

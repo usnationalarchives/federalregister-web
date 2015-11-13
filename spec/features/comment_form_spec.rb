@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Regulations.gov comment integration" do
+feature "Regulations.gov comment integration", :reg_gov do
 #  scenario "User submits a comment for a document that has an open comment period", :js do
 #    visit '/articles/2014/01/01/4242-4242/test-document'
 #save_and_open_page

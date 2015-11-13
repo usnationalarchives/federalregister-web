@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
 module RegulationsDotGov
-  describe CommentForm::Field do
+  describe CommentForm::Field, :reg_gov do
     let(:client) { double(:client) }
     let(:agency_acronym) { 'ITC' }
 

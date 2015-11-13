@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../../../spec_helper'
 
 module RegulationsDotGov
-  describe CommentForm::Field::SelectField do
+  describe CommentForm::Field::SelectField, :reg_gov do
     let(:client) { double(:client) }
     let(:agency_acronym) { 'ITC' }
 
