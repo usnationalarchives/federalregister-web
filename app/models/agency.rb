@@ -1,4 +1,19 @@
 class Agency < FederalRegister::Agency
+  def self.suggestions(term)
+    args = {
+      conditions: {
+        term: term
+      },
+      fields: [:id, :name, :short_name, :url]
+    }
+
+    agencies = super(args)
+
+    agencies.map{|agency|
+      AgencyDecorator.decorate(agency)
+    }
+  end
+
   def total_document_count
     @document_count ||= ::Document.search(
         search_conditions.deep_merge!(

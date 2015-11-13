@@ -112,12 +112,20 @@
     line-height: 32px;
     margin-left: 5px;
     padding: 3px 1em;
+    position: relative;
     width: auto;
 
-    &.loading {
-      background-image: image-url('ajax-loader.gif');
+    .loader {
+      background-position: center;
       background-repeat: no-repeat;
-      background-position: 50% 50%;
+      background-size: 100% 100%;
+      background: image-url('fr_orange_loader.svg');
+      display: none;
+      height: 30px;
+      left: 2px;
+      position: absolute;
+      top: 5px;
+      width: 30px;
     }
   }
 }

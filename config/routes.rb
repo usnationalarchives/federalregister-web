@@ -311,6 +311,11 @@ MyFr2::Application.routes.draw do
   #
   # Agencies
   #
+  get 'agencies/suggestions',
+    controller: "agencies",
+    actions: "suggestions",
+    as: 'agency_suggestions'
+
   resources :agencies, only: [:index, :show]
 
   get 'agencies/:id/significant.:format',

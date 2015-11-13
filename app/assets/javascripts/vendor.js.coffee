@@ -1,4 +1,5 @@
 #= require jquery-1.8.3.min
+#= require jquery-ui-1.9.2.custom.min.js
 #= require jquery_ujs
 #= require modernizr.custom.js
 #= require underscore
@@ -31,3 +32,7 @@
 
 # CAROUSEL
 #= require iscroll
+
+# SEARCH
+# debounce search result count lookahead
+#= require jquery.typewatch.js

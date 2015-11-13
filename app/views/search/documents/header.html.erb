@@ -35,7 +35,10 @@
         id: 'conditions_submit',
         "aria-label" => 'Search' %>
 
-      <span id="expected_result_count" class="search-result-count"></span>
+      <span id="expected_result_count" class="search-result-count">
+        <span class="document-count"></span>
+        <span class="loader"></span>
+      </span>
 
       <div class="actions">
         <%= subscribe_link conditions_for_subscription(@search) %>

@@ -23,9 +23,11 @@ class AgenciesController < ApplicationController
     end
   end
 
-  def search
-    agencies = Agency.with_entries.named_approximately(params[:term]).limit(10)
-    render :json => agencies.map{|a| {:id => a.id, :name => a.name_and_short_name, :url => agency_url(a)} }
+  def suggestions
+    agencies = Agency.suggestions(params[:term])
+    render :json => agencies.map{|a|
+      {id: a.id, name: a.name_and_short_name, url: a.url}
+    }
   end
 
   # RW: Old
