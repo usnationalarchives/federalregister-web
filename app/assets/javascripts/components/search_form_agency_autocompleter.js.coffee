@@ -20,15 +20,15 @@ class @FR2.SearchFormAgencyAutocompleter
           $.ajax({
             url: "/agencies/suggestions?term=" + request.term,
             success: (data) ->
-              $(elem).removeClass("loading");
+              $(elem).removeClass("loading")
 
               response $.map(data, (item)->
-                  return {
-                    label: item.name,
-                    value: item.name,
-                    id: item.id
-                  }
-                )
+                return {
+                  label: item.name,
+                  value: item.name,
+                  id: item.id
+                }
+              )
           })
         select: (event, ui)->
           $("#conditions_agency_ids")
@@ -36,10 +36,10 @@ class @FR2.SearchFormAgencyAutocompleter
           $("#conditions_agency_ids").trigger("change")
           $(this).data('clear-value', 1)
         close: ()->
-          input = $(this);
+          input = $(this)
           if input.data('clear-value')
-             input.val('')
-             input.data('clear-value',0)
+            input.val('')
+            input.data('clear-value',0)
         search: (event, ui)->
           $(this).addClass("loading")
       }

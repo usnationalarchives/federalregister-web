@@ -130,7 +130,7 @@ class @FR2.SearchFormHandler
   intializeInputDataShowFields: (input)->
     input = $(input)
 
-    parentFieldset = input.closest("fieldset");
+    parentFieldset = input.closest("fieldset")
     matchingInputs = parentFieldset
       .find(".#{input.attr("data-show-field")} :input")
 
