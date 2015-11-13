@@ -9,3 +9,6 @@ app_url: 'http://www.fr2.dev:8081'
 fr_comment_url: 'http://www.fr2.dev:8081/my/comments'
 rss_helper:
   url: "federalregister.gov"
+
+regulations_dot_gov:
+  debug_output_enabled: true
