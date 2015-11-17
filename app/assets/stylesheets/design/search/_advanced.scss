@@ -2,3 +2,488 @@
   display: block;
   overflow: hidden;
 }
+
+.has_js .advanced { display: none; }
+.advanced {
+  margin-top: 1em;
+
+  &.open {
+    display: block;
+
+    .seperator {
+      border-top: 1px solid $fr-gray-20;
+      margin: 20px auto;
+      width: 95%;
+    }
+  }
+
+  .input-wrapper { padding: 0 5em 0; }
+}
+
+%advanced-legend {
+  color: $search-form-label-text;
+  font-size: modular-scale(1);
+  font-weight: 500;
+  text-align: right;
+  white-space: normal;
+  width: 200px;
+}
+
+.search .advanced {
+  abbr {
+    border-bottom: none;
+
+    &[title] {
+      color: $fr-orange;
+    }
+  }
+
+  ol { list-style: none; }
+
+  li.input {
+    clear: both;
+
+    input {
+      position: relative;
+      top: 10px;
+    }
+  }
+
+  fieldset {
+    clear: both;
+
+    legend {
+      @extend %advanced-legend;
+
+      &.label,
+      label {
+        @extend %advanced-legend;
+      }
+    }
+  }
+}
+
+.search .advanced fieldset {
+  &.date_options,
+  &.cfr,
+  &.zip {
+    legend { float: left; }
+    label { margin-top: 0; }
+  }
+
+  &.cfr,
+  &.zip {
+    legend { margin-right: 15px; }
+
+    li {
+      display: inline-block;
+
+      input { top: 0; }
+    }
+  }
+}
+
+.search .advanced fieldset {
+  &.date_options {
+    .type_selector li {
+      display: inline-block;
+
+      label {
+        font-size: modular-scale(0);
+        font-weight: normal;
+
+        input { margin-right: 5px; }
+      }
+    }
+
+    li.date.input {
+      clear: none;
+      height: 36px;
+      overflow: auto;
+
+      &.exact_date,
+      &.exact_year {
+        label { margin-left: 40px; }
+      }
+      &.range label { width: 120px; }
+      &.range_end {
+        margin-left: 209px;
+
+        label { width: 111px; }
+      }
+
+      label {
+        color: $search-form-label-text;
+        font-size: modular-scale(0);
+        font-weight: normal;
+        margin-left: 30px;
+      }
+
+      select {
+        position: relative;
+        top: 2px;
+        width: 75px;
+      }
+
+      input { top: 0px; }
+
+      .input-connector { font-weight: 500; }
+    }
+  }
+}
+.search .advanced fieldset {
+  &.show_labels {
+    label {
+      @extend %advanced-legend;
+      margin-left: 0;
+    }
+
+    li.agency {
+      input {
+        margin-left: 7px;
+        position: relative;
+        top: 6px;
+        width: 400px;
+      }
+    }
+
+    li.docket label,
+    li.reg_id label {
+      @extend %advanced-legend;
+
+      margin-right: 15px;
+    }
+
+    li.significant {
+      label {
+        @extend %advanced-legend;
+
+        font-size: modular-scale(0);
+        text-align: left;
+        width: auto;
+      }
+    }
+  }
+}
+
+.search .advanced fieldset.choices {
+  legend label {
+    color: $search-form-label-text;
+    width: 180px;
+  }
+
+  ol.choices-group {
+    position: relative;
+    top: 12px;
+
+    li.choice {
+      display: inline-block;
+
+      label {
+        font-size: modular-scale(0);
+        width: auto;
+
+        input {
+          top: 0px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.search .advanced {
+  select.bsmSelect {
+    display: none !important; /* important needed for IE */
+  }
+
+  .bsmList {
+    margin-left: 14.5em;
+    margin-top: 10px;
+
+    .bsmListItem,
+    .inline-hints {
+      background: #dfe4ea;
+      border-radius: 5px;
+      float: left;
+      height: 30px;
+      margin: 0 5px 5px 0;
+      padding: 5px 5px 3px 7px;
+    }
+
+    .bsmListItem {
+      &:hover { background: #d3dae2; }
+
+      .remove {
+        margin-left: 10px;
+        display: inline-block;
+        height: 25px;
+        width: 25px;
+
+        &.icon-fr2-badge_x::before {
+          top: 2px;
+          position: relative;
+        }
+      }
+    }
+
+    .bsmHighlight { background-color: $fr-orange; }
+  }
+
+  //clear the float on any bsm items above
+  #conditions_type_input { clear: both; }
+}
+
+.search .advanced fieldset.buttons {
+  margin-left: 205px;
+
+  li {
+    display: inline-block;
+  }
+
+  .button { background: none; }
+  .fr_button {
+    border-radius: 6px;
+    border: none;
+    height: 30px;
+  }
+
+  .clear_form {
+    position: relative;
+    top: 10px;
+  }
+}
+
+/*
+.formtastic fieldset {
+  border: none;
+  display: block;
+  margin: 0 0 1em 0;
+  padding: 0;
+
+  fieldset,
+  fieldset ol,
+  .type_selector {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  legend,
+  .check_boxes legend,
+  .fallback_agency_list label,
+  .docket label,
+  .reg_id label {
+    color: $fr-gray-50;
+    display: block;
+    float: left;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: right;
+    width: 13em;
+  }
+
+  legend,
+  .label {
+    margin: 0 1em 0 0;
+  }
+
+  label {
+    color: $fr-gray-60;
+    font-size: 1em;
+    margin: 0 1em 0 0;
+    text-align: right;
+  }
+
+  .label label {
+    color: $fr-gray-50;
+    float: none;
+    margin: 0;
+  }
+}
+
+.has_js .formtastic {
+  .show_labels .string label,
+    color: $fr-gray-50;
+    display: block;
+    float: left;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: right;
+    width: 13em;
+  }
+
+  fieldset legend,
+  fieldset .check_boxes legend,
+  .show_labels .string label,
+  .fallback_agency_list label {
+    font-size: 1.1em;
+    width: 14em;
+  }
+}
+
+
+.has_js .search-bar .formtastic .cfr label,
+.has_js .search-bar .formtastic .zip label,
+.has_js .search-bar .formtastic .select label {
+  display: none;
+}
+
+.formtastic li {
+  list-style: none;
+  margin-bottom: .5em;
+  }
+.formtastic fieldset .check_boxes li,
+.formtastic .buttons li,
+.formtastic fieldset .type_selector li,
+.has_js .formtastic .date_options .range,
+.has_js .formtastic .cfr li,
+.has_js .formtastic .zip li {
+  display: inline;
+  }
+.formtastic fieldset .check_boxes ol label,
+.formtastic fieldset .boolean label {
+  width: auto;
+  margin-left: 0;
+  }
+.formtastic fieldset .check_boxes input,
+.formtastic fieldset .boolean input {
+  margin-left: 0;
+  }
+.formtastic .show_labels,
+.formtastic .show_labels .selected_agency_list,
+.formtastic .advanced ol,
+.formtastic .show_labels .reg_id {
+  margin-bottom: 0;
+  }
+.formtastic .show_labels li {
+  margin-bottom: 1em;
+  }
+.formtastic .show_labels .agency {
+  margin-bottom: .35em;
+  }
+.formtastic fieldset .date input {
+  width: 7em;
+  }
+.formtastic .inline-hints {
+  clear: both;
+  font-size: 1em;
+  @include gesta;
+  margin-left: 13em;
+  }
+.formtastic .row_of_options {
+  display: none;
+  margin-bottom: 0;
+  overflow:hidden;
+  width: 500px;
+  }
+.has_js .formtastic .row_of_options {
+  display: block;
+  }
+.date_options ol,
+.cfr ol,
+.zip ol {
+  float: left;
+  }
+.has_js .date_options ol,
+.has_js .cfr ol,
+.has_js .zip ol {
+  float: none;
+  }
+.has_js .formtastic .date_options .date {
+  display: block;
+  float: left;
+  height: 16px;
+  }
+.has_js .exact_date {
+  margin-left: 17.5em;
+  }
+.has_js .exact_year {
+  margin-left: 24.5em;
+  }
+.exact_year select,
+.zip select {
+  display: inline;
+  float: none;
+  margin: 0;
+  }
+.has_js .range_start {
+  margin-left: 30em;
+  }
+.formtastic .cfr_title input {
+  width: 30px;
+  }
+.formtastic .zip input,
+.formtastic .cfr_part input {
+  width: 50px;
+  }
+.formtastic .significant {
+  clear: both;
+  margin-left: 14em;
+  overflow: hidden;
+  }
+.has_js .formtastic .significant {
+  margin-left: 218px;
+  }
+.formtastic .show_labels .reg_id input {
+  width: 65px;
+  }
+.formtastic .show_labels .docket input {
+  width: 160px;
+   }
+.formtastic .agency input {
+  width: 400px;
+  }
+.formtastic .advanced #conditions_submit {
+  background: url(/images/search_btn_bg.png) repeat-x;
+  border: 1px solid #aaa;
+  color: #555;
+  cursor: pointer;
+  @include border-radius(5px);
+  @include apertura-condensed;
+  font-size: 1.3em;
+  line-height: 25px;
+  padding: 0 5px;
+  text-indent: 0;
+  width: auto;
+  }
+.formtastic .advanced #conditions_submit:hover { color: #B88659; }
+.formtastic .buttons {
+  margin-left: 16.75em;
+  margin-top: 2em;
+  }
+
+#toggle_advanced {
+  cursor: pointer;
+  float: left;
+  display: none;
+  }
+.has_js #toggle_advanced {
+  display: block;
+  }
+.search_bar .options .help_link {
+  float: right;
+}
+
+.formtastic .string span {
+  margin: 0 3px;
+  }
+
+.inline-hints.loading {
+  background-image: image-url('ajax-loader.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  @include hide-text();
+  }
+.inline-hints.loading {
+  width: 20px;
+  }
+.formtastic .clear_form {
+  display: none;
+  margin-left: 5px;
+  }
+.has_js .formtastic .clear_form {
+  display: inline;
+  }
+.text-placeholder {color: #AAA !important}
+*/

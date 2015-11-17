@@ -9,7 +9,12 @@ class @FR2.SearchFormAgencyAutocompleter
     @searchForm
       .find("select[multiple]")
       .hide()
-      .bsmSelect({removeClass: 'remove'})
+      .bsmSelect(
+        {
+          removeClass: 'remove icon-fr2 icon-fr2-badge_x'
+          removeLabel: ''
+        }
+      )
 
     @agencyInput.autocomplete(
       {

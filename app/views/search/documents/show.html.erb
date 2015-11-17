@@ -20,8 +20,7 @@
   <div class="row document-search search">
     <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
 
-
-          <%= esi(documents_search_header_path(params)) %>
+      <%= esi(documents_search_header_path(params)) %>
 
       <% unless @search.conditions_blank? %>
         <% if @search.valid? %>

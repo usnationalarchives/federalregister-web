@@ -1,5 +1,5 @@
 <%= f.semantic_fields_for attribute, f.object.send(attribute) do |date_f| %>
-  
+
   <% f.inputs :name => label, :class => 'date_options' do %>
     <li class="row_of_options">
       <ol class="type_selector">
@@ -14,11 +14,10 @@
         </li>
       </ol>
     </li>
-    
+
     <%= date_f.input :is,
                      :input_html => {:placeholder => Date.current, :value => f.object.send(attribute).try(:[], "is")},
                      :wrapper_html => {:class => 'date exact_date'} %>
-    <!-- RW: Issue -->
     <%= date_f.input :year,
                      :as => :select,
                      :collection => (1994..Date.current.year).to_a.reverse,
@@ -34,4 +33,3 @@
                      :wrapper_html => {:class => 'date range range_end'} %>
   <% end %>
 <% end %>
-

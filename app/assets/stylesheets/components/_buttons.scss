@@ -12,7 +12,7 @@
 
     &:hover,
     &.hover {
-      background: $fr-bright-orange;
+      background: darken($fr-green, 5);
     }
   }
   &.optional {

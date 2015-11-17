@@ -29,6 +29,8 @@ class @FR2.SearchFormHandler
 
     _.each $("input[data-show-field]"), @intializeInputDataShowFields
 
+    @addHelperText()
+
   togglePresidentialDocumentTypes: ->
     typeCheckboxes = $('.presidential_dependent')
 
@@ -138,6 +140,22 @@ class @FR2.SearchFormHandler
       if $(matchingInput).val() != '' && !$(matchingInput).hasClass('text-placeholder')
         input.prop('checked', true)
         input.change()
+
+  addHelperText: ->
+    # add in some text to make certain form fields more
+    # clear for the user - but that aren't easily put on
+    # the form via the form builder when creating the html
+    @searchForm
+      .find(".range_start input")
+      .after("<span class='input-connector'> to </span>")
+
+    @searchForm
+      .find(".cfr li:first-child input")
+      .after("<span class='input-connector'> CFR </span>")
+
+    @searchForm
+      .find(".zip li:first-child input")
+      .after("<span class='input-connector'> within </span>")
 
   calculateExpectedResults: ->
     @searchCount.calculateExpectedResults()

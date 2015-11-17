@@ -15,9 +15,4 @@ $(document).ready(function () {
 
         return false;
     });
-
-    //Add in some helpful hints that would be redundant if we had all the labels displaying
-    $(".range_start input").after("<span> to </span>");
-    $(".cfr li:first-child input").after("<span> CFR </span>");
-    $(".zip li:first-child input").after("<span> within </span>");
 });

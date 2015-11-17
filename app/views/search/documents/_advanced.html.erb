@@ -33,13 +33,15 @@
               :label => "Presidential Document Type",
               :as => :check_boxes,
               :collection => PresidentialDocumentType.all,
-              :wrapper_html => {:class => "presidential_dependent"} %>
+              :wrapper_html => {:class => "presidential_dependent"},
+              :required => false %>
   <%= f.input :president,
               :label => "President",
               :as => :check_boxes,
               :collection => President.all,
               :value_method => :identifier,
-              :wrapper_html => {:class => "presidential_dependent"} %>
+              :wrapper_html => {:class => "presidential_dependent"},
+              :required => false %>
   <%= f.input :docket_id,
               :label => "Agency Docket",
               :wrapper_html => {:class => 'docket'},
@@ -92,7 +94,10 @@
 <% end %>
 
 <%= f.buttons do %>
-  <%= f.commit_button 'Search', button_html: {id: 'conditions_submit'} %>
+  <%= f.commit_button 'Search', button_html: {
+    id: 'conditions_submit',
+    class: 'fr_button primary large'
+  } %>
   <li>
     <%= link_to "Clear Form", entries_search_path({}), :class => "clear_form" %>
   </li>

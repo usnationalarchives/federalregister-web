@@ -63,7 +63,10 @@
 
     </div>
     <div class="advanced">
-      <%= render :partial => "advanced", :locals => {:f => f} %>
+      <div class="seperator"></div>
+      <div class="input-wrapper">
+        <%= render :partial => "advanced", :locals => {:f => f} %>
+      </div>
     </div>
   <% end %>
 </div>
