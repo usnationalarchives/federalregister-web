@@ -1,6 +1,9 @@
-<div class="title document-issue">
-  <span><%= @presenter.date %> Issue</span>
-</div>
+<% page_title "Federal Register Document Issue #{@presenter.date}" %>
+
+<%= title do %>
+  <%= fr_icon 'documents' %>
+  <%= @presenter.date %> Issue
+<% end %>
 
 <!-- BOOTSTRAP SCOPE START -->
 <div class="bootstrap-scope">
