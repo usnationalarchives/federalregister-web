@@ -16,10 +16,11 @@ class @FR2.SearchCount
     @cache()[url]
 
   populateExpectedResults: (obj)->
-    if obj.count == 1
-      text = "#{obj.count} document"
+    formattedCount = numeral(obj.count).format('0,0')
+    if formattedCount == "1"
+      text = "#{formattedCount} document"
     else
-      text = "#{obj.count} documents"
+      text = "#{formattedCount} documents"
 
     $('#expected_result_count')
       .find '.loader'

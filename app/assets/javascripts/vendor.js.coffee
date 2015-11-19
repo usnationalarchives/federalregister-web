@@ -36,3 +36,6 @@
 # SEARCH
 # debounce search result count lookahead
 #= require jquery.typewatch.js
+# format numbers appropriately with comma's, etc
+#= require numeral.min.js
+#= require languages.min.js
