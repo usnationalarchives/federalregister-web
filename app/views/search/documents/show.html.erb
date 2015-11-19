@@ -9,11 +9,10 @@
 <% end %>
 
 <% add_javascript :src => 'search.js' %>
-<%# add_javascript src: 'page_specific/search.js' %>
 
 <%= title do %>
   <%= fr_icon 'Search' %>
-  Search
+  Document Search
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
@@ -56,7 +55,10 @@
 
             <div class="<%= bootstrap_col(xs: 9, md: 9) %>">
               <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
-                <%= esi(documents_search_suggestions_path(params.except(:action))) %>
+                <%= esi( documents_search_suggestions_path(
+                    params.except(:action)
+                  )
+                ) %>
               <% end %>
 
               <%= esi(documents_search_results_path(params)) %>

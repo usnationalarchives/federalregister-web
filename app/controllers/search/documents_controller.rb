@@ -8,7 +8,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   def show
-    if !clean_conditions?
+    if valid_search?
       redirect_to documents_search_path(
         shared_search_params.merge(
           conditions: clean_conditions(@search.valid_conditions),
@@ -92,9 +92,5 @@ class Search::DocumentsController < ApplicationController
   def load_presenter
     @presenter = SearchPresenter::Document.new(params)
     @search = @presenter.search
-  end
-
-  def clean_conditions?
-    params[:conditions] == clean_conditions(params[:conditions])
   end
 end

@@ -147,11 +147,20 @@
       }
     }
 
-    li.docket label,
-    li.reg_id label {
-      @extend %advanced-legend;
+    li.check_boxes {
+      legend.label { margin-right: 6px; }
+    }
 
-      margin-right: 15px;
+    li.docket,
+    li.reg_id {
+      label {
+        @extend %advanced-legend;
+
+        margin-right: 15px;
+        padding-right: 0px;
+      }
+
+      input { width: 250px; }
     }
 
     li.significant {
@@ -188,6 +197,23 @@
           margin-right: 5px;
         }
       }
+    }
+  }
+}
+
+.search .advanced li.radio fieldset.choices {
+  legend {
+    width: 180px;
+
+    label { width: 160px; }
+  }
+
+  .choice {
+    padding-right: 20px;
+
+    input {
+      float: none;
+      margin-left: 0;
     }
   }
 }
@@ -239,6 +265,7 @@
 
   li {
     display: inline-block;
+    height: 100%;
   }
 
   .button { background: none; }
@@ -250,7 +277,7 @@
 
   .clear_form {
     position: relative;
-    top: 10px;
+    top: -5px;
   }
 }
 

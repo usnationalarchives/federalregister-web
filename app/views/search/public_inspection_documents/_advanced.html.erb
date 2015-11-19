@@ -1,17 +1,16 @@
 <%= f.inputs :class => 'show_labels' do %>
-  <% if js_known_to_be_enabled? %>
-    <%# put hidden fields and stub for JS-variation here %>
 
+  <%# put hidden fields and stub for JS-variation here %>
+  <% if js_known_to_be_enabled? %>
     <li class="string optional agency">
       <label>Agency</label>
-      <input placeholder="Agriculture Department" id="document-agency-search" data-autocomplete="autocomplete" />
+      <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department"/>
 
       <%= f.select :agency_ids,
-                  @presenter.agencies.map{|a| [a.name, a.id.to_s]},
-                  {},
-                  {:multiple => :multiple, :class => 'selected_agency_list'} %>
+        @presenter.agencies.map{|a| [a.name, a.id.to_s]},
+        {},
+        {multiple: :multiple, class: 'selected_agency_list'} %>
     </li>
-
   <% else %>
     <%= f.input :agency_ids,
                 :as => :select,
@@ -22,23 +21,34 @@
                 :collection => @presenter.agencies,
                 :wrapper_html => {:class => 'fallback_agency_list'} %>
   <% end %>
+
   <%= f.input :type,
               :label => "Document Category",
               :as => :check_boxes,
-              :collection => EntrySearch::TYPES %>
+              :collection => PresidentialDocumentType.all,
+              :required => false %>
+
   <%= f.input :special_filing,
               :as => :radio,
               :label => "Filing Type",
-              :collection => [['All', ''],['Regular', '0'], ['Special', '1']] %>
+              :collection => [['All', ''],['Regular', '0'], ['Special', '1']],
+              :required => false %>
+
   <%= f.input :docket_id,
               :label => "Agency Docket",
               :input_html => {:placeholder => "EPA-HQ-OPPT-2005-0049"},
-              :wrapper_html => {:class => 'docket'} %>
+              :wrapper_html => {:class => 'docket'},
+              :required => false %>
 <% end %>
 
 <%= f.buttons do %>
-  <%= f.commit_button 'Search' %>
+  <%= f.commit_button 'Search', button_html: {
+    id: 'conditions_submit',
+    class: 'fr_button primary large'
+  } %>
+
   <li>
-    <%= link_to "Clear Form", documents_search_path, :class => "clear_form" %>
+    <%= link_to "Clear Form", public_inspection_search_path({}),
+      :class => "clear_form" %>
   </li>
 <% end %>

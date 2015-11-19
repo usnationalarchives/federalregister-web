@@ -1,4 +1,12 @@
 module ConditionsHelper
+  def valid_search?
+    !blank_conditions?(params[:conditions]) && !clean_conditions?
+  end
+
+  def clean_conditions?
+    params[:conditions] == clean_conditions(@search.valid_conditions)
+  end
+
   def clean_conditions(conditions)
     if conditions.is_a?(Hash)
       conditions.each do |k,v|

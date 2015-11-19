@@ -3,17 +3,17 @@
 <%= render :partial => "search/date_form", :locals => {:f => f, :attribute => :comment_date, :label => "Comment Close Date"} %>
 
 <%= f.inputs :class => 'show_labels' do %>
-  <% if js_known_to_be_enabled? %>
-    <%# put hidden fields and stub for JS-variation here %>
 
+  <%# put hidden fields and stub for JS-variation here %>
+  <% if js_known_to_be_enabled? %>
     <li class="string optional agency">
       <label>Agency</label>
-      <input data-autocomplete="autocomplete" id="document-agency-search" />
+      <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
 
       <%= f.select :agency_ids,
-                  @presenter.agencies.map{|a| [a.name, a.id.to_s]},
-                  {},
-                  {:multiple => :multiple, :class => 'selected_agency_list'} %>
+        @presenter.agencies.map{|a| [a.name, a.id.to_s]},
+        {},
+        {multiple: :multiple, class: 'selected_agency_list'} %>
     </li>
   <% else %>
     <%= f.input :agency_ids,
@@ -21,20 +21,27 @@
                 :label => "Agencies",
                 :include_blank => false,
                 :input_html => {:multiple => true},
+                :value_method => Proc.new{|a| a.id.to_s},
                 :collection => @presenter.agencies,
                 :wrapper_html => {:class => 'fallback_agency_list'} %>
   <% end %>
+
   <%= f.input :type,
               :label => "Document Category",
               :as => :check_boxes,
-              :collection => EntrySearch::TYPES,
+              :collection => DocumentType.
+                document_types_for_search.
+                each_with_index.
+                map{|t,i| [t, i + 1]},
               :required => false %>
+
   <%= f.input :presidential_document_type_id,
               :label => "Presidential Document Type",
               :as => :check_boxes,
               :collection => PresidentialDocumentType.all,
               :wrapper_html => {:class => "presidential_dependent"},
               :required => false %>
+
   <%= f.input :president,
               :label => "President",
               :as => :check_boxes,
@@ -42,12 +49,16 @@
               :value_method => :identifier,
               :wrapper_html => {:class => "presidential_dependent"},
               :required => false %>
+
   <%= f.input :docket_id,
               :label => "Agency Docket",
+              :input_html => {:placeholder => "EPA-HQ-OPPT-2005-0049"},
               :wrapper_html => {:class => 'docket'},
               :required => false %>
+
   <%= f.input :regulation_id_number,
               :label => "Regulation ID Number (RIN)",
+              :input_html => {:placeholder => "2070-AJ57"},
               :wrapper_html => {:class => 'reg_id'},
               :required => false %>
   <li class="boolean optional significant" id="conditions_significant_input">
@@ -98,7 +109,9 @@
     id: 'conditions_submit',
     class: 'fr_button primary large'
   } %>
+
   <li>
-    <%= link_to "Clear Form", entries_search_path({}), :class => "clear_form" %>
+    <%= link_to "Clear Form", documents_search_path({}),
+      :class => "clear_form" %>
   </li>
 <% end %>

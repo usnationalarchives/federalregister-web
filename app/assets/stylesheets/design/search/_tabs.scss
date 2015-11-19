@@ -1,3 +1,8 @@
+%tab-on-state {
+  background-color: $fr-gray-10;
+  border: 1px solid $fr-gray-20;
+}
+
 .tabs {
   font-size: modular-scale(0);
   margin-bottom: 0;
@@ -6,6 +11,7 @@
   li {
     @include rounded-top(5);
     background-color: $fr-gray-2;
+    color: $text-inactive;
     display: inline-block;
     list-style-image: none;
     list-style-type: none;
@@ -14,6 +20,11 @@
     padding: 5px 5px 10px 5px;
     white-space: nowrap;
 
+    &:hover {
+      @extend %tab-on-state;
+      padding: 5px 5px 10px 4px;
+    }
+
     a {
       @include apertura-condensed;
       color: $text-inactive;
@@ -21,22 +32,23 @@
       margin-bottom: 0.5em;
       position: relative;
       top: 3px;
+
+      &:visited { color: $text-inactive; }
+      &:hover { color: $fr-orange; }
     }
   }
 
   .on {
-    background-color: $fr-gray-10;
-    border: 1px solid $fr-gray-20;
+    @extend %tab-on-state;
+
     border-bottom: 0;
+    color: $fr-dark-blue;
+    font-weight: 700;
     position: relative;
     top: 1px;
     z-index: 100;
 
-
-    a {
-      color: $fr-dark-blue;
-      font-weight: 700;
-    }
+    &:hover { color: $fr-dark-blue; }
   }
 
   .number_of_results {

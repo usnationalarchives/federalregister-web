@@ -46,7 +46,7 @@ class @FR2.SearchCount
     if @searchForm.attr('id').match('entry')
       url = '/api/v1/documents.json'
     else if @searchForm.attr('id').match('public_inspection')
-      url = '/api/v1/public-inspection.json'
+      url = '/api/v1/public-inspection-documents.json'
 
     params = @searchForm
       .find(":input[value!='']:not([data-show-field]):not('.text-placeholder')")

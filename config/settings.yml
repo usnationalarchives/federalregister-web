@@ -18,3 +18,7 @@ notify_honeybager: true
 
 rss_helper:
   url: "https://www.federalregister.gov"
+
+feature_flags:
+  unified_agenda:
+    search: false

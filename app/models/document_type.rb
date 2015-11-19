@@ -97,4 +97,14 @@ class DocumentType
   def icon_class
     "icon-fr2 icon-doctype icon-fr2-#{identifier}"
   end
+
+  # note: order matters here
+  def self.document_types_for_search
+    [
+      "Rule",
+      "Proposed Rule",
+      "Notice",
+      "Presidential Document",
+    ]
+  end
 end
