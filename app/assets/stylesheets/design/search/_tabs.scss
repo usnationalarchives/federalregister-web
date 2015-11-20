@@ -17,12 +17,12 @@
     list-style-type: none;
     margin-bottom: -1em;
     margin-left: 0px;
-    padding: 5px 5px 10px 5px;
+    padding: 5px 5px 10px 10px;
     white-space: nowrap;
 
     &:hover {
       @extend %tab-on-state;
-      padding: 5px 5px 10px 4px;
+      padding: 5px 5px 10px 9px;
     }
 
     a {
@@ -48,7 +48,11 @@
     top: 1px;
     z-index: 100;
 
-    &:hover { color: $fr-dark-blue; }
+    &:hover {
+      color: $fr-dark-blue;
+      border-bottom: 0;
+      padding-left: 10px;
+    }
   }
 
   .number_of_results {
