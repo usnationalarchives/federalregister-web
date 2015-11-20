@@ -30,17 +30,19 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
     plural = facet.to_s.pluralize
     define_method("#{facet}_facets") do
 
-      HTTParty.get(
-        api_documents_facet_url(facet, params.to_param)
-      ).
-        map do |slug, data|
-          Facet.new(
-            value: slug,
-            name: data["name"],
-            count: data["count"],
-            condition: plural
-          )
-        end.sort{|a,b| b.count <=> a.count}
+      results = HTTParty.get(
+        "#{Settings.federal_register.api_url}/documents/facets/#{facet}?#{params.to_param}"
+      )
+
+      results.map do |slug, data|
+        Facet.new(
+          value: slug,
+          name: data["name"],
+          count: data["count"],
+          condition: plural
+        )
+      end.sort{|a,b| b.count <=> a.count}
+
     end
   end
   FACETS = [:agency, :topic, :section]

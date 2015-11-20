@@ -7,8 +7,8 @@ class SearchDetails
 
   def response
     @response ||= HTTParty.get(
-      api_documents_search_details_url({conditions: conditions}.to_param)
-    ).to_hash
+      "#{Settings.federal_register.api_url}/documents/search-details/?#{{conditions: conditions}.to_param}"
+    )
   end
 
   def suggestions

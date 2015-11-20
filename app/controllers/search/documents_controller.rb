@@ -45,13 +45,6 @@ class Search::DocumentsController < ApplicationController
       wants.html do
         render :layout => false
       end
-      wants.js do
-        if @search.valid?
-          render :json => {:count => @search.document_count, :message => render_to_string(:partial => "result_summary.txt.erb")}
-        else
-          render :json => {:errors => @search.validation_errors, :message => "Invalid parameters"}
-        end
-      end
     end
   end
 
