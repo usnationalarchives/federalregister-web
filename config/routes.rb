@@ -10,6 +10,10 @@ MyFr2::Application.routes.draw do
   #
   # Documents
   #
+  get 'documents/current',
+    to: "document_issues#current",
+    as: :current_document_issue
+
   get 'documents/:year/:month/:day',
       to: "document_issues#show",
       as: :document_issue,

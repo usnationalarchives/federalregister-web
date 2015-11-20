@@ -14,14 +14,20 @@ class DocumentIssuesController < ApplicationController
     end
   end
 
+  def current
+    cache_for 1.day
+
+    date = DocumentIssue.current.publication_date
+    @presenter = TableOfContentsPresenter.new(date)
+    @doc_presenter = DocumentIssuePresenter.new(date)
+
+    render :show
+  end
+
   def by_month
     cache_for 1.day
 
-    begin
-      @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    rescue ArgumentError
-      raise ActiveRecord::RecordNotFound
-    end
+    @date = parse_date_from_params
 
     @document_dates = FederalRegister::Facet::Document::Daily.search(
       {:conditions =>

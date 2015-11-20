@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def parse_date_from_params
     year  = params[:year]
     month = params[:month]
-    day   = params[:day]
+    day   = params[:day] || "01"
     begin
       Date.parse("#{year}-#{month}-#{day}")
     rescue ArgumentError
