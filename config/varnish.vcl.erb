@@ -152,7 +152,11 @@ sub vcl_recv {
         return (lookup);
       }
     <% else %>
-      return (pass);
+      <% if Settings.varnish.enable_cache_headers %>
+        return (lookup);
+      <% else %>
+        return (pass);
+      <% end %>
     <% end %>
 }
 
