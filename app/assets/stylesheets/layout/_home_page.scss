@@ -3,13 +3,14 @@
   margin-top: -20px;
 }
 
-.bootstrap-scope .embedded_search.search_bar {
-  width: 100%;
+.bootstrap-scope .embedded_search.search-bar.home-search-embedded {
+  border: 0;
+  border-radius: 0;
   padding-left: 50px;
+  width: 100%;
 
   input#conditions_term {
     width: 520px;
-    height: 34px;
     padding: 6px 12px;
 
     @include border-radius(0);
@@ -35,7 +36,7 @@
   }
 
   #doc-type-filter {
-    width: 562px;
+    width: 587px;
     height: 45px;
     left: 0;
 

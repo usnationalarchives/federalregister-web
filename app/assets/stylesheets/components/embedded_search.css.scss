@@ -6,12 +6,13 @@ $filter-border-color: #CCCCCC;
 $filter-hover-bg-color: #F5F8F9;
 $filter-disabled-bg-color: #FFFFFF;
 
-.embedded_search.search_bar { 
-  margin-left: 0;
-  width: 580px;
-  padding: 1em 0 .6em;
-  float: none;
+.embedded_search.search-bar {
+  background-color: $fr-gray-10;
   display: block;
+  float: none;
+  margin-left: 0;
+  padding: 1em .6em;
+  width: 580px;
 
   #conditions_term { width: 225px; }
 
