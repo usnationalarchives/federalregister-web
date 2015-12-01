@@ -1,6 +1,8 @@
 class SearchFacetPresenter::Document < SearchFacetPresenter::Base
   attr_reader :params
 
+  FACETS = [:agency, :topic, :section]
+
   def search_type
     ::Document
   end
@@ -45,6 +47,6 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
 
     end
   end
-  FACETS = [:agency, :topic, :section]
+
   FACETS.each { |facet| define_facet(facet) }
 end

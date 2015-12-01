@@ -5,6 +5,7 @@
 
   ul {
     border-bottom: 1px solid $fr-gray-10;
+    font-weight: normal;
     list-style-type: none;
     margin-bottom: 1em;
     padding-bottom: 1em;
@@ -31,7 +32,17 @@
         color: $text;
         padding-left: 17px;
         width: 143px;
-      }      
+      }
+
+      &.fr_button {
+        font-size: 14px;
+        margin-top: 10px;
+
+        &.secondary {
+          color: white;
+          &:hover { color: white; }
+        }
+      }
     }
 
     .zip {

@@ -1,8 +1,8 @@
-<% if @presenter.facets_available %>
-  <h4><%= name %></h4>
+<% if @presenter.facets_available? %>
+  <h4><%= @presenter.facet_name %></h4>
   <ul>
     <% facets.each_with_index do |facet, index| %>
-      <li class="<%= 'on' if facet.on? %> <%= "#{name}_facet facet_hidden" if index > @presenter.num_facets - 1 %>">
+      <li class="<%= 'on' if facet.on? %> <%= "#{css_class(@presenter.facet_name)}_facet" %> <%= "hidden" if index > @presenter.num_facets - 1 %>">
         <%= link_to facet.name,
           search_adding_filter(facet.condition, facet.value),
           class: 'facet-name' %>
@@ -13,7 +13,15 @@
       </li>
     <% end %>
     <% if facets.size > @presenter.num_facets %>
-      <li><a href="#" class="toggle" data-target=".<%= name %>_facet.facet_hidden">[more]</a></li>
+      <li class="fr_button medium secondary toggle show-more"
+        data-toggle='<%= {
+          toggleTarget: ".#{css_class(@presenter.facet_name)}_facet",
+          showText: "view more #{@presenter.facet_name.downcase.pluralize}",
+          hideText: "view fewer #{@presenter.facet_name.downcase.pluralize}"
+        }.to_json %>'
+      >
+        view more <%= @presenter.facet_name.downcase.pluralize %>
+      </li>
     <% end %>
   </ul>
 <% end %>

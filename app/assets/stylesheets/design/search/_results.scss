@@ -1,7 +1,23 @@
+.search-info {
+  .filterable-list-info {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  ul.actions {
+    margin-bottom: 0;
+
+    li.on {
+      padding: 0.25em 0.5em 0.25em;
+    }
+  }
+}
+
 // bootstrap override
 .wrapper .row.search-result-documents {
   margin-bottom: 0 !important;
 }
+
 
 .search-result-documents {
   list-style: none;

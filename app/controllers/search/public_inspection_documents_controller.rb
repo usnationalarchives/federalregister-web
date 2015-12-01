@@ -58,9 +58,11 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     @presenter = SearchFacetPresenter::PublicInspection.new(params)
 
     if params[:all]
-      render :partial => "search/facet", :collection => @presenter.facets, :as => :facet
+      render partial: "search/facet", collection: @presenter.facets, as: :facet
     else
-      render :partial => "search/facets", :locals => {:facets => @presenter.facets, :name => @presenter.facet_name}, :layout => false
+      render partial: "search/facets", locals: {
+        facets: @presenter.facets
+      }, layout: false
     end
   end
 

@@ -17,10 +17,10 @@ class SearchFacetPresenter::Base
     params[:facet].humanize.capitalize_first
   end
 
-  def facets_available
+  def facets_available?
     facets.present? &&
-      !facets.detect{|facet| facet.value == "errors"} &&
-      facets.map(&:count).detect{|x| x != 0}
+      facets.none?{|facet| facet.value == "errors"} &&
+      facets.map(&:count).any?{|x| x != 0}
   end
 
   def num_facets
