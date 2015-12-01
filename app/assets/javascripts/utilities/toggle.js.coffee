@@ -27,10 +27,3 @@ class @CJ.ToggleAll extends @CJ.Toggle
 
       el.closest(el.data('toggle-all-targeters'))
         .addClass(el.data('active-class') || 'active')
-
-$(document).ready ()->
-  _.each $('.toggle'), (el)->
-    new CJ.ToggleOne(el)
-
-  _.each $('.toggle-all'), (el)->
-    new CJ.ToggleAll(el)

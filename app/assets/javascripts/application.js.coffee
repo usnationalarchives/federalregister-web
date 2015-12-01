@@ -2,7 +2,7 @@
 #= require old/application
 
 #= require utilities/ajax_setup
-#= require app
+#= require namespace
 
 #= require handlebars_helpers
 #= require storage.js
@@ -50,18 +50,5 @@
 #= require utilities/list_item_filter
 #= require utilities/list_item_sorter
 
-$(document).ready ()->
-  $('.clippy').clippy({
-    keep_text: true,
-    clippy_path: '/assets/clippy.swf'
-  })
-
-  CJ.Tooltip.addTooltip(
-    '.cj-tooltip',
-    {
-      offset: 5
-      opacity: 0.9
-      delay: 0.3
-      fade: true
-    }
-  )
+# Instantiate and bind common application js items
+#= require app
