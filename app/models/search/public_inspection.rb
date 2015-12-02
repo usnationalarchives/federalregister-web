@@ -8,7 +8,7 @@ class Search::PublicInspection < Search::Base
     :special_filing
 
   def search_type
-    FederalRegister::PublicInspectionDocument
+    ::PublicInspectionDocument
   end
 
   FACETS = [:agency]
