@@ -16,7 +16,8 @@
 
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <%= will_paginate @search.results, params: {action: :show},  renderer: BootstrapPagination::Rails %>
+          <%= will_paginate @search.results, params: {action: :show},
+            renderer: BootstrapPagination::Rails %>
         </div>
       </div>
 
@@ -29,13 +30,14 @@
 
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <%= will_paginate @search.results, params: {action: :show},  renderer: BootstrapPagination::Rails %>
+          <%= will_paginate @search.results, params: {action: :show},
+            renderer: BootstrapPagination::Rails %>
         </div>
       </div>
 
     <% else %>
       <div class="errors">
-        <p class="errors_header">No articles were found.</p>
+        <p class="errors_header">No documents were found.</p>
       </div>
     <% end %>
   </div>
