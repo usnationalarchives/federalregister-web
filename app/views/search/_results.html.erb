@@ -15,7 +15,11 @@
             document_issue_path(document) %>.
         </p>
 
-        <% if search.conditions[:term].blank? && document.model.respond_to?(:abstract)%>
+        <%# multiple pages use this shared result partial but not all provide a search or have an abstract %>
+        <% if (search &&
+          search.conditions[:term].blank? &&
+          document.model.respond_to?(:abstract)
+          ) || (!search && document.model.respond_to?(:abstract))%>
           <p class="description">
             <%= truncate_words(document.abstract, :length => 350) %>
           </p>

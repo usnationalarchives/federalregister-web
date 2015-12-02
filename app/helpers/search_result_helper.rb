@@ -40,7 +40,8 @@ module SearchResultHelper
         render partial: 'search/results',
           locals: {
             type: document_type,
-            documents: documents
+            documents: documents,
+            search: nil
           }
       end
     end
