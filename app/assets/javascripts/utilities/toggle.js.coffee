@@ -6,7 +6,8 @@ class @CJ.Toggle
     @settings = @el.data('toggle')
 
     if !@settings || (@settings && !@settings.toggleTarget)
-      throw 'CJ.Toggle :: Must provide toggleTarget as a data-toggle option'
+      error = new Error('CJ.Toggle :: Must provide toggleTarget as a data-toggle option')
+      throw error
 
     defaults = {
       hiddenClass: 'hidden'
