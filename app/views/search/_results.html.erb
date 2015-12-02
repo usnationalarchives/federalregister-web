@@ -15,9 +15,15 @@
             document_issue_path(document) %>.
         </p>
 
-        <p class="description">
-          <%= truncate_words(document.abstract, :length => 350) %>
-        </p>
+        <% if document.respond_to?(:abstract) %>
+          <p class="description">
+            <%= truncate_words(document.abstract, :length => 350) %>
+          </p>
+        <% elsif document.respond_to?(:excerpts) %>
+          <p class="description">
+            <%= truncate_words(sanitize(document.excerpts), :length => 350).html_safe %>
+          </p>
+        <% end %>
       </div>
     </li>
   <% end %>
