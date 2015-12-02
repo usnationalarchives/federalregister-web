@@ -4,10 +4,13 @@ class Search::DocumentsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def header
+    cache_for 1.day
     render :layout => false
   end
 
   def show
+    cache_for 1.day
+
     if valid_search?
       redirect_to documents_search_path(
         shared_search_params.merge(
@@ -39,8 +42,9 @@ class Search::DocumentsController < ApplicationController
   end
 
   def results
+    cache_for 1.day
     @search_details = @search.search_details
-    #cache_for 1.day
+
     respond_to do |wants|
       wants.html do
         render :layout => false

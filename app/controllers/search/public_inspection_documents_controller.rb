@@ -4,10 +4,13 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def header
+    cache_for 1.day
     render layout: false
   end
 
   def show
+    cache_for 1.day
+
     if valid_search?
       redirect_to public_inspection_search_path(
         conditions: clean_conditions(@search.valid_conditions),
@@ -37,18 +40,12 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   end
 
   def results
+    cache_for 1.day
     @search_details = @search.search_details
-    #cache_for 1.day
+
     respond_to do |wants|
       wants.html do
         render :layout => false
-      end
-      wants.js do
-        if @search.valid?
-          render :json => {:count => @search.document_count, :message => render_to_string(:partial => "result_summary.txt.erb")}
-        else
-          render :json => {:errors => @search.validation_errors, :message => "Invalid parameters"}
-        end
       end
     end
   end
