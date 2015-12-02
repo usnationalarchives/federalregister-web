@@ -25,7 +25,9 @@
   <%= f.input :type,
               :label => "Document Category",
               :as => :check_boxes,
-              :collection => PresidentialDocumentType.all,
+              :collection => DocumentType.
+                document_types_for_search.
+                map{|t| [t.display_type, t.granule_class]},
               :required => false %>
 
   <%= f.input :special_filing,

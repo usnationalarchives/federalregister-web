@@ -31,8 +31,7 @@
               :as => :check_boxes,
               :collection => DocumentType.
                 document_types_for_search.
-                each_with_index.
-                map{|t,i| [t, i + 1]},
+                map{|t| [t.display_type, t.granule_class]},
               :required => false %>
 
   <%= f.input :presidential_document_type_id,
