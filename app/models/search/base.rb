@@ -43,6 +43,7 @@ class Search::Base
       @collection ||= WillPaginate::Collection.create(@page, 20) do |pager|
         @result_set = search_type.search(
           conditions: conditions,
+          fields: search_type.search_fields,
           page: @page,
           order: order,
           per_page: per_page

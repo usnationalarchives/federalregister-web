@@ -9,4 +9,15 @@ class Document < FederalRegister::Document
       agencies.reject{|a| parent_agency_ids.include?(a.id) }
     end
   end
+
+  def self.search_fields
+    [
+      :abstract,
+      :agencies,
+      :html_url,
+      :publication_date,
+      :title,
+      :type,
+    ]
+  end
 end

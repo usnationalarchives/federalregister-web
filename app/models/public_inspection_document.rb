@@ -5,4 +5,15 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
     # parent agency should never be excluded
     agencies
   end
+
+  def self.search_fields
+    [
+      :agencies,
+      :excerpts,
+      :html_url,
+      :publication_date,
+      :title,
+      :type,
+    ]
+  end
 end
