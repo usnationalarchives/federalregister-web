@@ -1,7 +1,7 @@
 class SearchFacetPresenter::Document < SearchFacetPresenter::Base
   attr_reader :params
 
-  FACETS = [:agency, :topic, :section]
+  FACETS = [:agency, :section, :topic, :type]
 
   def search_type
     ::Document
@@ -29,22 +29,19 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
   # RW: memoize
   #
   def self.define_facet(facet)
-    plural = facet.to_s.pluralize
     define_method("#{facet}_facets") do
+      results = "FederalRegister::Facet::Document::#{facet.capitalize}".
+        constantize.
+        search(params)
 
-      results = HTTParty.get(
-        "#{Settings.federal_register.api_url}/documents/facets/#{facet}?#{params.to_param}"
-      )
-
-      results.map do |slug, data|
+      results.map do |result|
         Facet.new(
-          value: slug,
-          name: data["name"],
-          count: data["count"],
-          condition: plural
+          value: result.slug,
+          name: result.name,
+          count: result.count,
+          condition: facet.to_s.pluralize
         )
       end.sort{|a,b| b.count <=> a.count}
-
     end
   end
 

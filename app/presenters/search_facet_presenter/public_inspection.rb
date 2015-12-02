@@ -1,25 +1,26 @@
 class SearchFacetPresenter::PublicInspection < SearchFacetPresenter::Base
+  FACETS = [:agency, :type]
 
   def search_type
     FederalRegister::PublicInspectionDocument
   end
 
-  def agency_facets
-    # RW: Not available yet
-#  def self.define_facet(facet)
-#    plural = facet.to_s.pluralize
-#    define_method("#{facet}_facets") do
-#      HTTParty.get(
-#        api_pi_documents_facet_url(facet, params.to_param)
-#      ).
-#        map do |slug, data|
-#          Facet.new(
-#            value: slug,
-#            name: data["name"],
-#            count: data["count"],
-#            condition: plural
-#          )
-#        end.sort{|a,b| b.count <=> a.count}
-#    end
+  def self.define_facet(facet)
+    define_method("#{facet}_facets") do
+      results = "FederalRegister::Facet::PublicInspectionDocument::#{facet.capitalize}".
+        constantize.
+        search(params)
+
+      results.map do |result|
+        Facet.new(
+          value: result.slug,
+          name: result.name,
+          count: result.count,
+          condition: facet.to_s.pluralize
+        )
+      end.sort{|a,b| b.count <=> a.count}
+    end
   end
+
+  FACETS.each { |facet| define_facet(facet) }
 end
