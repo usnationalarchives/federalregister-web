@@ -40,7 +40,7 @@
 
             <div class="<%= bootstrap_col(xs: 9, md: 9) %>">
               <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
-                <%= esi( public_inspection_search_results_path(
+                <%#= esi( public_inspection_search_suggestions_path(
                     params.except(:action)
                   )
                 ) %>

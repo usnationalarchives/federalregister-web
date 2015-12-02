@@ -1,24 +1,41 @@
-<div class="result_set">
-  <%= render :partial => "search/filters", :locals => {:search_details => @search_details} %>
-  
+<div class="row result_set result-set"
+  data-expected-result-count="<%= @search.result_metadata.count %>">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+
+    <% if @search_details.filters.present? %>
+      <%= render partial: "search/filters", locals: {
+          filters: @search_details.filters
+          } %>
+    <% end %>
+
   <% if @search.results.present? %>
-    <div class="search_info">
-      <div class="article_count">
-        <h2 class="title_bar"><span class="small_stack">Public Inspection <span>Documents Found</span></span> <%= number_with_delimiter @search.public_inspection_document_count %></h2>
+    <%= render partial: 'search_info', locals: {
+        search: @search
+      } %>
+
+    <div class="row">
+      <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+        <%= will_paginate @search.results, params: {action: :show},
+          renderer: BootstrapPagination::Rails %>
       </div>
     </div>
-    
-    <%= will_paginate @search.results, :params => {:action => :show} %>
-    
-    <ol class="results">
-      <%= render :partial => 'result', :collection => @search.results, :as => :document, :locals => {:search => @search} %>
-    </ol>
-    
-    <%= will_paginate @search.results, :params => {:action => :show} %>
+
+    <%= render partial: 'search/results',
+      locals: {
+        type: :public_inspection,
+        documents: @search.results
+      }
+    %>
+
+    <div class="row">
+      <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+        <%= will_paginate @search.results, params: {action: :show},
+          renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
   <% else %>
     <div class="errors">
-      <p class="errors_header">No documents were found.</p>
-    </div>  
+      <p class="errors_header">No Public Inspection documents were found.</p>
+    </div>
   <% end %>
 </div>
-
