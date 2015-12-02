@@ -26,28 +26,4 @@ class SearchFacetPresenter::Base
   def num_facets
     params[:num_facets].try(:to_i) || 5
   end
-
-  def type_facets
-    begin
-      [
-        ["Rule", "RULE"],
-        ["Notice", "NOTICE"],
-        ["Proposed Rule", "PRORULE"],
-        ["Presidential Document", "PRESDOCU"],
-      ].map do |name, identifier|
-        count = search_type.search_metadata(
-          conditions: conditions.merge(type: identifier)
-        ).count
-        Facet.new(
-          value: identifier,
-          name: name,
-          count: count,
-          condition: :type
-        )
-      end.sort{|a,b| b.count <=> a.count}
-    rescue FederalRegister::Client::BadRequest => e
-      []
-    end
-  end
-  #memoize :type_facets
 end
