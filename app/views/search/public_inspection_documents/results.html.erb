@@ -23,7 +23,8 @@
     <%= render partial: 'search/results',
       locals: {
         type: :public_inspection,
-        documents: @search.results
+        documents: @search.results,
+        search: @search
       }
     %>
 

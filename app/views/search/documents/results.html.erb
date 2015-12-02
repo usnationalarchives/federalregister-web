@@ -24,7 +24,8 @@
       <%= render partial: 'search/results',
         locals: {
           type: :official,
-          documents: @search.results
+          documents: @search.results,
+          search: @search
         }
       %>
 

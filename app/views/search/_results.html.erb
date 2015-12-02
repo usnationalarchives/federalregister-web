@@ -15,13 +15,13 @@
             document_issue_path(document) %>.
         </p>
 
-        <% if document.respond_to?(:abstract) %>
+        <% if search.conditions[:term].blank? && document.model.respond_to?(:abstract)%>
           <p class="description">
             <%= truncate_words(document.abstract, :length => 350) %>
           </p>
-        <% elsif document.respond_to?(:excerpts) %>
+        <% else %>
           <p class="description">
-            <%= truncate_words(sanitize(document.excerpts), :length => 350).html_safe %>
+            <%= truncate_words(sanitize(document.excerpts), :length => 350).try(:html_safe) %>
           </p>
         <% end %>
       </div>
