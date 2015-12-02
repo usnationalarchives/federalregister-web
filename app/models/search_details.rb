@@ -1,8 +1,8 @@
 class SearchDetails
   attr_reader :conditions
 
-  def initialize(conditions)
-    @conditions = conditions || {}
+  def initialize(conditions={})
+    @conditions = conditions
   end
 
   def response
