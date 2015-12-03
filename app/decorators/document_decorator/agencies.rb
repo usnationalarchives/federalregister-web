@@ -6,7 +6,7 @@ module DocumentDecorator::Agencies
       agencies = document.excluding_parent_agencies.map{|a|
         next if a.name.nil?
 
-        "the #{h.link_to_if autolink, a.name, h.agency_path(a)}"
+        "the #{h.link_to_if autolink, a.name, a.url}"
       }
     elsif document.agency_names.present?
       agencies = document.agency_names.map
