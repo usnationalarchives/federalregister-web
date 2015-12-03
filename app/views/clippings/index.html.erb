@@ -25,6 +25,8 @@
 
 <%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
 
+<% add_javascript src: 'page_specific/clipping_filters' %>
+
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <div id="clipping-actions">
     <div id="doc-type-filter" class="doc-type-filter">

@@ -25,7 +25,6 @@
 #= require folder_actions
 #= require add_to_folder
 #= require clippings
-#= require clipping_filters
 #= require subscription_filters
 #= require tipsy
 #= require article_page
@@ -41,6 +40,8 @@
 
 #= require scrollMonitor
 #= require_tree ./documents
+
+#= require search
 
 # Namespaced JS Classes
 #= require utilities/cj_tooltip
