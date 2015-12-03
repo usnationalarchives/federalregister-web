@@ -6,31 +6,7 @@ $filter-border-color: #CCCCCC;
 $filter-hover-bg-color: #F5F8F9;
 $filter-disabled-bg-color: #FFFFFF;
 
-.embedded_search.search-bar {
-  background-color: $fr-gray-10;
-  display: block;
-  float: none;
-  margin-left: 0;
-  padding: 1em .6em;
-  width: 580px;
-
-  #conditions_term { width: 225px; }
-
-  .formtastic {
-    .simple ul { float: left; }
-    li.hidden { position: absolute; }
-    #conditions_type_input { display: none; }
-  }
-
-  #doc-type-filter {
-    padding-top: 5px;
-    clear: both;
-    position: relative;
-    left: 335px;
-  }
-}
-
-#doc-type-filter {
+.doc-type-filter {
   overflow: hidden;
   height: 28px;
 
@@ -78,31 +54,85 @@ $filter-disabled-bg-color: #FFFFFF;
     .icon-fr2-correction { color: $doc-icon-disabled; }
   }
 
-  li.first { @include rounded-left(6); }
-  li.last {
+  li:first-child { @include rounded-left(6); }
+  li:last-child {
     @include rounded-right(6);
     border-right: 1px solid $filter-border-color;
   }
 }
 
+.embedded_search.search-bar {
+  background-color: $fr-gray-10;
+  border-radius: 0;
+  border: 0;
+  display: block;
+  float: none;
+  margin-left: 0;
+  padding: 1em .6em;
+  width: 580px;
 
-/* this is for ie7lte - a span gets added by the js font shim */
-.icon-fr2 span {
-  position: relative;
-  top: -3px;
+  #conditions_term {
+    width: 225px;
+    padding: 6px 12px;
+
+    @include border-radius(0);
+    @include rounded-left(4);
+    border-right: 0;
   }
 
+  #conditions_submit {
+    background: none;
+    background-color: $fr-gray-5;
+    border: 1px solid #CCC;
+    border-left: none;
+    @include rounded-right(4);
 
-/* RW: For FR Web-new additions */
-.embedded_search {
-  #conditions_type_input {
-    display: none;
+    height: 40px;
+    width: 42px;
+    padding: 0;
+
+    /* for reference: background png/svg is $fr-gray-50 */
+    &:hover {
+      background-color: $fr-gray-15;
+    }
   }
+
+  #conditions_type_input { display: none; }
+
   ul, ol {
     position: absolute;
     list-style: none;
   }
-  .simple span#expected_result_count {
-    display: none;
+
+  .doc-type-filter {
+    clear: both;
+    height: 45px;
+    left: 0px;
+    padding-top: 5px;
+    position: relative;
+
+    ul {
+      overflow: hidden;
+      position: absolute;
+      right: 134px;
+      width: 110px;
+    }
+
+    li {
+      width: 35px;
+      height: 35px;
+
+      &:hover,
+      &.hover,
+      &.on {
+        .icon-fr2 { color: $fr-blue; }
+      }
+
+      .icon-fr2 {
+        font-size: 23px;
+        left: -1px;
+        top: 4px;
+      }
+    }
   }
 }

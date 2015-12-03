@@ -4,8 +4,6 @@
 }
 
 .bootstrap-scope .embedded_search.search-bar.home-search-embedded {
-  border: 0;
-  border-radius: 0;
   padding-left: 50px;
   width: 100%;
 
@@ -18,51 +16,9 @@
     border-right: 0;
   }
 
-  input#conditions_submit {
-    background: none;
-    background-color: $fr-gray-5;
-    border: 1px solid #CCC;
-    border-left: none;
-    @include rounded-right(4);
-
-    height: 34px;
-    width: 42px;
-    padding: 0;
-
-    /* for reference: background png/svg is $fr-gray-50 */
-    &:hover {
-      background-color: $fr-gray-15;
-    }
-  }
-
-  #doc-type-filter {
-    width: 587px;
-    height: 45px;
-    left: 0;
-
-    ul {
-      overflow: hidden;
-      width: 140px;
-      right: 6px;
-      position: absolute;
-    }
-
-    li {
-      width: 35px;
-      height: 35px;
-
-      &:hover,
-      &.hover,
-      &.on {
-        .icon-fr2 { color: $fr-blue; }
-      }
-
-      .icon-fr2 {
-        font-size: 23px;
-        left: -1px;
-        top: 4px;
-      }
-    }
+  .doc-type-filter ul {
+    right: 281px;
+    width: 142px;
   }
 }
 

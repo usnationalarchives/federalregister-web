@@ -27,7 +27,7 @@
 
 <%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
   <div id="clipping-actions">
-    <div id="doc-type-filter">
+    <div id="doc-type-filter" class="doc-type-filter">
       <ul>
         <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.document.document_type.granule_class}.uniq.compact.to_json.html_safe %>;</script>
 

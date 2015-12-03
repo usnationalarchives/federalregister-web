@@ -1,52 +1,65 @@
 <% add_javascript src: 'search.js' %>
 
-<div class="embedded_search search_bar">
-  <%= form_tag(document_search_path, method: :get, class: 'conditions', id: "entry_search_form") do |f| %>
-    <div class="simple">
-      <label>Search Agency</label>
-      <%= text_field_tag('conditions[term]', nil, placeholder: 'Search term or citation', size: 30) %>
-      <ul>
-        <%= content_tag(:li, class: "hidden optional", id: "conditions_agency_ids_input") do %>
-          <%= hidden_field_tag('conditions[agency_ids]', agency.id) %>
-        <% end %>
-      </ul>
-      <%= submit_tag('Search', id: "conditions_submit") %>
-      <span id="expected_result_count"></span>
+<div class="embedded_search search_bar search-bar">
+  <%= semantic_form_for @search,
+    as: :conditions,
+    url: documents_search_path,
+    html: {method: :get, id: "entry_search_form"} do |f| %>
 
-      <% unless false # RW: agency == AgencyName.find_by_name!("Executive Office of the President").agency %>
-        <div id="doc-type-filter">
-          <ul>
-            <li class="doc_notice first" data-filter-doc-type="notice" data-filter-doc-type-display="Notice">
-              <div aria-hidden="true" class="icon-fr2 icon-fr2-notice"></div>
-            </li>
-            <li class="doc_proposed_rule" data-filter-doc-type="prorule" data-filter-doc-type-display="Proposed Rule">
-              <div aria-hidden="true" class="icon-fr2 icon-fr2-proposed_rule"></div>
-            </li>
-            <li class="doc_rule last" data-filter-doc-type="rule" data-filter-doc-type-display="Rule">
-              <div aria-hidden="true" class="icon-fr2 icon-fr2-rule"></div>
-            </li>
-          </ul>
-        </div>
-        <%= content_tag(:li, class: "check_boxes optional", id: "conditions_type_input") do %>
-          <fieldset>
-            <legend class="label">
-              <label for="conditions_type">
-                Document Category
-              </label>
-            </legend>
-            <ol>
-              <% EntrySearch::TYPES.each do |type| %>
-                <li>
-                  <label for="conditions_type_<%= type.last.downcase %>">
-                    <input name="conditions[type][]" type="hidden" value="">
-                    <input id="conditions_type_<%= type.last.downcase %>" name="conditions[type][]" type="checkbox" value="<%= type.last %>"> Rule
-                  </label>
-                </li>
-              <% end %>
-            </ol>
-          </fieldset>
-        <% end %>
+    <label>Search Agency</label>
+    <%= f.text_field :term,
+      class: 'search-term',
+      placeholder: 'Search term or citation' %>
+
+    <%= f.button fr_icon('Search').html_safe,
+      class: 'search-submit',
+      id: 'conditions_submit',
+      "aria-label" => 'Search' %>
+
+    <ul>
+      <%= content_tag(:li, class: "hidden optional", id: "conditions_agency_ids_input") do %>
+        <%= hidden_field_tag('conditions[agency_ids]', agency.id) %>
       <% end %>
-    </div>
+    </ul>
+
+    <span id="expected_result_count"></span>
+
+    <% unless false # RW: agency == AgencyName.find_by_name!("Executive Office of the President").agency %>
+      <div id="doc-type-filter" class="doc-type-filter">
+        <ul>
+          <li class="doc_notice first" data-filter-doc-type="notice" data-filter-doc-type-display="Notice" original-title="">
+            <div aria-hidden="true" class="icon-fr2 icon-fr2-notice"></div>
+          </li>
+          <li class="doc_proposed_rule" data-filter-doc-type="prorule" data-filter-doc-type-display="Proposed Rule" original-title="">
+            <div aria-hidden="true" class="icon-fr2 icon-fr2-proposed_rule"></div>
+          </li>
+          <li class="doc_rule" data-filter-doc-type="rule" data-filter-doc-type-display="Rule" original-title="">
+            <div aria-hidden="true" class="icon-fr2 icon-fr2-rule"></div>
+          </li>
+        </ul>
+      </div>
+
+      <li class="check_boxes optional" id="conditions_type_input">
+        <fieldset>
+          <legend class="label">
+            <label for="conditions_type">Document Category</label>
+          </legend>
+
+          <ol>
+            <%  DocumentType.document_types_for_search.each do |doc_type| %>
+              <li>
+                <label for="conditions_type_<%= doc_type.identifier %>">
+                  <input name="conditions[type][]" type="hidden" value="">
+                  <input id="conditions_type_<%= doc_type.identifier %>"
+                    name="conditions[type][]"
+                    type="checkbox" value="<%= doc_type.granule_class %>">
+                  <%= doc_type.display_type %>
+                </label>
+              </li>
+            <% end %>
+          </ol>
+        </fieldset>
+      </li>
+    <% end %>
   <% end %>
 </div>

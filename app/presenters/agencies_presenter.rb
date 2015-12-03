@@ -4,7 +4,9 @@ class AgenciesPresenter
   delegate :count, to: :@agencies
 
   def initialize
-    @agencies = FederalRegister::Agency.all(fields: ['id', 'name', 'parent_id', 'url'])
+    @agencies = FederalRegister::Agency.all(
+      fields: ['id', 'name', 'parent_id', 'url']
+    )
     @child_agencies = {}
   end
 
