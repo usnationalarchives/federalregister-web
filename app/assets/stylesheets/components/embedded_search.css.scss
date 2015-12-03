@@ -67,13 +67,14 @@ $filter-disabled-bg-color: #FFFFFF;
   border: 0;
   display: block;
   float: none;
+  margin-bottom: 0;
   margin-left: 0;
   padding: 1em .6em;
   width: 580px;
 
   #conditions_term {
-    width: 201px;
-    padding: 6px 12px;
+    width: 185px;
+    padding: 6px 8px;
 
     @include border-radius(0);
     @include rounded-left(4);
@@ -114,7 +115,7 @@ $filter-disabled-bg-color: #FFFFFF;
     ul {
       overflow: hidden;
       position: absolute;
-      right: 156px;
+      right: 172px;
       width: 110px;
     }
 
