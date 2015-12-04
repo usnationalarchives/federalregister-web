@@ -76,3 +76,12 @@ class String
     ]
   end
 end
+
+
+class String
+  # simple method to go from camel case or white space seperated words to snake_cased
+  def snakecase
+    underscore.
+    gsub(/\s/,'_')
+  end
+end
