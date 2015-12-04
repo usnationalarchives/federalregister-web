@@ -12,13 +12,6 @@ class Search::DocumentsController < ApplicationController
     cache_for 1.day
 
     if valid_search?
-      redirect_to documents_search_path(
-        shared_search_params.merge(
-          conditions: clean_conditions(@search.valid_conditions),
-          format: params[:format]
-        )
-      )
-    else
       respond_to do |wants|
         wants.html
         wants.rss do
@@ -38,7 +31,9 @@ class Search::DocumentsController < ApplicationController
           )
         end
       end
-   end
+    else
+      redirect_to clean_search_path
+    end
   end
 
   def results

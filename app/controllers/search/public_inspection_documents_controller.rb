@@ -12,13 +12,6 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     cache_for 1.day
 
     if valid_search?
-      redirect_to public_inspection_search_path(
-        conditions: clean_conditions(@search.valid_conditions),
-        page: params[:page],
-        order: params[:order],
-        format: params[:format]
-      )
-    else
       respond_to do |wants|
         wants.html
         wants.rss do
@@ -36,6 +29,8 @@ class Search::PublicInspectionDocumentsController < ApplicationController
           )
         end
       end
+    else
+      redirect_to clean_search_path
     end
   end
 

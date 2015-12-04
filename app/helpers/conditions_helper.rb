@@ -1,10 +1,28 @@
 module ConditionsHelper
   def valid_search?
-    !blank_conditions?(params[:conditions]) && !clean_conditions?
+    !params[:conditions] || clean_search_path?
   end
 
-  def clean_conditions?
-    params[:conditions] == clean_conditions(@search.valid_conditions)
+  def clean_search_path?
+    request.fullpath == clean_search_path
+  end
+
+  def clean_search_path
+    case @search.class.to_s
+    when "Search::Document"
+      documents_search_path(cleaned_params)
+    when "Search::PublicInspection"
+      public_inspection_search_path(cleaned_params)
+    end
+  end
+
+  private
+
+  def cleaned_params
+    shared_search_params.merge(
+      conditions: clean_conditions(@search.valid_conditions),
+      format: params[:format]
+    )
   end
 
   def clean_conditions(conditions)
@@ -13,6 +31,7 @@ module ConditionsHelper
         conditions[k] = clean_conditions(v) if v.is_a?(Hash)
         conditions[k] = v.reject{|x| x.blank?} if v.is_a?(Array)
       end
+
       conditions.delete_if do |k,v|
         if v.is_a?(Array)
           v.empty? || v.join("").empty?
@@ -24,23 +43,7 @@ module ConditionsHelper
     conditions
   end
 
-  def blank_conditions?(conditions)
-    return true if conditions.nil?
-
-    if conditions.is_a?(Hash)
-      conditions.detect do |k,v|
-        if conditions.is_a?(Hash)
-          v.blank? || blank_conditions?(v)
-        elsif conditions.is_a?(Array)
-          v.empty? || v.join("").empty?
-        else
-          v.blank?
-        end
-      end
-    elsif conditions.is_a?(Array)
-      conditions.blank? || conditions.join("").empty?
-    else
-      conditions.blank?
-    end
+  def shared_search_params
+    params.slice(:page, :order, :fields, :per_page)
   end
 end
