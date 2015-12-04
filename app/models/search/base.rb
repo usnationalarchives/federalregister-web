@@ -11,22 +11,6 @@ class Search::Base
     :agency_ids,
   ]
 
-  DOCUMENT_SEARCH_CONDITIONS = [
-    :publication_date,
-    :effective_date,
-    :comment_date,
-    :small_entity_ids,
-    :presidential_document_type_id,
-    :president,
-    :significant,
-    :regulation_id_number,
-    :cfr,
-    :near,
-    :topics,
-    :sections,
-    :correction
-  ]
-
   def initialize(params)
     @params = params
     @errors = {}
@@ -49,7 +33,7 @@ class Search::Base
           per_page: per_page
         )
         pager.replace(DocumentDecorator.decorate_collection(result_set))
-        pager.total_entries = document_count unless pager.total_entries
+        pager.total_entries = result_count unless pager.total_entries
         pager.custom_page_count = result_set.total_pages
       end
     rescue FederalRegister::Client::BadRequest => e
@@ -74,20 +58,15 @@ class Search::Base
   end
 
   def valid_conditions
-    @valid_conditions ||= conditions.reject do |key, val|
+    @valid_conditions ||= conditions.select do |key, val|
       @errors[key] = "is not a valid field" unless respond_to?(key)
+      respond_to?(key)
     end
-  end
-
-  def public_inspection_document_count
-    FederalRegister::PublicInspectionDocument.search_metadata(
-      conditions: valid_conditions.except(*DOCUMENT_SEARCH_CONDITIONS)
-    ).count
   end
 
   def result_metadata
     begin
-      @result_metadata ||= FederalRegister::Document.search_metadata(
+      @result_metadata ||= search_type.search_metadata(
         conditions: valid_conditions
       )
     rescue FederalRegister::Client::BadRequest => e
@@ -95,7 +74,7 @@ class Search::Base
     end
   end
 
-  def document_count
+  def result_count
     result_metadata.count
   end
 
@@ -117,12 +96,6 @@ class Search::Base
   end
 
   delegate :as_json, :to => :valid_conditions
-
-  SEARCH_CONDITIONS.concat(DOCUMENT_SEARCH_CONDITIONS).each do |param|
-    define_method(param) do
-      conditions[param]
-    end
-  end
 
   def near
     OpenStruct.new(
