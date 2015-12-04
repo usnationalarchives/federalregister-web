@@ -16,7 +16,7 @@ class Search::PublicInspection < Search::Base
   end
 
   def document_count
-    FederalRegister::Document.search_metadata(
+    Document.search_metadata(
       conditions: valid_conditions.
         symbolize_keys.
         except(*PUBLIC_INSPECTION_SEARCH_CONDITIONS)
