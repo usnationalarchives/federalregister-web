@@ -6,4 +6,5 @@ $(document).ready ()->
   else if $('#public_inspection_search_form').length > 0
     frSearch = new FR2.SearchFormHandler $('#public_inspection_search_form')
 
-  frSearch.calculateExpectedResults()
+  if frSearch
+    frSearch.calculateExpectedResults()
