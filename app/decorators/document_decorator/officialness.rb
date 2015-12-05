@@ -6,7 +6,7 @@ module DocumentDecorator::Officialness
   end
 
   def official?
-    Date.today >= Settings.officialness.start_date
+    publication_date >= Settings.officialness.start_date
   end
 
   def document?
