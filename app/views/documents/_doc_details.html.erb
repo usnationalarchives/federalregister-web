@@ -1,5 +1,5 @@
 <div class="row">
-  <%= fr_box_small "Document Details", :official_doc_details do %>
+  <%= @document.status_object.doc_details_box do %>
     <dl class='metadata_list'>
       <% if document.publication_date.present? %>
         <dt>Publication Date:</dt>

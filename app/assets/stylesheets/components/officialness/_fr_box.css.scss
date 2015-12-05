@@ -6,10 +6,10 @@ Modifiers here control the color of the box elements.
 .fr-box-official                    - Used only for Official Content
 .fr-box-official-alt                - Used for Alternate Official Content
 .fr-box-enhanced                    - Used for Enhanced Content
-.fr-box-unavailable                 - Used for Currently Unavailable Features
+.fr-box-published                   - Used for Published Documents pre-Officialness
 .fr-box-small.fr-box-official-alt   - Small FR Box for Alternate Official Content
 .fr-box-small.fr-box-enhanced       - Small FR Box for Enhanced Content
-.fr-box-small.fr-box-unavailable    - Small FR Box for Currently Unavailable Features
+.fr-box-small.fr-box-published      - Small FR Box for Published Documents pre-Officialness
 
 Styleguide 1.1 FR Boxes
 */
@@ -124,8 +124,11 @@ Styleguide 1.1 FR Boxes
   &.fr-box-reader-aid {
     @include fr-doc($color-reader-aid, $color-reader-aid-light);
   }
-  &.fr-box-unavailable {
-    @include fr-doc($color-inactive, $color-inactive-light);
+  &.fr-box-published {
+    @include fr-doc($color-published, $color-published-light);
+  }
+  &.fr-box-published-alt {
+    @include fr-doc($color-published, $color-published-light-alt);
   }
 
   &.fr-box-small {

@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     cache_for 1.day
 
     begin
-      @document = FederalRegister::Document.find(params[:document_number])
+      @document = Document.find(params[:document_number])
 
       @document = DocumentDecorator.decorate(@document)
       render
@@ -21,9 +21,9 @@ class DocumentsController < ApplicationController
     cache_for 1.day
 
     document_or_pi = begin
-                       FederalRegister::Document.find(params[:document_number])
+                       Document.find(params[:document_number])
                      rescue FederalRegister::Client::RecordNotFound
-                       FederalRegister::PublicInspectionDocument.find(params[:document_number])
+                       PublicInspectionDocument.find(params[:document_number])
                      end
 
     respond_to do |wants|
@@ -35,7 +35,7 @@ class DocumentsController < ApplicationController
         redirect_to url, :status => :moved_permanently
       end
       wants.pdf do
-        if document_or_pi.is_a?(FederalRegister::Document)
+        if document_or_pi.is_a?(Document)
           redirect_to document_or_pi.source_url(:pdf), :status => :moved_permanently
         else
           @public_inspection_document = document_or_pi

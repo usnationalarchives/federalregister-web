@@ -4,8 +4,10 @@
   <div class="row">
     <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
 
-    <%= fr_box "Official Document", :official, header: {seal: true} do %>
-      <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
+    <%= document.status_object.doc_content_box do %>
+      <% if document.official? %>
+        <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
+      <% end %>
 
       <div id="fulltext_content_area" class="doc-content-area">
         <div class="content-wrap-enforcement"></div>

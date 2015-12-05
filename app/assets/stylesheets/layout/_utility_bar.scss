@@ -11,6 +11,13 @@
       background-color: $utility-nav-pi-background;
     }
   }
+
+  &.doc-published {
+    .doc-nav-wrapper {
+      color: $utility-nav-published;
+      background-color: $utility-nav-published-background;
+    }
+  }
 }
 
 .doc {

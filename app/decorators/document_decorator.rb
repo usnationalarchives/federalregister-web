@@ -2,9 +2,11 @@ class DocumentDecorator < ApplicationDecorator
   delegate_all
 
   include DocumentDecorator::Shared
+  
+  include DocumentDecorator::Agencies
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
-  include DocumentDecorator::Agencies
+  include DocumentDecorator::Officialness
 
   def slug
     html_url.split('/').last
@@ -72,13 +74,5 @@ class DocumentDecorator < ApplicationDecorator
 
   def comments_close_date
     comments_close_on
-  end
-
-  def agency_dt_dd
-    # RW: placeholder
-  end
-
-  def docket_dt_dd
-    # RW: placeholder
   end
 end

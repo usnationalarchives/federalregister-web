@@ -1,5 +1,6 @@
-$color-inactive:                    #777777;
-$color-inactive-light:              #CCCCCC;
+// FR Boxes
+$color-inactive:                    $fr-gray-70;
+$color-inactive-light:              $fr-gray-70;
 
 $color-official:                    #5797CE;
 $color-official-light:              #f7fafb;
@@ -8,7 +9,7 @@ $color-official-light-alt:          #e5f1f8;
 $color-enhanced:                    #A8BF82;
 $color-enhanced-mid:                #c8d8b2;
 $color-enhanced-light:              #e3ecda;
-/* use only for green text on light green bg -- eg hover states */
+// use only for green text on light green bg -- eg hover states
 $color-enhanced-dark: darken($color-enhanced, 20);
 
 $color-public-inspection:           #8a3737;
@@ -19,8 +20,14 @@ $color-reader-aid:                  #b462a2;
 $color-reader-aid-med:              #fbdfeb;
 $color-reader-aid-light:            #f7eff6;
 
+$color-published:                    $fr-gray-50;
+$color-published-light:              $fr-gray-5;
+$color-published-light-alt:          $fr-gray-15;
+
 $public-inspection-fr-stamp: $color-public-inspection-light;
 
+
+// FR Box Utility Nav
 $utility-nav:                         $med-gray;
 $utility-nav-background:              #E6E6E5;
 $utility-nav-hover-background:        #d5d5d5;
@@ -29,6 +36,9 @@ $utility-nav-hover-background-light:  #EFEFEF;
 $utility-nav-pi:                  #8a3737;
 $utility-nav-pi-background:       #D7A5A1;
 $utility-nav-pi-hover-background: $color-public-inspection-light-alt;
+
+$utility-nav-published:            $fr-gray-50;
+$utility-nav-published-background: $fr-gray-20;
 
 
 /* navigation */

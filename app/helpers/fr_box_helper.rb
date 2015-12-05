@@ -90,8 +90,10 @@ module FrBoxHelper
       "fr-box-public-inspection-alt"
     when :reader_aid
       "fr-box-reader-aid"
-    when :disabled
-      "fr-box-unavailable"
+    when :published
+      "fr-box-published"
+    when :published_doc_details
+      "fr-box-published-alt"
     end
   end
 
@@ -111,6 +113,10 @@ module FrBoxHelper
       "Additional information about this Public Inspection document."
     when :reader_aid
       "Reader Aids help people use FederalRegister.gov and understand the federal rulemaking process. Reader Aids information is not published in the <em>Federal Register</em>."
+    when :published
+      "This document has been publised in the <em>Federal Register</em> but is not a legally binding representation. Use the PDF linked in the document sidebar for a legally binding representation."
+    when :published_doc_details
+      "Information about this document as published in the <em>Federal Register</em>."
     end
   end
 
