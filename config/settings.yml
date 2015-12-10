@@ -25,3 +25,4 @@ officialness:
 feature_flags:
   unified_agenda:
     search: false
+  regulatory_plan: false
