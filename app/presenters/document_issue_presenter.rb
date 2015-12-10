@@ -59,7 +59,7 @@ class DocumentIssuePresenter
     end
 
     def documents
-      @documents ||= DocumentTypeFacet.search(
+      @documents_facets ||= DocumentTypeFacet.search(
         conditions: {
           significant: 1,
           publication_date: {is: date}
@@ -82,7 +82,7 @@ class DocumentIssuePresenter
   private
 
   def documents
-    @documents ||= FederalRegister::Document.search(
+    @documents ||= Document.search(
       conditions: {
         publication_date: {is: date},
       },
@@ -90,4 +90,3 @@ class DocumentIssuePresenter
     )
   end
 end
-

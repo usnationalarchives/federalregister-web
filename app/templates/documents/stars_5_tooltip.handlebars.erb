@@ -1,10 +1,9 @@
-<%= fr_box "Enhanced Content - Stars",
-  :enhanced,
-  box_html: {
-    class: "fr-box-full",
-    role: "menu"
-  },
-  header: {hover: false} do %>
+<%= fr_tooltip_box(
+  FrBox.build(
+    :enhanced_content,
+    title: "Enhanced Content - Stars"
+  )
+) do %>
 
   <p>
     When an agency is adding or revising only

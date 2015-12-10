@@ -9,7 +9,7 @@
 <%= bootstrap_context_wrapper do %>
   <div class="row">
     <div class="col-xs-12 col-md-12 section">
-      <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
+      <%= fr_details_box FrBox.build(:reader_aid) do %>
         <div class="section search_results">
           <h4>
             <%= pluralize @search_presenter.result_count, 'result' %>

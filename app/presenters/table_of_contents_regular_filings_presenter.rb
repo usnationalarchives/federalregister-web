@@ -1,7 +1,7 @@
 class TableOfContentsRegularFilingsPresenter < TableOfContentsPresenter
 
   def initialize(date)
-    super
+    super(date)
   end
 
   def url
@@ -9,12 +9,22 @@ class TableOfContentsRegularFilingsPresenter < TableOfContentsPresenter
   end
 
   def documents
-    @regular_filings_data ||= FederalRegister::PublicInspectionDocument.search(query_conditions_regular_filings.
-      merge(per_page: 1000,
-            fields: ['pdf_url','pdf_file_size','num_pages','document_number',
-                     'html_url','filed_at','docket_numbers','publication_date']
+    @regular_filings_data ||= PublicInspectionDocument.search(
+      query_conditions_regular_filings.
+        merge(
+          per_page: 1000,
+          fields: [
+            'docket_numbers',
+            'document_number',
+            'filed_at',
+            'html_url',
+            'num_pages',
+            'pdf_file_size',
+            'pdf_url',
+            'publication_date',
+          ]
       )
-    )
+    ).map{|d| PublicInspectionDocumentDecorator.decorate(d)}
   end
 
   def document_partial

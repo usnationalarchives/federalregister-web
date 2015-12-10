@@ -19,7 +19,7 @@
 <%= bootstrap_context_wrapper do %>
   <div class="clearfix"></div>
 
-  <div class="row doc <%= @document.status_object.doc_css_class %>">
+  <div class="row doc doc-document">
     <%= render partial: 'page_content', locals: {document: @document} %>
     <%= render partial: 'document_side_bar', locals: {document: @document} %>
   </div>

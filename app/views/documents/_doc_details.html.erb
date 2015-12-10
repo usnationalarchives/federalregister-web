@@ -1,5 +1,7 @@
 <div class="row">
-  <%= @document.status_object.doc_details_box do %>
+  <%= fr_details_box(
+    FrBox.build(document.fr_details_box_type)
+  ) do %>
     <dl class='metadata_list'>
       <% if document.publication_date.present? %>
         <dt>Publication Date:</dt>

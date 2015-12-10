@@ -2,6 +2,7 @@ class PublicInspectionDocumentDecorator < ApplicationDecorator
   delegate_all
 
   include DocumentDecorator::Shared
+  include DocumentDecorator::Officialness
 
   def title
     if model.title.present?

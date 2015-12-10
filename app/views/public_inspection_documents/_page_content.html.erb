@@ -2,7 +2,9 @@
   <div class="row">
     <%= render partial: "public_inspection_documents/utility_bar", locals: {document: document} %>
 
-    <%= fr_box "Public Inspection Document", :public_inspection, header: {seal: true} do %>
+    <%= fr_content_box(
+      FrBox.build(document.fr_content_box_type)
+    ) do %>
       <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
 
       <div id="fulltext_content_area" class="doc-content-area">

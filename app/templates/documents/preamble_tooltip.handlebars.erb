@@ -1,11 +1,9 @@
-<%= fr_box "Enhanced Content - Preamble",
-  :enhanced,
-  box_html: {
-    class: "fr-box-full",
-    role: "menu"
-  },
-  header: {hover: false} do %>
-
+<%= fr_tooltip_box(
+  FrBox.build(
+    :enhanced_content,
+    title: "Enhanced Content - Preamble"
+  )
+) do %>
   <p>
     The preamble arranges basic information on the "who, what, where,
     when, and why" of a document for the reader's convenience. For
@@ -20,4 +18,3 @@
     </a> sections on the use of Preamble in Federal Register documents.
   </p>
 <% end %>
-

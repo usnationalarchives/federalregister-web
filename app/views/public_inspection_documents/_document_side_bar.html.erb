@@ -1,6 +1,8 @@
 <div class="col-md-3 doc-aside doc-details">
   <div class="row">
-    <%= fr_box_small "Document Details", :public_inspection_doc_details do %>
+    <%= fr_details_box(
+      FrBox.build(document.fr_details_box_type)
+    ) do %>
       <dl class='metadata_list'>
         <dt>Filed at:</dt>
         <dd><%= document.filed_at %></dd>

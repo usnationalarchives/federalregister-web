@@ -40,17 +40,16 @@
 
   <div class="row">
     <div class="col-xs-9 col-md-9 doc-toc">
-      <%= fr_box "Special Filing Table of Contents",
-        :public_inspection,
-        header: {
-          seal: true,
-          description: "<p>Public Inspection documents are unpublished documents.
-            Click #{link_to 'here', public_inspection_learn_path} to learn
-            more about Public Inspection.</p>
-            <p>Special Filing documents are filed at various times and/or
-            dates prior to publication.</p>"
-        } do %>
-        <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+      <%= fr_content_box(
+        FrBox.build(
+          @special_filings_presenter.fr_content_box_type,
+          title: 'Special Filing Table of Contents',
+          filing_type: 'special_filing'
+        )
+      ) do %>
+        <% if FrBox.build(@special_filings_presenter.fr_content_box_type).background_seal? %>
+          <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+        <% end %>
 
         <div class="doc doc-document-issue">
           <h1 id="special-filing">
@@ -72,7 +71,12 @@
     </div>
 
     <div class="col-xs-3 col-md-3 doc-toc-nav">
-      <%= fr_box_small "Special Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
+      <%= fr_details_box(
+        FrBox.build(
+          @special_filings_presenter.fr_details_box_type,
+          title: "Special Filing Agencies"
+        )
+      ) do %>
         <%= render partial: 'issues/toc_agency_nav',
           locals: {
             type: 'special-filing',
@@ -80,22 +84,22 @@
           } %>
       <% end %>
     </div>
+
+    <div class="clearfix" style="height: 100px;"></div>
   </div>
 
   <div class="row">
     <div class="col-xs-9 col-md-9 doc-toc">
-      <%= fr_box "Regular Filing Table of Contents",
-        :public_inspection,
-        header: {
-          seal: true,
-          description: "<p>Public Inspection documents are unpublished documents.
-            Click #{link_to 'here', public_inspection_learn_path} to learn
-            more about Public Inspection.</p>
-            <p>Regular Filing documents are routinely placed on file at
-            8:45 a.m. Eastern Time, for publication in the next day’s
-            Federal Register.</p>"
-        } do %>
-        <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+      <%= fr_content_box(
+        FrBox.build(
+          @regular_filings_presenter.fr_content_box_type,
+          title: 'Regular Filing Table of Contents',
+          filing_type: 'regular_filing'
+        )
+      ) do %>
+        <% if FrBox.build(@regular_filings_presenter.fr_content_box_type).background_seal? %>
+          <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+        <% end %>
 
         <div class="doc doc-document-issue">
           <h1 id="regular-filing">
@@ -117,7 +121,12 @@
     </div>
 
     <div class="col-xs-3 col-md-3 doc-toc-nav">
-      <%= fr_box_small "Regular Filing Agencies", :public_inspection_doc_details, header: {hover: false} do %>
+      <%= fr_details_box(
+        FrBox.build(
+          @regular_filings_presenter.fr_details_box_type,
+          title: "Regular Filing Agencies"
+        )
+      ) do %>
         <%= render partial: 'issues/toc_agency_nav',
           locals: {
             type: 'regular-filing',

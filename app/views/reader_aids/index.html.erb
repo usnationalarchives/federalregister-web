@@ -15,7 +15,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-md-12">
-      <%= fr_box "Reader Aids", :reader_aid, content_block_html: {class: 'simple'} do %>
+      <%= fr_details_box FrBox.build(:reader_aid) do %>
         <p>
           Use these helpful, unofficial educational articles, tutorials and videos
           increase your understanding of the Federal Register ecosystem and

@@ -1,8 +1,14 @@
 <div class="doc-nav-wrapper">
   <ul class="doc-nav text-center dropdown drop-enhanced">
+
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-bookmark" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Paragraph Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Paragraph Tools"
+        )
+      ) do %>
         <ul>
           <li class="with_icon">
             <span class="icon-fr2 icon-fr2-link"></span>
@@ -23,9 +29,15 @@
         </ul>
       <% end %>
     </li>
+
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Table of Contents", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Table of Contents"
+        )
+      ) do %>
         <% if Settings.render_documents_from_raw_xml %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
         <% else %>
@@ -33,24 +45,33 @@
         <% end %>
       <% end %>
     </li>
-    <li class="enhanced">
-      <i class="icon-fr2 icon-fr2-map" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Regulatory Plan", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
-        <ul>
-          <li>Regulatory Agenda</li>
-        </ul>
-      <% end %>
-    </li>
+
+    <% if Settings.feature_flags.regulatory_plan %>
+      <li class="enhanced">
+        <i class="icon-fr2 icon-fr2-map" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :enhanced_content,
+            title: "Enhanced Content - Regulatory Plan"
+          )
+        ) do %>
+          <ul>
+            <li>Regulatory Agenda</li>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
 
     <li class="divider"></li>
 
     <li class='enhanced <%= "unavailable" unless document.accepting_comments? %>'>
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
-      <%= fr_box  "Enhanced Content - Submit Public Comment",
-                  (document.accepting_comments? ? :enhanced : :disabled),
-                  box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right",
-                             role: "menu"},
-                  header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          (document.accepting_comments? ? :enhanced_content : :disabled),
+          title: "Enhanced Content - Submit Public Comment"
+        )
+      ) do %>
         <ul>
           <li>
             <% if document.accepting_comments? %>
@@ -62,17 +83,19 @@
         </ul>
       <% end %>
     </li>
+
     <li class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
-    <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
+      <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
         <% if docket_info && docket_info['comment_count'] && document.commentable? %>
           <span class="comment_count"><%= docket_info['comments_count'] %></span>
         <% end %>
       </i>
-      <%= fr_box  "Enhanced Content - Read Public Comments",
-                  (document.possible_regulations_dot_gov_comments? ? :enhanced : :disabled),
-                  box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right",
-                             role: "menu"},
-                  header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          (document.possible_regulations_dot_gov_comments? ? :enhanced_content : :disabled),
+          title: "Enhanced Content - Read Public Comments"
+        )
+      ) do %>
         <ul>
           <li>
             <% if document.possible_regulations_dot_gov_comments? %>
@@ -87,9 +110,15 @@
         </ul>
       <% end %>
     </li>
+
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-sharing" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Sharing", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Sharing"
+        )
+      ) do %>
         <dl>
           <dt>Shorter Document URL</dt>
           <dd>
@@ -120,15 +149,26 @@
 
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-print" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Document Print View", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Document Print View"
+        )
+      ) do %>
         <ul>
           <li><a href="">Print this document</a></li>
         </ul>
       <% end %>
     </li>
+
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-doc-generic" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Document Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Document Tools"
+        )
+      ) do %>
         <p>
           These tools are designed to help you understand the official document
           better and aid in comparing the online edition to the print edition.
@@ -144,9 +184,15 @@
         </ul>
       <% end %>
     </li>
+
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Enhanced Content - Developer Tools", :enhanced, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :enhanced_content,
+          title: "Enhanced Content - Developer Tools"
+        )
+      ) do %>
         <h5>This document is available in the following developer friendly formats:</h5>
         <ul class="list">
           <li>
@@ -165,9 +211,15 @@
         <p>More information and documentation can be found on our <a href="">developers page</a>.</p>
       <% end %>
     </li>
+
     <li class="official">
       <i class="icon-fr2 icon-fr2-doc-pdf" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Official Content", :official, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :official,
+          title: "Official Content"
+        )
+      ) do %>
         <ul>
           <li>
             <%= link_to 'View printed version (PDF)',
@@ -176,9 +228,15 @@
         </ul>
       <% end %>
     </li>
+
     <li class="public-inspection">
       <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
-      <%= fr_box "Public Inspection", :public_inspection, box_html: {class: "fr-box-full dropdown-menu dropdown-menu-right", role: "menu"}, header: {hover: false} do %>
+      <%= fr_utility_nav_box(
+        FrBox.build(
+          :public_inspection,
+          title: "Public Inspection"
+        )
+      ) do %>
         <span class="icon-fr2 icon-fr2-stop-hand"></span>
         <div class="content">
           <p>This <%= link_to 'PDF', document.public_inspection_pdf_url %> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
@@ -193,5 +251,6 @@
         </div>
       <% end %>
     </li>
+
   </ul>
 </div>

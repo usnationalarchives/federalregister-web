@@ -31,11 +31,41 @@ class TableOfContentsPresenter
             :end_page,
             :html_url,
             :pdf_url,
+            :publication_date,
             :start_page,
           ]
         )
     ).results.map{|d| DocumentDecorator.decorate(d)}
   end
+
+
+  # DOCUMENT STATUS
+  def official_documents?
+    documents.first.official?
+  end
+
+  def document?
+    documents.first.document?
+  end
+
+
+  # FR BOX RENDERING
+  def fr_content_box_type
+    if document?
+      official_documents? ? :official_document_toc : :published_document_toc
+    else
+      :public_inspection_document_toc
+    end
+  end
+
+  def fr_details_box_type
+    if document?
+      official_documents? ? :official_document_details : :published_document_details
+    else
+      :public_inspection_document_details
+    end
+  end
+
 
   class Agency
     attr_reader :attributes, :presenter

@@ -1,10 +1,4 @@
 module DocumentDecorator::Officialness
-  def status_object
-    if document?
-      official? ? OfficialStatus.new(self) : UnofficialStatus.new(self)
-    end
-  end
-
   def official?
     publication_date >= Settings.officialness.start_date
   end
@@ -13,39 +7,20 @@ module DocumentDecorator::Officialness
     model.class.to_s == "Document"
   end
 
-  class StatusObject
-    attr_reader :decorator
-
-    def initialize(decorator)
-      @decorator = decorator
+  # FR BOX RENDERING
+  def fr_content_box_type
+    if document?
+      official? ? :official_document : :published_document
+    else
+      :public_inspection_document
     end
   end
 
-  class UnofficialStatus < StatusObject
-    def doc_css_class
-      'doc-published'
-    end
-
-    def doc_content_box(&block)
-      decorator.h.fr_box("Published Document", :published, &block)
-    end
-
-    def doc_details_box(&block)
-      decorator.h.fr_box_small("Document Details", :published_doc_details, &block)
-    end
-  end
-
-  class OfficialStatus < StatusObject
-    def doc_css_class
-      'doc-official'
-    end
-
-    def doc_content_box(&block)
-      decorator.h.fr_box("Published & Authenticated Document", :official, header: {seal: true}, &block)
-    end
-
-    def doc_details_box(&block)
-      decorator.h.fr_box_small("Document Details", :official_doc_details, &block)
+  def fr_details_box_type
+    if document?
+      official? ? :official_document_details : :published_document_details
+    else
+      :public_inspection_document_details
     end
   end
 end
