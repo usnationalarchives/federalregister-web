@@ -20,10 +20,11 @@
 .doc {
   position: relative;
 
-  &.doc-official .doc-content .content-block{
+  .doc-content .fr-box-official .content-block{
     .doc-background { @extend %doc-background; }
   }
-  &.doc-public-inspection .doc-content .content-block{
+
+  .doc-content .fr-box-public-inspection .content-block{
     .doc-background {
       @extend %doc-background;
       left: 150px;

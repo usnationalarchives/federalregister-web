@@ -21,7 +21,7 @@ $(document).ready(function() {
 
   var utilityNavScroller;
   utilityNavScroller = new FR2.ElementScroller(
-    $('.doc-official ul.doc-nav'),
+    $('.doc-document ul.doc-nav'),
     {
       offsets: { bottom: 192 },
       container: {

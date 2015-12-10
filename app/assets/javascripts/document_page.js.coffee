@@ -1,6 +1,6 @@
 $(document).ready ->
-  if $('.doc-official .doc-content').length > 0
-    document_height = $('.doc-official .doc-content').outerHeight()
+  if $('.doc-document .doc-content').length > 0
+    document_height = $('.doc-document .doc-content').outerHeight()
     sidebar_height = $('.doc-aside.doc-details').outerHeight()
     amount_document_should_be_lower_than_sidebar = 50
     side_bar_top_offset = 30

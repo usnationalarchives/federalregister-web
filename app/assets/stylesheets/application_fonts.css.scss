@@ -64,7 +64,8 @@ body {
 
 .wf-active .bootstrap-scope {
   .fr-box-official,
-  .fr-box-public-inspection {
+  .fr-box-public-inspection,
+  .fr-box-published {
     .content-block {
       @include calluna;
 
@@ -97,7 +98,8 @@ body {
 
 .wf-active .bootstrap-scope .doc-toc {
   .fr-box-official,
-  .fr-box-public-inspection {
+  .fr-box-public-inspection,
+  .fr-box-published {
     h1, h2, h3, h4, h5, h6, h7 {
       @include apertura-condensed;
       font-weight: bold;

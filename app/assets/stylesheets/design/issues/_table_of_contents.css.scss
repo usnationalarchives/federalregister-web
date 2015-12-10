@@ -41,7 +41,8 @@
     h2 { margin-top: 2em !important; }
   }
 
-  .fr-box-official {
+  .fr-box-official,
+  .fr-box-published {
     h2 {
       color: $color-official;
       border-bottom: 2px solid $color-official;
