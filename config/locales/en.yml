@@ -38,3 +38,19 @@ en:
       delete:
         success: "The folder '%{name}' was successfully deleted."
         failure: "There was a problem deleting the folder '%{name}'. Please try again later."
+
+  fr_box:
+    description:
+      official_document: "This is the official document as published in the <em>Federal Register</em>."
+      official_document_toc: "This is the official table of contents as published in the <em>Federal Register</em>."
+      official_document_details: "This is the official table of contents as published in the <em>Federal Register</em>."
+      public_inspection_document: "Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection."
+      public_inspection_document_toc:
+        special_filing: "<p>Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection.</p><p>Special Filing documents are filed at various times and/or dates prior to publication.</p>"
+        regular_filing: "<p>Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection.</p><p>Regular Filing documents are routinely placed on file at 8:45 a.m. Eastern Time, for publication in the next day’s <em>Federal Register</em>.</p>"
+      public_inspection_document_details: "Additional information about this Public Inspection document."
+      published_document: "This document has been published in the <em>Federal Register</em> but is not a legally binding representation. Use the PDF linked in the document sidebar for a legally binding representation."
+      published_document_toc: "This is the table of contents as published in the <em>Federal Register</em>."
+      published_document_details: "Information about this document as published in the <em>Federal Register</em>."
+      reader_aid: Reader Aids help people use FederalRegister.gov and understand the federal rulemaking process. Reader Aids information is not published in the <em>Federal Register</em>.
+      reg_dot_gov_docket_info: "Relevant information about this document from Regulations.gov provides additional context. This information is not part of the official <em>Federal Register</em> document."
