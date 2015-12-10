@@ -16,7 +16,7 @@ class FrBox::Base
     @options = options
   end
 
-  def default_options
+  def default_options(options={})
     {}
   end
 
