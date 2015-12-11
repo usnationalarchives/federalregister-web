@@ -18,7 +18,7 @@ module Citations::CfrHelper
     return if year.blank?
     return if volume.blank?
 
-    "http://www.gpo.gov/fdsys/pkg/CFR-#{year}-title#{title}-vol#{volume}/xml/CFR-#{year}-title#{title}-vol#{volume}-#{section.present? ? "sec#{part}-#{section}" : "part#{part}"}.xml"
+    "https://www.gpo.gov/fdsys/pkg/CFR-#{year}-title#{title}-vol#{volume}/xml/CFR-#{year}-title#{title}-vol#{volume}-#{section.present? ? "sec#{part}-#{section}" : "part#{part}"}.xml"
   end
 
   def ecfr_url(title,part)

@@ -21,8 +21,8 @@ class Citation
   def matching_fr_entries
     document_numbers.map do |doc|
       DocumentDecorator.decorate(
-        FederalRegister::Article.new(
-          HTTParty.get("http://api.federalregister.gov/v1/articles/#{doc}")
+        FederalRegister::Document.new(
+          HTTParty.get("#{Settings.federal_register.api_url}/documents/#{doc}")
         )
       )
     end
@@ -31,15 +31,15 @@ class Citation
   def url
     case citation_type
     when 'USC'
-      "http://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=browse_usc&docid=Cite:+#{part_1}USC#{part_2}"
+      "https://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=browse_usc&docid=Cite:+#{part_1}USC#{part_2}"
     when 'CFR'
-      "http://frwebgate.access.gpo.gov/cgi-bin/get-cfr.cgi?YEAR=current&TITLE=#{part_1}&PART=#{part_2}&SECTION=#{part_3}&SUBPART=&TYPE=TEXT"
+      "https://frwebgate.access.gpo.gov/cgi-bin/get-cfr.cgi?YEAR=current&TITLE=#{part_1}&PART=#{part_2}&SECTION=#{part_3}&SUBPART=&TYPE=TEXT"
     when 'FR'
       "/citation/#{part_1}/#{part_2}" if part_1.to_i >= 59
     when 'FR-DocNum'
       "/a/#{part_1}"
     when 'PL'
-      "http://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=#{part_1}_cong_public_laws&docid=f:publ#{sprintf("%03d",part_2.to_i)}.#{part_1}" if part_1.to_i >= 104
+      "https://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=#{part_1}_cong_public_laws&docid=f:publ#{sprintf("%03d",part_2.to_i)}.#{part_1}" if part_1.to_i >= 104
     end
   end
 
@@ -74,20 +74,5 @@ class Citation
 
   def part_2
     matching_fr_entries.first.citation.split(" ").last
-  end
-
-  def url
-    case citation_type
-    when 'USC'
-      "http://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=browse_usc&docid=Cite:+#{part_1}USC#{part_2}"
-    when 'CFR'
-      "http://frwebgate.access.gpo.gov/cgi-bin/get-cfr.cgi?YEAR=current&TITLE=#{part_1}&PART=#{part_2}&SECTION=#{part_3}&SUBPART=&TYPE=TEXT"
-    when 'FR'
-      "/citation/#{part_1}/#{part_2}" if part_1.to_i >= 59
-    when 'FR-DocNum'
-      "/a/#{part_1}"
-    when 'PL'
-      "http://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=#{part_1}_cong_public_laws&docid=f:publ#{sprintf("%03d",part_2.to_i)}.#{part_1}" if part_1.to_i >= 104
-    end
   end
 end

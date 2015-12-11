@@ -101,11 +101,11 @@ module CitationsHelper
   end
 
   def usc_url(title, section)
-    "http://api.fdsys.gov/link?collection=uscode&title=#{title}&year=mostrecent&section=#{section}&type=usc&link-type=html"
+    "https://api.fdsys.gov/link?collection=uscode&title=#{title}&year=mostrecent&section=#{section}&type=usc&link-type=html"
   end
 
   def public_law_url(congress, law)
-    "http://api.fdsys.gov/link?collection=plaw&congress=#{congress}&lawtype=public&lawnum=#{law.to_i}&link-type=html"
+    "https://api.fdsys.gov/link?collection=plaw&congress=#{congress}&lawtype=public&lawnum=#{law.to_i}&link-type=html"
   end
 
   def patent_url(number_possibly_with_commas)

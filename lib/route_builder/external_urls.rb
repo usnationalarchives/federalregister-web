@@ -18,10 +18,10 @@ module RouteBuilder::ExternalUrls
   end
 
   def fdsys_document_pdf_url(document)
-    "http://www.gpo.gov/fdsys/pkg/FR-#{document.publication_date.to_s(:iso)}/pdf/#{document.document_number}.pdf"
+    "https://www.gpo.gov/fdsys/pkg/FR-#{document.publication_date.to_s(:iso)}/pdf/#{document.document_number}.pdf"
   end
 
   def fdsys_document_mods_url(document)
-    "http://www.gpo.gov/fdsys/granule/FR-#{document.publication_date.to_s(:iso)}/#{document.document_number}/mods.xml"
+    "https://www.gpo.gov/fdsys/granule/FR-#{document.publication_date.to_s(:iso)}/#{document.document_number}/mods.xml"
   end
 end
