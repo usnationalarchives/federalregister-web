@@ -1,0 +1,23 @@
+<%= calendar(
+  year: @presenter.year,
+  month: @presenter.month,
+  table_class: @presenter.table_class,
+  previous_month_text: @presenter.previous_month_text,
+  next_month_text: @presenter.next_month_text,
+  abbrev: (0..0),
+  month_name_class: "monthName year_#{@presenter.year}",
+) do |d|
+  if d.wday == 0 || d.wday == 6
+    [d.mday, {:class => "weekend"}]
+  elsif d == Time.current.to_date && @presenter.current_issue_is_late?
+    [d.mday, {:class => "late" }]
+  elsif d == @presenter.current_issue_date
+    [link_to(d.mday, @presenter.issue_path(d)), {class: "current"}]
+  elsif @presenter.published_dates.include?(d)
+    [link_to(d.mday, @presenter.issue_path(d)), {class: "published"}]
+  elsif @presenter.holiday(d).present?
+    [d.mday, {:class => "holiday", :title => @presenter.holiday(d).name}]
+  else
+    [d.mday, {class: ""}]
+  end
+end %>

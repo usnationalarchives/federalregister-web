@@ -27,27 +27,25 @@ class PublicInspectionDocumentIssuesController < ApplicationController
   def by_month
     cache_for 1.day
 
-    begin
-      @date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    rescue ArgumentError
-      raise ActiveRecord::RecordNotFound
-    end
+    date = parse_date_from_params
 
-    @table_class = "calendar"
-    @public_inspection_dates = PublicInspectionDocumentIssue.search(
-      conditions:
-        {publication_date:
-          {gte: @date.beginning_of_month.to_s(:iso),
-           lte: @date.end_of_month.to_s(:iso)
-          }
-        }
-    ).map{|doc_issue|doc_issue.slug.to_date }
+    document_dates = PublicInspectionDocumentIssue.for_month(date).
+      select{|result| result.has_documents?}.
+      map{|doc_issue| doc_issue.slug.to_date }
 
-    if params[:current_date]
-      @current_date = params[:current_date].is_a?(Date) ? params[:current_date] : Date.parse(params[:current_date])
-    end
+    options = {
+      table_class: params[:table_class] || "calendar"
+    }
 
-    render :layout => false
+    # if params[:current_date]
+    #   @current_date = params[:current_date].is_a?(Date) ? params[:current_date] : Date.parse(params[:current_date])
+    # end
+
+    @presenter = CalendarPresenter::PublicInspection.new(
+      date, document_dates, view_context, options
+    )
+
+    render "issues/calendar", :layout => false
   end
 
   def navigation

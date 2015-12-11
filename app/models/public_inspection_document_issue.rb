@@ -24,7 +24,20 @@ class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIs
     Date.parse(slug)
   end
 
+  def has_documents?
+    count > 0
+  end
+
   def self.available_for?(date)
     available_on(date) && available_on(date).regular_filings.documents > 0
+  end
+
+  def self.for_month(date)
+    search(
+      QueryConditions::DocumentConditions.published_within(
+        date.beginning_of_month,
+        date.end_of_month
+      )
+    )
   end
 end

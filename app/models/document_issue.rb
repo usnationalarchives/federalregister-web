@@ -25,4 +25,23 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   def has_documents?
     count > 0
   end
+
+  def self.current_issue_is_late?
+    current.publication_date == Date.today &&
+    (Time.current > Time.zone.parse("9AM")) &&
+    should_have_an_issue?(Date.today)
+  end
+
+  def self.should_have_an_issue?(date)
+    !(date.wday == 0 || date.wday == 6) #|| Holiday.find_by_date(date))
+  end
+
+  def self.for_month(date)
+    search(
+      QueryConditions::DocumentConditions.published_within(
+        date.beginning_of_month,
+        date.end_of_month
+      )
+    )
+  end
 end

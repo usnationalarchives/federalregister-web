@@ -27,19 +27,21 @@ class DocumentIssuesController < ApplicationController
   def by_month
     cache_for 1.day
 
-    @date = parse_date_from_params
+    date = parse_date_from_params
 
-    @document_dates = FederalRegister::Facet::Document::Daily.search(
-      {:conditions =>
-        {:publication_date =>
-          {:gte => @date.beginning_of_month,
-           :lte => @date.end_of_month
-          }
-        }
-      }
-    ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
+    document_dates = DocumentIssue.for_month(date).
+      select{|result| result.has_documents?}.
+      map{|result| result.slug.to_date}
 
-    @table_class = params[:table_class]
+    options = {
+      table_class: params[:table_class] || "calendar"
+    }
+
+    @presenter = CalendarPresenter::Document.new(
+      date, document_dates, view_context, options
+    )
+
+    render "issues/calendar", :layout => false
   end
 
   def navigation
