@@ -83,6 +83,12 @@ $(document).ready( function() {
     clearTimeout( navigation_timeout );
   });
 
+  $('#navigation .subnav .right_column li .calendar-wrapper ').bind('mouseenter', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  });
+
+
 
   $("input[data-autocomplete]#agency-search").each(function(){
     var input = $(this);
