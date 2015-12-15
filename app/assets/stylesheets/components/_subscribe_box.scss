@@ -1,17 +1,17 @@
 .fr-subscribe-box {
   background-color: $color-enhanced-light;
-  border-top: 1px solid $color-enhanced;
   border-bottom: 1px solid $color-enhanced;
+  border-top: 1px solid $color-enhanced;
   padding: 7px 13px 11px;
 
   a {
-    font-size: modular-scale(-1);
     color: $text;
+    display: block;
+    font-size: modular-scale(0);
+    height: 23px;
+    margin: 0 auto;
     text-decoration: none;
     width: 130px;
-    margin: 0 auto;
-    display: block;
-    vertical-align: top;
 
     &.subscription:hover {
       background: none;
@@ -24,8 +24,8 @@
 
       &.icon-fr2-message {
         font-size: 22px;
-        top: -1px;
         margin-right: 1px;
+        top: -1px;
       }
 
       &.icon-fr2-rss {
@@ -49,8 +49,8 @@
 
     &.icon-fr2-message {
       font-size: 22px;
-      top: 3px;
       margin-right: 1px;
+      top: 3px;
     }
 
     &.icon-fr2-rss {

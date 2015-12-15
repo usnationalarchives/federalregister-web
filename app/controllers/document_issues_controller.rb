@@ -34,7 +34,8 @@ class DocumentIssuesController < ApplicationController
       map{|result| result.slug.to_date}
 
     options = {
-      table_class: params[:table_class] || "calendar"
+      table_class: params[:table_class],
+      year_select: params[:year_select] || true
     }
 
     @presenter = CalendarPresenter::Document.new(

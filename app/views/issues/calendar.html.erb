@@ -12,7 +12,7 @@
   elsif d == Time.current.to_date && @presenter.current_issue_is_late?
     [d.mday, {
       :class => "late cj-tooltip",
-      :"data-tooltip" => 'This issue is currently late.'
+      :"data-tooltip" => 'This issue is currently unavailable.'
       }
     ]
   elsif d == @presenter.current_issue_date
@@ -24,6 +24,12 @@
         class: "holiday cj-tooltip",
         title: @presenter.holiday(d).name,
         :"data-tooltip" => @presenter.holiday(d).name
+      }
+    ]
+  elsif @presenter.should_have_an_issue?(d)
+    [d.mday, {
+      :class => "late cj-tooltip",
+      :"data-tooltip" => 'This issue is currently unavailable.'
       }
     ]
   else

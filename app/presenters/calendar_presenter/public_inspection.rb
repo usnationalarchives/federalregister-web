@@ -20,4 +20,8 @@ class CalendarPresenter::PublicInspection < CalendarPresenter::Base
   def issue_path(date)
     view.public_inspection_issue_path(date)
   end
+
+  def should_have_an_issue?(date)
+    issue.available_for?(date)
+  end
 end

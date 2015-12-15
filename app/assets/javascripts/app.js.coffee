@@ -23,5 +23,10 @@ $(document).ready ()->
   _.each $('.toggle-all'), (el)->
     new CJ.ToggleAll(el)
 
-  _.each $('table.calendar'), (calendar)->
+  standardCalendars = $('.calendar-wrapper:not(.cal-double) table.calendar')
+  _.each standardCalendars, (calendar)->
     new FR2.Calendar $(calendar)
+
+  multiCalendars = $('.calendars-wrapper')
+  _.each multiCalendars, (wrapper)->
+    new FR2.MultiCalendarHandler $(wrapper).find('table.calendar')

@@ -35,7 +35,7 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   end
 
   def self.should_have_an_issue?(date)
-    !(date.wday == 0 || date.wday == 6) #|| Holiday.find_by_date(date))
+    date <= Date.today && !(date.wday == 0 || date.wday == 6)
   end
 
   def self.for_month(date)
