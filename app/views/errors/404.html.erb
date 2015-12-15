@@ -1,12 +1,21 @@
 <% page_title "The page you were looking for doesn't exist." %>
-<div class="title"><span>404 Not Found</span></div>
 
-<h2>The page you were looking for doesn't exist.</h2>
+<%= title do %>
+  404 Not Found
+<% end %>
 
-<p>You may have mistyped the address or the page may have moved.</p>
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <h2>The page you were looking for doesn't exist.</h2>
 
-<% content_for(:page_to_track, '/404.html') %>
+      <p>You may have mistyped the address or the page may have moved.</p>
 
-<script type="text/javascript">
-  _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname + document.location.search + "&from=" + document.referrer]);
-</script>
+      <% content_for(:page_to_track, '/404.html') %>
+
+      <script type="text/javascript">
+        _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname + document.location.search + "&from=" + document.referrer]);
+      </script>
+    </div>
+  </div>
+<% end %>

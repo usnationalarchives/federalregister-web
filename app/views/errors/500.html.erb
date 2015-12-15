@@ -1,13 +1,21 @@
 <% page_title "Something went wrong." %>
 
-<div class="title"><span>500 Server Error</span></div>
+<%= title do %>
+  500 Server Error
+<% end %>
 
-<h2>Something went wrong!</h2>
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <h2>Something went wrong!</h2>
 
-<p>We've been notified about this issue and we'll take a look at it shortly.</p>
+      <p>We've been notified about this issue and we'll take a look at it shortly.</p>
 
-<% content_for(:page_to_track, '/500.html') %>
+      <% content_for(:page_to_track, '/500.html') %>
 
-<script type="text/javascript">
-  _gaq.push(['_trackEvent', 'errors', '500', document.location.pathname + document.location.search + "&from=" + document.referrer]);
-</script>
+      <script type="text/javascript">
+        _gaq.push(['_trackEvent', 'errors', '500', document.location.pathname + document.location.search + "&from=" + document.referrer]);
+      </script>
+    </div>
+  </div>
+<% end %>
