@@ -22,3 +22,6 @@ $(document).ready ()->
 
   _.each $('.toggle-all'), (el)->
     new CJ.ToggleAll(el)
+
+  _.each $('table.calendar'), (calendar)->
+    new FR2.Calendar $(calendar)

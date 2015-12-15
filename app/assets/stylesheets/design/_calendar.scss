@@ -2,19 +2,26 @@
   border-collapse: separate;
   width: 218px;
 
-  thead tr.calendar_nav {
+  thead tr.calendarNav {
     height: 18px;
 
-    th.cal_prev,
-    th.cal_next {
+    th.calendarPrev,
+    th.calendarNext {
       background: none;
+      font-size: modular-scale(-1);
+      padding-bottom: 7px;
+      vertical-align: bottom;
     }
   }
 
   th.monthName {
     font-size: modular-scale(2);
+    line-height: 1em;
 
-    select { margin-left: 10px; }
+    select {
+      margin-bottom: 5px;
+      margin-left: 10px;
+    }
   }
 
   .dayName th {
@@ -38,6 +45,8 @@
   td a {
     display: block;
     font-weight: 700;
+
+    &:visited { color: inherit; }
   }
 
   .weekend { background: $fr-gray-20; }
@@ -45,9 +54,16 @@
   .late {
     background: $fr-light-red;
     cursor: pointer;
+    font-weight: 500;
   }
 
-  .holiday { background: $fr-orange; }
+  .holiday {
+    background: $fr-orange;
+    color: $white;
+    font-weight: bold;
+
+    &:visited { color: $white; }
+  }
 
   .published a {
     color: $color-enhanced-dark;
@@ -57,11 +73,15 @@
       background: $color-enhanced-dark;
       color: $white;
     }
+
+    &:visited { color: $color-enhanced-dark; }
   }
 
   .current a {
     color: $white;
     background: $color-enhanced-dark;
+
+    &:visited { color: $white; }
   }
 
   .otherMonth { background: $fr-gray-10; }

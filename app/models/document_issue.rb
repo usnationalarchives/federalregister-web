@@ -2,16 +2,14 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
 
   def self.current
     search(
-      conditions: {
-        publication_date: {
-          gte: 1.month.ago.to_date.to_s(:iso)
-        }
-      }
+      QueryConditions::DocumentConditions.published_in_last(1.month)
     ).results.last
   end
 
   def self.published_on(date)
-    DocumentIssue.search(QueryConditions.published_on(date.to_date)).results.first
+    search(
+      QueryConditions.published_on(date)
+    ).results.first
   end
 
   def self.pdf_download_available?(date)
@@ -27,7 +25,7 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   end
 
   def self.current_issue_is_late?
-    current.publication_date == Date.today &&
+    current.publication_date != Date.today &&
     (Time.current > Time.zone.parse("9AM")) &&
     should_have_an_issue?(Date.today)
   end

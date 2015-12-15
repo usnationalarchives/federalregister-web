@@ -10,13 +10,22 @@
   if d.wday == 0 || d.wday == 6
     [d.mday, {:class => "weekend"}]
   elsif d == Time.current.to_date && @presenter.current_issue_is_late?
-    [d.mday, {:class => "late" }]
+    [d.mday, {
+      :class => "late cj-tooltip",
+      :"data-tooltip" => 'This issue is currently late.'
+      }
+    ]
   elsif d == @presenter.current_issue_date
     [link_to(d.mday, @presenter.issue_path(d)), {class: "current"}]
   elsif @presenter.published_dates.include?(d)
     [link_to(d.mday, @presenter.issue_path(d)), {class: "published"}]
   elsif @presenter.holiday(d).present?
-    [d.mday, {:class => "holiday", :title => @presenter.holiday(d).name}]
+    [d.mday, {
+        class: "holiday cj-tooltip",
+        title: @presenter.holiday(d).name,
+        :"data-tooltip" => @presenter.holiday(d).name
+      }
+    ]
   else
     [d.mday, {class: ""}]
   end
