@@ -13,6 +13,7 @@
 .calendar {
   border-collapse: separate;
   margin-bottom: 0;
+  table-layout: fixed;
   width: 218px;
 
   thead tr.calendarNav {
@@ -38,14 +39,17 @@
   }
 
   .dayName th {
-    width: 30px;
+    width: (100/7) * 1%;
     border-top: 1px solid $fr-gray-80;
     border-bottom: 1px solid $fr-gray-80;
 
     abbr { border-bottom: none; }
   }
 
-  tbody td { border: 1px solid $white; }
+  tbody td {
+    border: 1px solid $white;
+    width: (100/7) * 1%;
+  }
 
   td,
   th {
@@ -70,7 +74,7 @@
   }
 
   .holiday {
-    background: $fr-orange;
+    background: $fr-orange !important;
     color: $white;
     font-weight: bold;
 
@@ -78,7 +82,7 @@
   }
 
   .published a {
-    color: $color-enhanced-dark;
+    color: $color-enhanced-dark !important;
     background: $color-enhanced-light;
 
     &:hover {
@@ -90,7 +94,7 @@
   }
 
   .current a {
-    color: $white;
+    color: $white !important;
     background: $color-enhanced-dark;
 
     &:hover {

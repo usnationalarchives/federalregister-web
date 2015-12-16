@@ -622,16 +622,13 @@ BROWSE DATES
         th.calendarPrev a { display: none; }
       }
 
+      tbody td { width: (100/7) * 1%; }
+
+      td,
       a {
-        color: $fr-link-dark;
-        font-weight: 700;
+        font-size: modular-scale(-1);
         line-height: 20px;
         padding: 0;
-      }
-
-      td a:hover {
-        background-color: $fr-bright-orange;
-        color: $white;
       }
 
       tr.calendarNav {
