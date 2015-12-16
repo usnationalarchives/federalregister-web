@@ -107,6 +107,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -521,6 +522,7 @@ DEPENDENCIES
   capybara-screenshot
   capybara-webkit
   carrierwave (= 0.10.0)
+  chronic (~> 0.10.2)
   cocaine
   codeclimate-test-reporter
   coffee-rails (~> 3.2.2)

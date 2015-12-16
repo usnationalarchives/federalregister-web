@@ -23,12 +23,12 @@ MyFr2::Application.routes.draw do
         day:   /\d{1,2}/
       }
 
-# TEST ROUTES FOR CALENDAR
-  get 'documents/date_search',
-    to: "documents#date_search",
-    as: :documents_date_search,
-    :conditions => {:method => :get}
-# /END TEST ROUTES FOR CALENDAR
+  get 'document_issues/search',
+      to: "document_issues#search",
+      as: :document_issues_search,
+      constraints: {
+        date:  /\d{1,2}\/\d{1,2}\/\d{4}/
+      }
 
   get 'documents/:year/:month/:day/:document_number/:slug',
       to: "documents#show",

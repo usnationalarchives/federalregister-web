@@ -47,24 +47,4 @@ class DocumentsController < ApplicationController
       end
     end
   end
-
-  def date_search #Brandon's attempt at processing the AJAX
-    begin
-      date = Date.parse(params[:search] || '', :context => :past).try(:to_date )
-    rescue ArgumentError
-      render :text => "We couldn't understand that date.", :status => 422
-    end
-
-    if date.present?
-      # if Entry.published_on(date).count > 0
-        if request.xhr?
-          render :text => documents_by_date_path(date)
-        else
-          redirect_to entries_by_date_url(date)
-        end
-      # else
-      #   render :text => "There is no issue published on #{date}.", :status => 404
-      # end
-    end
-  end
 end

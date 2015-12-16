@@ -79,6 +79,9 @@ gem 'rails_config'
 gem 'calendar_helper', :git => "git://github.com/criticaljuncture/calendar_helper.git",
                        :branch => "master"
 
+# parse more date formats when needed
+gem 'chronic', '~> 0.10.2'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

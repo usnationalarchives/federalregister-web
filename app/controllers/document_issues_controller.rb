@@ -4,11 +4,23 @@ class DocumentIssuesController < ApplicationController
 
   def show
     cache_for 1.day
+
     parsed_date = parse_date_from_params
 
     if DocumentIssue.published_on(parsed_date).has_documents?
       @presenter = TableOfContentsPresenter.new(parsed_date)
       @doc_presenter = DocumentIssuePresenter.new(parsed_date)
+    else
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
+  def search
+    cache_for 1.day
+    date = Chronic.parse(params[:date]).to_date
+
+    if date
+      redirect_to document_issue_path(date)
     else
       raise ActiveRecord::RecordNotFound
     end
