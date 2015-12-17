@@ -48,9 +48,9 @@ class @FR2.Calendar
     @wrapper.append '<div class="loader" />'
 
   swapCalendars: (html)=>
-      @wrapper.find('.loader').remove()
-      @wrapper.append(html)
-      new FR2.Calendar @wrapper.find('table.calendar')
+    @wrapper.find('.loader').remove()
+    @wrapper.append(html)
+    new FR2.Calendar @wrapper.find('table.calendar')
 
   addClickEvents: ->
     @changeCalendarEvent()
@@ -66,14 +66,14 @@ class @FR2.Calendar
       )
 
   getNewCalendar: (url)=>
-      $.ajax({
-        url: url
-        beforeSend: =>
-          @showLoader()
-        complete: =>
-          @calendar.find('.loader').remove()
-        success: @swapCalendars
-      })
+    $.ajax({
+      url: url
+      beforeSend: =>
+        @showLoader()
+      complete: =>
+        @calendar.find('.loader').remove()
+      success: @swapCalendars
+    })
 
 
   addMissingDateHandler: ->
@@ -105,11 +105,11 @@ class @FR2.MultiCalendar extends @FR2.Calendar
       @multiHandler.swapCalendars(@calendar)
 
   swapCalendars: (html)=>
-      @wrapper.find('.loader').remove()
-      @wrapper.append(html)
+    @wrapper.find('.loader').remove()
+    @wrapper.append(html)
 
-      calendar = @wrapper.find('table.calendar')
-      @multiHandler.updateCalendar(calendar)
+    calendar = @wrapper.find('table.calendar')
+    @multiHandler.updateCalendar(calendar)
 
 class @FR2.MultiCalendarHandler
   constructor: (calendars)->

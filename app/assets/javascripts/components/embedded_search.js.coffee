@@ -20,13 +20,13 @@ class @FR2.EmbeddedSearch
 
   # only add tooltips to items that are active
   addTooltips: ->
-    @doctypeFilters.filter(':not(.disabled)').tipsy {
-        gravity: 'n'
-        fade: false
-        offset: 2
-        title: ->
-          $(this).data('tooltip')
-      }
+    @doctypeFilters.filter(':not(.disabled)').tipsy({
+      gravity: 'n'
+      fade: false
+      offset: 2
+      title: ->
+        $(this).data('tooltip')
+    })
 
   addMouseEvents: ->
     embeddedSearch = this
