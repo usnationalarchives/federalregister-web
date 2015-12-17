@@ -7,7 +7,12 @@
 
 <%= bootstrap_context_wrapper do %>
 
-  <%= esi issue_summary_path(path: 'home') %>
+  <% if DocumentIssue.current_issue_is_late? %>
+    <%= render partial: 'special/late_issue' %>
+  <% else %>
+    <%= esi issue_summary_path(path: 'home') %>
+  <% end %>
+
   <%= render partial: 'special/home/embedded_search' %>
   <%= esi home_sections_path %>
 

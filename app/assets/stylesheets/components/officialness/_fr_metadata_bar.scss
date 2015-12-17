@@ -23,6 +23,12 @@
     .fr-head-meta-label i { color: $color-enhanced-light; }
   }
 
+  &.fr-head-metadata-bar-late {
+    @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
+
+    .fr-head-meta-label i { color: $color-public-inspection-light; }
+  }
+
   &.fr-head-metadata-bar-public-inspection {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
     a {
