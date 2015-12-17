@@ -56,25 +56,27 @@ MyFr2::Application.routes.draw do
     to: 'search/documents#show',
     as: 'documents_search'
 
-  get 'documents/search/header',
-    to: 'search/documents#header',
-    as: 'documents_search_header'
+  with_options(:quiet => true) do |esi|
+    esi.get 'documents/search/header',
+      to: 'search/documents#header',
+      as: 'documents_search_header'
 
-  get 'documents/search/facets/:facet',
-    to: 'search/documents#facets',
-    as: 'documents_search_facets'
+    esi.get 'documents/search/facets/:facet',
+      to: 'search/documents#facets',
+      as: 'documents_search_facets'
 
-  get 'documents/search/results',
-    to: 'search/documents#results',
-    as: 'documents_search_results'
+    esi.get 'documents/search/results',
+      to: 'search/documents#results',
+      as: 'documents_search_results'
 
-  get 'documents/search/suggestions',
-    to: 'search/documents#suggestions',
-    as: 'documents_search_suggestions'
+    esi.get 'documents/search/suggestions',
+      to: 'search/documents#suggestions',
+      as: 'documents_search_suggestions'
 
-  get 'documents/search/help',
-    to: 'search/documents#help',
-    as: 'documents_search_help'
+    esi.get 'documents/search/help',
+      to: 'search/documents#help',
+      as: 'documents_search_help'
+  end
 
   #
   # Public Inspection Documents
