@@ -9,7 +9,7 @@ class PublicInspectionIssuePresenter
   end
 
   def all_filings
-    [@regular_filings, @special_filings]
+    [@special_filings, @regular_filings]
   end
 
   def issue
