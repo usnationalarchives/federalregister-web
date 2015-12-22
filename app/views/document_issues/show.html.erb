@@ -7,13 +7,13 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
-    <div class="col-xs-12 col-md-12">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
       <%= esi issue_summary_path(date: @presenter.date.to_s(:iso)) %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xs-9 col-md-9 doc-toc">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
       <%= fr_content_box(
         FrBox.build(@presenter.fr_content_box_type)
       ) do %>
@@ -30,15 +30,15 @@
       <% end %>
     </div>
 
-    <div class="col-xs-3 col-md-3">
+    <div class="<%= bootstrap_col xs: 3, md: 3 %>">
       <div class="doc-subscribe">
         <div class="row">
-          <div class="col-xs-12 col-md-12">
+          <div class="<%= bootstrap_col xs: 12, md: 12 %>">
             <%= subscribe_box %>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-md-12 calendar-wrapper">
+          <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
             <%= document_calendar_esi_for(
               @presenter.date,
               current_date: @presenter.date.to_s(:iso)
