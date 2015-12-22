@@ -27,10 +27,9 @@
         </div>
       </div>
       <div class="row">
-          <%= esi public_inspection_issues_by_month_path(
-            @presenter.date.strftime('%Y'),
-            @presenter.date.strftime('%m'),
         <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
+          <%= public_inspection_calendar_esi_for(
+            @presenter.date,
             current_date: @presenter.date.to_s(:iso)
           ) %>
         </div>

@@ -39,9 +39,8 @@
         </div>
         <div class="row">
           <div class="col-xs-12 col-md-12 calendar-wrapper">
-            <%= esi document_issues_by_month_path(
-              @presenter.date.strftime('%Y'),
-              @presenter.date.strftime('%m'),
+            <%= document_calendar_esi_for(
+              @presenter.date,
               current_date: @presenter.date.to_s(:iso)
             ) %>
           </div>
