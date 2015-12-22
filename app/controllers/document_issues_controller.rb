@@ -46,6 +46,7 @@ class DocumentIssuesController < ApplicationController
       map{|result| result.slug.to_date}
 
     options = {
+      current_date: params[:current_date],
       table_class: params[:table_class],
       year_select: params[:year_select] || true
     }
@@ -54,7 +55,7 @@ class DocumentIssuesController < ApplicationController
       date, document_dates, view_context, options
     )
 
-    render "issues/calendar", :layout => false
+    render "issues/calendar"
   end
 
   def navigation

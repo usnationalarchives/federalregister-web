@@ -25,7 +25,7 @@ class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIs
   end
 
   def has_documents?
-    count > 0
+    regular_filings.documents > 0 || special_filings.documents > 0
   end
 
   def self.available_for?(date)

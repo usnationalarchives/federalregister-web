@@ -59,6 +59,10 @@ class CalendarPresenter::Base
     issue.current.publication_date
   end
 
+  def current_date
+    Chronic.parse(options[:current_date])
+  end
+
   def holiday(date)
     Holiday.find_by_date(date)
   end

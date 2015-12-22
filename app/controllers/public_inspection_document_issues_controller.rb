@@ -1,5 +1,6 @@
 class PublicInspectionDocumentIssuesController < ApplicationController
   skip_before_filter :authenticate_user!
+  layout false, only: [:by_month, :navigation]
 
   def show
     cache_for 1.day
@@ -34,18 +35,16 @@ class PublicInspectionDocumentIssuesController < ApplicationController
       map{|doc_issue| doc_issue.slug.to_date }
 
     options = {
-      table_class: params[:table_class] || "calendar"
+      current_date: params[:current_date],
+      table_class: params[:table_class],
+      year_select: params[:year_select] || true
     }
-
-    # if params[:current_date]
-    #   @current_date = params[:current_date].is_a?(Date) ? params[:current_date] : Date.parse(params[:current_date])
-    # end
 
     @presenter = CalendarPresenter::PublicInspection.new(
       date, document_dates, view_context, options
     )
 
-    render "issues/calendar", :layout => false
+    render "issues/calendar"
   end
 
   def navigation
