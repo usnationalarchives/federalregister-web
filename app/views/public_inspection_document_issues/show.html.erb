@@ -8,7 +8,7 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
-    <div class="col-xs-12 col-md-12">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
       <%= esi issue_summary_path(
         path: 'pi',
         date: @presenter.date.to_s(:iso)
@@ -17,20 +17,20 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-9 col-md-9 doc-content doc-toc">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-content doc-toc">
       <%= render partial: 'info_box' %>
     </div>
-    <div class="col-xs-3 col-md-3 doc-subscribe">
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-subscribe">
       <div class="row">
-        <div class="col-xs-12 col-md-12">
+        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
           <%= subscribe_box(search_type: 'PublicInspectionDocument') %>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-12">
           <%= esi public_inspection_issues_by_month_path(
             @presenter.date.strftime('%Y'),
             @presenter.date.strftime('%m'),
+        <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
             current_date: @presenter.date.to_s(:iso)
           ) %>
         </div>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-9 col-md-9 doc-toc">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
       <%= fr_content_box(
         FrBox.build(
           @special_filings_presenter.fr_content_box_type,
@@ -70,7 +70,7 @@
       <% end %>
     </div>
 
-    <div class="col-xs-3 col-md-3 doc-toc-nav">
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
       <%= fr_details_box(
         FrBox.build(
           @special_filings_presenter.fr_details_box_type,
@@ -89,7 +89,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-9 col-md-9 doc-toc">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
       <%= fr_content_box(
         FrBox.build(
           @regular_filings_presenter.fr_content_box_type,
@@ -120,7 +120,7 @@
       <% end %>
     </div>
 
-    <div class="col-xs-3 col-md-3 doc-toc-nav">
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
       <%= fr_details_box(
         FrBox.build(
           @regular_filings_presenter.fr_details_box_type,
