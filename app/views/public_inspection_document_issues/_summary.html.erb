@@ -41,16 +41,18 @@
           <ul class="fr-list with-stats row">
             <% presenter.all_filings.each do |filing_type| %>
               <li class="col-xs-<%= home ? 12 : 6 %> col-md-<%= home ? 12 : 6 %>">
-                <h5><%= filing_type.name %></h5>
+                <h4><%= filing_type.name %></h4>
                 <div class="filings-updated">
                   updated on <%= filing_type.formatted_updated_at %>
                 </div>
                 <div class="public-inspection-list-stats">
-                  <%= link_to_unless filing_type.document_count == 0,
-                    pluralize(filing_type.document_count, 'document'),
-                    public_inspection_search_path(filing_type.search_conditions)
-                  %>
-                  from <%= pluralize(filing_type.agency_count, 'agency') %>
+                  <div class="filings-summary">
+                    <%= link_to_unless filing_type.document_count == 0,
+                      pluralize(filing_type.document_count, 'document'),
+                      public_inspection_search_path(filing_type.search_conditions)
+                    %>
+                    from <%= pluralize(filing_type.agency_count, 'agency') %>
+                  </div>
 
                   <ul class="document-stats">
                     <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>

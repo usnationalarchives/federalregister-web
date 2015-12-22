@@ -222,3 +222,14 @@
     }
   }
 }
+
+// scss-lint:disable MergeableSelector
+.pi-metadata-bar.home {
+  .fr-list.with-stats li { padding: 0; }
+
+  .document-stats {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+// scss-lint:enable MergeableSelector
