@@ -6,6 +6,7 @@ vcr:
   ignore_paths: [] #["^/api/v1/documents"]
   re_record_interval: 7 #days
   log_output: false
+  max_cassette_size: 1.0 #Mb
 varnish:
   enable_cache_headers: true
   ignore_paths: ""

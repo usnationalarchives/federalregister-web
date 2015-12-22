@@ -47,4 +47,9 @@ MyFr2::Application.configure do
   config.action_mailer.smtp_settings   = smtp_settings
 
   config.action_mailer.default_url_options = {:host => "#{Settings.app_url}", :protocol => "http://"}
+
+  if Settings.vcr.enabled
+    file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"
+    raise "VCR cassette is too large! Max cassette size is #{Settings.vcr.max_cassette_size}Mb. Check the file size in #{Settings.vcr.library_dir}." if (File.size(file).to_f / 1024000) > Settings.vcr.max_cassette_size
+  end
 end
