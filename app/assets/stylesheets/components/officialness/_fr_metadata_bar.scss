@@ -47,10 +47,10 @@
       }
 
       .icon-fr2.icon-fr2-stop-hand {
+        color: $fr-gray-15;
         font-size: 115px;
         left: 65px;
         top: 5px;
-        color: $fr-gray-15;
       }
     }
     .fr-topic-list.with-stats li:hover { color: $fr-gray-40; }
@@ -61,21 +61,21 @@
   .fr-head-meta-label-holder { padding: 0; }
 
   .fr-head-meta-label {
+    color: $white;
     height: 60px;
-    color: #fff;
     padding: 4px 15px 0 24px;
 
     i {
       font-size: 34px;
+      margin-right: 5px;
       position: relative;
       top: 7px;
-      margin-right: 5px;
     }
 
     h4 {
-      margin: 0 !important;
-      font-weight: 500;
       display: inline-block;
+      font-weight: 500;
+      margin: 0 !important;
       text-decoration: underline;
     }
   }
@@ -94,9 +94,9 @@
 
       h5 {
         float: left;
-        width: 102px;
         margin-right: 10px;
         margin-top: 5px;
+        width: 102px;
       }
 
       .block-content {
@@ -107,32 +107,31 @@
 
     li {
       float: left;
+      font-size: modular-scale(-1);
       list-style-type: none;
       margin-right: 15px;
-      font-size: modular-scale(-1);
     }
 
     h5 {
+      color: $fr-gray-70;
       font-size: modular-scale(0);
       margin-bottom: 3px;
-      color: #444;
     }
 
     p {
       @include apertura-condensed;
-      margin: 0;
       font-size: modular-scale(0);
+      margin: 0;
       padding: 10px 0;
     }
   }
 
   a.public-inspection-toggle {
-    text-decoration: none !important;
     color: $fr-gray-70;
     font-weight: bold;
-
-    top: 20px;
     position: relative;
+    text-decoration: none !important;
+    top: 20px;
 
     &:visited { color: $fr-gray-70; }
 
@@ -142,12 +141,12 @@
     span.link-text { text-decoration: underline; }
 
     .icon-fr2 {
+      font-size: 17px;
       height: 17px;
-      width: 17px;
       position: relative;
       top: -1px;
-      font-size: 17px;
       vertical-align: middle;
+      width: 17px;
     }
   }
 }
@@ -163,16 +162,16 @@
 
       .description {
         .icon-fr2-stop-hand {
+          color: $fr-gray-20;
           font-size: 105px;
+          left: -5px;
           position: relative;
           top: 20px;
-          left: -5px;
-          color: $fr-gray-20;
         }
 
         p {
-          line-height: 1.5;
           font-size: modular-scale(-1);
+          line-height: 1.5;
         }
       }
     }
@@ -180,18 +179,16 @@
   .fr-list.with-stats {
     margin-top: 4px !important;
 
-    .public-inspection-list-stats {
-      /* explicitely set as the cascade is causing problems
-       here due to percentages higher in the chain */
-      width: 316px;
-    }
-
     li {
-      width: inherit;
-      padding: 1px 15px 0;
       margin-bottom: 3px;
+      padding: 1px 15px 0;
+      width: inherit;
 
-      h5 { margin: 0; }
+      h4 {
+        border-bottom: 1px solid $text-light;
+        color: $text;
+        margin: 0;
+      }
     }
   }
 
@@ -200,18 +197,27 @@
     font-style: italic;
   }
   .public-inspection-list-stats {
-    color: #333;
-    width: 100%;
+    color: $fr-gray-80;
     float: left;
+    font-size: modular-scale(0);
     margin-top: 5px;
+    width: 100%;
+
+    .filings-summary {
+      float: left;
+      width: 250px;
+    }
 
     .document-stats {
-      margin: 0;
-      margin-top: 3px;
+      float: left;
+      margin: 0 0 0 40px;
+      width: 316px;
 
       li {
-        padding: 0;
+        font-size: inherit;
         margin-right: 15px;
+        padding: 0;
+        width: auto;
       }
     }
   }

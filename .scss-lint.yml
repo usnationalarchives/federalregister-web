@@ -16,7 +16,7 @@ linters:
   DuplicateProperty:
     enabled: true
   EmptyLineBetweenBlocks:
-    enabled: true
+    enabled: false
   FinalNewline:
     enabled: true
   HexLength:
