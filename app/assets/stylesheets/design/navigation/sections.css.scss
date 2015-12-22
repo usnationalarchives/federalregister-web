@@ -104,3 +104,81 @@ SECTION DAILY STATS
     top: 4px;
   }
 }
+
+/**************************************
+
+ SECTION CAROUSEL
+
+**************************************/
+#navigation .preview #carousel_wrapper,
+#navigation .preview #carousel_scroller li,
+#navigation .preview  .carousel_rounded_box {
+  width: 400px;
+  height: 175px;
+  border: none;
+}
+
+#navigation .preview #carousel_wrapper {
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+#navigation .preview .carousel_rounded_box {
+  border-radius: 10px;
+
+  img {
+    width: 400px;
+    height: 175px;
+  }
+}
+
+#navigation .preview #carousel_scroller li {
+  div.bg,
+  div.text_wrapper {
+    top: 9px;
+    width: 100%;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  div.text_wrapper {
+    h2 { width: 95%; }
+
+    a {
+      line-height: 16px;
+      font-size: 14px;
+      color: $white;
+      border: none;
+      display: inline-block;
+      padding: 0;
+      width: 95%;
+    }
+
+    .date {
+      background: none;
+      padding-left: 0;
+    }
+  }
+
+  div.attribution,
+  div.attribution.bg {
+    top: auto;
+    bottom: 10px;
+    font-size: 11px;
+    width: auto;
+    line-height: 10px;
+  }
+
+  div.attribution {
+    &.bg { padding: 1px 2px; }
+
+    a {
+      font-size: 11px;
+      line-height: 14px;
+      border: none;
+    }
+  }
+
+  p.metadata,
+  p.summary { display: none; }
+}
