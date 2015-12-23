@@ -17,10 +17,10 @@
       <% end %>
     </div>
 
-    <div class="col-xs-9 col-md-9 fr-head-meta-counts">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> fr-head-meta-counts">
       <div class="row">
         <% if home %>
-          <div class="col-xs-6 col-md-6">
+          <div class="<%= bootstrap_col xs: 6, md: 6 %>">
             <div class="description">
               <p>
                 The <a href="">Public Inspection page</a> on FederalRegister.gov
@@ -38,37 +38,10 @@
         <% end %>
 
         <div class="col-xs-<%= home ? 6 : 12 %> col-md-<%= home ? 6 : 12 %>">
-          <ul class="fr-list with-stats row">
-            <% presenter.all_filings.each do |filing_type| %>
-              <li class="col-xs-<%= home ? 12 : 6 %> col-md-<%= home ? 12 : 6 %>">
-                <h4><%= filing_type.name %></h4>
-                <div class="filings-updated">
-                  updated on <%= filing_type.formatted_updated_at %>
-                </div>
-                <div class="public-inspection-list-stats">
-                  <div class="filings-summary">
-                    <%= link_to_unless filing_type.document_count == 0,
-                      pluralize(filing_type.document_count, 'document'),
-                      public_inspection_search_path(filing_type.search_conditions)
-                    %>
-                    from <%= pluralize(filing_type.agency_count, 'agency') %>
-                  </div>
-
-                  <ul class="document-stats">
-                    <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
-                      <li>
-                        <%= link_to pluralize(facet.count, facet.name),
-                          public_inspection_search_path(
-                            filing_type.search_conditions(facet.name)
-                          )
-                        %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-              </li>
-            <% end %>
-          </ul>
+          <%= render partial: "summary_document_counts", locals: {
+            full_width: home,
+            presenter: presenter
+          } %>
         </div>
       </div>
     </div>

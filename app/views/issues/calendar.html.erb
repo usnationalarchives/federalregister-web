@@ -16,6 +16,8 @@
       }
     ]
   elsif d == @presenter.current_issue_date
+    [link_to(d.mday, @presenter.issue_path(d)), {class: "current-issue"}]
+  elsif d == @presenter.current_date
     [link_to(d.mday, @presenter.issue_path(d)), {class: "current"}]
   elsif @presenter.published_dates.include?(d)
     [link_to(d.mday, @presenter.issue_path(d)), {class: "published"}]

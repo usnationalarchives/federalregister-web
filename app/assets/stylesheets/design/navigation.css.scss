@@ -155,7 +155,11 @@ NAV DROPDOWN SUBNAV
     float: none;
     list-style: none;
 
-    &:last-child a { border-bottom: none; }
+    &:last-child {
+      border-bottom: 1px solid $nav-border-color;
+
+      a { border-bottom: none; }
+    }
   }
 
   a {
@@ -197,21 +201,27 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 //  background: white url('/images/ajax-loader.gif?1292020484') 332px 2px no-repeat;
 //}
 #navigation .previewable .subnav {
-  width: 605px;
   margin-left: 21px;
+  overflow: auto;
+  width: 605px;
 
   ul {
     margin: 0;
-    display: inline-block;
+    float: left;
   }
 
   .left_column {
-    width: 190px;
+    width: 194px;
+    float: left;
 
     li {
       width: 194px;
       height: 57px;
       vertical-align: middle;
+
+      &:last-child:hover {
+        border-bottom: 1px solid $nav-border-color;
+      }
 
       a {
         border: none;
@@ -245,7 +255,7 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
   .right_column {
     border-left: 1px solid $nav-border-color;
     vertical-align: top;
-    width: 405px;
+    width: 410px;
 
     li {
       border: none;
@@ -683,26 +693,8 @@ BROWSE EXECUTIVE ORDERS
 PUBLIC INSPECTION BROWSE PREVIEW
 
 **************************************/
-#navigation .previewable {
-  #public-inspection-browse-preview {
-    height: 280px;
 
-    p.info {
-      margin: 10px 0 10px 7px;
-      padding: 5px 12px 5px 15px;
-      background-color: $fr-gray-5;
-    }
-  }
-
-  .inspection_counts { float: left; }
-
-  .mini_document_types a {
-    vertical-align: top;
-    display: inline-block;
-    padding: 0;
-    padding-top: 2px;
-  }
-}
+@import 'navigation/issues';
 
 
 /**************************************************

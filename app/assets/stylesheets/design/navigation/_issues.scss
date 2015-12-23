@@ -1,0 +1,61 @@
+// reset link styles
+%link-reset {
+  color: $link;
+  display: initial;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0 !important;
+  text-decoration: underline;
+}
+
+#public-inspection-browse-preview {
+  .description {
+    background-color: $color-public-inspection-light;
+    font-size: modular-scale(-1);
+    padding-top: 5px;
+
+    a {
+      @extend %link-reset;
+      color: $public-inspection-link;
+    }
+  }
+
+  .pi-metadata-bar {
+    font-size: modular-scale(-1);
+
+    .fr-head-metadata-bar,
+    .fr-head-meta-counts {
+      background-color: inherit;
+      padding: 0;
+    }
+
+    h5 { margin: 0; }
+
+    a {
+      @extend %link-reset;
+      color: $public-inspection-link;
+      text-decoration: none;
+    }
+
+    .fr-list.with-stats {
+
+      > li {
+        overflow: auto;
+        padding: 0;
+      }
+
+      .filings-summary,
+      .document-stats {
+        font-size: modular-scale(-1);
+      }
+
+      .document-stats {
+        margin-left: 0;
+        margin-top: 10px !important;
+
+        li { float: left; }
+      }
+    }
+  }
+}
