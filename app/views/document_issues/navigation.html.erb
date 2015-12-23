@@ -1,58 +1,73 @@
 <li id="document-dates-browse-preview" class="preview">
-  <div class="fr_stats">
-    <h2>
-      Current Issue
-      <span class="supplemental"><%= "TODO: 99"%> Pages</span>
-    </h2>
+  <div class="bootstrap-scope">
+    
+    <div class="row">
+      <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+        <div class="fr_stats">
+          <h2>
+            Current Issue
+            <span class="supplemental"><%= "TODO: 99"%> Pages</span>
+          </h2>
 
-    <% if @doc_presenter.any_significant_documents? %>
-      <p class="significant">
-        <span></span>
-        <%= link_to pluralize(@doc_presenter.significant_documents.count, "Significant Document"),
-          documents_search_path(:conditions => {
-            :significant => 1,
-            :publication_date => {:is => @doc_presenter.date.to_s(:iso)}
-          }) %>
-      </p>
-    <% end %>
+          <% if @doc_presenter.any_significant_documents? %>
+            <p class="significant">
+              <span></span>
+              <%= link_to pluralize(@doc_presenter.significant_documents.count, "Significant Document"),
+                documents_search_path(:conditions => {
+                  :significant => 1,
+                  :publication_date => {:is => @doc_presenter.date.to_s(:iso)}
+                }) %>
+            </p>
+          <% end %>
 
-    <ul class="current_issue statistics mini_document_types">
-      <% @doc_presenter.document_counts.each do |doc_type| %>
-        <li>
-          <%= link_to doc_type.count, documents_search_path(doc_type.search_conditions) %>
-          <%= document_type_icon(doc_type.type, size: 'mini') %>
-        </li>
-      <% end %>
-    </ul>
-
-  <div class="date_input_holder">
-    <h2>Go to a specific date</h2>
-    <%= form_tag document_issues_search_path, :method => :get, :id => "date_selector" do %>
-      <label>Go to a specific date:</label>
-      <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
-      <%= submit_tag 'Go' %>
-    <% end %>
-  </div>
-
-  <div class="calendar_holder">
-    <h2>Explore</h2>
-    <div id="date_chooser">
-      <div class="calendars-wrapper">
-        <div class="calendar-wrapper cal-double">
-          <%= document_calendar_esi_for(
-            DocumentIssue.current.publication_date - 1.month,
-            table_class: 'cal_first',
-            year_select: false
-          ) %>
-        </div>
-        <div class="calendar-wrapper cal-double">
-          <%= document_calendar_esi_for(
-            DocumentIssue.current.publication_date,
-            table_class: 'cal_last',
-            year_select: false
-          ) %>
+          <ul class="current_issue statistics mini_document_types">
+            <% @doc_presenter.document_counts.each do |doc_type| %>
+              <li>
+                <%= link_to doc_type.count, documents_search_path(doc_type.search_conditions) %>
+                <%= document_type_icon(doc_type.type, size: 'mini') %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+        <div class="date_input_holder">
+          <h2>Go to a specific date</h2>
+          <%= form_tag document_issues_search_path, :method => :get, :id => "date_selector" do %>
+            <label>Go to a specific date:</label>
+            <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+            <%= submit_tag 'Go' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+        <div class="calendar_holder">
+          <h2>Explore</h2>
+          <div class="calendars-wrapper">
+            <div class="calendar-wrapper cal-double">
+              <%= document_calendar_esi_for(
+                DocumentIssue.current.publication_date - 1.month,
+                table_class: 'cal_first',
+                year_select: false
+              ) %>
+            </div>
+            <div class="calendar-wrapper cal-double">
+              <%= document_calendar_esi_for(
+                DocumentIssue.current.publication_date,
+                table_class: 'cal_last',
+                year_select: false
+              ) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </li>

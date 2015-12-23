@@ -412,18 +412,6 @@
   }
 
   .right_column {
-    form {
-      margin-left: 15px;
-      overflow: hidden;
-
-      input.browse_search {
-        border: 1px solid $fr-gray-40;
-        height: 18px;
-        padding-left: 10px;
-        width: 370px;
-      }
-    }
-
     p.info {
       font-size: 1.1em;
       line-height: 1.1em;
@@ -513,78 +501,6 @@
       background: none;
       color: $fr-bright-orange;
     }
-  }
-}
-
-#navigation .previewable {
-  #date_chooser { margin-left: 10px; }
-
-  .calendar_holder,
-  .date_input_holder {
-    display: inline-block;
-    margin-bottom: 12px;
-    width: 400px;
-  }
-
-  .calendar_holder {
-    .calendar-wrapper {
-      float: left;
-      margin-bottom: 10px;
-      width: 185px;
-
-      &:first-child { margin-right: 20px; }
-    }
-
-    table.calendar {
-      width: 185px;
-
-      &.cal_first {
-        th.calendarNext a { display: none; }
-      }
-      &.cal_last {
-        th.calendarPrev a { display: none; }
-      }
-
-      tbody td { width: (100/7) * 1%; }
-
-      td,
-      a {
-        font-size: modular-scale(-1);
-        line-height: 20px;
-        padding: 0;
-      }
-
-      tr.calendarNav {
-        th.calendarPrev,
-        th.calendarNext,
-        th.monthName {
-          padding-bottom: 5px;
-        }
-
-        th.calendarPrev a,
-        th.calendarNext a {
-          border: 0;
-          color: $fr-gray-70;
-          font-size: 12px;
-          font-weight: bold;
-          line-height: 18px;
-        }
-
-        a {
-          color: $fr-link-dark;
-          &:hover { color: $fr-bright-orange; }
-        }
-      }
-    }
-  }
-}
-
-#navigation .previewable .date_input_holder {
-  input#search { width: 325px; }
-  input[type="submit"] {
-    height: 22px;
-    margin-left: 5px;
-    width: 35px;
   }
 }
 

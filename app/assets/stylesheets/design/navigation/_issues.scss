@@ -9,7 +9,121 @@
   text-decoration: underline;
 }
 
+#document-dates-browse-preview,
 #public-inspection-browse-preview {
+  // GO TO DATE
+  .date_input_holder {
+    form {
+      margin-left: 5px;
+      margin-right: 10px;
+      overflow: hidden;
+
+      label { display: none; }
+
+      input.browse_search {
+        @include rounded-left(4);
+        border: 1px solid $fr-gray-40;
+        border-right: 0;
+        float: left;
+        height: 30px;
+        padding-left: 10px;
+        width: 330px;
+      }
+
+      input[type="submit"] {
+        @include rounded-right(4);
+        background: 0;
+        background-color: $fr-gray-5;
+        border: 1px solid $fr-gray-40;
+        border-left: 0;
+        height: 30px;
+        padding: 0;
+        width: 35px;
+
+        // for reference: background png/svg is $fr-gray-50
+        &:hover {
+          background-color: $fr-gray-15;
+        }
+      }
+    }
+  }
+}
+
+#document-dates-browse-preview,
+#public-inspection-browse-preview {
+  // EXPLORE
+  .calendar_holder,
+  .date_input_holder {
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .calendar_holder {
+    width: 380px;
+
+    .calendars-wrapper { overflow: auto; }
+
+    .calendar-wrapper {
+      float: left;
+      height: 155px;
+      margin-bottom: 0;
+      width: 185px;
+
+      &:first-child { margin-right: 10px; }
+    }
+
+    table.calendar {
+      width: 185px;
+
+      &.cal_first {
+        th.calendarNext a { display: none; }
+      }
+      &.cal_last {
+        th.calendarPrev a { display: none; }
+      }
+
+      tbody td { width: (100/7) * 1%; }
+
+      td,
+      a {
+        font-size: modular-scale(-1);
+        line-height: 20px;
+        padding: 0;
+      }
+
+      tr.calendarNav {
+        th.calendarPrev,
+        th.calendarNext,
+        th.monthName {
+          padding-bottom: 5px;
+        }
+
+        th.calendarPrev a,
+        th.calendarNext a {
+          border: 0;
+          color: $fr-gray-70;
+          font-size: 12px;
+          font-weight: bold;
+          line-height: 18px;
+        }
+
+        a {
+          color: $fr-link-dark;
+          &:hover { color: $fr-bright-orange; }
+        }
+      }
+    }
+  }
+}
+
+#public-inspection-browse-preview {
+  h2,
+  h4 {
+    @extend %right_column_header;
+    font-weight: normal;
+    margin-left: 0 !important;
+  }
+
   .description {
     background-color: $color-public-inspection-light;
     font-size: modular-scale(-1);
