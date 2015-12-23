@@ -12,31 +12,9 @@
   </div>
 
   <div class="col-xs-6 col-md-6 fr-head-meta-counts">
-    <ul class="fr-list fr-list-inline">
-      <% presenter.document_counts.sort_by(&:name).each do |doc_type| %>
-        <li>
-          <%= link_to pluralize(doc_type.count, doc_type.name),
-            documents_search_path(doc_type.search_conditions) %>
-        </li>
-      <% end %>
-    </ul>
-
-    <ul class="fr-list fr-list-inline">
-      <li>
-        <%= link_to_if presenter.any_significant_documents?,
-          pluralize(
-            presenter.significant_documents.count,
-            presenter.significant_documents.name
-          ),
-          documents_search_path(
-            presenter.significant_documents.search_conditions
-          ) %>
-      </li>
-
-      <li class='page-count'>
-        <%= pluralize(presenter.page_count, 'Page') %>
-      </li>
-    </ul>
+    <%= render partial: 'summary_document_counts', locals: {
+      presenter: presenter
+    } %>
   </div>
 
   <div class="col-xs-3 col-md-3">

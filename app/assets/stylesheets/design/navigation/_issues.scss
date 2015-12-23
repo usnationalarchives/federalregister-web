@@ -116,6 +116,20 @@
   }
 }
 
+#document-dates-browse-preview {
+  .fr-head-meta-counts .fr-list > li {
+    float: left;
+    padding-right: 10px;
+
+    a {
+      @extend %link-reset;
+      font-size: modular-scale(-1);
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
+}
+
 #public-inspection-browse-preview {
   h2,
   h4 {

@@ -39,7 +39,7 @@ class DocumentIssuePresenter
     @significant_documents ||= SignificantDocument.new(date)
   end
 
-  def any_significant_documents?
+  def significant_documents?
     significant_documents.count > 0
   end
 
