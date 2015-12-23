@@ -27,7 +27,7 @@
         float: left;
         height: 30px;
         padding-left: 10px;
-        width: 330px;
+        width: 355px;
       }
 
       input[type="submit"] {
@@ -59,7 +59,7 @@
   }
 
   .calendar_holder {
-    width: 380px;
+    width: 405px;
 
     .calendars-wrapper { overflow: auto; }
 
@@ -69,7 +69,7 @@
       margin-bottom: 0;
       width: 185px;
 
-      &:first-child { margin-right: 10px; }
+      &:first-child { margin-right: 30px; }
     }
 
     table.calendar {

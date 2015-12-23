@@ -197,7 +197,7 @@
 #navigation .previewable .subnav {
   margin-left: 21px;
   overflow: auto;
-  width: 605px;
+  width: 635px;
 
   ul {
     float: left;
@@ -249,7 +249,7 @@
   .right_column {
     border-left: 1px solid $nav-border-color;
     vertical-align: top;
-    width: 410px;
+    width: 435px;
 
     li {
       border: 0;
@@ -316,6 +316,8 @@
           border-bottom: 2px solid $fr-gray-60;
           color: $fr-gray-60;
         }
+
+        .table-search-box { padding: 0 5px 0 10px; }
 
         .fr-table {
           margin-left: 5px;
