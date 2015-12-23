@@ -1,15 +1,13 @@
 #navigation {
-  border-top: 4px solid #fbb829;
+  border-top: 4px solid $fr-nav-orange;
   z-index: 1000;
 
   .container {
+    @include rounded-bottom(4);
     background: $nav-background-color;
     border: 1px solid $nav-border-color;
-    border-top: none;
-
-    @include rounded-bottom(4);
+    border-top: 0;
     box-shadow: 0 3px 5px $fr-gray-40;
-
     height: 30px;
     list-style: none;
     margin: 0 auto;
@@ -19,17 +17,17 @@
   }
 
   .icon-fr2.icon-fr2-home {
+    font-size: 20px;
     left: -1px;
     top: 3px;
-    font-size: 20px;
   }
 
   li {
-    &:first-child { border-left: none; }
-    &:last-child { border-right: 1px solid $nav-border-color; }
-
     border-left: 1px solid $nav-border-color;
     float: left;
+
+    &:first-child { border-left: 0; }
+    &:last-child { border-right: 1px solid $nav-border-color; }
 
     &.dropdown {
       height: 31px;
@@ -45,15 +43,13 @@
   }
 
   a {
+    @include basic_font;
     color: $fr-gray-60;
     cursor: pointer;
     display: block;
-
-    @include basic_font;
     font-size: 13px;
     font-weight: bold;
     line-height: 32px;
-
     padding: 0 10px;
 
     &:hover,
@@ -63,11 +59,11 @@
   }
 }
 
-/******************************
-
-NAV DROPDOWN
-
-******************************/
+//******************************
+//
+// NAV DROPDOWN
+//
+//******************************
 #navigation {
   li.dropdown {
     position: relative;
@@ -75,8 +71,8 @@ NAV DROPDOWN
     &.nav_reader_aids { width: 140px; }
 
     &.nav_myfr2 {
-      width: 105px;
       padding-left: 0;
+      width: 105px;
     }
 
     a { padding-right: 5px; }
@@ -93,7 +89,7 @@ NAV DROPDOWN
       display: block;
     }
 
-    /* Refined placement of various icons and text alignment */
+    // Refined placement of various icons and text alignment
     .icon-fr2-thumbnails {
       font-size: 19px;
       top: 3px;
@@ -103,7 +99,7 @@ NAV DROPDOWN
       top: 3px;
     }
 
-    /* SEARCH */
+    // SEARCH
     .article-search { padding-left: 8px; }
 
     .advanced-search { padding-left: 8px; }
@@ -120,18 +116,16 @@ NAV DROPDOWN
   }
 }
 
-/******************************
-
-NAV DROPDOWN SUBNAV
-
-******************************/
+//******************************
+//
+// NAV DROPDOWN SUBNAV
+//
+//******************************
 #navigation .subnav {
+  @include rounded-bottom(4px);
   background: $white;
   border: 1px solid $nav-border-color;
-
-  @include rounded-bottom(4px);
   box-shadow: 0 3px 5px $fr-gray-40;
-
   display: none;
   left: -22px;
   position: absolute;
@@ -150,7 +144,7 @@ NAV DROPDOWN SUBNAV
   }
 
   li {
-    border: none; //reset other borders
+    border: 0; //reset other borders
     border-top: 1px solid $nav-border-color;
     float: none;
     list-style: none;
@@ -158,45 +152,45 @@ NAV DROPDOWN SUBNAV
     &:last-child {
       border-bottom: 1px solid $nav-border-color;
 
-      a { border-bottom: none; }
+      a { border-bottom: 0; }
     }
   }
 
   a {
-    border-top: 1px solid $white;
     border-bottom: 1px solid $white;
+    border-top: 1px solid $white;
     color: $fr-gray-60;
     line-height: 30px;
   }
 }
 
-/*
-  Because of js timeouts on the previewable menu items we
-  don't want css hovers here so we change them back to default.
-  These need to be defined here, in this order, for the cascade
-  to work properly.
- */
+//
+//  Because of js timeouts on the previewable menu items we
+//  don't want css hovers here so we change them back to default.
+//  These need to be defined here, in this order, for the cascade
+//  to work properly.
+//
 #navigation .previewable .subnav a:hover {
   background-color: inherit;
-  border-top-color: inherit;
   border-bottom-color: inherit;
+  border-top-color: inherit;
   color: $fr-gray-60;
 }
 #navigation .subnav a:hover,
 #navigation .subnav a.hover,
 #navigation .previewable .subnav a.hover {
   background-color: $fr-gray-10;
-  border-top-color: $white;
   border-bottom-color: $white;
+  border-top-color: $white;
   color: $fr-bright-orange;
 }
 
 
-/**************************************
-
-NAV DROPDOWN PREVIEWABLE SUBNAV
-
-**************************************/
+//**************************************
+//
+// NAV DROPDOWN PREVIEWABLE SUBNAV
+//
+//**************************************
 //#navigation .previewable .right_column input.loading {
 //  background: white url('/images/ajax-loader.gif?1292020484') 332px 2px no-repeat;
 //}
@@ -206,48 +200,48 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
   width: 605px;
 
   ul {
-    margin: 0;
     float: left;
+    margin: 0;
   }
 
   .left_column {
-    width: 194px;
     float: left;
+    width: 194px;
 
     li {
-      width: 194px;
       height: 57px;
       vertical-align: middle;
+      width: 194px;
 
       &:last-child:hover {
         border-bottom: 1px solid $nav-border-color;
       }
 
       a {
-        border: none;
-        padding-top: 13px;
+        border: 0;
         height: 45px;
-
         padding-left: 15px;
+        padding-top: 13px;
+
         .icon-fr2 { left: -5px; }
-      }
 
-      a.dates {
-        padding-left: 14px;
+        &.dates {
+          padding-left: 14px;
 
-        .icon-fr2-calendar-alt { left: -4px; }
-      }
+          .icon-fr2-calendar-alt { left: -4px; }
+        }
 
-      a.public-inspection {
-        padding-left: 19px;
+        &.public-inspection {
+          padding-left: 19px;
 
-        .icon-fr2-clipboard { left: -7px; }
-      }
+          .icon-fr2-clipboard { left: -7px; }
+        }
 
-      a.executive-orders {
-        padding-left: 10px;
+        &.executive-orders {
+          padding-left: 10px;
 
-        .icon-fr2-stars { left: -2px; }
+          .icon-fr2-stars { left: -2px; }
+        }
       }
     }
   }
@@ -258,7 +252,7 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
     width: 410px;
 
     li {
-      border: none;
+      border: 0;
 
       &.preview { display: none; }
 
@@ -266,25 +260,25 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
     }
 
     a {
-      border: none;
+      border: 0;
 
       &:hover {
         background: none;
-        border: none;
+        border: 0;
         color: $fr-bright-orange;
       }
     }
   }
 
   %right_column_header {
+    border-bottom: 1px solid $fr-gray-40;
+    color: $fr-gray-40;
+    font-size: 15px;
+    margin-bottom: 5px;
     margin-left: 5px;
+    margin-top: 10px;
     padding-left: 5px;
     text-transform: uppercase;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid $fr-gray-40;
-    font-size: 15px;
-    color: $fr-gray-40;
     word-spacing: 2px;
   }
 
@@ -304,13 +298,13 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
       }
 
       .secondary {
-        text-transform: none;
+        font-size: 12px;
         font-style: italic;
         font-weight: normal;
-        position: relative;
         padding-right: 3px;
+        position: relative;
+        text-transform: none;
         top: 1px;
-        font-size: 12px;
         word-spacing: initial;
       }
     }
@@ -319,19 +313,18 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
       .facet-explorer {
         h4 {
           @extend %right_column_header;
-          color: $fr-gray-60;
           border-bottom: 2px solid $fr-gray-60;
+          color: $fr-gray-60;
         }
 
         .fr-table {
           margin-left: 5px;
 
           td {
-            font-weight: bold;
-            font-size: 13px;
             color: $fr-gray-60;
+            font-size: 13px;
+            font-weight: bold;
             padding: 0;
-            padding-right: 15px;
 
             &.item_name { padding-right: 0; }
 
@@ -362,13 +355,13 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 
   .right_column {
     table.default {
-      width: 390px;
       margin: 10px 0 10px 5px;
+      width: 390px;
 
       h2 {
-        padding-left: 0;
+        border-bottom: 0;
         margin-bottom: 0;
-        border-bottom: none;
+        padding-left: 0;
       }
 
       tr,
@@ -380,8 +373,8 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 
         &.past_7_days,
         &.closing_soon {
-          width: 40px;
           height: 23px;
+          width: 40px;
         }
       }
 
@@ -398,20 +391,20 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 
       .count_7_days,
       .comments_closing_soon {
-        text-align: center;
-        font-weight: bold;
         color: $fr-gray-60;
+        font-weight: bold;
+        text-align: center;
 
         a { color: inherit; }
       }
 
       a {
+        border-bottom: 0;
+        border-top: 0;
         display: inline;
-        border-bottom: none;
-        border-top: none;
         font-size: 12px;
-        padding: 0;
         line-height: 14px;
+        padding: 0;
 
         &:hover { color: $fr-bright-orange; }
       }
@@ -425,27 +418,27 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 
       input.browse_search {
         border: 1px solid $fr-gray-40;
-        width: 370px;
         height: 18px;
         padding-left: 10px;
+        width: 370px;
       }
     }
 
     p.info {
-      padding: 10px 10px 5px 10px;
       font-size: 1.1em;
       line-height: 1.1em;
+      padding: 10px 10px 5px 10px;
     }
   }
 }
 
 #navigation .previewable {
   p.info a {
+    border: 0;
     color: $fr-link-dark;
+    display: inline-block;
     font-family: inherit;
     font-weight: normal;
-    display: inline-block;
-    border: none;
     line-height: 1.1em;
     padding: 0;
 
@@ -455,35 +448,35 @@ NAV DROPDOWN PREVIEWABLE SUBNAV
 
 #navigation {
   .icon-fr2 {
-    top: 4px;
     font-size: 21px;
+    top: 4px;
   }
 }
 
-@import 'navigation/sections.css.scss';
+@import 'navigation/sections';
 
-/**********************************************
+//**********************************************
+//
+// BROWSE AGENCIES
+//
+// most styles for browse agencies are generic
+// and under the subnav section above
+//
+//**********************************************
 
-BROWSE AGENCIES
 
-most styles for browse agencies are generic
-and under the subnav section above
-
-**********************************************/
-
-
-/**************************************
-
-BROWSE DATES
-
-**************************************/
+//**************************************
+//
+// BROWSE DATES
+//
+//**************************************
 #current-article-browse-preview {
   .significant {
     float: left;
 
     a {
-      line-height: 14px;
       color: $fr-link-dark;
+      line-height: 14px;
     }
   }
 }
@@ -492,29 +485,29 @@ BROWSE DATES
   .fr_stats h2,
   .calendar_holder h2,
   .date_input_holder h2 {
+    border-bottom: 1px solid $fr-gray-40;
+    color: $fr-gray-40;
+    font-size: 1.1em;
+    margin-bottom: 5px;
     margin-left: 5px;
+    margin-top: 10px;
     padding-left: 5px;
     text-transform: uppercase;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #979797;
-    font-size: 1.1em;
-    color: #979797;
   }
 
 
 
   .right_column .fr_stats .statistics li {
+    color: $fr-gray-70;
+    display: inline-block;
     font-size: 15px;
-    color: #5F6061;
     font-weight: bold;
     line-height: 20px;
-    display: inline-block;
   }
 
   .fr_stats .statistics a {
-    line-height: 12px;
     color: $fr-link-dark;
+    line-height: 12px;
 
     &:hover {
       background: none;
@@ -565,12 +558,12 @@ BROWSE DATES
         th.calendarPrev,
         th.calendarNext,
         th.monthName {
-          padding-bottom: 5px
+          padding-bottom: 5px;
         }
 
         th.calendarPrev a,
         th.calendarNext a {
-          border: none;
+          border: 0;
           color: $fr-gray-70;
           font-size: 12px;
           font-weight: bold;
@@ -596,26 +589,26 @@ BROWSE DATES
 }
 
 
-/**************************************
-
-BROWSE EXECUTIVE ORDERS
-
-**************************************/
+//**************************************
+//
+// BROWSE EXECUTIVE ORDERS
+//
+//**************************************
 #navigation .previewable {
   .pres_holder .photo {
-    width: 50px;
-    height: 65px;
-    border: 1px solid #333;
-    margin: 10px 0 0 5px;
-    vertical-align: top;
+    border: 1px solid $fr-gray-80;
     display: inline-block;
-    top: 2px;
+    height: 65px;
+    margin: 10px 0 0 5px;
     position: relative;
+    top: 2px;
+    vertical-align: top;
+    width: 50px;
   }
 
   .pres_details {
-    width: 340px;
     display: inline-block;
+    width: 340px;
   }
 
   #executive-orders-browse-preview ol {
@@ -631,26 +624,26 @@ BROWSE EXECUTIVE ORDERS
     li,
     li a,
     li span {
-      padding: 0;
       display: inline-block;
       line-height: 14px;
+      padding: 0;
     }
 
     li.executive_order_wrapper {
       vertical-align: top;
 
       .eo_number {
-        width: 65px;
-        vertical-align: top;
-        padding-top: 2px;
         font-weight: bold;
+        padding-top: 2px;
+        vertical-align: top;
+        width: 65px;
       }
 
       a {
-        line-height: 16px;
+        color: $fr-link-dark;
         font-size: 12px;
         font-weight: 500;
-        color: $fr-link-dark;
+        line-height: 16px;
         width: 250px;
 
         &:hover { color: $fr-bright-orange; }
@@ -658,9 +651,9 @@ BROWSE EXECUTIVE ORDERS
     }
 
     ol.children li {
-      width: 61px;
-      font-weight: bold;
       font-size: 13px;
+      font-weight: bold;
+      width: 61px;
 
       a {
         color: $fr-link-dark;
@@ -675,34 +668,34 @@ BROWSE EXECUTIVE ORDERS
 #navigation {
 
   #barack-obama .photo {
-    background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg','image') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg', 'image') 0 0 no-repeat;
   }
 
   #george-w-bush .photo {
-    background: transparent asset-url('presidential_photos/George_W_Bush_sm.jpg','image') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/George_W_Bush_sm.jpg', 'image') 0 0 no-repeat;
   }
 
   #william-j-clinton .photo {
-    background: transparent asset-url('presidential_photos/Bill_Clinton_sm.jpg','image') 0 0 no-repeat;
+    background: transparent asset-url('presidential_photos/Bill_Clinton_sm.jpg', 'image') 0 0 no-repeat;
   }
 
 }
 
-/**************************************
-
-PUBLIC INSPECTION BROWSE PREVIEW
-
-**************************************/
+//**************************************
+//
+// PUBLIC INSPECTION BROWSE PREVIEW
+//
+//**************************************
 
 @import 'navigation/issues';
 
 
-/**************************************************
-
-BROWSE BLOG
-
-some styles are in the generic subnav section
-**************************************************/
+//**************************************************
+//
+//BROWSE BLOG
+//
+//some styles are in the generic subnav section
+//**************************************************
 #navigation .previewable {
   .subnav.blog_list {
     width: 395px;
@@ -712,22 +705,22 @@ some styles are in the generic subnav section
 
   #blog-browse-preview {
     h1 a {
+      color: $fr-gray-40;
       line-height: 14px;
       padding-left: 0;
-      color: $fr-gray-40;
     }
 
     h2 {
-      border: none;
+      border: 0;
       margin-left: 0;
       padding-left: 0;
 
       a {
         color: $fr-link-dark;
-        text-transform: none;
         font-size: 13px;
         line-height: 14px;
         padding-left: 0;
+        text-transform: none;
 
         &:hover { color: $fr-bright-orange; }
       }
@@ -738,22 +731,22 @@ some styles are in the generic subnav section
 
       .metadata {
         font-size: 1.1em;
-        padding-bottom: 0;
         font-style: italic;
         margin-left: 5px;
+        padding-bottom: 0;
       }
 
       .post_content {
         display: block;
-        margin-left: 5px;
         font-size: 1.15em;
         line-height: 1.3em;
+        margin-left: 5px;
         padding-right: 5px;
 
         a {
+          float: right;
           font-size: 0.8em;
           position: relative;
-          float: right;
           top: -5px;
         }
       }
@@ -762,19 +755,19 @@ some styles are in the generic subnav section
 }
 
 #navigation .view_all {
+  float: right;
   font-size: 12px;
   font-style: italic;
-  float: right;
   position: relative;
   top: -7px;
 }
 
 
-/******************************
-
-SEARCH
-
-******************************/
+//******************************
+//
+// SEARCH
+//
+//******************************
 #navigation .inline_search {
   border-left: 0;
   float: right;
@@ -785,7 +778,6 @@ SEARCH
   background: $white;
   border: 1px solid $fr-gray-30;
   border-radius: 3px;
-
   height: 20px;
   margin: 4px 5px 0;
   position: relative;
@@ -794,7 +786,7 @@ SEARCH
   label { display: none; }
 
   input {
-    border: none;
+    border: 0;
     float: left;
   }
 
