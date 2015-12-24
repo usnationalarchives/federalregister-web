@@ -2,37 +2,34 @@ class EoCollection
   attr_reader :president, :year, :date_range
 
   FIELDS = [
-    :executive_order_number,
-    :title, 
-    :publication_date,
-    :signing_date,
     :citation,
     :document_number,
     :executive_order_notes,
-    :html_url
+    :executive_order_number,
+    :html_url,
+    :publication_date,
+    :signing_date,
+    :title,
   ]
 
-  def initialize(president, year, year_range=nil)
+  def initialize(president, year, date_range=nil)
     @president = president
     @year = year
     @date_range ||= @president.year_ranges[@year]
   end
 
   def results
-    @results ||= FederalRegister::Article.search(
-      conditions: {
-        president: president.identifier,
-        presidential_document_type: 'executive_order',
-        publication_date: {
-          year: year
-        }
-      },
-      fields: FIELDS + ['start_page','end_page'],
-      order: 'executive_order_number',
-      per_page: '200'
+    @results ||= Document.search(
+      QueryConditions::PresidentialDocumentConditions.executive_orders(
+        president, year
+      ).deep_merge!({
+        fields: FIELDS + ['start_page','end_page'],
+        order: 'executive_order_number',
+        per_page: '1000'
+      })
     ).map do |document|
       unless document.executive_order_number == 0
-        DocumentDecorator.decorate(document) 
+        DocumentDecorator.decorate(document)
       end
     end.compact.reverse
   end
@@ -50,4 +47,3 @@ class EoCollection
     results.first.executive_order_number
   end
 end
-

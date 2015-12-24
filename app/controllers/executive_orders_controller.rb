@@ -22,6 +22,6 @@ class ExecutiveOrdersController < ApplicationController
   def navigation
     cache_for 1.day
     @presenter = ExecutiveOrderNavPresenter.new
-    render template: "executive_orders/navigation", layout: false
+    render layout: false
   end
 end

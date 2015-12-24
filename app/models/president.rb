@@ -59,5 +59,21 @@ class President < ActiveHash::Base
   def self.in_office_on(date)
     all.find{|p| p.starts_on <= date && p.ends_on >= date} if date
   end
-end
 
+  def recent_executive_orders(count)
+    Document.search(
+      QueryConditions::PresidentialDocumentConditions.executive_orders_for(
+        self
+      ).deep_merge!({
+        conditions: {correction: 0},
+        fields: [
+          'executive_order_number',
+          'title',
+          'html_url',
+        ],
+        order: 'executive_order_number DESC',
+        per_page: count
+      })
+    ).first(count)
+  end
+end

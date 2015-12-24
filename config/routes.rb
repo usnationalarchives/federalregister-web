@@ -268,7 +268,7 @@ MyFr2::Application.routes.draw do
 
     esi.get 'esi/layouts/navigation/executive-orders',
       to: 'executive_orders#navigation',
-      as: :executive_orders
+      as: :navigation_executive_orders
 
     # FOOTER
     esi.get 'esi/layout/footer',

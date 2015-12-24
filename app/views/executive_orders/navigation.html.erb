@@ -1,30 +1,35 @@
 <li id="executive-orders-browse-preview" class="preview">
   <ol>
-    <% @presenter.presidents_and_years.each do |president, eo_collections| %>
+    <% @presenter.presidential_facet_collections.each do |president, collection| %>
       <li class="pres_holder" id="<%=president.identifier%>">
         <div class='photo' title='<%= president.photo_title %>'></div>
         <div class="pres_details">
           <h2><%= president.full_name %></h2>
 
-          <% if president == @presenter.current_president %> 
+          <% if president == @presenter.current_president %>
             <ol class="recent">
-              <% @presenter.recent_executive_orders.each do |executive_order| %>
-                  <li class="executive_order_wrapper">
-                    <span class="eo_number">EO <%= executive_order.executive_order_number %>:</span>
-                    <%= link_to executive_order.title, executive_order.html_url %>
-                  </li>
+              <% president.recent_executive_orders(3).each do |executive_order| %>
+                <li class="executive_order_wrapper">
+                  <span class="eo_number">EO <%= executive_order.executive_order_number %>:</span>
+                  <%= link_to executive_order.title, executive_order.html_url %>
+                </li>
               <% end %>
             </ol>
           <% end %>
 
           <ol class="children">
-            <% eo_collections.reverse.each do |eo_collection| %>
+            <% collection.facet.reverse.each do |facet| %>
               <li>
-                <% if eo_collection.year < 1994 %>
-                  <%= eo_collection.year %>: <span class="fr_year_not_available" data-tooltip="Documents on FederalRegister.gov are available from 1994-current">N/A</span>
+                <% if facet.year < 1994 %>
+                  <%= facet.year %>: <span class="fr_year_not_available" data-tooltip="Documents on FederalRegister.gov are available from 1994-current">N/A</span>
                 <% else %>
-                  <%= eo_collection.year %>: 
-                  <%= link_to eo_collection.count, documents_search_path(eo_collection.search_conditions) %>
+                  <%= facet.year %>:
+                  <%= link_to facet.count,
+                    documents_search_path(
+                      QueryConditions::PresidentialDocumentConditions.executive_orders(
+                        president, facet.year
+                      )
+                    ) %>
                 <% end %>
               </li>
             <% end %>
@@ -35,5 +40,3 @@
     <% end %>
   </ol>
 </li>
-
-
