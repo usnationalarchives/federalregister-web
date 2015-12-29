@@ -1,0 +1,21 @@
+.count-pill {
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: modular-scale(-2);
+  font-weight: 500;
+  height: 18px;
+  padding: 2px;
+  text-align: center;
+
+  &.official {
+    background-color: $color-official-light-alt;
+    color: $color-official;
+    border-color: $color-official;
+  }
+
+  &.public-inspection {
+    background-color: $color-public-inspection-light-alt;
+    color: $color-public-inspection;
+    border-color: lighten($color-public-inspection, 40);
+  }
+}
