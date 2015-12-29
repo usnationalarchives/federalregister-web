@@ -23,6 +23,7 @@ class EoCollection
       QueryConditions::PresidentialDocumentConditions.executive_orders(
         president, year
       ).deep_merge!({
+        conditions: {correction: 0},
         fields: FIELDS + ['start_page','end_page'],
         order: 'executive_order_number',
         per_page: '1000'

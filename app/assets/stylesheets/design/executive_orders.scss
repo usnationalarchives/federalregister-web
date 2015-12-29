@@ -1,3 +1,138 @@
 .executive-orders {
   .agency-header { @extend %agency-header; }
+
+  .page-summary { margin-bottom: 2em; }
+
+  ul.bulk-files {
+    list-style: none;
+    margin-bottom: 1em;
+    margin-left: 1.5em;
+
+    .title {
+      display: inline-block;
+      font-weight: 500;
+      width: 250px;
+    }
+
+    .links a { margin-right: 15px; }
+  }
+
+  .president-wrapper {
+    h3 {
+      border-bottom: 1px solid $fr-dark-blue;
+      a {
+        color: $fr-blue;
+
+        &:hover { color: $fr-orange; }
+      }
+    }
+  }
+
+  ul.eo-list {
+    list-style: none;
+    margin-left: 1.5em;
+
+    li { margin-bottom: 5px; }
+
+    a {
+      display: inline-block;
+      width: 40px;
+    }
+
+    .count-pill {
+      display: inline-block;
+      width: 21px;
+      overflow: auto;
+      padding-top: 1px;
+      position: relative;
+      top: 3px;
+    }
+  }
 }
+
+// #left_sidebar a {
+//   background: none;
+//   color: #5697CF;
+//   }
+// #left_sidebar a:hover { color: #B88659; }
+//
+// /* by_president_and_year.html */
+// #executive_orders h4 a {
+//   color: #5697CF;
+//   font-weight: normal;
+//   }
+// #executive_orders h4 a:hover { color: #B88659; }
+//
+// #executive_orders .executive_order_wrapper {
+//   margin-left: 20px;
+//   clear: both;
+// }
+//
+// #executive_orders .executive_order_wrapper h4 .eo_number {
+//   display: inline-block;
+//   width: 80px;
+//   vertical-align: top;
+//   }
+//
+// #executive_orders .executive_order_wrapper h4 a {
+//   font-weight: normal;
+//   display: inline-block;
+//   width: 655px;
+//   }
+// #executive_orders .executive_order_wrapper .metadata_wrapper { margin-left: 84px; }
+//
+// #executive_orders .executive_order_wrapper dl#col-1 { width: 150px; }
+// #executive_orders .executive_order_wrapper dl#col-2 { width: 180px; }
+// #executive_orders .executive_order_wrapper dl#col-3 { width: 215px; }
+//
+// #executive_orders .executive_order_wrapper dl#col-2 dt { width: 60px; }
+// #executive_orders .executive_order_wrapper dl#col-3 dt { width: 126px; }
+//
+// #executive_orders .executive_order_wrapper dl dt {
+//   clear: both;
+//   float: left;
+//   }
+// #executive_orders .executive_order_wrapper dl dd {
+//   float: left;
+//   padding-top: 4px;
+//   margin-left: 5px;
+//   }
+//
+// #executive_orders .executive_order_wrapper dl.metadata {
+//   font-size: 1em;
+//   margin: 0 20px 10px 0;
+//   float: left;
+//   }
+// #executive_orders .executive_order_wrapper dl#col-1 dd { margin-left: 5px; }
+//
+// #executive_orders .executive_order_wrapper dl.metadata dt {
+//   color: #6E6E6E;
+//   height: 19px;
+//   }
+// #executive_orders .executive_order_wrapper dl.metadata dd {
+//   margin-left: 1em;
+//   margin-bottom: 3px;
+//   line-height: 1em;
+//   padding-left: 10px;
+//   text-indent: -10px;
+//   }
+// #executive_orders .executive_order_wrapper dl.metadata dd:last { margin-bottom: none; }
+//
+// .executive_order_wrapper .metadata_wrapper p {
+//   margin-bottom: 25px;
+//   clear: both;
+//   font-size: 15px;
+//   width: 570px;
+//   }
+//
+// #executive_orders .executive_order_wrapper a {
+//   font-weight: normal;
+//   background: none;
+//   }
+// #executive_orders .executive_order_wrapper a:hover { color: #B88659; }
+//
+// #executive_orders .executive_order_wrapper a span.pdf.small {
+//   background: sprite-image('icons/icon_pdf_small.png', 0, 3px, 50px) no-repeat;
+//   padding-left: 20px;
+//   display: inline-block;
+//   }

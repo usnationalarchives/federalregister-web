@@ -35,6 +35,19 @@ class ExecutiveOrderPresenter
     @eo_collection ||= EoCollection.new(president, year)
   end
 
+  def description
+    "The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR).
+    The OFR numbers each order consecutively as part of a series, and publishes it in the daily Federal Register shortly after receipt."
+  end
+
+  def agency
+    Agency.find('executive-office-of-the-president')
+  end
+
+  def name
+    'Executive Orders'
+  end
+
   private
 
   def conditions_for_format(format, president_identifier=nil)
