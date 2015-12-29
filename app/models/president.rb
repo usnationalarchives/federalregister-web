@@ -4,7 +4,8 @@ class President < ActiveHash::Base
       :id => 1,
       :identifier => 'william-j-clinton',
       :full_name => "William J. Clinton",
-      :starts_on => Date.new(1993,1,20),
+      #:starts_on => Date.new(1993,1,20),
+      :starts_on => Date.new(1994,1,1), # this is the start of our collection
       :ends_on => Date.new(2001,1,19)
     },
     {
@@ -22,7 +23,6 @@ class President < ActiveHash::Base
       :ends_on => Date.new(2017,1,19)
     }
   ]
-  # RW: manage presidential end date - Obama's is hardcoded
 
   def photo_title
     case identifier
