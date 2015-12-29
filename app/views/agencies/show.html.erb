@@ -4,7 +4,7 @@
 <% feed_autodiscovery agency_url(@presenter.agency.slug, :format => :rss), false, "All Articles by #{@presenter.agency.name}", :search_conditions => {:agency_ids => [@presenter.agency.id]} %>
 <% feed_autodiscovery significant_entries_agency_url(@presenter.agency.slug, :format => :rss), false, "Significant Articles by #{@presenter.agency.name}", :search_conditions => {:agency_ids => [@presenter.agency.id], :significant => 1} %>
 
-<% add_javascript src: 'page_specific/agency' %>
+<% add_javascript src: 'page_specific/agency_logo' %>
 
 <% title do %>
   <%= fr_icon 'mindmap' %>
