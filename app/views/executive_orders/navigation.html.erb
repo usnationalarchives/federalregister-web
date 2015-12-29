@@ -1,7 +1,7 @@
-<li id="executive-orders-browse-preview" class="preview">
+<li id="executive-orders-browse-preview" class="preview executive-orders-browse-preview">
   <ol>
     <% @presenter.presidential_facet_collections.each do |president, collection| %>
-      <li class="pres_holder" id="<%=president.identifier%>">
+      <li class="pres_holder <%=president.identifier%>" id="<%=president.identifier%>">
         <div class='photo' title='<%= president.photo_title %>'></div>
         <div class="pres_details">
           <h2><%= president.full_name %></h2>
