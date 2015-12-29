@@ -70,10 +70,6 @@ module ApplicationHelper
     content_for :header_type, type
   end
 
-  def meta_description(text)
-    set_content_for :description, strip_tags(text)
-  end
-
   def open_graph_metadata(options={})
     set_content_for :og_type, strip_tags(options[:type]) if options[:type]
     set_content_for :og_published_time, strip_tags(options[:published_time]) if options[:published_time]
