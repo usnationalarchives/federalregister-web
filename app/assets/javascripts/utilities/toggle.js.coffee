@@ -10,6 +10,7 @@ class @CJ.Toggle
       throw error
 
     defaults = {
+      activeClass: 'active',
       hiddenClass: 'hidden'
       hideText: 'hide'
       showText: 'show'
@@ -22,6 +23,17 @@ class @CJ.Toggle
 
     @prepTargets()
     @addToggleEvent()
+
+  # prep target for hidding via js by removing the css class that hides
+  # elements on page load
+  prepTargets: ()->
+    toggler = this
+
+    _.each $(@settings.toggleTarget), (target)->
+      target = $(target)
+
+      if target.hasClass(toggler.settings.hiddenClass)
+        target.hide().removeClass(toggler.settings.hiddenClass)
 
 class @CJ.ToggleOne extends @CJ.Toggle
   addToggleEvent: ()->
@@ -38,28 +50,19 @@ class @CJ.ToggleOne extends @CJ.Toggle
       else
         $(toggler.settings.textTarget).text toggler.settings.hideText
 
-  # prep target for hidding via js by removing the css class that hides
-  # elements on page load
-  prepTargets: ()->
-    toggler = this
-
-    _.each $(@settings.toggleTarget), (target)->
-      target = $(target)
-
-      if target.hasClass(toggler.settings.hiddenClass)
-        target.hide().removeClass(toggler.settings.hiddenClass)
-
 class @CJ.ToggleAll extends @CJ.Toggle
   addToggleEvent: ()->
+    toggler = this
+
     @parent.on @settings.trigger, ".toggle-all", (event)->
       event.preventDefault()
       el = $(this)
 
-      $(el.data('toggle-all-targeters'))
-        .removeClass(el.data('active-class') || 'active')
+      $(toggler.settings.toggleAllTargeters)
+        .removeClass(toggler.settings.activeClass)
 
-      $(el.data('toggle-all-target')).hide()
-      $(el.data('toggle-target')).show()
+      $(toggler.settings.toggleAllTarget).hide()
+      $(toggler.settings.toggleTarget).show()
 
-      el.closest(el.data('toggle-all-targeters'))
-        .addClass(el.data('active-class') || 'active')
+      el.closest(toggler.settings.toggleAllTargeters)
+        .addClass(toggler.settings.activeClass)

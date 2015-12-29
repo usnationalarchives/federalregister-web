@@ -15,12 +15,12 @@
         <% documents_by_date.each do |date, documents| %>
           <li class="<%= 'active' if index == 0 %>">
             <%= link_to '#', class: "toggle-all",
-              data: {
-                'toggle-all-target' => ".document-date-wrapper",
-                'toggle-all-targeters' => '.fr-list.day-nav li',
-                'toggle-target' => "#documents-published-on-#{date.to_s(:iso)}",
-                'toggle-trigger' => 'click'
-              } do %>
+              'data-toggle' => {
+                toggleTarget: "#documents-published-on-#{date.to_s(:iso)}",
+                textTarget: ".link-text",
+                toggleAllTarget: ".document-date-wrapper",
+                toggleAllTargeters: '.fr-list.day-nav li'
+              }.to_json do %>
 
               <div class="weekday"><%= date.strftime('%A') %>,</div>
               <div class="month-day">
