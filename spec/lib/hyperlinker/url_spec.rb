@@ -162,4 +162,38 @@ describe Hyperlinker::Url do
     url = "http://www.rubyonrails.com/foo.cgi?trailing_ampersand=value&"
     expect(hyperlink(url)).to eql generate_result(url)
   end
+
+  it "handles PRTPAGE" do
+    result = hyperlink(<<-XML)
+      <E T="03">
+        http://www.energy.gov/fe/2015-
+        <PRTPAGE P="81301"/>
+        lng-study
+      </E>
+    XML
+
+    expect(result).to eql(<<-XML)
+      <E T="03">
+        <a href="http://www.energy.gov/fe/2015-lng-study">http://www.energy.gov/fe/2015-</a>
+        <PRTPAGE P="81301"/>
+        <a href="http://www.energy.gov/fe/2015-lng-study">lng-study</a>
+      </E>
+    XML
+
+    result = hyperlink(<<-XML)
+      <E T="03">
+        http://www.energy.gov/fe/2015/
+        <PRTPAGE P="81301"/>
+        foo/bar/baz a very interesting piece
+      </E>
+    XML
+
+    expect(result).to eql(<<-XML)
+      <E T="03">
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz">http://www.energy.gov/fe/2015/</a>
+        <PRTPAGE P="81301"/>
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz">foo/bar/baz</a> a very interesting piece
+      </E>
+    XML
+  end
 end

@@ -6,8 +6,12 @@ module Hyperlinker::Url
   extend ActionView::Helpers::TagHelper
 
   AUTO_LINK_RE = %r{
-              (?: ((?:ed2k|ftp|http|https|irc|mailto|news|gopher|nntp|telnet|webcal|xmpp|callto|feed|svn|urn|aim|rsync|tag|ssh|sftp|rtsp|afs|file):)// | www\. )
-              [^\s<\u00A0"]+
+              ((?: ((?:ed2k|ftp|http|https|irc|mailto|news|gopher|nntp|telnet|webcal|xmpp|callto|feed|svn|urn|aim|rsync|tag|ssh|sftp|rtsp|afs|file):)// | www\. )
+              [^\s<\u00A0"]+)
+              (?:
+                (\s*<PRTPAGE\s+P="\d+"/>\s*)
+                ([^\s<\u00A0"]+)
+              )?
             }ix
   WORD_PATTERN = '\p{Word}'
   BRACKETS = { ']' => '[', ')' => '(', '}' => '{' }
@@ -18,8 +22,14 @@ module Hyperlinker::Url
     return "" unless text.present?
     link_attributes = html_options.stringify_keys
     text.gsub(AUTO_LINK_RE) do
-      scheme, href = $1, $&
+      initial_href, scheme, page_break, final_fragment = $1, $2, $3, $4
       punctuation = []
+
+      if final_fragment.present?
+        href = initial_href + final_fragment
+      else
+        href = initial_href
+      end
 
       # don't include trailing punctuation character as part of the URL
       while href.sub!(/[^#{WORD_PATTERN}\/-=&]$/, '')
@@ -30,10 +40,16 @@ module Hyperlinker::Url
         end
       end
 
-      link_text = block_given?? yield(href) : href
       href = 'http://' + href unless scheme
 
-      content_tag(:a, link_text, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
+      if final_fragment.present?
+        content_tag(:a, initial_href, link_attributes.merge('href' => href)) +
+          page_break.html_safe +
+          content_tag(:a, final_fragment, link_attributes.merge('href' => href)) +
+          punctuation.reverse.join('')
+      else
+        content_tag(:a, initial_href, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
+      end
     end
   end
 end
