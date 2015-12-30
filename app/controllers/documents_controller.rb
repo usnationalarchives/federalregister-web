@@ -8,12 +8,21 @@ class DocumentsController < ApplicationController
       @document = Document.find(params[:document_number])
 
       @document = DocumentDecorator.decorate(@document)
-      render
+
+      if document_path(@document) == request.path
+        render
+      else
+        redirect_to document_path(@document)
+      end
     rescue FederalRegister::Client::RecordNotFound
       @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
 
       @document = PublicInspectionDocumentDecorator.decorate(@document)
-      render template: 'public_inspection_documents/show'
+      if document_path(@document) == request.path
+        render template: 'public_inspection_documents/show'
+      else
+        redirect_to document_path(@document)
+      end
     end
   end
 
