@@ -160,7 +160,7 @@ describe HtmlCompilator::Tables do
               <ENT>C</ENT>
               <ENT>D</ENT>
             </ROW>
-            <ROW RUL="s,d&amp;sqdrt;">
+            <ROW RUL="s,d&#xE199;">
               <ENT>A</ENT>
               <ENT>B</ENT>
               <ENT>C</ENT>

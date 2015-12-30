@@ -49,8 +49,8 @@ class HtmlCompilator::Tables::BodyRow
   def border_bottom_for_index(i)
     codes = (node.attr('RUL') || '').split(/,/)
 
-    if codes.last =~ /&sqdrt;/
-      val = codes.last.sub!(/&sqdrt;/,'')
+    if codes.last =~ /\u{E199}/
+      val = codes.last.sub!(/\u{E199}/,'')
       codes.fill(val, codes.size, table.num_columns-1)
     end
     CODE_VALUES[codes[i]]
