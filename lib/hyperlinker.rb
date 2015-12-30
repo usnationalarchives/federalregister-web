@@ -27,7 +27,7 @@ class Hyperlinker
   end
 
   def modify_text_not_inside_anchor(html)
-    doc = Nokogiri::HTML::DocumentFragment.parse('<root>' + html.strip + '</root>')
+    doc = Nokogiri::XML::DocumentFragment.parse('<root>' + html.strip + '</root>')
     doc.xpath(".//text()[not(ancestor::a)]").each do |text_node|
       text = text_node.text.dup
 
@@ -44,6 +44,6 @@ class Hyperlinker
       end
     end
 
-    doc.xpath('./root').inner_html
+    doc.xpath('./root').children.to_s
   end
 end
