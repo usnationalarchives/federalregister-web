@@ -4,11 +4,14 @@ class EoCollection
   FIELDS = [
     :citation,
     :document_number,
+    :end_page,
     :executive_order_notes,
     :executive_order_number,
     :html_url,
+    :pdf_url,
     :publication_date,
     :signing_date,
+    :start_page,
     :title,
   ]
 
@@ -24,7 +27,7 @@ class EoCollection
         president, year
       ).deep_merge!({
         conditions: {correction: 0},
-        fields: FIELDS + ['start_page','end_page'],
+        fields: FIELDS,
         order: 'executive_order_number',
         per_page: '1000'
       })

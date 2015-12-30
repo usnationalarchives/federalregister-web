@@ -12,7 +12,7 @@ class ExecutiveOrdersController < ApplicationController
   end
 
   def by_president_and_year
-    @presenter = ExecutiveOrderPresenter.new(
+    @presenter = EoDispositionTablePresenter.new(
       view_context: view_context,
       president: params[:president],
       year: params[:year]

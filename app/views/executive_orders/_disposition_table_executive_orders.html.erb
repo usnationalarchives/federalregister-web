@@ -1,0 +1,66 @@
+<%= fr_content_box(
+  FrBox.build(
+    presenter.fr_content_box_type,
+    title: presenter.fr_content_box_title,
+    description: presenter.description
+  )
+) do %>
+
+  <% presenter.eo_collection.executive_orders.each do |executive_order| %>
+    <div class="row executive-order-wrapper">
+      <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
+        <h4>
+          EO <%= executive_order.executive_order_number %>:
+        </h4>
+      </div>
+
+      <div class="<%= bootstrap_col xs: 10, md: 10 %>">
+        <h4>
+          <%= link_to executive_order.title, document_path(executive_order) %>
+        </h4>
+
+        <div class="row metadata_wrapper">
+          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+            <dt>Signed:</dt>
+            <dd><%= executive_order.signing_date %></dd>
+            <dt>Published:</dt>
+            <dd><%= executive_order.publication_date %></dd>
+            <dt>FR Citation:</dt>
+            <dd><%= executive_order.citation %></dd>
+            <dt>FR Doc. Number:</dt>
+            <dd><%= executive_order.document_number %></dd>
+          </dl>
+
+          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+            <dt class="toc-pdf">
+              <%= link_to executive_order.pdf_url do %>
+                <%= fr_icon 'doc-pdf' %> PDF
+              <% end %>
+            </dt>
+
+            <dd>
+              <%= pluralize executive_order.pages, 'page' %>
+            </dd>
+
+            <dt class="permalink">
+              <%= link_to short_document_url(executive_order) do %>
+                <%= fr_icon 'link' %> Permalink
+              <% end %>
+            </dt>
+            <dd></dd>
+          </dl>
+        </div>
+
+
+        <% if executive_order.executive_order_notes.present? %>
+          <div class="row eo-notes">
+            <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+              <%= simple_format add_citation_links(executive_order.executive_order_notes, :class => "notes") %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+<% end %>
