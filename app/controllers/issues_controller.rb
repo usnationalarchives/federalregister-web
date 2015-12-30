@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
 
   def summary
     cache_for 1.day
-    
+
     @home = params[:path] == "home"
     @pi = params[:path] == "pi"
 

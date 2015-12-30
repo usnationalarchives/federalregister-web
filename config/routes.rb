@@ -206,10 +206,6 @@ MyFr2::Application.routes.draw do
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
 
-    esi.get 'esi/home/current_issue',
-      to: 'issues#summary',
-      as: :home_current_issue_summary
-
     esi.get 'esi/home/sections',
       to: 'sections#homepage',
       as: :home_sections

@@ -38,7 +38,7 @@
         <% end %>
 
         <div class="col-xs-<%= home ? 6 : 12 %> col-md-<%= home ? 6 : 12 %>">
-          <%= render partial: "summary_document_counts", locals: {
+          <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
             full_width: home,
             presenter: presenter
           } %>
