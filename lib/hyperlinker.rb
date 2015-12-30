@@ -21,6 +21,7 @@ class Hyperlinker
   def processors
     [
       Hyperlinker::Url,
+      Hyperlinker::Email,
       Hyperlinker::Citation,
     ]
   end

@@ -24,5 +24,9 @@ describe Hyperlinker do
     it "should ignore URLs within existing hyperlinks but add ones outside" do
       expect(hyperlink('<a href="http://www.example.com"><b>www.example.com</b></a> http://www.google.com')).to eql '<a href="http://www.example.com"><b>www.example.com</b></a> <a href="http://www.google.com">http://www.google.com</a>'
     end
+
+    it "hyperlinks emails" do
+      expect(hyperlink('contact jane@example.com')).to eql 'contact <a href="mailto:jane@example.com">jane@example.com</a>'
+    end
   end
 end
