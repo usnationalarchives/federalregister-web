@@ -27,8 +27,13 @@ class HtmlCompilator::Tables
     xml_paths.each do |xml_path|
       i = xml_path.split('/').last.to_i
 
-      File.open(table_html_path(i), 'w') do |f|
-        f.write HtmlCompilator::Tables::Table.compile(xml_path)
+      begin
+        File.open(table_html_path(i), 'w') do |f|
+          f.write HtmlCompilator::Tables::Table.compile(xml_path)
+        end
+      rescue Exception => e
+        Rails.logger.warn(e)
+        Honeybadger.notify(e, :context => {:document_number => document_number, :table => i})
       end
     end
   end
