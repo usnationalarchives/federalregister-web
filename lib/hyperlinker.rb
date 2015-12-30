@@ -1,4 +1,29 @@
-module HtmlHelper
+class Hyperlinker
+  def self.perform(string, options={})
+    new(options).perform(string)
+  end
+
+  attr_reader :options
+  def initialize(options={})
+    @options = options
+  end
+
+  def perform(string)
+    modify_text_not_inside_anchor(string) do |text|
+      processors.each do |processor|
+        text = processor.perform(text, options)
+      end
+
+      text
+    end
+  end
+
+  def processors
+    [
+      Hyperlinker::Citation,
+    ]
+  end
+
   def modify_text_not_inside_anchor(html)
     doc = Nokogiri::HTML::DocumentFragment.parse('<root>' + html.strip + '</root>')
     doc.xpath(".//text()[not(ancestor::a)]").each do |text_node|
