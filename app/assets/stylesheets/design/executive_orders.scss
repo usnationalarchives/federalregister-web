@@ -50,9 +50,17 @@
   }
 
   .executive-order-wrapper {
+    &.row {
+      margin-bottom: 10px !important;
+
+      .row { margin-bottom: 10px !important; }
+    }
+
     .eo-number {
       padding-right: 0;
     }
+
+    dl { margin-bottom: 10px; }
 
     dt,
     dd {

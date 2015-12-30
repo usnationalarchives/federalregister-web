@@ -9,15 +9,15 @@
   <% presenter.eo_collection.executive_orders.each do |executive_order| %>
     <div class="row executive-order-wrapper">
       <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
-        <h4>
+        <h5>
           EO <%= executive_order.executive_order_number %>:
-        </h4>
+        </h5>
       </div>
 
       <div class="<%= bootstrap_col xs: 10, md: 10 %>">
-        <h4>
+        <h5>
           <%= link_to executive_order.title, document_path(executive_order) %>
-        </h4>
+        </h5>
 
         <div class="row metadata_wrapper">
           <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
