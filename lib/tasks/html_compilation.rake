@@ -3,11 +3,21 @@ namespace :documents do
     namespace :compile do
       desc "Converts XSLT into various html representations for a set of FR document numbers"
       task :all, [:document_numbers] => %w(
+        hyperlinks
         table_of_contents
         extract_table_xml
         tables
         full_text
       )
+
+      task :hyperlinks, [:document_numbers] => :environment do |t, args|
+        puts args[:document_numbers].inspect
+        documents(
+          parse_document_numbers(args[:document_numbers])
+        ).each do |document|
+          HtmlCompilator::Hyperlinks.perform(document)
+        end
+      end
 
       task :full_text, [:document_numbers] => :environment do |t, args|
         documents(
