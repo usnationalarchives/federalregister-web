@@ -9,13 +9,13 @@
 
   &.official {
     background-color: $color-official-light-alt;
-    color: $color-official;
     border-color: $color-official;
+    color: $color-official;
   }
 
   &.public-inspection {
     background-color: $color-public-inspection-light-alt;
-    color: $color-public-inspection;
     border-color: lighten($color-public-inspection, 40);
+    color: $color-public-inspection;
   }
 }
