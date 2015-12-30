@@ -24,11 +24,17 @@
             <dt>Signed:</dt>
             <dd><%= executive_order.signing_date %></dd>
             <dt>Published:</dt>
-            <dd><%= executive_order.publication_date %></dd>
+            <dd>
+              <%= link_to executive_order.publication_date,
+                document_issue_path(executive_order) %>
+            </dd>
             <dt>FR Citation:</dt>
             <dd><%= executive_order.citation %></dd>
             <dt>FR Doc. Number:</dt>
-            <dd><%= executive_order.document_number %></dd>
+            <dd>
+              <%= link_to executive_order.document_number,
+                document_path(executive_order) %>
+           </dd>
           </dl>
 
           <dl class="<%= bootstrap_col xs: 6, md: 6 %>">

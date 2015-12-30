@@ -69,7 +69,7 @@ module MyFr2
       tender_widget_custom.js
 
       page_specific/agencies.js
-      page_specific/agency.js
+      page_specific/agency_logo.js
       page_specific/comment_creation.js
       page_specific/comment_notifications.js
       page_specific/homepage.js
