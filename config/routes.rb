@@ -367,20 +367,26 @@ MyFr2::Application.routes.draw do
   # FR Index
   #
   get '/index/:year',
-    :controller => "indexes",
-    :action => "year",
-    as: 'index_year'
+    controller: "indexes",
+    action: "year",
+    as: 'index_year',
+    constraints: {
+      year: /\A(19|20)\d{2}\z/
+    }
 
   get '/index/:year/:agency_slug',
-    :controller => "indexes",
-    :action => "year_agency",
-    as: 'year_agency'
+    controller: "indexes",
+    action: "year_agency",
+    as: 'year_agency',
+    constraints: {
+      year: /\A(19|20)\d{2}\z/
+    }
 
   get '/select_index_year',
-    :controller => "indexes",
-    :action => "select_index_year",
+    controller: "indexes",
+    action: "select_index_year",
     as: 'select_index_year'
-  
+
   # My FR
   #
   scope 'my' do
