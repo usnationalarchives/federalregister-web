@@ -40,9 +40,11 @@ describe CitationsHelper do
     end
   end
 
-  describe 'add_regulatory_plan_links' do
-    it "links RINs to the appropriate regulation page" do
-      expect(add_regulatory_plan_links("See RIN 1234-AB12 and RIN 1234-AB34")).to eq 'See RIN <a href="/r/1234-AB12">1234-AB12</a> and RIN <a href="/r/1234-AB34">1234-AB34</a>'
+  if Settings.regulatory_plan
+    describe 'add_regulatory_plan_links' do
+      it "links RINs to the appropriate regulation page" do
+        expect(add_regulatory_plan_links("See RIN 1234-AB12 and RIN 1234-AB34")).to eq 'See RIN <a href="/r/1234-AB12">1234-AB12</a> and RIN <a href="/r/1234-AB34">1234-AB34</a>'
+      end
     end
   end
 

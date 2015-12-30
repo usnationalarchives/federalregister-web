@@ -8,7 +8,7 @@ module CitationsHelper
         text = add_cfr_links(text,options[:date])
         text = add_federal_register_links(text)
         text = add_federal_register_doc_number_links(text)
-        text = add_regulatory_plan_links(text)
+        text = add_regulatory_plan_links(text) if Settings.regulatory_plan
         text = add_public_law_links(text)
         text = add_patent_links(text)
         text = add_omb_control_number_links(text)
