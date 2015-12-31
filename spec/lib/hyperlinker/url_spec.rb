@@ -163,6 +163,20 @@ describe Hyperlinker::Url do
     expect(hyperlink(url)).to eql generate_result(url)
   end
 
+  it "doesn't link previously linked" do
+    linked_1 = generate_result('Ruby On Rails', 'http://www.rubyonrails.com')
+    linked_2 = %('<a href="http://www.example.com">www.example.com</a>')
+    linked_3 = %('<a href="http://www.example.com" rel="nofollow">www.example.com</a>')
+    linked_4 = %('<a href="http://www.example.com"><b>www.example.com</b></a>')
+    linked_5 = %('<a href="#close">close</a> <a href="http://www.example.com"><b>www.example.com</b></a>')
+
+    expect(hyperlink(linked_1)).to eq(linked_1)
+    expect(hyperlink(linked_2)).to eq(linked_2)
+    expect(hyperlink(linked_3)).to eq(linked_3)
+    expect(hyperlink(linked_4)).to eq(linked_4)
+    expect(hyperlink(linked_5)).to eq(linked_5)
+  end
+
   it "handles PRTPAGE" do
     result = hyperlink(<<-XML)
       <E T="03">

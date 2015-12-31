@@ -13,6 +13,7 @@ module Hyperlinker::Url
                 ([^\s<\u00A0"]+)
               )?
             }ix
+  AUTO_LINK_CRE = [/<[^>]+$/, /^[^>]*>/, /<a\b.*?>/i, /<\/a>/i]
   WORD_PATTERN = '\p{Word}'
   BRACKETS = { ']' => '[', ')' => '(', '}' => '{' }
 
@@ -21,8 +22,9 @@ module Hyperlinker::Url
   def self.perform(text, html_options = {})
     return "" unless text.present?
     link_attributes = html_options.stringify_keys
-    text.gsub(AUTO_LINK_RE) do
-      initial_href, scheme, page_break, final_fragment = $1, $2, $3, $4
+
+    Hyperlinker.replace_text(text, AUTO_LINK_RE) do |match|
+      initial_href, scheme, page_break, final_fragment = match.captures
       punctuation = []
 
       if final_fragment.present?
@@ -51,5 +53,11 @@ module Hyperlinker::Url
         content_tag(:a, initial_href, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
       end
     end
+  end
+
+  # Detects already linked context or position in the middle of a tag
+  def self.auto_linked?(left, right)
+    (left =~ AUTO_LINK_CRE[0] and right =~ AUTO_LINK_CRE[1]) or
+      (left.rindex(AUTO_LINK_CRE[2]) and $' !~ AUTO_LINK_CRE[3])
   end
 end

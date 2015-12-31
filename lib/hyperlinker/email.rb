@@ -10,8 +10,8 @@ module Hyperlinker::Email
   AUTO_EMAIL_RE = /[\w.!#\$%+-]\.?#{AUTO_EMAIL_LOCAL_RE}*@[\w-]+(?:\.[\w-]+)+/
 
   def self.perform(text, html_options)
-    text.gsub(AUTO_EMAIL_RE) do
-      text = $&
+    Hyperlinker.replace_text(text, AUTO_EMAIL_RE) do |match|
+      text = match.to_s
 
       mail_to text, text, html_options
     end

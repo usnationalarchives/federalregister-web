@@ -18,7 +18,7 @@ describe Hyperlinker do
     end
 
     it 'should not interfere with existing HTML but add its own links' do
-      expect(hyperlink('<p><a href="#">10 CFR 100</a> and (<em>hi</em>) <em>alpha</em> beta 10 CFR 10 omega</em></p>')).to eq ('<p><a href="#">10 CFR 100</a> and (<em>hi</em>) <em>alpha</em> beta <a class="cfr external" href="' +  h(select_cfr_citation_path(Time.current.to_date, '10','10')) + '">10 CFR 10</a> omega</p>')
+      expect(hyperlink('<p><a href="#">10 CFR 100</a> and (<em>hi</em>) <em>alpha</em> beta 10 CFR 10 omega</p>')).to eq ('<p><a href="#">10 CFR 100</a> and (<em>hi</em>) <em>alpha</em> beta <a class="cfr external" href="' +  h(select_cfr_citation_path(Time.current.to_date, '10','10')) + '">10 CFR 10</a> omega</p>')
     end
 
     it "should ignore URLs within existing hyperlinks but add ones outside" do
@@ -27,6 +27,16 @@ describe Hyperlinker do
 
     it "hyperlinks emails" do
       expect(hyperlink('contact jane@example.com')).to eql 'contact <a href="mailto:jane@example.com">jane@example.com</a>'
+    end
+
+    it "preserves space and capitalization" do
+      xml = <<-XML
+        <P A="1">
+          <E A="B">Foo</E>d
+          is good
+        </p>
+      XML
+      expect(hyperlink(xml)).to eql xml
     end
   end
 end

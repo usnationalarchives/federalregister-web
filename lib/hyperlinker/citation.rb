@@ -42,25 +42,23 @@ module Hyperlinker::Citation
     text = add_regulatory_plan_links(text) if Settings.regulatory_plan
     text = add_public_law_links(text)
     text = add_patent_links(text)
-    text = add_omb_control_number_links(text)
   end
 
   def self.add_eo_links(text)
-    text.gsub(/(?:\bE\.\s*O\.|\bE\s*O\b|\bExecutive Order\b)(?:\s+No\.?)?\s+([0-9,]+)/i) do |str|
-      eo_number = $1.gsub(/,/,'').to_i
+    Hyperlinker.replace_text(text, /(?:\bE\.\s*O\.|\bE\s*O\b|\bExecutive Order\b)(?:\s+No\.?)?\s+([0-9,]+)/i) do |match|
+      eo_number = match[1].gsub(/,/,'').to_i
       if eo_number >= 12890
-        content_tag :a, str, :href => executive_order_path(eo_number), :class => "eo"
+        content_tag :a, match.to_s, :href => executive_order_path(eo_number), :class => "eo"
       else
-        str
+        match.to_s
       end
     end
   end
 
   def self.add_usc_links(text)
-    text.gsub(/(\d+)\s+U\.?S\.?C\.?\s+(\d+)/) do |str|
-      title = $1
-      part = $2
-      content_tag :a, str,
+    Hyperlinker.replace_text(text, /(\d+)\s+U\.?S\.?C\.?\s+(\d+)/) do |match|
+      title, part = match.captures
+      content_tag :a, match.to_s,
           :href => usc_url(title, part),
           :class => "usc external",
           :target => "_blank"
@@ -69,72 +67,54 @@ module Hyperlinker::Citation
 
   def self.add_cfr_links(text, date=nil)
     date ||= Time.current.to_date
-    text.gsub(/(\d+)\s+(?:CFR|C\.F\.R\.)\s+(?:[Pp]arts?|[Ss]ections?|[Ss]ec\.|&#xA7;|&#xA7;\s*&#xA7;)?\s*(\d+)(?:\.(\d+))?/) do |str|
-      title = $1
-      part = $2
-      section = $3
+    Hyperlinker.replace_text(text, /(\d+)\s+(?:CFR|C\.F\.R\.)\s+(?:[Pp]arts?|[Ss]ections?|[Ss]ec\.|&#xA7;|&#xA7;\s*&#xA7;)?\s*(\d+)(?:\.(\d+))?/) do |match|
+      title, part, section = match.captures
 
-      content_tag(:a, str.html_safe, :href => select_cfr_citation_path(date,title,part,section), :class => "cfr external")
+      content_tag(:a, match.to_s.html_safe, :href => select_cfr_citation_path(date,title,part,section), :class => "cfr external")
     end
   end
 
   def self.add_federal_register_links(text)
-    text.gsub(/(\d+)\s+FR\s+(\d+)/) do |str|
-      volume = $1
-      page = $2
+    Hyperlinker.replace_text(text, /(\d+)\s+FR\s+(\d+)/) do |match|
+      volume, page = match.captures
       if volume.to_i >= 60 # we have 59, but not the page numbers so this feature doesn't help
-        content_tag(:a, str, :href => citation_path(volume,page))
+        content_tag(:a, match.to_s, :href => citation_path(volume,page))
       else
-        str
+        match.to_s
       end
     end
   end
 
   def self.add_federal_register_doc_number_links(text)
-    text.gsub(/(FR Doc\.? )([A-Z0-9]+-[0-9]+)([,;\. ])/) do |str|
-      pre = $1
-      doc_number = $2
-      post = $3
+    Hyperlinker.replace_text(text, /(FR Doc\.? )([A-Z0-9]+-[0-9]+)([,;\. ])/) do |match|
+      pre, doc_number, post = match.captures
 
       "#{pre}#{content_tag(:a, doc_number, :href => "/a/#{doc_number}")}#{post}"
     end
   end
 
   def self.add_regulatory_plan_links(text)
-    text.gsub(/\b(\d{4}\s*-\s*[A-Z]{2}\d{2})\b/) do |str|
-      content_tag :a, str, :href => short_regulatory_plan_path(:regulation_id_number => $1)
+    Hyperlinker.replace_text(text, /\b(\d{4}\s*-\s*[A-Z]{2}\d{2})\b/) do |match|
+      content_tag :a, match.to_s, :href => short_regulatory_plan_path(:regulation_id_number => match[1])
     end
   end
 
   def self.add_public_law_links(text)
-    text.gsub(/(?:Public Law|Pub\. Law|Pub\. L.|P\.L\.)\s+(\d+)-(\d+)/) do |str|
-      congress = $1
-      law = $2
+    Hyperlinker.replace_text(text, /(?:Public Law|Pub\. Law|Pub\. L.|P\.L\.)\s+(\d+)-(\d+)/) do |match|
+      congress, law = match.captures
+
       if congress.to_i >= 104
-        content_tag :a, str, :href => public_law_url(congress,law), :class => "publ external", :target => "_blank"
+        content_tag :a, match.to_s, :href => public_law_url(congress,law), :class => "publ external", :target => "_blank"
       else
-        $1
+        match.to_s
       end
     end
   end
 
   def self.add_patent_links(text)
-    text = text.gsub(/Patent Number ([0-9,]+)/) do |str|
-      number = $1
-      content_tag :a, str, :href => patent_url(number), :class => "patent external", :target => "_blank"
+    Hyperlinker.replace_text(text, /Patent Number ([0-9,]+)/) do |match|
+      number = match[1]
+      content_tag :a, match.to_s, :href => patent_url(number), :class => "patent external", :target => "_blank"
     end
-  end
-
-  def self.add_omb_control_number_links(text)
-    if text =~ /OMB/
-      text = text.gsub(/(\s)(\d{4}\s*-\s*\d{4})([ \.;,]|$)/) do |str|
-        pre = $1
-        number = $2
-        post = $3
-        "#{pre}#{content_tag(:a, number, :href => omb_control_number_url(number), :class => "omb_number external", :target => "_blank")}#{post}"
-      end
-    end
-
-    text
   end
 end
