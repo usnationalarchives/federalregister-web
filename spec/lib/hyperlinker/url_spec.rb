@@ -124,6 +124,12 @@ describe Hyperlinker::Url do
     expect(hyperlink(link13_raw)).to eql(generate_result(link13_raw))
   end
 
+  it "doesn't match non-URLs" do
+    %w(foo http:// https://).each do |fragment|
+      expect(hyperlink(fragment)).to eql fragment
+    end
+  end
+
   it "handles variety of URL formats" do
     urls = %w(
       http://www.rubyonrails.com
@@ -178,6 +184,22 @@ describe Hyperlinker::Url do
   end
 
   it "handles PRTPAGE" do
+    result = hyperlink(<<-XML)
+      <E T="03">
+        http://
+        <PRTPAGE P="81301"/>
+        energy.gov/fe/2015-lng-study
+      </E>
+    XML
+
+    expect(result).to eql(<<-XML)
+      <E T="03">
+        <a href="http://energy.gov/fe/2015-lng-study">http://</a>
+        <PRTPAGE P="81301"/>
+        <a href="http://energy.gov/fe/2015-lng-study">energy.gov/fe/2015-lng-study</a>
+      </E>
+    XML
+
     result = hyperlink(<<-XML)
       <E T="03">
         http://www.energy.gov/fe/2015-

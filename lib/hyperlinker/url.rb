@@ -6,8 +6,8 @@ module Hyperlinker::Url
   extend ActionView::Helpers::TagHelper
 
   AUTO_LINK_RE = %r{
-              ((?: ((?:ed2k|ftp|http|https|irc|mailto|news|gopher|nntp|telnet|webcal|xmpp|callto|feed|svn|urn|aim|rsync|tag|ssh|sftp|rtsp|afs|file):)// | www\. )
-              [^\s<\u00A0"]+)
+              ((?: ((?:http|https):)// | www\. )
+              [^\s<\u00A0"]*)
               (?:
                 (\s*<PRTPAGE\s+P="\d+"/>\s*)
                 ([^\s<\u00A0"]+)
@@ -33,24 +33,28 @@ module Hyperlinker::Url
         href = initial_href
       end
 
-      # don't include trailing punctuation character as part of the URL
-      while href.sub!(/[^#{WORD_PATTERN}\/-=&]$/, '')
-        punctuation.push $&
-        if opening = BRACKETS[punctuation.last] and href.scan(opening).size > href.scan(punctuation.last).size
-          href << punctuation.pop
-          break
-        end
-      end
-
-      href = 'http://' + href unless scheme
-
-      if final_fragment.present?
-        content_tag(:a, initial_href, link_attributes.merge('href' => href)) +
-          page_break.html_safe +
-          content_tag(:a, final_fragment, link_attributes.merge('href' => href)) +
-          punctuation.reverse.join('')
+      if %w(http:// https://).include?(initial_href) && final_fragment.blank?
+        match.to_s
       else
-        content_tag(:a, initial_href, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
+        # don't include trailing punctuation character as part of the URL
+        while href.sub!(/[^#{WORD_PATTERN}\/-=&]$/, '')
+          punctuation.push $&
+          if opening = BRACKETS[punctuation.last] and href.scan(opening).size > href.scan(punctuation.last).size
+            href << punctuation.pop
+            break
+          end
+        end
+
+        href = 'http://' + href unless scheme
+
+        if final_fragment.present?
+          content_tag(:a, initial_href, link_attributes.merge('href' => href)) +
+            page_break.html_safe +
+            content_tag(:a, final_fragment, link_attributes.merge('href' => href)) +
+            punctuation.reverse.join('')
+        else
+          content_tag(:a, initial_href, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
+        end
       end
     end
   end
