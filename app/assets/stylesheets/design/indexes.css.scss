@@ -1,19 +1,67 @@
 // FR INDEX OF INDEXES PAGE
 
-.bootstrap-scope .index-of-indexes-page {
+.fr-index {
+  .title-bar {
+    padding: 0;
+    position: relative;
 
-  h1 {
-    margin-top: 0px;
+    h1 {
+      border-bottom: 2px solid $fr-gray-20;
+      margin-bottom: 0.25em !important;
+      padding-left: 10px;
+    }
+
+    form {
+      position: absolute;
+      right: 10px;
+      top: 40px;
+    }
   }
 
-  ul.parent-agency {
-    margin-left: 35px;
-  }
+  .doc-toc {
+    font-weight: 400;
+    padding-right: 0;
 
-  ul.see-also {
-    margin-left: 35px;
-  }
+    h1 {
+      border-bottom: 2px solid $text;
 
+      a {
+        float: right;
+        font-size: modular-scale(-1);
+        position: relative;
+        right: 10px;
+        top: 20px;
+      }
+    }
+
+    a {
+      color: darken($color-reader-aid, 10) !important;
+
+      &:hover {
+        color: darken($color-reader-aid, 20) !important;
+      }
+    }
+
+    ul.parent-agency,
+    ul.see-references {
+      margin-left: 35px;
+    }
+
+    ul.parent-agency > li {
+      margin-bottom: 5px;
+    }
+
+    .see-reference {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .count-pill {
+      display: inline-block;
+      min-width: 18px;
+      padding-top: 1px;
+    }
+  }
 }
 
 // END FR INDEX OF INDEXES PAGE
@@ -137,4 +185,3 @@
     }
   }
 }
-

@@ -371,21 +371,16 @@ MyFr2::Application.routes.draw do
     action: "year",
     as: 'index_year',
     constraints: {
-      year: /\A(19|20)\d{2}\z/
+      year: /(19|20)\d{2}/
     }
 
   get '/index/:year/:agency_slug',
     controller: "indexes",
     action: "year_agency",
-    as: 'year_agency',
+    as: 'year_agency_index',
     constraints: {
-      year: /\A(19|20)\d{2}\z/
+      year: /(19|20)\d{2}/
     }
-
-  get '/select_index_year',
-    controller: "indexes",
-    action: "select_index_year",
-    as: 'select_index_year'
 
   # My FR
   #

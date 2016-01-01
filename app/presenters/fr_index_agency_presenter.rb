@@ -5,6 +5,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     @year = year.to_i
     @agency_slug = agency_slug
     @document_index = HTTParty.get(url)
+
     raise ActiveRecord::RecordNotFound if @document_index.code == 404
   end
 
@@ -69,11 +70,23 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   end
 
   def url
-    "#{Settings.federal_register.base_uri}/index/#{year}/#{agency_slug}.json"
+    "#{Settings.federal_register.base_uri}/fr_index/#{year}/#{agency_slug}.json"
   end
 
   def document_partial
     'indexes/doc_details'
+  end
+
+  def name
+    "#{year} Federal Register Index"
+  end
+
+  def description
+    "This index provides descriptive entries and Federal Register page numbers for documents published by #{agency_name} in the daily Federal Register. It includes entries, with select metadata for all documents published in the #{year} calendar year."
+  end
+
+  def fr_content_box_type
+    :reader_aid
   end
 
   class Agency < TableOfContentsPresenter::Agency

@@ -10,8 +10,4 @@ class IndexesController < ApplicationController
     cache_for 1.day
     @presenter = FrIndexPresenter.new(params[:year])
   end
-
-  def select_index_year
-    redirect_to index_year_path(params.delete(:year) || Date.today.year)
-  end
 end

@@ -23,8 +23,7 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   def self.last_issue_published(year)
     facet = search(
       QueryConditions::DocumentConditions.published_within(
-        gte: Date.new(year,1,1),
-        lte: Date.new(year,12,31)
+        Date.new(year,1,1), Date.new(year,12,31)
       )
     ).results.reverse.detect{|result_set| result_set.count > 0}
 

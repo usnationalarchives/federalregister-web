@@ -1,38 +1,51 @@
 <div class="row">
-  <div class="col-xs-12 col-md-12">
-    <div class="page_summary">
-      <div class="title-bar clearfix">
-        <h1 class="pull-left"><%= year %> Federal Register Index</h1>
-        <%= form_tag(select_index_year_path(year),
-          :method => :get, :id => "fr-index-year-select", :class => 'pull-right') do %>
-          <%= label_tag :year, "View other years:" %>
-          <%= select_tag(:year,
-                         options_for_select(available_years, year),
-                         :include_blank => false
-                        ) %>
-        <% end %>
-      </div>
+  <div class='<%= bootstrap_col(xs: 12, md: 12) %> title-bar'>
+    <h1><%= presenter.name %></h1>
+
+    <%= form_tag('', method: :get, id: "fr-index-year-select") do %>
+      <%= label_tag :year, "View other years:" %>
+      <%= select_tag :year,
+        options_for_select(presenter.available_years, presenter.year),
+        value: presenter.year %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class='<%= bootstrap_col(xs: 12, md: 12) %> page_summary' id="agency-top-nav">
+    <p>
+      This index provides descriptive entries and Federal Register page numbers
+      for documents published in the daily Federal Register. It includes entries,
+      with select metadata for all documents published in the <%= presenter.year %>
+      calendar year.
+    </p>
+
+    <p>
+      Each agency below is followed by a count that represents the number of
+      documents for that agency in the <%= presenter.year %> FR Index. The count
+      is omitted for agency publishing less than 2 documents in a given year.
+    </p>
+
+    <% if presenter.date_last_issue_published %>
       <p>
-        This index provides descriptive entries and Federal Register page numbers
-        for documents published in the daily Federal Register. It includes entries, with select metadata for all documents published in the <%= year %> calendar year.
+        This online index is current as of
+        <strong><%= presenter.date_last_issue_published.to_s(:shorter_ordinal) %></strong>.
       </p>
-      <p>
-        Each agency below is followed by a count that represents the number of documents for that agency in the <%= year %> FR Index. The count is omitted for agency publishing less than 2 documents in a given year.
-      </p>
-      <% if date_last_issue_published %>
-        <p>This online index is current as of <strong><%= date_last_issue_published.to_s(:shorter_ordinal) %></strong>.
+    <% end %>
+
+    <p>
+      <%= link_to '' do %>
+        <!-- B.B. TODO: Bob to review implementation possibilities. -->
+        <span class="icon-fr2 icon-fr2-doc-pdf"></span>
+        Stubbed: Download Approved December 2014 Index (PDF)
       <% end %>
-      </p>
-      <p>
-        <%= link_to '' do %>
-          <!-- B.B. TODO: Bob to review implementation possibilities. -->
-          <span class="icon-fr2 icon-fr2-doc-pdf"></span>
-          Stubbed: Download Approved December 2014 Index (PDF)
-        <% end %>
-      </p>
-      Jump to Agencies: <%= agency_first_letters.map{
+    </p>
+
+    <p>
+      Jump to Agencies:
+      <%= presenter.agency_representations_by_first_letter.keys.map{
         |letter| (link_to(letter.upcase, "#letter-#{letter}"))
       }.join(' | ').html_safe %>
-    </div>
+    </p>
   </div>
 </div>

@@ -1,44 +1,54 @@
-<div class="fr-index-agency-metadata page_summary">
-  <div class="clearfix">
-    <h1 class="header-title pull-left">
-      <%= link_to agency_name, agency_path(agency_slug), :class => 'agency' %>
+<div class="row">
+  <div class='<%= bootstrap_col(xs: 12, md: 12) %> title-bar'>
+    <h1>
+      <%= link_to presenter.agency_name,
+        agency_path(presenter.agency_slug) %>
     </h1>
-    <%= link_to "Return to the agency list for the #{year} FR Index",
-          index_year_path(year), class: "pull-right" %>
+
+    <%= link_to "Return to the agency list for the #{presenter.year} FR Index",
+          index_year_path(presenter.year), class: "pull-right" %>
   </div>
-  <hr />
+</div>
 
-  <!-- B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. -->
-  <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
+<div class="row">
+  <div class='<%= bootstrap_col(xs: 12, md: 12) %> page_summary' id="agency-top-nav">
+    <!-- B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. -->
+    <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
-  <!-- B.B. TODO: Bob to look into implementation details. -->
+    <!-- B.B. TODO: Bob to look into implementation details. -->
     <%= link_to root_path do %>
-      <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= agency_name %> Index (PDF)
+      <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= presenter.agency_name %> Index (PDF)
     <% end %>
 
-  <hr />
+    <hr />
 
-  <p>
-    <% if year == Date.current.strftime("%Y").to_i %>
-      As of <strong><%= DocumentIssue.current.publication_date.to_s(:shorter_ordinal) %></strong> the
-      <%= agency_name %> has published <%= pluralize total_document_count, "document" %> in <%= year %>.
-    <% else %>
-      In <%= year %>, the <%= agency_name %> published <%= pluralize total_document_count, "document" %>.
-    <% end %>
-  </p>
+    <p>
+      <% if presenter.year == Date.current.strftime("%Y").to_i %>
+        As of
+        <strong><%= DocumentIssue.current.publication_date.to_s(:shorter_ordinal) %></strong>
+        the
+        <%= presenter.agency_name %> has published
+        <%= pluralize presenter.total_document_count, "document" %>
+        in <%= presenter.year %>.
+      <% else %>
+        In <%= presenter.year %>, the <%= presenter.agency_name %>
+        published <%= pluralize presenter.total_document_count, "document" %>.
+      <% end %>
+    </p>
 
-  <table>
-    <tr>
-      <th>Document Type</th>
-      <th>Documents Published</th>
-      <th>Subjects Covered</th>
-    </tr>
-    <% document_types.try(:each) do |document_type| %>
-    <tr>
-      <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
-      <td class="entry-count"> <%= document_type.document_count %></td>
-      <td class="subject-count"> <%= document_type.subject_count %></td>
-    </tr>
-    <% end %>
-  </table>
+    <table>
+      <tr>
+        <th>Document Type</th>
+        <th>Documents Published</th>
+        <th>Subjects Covered</th>
+      </tr>
+      <% presenter.document_types.try(:each) do |document_type| %>
+      <tr>
+        <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
+        <td class="entry-count"> <%= document_type.document_count %></td>
+        <td class="subject-count"> <%= document_type.subject_count %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

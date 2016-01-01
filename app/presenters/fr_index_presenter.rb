@@ -48,16 +48,28 @@ class FrIndexPresenter
   end
 
   def index_json_url
-    "#{Settings.federal_register.base_uri}fr_index/#{year}/index.json"
+    "#{Settings.federal_register.base_uri}/fr_index/#{year}/index.json"
   end
 
   def date_last_issue_published
     DocumentIssue.last_issue_published(year)
   end
 
-  def self.available_years
+  def available_years
     min_year = 2013
     (min_year..Date.today.year).to_a.reverse
+  end
+
+  def name
+    "#{year} Federal Register Index"
+  end
+
+  def description
+    "This index provides descriptive entries and Federal Register page numbers for documents published in the daily Federal Register. It includes entries, with select metadata for all documents published in the #{year} calendar year."
+  end
+
+  def fr_content_box_type
+    :reader_aid
   end
 
   private

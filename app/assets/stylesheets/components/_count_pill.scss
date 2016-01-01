@@ -18,4 +18,10 @@
     border-color: lighten($color-public-inspection, 40);
     color: $color-public-inspection;
   }
+
+  &.reader-aid {
+    background-color: $color-reader-aid-med;
+    border-color: lighten($color-reader-aid, 20);
+    color: $color-reader-aid;
+  }
 }

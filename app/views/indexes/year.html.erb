@@ -1,24 +1,30 @@
-<div class="title">
-  <span><%= @presenter.year %> FR Index</span>
-</div>
+<% header_type 'reader-aids' %>
+<% page_title @presenter.name %>
+<% description @presenter.description %>
 
-<!-- BOOTSTRAP SCOPE START -->
-<div class="bootstrap-scope">
-<!-- BOOTSTRAP SCOPE START -->
+<% title title_bar_class: "reader-aids" do %>
+  <%= fr_icon('indent') %>
+  <%= @presenter.name %>
+<% end %>
 
-  <div class="wrapper index-of-indexes-page">
-    <div class="container fixed">
-      <%= render partial: "index_year_header",
-            locals: {
-              year: @presenter.year,
-              agency_first_letters: @presenter.agency_representations_by_first_letter.keys,
-              available_years: @presenter.class.available_years,
-              date_last_issue_published: @presenter.date_last_issue_published
-            }%>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row fr-index">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+
+      <%= render partial: "index_year_header", locals: {
+        presenter: @presenter
+      } %>
 
       <div class="row">
-        <div class="col-xs-12 col-md-12 doc-toc">
-          <%= fr_box "Agencies", :official_toc, header: {seal: true} do %>
+        <div class="<%= bootstrap_col xs: 12, md: 12 %> doc-toc">
+          <%= fr_content_box(
+            FrBox.build(
+              @presenter.fr_content_box_type,
+              title: @presenter.name,
+              description: @presenter.description
+            )
+          ) do %>
               <% @presenter.agency_representations_by_first_letter.each do
                 |letter, agencies| %>
                 <%= render partial: "agency_by_letter",
@@ -29,9 +35,7 @@
           <% end %>
         </div>
       </div>
+
     </div>
   </div>
-
-<!-- BOOTSTRAP SCOPE END -->
-</div>
-<!-- BOOTSTRAP SCOPE END -->
+<% end %>

@@ -1,35 +1,35 @@
+<% header_type 'reader-aids' %>
+<% page_title "#{@presenter.name} :: #{@presenter.agency_name}" %>
+<% description @presenter.description %>
+
 <%= add_handlebars_template('fr_index_entry_popover', 'fr-index-entry-popover') %>
 <%= add_handlebars_template('fr_index_entry_popover_content',
                             'fr-index-entry-popover-content') %>
 
-<div class="title document-issue">
-  <span><%= @presenter.year %> FR Index</span>
-</div>
+<% title title_bar_class: "reader-aids" do %>
+  <%= fr_icon('indent') %>
+  <%= @presenter.name %>
+<% end %>
 
-<!-- BOOTSTRAP SCOPE START -->
-<div class="bootstrap-scope">
-<!-- BOOTSTRAP SCOPE START -->
+<%= bootstrap_context_wrapper do %>
+  <div class="row fr-index">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
 
-  <div class="wrapper">
-    <div class="container fixed">
-
-      <div class="row">
-        <div class="col-xs-12 col-md-12">
-          <%= render partial: 'indexes/agency_year_header',
-              locals: {year: @presenter.year,
-                       agency_name: @presenter.agency_name,
-                       agency_slug: @presenter.agency_slug,
-                       document_types: @presenter.document_types,
-                       total_document_count: @presenter.total_document_count,
-                      } %>
-        </div>
-      </div>
+      <%= render partial: 'indexes/agency_year_header', locals: {
+        presenter: @presenter
+      } %>
 
       <div class="row">
-        <div class="col-xs-12 col-md-12 doc-toc">
-          <%= fr_box "Documents", :official_toc, header: {seal: true} do %>
+        <div class="<%= bootstrap_col xs: 12, md: 12 %> doc-toc">
+          <%= fr_content_box(
+            FrBox.build(
+              @presenter.fr_content_box_type,
+              title: @presenter.name,
+              description: @presenter.description
+            )
+          ) do %>
             <div class="doc doc-document-issue">
-              <%= render partial: 'document_issues/table_of_contents', locals: {
+              <%= render partial: 'issues/table_of_contents', locals: {
                 agencies: @presenter.agency,
                 document_partial: @presenter.document_partial
               } %>
@@ -37,11 +37,8 @@
           <% end %>
         </div>
       </div>
-
-      <div class="clearfix" style="height: 100px;"></div>
+      
     </div>
   </div>
 
-<!-- BOOTSTRAP SCOPE END -->
-</div>
-<!-- BOOTSTRAP SCOPE END -->
+<% end %>

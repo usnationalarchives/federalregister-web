@@ -3,9 +3,9 @@
  * @depend fr_index_popover_handler.js
  */
 
-/* fr_index_entry_popover is defined elsewhere we add 
+/* fr_index_entry_popover is defined elsewhere we add
  * the custom methods we need for this instance of it here,
- * Usually this is just the fields to be retrieved from the API 
+ * Usually this is just the fields to be retrieved from the API
  * and how to present the data returned. */
 fr_index_popover_handler.uses_pi = false;
 fr_index_popover_handler.article_fields = 'fields%5B%5D=abstract&fields%5B%5D=comments_close_on&fields%5B%5D=significant&fields%5B%5D=regulations_dot_gov_info&fields%5B%5D=document_number';
@@ -22,7 +22,8 @@ fr_index_popover_handler.add_popover_content = function() {
 
 $(document).ready(function() {
   $('#fr-index-year-select select').on('change', function(e) {
-    $(this).closest('form').submit();
+    var year = $(this).val();
+    window.location.href = '/index/'+year;
   });
 
   var popover_handler = fr_index_popover_handler.initialize();
