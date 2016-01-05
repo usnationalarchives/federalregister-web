@@ -27,6 +27,7 @@ class TableOfContentsPresenter
         merge(
          per_page: 1000,
           fields: [
+            :citation,
             :document_number,
             :end_page,
             :html_url,
