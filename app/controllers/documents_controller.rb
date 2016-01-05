@@ -18,10 +18,10 @@ class DocumentsController < ApplicationController
       @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
 
       @document = PublicInspectionDocumentDecorator.decorate(@document)
-      if document_path(@document) == request.path
+      if @document.html_url == request.url
         render template: 'public_inspection_documents/show'
       else
-        redirect_to document_path(@document)
+        redirect_to @document.html_url
       end
     end
   end

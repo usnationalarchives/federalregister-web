@@ -15,7 +15,7 @@ module RouteBuilder::Fr2Urls
   end
 
   def citation_path(vol, page)
-    "/citation/#{vol}/#{page}"
+    "/citation/#{vol}-FR-#{page}"
   end
 
   def layout_head_content_path
