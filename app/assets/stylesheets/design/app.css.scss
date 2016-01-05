@@ -42,6 +42,19 @@
   width: 450px;
 }
 
+#print-disclaimer { display: none; }
+
+body {
+  a { text-decoration: none; }
+
+  #main,
+  .site-footer .wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 970px;
+  }
+}
+
 
 abbr,
 acronym { border-bottom: 0; }
@@ -93,6 +106,8 @@ div.info_warning {
   background-color: $fr-light-yellow;
   border: 1px solid $fr-golden;
 }
+
+.has_js .skip_to_content { display: none; }
 
 
 

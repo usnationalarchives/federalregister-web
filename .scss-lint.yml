@@ -1,3 +1,5 @@
+exclude: 'app/assets/stylesheets/reset.scss'
+
 # List of gem names to load custom linters from (make sure they are already
 # installed)
 plugin_gems: []

@@ -15,19 +15,14 @@
     <%# TODO: for facebook image below, show curated image if present %>
     <link rel="image_src" href="https://www.federalregister.gov/images/fbdisplay.jpg" />
 
-    <%= esi layout_head_content_path %>
-    <%= stylesheet_link_tag asset_path('vendor.css') %>
-    <%= stylesheet_link_tag asset_path('application.css') %>
+    <%= stylesheet_link_tag asset_path('vendor.css'), media: "all" %>
+    <%= stylesheet_link_tag asset_path('application.css'), media: "all" %>
+    <%= stylesheet_link_tag asset_path('print.css'), media: "print" %>
 
     <!--[if lte IE 9]>
-      <%= stylesheet_link_tag asset_path('application-ie.css'), :media => "all" %>
+      <%= stylesheet_link_tag asset_path('application-ie.css'), media: "all" %>
     <![endif]-->
-    <!--[if lte IE 8]>
-      <%= stylesheet_link_tag asset_path('application-ie8lte.css'), :media => "all" %>
-    <![endif]-->
-    <!--[if lte IE 7]>
-      <%= stylesheet_link_tag asset_path('application-ie7lte.css'), :media => "all" %>
-    <![endif]-->
+
 
     <%= javascript_include_tag asset_path('application.js') %>
 

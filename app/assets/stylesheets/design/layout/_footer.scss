@@ -1,24 +1,20 @@
-.site-footer {
-  background: #EEEEEE;
+.site-footer .bootstrap-scope {
+  background: $fr-gray-5;
   border-top: 4px solid $fr-nav-orange;
   clear: both;
+  font-size: modular-scale(0);
   overflow: hidden;
 
   > .wrapper {
     padding-top: 2em;
-
-    .grid_4 {
-      width: 220px;
-      height: 220px;
-    }
   }
 
   h2 {
-    font-size: 18px;
+    font-size: modular-scale(1);
     text-transform: uppercase;
   }
 
-  ul {
-    list-style: none;
+  ul.bullets {
+    margin-left: 0;
   }
 }

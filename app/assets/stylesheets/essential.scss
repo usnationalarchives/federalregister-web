@@ -1,3 +1,6 @@
+// our original reset file
+@import "reset";
+
 @import "mixins/bullets";
 @import "mixins/css3_utils";
 @import "mixins/fonts";
@@ -5,20 +8,20 @@
 @import "mixins/rounded";
 @import "mixins/shadows";
 
-@import "library/colors.scss";
+@import "library/colors";
 @import "library/official_colors";
 
 // Font sizes based on ratios
 $em-base: 16px;
 @import 'bourbon/modular-scale';
-@import 'application_fonts.css.scss';
+@import 'application_fonts';
 
-@import 'application_colors.css.scss';
+@import 'application_colors';
 
-@import "library/headers.scss";
-@import "library/layout.scss";
-@import "library/lists.scss";
-@import "library/official_colors.scss";
-@import "library/tables.scss";
-@import "library/typeface.scss";
-@import "library/utils.scss";
+@import "library/headers";
+@import "library/layout";
+@import "library/lists";
+@import "library/official_colors";
+@import "library/tables";
+@import "library/typeface";
+@import "library/utils";

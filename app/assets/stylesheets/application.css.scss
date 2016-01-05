@@ -60,7 +60,7 @@
 
 @import "design/custom_tooltips";
 
-.bootstrap-scope {
+.bootstrap-scope .doc {
   @import "design/documents/end_matter";
   @import "design/documents/footnotes";
   @import "design/documents/headers_paragraphs";
@@ -84,3 +84,4 @@
 @import "design/issues/document_issue";
 @import "design/calendar";
 @import "design/indexes";
+@import "design/tender";

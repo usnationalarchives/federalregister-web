@@ -1,74 +1,85 @@
 <div class="site-footer" id="footer">
-  <div class="wrapper">
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %> wrapper">
 
-    <div class="grid_4">
-      <h2>Home</h2>
-      <ul class="bullets">
-        <li><a href="/" title="Home">Home</a></li>
-      </ul>
-    </div>
+      <div class="row">
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Home</h2>
+          <ul class="bullets">
+            <li><a href="/" title="Home">Home</a></li>
+          </ul>
+        </div>
 
-    <div class="grid_4">
-      <h2>Sections</h2>
-      <ul class="bullets">
-        <% @sections.each do |section| %>
-          <li><%= link_to section.title, section_path(section) %></li>
-        <% end %>
-      </ul>
-    </div>
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Sections</h2>
+          <ul class="bullets">
+            <% @sections.each do |section| %>
+              <li><%= link_to section.title, section_path(section) %></li>
+            <% end %>
+          </ul>
+        </div>
 
-    <div class="grid_4">
-      <h2>Browse</h2>
-      <ul class="bullets">
-        <li><%= link_to "Agencies", agencies_path %></li>
-        <li><%= link_to "Topics", topics_path %></li>
-        <li><%= link_to 'Dates', "" %></li>
-        <li><%= link_to 'Public Inspection', current_public_inspection_issue_path %></li>
-        <li><%= link_to 'Executive Orders', "" %></li>
-      </ul>
-    </div>
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Browse</h2>
+          <ul class="bullets">
+            <li><%= link_to "Agencies", agencies_path %></li>
+            <li><%= link_to "Topics", topics_path %></li>
+            <li><%= link_to 'Dates', "" %></li>
+            <li><%= link_to 'Public Inspection', current_public_inspection_issue_path %></li>
+            <li><%= link_to 'Executive Orders', "" %></li>
+          </ul>
+        </div>
 
-    <div class="grid_4">
-      <h2>Search</h2>
-      <ul class="bullets">
-        <li><%= link_to 'Document Search', documents_search_path %></li>
-        <li><%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced') %></li>
-        <li><%= link_to 'Events Search', "" %></li>
-        <li><%= link_to 'Unified Agenda Search', "" %></li>
-        <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
-      </ul>
-    </div>
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Search</h2>
+          <ul class="bullets">
+            <li><%= link_to 'Document Search', documents_search_path %></li>
+            <li><%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced') %></li>
+            <li><%= link_to 'Events Search', "" %></li>
+            <li><%= link_to 'Unified Agenda Search', "" %></li>
+            <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="grid_4">
-      <h2>Reader Aids</h2>
-      <ul class="bullets">
-        <% @reader_aids_sections.each do |section_slug, section_content| %>
-          <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="row">
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Reader Aids</h2>
+          <ul class="bullets">
+            <% @reader_aids_sections.each do |section_slug, section_content| %>
+              <li><%= link_to section_content[:title], reader_aids_section_path(section_slug) %></li>
+            <% end %>
+          </ul>
+        </div>
 
-    <div class="grid_4">
-      <h2>My FR</h2>
-      <ul class="bullets">
-        <% @my_fr_presenter.sections.each do |section_name, url| %>
-          <li><%= link_to section_name, url %></li>
-        <% end %>
-      </ul>
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>My FR</h2>
+          <ul class="bullets">
+            <% @my_fr_presenter.sections.each do |section_name, url| %>
+              <li><%= link_to section_name, url %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
+  <a href="https://federalregister.tenderapp.com/discussion/new?discussion" id="tender" class="trigger_tender">
+    <%= fr_icon 'lightbulb-active' %>
+    Site Feedback
+  </a>
+
+  <%= render partial: 'layouts/google_analytics',
+    locals: {custom_page_to_track: @page_to_track} %>
+
+  <script>
+    Tender = {
+      hideToggle: true,
+      widgetToggles: $(".trigger_tender")
+    }
+  </script>
+
+  <%= javascript_include_tag asset_path('tender_widget_custom.js') %>
+<% end %>
 </div>
-
-<a href="https://federalregister.tenderapp.com/discussion/new?discussion" id="tender" class="trigger_tender">Site Feedback</a>
-
-<%= render partial: 'layouts/google_analytics',
-  locals: {custom_page_to_track: @page_to_track} %>
-
-<script>
-  Tender = {
-    hideToggle: true,
-    widgetToggles: $(".trigger_tender")
-  }
-</script>
-
-<%= javascript_include_tag asset_path('tender_widget_custom.js') %>

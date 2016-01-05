@@ -1,0 +1,15 @@
+ul.bullets,
+ul.subject-list {
+  @include custom-bullets($color-published);
+
+  margin-bottom: 10px;
+
+  a {
+    color: $fr-link;
+
+    &:hover {
+      color: $fr-orange;
+      text-decoration: none;
+    }
+  }
+}
