@@ -1,4 +1,5 @@
 class Hyperlinker
+  require 'hyperlinker/citation'
   def self.perform(string, options={})
     new(options).perform(string)
   end
