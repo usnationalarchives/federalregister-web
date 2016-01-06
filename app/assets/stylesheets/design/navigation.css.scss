@@ -27,7 +27,7 @@
     float: left;
 
     &:first-child { border-left: 0; }
-    &:last-child { border-right: 1px solid $nav-border-color; }
+    &.nav_myfr2 { border-right: 1px solid $nav-border-color; }
 
     &.dropdown {
       height: 31px;
@@ -607,12 +607,12 @@
   height: 30px;
 }
 
-#navigation .search_form {
+#navigation .search-form {
   background: $white;
   border: 1px solid $fr-gray-30;
   border-radius: 3px;
-  height: 20px;
-  margin: 4px 5px 0;
+  height: 24px;
+  margin: 2px 5px 0;
   position: relative;
   width: 210px;
 
@@ -623,8 +623,11 @@
     float: left;
   }
 
-  #term {
-    padding: 3px 0 0 5px;
+  .search-term {
+    font-size: modular-scale(-1);
+    height: 22px;
+    outline: 0;
+    padding: 0 0 0 5px;
     width: 175px;
 
     &.placeholder,
@@ -636,20 +639,24 @@
     }
   }
 
-  .search_btn {
-    //background: sprite-image('icons/header/search-off.png', 0, 0, 50px) no-repeat;
+  .search-submit {
+    @include rounded-right(4);
+    background-color: $fr-gray-5;
+    border: 0;
     cursor: pointer;
-    display: block;
-    //height: image-height('icons/header/search-off.png');
-    font-size: 0;
-    //@include hide-text;
-    position: absolute;
-    right: 5px;
-    top: 3px;
-    //width: image-width('icons/header/search-off.png');
+    float: right;
+    height: 24px;
+    padding: 0;
+    position: relative;
+    top: -22px;
+    width: 31px;
 
-    &:hover {
-      //background: sprite-image('icons/header/search-hover.png', 0, 0, 50px) no-repeat;
+    &:hover { background-color: $fr-gray-15; }
+
+    .icon-fr2 {
+      color: $fr-gray-50;
+      left: 2px;
+      top: 1px;
     }
   }
 }
