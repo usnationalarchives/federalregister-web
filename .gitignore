@@ -15,6 +15,8 @@ config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
 
+config/honeybadger.yml
+
 vcr/*
 
 config/varnish.development.vcl
