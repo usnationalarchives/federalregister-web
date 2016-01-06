@@ -1,8 +1,8 @@
-/* base */
+// base
 $white: #FFFFFF;
 $black: #000000;
 
-/* gray percentages */
+// gray percentages
 $fr-gray-90: #191919;
 $fr-gray-80: #333333;
 $fr-gray-70: #4C4C4C;
@@ -16,7 +16,7 @@ $fr-gray-10: #ECECEC;
 $fr-gray-5: #F1F1F1;
 $fr-gray-2: #F9F9F9;
 
-/* application */
+// application
 $fr-blue:      #5697CF;
 $fr-dark-blue: #3f5b75;
 
@@ -34,7 +34,7 @@ $fr-golden: #c09853;
 $fr-yellow: #fbeed5;
 $fr-light-yellow: #fcf8e3;
 
-$fr-bright-orange: #F77825; /* menu and subscription icons */
+$fr-bright-orange: #F77825; // menu and subscription icons
 
 $fr-link: #428BCA;
 $fr-link-dark: darken($fr-link, 10);
