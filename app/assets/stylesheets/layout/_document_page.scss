@@ -1,20 +1,12 @@
-/* cheating by directly overriding fr2 style
-   this should be moved to myfr2 entirely at some point */
-#metadata_content_area {
-  margin-left: 0px;
-  margin-right: 0px;
-  width: 960px;
-}
-
 .wrapper .row.doc { margin-bottom: 100px !important; }
 
 %doc-background {
+  color: $fr-background-seal;
+  font-size: 600px;
+  left: 100px;
   position: absolute;
   top: 25px;
-  left: 100px;
-  font-size: 600px;
   z-index: 100;
-  color: $fr-background-seal;
 }
 
 .doc {
@@ -27,20 +19,20 @@
   .doc-content .fr-box-public-inspection .content-block{
     .doc-background {
       @extend %doc-background;
-      left: 150px;
       font-size: 375px;
+      left: 150px;
     }
   }
 
 
   .doc-nav-wrapper {
+    height: 100%;
+    left: -53px;
     padding-top: 17px;
     position: absolute;
-    height: 100%;
+    top: 0;
     width: 53px;
     z-index: 150;
-    top: 0;
-    left: -53px;
   }
 
   .doc-content {
@@ -57,18 +49,18 @@
       padding: 35px 30px 20px 30px !important;
 
       #fulltext_content_area {
-        z-index: 200;
         position: relative;
+        z-index: 200;
 
-        /* We want the first part of our documents to wrap
-           properly around the meta-data bar. This bit of
-           code causes that to happen by stategically placing
-           an empty div in the correct position */
+        // We want the first part of our documents to wrap
+        // properly around the meta-data bar. This bit of
+        // code causes that to happen by stategically placing
+        // an empty div in the correct position
         &.doc-content-area .content-wrap-enforcement {
-          position: relative;
           float: right;
-          width: 105px;
           height: 550px;
+          position: relative;
+          width: 105px;
         }
       }
     }
@@ -76,22 +68,22 @@
 
   .doc-aside {
     position: absolute;
-    top:30px;
     right: 10px;
-    z-index: 2;
+    top:30px;
     width: 248px;
+    z-index: 2;
 
     .content-block {
       h4 {
-        color: #000;
+        color: $black;
         margin-top: 0;
       }
 
       h5 { padding-left: 5px; }
 
       p {
-        text-indent: -10px;
         padding-left: 10px;
+        text-indent: -10px;
 
         a {
           display: block;
@@ -102,15 +94,15 @@
       ul li { list-style-type: none; }
 
       dl {
-        padding: 0 0 10px 5px;
         font-size: modular-scale(-1);
+        padding: 0 0 10px 5px;
 
         dt { font-weight: bold; }
 
         dd {
           margin: 0;
-          text-indent: -10px;
           padding-left: 10px;
+          text-indent: -10px;
         }
       }
     }

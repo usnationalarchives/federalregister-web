@@ -1,0 +1,26 @@
+.metadata-content-area {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 960px;
+
+  .metadata_share_bar {
+    border-bottom: 1px solid $fr-gray-20;
+    border-top: 1px solid $fr-gray-20;
+    overflow: visible;
+    padding: 10px 0 8px;
+    position: relative;
+
+    .metadata {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding-left: 5px;
+      width: 90%;
+    }
+
+    .share {
+      position: absolute;
+      right: 0;
+      top: 5px;
+    }
+  }
+}
