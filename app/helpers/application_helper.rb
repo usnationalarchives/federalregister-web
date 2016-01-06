@@ -3,6 +3,7 @@ module ApplicationHelper
     # clears out the existing content_for so that its set rather than appended to
     ivar = "@content_for_#{name}"
     instance_variable_set(ivar, nil)
+    instance_variable_set(ivar, content)
     content_for(name, content, &block)
   end
 
