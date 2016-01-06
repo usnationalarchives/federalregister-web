@@ -173,7 +173,7 @@ MyFr2::Application.routes.draw do
       to: 'special#navigation',
       as: :navigation
 
-    esi.get 'special/user_utils',
+    esi.get '/esi/special/user_utils',
       to: 'special#user_utils',
       as: :user_utils
 

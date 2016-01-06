@@ -330,11 +330,6 @@ $(document).ready(function () {
     event.preventeventDefault();
   });
 
-  /* update styles on page so that our hover menu is properly viewable */
-  // if ( $('.metadata_share_bar').length !== 0 ) {
-  //   $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
-  // }
-
   /* get current document */
   var current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
 
@@ -360,7 +355,9 @@ $(document).ready(function () {
 
     /* place the menu on the page */
     var menu = $( add_to_folder_menu_fr2_template(user_folder_details) );
-    $(this).append($('<div>').addClass("fr2").prop('id', 'clipping-actions').append( menu ) );
+    var clipping_menu = $('<div>').addClass("fr2").prop('id', 'clipping-actions').append( menu );
+    $(this).append( clipping_menu );
+    CJ.Tooltip.addTooltip( clipping_menu.find('.add_to_folder'), {offset: 3} );
 
     /* EVENTS*/
     menu.bind('mouseenter', function() {

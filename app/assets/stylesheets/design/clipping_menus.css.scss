@@ -14,12 +14,13 @@
 #clipping-actions { @extend %list_item_action_bar; }
 
 #clipping-actions {
+  font-size: modular-scale(0);
+  
   .action_menu {
-    width: 168px;
-    position: absolute;
     margin: 0;
+    position: absolute;
     top: 3px;
-    font-family: "gesta-1","gesta-2", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    width: 168px;
 
     .icon-fr2 { vertical-align: middle; }
 

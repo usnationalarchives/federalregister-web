@@ -15,19 +15,21 @@
     </p>
 
     <div class="share">
-      <div class="clip_for_later">
-        <%= semantic_form_for :document,
-                              url: clippings_path,
-                              html: { method: :post,
-                                      class: "add_to_clipboard"} do |f| %>
-          <%= f.inputs do %>
-            <%= f.input :document_number, as: :hidden, value: document.document_number %>
+      <ul>
+        <li class="clip_for_later">
+          <%= semantic_form_for :document,
+                                url: clippings_path,
+                                html: { method: :post,
+                                        class: "add_to_clipboard"} do |f| %>
+            <%= f.inputs do %>
+              <%= f.input :document_number, as: :hidden, value: document.document_number %>
+            <% end %>
+            <%= f.buttons do %>
+              <%= f.commit_button 'Add to clipboard' %>
+            <% end %>
           <% end %>
-          <%= f.buttons do %>
-            <%= f.commit_button 'Add to clipboard' %>
-          <% end %>
-        <% end %>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 

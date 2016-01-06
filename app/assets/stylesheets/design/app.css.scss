@@ -64,6 +64,11 @@ a:hover,
   text-decoration: none;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 div.notice,
 div.warning,
 div.danger,
