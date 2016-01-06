@@ -1,9 +1,22 @@
-<div class="title"><span>My FR</span></div>
+<% page_title "My FR Reset Password" %>
+
+<% description t('my_fr.description') %>
+
+<% title do %>
+  <%= fr_icon 'nav_male_female_user' %>
+  My FR
+<% end %>
 
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
-  <%= semantic_form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put } do |f| %>
+  <%= semantic_form_for resource,
+    as: resource_name,
+    url: password_path(resource_name),
+    html: {
+      method: :put,
+      class: 'user-password-reset'
+    } do |f| %>
 
     <%= devise_error_messages! %>
 

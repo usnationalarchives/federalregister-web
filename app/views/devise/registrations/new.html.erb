@@ -1,9 +1,19 @@
-<div class="title"><span>My FR</span></div>
+<% page_title "My FR Sign Up" %>
+
+<% description t('my_fr.description') %>
+
+<% title do %>
+  <%= fr_icon 'nav_male_female_user' %>
+  My FR
+<% end %>
 
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
-  <%= semantic_form_for resource, :as => resource_name, :url => user_registration_path do |f| %>
+  <%= semantic_form_for resource,
+    as: resource_name,
+    url: user_registration_path,
+    html: {class: 'user-sign-up'} do |f| %>
 
     <%= f.inputs do %>
       <%= f.input :email, :as => :string %>

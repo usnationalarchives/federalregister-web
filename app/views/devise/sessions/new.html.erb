@@ -1,4 +1,11 @@
-<div class="title"><span>My FR</span></div>
+<% page_title "My FR Sign In" %>
+
+<% description t('my_fr.description') %>
+
+<% title do %>
+  <%= fr_icon 'nav_male_female_user' %>
+  My FR
+<% end %>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
@@ -6,7 +13,11 @@
 <%= render :partial => "devise/shared/tabs" %>
 
 <div class="signup_bar">
-  <%= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name), :authenticity_token => false do |f| %>
+  <%= semantic_form_for resource,
+    as: resource_name,
+    url: session_path(resource_name),
+    authenticity_token: false,
+    html: {class: 'user-sign-in'} do |f| %>
 
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) && name == :alert %>

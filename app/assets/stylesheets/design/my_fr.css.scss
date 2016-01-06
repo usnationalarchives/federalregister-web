@@ -1,4 +1,17 @@
-@import 'patterns/my_fr.css.scss';
+@import 'patterns/my_fr';
+
+.main-title-bar h1 {
+  top: -2px;
+
+  .icon-fr2.icon-fr2-nav_male_female_user {
+    font-size: modular-scale(6);
+  }
+}
+
+form.user-sign-up {
+  fieldset.inputs .label { width: 185px; }
+  fieldset.buttons { margin-left: 205px; }
+}
 
 h2.title {
   @extend %page-title;
