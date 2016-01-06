@@ -6,7 +6,7 @@ feature "Regulations.gov comment integration", :reg_gov do
 #save_and_open_page
 #    expect(page).to have_comment_bar('#start_comment')
 
-#    within('#flash_message.comment') do
+#    within('#comment-bar.comment') do
 #      click_on('start_comment')
 #    end
 

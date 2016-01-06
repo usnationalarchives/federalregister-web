@@ -3,5 +3,5 @@ $(document).ready ->
 
   if commentLink || window.location.hash == "#open-comment"
     FR2.commentFormHandlerInstance = new FR2.CommentFormHandler(
-      $('#flash_message.comment')
+      $('#comment-bar.comment')
     )

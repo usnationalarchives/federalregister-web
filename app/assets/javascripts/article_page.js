@@ -331,9 +331,9 @@ $(document).ready(function () {
   });
 
   /* update styles on page so that our hover menu is properly viewable */
-  if ( $('.metadata_share_bar').length !== 0 ) {
-    $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
-  }
+  // if ( $('.metadata_share_bar').length !== 0 ) {
+  //   $('.metadata_share_bar').height( $('.metadata_share_bar .metadata').height() ).css('overflow', 'visible');
+  // }
 
   /* get current document */
   var current_document_number = $('form.add_to_clipboard input#entry_document_number').val();
@@ -351,7 +351,7 @@ $(document).ready(function () {
   user_folder_details.current_document_number = current_document_number;
 
 
-  $('div.share li.clip_for_later').each( function () {
+  $('div.share .clip_for_later').each( function () {
     var this_document_number = current_document_number;
     if ( $('body#search').length !== 0 ) {
       this_document_number = $(this).closest('div').closest('li').data('document-number');
@@ -429,7 +429,7 @@ $(document).ready(function () {
   /* this is used on the document page - search is handled above  */
   if ( $('body#search').length === 0 ) {
     if( user_folder_details !== undefined && document_number_present(current_document_number, user_folder_details) ) {
-      $('div.share li.clip_for_later #add-to-folder .button span.icon').addClass('clipped');
+      $('div.share .clip_for_later #add-to-folder .button span.icon').addClass('clipped');
     }
   }
 

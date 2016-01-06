@@ -1,5 +1,7 @@
-<div id="flash_message" class="pdf_only">
+<div class="document-notice-bar pdf-only">
   <p>
+    <%= fr_icon 'alert_alt' %>
+
     <% if document.publication_date > Date.new(1995,1,1) %>
       The full text of this document is currently only available in
       <%= link_to 'PDF format', document.pdf_url %>.

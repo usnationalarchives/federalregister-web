@@ -9,11 +9,7 @@ body#entries .form-tooltip {
   width: 200px;
 }
 
-#flash_message.comment {
-  z-index: 1000;
-  height: 46px;
-  position: relative;
-
+.document-notice-bar.comment {
   &.open { height: 60px; }
 
   p .byline {

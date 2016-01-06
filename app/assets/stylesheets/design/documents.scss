@@ -1,4 +1,5 @@
 .metadata-content-area {
+  margin-bottom: 60px;
   margin-left: 0px;
   margin-right: 0px;
   width: 960px;
@@ -23,4 +24,66 @@
       top: 5px;
     }
   }
+}
+
+.document-notice-bar {
+  background: $fr-gray-10;
+  border-radius: 5px;
+  color: $fr-gray-60;
+  //height: 26px;
+  margin: 20px 0;
+  overflow: hidden;
+  padding: 15px;
+  padding-bottom: 5px;
+  position: relative;
+  z-index: 1000;
+
+  .button {
+    background: $fr-green;
+    color: $white;
+    font-weight: normal;
+    margin: 0;
+    min-width: 193px;
+    padding: 15px 1em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+
+    &:hover { background: darken($fr-green, 10); }
+  }
+
+  &.correction .button {
+    background: $fr-red;
+    &:hover { background: darken($fr-red, 10); }
+  }
+  &.correction-of .button {
+    background: $fr-orange;
+    &:hover { background: darken($fr-orange, 10); }
+  }
+
+
+  p {
+    margin: 0;
+    padding: 0;
+
+    .icon-fr2 {
+      color: $fr-gray-50;
+      float: left;
+      font-size: modular-scale(5);
+      padding-right: 5px;
+      position: relative;
+      top: -5px;
+    }
+  }
+}
+
+.reg-gov-comments-count {
+  color: $fr-gray-80;
+  font-weight: bold;
+  margin-top: -15px;
+  padding-bottom: 0;
+  text-align: right;
+  width: 100%;
 }

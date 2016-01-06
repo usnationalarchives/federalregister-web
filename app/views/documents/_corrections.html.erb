@@ -1,6 +1,8 @@
 <% if document.correction_of %>
-  <div id="flash_message" class="correction_of">
+  <div class="document-notice-bar correction-of">
     <p>
+      <%= fr_icon 'alert_alt' %>
+
       <% if document.republication? %>
         This article is a corrected republication of an article that was published on <%= document.correction_of_document.publication_date %>.
       <% else %>
@@ -13,8 +15,10 @@
 
 <% if document.corrections.present? %>
   <% document.corrected_documents.each do |correction| %>
-    <div id="flash_message" class="correction">
+    <div class="document-notice-bar correction">
       <p>
+        <%= fr_icon 'alert_alt' %>
+
         <% if correction.republication? %>
           This article has been corrected and republished on <%= correction.publication_date %>.
           <%= link_to 'View Republication', correction.html_url, :class => "button" %>

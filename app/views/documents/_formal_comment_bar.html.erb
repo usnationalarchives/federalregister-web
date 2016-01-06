@@ -1,5 +1,6 @@
-<div id="flash_message" class="comment">
+<div id="comment-bar" class="document-notice-bar comment">
   <p>
+    <%= fr_icon 'Chat' %>
     <% if document.document_comment_period_open? %>
       This article has a comment period that ends <%= document.comment_period_days_remaining %>.
       (<%= document.comments_close_on %>)
@@ -12,5 +13,9 @@
 </div>
 
 <% if document.has_comments? %>
-  <p id="comment_count">Read the <%= link_to pluralize(docket_info['comments_count'], 'submitted public comment'), regulations_dot_gov_docket_comments_url(document.docket_id), :target => "_blank" %></p>
+  <p class="reg-gov-comments-count">
+    Read the
+    <%= link_to pluralize(docket_info['comments_count'], 'submitted public comment'),
+      regulations_dot_gov_docket_comments_url(document.docket_id), target: :blank %>
+  </p>
 <% end %>

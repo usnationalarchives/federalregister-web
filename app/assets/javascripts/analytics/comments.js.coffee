@@ -8,7 +8,7 @@ class @FR2.Analytics
     )
 
 $(document).ready ->
-  $('#flash_message.comment').on 'click', '.button.formal_comment.how_to_comment', (e)->
+  $('#comment-bar.comment').on 'click', '.button.formal_comment.how_to_comment', (e)->
     button = $(this)
 
     category = 'Comment: How to Comment'
