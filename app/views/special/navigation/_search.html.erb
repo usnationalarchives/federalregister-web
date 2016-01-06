@@ -1,0 +1,46 @@
+<li class="dropdown nav_search">
+  <a class="top_nav">
+    <%= fr_icon('Search') %>
+    Search
+    <%= fr_icon('menu_arrow') %>
+  </a>
+
+  <ul class="subnav search-list">
+    <li id='articles-search'>
+      <%= link_to(documents_search_path, class: "article-search") do %>
+        <%= fr_icon('documents') %>
+        Document Search
+      <% end %>
+    </li>
+    
+    <li id='articles-adv-search'>
+      <%= link_to(documents_search_path(:anchor => 'advanced'), class: "advanced-search") do %>
+        <%= fr_icon('settings') %>
+        Advanced Document Search
+      <% end %>
+    </li>
+
+    <% if Settings.feature_flags.unified_agenda.search %>
+    <li id='regulations-search'>
+      <%= link_to(regulatory_plans_search_path, class: "unified-agenda-search") do %>
+        <%= fr_icon('merge') %>
+        Unified Agenda Search
+      <% end %>
+    </li>
+    <% end %>
+
+    <li id='public-inspection-search'>
+      <%= link_to("public_inspection_search_path", class: "public-inspection-search") do %>
+        <%= fr_icon('clipboards') %>
+        Public Inspection Search
+      <% end %>
+    </li>
+
+    <li id='fr-index-search'>
+      <%= link_to(index_year_path(DocumentIssue.current.publication_date.year), class: "fr-index-search") do %>
+        <%= fr_icon('indent') %>
+        FR Index
+      <% end %>
+    </li>
+  </ul>
+</li>

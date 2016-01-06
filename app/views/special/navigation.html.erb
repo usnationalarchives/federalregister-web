@@ -8,131 +8,14 @@
 
     <%= esi navigation_sections_path %>
 
-    <li class="dropdown previewable nav_browse">
-      <%= link_to('', class: "browse top_nav") do %>
-        <%= fr_icon('Eye') %>
-        Browse
-        <%= fr_icon('menu_arrow') %>
-      <% end %>
-      <div class="subnav browse-list">
-        <ul class="left_column">
-          <li id='agencies-browse'>
-            <%= link_to(agencies_path, class: "agencies") do %>
-              <%= fr_icon('mindmap') %>
-              Agencies
-            <% end %>
-          </li>
-          <li id='topics-browse'>
-            <%= link_to(topics_path, class: "topics") do %>
-              <%= fr_icon('molecular') %>
-              Topics
-            <% end %>
-          </li>
-          <li id='document-dates-browse'>
-            <%= link_to(document_issue_path(DocumentIssue.current), class: "dates") do %>
-              <%= fr_icon('calendar-alt') %>
-              Dates
-            <% end %>
-          </li>
-          <li id='public-inspection-browse'>
-            <%= link_to(current_public_inspection_issue_path, class: "public-inspection") do %>
-              <%= fr_icon('clipboard') %>
-              Public Inspection
-            <% end %>
-          </li>
-          <li id='executive-orders-browse'>
-            <%= link_to(executive_orders_path, class: "executive-orders") do %>
-              <%= fr_icon('stars') %>
-              Executive Orders
-            <% end %>
-          </li>
-        </ul>
-        <ul class="right_column">
-          <%= esi navigation_agencies_path %>
-          <%= esi navigation_topics_path %>
-          <%= esi navigation_document_issue_path %>
-          <%= esi navigation_public_inspection_path %>
-          <%= esi navigation_executive_orders_path %>
-        </ul>
-      </div>
-    </li>
+    <%= render partial: 'special/navigation/browse' %>
 
-    <li class="dropdown nav_search">
-      <a class="top_nav">
-        <%= fr_icon('Search') %>
-        Search
-        <%= fr_icon('menu_arrow') %>
-      </a>
-
-      <ul class="subnav search-list">
-        <li id='articles-search'>
-          <%= link_to(documents_search_path, class: "article-search") do %>
-            <%= fr_icon('documents') %>
-            Document Search
-          <% end %>
-        </li>
-        <li id='articles-adv-search'>
-          <%= link_to(documents_search_path(:anchor => 'advanced'), class: "advanced-search") do %>
-            <%= fr_icon('settings') %>
-            Advanced Document Search
-          <% end %>
-        </li>
-        <li id='regulations-search'>
-          <%#= link_to(regulatory_plans_search_path, class: "unified-agenda-search") do %>
-            <%#= fr_icon('merge') %>
-            <!-- Unified Agenda Search -->
-          <%# end %>
-        </li>
-        <li id='public-inspection-search'>
-          <%= link_to("public_inspection_search_path", class: "public-inspection-search") do %>
-            <%= fr_icon('clipboards') %>
-            Public Inspection Search
-          <% end %>
-        </li>
-        <li id='fr-index-search'>
-          <%= link_to(index_year_path(DocumentIssue.current.publication_date.year), class: "fr-index-search") do %>
-            <%= fr_icon('indent') %>
-            FR Index
-          <% end %>
-        </li>
-      </ul>
-    </li>
+    <%= render partial: 'special/navigation/search' %>
 
     <%= esi navigation_reader_aids_path %>
 
-    <li class="dropdown nav_myfr2">
-      <a class="myfr2 top_nav">
-        <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
-        My FR
-        <%= fr_icon('menu_arrow') %>
-        <span class="arrow"></span>
-      </a>
+    <%= render partial: 'special/navigation/my_fr' %>
 
-      <ul class="subnav myfr2-list">
-        <li id='myfr2-account'>
-          <%= link_to 'My Account', accounts_path %>
-        </li>
-
-        <li id='myfr2-clipboard'>
-          <%= link_to 'My Clipboard', '/my/clippings', :class => "myfr2-clipboard" %>
-        </li>
-
-        <li id='myfr2-comments'>
-          <%= link_to 'My Comments', '/my/comments', :class => "myfr2-comments" %>
-        </li>
-
-        <li id='myfr2-subscriptions'>
-          <%= link_to 'My Subscriptions', '/my/subscriptions', :class => "myfr2-subscriptions" %>
-        </li>
-
-        <li id='myfr2-session'>
-          <% if user_signed_in? %>
-            <%= link_to 'Sign Out', destroy_session_path, :class => "myfr2-auth"  %>
-          <% else %>
-            <%= link_to 'Sign In / Sign Up', new_session_path, :class => "myfr2-auth" %>
-          <% end %>
-        </li>
-      </ul>
     </li>
   </ul>
 </div>

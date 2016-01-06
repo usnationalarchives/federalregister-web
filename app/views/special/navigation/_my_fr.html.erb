@@ -1,0 +1,34 @@
+<li class="dropdown nav_myfr2">
+  <a class="myfr2 top_nav">
+    <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+    My FR
+    <%= fr_icon('menu_arrow') %>
+    <span class="arrow"></span>
+  </a>
+
+  <ul class="subnav myfr2-list">
+    <li id='myfr2-account'>
+      <%= link_to 'My Account', accounts_path %>
+    </li>
+
+    <li id='myfr2-clipboard'>
+      <%= link_to 'My Clipboard', '/my/clippings', class: "myfr2-clipboard" %>
+    </li>
+
+    <li id='myfr2-comments'>
+      <%= link_to 'My Comments', '/my/comments', class: "myfr2-comments" %>
+    </li>
+
+    <li id='myfr2-subscriptions'>
+      <%= link_to 'My Subscriptions', '/my/subscriptions', class: "myfr2-subscriptions" %>
+    </li>
+
+    <li id='myfr2-session'>
+      <% if user_signed_in? %>
+        <%= link_to 'Sign Out', destroy_session_path, class: "myfr2-auth"  %>
+      <% else %>
+        <%= link_to 'Sign In / Sign Up', new_session_path, class: "myfr2-auth" %>
+      <% end %>
+    </li>
+  </ul>
+</li>
