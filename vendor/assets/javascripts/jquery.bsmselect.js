@@ -67,7 +67,8 @@
       }
 
       // set up remove event (may be a link, or the list item itself)
-      this.$list.delegate('.' + o.removeClass, 'click', function() {
+      // if the remove class is actually multiple classes the regex helps to properly creates the selector
+      this.$list.delegate('.' + o.removeClass.replace(/\s/g,'.'), 'click', function() {
         self.dropListItem($(this).closest('li'));
         return false;
       });
