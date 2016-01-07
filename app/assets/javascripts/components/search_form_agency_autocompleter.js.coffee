@@ -16,16 +16,17 @@ class @FR2.SearchFormAgencyAutocompleter
         }
       )
 
+    agencyAutocompleter = this;
     @agencyInput.autocomplete(
       {
         minLength: 3
         source: (request, response)->
-          elem = @agencyInput
+          agencyInput = agencyAutocompleter.agencyInput
 
           $.ajax({
             url: "/agencies/suggestions?term=" + request.term,
             success: (data) ->
-              $(elem).removeClass("loading")
+              $(agencyInput).siblings(".loader").remove()
 
               response $.map(data, (item)->
                 return {
@@ -46,6 +47,6 @@ class @FR2.SearchFormAgencyAutocompleter
             input.val('')
             input.data('clear-value',0)
         search: (event, ui)->
-          $(this).addClass("loading")
+          $(this).after $('<div>').addClass('loader')
       }
     )

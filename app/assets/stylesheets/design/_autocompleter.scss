@@ -1,0 +1,60 @@
+// from jquery-ui
+.ui-helper-hidden-accessible {
+  left: -99999999px;
+  position: absolute;
+}
+
+#navigation .ui-autocomplete,
+.ui-autocomplete {
+  background: $white;
+  border: 1px solid $fr-gray-15;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  padding: 10px 0;
+  width: 380px;
+
+  a {
+    cursor: pointer;
+    display: block;
+    padding: 5px 10px;
+  }
+}
+
+%ui-autocomplete-active-state {
+  &:hover,
+  &:focus,
+  &.ui-state-hover,
+  &.ui-state-focus {
+    background: $fr-gray-5;
+    color: $fr-orange;
+  }
+}
+
+#navigation .previewable .right_column .ui-autocomplete {
+  // Navigation specific
+  // using !important to override inline styles
+  left: 0px !important;
+
+  a {
+    color: $fr-link-dark !important;
+    font-size: 12px !important;
+    line-height: 18px;
+
+    @extend %ui-autocomplete-active-state;
+  }
+
+}
+.ui-autocomplete {
+  a { @extend %ui-autocomplete-active-state; }
+}
+
+.ui-autocomplete-input + .loader {
+  background: image-url('fr_orange_loader.svg') no-repeat;
+  height: 25px;
+  margin: 0 auto;
+  position: absolute;
+  right: 165px;
+  top: 6px;
+  width: 25px;
+}
