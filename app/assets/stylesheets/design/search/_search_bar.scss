@@ -16,8 +16,8 @@
 
 
     .other-formats {
-      font-size: modular-scale(0);
       display: block;
+      font-size: modular-scale(0);
       margin-top: 10px;
 
       a {
@@ -95,9 +95,7 @@
     margin-top: 10px;
     width: 400px;
   }
-}
 
-.search-bar {
   .search-result-count {
     @include apertura-condensed;
     background: $fr-gray-2;

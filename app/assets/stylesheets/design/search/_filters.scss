@@ -1,4 +1,4 @@
-.search .filters {
+.filters {
   h4 {
     text-transform: uppercase;
   }
@@ -42,14 +42,15 @@
         margin-top: 10px;
 
         &.secondary {
-          color: white;
-          &:hover { color: white; }
+          color: $white;
+
+          &:hover { color: $white; }
         }
       }
     }
 
     .zip {
-      border: 1px solid #ccc;
+      border: 1px solid $fr-gray-20;
       width: 75px;
     }
   }

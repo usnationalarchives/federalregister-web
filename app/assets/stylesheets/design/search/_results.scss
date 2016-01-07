@@ -89,14 +89,14 @@
   }
 
   .document-wrapper {
-    float: left;
-    width: 90%;
     border-bottom: 1px solid $fr-gray-20;
+    float: left;
     padding-bottom: 1.25em;
+    width: 90%;
 
     h5 {
-      margin-top: 0;
       margin-bottom: 0.25em;
+      margin-top: 0;
     }
 
     .metadata { margin-bottom: 1.5em; }
