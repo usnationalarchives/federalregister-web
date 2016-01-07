@@ -8,12 +8,12 @@
         } %>
     <% end %>
 
-    <% if @search.results.present? %>
-      <%= render partial: 'search_info', locals: {
-        supported_orders: @presenter.supported_orders,
-        search: @search
-      } %>
+    <%= render partial: 'search_info', locals: {
+      supported_orders: @presenter.supported_orders,
+      search: @search
+    } %>
 
+    <% if @search.results.present? %>
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
           <%= will_paginate @search.results, params: {action: :show},

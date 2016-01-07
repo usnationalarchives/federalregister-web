@@ -10,27 +10,29 @@
         </span>
       </h2>
 
-      <ul class="actions">
-        <% supported_orders.each do |order| %>
-          <% if search.order.present? %>
-            <li class="<%= 'on' if search.order == order.downcase || (search.order == "relevance" && order == "Relevant") %>">
-              <%= link_to order,
-                params.
-                  merge(order: order.downcase, action: :show).
-                  except(:page),
-                class: '' %>
-            </li>
-          <% else %>
-            <li class="<%= 'on' if order == 'Relevant' %>">
-              <%= link_to order,
-                params.
-                  merge(order: order.downcase, action: :show).
-                  except(:page),
-                class: '' %>
-            </li>
+      <% if search.results.present? %>
+        <ul class="actions">
+          <% supported_orders.each do |order| %>
+            <% if search.order.present? %>
+              <li class="<%= 'on' if search.order == order.downcase || (search.order == "relevance" && order == "Relevant") %>">
+                <%= link_to order,
+                  params.
+                    merge(order: order.downcase, action: :show).
+                    except(:page),
+                  class: '' %>
+              </li>
+            <% else %>
+              <li class="<%= 'on' if order == 'Relevant' %>">
+                <%= link_to order,
+                  params.
+                    merge(order: order.downcase, action: :show).
+                    except(:page),
+                  class: '' %>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
