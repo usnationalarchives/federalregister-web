@@ -63,12 +63,7 @@ class Search::DocumentsController < ApplicationController
   def suggestions
     cache_for 1.day
     @search_details = @search.search_details
-    # RW: necessary?  called from suggestion.html.erb, may have to add when PI is complete
-    #if params[:conditions]
-    #  @public_inspection_document_search = PublicInspectionDocumentSearch.new_if_possible(
-    #    :conditions => @search.valid_conditions
-    #  )
-    #end
+
     render :layout => false
   end
 
