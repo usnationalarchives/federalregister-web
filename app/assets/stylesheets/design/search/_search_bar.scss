@@ -6,13 +6,13 @@
   clear: both;
   margin-bottom: 1em;
   overflow: hidden;
-  padding: 1em 0;
+  padding: 1em 0 0.5em;
   position: relative;
 
   .actions {
-    right: 1em;
+    overflow: auto;
+    padding-right: 10px;
     text-align: right;
-    top: 2.5em;
 
 
     .other-formats {

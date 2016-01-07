@@ -5,10 +5,44 @@
   }
 
   ul.actions {
+    float: right;
     margin-bottom: 0;
+    position: relative;
+    right: -10px;
+    top: 10px;
 
-    li.on {
-      padding: 0.25em 0.5em 0.25em;
+    li {
+      border-color: $white;
+      border-radius: 5px;
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      text-align: center;
+      width: 80px;
+
+      &:first-child {
+        margin-left: 0;
+        width: 100px;
+      }
+
+      a {
+        color: $fr-dark-blue;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      &:hover,
+      &.on,
+      .tabs-selected,
+      .action_button {
+        background: $fr-dark-blue;
+        border-color: $fr-dark-blue;
+        padding: 0.25em 0.5em;
+
+        a {
+          color: $white;
+          font-weight: 500;
+        }
+      }
     }
   }
 }
