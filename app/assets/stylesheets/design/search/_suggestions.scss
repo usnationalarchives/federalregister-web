@@ -18,11 +18,15 @@
       font-size: 24px;
       padding-right: 10px;
       top: 3px;
+
+      &.icon-fr2-clipboards { font-size: 30px; }
+      &.icon-fr2-documents { font-size: 28px; }
     }
 
     .suggestion-content {
       float: left;
       padding-top: 5px;
+      width: 645px;
 
       .addition,
       .term {
@@ -38,6 +42,10 @@
         padding: 10px 0 0 0;
 
         ul { margin-left: 10px; }
+      }
+
+      .matching-citation-documents .result-item {
+
       }
     }
   }

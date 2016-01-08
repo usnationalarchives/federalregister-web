@@ -21,31 +21,25 @@
       display: none;
     }
   }
+
   .formtastic {
-    .cfr, .zip {
+    .cfr,
+    .zip {
       label {
         display: none;
       }
     }
   }
+
   .result_set {
     .pagination {
       em {
-        border: 1px solid #CCCCCC;
+        border: 1px solid $fr-gray-20;
         line-height: 1;
         padding: 5px;
       }
     }
   }
-  .facet_hidden {
-    display: none;
-  }
-  .addition {
-    font-weight: bold;
-  }
-  .result_item {
-    .date {
-      font-size: 13px;
-    }
-  }
+
+  .facet_hidden { display: none; }
 }

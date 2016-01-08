@@ -1,14 +1,14 @@
-<li class="result_item">
-  <h4>
+<li class="result-item">
+  <h5>
     <%= link_to sanitize(document.title, tags: %w(span), attributes: %w(class)),
       document_issue_path(document) %>
-  </h4>
+  </h5>
 
   <% if document.abstract %>
-    <div class="result_info">
-      <span class="excerpts">
+    <div class="result-info">    
+      <p class="excerpts">
         <%= truncate_words(document.abstract, :length => 200) %>
-      </span>
+      </p>
     </div>
   <% end %>
 
@@ -17,7 +17,8 @@
       <%= document.metadata_description %>
     </li>
     <li>
-      <%= pluralize(document.pages, "Page") %>
+      <%= "Page".pluralize(document.pages ) %> <%= document.page_range %>
+      (<%= pluralize(document.pages, "page") %>)
     </li>
   </ul>
 </li>
