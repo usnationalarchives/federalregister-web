@@ -16,7 +16,7 @@ class @FR2.SearchFormAgencyAutocompleter
         }
       )
 
-    agencyAutocompleter = this;
+    agencyAutocompleter = this
     @agencyInput.autocomplete(
       {
         minLength: 3
