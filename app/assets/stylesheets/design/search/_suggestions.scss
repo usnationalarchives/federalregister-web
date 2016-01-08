@@ -1,0 +1,44 @@
+.suggestions {
+  margin-bottom: 30px;
+
+  .suggestion {
+    border: 1px solid $fr-gray-10;
+    box-shadow: $fr-gray-10 3px 3px 3px;
+    clear: both;
+    font-weight: 400;
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 5px;
+    padding-bottom: 0;
+
+    .icon-fr2 {
+      color: $fr-gray-50;
+      display: block;
+      float: left;
+      font-size: 24px;
+      padding-right: 10px;
+      top: 3px;
+    }
+
+    .suggestion-content {
+      float: left;
+      padding-top: 5px;
+
+      .addition,
+      .term {
+        background-color: $fr-yellow;
+        font-weight: 700;
+        padding: 3px 5px;
+      }
+
+      .matching-citation-documents,
+      .matching-citation-links {
+        border-top: 1px solid #EEEEEE;
+        margin: 10px 0 0 0;
+        padding: 10px 0 0 0;
+
+        ul { margin-left: 10px; }
+      }
+    }
+  }
+}
