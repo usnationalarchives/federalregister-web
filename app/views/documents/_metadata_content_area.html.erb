@@ -3,15 +3,7 @@
 
   <div class="metadata_share_bar">
     <p class="metadata">
-      <%= document.type.with_indefinite_article(true) %>
-      by
-      <span class="agencies">
-        <%= document.agency_names %>
-      </span>
-      on
-      <%= link_to date_tag( document.publication_date,
-                            datetime: document.publication_date),
-                  document_issue_path(document) %>
+      <%= document.metadata_description %>
     </p>
 
     <div class="share">
