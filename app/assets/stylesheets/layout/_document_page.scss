@@ -74,6 +74,8 @@
     z-index: 2;
 
     .content-block {
+      padding-right: 10px !important;
+
       h4 {
         color: $black;
         margin-top: 0;
@@ -97,11 +99,16 @@
         font-size: modular-scale(-1);
         padding: 0 0 10px 5px;
 
-        dt { font-weight: bold; }
+        dt {
+          font-weight: bold;
+          margin-top: 10px;
+
+          &:first-child { margin-top: 0; }
+        }
 
         dd {
           margin: 0;
-          padding-left: 10px;
+          padding-left: 20px;
           text-indent: -10px;
         }
       }

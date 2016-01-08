@@ -46,7 +46,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def formatted_cfr_references
-    cfr_references.map do |cfr|
+    cfr_references.uniq.map do |cfr|
       str = ["#{cfr["title"]} CFR"]
 
       if cfr["chapter"].present?
