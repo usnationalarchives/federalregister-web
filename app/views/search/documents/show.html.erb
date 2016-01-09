@@ -21,7 +21,7 @@
           <div class="row">
             <% if @search.results.present? %>
               <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
-                <div class="filters">
+                <div class="facets">
                   <%= esi( documents_search_facets_path(
                       params.except(:action).merge(facet: 'publication_date')
                     )

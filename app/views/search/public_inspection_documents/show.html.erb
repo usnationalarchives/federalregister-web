@@ -20,7 +20,7 @@
         <% if @search.valid? %>
           <div class="row">
             <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
-              <div class="filters">
+              <div class="facets">
                 <%= esi( public_inspection_search_facets_path(
                     params.except(:action).merge(:facet => 'type')
                   )

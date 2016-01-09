@@ -1,5 +1,6 @@
 .search {
   @import 'search/advanced';
+  @import 'search/facets';
   @import 'search/filters';
   @import 'search/pagination';
   @import 'search/results_header';
