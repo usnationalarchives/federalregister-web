@@ -5,25 +5,25 @@
 </thead>
 
 <tbody>
-  <% if month_counts.empty? %>
+  <% if facets.empty? %>
     <tr><td>No documents</td></tr>
   <% else %>
-    <% subtypes.each do |identifier, subtype| %>
+    <% subtypes.each do |subtype| %>
+      <% facet = facets.find{|f| f.type == subtype.identifier} %>
       <tr>
-        <% if month_counts[identifier].present? %>
+        <% if facet.present? %>
           <td class="count">
-            <%= month_counts[identifier].document_count %>
+            <%= link_to facet.count,
+               documents_search_path(facet.search_conditions) %>
           </td>
           <td>
-            <%= link_to subtype.pluralize(month_counts[identifier].document_count),
-              documents_search_path(
-                month_counts[identifier].document_count_search_conditions
-              ) %>
+            <%= link_to subtype.name.pluralize(facet.count),
+              documents_search_path(facet.search_conditions) %>
           </td>
         <% else %>
           <td class="count">0</td>
           <td>
-            <%= subtype.pluralize(0) %>
+            <%= subtype.name.pluralize(0) %>
           </td>
         <% end %>
       </tr>

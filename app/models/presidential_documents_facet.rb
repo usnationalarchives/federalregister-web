@@ -9,9 +9,6 @@ class PresidentialDocumentsFacet < FederalRegister::Facet::PresidentialDocumentT
         presidential_document_type: slug
       }
     )
-    # result_set.conditions[:conditions][:presidential_document_type] = slug
-    # result_set.conditions
-    # TODO: Why did this not work?
   end
 
 end

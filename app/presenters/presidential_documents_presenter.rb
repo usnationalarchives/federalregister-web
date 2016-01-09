@@ -1,20 +1,28 @@
 class PresidentialDocumentsPresenter
-  SUBTYPES =  {
-    "determination" => "Determination",
-    "executive_order" => "Executive Order",
-    "memorandum" => "Memorandum",
-    "notice" => "Notice",
-    "proclamation" => "Proclamation"
-  }
+  HOMEPAGE_TYPES = [
+    "determination",
+    "executive_order",
+    "memorandum",
+    "notice",
+    "proclamation",
+  ]
+
+  HIGHLIGHTED_HOMEPAGE_TYPES = [
+    "executive_order",
+    "notice",
+    "proclamation"
+  ]
 
   def subtypes
-    SUBTYPES
+    @subtypes ||= PresidentialDocumentType.all.
+      sort_by(&:name).
+      select{|pdt| HOMEPAGE_TYPES.include?(pdt.identifier)}
   end
 
   def subtypes_for_homepage
-    @subtypes ||= SUBTYPES.select{|subtype, subtype_string|
-      ["executive_order", "notice", "proclamation"].include? subtype
-    }
+    @homepage_subtypes ||= PresidentialDocumentType.all.
+      sort_by(&:name).
+      select{|pdt| HIGHLIGHTED_HOMEPAGE_TYPES.include?(pdt.identifier)}
   end
 
   def latest_document_by_type(time_frame=2.months, ensure_complete=true)
@@ -35,42 +43,26 @@ class PresidentialDocumentsPresenter
     results
   end
 
-  def document_counts_for(date)
-    start_date = date.beginning_of_month
-    end_date = date.end_of_month
-
-    doc_counts = document_counts(start_date, end_date).
-      map{ |facet|
-        PresidentialDocumentTypeFacet.new(
-          name: facet.name,
-          document_type: facet.slug,
-          document_count: facet.count,
-          document_count_search_conditions: facet.search_conditions
+  def document_facets_for_month(date)
+    PresidentialDocumentsFacet.search(
+      QueryConditions::DocumentConditions.
+        published_within(
+          date.beginning_of_month,
+          date.end_of_month
         )
-      }
-    Hash[doc_counts.map {|pres_doc| [pres_doc.document_type, pres_doc]}]
-  end
-
-  class PresidentialDocumentTypeFacet
-    vattr_initialize [
-      :name,
-      :document_type,
-      :document_count,
-      :document_count_search_conditions,
-    ]
+    )
   end
 
   private
 
   def build_results(start_date, end_date, previous_results={})
-    docs = presidential_documents_for(start_date, end_date).
-      group_by(&:subtype)
+    docs = presidential_documents_for(start_date, end_date).group_by(&:subtype)
 
-    subtypes_for_homepage.each do |subtype, subtype_string|
-      next if previous_results[subtype]
+    subtypes_for_homepage.each do |subtype|
+      next if previous_results[subtype.identifier]
 
-      if docs[subtype_string].present?
-        previous_results[subtype] = docs[subtype_string].first
+      if docs[subtype.name].present?
+        previous_results[subtype.identifier] = docs[subtype.name].first
       end
     end
 
@@ -78,37 +70,29 @@ class PresidentialDocumentsPresenter
   end
 
   def required_subtypes_present?(docs)
-    (subtypes_for_homepage.keys - docs.keys).empty?
-  end
-
-
-  def document_counts(start_date, end_date)
-    PresidentialDocumentsFacet.search(
-      QueryConditions::DocumentConditions.published_within(start_date, end_date)
-    )
+    (subtypes_for_homepage.map{|st| st.identifier} - docs.keys).empty?
   end
 
   def presidential_documents_for(start_date, end_date)
-    FederalRegister::Document.search(
-      conditions: {
-        type: 'PRESDOCU',
-        publication_date: {
-          gte: start_date,
-          lte: end_date
-        }
-      },
-      fields: [
-        'document_number',
-        'executive_order_number',
-        'html_url',
-        'publication_date',
-        'subtype',
-        'title',
-        'type',
-      ],
-      per_page: '100'
+    Document.search(
+      QueryConditions::DocumentConditions.
+        published_within(start_date, end_date).
+        deep_merge!({
+          conditions: {
+            type: 'PRESDOCU',
+          },
+          fields: [
+            'document_number',
+            'executive_order_number',
+            'html_url',
+            'publication_date',
+            'subtype',
+            'title',
+            'type',
+          ],
+          per_page: '100'
+        })
     )
   end
 
 end
-

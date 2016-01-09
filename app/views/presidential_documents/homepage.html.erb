@@ -17,7 +17,7 @@
       <%= render partial: 'monthly_document_counts',
         locals: {
           date: date,
-          month_counts: @presenter.document_counts_for(date),
+          facets: @presenter.document_facets_for_month(date),
           subtypes: @presenter.subtypes
         } %>
     </table>

@@ -183,19 +183,22 @@
       &:hover { background-color: inherit; }
 
       td {
-        padding: 0 0 0 5px;
+        border: 0;
+        font-weight: 400;
         height: 16px;
-        color: $fr-link;
-        border: none;
+        padding: 0 0 0 5px;
 
         &.count {
-          padding: 0;
           margin: 0;
-          width: 16px;
+          padding: 0;
           text-align: right;
+          width: 16px;
         }
 
-        a { padding: 0; }
+        a {
+          color: $fr-link;
+          padding: 0;
+        }
       }
     }
   }
