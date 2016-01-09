@@ -1,15 +1,17 @@
 <div class="row">
   <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-    <ul class="active_filter_list">
+    <ul class="active-filters">
       <% filters.each do |filter| %>
-        <li>
+        <li class="filter">
+          <%= fr_icon 'filter' %>
           <span class="type"><%= filter.value %></span>
           <span class="name"><%= filter.name %></span>
 
-          <%= link_to 'Remove',
-            search_removing_filter(filter.condition, filter.value),
+          <%= link_to search_removing_filter(filter.condition, filter.value),
             title: 'Remove Filter',
-            class: 'remove' %>
+            class: 'remove'  do %>
+              <%= fr_icon 'badge_x' %>
+            <% end %>
         </li>
       <% end %>
     </ul>

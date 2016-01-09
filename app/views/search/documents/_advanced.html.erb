@@ -24,9 +24,10 @@
     label: "Document Category",
     required: false %>
 
-  <%= f.input :presidential_document_type_id,
+  <%= f.input :presidential_document_type,
     as: :check_boxes,
-    collection: PresidentialDocumentType.all,
+    collection: PresidentialDocumentType.all.
+      map{|pdt| [pdt.name, pdt.identifier]},
     label: "Presidential Document Type",
     required: false,
     wrapper_html: {class: "presidential_dependent"} %>

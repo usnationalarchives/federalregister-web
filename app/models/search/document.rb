@@ -11,7 +11,7 @@ class Search::Document < Search::Base
     :effective_date,
     :comment_date,
     :small_entity_ids,
-    :presidential_document_type_id,
+    :presidential_document_type,
     :president,
     :significant,
     :regulation_id_number,
