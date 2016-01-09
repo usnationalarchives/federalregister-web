@@ -5,11 +5,11 @@
 </thead>
 
 <tbody>
-  <% if facets.empty? %>
+  <% if facets.results.empty? %>
     <tr><td>No documents</td></tr>
   <% else %>
     <% subtypes.each do |subtype| %>
-      <% facet = facets.find{|f| f.type == subtype.identifier} %>
+      <% facet = facets.find{|f| f.slug == subtype.identifier} %>
       <tr>
         <% if facet.present? %>
           <td class="count">
