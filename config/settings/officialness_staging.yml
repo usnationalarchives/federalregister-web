@@ -8,5 +8,5 @@ app_url: 'https://fr-official.criticaljuncture.org'
 # urls for mailers, redirects, etc - where routes aren't available
 fr_comment_url: 'https://fr-official.criticaljuncture.org/my/comments'
 
-officialness:
-  start_date: 2015-12-01
+# officialness:
+#   start_date: 2015-12-01
