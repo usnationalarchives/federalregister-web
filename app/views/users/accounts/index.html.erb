@@ -1,13 +1,14 @@
-<div class="title">
-  <span>My Account</span>
-</div>
+<% title do %>
+  <%= fr_icon 'nav_male_female_user' %>
+  My Account
+<% end %>
 
 <%= content_tag(:div, flash[:notice], :class => 'flash notice') if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  :class => 'flash error') if flash[:error] %>
 
 <div class="user-account">
   <h2 class="title">
-    <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+    <%= fr_icon 'message' %>
     Change Email Address
   </h2>
   <p>
