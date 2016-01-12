@@ -2,24 +2,23 @@ form.formtastic,
 form.formtastic .string {
   .email_suggestion,
   .email_invalid {
-    font-family: apertura-condensed-1, apertura-condensed-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;;
-    font-size: 13px;
+    @include gesta;
+    font-size: modular-scale(0);
     font-style: italic;
-
+    font-weight: 400;
     margin-left: 5px;
   }
 
   .email_suggestion .link {
+      color: $fr-link;
+      cursor: pointer;
+      font-weight: bold;
       margin: 0;
       text-decoration: underline;
-      font-weight: bold;
-      color: $fr-blue;
-      cursor: pointer;
   }
 
   .email_invalid {
     color: $fr-red;
-    font-weight: bold;
   }
 }
 
@@ -27,7 +26,7 @@ form.formtastic .string {
   .email_suggestion,
   .email_invalid {
     display: block;
-    text-align: right;
     padding-right: 5px;
+    text-align: right;
   }
 }

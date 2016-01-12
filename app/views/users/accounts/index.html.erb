@@ -24,22 +24,23 @@
     been confirmed so be sure to check your inbox for the confirmation email.
   </p>
 
+  <%= add_handlebars_template('email_suggestion') %>
+  <%= add_handlebars_template('email_invalid') %>
 
-  <%= form_tag account_path(current_user), :method => 'PUT',
-    :class => "formtastic user-email-change" do %>
-    <fieldset class="inputs"><ol>
-      <li class="string input required stringish" id="user_email_input">
-        <%= text_field_tag("email", nil,
-          :id => "user_email",
-          :name => 'user[email]',
-          :class => "email-input") %>
-      </li>
-    </ol></fieldset>
+  <%= semantic_form_for nil,
+    as: :user,
+    url: account_path(current_user),
+    html: {class: 'user-email-change', method: :put} do |f| %>
 
-    <fieldset class="buttons"><ol>
-      <li class="commit button">
-        <%= submit_tag "Submit", :class => "fr_button medium primary" %>
-      </li>
-    </ol></fieldset>
+    <%= f.inputs do %>
+      <% f.input :email, as: :string,
+        input_html: {class: 'email-input', value: nil},
+        placeholder: 'new email address'
+        %>
+    <% end %>
+
+    <%= f.buttons do %>
+      <%= f.commit_button "Submit", button_html: {class: "fr_button medium primary"} %>
+    <% end %>
   <% end %>
 </div>

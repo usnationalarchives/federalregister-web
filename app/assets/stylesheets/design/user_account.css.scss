@@ -1,47 +1,53 @@
 .user-account {
   h2.title .icon-fr2 { top: 6px; }
-  
+
   p {
     margin: 15px 10px 15px 10px;
   }
 
   form.formtastic.user-email-change {
-    margin: 5px 15px 15px 5px;
+    margin: 30px 15px 15px 5px;
 
     fieldset {
       display: inline-block;
       margin: 0;
       position: relative;
+
+      &.inputs {
+        label { display: none; }
+
+        li.input { padding-left: 0; }
+      }
     }
 
     input[type=text] {
-      height: 25px;
-      width: 250px;
-      border: 1px solid #666;
       border-radius: 6px;
+      border: 1px solid $fr-gray-60;
       font-size: 16px;
+      height: 25px;
+      margin-top: 10px;
       padding: 0 5px;
-      margin-top: 25px;
+      width: 250px;
     }
 
-    .link {
-      color: $fr-blue;
-    }
+    .link { color: $fr-link; }
 
     .fr_button {
       border-radius: 6px;
       border: 1px solid;
+      font-size: modular-scale(0);
       padding: 5px 0 5px;
       position: relative;
       top: 13px;
-      font-size: modular-scale(0);
+
+      &.disabled { background-color: $med-gray; }
     }
 
     .email_invalid,
     .email_suggestion {
-      position: absolute;
-      top: 0;
       left: 0;
+      position: absolute;
+      top: -15px;
     }
   }
 }

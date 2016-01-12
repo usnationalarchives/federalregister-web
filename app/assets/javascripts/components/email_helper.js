@@ -76,14 +76,16 @@ var EmailHelper = (function() {
     enable_form: function() {
       var $submit = this.input.closest('form').find('input[type=submit]');
 
-      $submit.enable();
+      $submit.prop('disabled', false);
+      $submit.removeClass('disabled');
       $submit.closest('li').removeClass('disabled');
     },
 
     disable_form: function() {
       var $submit = this.input.closest('form').find('input[type=submit]');
 
-      $submit.disable();
+      $submit.prop('disabled', true);
+      $submit.addClass('disabled');
       $submit.closest('li').addClass('disabled');
     }
   };
