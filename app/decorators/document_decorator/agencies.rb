@@ -1,17 +1,24 @@
 module DocumentDecorator::Agencies
   def agency_name_sentence(options = {})
-    autolink = options.fetch(:no_links){ true }
+    agencies = linked_agency_names(options)
 
-    if document.agencies.present?
+    agencies.present? ? agencies.to_sentence.html_safe : ''
+  end
+
+  def linked_agency_names(options={})
+    autolink = options.fetch(:no_links){ true }
+    definite_article = options.fetch(:definite_article, true)
+
+    if agencies.present?
       agencies = document.excluding_parent_agencies.map{|a|
         next if a.name.nil?
 
-        "the #{h.link_to_if autolink, a.name, a.url}"
+        "#{definite_article ? 'the' : ''} #{h.link_to_if autolink, a.name, a.url}".strip.html_safe
       }
-    elsif document.agency_names.present?
+    elsif agency_names.present?
       agencies = document.agency_names.map
     end
 
-    agencies.present? ? agencies.compact.to_sentence.html_safe : ''
+    agencies.compact
   end
 end

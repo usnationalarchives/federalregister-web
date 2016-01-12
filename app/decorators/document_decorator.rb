@@ -4,6 +4,7 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Shared
 
   include DocumentDecorator::Agencies
+  include DocumentDecorator::Clippings
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
   include DocumentDecorator::Officialness

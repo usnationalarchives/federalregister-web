@@ -58,7 +58,7 @@ class Clipping < ActiveRecord::Base
                 "title",
                 "type"]
 
-      documents = FederalRegister::Document.find_all(
+      documents = Document.find_all(
         document_numbers,
         :fields => fields
       )

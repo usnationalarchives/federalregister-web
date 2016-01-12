@@ -47,7 +47,7 @@ class SubscriptionMailer < ActionMailer::Base
 
   def public_inspection_document_mailing_list(mailing_list, results, subscriptions)
     @mailing_list = mailing_list
-    @results = ArticleDecorator.decorate(results.to_a)
+    @results = DocumentDecorator.decorate_collection(results.to_a)
     toc = TableOfContentsPresenter.new(results)
     @agencies = toc.agencies
 
@@ -74,7 +74,7 @@ class SubscriptionMailer < ActionMailer::Base
 
   def entry_mailing_list(mailing_list, results, subscriptions)
     @mailing_list = mailing_list
-    @results = ArticleDecorator.decorate(results.to_a)
+    @results = DocumentDecorator.decorate_collection(results.to_a)
     toc = TableOfContentsPresenter.new(results)
     @agencies = toc.agencies
 
