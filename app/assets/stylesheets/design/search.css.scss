@@ -1,11 +1,14 @@
+// these are used outside of the search page context and so shouldn't be
+// nested like the other imports below.
+@import 'search/results';
+@import 'search/results_header';
+@import 'search/search_bar';
+
 .search {
   @import 'search/advanced';
   @import 'search/facets';
   @import 'search/filters';
   @import 'search/pagination';
-  @import 'search/results_header';
-  @import 'search/results';
-  @import 'search/search_bar';
   @import 'search/suggestions';
   @import 'search/tabs';
 
