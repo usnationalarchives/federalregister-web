@@ -21,13 +21,17 @@
           search.conditions[:term].blank? &&
           document.model.respond_to?(:abstract)
           ) || (!search && document.model.respond_to?(:abstract))%>
-          <p class="description">
-            <%= truncate_words(document.abstract, :length => 350) %>
-          </p>
+          <% if document.abstract.present? %>
+            <p class="description">
+              <%= truncate_words(document.abstract, :length => 350) %>
+            </p>
+          <% end %>
         <% else %>
-          <p class="description">
-            <%= truncate_words(sanitize(document.excerpts), :length => 350).try(:html_safe) %>
-          </p>
+          <% if document.excerpts.present? %>
+            <p class="description">
+              <%= truncate_words(sanitize(document.excerpts), :length => 350).try(:html_safe) %>
+            </p>
+          <% end %>
         <% end %>
       </div>
     </li>

@@ -110,6 +110,11 @@
     .description {
       @include calluna;
       margin-bottom: 0;
+
+      .match {
+        background-color: $fr-light-yellow;
+        padding: 0px 3px;
+      }
     }
   }
 }
