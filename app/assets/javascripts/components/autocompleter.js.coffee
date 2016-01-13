@@ -25,7 +25,8 @@ class @FR2.Autocompleter
               result = $.map(data, (item)->
                 return {
                   label: item.name,
-                  value: item.url,
+                  value: item.name,
+                  url: item.url,
                   id: item.id
                 }
               )
@@ -35,7 +36,7 @@ class @FR2.Autocompleter
           })
       select: (event, ui)->
         autocompleter.input.val(ui.item.name)
-        window.location.href = ui.item.value
+        window.location.href = ui.item.url
       close: ->
         autocompleter.input.val('')
       search: (event, ui)->
