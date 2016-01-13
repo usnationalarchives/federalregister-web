@@ -11,10 +11,17 @@ module SearchResultHelper
   def embedded_search_results_with_stacked_header(result_object, stacked_title, title, options={})
     row_classes = options.fetch(:row_classes) { bootstrap_col(xs: 12, md: 12) }
     document_type = options.fetch(:document_type) { :official }
+    include_footer = options.fetch(:footer, true)
 
-    stacked_embedded_search_results_header(result_object, row_classes, document_type, stacked_title, title) +
-      embedded_search_results_documents(result_object.documents, row_classes, document_type) +
-      embedded_search_results_header(result_object, row_classes, 'bottom', document_type)
+    output = stacked_embedded_search_results_header(result_object, row_classes, document_type, stacked_title, title) +
+      embedded_search_results_documents(result_object.documents, row_classes, document_type)
+
+    if include_footer
+      output = output +
+        embedded_search_results_header(result_object, row_classes, 'bottom', document_type)
+    end
+
+    output  
   end
 
   def embedded_search_results_header(result_object, row_classes, placement, document_type)
