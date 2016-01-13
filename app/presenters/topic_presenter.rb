@@ -10,7 +10,7 @@ class TopicPresenter
     :total_document_count, to: :@topic
 
   def initialize(slug)
-    @topic = Topic.search.detect{|topic| topic.slug == slug}
+    @topic = TopicFacet.search.detect{|topic| topic.slug == slug}
     raise InvalidTopic unless @topic
   end
 

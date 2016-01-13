@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   def index
     cache_for 1.day
 
-    @topics = Topic.search.sort{|a, b| a.name <=> b.name}
+    @topics = TopicFacet.search.sort{|a, b| a.name <=> b.name}
   end
 
   def show
