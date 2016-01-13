@@ -2,6 +2,9 @@
   <%= render partial: 'doc_details', locals: {document: document} %>
 
   <% if document.regulations_dot_gov_info.present? %>
-    <%= render partial: 'reg_gov_content', locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
+    <%= render partial: 'reg_gov_content', locals: {
+      document: document,
+      docket_info: document.regulations_dot_gov_info
+    } %>
   <% end %>
 </div>

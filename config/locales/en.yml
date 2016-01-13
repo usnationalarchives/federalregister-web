@@ -41,6 +41,7 @@ en:
 
   fr_box:
     description:
+      enhanced_content: "Enhanced content is content that has not been published in the <em>Federal Register</em> but is provided to the user to provide additional context."
       official_document: "This is the official document as published in the <em>Federal Register</em>."
       official_document_toc: "This is the official table of contents as published in the <em>Federal Register</em>."
       official_document_details: "This is the official table of contents as published in the <em>Federal Register</em>."
@@ -53,7 +54,7 @@ en:
       published_document_toc: "This is the table of contents as published in the <em>Federal Register</em>."
       published_document_details: "Information about this document as published in the <em>Federal Register</em>."
       reader_aid: Reader Aids help people use FederalRegister.gov and understand the federal rulemaking process. Reader Aids information is not published in the <em>Federal Register</em>.
-      reg_dot_gov_docket_info: "Relevant information about this document from Regulations.gov provides additional context. This information is not part of the official <em>Federal Register</em> document."
+      regulations_dot_gov: "Relevant information about this document from Regulations.gov provides additional context. This information is not part of the official <em>Federal Register</em> document."
 
     my_fr:
       description: "My Federal Register (My FR) allows you to manage your FederalRegiter.gov content. You can clip documents for later, manage your subscriptions and track the comments on documents that you submit to agencies."
