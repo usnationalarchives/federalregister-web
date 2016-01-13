@@ -88,103 +88,18 @@ $(document).ready( function() {
     event.preventDefault();
   });
 
-
-
-  $("input[data-autocomplete]#agency-search").each(function(){
-    var input = $(this);
-    input.autocomplete({
-      minLength: 3,
-      appendTo: "#agency-search-form",
-      position: { of : "input[data-autocomplete]#agency-search" },
-      source: function( request, response ){
-        var elem = input;
-        $.ajax({
-          url: "/agencies/search?term=" + request.term,
-          success: function(data){
-            $(elem).removeClass("loading");
-            response(
-              $.map( data, function( item ) {
-                return {
-                  label: item.name,
-                  value: item.name,
-                  id: item.id,
-                  url: item.url
-                };
-              })
-            );
-            $('.ui-autocomplete.ui-menu').css({'padding': '5px 0px', 'box-shadow': '#888 0 3px 5px'});
-            $('.ui-autocomplete.ui-menu a').css({'padding': '2px 10px', 'font-size': '14px', 'font-weight': 'bold'});
-          } // end success
-        }); // end ajax
-      },
-      select: function( event, ui ) {
-        window.location.href = ui.item.url;
-        $(this).data('clear-value', 1);
-      },
-      close: function() {
-        var input = $(this);
-        if (input.data('clear-value')) {
-           input.val('');
-           input.data('clear-value',0);
-        }
-      },
-      search: function( event, ui) {
-        $(this).addClass("loading");
-      }
-    });
-  });
-
-  $("input[data-autocomplete]#topic-search").each(function(){
-    var input = $(this);
-    input.autocomplete({
-      minLength: 3,
-      appendTo: "#topic-search-form",
-      position: { of : "input[data-autocomplete]#topic-search" },
-      source: function( request, response ){
-        var elem = input;
-        $.ajax({
-          url: "/topics/search?term=" + request.term,
-          success: function(data){
-            $(elem).removeClass("loading");
-            response(
-              $.map( data, function( item ) {
-                return {
-                  label: item.name,
-                  value: item.name,
-                  id: item.id,
-                  url: item.url
-                };
-              })
-            );
-            $('.ui-autocomplete.ui-menu').css({'padding': '5px 0px', 'box-shadow': '#888 0 3px 5px'});
-            $('.ui-autocomplete.ui-menu a').css({'padding': '2px 10px', 'font-size': '14px', 'font-weight': 'bold'});
-          } // end success
-        }); // end ajax
-      },
-      select: function( event, ui ) {
-        window.location.href = ui.item.url;
-        $(this).data('clear-value', 1);
-      },
-      close: function() {
-        var input = $(this);
-        if (input.data('clear-value')) {
-           input.val('');
-           input.data('clear-value',0);
-        }
-      },
-      search: function( event, ui) {
-        $(this).addClass("loading");
-      }
-    });
-  });
-
   /* Setup calendar as appropriate for navigation view */
   $('#navigation .previewable table.calendar').addClass('no_select');
   $('#navigation .previewable table.cal_first').find('.cal_next').html('');
   $('#navigation .previewable table.cal_last').find('.cal_prev').html('');
 
-  /* Setup the section navigation preview carousels */
+  // Setup the section navigation preview carousels
   _.each($('.carousel-nav .carousel-wrapper'), function(carouselWrapper) {
     new FR2.CarouselScroller(carouselWrapper);
+  });
+
+  // Setup the agency and topic autocompleters
+  _.each($('#navigation form.facet-explorer-search'), function(form) {
+    new FR2.Autocompleter( $(form) );
   });
 });

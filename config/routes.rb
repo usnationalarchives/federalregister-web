@@ -301,6 +301,11 @@ MyFr2::Application.routes.draw do
   #
   # Topics
   #
+  get 'topics/suggestions',
+    controller: "topics",
+    actions: "suggestions",
+    as: 'topics_suggestions'
+
   resources :topics, only: [:index, :show]
 
   get 'topics/:id/significant.:format',

@@ -36,7 +36,6 @@ class @FR2.Autocompleter
       select: (event, ui)->
         autocompleter.input.val(ui.item.name)
         window.location.href = ui.item.value
-        $(this).data('clear-value', 1);
       close: ->
         autocompleter.input.val('')
       search: (event, ui)->

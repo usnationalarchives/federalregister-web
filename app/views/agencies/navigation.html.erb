@@ -1,7 +1,11 @@
 <li id="agencies-browse-preview" class="preview">
   <%= facet_explorer(
       header: {icon: "", title: "Explore Agencies"},
-      search: {url: topics_path, placeholder: "try 'Agricultural Marketing Service'"},
+      search: {
+        url: topics_path,
+        placeholder: "try 'Agricultural Marketing Service'",
+        endpoint: "/agencies/suggestions?term="
+      },
       table: {
         items: @presenter.agencies_for_exploration,
         header_count_width: '10%',

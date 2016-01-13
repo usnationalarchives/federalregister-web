@@ -1,0 +1,8 @@
+.facet-explorer {
+  form { position: relative; }
+
+  .ui-autocomplete-input + .loader {
+    right: 3px;
+    top: 5px;
+  }
+}

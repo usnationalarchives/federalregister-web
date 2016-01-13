@@ -1,7 +1,11 @@
 <li id="topics-browse-preview" class="preview">
   <%= facet_explorer(
       header: {icon: "", title: "Explore Topics"},
-      search: {url: topics_path, placeholder: "try 'Antidumping'"},
+      search: {
+        url: topics_path,
+        placeholder: "try 'Antidumping'",
+        endpoint: "/topics/suggestions?term="
+      },
       table: {
         items: @presenter.topics_for_exploration,
         header_count_width: '10%',
@@ -11,4 +15,3 @@
       }
     ) %>
 </li>
-

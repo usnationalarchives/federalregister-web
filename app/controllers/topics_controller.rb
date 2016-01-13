@@ -22,6 +22,13 @@ class TopicsController < ApplicationController
     raise ActiveRecord::RecordNotFound
   end
 
+  def suggestions
+    topics = Topic.suggestions(params[:term])
+    render :json => topics.map{|t|
+      {name: t.name, slug: t.slug, url: t.url}
+    }
+  end
+
   def significant_entries
     cache_for 1.day
     @presenter = TopicPresenter.new(params[:id])

@@ -1,5 +1,9 @@
 <div class="table-search-box">
-  <%= form_tag url, method: :get, class: "facet-explorer-search" do %>
+  <%= form_tag url, method: :get,
+    class: "facet-explorer-search",
+    'data-autocomplete' => {
+      endpoint: autocompleter_endpoint
+    }.to_json do %>
     <input class="form-control fr-table-form"
       placeholder="<%= placeholder %>"
       data-autocomplete="autocomplete" />

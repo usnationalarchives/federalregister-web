@@ -22,6 +22,7 @@ module FacetExplorerHelper
       locals: {
         url: args.fetch(:url),
         placeholder: args.fetch(:placeholder),
+        autocompleter_endpoint: args.fetch(:endpoint),
       }
   end
 

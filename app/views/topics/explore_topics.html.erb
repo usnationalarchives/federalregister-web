@@ -1,7 +1,11 @@
 <div class="col-xs-6 col-md-6 section with-icon-header">
   <%= facet_explorer(
       header: {icon: "icon-fr2-Molecular", title: "Explore Topics"},
-      search: {url: topics_path, placeholder: "Go to a specific topic"},
+      search: {
+        url: topics_path,
+        placeholder: "Go to a specific topic",
+        endpoint: "/topics/suggestions?term="
+      },
       table: {
         items: @presenter.topics_for_exploration,
         header_count_width: '5%',
