@@ -1,7 +1,10 @@
 .result_set .pagination {
-  display: block;
-  margin: 20px 0 20px 35px;
-  overflow: hidden;
+  display: inline-block;
+  font-size: 0;
+  margin: 0 auto 20px;
+  overflow: auto;
+
+  li { font-size: modular-scale(0); }
 
   span,
   a {
