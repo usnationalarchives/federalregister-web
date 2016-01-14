@@ -82,6 +82,15 @@ gem 'calendar_helper', :git => "git://github.com/criticaljuncture/calendar_helpe
 # parse more date formats when needed
 gem 'chronic', '~> 0.10.2'
 
+
+# set environment variables
+gem 'dotenv-rails', '~> 1.0.2'
+
+# resque web interface - rails engine
+gem 'resque'
+gem 'resque-web', require: 'resque_web'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

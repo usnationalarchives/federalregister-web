@@ -22,3 +22,5 @@ vcr/*
 config/varnish.development.vcl
 
 node_modules/*
+
+.env
