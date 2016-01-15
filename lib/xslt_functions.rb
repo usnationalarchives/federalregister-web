@@ -4,7 +4,7 @@ class XsltFunctions
   def footnotes(nodes)
     footnotes = nodes.first
     # sometimes XML will have FTRF that follow blank nodes so just return
-    return blank_document unless footnotes
+    return blank_document.children unless footnotes
 
     footnotes = footnotes.content.split(' ')
 
