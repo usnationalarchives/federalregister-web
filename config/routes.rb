@@ -367,7 +367,10 @@ MyFr2::Application.routes.draw do
   #
   get '/:slug',
     to: 'suggested_searches#show',
-    as: :suggested_search
+    as: :suggested_search,
+    constraints: {
+      slug: Regexp.new(SuggestedSearch.slugs.join("|"))
+    }
 
   #
   # FR Index
