@@ -3,7 +3,6 @@ ul.subject-list {
   margin-bottom: 30px;
   margin-left: 25px;
 
-  @include custom-bullets($color-official);
   li:before { top: 0px; }
 
   a {
@@ -13,5 +12,26 @@ ul.subject-list {
       color: $fr-orange;
       text-decoration: none;
     }
+  }
+}
+
+.doc.doc-official {
+  ul.bullets,
+  ul.subject-list {
+    @include custom-bullets($color-official);
+  }
+}
+
+.doc.doc-published {
+  ul.bullets,
+  ul.subject-list {
+    @include custom-bullets($color-published);
+  }
+}
+
+.doc.doc-public-inspection {
+  ul.bullets,
+  ul.subject-list {
+    @include custom-bullets($color-public-inspection);
   }
 }
