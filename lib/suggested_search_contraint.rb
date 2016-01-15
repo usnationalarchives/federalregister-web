@@ -11,7 +11,7 @@ class SuggestedSearchContraint
     unless Rails.env.test?
       begin
         @suggested_search_slugs = SuggestedSearch.slugs
-      rescue Exception => e
+      rescue StandardError => e
         Honeybadger.notify(e)
       end
     end

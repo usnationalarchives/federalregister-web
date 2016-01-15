@@ -7,7 +7,7 @@ namespace :mailing_lists do
       MailingList::Article.active.find_each do |mailing_list|
         begin
           mailing_list.deliver!(date, :force_delivery => ENV['FORCE_DELIVERY'])
-        rescue Exception => e
+        rescue StandardError => e
           Rails.logger.warn(e)
           Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
         end
@@ -24,7 +24,7 @@ namespace :mailing_lists do
         begin
           Rails.logger.info("[#{Time.now.in_time_zone}] checking mailing list #{mailing_list.id} :: #{mailing_list.title}")
           mailing_list.deliver!(new_document_numbers)
-        rescue Exception => e
+        rescue StandardError => e
           Rails.logger.warn(e)
           Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
         end
