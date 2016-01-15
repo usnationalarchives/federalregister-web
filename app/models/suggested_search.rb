@@ -6,11 +6,7 @@ class SuggestedSearch < FederalRegister::SuggestedSearch
   end
 
   def self.slugs
-    return @suggested_search_slugs if @suggested_search_slugs
-
-    response = search
-
-    @suggested_search_slugs = response.map do |section, searches|
+    @suggested_search_slugs ||= search.map do |section, searches|
       searches.collect{|search| search.slug}
     end.flatten
   end
