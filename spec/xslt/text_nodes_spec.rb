@@ -131,4 +131,18 @@ describe "XSLT::TextNodes" do
       end
     end
   end
+
+  # we've seen this when a footnote in a table gets messed up in the XML
+  context "when an SU is found alone (not followed by FTREF, etc)" do
+    it "renders them as a superscript" do
+      process <<-XML
+        Biomass-based diesel
+        <SU>12</SU>
+      XML
+
+      expect_equivalent <<-HTML
+        Biomass-based diesel<sup>12</sup>
+      HTML
+    end
+  end
 end

@@ -34,7 +34,11 @@
 
       <!--  trim the trailing whitespace from the text element directly
             preceeding a subscript so that the subscript is positioned correctly -->
-      <xsl:when test="following-sibling::*[1][self::E][@T=51 or @T=52 or @T=53 or @T=54]">
+      <xsl:when test="
+          following-sibling::*[1][self::E][@T=51 or @T=52 or @T=53 or @T=54]
+          or
+          following-sibling::*[1][self::SU]
+        ">
         <xsl:call-template name="string-rtrim">
           <xsl:with-param name="string" select="$text_content" />
         </xsl:call-template>

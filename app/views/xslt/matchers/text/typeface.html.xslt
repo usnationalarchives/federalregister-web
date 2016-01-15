@@ -59,11 +59,21 @@
   </xsl:template>
 
   <xsl:template match="E[@T=54]">
+    <xsl:call-template name="optional_preceding_whitespace" />
     <sub>
       <em>
         <xsl:apply-templates />
       </em>
     </sub>
+    <xsl:call-template name="optional_following_whitespace" />
+  </xsl:template>
+
+  <!--  we've seen this when a footnote in a table gets messed up in the XML
+        probably shoudln't be a normal occurance -->
+  <xsl:template match="SU[not(ancestor::FTNT)]">
+    <sup>
+      <xsl:apply-templates />
+    </sup>
     <xsl:call-template name="optional_following_whitespace" />
   </xsl:template>
 
