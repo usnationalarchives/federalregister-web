@@ -1,6 +1,6 @@
 MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
-  mount ResqueWeb::Engine => "/resque_web"
+  mount ResqueWeb::Engine => "/resque-web"
 
   match 'status', to: 'special#status'
 
