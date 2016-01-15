@@ -45,8 +45,9 @@ class TableOfContentsPresenter
     documents.first.official?
   end
 
+  # special filing documents may not always be present so check first
   def document?
-    documents.first.document?
+    documents.present? && documents.first.document?
   end
 
 
