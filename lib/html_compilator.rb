@@ -13,6 +13,7 @@ class HtmlCompilator
 
   def perform
     begin
+      puts "#{self.class} Compiling #{document.document_number}"
       save(compile)
     rescue MissingXmlFile => error
       Honeybadger.notify(error)

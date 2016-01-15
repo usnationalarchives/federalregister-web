@@ -2,7 +2,11 @@ class XsltFunctions
   # GPO will occassionally include multiple footnotes in a single node
   # we need to break them out in order to link them properly.
   def footnotes(nodes)
-    footnotes = nodes.first.content.split(' ')
+    footnotes = nodes.first
+    # sometimes XML will have FTRF that follow blank nodes so just return
+    return blank_document unless footnotes
+
+    footnotes = footnotes.content.split(' ')
 
     document = blank_document
     Nokogiri::XML::Builder.with(document) do |doc|
@@ -52,7 +56,7 @@ class XsltFunctions
 
   def amendment_part(nodes)
     return "" unless nodes.present?
-    
+
     document = blank_document
 
     node_text = nodes.first.content
