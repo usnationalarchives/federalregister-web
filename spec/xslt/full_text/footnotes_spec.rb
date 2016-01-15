@@ -79,15 +79,11 @@ describe "XSLT::FullText::Footnotes" do
       <h1 id="footnotes">Footnotes</h1>
       <div class="footnotes">
         <div class="footnote" id="footnote-1">
-          <p id="p-2" data-page="1000">
-            1. Footnote 1 text
-          </p>
+          <p id="p-2" data-page="1000">1. Footnote 1 text </p>
           <a class="back" href="#citation-1"> Back to Citation </a>
         </div>
         <div class="footnote" id="footnote-2">
-          <p id="p-4" data-page="1000">
-            2. Footnote 2 text
-          </p>
+          <p id="p-4" data-page="1000">2. Footnote 2 text </p>
           <a class="back" href="#citation-2"> Back to Citation </a>
         </div>
       </div>
@@ -200,8 +196,7 @@ describe "XSLT::FullText::Footnotes" do
         XML
 
         expect_equivalent <<-HTML
-          <p id="p-1" data-page="1000">
-            According to <em>Morse,</em><sup>[<a class="footnote-reference" href="#footnote-15" id="citation-15">15</a>] </sup>
+          <p id="p-1" data-page="1000">According to <em>Morse,</em><sup>[<a class="footnote-reference" href="#footnote-15" id="citation-15">15</a>] </sup>
             78 percent of falls
           </p>
         HTML
