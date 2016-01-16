@@ -31,6 +31,7 @@
 #= require document_page
 #= require public_inspection
 #= require utility_bar
+#= require utility_bar/document_tools
 
 # Homepage
 #= require home/home_section_preview_manager
