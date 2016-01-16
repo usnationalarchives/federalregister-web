@@ -1,23 +1,23 @@
-/* Meta data for document */
+// Meta data for document
 .bootstrap-scope .doc-toc {
-  position: relative;
   padding-left: 0;
+  position: relative;
 
   #regular-filing { padding-top: 0; }
 
   .special,
   .regular {
-    z-index: 200;
     position: relative;
+    z-index: 200;
 
     &> h2 {
       color: $text;
 
       span.updated_at {
-        font-size: modular-scale(-2);
         display: block;
-        font-weight: normal;
+        font-size: modular-scale(-2);
         font-style: italic;
+        font-weight: normal;
       }
     }
   }
@@ -26,15 +26,15 @@
     color: $fr-link-dark;
 
     &:hover {
-      text-decoration: none;
       color: $fr-orange;
+      text-decoration: none;
     }
   }
 
   h3 { margin-left: 7px; }
   h4 {
-    text-transform: none !important;
     line-height: 1.3 !important;
+    text-transform: none !important;
   }
 
   .fr-box {
@@ -44,8 +44,8 @@
   .fr-box-official,
   .fr-box-published {
     h2 {
-      color: $color-official;
       border-bottom: 2px solid $color-official;
+      color: $color-official;
     }
 
     .icon-fr2.icon-doctype { color: $text; }
@@ -53,8 +53,8 @@
 
   .fr-box-public-inspection {
     h2 {
-      color: $color-public-inspection;
       border-bottom: 2px solid $color-public-inspection;
+      color: $color-public-inspection;
     }
 
     .icon-fr2.icon-doctype { color: $text; }
@@ -63,34 +63,34 @@
       color: $color-public-inspection;
 
       &:hover {
-        text-decoration: none;
         color: darken($color-public-inspection, 20);
+        text-decoration: none;
       }
     }
   }
 
-/* Positioning icons in the background of the document toc's */
+// Positioning icons in the background of the document toc's
   %toc-doc-background {
+    color: $fr-background-seal;
+    font-size: 600px;
+    left: 100px;
     position: absolute;
     top: 25px;
-    left: 100px;
-    font-size: 600px;
     z-index: 0;
-    color: $fr-background-seal;
   }
 
   .fr-box-official .content-block {
     .doc-background {
       @extend %toc-doc-background;
-      top: 5px;
       left: 125px;
+      top: 5px;
     }
   }
   .fr-box-public-inspection .content-block {
     .doc-background {
       @extend %toc-doc-background;
-      left: 180px;
       font-size: 375px;
+      left: 180px;
     }
   }
 
@@ -107,8 +107,8 @@
     a { @extend %table-of-contents-link; }
 
     ul {
-      margin-left: 0;
       list-style: none;
+      margin-left: 0;
 
       &.see-references {
         @include apertura-condensed;
@@ -117,17 +117,17 @@
     }
   }
 
-  /* each level of hierarchy gets an additional indentation
-     which creates our hierarchy */
+  // each level of hierarchy gets an additional indentation
+  // which creates our hierarchy
   .toc-category-level {
-    margin-left: 25px;
     margin-bottom: 15px;
+    margin-left: 25px;
   }
   .toc-subject-level { margin-left: 25px; }
 
-  /* add an additional level of indentation to documents that
-     only have one level of heirarchy. This allows all columns
-     to align and makes the table much easier to scan */
+  // add an additional level of indentation to documents that
+  // only have one level of heirarchy. This allows all columns
+  // to align and makes the table much easier to scan
   .toc-level-1 > .toc-documents {
     margin-left: 25px;
 
@@ -138,12 +138,12 @@
     font-size: modular-scale(0);
 
     a {
-      font-size: modular-scale(0);
       @extend %table-of-contents-link;
+      font-size: modular-scale(0);
     }
 
     .toc-document-metadata {
-      /* Bootstrap looks to make margin-bottom !important, need to overrwrite */
+      // Bootstrap looks to make margin-bottom !important, need to overrwrite
       margin-bottom: 0px !important;
 
       a { font-weight: normal; }
@@ -151,16 +151,19 @@
   }
 
   dl {
-    margin-left: 0px;
-    font-size: modular-scale(0);
     @include apertura-condensed;
+    font-size: modular-scale(0);
+    margin-left: 0px;
 
-    dt, dd { float: left; }
+    dt,
+    dd {
+      float: left;
+    }
 
     dt {
       clear: both;
-      margin-right: 5px;
       font-weight: 500; //medium
+      margin-right: 5px;
 
       &.toc-pdf,
       &.permalink {
@@ -171,27 +174,27 @@
     }
 
     dd {
-      top: 0px;
-      position: relative;
       font-weight: normal;
+      position: relative;
+      top: 0px;
     }
   }
 
 
   div.editorial_note {
     clear: both;
-    margin-bottom: 30px;
     font-size: 14px;
-    margin-left: 20px;
     line-height: 18px;
+    margin-bottom: 30px;
+    margin-left: 20px;
   }
 
   span.new_document {
     //background: sprite-image('icons/new_badge_icon.png', 0, 0, 50px) no-repeat;
-    width: 16px;
-    height: 17px;
     display: inline-block;
-    position: absolute;
+    height: 17px;
     left: -20px;
+    position: absolute;
+    width: 16px;
   }
 }
