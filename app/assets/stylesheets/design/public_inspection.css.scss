@@ -13,29 +13,29 @@
   font-weight: bold;
 }
 
-/* used by info box as well */
+// used by info box as well
 %pi_notice {
-  font-style: italic;
-  font-size: 12px;
-
-  position:absolute;
   bottom: 0;
+  font-size: 12px;
+  font-style: italic;
+  position:absolute;
 }
+
 .fr-box-public-inspection #fulltext_content_area {
-  position: relative;
   height: 350px;
+  position: relative;
 
   .icon-fr2-stop-hand {
+    color: $color-public-inspection;
     float: left;
     font-size: 25px;
-    color: $color-public-inspection;
     padding-right: 5px;
   }
 
   p.pi_notice {
     @extend %pi_notice;
-    width: 575px;
     text-align: justify;
+    width: 575px;
   }
 }
 
@@ -44,8 +44,8 @@
     color: $color-public-inspection;
 
     &:hover {
-      text-decoration: none;
       color: darken($color-public-inspection, 20);
+      text-decoration: none;
     }
   }
 }
