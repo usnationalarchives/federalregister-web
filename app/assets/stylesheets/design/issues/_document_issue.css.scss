@@ -130,6 +130,8 @@
       padding-right: 40px;
       position: relative;
 
+      &:last-child { border-bottom: 0; }
+
       .count_pill {
         background-color: $color-official-light;
         line-height: 15px;
