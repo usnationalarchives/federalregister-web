@@ -44,6 +44,10 @@
 
 #print-disclaimer { display: none; }
 
+@media (min-width: 970px) {
+  body { overflow-x: hidden; }
+}
+
 body {
   a { text-decoration: none; }
 
