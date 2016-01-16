@@ -1,5 +1,4 @@
 class TableOfContentsSpecialFilingsPresenter < TableOfContentsPresenter
-
   def initialize(date)
     super(date)
   end
@@ -14,32 +13,30 @@ class TableOfContentsSpecialFilingsPresenter < TableOfContentsPresenter
 
   def documents
     @special_filings_data ||= PublicInspectionDocument.search(
-      query_conditions_special_filings.
-        merge(
-          per_page: 1000,
-          fields: [
-            'docket_numbers',
-            'document_number',
-            'filed_at',
-            'html_url',
-            'num_pages',
-            'pdf_file_size',
-            'pdf_url',
-            'publication_date',
-          ]
+      query_conditions.deep_merge(
+        per_page: 1000,
+        fields: [
+          'docket_numbers',
+          'document_number',
+          'filed_at',
+          'html_url',
+          'num_pages',
+          'pdf_file_size',
+          'pdf_url',
+          'publication_date',
+        ]
       )
     ).map{|d| PublicInspectionDocumentDecorator.decorate(d)}
   end
 
   private
 
-  def query_conditions_special_filings
-    {
-      conditions: {
-        available_on: date.to_date,
-        special_filing: 1
-      }
-    }
+  def query_conditions
+    if date == PublicInspectionDocumentIssue.current.publication_date
+      QueryConditions::PublicInspectionDocumentConditions.special_filing
+    else
+      QueryConditions::PublicInspectionDocumentConditions.
+        special_filings_available_on(date)
+    end
   end
-
 end

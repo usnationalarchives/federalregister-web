@@ -14,4 +14,16 @@ class QueryConditions::PublicInspectionDocumentConditions < QueryConditions
       }
     }
   end
+
+  def self.special_filings_available_on(date)
+    special_filing.deep_merge({
+      available_on: iso(date)
+    })
+  end
+
+  def self.regular_filings_available_on(date)
+    regular_filing.deep_merge({
+      available_on: iso(date)
+    })
+  end
 end
