@@ -52,6 +52,11 @@
   }
 
   .fr-box-public-inspection {
+    .doc-document-issue {
+      h1 { font-size: modular-scale(1); }
+      h2 { font-size: modular-scale(2); }
+    }
+
     h2 {
       border-bottom: 2px solid $color-public-inspection;
       color: $color-public-inspection;
@@ -195,6 +200,13 @@
     height: 17px;
     left: -20px;
     position: absolute;
+    width: 16px;
+  }
+}
+
+.bootstrap-scope .doc-toc-nav {
+  .count_pill {
+    text-align: center;
     width: 16px;
   }
 }

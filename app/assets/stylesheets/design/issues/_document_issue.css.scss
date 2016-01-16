@@ -23,12 +23,13 @@
     .fr-box { margin-bottom: 20px; }
 
     .count_pill {
-      @include border-radius(5);
-
-      font-size: 12px;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: modular-scale(-2);
       font-weight: bold;
-      width: 30px;
       height: 18px;
+      padding-top: 0;
+      width: 20px;
     }
 
     .fr-box-official .count_pill {
@@ -53,6 +54,22 @@
       background-color: $color-public-inspection-light;
       color: $color-public-inspection;
       border: 1px solid lighten($color-public-inspection, 40);
+    }
+
+    .fr-box-published .count_pill {
+      background-color: $color-published-light-alt;
+      color: darken($color-published, 10);
+      border: 1px solid $color-published;
+    }
+
+    .fr-box-published-alt {
+      .download-wrapper { border-color: darken($color-published, 10); }
+
+      .count_pill {
+        background-color: $color-published-light;
+        color: darken($color-published, 10);
+        border: 1px solid $color-published;
+      }
     }
   }
 }
