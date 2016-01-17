@@ -6,6 +6,14 @@
       <span class="signature-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
         <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
+          <xsl:attribute name="data-tooltip-template">
+            <xsl:value-of select="'#signature-tooltip-template'" />
+          </xsl:attribute>
+
+          <xsl:attribute name="data-tooltip-doc-override">
+            <xsl:value-of select="'tooltip-enhanced'" />
+          </xsl:attribute>
+
           <xsl:attribute name="data-text">
             <xsl:value-of select="'Start Signature'" />
           </xsl:attribute>
@@ -19,6 +27,14 @@
       <span class="signature-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
         <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-tooltip">
+          <xsl:attribute name="data-tooltip-template">
+            <xsl:value-of select="'#signature-tooltip-template'" />
+          </xsl:attribute>
+
+          <xsl:attribute name="data-tooltip-doc-override">
+            <xsl:value-of select="'tooltip-enhanced'" />
+          </xsl:attribute>
+          
           <xsl:attribute name="data-text">
             <xsl:value-of select="'End Signature'" />
           </xsl:attribute>

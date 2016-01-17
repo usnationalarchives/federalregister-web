@@ -5,6 +5,14 @@
     <span class="authority-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="authority unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#regtext-auth-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Authority'" />
         </xsl:attribute>
@@ -28,6 +36,14 @@
     <span class="authority-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="authority unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#regtext-auth-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+        
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Authority'" />
         </xsl:attribute>
@@ -37,4 +53,3 @@
     </span>
   </xsl:template>
 </xsl:stylesheet>
-

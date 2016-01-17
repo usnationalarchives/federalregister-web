@@ -5,6 +5,14 @@
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#suplinf-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Supplemental Information'" />
         </xsl:attribute>
@@ -17,6 +25,14 @@
     <span class="supplemental-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="supplemental-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#suplinf-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+        
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Supplemental Information'" />
         </xsl:attribute>

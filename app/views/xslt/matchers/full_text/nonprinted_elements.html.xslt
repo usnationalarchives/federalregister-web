@@ -16,6 +16,10 @@
           <xsl:value-of select="'#preamble-tooltip-template'" />
         </xsl:attribute>
 
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Preamble'" />
         </xsl:attribute>
@@ -33,6 +37,10 @@
           <xsl:value-of select="'#preamble-tooltip-template'" />
         </xsl:attribute>
 
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Preamble'" />
         </xsl:attribute>
@@ -46,6 +54,14 @@
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#appendix-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Appendix'" />
         </xsl:attribute>
@@ -58,6 +74,14 @@
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#appendix-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Appendix'" />
         </xsl:attribute>
@@ -70,6 +94,14 @@
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#furinf-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Further Info'" />
         </xsl:attribute>
@@ -82,6 +114,14 @@
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
       <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#furinf-tooltip-template'" />
+        </xsl:attribute>
+        
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Further Info'" />
         </xsl:attribute>
