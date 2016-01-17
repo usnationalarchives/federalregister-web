@@ -1,50 +1,40 @@
-$printed-page-color: $color-official;
 $unprinted-element-color: $color-enhanced-dark;
 
 .unprinted-element-wrapper {
   display: none;
   position: relative;
 
-  /* printed page is always displayed but only in icon form */
+  // printed page is always displayed but only in icon form
   &.printed-page-wrapper {
     display: inline;
-    color: $printed-page-color;
   }
 
   .icon-fr2 {
-    font-size: 12px;
     display: inline-block;
+    font-size: 12px;
     margin: 0 5px;
   }
 
-  /* for when we display these 'unprinted' items */
+  // for when we display these 'unprinted' items
   &.blocked {
-    display: block;
     color: $unprinted-element-color;
+    display: block;
     margin: 20px 0 10px;
 
     &.content-wrap { width: 578px; }
 
-    /* override color here as the print elements were present in the published
-       document even if they weren't 'printed' */
-    &.printed-page-wrapper {
-      color: $printed-page-color;
-      .unprinted-element-border { border-color: $printed-page-color; }
-    }
-
     .unprinted-element-border {
       border-bottom: 1px solid $unprinted-element-color;
       position: absolute;
-      width: 100%;
       top: 0;
+      width: 100%;
     }
 
     .unprinted-element {
-      position: relative;
       display: block;
-      top: -6px;
-      background-color: #F7FAFB;
       margin: 0 auto;
+      position: relative;
+      top: -6px;
       z-index: 100;
     }
 
@@ -60,4 +50,34 @@ $unprinted-element-color: $color-enhanced-dark;
     &.subpart-wrapper           .unprinted-element { width: 113px; }
     &.authority-wrapper         .unprinted-element { width: 113px; }
   }
+}
+
+
+
+// Only set colors for elements that change based on document status,
+// set other colors above.
+
+@mixin unprinted_element_colors($printed-page-color, $unprinted-element-background-color) {
+  .unprinted-element-wrapper {
+    &.printed-page-wrapper { color: $printed-page-color; }
+
+    &.blocked {
+      // override color here as the print elements were present in the published
+      // document even if they weren't 'printed'
+      &.printed-page-wrapper {
+        color: $printed-page-color;
+        .unprinted-element-border { border-color: $printed-page-color; }
+      }
+
+      .unprinted-element { background-color: $unprinted-element-background-color; }
+    }
+  }
+}
+
+&.doc-official {
+  @include unprinted_element_colors($color-official, $color-official-light);
+}
+
+&.doc-published {
+  @include unprinted_element_colors($color-published, $color-published-light);
 }

@@ -1,13 +1,3 @@
-$(document).ready ->
-  $('.doc-nav-wrapper').delegate 'a#display-print-page', 'click', (event)->
-    event.preventDefault()
-    FR2.DocumentTools.togglePrintedPage $(this)
-
-
-  $('.doc-nav-wrapper').delegate 'a#display-unprinted-elements', 'click', (event)->
-    event.preventDefault()
-    FR2.DocumentTools.toggleNonPrintedElements $(this)
-
 class @FR2.DocumentTools
 
   @printPageDisplayed = false

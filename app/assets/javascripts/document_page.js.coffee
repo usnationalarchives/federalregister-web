@@ -6,7 +6,7 @@ $(document).ready ->
     side_bar_top_offset = 30
 
     if document_height < sidebar_height + amount_document_should_be_lower_than_sidebar
-      $('.doc-content .fr-box.fr-box-official')
+      $('.doc-content .fr-box')
         .css(
           'height',
           sidebar_height + amount_document_should_be_lower_than_sidebar + side_bar_top_offset
@@ -15,16 +15,27 @@ $(document).ready ->
     CJ.Tooltip.addFancyTooltip(
       $('.document-markup.cj-fancy-tooltip'),
       {
-        className: 'document-markup-tooltip'
+        className: ()->
+          console.log $(this).data('tooltip-doc-override')
+          if $(this).data('tooltip-doc-override')
+            docType = $(this).data('tooltip-doc-override')
+          else if $('.document-markup.cj-fancy-tooltip').parents('.doc-official').size() > 0
+            docType = 'tooltip-doc-official'
+          else
+            docType = 'tooltip-doc-published'
+
+          "document-markup-tooltip #{docType}"
         delay: 0.3
         fade: true
         gravity: 's'
         html: true
         opacity: 1
         title: ()->
+          tooltipData = $(this).data('tooltip-data') || {}
+
           Handlebars.compile(
             $( $(this).data('tooltip-template') ).html()
-          )( $(this).data('tooltip-data') || {} )
+          )( tooltipData )
       },
       {
         position: 'centerTop'
@@ -54,3 +65,12 @@ $(document).ready ->
         event.preventDefault()
         window.history.back()
     )
+
+  # utility nav items
+  $('.doc-nav-wrapper a#display-print-page').on 'click', (event)->
+    event.preventDefault()
+    FR2.DocumentTools.togglePrintedPage $(this)
+
+  $('.doc-nav-wrapper a#display-unprinted-elements').on 'click', (event)->
+    event.preventDefault()
+    FR2.DocumentTools.toggleNonPrintedElements $(this)

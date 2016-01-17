@@ -1,17 +1,31 @@
-/* in our current setup these need to be outside the usual bootstrap-scope
-   as they are placed immediately inside the <body> tag */
+// in our current setup these need to be outside the usual bootstrap-scope
+// as they are placed immediately inside the <body> tag
 
 .tipsy.document-markup-tooltip {
+  &.tooltip-doc-published {
+    .tipsy-arrow { border-top-color: $color-published; }
+
+    .fr-seal-block-header,
+    .fr-seal-block-foorer {
+      background-color: $color-published;
+    }
+    .content-block { background-color: $color-published-light-alt; }
+  }
+
   .tipsy-arrow {
     border-top-color: $color-enhanced;
   }
 
   .tipsy-inner {
-    max-width: 500px;
-    font-size: 11px;
-    text-align: left;
     background-color: $color-enhanced-light;
+    font-size: 11px;
+    max-width: 500px;
     overflow: hidden;
     padding: 0;
+    text-align: left;
+  }
+
+  .fr-box-inherit {
+    background-color: $color-enhanced-light;
   }
 }
