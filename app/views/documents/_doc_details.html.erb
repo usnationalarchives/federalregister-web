@@ -23,7 +23,7 @@
 
       <% if document.dates.present? %>
         <dt>Dates:</dt>
-        <dd><%= add_citation_links(document.dates) %></dd>
+        <dd><%= add_citation_links(document.dates).html_safe %></dd>
       <% end %>
 
       <% if document.effective_on.present? %>
