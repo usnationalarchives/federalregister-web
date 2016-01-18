@@ -135,11 +135,13 @@
           </li>
           <li class="with_icon">
             <span class="icon-fr2 icon-fr2-twitter"></span>
-            <a href="">Share this document on Twitter</a>
+            <%= link_to_twitter "Share this document on Twitter",
+              "#{short_document_url(document)} #federalregister" %>
           </li>
           <li class="with_icon">
             <span class="icon-fr2 icon-fr2-facebook"></span>
-            <a href="">Share this document on Facebook</a>
+            <%= link_to_facebook "Share this document on Facebook",
+              short_document_url(document), document.title %>
           </li>
         </ul>
       <% end %>
