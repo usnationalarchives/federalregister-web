@@ -39,7 +39,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Further Info"}
       end
     end
@@ -48,7 +48,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Further Info"}
       end
     end
@@ -63,7 +63,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Appendix"}
       end
     end
@@ -72,7 +72,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Appendix"}
       end
     end
@@ -87,7 +87,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
+        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-fancy-tooltip",
           with: {"data-text" => "Start Signature"}
       end
     end
@@ -98,7 +98,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-tooltip",
+        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-fancy-tooltip",
           with: {"data-text" => "End Signature"}
       end
     end
@@ -137,7 +137,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-tooltip",
+        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-fancy-tooltip",
           with: {"data-text" => "Start List of Subjects"}
       end
     end
@@ -146,7 +146,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-tooltip",
+        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-fancy-tooltip",
           with: {"data-text" => "End List of Subjects"}
       end
     end
@@ -161,7 +161,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.part.unprinted-element.icon-fr2-book.cj-tooltip",
+        with_tag "span.part.unprinted-element.icon-fr2-book.cj-fancy-tooltip",
           with: {"data-text" => "Start Part"}
       end
     end
@@ -170,7 +170,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.part.unprinted-element.icon-fr2-book.cj-tooltip",
+        with_tag "span.part.unprinted-element.icon-fr2-book.cj-fancy-tooltip",
           with: {"data-text" => "End Part"}
       end
     end
@@ -185,7 +185,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Amendment Part"}
       end
     end
@@ -194,7 +194,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Amendment Part"}
       end
     end
@@ -209,7 +209,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "Start Authority"}
       end
     end
@@ -218,7 +218,7 @@ describe "XSLT::NonPrintedElements" do
 
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
-        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-tooltip",
+        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Authority"}
       end
     end
