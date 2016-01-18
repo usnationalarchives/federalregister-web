@@ -12,6 +12,10 @@ class Holiday
       first
   end
 
+  def self.is_a_holiday?(date)
+    ! find_by_date(date).nil?
+  end
+
   private
 
   def self.url

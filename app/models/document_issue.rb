@@ -39,13 +39,15 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   end
 
   def self.current_issue_is_late?
-    current.publication_date != Date.today &&
-    (Time.current > Time.zone.parse("9AM")) &&
-    should_have_an_issue?(Date.today)
+    current.publication_date != Date.current &&
+      (Time.current > Time.zone.parse("9AM")) &&
+      should_have_an_issue?(Date.current)
   end
 
   def self.should_have_an_issue?(date)
-    date <= Date.today && !(date.wday == 0 || date.wday == 6)
+    date <= Date.current &&
+      ! (date.wday == 0 || date.wday == 6) &&
+      ! Holiday.is_a_holiday?(date)
   end
 
   def self.for_month(date)
