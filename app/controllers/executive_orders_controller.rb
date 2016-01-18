@@ -17,6 +17,8 @@ class ExecutiveOrdersController < ApplicationController
       president: params[:president],
       year: params[:year]
     )
+
+    raise ActiveRecord::RecordNotFound unless @presenter.eo_collection.results.present?
   end
 
   def navigation

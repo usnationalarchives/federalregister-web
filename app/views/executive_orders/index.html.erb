@@ -91,15 +91,20 @@
               <ul class="eo-list">
                 <% orders_by_year.each do |eo_collection| %>
                   <li>
-                    <%= link_to eo_collection.year,
+                    <%= link_to_if eo_collection.results.present?, eo_collection.year,
                       executive_orders_by_president_and_year_path(
                         president.identifier,
                         eo_collection.year
                       ) %>
-                    EO <%= eo_collection.minimum_number %>
-                    <% if eo_collection.maximum_number &&
-                      eo_collection.maximum_number != eo_collection.minimum_number %>
-                        - EO <%= eo_collection.maximum_number %>
+
+                    <% if eo_collection.results.present? %>
+                      EO <%= eo_collection.minimum_number %>
+                      <% if eo_collection.maximum_number &&
+                        eo_collection.maximum_number != eo_collection.minimum_number %>
+                          - EO <%= eo_collection.maximum_number %>
+                      <% end %>
+                    <% else %>
+                      No Executive Orders issued.
                     <% end %>
                     <span class="count-pill official">
                       <%= eo_collection.count %>
