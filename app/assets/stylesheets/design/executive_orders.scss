@@ -1,7 +1,26 @@
+%reader-aid-link {
+  color: $color-reader-aid;
+
+  &:visited { color: $color-reader-aid; }
+  &:hover { color: darken($color-reader-aid, 15); }
+}
+
 .executive-orders {
+  a,
+  .fr-box .content-block a {
+    @extend %reader-aid-link;
+  }
+
   .agency-header { @extend %agency-header; }
 
-  .page-summary { margin-bottom: 2em; }
+  .page-summary {
+    margin-bottom: 2em;
+
+    p a,
+    .links a {
+      @extend %reader-aid-link;
+    }
+  }
 
   ul.bulk-files {
     list-style: none;

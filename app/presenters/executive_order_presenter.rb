@@ -48,6 +48,22 @@ class ExecutiveOrderPresenter
     'Executive Orders'
   end
 
+  def fr_content_box_type
+    :reader_aid
+  end
+
+  def fr_content_box_title
+    "Executive Order Disposition Tables"
+  end
+
+  def fr_details_box_type
+    :reader_aid_navigation
+  end
+
+  def fr_details_box_title
+    "Executive Order Disposition Tables"
+  end
+
   private
 
   def conditions_for_format(format, president_identifier=nil)

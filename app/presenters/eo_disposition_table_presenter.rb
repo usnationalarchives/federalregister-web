@@ -8,20 +8,8 @@ class EoDispositionTablePresenter < ExecutiveOrderPresenter
     The tables are compiled and maintained by the Office of the Federal Register editors."
   end
 
-  def fr_content_box_type
-    :reader_aid
-  end
-
   def fr_content_box_title
     "#{year} #{president.full_name} Executive Order Disposition Table"
-  end
-
-  def fr_details_box_type
-    :reader_aid_navigation
-  end
-
-  def fr_details_box_title
-    "Executive Order Disposition Tables"
   end
 
   def current_page?(president, eo_collection)

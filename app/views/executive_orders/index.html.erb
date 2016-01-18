@@ -1,12 +1,11 @@
+<% header_type 'reader-aids' %>
 <% page_title @presenter.name %>
 <% description truncate_words(
     strip_tags(@presenter.description),
     :length => 300
   ) %>
 
-<% add_javascript src: 'page_specific/agency_logo' %>
-
-<% title do %>
+<% title title_bar_class: "reader-aids" do %>
   <%= fr_icon 'stars' %>
   <%= @presenter.name %>
 <% end %>
@@ -18,18 +17,12 @@
       <div class="agency-header">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <h1>
-              <% if @presenter.agency.logo.present? %>
-                <%= image_tag @presenter.agency.logo_url(:thumb),
-                  class: 'agency-logo' %>
-              <% end %>
-              <%= @presenter.name %>
-            </h1>
+            <h1><%= @presenter.name %></h1>
           </div>
         </div>
       </div>
 
-      <div class="page-summary">
+      <div class="page-summary reader-aid">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <%= simple_format(@presenter.description) %>
@@ -70,6 +63,13 @@
 
       </div>
 
+      <%= fr_content_box(
+        FrBox.build(
+          @presenter.fr_content_box_type,
+          title: @presenter.fr_content_box_title,
+          description: @presenter.description
+        )
+      ) do %>
       <% @presenter.orders_by_president_and_year.each do |president, orders_by_year| %>
         <div class="president-wrapper">
           <div class="row">
@@ -106,7 +106,10 @@
                     <% else %>
                       No Executive Orders issued.
                     <% end %>
-                    <span class="count-pill official">
+
+                    <span class="count-pill reader-aid cj-tooltip"
+                      data-tooltip="<%= pluralize(eo_collection.count, 'executive order') %>"
+                      data-tooltip-gravity="w">
                       <%= eo_collection.count %>
                     </span>
                   </li>
@@ -116,7 +119,7 @@
           </div>
         </div>
       <% end %>
-
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -2,37 +2,38 @@
   <div class="row">
     <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
       <h1>
-        <% if presenter.agency.logo.present? %>
-          <%= image_tag presenter.agency.logo_url(:thumb),
-            class: 'agency-logo' %>
-        <% end %>
         <%= "#{presenter.year} #{presenter.president.full_name} Executive Orders" %>
       </h1>
     </div>
   </div>
 </div>
 
-<div class="page_summary">
-  <p>
-    In <%= presenter.year %>, <%= presenter.president.full_name %>
-    published
-    <%= pluralize(presenter.eo_collection.count, 'executive order') %>,
-    from EO <%= presenter.eo_collection.minimum_number %>
-    through EO <%= presenter.eo_collection.maximum_number %>.
-  </p>
 
-  <p>
-    These <%= pluralize(presenter.eo_collection.count, 'executive order') %>
-    can be downloaded in
-    <%= presenter.link_to_executive_orders_for_format(
-      :csv, presenter.president.identifier
-    ) %>
-    and
-    <%= presenter.link_to_executive_orders_for_format(
-      :json, presenter.president.identifier
-    ) %>
-    formats.
-    More information about our APIs can be found on our
-    <a href="/learn/developers">developers page</a>.
-  </p>
+<div class="page-summary reader-aid">
+  <div class="row">
+    <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+      <p>
+        In <%= presenter.year %>, <%= presenter.president.full_name %>
+        published
+        <%= pluralize(presenter.eo_collection.count, 'executive order') %>,
+        from EO <%= presenter.eo_collection.minimum_number %>
+        through EO <%= presenter.eo_collection.maximum_number %>.
+      </p>
+
+      <p>
+        These <%= pluralize(presenter.eo_collection.count, 'executive order') %>
+        can be downloaded in
+        <%= presenter.link_to_executive_orders_for_format(
+          :csv, presenter.president.identifier
+        ) %>
+        and
+        <%= presenter.link_to_executive_orders_for_format(
+          :json, presenter.president.identifier
+        ) %>
+        formats.
+        More information about our APIs can be found on our
+        <a href="/learn/developers">developers page</a>.
+      </p>
+    </div>
+  </div>
 </div>

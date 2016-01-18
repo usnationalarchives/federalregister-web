@@ -13,7 +13,10 @@
     <ul>
       <% eo_collections.each do |eo_collection| %>
         <li <%= 'class=current' if presenter.current_page?(president, eo_collection) %>>
-          <%= link_to_unless  presenter.current_page?(president, eo_collection),
+          <%= link_to_unless (
+              presenter.current_page?(president, eo_collection) ||
+               eo_collection.results.empty?
+            ),
             eo_collection.year,
             executive_orders_by_president_and_year_path(
               president.identifier, eo_collection.year
