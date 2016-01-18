@@ -53,7 +53,7 @@
   <xsl:template match="APPENDIX">
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#appendix-tooltip-template'" />
         </xsl:attribute>
@@ -73,7 +73,7 @@
 
     <span class="appendix-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#appendix-tooltip-template'" />
         </xsl:attribute>
@@ -93,7 +93,7 @@
   <xsl:template match="FURINF">
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#furinf-tooltip-template'" />
         </xsl:attribute>
@@ -113,11 +113,11 @@
 
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#furinf-tooltip-template'" />
         </xsl:attribute>
-        
+
         <xsl:attribute name="data-tooltip-doc-override">
           <xsl:value-of select="'tooltip-enhanced'" />
         </xsl:attribute>

@@ -4,7 +4,7 @@
   <xsl:template match="LSTSUB">
     <span class="list-of-subjects-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-tooltip">
+      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#lstsub-tooltip-template'" />
         </xsl:attribute>
@@ -25,7 +25,7 @@
 
     <span class="list-of-subjects-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-tooltip">
+      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#lstsub-tooltip-template'" />
         </xsl:attribute>
@@ -33,7 +33,7 @@
         <xsl:attribute name="data-tooltip-doc-override">
           <xsl:value-of select="'tooltip-enhanced'" />
         </xsl:attribute>
-        
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End List of Subjects'" />
         </xsl:attribute>

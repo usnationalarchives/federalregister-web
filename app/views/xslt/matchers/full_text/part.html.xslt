@@ -4,7 +4,7 @@
   <xsl:template match="PART">
     <span class="part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="part unprinted-element icon-fr2 icon-fr2-book cj-tooltip">
+      <span class="part unprinted-element icon-fr2 icon-fr2-book cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-part-tooltip-template'" />
         </xsl:attribute>
@@ -25,7 +25,7 @@
 
     <span class="part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="part unprinted-element icon-fr2 icon-fr2-book cj-tooltip">
+      <span class="part unprinted-element icon-fr2 icon-fr2-book cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-part-tooltip-template'" />
         </xsl:attribute>
@@ -33,7 +33,7 @@
         <xsl:attribute name="data-tooltip-doc-override">
           <xsl:value-of select="'tooltip-enhanced'" />
         </xsl:attribute>
-        
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Part'" />
         </xsl:attribute>

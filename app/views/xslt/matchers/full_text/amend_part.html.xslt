@@ -4,7 +4,7 @@
   <xsl:template match="AMDPAR">
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-amendpart-tooltip-template'" />
         </xsl:attribute>
@@ -31,7 +31,7 @@
 
     <span class="amend-part-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-tooltip">
+      <span class="amend-part unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-amendpart-tooltip-template'" />
         </xsl:attribute>
@@ -39,7 +39,7 @@
         <xsl:attribute name="data-tooltip-doc-override">
           <xsl:value-of select="'tooltip-enhanced'" />
         </xsl:attribute>
-        
+
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Amendment Part'" />
         </xsl:attribute>

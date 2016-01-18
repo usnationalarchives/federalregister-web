@@ -23,6 +23,10 @@
     overflow: hidden;
     padding: 0;
     text-align: left;
+
+    .fr-box .content-block p {
+      margin-bottom: 10px;
+    }
   }
 
   .fr-box-inherit {

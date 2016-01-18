@@ -16,7 +16,6 @@ $(document).ready ->
       $('.document-markup.cj-fancy-tooltip'),
       {
         className: ()->
-          console.log $(this).data('tooltip-doc-override')
           if $(this).data('tooltip-doc-override')
             docType = $(this).data('tooltip-doc-override')
           else if $('.document-markup.cj-fancy-tooltip').parents('.doc-official').size() > 0
