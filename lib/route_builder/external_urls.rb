@@ -24,4 +24,8 @@ module RouteBuilder::ExternalUrls
   def fdsys_document_mods_url(document)
     "https://www.gpo.gov/fdsys/granule/FR-#{document.publication_date.to_s(:iso)}/#{document.document_number}/mods.xml"
   end
+
+  def fdsys_cfr_url(title, part, section)
+    "http://api.fdsys.gov/link?collection=cfr&titlenum=#{title}&partnum=#{part}&sectionnum=#{section}&year=mostrecent&link-type=xml"
+  end
 end
