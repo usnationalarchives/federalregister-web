@@ -1,4 +1,4 @@
-class @CJ.Modal
+class @FR2.Modal
   @defaults: ()->
     {
       modalId:       '#disclaimer_modal'

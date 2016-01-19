@@ -35,7 +35,7 @@
       }
 
 
-      CJ.Modal.displayModal(
+      FR2.Modal.displayModal(
         '',
         interstitial_tender_modal_template({
           document_feedback_text: document_feedback_text,
