@@ -23,6 +23,7 @@ $(document).ready ()->
   _.each $('.toggle-all'), (el)->
     new CJ.ToggleAll(el)
 
+  # Calendars
   standardCalendars = $('.calendar-wrapper:not(.cal-double) table.calendar')
   _.each standardCalendars, (calendar)->
     new FR2.Calendar $(calendar)
@@ -30,3 +31,13 @@ $(document).ready ()->
   multiCalendars = $('.calendars-wrapper')
   _.each multiCalendars, (wrapper)->
     new FR2.MultiCalendarHandler $(wrapper).find('table.calendar')
+
+  # Analytics
+  $('#comment-bar.comment').on 'click', '.button.formal_comment.how_to_comment', ->
+    button = $(this)
+
+    category = 'Comment: How to Comment'
+    action = button.attr('href')
+    documentNumber = button.closest('div.comment').data('document-number')
+
+    FR2.Analytics.trackGAEvent category, action, documentNumber

@@ -7,7 +7,6 @@
 #= require handlebars_helpers
 #= require storage.js
 #= require analytics.js
-#= require analytics/comments
 
 #= require components
 #= require fr_modal
@@ -47,6 +46,7 @@
 #= require search
 
 # Namespaced JS Classes
+#= require utilities/analytics
 #= require utilities/cj_tooltip
 #= require utilities/modal
 #= require utilities/element_scroller
