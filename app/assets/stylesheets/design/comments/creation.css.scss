@@ -1,16 +1,20 @@
 %required_abbr {
   color: $fr-orange;
-  margin-left: 2px;
   font-size: 20px;
+  margin-left: 2px;
   position: absolute;
 }
 
-body#entries .form-tooltip {
+.form-tooltip {
   width: 200px;
 }
 
 .document-notice-bar.comment {
-  &.open { height: 60px; }
+  &.open {
+    height: 60px;
+
+    img.reg_gov_logo { top: 15px; }
+  }
 
   p .byline {
     line-height: 23px;
@@ -19,61 +23,60 @@ body#entries .form-tooltip {
 
   img.reg_gov_logo {
     float: right;
+    position: absolute;
     right: 20px;
     top: 8px;
-    position: absolute;
   }
-  &.open img.reg_gov_logo { top: 15px; }
 }
 
 #metadata_content_area .loading {
+  @include rounded-bottom(6);
+  background-color: $fr-gray-20;
+  border: 1px solid $fr-gray-20;
   height: 23px;
   padding: 10px;
   padding-top: 13px;
-  background-color: #CCC;
-  border: 1px solid #CCC;
-  @include rounded-bottom(6);
 
   position: relative;
   z-index: 600;
 
   .loader {
+    background: image-url('orange_loader_CCC.gif') 159px 0 no-repeat;
+    display: block;
     font-weight: bold;
     margin: 0 auto;
     width: 180px;
-    display: block;
-    background: image-url('orange_loader_CCC.gif') 159px 0 no-repeat;
   }
 }
 
 .ajax-comment-data {
-  background-color: #D7D7D7;
   @include rounded-bottom(6);
-  min-height: 48px;
-  top: -23px;
+  background-color: $fr-gray-15;
   margin-bottom: 23px;
+  min-height: 48px;
   position: relative;
+  top: -23px;
 
   p { font-family: gesta-1, gesta-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
-  }
+}
 
 .comment_form_wrapper {
-  background-color: #D7D7D7;
+  @include rounded-bottom(6);
+  background-color: $fr-gray-15;
   padding: 20px;
   padding-top: 10px;
-  @include rounded-bottom(6);
-  }
+}
 
 .formtastic.comment {
-  background-color: #EFEFEF;
+  background-color: $fr-gray-10;
+  border-radius: 5px;
   padding: 15px;
-  @include border-radius(5);
 
   li.input {
     clear: both;
     margin-bottom: 25px;
-    width: 830px;
     position: relative;
+    width: 830px;
 
     &.boolean {
       margin-left: 240px;
@@ -87,12 +90,13 @@ body#entries .form-tooltip {
       }
 
       .inline-errors {
-        top: 2px;
         left: 350px;
+        top: 2px;
         width: 170px;
       }
     }
   }
+
   li.error {
     background: none;
     padding: inherit;
@@ -100,24 +104,22 @@ body#entries .form-tooltip {
 
   li {
     span.public {
+      color: $fr-gray-40;
+      display: inline-block;
+      font-size: 23px;
       height: 25px;
-      width: 25px;
-
-      position: relative;
       left: 7px;
       margin: 0;
-
-      display: inline-block;
+      position: relative;
       vertical-align: middle;
-
-      font-size: 23px;
-      color: $fr-gray-40;
+      width: 25px;
     }
 
     select + span.public {
-      top: 1px;
       left: 5px;
+      top: 1px;
     }
+
     textarea + span.public,
     input[type='file'] + span.public {
       top: 0px;
@@ -131,21 +133,21 @@ body#entries .form-tooltip {
 .formtastic.comment fieldset {
   .label {
     display: inline-block;
-    position: relative;
-    width: 150px;
-    vertical-align: middle;
-    font-weight: bold;
     font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    vertical-align: middle;
+    width: 150px;
+
+    abbr {
+      @extend %required_abbr;
+    }
   }
 
   .text .label {
-    vertical-align: top;
     position: relative;
     top: 5px;
-  }
-
-  .label abbr {
-    @extend %required_abbr;
+    vertical-align: top;
   }
 }
 
@@ -153,12 +155,12 @@ body#entries .form-tooltip {
   input[type='text'],
   select,
   textarea {
-    height: 30px;
-    width: 375px;
+    @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
+    border-radius: 3px;
     font-size: 13px;
+    height: 30px;
     vertical-align: middle;
-    @include input-box-shadow('#CCC', '#EEE', '#FFF');
-    @include border-radius(3);
+    width: 375px;
   }
 
   textarea {
@@ -177,26 +179,27 @@ body#entries .form-tooltip {
   p.inline-hints {
     background: none;
     font-style: italic;
-    padding: 0;
     margin-left: 59px;
+    padding: 0;
   }
 }
 
 .comment_form_wrapper .instructions p {
-  padding: 10px;
   background: none;
   line-height: 1.2em;
-  }
+  padding: 10px;
+}
+
 .comment_wrapper .notice.comment_reloaded {
   font-size: 1.2em;
   margin-bottom: 20px;
-  }
+}
 
 .formtastic.comment {
   .buttons {
-    margin-top: 0;
     margin-bottom: 30px;
     margin-left: 240px;
+    margin-top: 0;
 
     .commit.button {
       background-color: $fr-green;
@@ -215,58 +218,58 @@ body#entries .form-tooltip {
     }
 
     .submitting.commit.button {
-      background-color: #CCC;
+      background-color: $fr-gray-20;
 
-      &:hover { background-color: #CCC; }
+      &:hover { background-color: $fr-gray-20; }
 
       input {
-        padding-right: 25px;
         background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
+        padding-right: 25px;
       }
     }
   }
 
   .button {
-    position: relative;
-    padding: 10px;
     cursor: pointer;
+    padding: 10px;
+    position: relative;
 
     input {
-      width: 200px;
-      box-shadow: none;
-      font-weight: bold;
-      color: white;
-      border: none;
       background: none;
+      border: none;
+      box-shadow: none;
+      color: $white;
       cursor: pointer;
-      text-transform: uppercase;
       font-size: 1em;
+      font-weight: bold;
+      text-transform: uppercase;
       vertical-align: middle;
+      width: 200px;
     }
   }
 }
 
 .formtastic.comment .comment_preview {
-  line-height: 1.2em;
   font-size: 1.1em;
   font-weight: bold;
+  line-height: 1.2em;
   margin-left: 10px;
   position: relative;
   top: 2px;
-  }
+}
 
 .formtastic.comment {
   .errors {
     background: $fr-light-red;
     border: 1px solid $fr-red;
-    padding: .5em .5em .25em;
-    @include border-radius(6);
-    text-align: center;
-    font-size: 1.2em;
+    border-radius: 6px;
     color: $fr-red;
+    font-size: 1.2em;
+    padding: 0.5em 0.5em 0.25em;
+    text-align: center;
   }
 
- .error {
+  .error {
     .label { color: $fr-red; }
 
     input[type='text'],
@@ -278,15 +281,16 @@ body#entries .form-tooltip {
 .formtastic.comment {
   p.inline-errors {
     background: none;
+    color: $fr-red;
     font-size: 15px;
     font-weight: normal;
     line-height: 1.4em;
-    color: #8A3737;
     position: absolute;
-    top: 5px;
     right: 25px;
+    top: 5px;
+
+    &.warning { color: $fr-green; }
   }
-  p.inline-errors.warning { color: $fr-green; }
 
   #comment_general_comment_input p.inline-errors { top: inherit; }
 }
@@ -297,8 +301,8 @@ body#entries .form-tooltip {
 
   li {
     float: left;
-    width: 130px;
     margin-left: 20px;
+    width: 130px;
   }
 }
 
@@ -306,7 +310,7 @@ body#entries .form-tooltip {
   margin-right: 0.8em;
   margin-top: 2px;
   vertical-align: top;
-  }
+}
 
 .formtastic.comment .file {
   .label { float: left; }
@@ -321,124 +325,125 @@ body#entries .form-tooltip {
   // our custom button and make it transparent. Triggering the fileupload
   // dialog box with javascript isn't allowed in those browsers.
   .fileupload-button {
-    position: relative;
     float: left;
-    width: 88px;
-    overflow: hidden;
     margin-bottom: 10px;
-
+    overflow: hidden;
+    position: relative;
+    width: 88px;
 
     #fileupload {
-      margin-left: 0;
-      width: 88px;
-      font-size: 200px;
-      position: absolute;
-      line-height: 23px;
-      z-index: 2;
       cursor: pointer;
+      font-size: 200px;
+      line-height: 23px;
+      margin-left: 0;
       opacity: 0;
+      position: absolute;
+      width: 88px;
+      z-index: 2;
     }
 
     .add_file {
-      color: #FFF;
-      height: 23px;
-      padding: 0;
-      padding-top: 3px;
-      padding-left: 5px;
-      min-width: inherit;
-      width: 83px;
-      font-weight: bold;
       background-color: $fr-green;
+      color: $white;
+      font-weight: bold;
+      height: 23px;
+      min-width: inherit;
+      padding: 0;
+      padding-left: 5px;
+      padding-top: 3px;
       text-transform: none;
+      width: 83px;
 
       .icon-fr2 {
         padding-right: 5px;
         top: 1px;
       }
+
+      &:hover,
+      &.hover {
+        background-color: lighten($fr-green, 10);
+      }
     }
-    .add_file:hover,
-    .add_file.hover { background-color: lighten($fr-green, 10); }
   }
 
   td.cancel,
-  td.delete { vertical-align: middle; }
+  td.delete {
+    vertical-align: middle;
+  }
 
   button.cancel,
   button.delete {
-    height: 22px;
-    min-width: 70px;
-    width: 70px;
-
-    padding: 0;
-    padding-top: 1px;
+    background-color: $fr-red;
     border: 0;
-
-    position: relative;
-    top: 1px;
-    left: 20px;
-
-    text-transform: none;
+    color: $white;
     font-size: 0.8em;
     font-weight: bold;
-
-    color: #FFF;
-    background-color: $fr-red;
+    height: 22px;
+    left: 20px;
+    min-width: 70px;
+    padding: 0;
+    padding-top: 1px;
+    position: relative;
+    text-transform: none;
+    top: 1px;
+    width: 70px;
 
     &:hover { background-color: lighten($fr-red, 10); }
 
     span {
       display: block;
       float: left;
-      top: -1px;
       position: relative;
+      top: -1px;
 
       &.icon-fr2 {
-        top: 0px;
         margin: 0 5px 0 7px;
         padding-top: 1px;
+        top: 0px;
       }
     }
-
   }
 
-  tr.upload-error button.cancel { top: 0; }
-  tr.upload-error td.file-error {
-    color: $fr-red;
-    font-weight: bold;
+  tr.upload-error {
+    button.cancel { top: 0; }
+
+    td.file-error {
+      color: $fr-red;
+      font-weight: bold;
+    }
   }
 }
 
 table.attachments {
-  width: 638px;
-  margin-left: 165px;
   clear: both;
+  margin-left: 165px;
+  width: 638px;
 
   tr {
+    border-top: 1px solid $fr-gray-20;
     margin-top: 5px;
-    border-top: 1px solid #CCC;
 
     &.error {
+      background: none; // remove unwanted cascade
       color: $fr-red;
+      display: table-row; // remove unwanted cascade
       font-weight: bold;
-
-      // remove unwanted cascade
-      display: table-row;
-      background: none;
     }
   }
 
   tr,
   td.name {
-    padding-left: 0;
     padding-bottom: 3px;
+    padding-left: 0;
   }
+
   td.size {
     text-align: right;
     width: 75px;
   }
 }
 
-/* PROGRESS BARS */
+// PROGRESS BARS
 table.attachments {
   .progress {
     margin-bottom: 0;
@@ -448,37 +453,40 @@ table.attachments {
   }
 
   td.progress-bar { padding-left: 0; }
+
   .progress-striped .bar { background-color: $fr-orange; }
+
   .progress-success .bar {
     @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
     padding-top: 1px;
   }
 }
 
-.formtastic.comment .regulations_dot_gov_notices {
-  margin: 0 auto;
-  width: 400px;
-  font-style: italic;
-  color: $fr-gray-60;
-}
-
 .formtastic.comment {
+  .regulations_dot_gov_notices {
+    color: $fr-gray-60;
+    font-style: italic;
+    margin: 0 auto;
+    width: 400px;
+  }
+
   hr { clear: both; }
 }
 
 div.comment-preview-modal {
-  display: none;
-
-  background-color: white;
-  border: 5px solid #3F5B75;
+  background-color: $white;
+  border: 5px solid $fr-dark-blue;
   display: none;
   padding: 1em;
   position: fixed;
   top: 5em;
   width: 500px;
-  }
+}
+
 div.comment-preview-modal,
-div.alternative-comment-modal { margin-left: 0px; }
+div.alternative-comment-modal {
+  margin-left: 0px;
+}
 
 #fr_modal.comment-preview-modal,
 #fr_modal.print_modal {
@@ -487,103 +495,111 @@ div.alternative-comment-modal { margin-left: 0px; }
 
   .modal_content { overflow: auto; }
 
-  dl dt { width: 200px; }
-  dl.comment_details dt { width: 190px; }
-  dl dd { width: 450px; }
-  dl dd + dd { margin-left: 221px;}
+  dl {
+    dt { width: 200px; }
+
+    &.comment_details dt { width: 190px; }
+
+    dd {
+      width: 450px;
+
+      &+ dd { margin-left: 221px;}
+    }
+  }
+
 
   .print_button {
-    color: #5697CF;
-    font-weight: bold;
+    color: $fr-blue;
+    cursor: pointer;
     font-size: 1.2em;
+    font-weight: bold;
+    padding-left: 27px;
     position: absolute;
     right: 14px;
     top: 60px;
-
-    cursor: pointer;
-    padding-left: 27px;
-    }
+  }
 
   .document_title {
     font-size: 1.5em;
     line-height: 1.6;
-    }
+  }
 
   .agency {
-    border-bottom: 1px solid #CCC;
-    border-top: 1px solid #CCC;
+    border-bottom: 1px solid $fr-gray-20;
+    border-top: 1px solid $fr-gray-20;
     margin: 0.5em 0;
     overflow: hidden;
     padding: 0.5em 0;
-    }
+  }
 
   .comment_details {
-    border: 1px #CCC solid;
-    background-color: #EFEFEF;
+    background-color: $fr-gray-10;
+    border: 1px $fr-gray-20 solid;
     border-radius: 6px;
+    margin-bottom: 1.5em;
     padding: 10px;
     padding-top: 15px;
-    margin-bottom: 1.5em;
 
     dd.tracking_number {
-      border: 1px #CCC solid;
+      background-color: $white;
+      border: 1px $fr-gray-20 solid;
       border-radius: 6px;
+      font-family: courier;
       padding: 0px 5px;
       width: auto;
-      background-color: white;
-      font-family: courier;
     }
   }
 }
 
-/* COMMENT FORM SUBMIT SUCCESS */
+// COMMENT FORM SUBMIT SUCCESS
 .tracking_number {
-  background-color: #EFEFEF;
+  @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
+  background-color: $white;
+  border-radius: 3px;
   font-family: courier;
   padding: 2px 5px;
-  @include input-box-shadow('#CCC', '#EEE', '#EFEFEF');
-  @include border-radius(3);
-  }
+}
 
 .comment_wrapper {
   .notice,
   .comment_next_steps {
-    width: 90%;
     margin: 0 auto;
+    width: 90%;
+
+    p {
+      background: none;
+      line-height: 1.3em;
+      margin-left: 0;
+      padding: 3px 10px;
+    }
   }
 
   .notice {
-    padding: 15px;
+    border-radius: 6px;
     margin-top: 13px;
-    @include border-radius(6);
+    padding: 15px;
 
     p.info { text-align: left; }
-  }
-
-  .notice p,
-  .comment_next_steps p {
-    padding: 3px 10px;
-    line-height: 1.3em;
-    background: none;
-    margin-left: 0;
   }
 }
 
 .comment_wrapper .comment_next_steps {
+  @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
+  background-color: $fr-gray-5;
+  border-radius: 5px;
   margin-top: 20px;
-  background-color: #EFEFEF;
   padding: 15px;
-  @include input-box-shadow('#CCC', '#EEE', '#FFF');
-  @include border-radius(5);
 
-  h2 { font-size: 1.8em }
+  h2 { font-size: 1.8em; }
 
   p { padding-left: 60px; }
+
   ul {
     font-size: 1.1em;
     margin-left: 110px;
     margin-top: 10px;
   }
+
   form {
     padding-left: 90px;
 
@@ -591,41 +607,45 @@ div.alternative-comment-modal { margin-left: 0px; }
       font-size: 1.1em;
       margin-bottom: 0;
     }
+
     .buttons {
-      margin-top: 0;
       margin-left: 0;
+      margin-top: 0;
 
       .button {
-        padding: 5px;
-        color: #FFF;
-        height: 20px;
-        font-weight: bold;
         background-color: $fr-green;
-      }
-      .button:hover { background-color: $fr-orange; }
-      .button input {
-        width: 100px;
-        box-shadow: none;
-        font-weight: bold;
         color: $white;
-        border: none;
+        font-weight: bold;
+        height: 20px;
+        padding: 5px;
+
+        &:hover { background-color: $fr-orange; }
+      }
+
+      .button input {
         background: none;
+        border: 0;
+        box-shadow: none;
+        color: $white;
         cursor: pointer;
-        text-transform: uppercase;
         font-size: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
         vertical-align: middle;
+        width: 100px;
       }
     }
   }
 }
 
 .comment_wrapper .social_media .media_buttons { margin-left: 90px; }
+
 .comment_wrapper .comment_next_steps {
   .icon-fr2 {
+    color: $fr-gray-60;
     float: left;
     font-size: 28px;
     left: 20px;
-    color: $fr-gray-60;
   }
 
   .my_fr {
@@ -642,26 +662,27 @@ div.alternative-comment-modal { margin-left: 0px; }
       width: 600px;
 
       &.first {
-        border-bottom: 1px solid #CCC;
-        padding-bottom: 5px;
+        border-bottom: 1px solid $fr-gray-20;
         margin-bottom: 5px;
+        padding-bottom: 5px;
       }
 
       .description {
-        width: 450px;
         display: block;
         padding-left: 10px;
+        width: 450px;
       }
+
       a.notifications {
-        float: right;
-        width: 75px;
-        top: 10px;
-        right: 10px;
-        position: absolute;
-        text-align: center;
-        @include border-radius(5);
         background-color: $fr-green;
+        border-radius: 5px;
         color: $white;
+        float: right;
+        position: absolute;
+        right: 10px;
+        text-align: center;
+        top: 10px;
+        width: 75px;
 
         &:hover { background-color: $fr-orange; }
 
@@ -681,13 +702,13 @@ div.alternative-comment-modal { margin-left: 0px; }
   }
 
   .retrieval {
-    padding: 0;
-    text-align: center;
-    margin-top: 35px;
     font-size: 0.9em;
     font-style: italic;
+    margin-top: 35px;
+    padding: 0;
+    text-align: center;
 
-    p { padding: 0 }
+    p { padding: 0; }
   }
 
   .social_media {
@@ -700,24 +721,28 @@ div.alternative-comment-modal { margin-left: 0px; }
         overflow: hidden;
         width: 600px;
       }
+
       .left {
-        float: left;
         clear: both;
+        float: left;
         width: 32px;
       }
+
       a.button {
-        width: 32px;
         min-width: initial;
-        position: relative;
         padding: 0;
+        position: relative;
+        width: 32px;
       }
+
       .right {
         float: left;
         width: 500px;
       }
+
       p {
-        font-size: 1.1em;
         background: none;
+        font-size: 1.1em;
         padding: 0 10px;
       }
     }
