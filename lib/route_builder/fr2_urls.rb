@@ -17,12 +17,4 @@ module RouteBuilder::Fr2Urls
   def citation_path(vol, page)
     "/citation/#{vol}-FR-#{page}"
   end
-
-  def layout_head_content_path
-    "/layout/head_content"
-  end
-
-  def layout_header_path(header_type)
-    "/layout/header?header_type=#{header_type}"
-  end
 end
