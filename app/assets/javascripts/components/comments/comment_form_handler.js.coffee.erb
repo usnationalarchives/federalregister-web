@@ -97,48 +97,32 @@ class @FR2.CommentFormHandler
           )
 
   addTooltipToPublicIcons: ->
-    @commentFormEl()
-      .find '.inputs span.public'
-      .tipsy({
-        gravity: ->
-          $(this).data 'tooltip-gravity'
-        title: ->
-          tooltip = $(this).siblings('input').data('tooltip')
-          if tooltip?
-            tooltip
-          else
-            "Information entered in this field will be publically viewable on Regulations.gov"
-        fade: true
-        offset: -8
-        className: ->
-          "form-tooltip #{$(this).siblings('input').prop('type')}"
-      })
-      .mouseenter ()->
-        tooltip = $('.tipsy.form-tooltip').first()
+    _.each @commentFormEl().find('.inputs span.public'), (el)->
+      el = $(el)
 
-        if tooltip.hasClass 'tipsy-e'
-          if tooltip.hasClass 'file'
-            leftPosition = 250
-          else
-            leftPosition = 257
-        else
-          leftPosition = 13
+      tooltip = el.siblings('input').data('tooltip')
+      if tooltip?
+        el.data('tooltip', tooltip)
+      else
+        el.data('tooltip', "Information entered in this field will be publically viewable on Regulations.gov")
 
-        # we modify the css with the .form-tooltip class so
-        # we need to reposition the tooltip so that it's centered
-        tooltip
-          .css(
-            'left',
-            tooltip
-              .position()
-              .left + leftPosition
-          )
-          .css(
-            'top',
-            tooltip
-              .position()
-              .top - 23
-          )
+      className = "form-tooltip #{el.siblings('input').prop('type')}"
+      tooltipPosition = if el.data('tooltip-gravity') == 'e' then 'centerLeft' else 'centerRight'
+      tooltipHorizontalOffset = if el.data('tooltip-gravity') == 'e' then -10 else 5
+
+      CJ.Tooltip.addFancyTooltip(
+        $(el),
+        {
+          fade: true
+          className: className
+          opacity: 1
+        },
+        {
+          horizontalOffset: tooltipHorizontalOffset
+          position: tooltipPosition
+          verticalOffset: -5
+        }
+      )
 
   fileUploadButton: ->
     @commentFormEl().find '#fileupload'

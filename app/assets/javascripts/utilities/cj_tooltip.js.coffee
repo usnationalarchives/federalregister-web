@@ -3,9 +3,9 @@ class @CJ.Tooltip
   @addTooltip: (selector, tooltipOptions)->
     tipsyOptions = {
       className: 'tooltip'
-      title: ()->
+      title: ->
         $(this).data('tooltip')
-      gravity: ()->
+      gravity: ->
         $(this).data('tooltip-gravity') || 's'
     }
     _.extend tipsyOptions, tooltipOptions
@@ -16,18 +16,20 @@ class @CJ.Tooltip
   @addFancyTooltip: (selector, tooltipOptions, options)->
     tipsyOptions = {
       className: 'tooltip'
-      title: ()->
+      title: ->
         $(this).data('tooltip')
-      gravity: ()->
+      gravity: ->
         $(this).data('tooltip-gravity') || 's'
     }
     _.extend tipsyOptions, tooltipOptions
+
+    options =  _.extend {}, options
 
     Tooltip = this
 
     $(selector)
       .tipsy tipsyOptions
-      .mouseenter ()->
+      .mouseenter ->
         tooltip = $('.tipsy').first()
         el = $(this)
 
@@ -45,6 +47,11 @@ class @CJ.Tooltip
       @positionCenterTop tooltip
     else if position == 'centerLeft'
       @positionCenterLeft tooltip
+    else if position == 'centerRight'
+      @positionCenterRight tooltip
+    else if position == 'centerBottom'
+      @positionCenterBottom tooltip
+
 
   @positionCenterTop: (tooltip)->
     tooltip
@@ -66,6 +73,28 @@ class @CJ.Tooltip
       .css(
         'top',
         Tooltip.elProperties.position.top + Tooltip.elProperties.height/2 - Tooltip.tooltipProperties.height/2 + Tooltip.offset.vertical
+      )
+
+  @positionCenterRight: (tooltip)->
+    tooltip
+      .css(
+        'left',
+        Tooltip.elProperties.position.left + Tooltip.elProperties.width + Tooltip.offset.horizontal
+      )
+      .css(
+        'top',
+        Tooltip.elProperties.position.top + Tooltip.elProperties.height/2 - Tooltip.tooltipProperties.height/2 + Tooltip.offset.vertical
+      )
+
+  @positionCenterBottom: (tooltip)->
+    tooltip
+      .css(
+        'left',
+        Tooltip.elProperties.position.left + Tooltip.elProperties.width/2 - Tooltip.tooltipProperties.width/2 + Tooltip.offset.horizontal
+      )
+      .css(
+        'top',
+        Tooltip.elProperties.position.top + Tooltip.elProperties.height + Tooltip.offset.vertical
       )
 
   @calculateProperties: (el, tooltip, options)->
