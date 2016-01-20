@@ -21,4 +21,10 @@ class Document < FederalRegister::Document
       :type,
     ]
   end
+
+  def public_inspection_document
+    @public_inspection_document ||= PublicInspectionDocument.find(
+      document_number
+    )
+  end
 end

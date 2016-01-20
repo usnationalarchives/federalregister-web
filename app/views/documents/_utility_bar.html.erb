@@ -253,7 +253,11 @@
       ) do %>
         <span class="icon-fr2 icon-fr2-stop-hand"></span>
         <div class="content">
-          <p>This <%= link_to 'PDF', document.public_inspection_pdf_url %> is the current document as it appeared on Public Inspection on February 19, 2013.</p>
+          <p>
+            This <%= link_to 'PDF', document.public_inspection_pdf_url %> is
+            the current document as it appeared on Public Inspection on
+            <%= document.public_inspection_document.filed_at %>.
+          </p>
           <p class="warning">
             If you are using public inspection listings for legal research, you
             should verify the contents of the documents against a final, official
