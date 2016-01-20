@@ -16,9 +16,9 @@
     img.reg_gov_logo { top: 15px; }
   }
 
-  p .byline {
-    line-height: 23px;
-    padding-top: 10px;
+  p {
+    .icon-fr2-Chat { top: -1px; }
+    .byline { line-height: 23px; }
   }
 
   img.reg_gov_logo {
@@ -41,11 +41,19 @@
   z-index: 600;
 
   .loader {
-    background: image-url('orange_loader_CCC.gif') 159px 0 no-repeat;
     display: block;
     font-weight: bold;
     margin: 0 auto;
-    width: 180px;
+    width: 220px;
+
+    .spinner {
+      background: image-url('fr_orange_loader.svg') no-repeat;
+      float: right;
+      height: 30px;
+      position: relative;
+      top: -5px;
+      width: 30px;
+    }
   }
 }
 
@@ -79,7 +87,7 @@
     width: 830px;
 
     &.boolean {
-      margin-left: 240px;
+      margin-left: 210px;
       width: 400px;
 
       label {
@@ -116,12 +124,13 @@
     }
 
     select + span.public {
-      left: 5px;
+      left: 8px;
       top: 1px;
     }
 
     textarea + span.public,
     input[type='file'] + span.public {
+      left: 220px;
       top: 0px;
       vertical-align: top;
     }
@@ -137,17 +146,23 @@
     font-weight: bold;
     position: relative;
     vertical-align: middle;
-    width: 150px;
+    width: 210px;
 
     abbr {
       @extend %required_abbr;
     }
   }
 
-  .text .label {
-    position: relative;
-    top: 5px;
-    vertical-align: top;
+  .text {
+    .label {
+      position: relative;
+      top: 16px;
+    }
+
+    textarea {
+      left: 210px;
+      position: relative;
+    }
   }
 }
 
@@ -179,7 +194,7 @@
   p.inline-hints {
     background: none;
     font-style: italic;
-    margin-left: 59px;
+    margin-left: 325px;
     padding: 0;
   }
 }
@@ -191,15 +206,16 @@
 }
 
 .comment_wrapper .notice.comment_reloaded {
-  font-size: 1.2em;
   margin-bottom: 20px;
 }
 
 .formtastic.comment {
   .buttons {
     margin-bottom: 30px;
-    margin-left: 240px;
+    margin-left: 210px;
     margin-top: 0;
+
+    li { display: inline-block; }
 
     .commit.button {
       background-color: $fr-green;
@@ -223,7 +239,7 @@
       &:hover { background-color: $fr-gray-20; }
 
       input {
-        background: url(/my/assets/orange_loader_CCC.gif) 180px 2px no-repeat;
+        background: image-url('fr_orange_loader.svg') 210px 0 no-repeat;
         padding-right: 25px;
       }
     }
@@ -233,10 +249,11 @@
     cursor: pointer;
     padding: 10px;
     position: relative;
+    width: 230px;
 
     input {
       background: none;
-      border: none;
+      border: 0;
       box-shadow: none;
       color: $white;
       cursor: pointer;
@@ -244,15 +261,14 @@
       font-weight: bold;
       text-transform: uppercase;
       vertical-align: middle;
-      width: 200px;
+      width: 230px;
     }
   }
 }
 
 .formtastic.comment .comment_preview {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 1.2em;
+  font-size: modular-scale(0);
+  font-weight: 500;
   margin-left: 10px;
   position: relative;
   top: 2px;
@@ -264,7 +280,6 @@
     border: 1px solid $fr-red;
     border-radius: 6px;
     color: $fr-red;
-    font-size: 1.2em;
     padding: 0.5em 0.5em 0.25em;
     text-align: center;
   }
@@ -284,9 +299,9 @@
     color: $fr-red;
     font-size: 15px;
     font-weight: normal;
+    left: 212px;
     line-height: 1.4em;
-    position: absolute;
-    right: 25px;
+    position: relative;
     top: 5px;
 
     &.warning { color: $fr-green; }
@@ -307,7 +322,6 @@
 }
 
 .formtastic .file.input .label {
-  margin-right: 0.8em;
   margin-top: 2px;
   vertical-align: top;
 }
@@ -329,7 +343,6 @@
     margin-bottom: 10px;
     overflow: hidden;
     position: relative;
-    width: 88px;
 
     #fileupload {
       cursor: pointer;
@@ -352,7 +365,7 @@
       padding-left: 5px;
       padding-top: 3px;
       text-transform: none;
-      width: 83px;
+      width: 102px;
 
       .icon-fr2 {
         padding-right: 5px;
@@ -368,6 +381,7 @@
 
   td.cancel,
   td.delete {
+    padding-top: 2px;
     vertical-align: middle;
   }
 
@@ -380,13 +394,13 @@
     font-weight: bold;
     height: 22px;
     left: 20px;
-    min-width: 70px;
+    min-width: 75px;
     padding: 0;
     padding-top: 1px;
     position: relative;
     text-transform: none;
     top: 1px;
-    width: 70px;
+    width: 75px;
 
     &:hover { background-color: lighten($fr-red, 10); }
 
@@ -416,7 +430,8 @@
 
 table.attachments {
   clear: both;
-  margin-left: 165px;
+  margin-left: 210px;
+  margin-top: 10px;
   width: 638px;
 
   tr {
@@ -433,8 +448,7 @@ table.attachments {
 
   tr,
   td.name {
-    padding-bottom: 3px;
-    padding-left: 0;
+    padding: 2px 0 3px 0;
   }
 
   td.size {
@@ -465,9 +479,10 @@ table.attachments {
 .formtastic.comment {
   .regulations_dot_gov_notices {
     color: $fr-gray-60;
+    font-size: modular-scale(-1);
     font-style: italic;
-    margin: 0 auto;
-    width: 400px;
+    margin: 10px auto 0;
+    width: 460px;
   }
 
   hr { clear: both; }
@@ -715,6 +730,8 @@ div.alternative-comment-modal {
     margin-top: 15px;
 
     .media_buttons {
+      .icon-fr2 { left: 0; }
+
       li {
         display: inline-block;
         margin: 5px 0;
@@ -742,7 +759,6 @@ div.alternative-comment-modal {
 
       p {
         background: none;
-        font-size: 1.1em;
         padding: 0 10px;
       }
     }

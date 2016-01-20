@@ -219,7 +219,7 @@ class @FR2.CommentFormHandler
           .addClass 'open'
 
         flashMessage
-          .html '<div class="byline">You are submitting an official comment to Regulations.gov. <br> Comments are due ' + $('.comment_form_wrapper').data('comment-due') + '.</div> <img alt="Regulations.gov Logo" src="<%= asset_path('regulations_dot_gov_logo.png') %>" class="reg_gov_logo">'
+          .html '<span class="icon-fr2 icon-fr2-Chat"></span><div class="byline">You are submitting an official comment to Regulations.gov. <br> Comments are due ' + $('.comment_form_wrapper').data('comment-due') + '.</div> <img alt="Regulations.gov Logo" src="<%= asset_path('regulations_dot_gov_logo.png') %>" class="reg_gov_logo">'
 
   storeComment: ->
     @commentFormStore.storeComment()

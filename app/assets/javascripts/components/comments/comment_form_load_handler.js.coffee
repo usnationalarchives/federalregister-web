@@ -25,6 +25,10 @@ class @FR2.CommentFormLoadHandler
         $('<span>')
           .addClass 'loader'
           .html 'Loading Comment Form'
+          .append(
+            $('<span>')
+              .addClass 'spinner'
+          )
       )
 
     @documentNumber = @formWrapper().data 'document-number'
@@ -38,13 +42,13 @@ class @FR2.CommentFormLoadHandler
   generateAjaxOptions: ->
     if @commentFormStore.hasStoredComment()
       @ajaxOptions = {
-        url: "/my/articles/#{@documentNumber}/comments/reload"
+        url: "/my/documents/#{@documentNumber}/comments/reload"
         type: 'POST'
         data: @commentFormStore.getStoredComment()
       }
     else
       @ajaxOptions = {
-        url: "/my/articles/#{@documentNumber}/comments/new"
+        url: "/my/documents/#{@documentNumber}/comments/new"
       }
 
   load: ->

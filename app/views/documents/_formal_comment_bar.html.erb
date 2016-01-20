@@ -1,4 +1,6 @@
-<div id="comment-bar" class="document-notice-bar comment">
+<div id="comment-bar" class="document-notice-bar comment"
+  data-document-number="<%= document.document_number %>"
+  data-reggov-agency="<%= document.regulations_dot_gov_agency_id %>">
   <p>
     <%= fr_icon 'Chat' %>
     <% if document.document_comment_period_open? %>

@@ -57,4 +57,10 @@ module DocumentDecorator::Comments
       end
     end
   end
+
+  def regulations_dot_gov_agency_id
+    return '' unless comment_url.present?
+
+    comment_url.split('D=').last.split(/(_|-)/, 2).first
+  end
 end

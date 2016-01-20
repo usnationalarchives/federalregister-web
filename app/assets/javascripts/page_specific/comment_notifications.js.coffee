@@ -2,6 +2,7 @@ $(document).ready ->
   $('#metadata_content_area')
     .on 'click', '.comment_next_steps .my_fr a.notifications', (e)->
       e.preventDefault()
+      e.stopPropagation()
 
       link = $(this)
 
