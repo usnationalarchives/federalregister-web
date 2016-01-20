@@ -207,7 +207,10 @@
           title: "Enhanced Content - Developer Tools"
         )
       ) do %>
-        <h5>This document is available in the following developer friendly formats:</h5>
+        <h5>
+          This document is available in the following developer friendly formats:
+        </h5>
+
         <ul class="list">
           <li>
             <%= link_to 'JSON: Normalized attributes and metadata',
@@ -222,7 +225,12 @@
               fdsys_document_mods_url(document) %>
           </li>
         </ul>
-        <p>More information and documentation can be found on our <a href="">developers page</a>.</p>
+
+        <p>
+          More information and documentation can be found in our
+          <%= link_to 'developer tools pages',
+            reader_aids_section_path(:developer_tools) %>.
+        </p>
       <% end %>
     </li>
 
