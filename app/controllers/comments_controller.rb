@@ -78,7 +78,7 @@ class CommentsController < ApplicationController
     record_regulations_dot_gov_error(exception)
 
     render_error_page(
-      "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.article.comment_url, @comment.article.comment_url}"
+      "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.document.comment_url, @comment.document.comment_url}"
     )
   end
 
@@ -184,7 +184,7 @@ class CommentsController < ApplicationController
       ),
       :modalHtml => t(
         "regulations_dot_gov_errors.#{error}.modal_html",
-        :regulations_dot_gov_link => view_context.link_to(@comment.article.comment_url, @comment.article.comment_url)
+        :regulations_dot_gov_link => view_context.link_to(@comment.document.comment_url, @comment.document.comment_url)
       )
     }
   end

@@ -19,7 +19,7 @@ class CommentMailer < ActionMailer::Base
 
     mail(
       :to => user.email,
-      :subject => "[FR] Your comment on #{@comment.article.title}"
+      :subject => "[FR] Your comment on #{@comment.document.title}"
     ) do |format|
       format.text { render('comment_copy') }
       format.html { Premailer.new( render('comment_copy'),
@@ -40,7 +40,7 @@ class CommentMailer < ActionMailer::Base
 
     mail(
       :to => user.email,
-      :subject => "[FR] Your comment on #{@comment.article.citation} has been publicly posted"
+      :subject => "[FR] Your comment on #{@comment.document.citation} has been publicly posted"
     ) do |format|
       format.text { render('comment_posting_notification') }
       format.html { Premailer.new( render('comment_posting_notification'),

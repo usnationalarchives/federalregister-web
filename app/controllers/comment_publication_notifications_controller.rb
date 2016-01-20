@@ -12,7 +12,11 @@ class CommentPublicationNotificationsController < ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.first(:conditions => {:comment_tracking_number => params[:comment_tracking_number]})
+    @comment = current_user.comments.first(
+      conditions: {
+        comment_tracking_number: params[:comment_tracking_number]
+      }
+    )
     @comment.comment_publication_notification = false
     @comment.save :validate => false
 

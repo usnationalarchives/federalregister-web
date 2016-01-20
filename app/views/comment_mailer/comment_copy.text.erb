@@ -15,13 +15,13 @@ To check the status of your comment or obtain further information, please follow
 
 Below are details on the comment you submitted:
 
-<% article = @comment.article %>
-<%= article.title %>
-A <%= article.type %> by <%= @comment.agency_name %>
+<% document = @comment.document %>
+<%= document.title %>
+A <%= document.type %> by <%= @comment.agency_name %>
 
 
-Document URL: <%= article.short_article_url %>
-Published On: <%= article.publication_date %>
+Document URL: <%= short_document_url(document) %>
+Published On: <%= document.publication_date %>
 
 <% if @comment.agency_participating? %>
 Comment Tracking Number: <%= @comment.comment_tracking_number %>

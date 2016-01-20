@@ -40,11 +40,11 @@
         <%= link_to 'Print your comment', '#',
           :'data-comment-data' => @comment.comment_data.to_json,
           :'data-current-document-details' => {
-            :title  => @comment.article.title,
+            :title  => @comment.document.title,
             :agency => @comment.agency_name,
-            :type   => @comment.article.type,
-            :url    => @comment.article.short_article_url,
-            :published => @comment.article.publication_date
+            :type   => @comment.document.type,
+            :url    => short_document_url(@comment.document),
+            :published => @comment.document.publication_date
           }.to_json,
           :'data-comment-details' => {
             :agency_participating => @comment.agency_participating?,
@@ -69,15 +69,15 @@
         <li>
           <div class="left">
             <%= link_to_twitter(
-              "I commented on #{@comment.article.short_article_url}."
+              fr_icon('twitter'),
+              "I commented on #{short_document_url(@comment.document)}."
             ) %>
           </div>
           <div class="right">
             <p>
               <%= link_to_twitter(
-                "I commented on #{@comment.article.short_article_url}.",
                 "Create a tweet",
-                false
+                "I commented on #{short_document_url(@comment.document)}. #federalregister"
               ) %>.
               We'll provide a basic tweet with a link to the document you
               commented on. You'll be able to customize the message before
@@ -88,17 +88,17 @@
         <li>
           <div class="left">
             <%= link_to_facebook(
-              @comment.article.short_article_url,
-              @comment.article.title
+              fr_icon('facebook'),
+              short_document_url(@comment.document),
+              @comment.document.title
             ) %>
           </div>
           <div class="right">
             <p>
               <%= link_to_facebook(
-                @comment.article.short_article_url,
-                @comment.article.title,
                 "Post to your Facebook wall",
-                false
+                short_document_url(@comment.document),
+                @comment.document.title
               ) %>.
               We'll provide the title of the document you commented on and a
               link to it. You'll be able to customize your Facebook wall

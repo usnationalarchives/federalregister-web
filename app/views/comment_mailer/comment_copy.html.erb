@@ -44,15 +44,15 @@
 </p>
 
 <div>
-  <% article = @comment.article %>
-  <div class="document_title"><%= link_to article.title, article.html_url %></div>
-  <div class="agency">A <%= article.type %> by <%= @comment.agency_name %></div>
+  <% document = @comment.document %>
+  <div class="document_title"><%= link_to document.title, document.html_url %></div>
+  <div class="agency">A <%= document.type %> by <%= @comment.agency_name %></div>
 
   <dl class="document_details">
     <dt>Document URL</dt>
-    <dd><%= link_to article.short_article_url, article.short_article_url %></dd>
+    <dd><%= link_to short_document_url(document), short_document_url(document) %></dd>
     <dt>Published On</dt>
-    <dd><%= article.publication_date %></dd>
+    <dd><%= document.publication_date %></dd>
   </dl>
 
   <dl class="comment_details">
