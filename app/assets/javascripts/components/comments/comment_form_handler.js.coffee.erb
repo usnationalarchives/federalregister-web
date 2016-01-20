@@ -62,10 +62,9 @@ class @FR2.CommentFormHandler
       source = $('#comment-summary-template').html()
       template = Handlebars.compile source
 
-      display_fr_modal(
+      FR2.Modal.displayModal(
         modalTitle,
         modalHtml,
-        $('body'),
         {modalClass: "comment-preview-modal"}
       )
 
@@ -157,7 +156,7 @@ class @FR2.CommentFormHandler
     else
       modalTitle = "Comment submission not available"
       modalHtml = "This document is not open for comment or is not available for comment submission on FederalRegister.gov. You may want to check the DATES, ADDRESSES, or FOR FURTHER INFORMATION CONTACT sections of this document."
-      display_fr_modal modalTitle, modalHtml, $('a#start_comment')
+      FR2.Modal.displayModal modalTitle, modalHtml
 
   submitCommentForm: ->
     @commentFormStore.storeComment()

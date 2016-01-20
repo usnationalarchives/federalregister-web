@@ -116,7 +116,8 @@ class @FR2.CommentFormLoadHandler
       modalHtml = "We've encountered an error and we have been notified. Please try again later."
       @trackCommentFormOpenError 'FederalRegister.gov Error'
 
-    display_fr_modal modalTitle, modalHtml, @commentLink()
+    FR2.Modal.displayModal modalTitle, modalHtml
+
     $('.ajax-comment-data').fadeOut 600
 
   generateCommentForm: (response)->

@@ -249,4 +249,4 @@ class @FR2.CommentForm
         modalTitle = 'Unable to Submit Comment'
         modalHtml  = @getSubmitButtonState()
 
-        display_fr_modal modalTitle, modalHtml, @submitButtonWrapper()
+        FR2.Modal.displayModal modalTitle, modalHtml

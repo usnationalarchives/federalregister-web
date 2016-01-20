@@ -1,13 +1,14 @@
 class @FR2.Modal
   @defaults: ()->
     {
-      modalId:       '#disclaimer_modal'
-      includeTitle:  true
-      modalClass:    ''
+      modalId: '#fr_modal'
+      includeTitle: true
+      modalClass: 'fr-modal'
     }
 
   @displayModal: (title, html, options)->
-    options = _.extend @defaults, options
+    options = _.extend @defaults(), options
+    modalClass = "#{@defaults().modalClass} #{options.modalClass}"
 
     currentModal = $(options.modalId)
 
@@ -17,7 +18,7 @@ class @FR2.Modal
 
       currentModal = $(options.modalId)
       currentModal
-        .addClass options.modalClass
+        .addClass modalClass
 
 
     modalContent = ['<a href="#" class="jqmClose">Close</a>']
@@ -38,3 +39,8 @@ class @FR2.Modal
 
 
     currentModal.jqmShow().centerScreen()
+    @addCloseHandler(options.modalId)
+
+  @addCloseHandler: (modalId)->
+    $('body').on 'click', "#{modalId} a.jqmClose", ->
+      $("#{modalId}").jqmHide()
