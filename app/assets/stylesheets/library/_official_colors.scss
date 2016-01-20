@@ -30,8 +30,9 @@ $public-inspection-fr-stamp: $color-public-inspection-light;
 // FR Box Utility Nav
 $utility-nav:                         $med-gray;
 $utility-nav-background:              #E6E6E5;
-$utility-nav-hover-background:        #d5d5d5;
+$utility-nav-hover-background:        $fr-gray-10;
 $utility-nav-hover-background-light:  #EFEFEF;
+$utility-nav-divider-color:           $fr-gray-30;
 
 $utility-nav-pi:                  #8a3737;
 $utility-nav-pi-background:       #D7A5A1;
