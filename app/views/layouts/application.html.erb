@@ -23,7 +23,7 @@
       <%= stylesheet_link_tag asset_path('application-ie.css'), media: "all" %>
     <![endif]-->
 
-
+    <%= javascript_include_tag asset_path('vendor.js') %>
     <%= javascript_include_tag asset_path('application.js') %>
 
     <%= yield :javascripts %>

@@ -1,4 +1,3 @@
-#= require vendor
 #= require old/application
 
 #= require utilities/ajax_setup
