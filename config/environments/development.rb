@@ -46,7 +46,8 @@ MyFr2::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings   = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{Settings.app_url}", :protocol => "http://"}
+
+  config.action_mailer.default_url_options = {:host => "#{Settings.app_url.split('//').last}", :protocol => "http://"}
 
   if Settings.vcr.enabled
     file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"

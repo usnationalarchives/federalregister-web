@@ -63,6 +63,7 @@ module MyFr2
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     config.assets.precompile += %w(
+      vendor.js
       ie-shared.js
       search.js
       tender_widget_custom.js
