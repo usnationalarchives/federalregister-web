@@ -33,8 +33,11 @@ module RouteBuilder::Documents
     "/documents/table_of_contents/#{file_path}"
   end
 
-  add_static_route :document_api do |document|
-    "/api/v1/documents/#{document.document_number}"
+  add_static_route :document_api do |document, options|
+    path = "/api/v1/documents/#{document.document_number}"
+    if options[:format]
+      path += ".#{options[:format]}"
+    end
   end
 
   private
