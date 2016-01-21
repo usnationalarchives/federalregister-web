@@ -1,9 +1,9 @@
-#modal.modal.subscribe {
+.fr-modal.subscribe {
   h5 { margin-top: 0; }
 }
 
-.modal.subscribe {
-  h3 { 
+.fr-modal.subscribe {
+  h3 {
     font-size: 1.5em;
     margin-top: 10px;
     margin-bottom: 15px;
@@ -15,12 +15,12 @@
 
     li {
       border-bottom: 1px solid $fr-gray-30;
-      list-style: none;  
+      list-style: none;
       margin-bottom: 1em;
       padding-left: 0;
       overflow: hidden;
       background: none;
-      
+
       a {
         font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
         font-size: 13px;
@@ -41,7 +41,7 @@
         color: $fr-gray-60;
 
         .icon-fr2 { font-size: 16px; }
-        .icon-fr2-message { 
+        .icon-fr2-message {
           font-size: 22px;
           top: 4px;
         }
@@ -57,13 +57,13 @@
           color: $fr-green;
         }
 
-        ul { 
+        ul {
           margin: 0;
-          
-          li.radio { 
+
+          li.radio {
             margin-top: 5px;
             margin-bottom: 0;
-          
+
             ol {
               margin-left: 95px;
 
@@ -80,7 +80,7 @@
           margin-left: 0;
           margin-top: 10px;
 
-          ol { 
+          ol {
             margin: 0;
             li { padding-bottom: 5px; }
           }
