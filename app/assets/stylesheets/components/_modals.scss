@@ -1,7 +1,23 @@
-.fr_modal {
+.jqmWindow {
+  background-color: $fr-gray-10;
+  border: 1px solid $black;
+  color: $fr-gray-80;
+  display: none;
+  left: 50%;
+  padding: 12px;
+  position: fixed;
+  top: 17%;
+  width: 600px;
+}
+
+.jqmOverlay { background-color: $black; }
+
+.fr-modal {
   background-color: $white;
   border: 5px solid $fr-dark-blue;
   display: none;
+  max-height: 400px;
+  overflow: scroll;
   padding: 1em;
   position: fixed;
   top: 5em;
@@ -9,15 +25,80 @@
 
   &.wide { width: 650px; }
 
+  .horizontal {
+    display: inline-block;
+    margin-bottom: 2em;
+  }
+
+  .external_link {
+    background: $fr-gray-10;
+    display: block;
+    margin: 0.5em 0 1em;
+    padding: 1em;
+    text-align: center;
+  }
+
   .jqmClose {
+    color: $fr-dark-blue;
+    font-size: 26px;
     position: absolute;
-    right: 1em;
-    top: 1em;
+    right: 0.25em;
+    top: 0.25em;
+  }
+
+  h3 {
+    border-bottom: 2px solid $fr-gray-80;
+    border-top: 0;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+    text-transform: uppercase;
   }
 
   .title_bar {
     border-top: 0;
+    color: $fr-dark-blue;
     margin-bottom: 0.5em;
+    margin-top: 0;
+
+    .icon-fr2 {
+      float: left;
+      font-size: 30px;
+      margin-right: 5px;
+      position: relative;
+      top: -5px;
+    }
+  }
+
+  p { margin-bottom: 10px; }
+  .bullets {
+    @include custom-bullets($fr-dark-blue);
+  }
+
+  form {
+    input[type=text] {
+      border: 1px solid $fr-gray-15;
+      height: 20px;
+      margin-right: 0;
+      padding: 1px 5px;
+      width: 215px;
+    }
+  }
+
+  .modal_content {
+    dl {
+      dt,
+      dd {
+        float: left;
+      }
+
+      dt {
+        clear: both;
+        padding-right: 10px;
+      }
+
+      dd { font-weight: 500; }
+    }
   }
 }
 

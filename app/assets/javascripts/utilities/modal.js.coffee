@@ -21,7 +21,7 @@ class @FR2.Modal
         .addClass modalClass
 
 
-    modalContent = ['<a href="#" class="jqmClose">Close</a>']
+    modalContent = ['<a href="#" class="jqmClose" "aria-label"="close"><span class="icon-fr2 icon-fr2-badge_x"></span></a>']
     if options.includeTitle
       modalContent
         .push "<h3 class='title_bar'>#{title}</h3>"
