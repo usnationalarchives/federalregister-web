@@ -13,13 +13,20 @@
   &.open {
     height: 60px;
 
+    .icon-fr2-Chat { top: -1px; }
+
     img.reg_gov_logo { top: 15px; }
+
+    a.close-comment-form {
+      float: right;
+      font-size: 16px;
+      font-style: italic;
+      position: relative;
+      top: -5px;
+    }
   }
 
-  p {
-    .icon-fr2-Chat { top: -1px; }
-    .byline { line-height: 23px; }
-  }
+  p .byline { line-height: 23px; }
 
   img.reg_gov_logo {
     float: right;

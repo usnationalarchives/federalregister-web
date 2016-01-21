@@ -210,6 +210,7 @@ class @FR2.CommentFormHandler
 
   updateCommentHeader: ->
     flashMessage = $('#comment-bar.comment p')
+    commentFormHandler = this
 
     flashMessage
       .find '.button'
@@ -218,8 +219,50 @@ class @FR2.CommentFormHandler
           .closest 'div'
           .addClass 'open'
 
-        flashMessage
-          .html '<span class="icon-fr2 icon-fr2-Chat"></span><div class="byline">You are submitting an official comment to Regulations.gov. <br> Comments are due ' + $('.comment_form_wrapper').data('comment-due') + '.</div> <img alt="Regulations.gov Logo" src="<%= asset_path('regulations_dot_gov_logo.png') %>" class="reg_gov_logo">'
+        flashMessage.html(
+          Handlebars.compile(
+            $('#new-comment-byline-template').html()
+          )({
+            commentDueDate: $('.comment_form_wrapper').data('comment-due')
+          })
+        )
+
+        flashMessage.find('#close-comment-form').on 'click', (e)->
+          e.preventDefault()
+
+          window.location.hash = ''
+          commentFormHandler.closeCommentForm()
+
+  closeCommentForm: ->
+    ajaxCommentData = $('.ajax-comment-data')
+    commentWrapper = ajaxCommentData.find '.comment_wrapper'
+
+    ajaxCommentData
+      .animate {height: '42px'}, 400
+    ajaxCommentData
+       .scrollintoview {duration: 500}
+
+    commentWrapper.slideUp 400, =>
+      commentWrapper.remove()
+      ajaxCommentData.html('').hide()
+      @resetCommentHeader()
+
+  resetCommentHeader: ->
+    commentBar = $('#comment-bar')
+    data = {
+      commentPeriodOpen: commentBar.data('comment-period-open')
+      commentDaysRemaining: commentBar.data('comment-days-remaining')
+      commentsCloseOn: commentBar.data('comments-close-on')
+      reggovCommentUrl: commentBar.data('reggov-comment-url')
+    }
+
+    $('#comment-bar.comment p').replaceWith(
+      Handlebars.compile(
+        $('#comment-header-template').html()
+      )(data)
+    )
+    commentBar.height('inherit')
+    new FR2.CommentFormHandler(commentBar)
 
   storeComment: ->
     @commentFormStore.storeComment()

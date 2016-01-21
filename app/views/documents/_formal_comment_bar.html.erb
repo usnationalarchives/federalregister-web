@@ -1,6 +1,10 @@
 <div id="comment-bar" class="document-notice-bar comment"
   data-document-number="<%= document.document_number %>"
-  data-reggov-agency="<%= document.regulations_dot_gov_agency_id %>">
+  data-reggov-agency="<%= document.regulations_dot_gov_agency_id %>"
+  data-reggov-comment-url="<%= document.comment_url %>"
+  data-comments-close-on="<%= document.comments_close_on %>"
+  data-comment-days-remaining="<%= document.comment_period_days_remaining %>"
+  data-comment-period-open="<%= document.document_comment_period_open? %>">
   <p>
     <%= fr_icon 'Chat' %>
     <% if document.document_comment_period_open? %>
