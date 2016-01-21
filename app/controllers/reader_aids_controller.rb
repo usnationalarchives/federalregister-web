@@ -4,10 +4,12 @@ class ReaderAidsController < ApplicationController
   layout false, only: [:navigation, :homepage]
 
   def index
+    cache_for 1.hour
     @presenter = ReaderAidsPresenter::Base.new
   end
 
   def search
+    cache_for 1.hour
     @search_presenter = ReaderAidsPresenter::SearchPresenter.new(
       params[:conditions][:term]
     )

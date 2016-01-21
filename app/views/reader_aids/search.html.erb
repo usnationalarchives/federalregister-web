@@ -11,26 +11,24 @@
     <div class="col-xs-12 col-md-12 section">
       <%= fr_details_box FrBox.build(:reader_aid) do %>
         <div class="section search_results">
-          <h4>
-            <%= pluralize @search_presenter.result_count, 'result' %>
-            found in Reader Aids for "<%= @search_presenter.search_term %>"
-          </h4>
+          <div class="search-results-summary">
+            <h4>
+              <%= pluralize @search_presenter.result_count, 'result' %>
+              found in Reader Aids for "<%= @search_presenter.search_term %>"
+            </h4>
 
-          <%= link_to "View All Reader Aids", reader_aids_path %>
-
-          <% if false %>
-          <ul class="fr-list">
-            <% @search_presenter.posts.each do |post| %>
-              <li>
-                <h5><%= link_to post.title, post.path %></h5>
-                <%= post.formatted_excerpt %>
-              </li>
-            <% end %>
-          </ul>
-          <% end %>
+            <%= link_to "View All Reader Aids", reader_aids_path %>
+          </div>
 
           <% @search_presenter.grouped_pages.each do |parent, pages| %>
-            <h3><%= @search_presenter.section_title(parent) %></h3>
+            <h3 class="with-icon">
+              <% if @search_presenter.parent_section(parent) %>
+                <%= fr_icon(
+                  @search_presenter.parent_section(parent)[:icon_class]
+                ) %>
+              <% end %>
+              <%= parent.title %>
+            </h3>
             <ul class="fr-list">
               <% pages.each do |page| %>
                 <li>
@@ -41,6 +39,18 @@
             </ul>
           <% end %>
 
+          <h3 class="with-icon">
+            <%= fr_icon 'quote' %>
+            Office of the Federal Register Blog
+          </h3>
+          <ul class="fr-list">
+            <% @search_presenter.posts.each do |post| %>
+              <li>
+                <h5><%= link_to post.title, post.path %></h5>
+                <%= post.formatted_excerpt %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
     </div>

@@ -1,5 +1,6 @@
 class WpApi::SearchResult
   attr_reader :term, :page_collection, :post_collection
+
   def initialize(term, page_collection, post_collection)
     @term = term
     @page_collection = page_collection

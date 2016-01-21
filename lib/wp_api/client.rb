@@ -2,7 +2,7 @@ class WpApi::Client
   class PageNotFound < StandardError; end
 
   include HTTParty
-  base_uri "https://www.fr2.criticaljuncture.org/blog/wp-json"
+  base_uri "#{Settings.federal_register.base_uri}/blog/wp-json"
 
   def self.pages_endpoint
     "#{base_uri}/pages"
@@ -40,7 +40,7 @@ class WpApi::Client
 
   def self.search(term)
     page_collection = get_pages(filters: {s: term})
-    post_collection = get_posts(filters: {s: term, posts_per_page: 20})
+    post_collection = get_posts(filters: {s: term, posts_per_page: 10})
 
     WpApi::SearchResult.new(term, page_collection, post_collection)
   end

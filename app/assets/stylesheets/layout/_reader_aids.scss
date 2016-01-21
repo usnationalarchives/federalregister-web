@@ -26,15 +26,34 @@
       }
     }
     .search_results {
-      p {
-        font-size: 14px;
+      .search-results-summary {
+        margin-bottom: 40px;
+        position: relative;
+
+        h4 {
+          margin-top: 0;
+          width: 80%;
+        }
+
+        a {
+          bottom: 0;
+          position: absolute;
+          right: 0;
+        }
+      }
+
+      h3.with-icon,
+      .fr-list {
+        margin-left: 30px;
       }
     }
+
     pre {
       overflow-x: scroll;
       white-space: pre;
       word-wrap: normal;
     }
+
     .page_content li {
       margin-left: 20px;
     }

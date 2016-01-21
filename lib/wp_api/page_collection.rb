@@ -7,11 +7,12 @@ class WpApi::PageCollection < WpApi::Collection
 
   def pages_grouped_by_parent
     results = {}
-    parents = content.
-      map(&:parent)
-    parents.each do |parent|
-      results[parent] = content.select{|x| x.parent == parent}
+    parents = content.map(&:parent).group_by(&:slug)
+
+    parents.each do |slug, parents|
+      results[parents.first] = content.select{|x| x.parent.slug == parents.first.slug}
     end
+
     results
   end
 end

@@ -21,7 +21,7 @@ class ReaderAidsPresenter::SearchPresenter < ReaderAidsPresenter::Base
     results.page_collection.pages_grouped_by_parent
   end
 
-  def section_title(parent)
-
+  def parent_section(parent)
+    sections[parent.slug]
   end
 end
