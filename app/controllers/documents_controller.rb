@@ -41,17 +41,14 @@ class DocumentsController < ApplicationController
         if params[:anchor].present?
           url += '#' + params[:anchor]
         end
-        redirect_to url, :status => :moved_permanently
+        redirect_to url, status: :moved_permanently
       end
+
       wants.pdf do
         if document_or_pi.is_a?(Document)
-          redirect_to document_or_pi.source_url(:pdf), :status => :moved_permanently
+          redirect_to document_or_pi.pdf_url, status: :moved_permanently
         else
-          @public_inspection_document = document_or_pi
-          render :template => "public_inspection_documents/not_published.html.erb",
-                 :layout => "application.html.erb",
-                 :content_type => 'text/html',
-                 :status => :not_found
+          redirect_to document_or_pi.html_url
         end
       end
     end
