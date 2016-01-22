@@ -35,15 +35,16 @@
     select {
       margin-bottom: 5px;
       margin-left: 10px;
+      margin-top: 5px;
     }
   }
 
   .dayName th {
-    width: (100/7) * 1%;
-    border-top: 1px solid $fr-gray-80;
     border-bottom: 1px solid $fr-gray-80;
+    border-top: 1px solid $fr-gray-80;
+    width: (100/7) * 1%;
 
-    abbr { border-bottom: none; }
+    abbr { border-bottom: 0; }
   }
 
   tbody td {
@@ -74,7 +75,7 @@
   }
 
   .holiday {
-    background: $fr-orange !important;
+    background: $fr-dark-blue !important;
     color: $white;
     font-weight: bold;
 
@@ -82,24 +83,30 @@
   }
 
   .published a {
-    color: $color-enhanced-dark !important;
     background: $color-enhanced-light;
+    color: $color-enhanced-dark !important;
 
     &:hover {
       background: $color-enhanced-dark;
-      color: $white;
+      color: $white !important;
     }
 
     &:visited { color: $color-enhanced-dark; }
   }
 
-  .current a {
+  .current {
+    background: $fr-orange;
     color: $white !important;
+    font-weight: bold;
+  }
+
+  .current-issue a {
     background: $color-enhanced-dark;
+    color: $white !important;
 
     &:hover {
       background: $color-enhanced-dark;
-      color: $white;
+      color: $color-enhanced-light !important;
     }
 
     &:visited { color: $white; }

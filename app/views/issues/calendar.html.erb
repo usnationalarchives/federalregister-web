@@ -16,9 +16,15 @@
       }
     ]
   elsif d == @presenter.current_issue_date
-    [link_to(d.mday, @presenter.issue_path(d)), {class: "current-issue"}]
+    [link_to(d.mday, @presenter.issue_path(d)), {
+      class: "current-issue cj-tooltip",
+      :"data-tooltip" => 'This is the current issue.'
+    }]
   elsif d == @presenter.current_date
-    [link_to(d.mday, @presenter.issue_path(d)), {class: "current"}]
+    [d.mday, {
+      class: "current cj-tooltip",
+      :"data-tooltip" => 'You are currently viewing this issue.'
+    }]
   elsif @presenter.published_dates.include?(d)
     [link_to(d.mday, @presenter.issue_path(d)), {class: "published"}]
   elsif @presenter.holiday(d).present?

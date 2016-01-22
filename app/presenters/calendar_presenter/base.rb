@@ -60,7 +60,7 @@ class CalendarPresenter::Base
   end
 
   def current_date
-    Chronic.parse(options[:current_date])
+    Chronic.parse(options[:current_date]).try(:to_date)
   end
 
   def holiday(date)
