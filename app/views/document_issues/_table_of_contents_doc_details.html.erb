@@ -10,7 +10,11 @@
     <div class="row toc-document-metadata">
       <dl class="col-xs-5 col-md-5">
         <dt>FR Document:</dt>
-        <dd><%= link_to document.document_number, document.html_url %></dd>
+        <dd>
+          <%= link_to document.document_number, document.html_url,
+            class: "cj-fancy-tooltip",
+            data: {tooltip: document.title} %>
+        </dd>
 
         <dt>Citation:</dt>
         <dd><%= document.citation %></dd>
@@ -26,6 +30,13 @@
           <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
           <em>(<%= pluralize(document.pages, "page") %>)</em>
         </dd>
+
+        <dt class="permalink">
+          <%= link_to short_document_url(document) do %>
+            <%= fr_icon 'link' %> Permalink
+          <% end %>
+        </dt>
+        <dd></dd>
       </dl>
     </div>
   <% end %>

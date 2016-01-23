@@ -1,3 +1,10 @@
+// tooltips are placed at top of html
+.issue-doc-title-tooltip {
+  max-width: 450px;
+
+  .tipsy-inner { max-width: inherit; }
+}
+
 // Meta data for document
 .bootstrap-scope .doc-toc {
   padding-left: 0;

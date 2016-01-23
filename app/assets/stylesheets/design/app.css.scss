@@ -127,7 +127,7 @@ span.unsaved {
 
 .tipsy {
   @include apertura-condensed;
-  font-size: 12px;
+  font-size: modular-scale(-1);
 }
 
 div#account-needed-modal {

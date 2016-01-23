@@ -41,6 +41,7 @@
 #= require_tree ./documents
 #= require fr_index_popover_handler
 #= require fr_index
+#= require issues
 
 #= require search
 
