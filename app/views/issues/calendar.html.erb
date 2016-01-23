@@ -18,7 +18,7 @@
   elsif d == @presenter.current_issue_date
     [link_to(d.mday, @presenter.issue_path(d)), {
       class: "current-issue cj-tooltip",
-      :"data-tooltip" => 'This is the current issue.'
+      :"data-tooltip" => 'This is the most recently published issue.'
     }]
   elsif d == @presenter.current_date
     [d.mday, {
