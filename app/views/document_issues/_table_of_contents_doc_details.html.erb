@@ -1,9 +1,14 @@
 <div class='toc-documents'>
-  <% documents.each do |document| %>
-    <h7><%= link_to subject, document.html_url %></h7>
+  <% if subject %>
+    <h7>
+      <%= link_to_if documents.size == 1,
+        subject, documents.first.html_url %>
+    </h7>
+  <% end %>
 
+  <% documents.each do |document| %>
     <div class="row toc-document-metadata">
-      <dl class="col-xs-6 col-md-6">
+      <dl class="col-xs-5 col-md-5">
         <dt>FR Document:</dt>
         <dd><%= link_to document.document_number, document.html_url %></dd>
 
@@ -11,7 +16,7 @@
         <dd><%= document.citation %></dd>
       </dl>
 
-      <dl class="col-xs-6 col-md-6">
+      <dl class="col-xs-7 col-md-7">
         <dt class="toc-pdf">
           <%= link_to document.pdf_url do %>
             <%= fr_icon 'doc-pdf' %> PDF

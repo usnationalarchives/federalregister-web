@@ -34,6 +34,7 @@ class TableOfContentsPresenter
             :pdf_url,
             :publication_date,
             :start_page,
+            :title,
           ]
         )
     ).results.map{|d| DocumentDecorator.decorate(d)}

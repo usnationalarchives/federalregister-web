@@ -147,10 +147,10 @@
       font-size: modular-scale(0);
     }
 
-    .toc-document-metadata {
-      // Bootstrap looks to make margin-bottom !important, need to overrwrite
-      margin-bottom: 0px !important;
+    dl { margin-bottom: 0px; }
 
+    .toc-document-metadata {
+      margin-left: 20px;
       a { font-weight: normal; }
     }
   }
