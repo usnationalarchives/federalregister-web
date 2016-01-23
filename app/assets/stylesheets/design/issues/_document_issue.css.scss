@@ -15,6 +15,41 @@
   }
 
   .doc-subscribe { padding-right: 0px; }
+
+  .download-wrapper {
+    background-color: $color-published-light;
+    border-bottom: 1px solid $color-published;
+    border-top: 1px solid $color-published;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding: 8px 13px 10px;
+
+    &.official {
+      background-color: $color-official-light;
+      border-bottom-color: $color-official;
+      border-top-color: $color-official;
+
+      a {
+        color: darken($color-official, 10) !important;
+      }
+    }
+
+    a {
+      color: $text !important;
+      display: block;
+      margin: 0 auto;
+      width: 175px;
+
+      &:hover {
+        color: $fr-orange !important;
+      }
+
+      .icon-fr2 {
+        font-size: 20px;
+        top: 2px;
+      }
+    }
+  }
 }
 
 .bootstrap-scope {
@@ -98,25 +133,6 @@
     font-weight: 500; //medium
     line-height: 1.4;
     padding-right: 10px !important;
-  }
-
-  .download-wrapper {
-    border-bottom: 1px solid $fr-gray-20;
-    font-weight: bold;
-    margin-bottom: 7px;
-    padding-bottom: 7px;
-    text-transform: uppercase;
-
-    a {
-      display: block;
-      margin: 0 auto;
-      width: 140px;
-
-      .icon-fr2 {
-        font-size: 17px;
-        top: 2px;
-      }
-    }
   }
 
   ul {

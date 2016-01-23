@@ -32,11 +32,20 @@
 
     <div class="<%= bootstrap_col xs: 3, md: 3 %>">
       <div class="doc-subscribe">
+        <% if DocumentIssue.pdf_download_available?(@presenter.date) %>
+          <div class="download-wrapper <%= @presenter.official_documents? ? 'official' : '' %>">
+            <%= link_to issue_pdf_url(@presenter.date) do %>
+              <%= fr_icon('doc-pdf') %> Download Issue PDF
+            <% end %>
+          </div>
+        <% end %>
+
         <div class="row">
           <div class="<%= bootstrap_col xs: 12, md: 12 %>">
             <%= subscribe_box %>
           </div>
         </div>
+
         <div class="row">
           <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
             <%= document_calendar_esi_for(

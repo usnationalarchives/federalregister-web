@@ -1,11 +1,3 @@
-<% if type == 'doc' && DocumentIssue.pdf_download_available?(date) %>
-  <div class="download-wrapper">
-    <%= link_to issue_pdf_url(date) do %>
-      <%= fr_icon('doc-pdf') %> Download PDF
-    <% end %>
-  </div>
-<% end %>
-
 <%
   # clear out type for normal documents as we dont want
   # the links below prefixed with it

@@ -5,7 +5,7 @@
   padding: 7px 13px 11px;
 
   a {
-    color: $text;
+    color: $text !important;
     display: block;
     font-size: modular-scale(0);
     height: 23px;
@@ -15,7 +15,7 @@
 
     &.subscription:hover {
       background: none;
-      color: $color-enhanced-dark;
+      color: $color-enhanced-dark !important;
       text-decoration: none;
     }
 
