@@ -1,6 +1,8 @@
 module DocumentIssueHelper
+  include RouteBuilder
+
   def issue_pdf_url(date)
-    "http://www.gpo.gov/fdsys/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
+    fdsys_document_issue_pdf_url(date)
   end
 
   def display_hierarchy(docs, agency, options={})

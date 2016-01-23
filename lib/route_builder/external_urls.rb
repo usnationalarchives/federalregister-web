@@ -17,6 +17,10 @@ module RouteBuilder::ExternalUrls
     "http://www.regulations.gov/#!documentDetail;D=#{document_id}"
   end
 
+  def fdsys_document_issue_pdf_url(date)
+    "https://www.gpo.gov/fdsys/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
+  end
+
   def fdsys_document_pdf_url(document)
     "https://www.gpo.gov/fdsys/pkg/FR-#{document.publication_date.to_s(:iso)}/pdf/#{document.document_number}.pdf"
   end
