@@ -89,19 +89,13 @@ sub vcl_recv {
     } else <% end %>if (req.url ~ "^/assets/") {
       set req.backend = assets_my_fr2;
       return(pass);
-    } else if (req.url ~ "^/my(/|$)") {
-      set req.backend = my_fr2;
-      return(pass);
-    } else if (req.url ~ "^/styleguides") {
-      set req.backend = my_fr2;
-      return(lookup);
     } else if (req.url ~ "^/api/") {
       set req.backend = fr2;
       return (lookup);
     } else if (req.url ~ "^(/documents/(full_text|mods|tables|table_of_contents)/|/document_issues/(json|xml)/|/public_inspection_issues/json/)") {
       set req.backend = fr2;
       return (lookup);
-    } else if (req.url ~ "^(/layout/head_content|/stylesheets/|/javascripts/)") {
+    } else if (req.url ~ "^(/layout/head_content|/stylesheets/|/javascripts/|/images/)") {
       set req.backend = fr2;
       return (pass);
     } else if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
@@ -112,6 +106,9 @@ sub vcl_recv {
       if (req.http.Cookie ~ "wordpress_logged_in_") {
           return (pass);
       }
+    } else if (req.url ~ "^/admin" ){
+      set req.backend = fr2;
+      return (pass);
     } else {
       set req.http.host = "<%= config['fr2']['host'] || 'fr2-rails.local' %>";
       set req.backend = my_fr2;
@@ -119,12 +116,6 @@ sub vcl_recv {
 
     # Pass POSTs etc directly on to the backend
     if (req.request != "GET" && req.request != "HEAD") {
-        return (pass);
-    }
-
-    # Pass fr2 admin requests directly on to fr2
-    if (req.url ~ "^/admin" ){
-        set req.backend = fr2;
         return (pass);
     }
 
@@ -191,7 +182,7 @@ sub vcl_hash {
     }
 
     # Hash differently based on presence of javascript_enabled cookie.
-    if( req.url ~ "^/articles/search/header" && req.http.Cookie ~ "javascript_enabled=1" ) {
+    if( req.url ~ "^/documents/search/header" && req.http.Cookie ~ "javascript_enabled=1" ) {
         # add this fact to the hash
         set req.hash += "javascript enabled";
     }
