@@ -74,6 +74,9 @@ module MyFr2
       *.svg
       *.ttf
       *.woff
+
+      admin/highlighted_documents.js
+      utilities/modal.js
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
