@@ -32,9 +32,8 @@ class @FR2.Modal
       .html modalContent.join("\n")
 
     currentModal.jqm({
-      modal: true,
-      toTop: true,
-      onShow: modalOpen
+      modal: true
+      toTop: true
     })
 
 
