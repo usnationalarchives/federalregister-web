@@ -77,6 +77,8 @@ module MyFr2
       page_specific/sections.js
       page_specific/topics.js
 
+      admin/highlighted_documents.js
+      utilities/modal.js
 
       application-ie.css
       print.css
@@ -86,6 +88,7 @@ module MyFr2
       *.svg
       *.ttf
       *.woff
+
       clippy.swf
 
       Barack_Obama_sm.jpg
