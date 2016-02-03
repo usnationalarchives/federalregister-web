@@ -155,7 +155,7 @@ class @FR2.HighlightedDocuments
       @displayPhotoGrid()
 
   addPhotoClickHandler: ->
-    cropHandler = this;
+    cropHandler = this
 
     _.each @photoContent.find('.photo-grid img'), (img)->
       $(img).on 'click', (e)->
