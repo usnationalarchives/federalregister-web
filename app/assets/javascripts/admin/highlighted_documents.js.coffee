@@ -277,36 +277,38 @@ class @FR2.HighlightedDocuments
     )
 
   saveCrop: ->
-    data = @croppedImage.cropper('getData')
     cropButton = $('.fr-modal.admin-crop-modal #crop-button')
-    image = $('.fr-modal.admin-crop-modal .image-original')
-    personData = $('.fr-modal.admin-crop-modal .photo-info')
 
-    ledePhotoForm = $('#document-content form')
+    unless cropButton.hasClass('btn-disabled')
+      data = @croppedImage.cropper('getData')
+      image = $('.fr-modal.admin-crop-modal .image-original')
+      personData = $('.fr-modal.admin-crop-modal .photo-info')
 
-    ledePhotoForm.find("#entry_lede_photo_attributes_crop_x").val(data.x)
-    ledePhotoForm.find("#entry_lede_photo_attributes_crop_y").val(data.y)
-    ledePhotoForm.find("#entry_lede_photo_attributes_crop_width").val(data.width)
-    ledePhotoForm.find("#entry_lede_photo_attributes_crop_height").val(data.height)
+      ledePhotoForm = $('#document-content form')
 
-    ledePhotoForm.find("#entry_lede_photo_attributes_url").val(
-      image.attr('src')
-    )
+      ledePhotoForm.find("#entry_lede_photo_attributes_crop_x").val(data.x)
+      ledePhotoForm.find("#entry_lede_photo_attributes_crop_y").val(data.y)
+      ledePhotoForm.find("#entry_lede_photo_attributes_crop_width").val(data.width)
+      ledePhotoForm.find("#entry_lede_photo_attributes_crop_height").val(data.height)
 
-    ledePhotoForm.find("#entry_lede_photo_attributes_flickr_photo_id").val(
-      cropButton.data('imageId')
-    )
+      ledePhotoForm.find("#entry_lede_photo_attributes_url").val(
+        image.attr('src')
+      )
 
-    ledePhotoForm.find("#entry_lede_photo_attributes_credit").val(
-      if personData.find('.realname').data('value')
-        personData.find('.realname').data('value')
-      else
-        personData.find('.username').data('value')
-    )
+      ledePhotoForm.find("#entry_lede_photo_attributes_flickr_photo_id").val(
+        cropButton.data('imageId')
+      )
 
-    ledePhotoForm.find("#entry_lede_photo_attributes_credit_url").val(
-      personData.find('.lightbox_url').data('value')
-    )
+      ledePhotoForm.find("#entry_lede_photo_attributes_credit").val(
+        if personData.find('.realname').data('value')
+          personData.find('.realname').data('value')
+        else
+          personData.find('.username').data('value')
+      )
 
-    @removePhotoGrid()
-    $('#fr_modal').jqmHide()
+      ledePhotoForm.find("#entry_lede_photo_attributes_credit_url").val(
+        personData.find('.lightbox_url').data('value')
+      )
+
+      @removePhotoGrid()
+      $('#fr_modal').jqmHide()
