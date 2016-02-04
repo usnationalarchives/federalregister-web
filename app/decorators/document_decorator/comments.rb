@@ -63,4 +63,10 @@ module DocumentDecorator::Comments
 
     comment_url.split('D=').last.split(/(_|-)/, 2).first
   end
+
+  def public_comments_url
+    if regulations_dot_gov_info && regulations_dot_gov_info['comments_url']
+      regulations_dot_gov_info['comments_url']
+    end
+  end
 end

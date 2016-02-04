@@ -21,7 +21,7 @@
 <% if document.has_comments? %>
   <p class="reg-gov-comments-count">
     Read the
-    <%= link_to pluralize(docket_info['comments_count'], 'submitted public comment'),
-      regulations_dot_gov_docket_comments_url(document.docket_id), target: :blank %>
+    <%= link_to pluralize(document.comment_count, 'public comment'),
+      document.public_comments_url, target: :blank %>
   </p>
 <% end %>

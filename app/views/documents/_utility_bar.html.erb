@@ -86,8 +86,8 @@
 
     <li class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
-        <% if docket_info && docket_info['comment_count'] && document.commentable? %>
-          <span class="comment_count"><%= docket_info['comments_count'] %></span>
+        <% if document.comment_count && document.public_comments_url %>
+          <span class="comment_count"><%= document.comment_count %></span>
         <% end %>
       </i>
       <%= fr_utility_nav_box(
@@ -100,9 +100,10 @@
           <li>
             <% if document.possible_regulations_dot_gov_comments? %>
               <%= link_to document.has_comments? ?
-                                    "Read the #{pluralize(docket_info['comments_count'], 'public comment')} on this document"
-                                    : "There are no public comments on this document",
-                          document.regulations_dot_gov_url %>
+                "Read the #{pluralize(document.comment_count, 'public comment')} on this document"
+                :
+                "There are no public comments on this document",
+                document.public_comments_url, target: :blank %>
             <% else %>
               This feature is not available for this document.
             <% end %>
