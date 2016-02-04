@@ -3,8 +3,8 @@
   overflow: hidden;
 }
 
-.has_js .advanced { display: none; }
 .advanced {
+  display: none;
   margin-top: 1em;
 
   &.open {
