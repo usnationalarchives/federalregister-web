@@ -26,3 +26,8 @@ feature_flags:
   unified_agenda:
     search: false
   regulatory_plan: false
+  # google charts image api is deprecated - reimplement in js
+  sparklines:
+    agencies: false
+    topics: false
+    suggested_searches: false

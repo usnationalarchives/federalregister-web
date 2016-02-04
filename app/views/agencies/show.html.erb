@@ -36,19 +36,21 @@
       </div>
 
       <div class="page-summary">
-        <% if @presenter.total_document_count > 0 %>
-          <div class="row">
-            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-              <%= document_frequency_sparklines(
-                'Published Document Frequency',
-                [
-                  @presenter.weekly_sparkline,
-                  @presenter.monthly_sparkline,
-                  @presenter.quarterly_sparkline,
-                ]
-              ) %>
+        <% if Settings.feature_flags.sparklines.agencies %>
+          <% if @presenter.total_document_count > 0 %>
+            <div class="row">
+              <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+                <%= document_frequency_sparklines(
+                  'Published Document Frequency',
+                  [
+                    @presenter.weekly_sparkline,
+                    @presenter.monthly_sparkline,
+                    @presenter.quarterly_sparkline,
+                  ]
+                ) %>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
 
         <div class="row">

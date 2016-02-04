@@ -19,8 +19,10 @@ DESCRIPTION AREA
   }
 
   .search-actions {
-    margin-bottom: 1em;
+    //margin-bottom: 1em;
     overflow: hidden;
+
+    p { margin-bottom: 0; }
 
     .subscribe-wrapper {
       position: relative;
