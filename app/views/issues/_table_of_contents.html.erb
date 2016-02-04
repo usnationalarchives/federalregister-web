@@ -12,7 +12,7 @@
           <em>See</em>
           <%= link_to(
             child_agency.name,
-            anchor: "##{[type, child_agency.slug].compact.join('-')}"
+            anchor: "#{[type, child_agency.slug].compact.join('-')}"
           ) %>
           <span class="count_pill count-pill cj-tooltip"
             data-tooltip="<%= pluralize(child_agency.document_count_with_child_agencies, 'Document') %>"
