@@ -3,5 +3,5 @@ $(document).ready ()->
 
   _.each pagers, (pager) ->
     $(pager)
-      .css 'width', $(pager).width()
+      .css 'width', $(pager).width() + 5
       .css 'display', 'block'
