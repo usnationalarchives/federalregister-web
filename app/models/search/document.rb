@@ -28,9 +28,8 @@ class Search::Document < Search::Base
 
   def public_inspection_document_count
     PublicInspectionDocument.search_metadata(
-      conditions: valid_conditions.
-        symbolize_keys.
-        except(*DOCUMENT_SEARCH_CONDITIONS)
+      conditions: Search::PublicInspection.new(conditions).
+        valid_conditions.symbolize_keys
     ).count
   end
 
