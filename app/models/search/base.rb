@@ -54,7 +54,7 @@ class Search::Base
   end
 
   def order
-    params[:order] || "relevance"
+    conditions[:order] || "relevance"
   end
 
   def valid_conditions
@@ -87,7 +87,7 @@ class Search::Base
   end
 
   def conditions_blank?
-    params[:conditions].blank?
+    conditions.blank?
   end
 
   def valid?
