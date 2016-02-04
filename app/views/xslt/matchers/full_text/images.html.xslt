@@ -2,74 +2,40 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:fr="http://federalregister.gov/functions" extension-element-prefixes="fr">
   <xsl:include href="../../templates/utils.html.xslt" />
 
-  <xsl:template match="GPH/GID">
-    <xsl:choose>
-      <xsl:when test="contains($image_identifiers, text())">
-        <p class="document-graphic">
-          <a class="document-graphic-link">
-            <xsl:attribute name="data-width">
-              <xsl:value-of select="parent::GPH/@SPAN" />
-            </xsl:attribute>
-            <xsl:attribute name="data-height">
-              <xsl:value-of select="parent::GPH/@DEEP" />
-            </xsl:attribute>
 
-            <xsl:attribute name="id">
-              <xsl:value-of select="concat('g-', count(preceding::GPH/GID)+1)" />
-            </xsl:attribute>
+  <xsl:template match="GPH/GID | MATH/MID">
+    <xsl:if test="not( contains($image_identifiers, text()) )">
+      <xsl:copy-of select="fr:missing_graphic(text(), $document_number, $publication_date)" />
+    </xsl:if>
 
-            <xsl:attribute name="href">
-              <xsl:call-template name="graphic_url">
-                <xsl:with-param name="style" select="'original'" />
-                <xsl:with-param name="identifier" select="text()" />
-              </xsl:call-template>
-            </xsl:attribute>
-            <img>
-              <xsl:attribute name="src">
-                <xsl:call-template name="graphic_url">
-                  <xsl:with-param name="style" select="'large'" />
-                  <xsl:with-param name="identifier" select="text()" />
-                </xsl:call-template>
-              </xsl:attribute>
-
-              <xsl:attribute name="class">
-                <xsl:if test="number(parent::GPH/@SPAN) = 3">
-                  <xsl:value-of select="'document-graphic-image full'" />
-                </xsl:if>
-                <xsl:if test="number(parent::GPH/@SPAN) = 1">
-                  <xsl:value-of select="'document-graphic-image small'" />
-                </xsl:if>
-              </xsl:attribute>
-            </img>
-          </a>
-        </p>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:copy-of select="fr:missing_graphic(text(), $document_number, $publication_date)" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template name="graphic_url">
-    <xsl:param name="style" />
-    <xsl:param name="identifier" />
-
-    <xsl:variable name="style_url">
-      <xsl:call-template name="string_replace_all">
-        <xsl:with-param name="text" select="$image_base_url" />
-        <xsl:with-param name="replace" select="':style'" />
-        <xsl:with-param name="by" select="$style" />
-      </xsl:call-template>
+    <xsl:variable name="paragraph_id">
+      <xsl:value-of select="concat('g-', count(preceding::GPH/GID)+count(preceding::MATH/MID)+1)" />
     </xsl:variable>
 
-    <xsl:variable name="url">
-      <xsl:call-template name="string_replace_all">
-        <xsl:with-param name="text" select="$style_url" />
-        <xsl:with-param name="replace" select="':identifier'" />
-        <xsl:with-param name="by" select="$identifier" />
-      </xsl:call-template>
+    <xsl:variable name="image_class">
+      <xsl:if test="number(parent::GPH/@SPAN | parent::MATH/@SPAN) = 3">
+        <xsl:value-of select="'document-graphic-image full'" />
+      </xsl:if>
+      <xsl:if test="number(parent::GPH/@SPAN | parent::MATH/@SPAN) = 1">
+        <xsl:value-of select="'document-graphic-image small'" />
+      </xsl:if>
     </xsl:variable>
 
-    <xsl:value-of select="$url" />
+    <xsl:variable name="data_width">
+      <xsl:if test="number(parent::GPH/@SPAN | parent::MATH/@SPAN) = 3">
+        <xsl:value-of select="3" />
+      </xsl:if>
+      <xsl:if test="number(parent::GPH/@SPAN | parent::MATH/@SPAN) = 1">
+        <xsl:value-of select="1" />
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:variable name="data_height">
+      <xsl:value-of select="number(parent::GPH/@DEEP | parent::MATH/@DEEP)" />
+    </xsl:variable>
+
+    <p class="document-graphic">
+      <xsl:copy-of select="fr:gpo_image(text(),$paragraph_id, $image_class, $data_width, $data_height)" />
+    </p>
   </xsl:template>
 </xsl:stylesheet>

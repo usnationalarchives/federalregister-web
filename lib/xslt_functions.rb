@@ -1,4 +1,6 @@
 class XsltFunctions
+  include GpoImages::ImageIdentifierNormalizer
+
   # GPO will occassionally include multiple footnotes in a single node
   # we need to break them out in order to link them properly.
   def footnotes(nodes)
@@ -105,9 +107,42 @@ class XsltFunctions
     document.children
   end
 
+  def gpo_image(nodes, link_id, image_class, data_width, data_height)
+    document = blank_document
+
+    graphic_identifier = normalize_image_identifier(
+      nodes.first.content
+    )
+
+    Nokogiri::XML::Builder.with(document) do |doc|
+      doc.a(
+        class: "document-graphic-link",
+        id: link_id,
+        href: graphic_url('original', graphic_identifier),
+        'data-width' => data_width,
+        'data-height' => data_height
+      ) {
+        doc.img(
+          :class => image_class,
+          :src => graphic_url('large', graphic_identifier)
+        )
+      }
+    end
+
+    document.children
+  end
+
+  def capitalize(nodes)
+    nodes.first.content.upcase
+  end
+
   private
 
   def blank_document
     Nokogiri::XML::DocumentFragment.parse ""
+  end
+
+  def graphic_url(size, graphic_identifier)
+    "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/#{graphic_identifier}/#{size}.png"
   end
 end

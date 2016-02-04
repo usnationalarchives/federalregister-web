@@ -7,3 +7,10 @@ app_url: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
 rss_helper:
   url: "federalregister.gov"
+
+
+# Make any updates -api-core also
+s3_buckets:
+  zipped_eps_images: eps.images.federalregister.gov
+  private_images: private.images.federalregister.gov
+  public_images: images.federalregister.gov

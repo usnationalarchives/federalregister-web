@@ -12,3 +12,9 @@ rss_helper:
 
 regulations_dot_gov:
   debug_output_enabled: true
+
+# Make any updates -api-core also
+s3_buckets:
+  zipped_eps_images: eps.images.test.federalregister.gov
+  private_images: private.test.images.fr2.dev
+  public_images: test.images.fr2.dev

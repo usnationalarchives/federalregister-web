@@ -1,5 +1,7 @@
 module XsltTestHelper
   require 'nokogiri'
+  require 'gpo_images/image_identifier_normalizer'
+  require 'xslt_functions'
   require 'xslt_transform'
   require 'action_controller'
   require 'pry'
@@ -13,7 +15,7 @@ module XsltTestHelper
       'image_identifiers' => ""
     }
     @xslt_vars ||= {}
-    
+
     @transformed = XsltTransform.transform_xml(
       "<#{type}>#{xml}</#{type}>",
       @template,

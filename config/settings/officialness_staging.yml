@@ -10,3 +10,9 @@ fr_comment_url: 'https://fr-official.criticaljuncture.org/my/comments'
 
 # officialness:
 #   start_date: 2015-12-01
+
+# Make any updates -api-core also
+s3_buckets:
+  zipped_eps_images: eps.images.federalregister.gov
+  private_images: private.images.fr-official.criticaljuncture.org
+  public_images: images.fr-official.criticaljuncture.org

@@ -36,4 +36,3 @@ class XsltTransform
 end
 
 Nokogiri::XSLT.register "http://federalregister.gov/functions", XsltFunctions
-

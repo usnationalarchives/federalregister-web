@@ -1,7 +1,7 @@
 $(document).ready ->
   missingDocumentImageUrlBase = "https://s3.amazonaws.com/images.#{window.location.hostname.replace('www.', '')}/missingimage"
 
-  $('#fulltext_content_area').on 'error', 'img.entry_graphic', ->
+  $('#fulltext_content_area').on 'error', 'img.document-graphic-image', ->
     link = $(this)
 
     link
@@ -11,5 +11,5 @@ $(document).ready ->
       .attr 'src', "#{missingDocumentImageUrlBase}/large.png"
 
     link
-      .closest 'a.entry_graphic_link'
+      .closest 'a.document-graphic-link'
       .attr 'href', "#{missingDocumentImageUrlBase}/original.png"
