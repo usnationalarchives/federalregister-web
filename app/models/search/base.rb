@@ -8,7 +8,7 @@ class Search::Base
     :type,
     :term,
     :docket_id,
-    :agency_ids,
+    :agencies,
   ]
 
   def initialize(params)

@@ -37,7 +37,7 @@
                   <%= esi( documents_search_facets_path(
                       params.except(:action).merge(facet: 'agency', num_facets: 6, limit: 12)
                     )
-                  ) unless @search.agency_ids.present? %>
+                  ) unless @search.agencies.present? %>
 
                   <%= esi( documents_search_facets_path(
                       params.except(:action).merge(facet: 'topic', num_facets: 6)

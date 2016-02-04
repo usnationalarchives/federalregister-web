@@ -32,14 +32,14 @@ class @FR2.SearchFormAgencyAutocompleter
                 return {
                   label: item.name,
                   value: item.name,
-                  id: item.id
+                  id: item.slug
                 }
               )
           })
         select: (event, ui)->
-          $("#conditions_agency_ids")
+          $("#conditions_agencies")
             .append("<option value=#{ui.item.id} selected='selected'>#{ui.item.label}</option>")
-          $("#conditions_agency_ids").trigger("change")
+          $("#conditions_agencies").trigger("change")
           $(this).data('clear-value', 1)
         close: ()->
           input = $(this)

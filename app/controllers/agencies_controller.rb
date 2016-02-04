@@ -26,7 +26,7 @@ class AgenciesController < ApplicationController
   def suggestions
     agencies = Agency.suggestions(params[:term])
     render :json => agencies.map{|a|
-      {id: a.id, name: a.name_and_short_name, url: a.url}
+      {slug: a.slug, name: a.name_and_short_name, url: a.url}
     }
   end
 

@@ -7,8 +7,8 @@
     <label>Agency</label>
     <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
 
-    <%= f.select :agency_ids,
-      @presenter.agencies.map{|a| [a.name, a.id.to_s]},
+    <%= f.select :agencies,
+      @presenter.agencies.map{|a| [a.name, a.slug]},
       {},
       {
         multiple: true,

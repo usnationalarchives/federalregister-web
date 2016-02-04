@@ -4,7 +4,7 @@ class Agency < FederalRegister::Agency
       conditions: {
         term: term
       },
-      fields: [:id, :name, :short_name, :url]
+      fields: [:name, :short_name, :slug, :url]
     }
 
     agencies = super(args)
