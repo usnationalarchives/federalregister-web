@@ -107,18 +107,6 @@ describe "XSLT::FullText::Images" do
 
         expect(Honeybadger).to have_received(:notify)
       end
-
-      it "returns the proper html markup" do
-        process <<-XML
-          <GPH DEEP="320" SPAN="1">
-          <GID>EP00MY00.000</GID>
-          </GPH>
-        XML
-
-        expect(html).to have_tag('p.missing-graphic') do
-          with_text "[Missing Graphic EP00MY00.000]"
-        end
-      end
     end
   end
 end

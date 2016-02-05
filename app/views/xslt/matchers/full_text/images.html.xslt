@@ -5,7 +5,7 @@
 
   <xsl:template match="GPH/GID | MATH/MID">
     <xsl:if test="not( contains($image_identifiers, text()) )">
-      <xsl:copy-of select="fr:missing_graphic(text(), $document_number, $publication_date)" />
+      <xsl:copy-of select="fr:notify_missing_graphic(text(), $document_number, $publication_date)" />
     </xsl:if>
 
     <xsl:variable name="paragraph_id">

@@ -84,7 +84,7 @@ class XsltFunctions
     document.children
   end
 
-  def missing_graphic(nodes, document_number, publication_date)
+  def notify_missing_graphic(nodes, document_number, publication_date)
     document = blank_document
     node_text = nodes.first.content
 
@@ -97,12 +97,6 @@ class XsltFunctions
         publication_date: publication_date
       }
     )
-
-    Nokogiri::XML::Builder.with(document) do |doc|
-      doc.p(class: 'missing-graphic') {
-        doc.text "[Missing Graphic #{node_text}]"
-      }
-    end
 
     document.children
   end
