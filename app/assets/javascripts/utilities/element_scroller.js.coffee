@@ -12,6 +12,12 @@ class @FR2.ElementScroller
       options.offsets
     )
 
+    $(document).on 'keydown', null, 'meta+down', =>
+      scrollMonitor.recalculateLocations()
+
+    $(document).on 'keydown', null, 'meta+up', =>
+      scrollMonitor.recalculateLocations()
+
     @attachElementWatcherEvents()
 
     if options.container
@@ -26,42 +32,60 @@ class @FR2.ElementScroller
     @displayDebugMessage()
 
   ensureElementInViewport: ()->
-    if !@elementWatcher.isInViewport && @containerWatcher.isInViewport
-      if !@containerWatcher.isBelowViewport
+    scrollMonitor.recalculateLocations()
+    $(window).trigger('scroll')
+
+    if @containerWatcher.isInViewport
+      if @containerWatcher.isBelowViewport
+        @el
+          .css(
+            'top',
+            scrollMonitor.viewportTop + 'px'
+          )
+      else if !@containerWatcher.isBelowViewport
         @el
           .css(
             'top',
             @containerWatcher.bottom - (@el.outerHeight() * 2) - @elementWatcher.offsets.bottom + 'px'
           )
-      else if @containerWatcher.isBelowViewport
-        @el
-          .css(
-            'top',
-            @window.scrollTop() - @el.height() + 'px'
-          )
-          # scrollMonitor.viewportTop doesn't seem to always be a valid value
-          # at this point in the loading, so using window.scrollTop() instead
 
       @debugMessage = "Element not in viewport"
+    else
+      @debugMessage = "Container not in viewport"
 
   attachContainerWatcherEvents: ()->
+    @containerWatcher.fullyEnterViewport ()=>
+      if @currentScrollDirection == 'up'
+        @el
+          .addClass 'fixed'
+          .css 'top', '0'
+        @elementWatcher.recalculateLocation()
+
+        @debugMessage = 'Container has fully entered viewport'
+
     @containerWatcher.partiallyExitViewport ()=>
+      @debugMessage = "{scroll: #{@currentScrollDirection},
+        elAbove: #{@elementWatcher.isAboveViewport},
+        elBelow: #{@elementWatcher.isBelowViewport},
+        containerAbove: #{@containerWatcher.isAboveViewport},
+        containerBelow: #{@containerWatcher.isBelowViewport}}"
+
       if @currentScrollDirection == 'up' && !@elementWatcher.isAboveViewport
+        # reset nav top
         @el
           .removeClass 'fixed'
-          .css('top', 'auto') # reset nav top
+          .css('top', -10)
         @elementWatcher.recalculateLocation()
 
         @debugMessage = 'Container has partially left the top viewport'
 
-      else if @currentScrollDirection == 'down' && !@elementWatcher.isBelowViewport
+      else if @currentScrollDirection == 'down' && !@containerWatcher.isBelowViewport
         @elementWatcher.recalculateLocation()
-        @el
-          .css(
-            'top',
-            @elementWatcher.top - @el.outerHeight() + 'px'#- @elementWatcher.offsets.bottom
-          )
-          .removeClass 'fixed'
+        top = @containerWatcher.bottom - (@el.outerHeight() * 2) - @elementWatcher.offsets.bottom + 'px'
+
+        @el.css('top', top).removeClass('fixed')
+
+        @debugMessage = "{top: #{top}, containerBottom: #{@containerWatcher.bottom}}"
         @debugMessage = 'Container has partially left the bottom viewport'
 
 
@@ -76,18 +100,18 @@ class @FR2.ElementScroller
 
     @elementWatcher.partiallyExitViewport ()=>
       if @currentScrollDirection == 'down' && !@elementWatcher.isBelowViewport && @containerWatcher.isBelowViewport
-        @el
-          .addClass 'fixed'
-          .css(
-            'top',
-            $(window).height() - @el.outerHeight() - @elementWatcher.offsets.bottom + 'px'
-          )
+        if @elementWatcher.isAboveViewport
+          top = $(window).height() - @el.outerHeight() - @elementWatcher.offsets.bottom + 'px'
+        else
+          top = 0
 
-        @debugMessage = 'I have partially left the top viewport'
-      else if @currentScrollDirection == 'up' && !@elementWatcher.isAboveViewport
+        @el.addClass('fixed').css('top', top)
+
+        @debugMessage = "I have partially left the top viewport. {class: fixed, top: #{top}}"
+      else if @currentScrollDirection == 'up' && !@elementWatcher.isAboveViewport && @containerWatcher.isBelowViewport
         @el
           .addClass 'fixed'
-          .css 'top', '0px'
+          .css 'top', '0'
         @elementWatcher.recalculateLocation()
 
         @debugMessage = 'I have partially left the bottom viewport'
@@ -103,21 +127,13 @@ class @FR2.ElementScroller
           @elementWatcher.recalculateLocation()
 
           if @currentScrollDirection == 'up'
-            @el
-              .css(
-                'top',
-                 @elementWatcher.top - @el.outerHeight() + 78 + 'px'
-              )
-              .removeClass 'fixed'
+            top = @elementWatcher.top - @el.outerHeight() + 25 + 'px'
           else if @currentScrollDirection == 'down'
-            @el
-              .css(
-                'top',
-                 @elementWatcher.top - scrollMonitor.viewportHeight
-              )
-              .removeClass 'fixed'
+            top = @elementWatcher.top - scrollMonitor.viewportHeight + 25 + 'px'
 
-          @debugMessage = "Scroll direction changed, direction: #{@currentScrollDirection}, removing class='fixed'"
+          @el.css('top', top).removeClass('fixed')
+
+          @debugMessage = "Scroll direction changed, removing 'fixed' class. {direction: #{@currentScrollDirection}, top: #{top}}"
 
         @displayDebugMessage()
       ),

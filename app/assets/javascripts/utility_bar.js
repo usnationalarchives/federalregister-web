@@ -16,17 +16,20 @@ $(document).ready(function() {
   });
 
   if( $('.doc-nav-wrapper').length > 0 ) {
-    $('.doc-nav-wrapper').outerHeight( $('.doc-nav-wrapper').siblings('.fr-box').first().height() + 'px' );
+    $('.doc-nav-wrapper').outerHeight(
+      $('.doc-nav-wrapper').siblings('.fr-box').first().height() + 'px'
+    );
   }
 
   var utilityNavScroller;
   utilityNavScroller = new FR2.ElementScroller(
     $('.doc-document ul.doc-nav'),
     {
-      offsets: { bottom: 192 },
+      offsets: { bottom: 212 },
       container: {
         el: $('.doc-nav-wrapper')
-      }
+      },
+      debug: false
     }
   );
 
