@@ -38,9 +38,11 @@ class DocumentsController < ApplicationController
     respond_to do |wants|
       wants.html do
         url = document_or_pi.html_url
+
         if params[:anchor].present?
           url += '#' + params[:anchor]
         end
+
         redirect_to url, status: :moved_permanently
       end
 

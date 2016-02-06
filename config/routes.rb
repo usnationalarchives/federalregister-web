@@ -42,10 +42,10 @@ MyFr2::Application.routes.draw do
       }
 
   # don't break old urls
-  get '/a/:document_number',
+  get '/a/:document_number(/:anchor)',
       to: "documents#tiny_url"
 
-  get '/d/:document_number',
+  get '/d/:document_number(/:anchor)',
       to: "documents#tiny_url",
       as: :short_document
 
