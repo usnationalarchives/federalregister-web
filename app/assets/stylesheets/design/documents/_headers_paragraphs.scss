@@ -1,27 +1,28 @@
+.fr-box-published .content-block,
 .fr-box-official .content-block {
   h3.cfr-subjects { margin-left: 25px; }
 
   p {
     &.flush-paragraph {
-      padding-bottom: 0;
       margin-bottom: 0 !important;
+      padding-bottom: 0;
 
       &.flush-paragraph-1 {
         margin-left: 1em !important;
-        text-indent: -1.15em;
         padding-left: 1em;
+        text-indent: -1.15em;
       }
 
       &.flush-paragraph-2 {
         margin-left: 2em !important;
-        text-indent: -2.5em;
         padding-left: 2.5em;
+        text-indent: -2.5em;
       }
 
       &.flush-paragraph-1-2 {
         margin-left: 2em !important;
-        text-indent: -1.15em;
         padding-left: 1.15em;
+        text-indent: -1.15em;
       }
 
       &.flush-paragraph-dash {
@@ -31,6 +32,10 @@
 
         &.flush-paragraph-no-wrap { white-space: nowrap; }
       }
+    }
+
+    &:target {
+      background-color: $highlight-yellow;
     }
   }
 
