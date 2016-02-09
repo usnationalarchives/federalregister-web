@@ -57,10 +57,11 @@
           <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
             <% if @presenter.agency.description.present? %>
               <div class="description">
-                <%= auto_link(
-                  simple_format(@presenter.agency.description)
+                <%= add_citation_links(
+                  auto_link(
+                    simple_format(@presenter.agency.description)
+                  )
                 ).html_safe %>
-                <%#= add_citation_links(auto_link(simple_format(@presenter.agency.description))).html_safe %>
               </div>
             <% end %>
           </div>
