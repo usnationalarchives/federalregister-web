@@ -8,6 +8,7 @@ module DocumentIssueHelper
   def display_hierarchy(docs, agency, options={})
     document_partial = options[:document_partial]
     level = options[:level]
+
     docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
       docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
 
@@ -43,7 +44,7 @@ module DocumentIssueHelper
   end
 
   def subject_heading_required?(level, docs_only_at_this_level, nested_docs)
-    level == 1 || (docs_only_at_this_level.present? && nested_docs.present?)
+    level == 1 || (docs_only_at_this_level.present? || nested_docs.present?)
   end
 
   def url_for_subject_heading(agency, docs_only_at_this_level)
