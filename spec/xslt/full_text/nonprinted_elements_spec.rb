@@ -54,11 +54,13 @@ describe "XSLT::NonPrintedElements" do
     end
   end
 
-  it "creates the proper elements for APPENDIX" do
+  it "creates the proper tooltip elements for APPENDIX in a REGTEXT block" do
     process <<-XML
-      <APPENDIX>
-        Some text nodes and other content nodes
-      </APPENDIX>
+      <REGTEXT>
+        <APPENDIX>
+          Some text nodes and other content nodes
+        </APPENDIX>
+      </REGTEXT>
     XML
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
@@ -71,6 +73,30 @@ describe "XSLT::NonPrintedElements" do
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
+          with: {"data-text" => "End Appendix"}
+      end
+    end
+  end
+
+  it "does not creates the tooltip elements for APPENDIX not in a REGTEXT block" do
+    process <<-XML
+      <APPENDIX>
+        Some text nodes and other content nodes
+      </APPENDIX>
+    XML
+
+    expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
+      with_tag "span.unprinted-element-border" do
+        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
+          with: {"data-text" => "Start Appendix"}
+      end
+    end
+
+    expect(html).to match("Some text nodes and other content nodes")
+
+    expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
       with_tag "span.unprinted-element-border" do
         with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
           with: {"data-text" => "End Appendix"}

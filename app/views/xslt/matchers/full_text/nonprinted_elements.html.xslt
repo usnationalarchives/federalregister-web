@@ -51,43 +51,47 @@
   </xsl:template>
 
   <xsl:template match="APPENDIX">
-    <span class="appendix-wrapper unprinted-element-wrapper">
-      <span class="unprinted-element-border"></span>
-      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
-        <xsl:attribute name="data-tooltip-template">
-          <xsl:value-of select="'#appendix-tooltip-template'" />
-        </xsl:attribute>
+    <xsl:if test="parent::*[1][name() = 'REGTEXT']">
+      <span class="appendix-wrapper unprinted-element-wrapper">
+        <span class="unprinted-element-border"></span>
+        <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+          <xsl:attribute name="data-tooltip-template">
+            <xsl:value-of select="'#regtext-appendix-tooltip-template'" />
+          </xsl:attribute>
 
-        <xsl:attribute name="data-tooltip-doc-override">
-          <xsl:value-of select="'tooltip-enhanced'" />
-        </xsl:attribute>
+          <xsl:attribute name="data-tooltip-doc-override">
+            <xsl:value-of select="'tooltip-enhanced'" />
+          </xsl:attribute>
 
-        <xsl:attribute name="data-text">
-          <xsl:value-of select="'Start Appendix'" />
-        </xsl:attribute>
-        <xsl:text> </xsl:text>
+          <xsl:attribute name="data-text">
+            <xsl:value-of select="'Start Appendix'" />
+          </xsl:attribute>
+          <xsl:text> </xsl:text>
+        </span>
       </span>
-    </span>
+    </xsl:if>
 
     <xsl:apply-templates />
 
-    <span class="appendix-wrapper unprinted-element-wrapper">
-      <span class="unprinted-element-border"></span>
-      <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
-        <xsl:attribute name="data-tooltip-template">
-          <xsl:value-of select="'#appendix-tooltip-template'" />
-        </xsl:attribute>
+    <xsl:if test="parent::*[1][name() = 'REGTEXT']">
+      <span class="appendix-wrapper unprinted-element-wrapper">
+        <span class="unprinted-element-border"></span>
+        <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+          <xsl:attribute name="data-tooltip-template">
+            <xsl:value-of select="'#regtext-appendix-tooltip-template'" />
+          </xsl:attribute>
 
-        <xsl:attribute name="data-tooltip-doc-override">
-          <xsl:value-of select="'tooltip-enhanced'" />
-        </xsl:attribute>
+          <xsl:attribute name="data-tooltip-doc-override">
+            <xsl:value-of select="'tooltip-enhanced'" />
+          </xsl:attribute>
 
-        <xsl:attribute name="data-text">
-          <xsl:value-of select="'End Appendix'" />
-        </xsl:attribute>
-        <xsl:text> </xsl:text>
+          <xsl:attribute name="data-text">
+            <xsl:value-of select="'End Appendix'" />
+          </xsl:attribute>
+          <xsl:text> </xsl:text>
+        </span>
       </span>
-    </span>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="FURINF">
