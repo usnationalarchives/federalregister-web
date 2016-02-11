@@ -5,10 +5,11 @@ class Search::Base
   include ConditionsHelper
 
   SEARCH_CONDITIONS = [
-    :type,
-    :term,
-    :docket_id,
     :agencies,
+    :agency_ids,
+    :docket_id,
+    :term,
+    :type,
   ]
 
   def initialize(params)
@@ -62,6 +63,16 @@ class Search::Base
       @errors[key] = "is not a valid field" unless respond_to?(key)
       respond_to?(key)
     end
+  end
+
+  def invalid_conditions
+    conditions.reject do |key, val|
+      respond_to?(key)
+    end
+  end
+
+  def valid_search?
+    invalid_conditions.empty?
   end
 
   def result_metadata
