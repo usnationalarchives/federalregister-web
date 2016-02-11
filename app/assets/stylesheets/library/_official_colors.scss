@@ -51,7 +51,7 @@ $nav-border-color: #CECECE;
 /* links */
 $link: $fr-link-dark;
 $link-hover: $fr-orange;
-$link-visited: $fr-link;
+$link-visited: $link;
 
 $public-inspection-link: $color-public-inspection;
 $public-inspection-link-hover: darken($color-public-inspection, 20);
