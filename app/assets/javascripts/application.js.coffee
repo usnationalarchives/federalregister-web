@@ -7,6 +7,16 @@
 #= require storage.js
 #= require analytics.js
 
+# Namespaced JS Classes
+#= require utilities/analytics
+#= require utilities/cj_tooltip
+#= require utilities/modal
+#= require utilities/element_scroller
+#= require utilities/toggle
+#= require utilities/list_item_filter
+#= require utilities/list_item_sorter
+#= require utilities/non_persistent_storage
+
 #= require components
 #= require fr_modal
 #= require form_utils
@@ -44,15 +54,6 @@
 #= require issues
 
 #= require search
-
-# Namespaced JS Classes
-#= require utilities/analytics
-#= require utilities/cj_tooltip
-#= require utilities/modal
-#= require utilities/element_scroller
-#= require utilities/toggle
-#= require utilities/list_item_filter
-#= require utilities/list_item_sorter
 
 # Instantiate and bind common application js items
 #= require app

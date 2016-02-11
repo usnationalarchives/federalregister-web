@@ -1,3 +1,8 @@
+# Create an object to store non-persistent user data to
+# Needs instantiation before document ready as some of these values
+# are set by script tags in the html
+FR2.currentUserStorage = new FR2.NonPersistentStorage()
+
 $(document).ready ()->
   # Clipboard helper
   $('.clippy').clippy({
@@ -41,3 +46,9 @@ $(document).ready ()->
     documentNumber = button.closest('div.comment').data('document-number')
 
     FR2.Analytics.trackGAEvent category, action, documentNumber
+
+  # Subcription modals
+  $('a.rss, a.subscription, a.subscription_action').on 'click', (e)->
+    e.preventDefault()
+
+    FR2.SubscriptionHandler.generateModal()
