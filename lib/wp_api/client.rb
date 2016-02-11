@@ -2,7 +2,14 @@ class WpApi::Client
   class PageNotFound < StandardError; end
 
   include HTTParty
-  base_uri "#{Settings.federal_register.base_uri}/blog/wp-json"
+  base_uri "#{Settings.federal_register.base_uri}/blog/wp-json/wp/v2"
+
+  ##############################
+  # ENDPOINTS
+  ##############################
+  def self.categories_endpoint
+    "#{base_uri}/categories"
+  end
 
   def self.pages_endpoint
     "#{base_uri}/pages"
@@ -12,37 +19,60 @@ class WpApi::Client
     "#{base_uri}/posts"
   end
 
-  def self.get_pages(options={})
-    filters = options.fetch(:filters) { "" }
-    filters = build_filters(filters) if filters.present?
+  def self.users_endpoint
+    "#{base_uri}/users"
+  end
+
+
+  ##############################
+  # CONTENT RETRIEVAL
+  ##############################
+  def self.get_categories
+    get("#{categories_endpoint}").map do |attributes|
+      WpApi::Category.new(attributes)
+    end
+  end
+
+  def self.get_pages(params={})
+    params = build_params(params)
 
     WpApi::PageCollection.new(
-      get("#{pages_endpoint}?#{filters}")
+      get( build_url(pages_endpoint, params) )
     )
   end
 
-  def self.get_page_by_slug(slug)
-    page = get("#{pages_endpoint}?filter[name]=#{slug}").first
+  def self.get_page(params={})
+    if params[:id]
+      page = get("#{pages_endpoint}/#{params[:id]}")
+    else
+      params = build_params(params)
+      page = get( build_url(pages_endpoint, params) ).first
+    end
 
-    raise PageNotFound.new("can't find page with slug '#{slug}'") unless page
+    raise PageNotFound.new("can't find page with params '#{params}'") unless page
 
     WpApi::Page.new(page)
   end
 
-  def self.get_posts(options={})
-    filters = options.fetch(:filters) { "" }
-    filters = build_filters(filters) if filters.present?
+  def self.get_posts(params={})
+    params = build_params(params)
 
     WpApi::PostCollection.new(
-      get("#{posts_endpoint}?#{filters}")
+      get( build_url(posts_endpoint, params) )
     )
   end
 
   def self.search(term)
-    page_collection = get_pages(filters: {s: term})
-    post_collection = get_posts(filters: {s: term, posts_per_page: 10})
+    page_collection = get_pages(search: term)
+    post_collection = get_posts(search: term, per_page: 10)
 
     WpApi::SearchResult.new(term, page_collection, post_collection)
+  end
+
+  def self.get_users
+    get("#{users_endpoint}").map do |attributes|
+      WpApi::Author.new(attributes)
+    end
   end
 
   private
@@ -51,15 +81,17 @@ class WpApi::Client
     super( URI.encode(uri) )
   end
 
-  def self.build_filters(filters)
-    if filters[:parent_slug]
-      slug = filters.delete(:parent_slug)
-      parent_page = get_page_by_slug(slug)
-      filters[:post_parent] = parent_page.id
+  def self.build_url(endpoint, params)
+    [endpoint, params].compact.join('?')
+  end
+
+  def self.build_params(params)
+    if params[:parent_slug]
+      slug = params.delete(:parent_slug)
+      parent_page = get_page(slug: slug)
+      params[:parent] = parent_page.id
     end
 
-    filters.map do |key, value|
-      "filter[#{key}]=#{value}"
-    end.join('&')
+    params.present? ? params.to_query : nil
   end
 end

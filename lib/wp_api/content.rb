@@ -6,10 +6,7 @@ class WpApi::Content
   end
 
   WHITELISTED_ATTRIBUTES = [
-    'title',
     'link',
-    'content',
-    'excerpt',
   ]
 
   WHITELISTED_ATTRIBUTES.each do |attribute|
@@ -22,101 +19,73 @@ class WpApi::Content
   end
 
   def id
-    attributes['ID']
+    attributes['id']
+  end
+
+  def title
+    attributes['title'] ? attributes['title']['rendered'] : nil
   end
 
   def formatted_title
     if title
-      title.html_safe
+      clean_content(title).html_safe
     else
       "No title provided."
     end
   end
 
+  def content
+    attributes['content'] ? attributes['content']['rendered'] : nil
+  end
+
   def formatted_content
-    content.html_safe if content
+    clean_content(content).html_safe if content
+  end
+
+  def excerpt
+    attributes['excerpt'] ? attributes['excerpt']['rendered'] : nil
   end
 
   def formatted_excerpt
+    #binding.pry
     if excerpt
-      excerpt.html_safe
+      clean_content(excerpt).html_safe
     else
-      "No description available."
+      "No excerpt available."
     end
   end
 
   def parent
-    @parent ||= Parent.new(attributes['parent'])
+    return nil if attributes['parent'] == 0
+
+    @parent ||= WpApi::Client.get_page(id: attributes['parent'])
   end
 
   def author
-    @author ||= Author.new(attributes['author'])
+    @author ||= WpApi::Author.find(attributes['author'])
   end
 
   def categories
     categories = []
-    attributes['terms']['category'].each do |category|
-      categories << category['slug']
+
+    attributes['categories'].map do |category_id|
+      categories << WpApi::Category.find(category_id)
     end
-    categories
+
+    categories.compact
   end
 
   def modified
     attributes['modified'].try(:to_date)
   end
 
-  class Author
-    attr_reader :id, :title, :attributes
-    def initialize(attributes)
-      @attributes = validate_attributes(attributes)
-    end
+  private
 
-    WHITELISTED_ATTRIBUTES = [
-      'ID',
-      'username',
-      'name',
-      'first_name',
-      'last_name',
-      'nickname',
-      'slug',
-      'URL',
-      'avatar',
-      'description',
-      'registered',
-      'meta',
-    ]
-
-    WHITELISTED_ATTRIBUTES.each do |attribute|
-      define_method(attribute.downcase) { attributes[attribute] }
-    end
-
-    private
-    def validate_attributes(attributes)
-      attributes.is_a?(Hash) ? attributes : {}
-    end
-  end
-
-  class Parent
-    attr_reader :id, :title, :attributes
-    def initialize(attributes)
-      @attributes = validate_attributes(attributes)
-    end
-
-    def title
-      attributes['title']
-    end
-
-    def id
-      attributes['ID']
-    end
-
-    def slug
-      attributes['slug']
-    end
-
-    private
-    def validate_attributes(attributes)
-      attributes.is_a?(Hash) ? attributes : {}
-    end
+  def clean_content(node)
+    CGI.unescapeHTML(
+      node.
+        gsub(/&nbsp;/, ' ').
+        strip
+    )
   end
 end
