@@ -1,23 +1,22 @@
 .bootstrap-scope {
   .fr-box.fr-box-reader-aid {
+    // hide the read more link that WP inserts automatically
+    .more-link { display: none; }
+
     p { line-height: 20px; }
 
     .row {
       .section {
-        h4 { font-size: 20px; }
-        h5 {
-          font-size: 16px;
-          margin-bottom: 5px;
-        }
+        h4 { font-size: modular-scale(2) !important; }
+        h5 { margin-bottom: 5px; }
 
         p {
-          font-size: 14px;
           line-height: 18px;
 
           .byline {
             display: block;
-            overflow: hidden;
             font-style: italic;
+            overflow: hidden;
 
             .authorship { float: right; }
             .comments { color: $fr-gray-60; }
@@ -60,15 +59,15 @@
   }
 
   .reader-aids-index-nav {
-    padding: 10px 10px 0 10px;
+    background-color: $color-reader-aid-med;
     margin-left: 0px;
     margin-right: 0px;
-    background-color: $color-reader-aid-med;
+    padding: 10px 10px 0 10px;
 
     h4 {
-      text-align: right;
-      margin-top: 2px;
       font-size: 16px;
+      margin-top: 2px;
+      text-align: right;
     }
 
     ul {

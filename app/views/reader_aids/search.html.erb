@@ -32,7 +32,7 @@
             <ul class="fr-list">
               <% pages.each do |page| %>
                 <li>
-                  <h5><%= link_to page.title, page.path(parent) %></h5>
+                  <h5><%= link_to page.formatted_title, page.path(parent.slug) %></h5>
                   <%= page.formatted_excerpt %>
                 </li>
               <% end %>
@@ -46,7 +46,7 @@
           <ul class="fr-list">
             <% @search_presenter.posts.each do |post| %>
               <li>
-                <h5><%= link_to post.title, post.path %></h5>
+                <h5><%= link_to post.formatted_title, post.path %></h5>
                 <%= post.formatted_excerpt %>
               </li>
             <% end %>

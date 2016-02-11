@@ -39,25 +39,29 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
   def pages_collection
     @pages_collection ||= WpApi::Client.get_pages(
-      filters: {
-        parent_slug: section_identifier
-        #orderby: 'menu_order',
-        #order: 'ASC'
-      }
+      parent_slug: section_identifier
+      #orderby: 'menu_order',
+      #order: 'ASC'
     )
   end
 
   def posts_collection
-    config = category ? {filters: {category_name: category}} : {}
+    config = category ? {filter: {category_name: category}} : {}
 
     return @posts_collection if @posts_collection
 
     @posts_collection = WpApi::Client.get_posts(config)
+
     if section_identifier == 'office-of-the-federal-register-blog'
-      @posts_collection.content = @posts_collection.posts.reject{|p| p.categories.include?('site-updates')}
+      @posts_collection.content = @posts_collection.posts.reject do |post|
+        post.categories.map{|c| c.slug}.include?('site-updates')
+      end
     elsif section_identifier == 'recent-updates'
-      @posts_collection.content = @posts_collection.posts.select{|p| p.categories.include?('site-updates')}
+      @posts_collection.content = @posts_collection.posts.select do |post|
+        post.categories.map{|c| c.slug}.include?('site-updates')
+      end
     end
+
     @posts_collection
   end
 
