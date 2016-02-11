@@ -42,8 +42,8 @@
     color: $fr-dark-blue;
     font-size: 26px;
     position: absolute;
-    right: 0.25em;
-    top: 0.25em;
+    right: 0.05em;
+    top: 0.05em;
   }
 
   h3 {
@@ -105,4 +105,11 @@
 
 .interstitial_tender_modal {
   .title_bar { margin-top: 0; }
+}
+
+.subscription-modal {
+  h3 {
+    font-size: 17px;
+    margin-top: 0 !important;
+  }
 }
