@@ -44,29 +44,11 @@ module ApplicationHelper
     set_content_for :description, strip_tags(text)
   end
 
-  def feed_autodiscovery(feed_url, public_inspection_available, title = 'RSS', options = {})
-    link_html_options = {
-      rel: 'alternate',
-      type: 'application/rss+xml',
-      title: title,
-      href: feed_url,
-      class: 'subscription_feed'
-    }
-
-    if options[:search_conditions]
-      link_html_options[:'data-search-conditions'] = options.
-        fetch(:search_conditions).
-        to_json
-      link_html_options[:'data-public-inspection-subscription-supported'] = public_inspection_available
-    end
-
-    if options[:subscription_default]
-      link_html_options[:'data-default-search-type'] = options.fetch(:subscription_default)
-    end
-
-    content_for :feeds, tag(:link, link_html_options)
+  def feed_autodiscovery(feed_url, title='RSS', args={})
+    feed = FeedGenerator.new(feed_url, title, args)
+    content_for :feeds, feed.to_html
   end
-
+  
   def header_type(type)
     content_for :header_type, type
   end
