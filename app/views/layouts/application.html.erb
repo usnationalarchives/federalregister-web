@@ -49,6 +49,9 @@
 
     <!-- tender modal for directing users to proper spots for comment -->
     <%= add_handlebars_template('interstitial_tender_modal') %>
+
+    <!-- page specific templates -->
+    <%= yield :templates %>
   </head>
 
   <body id="<%= controller_name %>" class="<%= action_name %>">
