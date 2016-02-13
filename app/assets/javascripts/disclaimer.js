@@ -17,7 +17,7 @@ $(document).ready(function() {
   $('#disclaimer a.public-inspection').bind('click',
   function (event) {
       event.preventDefault();
-      FR2.Modal.display_Modal(
+      FR2.Modal.displayModal(
         'Legal Notice',
         pi_legal_notice_template()
       );
