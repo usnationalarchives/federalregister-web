@@ -44,7 +44,6 @@
 # Homepage
 #= require home/home_section_preview_manager
 
-#= require old/rss
 #= require old/navigation
 
 #= require scrollMonitor
