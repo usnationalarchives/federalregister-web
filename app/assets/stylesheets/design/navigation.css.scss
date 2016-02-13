@@ -339,14 +339,7 @@
         }
 
         input[placeholder] {
-          &::input-placeholder,
-          &::-webkit-input-placeholder,
-          &::-moz-placeholder,
-          &:-moz-placeholder,
-          &:-ms-input-placeholder {
-            color: $fr-gray-70;
-            font-style: italic;
-          }
+          @include placeholder($fr-gray-70, italic)
         }
       }
     }
