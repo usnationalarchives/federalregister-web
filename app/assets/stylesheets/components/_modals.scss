@@ -109,7 +109,135 @@
 
 .subscription-modal {
   h3 {
-    font-size: 17px;
+    border-color: $fr-dark-blue;
+    color: $fr-dark-blue;
+    font-size: modular-scale(2);
     margin-top: 0 !important;
+  }
+
+  h4 { color: $fr-dark-blue; }
+
+  li.error { color: $fr-red; }
+
+  input.error {
+    border-color: $fr-red;
+    outline-color: $fr-red;
+  }
+
+  .subscription-list {
+    border-bottom: 1px solid $fr-gray-20;
+
+    &:last-child { border-bottom: 0; }
+
+    > li { clear: both; }
+  }
+
+  .subscription-item {
+    margin-left: 20px;
+    overflow: auto;
+    padding-bottom: 15px;
+
+    > li {
+      margin-bottom: 10px;
+      overflow: auto;
+
+      h5 {
+        clear: both;
+        float: left;
+        margin: 0 10px 0 0;
+      }
+
+      h5 + div,
+      h5 + form {
+        float: left;
+      }
+
+      &.rss h5 { margin-right: 19px; }
+
+      &.email {
+        margin-top: -25px;
+        padding-top: 25px;
+
+        h5 { margin-top: 5px; }
+      }
+    }
+
+    form {
+      fieldset.inputs {
+        margin-bottom: 10px;
+        position: relative;
+
+        li {
+          margin-bottom: 5px;
+
+          input[type=text] {
+            @include placeholder($fr-gray-70, italic);
+
+            font-size: modular-scale(-1);
+            height: 25px;
+            width: 400px;
+
+            &+ .email_invalid,
+            &+ .email_suggestion {
+              font-size: modular-scale(-1);
+              right: 5px;
+              position:absolute;
+              top: -20px;
+            }
+          }
+        }
+      }
+
+      .label {
+        float: left;
+        font-weight: bold;
+        margin-right: 10px;
+
+        &+ ol {
+          float: left;
+
+          li {
+            display: inline-block;
+            margin-right: 10px;
+
+            &.disabled {
+              color: $fr-gray-40;
+            }
+
+            label {
+              position: relative;
+              top: 2px;
+            }
+
+            input {
+              position: relative;
+              top: -2px;
+            }
+          }
+        }
+      }
+
+      fieldset.buttons .fr_button {
+        position: relative;
+
+        input { font-size: modular-scale(0); }
+
+        .loader {
+          background: image-url('fr_orange_loader.svg') 0 0 no-repeat;
+          display: none;
+          height: 28px;
+          position: absolute;
+          top: 3px;
+          width: 28px;
+          z-index: 1000;
+        }
+
+        &.submitting {
+          background-color: $fr-gray-15;
+          //input { background-color: $fr-gray-15; }
+          .loader { display: inline-block; }
+        }
+      }
+    }
   }
 }

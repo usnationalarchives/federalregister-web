@@ -2,16 +2,20 @@ class @FR2.SubscriptionHandler
   @generateModal: ->
     FR2.Modal.displayModal('', @modalHtml(), {
       includeTitle: false
-      modalClass: 'subscription-modal'
+      modalClass: 'subscription-modal wide'
     })
 
     @addModalBehavior()
 
   @addModalBehavior: ->
+    @addEmailHelper()
+    @handleSubmit()
+
+  @addEmailHelper: ->
     emailHelper = new EmailHelper()
 
     # watch input and debounce
-    $('#modal form.subscription').on 'input onpropertychange', '#subscription_email', ()->
+    $('.fr-modal form.subscription').on 'input onpropertychange', '#subscription_email', ()->
         input = $(this)
         clearTimeout input.data('timeout')
 
@@ -25,12 +29,55 @@ class @FR2.SubscriptionHandler
         input.data('timeout', setTimeout emailCallback, 500)
 
     # add ability to use the suggested correction
-    $('#modal form.subscription').on 'click', '.email_suggestion .link', ->
+    $('.fr-modal form.subscription').on 'click', '.email_suggestion .link', ->
       emailHelper.use_suggestion $(this)
+
+  @handleSubmit: ->
+    $('.fr-modal form.subscription .commit.button').on 'click', (e)->
+      e.stopPropagation()
+      $(this).closest('form.subscription').submit()
+
+    $('.fr-modal form.subscription').on 'submit', (e)->
+      console.log 'prevent submit'
+      e.preventDefault()
+      e.stopPropagation()
+
+      form = $(this)
+      subscription = form.find("input:radio[name='subscription[search_type]']:checked")
+      subscriptionWrapper = form
+        .find("input:radio[name='subscription[search_type]']")
+        .closest('li.radio')
+      email = form.find('#subscription_email')
+
+      email.removeClass('error')
+      subscriptionWrapper.removeClass('error')
+
+      if subscription.val()
+        if email.val()
+          subscriptionParam = $.param({
+            'subscription': {
+              'search_conditions': subscription.data('subscription-params')
+              'email': email.val()
+            }
+          })
+
+          form.attr('action', "/my/subscriptions?#{subscriptionParam}")
+
+          form.find('.button.commit').addClass('submitting')
+          form.find('.button.commit input').prop('disabled', true)
+
+          form
+            .unbind('submit')
+            .submit()
+        else
+          email.addClass('error').focus()
+      else
+        subscriptionWrapper.addClass('error')
+
 
   @modalHtml: ->
     elements = _.map @subscriptionFeeds(), (feed)=>
-      data = @extractDataFromFeed $(feed)
+      @extractDataFromFeed $(feed)
 
     @modalTemplate()({
       elements: elements,
@@ -48,29 +95,11 @@ class @FR2.SubscriptionHandler
       title: feed.attr 'title'
       url: feed.attr 'href'
       escapedUrl: encodeURIComponent feed.attr('href')
+      documentSubscriptionParams: JSON.stringify feed.data('document-search-conditions')
+      publicInspectionSubscriptionParams: JSON.stringify feed.data('public-inspection-search-conditions')
     }
 
-    if feed.data 'document-search-conditions'
-      subscriptionParam = $.param({
-        'subscription' : {
-          'search_conditions' : $.parseJSON(
-            feed.data('document-search-conditions')
-          )
-        }
-      })
-      data.documentSubscriptionAction = "/my/subscriptions?#{subscriptionParam}"
-
-    if feed.data 'public-inspection-search-conditions'
-      piSubscriptionParam = $.param({
-        'subscription' : {
-          'search_conditions' : $.parseJSON(
-            feed.data('public-inspection-search-conditions')
-          )
-        }
-      })
-      data.publicInspectionSubscriptionAction = "/my/subscriptions?#{piSubscriptionParam}"
-
-    if data.documentSubscriptionAction || data.publicInspectionSubscriptionAction
-      data.subscriptionAction = true
+    if data.documentSubscriptionParams || data.publicInspectionSubscriptionParams
+      data.emailSubscriptionAction = true
 
     return data
