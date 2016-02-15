@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Hyperlinker do
-  include RouteBuilder::Fr2Urls
   include Hyperlinker::Citation::UrlHelpers
 
   def hyperlink(text)
