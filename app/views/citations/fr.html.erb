@@ -1,0 +1,26 @@
+<% page_title "Federal Register Citation" %>
+
+<%= title do %>
+  <%= fr_icon 'documents' %>
+  <%= @volume %> FR <%= @page %>
+<% end %>
+
+<% if @documents %>
+  <h3>Multiple documents found for the citation <b><%= @volume %> FR <%= @page %></b></h3>
+  <ul>
+    <% @documents.each do |document| %>
+      <li>
+        <%= link_to document.title, document_path(document) %> <br>
+        Page<%= 's' if document.end_page != document.start_page %> <%= document.page_range %><br>
+        A <%= document.type %> by <%= document.excluding_parent_agencies.map{|a| "the #{link_to(a.name, agency_path(a))}" }.to_sentence.html_safe %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No documents found with citation <b><%= @volume %> FR <%= @page %></b>.</p>
+  <% if @volume.to_i < 60 %>
+    <p>
+      FederalRegister.gov contains documents from 1994-present, but only contains citation information for documents published from 1995-present (volume <b>60</b> or later).
+    </p>
+  <% end %>
+<% end %>

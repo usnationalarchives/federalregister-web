@@ -23,7 +23,7 @@ module RouteBuilder::Documents
 
   add_route :short_document do |document|
     {
-      document_number: document.document_number,
+      document_number: document.is_a?(String) ? document : document.document_number,
     }
   end
 

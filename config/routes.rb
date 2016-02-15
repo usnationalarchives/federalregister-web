@@ -154,6 +154,9 @@ MyFr2::Application.routes.draw do
       day: /\d{1,2}/
     }
 
+  get 'citation/:volume-FR-:page',
+    to: 'citations#fr',
+    contraints: {volume: /\d+/, page: /\d+/}
 
   #
   # ESI Routes
