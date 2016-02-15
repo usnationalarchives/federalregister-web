@@ -38,6 +38,13 @@
           title: "Enhanced Content - Table of Contents"
         )
       ) do %>
+        <p>
+          This tables of contents is a navigational tools, processed from the
+          headings within the legal text of Federal Register documents.
+          This repetition of headings to form internal navigation links
+          has no substantive legal effect.
+        </p>
+        
         <% if Settings.render_documents_from_raw_xml %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
         <% else %>
