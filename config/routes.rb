@@ -158,6 +158,10 @@ MyFr2::Application.routes.draw do
     to: 'citations#fr',
     contraints: {volume: /\d+/, page: /\d+/}
 
+  get 'executive-order/:eo_number',
+    to: 'citations#eo',
+    contraints: {eo_number: /\d+/}
+
   #
   # ESI Routes
   #
