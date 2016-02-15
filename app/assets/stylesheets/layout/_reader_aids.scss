@@ -5,6 +5,7 @@
 
     p { line-height: 20px; }
 
+
     .row {
       .section {
         h4 { font-size: modular-scale(2) !important; }
@@ -24,6 +25,7 @@
         }
       }
     }
+
     .search_results {
       .search-results-summary {
         margin-bottom: 40px;
@@ -53,8 +55,16 @@
       word-wrap: normal;
     }
 
-    .page_content li {
-      margin-left: 20px;
+    .page_content {
+      ul {
+        @include custom-bullets($color-reader-aid, '20px');
+        margin-left: 20px;
+
+        li {
+          line-height: 1.5em;
+          margin-left: 15px;
+        }
+      }
     }
   }
 
