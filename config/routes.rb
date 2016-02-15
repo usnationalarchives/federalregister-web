@@ -155,10 +155,12 @@ MyFr2::Application.routes.draw do
     }
 
   get 'citation/:volume-FR-:page',
+    as: 'citation',
     to: 'citations#fr',
     contraints: {volume: /\d+/, page: /\d+/}
 
   get 'executive-order/:eo_number',
+    as:'executive_order',
     to: 'citations#eo',
     contraints: {eo_number: /\d+/}
 
