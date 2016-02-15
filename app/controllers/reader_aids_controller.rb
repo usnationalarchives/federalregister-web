@@ -24,9 +24,15 @@ class ReaderAidsController < ApplicationController
 
   def show
     cache_for 1.hour
+
+    if params[:subpage] && params[:subpage].include?('/')
+      raise ActiveRecord::RecordNotFound
+    end
+
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section],
-      item_identifier: params[:item]
+      page_identifier: params[:page],
+      subpage_identifier: params[:subpage]
     )
   end
 

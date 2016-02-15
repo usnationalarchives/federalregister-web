@@ -272,7 +272,7 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#view_all',
       as: :reader_aids_section
 
-  get 'reader-aids/:section/:item',
+  get 'reader-aids/:section/:page(/*subpage)',
       to: 'reader_aids#show',
       as: :reader_aid
 

@@ -2,14 +2,17 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   attr_reader :category,
               :columns,
               :display_count,
-              :item_identifier,
               :item_partial,
               :item_ul_class,
-              :section_identifier
+              :page_identifier,
+              :section_identifier,
+              :subpage_identifier
 
   def initialize(config)
-    @item_identifier = config.fetch(:item_identifier) { nil }
     @section_identifier = config.fetch(:section_identifier) { nil }
+    @page_identifier = config.fetch(:page_identifier) { nil }
+    @subpage_identifier = config.fetch(:subpage_identifier) { nil }
+
     @category = config.fetch(:category) { nil }
     @item_partial = config.fetch(:item_partial) { 'item' }
     @item_ul_class = config.fetch(:item_ul_class) { '' }
@@ -44,7 +47,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
   def pages_collection
     @pages_collection ||= WpApi::Client.get_pages(
-      parent_slug: section_identifier
+      parent_slug: parent_identifier
       #orderby: 'menu_order',
       #order: 'ASC'
     )
@@ -104,5 +107,15 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     col_width = grid_width / columns
 
     "col-xs-#{col_width} col-md-#{col_width}"
+  end
+
+  private
+
+  def item_identifier
+    subpage_identifier ? subpage_identifier : page_identifier
+  end
+
+  def parent_identifier
+    subpage_identifier ? page_identifier : section_identifier
   end
 end
