@@ -8,17 +8,22 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
               :section_identifier
 
   def initialize(config)
-    @columns = config.fetch(:columns) { 1 }
-    @display_count = config.fetch(:display_count) { nil }
     @item_identifier = config.fetch(:item_identifier) { nil }
     @section_identifier = config.fetch(:section_identifier) { nil }
     @category = config.fetch(:category) { nil }
     @item_partial = config.fetch(:item_partial) { 'item' }
     @item_ul_class = config.fetch(:item_ul_class) { '' }
+
+    @columns = config.fetch(:columns) { section_settings[:columns] }
+    @display_count = config.fetch(:display_count) { section_settings[:display_count] }
   end
 
   def section
     sections.fetch(section_identifier)
+  end
+
+  def section_settings
+    section[:index_settings]
   end
 
   def type

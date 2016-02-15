@@ -213,29 +213,12 @@ MyFr2::Application.routes.draw do
 
 
     # READER AIDS
-    esi.get 'esi/reader_aids/blog_highlights',
-      to: 'reader_aids#blog_highlights',
-      as: :reader_aids_blog_highlights
-
-    esi.get 'esi/reader_aids/using_fr',
-      to: 'reader_aids#using_fr',
-      as: :reader_aids_using_fr
-
-    esi.get 'esi/reader_aids/understanding_fr',
-      to: 'reader_aids#understanding_fr',
-      as: :reader_aids_understanding_fr
-
-    esi.get 'esi/reader_aids/recent_updates',
-      to: 'reader_aids#recent_updates',
-      as: :reader_aids_recent_updates
-
-    esi.get 'esi/reader_aids/videos_and_tutorials',
-      to: 'reader_aids#videos_and_tutorials',
-      as: :reader_aids_videos_and_tutorials
-
-    esi.get 'esi/reader_aids/developer_tools',
-      to: 'reader_aids#developer_tools',
-      as: :reader_aids_developer_tools
+    esi.get 'esi/reader_aids/:section',
+      to: 'reader_aids#section',
+      as: :reader_aids_index_section,
+      constraints: {
+        section: /(#{ReaderAidsPresenter::Base::SECTIONS.map{|k,v| k}.join('|')})/
+      }
 
 
     # NAVIGATION

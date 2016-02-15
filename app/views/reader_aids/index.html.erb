@@ -26,15 +26,16 @@
 
         <div class="row">
           <div class="col-xs-8 col-md-8 section">
-            <%= esi reader_aids_blog_highlights_path %>
-            <%= esi reader_aids_using_fr_path %>
-            <%= esi reader_aids_understanding_fr_path %>
+            <%= esi reader_aids_index_section_path('office-of-the-federal-register-blog') %>
+            <%= esi reader_aids_index_section_path('using-federalregister-gov') %>
+            <%= esi reader_aids_index_section_path('understanding-the-federal-register') %>
+            <%= esi reader_aids_index_section_path('policy') %>
           </div>
 
           <div class="col-xs-4 col-md-4 section">
-            <%= esi reader_aids_recent_updates_path %>
-            <%= esi reader_aids_videos_and_tutorials_path %>
-            <%= esi reader_aids_developer_tools_path %>
+            <%= esi reader_aids_index_section_path('recent-updates') %>
+            <%= esi reader_aids_index_section_path('videos-tutorials') %>
+            <%= esi reader_aids_index_section_path('developer-tools') %>
           </div>
         </div>
       <% end %>

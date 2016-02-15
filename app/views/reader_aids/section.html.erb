@@ -1,18 +1,18 @@
 <div class="section">
   <h4 class="with-icon lowercase">
-    <%= fr_icon presenter.icon_class %>
-    <%= presenter.title %>
+    <%= fr_icon @presenter.icon_class %>
+    <%= @presenter.title %>
     <%= link_to("view all",
-      reader_aids_section_path(presenter.section_identifier),
-      class: "more-details") if presenter.show_view_all %>
+      reader_aids_section_path(@presenter.section_identifier),
+      class: "more-details") if @presenter.show_view_all %>
   </h4>
   <div class="row">
-    <% presenter.grouped_items.each do |group| %>
-      <div class="<%= presenter.css_columns %>">
-        <ul class="fr-list <%= presenter.item_ul_class %>">
+    <% @presenter.grouped_items.each do |group| %>
+      <div class="<%= @presenter.css_columns %>">
+        <ul class="fr-list <%= @presenter.item_ul_class %>">
           <% group.each do |item| %>
-            <%= render partial: presenter.item_partial,
-              locals: {item: item, presenter: presenter} %>
+            <%= render partial: @presenter.item_partial,
+              locals: {item: item, presenter: @presenter} %>
           <% end %>
         </ul>
       </div>
