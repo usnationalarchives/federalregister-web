@@ -4,12 +4,12 @@ describe "fr2 blog routes" do
   it "#public_inspection_learn_path returns the proper path" do
     # test RouteBuilder
     expect( public_inspection_learn_path )
-      .to eq("/learn/public-inspection")
+      .to eq("/reader-aids/using-federalregister-gov/understanding-public-inspection-documents")
   end
 
   it "#public_inspection_table_of_effective_dates_path returns the proper path" do
     # test RouteBuilder
     expect( public_inspection_table_of_effective_dates_path )
-      .to eq("/learn/public-inspection-desk/table-of-effective-dates-time-periods")
+      .to eq("/reader-aids/using-federalregister-gov/understanding-public-inspection-documents/table-of-effective-dates-time-periods")
   end
 end

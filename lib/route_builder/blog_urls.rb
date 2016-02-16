@@ -6,6 +6,6 @@ module RouteBuilder::BlogUrls
   end
 
   def public_inspection_table_of_effective_dates_path
-    "/learn/public-inspection-desk/table-of-effective-dates-time-periods"
+    "/reader-aids/using-federalregister-gov/understanding-public-inspection-documents/table-of-effective-dates-time-periods"
   end
 end
