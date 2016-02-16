@@ -3,7 +3,7 @@
     <label>Agency</label>
     <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department"/>
 
-    <%= f.select agencies,
+    <%= f.select :agencies,
       @presenter.agencies.map{|a| [a.name, a.slug]},
       {},
       {
