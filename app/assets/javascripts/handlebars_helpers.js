@@ -121,53 +121,6 @@ Handlebars.registerHelper('pluralize_array', function(arr, single, plural) {
   }
 });
 
-Handlebars.registerHelper('human_size', function(bytes) {
-  if (typeof bytes !== 'number') {
-    return '';
-  }
-  if (bytes >= 1000000) {
-    return (bytes / 1000000).toFixed(2) + ' MB';
-  }
-  return (bytes / 1000).toFixed(2) + ' KB';
-});
-
-Handlebars.registerHelper('localize', function(str) {
-  var messages =  {
-    "maxFileSize": "File is too big",
-    "minFileSize": "File is too small",
-    "acceptFileTypes": "File type not allowed",
-    "maxNumberOfFiles": "Max number of files exceeded",
-    "uploadedBytes": "Uploaded bytes exceed file size",
-    "emptyResult": "Empty file upload result"
-  };
-
-  return messages[str] || str;
-});
-
-Handlebars.registerHelper('createDd', function(item) {
-  var result = "";
-
-  if( $.isArray(item) ) {
-    $.each(item, function() {
-      result += "<dd>" + Handlebars.Utils.escapeExpression(this) + "</dd>";
-    });
-  } else {
-    result = "<dd>" + Handlebars.Utils.escapeExpression(item) + "</dd>";
-  }
-
-  return new Handlebars.SafeString(result);
-});
-
-Handlebars.registerHelper('add_email_to_input', function(email_address) {
-  var result = "";
-
-  if( email_address !== "" ) {
-   result = "disabled=disabled value=" + email_address;
-  }
-
-  return new Handlebars.SafeString(result);
-});
-
 Handlebars.registerHelper('count', function(arr) {
   return arr.length;
 });
