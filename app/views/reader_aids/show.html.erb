@@ -7,28 +7,36 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row">
-    <div class="col-xs-3 col-md-3 section">
-      <ul class="fr-list with-bullets reader-aids">
-        <li><%= link_to "All Reader Aids Content", reader_aids_path %></li>
-        <br>
-        <% @presenter.sections.each do |section_identifier, section_data| %>
-          <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="col-xs-9 col-md-9 section">
+  <div class="row reader-aids-section">
+
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> section">
       <%= fr_details_box FrBox.build(:reader_aid) do %>
-        <div class="section">
-          <div class="row">
-            <div class="col-xs-12 col-md-12 page_content">
-              <h1><%= @presenter.item.formatted_title %></h1>
-              <p>
-                <%= @presenter.item.formatted_content %>
-              </p>
-            </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-12 page_content">
+            <h1><%= @presenter.item.formatted_title %></h1>
+            <p>
+              <%= @presenter.item.formatted_content %>
+            </p>
           </div>
         </div>
+      <% end %>
+    </div>
+
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> navigation">
+      <%= fr_details_box(
+        FrBox.build(
+          :reader_aid,
+          title: 'Reader Aid Navigation',
+          header: {hover: false}
+        )
+      ) do %>
+        <h5><%= link_to "All Reader Aids Content", reader_aids_path %></h5>
+
+        <ul class="fr-list with-bullets reader-aids">
+          <% @presenter.sections.each do |section_identifier, section_data| %>
+            <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   </div>

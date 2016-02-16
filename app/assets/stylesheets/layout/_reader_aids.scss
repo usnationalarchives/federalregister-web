@@ -1,4 +1,21 @@
 .bootstrap-scope {
+  .reader-aids-section {
+    .content-block {
+      a {
+        color: $color-reader-aid;
+
+        &:visited { color: $color-reader-aid; }
+        &:hover { color: darken($color-reader-aid, 20); }
+      }
+    }
+
+    .navigation {
+      padding: 0;
+
+      h5 { margin-top: 0; }
+    }
+  }
+
   .fr-box.fr-box-reader-aid {
     // hide the read more link that WP inserts automatically
     .more-link { display: none; }
@@ -8,7 +25,10 @@
 
     .row {
       .section {
-        h4 { font-size: modular-scale(2) !important; }
+        h4 {
+          font-size: modular-scale(2) !important;
+        }
+
         h5 { margin-bottom: 5px; }
 
         p {
