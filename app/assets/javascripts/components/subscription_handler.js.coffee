@@ -16,17 +16,17 @@ class @FR2.SubscriptionHandler
 
     # watch input and debounce
     $('.fr-modal form.subscription').on 'input onpropertychange', '#subscription_email', ()->
-        input = $(this)
-        clearTimeout input.data('timeout')
+      input = $(this)
+      clearTimeout input.data('timeout')
 
-        if !emailHelper.initialized
-          emailHelper.initialize input
+      if !emailHelper.initialized
+        emailHelper.initialize input
 
-        emailHelper.reset_help_text()
+      emailHelper.reset_help_text()
 
-        # debounce input changes
-        emailCallback = -> emailHelper.validate_or_suggest()
-        input.data('timeout', setTimeout emailCallback, 500)
+      # debounce input changes
+      emailCallback = -> emailHelper.validate_or_suggest()
+      input.data('timeout', setTimeout emailCallback, 500)
 
     # add ability to use the suggested correction
     $('.fr-modal form.subscription').on 'click', '.email_suggestion .link', ->
