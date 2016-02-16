@@ -27,8 +27,6 @@ module SubscriptionHelper
   end
 
   def subscribe_link(search_conditions={})
-    content_for :templates, add_handlebars_template('subscription_modal')
-
     link_to(new_subscription_path(
         subscription: {search_conditions: search_conditions}
       ),
