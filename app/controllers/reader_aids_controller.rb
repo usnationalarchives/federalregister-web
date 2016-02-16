@@ -1,7 +1,7 @@
 class ReaderAidsController < ApplicationController
   skip_before_filter :authenticate_user!
   before_filter :verify_section_exists, only: :view_all
-  layout false, only: [:navigation, :homepage, :section]
+  layout false, only: [:navigation, :homepage, :index_section]
 
   def index
     cache_for 1.hour
@@ -15,7 +15,7 @@ class ReaderAidsController < ApplicationController
     )
   end
 
-  def view_all
+  def section
     cache_for 1.hour
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section]
@@ -55,10 +55,11 @@ class ReaderAidsController < ApplicationController
     )
   end
 
-  def section
+  # esi for main reader-aids page
+  def index_section
     cache_for 1.hour
 
-    @presenter = ReaderAidsPresenter::SectionPresenter.new(
+    @presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       section_identifier: params[:section]
     )
   end

@@ -214,7 +214,7 @@ MyFr2::Application.routes.draw do
 
     # READER AIDS
     esi.get 'esi/reader_aids/:section',
-      to: 'reader_aids#section',
+      to: 'reader_aids#index_section',
       as: :reader_aids_index_section,
       constraints: {
         section: /(#{ReaderAidsPresenter::Base::SECTIONS.map{|k,v| k}.join('|')})/
@@ -269,7 +269,7 @@ MyFr2::Application.routes.draw do
       as: :reader_aids_search
 
   get 'reader-aids/:section',
-      to: 'reader_aids#view_all',
+      to: 'reader_aids#section',
       as: :reader_aids_section
 
   get 'reader-aids/:section/:page(/*subpage)',
