@@ -31,7 +31,11 @@ module Hyperlinker::Citation
 
   extend Hyperlinker::Citation::UrlHelpers
   extend ActionView::Helpers::TagHelper
-  extend RouteBuilder::Fr2Urls
+
+  class << self
+    include Rails.application.routes.url_helpers
+    include RouteBuilder::Citations
+  end
 
   def self.perform(text, options={})
     text = add_eo_links(text)

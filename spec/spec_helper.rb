@@ -39,6 +39,7 @@ RSpec.configure do |config|
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
 
+  config.include Rails.application.routes.url_helpers
   config.include RouteBuilder
 
   config.include Models::ApiHelpers#, type: :model

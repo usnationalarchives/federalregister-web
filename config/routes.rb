@@ -141,6 +141,30 @@ MyFr2::Application.routes.draw do
     as: 'regulatory_plans_search'
 
   #
+  # Citations
+  #
+
+  get 'select-citation/:year/:month/:day/:citation',
+    to: 'citations#cfr',
+    as: 'select_cfr_citation',
+    constraints: {
+      citation: /\d+-CFR-\d+(?:\.\d+)?/,
+      year: /\d{4}/,
+      month: /\d{1,2}/,
+      day: /\d{1,2}/
+    }
+
+  get 'citation/:volume-FR-:page',
+    as: 'citation',
+    to: 'citations#fr',
+    contraints: {volume: /\d+/, page: /\d+/}
+
+  get 'executive-order/:eo_number',
+    as:'executive_order',
+    to: 'citations#eo',
+    contraints: {eo_number: /\d+/}
+
+  #
   # ESI Routes
   #
   with_options(:quiet => true) do |esi|
