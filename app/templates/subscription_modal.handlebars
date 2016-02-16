@@ -52,9 +52,9 @@
                               {{#unless documentSubscriptionParams}}
                                 disabled="disabled"
                               {{/unless}}
-                              {{#if default_to_entry}}
+                              {{#defaultSubscriptionToDocument defaultSearchType}}
                                 checked="checked"
-                              {{/if}}
+                              {{/defaultSubscriptionToDocument}}
                               data-subscription-params="{{documentSubscriptionParams}}"
                               value="Document">
 
@@ -72,9 +72,9 @@
                               {{#unless publicInspectionSubscriptionParams }}
                                 disabled="disabled"
                               {{/unless}}
-                              {{#if default_to_public_inspection}}
+                              {{#defaultSubscriptionToPIDocument defaultSearchType}}
                                 checked="checked"
-                              {{/if}}
+                              {{/defaultSubscriptionToPIDocument}}
                               data-subscription-params="{{publicInspectionSubscriptionParams}}"
                               value="PublicInspectionDocument">
 

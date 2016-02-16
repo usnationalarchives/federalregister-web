@@ -97,6 +97,7 @@ class @FR2.SubscriptionHandler
       escapedUrl: encodeURIComponent feed.attr('href')
       documentSubscriptionParams: JSON.stringify feed.data('document-search-conditions')
       publicInspectionSubscriptionParams: JSON.stringify feed.data('public-inspection-search-conditions')
+      defaultSearchType: feed.data('default-search-type')
     }
 
     if data.documentSubscriptionParams || data.publicInspectionSubscriptionParams

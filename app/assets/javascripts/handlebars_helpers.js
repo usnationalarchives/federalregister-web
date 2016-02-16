@@ -143,3 +143,15 @@ Handlebars.registerHelper('inColumns', function(arr, options) {
 
   return options.fn(result);
 });
+
+Handlebars.registerHelper('defaultSubscriptionToDocument', function(val, options) {
+  if( val === "Document" ) {
+    return options.fn(this);
+  }
+});
+
+Handlebars.registerHelper('defaultSubscriptionToPIDocument', function(val, options) {
+  if( val === "PublicInspectionDocument" ) {
+    return options.fn(this);
+  }
+});
