@@ -10,4 +10,8 @@ class SuggestedSearch < FederalRegister::SuggestedSearch
       searches.collect{|search| search.slug}
     end.flatten
   end
+
+  def search_conditions
+    attributes["search_conditions"].symbolize_keys!
+  end
 end

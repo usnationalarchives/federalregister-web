@@ -31,29 +31,12 @@ class SuggestedSearchPresenter
     feeds = []
     feeds << FeedAutoDiscovery.new(
       url: '',
-      public_inspection_search_possible: public_inspection_search_possible?,
-      description: modal_description,
-      search_conditions: search_conditions
+      description: Document.search_metadata(
+        conditions: search_conditions.except(:near)
+      ).description,
+      search_conditions: search_conditions.except(:near)
     )
     feeds
-  end
-
-  def modal_description
-    "Documents matching '#{terms}'" #There should be a helper to account for
-    #sections and descriptions
-  end
-
-  def public_inspection_search_possible?
-    begin
-      FederalRegister::PublicInspectionDocument.search_metadata(search_conditions)
-      true
-    rescue FederalRegister::Client::BadRequest
-      false
-    end
-  end
-
-  def terms
-    search_conditions["term"]
   end
 
   def total_documents

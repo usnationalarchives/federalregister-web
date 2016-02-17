@@ -33,7 +33,7 @@
             <div class="search-actions">
               <p class="pull-left">
                 <%= link_to documents_search_path(
-                      conditions: @presenter.search_conditions,
+                      conditions: @presenter.search_conditions.except(:near),
                       order: "newest", skip_results: '1', anchor: 'advanced'
                     ),
                     class: "search" do %>

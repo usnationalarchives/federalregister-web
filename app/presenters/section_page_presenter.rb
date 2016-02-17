@@ -28,26 +28,15 @@ class SectionPagePresenter
     section.highlighted_documents_for(date)
   end
 
-  def public_inspection_search_possible?
-    begin
-      PublicInspectionDocument.search_metadata(search_conditions)
-      true
-    rescue FederalRegister::Client::BadRequest
-      false
-    end
-  end
-
   def feed_urls
     feeds = []
     feeds << FeedAutoDiscovery.new(
       url: "/#{slug}/significant.rss",
-      public_inspection_search_possible: public_inspection_search_possible?,
       description: "Significant Documents in #{section.title}",
       search_conditions: {sections: slug, significant: 1}
     )
     feeds << FeedAutoDiscovery.new(
       url: "/#{slug}.rss",
-      public_inspection_search_possible: public_inspection_search_possible?,
       description: "All Documents in #{section.title}",
       search_conditions: {sections: slug}
     )
