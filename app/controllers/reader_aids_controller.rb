@@ -38,14 +38,15 @@ class ReaderAidsController < ApplicationController
 
   def homepage
     cache_for 1.hour
-    @using_fr_presenter = ReaderAidsPresenter::SectionPresenter.new(
+    
+    @using_fr_presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       section_identifier: 'using-federalregister-gov',
       display_count: 8,
       columns: 2,
       item_partial: 'reader_aids/homepage_item',
       item_ul_class: "with-bullets reader-aids"
     )
-    @recent_updates_presenter = ReaderAidsPresenter::SectionPresenter.new(
+    @recent_updates_presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       display_count: 4,
       section_identifier: 'recent-updates',
       category: 'site-updates',
@@ -62,6 +63,8 @@ class ReaderAidsController < ApplicationController
     @presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       section_identifier: params[:section]
     )
+
+    render locals: {presenter: @presenter}
   end
 
   def navigation
