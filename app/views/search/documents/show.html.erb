@@ -47,7 +47,7 @@
                   <%= esi( documents_search_facets_path(
                       params.except(:action).merge(facet: 'section', num_facets: 6)
                     )
-                  ) unless @search.sections.present? %>
+                  ) unless @search.sections.present? || @search.section_ids.present? %>
                 </div>
               </div>
             <% end %>

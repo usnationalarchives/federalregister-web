@@ -13,6 +13,7 @@ class Search::Document < Search::Base
     :small_entity_ids,
     :presidential_document_type,
     :president,
+    :section_ids,
     :significant,
     :regulation_id_number,
     :cfr,
