@@ -1,6 +1,5 @@
 <% @presenter.feed_urls.each do |feed| %>
   <%= feed_autodiscovery feed.url,
-    feed.public_inspection_search_possible,
     feed.description,
     search_conditions: feed.search_conditions %>
 <% end %>
