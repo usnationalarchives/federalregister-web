@@ -79,6 +79,29 @@ class DocumentIssuePresenter
     end
   end
 
+  # e.g. are we displaying this issue under the documents/current url?
+  def current_issue?
+    options && options[:current_issue]
+  end
+
+  def meta_page_title
+    if current_issue?
+      "Current Federal Register Document Issue"
+    else
+      "Federal Register Document Issue for #{date.to_formatted_s(:pretty)}"
+    end
+  end
+
+  def meta_description
+    description = "Notices, Proposed Rules, Rules, and Presidential Documents published in the "
+
+    if current_issue?
+      description + "current issue of the Federal Register."
+    else
+      description + "Federal Register on #{date.to_formatted_s(:pretty)}."
+    end
+  end
+
   private
 
   def documents

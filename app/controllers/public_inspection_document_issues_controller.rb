@@ -14,7 +14,10 @@ class PublicInspectionDocumentIssuesController < ApplicationController
   def current
     cache_for 1.day
 
-    build_pil_presenters(PublicInspectionDocumentIssue.current.publication_date)
+    build_pil_presenters(
+      PublicInspectionDocumentIssue.current.publication_date,
+      current_issue: true
+    )
 
     render :show
   end
@@ -57,8 +60,8 @@ class PublicInspectionDocumentIssuesController < ApplicationController
 
   private
 
-  def build_pil_presenters(date)
-    @presenter = PublicInspectionIssuePresenter.new(date)
+  def build_pil_presenters(date, issue_options={})
+    @presenter = PublicInspectionIssuePresenter.new(date, issue_options)
     @special_filings_presenter = TableOfContentsSpecialFilingsPresenter.new(date)
     @regular_filings_presenter = TableOfContentsRegularFilingsPresenter.new(date)
   end

@@ -1,8 +1,10 @@
 class PublicInspectionIssuePresenter
-  attr_reader :agencies, :date, :regular_filings, :special_filings
 
-  def initialize(date)
+  attr_reader :agencies, :date, :options, :regular_filings, :special_filings
+
+  def initialize(date, options={})
     @date = date.is_a?(Date) ? date : Date.parse(date)
+    @options = options
     @regular_filings = RegularFilings.new(@date, self)
     @special_filings = SpecialFilings.new(@date, self)
     @agencies = {}
@@ -14,6 +16,29 @@ class PublicInspectionIssuePresenter
 
   def issue
     @issue ||= PublicInspectionDocumentIssue.available_on(date)
+  end
+
+  # e.g. are we displaying this issue under the documents/current url?
+  def current_issue?
+    options && options[:current_issue]
+  end
+
+  def meta_page_title
+    if current_issue?
+      "Federal Register Documents Currently on Public Inspection"
+    else
+      "Federal Register Documents on Public Inspection for #{date.to_formatted_s(:pretty)}"
+    end
+  end
+
+  def meta_description
+    description = "The following are a preview of unpublished Federal Register documents "
+
+    if current_issue?
+      description + "currenly on Public Inspection and scheduled to be published on the dates listed."
+    else
+      description + "on Public Inspection for #{date.to_formatted_s(:pretty)} and scheduled to be published on the dates listed."
+    end
   end
 
   class BasicFilings

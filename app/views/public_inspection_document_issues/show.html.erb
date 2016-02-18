@@ -1,5 +1,7 @@
 <% header_type 'public-inspection' %>
-<% page_title "Public Inspection Issue #{@regular_filings_presenter.date}" %>
+
+<% page_title @presenter.meta_page_title %>
+<% description  @presenter.meta_description %>
 
 <%= title title_bar_class: "public-inspection" do %>
   <%= fr_icon 'clipboard' %>
