@@ -42,7 +42,8 @@ module RouteBuilder::Documents
 
   add_static_route :documents_search_api do |conditions, options|
     path = "/api/v1/documents"
-    if options[:format]
+
+    if options && options[:format]
       path += ".#{options[:format]}"
     end
 
