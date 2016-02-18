@@ -38,7 +38,6 @@ class @FR2.SubscriptionHandler
       $(this).closest('form.subscription').submit()
 
     $('.fr-modal form.subscription').on 'submit', (e)->
-      console.log 'prevent submit'
       e.preventDefault()
       e.stopPropagation()
 
