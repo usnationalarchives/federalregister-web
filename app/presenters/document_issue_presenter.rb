@@ -1,4 +1,6 @@
 class DocumentIssuePresenter
+  include RouteBuilder::Documents
+
   attr_reader :date, :options
 
   def initialize(date, options={})
@@ -100,6 +102,18 @@ class DocumentIssuePresenter
     else
       description + "Federal Register on #{date.to_formatted_s(:pretty)}."
     end
+  end
+
+  def feed_urls
+    feeds = []
+
+    feeds << FeedAutoDiscovery.new(
+      url: documents_search_api_path({}, format: :rss),
+      description: Search::Document.new({}).summary,
+      search_conditions: {}
+    )
+
+    feeds
   end
 
   private

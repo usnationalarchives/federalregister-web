@@ -1,4 +1,6 @@
 class SectionPagePresenter
+  include RouteBuilder::Documents
+  
   attr_reader :date, :search_conditions, :section
 
   delegate :icon, :slug, :suggested_searches, :title, to: :@section
@@ -30,16 +32,24 @@ class SectionPagePresenter
 
   def feed_urls
     feeds = []
+
     feeds << FeedAutoDiscovery.new(
-      url: "/#{slug}/significant.rss",
-      description: "Significant Documents in #{section.title}",
-      search_conditions: {sections: slug, significant: 1}
+      url: documents_search_api_path(search_conditions, format: :rss),
+      description: Search::Document.new(search_conditions).summary,
+      search_conditions: search_conditions[:conditions]
     )
+
     feeds << FeedAutoDiscovery.new(
-      url: "/#{slug}.rss",
-      description: "All Documents in #{section.title}",
-      search_conditions: {sections: slug}
+      url: documents_search_api_path(
+        {conditions: search_conditions[:conditions].merge(significant: '1')},
+        format: :rss
+      ),
+      description: Search::Document.new(
+        conditions: search_conditions[:conditions].merge(significant: '1')
+      ).summary,
+      search_conditions: search_conditions[:conditions].merge(significant: '1')
     )
+
     feeds
   end
 

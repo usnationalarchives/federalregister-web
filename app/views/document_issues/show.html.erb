@@ -1,6 +1,14 @@
 <% page_title @doc_presenter.meta_page_title %>
 <% description  @doc_presenter.meta_description %>
 
+<% @doc_presenter.feed_urls.each do |feed| %>
+  <%= feed_autodiscovery(
+    feed.url,
+    feed.description,
+    search_conditions: feed.search_conditions
+  ) %>
+<% end %>
+
 <%= title do %>
   <%= fr_icon 'documents' %>
   <%= @presenter.date %> Issue

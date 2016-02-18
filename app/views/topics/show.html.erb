@@ -1,8 +1,13 @@
 <% page_title "Topics - #{@presenter.name}" %>
 <% description "Browse Federal Register documents tagged by agencies with the topic '#{@presenter.name}'. Use this topic to learn more about your areas of interest and the regulations that affect the topic '#{@presenter.name}'." %>
 
-<% feed_autodiscovery topic_url(@presenter.slug, :format => :rss), false, "Documents in this topic", :search_conditions => {:topic_ids => [@presenter.slug]} %>
-<% feed_autodiscovery significant_entries_topic_url(@presenter.slug, :format => :rss), false,  "Significant Documents in this topic", :search_conditions => {:topic_ids => [@presenter.slug], :significant => '1'} %>
+<% @presenter.feed_urls.each do |feed| %>
+  <%= feed_autodiscovery(
+    feed.url,
+    feed.description,
+    search_conditions: feed.search_conditions
+  ) %>
+<% end %>
 
 <% title do %>
   <%= fr_icon 'Molecular' %>

@@ -1,8 +1,9 @@
 <% page_title @search.term.blank? ? 'Public Inspection Search' : "Public Inspection Search Results for '#{h @search.term}'" %>
 
 <%= feed_autodiscovery(
-  public_inspection_search_url(
-    params.except(:action).merge(format: :rss, order: 'date')
+  public_inspection_search_api_path(
+    {conditions: @search.valid_conditions.except(:publication_date)},
+    format: :rss
   ),
   @search.summary,
   search_conditions: @search.valid_conditions.except(:publication_date),

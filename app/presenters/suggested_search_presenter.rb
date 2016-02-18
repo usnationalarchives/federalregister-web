@@ -1,4 +1,6 @@
 class SuggestedSearchPresenter
+  include RouteBuilder::Documents
+
   attr_reader :suggested_search, :section
   class InvalidSuggestedSearch < StandardError; end
 
@@ -29,13 +31,18 @@ class SuggestedSearchPresenter
 
   def feed_urls
     feeds = []
+
     feeds << FeedAutoDiscovery.new(
-      url: '',
-      description: Document.search_metadata(
+      url: documents_search_api_path(
+        {conditions: search_conditions.except(:near)},
+        format: :rss
+      ),
+      description: Search::Document.new(
         conditions: search_conditions.except(:near)
-      ).description,
+      ).summary,
       search_conditions: search_conditions.except(:near)
     )
+
     feeds
   end
 

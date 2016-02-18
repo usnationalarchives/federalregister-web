@@ -1,4 +1,5 @@
 class PublicInspectionIssuePresenter
+  include RouteBuilder::PublicInspectionDocuments
 
   attr_reader :agencies, :date, :options, :regular_filings, :special_filings
 
@@ -39,6 +40,18 @@ class PublicInspectionIssuePresenter
     else
       description + "on Public Inspection for #{date.to_formatted_s(:pretty)} and scheduled to be published on the dates listed."
     end
+  end
+
+  def feed_urls
+    feeds = []
+
+    feeds << FeedAutoDiscovery.new(
+      url: public_inspection_search_api_path({}, format: :rss),
+      description: Search::PublicInspection.new({}).summary,
+      search_conditions: {}
+    )
+
+    feeds
   end
 
   class BasicFilings
