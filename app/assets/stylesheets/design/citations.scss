@@ -1,0 +1,36 @@
+.citation {
+  span.citation {
+    background-color: $fr-gray-5;
+    font-weight: bold;
+    padding: 0 3px;
+  }
+
+  .fr-list {
+    margin-left: 20px;
+
+    li { margin-bottom: 30px; }
+  }
+
+  h6 {
+    overflow: auto;
+
+    .icon-fr2 {
+      float: left;
+      font-size: 20px;
+      margin-right: 5px;
+
+      &.published { color: $color-published; }
+      &.official { color: $color-official; }
+    }
+
+    a {
+      float: left;
+      width: 95%;
+    }
+  }
+
+  .citation-details {
+    clear: both;
+    margin-left: 25px;
+  }
+}

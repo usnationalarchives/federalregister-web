@@ -26,10 +26,12 @@ module DocumentTypeHelper
 
   def simple_document_type_icon(type, options={})
     document_type = type.is_a?(DocumentType) ? type : DocumentType.new(type)
+    icon_class = options.fetch(:icon_class, '')
+
     content_tag(
       :span,
       '',
-      class: "#{document_type.icon_class} #{document_type.icon_wrapper_class(options[:size])} cj-tooltip",
+      class: "#{document_type.icon_class} #{document_type.icon_wrapper_class(options[:size])} #{icon_class} cj-tooltip",
       "data-tooltip" => document_type.type
     )
   end

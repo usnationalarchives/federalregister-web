@@ -5,22 +5,50 @@
   <%= @volume %> FR <%= @page %>
 <% end %>
 
-<% if @documents %>
-  <h3>Multiple documents found for the citation <b><%= @volume %> FR <%= @page %></b></h3>
-  <ul>
-    <% @documents.each do |document| %>
-      <li>
-        <%= link_to document.title, document_path(document) %> <br>
-        Page<%= 's' if document.end_page != document.start_page %> <%= document.page_range %><br>
-        A <%= document.type %> by <%= document.excluding_parent_agencies.map{|a| "the #{link_to(a.name, agency_path(a))}" }.to_sentence.html_safe %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No documents found with citation <b><%= @volume %> FR <%= @page %></b>.</p>
-  <% if @volume.to_i < 60 %>
-    <p>
-      FederalRegister.gov contains documents from 1994-present, but only contains citation information for documents published from 1995-present (volume <b>60</b> or later).
-    </p>
-  <% end %>
+<%= bootstrap_context_wrapper do %>
+  <div class="row citation">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+      <% if @documents %>
+        <%= flash_message :success do %>
+          Multiple documents found for the citation
+          <span class="citation"><%= @volume %> FR <%= @page %></span>.
+        <% end %>
+
+        <ul class="fr-list">
+          <% @documents.each do |document| %>
+            <li>
+              <h6>
+                <%= simple_document_type_icon document.type,
+                  icon_class: document.official? ? 'official' : 'published' %>
+                <%= link_to document.title, document.html_url %>
+              </h6>
+
+              <div class="citation-details">
+                <span class="agencies">
+                  A <%= document.document_type.display_type %> by <%= document.agency_name_sentence %>;
+                </span>
+
+                <span class="page-range">
+                  <%= pluralize_without_count(document.pages, 'Page') %> <%= document.page_range %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <%= flash_message :error do %>
+          No documents found with citation
+          <span class="citation"><%= @volume %> FR <%= @page %></span>.
+        <% end %>
+
+        <% if @volume.to_i < 60 %>
+          <p>
+            FederalRegister.gov contains documents from 1994-present, but only
+            contains citation information for documents published from 1995-present
+            (volume <strong>60</strong> or later).
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

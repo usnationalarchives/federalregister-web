@@ -19,6 +19,7 @@ $em-base: 16px;
 
 @import 'application_colors';
 
+@import "library/flash_messages";
 @import "library/headers";
 @import "library/layout";
 @import "library/lists";

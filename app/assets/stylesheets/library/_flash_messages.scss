@@ -1,0 +1,21 @@
+.flash-message {
+  border-radius: 3px;
+  color: $text;
+  margin-bottom: 10px;
+  padding: 10px !important;
+
+  &.error {
+    background-color: $fr-light-red;
+    border: 1px solid $fr-red;
+  }
+
+  &.success {
+    background-color: $fr-light-green;
+    border: 1px solid $fr-green;
+  }
+
+  &.warning {
+    background-color: $fr-yellow;
+    border: 1px solid $fr-golden;
+  }
+}
