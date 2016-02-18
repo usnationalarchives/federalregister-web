@@ -90,11 +90,7 @@ class Search::Base
   end
 
   def summary
-    if term.blank?
-      "All Documents"
-    else
-      result_metadata.description
-    end
+    result_metadata.description
   end
 
   def conditions_blank?
