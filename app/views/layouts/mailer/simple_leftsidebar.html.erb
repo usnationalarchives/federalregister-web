@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      
+
     <title>Federal Register</title>
     <style type="text/css">
       <%= Rails.application.assets.find_asset('mailers/common.css') %>
@@ -10,7 +10,7 @@
       <%= yield :mailer_template_css %>
     </style>
 
-    <meta name="description" lang="en" content="This email was generated from FederalRegister.gov as a result of a user action; such as creating an account, subscribing to content emails, opting into notifications, etc. We retain only the only the personally identifiable information minimally necessary to operate the MyFR service. We do not retain any information about third parties who receive 'email a friend' notifications through the subscription service. For more information, please read our Privacy and Security Policy at https://www.federalregister.gov/policy/privacy. The documents received via our email subscriptions service originate from FederalRegister.gov, which displays an unofficial 'Web 2.0' version of the daily Federal Register. The official electronic version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's Federal Digital System website at http://www.fdsys.gov/. For more information, please read our Legal Status page at https://www.federalregister.gov/policy/legal-status. The documents received via email from our Public Inspection web page originate from official copies filed at the Office of the Federal Register. For more information, please read our About Public Inspection page at https://www.federalregister.gov/learn/public-inspection-desk." />
+    <meta name="description" lang="en" content="This email was generated from FederalRegister.gov as a result of a user action; such as creating an account, subscribing to content emails, opting into notifications, etc. We retain only the only the personally identifiable information minimally necessary to operate the MyFR service. We do not retain any information about third parties who receive 'email a friend' notifications through the subscription service. For more information, please read our Privacy and Security Policy at https://www.federalregister.gov/reader-aids/policy/privacy. The documents received via our email subscriptions service originate from FederalRegister.gov, which displays an unofficial 'Web 2.0' version of the daily Federal Register. The official electronic version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's Federal Digital System website at http://www.fdsys.gov/. For more information, please read our Legal Status page at https://www.federalregister.gov/reader-aids/policy/legal-status. The documents received via email from our Public Inspection web page originate from official copies filed at the Office of the Federal Register. For more information, please read our About Public Inspection page at https://www.federalregister.gov/reader-aids/using-federalregister-gov/understanding-public-inspection." />
   </head>
   <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     <div class="subject_teaser">
@@ -18,11 +18,11 @@
     </div>
 
     <center>
-      
+
       <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
         <tr>
           <td align="center" valign="top">
-            
+
             <table border="0" cellpadding="0" cellspacing="0" width="720" id="templateContainer">
               <tr>
                 <td align="center" valign="top">
@@ -52,17 +52,17 @@
                             <td valign="top" class="sidebarContent">
 
                               <!-- // Begin Module: Top Image with Content \\ -->
-                              <%= render  :partial => 'fr_mailer/simple_left_column', 
+                              <%= render  :partial => 'fr_mailer/simple_left_column',
                                           :locals => { :table_class => "highlight top",
                                                        :highlight => @highlights.first }
                               %>
 
-                              <%= render  :partial => 'fr_mailer/simple_left_column', 
+                              <%= render  :partial => 'fr_mailer/simple_left_column',
                                           :locals => { :table_class => "highlight bottom",
                                                        :highlight => @highlights.last }
                               %>
                               <!-- // End Module: Top Image with Content \\ -->
-                              
+
                             </td>
                           </tr>
                           <tr class="social">
@@ -95,13 +95,13 @@
                                 </tr>
                               </table>
                               <!-- // End Module: Standard Content \\ -->
-                                                            
+
                             </td>
                           </tr>
                         </table>
                       </td>
 
-                      
+
                     </tr>
                   </table>
                   <!-- // End Template Body \\ -->
@@ -116,7 +116,7 @@
                   <table border="0" cellpadding="10" cellspacing="0" width="650" id="templateFooter">
                     <tr>
                       <td valign="top" class="footerContent">
-                        
+
                         <!-- // Begin Module: Standard Footer \\ -->
                         <table border="0" cellpadding="10" cellspacing="0" width="100%">
                           <tr>
@@ -124,26 +124,26 @@
                               <div>
                                 <h3>Privacy</h3>
                                 <p>
-                                  FederalRegister.gov uses your email address 
-                                  to enable you to receive email notifications according to your preferences. We retain only the 
-                                  personally identifiable information minimally necessary to operate the subscription service. We 
-                                  do not retain any information about third parties who receive "email a friend" notifications through 
-                                  the subscription service. For more information, please read our 
-                                  <a href="https://www.federalregister.gov/policy/privacy">Privacy and Security Policy</a>.
+                                  FederalRegister.gov uses your email address
+                                  to enable you to receive email notifications according to your preferences. We retain only the
+                                  personally identifiable information minimally necessary to operate the subscription service. We
+                                  do not retain any information about third parties who receive "email a friend" notifications through
+                                  the subscription service. For more information, please read our
+                                  <a href="https://www.federalregister.gov/reader-aids/policy/privacy">Privacy and Security Policy</a>.
                                 </p>
 
                                 <h3>Legal Status</h3>
                                 <p>
-                                  The documents received via our email subscriptions service originate from FederalRegister.gov, 
-                                  which displays an unofficial "Web 2.0" version of the daily Federal Register. The official electronic 
-                                  version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's 
-                                  <a href="http://www.fdsys.gov/">Federal Digital System website</a>. For more information, please 
-                                  read our <a href="https://www.federalregister.gov/policy/legal-status">Legal Status page</a>.
+                                  The documents received via our email subscriptions service originate from FederalRegister.gov,
+                                  which displays an unofficial "Web 2.0" version of the daily Federal Register. The official electronic
+                                  version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's
+                                  <a href="http://www.fdsys.gov/">Federal Digital System website</a>. For more information, please
+                                  read our <a href="https://www.federalregister.gov/reader-aids/policy/legal-status">Legal Status page</a>.
                                 </p>
                                 <p>
-                                  The documents received via email from our Public Inspection web page originate 
-                                  from official copies filed at the Office of the Federal Register. For more 
-                                  information, please read our <a href="https://www.federalregister.gov/learn/public-inspection-desk">About Public Inspection</a> page.
+                                  The documents received via email from our Public Inspection web page originate
+                                  from official copies filed at the Office of the Federal Register. For more
+                                  information, please read our <a href="https://www.federalregister.gov/reader-aids/using-federalregister-gov/understanding-public-inspection">About Public Inspection</a> page.
                                 </p>
                               </div>
                             </td>
@@ -158,7 +158,7 @@
                           </tr>
                         </table>
                         <!-- // End Module: Standard Footer \\ -->
-                                            
+
                       </td>
                     </tr>
                   </table>

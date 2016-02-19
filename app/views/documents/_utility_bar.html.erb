@@ -44,7 +44,7 @@
           This repetition of headings to form internal navigation links
           has no substantive legal effect.
         </p>
-        
+
         <% if Settings.render_documents_from_raw_xml %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
         <% else %>
@@ -198,8 +198,8 @@
               <a href='http://www.archives.gov/federal-register/write/handbook/ddh.pdf'>
                 Document Drafting Handbook
               </a> that agencies use to create thier documents. These can be useful
-              for better understanding how a document is structured but are not part of
-              the document itself.
+              for better understanding how a document is structured but
+              <strong>are not part of the published document</strong> itself.
             </p>
             <%= link_to 'Display Non-Printed Markup Elements', '#', id: "display-unprinted-elements" %>
           </li>
