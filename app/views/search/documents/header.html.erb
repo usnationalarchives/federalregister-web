@@ -48,10 +48,10 @@
 
         <span class="other-formats">
           Other Formats:
-          <%= link_to 'CSV/Excel', documents_search_api_path(
+          <%= link_to 'CSV/Excel', documents_search_api_url(
               params.except(:controller, :action, :quiet), format: :csv
             ) %>,
-          <%= link_to 'JSON', documents_search_api_path(
+          <%= link_to 'JSON', documents_search_api_url(
               params.except(:controller, :action, :quiet), format: :json
             ) %>
         </span>

@@ -108,7 +108,7 @@ class DocumentIssuePresenter
     feeds = []
 
     feeds << FeedAutoDiscovery.new(
-      url: documents_search_api_path({}, format: :rss),
+      url: documents_search_api_url({}, format: :rss),
       description: Search::Document.new({}).summary,
       search_conditions: {}
     )

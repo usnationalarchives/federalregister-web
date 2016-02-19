@@ -46,7 +46,7 @@ class PublicInspectionIssuePresenter
     feeds = []
 
     feeds << FeedAutoDiscovery.new(
-      url: public_inspection_search_api_path({}, format: :rss),
+      url: public_inspection_search_api_url({}, format: :rss),
       description: Search::PublicInspection.new({}).summary,
       search_conditions: {}
     )

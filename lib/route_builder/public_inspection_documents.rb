@@ -10,16 +10,6 @@ module RouteBuilder::PublicInspectionDocuments
     }
   end
 
-  add_static_route :public_inspection_search_api do |conditions, options|
-    path = "/api/v1/public-inspection-documents"
-
-    if options && options[:format]
-      path += ".#{options[:format]}"
-    end
-
-    "#{path}?#{conditions.to_param}"
-  end
-
   private
 
   def self.date_from_object(document_like_object)

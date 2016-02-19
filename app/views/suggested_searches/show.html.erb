@@ -6,10 +6,7 @@
 
 <% @presenter.feed_urls.each do |feed| %>
   <%= feed_autodiscovery(
-    documents_search_api_path(
-      conditions: feed.search_conditions,
-      format: :rss
-    ),
+    feed.url,
     feed.description,
     search_conditions: feed.search_conditions
   ) %>

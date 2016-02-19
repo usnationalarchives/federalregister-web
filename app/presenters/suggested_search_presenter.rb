@@ -33,7 +33,7 @@ class SuggestedSearchPresenter
     feeds = []
 
     feeds << FeedAutoDiscovery.new(
-      url: documents_search_api_path(
+      url: documents_search_api_url(
         {conditions: search_conditions.except(:near)},
         format: :rss
       ),

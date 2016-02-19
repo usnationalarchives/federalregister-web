@@ -33,23 +33,6 @@ module RouteBuilder::Documents
     "/documents/table_of_contents/#{file_path}"
   end
 
-  add_static_route :document_api do |document, options|
-    path = "/api/v1/documents/#{document.document_number}"
-    if options[:format]
-      path += ".#{options[:format]}"
-    end
-  end
-
-  add_static_route :documents_search_api do |conditions, options|
-    path = "/api/v1/documents"
-
-    if options && options[:format]
-      path += ".#{options[:format]}"
-    end
-
-    "#{path}?#{conditions.to_param}"
-  end
-
   private
 
   def self.date_from_object(document_like_object)

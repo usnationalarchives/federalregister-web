@@ -1,8 +1,8 @@
 <% page_title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{@search.term}'" %>
 
 <% feed_autodiscovery(
-  documents_search_api_path(
-    {@search.valid_conditions.except(:publication_date)},
+  documents_search_api_url(
+    {conditions: @search.valid_conditions.except(:publication_date)},
     format: :rss
   ),
   @search.summary,

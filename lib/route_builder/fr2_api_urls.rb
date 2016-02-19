@@ -2,38 +2,56 @@ module RouteBuilder::Fr2ApiUrls
   extend RouteBuilder::Utils
 
   ### DOCUMENTS
-  add_static_route :api_documents_csv_url do |api_params|
-    fr2_api_url_for('documents.csv', api_params)
+  def document_api_url(document, options, params={})
+    path = "documents/#{document.document_number}"
+
+    # document api path doesn't support format currently
+    if options && options[:format]
+      path += ".#{options[:format]}"
+    end
+
+    fr2_api_url_for(path, params)
   end
 
-  add_static_route :api_documents_json_url do |api_params|
-    fr2_api_url_for('documents.json', api_params)
+  def documents_api_url(documents, options, params={})
+    document_numbers = documents.map{|d| d.document_numbers}.join(',')
+    path = "documents/#{document_numbers}"
+
+    # document api path doesn't support format currently
+    if options && options[:format]
+      path += ".#{options[:format]}"
+    end
+
+    fr2_api_url_for(path, params)
   end
 
-  add_static_route :api_documents_search_details_url do |api_params|
-    fr2_document_api_url_for('search-details', api_params)
-  end
+  def documents_search_api_url(params, options)
+    path = "documents"
 
-  add_static_route :api_documents_facet_url do |facet, api_params|
-    fr2_document_api_url_for("facets/#{facet}", api_params)
+    if options && options[:format]
+      path += ".#{options[:format]}"
+    end
+
+    fr2_api_url_for(path, params)
   end
 
   ### PUBLIC INSPECTION DOCUMENTS
-  add_static_route :api_pi_documents_facet_url do |facet, api_params|
-    fr2_pi_document_api_url_for("facets/#{facet}", api_params)
+  def public_inspection_search_api_url(params, options)
+    path = "public-inspection-documents"
+
+    if options && options[:format]
+      path += ".#{options[:format]}"
+    end
+
+    fr2_api_url_for(path, params)
   end
 
   private
 
-  def fr2_document_api_url_for(end_point, params)
-    fr2_api_url_for("documents/#{end_point}", params)
-  end
-
-  def fr2_pi_document_api_url_for(end_point, params)
-    fr2_api_url_for("public_inspection/#{end_point}", params)
-  end
-
   def fr2_api_url_for(end_point, params)
-    "#{Settings.federalregister.api_url}/#{end_point}?#{params}"
+    arr = ["#{Settings.federal_register.api_url}/#{end_point}"]
+    arr << params.to_param unless params.blank?
+
+    arr.join('?')
   end
 end

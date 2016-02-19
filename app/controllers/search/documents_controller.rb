@@ -20,14 +20,18 @@ class Search::DocumentsController < ApplicationController
           @entries = @search.results
           render :template => 'documents/index.rss.builder'
         end
+
         wants.csv do
-          redirect_to api_documents_csv_url(
-            shared_search_params.merge(conditions: params[:conditions]).to_param
+          redirect_to documents_search_api_url(
+            shared_search_params.merge(conditions: params[:conditions]),
+            format: :csv
           )
         end
+
         wants.json do
-          redirect_to api_documents_json_url(
-            shared_search_params.merge(conditions: params[:conditions]).to_param
+          redirect_to documents_search_api_url(
+            shared_search_params.merge(conditions: params[:conditions]),
+            format: :json
           )
         end
       end
