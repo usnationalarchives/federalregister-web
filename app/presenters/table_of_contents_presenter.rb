@@ -21,23 +21,24 @@ class TableOfContentsPresenter
     end
   end
 
+  def document_numbers
+    return @document_numbers if @document_numbers
+
+    doc_numbers = []
+
+    table_of_contents_data["agencies"].each do |agency|
+      agency["document_categories"].each do |doc_cat|
+        doc_cat["documents"].each do |doc|
+          doc_numbers << doc["document_numbers"]
+        end
+      end
+    end
+
+    @document_numbers = doc_numbers.flatten
+  end
+
   def documents
-    @documents ||= Document.search(
-      QueryConditions.published_on(date).
-        merge(
-         per_page: 1000,
-          fields: [
-            :citation,
-            :document_number,
-            :end_page,
-            :html_url,
-            :pdf_url,
-            :publication_date,
-            :start_page,
-            :title,
-          ]
-        )
-    ).results.map{|d| DocumentDecorator.decorate(d)}
+    retrieve_documents.results.map{|d| DocumentDecorator.decorate(d)}
   end
 
 
@@ -69,13 +70,28 @@ class TableOfContentsPresenter
     end
   end
 
+  private
 
+  def retrieve_documents
+    @documents ||= Document.find_all(
+      document_numbers,
+      {
+        per_page: 1000,
+        fields: document_fields
+      }
+    )
+  end
 
-    def documents
-      @documents ||= document_numbers.inject({}) do |hsh, doc_num|
-        hsh[doc_num] = presenter.documents.find{|doc| doc.document_number == doc_num}
-        hsh
-      end
-    end
+  def document_fields
+    [
+      :citation,
+      :document_number,
+      :end_page,
+      :html_url,
+      :pdf_url,
+      :publication_date,
+      :start_page,
+      :title,
+    ]
   end
 end
