@@ -135,7 +135,16 @@
 
   &.search-list { width: 230px; }
   &.browse-list { width: 150px; }
-  &.reader-aids-list { width: 250px; }
+
+  &.reader-aids-list {
+    width: 265px;
+
+    li {
+      padding-left: 15px;
+
+      &:first-child { padding-left: 0; }
+    }
+  }
 
   &.search-list,
   &.reader-aids-list,
