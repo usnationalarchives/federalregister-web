@@ -23,12 +23,20 @@ class ReaderAidsController < ApplicationController
   end
 
   def show
-    cache_for 1.hour
+    if ReaderAid.interactive_page?(params[:page])
+      @presenter = ReaderAidsPresenter::SectionPresenter.new(
+        section_identifier: params[:section]
+      )
+
+      cache_for 1.day
+      render ReaderAid.template_for(params[:page]) and return
+    end
 
     if params[:subpage] && params[:subpage].include?('/')
       raise ActiveRecord::RecordNotFound
     end
 
+    cache_for 1.hour
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section],
       page_identifier: params[:page],
@@ -38,7 +46,7 @@ class ReaderAidsController < ApplicationController
 
   def homepage
     cache_for 1.hour
-    
+
     @using_fr_presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       section_identifier: 'using-federalregister-gov',
       display_count: 8,

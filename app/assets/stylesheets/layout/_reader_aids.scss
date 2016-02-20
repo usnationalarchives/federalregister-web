@@ -1,5 +1,7 @@
 .bootstrap-scope {
   .reader-aids-section {
+    .section { padding-left: 10px !important; }
+    
     .content-block {
       a {
         color: $color-reader-aid;

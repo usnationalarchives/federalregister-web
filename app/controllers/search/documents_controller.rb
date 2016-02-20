@@ -72,12 +72,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   def help
-    cache_for 1.day
-    if params[:no_layout]
-      render :layout => false
-    else
-      render
-    end
+    redirect_to reader_aids_search_help_url
   end
 
   private

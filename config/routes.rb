@@ -241,7 +241,7 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#index_section',
       as: :reader_aids_index_section,
       constraints: {
-        section: /(#{ReaderAidsPresenter::Base::SECTIONS.map{|k,v| k}.join('|')})/
+        section: /(#{ReaderAid::SECTIONS.map{|k,v| k}.join('|')})/
       }
 
 
