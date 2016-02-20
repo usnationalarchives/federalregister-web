@@ -4,5 +4,5 @@ module RouteBuilder
   include RouteBuilder::Citations
   include RouteBuilder::ExternalUrls
   include RouteBuilder::Fr2ApiUrls
-  include RouteBuilder::BlogUrls
+  include RouteBuilder::ReaderAidUrls #wordpress
 end

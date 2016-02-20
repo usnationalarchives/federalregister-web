@@ -1,7 +1,7 @@
 class FrBox::Base
   include ActionView::Helpers::UrlHelper
   include Rails.application.routes.url_helpers
-  include RouteBuilder::BlogUrls
+  include RouteBuilder::ReaderAidUrls
 
   attr_reader :options
 

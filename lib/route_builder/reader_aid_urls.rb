@@ -1,4 +1,4 @@
-module RouteBuilder::BlogUrls
+module RouteBuilder::ReaderAidUrls
   extend RouteBuilder::Utils
 
   def public_inspection_learn_path
