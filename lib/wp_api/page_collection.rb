@@ -1,6 +1,11 @@
 class WpApi::PageCollection < WpApi::Collection
   alias :pages :content
 
+  def initialize(attributes)
+    return [] if attributes == ["code", "rest_invalid_param"]
+    super attributes
+  end
+
   def model
     WpApi::Page
   end
