@@ -82,6 +82,7 @@ class WpApi::Client
   end
 
   def self.build_url(endpoint, params)
+    Rails.logger.info("WpApi url: [#{endpoint}, #{params}]")
     [endpoint, params].compact.join('?')
   end
 
