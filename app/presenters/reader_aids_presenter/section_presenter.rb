@@ -8,6 +8,10 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
               :section_identifier,
               :subpage_identifier
 
+  attr_accessor :per_page_offset
+
+  RESULTS_PER_PAGE = 100 #seems to be max allowed by WP
+
   def initialize(config)
     @section_identifier = config.fetch(:section_identifier) { nil }
     @page_identifier = config.fetch(:page_identifier) { nil }
@@ -19,6 +23,8 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
     @columns = config.fetch(:columns) { 1 }
     @display_count = config.fetch(:display_count) { nil }
+
+    @per_page_offset = 0
   end
 
   def section
@@ -46,31 +52,36 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def pages_collection
-    @pages_collection ||= WpApi::Client.get_pages(
-      parent_slug: parent_identifier
-      #orderby: 'menu_order',
-      #order: 'ASC'
-    )
+    config = {
+      parent_slug: parent_identifier,
+      per_page: RESULTS_PER_PAGE,
+      offset: @per_page_offset
+    }
+
+    pages_collection = WpApi::Client.get_pages(config)
   end
 
   def posts_collection
     config = category ? {filter: {category_name: category}} : {}
 
-    return @posts_collection if @posts_collection
+    config.merge!({
+      per_page: RESULTS_PER_PAGE,
+      offset: @per_page_offset
+    })
 
-    @posts_collection = WpApi::Client.get_posts(config)
+    posts_collection = WpApi::Client.get_posts(config)
 
     if section_identifier == 'office-of-the-federal-register-blog'
-      @posts_collection.content = @posts_collection.posts.reject do |post|
+      posts_collection.content = posts_collection.posts.reject do |post|
         post.categories.map{|c| c.slug}.include?('site-updates')
       end
     elsif section_identifier == 'recent-updates'
-      @posts_collection.content = @posts_collection.posts.select do |post|
+      posts_collection.content = posts_collection.posts.select do |post|
         post.categories.map{|c| c.slug}.include?('site-updates')
       end
     end
 
-    @posts_collection
+    posts_collection
   end
 
   def show_view_all
@@ -78,7 +89,20 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def item
-    @item ||= items.detect{|item| item.slug == item_identifier}
+    return @item if @item
+
+    if items.present?
+      matched_item = items.detect{|item| item.slug == item_identifier}
+
+      if matched_item
+        @item = matched_item
+      else
+        @per_page_offset = @per_page_offset + RESULTS_PER_PAGE
+        item
+      end
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def parent
@@ -86,7 +110,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def items
-    @items ||= type == 'pages' ? pages_collection.content : posts_collection.content
+    items = type == 'pages' ? pages_collection.content : posts_collection.content
   end
 
   def items_for_display
