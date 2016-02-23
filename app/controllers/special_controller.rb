@@ -65,4 +65,12 @@ class SpecialController < ApplicationController
 
     render "layouts/footer"
   end
+
+  def popular_documents
+    cache_for 1.hour
+
+    @popular_documents = PopularDocument.popular.sort_by(&:comment_count).reverse.first(8)
+
+    render 'special/home/popular_documents'
+  end
 end

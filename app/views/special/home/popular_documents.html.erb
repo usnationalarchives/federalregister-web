@@ -1,0 +1,15 @@
+<div class="col-xs-8 col-md-8 section with-icon-header">
+  <h4 class="with-icon">
+    <span class="icon-fr2 icon-fr2-Temperature"></span>
+    Popular Documents
+  </h4>
+
+  <% @popular_documents.each do |popular_document| %>
+    <ul class="fr-list with-stats popular-documents">
+      <li>
+        <%= document_type_icon popular_document.document_type %>
+        <%= link_to popular_document.title, popular_document.html_url, class: "popular-document-title" %>
+      </li>
+    </ul>
+  <% end %>
+</div>

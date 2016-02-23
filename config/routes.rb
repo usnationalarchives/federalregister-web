@@ -235,6 +235,10 @@ MyFr2::Application.routes.draw do
       to: 'sections#homepage',
       as: :home_sections
 
+    esi.get 'esi/home/popular_documents',
+      to: 'special#popular_documents',
+      as: :home_popular_documents
+
 
     # READER AIDS
     esi.get 'esi/reader_aids/:section',

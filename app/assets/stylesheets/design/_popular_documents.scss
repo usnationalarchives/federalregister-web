@@ -1,0 +1,14 @@
+.popular-documents {
+  .rule_type {
+    float: left;
+    font-size: modular-scale(2);
+    padding-right: 5px;
+  }
+
+  a.popular-document-title {
+    float: left;
+    font-size: modular-scale(0);
+    line-height: 1.3em;
+    width: 90%;
+  }
+}
