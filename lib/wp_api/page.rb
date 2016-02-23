@@ -3,8 +3,4 @@ class WpApi::Page < WpApi::Content
   def path(section_identifier)
     reader_aid_path(section_identifier, slug)
   end
-
-  def slug
-    link.split("/").last
-  end
 end

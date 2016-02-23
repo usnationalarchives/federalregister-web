@@ -6,7 +6,9 @@ class WpApi::Content
   end
 
   WHITELISTED_ATTRIBUTES = [
+    'id',
     'link',
+    'slug',
   ]
 
   WHITELISTED_ATTRIBUTES.each do |attribute|
@@ -16,10 +18,6 @@ class WpApi::Content
   def get(symbolized_attr)
     attr = String(symbolized_attr)
     attributes.keys.include?(attr) ? attributes[attr] : nil
-  end
-
-  def id
-    attributes['id']
   end
 
   def title
@@ -47,7 +45,6 @@ class WpApi::Content
   end
 
   def formatted_excerpt
-    #binding.pry
     if excerpt
       clean_content(excerpt).html_safe
     else
