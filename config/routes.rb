@@ -300,6 +300,13 @@ MyFr2::Application.routes.draw do
       to: 'reader_aids#section',
       as: :reader_aids_section
 
+  get 'reader-aids/:section/*date/:page',
+      to: 'reader_aids#show',
+      as: :reader_aid_blog_post,
+      contraints: {
+        section: ['office-of-the-federal-register-blog', 'recent-updates']
+      }
+
   get 'reader-aids/:section/:page(/*subpage)',
       to: 'reader_aids#show',
       as: :reader_aid
