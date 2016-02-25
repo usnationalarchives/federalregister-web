@@ -1,3 +1,5 @@
+<% page_title "MyFR :: Clippings" %>
+
 <% title do %>
   <%= fr_icon 'flag' %>
   My Clippings
@@ -6,52 +8,81 @@
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 <%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
 
-<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
-<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
+<%= content_tag(:div, flash[:notice], class: 'flash notice') if flash[:notice] %>
+<%= content_tag(:div, flash[:error],  class: 'flash error') if flash[:error]  %>
 
 <h2 class="title" data-folder-slug="<%= @folder.slug %>">
-  <span class="icon-fr2 <%= @folder.slug == 'my-clippings' ? 'icon-fr2-flag' : 'icon-fr2-folder' %>"></span>
+  <%= fr_icon(@folder.slug == 'my-clippings' ? 'flag' : 'folder') %>
   <%= @folder.name %>
 
   <% if @folder.id.present? %>
     <div class="folder-actions">
       <%= link_to('', :id => "delete-folder") do
-            content_tag(:span, "", :class => "icon-fr2 icon-fr2-trash_can tooltip",
-              :data => {:tooltip => "Delete this folder", :'tooltip-gravity' => 'e'})
-          end %>
+        fr_icon('trash_can',
+          class: 'tooltip',
+          data: {
+            tooltip: "Delete this folder",
+            :'tooltip-gravity' => 'e'
+          }
+        )
+      end %>
     </div>
   <% end %>
 </h2>
 
-<%= render :partial => "clippings/folder_metadata_bar", :locals => {:folder => @folder, :clippings => @clippings} %>
+<%= render partial: "clippings/folder_metadata_bar", locals: {
+  folder: @folder,
+  clippings: @clippings
+} %>
 
 <% add_javascript src: 'page_specific/clipping_filters' %>
 
-<%= semantic_form_for :folder_clippings, :url => folder_clippings_path, :html => {:id => 'folder_clippings'} do |f| %>
+<%= semantic_form_for :folder_clippings,
+  url: folder_clippings_path,
+  html: {id: 'folder_clippings'} do |f| %>
+
   <div id="clipping-actions">
     <div id="doc-type-filter" class="doc-type-filter">
       <ul>
-        <script type="text/javascript">var doc_type_filters = <%= @clippings.map{|c| c.document.document_type.granule_class}.uniq.compact.to_json.html_safe %>;</script>
+        <script type="text/javascript">
+          var doc_type_filters = <%= @clippings.map{|c| c.document.document_type.granule_class}.uniq.compact.to_json.html_safe %>;
+        </script>
 
         <%= my_fr_document_filters %>
       </ul>
     </div>
+
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
+
     <div id="remove-clipping">
-      <span class="icon-fr2 icon-fr2-trash_can"></span>
+      <%= fr_icon 'trash_can' %>
     </div>
   </div>
 
-  <%= render :partial => "clippings/not_logged_in_warning" if @clippings && @clippings.size > 0 && !user_signed_in? %>
-  <%= render :partial => "clippings/new_from_cookie", :locals => {:count => current_user.new_clippings_count} if user_signed_in? && current_user.new_clippings_count && current_user.new_clippings_count > 0 %>
+  <% if ! user_signed_in? && @clippings && @clippings.size > 0 %>
+    <%= render partial: "clippings/not_logged_in_warning" %>
+  <% end %>
 
-  <ul id="clippings">
+  <% if user_signed_in? && current_user.new_clippings_count && current_user.new_clippings_count > 0 %>
+    <%= render partial: "clippings/new_from_cookie", locals: {
+      count: current_user.new_clippings_count
+    }  %>
+  <% end %>
+
+  <ul id="clippings" class="clippings">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
-        <li data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>"
+        <li class="<%= clipping.document.official? ? 'doc-official' : 'doc-published' %>"
+          data-doc-id="<%= user_signed_in? ? clipping.id : clipping.document_number%>"
           data-doc-type="<%= clipping.document.document_type.identifier || 'uncategorized' %>">
-          <%= document_type_icon(clipping.document.document_type) %>
+          <%= document_type_icon(
+            clipping.document.document_type,
+            tooltip_options: {
+              'tooltip-gravity' => 'w',
+              'tooltip-offset' => 3
+            }
+          ) %>
 
           <div class="document_data">
             <div class="title">
@@ -59,8 +90,8 @@
             </div>
 
             <div class="<%=clipping.document.document_type.identifier || 'uncategorized' %>_metadata_wrapper">
-              <%= render :partial => "clippings/doc_types/#{clipping.document.document_type.identifier || 'uncategorized'}",
-                :locals => {:clipping => clipping} %>
+              <%= render partial: "clippings/doc_types/#{clipping.document.document_type.identifier || 'uncategorized'}",
+                locals: {clipping: clipping} %>
             </div>
           </div>
 
@@ -78,17 +109,27 @@
 
           <div class="add_to_folder_pane">
             <div class="left_side"></div>
-            <%= check_box_tag "folder_clippings[clipping_ids][]", clipping.id, false, :class => "clipping_id" if user_signed_in? %>
-            <%= check_box_tag "folder_clippings[document_numbers][]", clipping.document_number, false, :class => "clipping_id" unless user_signed_in? %>
+            <% if user_signed_in? %>
+              <%= check_box_tag "folder_clippings[clipping_ids][]",
+                clipping.id, false, class: "clipping_id" %>
+            <% else %>
+              <%= check_box_tag "folder_clippings[document_numbers][]",
+                clipping.document_number, false, class: "clipping_id" %>
+            <% end %>
           </div>
         </li>
       <% end %>
     <% else %>
-      <% unless user_signed_in? %>
-        <%= render :partial => "clippings/not_logged_in_no_clippings" if @clippings.size == 0 %>
-      <% else %>
-        <%= render :partial => "clippings/logged_in_no_clippings" if @clippings.size == 0 && @folder.slug == "my-clippings" %>
-        <%= render :partial => "clippings/logged_in_no_clippings_in_folder" if @clippings.size == 0 && @folder.slug != "my-clippings" %>
+      <% if ! user_signed_in? && @clippings.size == 0 %>
+        <%= render partial: "clippings/not_logged_in_no_clippings" %>
+      <% end %>
+
+      <% if user_signed_in? && @clippings.size == 0 %>
+        <% if @folder.slug == "my-clippings" %>
+          <%= render partial: "clippings/logged_in_no_clippings"  %>
+        <% else %>
+          <%= render partial: "clippings/logged_in_no_clippings_in_folder" %>
+        <% end %>
       <% end %>
     <% end %>
   </ul>

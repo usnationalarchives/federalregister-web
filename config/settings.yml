@@ -31,3 +31,5 @@ feature_flags:
     agencies: false
     topics: false
     suggested_searches: false
+    my_fr:
+      subscriptions: false

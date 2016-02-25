@@ -17,9 +17,13 @@ module DocumentTypeHelper
 
   def document_type_icon(type, options={})
     document_type = type.is_a?(DocumentType) ? type : DocumentType.new(type)
+
+    tooltip_options = options.fetch(:tooltip_options, {})
+
     content_tag(:div,
-      class: "#{document_type.icon_wrapper_class(options[:size])} tooltip",
-      "data-tooltip" => document_type.type) do
+      class: "#{document_type.icon_wrapper_class(options[:size])} cj-tooltip",
+      data: {tooltip: document_type.type}.merge(tooltip_options)
+    ) do
         content_tag(:span, '', class: document_type.icon_class)
     end
   end

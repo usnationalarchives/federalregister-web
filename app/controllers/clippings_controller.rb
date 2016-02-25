@@ -36,7 +36,9 @@ class ClippingsController < ApplicationController
     end
 
     if request.xhr?
-      render :json => {:folder => {:name => 'My Clippings', :slug => 'my-clippings' } }
+      render json: {
+        folder: {name: 'My Clippings', slug: 'my-clippings' }
+      }
     else
       redirect_to clippings_url
     end

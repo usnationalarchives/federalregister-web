@@ -1,15 +1,18 @@
+<% page_title "MyFR :: Comments" %>
+
 <% title header_class: 'my-comments' do %>
   <%= fr_icon 'Chat' %>
   My Comments
 <% end %>
 
-<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
-<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
-<%= content_tag(:div, flash[:warning].html_safe,  :class => 'flash warning') if flash[:warning]  %>
+<%= content_tag(:div, flash[:notice], class: 'flash notice')             if flash[:notice] %>
+<%= content_tag(:div, flash[:error], class: 'flash error')               if flash[:error]  %>
+<%= content_tag(:div, flash[:warning].html_safe, class: 'flash warning') if flash[:warning]  %>
 
 <% if ! current_user.confirmed? &&
      flash[:warning].blank? &&
-     @comments.any?{|c| c.subscription.present? || c.comment_publication.notification? } %>
+     @comments.any?{|c| c.subscription.present? || c.comment_publication_notification? } %>
+
   <div class="flash warning">
     Some of your comments have notification subscriptions. You will not receive
     notification about followup documents until you have confirmed your
@@ -23,26 +26,39 @@
   My Comments
 </h2>
 
-<%= render :partial => "comments/comment_metadata_bar",
-  :locals => {:comments => @comments} %>
+<%= render partial: "comments/comment_metadata_bar", locals: {
+  comments: @comments
+} %>
 
-<ul id="comments">
+<ul id="comments" class="comments">
   <% @comments.each do |comment| %>
-    <li data-doc-id="<%= comment.document_number%>"
+    <li class="<%= comment.document.official? ? 'doc-official' : 'doc-published' %>"
+      data-doc-id="<%= comment.document_number%>"
       data-doc-type="<%= comment.document.document_type.identifier %>">
 
-      <%= document_type_icon(comment.document.document_type) %>
+      <%= document_type_icon(
+        comment.document.document_type,
+        tooltip_options: {
+          'tooltip-gravity' => 'w',
+          'tooltip-offset' => 3
+        }
+      ) %>
 
-      <div class="comment_count" data-tooltip="<%= comment.comment_count_tooltip %>">
-        <span class="icon-fr2 icon-fr2-conversation-alt"></span>
+      <div class="comment_count cj-tooltip"
+        data-tooltip="<%= comment.comment_count_tooltip %>"
+        data-tooltip-gravity="w">
+        <% fr_icon 'conversation-alt' %>
         <%= comment.comment_count_link %>
       </div>
 
       <div class="document_data">
-        <div class="title"><%= link_to comment.document.title, comment.document.html_url %></div>
+        <div class="title">
+          <%= link_to comment.document.title, comment.document.html_url %>
+        </div>
+
         <div class="<%= comment.document.document_type.identifier || 'uncategorized' %>_metadata_wrapper">
-          <%= render :partial => "clippings/doc_types/#{comment.document.document_type.identifier || 'uncategorized'}",
-            :locals => {:clipping => comment} %>
+          <%= render partial: "clippings/doc_types/#{comment.document.document_type.identifier || 'uncategorized'}",
+            locals: {clipping: comment} %>
         </div>
       </div>
 

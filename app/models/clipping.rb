@@ -60,7 +60,7 @@ class Clipping < ActiveRecord::Base
 
       documents = Document.find_all(
         document_numbers,
-        :fields => fields
+        fields: fields
       )
 
       clippings.select do |clipping|
@@ -71,8 +71,6 @@ class Clipping < ActiveRecord::Base
           false
         end
       end
-    rescue FederalRegister::Article::InvalidDocumentNumber
-      []
     rescue FederalRegister::Client::RecordNotFound
       []
     end
@@ -116,7 +114,7 @@ class Clipping < ActiveRecord::Base
 
   def document
     if document_number
-      @document ||= FederalRegister::Document.find(document_number)
+      @document ||= Document.find(document_number)
     end
   end
 

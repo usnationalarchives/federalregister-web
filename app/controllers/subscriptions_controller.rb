@@ -1,12 +1,14 @@
 class SubscriptionsController < ApplicationController
 
-  with_options(:only => [:new, :create, :confirmation_sent, :confirm, :confirmed, :unsubscribe, :unsubscribed, :destroy]) do |during_creation|
+  with_options(only: [:new, :create, :confirmation_sent, :confirm, :confirmed, :unsubscribe, :unsubscribed, :destroy]) do |during_creation|
     during_creation.skip_before_filter :verify_authenticity_token
     during_creation.skip_before_filter :authenticate_user!
   end
 
   def index
-    @subscriptions = SubscriptionDecorator.decorate(current_user.subscriptions.order("subscriptions.created_at DESC"))
+    @subscriptions = SubscriptionDecorator.decorate_collection(
+      current_user.subscriptions.order("subscriptions.created_at DESC")
+    )
     @article_subscription_count = current_user.subscriptions.article_subscriptions.count
     @pi_subscription_count = current_user.subscriptions.pi_subscriptions.count
   end
@@ -45,13 +47,13 @@ class SubscriptionsController < ApplicationController
         session[:subscription_token] = @subscription.token
         flash[:notice] = "Please sign into to add this subscription to your My FR account."
 
-        redirect_to new_session_path(:user => {:email => @subscription.email})
+        redirect_to new_session_path(user: {email: @subscription.email})
       else
         SubscriptionMailer.subscription_confirmation(@subscription).deliver
-        redirect_to confirmation_sent_subscriptions_url(:email => @subscription.email)
+        redirect_to confirmation_sent_subscriptions_url(email: @subscription.email)
       end
     else
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -63,8 +65,12 @@ class SubscriptionsController < ApplicationController
     @subscription.confirm!
 
     respond_to do |format|
-      format.html { redirect_to confirmed_subscriptions_path(:type => @subscription.mailing_list.type) }
-      format.json { render :json => { :unsubscribe_url => subscription_path(@subscription)} }
+      format.html {
+        redirect_to confirmed_subscriptions_path(type: @subscription.mailing_list.type)
+      }
+      format.json {
+        render json: {unsubscribe_url: subscription_path(@subscription)}
+      }
     end
   end
 
@@ -84,8 +90,12 @@ class SubscriptionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to unsubscribed_subscriptions_url }
-      format.json { render :json => { :resubscribe_url => confirm_subscription_url(@subscription)} }
+      format.html {
+        redirect_to unsubscribed_subscriptions_url
+      }
+      format.json {
+        render json: {resubscribe_url: confirm_subscription_url(@subscription)}
+      }
     end
   end
 

@@ -1,28 +1,39 @@
+<% page_title "MyFR :: Subscriptions" %>
+
 <% title header_class: 'my-subscriptions' do %>
   <%= fr_icon 'message_open' %>
   My Subscriptions
 <% end %>
 
-<%= content_tag(:div, flash[:notice], :class => 'flash notice')  if flash[:notice] %>
-<%= content_tag(:div, flash[:error],  :class => 'flash error')   if flash[:error]  %>
-<%= content_tag(:div, flash[:warning],  :class => 'flash warning') if flash[:warning]  %>
+<%= content_tag(:div, flash[:notice], class: 'flash notice')   if flash[:notice] %>
+<%= content_tag(:div, flash[:error], class: 'flash error')     if flash[:error]  %>
+<%= content_tag(:div, flash[:warning].html_safe, class: 'flash warning') if flash[:warning]  %>
 
 <h2 class="subscription title">
-  <span class="icon-fr2 icon-fr2-message_open"></span>
+  <%= fr_icon 'message_open' %>
   My Subscriptions
 </h2>
-<%= render :partial => "subscriptions/subscription_metadata_bar", :locals => {:article_subscription_count => @article_subscription_count, :pi_subscription_count => @pi_subscription_count} if current_user.confirmed? %>
+
+<% if current_user.confirmed? %>
+  <%= render partial: "subscriptions/subscription_metadata_bar", locals: {
+    article_subscription_count: @article_subscription_count,
+    pi_subscription_count: @pi_subscription_count
+  } %>
+<% end %>
 
 <div id="subscription-actions">
   <div id="subscription-type-filter">
     <ul>
-      <script type="text/javascript">var subscription_type_filters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;</script>
+      <script type="text/javascript">
+        var subscription_type_filters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;
+      </script>
+
       <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Document">
-        <span class="icon-fr2 icon-fr2-document_subscription"></span>
+        <%= fr_icon 'document_subscription' %>
         <div class="label">Document</div>
       </li>
       <li class="sub_pi last" data-filter-doc-type="public-inspection-document" data-filter-doc-type-display="Public Inspection Document">
-        <span class="icon-fr2 icon-fr2-pi_subscription"></span>
+        <%= fr_icon 'pi_subscription' %>
         <div class="label">Public Inspection</div>
       </li>
     </ul>
@@ -32,11 +43,11 @@
 <% if current_user.confirmed? %>
   <% if @subscriptions.present? %>
     <ul id="subscriptions">
-      <%= render :partial => 'subscription_list_item', :collection => @subscriptions, :as => :subscription %>
+      <%= render partial: 'subscription_list_item', collection: @subscriptions, as: :subscription %>
     </ul>
   <% else %>
-    <%= render :partial => 'subscriptions/messages/no_subscriptions' %>
+    <%= render partial: 'subscriptions/messages/no_subscriptions' %>
   <% end %>
 <% else %>
-    <%= render :partial => 'subscriptions/messages/not_confirmed' %>
+    <%= render partial: 'subscriptions/messages/not_confirmed' %>
 <% end %>

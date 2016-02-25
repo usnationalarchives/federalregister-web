@@ -6,21 +6,25 @@ class SubscriptionDecorator < ApplicationDecorator
     mailing_list.type.split('::').last
   end
 
-  def icon_class
-    type == "Article" ? "icon-fr2-document_subscription" : "icon-fr2-pi_subscription"
+  def display_type
+    type == "Article" ? "Document Subscription" : "Public Inspection Document Subscription"
   end
 
-  def search_path(options={})
-    format = options.delete(:format)
+  def icon_class
+    type == "Article" ? "document_subscription" : "pi_subscription"
+  end
 
-    url = case type
-          when "Article"
-            "/articles/search#{format if format}"
-          when "PublicInspectionDocument"
-            "/public-inspection/search#{format if format}"
-          end
+  def search_path
+    case type
+    when "Article"
+      h.documents_search_path(search_params)
+    when "PublicInspectionDocument"
+      h.public_inspection_search_path(search_params)
+    end
+  end
 
-    "#{url}?#{mailing_list.parameters.merge(options).to_query}"
+  def search_params
+    mailing_list.parameters
   end
 
   def sparkline_url
