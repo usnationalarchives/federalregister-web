@@ -7,8 +7,8 @@ function get_user_state() {
 }
 
 function get_page_type() {
-  if( window.location.pathname.match(/^\/articles\/search/) === null ) {
-    return 'article';
+  if( window.location.pathname.match(/\/search/) === null ) {
+    return 'document';
   } else {
     return 'search';
   }
