@@ -7,6 +7,7 @@
 #= require handlebars-1.0.0.rc.3
 #= require bootstrap/dropdown
 #= require jquery.clippy.min
+#= require js.cookie
 
 # RANDOM ASSORTMENT UTILITIES
 #= require jquery.utilities
