@@ -24,7 +24,7 @@ class SubscriptionDecorator < ApplicationDecorator
   end
 
   def search_params
-    mailing_list.parameters
+    {conditions: mailing_list.parameters}
   end
 
   def sparkline_url
