@@ -14,7 +14,7 @@ $.fn.jqm=function(o){
 var p={
 overlay: 50,
 overlayClass: 'jqmOverlay',
-closeClass: 'jqmClose',
+closeClass: 'jqmClosee',
 trigger: '.jqModal',
 ajax: F,
 ajaxText: '',
