@@ -9,6 +9,7 @@ class Search::Document < Search::Base
   DOCUMENT_SEARCH_CONDITIONS = [
     :publication_date,
     :effective_date,
+    :citing_document_numbers,
     :comment_date,
     :small_entity_ids,
     :presidential_document_type,
