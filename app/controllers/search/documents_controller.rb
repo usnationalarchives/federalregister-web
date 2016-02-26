@@ -14,12 +14,6 @@ class Search::DocumentsController < ApplicationController
     if valid_search?
       respond_to do |wants|
         wants.html
-        wants.rss do
-          @feed_name = "Federal Register: Search Results"
-          @feed_description = "Federal Register: Search Results"
-          @entries = @search.results
-          render :template => 'documents/index.rss.builder'
-        end
 
         wants.csv do
           redirect_to documents_search_api_url(
