@@ -26,7 +26,7 @@ backend blog {
 
 
 sub vcl_fetch {
-  if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
+  if (req.url ~ "^(/blog/wp-json)") {
    set beresp.ttl = 120s;
   }
 }
@@ -98,14 +98,6 @@ sub vcl_recv {
     } else if (req.url ~ "^(/layout/head_content|/stylesheets/|/javascripts/|/images/)") {
       set req.backend = fr2;
       return (pass);
-    } else if (req.url ~ "^(/blog|/policy|/learn|/layout/navigation_page_list|/layout/homepage_post_list)") {
-      set req.http.host = "<%= config['wordpress']['host'] || 'fr2.local' %>";
-      set req.backend = blog;
-
-      # Don't cache wordpress pages if logged in to wp
-      if (req.http.Cookie ~ "wordpress_logged_in_") {
-          return (pass);
-      }
     } else if (req.url ~ "^/admin" ){
       set req.backend = fr2;
       return (pass);
@@ -119,16 +111,8 @@ sub vcl_recv {
         return (pass);
     }
 
-    # Rewrite top-level wordpress requests to /blog/
-    set req.url = regsub(
-        req.url,
-        "^/(learn|policy|layout/navigation_page_list|layout/homepage_post_list)",
-        "/blog/\1"
-    );
-
-
     # Pass wp admin requests directly on to wp
-    if (req.url ~ "^(/wp-login|wp-admin)") {
+    if (req.url ~ "^/blog/(wp-login|wp-admin|wp-json)") {
         set req.backend = blog;
         set req.http.host = "fr2.local";
         return (pass);
