@@ -101,6 +101,9 @@ sub vcl_recv {
     } else if (req.url ~ "^/admin" ){
       set req.backend = fr2;
       return (pass);
+    } else if (req.url ~ "^/esi/special/user_utils" && ( req.http.Cookie ~ "document_numbers" || req.http.Cookie ~ "_my_fr2_session") ) {
+      set req.backend = my_fr2;
+      return(pass);
     } else {
       set req.http.host = "<%= config['fr2']['host'] || 'fr2-rails.local' %>";
       set req.backend = my_fr2;
