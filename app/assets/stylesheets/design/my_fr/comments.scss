@@ -14,45 +14,50 @@ ul#comments > li {
   width: 938px;
 }
 
-ul#comments {
-  div.rule_type { @extend %large_document_icon_frame; }
+.comments {
+  li {
+    &.doc-published .rule_type { color: $color-published; }
+    &.doc-official .rule_type { color: $color-official; }
 
+    .rule_type { @extend %large_document_icon_frame; }
+  }
+}
+
+ul#comments {
   .comment_count {
-    left: 15px;
-    display: inline-block;
     bottom: 10px;
-    position: absolute;
-    width: 53px;
+    display: inline-block;
     height: 25px;
+    left: 9px;
+    position: absolute;
+    text-align: center;
+    width: 53px;
 
     .icon-fr2.icon-fr2-conversation-alt {
-      font-size: 20px;
-      float: left;
       color: $fr-green;
+      float: left;
+      font-size: 20px;
     }
 
     .count {
-      width: auto;
-      min-width: 8px;
-      min-height: 8px;
-
-      padding: 0 3px;
-      padding-bottom: 1px;
-
-      font-size: 11px;
-      font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-      font-weight: bold;
-      text-align: center;
-      line-height: 13px;
-
       @include border-radius(12);
+
+      background-color: $fr-green;
+      border: 2px solid $white;
+      color: $white;
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 13px;
       margin: 0;
       margin-left: 5px;
-
-      color: #FFF;
-      background-color: $fr-green;
-      border: 2px solid #FFF;
-      }
+      min-height: 12px;
+      min-width: 12px;
+      padding: 0 5px;
+      padding-bottom: 1px;
+      text-align: center;
+      width: auto;
+    }
 
     &:hover {
       .icon-fr2 { color: $fr-orange; }

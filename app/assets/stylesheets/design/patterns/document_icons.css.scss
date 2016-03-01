@@ -1,29 +1,16 @@
 %large_document_icon_frame {
-  width: 49px;
-  height: 49px;
   display: inline-block;
-  vertical-align: top;
-  overflow: hidden;
-  z-index: 500;
-  margin-right: 10px;
+  height: 49px;
   margin-left: 4px;
+  margin-right: 10px;
+  overflow: hidden;
+  vertical-align: top;
+  width: 49px;
+  z-index: 500;
 
   .icon-fr2.icon-doctype { font-size: 49px;}
-  .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
-  .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
-  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
-  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
-  .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
-  .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
 }
 
 .comments {
   .icon-fr2.icon-doctype { font-size: 16px;}
-  .icon-fr2.icon-doctype.icon-fr2-rule { color: $doc-icon-rule; }
-  .icon-fr2.icon-doctype.icon-fr2-notice { color: $doc-icon-notice; }
-  .icon-fr2.icon-doctype.icon-fr2-proposed_rule { color: $doc-icon-proposed_rule; }
-  .icon-fr2.icon-doctype.icon-fr2-presidential_document { color: $doc-icon-presidential_document; }
-  .icon-fr2.icon-doctype.icon-fr2-correction { color: $doc-icon-correction }
-  .icon-fr2.icon-doctype.icon-fr2-uncategorized { color: $doc-icon-uncategorized; }
 }
-
