@@ -1,3 +1,4 @@
+<% header_type 'public-inspection' %>
 <% page_title @search.term.blank? ? 'Public Inspection Search' : "Public Inspection Search Results for '#{h @search.term}'" %>
 
 <%= feed_autodiscovery(
@@ -16,7 +17,7 @@
 
 <%= add_javascript src: 'page_specific/search' %>
 
-<%= title do %>
+<%= title title_bar_class: 'public-inspection' do %>
   <%= fr_icon 'Search' %>
   Public Inspection Document Search
 <% end %>
