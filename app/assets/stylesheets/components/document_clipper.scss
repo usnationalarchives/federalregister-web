@@ -1,9 +1,9 @@
 /**********************************************
 /* FR2 - ADD TO FOLDER MENU
 ***********************************************/
-.clipping-actions.fr2 {
+.document-clipping-actions {
   background-color: $white;
-  border: none;
+  border: 0;
   margin-right: 0px;
   position: relative;
   width: 50px;
@@ -14,21 +14,53 @@
   }
 
   .add-to-folder {
+    height: 35px;
     left: 1px;
-    top: 1px;
     margin: 0;
+    overflow: visible;
     position: relative;
+    top: 1px;
     width: 56px;
 
+    // the .hover class is used by javascript and is needed because of
+    // javascript triggered hover interactions that don't play well with
+    // mouse position and css hover states - we get a flickering menu!
+
+    // we also bump the z-index of the button and menu on hover to bring
+    // it above other menus (search results in particular)
+    &.hover {
+      left: 0px;
+      top: 0px;
+
+      .button {
+        @include rounded-bottom(0);
+        @include rounded-top(6);
+
+        background-color: $fr-gray-10;
+        border: $fr-gray-20 1px solid;
+        border-bottom: 0;
+        z-index: 200;
+
+        .icon-fr2-flag,
+        .icon-fr2-menu_arrow { color: $fr-orange; }
+      }
+
+      .menu {
+        display: block;
+        z-index: 150;
+      }
+    }
+
     .button {
-      border: none;
+      border: 0;
       height: 33px;
       padding: 0 0 0 2px;
       position: absolute;
       z-index: 100;
 
+      .icon-fr2 { color: $fr-gray-60; }
+
       .icon-fr2-flag {
-        color: $fr-gray-60;
         font-size: 34px;
         margin-right: 0;
       }
@@ -44,147 +76,142 @@
     .menu {
       @include rounded-bottom(6);
       background-color: $fr-gray-10;
-      border-top-left-radius: 0;
       border: solid 1px $fr-gray-20;
+      border-top-left-radius: 0;
       clear: both;
       display: none;
+      font-size: 15px; //intential non-use of modular-scale
       padding: 5px 7px 5px 5px;
       position: absolute;
-      right: 1px;
+      right: 0px;
       top: 32px;
-      z-index: 1;
-    }
-  }
-
-  /* the .hover class is used by javascript and is needed because of   *
-   * javascript triggered hover interactions that don't play well with *
-   * mouse position and css hover states - we get a flickering menu!   */
-
-  .add-to-folder.hover {
-    left: 0px;
-    top: 0px;
-
-    .button {
-      @include rounded-bottom(0);
-      @include rounded-top(6);
-      background-color: $fr-gray-10;
-
-      border: $fr-gray-20 1px solid;
-      border-bottom: none;
-
-      .icon-fr2-flag,
-      .icon-fr2-menu_arrow { color: $fr-orange; }
-    }
-
-    .menu { display: block; }
-  }
-
-}
-
-.clipping-actions.fr2 .menu {
-  a {
-    span.name { white-space: normal; }
-
-    span.icon,
-    span.loader {
-      width: 18px;
-      height: 18px;
-      right: 3px;
-      position: absolute;
-      margin-right: 0;
-    }
-  }
-}
-
-.clipping-actions.fr2 .menu {
-  ul {
-    background-color: $white;
-    border-radius: 6px;
-    position: relative;
-    width: 200px;
-
-    li {
-      padding: 2px 5px;
-      border-bottom: 1px dashed $fr-gray-20;
-      clear: both;
-      color: $fr-gray-60;
-      display: list-item;
-      float: none;
-
-      &:last-child { border-bottom: none; }
+      z-index: 50;
 
       a {
-        color: $fr-gray-60;
-        font-weight: 500;
-        position: relative;
-        top: 1px;
-      }
+        span.name { white-space: normal; }
 
-      .icon-fr2 {
-        color: $fr-gray-60;
-        font-size: modular-scale(3);
-        top: 1px;
-      }
-    }
-
-    li.new-folder {
-      padding-left: 0;
-      text-align: center;
-
-      &:hover,
-      &.hover {
-        color: $fr-orange;
-        a { color: $fr-orange; }
-      }
-    }
-
-    li.in-folder {
-      cursor: default;
-
-      a {
-        .icon-fr2-badge_check_mark.checked { color: $fr-green; }
-
-        .icon-fr2-badge_x.delete,
-        .icon-fr2-badge_forward_arrow.goto { display: none; }
-      }
-
-      &:hover,
-      &.hover {
-        a {
-          color: $fr-gray-60;
-
-          .icon-fr2-badge_x.delete { display: inline-block; }
-          .icon-fr2-badge_x.delete:hover { color: $fr-red; }
-
-          .icon-fr2-badge_forward_arrow.goto {
-            display: inline-block;
-            right: 25px;
-          }
-
-          .icon-fr2-badge_forward_arrow.goto:hover {
-            color: $fr-green;
-          }
-        }
-      }
-    }
-
-    li.not-in-folder {
-      a {
-        .icon-fr2-badge_check_mark { color: $fr-gray-20; }
-
+        span.icon,
         span.loader {
-          background: image-url('orange_loader.gif') 0 0 no-repeat;
-          display: none;
           height: 18px;
+          margin-right: 0;
+          position: absolute;
+          right: 3px;
           width: 18px;
         }
       }
 
-      &:hover {
-        a {
-          .icon-fr2-badge_check_mark { color: $fr-orange; }
+      ul {
+        background-color: $white;
+        border-radius: 6px;
+        position: relative;
+        width: 200px;
+
+        li {
+          border-bottom: 1px dashed $fr-gray-20;
+          clear: both;
+          color: $fr-gray-60;
+          display: list-item;
+          float: none;
+          padding: 4px 5px;
+
+          &:last-child { border-bottom: 0; }
+
+          a {
+            color: $fr-gray-60;
+            display: block;
+            font-weight: 500;
+            position: relative;
+            top: 1px;
+            width: 100%;
+          }
+
+          .icon-fr2 {
+            color: $fr-gray-60;
+            font-size: modular-scale(3);
+          }
+
+
+          &.new-folder {
+            padding-left: 0;
+            text-align: center;
+
+            &:hover,
+            &.hover {
+              color: $fr-orange;
+
+              a {
+                color: $fr-orange;
+
+                .icon-fr2 { color: $fr-orange; }
+              }
+            }
+          }
+
+          &.in-folder,
+          &.not-in-folder {
+            a {
+              .icon-fr2 { top: -1px; }
+
+              span.loader {
+                background: image-url('orange_loader.gif') 0 0 no-repeat;
+                display: none;
+                height: 18px;
+                right: 0px;
+                top: 2px;
+                width: 18px;
+              }
+            }
+          }
+
+          &.in-folder {
+            cursor: default;
+
+            a {
+
+              .icon-fr2-badge_check_mark.checked { color: $fr-green; }
+
+              .icon-fr2-badge_x.delete,
+              .icon-fr2-badge_forward_arrow.goto { display: none; }
+            }
+
+            &:hover,
+            &.hover {
+              a {
+                color: $fr-gray-60;
+
+                .icon-fr2-badge_x.delete { display: inline-block; }
+                .icon-fr2-badge_x.delete:hover { color: $fr-red; }
+
+                .icon-fr2-badge_forward_arrow.goto {
+                  display: inline-block;
+                  right: 25px;
+                }
+
+                .icon-fr2-badge_forward_arrow.goto:hover {
+                  color: $fr-green;
+                }
+              }
+            }
+          }
+
+          &.not-in-folder {
+            a {
+              .icon-fr2-badge_check_mark { color: $fr-gray-20; }
+            }
+
+            &:hover {
+              a {
+                .icon-fr2-badge_check_mark { color: $fr-orange; }
+              }
+            }
+          }
         }
       }
+
     }
   }
+}
+
+.search-result-document .document-clipping-actions {
+  .menu { right: 1px; }
 }

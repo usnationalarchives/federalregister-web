@@ -6,16 +6,23 @@
       <%= document.metadata_description %>
     </p>
 
-    <div class="share">
+    <div class="document-clipping-actions"
+      data-document-number="<%= document.document_number %>">
       <ul>
-        <li class="clip_for_later">
+        <li class="clip-for-later">
           <%= semantic_form_for :document,
-                                url: clippings_path,
-                                html: { method: :post,
-                                        class: "add_to_clipboard"} do |f| %>
+            url: clippings_path,
+            html: {
+              method: :post,
+              class: "add-to-clipboard"
+            } do |f| %>
+
             <%= f.inputs do %>
-              <%= f.input :document_number, as: :hidden, value: document.document_number %>
+              <%= f.input :document_number,
+                as: :hidden,
+                value: document.document_number %>
             <% end %>
+
             <%= f.buttons do %>
               <%= f.commit_button 'Add to clipboard' %>
             <% end %>

@@ -7,8 +7,13 @@ class Folder < ApplicationModel
   has_many :clippings
   belongs_to :user, :foreign_key => :creator_id
 
-  validates_presence_of :name, :message => "Folder name must not be blank"
-  validates_uniqueness_of :name, :scope => :creator_id, :message => Proc.new{|f| "Folder \"#{f[1][:value]}\" already exists"}
+  validates_presence_of :name,
+    message: "Folder name must not be blank"
+
+  validates_uniqueness_of :name,
+    scope: :creator_id,
+    message: Proc.new{|e,f| "You have already created a folder named \"#{f[:value]}\"."}
+
   validate :slug_is_not_reserved
 
   before_validation :generate_slug

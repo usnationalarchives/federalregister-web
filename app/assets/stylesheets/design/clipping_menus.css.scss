@@ -15,7 +15,7 @@
 
 #clipping-actions {
   font-size: modular-scale(0);
-  
+
   .action_menu {
     margin: 0;
     position: absolute;
@@ -384,5 +384,14 @@
     a {
       .icon-fr2.icon-fr2-badge_check_mark { color: $fr-orange; }
     }
+  }
+}
+
+
+.search-result-document #clipping-actions.fr2 {
+  #add-to-folder .menu {
+    right: 0px;
+    top: 30px;
+    z-index: 1;
   }
 }

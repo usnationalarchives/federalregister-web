@@ -58,6 +58,7 @@
 
   .search-result-document {
     margin-bottom: 1.5em;
+    position: relative;
 
     &:last-child {
       margin-bottom: 0.5em;
@@ -67,18 +68,37 @@
         padding-bottom: 0;
       }
     }
+
+    &.doc-published{
+      .icon-doctype { color: $color-published; }
+    }
+
+    &.doc-official {
+      .icon-doctype { color: $color-official; }
+    }
+
+    &.doc-public-inspection {
+      .icon-doctype { color: $color-public-inspection; }
+      h5 a {
+        color: $color-public-inspection;
+
+        &:hover { color: darken($color-public-inspection, 10); }
+      }
+    }
+
+    .document-clipping-actions {
+      position: absolute;
+      right: 20px;
+      top: 0;
+    }
   }
 
   &.official {
-    .search-result-document {
-      .icon-doctype { color: $color-official; }
-    }
+
   }
 
   &.public_inspection {
-    .search-result-document {
-      .icon-doctype { color: $color-public-inspection; }
-    }
+
   }
 
   .icon-doctype {
@@ -97,6 +117,7 @@
     h5 {
       margin-bottom: 0.25em;
       margin-top: 0;
+      width: 92%;
     }
 
     .metadata {

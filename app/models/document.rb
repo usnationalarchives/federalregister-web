@@ -14,6 +14,7 @@ class Document < FederalRegister::Document
     [
       :abstract,
       :agencies,
+      :document_number,
       :excerpts,
       :html_url,
       :publication_date,

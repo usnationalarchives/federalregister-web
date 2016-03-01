@@ -273,72 +273,72 @@ $(document).ready(function() {
   });
 
   /* new folder creation */
-  $('#add-to-folder .menu li#new-folder').live('click', function(event) {
-    event.preventDefault();
-
-    /* disable the hover menu and keep open */
-    $('#clipping-actions').off('mouseleave', '#add-to-folder');
-    $('#clipping-actions #add-to-folder').addClass('hover');
-    $('#clipping-actions div.menu li#new-folder').addClass('hover');
-
-    /* decide which modal to show */
-    var modal_template, modal;
-    if ( expect_logged_in() ) {
-      if ( $('#new-folder-modal-template').length === 1 ) {
-        modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
-        modal = $( modal_template({}) );
-        if ( $('#new-folder-modal') ) {
-          $('#new-folder-modal').remove();
-        }
-        $('body').append( modal );
-      }
-    } else {
-      if ( $('#account-needed-modal-template').length === 1 ) {
-        modal_template = Handlebars.compile( $("#account-needed-modal-template").html() );
-        modal = $( modal_template({}) );
-        if ( $('#account-needed-modal') ) {
-          $('#account-needed-modal').remove();
-        }
-        $('body').append( modal );
-      }
-    }
-
-    if ( modal.is('#new-folder-modal') ) {
-      var selected_clipping_count = $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked').length,
-          text = "";
-
-      if( selected_clipping_count > 0 ) {
-        text = "When this folder is created the <strong>" + selected_clipping_count + " selected " + (selected_clipping_count === 1 ? 'clipping' : 'clippings') + "</strong> will be moved to it.";
-      }
-
-      modal.find('p.instructions span#fyi').html(text);
-    }
-
-    /* attach events to the modal close */
-    modal.find(".jqmClose").bind('click', function (event) {
-      var menu;
-      menu = $('#clipping-actions #add-to-folder');
-
-      /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
-      menu.bind('mouseleave', function() {
-        hide_clipping_menu( $(this) );
-      });
-
-      /* close the hover menu */
-      hide_clipping_menu( menu );
-      menu.removeClass('hover');
-      menu.find('.menu li#new-folder').removeClass('hover');
-    });
-
-    /* show the modal */
-    $(modal).jqm({
-        modal: true,
-        toTop: true,
-        onShow: myfr2_jqmHandlers.show,
-        onHide: myfr2_jqmHandlers.hide
-    });
-    modal.jqmShow().centerScreen();
-  });
+  // $('#add-to-folder .menu li#new-folder').live('click', function(event) {
+  //   event.preventDefault();
+  //
+  //   /* disable the hover menu and keep open */
+  //   $('#clipping-actions').off('mouseleave', '#add-to-folder');
+  //   $('#clipping-actions #add-to-folder').addClass('hover');
+  //   $('#clipping-actions div.menu li#new-folder').addClass('hover');
+  //
+  //   /* decide which modal to show */
+  //   var modal_template, modal;
+  //   if ( expect_logged_in() ) {
+  //     if ( $('#new-folder-modal-template').length === 1 ) {
+  //       modal_template = Handlebars.compile( $("#new-folder-modal-template").html() );
+  //       modal = $( modal_template({}) );
+  //       if ( $('#new-folder-modal') ) {
+  //         $('#new-folder-modal').remove();
+  //       }
+  //       $('body').append( modal );
+  //     }
+  //   } else {
+  //     if ( $('#account-needed-modal-template').length === 1 ) {
+  //       modal_template = Handlebars.compile( $("#account-needed-modal-template").html() );
+  //       modal = $( modal_template({}) );
+  //       if ( $('#account-needed-modal') ) {
+  //         $('#account-needed-modal').remove();
+  //       }
+  //       $('body').append( modal );
+  //     }
+  //   }
+  //
+  //   if ( modal.is('#new-folder-modal') ) {
+  //     var selected_clipping_count = $('form#folder_clippings .add_to_folder_pane input.clipping_id:checked').length,
+  //         text = "";
+  //
+  //     if( selected_clipping_count > 0 ) {
+  //       text = "When this folder is created the <strong>" + selected_clipping_count + " selected " + (selected_clipping_count === 1 ? 'clipping' : 'clippings') + "</strong> will be moved to it.";
+  //     }
+  //
+  //     modal.find('p.instructions span#fyi').html(text);
+  //   }
+  //
+  //   /* attach events to the modal close */
+  //   modal.find(".jqmClose").bind('click', function (event) {
+  //     var menu;
+  //     menu = $('#clipping-actions #add-to-folder');
+  //
+  //     /* re-enable our hover menu that was disabled when the 'new folder' button was clicked */
+  //     menu.bind('mouseleave', function() {
+  //       hide_clipping_menu( $(this) );
+  //     });
+  //
+  //     /* close the hover menu */
+  //     hide_clipping_menu( menu );
+  //     menu.removeClass('hover');
+  //     menu.find('.menu li#new-folder').removeClass('hover');
+  //   });
+  //
+  //   /* show the modal */
+  //   $(modal).jqm({
+  //       modal: true,
+  //       toTop: true,
+  //       onShow: myfr2_jqmHandlers.show,
+  //       onHide: myfr2_jqmHandlers.hide
+  //   });
+  //   modal.jqmShow().centerScreen();
+  // });
 
   $('#new-folder-modal form.folder').live('submit', function(event) {
     event.preventDefault();

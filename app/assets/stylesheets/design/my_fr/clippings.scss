@@ -26,7 +26,14 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 #clippings > li { @extend %rounded_capsule; }
 
-#clippings div.rule_type { @extend %large_document_icon_frame; }
+.clippings {
+  li {
+    &.doc-published .rule_type { color: $color-published; }
+    &.doc-official .rule_type { color: $color-official; }
+
+    .rule_type { @extend %large_document_icon_frame; }
+  }
+}
 
 .document_data {
   @extend %capsule_data;

@@ -61,7 +61,7 @@ class FoldersController < ApplicationController
     @folder = current_user.folders.find_by_slug( params[:id] )
 
     raise ActiveRecord::RecordNotFound unless @folder
-    
+
     @clippings = @folder.clippings.present? ? ClippingDecorator.decorate_collection(@folder.clippings) : []
 
     render 'clippings/index', layout: "application"

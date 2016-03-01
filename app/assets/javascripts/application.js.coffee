@@ -16,6 +16,7 @@
 #= require utilities/list_item_filter
 #= require utilities/list_item_sorter
 #= require utilities/non_persistent_storage
+#= require utilities/user_utils
 
 #= require components
 #= require fr_modal
@@ -35,7 +36,6 @@
 #= require clippings
 #= require subscription_filters
 #= require tipsy
-#= require article_page
 #= require document_page
 #= require public_inspection
 #= require utility_bar

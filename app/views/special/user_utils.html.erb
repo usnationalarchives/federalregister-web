@@ -30,11 +30,13 @@
 </div>
 
 <script type="text/javascript">
-  var stored_document_numbers = <%= @clipboard_clippings ? document_numbers_for_javascript(@clipboard_clippings).to_json.html_safe : '[]' %>;
   <% folder_details = folder_details_for_javascript(@folders) %>
-  var user_folder_details = <%= folder_details.to_json.html_safe %>;
 
-  FR2.currentUserStorage.set('userEmailAddress', "<%= user_signed_in? ? current_user.email : nil %>")
+  var stored_document_numbers = <%= @clipboard_clippings ? document_numbers_for_javascript(@clipboard_clippings).to_json.html_safe : '[]' %>
+  var user_folder_details = <%= folder_details.to_json.html_safe %>
+
+  FR2.currentUserStorage.set('userFolderDetails', <%= folder_details.to_json.html_safe %>)
+  FR2.currentUserStorage.set('userEmailAddress', '<%= user_signed_in? ? current_user.email : nil %>')
 </script>
 
 <%= add_handlebars_template('account_needed_modal', 'account-needed-modal') %>

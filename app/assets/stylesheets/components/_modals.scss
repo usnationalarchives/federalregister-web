@@ -67,6 +67,16 @@
       margin-right: 5px;
       position: relative;
       top: -5px;
+
+      &.icon-fr2-nav_male_female_user {
+        font-size: 37px;
+        top: -1px;
+      }
+
+      &.icon-fr2-folder {
+        font-size: 35px;
+        top: 0;
+      }
     }
   }
 
@@ -180,8 +190,8 @@
             &+ .email_invalid,
             &+ .email_suggestion {
               font-size: modular-scale(-1);
-              right: 5px;
               position:absolute;
+              right: 5px;
               top: -20px;
             }
           }
@@ -237,6 +247,99 @@
           //input { background-color: $fr-gray-15; }
           .loader { display: inline-block; }
         }
+      }
+    }
+  }
+}
+
+.new-folder-modal {
+  .folder_create,
+  .folder_success {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .folder_success {
+    .icon-fr2-badge_check_mark {
+      color: $fr-green;
+      font-size: 20px;
+      left: 10px;
+      top: 4px;
+    }
+  }
+
+  .button.saving {
+    background-color: $fr-gray-20;
+    position: relative;
+
+    &:hover { background-color: $fr-gray-20; }
+
+    .loader {
+      background: image-url('fr_orange_loader.svg') 0 0 no-repeat;
+      height: 28px;
+      position: absolute;
+      right: 80px;
+      top: 3px;
+      width: 28px;
+    }
+  }
+
+  .folder_error {
+    display: none;
+
+    p {
+      color: $fr-red;
+      height: 25px;
+      padding: 0;
+    }
+
+    .icon-fr2 {
+      font-size: 22px;
+      top: 4px;
+    }
+  }
+
+  form {
+    margin-top: 10px;
+
+    fieldset.inputs {
+      float: left;
+      margin-bottom: 0;
+      position: relative;
+
+      .icon-fr2 {
+        color: $fr-gray-40;
+        font-size: 23px;
+        left: 105px;
+        position: absolute;
+        top: 2px;
+        z-index: 2;
+      }
+
+      // input wrapper
+      .input { margin-bottom: 20px; }
+
+      label {
+        color: $fr-gray-70;
+        font-size: modular-scale(0);
+        font-weight: 700;
+        margin-right: 5px;
+      }
+
+      input[type=text] {
+        font-size: modular-scale(0);
+        height: 25px;
+        padding: 1px 5px 1px 30px;
+        width: 360px;
+      }
+    }
+
+    fieldset.buttons {
+      margin: 0;
+
+      .commit.button {
+        input { font-size: modular-scale(0); }
       }
     }
   }

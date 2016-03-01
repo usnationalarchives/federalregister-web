@@ -52,3 +52,8 @@ $(document).ready ()->
     e.preventDefault()
 
     FR2.SubscriptionHandler.generateModal()
+
+  # Document clipper(s)
+  FR2.documentClippers = []
+  _.each $('.document-clipping-actions'), (clipper)->
+    FR2.documentClippers.push(new FR2.DocumentClipper(clipper))
