@@ -1,5 +1,5 @@
 class SectionPagePresenter
-  include RouteBuilder::Documents
+  include RouteBuilder::Fr2ApiUrls
 
   attr_reader :date, :search_conditions, :section
 

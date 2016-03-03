@@ -1,5 +1,5 @@
 class TopicPresenter
-  include RouteBuilder::Documents
+  include RouteBuilder::Fr2ApiUrls
 
   attr_reader :topic
   class InvalidTopic < StandardError; end

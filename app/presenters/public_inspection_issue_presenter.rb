@@ -1,5 +1,5 @@
 class PublicInspectionIssuePresenter
-  include RouteBuilder::PublicInspectionDocuments
+  include RouteBuilder::Fr2ApiUrls
 
   attr_reader :agencies, :date, :options, :regular_filings, :special_filings
 

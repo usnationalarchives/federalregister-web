@@ -1,5 +1,5 @@
 class SuggestedSearchPresenter
-  include RouteBuilder::Documents
+  include RouteBuilder::Fr2ApiUrls
 
   attr_reader :suggested_search, :section
   class InvalidSuggestedSearch < StandardError; end

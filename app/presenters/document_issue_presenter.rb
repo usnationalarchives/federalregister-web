@@ -1,5 +1,5 @@
 class DocumentIssuePresenter
-  include RouteBuilder::Documents
+  include RouteBuilder::Fr2ApiUrls
 
   attr_reader :date, :options
 

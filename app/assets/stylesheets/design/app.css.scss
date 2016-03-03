@@ -120,6 +120,8 @@ div.message {
   border-radius: 0;
   // apply our style
   @include rounded-bottom(6); // scss-lint:disable DeclarationOrder
+
+  p { padding: 10px; }
 }
 
 div.notice {
