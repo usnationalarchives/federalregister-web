@@ -9,6 +9,9 @@ class ClippingsController < ApplicationController
           :conditions => {:folder_id => nil, :user_id => current_user.id}
         ).
         with_preloaded_articles
+
+      #ensure not nil
+      clipboard_clippings = clipboard_clippings ? clipboard_clippings : []
     elsif !user_signed_in? && cookies[:document_numbers].present?
       clipboard_clippings = Clipping.
         all_preloaded_from_cookie(

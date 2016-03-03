@@ -50,15 +50,11 @@ class @FR2.DocumentClipper
     documentClipper = this
 
     # show clipping menu
-    @clipper.on 'mouseenter', '.add-to-folder, #jump-to-folder', ()->
+    @clipper.on 'mouseenter', '.add-to-folder', ()->
       documentClipper.showClippingMenu this
 
-    # hide clipping menus
-    # need to be delegated seperately so that we can unbind them individually
+    # hide clipping menu
     @clipper.on 'mouseleave', '.add-to-folder', ()->
-      documentClipper.hideClippingMenu this
-
-    @clipper.on 'mouseleave', '#jump-to-folder', ()->
       documentClipper.hideClippingMenu this
 
   addClickEvents: ->
@@ -199,8 +195,6 @@ class @FR2.DocumentClipper
     @addModalClosedHandler()
 
   addModalClosedHandler: ->
-    documentClipper = this
-
     $('body').on 'modalClose', '#fr_modal', @rebindAndCloseClippingMenu
 
   rebindAndCloseClippingMenu: =>

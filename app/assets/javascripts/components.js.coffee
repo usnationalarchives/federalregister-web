@@ -11,3 +11,5 @@
 #= require components/search_count
 #= require components/search_form_agency_autocompleter
 #= require components/subscription_handler
+
+#= require components/my/clippings_manager

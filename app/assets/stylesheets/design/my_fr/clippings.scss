@@ -24,6 +24,9 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 #clipping-actions .doc-type-filter li .icon-fr2 { padding-left: 3px; }
 
+
+
+
 #clippings > li { @extend %rounded_capsule; }
 
 .clippings {
@@ -66,13 +69,12 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 #clippings dl.metadata dt.corrected_by { color: $fr-red; }
 
 #clippings div.add_to_folder_pane {
-  width: 27px;
+  width: 37px;
 
   position: absolute;
   left: 917px;
   top: -1px;
 
-  margin-bottom: 10px;
   padding: 0 5px 0 8px;
 
   background-color: #EEE;
@@ -104,7 +106,8 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   margin: 0;
   }
 #clippings li div.add_to_folder_pane input {
-  margin-left: 7px;
+  font-size: xx-large; // make checkbox larger
+  margin-left: 12px;
   }
 
 #delete-folder-modal {

@@ -7,6 +7,7 @@
 
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 <%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
+<%= add_javascript src: 'page_specific/clippings' %>
 
 <%= content_tag(:div, flash[:notice], class: 'flash notice') if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  class: 'flash error') if flash[:error]  %>
@@ -41,7 +42,7 @@
   url: folder_clippings_path,
   html: {id: 'folder_clippings'} do |f| %>
 
-  <div id="clipping-actions">
+  <div id="clipping-actions" class="clipping-actions">
     <div id="doc-type-filter" class="doc-type-filter">
       <ul>
         <script type="text/javascript">
@@ -55,7 +56,7 @@
     <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
     <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
 
-    <div id="remove-clipping">
+    <div id="remove-clipping" class="remove-clipping">
       <%= fr_icon 'trash_can' %>
     </div>
   </div>

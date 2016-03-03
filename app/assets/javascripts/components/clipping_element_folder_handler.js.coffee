@@ -115,5 +115,5 @@ class @FR2.ClippingElementFolderHandler
       counts = $('#user_utils #document-count-holder #user_documents_in_folders_count')
       counts.html( parseInt(counts.html(), 0) - response.folder.doc_count )
     else
-      counts = $('#user_utils #document-count-holder #doc_count');
+      counts = $('#user_utils #document-count-holder #doc_count')
       counts.html( parseInt(counts.html(), 0) - response.folder.doc_count )

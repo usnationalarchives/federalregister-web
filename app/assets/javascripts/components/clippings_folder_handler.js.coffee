@@ -1,7 +1,17 @@
 class @FR2.ClippingsFolderHandler
   constructor: (folderModal, documentNumber) ->
     @modal = folderModal
-    @documentNumber = documentNumber
+
+    # handle our two cases for creating a folder and adding documents
+    # to it.
+    if typeof(documentNumber) == 'string'
+      @documentNumber = documentNumber
+      @clippingIds = null
+    else if typeof(documentNumber) == 'object'
+      @documentNumber = null
+      @clippingIds = documentNumber
+
+
     @form = @modal.find('form')
 
     @form.on 'submit', (e)=>
@@ -32,7 +42,7 @@ class @FR2.ClippingsFolderHandler
       .append $('<div>').addClass('loader')
 
     @form.find('input[type=submit]')
-      .val 'Creating folder and saving clipping...'
+      .val 'Creating folder and saving clipping(s)...'
       .prop 'disabled', true
 
 
@@ -90,12 +100,21 @@ class @FR2.ClippingsFolderHandler
       {
         name: "folder[name]",
         value: folderName
-      },
-      {
-        name: "folder[document_numbers][]",
-        value: @documentNumber
       }
     ]
+
+    # add appropriate params
+    if @documentNumber
+      data.push {
+        name: "folder[document_numbers]",
+        value: @documentNumber
+      }
+    else if @clippingIds
+      data.push {
+        name: "folder[clipping_ids]",
+        value: @clippingIds
+      }
+
 
     folderCreate = $.ajax({
       url: '/my/folders',

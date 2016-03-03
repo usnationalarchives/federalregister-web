@@ -7,6 +7,10 @@ class FolderClippingsController < ApplicationController
     clipping_ids = params[:folder_clippings][:clipping_ids]
     folder       = current_user.folders.find_by_slug(slug)
 
+    if clipping_ids.is_a?(String)
+      clipping_ids = clipping_ids.gsub(/\s/, '').split(',')
+    end
+
     # my-clippings is a "nil" folder
     if (folder.present? || slug == "my-clippings") && clipping_ids.present?
 

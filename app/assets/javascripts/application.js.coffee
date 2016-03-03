@@ -33,7 +33,6 @@
 #= require utilities/tooltip
 #= require folder_actions
 #= require add_to_folder
-#= require clippings
 #= require subscription_filters
 #= require tipsy
 #= require document_page

@@ -435,7 +435,7 @@ MyFr2::Application.routes.draw do
       end
     end
 
-    match 'folders/my-clippings' => 'clippings#index'
+    match 'folders/my-clippings', to: redirect('/my/clippings')
     resources :folders
     resources :folder_clippings do
       collection do
