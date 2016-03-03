@@ -71,6 +71,8 @@ module MyFr2
 
       page_specific/agencies.js
       page_specific/agency_logo.js
+      page_specific/clippings.js
+      page_specific/clipping_filters.js
       page_specific/comment_creation.js
       page_specific/comment_notifications.js
       page_specific/homepage.js
