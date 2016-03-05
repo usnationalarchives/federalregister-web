@@ -32,6 +32,18 @@ class TableOfContentsPresenter::Agency
     attributes["document_categories"]
   end
 
+  def document_categories=(filtered_document_categories)
+    attributes["document_categories"] = filtered_document_categories
+  end
+
+  def see_also
+    attributes["see_also"]
+  end
+
+  def see_also=(filtered_see_alsos)
+    attributes["see_also"] = filtered_see_alsos
+  end
+
   def document_count_with_child_agencies
     return @document_count_with_child_agencies if @document_count_with_child_agencies
 

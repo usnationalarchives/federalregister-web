@@ -1,0 +1,381 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://fr-official.criticaljuncture.org/api/v1/documents/2016-04047,2016-03956,2016-04244.json?fields[]=document_number&fields[]=agencies
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.1.19
+      date:
+      - Sat, 05 Mar 2016 00:32:17 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '1923'
+      connection:
+      - close
+      x-runtime:
+      - '15'
+      x-powered-by:
+      - Phusion Passenger 5.0.6
+      status:
+      - 200 OK
+      x-varnish:
+      - 387639048 387638006
+      age:
+      - '7492'
+      via:
+      - 1.1 varnish
+      etag:
+      - ! '"492638c186481c8197982578ab1fe9a1" abgroup=1'
+      set-cookie:
+      - ab_group=1; path=/; expires=Tue, 15-Mar-2016 00:32:17 GMT
+      strict-transport-security:
+      - max-age=15552000
+    body:
+      encoding: US-ASCII
+      string: ! '{"count":3,"results":[{"document_number":"2016-03956","agencies":[{"raw_name":"DEPARTMENT
+        OF AGRICULTURE","name":"Agriculture Department","id":12,"url":"https://fr-official.criticaljuncture.org/agencies/agriculture-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/12.json","parent_id":null,"slug":"agriculture-department"},{"raw_name":"Agricultural
+        Marketing Service","name":"Agricultural Marketing Service","id":9,"url":"https://fr-official.criticaljuncture.org/agencies/agricultural-marketing-service","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/9.json","parent_id":12,"slug":"agricultural-marketing-service"}]},{"document_number":"2016-04047","agencies":[{"raw_name":"DEPARTMENT
+        OF AGRICULTURE","name":"Agriculture Department","id":12,"url":"https://fr-official.criticaljuncture.org/agencies/agriculture-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/12.json","parent_id":null,"slug":"agriculture-department"},{"raw_name":"Agricultural
+        Marketing Service","name":"Agricultural Marketing Service","id":9,"url":"https://fr-official.criticaljuncture.org/agencies/agricultural-marketing-service","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/9.json","parent_id":12,"slug":"agricultural-marketing-service"}]},{"document_number":"2016-04244","agencies":[{"raw_name":"Coast
+        Guard","name":"Coast Guard","id":53,"url":"https://fr-official.criticaljuncture.org/agencies/coast-guard","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/53.json","parent_id":227,"slug":"coast-guard"},{"raw_name":"DEPARTMENT
+        OF HOMELAND SECURITY","name":"Homeland Security Department","id":227,"url":"https://fr-official.criticaljuncture.org/agencies/homeland-security-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/227.json","parent_id":null,"slug":"homeland-security-department"}]}]}'
+    http_version: '1.1'
+  recorded_at: Sat, 05 Mar 2016 00:32:17 GMT
+- request:
+    method: get
+    uri: https://fr-official.criticaljuncture.org/document_issues/json/2016/02/29.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.1.19
+      date:
+      - Sat, 05 Mar 2016 00:32:18 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '32390'
+      connection:
+      - close
+      last-modified:
+      - Sat, 27 Feb 2016 08:03:47 GMT
+      expires:
+      - Sun, 05 Mar 2017 00:32:18 GMT
+      accept-ranges:
+      - bytes
+      x-varnish:
+      - '387639049'
+      age:
+      - '0'
+      via:
+      - 1.1 varnish
+      set-cookie:
+      - ab_group=1; path=/; expires=Tue, 15-Mar-2016 00:32:18 GMT
+      strict-transport-security:
+      - max-age=15552000
+    body:
+      encoding: US-ASCII
+      string: ! '{"agencies":[{"name":"Agricultural Marketing Service","slug":"agricultural-marketing-service","url":"http://www.ams.usda.gov","document_categories":[{"type":"Rule","documents":[{"subject_1":"Livestock
+        Mandatory Reporting:","subject_2":"Lamb Reporting Requirements","document_numbers":["2016-04047"]}]},{"type":"Proposed
+        Rule","documents":[{"subject_1":"Reauthorization of Livestock Mandatory Reporting
+        and Revision of Swine and Lamb Reporting Requirements","document_numbers":["2016-03956"]},{"subject_1":"Secretary''s
+        Decision and Referendum Order on Proposed Marketing Agreement and Order No.
+        986:","subject_2":"Pecans Grown in the States of Alabama, Arkansas, Arizona,
+        California, Florida, Georgia, Kansas, Louisiana, Missouri, Mississippi, North
+        Carolina, New Mexico, Oklahoma, South Carolina, and Texas","document_numbers":["2016-04043"]}]},{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Commodities
+        Covered by the Livestock Mandatory Reporting Act","document_numbers":["2016-04045"]}]}]},{"name":"Agriculture
+        Department","slug":"agriculture-department","url":"http://www.usda.gov/wps/portal/usda/usdahome","see_also":[{"name":"Agricultural
+        Marketing Service","slug":"agricultural-marketing-service"},{"name":"Animal
+        and Plant Health Inspection Service","slug":"animal-and-plant-health-inspection-service"},{"name":"Farm
+        Service Agency","slug":"farm-service-agency"},{"name":"Food and Nutrition
+        Service","slug":"food-and-nutrition-service"},{"name":"Forest Service","slug":"forest-service"},{"name":"National
+        Institute of Food and Agriculture","slug":"national-institute-of-food-and-agriculture"}],"document_categories":[]},{"name":"Air
+        Force Department","slug":"air-force-department","url":"http://www.af.mil/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"U.S.
+        Air Force Scientific Advisory Board","document_numbers":["2016-04305"]}]}]},{"name":"Animal
+        and Plant Health Inspection Service","slug":"animal-and-plant-health-inspection-service","url":"http://www.aphis.usda.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Horse
+        Protection Regulations","document_numbers":["2016-04377"]}]}]},{"name":"Centers
+        for Disease Control and Prevention","slug":"centers-for-disease-control-and-prevention","url":"http://www.cdc.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Issuance
+        of Final Publication","document_numbers":["2016-04297"]}]}]},{"name":"Centers
+        for Medicare & Medicaid Services","slug":"centers-for-medicare-&-medicaid-services","url":"http://www.cms.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Basic
+        Health Program; Federal Funding Methodology for Program Years 2017 and 2018","document_numbers":["2016-03902"]}]}]},{"name":"Coast
+        Guard","slug":"coast-guard","url":"http://www.uscg.mil/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Drawbridge
+        Operations:","subject_2":"Lake Washington Ship Canal, Seattle, WA","document_numbers":["2016-04244"]},{"subject_1":"Drawbridge
+        Operations:","subject_2":"Long Creek and Sloop Channel, Hempstead, NY","document_numbers":["2016-04278"]}]},{"type":"Proposed
+        Rule","documents":[{"subject_1":"Special Anchorage Areas:","subject_2":"Marina
+        del Rey Harbor, CA","document_numbers":["2016-04336"]}]}]},{"name":"Commerce
+        Department","slug":"commerce-department","url":"http://www.commerce.gov/","see_also":[{"name":"Economic
+        Development Administration","slug":"economic-development-administration"},{"name":"Industry
+        and Security Bureau","slug":"industry-and-security-bureau"},{"name":"National
+        Oceanic and Atmospheric Administration","slug":"national-oceanic-and-atmospheric-administration"}],"document_categories":[]},{"name":"Comptroller
+        of the Currency","slug":"comptroller-of-the-currency","url":"http://www.occ.treas.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Expanded
+        Examination Cycle for Certain Small Insured Depository Institutions and U.S.
+        Branches and Agencies of Foreign Banks","document_numbers":["2016-03877"]}]},{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Consumer
+        Protections for Depository Institution Sales of Insurance","document_numbers":["2016-04266"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Funding
+        and Liquidity Risk Management","document_numbers":["2016-04255"]}]}]},{"name":"Copyright
+        Royalty Board","slug":"copyright-royalty-board","url":"http://www.loc.gov/crb/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Distribution
+        of 2014 Cable Royalty Funds","document_numbers":["2016-04274"]}]}]},{"name":"Defense
+        Department","slug":"defense-department","url":"http://www.defense.gov/","see_also":[{"name":"Air
+        Force Department","slug":"air-force-department"},{"name":"Engineers Corps","slug":"engineers-corps"}],"document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04328"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Payments","document_numbers":["2016-04280"]}]}]},{"name":"Economic
+        Development Administration","slug":"economic-development-administration","url":"http://www.eda.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"National
+        Advisory Council on Innovation and Entrepreneurship","document_numbers":["2016-04302"]}]}]},{"name":"Education
+        Department","slug":"education-department","url":"http://www.ed.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Part
+        601 Preferred Lender Arrangements","document_numbers":["2016-04323"]},{"subject_1":"Applications
+        for New Awards:","subject_2":"Educational Technology, Media, and Materials
+        for Individuals with Disabilities--Stepping-up Technology Implementation","document_numbers":["2016-04338"]},{"subject_1":"Applications
+        for New Awards:","subject_2":"Indian Education Discretionary Grants Programs--Demonstration
+        Grants for Indian Children Program","document_numbers":["2016-04260"]}]}]},{"name":"Employee
+        Benefits Security Administration","slug":"employee-benefits-security-administration","url":"http://www.dol.gov/ebsa/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"On
+        the Road to Retirement Surveys","document_numbers":["2016-04315"]}]}]},{"name":"Energy
+        Department","slug":"energy-department","url":"http://www.doe.gov/","document_categories":[{"type":"Proposed
+        Rule","documents":[{"subject_1":"Meetings:","subject_2":"Appliance Standards
+        and Rulemaking Federal Advisory Committee","document_numbers":["2016-04321"]}]}]},{"name":"Engineers
+        Corps","slug":"engineers-corps","url":"http://www.usace.army.mil/Pages/default.aspx","document_categories":[{"type":"Rule","documents":[{"subject_1":"Danger
+        Zones and Restricted Areas:","subject_2":"Atlantic Ocean South of Entrance
+        to Chesapeake Bay off Camp Pendleton, VA; Firing Range","document_numbers":["2016-04215"]}]}]},{"name":"Environmental
+        Protection Agency","slug":"environmental-protection-agency","url":"http://www.epa.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Air
+        Quality State Implementation Plans; Approvals and Promulgations:","subject_2":"Virginia;
+        Prevention of Significant Deterioration; Fine Particulate Matter","document_numbers":["2016-04245"]}]},{"type":"Proposed
+        Rule","documents":[{"subject_1":"Addition of a Subsurface Intrusion Component
+        to the Hazard Ranking System","document_numbers":["2016-02749"]},{"subject_1":"Air
+        Quality State Implementation Plans; Approvals and Promulgations:","subject_2":"Kansas;
+        2015 Kansas State Implementation Plan for the 2008 Lead Standard","document_numbers":["2016-04080"]},{"subject_1":"Air
+        Quality State Implementation Plans; Approvals and Promulgations:","subject_2":"Missouri;
+        2008 Lead Standard","document_numbers":["2016-04083"]},{"subject_1":"Air Quality
+        State Implementation Plans; Approvals and Promulgations:","subject_2":"Puerto
+        Rico\u2014Attainment Demonstration for the Arecibo Lead Nonattainment Area","document_numbers":["2016-04438"]},{"subject_1":"Air
+        Quality State Implementation Plans; Approvals and Promulgations:","subject_2":"Rhode
+        Island\u2014Infrastructure Requirements","document_numbers":["2016-04405"]},{"subject_1":"Air
+        Quality State Implementation Plans; Approvals and Promulgations:","subject_2":"Virginia;
+        Prevention of Significant Deterioration; Fine Particulate Matter (PM2.5)","document_numbers":["2016-04240"]}]},{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"NSPS
+        for Grain Elevators, Renewal","document_numbers":["2016-04241"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"NSPS
+        for Small Municipal Waste Combustors, Renewal","document_numbers":["2016-04242"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"NSPS
+        for Stationary Combustion Turbines","document_numbers":["2016-04243"]},{"subject_1":"Regional
+        Monitoring Networks to Detect Changing Baselines in Freshwater Wadeable Streams","document_numbers":["2016-04087"]}]}]},{"name":"Farm
+        Service Agency","slug":"farm-service-agency","url":"http://www.fsa.usda.gov/FSA/webapp?area=home&subject=landing&topic=landing","document_categories":[{"type":"Rule","documents":[{"subject_1":"Direct
+        Farm Ownership Microloan; Correction","document_numbers":["2016-04271"]}]}]},{"name":"Federal
+        Aviation Administration","slug":"federal-aviation-administration","url":"http://www.faa.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Airworthiness
+        Directives:","subject_2":"Fokker Services B.V. Airplanes","document_numbers":["2016-04137"]},{"subject_1":"Airworthiness
+        Directives:","subject_2":"The Boeing Company Airplanes","document_numbers":["2016-04138"]},{"subject_1":"Airworthiness
+        Directives:","subject_2":"The Boeing Company Model 757 200 Series Airplanes","document_numbers":["2016-04036"]},{"subject_1":"Standard
+        Instrument Approach Procedures, and Takeoff Minimums and Obstacle Departure
+        Procedures","document_numbers":["2016-04216"]}]}]},{"name":"Federal Communications
+        Commission","slug":"federal-communications-commission","url":"http://www.fcc.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Expansion
+        of Online Public File Obligations to Cable and Satellite TV Operators and
+        Broadcast and Satellite Radio Licensees","document_numbers":["2016-04117"]}]},{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"Communications
+        Security, Reliability, and Interoperability Council","document_numbers":["2016-04330"]},{"subject_1":"Promoting
+        the Availability of Diverse and Independent Sources of Video Programming","document_numbers":["2016-04331"]}]}]},{"name":"Federal
+        Deposit Insurance Corporation","slug":"federal-deposit-insurance-corporation","url":"http://www.fdic.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Expanded
+        Examination Cycle for Certain Small Insured Depository Institutions and U.S.
+        Branches and Agencies of Foreign Banks","document_numbers":["2016-03877"]}]}]},{"name":"Federal
+        Financial Institutions Examination Council","slug":"federal-financial-institutions-examination-council","url":"http://www.ffiec.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"Appraisal
+        Subcommittee","document_numbers":["2016-04376"]}]}]},{"name":"Federal Maritime
+        Commission","slug":"federal-maritime-commission","url":"http://www.fmc.gov/","document_categories":[{"type":"Proposed
+        Rule","documents":[{"subject_1":"Amendments to Regulations Governing Service
+        Contracts and NVOCC Service Arrangements","document_numbers":["2016-04264"]},{"subject_1":"Ocean
+        Common Carrier and Marine Terminal Operator Agreements Subject to the Shipping
+        Act of 1984","document_numbers":["2016-04263"]}]}]},{"name":"Federal Motor
+        Carrier Safety Administration","slug":"federal-motor-carrier-safety-administration","url":"http://www.fmcsa.dot.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings;
+        Sunshine Act","document_numbers":["2016-04460"]}]}]},{"name":"Federal Railroad
+        Administration","slug":"federal-railroad-administration","url":"http://www.fra.dot.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Positive
+        Train Control Systems","document_numbers":["2016-04293"]}]}]},{"name":"Federal
+        Reserve System","slug":"federal-reserve-system","url":"http://www.federalreserve.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Expanded
+        Examination Cycle for Certain Small Insured Depository Institutions and U.S.
+        Branches and Agencies of Foreign Banks","document_numbers":["2016-03877"]}]},{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04282"]},{"subject_1":"Changes
+        in Bank Controls:","subject_2":"Acquisitions of Shares of a Bank or Bank Holding
+        Company","document_numbers":["2016-04285"]}]}]},{"name":"Federal Transit Administration","slug":"federal-transit-administration","url":"http://www.fta.dot.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Circulars:","subject_2":"Award
+        Management Requirements","document_numbers":["2016-04273"]}]}]},{"name":"Financial
+        Crimes Enforcement Network","slug":"financial-crimes-enforcement-network","url":"http://www.fincen.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Requirement
+        for Information Sharing Between Government Agencies and Financial Institutions","document_numbers":["2016-04275"]}]}]},{"name":"Fish
+        and Wildlife Service","slug":"fish-and-wildlife-service","url":"http://www.fws.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Application
+        for Enhancement of Survival Permit:","subject_2":"Michigan Department of Natural
+        Resources; Proposed Programmatic Candidate Conservation Agreement With Assurances
+        for the Eastern Massasauga Rattlesnake in Michigan; Correction","document_numbers":["2016-04304"]},{"subject_1":"Endangered
+        and Threatened Species Permit Applications","document_numbers":["2016-04298"]},{"subject_1":"Environmental
+        Assessments; Availability, etc.:","subject_2":"Draft Programmatic Candidate
+        Conservation Agreement with Assurances, Receipt of Application for Enhancement
+        of Survival Permit for the Fisher in Western Washington","document_numbers":["2016-04294"]}]}]},{"name":"Food
+        and Drug Administration","slug":"food-and-drug-administration","url":"http://www.fda.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Adverse
+        Event Reporting; Electronic Submissions","document_numbers":["2016-04223"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Food
+        Additive Petitions and Investigational Food Additive Exemptions","document_numbers":["2016-04228"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Guidance
+        for Industry and Food and Drug Administration Staff; Section 905(j) Reports;  Demonstrating
+        Substantial Equivalence for Tobacco Products and Demonstrating the Substantial
+        Equivalence of a New Tobacco Product;  Responses to Frequently Asked Questions","document_numbers":["2016-04222"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"National
+        Direct-to-Consumer Advertising Survey","document_numbers":["2016-04220"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Research
+        and Evaluation Survey for the Public Education Campaign on Tobacco Among LGBT","document_numbers":["2016-04277"]},{"subject_1":"Draft
+        Tribal Consultation Policy","document_numbers":["2016-04276"]},{"subject_1":"Guidance
+        for Industry:","subject_2":"Requirements for Transactions with First Responders
+        under Section 582 of the Federal Food, Drug, and Cosmetic Act--Compliance
+        Policy","document_numbers":["2016-04227"]},{"subject_1":"Meetings:","subject_2":"Medical
+        Devices--Quality Systems Survival;  Success Strategies for Production and
+        Process Controls/Corrective and Preventative Action; Public Workshop","document_numbers":["2016-04221"]}]}]},{"name":"Food
+        and Nutrition Service","slug":"food-and-nutrition-service","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04270"]}]}]},{"name":"Forest
+        Service","slug":"forest-service","url":"http://www.fs.fed.us/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"El
+        Dorado County Resource Advisory Committee","document_numbers":["2016-04010"]},{"subject_1":"Meetings:","subject_2":"Lake
+        Tahoe Basin Federal Advisory Committee","document_numbers":["2016-03842"]},{"subject_1":"Meetings:","subject_2":"Southwest
+        Idaho Resource Advisory Committee","document_numbers":["2016-03564"]}]}]},{"name":"General
+        Services Administration","slug":"general-services-administration","url":"http://www.gsa.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Payments","document_numbers":["2016-04280"]}]}]},{"name":"Health
+        and Human Services Department","slug":"health-and-human-services-department","url":"http://www.hhs.gov/","see_also":[{"name":"Centers
+        for Disease Control and Prevention","slug":"centers-for-disease-control-and-prevention"},{"name":"Centers
+        for Medicare & Medicaid Services","slug":"centers-for-medicare-&-medicaid-services"},{"name":"Food
+        and Drug Administration","slug":"food-and-drug-administration"},{"name":"National
+        Institutes of Health","slug":"national-institutes-of-health"}],"document_categories":[]},{"name":"Homeland
+        Security Department","slug":"homeland-security-department","url":"http://www.dhs.gov/","see_also":[{"name":"Coast
+        Guard","slug":"coast-guard"},{"name":"U.S. Citizenship and Immigration Services","slug":"u.s.-citizenship-and-immigration-services"},{"name":"U.S.
+        Customs and Border Protection","slug":"u.s.-customs-and-border-protection"},{"name":"U.S.
+        Immigration and Customs Enforcement","slug":"u.s.-immigration-and-customs-enforcement"}],"document_categories":[]},{"name":"Indian
+        Affairs Bureau","slug":"indian-affairs-bureau","url":"http://www.bia.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Model
+        Indian Juvenile Code","document_numbers":["2016-04325"]}]}]},{"name":"Industry
+        and Security Bureau","slug":"industry-and-security-bureau","url":"http://www.bis.doc.gov/","document_categories":[{"type":"Rule","documents":[{"subject_1":"Updated
+        Legal Authority Citations","document_numbers":["2016-04324"]}]},{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Offsets
+        in Military Exports","document_numbers":["2016-04258"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Simple
+        Network Application Process and Multipurpose Application Form","document_numbers":["2016-04259"]},{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Title
+        of Collection License Exemptions and Exclusions","document_numbers":["2016-04257"]}]}]},{"name":"Interior
+        Department","slug":"interior-department","url":"http://www.doi.gov/","see_also":[{"name":"Fish
+        and Wildlife Service","slug":"fish-and-wildlife-service"},{"name":"Indian
+        Affairs Bureau","slug":"indian-affairs-bureau"},{"name":"Land Management Bureau","slug":"land-management-bureau"},{"name":"National
+        Indian Gaming Commission","slug":"national-indian-gaming-commission"},{"name":"National
+        Park Service","slug":"national-park-service"}],"document_categories":[]},{"name":"International
+        Trade Commission","slug":"international-trade-commission","url":"http://usitc.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Antidumping
+        or Countervailing Duty Investigations, Orders, or Reviews:","subject_2":"Narrow
+        Woven Ribbons with Woven Selvedge from China and Taiwan; Scheduling of Full
+        Five-Year Reviews","document_numbers":["2016-04319"]},{"subject_1":"Complaints:","subject_2":"Certain
+        Nanopores and Products Containing Same, DN 3123","document_numbers":["2016-04272"]},{"subject_1":"Investigations;
+        Determinations, Modifications, and Rulings, etc.:","subject_2":"Certain Diaper
+        Disposal Systems and Components Thereof, Including Diaper Refill Cassettes","document_numbers":["2016-04265"]}]}]},{"name":"Justice
+        Department","slug":"justice-department","url":"http://www.justice.gov/","see_also":[{"name":"Prisons
+        Bureau","slug":"prisons-bureau"}],"document_categories":[]},{"name":"Labor
+        Department","slug":"labor-department","url":"http://www.dol.gov/","see_also":[{"name":"Employee
+        Benefits Security Administration","slug":"employee-benefits-security-administration"}],"document_categories":[]},{"name":"Land
+        Management Bureau","slug":"land-management-bureau","url":"http://www.blm.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Final
+        Boundaries:","subject_2":"Crooked Wild and Scenic River, Segment B, Prineville
+        District, Crook County, OR","document_numbers":["2016-04307"]},{"subject_1":"Invitation
+        to Participate Coal Exploration License Application MTM 107855, Montana","document_numbers":["2016-04308"]},{"subject_1":"Plats
+        of Survey:","subject_2":"Alaska","document_numbers":["2016-04299"]}]}]},{"name":"Library
+        of Congress","slug":"library-of-congress","url":"http://www.loc.gov/index.html","see_also":[{"name":"Copyright
+        Royalty Board","slug":"copyright-royalty-board"}],"document_categories":[]},{"name":"Mississippi
+        River Commission","slug":"mississippi-river-commission","url":"http://www.mvd.usace.army.mil/mrc/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings;
+        Sunshine Act","document_numbers":["2016-04490"]}]}]},{"name":"National Aeronautics
+        and Space Administration","slug":"national-aeronautics-and-space-administration","url":"http://www.nasa.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Payments","document_numbers":["2016-04280"]}]}]},{"name":"National
+        Indian Gaming Commission","slug":"national-indian-gaming-commission","document_categories":[{"type":"Notice","documents":[{"subject_1":"2016
+        Preliminary Fee Rate and Fingerprint Fees","document_numbers":["2016-04267"]}]}]},{"name":"National
+        Institute of Food and Agriculture","slug":"national-institute-of-food-and-agriculture","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04188"]}]}]},{"name":"National
+        Institutes of Health","slug":"national-institutes-of-health","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"Center
+        for Scientific Review","document_numbers":["2016-04234"]},{"subject_1":"Meetings:","subject_2":"National
+        Heart, Lung, and Blood Institute","document_numbers":["2016-04233"]},{"subject_1":"Meetings:","subject_2":"National
+        Institute of Arthritis and Musculoskeletal and Skin Diseases","document_numbers":["2016-04236"]},{"subject_1":"Meetings:","subject_2":"National
+        Institute of Neurological Disorders and Stroke","document_numbers":["2016-04235"]},{"subject_1":"Meetings:","subject_2":"National
+        Institute on Drug Abuse","document_numbers":["2016-04362"]}]}]},{"name":"National
+        Oceanic and Atmospheric Administration","slug":"national-oceanic-and-atmospheric-administration","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"International
+        Affairs:","subject_2":"U.S. Fishing Opportunities in the Northwest Atlantic
+        Fisheries Organization Regulatory Area","document_numbers":["2016-04341"]},{"subject_1":"Meetings:","subject_2":"Gulf
+        of Mexico Fishery Management Council","document_numbers":["2016-04316"]},{"subject_1":"Meetings:","subject_2":"Mid-Atlantic
+        Fishery Management Council","document_numbers":["2016-04327"]},{"subject_1":"Meetings:","subject_2":"New
+        England Fishery Management Council","document_numbers":["2016-04317"]}]}]},{"name":"National
+        Park Service","slug":"national-park-service","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"National
+        Register of Historic Places:","subject_2":"Notification of Extension of Comment
+        Period for Pending Nomination of Chi''chil Bildagoteel (Oak Flats) Historic
+        District","document_numbers":["2016-04373"]},{"subject_1":"National Register
+        of Historic Places:","subject_2":"Pending Nominations and Related Actions","document_numbers":["2016-04342"]}]}]},{"name":"Nuclear
+        Regulatory Commission","slug":"nuclear-regulatory-commission","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Guidance:","subject_2":"Mitigation
+        Strategies for Beyond-Design-Basis External Events","document_numbers":["2016-04353"]},{"subject_1":"License
+        Amendment Applications:","subject_2":"Strata Energy, Inc., Ross In Situ Recovery
+        Project","document_numbers":["2016-04337"]},{"subject_1":"Meetings:","subject_2":"Advisory
+        Committee on Reactor Safeguards","document_numbers":["2016-04334"]},{"subject_1":"Meetings;
+        Sunshine Act","document_numbers":["2016-04478"]}]}]},{"name":"Office of National
+        Drug Control Policy","slug":"office-of-national-drug-control-policy","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Designation
+        of 14 Counties as High Intensity Drug Trafficking Areas","document_numbers":["2016-04291"]}]}]},{"name":"Overseas
+        Private Investment Corporation","slug":"overseas-private-investment-corporation","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings;
+        Sunshine Act","document_numbers":["2016-04476"]}]}]},{"name":"Pension Benefit
+        Guaranty Corporation","slug":"pension-benefit-guaranty-corporation","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Administrative
+        Appeals","document_numbers":["2016-04268"]}]}]},{"name":"Personnel Management
+        Office","slug":"personnel-management-office","url":"","document_categories":[{"type":"Rule","documents":[{"subject_1":"Federal
+        Long Term Care Insurance Program Eligibility; Corrections","document_numbers":["2016-04322"]}]}]},{"name":"Postal
+        Service","slug":"postal-service","url":"","document_categories":[{"type":"Proposed
+        Rule","documents":[{"subject_1":"Requirements for Authority to Manufacture
+        and Distribute Postage Evidencing Systems","document_numbers":["2016-04237"]}]}]},{"name":"Prisons
+        Bureau","slug":"prisons-bureau","url":"","document_categories":[{"type":"Proposed
+        Rule","documents":[{"subject_1":"Use of Chemical Agents or Other Less-Than-Lethal
+        Force in Immediate Use of Force Situations","document_numbers":["2016-04069"]}]}]},{"name":"Securities
+        and Exchange Commission","slug":"securities-and-exchange-commission","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04351"]},{"subject_1":"Joint
+        Industry Plans:","subject_2":"Filing of the Tenth Amendment to the National
+        Market System Plan to Address Extraordinary Market Volatility by BATS Exchange,
+        Inc., BATS Y-Exchange, Inc., Chicago Stock Exchange, Inc., et al.","document_numbers":["2016-04246"]},{"subject_1":"Self-Regulatory
+        Organizations; Proposed Rule Changes:","subject_2":"BATS Exchange, Inc.","document_numbers":["2016-04358"]},{"subject_1":"Self-Regulatory
+        Organizations; Proposed Rule Changes:","subject_2":"BATS Y-Exchange, Inc.","document_numbers":["2016-04251"]},{"subject_1":"Self-Regulatory
+        Organizations; Proposed Rule Changes:","subject_2":"EDGX Exchange, Inc.","document_numbers":["2016-04249"]},{"subject_1":"Self-Regulatory
+        Organizations; Proposed Rule Changes:","subject_2":"Financial Industry Regulatory
+        Authority, Inc.","document_numbers":["2016-04320"]},{"subject_1":"Self-Regulatory
+        Organizations; Proposed Rule Changes:","subject_2":"NYSE MKT, LLC","document_numbers":["2016-04248"]}]}]},{"name":"Trade
+        Representative, Office of United States","slug":"trade-representative,-office-of-united-states","document_categories":[{"type":"Notice","documents":[{"subject_1":"2015/2016
+        Generalized System of Preferences Annual Product Review","document_numbers":["2016-04301"]}]}]},{"name":"Transportation
+        Department","slug":"transportation-department","url":"","see_also":[{"name":"Federal
+        Aviation Administration","slug":"federal-aviation-administration"},{"name":"Federal
+        Motor Carrier Safety Administration","slug":"federal-motor-carrier-safety-administration"},{"name":"Federal
+        Railroad Administration","slug":"federal-railroad-administration"},{"name":"Federal
+        Transit Administration","slug":"federal-transit-administration"}],"document_categories":[]},{"name":"Treasury
+        Department","slug":"treasury-department","url":"","see_also":[{"name":"Comptroller
+        of the Currency","slug":"comptroller-of-the-currency"},{"name":"Financial
+        Crimes Enforcement Network","slug":"financial-crimes-enforcement-network"}],"document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals","document_numbers":["2016-04340"]}]}]},{"name":"U.S.
+        Citizenship and Immigration Services","slug":"u.s.-citizenship-and-immigration-services","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Affidavit
+        of Support","document_numbers":["2016-04089"]}]}]},{"name":"U.S. Customs and
+        Border Protection","slug":"u.s.-customs-and-border-protection","url":"http://www.cbp.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Automated
+        Commercial Environment as the Sole CBP-Authorized Electronic Data Interchange
+        System for Processing Certain Electronic Entry and Entry Summary Filings","document_numbers":["2016-04421"]}]}]},{"name":"U.S.
+        Immigration and Customs Enforcement","slug":"u.s.-immigration-and-customs-enforcement","url":"http://www.ice.gov/","document_categories":[{"type":"Notice","documents":[{"subject_1":"Agency
+        Information Collection Activities; Proposals, Submissions, and Approvals:","subject_2":"Generic
+        Clearance for the Collection of Qualitative Feedback on Agency Service Delivery;
+        Reinstatement, Without Change","document_numbers":["2016-04253"]},{"subject_1":"Meetings:","subject_2":"Advisory
+        Committee on Family Residential Centers","document_numbers":["2016-04286"]}]}]},{"name":"U.S.-China
+        Economic and Security Review Commission","slug":"u.s.-china-economic-and-security-review-commission","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"Security
+        Review Commission; Hearing","document_numbers":["2016-04339"]}]}]},{"name":"Veterans
+        Affairs Department","slug":"veterans-affairs-department","url":"","document_categories":[{"type":"Notice","documents":[{"subject_1":"Meetings:","subject_2":"Genomic
+        Medicine Program Advisory Committee","document_numbers":["2016-04283"]},{"subject_1":"Meetings:","subject_2":"Geriatrics
+        and Gerontology Advisory Committee","document_numbers":["2016-04333"]}]}]}]}'
+    http_version: '1.1'
+  recorded_at: Sat, 05 Mar 2016 00:32:18 GMT
+recorded_with: VCR 2.6.0
