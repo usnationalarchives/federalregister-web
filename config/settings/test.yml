@@ -1,6 +1,8 @@
 federal_register:
-  api_url: 'http://www.fr2.dev:8081/api/v1'
-  base_uri: 'http://www.fr2.dev:8081'
+  # api_url: 'http://www.fr2.dev:8081/api/v1'
+  # base_uri: 'http://www.fr2.dev:8081'
+  api_url: 'https://fr-official.criticaljuncture.org/api/v1'
+  base_uri: 'https://fr-official.criticaljuncture.org'
 
 # APPLICATION SETTINGS
 app_url: 'http://www.fr2.dev:8081'
