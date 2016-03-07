@@ -39,6 +39,16 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     section.fetch(:type)
   end
 
+  def page_slug
+    [section_identifier, page_identifier, subpage_identifier].
+      compact.
+      join('/')
+  end
+
+  def commentable?
+    type == "posts"
+  end
+
   def title
     section.fetch(:title)
   end
