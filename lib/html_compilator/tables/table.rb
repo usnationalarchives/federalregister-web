@@ -103,7 +103,7 @@ class HtmlCompilator::Tables::Table
   def rules
     return @rules if @rules
     if rule_option
-      @rules = case rule_option.sub(/\(.*\)/,'')
+      @rules = case rule_option.sub(/\(.*\).*/,'')
       when "L0"
         []
       when "L1"
