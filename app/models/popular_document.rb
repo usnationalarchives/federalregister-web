@@ -1,8 +1,8 @@
 class PopularDocument
   def self.popular(options={})
     popular_documents_by_comment = Comment.
-      select('count(*) as comment_count, document_number').
-      where('document_number LIKE ?', "2016-%").
+      select('count(*) as comment_count, document_number, created_at').
+      where('created_at >= ?', Date.current - 3.months).
       group(:document_number).
       order('comment_count DESC').
       limit(40)
