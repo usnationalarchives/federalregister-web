@@ -4,6 +4,10 @@
     Popular Documents
   </h4>
 
+  <% unless @popular_documents.present? %>
+    <p>Popular documents are not available at this time.</p>
+  <% end %>
+
   <% @popular_documents.each do |popular_document| %>
     <ul class="fr-list with-stats popular-documents">
       <li>

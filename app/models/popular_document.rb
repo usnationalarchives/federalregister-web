@@ -7,6 +7,8 @@ class PopularDocument
       order('comment_count DESC').
       limit(40)
 
+    return [] unless popular_documents_by_comment.to_a.present?
+
     document_numbers = popular_documents_by_comment.map{|d| d.document_number}
 
     documents = Document.find_all(
