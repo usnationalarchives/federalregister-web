@@ -6,7 +6,7 @@ module DocumentDecorator::Agencies
   end
 
   def linked_agency_names(options={})
-    autolink = options.fetch(:no_links){ true }
+    autolink = options.fetch(:links){ true }
     definite_article = options.fetch(:definite_article, true)
 
     if agencies.present?

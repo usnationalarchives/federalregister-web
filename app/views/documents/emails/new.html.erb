@@ -1,0 +1,54 @@
+<div id="email_pane"
+  data-requires-captcha-with-message="<%= @document_email.requires_captcha_with_message? %>"
+  data-requires-captcha-without-message="<%= @document_email.requires_captcha_without_message? %>" >
+
+  <h4><%= link_to @document.title, @document.html_url %></h4>
+
+  <p>Your email address will not be published. Required fields are marked *</p>
+
+  <% if @document_email.errors[:base].count > 0 %>
+    <div class="flash-message error">
+      <ul class="bullets">
+      <% @document_email.errors[:base].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= semantic_form_for @document_email,
+    url: document_email_path(@document.document_number) do |f| %>
+
+    <%= f.inputs do %>
+      <%= f.input :sender,
+        required: true,
+        input_html: {
+          placeholder: "your_email@example.com"
+        } %>
+
+      <%= f.input :send_me_a_copy,
+        label: 'Send me a copy',
+        as: :boolean,
+        wrapper_html: { :class => 'copy' } %>
+
+      <%= f.input :recipients,
+        required: true,
+        input_html: {
+          placeholder: "one@example.com, two@example.com, three@example.com, etc."
+        } %>
+
+      <%= f.input :message, as: :text %>
+    <% end %>
+
+    <% if @document_email.requires_captcha_with_message? || @document_email .requires_captcha_without_message? %>
+      <div class="label label-recaptcha"><abbr title="required">*</abbr></div>
+      <%= recaptcha_tags(display: 'clean', ajax: true) %>
+    <% end %>
+
+    <%= f.buttons do %>
+      <%= f.commit_button "Send",
+        wrapper_html: {class: "fr_button medium primary"},
+        button_html: {class: "browser_reset"} %>
+    <% end %>
+  <% end %>
+</div>

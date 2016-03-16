@@ -73,3 +73,8 @@ $(document).ready ->
   $('.doc-nav-wrapper a#display-unprinted-elements').on 'click', (event)->
     event.preventDefault()
     FR2.DocumentTools.toggleNonPrintedElements $(this)
+
+  $('.doc-nav-wrapper a#email-a-friend').on 'click', (event)->
+    event.preventDefault()
+    emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
+    emailAFriend.display()

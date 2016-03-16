@@ -31,6 +31,14 @@ MyFr2::Application.routes.draw do
         date:  /\d{1,2}\/\d{1,2}\/\d{4}/
       }
 
+  get 'documents/:document_number/emails/new',
+    to: 'documents/emails#new',
+    as: :new_document_email
+
+  post 'documents/:document_number/emails',
+    to: 'documents/emails#create',
+    as: :document_email
+
   get 'documents/:year/:month/:day/:document_number/:slug',
       to: "documents#show",
       as: :document,
@@ -489,5 +497,6 @@ MyFr2::Application.routes.draw do
     mount FRMailer::Preview => 'fr_mail_view'
     mount SubscriptionMailer::Preview => 'subscription_mail_view'
     mount CommentMailer::Preview => 'comment_mail_view'
+    mount DocumentMailer::Preview => 'document_mail_view'
   end
 end

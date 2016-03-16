@@ -1,0 +1,32 @@
+You've been sent a document from the Federal Register by <%= @entry_email.sender %><% if @entry_email.message.present? %> with the message: <%= @entry_email.message %><% else %>.<% end %>
+
+<%= @document.title %>
+
+URL: <%= short_document_url(@document.document_number) %>
+
+<%= @document.citation %> - A <%= @document.document_type.display_type %> by <%= @document.agency_name_sentence(links: false) %> published on <%= @document.publication_date %>
+
+<%= truncate_words(@document.abstract, :length => 500) || "[No abstract available]" -%>
+
+
+-Privacy-
+FederalRegister.gov uses your email address to enable you to receive email
+notifications according to your preferences. We retain only the personally
+identifiable information minimally necessary to operate the subscription
+service. We do not retain any information about third parties who receive
+"email a friend" notifications through the subscription service. For more
+information, please read our Privacy and Security Policy at
+https://www.federalregister.gov/reader-aids/policy/privacy.
+
+-Legal Status-
+The documents received via our email subscriptions service originate from
+FederalRegister.gov, which displays an unofficial "Web 2.0" version of the
+daily Federal Register. The official electronic version in PDF format is also
+available as a link from FederalRegister.gov or directly from GPO's Federal
+Digital System website (http://www.fdsys.gov). For more information, please
+read our Legal Status page at https://www.federalregister.gov/reader-aids/policy/legal-status.
+
+The documents received via email from our Public Inspection web page originate
+from official copies filed at the Office of the Federal Register. For more
+information, please read our About Public Inspection page at
+https://www.federalregister.gov/reader-aids/using-federalregister-gov/understanding-public-inspection.

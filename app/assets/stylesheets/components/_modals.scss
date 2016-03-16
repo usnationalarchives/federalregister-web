@@ -42,8 +42,8 @@
     color: $fr-dark-blue;
     font-size: 26px;
     position: absolute;
-    right: 0.05em;
-    top: 0.05em;
+    right: 0.25em;
+    top: 0.15em;
   }
 
   h3 {
@@ -86,11 +86,15 @@
   }
 
   form {
+    textarea,
     input[type=text] {
       border: 1px solid $fr-gray-15;
+      padding: 1px 5px;
+    }
+
+    input[type=text] {
       height: 20px;
       margin-right: 0;
-      padding: 1px 5px;
       width: 215px;
     }
   }

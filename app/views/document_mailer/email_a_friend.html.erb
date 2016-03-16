@@ -1,0 +1,15 @@
+<p>
+  You've been sent a document from the Federal Register by <%= @entry_email.sender %><% if @entry_email.message.present? %> with the message: <br> "<%= @entry_email.message %>"<% else %>.<% end %>
+</p>
+
+<h2>
+  <%= link_to @document.title, short_document_url(@document.document_number) %>
+</h2>
+
+<h4>
+  <%= @document.citation %> - A <%= @document.document_type.display_type %> by <%= @document.agency_name_sentence(links: false) %> published on <%= @document.publication_date %>
+</h4>
+
+<p>
+  <%= truncate_words(@document.abstract, :length => 500) || "[No abstract available]" -%>
+</p>

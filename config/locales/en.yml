@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  recaptcha:
+    errors:
+      verification_failed: "Plese ensure you check the reCAPTCHA box at the bottom of the form (e.g. 'I am not a robot')."
+
   notifications:
     links:
       add: Opt In
@@ -15,11 +19,13 @@ en:
         active: You will be notified when a future document mentions the document you commented on.
         active_unconfirmed: Once your email address is confirmed, you will be notified when a future document mentions the document you commented on.
         inactive: You will not be notified when a future document mentions the document you commented on.
+
   comments:
     comment_count:
       one: View the 1 publicly posted comment.
       other: View the %{count} publicly posted comments.
       none: There are no publicly posted comments.
+
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: ""

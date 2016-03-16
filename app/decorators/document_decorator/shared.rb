@@ -3,6 +3,7 @@ module DocumentDecorator::Shared
     @document_type ||= DocumentType.new(model.type)
   end
 
+  # deprecated - use agency_name_sentence in DocumentDecorator::Agencies
   def agency_names(options = {})
     autolink = true unless options[:no_links]
 

@@ -1,5 +1,6 @@
 #= require components/autocompleter
 #= require components/embedded_search
+#= require components/email_a_friend
 #= require components/email_helper
 #= require components/calendar
 #= require components/carousel

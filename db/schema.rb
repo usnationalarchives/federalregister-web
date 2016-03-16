@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150828215943) do
+ActiveRecord::Schema.define(:version => 20160308182231) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(:version => 20150828215943) do
   add_index "comments", ["comment_tracking_number"], :name => "index_comments_on_comment_tracking_number"
   add_index "comments", ["document_number"], :name => "index_comments_on_document_number"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "entry_emails", :force => true do |t|
+    t.string   "remote_ip"
+    t.integer  "num_recipients"
+    t.integer  "entry_id"
+    t.string   "sender_hash"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "folders", :force => true do |t|
     t.string   "name"
