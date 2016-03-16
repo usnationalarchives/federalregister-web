@@ -72,8 +72,9 @@ ActiveRecord::Schema.define(:version => 20160308182231) do
     t.integer  "num_recipients"
     t.integer  "entry_id"
     t.string   "sender_hash"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_number"
   end
 
   create_table "folders", :force => true do |t|
