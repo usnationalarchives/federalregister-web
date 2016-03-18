@@ -1,41 +1,36 @@
+<% add_css_file_to_mailer 'subscription_mailer.css' %>
+
 <div class="info">
-  <span class="left">subscription results for <%= @results.first.publication_date_formally %></span>
+  <span class="left">subscription results for <%= @results.first.formal_publication_date %></span>
   <span class="right"><%= pluralize @results.count, "matching document" %></span>
 </div>
 
 <h1>
-  <%=h @mailing_list.title %>
+  <%= @mailing_list.title %>
 </h1>
- 
-<% @agencies.each_with_index do |agency, index| %>
-  <a name="<%= agency.identifier %>"></a>
-  <h3><%= agency.name %></h3>
 
-  <% if agency.children.present? %>
-    <% agency.children.each_with_index do |sub_agency, index| %>
-      <div class="sub_agency">
-        <i>See</i>
-        <a href="#<%= sub_agency.identifier %>" style="font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;"><%= sub_agency.name %></a>
-        <span class="doc_count">(<%= pluralize(sub_agency.articles.to_a.size, 'document') %>)</span>
-      </div>
-    <% end %>
-  <% end %>
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %> doc-toc">
 
-  <% agency.articles_by_type_and_toc_subject.each do |type, articles_by_toc_subject| %>
-    <h4><%= type.pluralize %></h4>
-
-    <% articles_by_toc_subject.each do |toc_subject, articles_by_toc_subject| %>
-      <% if toc_subject.present? %>
-        <h5><%= toc_subject %></h5>
-        <% articles_by_toc_subject.each do |article| %>
-          <%= render :partial => 'subscription_mailer/document', :locals => {:article => article, :result_count => @results.count, :section_class => 'with_subject'} %>
-        <% end %>  
-      <% else %>
-        <% articles_by_toc_subject.each do |article| %>
-          <%= render :partial => 'subscription_mailer/document', :locals => {:article => article, :result_count => @results.count, :section_class => ''} %>
+      <%= fr_content_box(
+        FrBox.build(
+          @presenter.fr_content_box_type,
+          title: 'Document Issue Subscription Table of Contents'
+        )
+      ) do %>
+        <% if FrBox.build(@presenter.fr_content_box_type).background_seal? %>
+          <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
         <% end %>
-      <% end %>
-    <% end %>
 
-  <% end %>
+        <div class="doc doc-document-issue">
+          <%= render partial: 'issues/table_of_contents', locals: {
+            agencies: @presenter.agencies,
+            document_partial: @presenter.document_partial
+          } %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
 <% end %>

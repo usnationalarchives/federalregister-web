@@ -1,23 +1,19 @@
 <%= @mailing_list.title %>
 
-<%= @results.first.publication_date_formally %>
+<%= @results.first.formal_publication_date %>
 
 <%= pluralize @results.size, "matching document" %>.
 
 -------------
 
-<%- @results.each do |article| -%>
-<%= article.title %>
+<%- @results.each do |document| -%>
+<%= document.title %>
 
-<%= article.short_article_url %>
+<%= document.html_url %>
 
-<%= article.type.with_indefinite_article(true) %> by <%= article.agency_names_as_sentence(:links => false) %>.
+<%#= document.type.display_type.indefinite_article %> by <%= document.agency_name_sentence(links: false) %>.
 
-<%= article.shortened_abstract -%>
-
-<%- if article.comments_close_on && article.comments_close_on > Date.current %>
-  Comment period ends in <%= pluralize (article.comments_close_on - Date.current), 'day' %> (<%= article.comments_close_on %>)
-<%- end %>
+<%= document.abstract -%>
 
 -------
 

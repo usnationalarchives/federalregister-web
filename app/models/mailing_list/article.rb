@@ -1,6 +1,6 @@
 class MailingList::Article < MailingList
   def model
-    FederalRegister::Article
+    Document
   end
 
   def deliver!(date, options = {})
@@ -25,20 +25,19 @@ class MailingList::Article < MailingList
 
   def results_for_date(date)
     model.search(
-      :conditions => parameters.merge({"publication_date" => {"is" => date}}),
-      :fields => [
-        :abstract,
+      conditions: parameters.merge({"publication_date" => {"is" => date}}),
+      fields: [
         :agencies,
-        :comments_close_on,
+        :citation,
         :document_number,
+        :end_page,
+        :html_url,
+        :pdf_url,
         :publication_date,
-        :raw_text_url,
-        :title,
-        :toc_subject,
-        :toc_doc,
-        :type,
+        :start_page,
+        :title
       ],
-      :per_page => 1000
+      per_page: 1000
     ).to_a
   end
 end

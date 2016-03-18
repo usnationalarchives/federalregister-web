@@ -1,5 +1,13 @@
 MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
+
+  if Rails.env.development?
+    mount FRMailer::Preview => 'fr_mail_view'
+    mount SubscriptionMailer::Preview => 'subscription_mail_view'
+    mount CommentMailer::Preview => 'comment_mail_view'
+    mount DocumentMailer::Preview => 'document_mail_view'
+  end
+
   mount ResqueWeb::Engine => "/resque-web"
 
   match 'status', to: 'special#status'
@@ -491,12 +499,5 @@ MyFr2::Application.routes.draw do
         get :unsubscribed
       end
     end
-  end
-
-  if Rails.env.development?
-    mount FRMailer::Preview => 'fr_mail_view'
-    mount SubscriptionMailer::Preview => 'subscription_mail_view'
-    mount CommentMailer::Preview => 'comment_mail_view'
-    mount DocumentMailer::Preview => 'document_mail_view'
   end
 end

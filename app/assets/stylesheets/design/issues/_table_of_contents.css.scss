@@ -53,6 +53,7 @@
     h2 {
       border-bottom: 2px solid $color-official;
       color: $color-official;
+      margin-top: 0 !important;
     }
 
     .icon-fr2.icon-doctype { color: $text; }
@@ -135,7 +136,10 @@
     margin-bottom: 15px;
     margin-left: 25px;
   }
-  .toc-subject-level { margin-left: 25px; }
+  .toc-subject-level {
+    margin-left: 25px;
+    overflow: auto;
+  }
 
   // add an additional level of indentation to documents that
   // only have one level of heirarchy. This allows all columns

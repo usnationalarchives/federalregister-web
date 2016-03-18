@@ -3,8 +3,8 @@
    support Rails 3.x but this is a much better implementation than what
    is otherwise available. - BB */
 
-@import "./px-to-em"; // not in original file
-@import "./strip-units"; // not in original file
+@import "bourbon/px-to-em"; // not in original file
+@import "bourbon/strip-units"; // not in original file
 
 
 // Scaling Variables

@@ -1,35 +1,52 @@
-@import "library/colors.scss";
+@import "bootstrap-mailer";
+
+@import "library/colors";
+@import "library/official_colors";
+
+@import "mixins/bullets";
+@import "mixins/fonts";
+
+// Font sizes based on ratios
+$em-base: 16px;
+@import 'bourbon/modular-scale';
+@import 'application_fonts';
+
+@import 'application_colors';
+@import "library/lists";
+@import "library/typeface";
+
+@import "components/officialness/fr_box";
+@import "design/issues/document_issue";
+@import "design/issues/table_of_contents";
 
 
-#templateSidebar{
-  background-color:#FFFFFF;
-  border-left:0;
-  padding-top: 17px;
-}
 
-.sidebarContent div {
-  color:#505050;
-  font-family:Arial;
-  font-size:12px;
-  line-height:150%;
-  text-align:left;
+.bootstrap-scope .wrapper .container.fixed {
+  width: auto !important;
 
-  a:link,
-  a:visited, 
-  /* Yahoo! Mail Override */ .sidebarContent div a .yshortcuts /* Yahoo! Mail Override */ {
-    color:#336699;
-    font-weight:normal;
-    text-decoration:underline;
+  h2 a { text-decoration: none; }
+
+  .toc-category-level { margin-bottom: 30px; }
+  ul.see-references { margin-bottom: 20px; }
+  .count-pill { text-align: center; }
+
+  h1 { font-size: modular-scale(4); }
+  h2 { font-size: modular-scale(3); }
+  h3 { font-size: modular-scale(2); }
+  h4 { font-size: modular-scale(1); }
+  h5 { font-size: modular-scale(1); }
+  h6 { font-size: modular-scale(0); }
+  h7 { font-size: modular-scale(0); }
+
+  .fr-seal-content h6,
+  .fr-seal-block.fr-seal-block-footer h6 {
+    color: $white !important;
   }
 
-  img {
-    display:inline;
-    height:auto;
+  .row.toc-document-metadata {
+    margin-bottom: 10px;
+    overflow: auto;
   }
-}
-
-%helvetica_neue {
-  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 table.highlight {
@@ -39,8 +56,8 @@ table.highlight {
 
   h4 {
     color: $fr-green;
-    
-    &.top_aligned { 
+
+    &.top_aligned {
       padding-top: 4px;
       font-size: 18px;
     }
@@ -51,18 +68,16 @@ tr.social {
   margin: 0;
 
   td div {
+    background-color: $fr-gray-2;
     font-family: Arial;
-    @extend helvetica_neue;
     font-size: 13px;
-    text-align: center;
-
     margin-bottom: 10px;
     padding: 5px;
-    background-color: $fr-gray-2;
+    text-align: center;
 
     a,
     a:visited {
-      color: #336699;
+      color: $fr-link-dark;
       font-weight: normal;
       text-decoration: underline;
     }
@@ -72,96 +87,31 @@ tr.social {
 
 #main-content {
   h1 {
+    clear: both;
     color: $fr-blue;
+    font-size: 26px;
     margin: 0 0 30px 0;
     padding: 0;
-    font-size: 26px;
-    clear: both;
-    @include helvetica_neue;
   }
 
   .info {
+    border-bottom: 1px solid $fr-gray-40;
     color: $fr-gray-60;
     font-size: 12px;
     font-style:italic;
     font-weight: normal;
-    border-bottom: 1px solid $fr-gray-40;
     height: 18px;
+    margin-bottom: 10px;
     overflow: hidden;
     padding: 0 5px;
-    margin-bottom: 10px;
 
     .left,
     .right { display: block; }
     .left { float: left; }
     .right { float: right; }
   }
-
-  h3 {
-    color: $fr-gray-70;
-    font-size:16px;
-    margin-top: 30px;
-    margin-bottom:5px;
-    @extend helvetica_neue;
-  }
-
-  .sub_agency {
-    color: $fr-gray-70;
-    font-size: 12px;
-    margin: 0 0 10px 10px;
-
-    .doc_count { font-size: 11px; }
-  }
-
-  h4 {
-    color: $fr-gray-70;
-    font-size: 13px;
-    text-transform:uppercase;
-    margin: 10px 0 10px 10px;
-    @extend helvetica_neue;
-  }
-
-  h5 {
-    color: $fr-gray-70;
-    font-size: 13px;
-    margin:5px 0 5px 20px;
-    @extend helvetica_neue;
-  }
-
-  h6 {
-    font-size: 14px;
-    margin: 10px 0 5px 0;
-    @extend helvetica_neue;
-  }
-
-  .document {
-    margin-left: 20px;
-    &.with_subject { margin-left: 30px; }
-
-    .abstract {
-      color: $fr-gray-80;
-      font-family: Georgia, 'Times New Roman',serif;
-      font-size: 13px; 
-      line-height: 1.5;
-      margin:0px 0 15px;
-    }
-
-    .comment_open {
-      background: $fr-gray-5;
-      color: $fr-gray-80;
-      font-weight: bold;
-      font-size: 12px;
-      padding: 1px 3px 1px 3px;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-
-    .publication_info {
-      color: $fr-gray-50;
-      font-family: 'Helvetica Neue' ,Arial, Helvetica, sans-serif;
-      font-size: 12px;
-      margin: 0 0 5px 0;
-    }
-  }
 }
 
+img.float_left { padding: 0; }
+p.column_content { padding: 10px 8px 20px !important; }
+h4.h4.float_left { font-family: Arial; }

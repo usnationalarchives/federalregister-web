@@ -1,4 +1,5 @@
-@import "library/colors.scss";
+@import "library/colors";
+@import "library/official_colors";
 
 
 /* Client-specific Styles */
@@ -79,7 +80,7 @@ h4, .h4{
 .clear_both { clear: both; }
 
 /* used for creating a better preview in the subject line in clients like Gmail */
-.subject_teaser { 
+.subject_teaser {
   display: none;
   color:  $fr-gray-5;
 }
@@ -151,7 +152,7 @@ h4, .h4{
   #main-content.two_col_1_2 { border-bottom: 1px solid #CCC }
 }
 
-.bodyContent div a:link, .bodyContent div a:visited, 
+.bodyContent div a:link, .bodyContent div a:visited,
 /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */ {
   color:#336699;
   font-weight:normal;
@@ -180,8 +181,8 @@ h4, .h4{
   padding-top: 0;
   }
 
-.footerContent div a:link, 
-.footerContent div a:visited, 
+.footerContent div a:link,
+.footerContent div a:visited,
 /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */ {
   color:#336699;
   font-weight:normal;
@@ -197,7 +198,7 @@ h4, .h4{
   font-size: 13px;
   }
 
-#social div, 
+#social div,
 #utility div,
 #unsubscribe { text-align:center; }
 

@@ -2,6 +2,10 @@ class SubscriptionMailer < ActionMailer::Base
   include SendGrid
 
   add_template_helper(MailerHelper)
+  add_template_helper(BootstrapHelper)
+  add_template_helper(FrBoxHelper)
+  add_template_helper(DocumentIssueHelper)
+  add_template_helper(IconHelper)
 
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
 
@@ -72,11 +76,10 @@ class SubscriptionMailer < ActionMailer::Base
     end
   end
 
-  def entry_mailing_list(mailing_list, results, subscriptions)
+  def entry_mailing_list(date, mailing_list, results, subscriptions)
     @mailing_list = mailing_list
     @results = DocumentDecorator.decorate_collection(results.to_a)
-    toc = TableOfContentsPresenter.new(results)
-    @agencies = toc.agencies
+    @presenter = TableOfContentsPresenter.new(date, results)
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
@@ -88,16 +91,18 @@ class SubscriptionMailer < ActionMailer::Base
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
 
-    toc = TableOfContentsPresenter.new(results)
-
     mail(
-      :subject => "[FR] #{mailing_list.title}",
-      :to =>  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
+      subject: "[FR] #{mailing_list.title}",
+      to:  'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
     ) do |format|
       format.text { render('entry_mailing_list') }
-      format.html { Premailer.new( render('entry_mailing_list', :layout => "mailer/simple_leftsidebar"),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+      format.html {
+        Premailer.new(
+          render('entry_mailing_list', layout: "mailer/two_col_1_2"),
+          with_html_string: true,
+          warn_level: Premailer::Warnings::SAFE
+        ).to_inline_css
+      }
     end
 
   end
@@ -114,14 +119,14 @@ class SubscriptionMailer < ActionMailer::Base
     end
 
     def entry_mailing_list
-      mailing_list = MailingList.find(4)
+      mailing_list = MailingList.find(2)
       subscriptions = mailing_list.subscriptions
-      results = mailing_list.send(:results_for_date, Date.parse('2013-10-01') )
-      SubscriptionMailer.entry_mailing_list(mailing_list, results, subscriptions)
+      results = mailing_list.send(:results_for_date, Date.parse('2016-02-01') )
+      SubscriptionMailer.entry_mailing_list('2016-02-01', mailing_list, results, subscriptions)
     end
 
     def public_inspection_document_mailing_list
-      mailing_list = MailingList.find(2)
+      mailing_list = MailingList.find(1214)
       subscriptions = mailing_list.subscriptions
       results = FederalRegister::PublicInspectionDocument.available_on('2013-09-30')
       SubscriptionMailer.public_inspection_document_mailing_list(mailing_list, results, subscriptions)

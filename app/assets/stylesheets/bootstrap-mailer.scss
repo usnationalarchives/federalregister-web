@@ -1,0 +1,12 @@
+// Core bootstrap variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// Core CSS
+@import "bootstrap/scaffolding";
+@import "bootstrap/type";
+@import "bootstrap/grid";
+
+// Utility classes
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";
