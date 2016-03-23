@@ -28,31 +28,62 @@ describe "XSLT::FullText::Images" do
       end
     end
 
-    it "renders the proper attributes for a link in the embedded image" do
-      process <<-XML
-        <GPH DEEP="640" SPAN="3">
-        <GID>EP01MY09.019</GID>
-        </GPH>
-      XML
+    context "generics images" do
+      it "renders the proper attributes for a link in the embedded image" do
+        process <<-XML
+          <GPH DEEP="640" SPAN="3">
+          <GID>EP01MY09.019</GID>
+          </GPH>
+        XML
 
-      expect(html).to have_tag 'a', with: {
-          class: 'document-graphic-link',
-          id: 'g-1',
-          href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/ep01my09.019/original.png"
-        }
+        expect(html).to have_tag 'a', with: {
+            class: 'document-graphic-link',
+            id: 'g-1',
+            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          }
+      end
+
+      it "renders the proper attributes for the img tag in the embedded image" do
+        process <<-XML
+          <GPH DEEP="640" SPAN="3">
+          <GID>EP01MY09.019</GID>
+          </GPH>
+        XML
+
+        expect(html).to have_tag 'img', with: {
+            class: 'document-graphic-image full',
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/large.png"
+          }
+      end
     end
 
-    it "renders the proper attributes for the img tag in the embedded image" do
-      process <<-XML
-        <GPH DEEP="640" SPAN="3">
-        <GID>EP01MY09.019</GID>
-        </GPH>
-      XML
+    context "presidential signatures" do
+      it "renders the proper attributes for a link in the embedded image" do
+        process <<-XML
+          <GPH DEEP="640" SPAN="3">
+            <GID>OB#1.EPS</GID>
+          </GPH>
+        XML
 
-      expect(html).to have_tag 'img', with: {
-          class: 'document-graphic-image full',
-          src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/ep01my09.019/large.png"
-        }
+        expect(html).to have_tag 'a', with: {
+            class: 'document-graphic-link',
+            id: 'g-1',
+            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original.png"
+          }
+      end
+
+      it "renders the proper attributes for the img tag in the embedded image" do
+        process <<-XML
+          <GPH DEEP="640" SPAN="3">
+            <GID>OB#1.EPS</GID>
+          </GPH>
+        XML
+
+        expect(html).to have_tag 'img', with: {
+            class: 'document-graphic-image full',
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/large.png"
+          }
+      end
     end
 
     it "renders the proper data attributes for width when @SPAN=3" do
