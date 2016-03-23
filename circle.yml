@@ -16,6 +16,7 @@ dependencies:
     - npm install -g jshint
     - npm install -g coffeelint
     - gem update --system 1.8.25
+    - gem install bundler --version 1.7.13
     - cp config/secrets.yml.sample config/secrets.yml
     - mkdir log/test/ && touch log/test/vcr.log
     #- cd .. && git clone git@github.com:criticaljuncture/fr2
