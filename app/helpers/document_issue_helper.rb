@@ -50,6 +50,6 @@ module DocumentIssueHelper
   def url_for_subject_heading(agency, docs_only_at_this_level)
     agency.load_documents(
       docs_only_at_this_level.first["document_numbers"]
-    ).first.html_url
+    ).first.try(:html_url)
   end
 end
