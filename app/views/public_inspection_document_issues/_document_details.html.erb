@@ -8,7 +8,7 @@
 
   <% documents.each do |document| %>
     <div class="row toc-document-metadata">
-      <dl class="col-xs-6 col-md-6">
+      <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
         <dt>Filed on:</dt>
         <dd><%= document.filed_at %></dd>
 
@@ -26,7 +26,7 @@
         <% end %>
       </dl>
 
-      <dl class="col-xs-6 col-md-6">
+      <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
         <dt class="toc-pdf">
           <%= link_to document.pdf_url do %>
             <%= fr_icon 'doc-pdf' %> PDF
@@ -44,7 +44,14 @@
         </dt>
         <dd></dd>
       </dl>
-
     </div>
+
+    <% if document.editorial_note %>
+      <div class="row toc-editorial-note">
+        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+          <p><%= document.editorial_note %></p>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

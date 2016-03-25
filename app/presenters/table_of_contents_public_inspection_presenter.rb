@@ -26,6 +26,7 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
     [
       :docket_numbers,
       :document_number,
+      :editorial_note,
       :filed_at,
       :html_url,
       :num_pages,
