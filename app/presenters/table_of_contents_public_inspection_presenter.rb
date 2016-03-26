@@ -19,7 +19,11 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
         per_page: 1000,
         fields: document_fields
       )
-    )
+    ).select {|d| d.filing_type == filing_type}
+  end
+
+  def query_conditions
+    QueryConditions::PublicInspectionDocumentConditions.available_on(date)
   end
 
   def document_fields
@@ -28,6 +32,7 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
       :document_number,
       :editorial_note,
       :filed_at,
+      :filing_type,
       :html_url,
       :num_pages,
       :pdf_file_size,

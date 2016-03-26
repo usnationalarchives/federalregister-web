@@ -3,14 +3,7 @@ class TableOfContentsRegularFilingsPresenter < TableOfContentsPublicInspectionPr
     "regular_filing"
   end
 
-  private
-
-  def query_conditions
-    if date == PublicInspectionDocumentIssue.current.publication_date
-      QueryConditions::PublicInspectionDocumentConditions.regular_filing
-    else
-      QueryConditions::PublicInspectionDocumentConditions.
-        regular_filings_available_on(date)
-    end
+  def filing_type
+    'regular'
   end
 end

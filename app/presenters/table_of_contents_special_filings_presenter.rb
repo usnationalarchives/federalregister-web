@@ -3,14 +3,7 @@ class TableOfContentsSpecialFilingsPresenter < TableOfContentsPublicInspectionPr
     "special_filing"
   end
 
-  private
-
-  def query_conditions
-    if date == PublicInspectionDocumentIssue.current.publication_date
-      QueryConditions::PublicInspectionDocumentConditions.special_filing
-    else
-      QueryConditions::PublicInspectionDocumentConditions.
-        special_filings_available_on(date)
-    end
+  def filing_type
+    'special'
   end
 end
