@@ -155,7 +155,7 @@ module RegulationsDotGov
 
     context "verify keys" do
       let(:client) { RegulationsDotGov::Client.new() }
-      let(:document_number) { '2015-03236' }
+      let(:regulations_dot_gov_document_id) { 'CMS_FRDOC_0001-1845' }
 
       before (:each) do
         RegulationsDotGov::Client.override_base_uri('http://api.data.gov/TEST/regulations/v3/')
@@ -166,7 +166,7 @@ module RegulationsDotGov
       end
 
       it "ensures all keys used in tests above actually exist in the api response", :vcr do
-        comment_form = client.get_comment_form(document_number)
+        comment_form = client.get_comment_form(regulations_dot_gov_document_id)
 
         $response_keys.each do |keys|
           keys.each do |arr|

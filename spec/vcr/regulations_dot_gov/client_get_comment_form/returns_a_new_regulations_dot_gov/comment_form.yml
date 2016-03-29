@@ -154,4 +154,118 @@ http_interactions:
         of comment from submitter","uiControl":"text"}],"participating":false}'
     http_version: '1.1'
   recorded_at: Fri, 03 Apr 2015 21:25:52 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?D=2015-03236&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      age:
+      - '1'
+      cache-control:
+      - max-age=600, public
+      content-type:
+      - application/json
+      date:
+      - Tue, 29 Mar 2016 23:02:29 GMT
+      server:
+      - openresty
+      vary:
+      - Accept-Encoding
+      via:
+      - http/1.1 api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-cache:
+      - MISS
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9963'
+      content-length:
+      - '103'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"code":400,"message":"The parameter value for ID (2015-03236) is
+        not in a valid format.","status":400}'
+    http_version: '1.1'
+  recorded_at: Tue, 29 Mar 2016 23:02:30 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/TEST/regulations/v3/comment.json?D=CMS_FRDOC_0001-1845&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      age:
+      - '0'
+      cache-control:
+      - max-age=600, public
+      content-type:
+      - application/json
+      date:
+      - Tue, 29 Mar 2016 23:13:53 GMT
+      server:
+      - openresty
+      vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      - Accept-Encoding
+      via:
+      - http/1.1 api-umbrella (ApacheTrafficServer [cMsSfW])
+      x-cache:
+      - MISS
+      x-ratelimit-limit:
+      - '10000'
+      x-ratelimit-remaining:
+      - '9959'
+      content-length:
+      - '3388'
+      connection:
+      - Close
+    body:
+      encoding: US-ASCII
+      string: ! '{"agencyName":"Centers for Medicare Medicaid Services","document":{"agencyAcronym":"CMS","alternateWaysToComment":"You
+        may submit comments in one of following ways (no duplicates, please): Written
+        comments may be submitted through any of the methods specified below. Please
+        do not submit duplicate comments.  Federal eRulemaking Portal: You may (and
+        we encourage you to) submit electronic comments on this regulation at http://www.regulations.gov.
+        Follow the instructions under the \"submit a comment\" tab. Attachments should
+        be in Microsoft Word, WordPerfect, or Excel; however, we prefer Microsoft
+        Word.  Regular, Express, or Overnight Mail: You may mail written comments
+        to the following address ONLY: Administration for Community Living, Attention:
+        SHIP Interim Rule, U.S. Department of Health and Human Services, Washington,
+        DC 20201. Please allow sufficient time for mailed comments to be received
+        before the close of the comment period.  Individuals with a Disability: We
+        will provide an appropriate accommodation, including alternative formats,
+        upon request. To make such a request, please contact Marlina Moses-Gaither,
+        (202) 357-3552 (Voice) or at marlina.moses-gaither@acl.hhs.gov.","commentDueDate":"2016-04-04T23:59:59-04:00","commentStartDate":"2016-02-04T00:00:00-05:00","docketType":"RULEMAKING","documentId":"CMS_FRDOC_0001-1845","documentType":"Rule","openForComment":true,"title":"State
+        Health Insurance Assistance Program"},"fieldList":[{"attributeLabel":"First
+        Name","attributeName":"first_name","maxLength":25,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        first name","uiControl":"text"},{"attributeLabel":"Last Name","attributeName":"last_name","maxLength":25,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        last name","uiControl":"text"},{"attributeLabel":"City","attributeName":"city","maxLength":50,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        city","uiControl":"text"},{"attributeLabel":"Country","attributeName":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=country","maxLength":50,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        country","uiControl":"picklist"},{"attributeLabel":"State or Province","attributeName":"us_state","dependsOn":"country","lookupUrl":"https://api.data.gov/TEST/regulations/v3/lookup?field=us_state&dependentOnValue=","maxLength":50,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        state","uiControl":"combo"},{"attributeLabel":"ZIP/Postal Code","attributeName":"zip","maxLength":10,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        ZIP/Postal Code","uiControl":"text"},{"attributeLabel":"Email Address","attributeName":"email","maxLength":100,"publicViewable":false,"required":false,"submitterInfo":true,"tooltip":"Submitter''s
+        email address","uiControl":"text"},{"attributeLabel":"Organization Name","attributeName":"organization","maxLength":120,"publicViewable":false,"required":true,"submitterInfo":true,"tooltip":"Submitter''s
+        organization","uiControl":"text"},{"attributeLabel":"Comment","attributeName":"general_comment","maxLength":5000,"publicViewable":true,"required":true,"submitterInfo":true,"tooltip":"Text
+        of comment from submitter","uiControl":"text"}],"participating":true}'
+    http_version: '1.1'
+  recorded_at: Tue, 29 Mar 2016 23:13:54 GMT
 recorded_with: VCR 2.6.0
