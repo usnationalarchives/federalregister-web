@@ -63,13 +63,13 @@ describe RegulationsDotGov::Client do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client
-        .stub(:get)
-        .and_return(OpenStruct.new(:parsed_response => {:documents => []}))
+      RegulationsDotGov::Client.
+        stub(:get).
+        and_return(OpenStruct.new(:parsed_response => {:documents => []}))
 
-      RegulationsDotGov::Client
-        .should_receive(:get)
-        .with(client.document_search_endpoint, :query=>{:s => keyword})
+      RegulationsDotGov::Client.
+        should_receive(:get).
+        with(client.document_search_endpoint, :query=>{:s => keyword})
 
       client.find_documents(:s => keyword)
     end
@@ -84,13 +84,13 @@ describe RegulationsDotGov::Client do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client
-        .stub(:get)
-        .and_return(OpenStruct.new(:parsed_response => {:totalNumRecords => 1}))
+      RegulationsDotGov::Client.
+        stub(:get).
+        and_return(OpenStruct.new(:parsed_response => {:totalNumRecords => 1}))
 
-      RegulationsDotGov::Client
-        .should_receive(:get)
-        .with(client.document_search_endpoint, :query=>{:s => keyword, :countsOnly => 1})
+      RegulationsDotGov::Client.
+        should_receive(:get).
+        with(client.document_search_endpoint, :query=>{:s => keyword, :countsOnly => 1})
 
       client.count_documents(:s => keyword)
     end
@@ -106,13 +106,13 @@ describe RegulationsDotGov::Client do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client
-        .stub(:get)
-        .and_return(OpenStruct.new(:parsed_response => {}))
+      RegulationsDotGov::Client.
+        stub(:get).
+        and_return(OpenStruct.new(:parsed_response => {}))
 
-      RegulationsDotGov::Client
-        .should_receive(:get)
-        .with(client.document_endpoint, :query=>{:federalRegisterNumber => document_number})
+      RegulationsDotGov::Client.
+        should_receive(:get).
+        with(client.document_endpoint, :query=>{:federalRegisterNumber => document_number})
 
       client.find_by_document_number(document_number)
     end
