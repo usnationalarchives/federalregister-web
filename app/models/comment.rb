@@ -117,11 +117,15 @@ class Comment < ApplicationModel
       client = RegulationsDotGov::Client.new
 
       if document.comment_url
-        self.comment_form = client.get_comment_form(document_number)
+        self.comment_form = client.get_comment_form(regulations_dot_gov_document_id)
       else
         raise ActiveRecord::RecordNotFound
       end
     end
+  end
+
+  def regulations_dot_gov_document_id
+    document.regulations_dot_gov_info["document_id"]
   end
 
   def attributes=(attr)
