@@ -1,3 +1,11 @@
+# need to monkey patch the module directly because
+# of the way it is called in the underlying library
+module HTTMultiParty
+  def self.file_present?(args)
+    true
+  end
+end
+
 class RegulationsDotGov::Client
   class APIKeyError < StandardError; end
   class ResponseError < StandardError
