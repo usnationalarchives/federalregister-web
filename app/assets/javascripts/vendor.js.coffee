@@ -42,8 +42,5 @@
 #= require numeral.min.js
 #= require languages.min.js
 
-# BINDING TO COMPLEX KEY EVENTS (doc utility bar)
-#= require jquery.hotkeys.js
-
 # STICKY FROM SEMANTIC-UI (doc utility bar)
 #= require semantic-ui/sticky.min.js

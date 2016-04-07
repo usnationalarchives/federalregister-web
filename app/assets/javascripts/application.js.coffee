@@ -11,7 +11,6 @@
 #= require utilities/analytics
 #= require utilities/cj_tooltip
 #= require utilities/modal
-#= require utilities/element_scroller
 #= require utilities/toggle
 #= require utilities/list_item_filter
 #= require utilities/list_item_sorter
@@ -46,7 +45,6 @@
 
 #= require old/navigation
 
-#= require scrollMonitor
 #= require_tree ./documents
 #= require fr_index_popover_handler
 #= require fr_index
