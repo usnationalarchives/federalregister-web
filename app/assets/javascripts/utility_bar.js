@@ -16,21 +16,24 @@ $(document).ready(function() {
   });
 
   if( $('.doc-nav-wrapper').length > 0 ) {
-    $('.doc-nav-wrapper').outerHeight(
-      $('.doc-nav-wrapper').siblings('.fr-box').first().height() + 'px'
-    );
-  }
+    // set the height of the nav wrapper after we've loaded web fonts
+    // otherwise the height won't be correct
+    $('body').on('typekit-active', function() {
+      var frBox = $('.doc-nav-wrapper').siblings('.fr-box').first()
 
-  var utilityNavScroller;
-  utilityNavScroller = new FR2.ElementScroller(
-    $('.doc-document ul.doc-nav'),
-    {
-      offsets: { bottom: 212 },
-      container: {
-        el: $('.doc-nav-wrapper')
-      },
-      debug: false
-    }
-  );
+      $('.doc-document ul.doc-nav').sticky({
+        context: '.doc-content.with-utility-bar'
+      });
+      
+      // ideally we don't want a timeout here but semantic-ui sticky
+      // makes the wrapper bigger than it should be - so we wait for it
+      // to finish before fixing.
+      setTimeout(function(){
+        $('.doc-nav-wrapper').outerHeight(frBox.height() + 'px');
+      }, 1000);
+    });
+
+
+  }
 
 });

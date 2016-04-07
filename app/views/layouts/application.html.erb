@@ -9,7 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://use.typekit.net/rgf3yox.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript">
+      try {
+        Typekit.load({
+          loading: function() {
+            // Javascript to execute when fonts start loading
+          },
+          active: function() {
+            $('body').trigger('typekit-active');
+          },
+          inactive: function() {
+            // Javascript to execute when fonts become inactive
+          }
+        })
+       } catch(e) {}
+      </script>
 
     <%= render partial: 'layouts/meta_tags' %>
     <%# Facebook uses these for parsing when someone adds a link  %>
