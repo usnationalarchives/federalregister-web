@@ -12,14 +12,8 @@
     <script type="text/javascript">
       try {
         Typekit.load({
-          loading: function() {
-            // Javascript to execute when fonts start loading
-          },
           active: function() {
             $('body').trigger('typekit-active');
-          },
-          inactive: function() {
-            // Javascript to execute when fonts become inactive
           }
         })
        } catch(e) {}

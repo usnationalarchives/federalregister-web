@@ -31,8 +31,8 @@
       z-index: 1000;
 
       &.fixed {
-        position: fixed;
-        top: 20px;
+        // deal with sidescrolling on small screens by adding a bg
+        background-color: rgba(209, 210, 212, 0.90);
       }
 
       &> li {
