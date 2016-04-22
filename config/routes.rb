@@ -1,5 +1,6 @@
 MyFr2::Application.routes.draw do
   mount Stylin::Engine => '/styleguides' if Rails.env.development?
+  get 'error_page', to: 'special#error_page' unless Rails.env.production?
 
   if Rails.env.development?
     mount FRMailer::Preview => 'fr_mail_view'

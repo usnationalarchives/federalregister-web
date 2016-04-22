@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <head>
+    <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
+
+    <!-- Tell search engines to use the proper hostname and protocol -->
+    <%= tag(:link, :rel  => 'canonical', :href => 'https://www.federalregister.gov' + request.fullpath.sub(/\/$/,'')) %>
+
+    <link rel="Shortcut Icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://use.typekit.net/rgf3yox.js"></script>
+    <script type="text/javascript">
+      try {
+        Typekit.load({
+          active: function() {
+            $('body').trigger('typekit-active');
+          }
+        })
+      } catch(e) {}
+    </script>
+
+    <%= stylesheet_link_tag asset_path('vendor.css'), media: "all" %>
+    <%= stylesheet_link_tag asset_path('application.css'), media: "all" %>
+
+    <%= javascript_include_tag asset_path('vendor.js') %>
+    <%= javascript_include_tag asset_path('application.js') %>
+  </head>
+
+  <body>
+    <div class="header" id="header_refresh">
+      <div class="header_wrapper">
+        <div class="nav" id="navigation" style="margin-bottom: 20px;"></div>
+
+        <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
+        <%= esi header_path(header_type) %>
+      </div>
+    </div>
+
+    <div id="main">
+      <%= yield(:title_bar) %>
+
+      <%= yield %>
+    </div>
+
+    <%= esi footer_path %>
+  </body>
+</html>

@@ -73,4 +73,8 @@ class SpecialController < ApplicationController
 
     render 'special/home/popular_documents'
   end
+
+  def error_page
+    render template: 'errors/500', layout: 'minimal'
+  end
 end
