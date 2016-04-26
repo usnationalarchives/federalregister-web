@@ -1,4 +1,4 @@
-<% page_title "Topics - #{@presenter.name}" %>
+<% page_title "Topics (CFR Indexing Terms) - #{@presenter.name}" %>
 <% description "Browse Federal Register documents tagged by agencies with the topic '#{@presenter.name}'. Use this topic to learn more about your areas of interest and the regulations that affect the topic '#{@presenter.name}'." %>
 
 <% @presenter.feed_urls.each do |feed| %>
@@ -11,7 +11,7 @@
 
 <% title do %>
   <%= fr_icon 'Molecular' %>
-  Topics
+  Topics (CFR Indexing Terms)
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
