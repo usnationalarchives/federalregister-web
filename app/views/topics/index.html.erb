@@ -1,7 +1,5 @@
 <% description "Federal agencies add topics to the documents they publish in the Federal Register. Use these topics to learn more about your areas of interest and the regulations that affect them." %>
 
-Topics (CFR Indexing Terms) provide a common vocabulary for indexing the rulemaking documents of all agencies and are the basis of the "CFR Index" prepared by the OFR.  Federal agencies add CFR Indexing Terms to the documents they publish in the Federal Register.  You can use these terms to learn more about your areas of interest and the regulations that affect them.
-
 <% add_javascript src: 'page_specific/topics' %>
 
 <% title do %>
@@ -10,6 +8,12 @@ Topics (CFR Indexing Terms) provide a common vocabulary for indexing the rulemak
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+      Topics (CFR Indexing Terms) provide a common vocabulary for indexing the rulemaking documents of all agencies and are the basis of the "CFR Index" prepared by the OFR.  Federal agencies add CFR Indexing Terms to the documents they publish in the Federal Register.  You can use these terms to learn more about your areas of interest and the regulations that affect them.
+    </div>
+  </div>
+
   <div class="row">
 
     <div class="<%= bootstrap_col(xs: 4, md: 4) %> item-filters">
