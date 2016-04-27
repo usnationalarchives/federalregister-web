@@ -232,7 +232,13 @@
         padding-left: 15px;
         padding-top: 13px;
 
-        .icon-fr2 { left: -5px; }
+        .icon-fr2 {
+          display: block;
+          float: left;
+          height: 100%;
+          left: -5px;
+          padding-right: 3px;
+        }
 
         &.dates {
           padding-left: 14px;
@@ -250,6 +256,11 @@
           padding-left: 10px;
 
           .icon-fr2-stars { left: -2px; }
+        }
+
+        &.topics {
+          line-height: 18px;
+          padding-top: 11px;
         }
       }
     }
