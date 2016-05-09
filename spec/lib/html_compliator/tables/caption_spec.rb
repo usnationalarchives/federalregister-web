@@ -51,5 +51,24 @@ describe HtmlCompilator::Tables do
 
       expect(table.captions.first.body).to eql("<em>New</em> title")
     end
+
+    it "handles empty TTITLE" do
+      table = parse <<-XML
+        <GPOTABLE>
+          <TTITLE></TTITLE>
+        </GPOTABLE>
+      XML
+
+      expect(table.captions).to be_empty
+    end
+
+    it "handles missing TTITLE" do
+      table = parse <<-XML
+        <GPOTABLE>
+        </GPOTABLE>
+      XML
+
+      expect(table.captions).to be_empty
+    end
   end
 end
