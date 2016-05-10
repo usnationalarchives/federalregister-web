@@ -124,6 +124,12 @@ describe Hyperlinker::Url do
     expect(hyperlink(link13_raw)).to eql(generate_result(link13_raw))
   end
 
+  it "handles www2 URLs" do
+    link_raw    = 'www2.ed.gov'
+    link_result = generate_result(link_raw, "http://#{link_raw}")
+    expect(hyperlink("Go to #{link_raw}")).to eql(%(Go to #{link_result}))
+  end
+
   it "doesn't match non-URLs" do
     %w(foo http:// https://).each do |fragment|
       expect(hyperlink(fragment)).to eql fragment

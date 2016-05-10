@@ -6,7 +6,7 @@ module Hyperlinker::Url
   extend ActionView::Helpers::TagHelper
 
   AUTO_LINK_RE = %r{
-              ((?: ((?:http|https):)// | www\. )
+              ((?: ((?:http|https):)// | www\d?\. )
               [^\s<\u00A0"]*)
               (?:
                 (\s*<PRTPAGE\s+P="\d+"/>\s*)
