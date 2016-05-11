@@ -8,11 +8,28 @@ class HtmlCompilator::Tables::BodyRow
   end
 
   def to_html
-    h.content_tag(:tr) {
-      cells.each do |cell|
-        h.concat cell.to_html
+    h.safe_join([
+      page_break_row,
+      h.content_tag(:tr) {
+        cells.each do |cell|
+          h.concat cell.to_html
+        end
+      }
+    ])
+  end
+
+  def page_break_row
+    if page_break_node
+      h.content_tag(:tr, :class => "page_break") do
+        h.content_tag(:td, :colspan => table.num_columns) do
+          table.transform(page_break_node.to_xml)
+        end
       end
-    }
+    end
+  end
+
+  def page_break_node
+    node.xpath('PRTPAGE').first
   end
 
   def cells

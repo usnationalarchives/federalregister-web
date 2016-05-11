@@ -225,6 +225,30 @@ describe HtmlCompilator::Tables do
     end
   end
 
+  context "page breaks" do
+    it "handles page breaks in a ROW" do
+      table = parse <<-XML
+        <GPOTABLE CDEF="6,6" COLS="2">
+          <ROW>
+            <ENT>A</ENT>
+            <ENT>B</ENT>
+          </ROW>
+          <ROW>
+            <PRTPAGE P="12345"/>
+            <ENT>C</ENT>
+            <ENT>D</ENT>
+          </ROW>
+        </GPOTABLE>
+      XML
+
+      expect(table.body_rows.first.page_break_node).to be_nil
+      expect(table.body_rows.last.page_break_node).to be_present
+
+      prtpage = table.transform('<PRTPAGE P="12345"/>')
+      expect(table.body_rows.last.to_html).to eql "<tr class=\"page_break\"><td colspan=\"2\">#{prtpage}</td></tr><tr><td class=\"right\">C</td><td class=\"right\">D</td></tr>"
+    end
+  end
+
   context "malformed tables" do
     it "handles cells after an I=28" do
       table = parse <<-XML
