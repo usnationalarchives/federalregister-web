@@ -189,6 +189,19 @@ describe Hyperlinker::Url do
     expect(hyperlink(linked_5)).to eq(linked_5)
   end
 
+  it "handles previously escaped input" do
+    result = hyperlink(<<-XML)
+      <E T="03">
+        http://energy.gov/foo?a=1&amp;b=2
+      </E>
+    XML
+    expect(result).to eql(<<-XML)
+      <E T="03">
+        <a href="http://energy.gov/foo?a=1&amp;b=2">http://energy.gov/&#8203;foo?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>
+      </E>
+    XML
+  end
+
   it "handles PRTPAGE" do
     result = hyperlink(<<-XML)
       <E T="03">

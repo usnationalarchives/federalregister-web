@@ -22,10 +22,14 @@ module Hyperlinker::Url
   def self.perform(text, html_options = {})
     return "" unless text.present?
     link_attributes = html_options.stringify_keys
+    coder = HTMLEntities.new(:expanded)
 
     Hyperlinker.replace_text(text, AUTO_LINK_RE) do |match|
       initial_href, scheme, page_break, final_fragment = match.captures
       punctuation = []
+
+      initial_href = coder.decode(initial_href)
+      final_fragment = coder.decode(final_fragment)
 
       if final_fragment.present?
         href = initial_href + final_fragment
