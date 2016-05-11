@@ -16,6 +16,7 @@ class HtmlCompilator
       puts "#{self.class} Compiling #{document.document_number}"
       save(compile)
     rescue StandardError => error
+      warn error
       Honeybadger.notify(error)
     end
   end
