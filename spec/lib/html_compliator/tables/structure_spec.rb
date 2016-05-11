@@ -247,6 +247,24 @@ describe HtmlCompilator::Tables do
       prtpage = table.transform('<PRTPAGE P="12345"/>')
       expect(table.body_rows.last.to_html).to eql "<tr class=\"page_break\"><td colspan=\"2\">#{prtpage}</td></tr><tr><td class=\"right\">C</td><td class=\"right\">D</td></tr>"
     end
+
+    it "handles page breaks in a ENT" do
+      table = parse <<-XML
+        <GPOTABLE CDEF="6,6" COLS="2">
+          <ROW>
+            <ENT>A</ENT>
+            <ENT>B</ENT>
+          </ROW>
+          <ROW>
+            <ENT><PRTPAGE P="12345"/>C</ENT>
+            <ENT>D</ENT>
+          </ROW>
+        </GPOTABLE>
+      XML
+
+      prtpage = table.transform('<PRTPAGE P="12345"/>')
+      expect(table.body_rows.last.to_html).to eql "<tr><td class=\"right\">#{prtpage}C</td><td class=\"right\">D</td></tr>"
+    end
   end
 
   context "malformed tables" do
