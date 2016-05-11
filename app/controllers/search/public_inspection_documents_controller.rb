@@ -14,12 +14,6 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     if valid_search?
       respond_to do |wants|
         wants.html
-        wants.rss do
-          @feed_name = "Federal Register: Public Inspection Documents Search Results"
-          @feed_description = "Federal Register: Public Inspection Documents Search Results"
-          @entries = @search.results
-          render :template => 'documents/index.rss.builder'
-        end
         wants.csv do
           redirect_to api_v1_entries_url(
             :per_page => 1000,
