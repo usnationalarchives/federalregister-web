@@ -7,18 +7,20 @@
       class: 'regulations-dot-gov-logo' %>
 
     <dl class="metadata_list">
-      <dt>Docket Number:</dt>
-      <dd>
-        <%= link_to docket_info['docket_id'],
-                    regulations_dot_gov_docket_url(docket_info['docket_id']),
-                    target: "_blank",
-                    class: 'reg_gov_docket' %>
-      </dd>
-
-      <dt>Docket Name:</dt>
-      <dd><%= h docket_info["title"] %></dd>
+      <% if docket_info['docket_id'].present? %>
+        <dt>Docket Number:</dt>
+        <dd>
+          <%= link_to docket_info['docket_id'],
+                      regulations_dot_gov_docket_url(docket_info['docket_id']),
+                      target: "_blank",
+                      class: 'reg_gov_docket' %>
+        </dd>
+      <% end %>
 
       <% if docket_info['regulation_id_number'].present? %>
+        <dt>Docket Name:</dt>
+        <dd><%= h docket_info["title"] %></dd>
+
         <dt>Docket RIN</dt>
         <% if docket_info['regulatory_plan'].present? && docket_info['regulatory_plan']['html_url'].present? %>
           <dd>
@@ -31,7 +33,6 @@
           <dd><%= docket_info['regulation_id_number'] %></dd>
         <% end %>
       <% end %>
-
 
       <% if docket_info['comments_count'] && docket_info['comments_url'] %>
         <dt>Public Comments:</dt>
