@@ -6,7 +6,7 @@ module Hyperlinker::Url
   extend ActionView::Helpers::TagHelper
 
   AUTO_LINK_RE = %r{
-              ((?: ((?:http|https):)// | www\. )
+              ((?: ((?:http|https):)// | www\d?\. )
               [^\s<\u00A0"]*)
               (?:
                 (\s*<PRTPAGE\s+P="\d+"/>\s*)
@@ -22,10 +22,14 @@ module Hyperlinker::Url
   def self.perform(text, html_options = {})
     return "" unless text.present?
     link_attributes = html_options.stringify_keys
+    coder = HTMLEntities.new(:expanded)
 
     Hyperlinker.replace_text(text, AUTO_LINK_RE) do |match|
       initial_href, scheme, page_break, final_fragment = match.captures
       punctuation = []
+
+      initial_href = coder.decode(initial_href)
+      final_fragment = coder.decode(final_fragment)
 
       if final_fragment.present?
         href = initial_href + final_fragment
@@ -48,12 +52,12 @@ module Hyperlinker::Url
         href = 'http://' + href unless scheme
 
         if final_fragment.present?
-          content_tag(:a, initial_href, link_attributes.merge('href' => href)) +
+          content_tag(:a, add_line_break_indicators(initial_href), link_attributes.merge('href' => href)) +
             page_break.html_safe +
-            content_tag(:a, final_fragment, link_attributes.merge('href' => href)) +
-            punctuation.reverse.join('')
+            content_tag(:a, add_line_break_indicators(final_fragment), link_attributes.merge('href' => href)) +
+            punctuation.reverse.map{|x| add_line_break_indicators(x) }.join('')
         else
-          content_tag(:a, initial_href, link_attributes.merge('href' => href)) + punctuation.reverse.join('')
+          content_tag(:a, add_line_break_indicators(initial_href), link_attributes.merge('href' => href)) + punctuation.reverse.map{|x| add_line_break_indicators(x) }.join('')
         end
       end
     end
@@ -63,5 +67,11 @@ module Hyperlinker::Url
   def self.auto_linked?(left, right)
     (left =~ AUTO_LINK_CRE[0] and right =~ AUTO_LINK_CRE[1]) or
       (left.rindex(AUTO_LINK_CRE[2]) and $' !~ AUTO_LINK_CRE[3])
+  end
+
+  def self.add_line_break_indicators(url_fragment)
+    fragment = url_fragment.gsub(/(?<!:)(?<!\/)([_;&\/\?=\+])/,"\\1\u200B")
+
+    HTMLEntities.new.encode(fragment, :named, :decimal).html_safe
   end
 end

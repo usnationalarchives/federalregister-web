@@ -1,12 +1,15 @@
 class HtmlCompilator::Tables::Caption
   def self.generate(options)
     table = options.fetch(:table)
-    table.node.xpath('TTITLE|NRTTITLE|TDESC').map do |node|
-      new(
-        :table => table,
-        :node => node
-      )
-    end
+    table.
+      node.
+      xpath('TTITLE|NRTTITLE|TDESC').
+      select{|node| node.text.present?}.map do |node|
+        new(
+          :table => table,
+          :node => node
+        )
+      end
   end
 
   attr_reader :table, :node

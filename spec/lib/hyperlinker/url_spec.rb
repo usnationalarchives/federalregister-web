@@ -14,7 +14,7 @@ describe Hyperlinker::Url do
 
   def generate_result(link_text, href = nil)
     href ||= link_text
-    %{<a href="#{CGI::escapeHTML href}">#{CGI::escapeHTML link_text}</a>}.gsub(/'/, '&#x27;')
+    %{<a href="#{CGI::escapeHTML(href)}">#{Hyperlinker::Url.add_line_break_indicators(link_text)}</a>}.gsub(/'/,'&#x27;')
   end
 
   it "handles brackets" do
@@ -45,7 +45,7 @@ describe Hyperlinker::Url do
     url1 = "http://api.rubyonrails.com/Foo.html"
     url2 = "http://www.ruby-doc.org/core/Bar.html"
 
-    expect(hyperlink("<p>#{url1}<br />#{url2}<br /></p>")).to eql %(<p><a href="#{url1}">#{url1}</a><br /><a href="#{url2}">#{url2}</a><br /></p>)
+    expect(hyperlink("<p>#{url1}<br />#{url2}<br /></p>")).to eql %(<p><a href="#{url1}">http://api.rubyonrails.com/&#8203;Foo.html</a><br /><a href="#{url2}">http://www.ruby-doc.org/&#8203;core/&#8203;Bar.html</a><br /></p>)
   end
 
   it "handle misc formatting" do
@@ -124,6 +124,12 @@ describe Hyperlinker::Url do
     expect(hyperlink(link13_raw)).to eql(generate_result(link13_raw))
   end
 
+  it "handles www2 URLs" do
+    link_raw    = 'www2.ed.gov'
+    link_result = generate_result(link_raw, "http://#{link_raw}")
+    expect(hyperlink("Go to #{link_raw}")).to eql(%(Go to #{link_result}))
+  end
+
   it "doesn't match non-URLs" do
     %w(foo http:// https://).each do |fragment|
       expect(hyperlink(fragment)).to eql fragment
@@ -183,6 +189,19 @@ describe Hyperlinker::Url do
     expect(hyperlink(linked_5)).to eq(linked_5)
   end
 
+  it "handles previously escaped input" do
+    result = hyperlink(<<-XML)
+      <E T="03">
+        http://energy.gov/foo?a=1&amp;b=2
+      </E>
+    XML
+    expect(result).to eql(<<-XML)
+      <E T="03">
+        <a href="http://energy.gov/foo?a=1&amp;b=2">http://energy.gov/&#8203;foo?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>
+      </E>
+    XML
+  end
+
   it "handles PRTPAGE" do
     result = hyperlink(<<-XML)
       <E T="03">
@@ -196,7 +215,7 @@ describe Hyperlinker::Url do
       <E T="03">
         <a href="http://energy.gov/fe/2015-lng-study">http://</a>
         <PRTPAGE P="81301"/>
-        <a href="http://energy.gov/fe/2015-lng-study">energy.gov/fe/2015-lng-study</a>
+        <a href="http://energy.gov/fe/2015-lng-study">energy.gov/&#8203;fe/&#8203;2015-lng-study</a>
       </E>
     XML
 
@@ -210,7 +229,7 @@ describe Hyperlinker::Url do
 
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://www.energy.gov/fe/2015-lng-study">http://www.energy.gov/fe/2015-</a>
+        <a href="http://www.energy.gov/fe/2015-lng-study">http://www.energy.gov/&#8203;fe/&#8203;2015-</a>
         <PRTPAGE P="81301"/>
         <a href="http://www.energy.gov/fe/2015-lng-study">lng-study</a>
       </E>
@@ -220,15 +239,15 @@ describe Hyperlinker::Url do
       <E T="03">
         http://www.energy.gov/fe/2015/
         <PRTPAGE P="81301"/>
-        foo/bar/baz a very interesting piece
+        foo/bar/baz?a=1&b=2 a very interesting piece
       </E>
     XML
 
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://www.energy.gov/fe/2015/foo/bar/baz">http://www.energy.gov/fe/2015/</a>
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">http://www.energy.gov/&#8203;fe/&#8203;2015/&#8203;</a>
         <PRTPAGE P="81301"/>
-        <a href="http://www.energy.gov/fe/2015/foo/bar/baz">foo/bar/baz</a> a very interesting piece
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">foo/&#8203;bar/&#8203;baz?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a> a very interesting piece
       </E>
     XML
   end

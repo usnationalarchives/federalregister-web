@@ -25,7 +25,16 @@ class HtmlCompilator::Tables::Column
 
   def alignment
     if figure?
-      :right
+      case modifier_codes
+      when /L/
+        :left
+      when /R/
+        :right
+      when /C/
+        :center
+      else
+        :right
+      end
     else
       :left
     end
@@ -36,14 +45,18 @@ class HtmlCompilator::Tables::Column
   end
 
   def border_right
-    case code[-1]
-    when 'b'
+    case modifier_codes
+    when /b/
       :bold
-    when 'p'
+    when /p/
       :double
-    when 'n'
+    when /n/
       :none
     end
+  end
+
+  def modifier_codes
+    code.gsub(/.*\d/,'')
   end
 
   def index

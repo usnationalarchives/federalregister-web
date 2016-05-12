@@ -4,6 +4,7 @@
 
   <xsl:include href="./hyperlinks.html.xslt" />
   <xsl:include href="./diacriticals.html.xslt" />
+  <xsl:include href="./print_page.html.xslt" />
   <xsl:include href="./text_nodes.html.xslt" />
   <xsl:include href="./typeface.html.xslt" />
 </xsl:stylesheet>

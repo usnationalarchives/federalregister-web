@@ -61,7 +61,7 @@ describe HtmlCompilator::Tables do
     context "it uses the column type from the GPOTABLE CDEF attribute" do
       it "works fine for basic attributes" do
         table = parse <<-XML
-          <GPOTABLE CDEF="s3,r3,xl3,xs3,xls3,3,3.3,tr3">
+          <GPOTABLE CDEF="s3,r3,xl3,xs3,xls3,3,3.3,tr3,12C,12L">
             <ROW>
               <ENT>Stub</ENT>
               <ENT>Reading</ENT>
@@ -71,6 +71,8 @@ describe HtmlCompilator::Tables do
               <ENT>Figure</ENT>
               <ENT>Alignment</ENT>
               <ENT>Tracing</ENT>
+              <ENT>Center</ENT>
+              <ENT>Left</ENT>
             </ROW>
           </GPOTABLE>
         XML
@@ -84,6 +86,8 @@ describe HtmlCompilator::Tables do
           :right,
           :right,
           :left,
+          :center,
+          :left
         ])
       end
 
