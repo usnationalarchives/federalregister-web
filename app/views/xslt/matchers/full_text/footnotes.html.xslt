@@ -5,10 +5,13 @@
     <xsl:variable name="number">
       <xsl:value-of select="descendant::SU/text()"/>
     </xsl:variable>
+    <xsl:variable name="current_page">
+      <xsl:call-template name="printed_page" />
+    </xsl:variable>
 
     <div class="footnote">
       <xsl:attribute name="id">
-        <xsl:value-of select="concat('footnote-', $number)"/>
+        <xsl:value-of select="concat('footnote-', $number, '-p', $current_page)"/>
       </xsl:attribute>
 
       <xsl:apply-templates />
@@ -17,6 +20,8 @@
         <xsl:attribute name="href">
           <xsl:text>#citation-</xsl:text>
           <xsl:value-of select="$number"/>
+          <xsl:text>-p</xsl:text>
+          <xsl:value-of select="$current_page"/>
         </xsl:attribute>
         Back to Citation
       </a>
@@ -26,7 +31,10 @@
 
   <xsl:template match="E[@T=51 and following-sibling::*[1][self::FTREF]]
     | SU[following-sibling::FTREF]">
-    <xsl:copy-of select="fr:footnotes(text())"/>
+    <xsl:variable name="current_page">
+      <xsl:call-template name="printed_page" />
+    </xsl:variable>
+    <xsl:copy-of select="fr:footnotes(text(), $current_page)"/>
   </xsl:template>
 
 

@@ -3,13 +3,12 @@ class XsltFunctions
 
   # GPO will occassionally include multiple footnotes in a single node
   # we need to break them out in order to link them properly.
-  def footnotes(nodes)
+  def footnotes(nodes, page_number)
     footnotes = nodes.first
     # sometimes XML will have FTRF that follow blank nodes so just return
     return blank_document.children unless footnotes
 
     footnotes = footnotes.content.split(' ')
-
     document = blank_document
     Nokogiri::XML::Builder.with(document) do |doc|
       doc.sup {
@@ -18,8 +17,8 @@ class XsltFunctions
         footnotes.each do |footnote|
           doc.a(
             class: "footnote-reference",
-            href: "#footnote-#{footnote}",
-            id: "citation-#{footnote}"
+            href: "#footnote-#{footnote}-p#{page_number}",
+            id: "citation-#{footnote}-p#{page_number}"
           ) {
             doc.text footnote
           }

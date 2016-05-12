@@ -28,18 +28,18 @@ describe "XSLT::FullText::Footnotes" do
 
     it "renders FTNT nodes as a div with the appropriate class and id" do
       expect(html).to have_tag('div.footnotes') do
-        with_tag "div#footnote-1.footnote"
+        with_tag "div#footnote-1-p1000.footnote"
       end
     end
 
     it "renders FTNT nodes as a div with the proper content" do
-      expect(html).to have_tag("div#footnote-1.footnote") do
+      expect(html).to have_tag("div#footnote-1-p1000.footnote") do
         with_text /1.\s+NCC, 2011. Broiler Industry Marketing Survey Report/
       end
     end
 
     it "adds a link back to the original footnote reference in the document" do
-      expect(html).to have_tag("a.back", with: {href: '#citation-1'}) do
+      expect(html).to have_tag("a.back", with: {href: '#citation-1-p1000'}) do
         with_text /Back to Citation/
       end
     end
@@ -57,6 +57,7 @@ describe "XSLT::FullText::Footnotes" do
           Footnote 1 text
         </P>
       </FTNT>
+      <PRTPAGE P="1001" />
       <P>
         <SU>2</SU>
         <FTREF/>
@@ -71,20 +72,24 @@ describe "XSLT::FullText::Footnotes" do
 
     expect_equivalent <<-HTML
       <p id="p-1" data-page="1000">
-        <sup>[<a class="footnote-reference" href="#footnote-1" id="citation-1">1</a>] </sup>
+        <sup>[<a class="footnote-reference" href="#footnote-1-p1000" id="citation-1-p1000">1</a>] </sup>
       </p>
-      <p id="p-3" data-page="1000">
-        <sup>[<a class="footnote-reference" href="#footnote-2" id="citation-2">2</a>] </sup>
+      <span class="printed-page-wrapper unprinted-element-wrapper">
+        <span class="unprinted-element-border"></span>
+        <span class="printed-page unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-tooltip-data="{&quot;page&quot;: 1001}"> </span>
+      </span>
+      <p id="p-3" data-page="1001">
+        <sup>[<a class="footnote-reference" href="#footnote-2-p1001" id="citation-2-p1001">2</a>] </sup>
       </p>
       <h1 id="footnotes">Footnotes</h1>
       <div class="footnotes">
-        <div class="footnote" id="footnote-1">
+        <div class="footnote" id="footnote-1-p1000">
           <p id="p-2" data-page="1000">1. Footnote 1 text </p>
-          <a class="back" href="#citation-1"> Back to Citation </a>
+          <a class="back" href="#citation-1-p1000"> Back to Citation </a>
         </div>
-        <div class="footnote" id="footnote-2">
-          <p id="p-4" data-page="1000">2. Footnote 2 text </p>
-          <a class="back" href="#citation-2"> Back to Citation </a>
+        <div class="footnote" id="footnote-2-p1001">
+          <p id="p-4" data-page="1001">2. Footnote 2 text </p>
+          <a class="back" href="#citation-2-p1001"> Back to Citation </a>
         </div>
       </div>
     HTML
@@ -108,7 +113,7 @@ describe "XSLT::FullText::Footnotes" do
 
       it "creates an internal link to the footnote in the text" do
         expect(html).to have_tag("sup") do
-          with_tag "a.footnote-reference", with: {href: '#footnote-2', id: "citation-2"} do
+          with_tag "a.footnote-reference", with: {href: '#footnote-2-p1000', id: "citation-2-p1000"} do
             with_text /2/
           end
         end
@@ -129,10 +134,10 @@ describe "XSLT::FullText::Footnotes" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             MitraClip System meets the substantial clinical improvement criterion
-            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4" id="citation-4">4</a>,
-            <a class="footnote-reference" href="#footnote-5" id="citation-5">5</a>,
-            <a class="footnote-reference" href="#footnote-6" id="citation-6">6</a>,
-            <a class="footnote-reference" href="#footnote-7" id="citation-7">7</a>] </sup>
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4-p1000" id="citation-4-p1000">4</a>,
+            <a class="footnote-reference" href="#footnote-5-p1000" id="citation-5-p1000">5</a>,
+            <a class="footnote-reference" href="#footnote-6-p1000" id="citation-6-p1000">6</a>,
+            <a class="footnote-reference" href="#footnote-7-p1000" id="citation-7-p1000">7</a>] </sup>
             that have consistently...
           </p>
         HTML
@@ -149,7 +154,7 @@ describe "XSLT::FullText::Footnotes" do
 
         expect_equivalent <<-HTML
           <h2 id="h-1">
-            II. Fees for FY 2015<sup>[<a class="footnote-reference" href="#footnote-1" id="citation-1">1</a>] </sup>
+            II. Fees for FY 2015<sup>[<a class="footnote-reference" href="#footnote-1-p1000" id="citation-1-p1000">1</a>] </sup>
           </h2>
         HTML
       end
@@ -171,12 +176,12 @@ describe "XSLT::FullText::Footnotes" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             MitraClip System meets the substantial clinical improvement
-            criterion<sup>[<a class="footnote-reference" href="#footnote-2" id="citation-2">2</a>,
-            <a class="footnote-reference" href="#footnote-3" id="citation-3">3</a>] </sup>
-            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4" id="citation-4">4</a>,
-            <a class="footnote-reference" href="#footnote-5" id="citation-5">5</a>,
-            <a class="footnote-reference" href="#footnote-6" id="citation-6">6</a>,
-            <a class="footnote-reference" href="#footnote-7" id="citation-7">7</a>] </sup>
+            criterion<sup>[<a class="footnote-reference" href="#footnote-2-p1000" id="citation-2-p1000">2</a>,
+            <a class="footnote-reference" href="#footnote-3-p1000" id="citation-3-p1000">3</a>] </sup>
+            based on clinical studies<sup>[<a class="footnote-reference" href="#footnote-4-p1000" id="citation-4-p1000">4</a>,
+            <a class="footnote-reference" href="#footnote-5-p1000" id="citation-5-p1000">5</a>,
+            <a class="footnote-reference" href="#footnote-6-p1000" id="citation-6-p1000">6</a>,
+            <a class="footnote-reference" href="#footnote-7-p1000" id="citation-7-p1000">7</a>] </sup>
             that have consistently...
           </p>
         HTML
@@ -196,7 +201,7 @@ describe "XSLT::FullText::Footnotes" do
         XML
 
         expect_equivalent <<-HTML
-          <p id="p-1" data-page="1000">According to <em>Morse,</em><sup>[<a class="footnote-reference" href="#footnote-15" id="citation-15">15</a>] </sup>
+          <p id="p-1" data-page="1000">According to <em>Morse,</em><sup>[<a class="footnote-reference" href="#footnote-15-p1000" id="citation-15-p1000">15</a>] </sup>
             78 percent of falls
           </p>
         HTML
