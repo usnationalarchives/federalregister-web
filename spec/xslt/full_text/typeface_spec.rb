@@ -155,5 +155,37 @@ describe "XSLT::FullText::Typeface" do
         HTML
       end
     end
+
+    context "T=0731" do
+      it "converts to an superscript" do
+        process <<-XML
+          <P>
+            2015<E T="0731">a</E>
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            2015<sup>a</sup>
+          </p>
+        HTML
+      end
+    end
+
+    context "T=0732" do
+      it "converts to an subscript" do
+        process <<-XML
+          <P>
+            NO<E T="0732">X</E>
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            NO<sub>X</sub>
+          </p>
+        HTML
+      end
+    end
   end
 end
