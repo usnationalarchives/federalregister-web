@@ -3,7 +3,12 @@ class HtmlCompilator::Tables::HeaderRow
     table = options.fetch(:table)
     node = options.fetch(:node)
 
-    cells = node.xpath('CHED').map do |cell_node|
+    cell_nodes = node.xpath('CHED')
+    if cell_nodes.empty? || cell_nodes.all?{|x| x.inner_text.try(:strip).blank? }
+      return []
+    end
+
+    cells = cell_nodes.map do |cell_node|
       HtmlCompilator::Tables::HeaderCell.new(
         :table => table,
         :node => cell_node

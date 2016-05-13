@@ -96,6 +96,23 @@ describe HtmlCompilator::Tables do
     expect(table.header_rows.first.cells.map(&:body)).to eql %w(A B)
   end
 
+  it "prints nothing for am empty header" do
+    table = parse <<-XML
+      <GPOTABLE CDEF="6,6" COLS="2">
+        <BOXHD>
+          <CHED H="1"></CHED>
+          <CHED H="1"></CHED>
+        </BOXHD>
+        <ROW>
+          <ENT>A</ENT>
+          <ENT>B</ENT>
+        </ROW>
+      </GPOTABLE>
+    XML
+
+    expect(table.header_rows).to be_empty
+  end
+
   context "basic body" do
     let(:table) do
       parse <<-XML
