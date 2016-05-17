@@ -239,7 +239,7 @@ describe Hyperlinker::Url do
       <E T="03">
         http://www.energy.gov/fe/2015/
         <PRTPAGE P="81301"/>
-        foo/bar/baz?a=1&b=2 a very interesting piece
+        foo/bar/baz?a=1&b=2. a very interesting piece
       </E>
     XML
 
@@ -247,7 +247,7 @@ describe Hyperlinker::Url do
       <E T="03">
         <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">http://www.energy.gov/&#8203;fe/&#8203;2015/&#8203;</a>
         <PRTPAGE P="81301"/>
-        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">foo/&#8203;bar/&#8203;baz?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a> a very interesting piece
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">foo/&#8203;bar/&#8203;baz?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>. a very interesting piece
       </E>
     XML
   end
