@@ -106,11 +106,15 @@ class @FR2.CommentFormLoadHandler
         @trackCommentFormOpenSuccess()
 
   error: (response)->
-    if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1"
+    if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1" || response.getResponseHeader('Comments-No-Longer-Accepted') == "1"
       responseText = JSON.parse response.responseText
       modalTitle = responseText.modalTitle
       modalHtml  = responseText.modalHtml
-      @trackCommentFormOpenError 'Regulations.gov Error'
+
+      if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1"
+        @trackCommentFormOpenError 'Regulations.gov Error'
+      else if response.getResponseHeader('Comments-No-Longer-Accepted') == "1"
+        @trackCommentFormOpenError 'Comments No Longer Accepted Error'
     else
       modalTitle = "We're sorry something went wrong"
       modalHtml = "We've encountered an error and we have been notified. Please try again later."

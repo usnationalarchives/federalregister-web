@@ -148,6 +148,20 @@ class CommentsController < ApplicationController
 
     # we're in a before filter here
     return false
+  rescue Comment::MissingCommentUrl => exception
+    response.headers['Comments-No-Longer-Accepted'] = "1"
+
+    render :json => {
+      :modalTitle => t(
+        "federal_register_dot_gov_errors.comments_no_longer_accepted.modal_title"
+      ),
+      :modalHtml => t(
+        "federal_register_dot_gov_errors.comments_no_longer_accepted.modal_html"
+      )
+    }
+
+    # we're in a before filter here
+    return false
   end
 
   def record_regulations_dot_gov_error(exception)

@@ -2,6 +2,8 @@ class Comment < ApplicationModel
   belongs_to :user
   has_one :subscription
 
+  class MissingCommentUrl < StandardError; end
+
   attr_protected :agency_name,
     :agency_participating,
     :comment_publication_notification,
@@ -119,7 +121,7 @@ class Comment < ApplicationModel
       if article.comment_url
         self.comment_form = client.get_comment_form(regulations_dot_gov_document_id)
       else
-        raise ActiveRecord::RecordNotFound
+        raise MissingCommentUrl
       end
     end
   end
