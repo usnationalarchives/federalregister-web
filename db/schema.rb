@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20160308182231) do
   end
 
   add_index "subscriptions", ["comment_id"], :name => "index_subscriptions_on_comment_id"
+  add_index "subscriptions", ["email"], :name => "index_subscriptions_on_email"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => ""
