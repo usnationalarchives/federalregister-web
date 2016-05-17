@@ -22,8 +22,8 @@ en:
       none: There are no publicly posted comments.
   federal_register_dot_gov_errors:
     comments_no_longer_accepted:
-      modal_title: "Comments No Longer Accepted"
-      modal_html: "Comments on the current document are no longer accepted on FederalRegister.gov. <br> Please check the comment due date or the 'DATES' section of document for further information."
+      modal_title: "Comment Submission Not Available"
+      modal_html: "This document is not open for comment or is not available for comment submission on FederalRegister.gov. You may want to check the DATES, ADDRESSES, or FOR FURTHER INFORMATION CONTACT sections of this document."
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: ""

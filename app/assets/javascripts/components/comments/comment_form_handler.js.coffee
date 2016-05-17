@@ -171,7 +171,7 @@ class @FR2.CommentFormHandler
     if link
       $(link).trigger 'click'
     else
-      modalTitle = "Comment submission not available"
+      modalTitle = "Comment Submission Not Available"
       modalHtml = "This document is not open for comment or is not available for comment submission on FederalRegister.gov. You may want to check the DATES, ADDRESSES, or FOR FURTHER INFORMATION CONTACT sections of this document."
       display_fr_modal modalTitle, modalHtml, $('a#start_comment')
 
