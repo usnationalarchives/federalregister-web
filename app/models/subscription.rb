@@ -5,7 +5,7 @@ class Subscription < ApplicationModel
   after_create :remove_from_bounce_list
   before_save :update_mailing_list_active_subscriptions_count
 
-  validates_format_of :email, :with => /.+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+/, :format => "is not a valid email address"
+  validates_format_of :email, :with => /\A[^ ]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+\z/, :format => "is not a valid email address"
 
   attr_accessor :search_conditions, :search_type
 

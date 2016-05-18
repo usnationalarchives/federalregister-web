@@ -56,10 +56,13 @@ class FederalRegisterStats
 
   def subscriptions(start_date = nil, end_date = nil)
     query = "SELECT COUNT(*) as count FROM subscriptions"
+    where_clause = "WHERE confirmed_at IS NOT NULL"
 
     if start_date
-      query = "#{query} WHERE created_at >= '#{start_date.to_s(:db)}' && created_at <= '#{end_date.to_s(:db)}'"
+      where_clause = "#{where_clause} AND created_at >= '#{start_date.to_s(:db)}' AND created_at <= '#{end_date.to_s(:db)}'"
     end
+
+    query = [query, where_clause].join(' ')
 
     mysql.query(query).first["count"]
   end
