@@ -1,3 +1,6 @@
 .doc-content-area .document-graphic {
-  .document-graphic-image.full { width: 100%; }
+  text-align: center;
+
+  .document-graphic-link { display: inline-block; }
+  .document-graphic-image { width: 70%; }
 }

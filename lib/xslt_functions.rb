@@ -115,7 +115,7 @@ class XsltFunctions
       ) {
         doc.img(
           :class => image_class,
-          :src => graphic_url('large', graphic_identifier)
+          :src => graphic_url('original', graphic_identifier)
         )
       }
     end
