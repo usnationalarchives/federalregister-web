@@ -20,7 +20,7 @@ rss_helper:
   url: "https://www.federalregister.gov"
 
 officialness:
-  start_date: 2017-12-01
+  start_date: 2016-05-01
 
 feature_flags:
   unified_agenda:
