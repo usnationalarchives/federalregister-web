@@ -126,6 +126,23 @@ describe "XSLT::FullText::Images" do
       end
     end
 
+    it "render the proper inline style for width" do
+      process <<-XML
+        <GPH DEEP="320" SPAN="1">
+        <GID>EP01MY09.019</GID>
+        </GPH>
+      XML
+
+      expect(html).to have_tag('p.document-graphic') do
+        with_tag(
+          'img.document-graphic-image',
+          with: {
+            'style' => 'max-height: 512px'
+          }
+        )
+      end
+    end
+
     context "but with an image missing" do
       it "notifies honeybadger" do
         Honeybadger.stub(:notify)
