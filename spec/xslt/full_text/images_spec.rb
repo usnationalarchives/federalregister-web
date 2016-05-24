@@ -52,7 +52,7 @@ describe "XSLT::FullText::Images" do
 
         expect(html).to have_tag 'img', with: {
             class: 'document-graphic-image full',
-            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/large.png"
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
           }
       end
     end
@@ -81,7 +81,7 @@ describe "XSLT::FullText::Images" do
 
         expect(html).to have_tag 'img', with: {
             class: 'document-graphic-image full',
-            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/large.png"
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original.png"
           }
       end
     end
@@ -97,7 +97,7 @@ describe "XSLT::FullText::Images" do
         with_tag(
           'a.document-graphic-link',
           with: {
-            'data-width' => '3',
+            'data-col-width' => '3',
             'data-height' => '640'
           }
         ) do
@@ -117,7 +117,7 @@ describe "XSLT::FullText::Images" do
         with_tag(
           'a.document-graphic-link',
           with: {
-            'data-width' => '1',
+            'data-col-width' => '1',
             'data-height' => '320'
           }
         ) do
