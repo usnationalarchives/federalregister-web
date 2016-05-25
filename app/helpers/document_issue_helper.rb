@@ -14,14 +14,8 @@ module DocumentIssueHelper
 
       tags = []
 
-      # we want the last level of hierarchy to be linked unless it represents multiple documents
       if subject_heading_required?(level, docs_only_at_this_level, nested_docs)
-        if nested_docs.empty? && docs_only_at_this_level.size == 1
-          header = link_to subject_heading,
-            url_for_subject_heading(agency, docs_only_at_this_level)
-        else
-          header = subject_heading
-        end
+        header = subject_heading
 
         tags << content_tag("h#{level+3}", header, class: "toc-subject-level")
       end
