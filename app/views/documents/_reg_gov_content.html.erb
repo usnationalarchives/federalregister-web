@@ -52,7 +52,7 @@
         <% docket_info['supporting_documents'].each do |doc| %>
         <dd>
           <%= link_to truncate_words(doc['title'], :length => 65),
-                      regulations_dot_gov_supporting_document_url(doc['id']),
+                      regulations_dot_gov_supporting_document_url(doc['document_id']),
                       :target => "_blank",
                       :title => doc['title'],
                       :class => "tip_left reg_gov_supporting_documents" %>
