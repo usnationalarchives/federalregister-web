@@ -153,6 +153,7 @@
 
   .toc-documents {
     font-size: modular-scale(0);
+    overflow: hidden;
 
     a {
       @extend %table-of-contents-link;
