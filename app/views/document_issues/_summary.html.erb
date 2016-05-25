@@ -1,42 +1,20 @@
 <!-- issue document metadata -->
 <div class="row fr-head-metadata-bar fr-head-metadata-bar-official">
-  <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
+  <div class="<%= bootstrap_col xs: 3, md: 3 %> fr-head-meta-label-holder">
     <div class="fr-head-meta-label">
       <i class="icon-fr2-calendar-alt"></i>
       <h4>
-        <%= link_to home ? "Current Issue" : presenter.date,
-          document_issue_path(presenter.date)
-        %>
+        <%= link_to(
+          home ? "Current Issue" : presenter.date,
+          home ? current_document_issue_path : document_issue_path(presenter.date)
+        ) %>
       </h4>
     </div>
   </div>
 
-  <div class="col-xs-6 col-md-6 fr-head-meta-counts">
+  <div class="<%= bootstrap_col xs: 9, md: 9 %> fr-head-meta-counts">
     <%= render partial: 'document_issues/summary_document_counts', locals: {
       presenter: presenter
     } %>
-  </div>
-
-  <div class="col-xs-3 col-md-3">
-    <% if @home %>
-      <a href=""
-        class="link public-inspection-toggle toggle"
-        data-toggle='<%= {
-          toggleTarget: "#pi-metadata-bar",
-          showText: "View Public Inspection",
-          hideText: "Hide Public Inspection",
-          textTarget: ".link-text"
-        }.to_json %>'
-      >
-        <span class="icon-fr2 icon-fr2-clipboard public-inspection"></span>
-        <span class="link-text">View Public Inspection</span>
-      </a>
-    <% else %>
-      <%= link_to public_inspection_issue_path(presenter.date),
-        class: "link public-inspection-toggle" do %>
-        <span class="icon-fr2 icon-fr2-clipboard public-inspection"></span>
-        <span class="link-text">Go to Public Inspection</span>
-      <% end %>
-    <% end %>
   </div>
 </div>

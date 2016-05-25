@@ -7,7 +7,7 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
-    margin-top: 9px;
+    margin-top: 6px;
 
     a { color: $main-color; }
 
@@ -82,6 +82,7 @@
 
   .fr-head-meta-counts {
     font-size: modular-scale(0);
+    font-weight: 400;
 
     .row { margin-bottom: 0 !important; }
 
@@ -107,7 +108,7 @@
 
     li {
       float: left;
-      font-size: modular-scale(-1);
+      font-size: modular-scale(0);
       list-style-type: none;
       margin-right: 10px;
     }
@@ -181,10 +182,10 @@
 
     li {
       margin-bottom: 3px;
-      padding: 1px 15px 0;
+      padding: 1px 15px 0 0;
       width: inherit;
 
-      h4 {
+      h5 {
         border-bottom: 1px solid $text-light;
         color: $text;
         margin: 0;
@@ -210,7 +211,8 @@
 
     .document-stats {
       float: left;
-      margin: 0 0 0 40px;
+      margin-left: 0;
+      margin-top: 10px;
       width: 316px;
 
       li {
@@ -226,10 +228,5 @@
 // scss-lint:disable MergeableSelector
 .pi-metadata-bar.home {
   .fr-list.with-stats li { padding: 0; }
-
-  .document-stats {
-    margin-left: 0;
-    margin-top: 10px;
-  }
 }
 // scss-lint:enable MergeableSelector

@@ -134,9 +134,10 @@
   h2,
   h4 {
     @extend %right_column_header;
-    font-weight: normal;
     margin-left: 0 !important;
   }
+
+  h2 { font-weight: normal; }
 
   .description {
     background-color: $color-public-inspection-light;

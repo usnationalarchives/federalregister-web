@@ -1,48 +1,24 @@
 <!-- issue public inspection metadata -->
 <div id="pi-metadata-bar" class="row pi-metadata-bar <%= home ? 'home' : '' %>">
   <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
-    <div class="col-xs-3 col-md-3 fr-head-meta-label-holder">
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <i class="icon-fr2-clipboard"></i>
         <h4>
           <%= link_to(
             home ? "Public Inspection" : presenter.date,
-            public_inspection_issue_path(presenter.date)
-          )%>
+            home ? current_public_inspection_issue_path : public_inspection_issue_path(presenter.date)
+          ) %>
         </h4>
       </div>
-
-      <% if home %>
-        <span class="icon-fr2 icon-fr2-stop-hand"></span>
-      <% end %>
     </div>
 
     <div class="<%= bootstrap_col xs: 9, md: 9 %> fr-head-meta-counts">
       <div class="row">
-        <% if home %>
-          <div class="<%= bootstrap_col xs: 6, md: 6 %>">
-            <div class="description">
-              <p>
-                The <a href="">Public Inspection page</a> on FederalRegister.gov
-                offers a preview of documents scheduled to appear in the next day's
-                Federal Register issue. The Public Inspection page may also
-                include documents scheduled for later issues, at the request
-                of the issuing agency.
-              </p>
-              <p>
-                <%= link_to "Learn more about public inspection here.",
-                  public_inspection_learn_path %>
-              </p>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="col-xs-<%= home ? 6 : 12 %> col-md-<%= home ? 6 : 12 %>">
-          <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
-            full_width: home,
-            presenter: presenter
-          } %>
-        </div>
+        <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
+          full_width: false,
+          presenter: presenter
+        } %>
       </div>
     </div>
 

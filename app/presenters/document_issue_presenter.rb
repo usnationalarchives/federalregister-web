@@ -37,6 +37,14 @@ class DocumentIssuePresenter
       )
   end
 
+  def document_count
+    documents.count
+  end
+
+  def agency_count
+    @agency_count ||= documents.map(&:excluding_parent_agencies).flatten.map(&:id).uniq.compact.count
+  end
+
   def significant_documents
     @significant_documents ||= SignificantDocument.new(date)
   end
@@ -116,14 +124,18 @@ class DocumentIssuePresenter
     feeds
   end
 
+  def search_conditions
+    QueryConditions::DocumentConditions.published_on(date)
+  end
+
   private
 
   def documents
     @documents ||= Document.search(
-      conditions: {
-        publication_date: {is: date},
-      },
-      fields: [:end_page, :publication_date, :start_page],
+      search_conditions.deep_merge(
+        per_page: 1000,
+        fields: [:end_page, :publication_date, :start_page, :agencies]
+      )
     )
   end
 end

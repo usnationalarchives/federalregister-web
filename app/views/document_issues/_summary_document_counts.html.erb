@@ -1,15 +1,27 @@
 <% navigation ||= false %>
 
 <ul class="fr-list fr-list-inline">
+  <li>
+    <%= link_to_unless presenter.document_count == 0,
+      pluralize(presenter.document_count, 'document'),
+      documents_search_path(presenter.search_conditions)
+    %>
+    from <%= pluralize(presenter.agency_count, 'agency') %>
+
+    <% unless navigation %>
+      (<%= pluralize(presenter.page_count, 'Page') %>)
+    <% end %>
+  </li>
+</ul>
+
+<ul class="fr-list fr-list-inline">
   <% presenter.document_counts.sort_by(&:name).each do |doc_type| %>
     <li>
       <%= link_to pluralize(doc_type.count, doc_type.name),
         documents_search_path(doc_type.search_conditions) %>
     </li>
   <% end %>
-</ul>
 
-<ul class="fr-list fr-list-inline">
   <li>
     <%= link_to_if presenter.significant_documents?,
       pluralize(
@@ -20,10 +32,4 @@
         presenter.significant_documents.search_conditions
       ) %>
   </li>
-
-  <% unless navigation %>
-    <li class='page-count'>
-      <%= pluralize(presenter.page_count, 'Page') %>
-    </li>
-  <% end %>
 </ul>
