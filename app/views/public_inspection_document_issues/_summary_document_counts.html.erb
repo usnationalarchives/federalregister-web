@@ -19,10 +19,7 @@
             <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
               <li>
                 <%= link_to pluralize(facet.count, facet.name),
-                  public_inspection_search_path(
-                    filing_type.search_conditions(facet.name)
-                  )
-                %>
+                  public_inspection_search_path(facet.search_conditions) %>
               </li>
             <% end %>
           </ul>

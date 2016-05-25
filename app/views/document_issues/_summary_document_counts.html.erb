@@ -22,14 +22,15 @@
     </li>
   <% end %>
 
-  <li>
-    <%= link_to_if presenter.significant_documents?,
-      pluralize(
-        presenter.significant_documents.count,
-        presenter.significant_documents.name
-      ),
-      documents_search_path(
-        presenter.significant_documents.search_conditions
-      ) %>
-  </li>
+  <% if presenter.significant_documents? %>
+    <li>
+      <%= link_to pluralize(
+          presenter.significant_documents.count,
+          presenter.significant_documents.name
+        ),
+        documents_search_path(
+          presenter.significant_documents.search_conditions
+        ) %>
+    </li>
+  <% end %>
 </ul>

@@ -29,12 +29,7 @@ class DocumentIssuePresenter
   end
 
   def document_counts
-   @document_counts ||= DocumentTypeFacet.
-      search(
-        conditions: {
-          publication_date: {is: date}
-        }
-      )
+   @document_counts ||= DocumentTypeFacet.search(search_conditions)
   end
 
   def document_count

@@ -95,15 +95,8 @@ class PublicInspectionIssuePresenter
       "Regular Filing"
     end
 
-    def search_conditions(type=nil)
-      conditions = QueryConditions::PublicInspectionDocumentConditions.regular_filing
-      if type
-        conditions.deep_merge!(
-          {
-            conditions: {type: DocumentType.new(type).identifier}
-          }
-        )
-      end
+    def search_conditions
+      QueryConditions::PublicInspectionDocumentConditions.regular_filing
     end
 
     def filings
@@ -120,15 +113,8 @@ class PublicInspectionIssuePresenter
       "Special Filing"
     end
 
-    def search_conditions(type=nil)
-      conditions = QueryConditions::PublicInspectionDocumentConditions.special_filing
-      if type
-        conditions.deep_merge!(
-          {
-            conditions: {type: DocumentType.new(type).identifier}
-          }
-        )
-      end
+    def search_conditions
+      QueryConditions::PublicInspectionDocumentConditions.special_filing
     end
 
     def filings
