@@ -39,5 +39,18 @@ describe "XSLT::FullText::TextOnlyNodes" do
       with_text /A copy of the proposed settlement may be obtained.../
     end
   end
-end
 
+  it "renders AGY node appropriately" do
+    process <<-XML
+      <AGY>
+        <HD SOURCE="HED">AGENCY:</HD>
+        <P>Animal and Plant Health Inspection Service, USDA.</P>
+      </AGY>
+    XML
+
+    expect_equivalent <<-HTML
+      <h1 id="h-1">AGENCY:</h1>
+      <p id="p-1" data-page="1000">Animal and Plant Health Inspection Service, USDA.</p>
+    HTML
+  end
+end

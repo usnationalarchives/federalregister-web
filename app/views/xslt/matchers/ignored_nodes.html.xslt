@@ -17,7 +17,8 @@
   <xsl:template match="SUBJECT | AGENCY | SUBAGY | CFR | DEPDOC | RIN" />
 
   <!-- These tags don't contain other child nodes so we'll ignore them too -->
-  <xsl:template match="AGY[count(child::P) &lt; 2]" />
+  <!-- we no longer ignore AGY tags but left here for reference -->
+  <!-- <xsl:template match="AGY[count(child::P) &lt; 2]" /> -->
 
 
   <!-- Ignore tags we handle explicitely elsewhere -->

@@ -113,6 +113,10 @@ describe "XSLT::FullText::Headers" do
 
     # note: the header id's increase but start at 3
     # see app/views/xslt/headers.html.xslt for explanation
+    expect(html).to have_tag('h1#h-1') do
+      with_text "AGENCY:"
+    end
+
     expect(html).to have_tag('h1#h-2') do
       with_text "ACTION:"
     end

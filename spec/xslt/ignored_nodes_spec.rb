@@ -62,47 +62,4 @@ describe "XSLT::IgnoredNodes" do
       expect_equivalent '<h1 id="h-1">Not Ignored</h1>'
     end
   end
-
-  context "nodes in the preamble that have child nodes" do
-    context "and are closed properly" do
-      it "ignores the AGY node" do
-        process <<-XML
-          <AGY>
-            <HD SOURCE="HED">AGENCY:</HD>
-            <P>Animal and Plant Health Inspection Service, USDA.</P>
-          </AGY>
-          <HD SOURCE="HED">Not Ignored</HD>
-        XML
-
-        expect_equivalent '<h1 id="h-2">Not Ignored</h1>'
-      end
-    end
-
-    # this is obviously not how things *should* be
-    # however when it happens this ensures the rest of the
-    # document doesn't get hidden
-    context "and are not closed properly" do
-      it "does not ignore the contents of the AGY node" do
-        process <<-XML
-          <AGY>
-            <HD SOURCE="HED">AGENCY:</HD>
-            <P>Animal and Plant Health Inspection Service, USDA.</P>
-
-            <HD SOURCE="HD2">Some document header:</HD>
-            <P>Additional stuff...</P>
-            <P>Additional stuff...</P>
-          </AGY>
-        XML
-
-        expect_equivalent <<-HTML
-          <h1 id="h-1">AGENCY:</h1>
-          <p id="p-1" data-page="1000">Animal and Plant Health Inspection Service, USDA.</p>
-
-          <h3 id="h-2">Some document header:</h3>
-          <p id="p-2" data-page="1000">Additional stuff...</p>
-          <p id="p-3" data-page="1000">Additional stuff...</p>
-        HTML
-      end
-    end
-  end
 end

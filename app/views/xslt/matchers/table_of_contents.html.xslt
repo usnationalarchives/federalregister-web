@@ -26,26 +26,21 @@
   </xsl:template>
 
   <xsl:template match="HD[@SOURCE='HED' or @SOURCE='HD1' or @SOURCE = 'HD2' or @SOURCE = 'HD3' or @SOURCE = 'HD4'][not(ancestor::NOTE|ancestor::FP|ancestor::AUTH)]" mode="table_of_contents">
-    <xsl:choose>
-      <xsl:when test="text() = 'AGENCY:'"/>
-      <xsl:otherwise>
-        <li>
-          <xsl:attribute name="class">
-            <xsl:text>level-</xsl:text>
-            <xsl:call-template name="header_level">
-              <xsl:with-param name="source" select="@SOURCE"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <a>
-            <xsl:attribute name="href">
-              <xsl:text>#</xsl:text>
-              <xsl:call-template name="header_id" />
-            </xsl:attribute>
-            <xsl:apply-templates/>
-          </a>
-        </li>
-      </xsl:otherwise>
-    </xsl:choose>
+    <li>
+      <xsl:attribute name="class">
+        <xsl:text>level-</xsl:text>
+        <xsl:call-template name="header_level">
+          <xsl:with-param name="source" select="@SOURCE"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:text>#</xsl:text>
+          <xsl:call-template name="header_id" />
+        </xsl:attribute>
+        <xsl:apply-templates/>
+      </a>
+    </li>
   </xsl:template>
 
   <xsl:template match="LSTSUB/CFR" mode="table_of_contents">
