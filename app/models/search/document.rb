@@ -7,21 +7,21 @@ class Search::Document < Search::Base
     :conditions
 
   DOCUMENT_SEARCH_CONDITIONS = [
-    :publication_date,
-    :effective_date,
+    :cfr,
     :citing_document_numbers,
     :comment_date,
-    :small_entity_ids,
-    :presidential_document_type,
-    :president,
-    :section_ids,
-    :significant,
-    :regulation_id_number,
-    :cfr,
+    :correction,
+    :effective_date,
     :near,
-    :topics,
+    :president,
+    :presidential_document_type,
+    :publication_date,
+    :regulation_id_number,
+    :section_ids,
     :sections,
-    :correction
+    :significant,
+    :small_entity_ids,
+    :topics,
   ]
 
   def search_type

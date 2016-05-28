@@ -16,10 +16,10 @@ class Agency < FederalRegister::Agency
 
   def total_document_count
     @document_count ||= ::Document.search(
-        search_conditions.deep_merge!(
-          metadata_only: true
-        )
-      ).count
+      search_conditions.deep_merge!(
+        metadata_only: true
+      )
+    ).count
   end
 
   def documents(options={})
