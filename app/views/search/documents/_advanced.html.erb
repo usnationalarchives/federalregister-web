@@ -52,12 +52,11 @@
     required: false,
     wrapper_html: {class: 'reg_id'} %>
 
-  <li class="boolean optional significant" id="conditions_significant_input">
-    <label for="conditions_significant">
-      <%= f.check_box :significant, {}, '1', '' %>
-      Deemed Significant Under EO 12866
-    </label>
-  </li>
+  <%= f.input :significant,
+    as: :check_boxes,
+    collection: [['Deemed Significant Under EO 12866', 1]],
+    label: "Significant Regulatory Actions",
+    required: false %>
 
   <%= f.input :small_entity_ids,
     as: :check_boxes,
