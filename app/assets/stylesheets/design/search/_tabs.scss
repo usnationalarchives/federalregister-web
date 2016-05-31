@@ -37,6 +37,10 @@
       &:visited { color: $text-inactive; }
       &:hover { color: $fr-orange; }
     }
+
+    &.public-inspection a {
+      &:hover { color: $color-public-inspection-dark; }
+    }
   }
 
   .on {
@@ -60,5 +64,13 @@
     font-size: modular-scale(-1);
     font-weight: normal;
     margin: -5px 0 -5px 5px;
+  }
+}
+
+&.public-inspection-document-search .tabs {
+  .on {
+    color: $color-public-inspection-dark;
+
+    &:hover { color: $color-public-inspection-dark; }
   }
 }

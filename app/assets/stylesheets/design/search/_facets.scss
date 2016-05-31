@@ -55,3 +55,19 @@
     }
   }
 }
+
+&.public-inspection-document-search .facets {
+  a {
+    &.facet-name {
+      color: $color-public-inspection;
+
+      &:hover { color: $color-public-inspection-dark; }
+    }
+  }
+
+  .fr_button.secondary {
+    background-color: $color-public-inspection;
+
+    &:hover { background-color: $color-public-inspection-dark; }
+  }
+}

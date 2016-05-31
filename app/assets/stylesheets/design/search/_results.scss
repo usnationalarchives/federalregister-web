@@ -82,7 +82,7 @@
       h5 a {
         color: $color-public-inspection;
 
-        &:hover { color: darken($color-public-inspection, 10); }
+        &:hover { color: $color-public-inspection-dark; }
       }
     }
 
@@ -136,6 +136,17 @@
         background-color: $fr-light-yellow;
         padding: 0px 3px;
       }
+    }
+  }
+}
+
+.public-inspection-document-search .search-info {
+  .filterable-list-info {
+    border-bottom-color: $color-public-inspection-dark;
+
+    h2,
+    .small-stack {
+      color: $color-public-inspection-dark;
     }
   }
 }

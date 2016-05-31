@@ -15,6 +15,7 @@ $color-enhanced-dark: darken($color-enhanced, 20);
 $color-public-inspection:           #8a3737;
 $color-public-inspection-light:     #fbf2f5;
 $color-public-inspection-light-alt: #EBD1D1;
+$color-public-inspection-dark:      darken($color-public-inspection, 10);
 
 $color-reader-aid:                  #b462a2;
 $color-reader-aid-med:              #fbdfeb;
