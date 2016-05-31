@@ -34,9 +34,12 @@
         </div>
 
         <p class="metadata">
+          <% if type == :public_inspection %>
+            scheduled for publication
+          <% end %>
           by <%= document.agency_name_sentence %>
           on
-          <%= link_to document.publication_date,
+          <%= link_to_unless type == :public_inspection, document.publication_date,
             document_issue_path(document) %>.
         </p>
 
