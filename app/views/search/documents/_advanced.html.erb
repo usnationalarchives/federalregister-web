@@ -84,16 +84,18 @@
   <% end %>
 <% end %>
 
-<%= f.fields_for :near do |location_f| %>
-  <% f.inputs name: "Mentioning Locations Near", class: 'zip' do %>
-    <%= location_f.input :location,
-      input_html: {placeholder:  "Zip Code"},
-      value: @search.near.try(:location) %>
+<% if Settings.search.location %>
+  <%= f.fields_for :near do |location_f| %>
+    <% f.inputs name: "Mentioning Locations Near", class: 'zip' do %>
+      <%= location_f.input :location,
+        input_html: {placeholder:  "Zip Code"},
+        value: @search.near.try(:location) %>
 
-    <%= location_f.input :within,
-      as: :select,
-      collection: [5, 10, 25, 50, 100, 200].map{|n| ["#{n} miles", n]},
-      selected: @search.near.try(:within) %>
+      <%= location_f.input :within,
+        as: :select,
+        collection: [5, 10, 25, 50, 100, 200].map{|n| ["#{n} miles", n]},
+        selected: @search.near.try(:within) %>
+    <% end %>
   <% end %>
 <% end %>
 
