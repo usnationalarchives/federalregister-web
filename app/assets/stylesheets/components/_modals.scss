@@ -185,7 +185,10 @@
           margin-bottom: 5px;
 
           input[type=text] {
-            @include placeholder($fr-gray-70, italic);
+            @include placeholder {
+              color: $fr-gray-70;
+              font-style: italic;
+            }
 
             font-size: modular-scale(-1);
             height: 25px;

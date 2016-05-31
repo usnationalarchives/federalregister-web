@@ -47,6 +47,12 @@
     clear: both;
 
     input {
+      @include placeholder {
+        color: $fr-gray-15;
+        font-style: italic;
+        font-weight: 400;
+      }
+
       position: relative;
       top: 10px;
     }
@@ -146,6 +152,12 @@
         position: relative;
 
         input {
+          @include placeholder {
+            color: $fr-gray-15;
+            font-style: italic;
+            font-weight: 400;
+          }
+
           margin-left: 7px;
           position: relative;
           top: 6px;

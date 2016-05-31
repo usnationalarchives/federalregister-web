@@ -357,7 +357,10 @@
         }
 
         input[placeholder] {
-          @include placeholder($fr-gray-70, italic)
+          @include placeholder {
+            color: $fr-gray-70;
+            font-style: italic;
+          }
         }
       }
     }

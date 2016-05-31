@@ -1,10 +1,7 @@
-@mixin placeholder($color, $font-style) {
-  &::input-placeholder,
-  &::-webkit-input-placeholder,
-  &::-moz-placeholder,
-  &:-moz-placeholder,
-  &:-ms-input-placeholder {
-    color: $color;
-    font-style: $font-style;
-  }
+@mixin placeholder {
+  &::input-placeholder         {@content}
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
 }
