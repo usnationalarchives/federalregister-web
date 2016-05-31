@@ -55,7 +55,7 @@ class Search::Base
   end
 
   def order
-    conditions[:order] || "relevance"
+    params[:order] || "relevant"
   end
 
   def valid_conditions
