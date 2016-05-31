@@ -53,8 +53,11 @@ $link: $fr-link-dark;
 $link-hover: $fr-orange;
 $link-visited: $link;
 
+$current-issue-link: $fr-green;
+$current-issue-link-hover: darken($current-issue-link, 15);
+
 $public-inspection-link: $color-public-inspection;
-$public-inspection-link-hover: darken($color-public-inspection, 20);
+$public-inspection-link-hover: darken($public-inspection-link, 20);
 
 /* text */
 $text-inactive: $med-gray;

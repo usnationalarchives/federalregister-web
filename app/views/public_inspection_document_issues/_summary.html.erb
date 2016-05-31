@@ -3,11 +3,15 @@
   <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
     <div class="<%= bootstrap_col xs: 3, md: 3 %> fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
-        <i class="icon-fr2-clipboard"></i>
         <h4>
+          <%
+            link_text = home ? "Public Inspection" : presenter.date
+            link_path = home ? current_public_inspection_issue_path : public_inspection_issue_path(presenter.date)
+          %>
+
           <%= link_to(
-            home ? "Public Inspection" : presenter.date,
-            home ? current_public_inspection_issue_path : public_inspection_issue_path(presenter.date)
+            "<i class=\"icon-fr2-clipboard\"></i>#{link_text}".html_safe,
+            link_path
           ) %>
         </h4>
       </div>

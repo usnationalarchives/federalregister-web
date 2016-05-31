@@ -18,22 +18,43 @@
 
 .fr-head-metadata-bar {
   &.fr-head-metadata-bar-official {
-    @include fr-metadata-bar-header($fr-green, $color-enhanced-light);
+    @include fr-metadata-bar-header($current-issue-link, $color-enhanced-light);
 
-    .fr-head-meta-label i { color: $color-enhanced-light; }
+    .fr-head-meta-label a {
+      i { color: $color-enhanced-light; }
+
+      &:hover {
+        color: $current-issue-link-hover;
+
+        i { color: $current-issue-link-hover; }
+      }
+    }
   }
 
   &.fr-head-metadata-bar-late {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
 
-    .fr-head-meta-label i { color: $color-public-inspection-light; }
+    .fr-head-meta-label i {
+      color: $color-public-inspection-light;
+      &:hover { color: $public-inspection-link-hover; }
+    }
   }
 
   &.fr-head-metadata-bar-public-inspection {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
+
     a {
       color: $public-inspection-link;
-      &:hover { color: $public-inspection-link-hover; }
+    }
+
+    .fr-head-meta-label a {
+      i { color: $color-public-inspection-light; }
+
+      &:hover {
+        color: $public-inspection-link-hover;
+
+        i { color: $public-inspection-link-hover; }
+      }
     }
 
     .fr-head-meta-label-holder {
@@ -65,18 +86,20 @@
     height: 60px;
     padding: 4px 15px 0 24px;
 
-    i {
-      font-size: 34px;
-      margin-right: 5px;
-      position: relative;
-      top: 7px;
-    }
-
     h4 {
       display: inline-block;
       font-weight: 500;
       margin: 0 !important;
       text-decoration: underline;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 34px;
+      margin-right: 5px;
+      position: relative;
+      text-decoration: none;
+      top: 7px;
     }
   }
 
