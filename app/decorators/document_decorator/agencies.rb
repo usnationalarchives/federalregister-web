@@ -15,6 +15,7 @@ module DocumentDecorator::Agencies
 
         "#{definite_article ? 'the' : ''} #{h.link_to_if autolink, a.name, a.url}".strip.html_safe
       }
+      }.uniq
     elsif agency_names.present?
       agencies = document.agency_names.map
     end
