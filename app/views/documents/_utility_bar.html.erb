@@ -47,6 +47,12 @@
 
         <% if Settings.render_documents_from_raw_xml %>
           <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
+        <% elsif Settings.render_documents_from_staging %>
+          <%
+            url, path = document.body_html_url.split('full_text/')
+            url = "#{url}table_of_contents/#{path}"
+          %>
+          <%= HTTParty.get(url).html_safe %>
         <% else %>
           <%= esi document_table_of_contents_path(document) %>
         <% end %>

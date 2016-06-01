@@ -20,8 +20,9 @@ regulations_dot_gov:
 # APPLICATION SETTINGS
 app_url: 'http://127.0.0.1:8080'
 
-# document page full text rendering - false means use esi's
+# document page full text rendering
 render_documents_from_raw_xml: false
+render_documents_from_staging: true
 
 # urls for mailers, redirects, etc
 fr_comment_url: 'http://127.0.0.1:8080/my/comments'
