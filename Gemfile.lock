@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git@github.com:criticaljuncture/federal_register.git
-  revision: b0e6c4aab3f238a68c540ef96254dbc500d8e7d4
+  revision: afcabdfe04d655f1ce36b36c5daaf2d07ab0d5a9
   ref: officialness
   specs:
     federal_register (0.5.0)

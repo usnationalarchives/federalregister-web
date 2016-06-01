@@ -14,9 +14,12 @@
       <% if document.agencies.present? %>
         <dt><%= pluralize_without_count document.agencies.size, 'Agency' %>:</dt>
 
-        <% document.agencies.each do |agency| -%>
+        <% document.linked_agency_names(
+          definite_article: false,
+          name_method: :raw_name
+        ).each do |agency| -%>
           <dd>
-            <%= link_to_if agency.url.present?, agency.name, agency.url %>
+            <%= agency %>
           </dd>
         <% end -%>
       <% end %>

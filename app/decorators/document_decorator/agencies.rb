@@ -8,13 +8,16 @@ module DocumentDecorator::Agencies
   def linked_agency_names(options={})
     autolink = options.fetch(:links){ true }
     definite_article = options.fetch(:definite_article, true)
+    name_method = options.fetch(:name_method, :name)
 
     if agencies.present?
       agencies = document.excluding_parent_agencies.map{|a|
-        next if a.name.nil?
+        agency_name = a.send(name_method)
+        next if agency_name.nil?
 
-        "#{definite_article ? 'the' : ''} #{h.link_to_if autolink, a.name, a.url}".strip.html_safe
-      }
+        agency_name = agency_name.downcase.capitalize_most_words if name_method == :raw_name
+
+        "#{definite_article ? 'the' : ''} #{h.link_to_if autolink && a.url.present?, agency_name, a.url}".strip.html_safe
       }.uniq
     elsif agency_names.present?
       agencies = document.agency_names.map
