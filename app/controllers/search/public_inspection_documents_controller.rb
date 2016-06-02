@@ -14,12 +14,23 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     if valid_search?
       respond_to do |wants|
         wants.html
+
         wants.csv do
-          redirect_to api_v1_entries_url(
-            :per_page => 1000,
-            :conditions => params[:conditions],
-            :fields => [:citation, :document_number, :title, :publication_date, :type, :agency_names, :html_url, :page_length],
+          redirect_to public_inspection_search_api_url(
+            shared_search_params.merge(
+              conditions: params[:conditions],
+              per_page: 500
+            ),
             :format => :csv
+          )
+        end
+
+        wants.json do
+          redirect_to public_inspection_search_api_url(
+            shared_search_params.merge(
+              conditions: params[:conditions]
+            ),
+            format: :json
           )
         end
       end
@@ -53,6 +64,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   end
 
   private
+
   def load_presenter
     @presenter ||= SearchPresenter::PublicInspection.new(params)
     @search = @presenter.search

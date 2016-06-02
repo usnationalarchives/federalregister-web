@@ -17,7 +17,10 @@ class Search::DocumentsController < ApplicationController
 
         wants.csv do
           redirect_to documents_search_api_url(
-            shared_search_params.merge(conditions: params[:conditions]),
+            shared_search_params.merge(
+              conditions: params[:conditions],
+              per_page: 500
+            ),
             format: :csv
           )
         end

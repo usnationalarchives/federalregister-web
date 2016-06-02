@@ -47,6 +47,16 @@
 
       <div class="actions">
         <%= subscribe_link conditions_for_subscription(@search) %>
+
+        <span class="other-formats">
+          Other Formats:
+          <%= link_to 'CSV/Excel', public_inspection_search_path(
+              params.except(:controller, :action, :quiet).merge(format: :csv)
+            ) %>,
+          <%= link_to 'JSON', public_inspection_search_path(
+              params.except(:controller, :action, :quiet).merge(format: :json)
+            ) %>
+        </span>
       </div>
 
 
