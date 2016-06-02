@@ -23,13 +23,6 @@ class Search::PublicInspection < Search::Base
     ).count
   end
 
-  FACETS = [:agency]
-  FACETS.each do |facet|
-    define_method("#{facet}_ids") do
-      conditions[facet.to_s.pluralize].present? || conditions["#{facet}_ids"].present?
-    end
-  end
-
   (SEARCH_CONDITIONS + PUBLIC_INSPECTION_SEARCH_CONDITIONS).each do |param|
     define_method(param) do
       conditions[param]

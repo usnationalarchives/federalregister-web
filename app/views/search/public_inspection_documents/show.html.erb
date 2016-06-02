@@ -39,9 +39,9 @@
                 ) unless @search.type.present? %>
 
                 <%= esi( public_inspection_search_facets_path(
-                    params.except(:action).merge(:facet => 'agency')
+                    params.except(:action).merge(:facet => 'agencies')
                   )
-                ) unless @search.agency_ids.present? %>
+                ) unless @search.agencies.present? %>
               </div>
             </div>
 

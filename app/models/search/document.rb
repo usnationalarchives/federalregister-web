@@ -35,12 +35,6 @@ class Search::Document < Search::Base
     ).count
   end
 
-  #FACETS.each do |facet|
-  #  define_method("#{facet}_facets") do
-  #    conditions[facet.to_s.pluralize].present? || conditions["#{facet}_facets"].present?
-  #  end
-  #end
-
   (SEARCH_CONDITIONS + DOCUMENT_SEARCH_CONDITIONS).each do |param|
     define_method(param) do
       conditions[param]
