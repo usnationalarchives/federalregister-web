@@ -70,14 +70,14 @@
     <%= cfr_f.input :title,
       input_html: {
         placeholder: 'title',
-        value: @search.cfr.try(:title)
+        value: @search.cfr ? @search.cfr['title'] : ''
       },
       wrapper_html: {class: 'cfr_title'} %>
 
     <%= cfr_f.input :part,
       input_html: {
         placeholder: 'part',
-        value: @search.cfr.try(:part)
+        value: @search.cfr ? @search.cfr['part'] : ''
       },
       wrapper_html: {class: 'cfr_part'} %>
   <% end %>
