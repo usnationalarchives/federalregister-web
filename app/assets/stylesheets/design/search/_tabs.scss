@@ -24,6 +24,8 @@
     &:hover {
       @extend %tab-on-state;
       padding: 5px 5px 10px 9px;
+
+      .number_of_results { right: 3px; }
     }
 
     a {
@@ -38,8 +40,10 @@
       &:hover { color: $fr-orange; }
     }
 
-    &.public-inspection a {
-      &:hover { color: $color-public-inspection-dark; }
+    &.documents { width: 165px; }
+    &.public-inspection {
+      width: 177px;
+      a:hover { color: $color-public-inspection-dark; }
     }
   }
 
@@ -50,6 +54,7 @@
     color: $fr-dark-blue;
     font-weight: 700;
     position: relative;
+    text-align: center;
     top: 1px;
     z-index: 100;
 
@@ -61,9 +66,25 @@
   }
 
   .number_of_results {
+    float: right;
     font-size: modular-scale(-1);
     font-weight: normal;
-    margin: -5px 0 -5px 5px;
+    position: relative;
+    text-align: right;
+    top: 2px;
+    right: 4px;
+
+    .loader {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background: image-url('fr_orange_loader.svg');
+      height: 25px;
+      left: -18px;
+      position: absolute;
+      top: -4px;
+      width: 25px;
+    }
   }
 }
 

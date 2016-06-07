@@ -284,7 +284,8 @@
 
 
   fieldset.buttons {
-    margin-left: 205px;
+    margin-left: 215px;
+    margin-top: 20px;
 
     li {
       display: inline-block;
@@ -299,8 +300,9 @@
     }
 
     .clear_form {
+      margin-left: 10px;
       position: relative;
-      top: -5px;
+      top: 1px;
     }
   }
 }

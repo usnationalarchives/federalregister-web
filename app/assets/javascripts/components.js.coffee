@@ -10,6 +10,8 @@
 #= require components/search_facet_handler
 #= require components/search_form_handler
 #= require components/search_count
+#= require components/search_form_count
+#= require components/search_tab_count
 #= require components/search_form_agency_autocompleter
 #= require components/subscription_handler
 

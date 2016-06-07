@@ -1,6 +1,6 @@
 class @FR2.SearchFormHandler
   constructor: (@searchForm)->
-    @searchCount = new FR2.SearchCount(@searchForm)
+    @searchCount = new FR2.SearchFormCount(@searchForm)
     @agencyAutocompleter = new FR2.SearchFormAgencyAutocompleter(@searchForm)
 
     @addEvents()
@@ -158,4 +158,4 @@ class @FR2.SearchFormHandler
       .after("<span class='input-connector'> within </span>")
 
   calculateExpectedResults: ->
-    @searchCount.calculateExpectedResults()
+    @searchCount.getResultCount()

@@ -63,6 +63,15 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     end
   end
 
+  def search_count
+    valid_conditions = Search::PublicInspection.new(params).valid_conditions.symbolize_keys
+
+    render json: {
+      count: ::PublicInspectionDocument.search_metadata(conditions: valid_conditions).count,
+      url: public_inspection_search_path(conditions: valid_conditions)
+    }
+  end
+
   private
 
   def load_presenter

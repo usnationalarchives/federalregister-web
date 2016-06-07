@@ -72,6 +72,15 @@ class Search::DocumentsController < ApplicationController
     redirect_to reader_aids_search_help_url
   end
 
+  def search_count
+    valid_conditions = Search::Document.new(params).valid_conditions.symbolize_keys
+
+    render json: {
+      count: ::Document.search_metadata(conditions: valid_conditions).count,
+      url: documents_search_path(conditions: valid_conditions)
+    }
+  end
+
   private
 
   def load_presenter

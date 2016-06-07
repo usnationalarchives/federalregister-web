@@ -1,121 +1,54 @@
 class @FR2.SearchCount
-  constructor: (@searchForm)->
-    @requests = {}
+  constructor: (@type) ->
+    @searchCountStore.init()
 
-    @addEvents()
+  searchCountStore: {
+    init: ->
+      if amplify.store('searchCount') == undefined
+        amplify.store('searchCount', {})
 
-  cache: ->
-    @searchForm.data('count_cache') || {}
+    get: (url)->
+      amplify.store('searchCount')[url]
 
-  setCache: (url, data) ->
-    cache = @cache()
-    cache[url] = data
-    @searchForm.data('count_cache', cache)
+    set: (url, value)->
+      val = _.extend(
+        amplify.store('searchCount'),
+        {"#{url}": value}
+      )
 
-  checkCache: (url) ->
-    @cache()[url]
+      # expires in 10 minutes
+      amplify.store('searchCount', val, {expires: 300000})
+  }
 
-  populateExpectedResults: (obj)->
-    formattedCount = numeral(obj.count).format('0,0')
-    if formattedCount == "1"
-      text = "#{formattedCount} document"
+  currentRequest: null
+
+  countUrl: (params)->
+    return "/#{@type}/search/count?#{params}"
+
+  count: (params) =>
+    @deferred = $.Deferred()
+    url = @countUrl(params)
+
+    # don't fetch a url already in the queue
+    if @searchCountStore.get(url) == undefined
+
+      searchCount = this
+      @currentRequest = url
+
+      $.ajax(url)
+        .done (data)->
+          searchCount.searchCountSuccess(url, data)
     else
-      text = "#{formattedCount} documents"
+      @returnResponse @searchCountStore.get(url)
 
-    $('#expected_result_count')
-      .find '.loader'
-      .hide()
+    @deferred.promise()
 
-    $('#expected_result_count')
-      .find '.document-count'
-      .text text
-      .show()
+  searchCountSuccess: (url, data)=>
+    @searchCountStore.set(url, data)
 
-  indicateLoading: ->
-    $('#expected_result_count')
-      .show()
+    if @currentRequest == url
+      @currentRequest == null
+      @returnResponse(data)
 
-    $('#expected_result_count')
-      .find '.document-count'
-      .hide()
-
-    $('#expected_result_count')
-      .find '.loader'
-      .show()
-
-  apiUrl: ->
-    if @searchForm.attr('id').match('entry')
-      url = '/api/v1/documents.json'
-    else if @searchForm.attr('id').match('public_inspection')
-      url = '/api/v1/public-inspection-documents.json'
-
-    params = @searchForm
-      .find(":input[value!='']:not([data-show-field]):not('.text-placeholder')")
-      .serialize()
-
-    if params
-      params += "&metadata_only=1"
-    else
-      params = "metadata_only=1"
-
-    return "#{url}?#{params}"
-
-  calculateExpectedResults: =>
-    searchCount = this
-    url = @apiUrl()
-
-    # check the cache for this url
-    if @checkCache(url) == undefined
-      # record that this is the current result we're waiting for
-      @searchForm.data('count_current_url', url)
-
-      @indicateLoading()
-
-      # don't fetch a url already in the queue
-      if @requests[url] == undefined
-        @requests[url] = url
-
-        $.ajax(url)
-          .done (data)->
-            searchCount.calculateExpectedResultsSuccess(url, data)
-    else
-      @populateExpectedResults @checkCache(url)
-
-  calculateExpectedResultsSuccess: (url, data)->
-    @requests[url] == undefined
-    @setCache(url, data)
-
-    # populate the results if this is the pending request
-    if @searchForm.data('count_current_url') == url
-      @populateExpectedResults @checkCache(url)
-
-  addEvents: ->
-    searchCount = this
-
-    @searchForm
-      .find 'select, input'
-      .bind 'blur', (event)->
-        searchCount.calculateExpectedResults()
-
-    @searchForm
-      .find 'input[type=checkbox]'
-      .bind 'click', (event)->
-        searchCount.calculateExpectedResults()
-
-    @searchForm
-      .find '#conditions_agency_ids'
-      .bind 'change', (event)->
-        searchCount.calculateExpectedResults()
-
-    @addTypewatch()
-
-  addTypewatch: ->
-    options = {
-      callback: @calculateExpectedResults,
-      wait: 350,
-      captureLength: 3
-    }
-
-    @searchForm
-      .find 'input[type=text]'
-      .typeWatch options
+  returnResponse: (data)->
+    @deferred.resolve data

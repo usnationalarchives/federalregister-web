@@ -94,6 +94,10 @@ MyFr2::Application.routes.draw do
     esi.get 'documents/search/help',
       to: 'search/documents#help',
       as: 'documents_search_help'
+
+    esi.get 'documents/search/count',
+      to: 'search/documents#search_count',
+      as: 'documents_search_search_count'
   end
 
   #
@@ -127,18 +131,23 @@ MyFr2::Application.routes.draw do
     to: 'search/public_inspection_documents#show',
     as: 'public_inspection_search'
 
-  get 'public-inspection/search/header',
-    to: 'search/public_inspection_documents#header',
-    as: 'public_inspection_search_header'
+  with_options(:quiet => true) do |esi|
+    esi.get 'public-inspection/search/header',
+      to: 'search/public_inspection_documents#header',
+      as: 'public_inspection_search_header'
 
-  get 'public-inspection/search/results',
-    to: 'search/public_inspection_documents#results',
-    as: 'public_inspection_search_results'
+    esi.get 'public-inspection/search/results',
+      to: 'search/public_inspection_documents#results',
+      as: 'public_inspection_search_results'
 
-  get 'public-inspection/search/facets/:facet',
-    to: 'search/public_inspection_documents#facets',
-    as: 'public_inspection_search_facets'
+    esi.get 'public-inspection/search/facets/:facet',
+      to: 'search/public_inspection_documents#facets',
+      as: 'public_inspection_search_facets'
 
+    esi.get 'public-inspection/search/count',
+      to: 'search/public_inspection_documents#search_count',
+      as: 'public_inspection_search_count'
+  end
 
   #
   # Events Search
