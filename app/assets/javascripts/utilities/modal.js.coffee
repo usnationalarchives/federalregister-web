@@ -46,5 +46,5 @@ class @FR2.Modal
       @closeModal(modalId)
 
   @closeModal: (modalId)->
-      $("#{modalId}").jqmHide()
-      $("#{modalId}").trigger('modalClose')
+    $("#{modalId}").jqmHide()
+    $("#{modalId}").trigger('modalClose')
