@@ -19,12 +19,8 @@ class Citation
   end
 
   def matching_fr_entries
-    document_numbers.map do |doc|
-      DocumentDecorator.decorate(
-        FederalRegister::Document.new(
-          HTTParty.get("#{Settings.federal_register.api_url}/documents/#{doc}")
-        )
-      )
+    Document.find_all(document_numbers).map do |d|
+      DocumentDecorator.decorate(d)
     end
   end
 
