@@ -4,28 +4,27 @@
   <div class="suggestion-content">
     <p>
       It looks like you were searching for the citation
-      <span class="term"><%= citation.name %></span>.
+      <span class="term"><%= citation_suggestion.name %></span>.
     </p>
 
-    <% if citation.matching_fr_entries.present? %>
+    <% if citation_suggestion.matching_fr_entries.present? %>
       <div class="matching-citation-documents">
         <p>
-          <% if citation.citation_type == 'FR' %>
+          <% if citation_suggestion.citation_type == 'FR' %>
             We've found the following
-            <%= citation.matching_fr_entries.count > 1 ? 'document' :
-              pluralize(citation.matching_fr_entries.count, 'document') %>
-            on page <%= citation.part_2 %> of volume <%= citation.part_1 %>.
+            <%= citation_suggestion.matching_fr_entries.count == 1 ? 'document' : 'documents' %>
+            on page <%= citation_suggestion.part_2 %> of volume <%= citation_suggestion.part_1 %>.
           <% else %>
             We've found the following Executive Order:
           <% end %>
         </p>
 
         <ul>
-          <%= render partial: 'search/documents/suggestions/citation_result',
-            collection: citation.matching_fr_entries,
+          <%= render partial: 'search/documents/suggestions/citation_suggestion_result',
+            collection: citation_suggestion.matching_fr_entries,
             as: :document,
             locals: {
-              :page => citation.part_2 ? citation.part_2.to_i : nil
+              :page => citation_suggestion.part_2 ? citation_suggestion.part_2.to_i : nil
             } %>
         </ul>
       </div>

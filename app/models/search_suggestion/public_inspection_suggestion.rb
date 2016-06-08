@@ -1,4 +1,4 @@
-class SearchSuggestion::PublicInspection
+class SearchSuggestion::PublicInspectionSuggestion
   include SearchSuggestion::Shared
 
   attr_reader :conditions, :count

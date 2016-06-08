@@ -12,11 +12,11 @@ class SearchSuggestion
   end
 
   CLASSES = {
-    "document_number" => SearchSuggestion::DocumentNumber,
-    "cfr" => SearchSuggestion::CFR,
-    "search_refinement" => SearchSuggestion::SearchRefinement,
-    "citation" => SearchSuggestion::Citation,
-    "public_inspection" => SearchSuggestion::PublicInspection
+    "document_number"   => SearchSuggestion::DocumentNumberSuggestion,
+    "cfr"               => SearchSuggestion::CFRSuggestion,
+    "search_refinement" => SearchSuggestion::SearchRefinementSuggestion,
+    "citation"          => SearchSuggestion::CitationSuggestion,
+    "public_inspection" => SearchSuggestion::PublicInspectionSuggestion
   }
 
   def self.build(type, details, conditions)

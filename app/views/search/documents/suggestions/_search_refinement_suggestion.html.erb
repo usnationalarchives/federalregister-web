@@ -1,0 +1,14 @@
+<div class="suggestion">
+  <%= fr_icon 'Search' %>
+
+  <div class="suggestion-content">
+    <p>
+      Did you mean the
+      <%= link_to pluralize(search_refinement_suggestion.count, "document"),
+        documents_search_path(
+          conditions: search_refinement_suggestion.search_conditions
+        ) %>
+      <%= search_refinement_suggestion.search_summary.html_safe %>?
+    </p>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-class SearchSuggestion::CFR
+class SearchSuggestion::CFRSuggestion
   include SearchSuggestion::Shared
 
   attr_reader :conditions, :part, :section, :title

@@ -1,4 +1,4 @@
-class SearchSuggestion::DocumentNumber
+class SearchSuggestion::DocumentNumberSuggestion
   include SearchSuggestion::Shared
 
   attr_reader :document_number

@@ -4,7 +4,7 @@
   <div class="suggestion-content">
     <p>
       It looks like you were searching for the Code of Federal Regulations
-      citation: <span class="term"><%= cfr.name %></span>
+      citation: <span class="term"><%= cfr_suggestion.name %></span>
     </p>
 
     <div class="matching-citation-links">
@@ -15,7 +15,7 @@
       <ul class="bullets">
         <li>
           <%= link_to 'eCFR',
-            Hyperlinker::Citation.ecfr_url(cfr.title, cfr.part) %>
+            Hyperlinker::Citation.ecfr_url(cfr_suggestion.title, cfr_suggestion.part) %>
         </li>
       </ul>
     </div>

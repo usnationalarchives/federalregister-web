@@ -1,4 +1,4 @@
-class SearchSuggestion::Citation < Citation
+class SearchSuggestion::CitationSuggestion < Citation
   include SearchSuggestion::Shared
 
   attr_reader :conditions

@@ -1,0 +1,16 @@
+<div class="suggestion">
+  <%= fr_icon 'clipboards' %>
+
+  <div class="suggestion-content">
+    <p>
+      There <%= public_inspection_suggestion.count == 1 ? 'is' : 'are' %>
+      <%= link_to pluralize(public_inspection_suggestion.count, "document"),
+        public_inspection_search_path(
+          conditions: public_inspection_suggestion.conditions
+        ) %>
+      on Public Inspection scheduled for publication that
+      <%= public_inspection_suggestion.count == 1 ? 'matches' : 'match' %>
+      your search.
+    </p>
+  </div>
+</div>

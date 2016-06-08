@@ -1,7 +1,7 @@
 <li class="result-item">
   <h5>
     <%= link_to sanitize(document.title, tags: %w(span), attributes: %w(class)),
-      document_issue_path(document) %>
+      document_path(document) %>
   </h5>
 
   <% if document.abstract %>
