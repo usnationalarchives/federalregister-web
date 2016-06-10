@@ -12,8 +12,6 @@
       <% end %>
 
       <div id="fulltext_content_area" class="doc-content-area">
-        <div class="content-wrap-enforcement"></div>
-
         <% if document.full_text_xml_url.present? %>
           <% if Settings.render_documents_from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
