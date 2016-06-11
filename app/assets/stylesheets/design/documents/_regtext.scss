@@ -1,11 +1,11 @@
 .doc-content-area {
   .section {
-    overflow: hidden;
     margin-bottom: 5px;
     margin-top: 20px;
+    overflow: hidden;
   }
 
-  .authority {
+  p.authority {
     margin-left: 20px;
 
     .auth-header {
@@ -19,18 +19,18 @@
     overflow: hidden;
 
     .amendment-part-number {
-      float: left;
-      font-weight: bold;
       display: inline-block;
+      float: left;
       font-size: 18px;
-      top: -2px;
+      font-weight: bold;
       position: relative;
+      top: -2px;
     }
 
     .amendment-part-text {
-      margin-left: 10px;
-      float: left;
       display: block;
+      float: left;
+      margin-left: 10px;
       width: 80%;
     }
   }

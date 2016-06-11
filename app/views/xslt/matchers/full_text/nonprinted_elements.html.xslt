@@ -11,7 +11,7 @@
   <xsl:template match="PREAMB">
     <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="preamble unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#preamble-tooltip-template'" />
         </xsl:attribute>
@@ -24,7 +24,10 @@
           <xsl:value-of select="'Start Preamble'" />
         </xsl:attribute>
 
-        <xsl:text> </xsl:text>
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>Start Preamble</xsl:text>
+        </span>
       </span>
     </span>
 
@@ -32,7 +35,7 @@
 
     <span class="preamble-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="preamble unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="preamble unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#preamble-tooltip-template'" />
         </xsl:attribute>
@@ -42,10 +45,13 @@
         </xsl:attribute>
 
         <xsl:attribute name="data-text">
-          <xsl:value-of select="'End Preamble'" />
+          <xsl:value-of select="''" />
         </xsl:attribute>
 
-        <xsl:text> </xsl:text>
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>End Preamble</xsl:text>
+        </span>
       </span>
     </span>
   </xsl:template>
@@ -54,7 +60,7 @@
     <xsl:if test="parent::*[1][name() = 'REGTEXT']">
       <span class="appendix-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
-        <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <span class="appendix unprinted-element cj-fancy-tooltip document-markup">
           <xsl:attribute name="data-tooltip-template">
             <xsl:value-of select="'#regtext-appendix-tooltip-template'" />
           </xsl:attribute>
@@ -66,7 +72,11 @@
           <xsl:attribute name="data-text">
             <xsl:value-of select="'Start Appendix'" />
           </xsl:attribute>
-          <xsl:text> </xsl:text>
+
+          <span class="icon-fr2 icon-fr2-source_code"></span>
+          <span class="text">
+            <xsl:text>Start Appendix</xsl:text>
+          </span>
         </span>
       </span>
     </xsl:if>
@@ -76,7 +86,7 @@
     <xsl:if test="parent::*[1][name() = 'REGTEXT']">
       <span class="appendix-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
-        <span class="appendix unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+        <span class="appendix unprinted-element cj-fancy-tooltip document-markup">
           <xsl:attribute name="data-tooltip-template">
             <xsl:value-of select="'#regtext-appendix-tooltip-template'" />
           </xsl:attribute>
@@ -88,7 +98,11 @@
           <xsl:attribute name="data-text">
             <xsl:value-of select="'End Appendix'" />
           </xsl:attribute>
-          <xsl:text> </xsl:text>
+
+          <span class="icon-fr2 icon-fr2-source_code"></span>
+          <span class="text">
+            <xsl:text>End Appendix</xsl:text>
+          </span>
         </span>
       </span>
     </xsl:if>
@@ -97,7 +111,7 @@
   <xsl:template match="FURINF">
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="further-info unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#furinf-tooltip-template'" />
         </xsl:attribute>
@@ -109,7 +123,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Further Info'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>Start Further Info</xsl:text>
+        </span>
       </span>
     </span>
 
@@ -117,7 +135,7 @@
 
     <span class="further-info-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="further-info unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="further-info unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#furinf-tooltip-template'" />
         </xsl:attribute>
@@ -129,7 +147,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Further Info'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>End Further Info</xsl:text>
+        </span>
       </span>
     </span>
   </xsl:template>

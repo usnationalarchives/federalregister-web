@@ -4,7 +4,7 @@
   <xsl:template match="LSTSUB">
     <span class="list-of-subjects-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-fancy-tooltip document-markup">
+      <span class="list-of-subjects unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#lstsub-tooltip-template'" />
         </xsl:attribute>
@@ -16,7 +16,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start List of Subjects'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>Start List of Subjects</xsl:text>
+        </span>
       </span>
       <span class="unprinted-element-border"></span>
     </span>
@@ -25,7 +29,7 @@
 
     <span class="list-of-subjects-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="list-of-subjects unprinted-element icon-fr2 icon-fr2-Molecular cj-fancy-tooltip document-markup">
+      <span class="list-of-subjects unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#lstsub-tooltip-template'" />
         </xsl:attribute>
@@ -37,7 +41,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End List of Subjects'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>End List of Subjects</xsl:text>
+        </span>
       </span>
       <span class="unprinted-element-border"></span>
     </span>

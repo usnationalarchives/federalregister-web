@@ -4,7 +4,7 @@
   <xsl:template match="AUTH">
     <span class="authority-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="authority unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="authority unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-auth-tooltip-template'" />
         </xsl:attribute>
@@ -16,7 +16,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'Start Authority'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>Start Authority</xsl:text>
+        </span>
       </span>
       <span class="unprinted-element-border"></span>
     </span>
@@ -35,7 +39,7 @@
 
     <span class="authority-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="authority unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup">
+      <span class="authority unprinted-element cj-fancy-tooltip document-markup">
         <xsl:attribute name="data-tooltip-template">
           <xsl:value-of select="'#regtext-auth-tooltip-template'" />
         </xsl:attribute>
@@ -47,7 +51,11 @@
         <xsl:attribute name="data-text">
           <xsl:value-of select="'End Authority'" />
         </xsl:attribute>
-        <xsl:text> </xsl:text>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>End Authority</xsl:text>
+        </span>
       </span>
       <span class="unprinted-element-border"></span>
     </span>

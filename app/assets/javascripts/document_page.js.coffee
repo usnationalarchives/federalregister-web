@@ -44,6 +44,11 @@ $(document).ready ->
     )
 
 
+    # properly position unprinted elements based on their location in the
+    # document and events
+    FR2.PrintPageElements.setup()
+    FR2.UnprintedElements.setup()
+
 
     # footnotes can have multiple references within the text. if you are
     # using the back to content link after having come from a reference,

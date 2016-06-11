@@ -2,47 +2,55 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="SIG">
+    <span class="signature-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="signature unprinted-element cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#signature-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-text">
+          <xsl:value-of select="'Start Signature'" />
+        </xsl:attribute>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>Start Signature</xsl:text>
+        </span>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
+
     <div class="signature">
-      <span class="signature-wrapper unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-        <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-fancy-tooltip document-markup">
-          <xsl:attribute name="data-tooltip-template">
-            <xsl:value-of select="'#signature-tooltip-template'" />
-          </xsl:attribute>
-
-          <xsl:attribute name="data-tooltip-doc-override">
-            <xsl:value-of select="'tooltip-enhanced'" />
-          </xsl:attribute>
-
-          <xsl:attribute name="data-text">
-            <xsl:value-of select="'Start Signature'" />
-          </xsl:attribute>
-          <xsl:text> </xsl:text>
-        </span>
-        <span class="unprinted-element-border"></span>
-      </span>
-
       <xsl:apply-templates />
-
-      <span class="signature-wrapper unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-        <span class="signature unprinted-element icon-fr2 icon-fr2-pen cj-fancy-tooltip document-markup">
-          <xsl:attribute name="data-tooltip-template">
-            <xsl:value-of select="'#signature-tooltip-template'" />
-          </xsl:attribute>
-
-          <xsl:attribute name="data-tooltip-doc-override">
-            <xsl:value-of select="'tooltip-enhanced'" />
-          </xsl:attribute>
-
-          <xsl:attribute name="data-text">
-            <xsl:value-of select="'End Signature'" />
-          </xsl:attribute>
-          <xsl:text> </xsl:text>
-        </span>
-        <span class="unprinted-element-border"></span>
-      </span>
     </div>
+    
+    <span class="signature-wrapper unprinted-element-wrapper">
+      <span class="unprinted-element-border"></span>
+      <span class="signature unprinted-element cj-fancy-tooltip document-markup">
+        <xsl:attribute name="data-tooltip-template">
+          <xsl:value-of select="'#signature-tooltip-template'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-tooltip-doc-override">
+          <xsl:value-of select="'tooltip-enhanced'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-text">
+          <xsl:value-of select="'End Signature'" />
+        </xsl:attribute>
+
+        <span class="icon-fr2 icon-fr2-source_code"></span>
+        <span class="text">
+          <xsl:text>End Signature</xsl:text>
+        </span>
+      </span>
+      <span class="unprinted-element-border"></span>
+    </span>
   </xsl:template>
 
   <xsl:template match="DATED[ancestor::SIG]">
