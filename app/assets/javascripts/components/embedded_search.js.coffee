@@ -1,7 +1,7 @@
 class @FR2.EmbeddedSearch
   constructor: (@searchForm)->
     @doctypeFilters = @searchForm.find('#doc-type-filter li')
-    @searchCount = new FR2.SearchCount(@searchForm)
+    @searchCount = new FR2.SearchFormCount(@searchForm)
 
     @setupTooltips()
     @addTooltips()
@@ -43,7 +43,7 @@ class @FR2.EmbeddedSearch
       embeddedSearch.setFilterState $(this)
 
   calculateExpectedResults: ->
-    @searchCount.calculateExpectedResults()
+    @searchCount.getResultCount()
 
   setFilterState: (filterEl)->
     if filterEl.hasClass('on')

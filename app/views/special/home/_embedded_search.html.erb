@@ -8,7 +8,11 @@
     <%= semantic_form_for @search,
       as: :conditions,
       url: documents_search_path,
-      html: {method: :get, id: "embedded_entry_search_form"} do |f| %>
+      html: {
+        method: :get,
+        id: "embedded_entry_search_form",
+        class: 'documents'
+      } do |f| %>
 
       <label>Find</label>
       <%= f.text_field :term,
