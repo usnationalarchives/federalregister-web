@@ -8,10 +8,14 @@ class FederalRegisterStats
     :beginning_of_year,
     :date,
     :end_of_month,
+    :launch_date,
     :mysql,
     :redis
 
   def initialize(date, env='production')
+    #site launched on this day - no stats make sense before this
+    @launch_date = Date.parse('2010-07-26')
+
     @date = Date.parse(date)
     @beginning_of_year = @date.beginning_of_year
     @beginning_of_month = @date.beginning_of_month
@@ -30,11 +34,11 @@ class FederalRegisterStats
   end
 
   def generate
-    puts "Total # of MyFR Accounts: #{users}"
+    puts "Total # of MyFR Accounts: #{users(launch_date, end_of_month)}"
     puts "YTD # of MyFR Accounts: #{users(beginning_of_year, end_of_month)}"
     puts "New MyFR Accounts in #{beginning_of_month.strftime('%B')}: #{users(beginning_of_month, end_of_month)}"
 
-    puts "Total # of Subscriptions:  #{subscriptions}"
+    puts "Total # of Subscriptions:  #{subscriptions(launch_date, end_of_month)}"
     puts "YTD # of Subscriptions:  #{subscriptions(beginning_of_year, end_of_month)}"
     puts "New Subscriptions in #{beginning_of_month.strftime('%B')}: #{subscriptions(beginning_of_month, end_of_month)}"
 
