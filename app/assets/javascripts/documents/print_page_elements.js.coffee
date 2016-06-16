@@ -36,8 +36,8 @@ class @FR2.PrintPageElements
       # paragraph's are set to 'position: relative' and so if an element
       # is within a paragraph we want to add it's 'top' to the paragraph's 'top'
       # to get the elements true position within the body text
-      if el.parent().is('p')
-        top = el.parent().position().top + el.position().top
+      if el.parents('p').length > 0
+        top = el.parents('p').position().top + el.position().top
       else
         top = el.position().top
 
