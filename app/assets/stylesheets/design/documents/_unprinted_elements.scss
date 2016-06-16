@@ -2,7 +2,8 @@ $unprinted-element-color: $color-enhanced-dark;
 
 .doc-content .content-block p { position: relative; }
 
-.flush-paragraph .printed-page-inline .icon-fr2 {
+.flush-paragraph .printed-page-inline.icon-fr2 {
+  margin-left: 5px;
   text-indent: 0;
 }
 
@@ -110,7 +111,21 @@ p + .unprinted-element-wrapper {
 // Only set colors for elements that change based on document status,
 // set other colors above.
 @mixin unprinted_element_colors($printed-page-color, $unprinted-element-background-color) {
+  .printed-page-inline {
+    color: $printed-page-color;
+
+    &.hover { color: darken($printed-page-color, 10) !important; }
+  }
+
   .unprinted-element-wrapper {
+    &.printed-page-wrapper {
+      color: $printed-page-color;
+
+      &.blocked .unprinted-element-border {
+        border-bottom-color: $printed-page-color;
+      }
+    }
+
     &.blocked {
       .unprinted-element { background-color: $unprinted-element-background-color; }
     }
@@ -119,12 +134,8 @@ p + .unprinted-element-wrapper {
 
 &.doc-official {
   @include unprinted_element_colors($color-official, $color-official-light);
-
-  .printed-page-inline { color: $color-official; }
 }
 
 &.doc-published {
   @include unprinted_element_colors($color-published, $color-published-light);
-
-  .printed-page-inline { color: $color-published; }
 }

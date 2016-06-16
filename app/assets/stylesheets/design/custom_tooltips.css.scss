@@ -1,15 +1,26 @@
 // in our current setup these need to be outside the usual bootstrap-scope
 // as they are placed immediately inside the <body> tag
 
+@mixin document_markup_tooltip_colors($color, $light-color) {
+  .tipsy-arrow { border-top-color: $color; }
+
+  .fr-seal-block-header,
+  .fr-seal-block-footer {
+    background-color: $color;
+    border-color: $color;
+
+    h6 { background-color: $color; }
+  }
+  .content-block { background-color: $light-color; }
+}
+
 .tipsy.document-markup-tooltip {
   &.tooltip-doc-published {
-    .tipsy-arrow { border-top-color: $color-published; }
+    @include document_markup_tooltip_colors($color-published, $color-published-light-alt);
+  }
 
-    .fr-seal-block-header,
-    .fr-seal-block-foorer {
-      background-color: $color-published;
-    }
-    .content-block { background-color: $color-published-light-alt; }
+  &.tooltip-doc-official {
+    @include document_markup_tooltip_colors($color-official, $color-official-light-alt);
   }
 
   .tipsy-arrow {
