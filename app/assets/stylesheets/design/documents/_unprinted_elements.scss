@@ -1,27 +1,55 @@
 $unprinted-element-color: $color-enhanced-dark;
 
-.unprinted-element-wrapper {
-  display: none;
-  position: relative;
+.doc-content .content-block p { position: relative; }
 
-  // printed page is always displayed but only in icon form
+.printed-page-inline {
+  display: inline-block;
+  font-size: modular-scale(-1);
+  padding: 0 3px 0 1px;
+
+  &.hover { color: $color-enhanced-dark !important; }
+}
+
+.unprinted-element-wrapper {
+  clear: both;
+  color: $unprinted-element-color;
+  display: none;
+  float: right;
+  line-height: 1;
+  margin-left: -140px;
+  padding-right: 5px;
+  position: relative;
+  right: -140px;
+  text-indent: -24px;
+  width: 110px;
+
   &.printed-page-wrapper {
-    display: inline;
+    display: block;
+    text-indent: -17px;
   }
 
   .icon-fr2 {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 5px;
+    font-size: modular-scale(-1);
+    padding-right: 5px;
   }
 
-  // for when we display these 'unprinted' items
-  &.blocked {
-    color: $unprinted-element-color;
-    display: block;
-    margin: 20px 0 10px;
+  .icon-fr2-source_code{
+    font-size: 26px;
+    top: 6px;
+  }
 
-    &.content-wrap { width: 578px; }
+  .text {
+    @include apertura-condensed;
+    font-size: modular-scale(-1);
+  }
+
+  &.blocked, {
+    display: block;
+    float: none;
+    left: 0;
+    margin: 20px 0 10px;
+    position: relative;
+    width: 100%;
 
     .unprinted-element-border {
       border-bottom: 1px solid $unprinted-element-color;
@@ -34,41 +62,53 @@ $unprinted-element-color: $color-enhanced-dark;
       display: block;
       margin: 0 auto;
       position: relative;
-      top: -6px;
+      text-align: center;
+      text-indent: 0;
+      top: -18px;
       z-index: 100;
+
+      &.printed-page { top: -7px; }
     }
 
-    &.printed-page-wrapper      .unprinted-element { width: 180px; }
-    &.supplemental-info-wrapper .unprinted-element { width: 208px; }
-    &.part-wrapper              .unprinted-element { width:  75px; }
-    &.amend-part-wrapper        .unprinted-element { width: 150px; }
-    &.further-info-wrapper      .unprinted-element { width: 125px; }
-    &.list-of-subjects-wrapper  .unprinted-element { width: 140px; }
-    &.signature-wrapper         .unprinted-element { width: 113px; }
-    &.preamble-wrapper          .unprinted-element { width: 113px; }
-    &.appendix-wrapper          .unprinted-element { width: 113px; }
-    &.subpart-wrapper           .unprinted-element { width: 113px; }
-    &.authority-wrapper         .unprinted-element { width: 113px; }
+    &.printed-page-wrapper      .unprinted-element { width: 190px; }
+    &.supplemental-info-wrapper .unprinted-element { width: 228px; }
+    &.part-wrapper              .unprinted-element { width:  95px; }
+    &.amend-part-wrapper        .unprinted-element { width: 170px; }
+    &.further-info-wrapper      .unprinted-element { width: 145px; }
+    &.list-of-subjects-wrapper  .unprinted-element { width: 160px; }
+    &.signature-wrapper         .unprinted-element { width: 133px; }
+    &.preamble-wrapper          .unprinted-element { width: 132px; }
+    &.appendix-wrapper          .unprinted-element { width: 133px; }
+    &.subpart-wrapper           .unprinted-element { width: 133px; }
+    &.authority-wrapper         .unprinted-element { width: 133px; }
   }
 }
 
 
+.unprinted-element-wrapper + h1,
+.unprinted-element-wrapper + h2,
+.unprinted-element-wrapper + h3,
+.unprinted-element-wrapper + h4,
+.unprinted-element-wrapper + h5,
+.unprinted-element-wrapper + h6,
+.unprinted-element-wrapper + h7,
+.unprinted-element-wrapper + .authority,
+.unprinted-element-wrapper + .section,
+.unprinted-element-wrapper + .signature,
+.unprinted-element-wrapper + p {
+  clear: both;
+}
+
+p + .unprinted-element-wrapper {
+  margin-top: -1em;
+}
+
 
 // Only set colors for elements that change based on document status,
 // set other colors above.
-
 @mixin unprinted_element_colors($printed-page-color, $unprinted-element-background-color) {
   .unprinted-element-wrapper {
-    &.printed-page-wrapper { color: $printed-page-color; }
-
     &.blocked {
-      // override color here as the print elements were present in the published
-      // document even if they weren't 'printed'
-      &.printed-page-wrapper {
-        color: $printed-page-color;
-        .unprinted-element-border { border-color: $printed-page-color; }
-      }
-
       .unprinted-element { background-color: $unprinted-element-background-color; }
     }
   }
@@ -76,8 +116,12 @@ $unprinted-element-color: $color-enhanced-dark;
 
 &.doc-official {
   @include unprinted_element_colors($color-official, $color-official-light);
+
+  .printed-page-inline { color: $color-official; }
 }
 
 &.doc-published {
   @include unprinted_element_colors($color-published, $color-published-light);
+
+  .printed-page-inline { color: $color-published; }
 }

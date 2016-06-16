@@ -1,29 +1,15 @@
 class @FR2.DocumentTools
-
-  @printPageDisplayed = false
-  @nonPrintedElementsDisplayed = false
-
-  @togglePrintedPage: (link)->
-    @toggleLinkText link, @printPageDisplayed
-
-    @toggleElements(
-      $('.printed-page-wrapper.unprinted-element-wrapper'),
-      @printPageDisplayed
-    )
-
-    @printPageDisplayed = !@printPageDisplayed
-
+  @unprintedElementsDisplayed = false
+  @unprintedElementsSetup = false
 
   @toggleNonPrintedElements: (link)->
-    @toggleLinkText link, @nonPrintedElementsDisplayed
+    @toggleLinkText link, @unprintedElementsDisplayed
 
     @toggleElements(
-      $('.unprinted-element-wrapper').not('.printed-page-wrapper'),
-      @nonPrintedElementsDisplayed
+      $('.unprinted-element-wrapper').not('.printed-page-wrapper')
     )
 
-    @nonPrintedElementsDisplayed = !@nonPrintedElementsDisplayed
-
+    @unprintedElementsDisplayed = !@unprintedElementsDisplayed
 
   @toggleLinkText: (link, displayed)->
     if displayed
@@ -33,28 +19,14 @@ class @FR2.DocumentTools
       link.
         text link.text().replace(/^Display/, 'Hide')
 
-  @toggleElements: (elements, displayed)->
-    _.each elements, (el)=>
-      element = $(el)
-      nonPrintedElement = element.find '.unprinted-element'
+  @toggleElements: (elements)->
+    if @unprintedElementsDisplayed
+      _.each elements, (el)=>
+        $(el).hide()
+    else
+      _.each elements, (el)=>
+        $(el).css('display', 'block')
 
-      if displayed
-        element
-          .removeClass 'blocked'
-
-        nonPrintedElement.text " "
-      else
-        element.addClass 'blocked'
-        nonPrintedElement.text " #{nonPrintedElement.data 'text'}"
-        @setWrapperWidth(element)
-
-  @setWrapperWidth: (element)->
-    contentWrapEnforcementEl = $('.content-wrap-enforcement')
-
-    wrapRange = {
-      top: contentWrapEnforcementEl.offset().top
-      bottom: contentWrapEnforcementEl.offset().top + contentWrapEnforcementEl.outerHeight()
-    }
-
-    if element.offset().top >= wrapRange.top && element.offset().top <= wrapRange.bottom
-      element.addClass('content-wrap')
+      if !@unprintedElementsSetup
+        FR2.UnprintedElements.setup()
+        @unprintedElementsSetup = !@unprintedElementsSetup
