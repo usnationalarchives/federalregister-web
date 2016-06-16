@@ -1,5 +1,16 @@
 $(document).ready ->
   if $('.doc-document .doc-content').length > 0
+    # properly position unprinted elements based on their location in the
+    # document and events after fonts have loaded
+    if $('html').hasClass('wf-active')
+      FR2.PrintPageElements.setup()
+      FR2.UnprintedElements.setup()
+    else
+      $('body').on 'typekit-active', ->
+        FR2.PrintPageElements.setup()
+        FR2.UnprintedElements.setup()
+
+    # setup sidbar positioning
     document_height = $('.doc-document .doc-content').outerHeight()
     sidebar_height = $('.doc-aside.doc-details').outerHeight()
     amount_document_should_be_lower_than_sidebar = 50
@@ -42,13 +53,6 @@ $(document).ready ->
         verticalOffset: -10
       }
     )
-
-
-    # properly position unprinted elements based on their location in the
-    # document and events
-    FR2.PrintPageElements.setup()
-    FR2.UnprintedElements.setup()
-
 
     # footnotes can have multiple references within the text. if you are
     # using the back to content link after having come from a reference,
