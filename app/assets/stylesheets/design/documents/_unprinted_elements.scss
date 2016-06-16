@@ -2,6 +2,10 @@ $unprinted-element-color: $color-enhanced-dark;
 
 .doc-content .content-block p { position: relative; }
 
+.flush-paragraph .printed-page-inline .icon-fr2 {
+  text-indent: 0;
+}
+
 .printed-page-inline {
   display: inline-block;
   font-size: modular-scale(-1);
@@ -43,8 +47,7 @@ $unprinted-element-color: $color-enhanced-dark;
     font-size: modular-scale(-1);
   }
 
-  &.blocked, {
-    display: block;
+  &.blocked {
     float: none;
     left: 0;
     margin: 20px 0 10px;
