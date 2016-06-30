@@ -33,6 +33,5 @@ feature_flags:
     suggested_searches: false
     my_fr:
       subscriptions: false
-  # gem is out of date and needs to be updated
   search:
-    location: false
+    location: true
