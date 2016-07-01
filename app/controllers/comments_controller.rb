@@ -138,7 +138,7 @@ class CommentsController < ApplicationController
 
     @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
-  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed => exception
+  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed, RegulationsDotGov::Client::ServerError => exception
     record_regulations_dot_gov_error( exception )
 
     response.headers['Regulations-Dot-Gov-Problem'] = "1"
