@@ -2,8 +2,8 @@
             .ooooo.          ooo. .oo.     .ooooo.    oooo d8b
            d88" `88b         `888P"Y88b   d88" `88b   `888""8P
            888888888  88888   888   888   888   888    888
-           888        88888   888   888   888   888    888       
-           `"88888"          o888o o888o  `Y8bod8P"   d888b      
+           888        88888   888   888   888   888    888
+           `"88888"          o888o o888o  `Y8bod8P"   d888b
 
 ***********************************************************************************************************
 Copyright 2015 by E-Nor Inc.
@@ -21,8 +21,8 @@ _mHostName = document.location.hostname.match(/(([^.\/]+\.[^.\/]{2,3}\.[^.\/]{2}
  */
 var oCONFIG = {
     VERSION: '20150226 v1.03 - Universal Analytics',
-    AGENCY: '',
-    SUB_AGENCY: '',
+    AGENCY: 'NARA',
+    SUB_AGENCY: 'fedreg',
     USE_MAIN_CUSTOM_DIMENSIONS: true,
     USE_PARALLEL_CUSTOM_DIMENSIONS: false,
     MAIN_AGENCY_CUSTOM_DIMENSION_SLOT: 'dimension1',
@@ -33,11 +33,11 @@ var oCONFIG = {
     PARALLEL_CODEVERSION_CUSTOM_DIMENSION_SLOT: 'dimension3',
     SEARCH_PARAMS: 'q|querytext|nasaInclude|k|QT|',
     HOST_DOMAIN_OR: _mHostName,
-  GWT_UAID: ['UA-33523145-1'],  
+    GWT_UAID: ['UA-33523145-1'],
     COOKIE_TIMEOUT: 24,
     ANONYMIZE_IP: true,
-    YOUTUBE: true,
-    AUTOTRACKER: true,
+    YOUTUBE: false,
+    AUTOTRACKER: false,
     EXTS: 'doc|docx|xls|xlsx|xlsm|ppt|pptx|exe|zip|pdf|js|txt|csv|dxf|dwgd|rfa|rvt|dwfx|dwg|wmv|jpg|msi|7z|gz|tgz|wma|mov|avi|mp3|mp4|csv|mobi|epub|swf|rar',
     SUBDOMAIN_BASED: true,
     DOUNBLECLICK_LINK: false,
@@ -53,102 +53,6 @@ var oCONFIG = {
  * override default values by values passed in the query string
  */
 function _initElements() {
-    var _JSElement = document.getElementById('_fed_an_ua_tag').getAttribute('src');
-  _JSElement = _JSElement.replace(/\?/g,'&');
-    var _JSElement_Splited = _JSElement.split('&');
-    for (var st01 = 1; st01 < _JSElement_Splited.length; st01++) {
-        _thisElement = _JSElement_Splited[st01].toLowerCase();
-
-        if (_thisElement.split('=')[0] == 'agency') {
-            oCONFIG.AGENCY = _thisElement.split('=')[1].toUpperCase();
-        } else if (_thisElement.split('=')[0] == 'subagency') {
-            oCONFIG.SUB_AGENCY = _thisElement.split('=')[1].toUpperCase();
-        } else if (_thisElement.split('=')[0] == 'sp') {
-            oCONFIG.SEARCH_PARAMS += _thisElement.replace(/(b|,)/g, '|').split('=')[1];
-        } else if (_thisElement.split('=')[0] == 'exts') {
-            oCONFIG.EXTS += '|' + _thisElement.split('=')[1].replace(',', '|');
-        } else if (_thisElement.split('=')[0] == 'yt') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.YOUTUBE = ('true' == _thisElement) ? true : !('false' == _thisElement);
-        } else if (_thisElement.split('=')[0] == 'sdor') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.SUBDOMAIN_BASED = ('true' == _thisElement) ? true : !('false' == _thisElement);
-        } else if (_thisElement.split('=')[0] == 'dclink') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.DOUNBLECLICK_LINK = ('true' == _thisElement) ? true : false;
-        } else if (_thisElement.indexOf('pua') > -1) {
-            _thisElement = _thisElement.split('=')[1];
-            var _thisElementSplit = _thisElement.split(',');
-            for (var st02 = 0; st02 < _thisElementSplit.length; st02++) {
-                if (_isValidUANum( _thisElementSplit[st02])){
-        oCONFIG.GWT_UAID[st02 + 1] = _thisElementSplit[st02].toUpperCase();
-        }
-            }
-        } else if (_thisElement.split('=')[0] == 'enhlink') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.ENHANCED_LINK = ('true' == _thisElement) ? true : false;
-        } else if (_thisElement.split('=')[0] == 'autotracker') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.AUTOTRACKER = ('true' == _thisElement) ? true : !('false' == _thisElement);
-        } else if (_thisElement.split('=')[0] == 'optout') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.OPTOUT_PAGE = ('true' == _thisElement) ? true : false;
-        } else if (_thisElement.split('=')[0] == 'fedagencydim') {
-            oCONFIG.MAIN_AGENCY_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.MAIN_AGENCY_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.MAIN_AGENCY_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.MAIN_AGENCY_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'fedsubagencydim') {
-            oCONFIG.MAIN_SUBAGENCY_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.MAIN_SUBAGENCY_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.MAIN_SUBAGENCY_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.MAIN_SUBAGENCY_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'fedversiondim') {
-            oCONFIG.MAIN_CODEVERSION_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.MAIN_CODEVERSION_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.MAIN_CODEVERSION_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.MAIN_CODEVERSION_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'palagencydim') {
-            oCONFIG.PARALLEL_AGENCY_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.PARALLEL_AGENCY_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.PARALLEL_AGENCY_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.PARALLEL_AGENCY_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'palsubagencydim') {
-            oCONFIG.PARALLEL_SUBAGENCY_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.PARALLEL_SUBAGENCY_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.PARALLEL_SUBAGENCY_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.PARALLEL_SUBAGENCY_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'palversiondim') {
-            oCONFIG.PARALLEL_CODEVERSION_CUSTOM_DIMENSION_SLOT = _thisElement.split('=')[1].toLowerCase();
-            if (oCONFIG.PARALLEL_CODEVERSION_CUSTOM_DIMENSION_SLOT.indexOf('dimension') == -1) {
-                oCONFIG.PARALLEL_CODEVERSION_CUSTOM_DIMENSION_SLOT = 'dimension' + oCONFIG.PARALLEL_CODEVERSION_CUSTOM_DIMENSION_SLOT;
-            }
-        } else if (_thisElement.split('=')[0] == 'maincd') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.USE_MAIN_CUSTOM_DIMENSIONS = ('true' == _thisElement) ? true : !('false' == _thisElement);
-        } else if (_thisElement.split('=')[0] == 'parallelcd') {
-            _thisElement = _unionParams(_thisElement.split('=')[1]);
-            oCONFIG.USE_PARALLEL_CUSTOM_DIMENSIONS = ('true' == _thisElement) ? true : false;
-        } else if (_thisElement.split('=')[0] == 'cto') {
-            oCONFIG.COOKIE_TIMEOUT = parseInt(_thisElement.split('=')[1]);
-        }
-    }
-
-    /* In case Agency or Sub-Agency are not set */
-    if (oCONFIG.SUBDOMAIN_BASED) {
-    var _ObtHostName = '';
-    try{
-      _ObtHostName = document.location.hostname.match(/(([^.\/]+\.[^.\/]{2,3}\.[^.\/]{2})|(([^.\/]+\.)[^.\/]{2,4}([^.\/]+\.)[^.\/]{2,4})|(([^.\/]+\.)([^.\/]+\.)[^.\/]{2,4}([^.\/]+\.)[^.\/]{2,4}))(\/.*)?$/)[1];
-      }
-    catch(domError)
-    {
-      _ObtHostName = 'www.'+document.location.hostname.match(/(([^.\/]+\.[^.\/]{2,3}\.[^.\/]{2})|(([^.\/]+\.)[^.\/]{2,4}))(\/.*)?$/)[1];
-      }
-    
-        oCONFIG.HOST_DOMAIN_OR = _ObtHostName;
-    }
-  
-  
     oCONFIG.AGENCY = oCONFIG.AGENCY || 'unspecified:' + oCONFIG.HOST_DOMAIN_OR;
     oCONFIG.SUB_AGENCY = oCONFIG.SUB_AGENCY || ('' + oCONFIG.HOST_DOMAIN_OR);
     oCONFIG.SUB_AGENCY = oCONFIG.AGENCY + ' - ' + oCONFIG.SUB_AGENCY;
@@ -337,7 +241,7 @@ function _URIHandler(pageName) {
 /**** Start Basic Tracker *******/
 /*
  * build GA tracking code
- * according to configurations saved in oConfig 
+ * according to configurations saved in oConfig
  */
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
@@ -362,11 +266,11 @@ for (var dpv = 0; dpv < oCONFIG.GWT_UAID.length; dpv++) {
         if (!oCONFIG.SUBDOMAIN_BASED) {
             ga('create', oCONFIG.GWT_UAID[dpv], oCONFIG.HOST_DOMAIN_OR, {
         'name': 'GSA_ENOR0',
-                'allowLinker': true,
+                'allowLinker': false,
                 'cookieExpires': parseInt(oCONFIG.COOKIE_TIMEOUT)
             });
-            ga('GSA_ENOR0.require', 'linker');
-            ga('GSA_ENOR0.linker:autoLink', [oCONFIG.HOST_DOMAIN_OR]);
+            //ga('GSA_ENOR0.require', 'linker');
+            //ga('GSA_ENOR0.linker:autoLink', [oCONFIG.HOST_DOMAIN_OR]);
         } else {
       var _ObtHostName = '';
     try{
@@ -376,8 +280,8 @@ for (var dpv = 0; dpv < oCONFIG.GWT_UAID.length; dpv++) {
     {
       _ObtHostName = document.location.hostname.match(/(([^.\/]+\.[^.\/]{2,3}\.[^.\/]{2})|(([^.\/]+\.)[^.\/]{2,4}))(\/.*)?$/)[1];
       }
-    
-        
+
+
 
             ga('create', oCONFIG.GWT_UAID[dpv], _ObtHostName, {
         'name': 'GSA_ENOR0',
@@ -413,13 +317,13 @@ for (var dpv = 0; dpv < oCONFIG.GWT_UAID.length; dpv++) {
         if (!oCONFIG.SUBDOMAIN_BASED) {
             ga('create', oCONFIG.GWT_UAID[dpv], oCONFIG.HOST_DOMAIN_OR, {
                 'name': oCONFIG.PUA_NAME + dpv,
-                'allowLinker': true,
+                'allowLinker': false,
                 'cookieExpires': parseInt(oCONFIG.COOKIE_TIMEOUT)
             });
 
 
-            ga(oCONFIG.PUA_NAME + dpv + '.require', 'linker');
-            ga(oCONFIG.PUA_NAME + dpv + '.linker:autoLink', [oCONFIG.HOST_DOMAIN_OR]);
+            //ga(oCONFIG.PUA_NAME + dpv + '.require', 'linker');
+            //ga(oCONFIG.PUA_NAME + dpv + '.linker:autoLink', [oCONFIG.HOST_DOMAIN_OR]);
         } else {
             ga('create', oCONFIG.GWT_UAID[dpv], oCONFIG.HOST_DOMAIN_OR, {
                 'name': oCONFIG.PUA_NAME + dpv,
@@ -448,7 +352,7 @@ for (var dpv = 0; dpv < oCONFIG.GWT_UAID.length; dpv++) {
     {
       var vpv404 = '/vpv404/' + _adjPageUri;
       _adjPageUri = vpv404.replace(/\/\//g, '/') + '/' + document.referrer;
-      
+
       }
         ga(oCONFIG.PUA_NAME + dpv + '.send', 'pageview', _adjPageUri);
 
@@ -487,7 +391,7 @@ function _initAutoTracker() {
             if (!_thisHostName.match(/(.*)\.(.*)\.(.*)/g)) {
                 _thisHostName = 'www.' + _thisHostName;
             }
-            var _completeURL = _thisProtocol + "//" + _thisHostName + _thisPathName; 
+            var _completeURL = _thisProtocol + "//" + _thisHostName + _thisPathName;
             if (_thisHostName != '' && _thisPathName != '' && _thisHostName != 'www.') { /* Major Case (Link) #1*/
                 if (_thisHostName.toLowerCase().indexOf(aSETTINGS.WEBSITE_HOSTNAME) > -1) { /* Minor Case - Internal Link #1/1 */
           _isDownload(_thisPathName, aSETTINGS.DOWNLOADS_EXTs) == true ? _addEventListener(_thisObject, aSETTINGS.DEBUGGING_MODE, aSETTINGS.DOWNLOADS_CATEGORY, _getDownloadExt(_thisPathName, aSETTINGS.DOWNLOADS_EXTs), _completeURL, 0) : false;
@@ -556,7 +460,7 @@ function _getEmailAddr(url) {
 
 /*
  * name: _getEmailAddrHost
- * usage: to extract the host of the email address 
+ * usage: to extract the host of the email address
  */
 function _getEmailAddrHost(_emailaddr) {
     return _emailaddr.toString().split("@")[1];
@@ -611,7 +515,7 @@ function _isValidUANum(_stringVal){
 
 /*
  * name: _addEventListener
- * usage: 
+ * usage:
  * add event listener to an HTML element
  * and set the parameters of the event hit type
  * if debugging mode is enabled, (evAppendType=true), onmousedown mechanism will be used.
@@ -743,7 +647,7 @@ function onPlayerReady(event){
   /* left blank on purpose */
 }
 
-/* 
+/*
  * name: onPlayerStateChange
  * usage: fired when user interacts with the video player
  * such as pressing play/ pause buttons
