@@ -3,6 +3,11 @@
 
 <%= javascript_include_tag my_asset_path('application-shared.js') %>
 
+<% if Rails.env.production? %>
+  <%= javascript_include_tag my_asset_path('universal_federated_analytics.js?agency=NARA&subagency=fedreg'),
+    :id => "_fed_an_ua_tag" %>
+<% end %>
+
 <%= add_handlebars_template('interstitial_tender_modal', 'interstitial-tender-modal') %>
 <%= add_handlebars_template('email_suggestion', 'email-suggestion') %>
 <%= add_handlebars_template('email_invalid', 'email-invalid') %>
@@ -34,4 +39,3 @@
 <%= add_handlebars_template(
   'comment_print_summary',
   'comment-print-summary') %>
-
