@@ -3,10 +3,6 @@
 #= require strftime
 #= require handlebars-1.0.0.rc.3
 
-<% if Rails.env.development? %>
-#= require universal_federated_analytics
-<% end %>
-
 #= require utilities/ajax_setup
 #= require app
 

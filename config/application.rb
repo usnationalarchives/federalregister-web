@@ -77,6 +77,7 @@ module MyFr2
 
       admin/highlighted_documents.js
       utilities/modal.js
+      universal_federated_analytics.js
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
