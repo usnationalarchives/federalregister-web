@@ -175,3 +175,14 @@ namespace :honeybadger do
     run "cd #{current_path} && bundle exec rake honeybadger:deploy RAILS_ENV=#{rails_env} TO=#{branch} USER=#{`git config --global github.user`.chomp} REVISION=#{real_revision} REPO=#{repository}"
   end
 end
+
+
+#############################################################
+# Varnish Tasks (Override Thunderpunch)
+#############################################################
+
+namespace :varnish do
+  task :clear_cache, :roles => [:worker] do
+    run "cd #{current_path} && cd ../federalregister-api-core && RAILS_ENV=#{rails_env} bundle exec rake varnish:expire:everything"
+  end
+end
