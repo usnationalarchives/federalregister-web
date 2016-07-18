@@ -90,5 +90,9 @@
   </script>
 
   <%= javascript_include_tag asset_path('tender_widget_custom.js') %>
+
+  <% if Rails.env.production? %>
+    <script async src="/assets/universal_federated_analytics.js"></script>
+  <% end %>
 <% end %>
 </div>

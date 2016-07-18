@@ -138,13 +138,13 @@ class CommentsController < ApplicationController
 
     @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
-  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed => exception
+  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed, RegulationsDotGov::Client::ServerError => exception
     record_regulations_dot_gov_error( exception )
 
     response.headers['Regulations-Dot-Gov-Problem'] = "1"
 
     render :json => json_for_regulations_dot_gov_errors(exception),
-      :status => exception.code || 500
+      :status => exception.code && exception.code < 500 ? exception.code : 500
 
     # we're in a before filter here
     return false

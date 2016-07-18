@@ -150,7 +150,15 @@ after "varnish:clear_cache",    "honeybadger:notify_deploy"
 #                                                           #
 #############################################################
 
-# add any custom recipes here
+#############################################################
+# Varnish Tasks (Instead of Thunderpunch)
+#############################################################
+
+namespace :varnish do
+  task :clear_cache, :roles => [:worker] do
+    run "cd #{current_path} && cd ../federalregister-api-core && RAILS_ENV=#{rails_env} bundle exec rake varnish:expire:everything"
+  end
+end
 
 
 # deploy recipes - these should be required last
@@ -159,4 +167,3 @@ require 'thunder_punch/recipes/apache'
 require 'thunder_punch/recipes/honeybadger'
 require 'thunder_punch/recipes/passenger'
 require 'thunder_punch/recipes/assets'
-require 'thunder_punch/recipes/varnish'
