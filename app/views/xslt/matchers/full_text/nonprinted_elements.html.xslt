@@ -45,7 +45,7 @@
         </xsl:attribute>
 
         <xsl:attribute name="data-text">
-          <xsl:value-of select="''" />
+          <xsl:value-of select="'End Preamble'" />
         </xsl:attribute>
 
         <span class="icon-fr2 icon-fr2-source_code"></span>
