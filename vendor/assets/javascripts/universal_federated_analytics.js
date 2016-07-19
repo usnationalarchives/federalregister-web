@@ -43,7 +43,7 @@ var oCONFIG = {
     DOUNBLECLICK_LINK: false,
     ENHANCED_LINK: false,
     FORCE_SSL: true,
-    OPTOUT_PAGE: false,
+    OPTOUT_PAGE: document.location.pathname.indexOf('/my') === 0 ? true : false,
     PUA_NAME: 'GSA_ENOR'
 };
 
