@@ -1,13 +1,15 @@
 <% page_title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{@search.term}'" %>
 
-<% feed_autodiscovery(
-  documents_search_api_url(
-    {conditions: @search.valid_conditions.except(:publication_date)},
-    format: :rss
-  ),
-  @search.summary,
-  search_conditions: @search.valid_conditions.except(:publication_date)
-) %>
+<% if @search.valid? %>
+  <% feed_autodiscovery(
+    documents_search_api_url(
+      {conditions: @search.valid_conditions.except(:publication_date)},
+      format: :rss
+    ),
+    @search.summary,
+    search_conditions: @search.valid_conditions.except(:publication_date)
+  ) %>
+<% end %>
 
 <% if @search.blank? %>
   <% description 'Easy, powerful search of all Federal Register documents since 1994' %>
