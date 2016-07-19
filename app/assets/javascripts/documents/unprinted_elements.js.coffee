@@ -1,9 +1,9 @@
 class @FR2.UnprintedElements
   @docDetailsHeight: ->
-     $('.doc-aside.doc-details').height();
+    $('.doc-aside.doc-details').height()
 
   @unprintedElements: ->
-     $('.unprinted-element-wrapper').not('.printed-page-wrapper')
+    $('.unprinted-element-wrapper').not('.printed-page-wrapper')
 
   @setup: ->
     @positionElements()

@@ -1,9 +1,9 @@
 class @FR2.PrintPageElements
   @docDetailsHeight: ->
-     $('.doc-aside.doc-details').height();
+    $('.doc-aside.doc-details').height()
 
   @printPageElements: ->
-     $('.printed-page-wrapper')
+    $('.printed-page-wrapper')
 
   @printPageIcons: ->
     $(".printed-page-inline")

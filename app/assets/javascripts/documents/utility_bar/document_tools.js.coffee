@@ -21,10 +21,10 @@ class @FR2.DocumentTools
 
   @toggleElements: (elements)->
     if @unprintedElementsDisplayed
-      _.each elements, (el)=>
+      _.each elements, (el)->
         $(el).hide()
     else
-      _.each elements, (el)=>
+      _.each elements, (el)->
         $(el).css('display', 'block')
 
       if !@unprintedElementsSetup
