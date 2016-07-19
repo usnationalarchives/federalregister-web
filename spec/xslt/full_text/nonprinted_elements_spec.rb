@@ -14,19 +14,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Preamble"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.preamble.unprinted-element.document-markup",
+        with: {"data-text" => "Start Preamble"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.preamble.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Preamble"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.preamble.unprinted-element.document-markup",
+        with: {"data-text" => "End Preamble"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -38,19 +38,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Further Info"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.further-info.unprinted-element.document-markup",
+        with: {"data-text" => "Start Further Info"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.further-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Further Info"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.further-info.unprinted-element.document-markup",
+        with: {"data-text" => "End Further Info"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -64,19 +64,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Appendix"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.appendix.unprinted-element.document-markup",
+        with: {"data-text" => "Start Appendix"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Appendix"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.appendix.unprinted-element.document-markup",
+        with: {"data-text" => "End Appendix"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -88,19 +88,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Appendix"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.appendix.unprinted-element.document-markup",
+        with: {"data-text" => "Start Appendix"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.appendix.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Appendix"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.appendix.unprinted-element.document-markup",
+        with: {"data-text" => "End Appendix"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -112,10 +112,10 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-fancy-tooltip",
-          with: {"data-text" => "Start Signature"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.signature.unprinted-element.document-markup",
+        with: {"data-text" => "Start Signature"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to have_tag("div.signature") do
@@ -123,10 +123,10 @@ describe "XSLT::NonPrintedElements" do
     end
 
     expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.signature.unprinted-element.icon-fr2-pen.cj-fancy-tooltip",
-          with: {"data-text" => "End Signature"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.signature.unprinted-element.document-markup",
+        with: {"data-text" => "End Signature"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -138,19 +138,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Supplemental Information"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.supplemental-info.unprinted-element.document-markup",
+        with: {"data-text" => "Start Supplemental Information"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.supplemental-info.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Supplemental Information"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.supplemental-info.unprinted-element.document-markup",
+        with: {"data-text" => "End Supplemental Information"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -162,19 +162,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-fancy-tooltip",
-          with: {"data-text" => "Start List of Subjects"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.list-of-subjects.unprinted-element.document-markup",
+        with: {"data-text" => "Start List of Subjects"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.list-of-subjects.unprinted-element.icon-fr2-Molecular.cj-fancy-tooltip",
-          with: {"data-text" => "End List of Subjects"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.list-of-subjects.unprinted-element.document-markup",
+        with: {"data-text" => "End List of Subjects"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -186,19 +186,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.part.unprinted-element.icon-fr2-book.cj-fancy-tooltip",
-          with: {"data-text" => "Start Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.part.unprinted-element.document-markup",
+        with: {"data-text" => "Start Part"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.part.unprinted-element.icon-fr2-book.cj-fancy-tooltip",
-          with: {"data-text" => "End Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.part.unprinted-element.document-markup",
+        with: {"data-text" => "End Part"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -210,19 +210,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Amendment Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.amend-part.unprinted-element.document-markup",
+        with: {"data-text" => "Start Amendment Part"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.amend-part.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Amendment Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.amend-part.unprinted-element.document-markup",
+        with: {"data-text" => "End Amendment Part"}
+      with_tag "span.unprinted-element-border"
     end
   end
 
@@ -234,19 +234,19 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "Start Authority"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.authority.unprinted-element.document-markup",
+        with: {"data-text" => "Start Authority"}
+      with_tag "span.unprinted-element-border"
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.authority.unprinted-element.icon-fr2-doc-generic.cj-fancy-tooltip",
-          with: {"data-text" => "End Authority"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.authority.unprinted-element.document-markup",
+        with: {"data-text" => "End Authority"}
+      with_tag "span.unprinted-element-border"
     end
   end
 

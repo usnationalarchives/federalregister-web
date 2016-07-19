@@ -74,9 +74,13 @@ describe "XSLT::FullText::Footnotes" do
       <p id="p-1" data-page="1000">
         <sup>[<a class="footnote-reference" href="#footnote-1-p1000" id="citation-1-p1000">1</a>] </sup>
       </p>
+      <span class="printed-page printed-page-inline unprinted-element icon-fr2 icon-fr2-doc-generic document-markup" data-page="1001"></span>
       <span class="printed-page-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
-        <span class="printed-page unprinted-element icon-fr2 icon-fr2-doc-generic cj-fancy-tooltip document-markup" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-tooltip-data="{&quot;page&quot;: 1001}"> </span>
+        <span class="printed-page unprinted-element cj-fancy-tooltip document-markup" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-tooltip-data="{&quot;page&quot;: 1001}">
+          <span class="icon-fr2 icon-fr2-doc-generic"></span>
+          <span class="text">Start Printed Page 1001</span>
+        </span>
       </span>
       <p id="p-3" data-page="1001">
         <sup>[<a class="footnote-reference" href="#footnote-2-p1001" id="citation-2-p1001">2</a>] </sup>
