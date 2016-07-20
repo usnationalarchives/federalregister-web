@@ -3,8 +3,15 @@
     background-color: $fr-yellow;
     border-radius: 5px;
     margin-bottom: 5px;
-    padding: 6px 10px 10px;
+    padding: 10px 30px 9px 35px;
+    position: relative;
 
+    .icon-fr2,
+    .name,
+    .type {
+      display: inline-block;
+      vertical-align: top;
+    }
     .type {
       color: $fr-golden;
       font-weight: 500;
@@ -13,15 +20,20 @@
       &::after { content: ":"; }
     }
 
+    .name { width: 550px; }
+
     .icon-fr2 {
       color: $fr-golden;
       font-size: 22px;
-      position: relative;
-      top: 4px;
+      left: -26px;
+      margin-right: -27px;
     }
 
     a .icon-fr2 {
-      float: right;
+      display: inline;
+      left: 670px;
+      position: absolute;
+      top: 6px;
 
       &:hover { color: $fr-red; }
     }
