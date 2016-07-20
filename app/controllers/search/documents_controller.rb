@@ -79,6 +79,11 @@ class Search::DocumentsController < ApplicationController
       count: ::Document.search_metadata(conditions: valid_conditions).count,
       url: documents_search_path(conditions: valid_conditions)
     }
+  rescue FederalRegister::Client::BadRequest => e
+    render json: {
+      count: 0,
+      url: documents_search_path(conditions: valid_conditions)
+    }
   end
 
   private
