@@ -71,6 +71,18 @@
               <%= esi(documents_search_results_path(params)) %>
             </div>
           </div>
+        <% else %>
+          <div class="flash-message error">
+            <h5>
+              We encountered some errors with your search, please correct them and try again.
+            </h5>
+
+            <ul class="bullets">
+              <% @search.validation_errors.values.each do |err| %>
+                <li class=""><%= err %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
       <% end %>
 
