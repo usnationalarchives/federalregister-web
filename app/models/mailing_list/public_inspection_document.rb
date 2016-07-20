@@ -1,6 +1,6 @@
 class MailingList::PublicInspectionDocument < MailingList
   def model
-    FederalRegister::PublicInspectionDocument
+    ::PublicInspectionDocument
   end
 
   def deliver!(document_numbers, options = {})

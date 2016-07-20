@@ -46,6 +46,8 @@ class @FR2.SubscriptionHandler
       subscriptionWrapper = form
         .find("input:radio[name='subscription[search_type]']")
         .closest('li.radio')
+      searchType = form
+        .find('input[name="subscription[search_type]"]:checked')
       email = form.find('#subscription_email')
 
       email.removeClass('error')
@@ -56,6 +58,7 @@ class @FR2.SubscriptionHandler
           subscriptionParam = $.param({
             'subscription': {
               'search_conditions': subscription.data('subscription-params')
+              'search_type': searchType.val()
               'email': email.val()
             }
           })
