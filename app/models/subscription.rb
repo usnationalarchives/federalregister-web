@@ -38,12 +38,7 @@ class Subscription < ApplicationModel
   end
 
   def public_inspection_search_possible?
-    begin
-      FederalRegister::PublicInspectionDocument.search_metadata(:conditions => search_conditions)
-      true
-    rescue FederalRegister::Client::BadRequest
-      false
-    end
+    Search::PublicInspection.new(search_conditions).valid_search?
   end
 
   def to_param
