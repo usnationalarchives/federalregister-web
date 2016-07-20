@@ -28,6 +28,13 @@ class Search::Document < Search::Base
     ::Document
   end
 
+  def near
+    OpenStruct.new(
+      location: conditions[:near].try(:[], :location),
+      within: (conditions[:near].try(:[], :within))
+    )
+  end
+
   def public_inspection_document_count
     PublicInspectionDocument.search_metadata(
       conditions: Search::PublicInspection.new(conditions).

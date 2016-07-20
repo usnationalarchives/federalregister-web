@@ -104,13 +104,6 @@ class Search::Base
 
   delegate :as_json, :to => :valid_conditions
 
-  def near
-    OpenStruct.new(
-      location: conditions[:near].try(:[], :location),
-      within: (conditions[:near].try(:[], :within))
-    )
-  end
-
   def cfr
     OpenStruct.new(
       title: conditions[:cfr].try(:[], :title),
