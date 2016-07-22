@@ -378,4 +378,112 @@ http_interactions:
         and Gerontology Advisory Committee","document_numbers":["2016-04333"]}]}]}]}'
     http_version: '1.1'
   recorded_at: Sat, 05 Mar 2016 00:32:18 GMT
+- request:
+    method: get
+    uri: https://fr-official.criticaljuncture.org/api/v1/documents/2016-03956,2016-04047,2016-04244.json?fields[]=citation&fields[]=document_number&fields[]=end_page&fields[]=html_url&fields[]=pdf_url&fields[]=publication_date&fields[]=start_page&fields[]=title
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.4.6 (Ubuntu)
+      date:
+      - Fri, 22 Jul 2016 17:57:37 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '1433'
+      connection:
+      - close
+      x-runtime:
+      - '86'
+      x-powered-by:
+      - Phusion Passenger 5.0.6
+      status:
+      - 200 OK
+      x-varnish:
+      - '308748806'
+      age:
+      - '0'
+      via:
+      - 1.1 varnish
+      etag:
+      - ! '"96ff8be8a6bbfe51ce102b47064b9bbd" abgroup=1'
+      set-cookie:
+      - ab_group=1; path=/; expires=Mon, 01-Aug-2016 17:57:37 GMT
+      strict-transport-security:
+      - max-age=15552000
+    body:
+      encoding: US-ASCII
+      string: ! '{"count":3,"results":[{"citation":"81 FR 10132","document_number":"2016-03956","end_page":10138,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-03956/livestock-mandatory-reporting-reauthorization-of-livestock-mandatory-reporting-and-revision-of-swine","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-03956.pdf","publication_date":"2016-02-29","start_page":10132,"title":"Livestock
+        Mandatory Reporting: Reauthorization of Livestock Mandatory Reporting and
+        Revision of Swine and Lamb Reporting Requirements"},{"citation":"81 FR 10057","document_number":"2016-04047","end_page":10063,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-04047/livestock-mandatory-reporting-revision-of-lamb-reporting-requirements","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-04047.pdf","publication_date":"2016-02-29","start_page":10057,"title":"Livestock
+        Mandatory Reporting: Revision of Lamb Reporting Requirements"},{"citation":"81
+        FR 10086","document_number":"2016-04244","end_page":10086,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-04244/drawbridge-operation-regulation-lake-washington-ship-canal-seattle-wa","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-04244.pdf","publication_date":"2016-02-29","start_page":10086,"title":"Drawbridge
+        Operation Regulation; Lake Washington Ship Canal, Seattle, WA"}]}'
+    http_version: '1.1'
+  recorded_at: Fri, 22 Jul 2016 17:57:14 GMT
+- request:
+    method: get
+    uri: https://fr-official.criticaljuncture.org/api/v1/documents/2016-03956,2016-04047,2016-04244.json?fields[]=agencies&fields[]=citation&fields[]=document_number&fields[]=end_page&fields[]=html_url&fields[]=pdf_url&fields[]=publication_date&fields[]=start_page&fields[]=title
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.4.6 (Ubuntu)
+      date:
+      - Fri, 22 Jul 2016 18:03:34 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '3234'
+      connection:
+      - close
+      x-runtime:
+      - '24'
+      x-powered-by:
+      - Phusion Passenger 5.0.6
+      status:
+      - 200 OK
+      x-varnish:
+      - '308748862'
+      age:
+      - '0'
+      via:
+      - 1.1 varnish
+      etag:
+      - ! '"0e8f83c4d563b6efa7e0a81a8bedccc8" abgroup=1'
+      set-cookie:
+      - ab_group=1; path=/; expires=Mon, 01-Aug-2016 18:03:34 GMT
+      strict-transport-security:
+      - max-age=15552000
+    body:
+      encoding: US-ASCII
+      string: ! '{"count":3,"results":[{"agencies":[{"raw_name":"DEPARTMENT OF AGRICULTURE","name":"Agriculture
+        Department","id":12,"url":"https://fr-official.criticaljuncture.org/agencies/agriculture-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/12.json","parent_id":null,"slug":"agriculture-department"},{"raw_name":"Agricultural
+        Marketing Service","name":"Agricultural Marketing Service","id":9,"url":"https://fr-official.criticaljuncture.org/agencies/agricultural-marketing-service","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/9.json","parent_id":12,"slug":"agricultural-marketing-service"}],"citation":"81
+        FR 10132","document_number":"2016-03956","end_page":10138,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-03956/livestock-mandatory-reporting-reauthorization-of-livestock-mandatory-reporting-and-revision-of-swine","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-03956.pdf","publication_date":"2016-02-29","start_page":10132,"title":"Livestock
+        Mandatory Reporting: Reauthorization of Livestock Mandatory Reporting and
+        Revision of Swine and Lamb Reporting Requirements"},{"agencies":[{"raw_name":"DEPARTMENT
+        OF AGRICULTURE","name":"Agriculture Department","id":12,"url":"https://fr-official.criticaljuncture.org/agencies/agriculture-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/12.json","parent_id":null,"slug":"agriculture-department"},{"raw_name":"Agricultural
+        Marketing Service","name":"Agricultural Marketing Service","id":9,"url":"https://fr-official.criticaljuncture.org/agencies/agricultural-marketing-service","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/9.json","parent_id":12,"slug":"agricultural-marketing-service"}],"citation":"81
+        FR 10057","document_number":"2016-04047","end_page":10063,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-04047/livestock-mandatory-reporting-revision-of-lamb-reporting-requirements","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-04047.pdf","publication_date":"2016-02-29","start_page":10057,"title":"Livestock
+        Mandatory Reporting: Revision of Lamb Reporting Requirements"},{"agencies":[{"raw_name":"DEPARTMENT
+        OF HOMELAND SECURITY","name":"Homeland Security Department","id":227,"url":"https://fr-official.criticaljuncture.org/agencies/homeland-security-department","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/227.json","parent_id":null,"slug":"homeland-security-department"},{"raw_name":"Coast
+        Guard","name":"Coast Guard","id":53,"url":"https://fr-official.criticaljuncture.org/agencies/coast-guard","json_url":"https://fr-official.criticaljuncture.org/api/v1/agencies/53.json","parent_id":227,"slug":"coast-guard"}],"citation":"81
+        FR 10086","document_number":"2016-04244","end_page":10086,"html_url":"https://fr-official.criticaljuncture.org/documents/2016/02/29/2016-04244/drawbridge-operation-regulation-lake-washington-ship-canal-seattle-wa","pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2016-02-29/pdf/2016-04244.pdf","publication_date":"2016-02-29","start_page":10086,"title":"Drawbridge
+        Operation Regulation; Lake Washington Ship Canal, Seattle, WA"}]}'
+    http_version: '1.1'
+  recorded_at: Fri, 22 Jul 2016 18:03:11 GMT
 recorded_with: VCR 2.6.0

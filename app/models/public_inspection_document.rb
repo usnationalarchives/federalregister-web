@@ -10,6 +10,7 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
     [
       :agencies,
       :excerpts,
+      :filing_type,
       :html_url,
       :publication_date,
       :title,

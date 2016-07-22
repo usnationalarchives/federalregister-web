@@ -14,20 +14,18 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
   private
 
   def retrieve_documents
-    @documents ||= PublicInspectionDocument.search(
-      query_conditions.deep_merge(
+    @documents ||= PublicInspectionDocument.find_all(
+      document_numbers,
+      {
         per_page: 1000,
         fields: document_fields
-      )
-    ).select {|d| d.filing_type == filing_type}
-  end
-
-  def query_conditions
-    QueryConditions::PublicInspectionDocumentConditions.available_on(date)
+      }
+    )
   end
 
   def document_fields
     [
+      :agencies,
       :docket_numbers,
       :document_number,
       :editorial_note,

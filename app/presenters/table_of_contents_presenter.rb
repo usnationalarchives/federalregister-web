@@ -20,83 +20,23 @@ class TableOfContentsPresenter
   end
 
   def agencies
-    @agencies ||= table_of_contents_data["agencies"].inject({}) do |hsh, agency_hash|
-      hsh[agency_hash['slug']] = TableOfContentsPresenter::Agency.new(agency_hash, self)
-      hsh
-    end
+    filter_to_documents.present? ? filtered_agencies : raw_agencies
   end
 
-  def filter_to_document_numbers
-    @filter_to_document_numbers ||= filter_to_documents.map(&:document_number)
-  end
-
-  def filter_to_agency_slugs
+  def filtered_agency_slugs
     # grabbing only the child agency slugs
-    @filter_to_agency_slugs ||= filter_to_documents.map do |document|
+    @filtered_agency_slugs ||= documents.map do |document|
       document.excluding_parent_agencies.map(&:slug)
     end.flatten.uniq
   end
 
-  def filtered_agencies
-    filtered_agencies = []
-
-    if filter_to_documents
-      agencies.each do |key, agency|
-        if agency.see_also && agency.document_categories.empty?
-          if agency.see_also.any?{|sa| filter_to_agency_slugs.include?(sa["slug"])}
-            filtered_see_also = agency.see_also.select do |agency_representation|
-              filter_to_agency_slugs.include?(agency_representation["slug"])
-            end
-            agency.see_also = filtered_see_also
-            filtered_agencies << {key => agency}
-          end
-        end
-
-        if filter_to_agency_slugs.include?(agency.slug)
-          filtered_doc_cats = agency.document_categories.select do |cat|
-            filtered_docs = cat["documents"].select do |doc|
-              doc["document_numbers"].any?{|document_number| filter_to_document_numbers.include?(document_number)}
-            end
-
-            if filtered_docs.present?
-              cat["documents"] = filtered_docs
-            else
-              false
-            end
-          end
-
-          if filtered_doc_cats.present?
-            agency.document_categories = filtered_doc_cats
-            filtered_agencies << {key => agency}
-          end
-        end
-      end
-    end
-    #date = Date.parse('2016-02-29'); p = TableOfContentsPresenter.new(date, ["2016-04047", "2016-04045", "2016-04244", "2016-04336"]); fa = p.filtered_agencies; 0
-
-    filtered_agencies
-  end
-
   def document_numbers
-    return @document_numbers if @document_numbers
-
-    doc_numbers = []
-
-    table_of_contents_data["agencies"].each do |agency|
-      agency["document_categories"].each do |doc_cat|
-        doc_cat["documents"].each do |doc|
-          doc_numbers << doc["document_numbers"]
-        end
-      end
-    end
-
-    @document_numbers = doc_numbers.flatten
+    filter_to_documents.present? ? filtered_document_numbers : raw_document_numbers
   end
 
   def documents
     retrieve_documents.results.map{|d| DocumentDecorator.decorate(d)}
   end
-
 
   # DOCUMENT STATUS
   def official_documents?
@@ -107,7 +47,6 @@ class TableOfContentsPresenter
   def document?
     documents.present? && documents.first.document?
   end
-
 
   # FR BOX RENDERING
   def fr_content_box_type
@@ -140,6 +79,7 @@ class TableOfContentsPresenter
 
   def document_fields
     [
+      :agencies,
       :citation,
       :document_number,
       :end_page,
@@ -149,5 +89,71 @@ class TableOfContentsPresenter
       :start_page,
       :title,
     ]
+  end
+
+  def raw_document_numbers
+    return @raw_document_numbers if @raw_document_numbers
+
+    doc_numbers = []
+
+    table_of_contents_data["agencies"].each do |agency|
+      agency["document_categories"].each do |doc_cat|
+        doc_cat["documents"].each do |doc|
+          doc_numbers << doc["document_numbers"]
+        end
+      end
+    end
+
+    @document_numbers = doc_numbers.flatten
+  end
+
+  def filtered_document_numbers
+    @filtered_document_numbers ||= filter_to_documents.map(&:document_number)
+  end
+
+  def raw_agencies
+    @raw_agencies ||= table_of_contents_data["agencies"].inject({}) do |hsh, agency_hash|
+      hsh[agency_hash['slug']] = TableOfContentsPresenter::Agency.new(agency_hash, self)
+      hsh
+    end
+  end
+
+  def filtered_agencies
+    filtered_agencies = []
+
+    if filter_to_documents
+      raw_agencies.each do |key, agency|
+        if agency.see_also && agency.document_categories.empty?
+          if agency.see_also.any?{|sa| filtered_agency_slugs.include?(sa["slug"])}
+            filtered_see_also = agency.see_also.select do |agency_representation|
+              filtered_agency_slugs.include?(agency_representation["slug"])
+            end
+            agency.see_also = filtered_see_also
+            filtered_agencies << {key => agency}
+          end
+        end
+
+        if filtered_agency_slugs.include?(agency.slug)
+          filtered_doc_cats = agency.document_categories.select do |cat|
+            filtered_docs = cat["documents"].select do |doc|
+              doc["document_numbers"].any?{|document_number| filtered_document_numbers.include?(document_number)}
+            end
+
+            if filtered_docs.present?
+              cat["documents"] = filtered_docs
+            else
+              false
+            end
+          end
+
+          if filtered_doc_cats.present?
+            agency.document_categories = filtered_doc_cats
+            filtered_agencies << {key => agency}
+          end
+        end
+      end
+    end
+
+    filtered_agencies.compact
   end
 end
