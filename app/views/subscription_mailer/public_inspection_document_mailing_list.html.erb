@@ -1,42 +1,100 @@
-<div class="info">  
-  <span class="left"><%= @results.first.filed_at.to_date.to_s(:formal) %></span>
-  <span class="right"><%= pluralize @results.count, "matching public inspection document" %></span>
-</div>
+<% add_css_file_to_mailer 'subscription_mailer.css' %>
 
-<h1>
-  <%=h @mailing_list.title %>
-</h1>
+<table class="public-inspection">
+  <tr>
+    <td class="info">
+      <span class="left">subscription results for <%= @results.first.filed_at.to_date.to_s(:formal) %></span>
+      <span class="right"><%= pluralize @results.count, "matching public inspection document" %></span>
+    </td>
+  </tr>
 
-    
-<% @agencies.each_with_index do |agency, index| %>
-  <a name="<%= agency.identifier %>"></a>
-  <h3><%= agency.name %></h3>      
-  
-  <% if agency.children.present? %>
-    <% agency.children.each_with_index do |sub_agency, index| %>
-      <div class="sub_agency">
-        <i>See</i>
-        <a href="#<%= sub_agency.identifier %>" style="font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;"><%= sub_agency.name %></a>
-        <span class="doc_count">(<%= pluralize(sub_agency.articles.to_a.size, 'public inspection document') %>)</span>
-      </div>
-    <% end %>
-  <% end %>
+  <tr>
+    <td>
+      <h1 class="mailing-list-title"><%= @mailing_list.title %></h1>
+    </td>
+  </tr>
 
-  <% agency.articles_by_type_and_toc_subject.each do |type, articles_by_toc_subject| %>
-    <h4><%= type.pluralize %></h4>
+  <tr>
+    <td>
+      <div class="bootstrap-scope">
+        <% if @special_filings_presenter %>
+          <div class="row">
+            <div class="doc-toc">
 
-    <% articles_by_toc_subject.each do |toc_subject, articles_by_toc_subject| %>
-      <% if toc_subject.present? %>
-        <h5><%= toc_subject %></h5>
-        <% articles_by_toc_subject.each do |document| %>
-          <%= render :partial => 'subscription_mailer/pi_document', :locals => {:document => document, :section_class => 'with_subject', :title => document.toc_doc} %>
-        <% end %>  
-      <% else %>
-        <% articles_by_toc_subject.each do |document| %>
-          <%= render :partial => 'subscription_mailer/pi_document', :locals => {:document => document, :section_class => '', :title => document.title} %>
+              <%= fr_content_box(
+                FrBox.build(
+                  @special_filings_presenter.fr_content_box_type,
+                  title: 'Matching Special Filings',
+                  filing_type: 'special_filing'
+                )
+              ) do %>
+                <% if FrBox.build(@special_filings_presenter.fr_content_box_type).background_seal? %>
+                  <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+                <% end %>
+
+                <div class="doc doc-document-issue">
+                  <h1 id="special-filing">
+                    Special Filing
+                    <span class="updated_at">
+                      updated at
+                      <%= @presenter.special_filings.formatted_updated_at %>
+                    </span>
+                  </h1>
+
+                  <%= render partial: 'issues/table_of_contents',
+                    locals: {
+                      type: "special-filing",
+                      agencies: @special_filings_presenter.agencies,
+                      document_partial: @special_filings_presenter.document_partial,
+                      table_of_contents_url: public_inspection_issue_url(@special_filings_presenter.date),
+                      show_see_references: false
+                    } %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
         <% end %>
-      <% end %>
-    <% end %>  
-  <% end %>
-<% end %>
 
+        <% if @regular_filings_presenter %>
+          <div class="row">
+            <div class="doc-toc">
+
+              <%= fr_content_box(
+                FrBox.build(
+                  @regular_filings_presenter.fr_content_box_type,
+                  title: 'Matching Regular Filings',
+                  filing_type: 'regular_filing'
+                )
+              ) do %>
+                <% if FrBox.build(@regular_filings_presenter.fr_content_box_type).background_seal? %>
+                  <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+                <% end %>
+
+                <div class="doc doc-document-issue">
+                  <h1 id="regular-filing">
+                    Regular Filing
+                    <span class="updated_at">
+                      updated at
+                      <%= @presenter.regular_filings.formatted_updated_at %>
+                    </span>
+                  </h1>
+
+                  <%= render partial: 'issues/table_of_contents',
+                    locals: {
+                      type: "special-filing",
+                      agencies: @regular_filings_presenter.agencies,
+                      document_partial: @regular_filings_presenter.document_partial,
+                      table_of_contents_url: public_inspection_issue_url(@regular_filings_presenter.date),
+                      show_see_references: false
+                    } %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,61 @@
+<div class="toc-documents">
+  <% if subject %>
+    <h7>
+      <%= link_to_if documents.size == 1,
+        subject, documents.first.html_url %>
+    </h7>
+  <% end %>
+
+  <table class="row">
+    <% documents.each do |document| %>
+      <tr class="toc-document-metadata">
+        <td>
+          <dl>
+            <dt>Filed on:</dt>
+            <dd><%= document.filed_at %></dd>
+
+            <dt>Scheduled Pub. Date:</dt>
+            <dd><%= document.publication_date %></dd>
+
+            <dt>FR Document:</dt>
+            <dd>
+              <%= link_to document.document_number, short_document_path(document) %>
+            </dd>
+
+            <% if document.docket_numbers.present? %>
+              <dt><%= "Agency Docket".pluralize(document.docket_numbers) %>:</dt>
+              <dd><%= document.docket_numbers.join(",") %></dd>
+            <% end %>
+          </dl>
+        </td>
+
+        <td>
+          <dl>
+            <dt class="toc-pdf">
+              <%= link_to 'PDF', document.pdf_url %>
+            </dt>
+            <dd>
+              <%= pluralize document.num_pages, "Page" %>
+              (<%= number_to_human_size document.pdf_file_size %>)
+            </dd>
+
+            <dt class="permalink">
+              <%= link_to 'Permalink', short_document_url(document) %>
+            </dt>
+            <dd></dd>
+          </dl>
+        </td>
+      </tr>
+
+      <% if document.editorial_note %>
+        <tr class="toc-editorial-note">
+          <td colspan=2>
+            <p>
+              <strong>Editorial Note:</strong> <%= document.editorial_note %>
+            </p>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

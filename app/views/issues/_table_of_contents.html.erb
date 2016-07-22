@@ -1,6 +1,6 @@
 <%
   type ||= nil
-  show_see_references == nil ? true : show_see_references
+  show_see_references = defined?(show_see_references) ? show_see_references : true
 %>
 
 

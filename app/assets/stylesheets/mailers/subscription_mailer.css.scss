@@ -1,28 +1,42 @@
-@import "bootstrap-mailer";
-
 @import "library/colors";
 @import "library/official_colors";
 
-@import "mixins/bullets";
 @import "mixins/fonts";
 
 // Font sizes based on ratios
 $em-base: 16px;
 @import 'bourbon/modular-scale';
-@import 'application_fonts';
 
-@import 'application_colors';
-@import "library/lists";
-@import "library/typeface";
+//-----------------------------------------------
+// Typesetting for FederalRegister.gov
+// 16px @ 1:1.125 (major-second)
+//-----------------------------------------------
+$modular-scale-ratio: $major-second; //1.125
+$modular-scale-base: 16px;
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px; // Scale origin
+  font-weight: 300;
+
+  h1, h2, h3, h4, h5, h6, h7, p {
+    line-height: 1.3;
+  }
+}
 
 @import "components/officialness/fr_box";
-@import "design/issues/document_issue";
 @import "design/issues/table_of_contents";
 
+.public-inspection h1 { color: $color-public-inspection !important; }
 
-
-.bootstrap-scope .wrapper .container.fixed {
+.bootstrap-scope {
   width: auto !important;
+
+  h1#regular-filing,
+  h1#special-filing {
+    color: $fr-gray-60;
+    font-size: modular-scale(0);
+  }
 
   h2 a { text-decoration: none; }
 
@@ -30,12 +44,28 @@ $em-base: 16px;
   ul.see-references { margin-bottom: 20px; }
   .count-pill { text-align: center; }
 
+  h1, h2, h3, h4, h5, h6, h7, p {
+    margin: 0;
+  }
+
   h1 { font-size: modular-scale(4); }
   h2 { font-size: modular-scale(3); }
-  h3 { font-size: modular-scale(2); }
-  h4 { font-size: modular-scale(1); }
-  h5 { font-size: modular-scale(1); }
-  h6 { font-size: modular-scale(0); }
+  h3 {
+    color: $fr-gray-90;
+    font-size: modular-scale(2);
+  }
+  h4 {
+    color: $fr-gray-80;
+    font-size: modular-scale(1);
+  }
+  h5 {
+    color: $fr-gray-70;
+    font-size: modular-scale(1);
+  }
+  h6 {
+    color: $fr-gray-60;
+    font-size: modular-scale(0);
+  }
   h7 { font-size: modular-scale(0); }
 
   .fr-seal-content h6,
@@ -50,16 +80,16 @@ $em-base: 16px;
 }
 
 table.highlight {
-  padding: 10px;
   background-color: $fr-gray-2;
   margin: 20px 0;
+  padding: 10px;
 
   h4 {
     color: $fr-green;
 
     &.top_aligned {
-      padding-top: 4px;
       font-size: 18px;
+      padding-top: 4px;
     }
   }
 }
@@ -101,12 +131,12 @@ tr.social {
     font-style:italic;
     font-weight: normal;
     height: 18px;
-    margin-bottom: 10px;
     overflow: hidden;
     padding: 0 5px;
 
     .left,
     .right { display: block; }
+
     .left { float: left; }
     .right { float: right; }
   }
@@ -115,3 +145,25 @@ tr.social {
 img.float_left { padding: 0; }
 p.column_content { padding: 10px 8px 20px !important; }
 h4.h4.float_left { font-family: Arial; }
+
+table.row {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+h1.mailing-list-title { padding-top: 10px !important; }
+
+h2 {
+  a { text-decoration: none !important; }
+}
+
+dl {
+  dt,
+  dd {
+    float: left;
+  }
+
+  dt { clear: both; }
+
+  dd { margin-left: 5px; }
+}
