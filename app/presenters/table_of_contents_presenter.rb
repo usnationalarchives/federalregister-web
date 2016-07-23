@@ -16,7 +16,7 @@ class TableOfContentsPresenter
   end
 
   def document_partial
-    'document_issues/table_of_contents_doc_details'
+    'document_issues/document_details'
   end
 
   def agencies
