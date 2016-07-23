@@ -1,21 +1,41 @@
 <%= @mailing_list.title %>
 
-<%= Time.zone.now.to_s(:formal_with_time) %>
+subscription results for <%= @results.first.filed_at.to_date.to_s(:formal) %>
+<%= pluralize @results.count, "matching public inspection document" %>
 
-<%= pluralize @results.size, "matching newly filed public inspection document" %>.
+----------------------------------------------------
 
--------------
+<%- if @special_filings_presenter -%>
+Special Filing
+updated at <%= @presenter.special_filings.formatted_updated_at %>
 
-<%- @results.each do |document| -%>
-<%= [document.toc_subject, document.toc_doc, document.title].reject(&:blank?).join(' - ') %> (<%= document.document_number %>)
+<%= render partial: 'issues/table_of_contents',
+  locals: {
+    type: "special-filing",
+    agencies: @special_filings_presenter.agencies,
+    document_partial: @special_filings_presenter.document_partial,
+    table_of_contents_url: public_inspection_issue_url(@special_filings_presenter.date),
+    show_see_references: false
+  } %>
+----------------------------------------------------
 
-<%= document.type.with_indefinite_article(true) %> by <%= document.agency_names_as_sentence(:links => false) %> to be published on <%= document.publication_date %>.
+<%- end -%>
+<%- if @regular_filings_presenter -%>
+Regular Filing
+updated at <%= @presenter.regular_filings.formatted_updated_at %>
 
-<%= document.short_article_url %>
+<%= render partial: 'issues/table_of_contents',
+  locals: {
+    type: "regular-filing",
+    agencies: @regular_filings_presenter.agencies,
+    document_partial: @regular_filings_presenter.document_partial,
+    table_of_contents_url: public_inspection_issue_url(@regular_filings_presenter.date),
+    show_see_references: false
+  } %>
+----------------------------------------------------
 
--------
+<%- end -%>
 
-<% end %>
 If you no longer wish to subscribe to these results, click here:
 <%= unsubscribe_subscription_url('(((token)))') %>
 

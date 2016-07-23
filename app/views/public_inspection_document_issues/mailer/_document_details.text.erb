@@ -1,0 +1,21 @@
+<%- if subject -%>
+  <%- if documents.size == 1 -%>
+    <%= subject %>
+    <%= documents.first.html_url %>
+  <%- end -%>
+<%- end -%>
+
+<%- documents.each do |document| -%>
+    Filed on: <%= document.filed_at %>
+    Scheduled Publication Date: <%= document.publication_date %>
+    FR Document: <%= document.document_number %> <%= short_document_path(document) %>
+  <%- if document.docket_numbers.present? -%>
+    <%= "Agency Docket".pluralize(document.docket_numbers) %>: <%= document.docket_numbers.join(",") %>
+  <%- end -%>
+    PDF: <%= pluralize document.num_pages, "Page" %> (<%= number_to_human_size document.pdf_file_size %>), <%= document.pdf_url %>
+    Permalink: <%= short_document_url(document) %>
+
+  <%- if document.editorial_note -%>
+    Editorial Note: <%= document.editorial_note %>
+  <%- end -%>
+<%- end -%>

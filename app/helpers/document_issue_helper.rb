@@ -37,6 +37,39 @@ module DocumentIssueHelper
     end.join("\n").html_safe
   end
 
+  def display_hierarchy_as_text(docs, agency, options={})
+    document_partial = options[:document_partial]
+    level = options[:level]
+
+    docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
+      docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
+
+      tags = []
+
+      if subject_heading_required?(level, docs_only_at_this_level, nested_docs)
+        header = subject_heading
+
+        tags << "#{' ' * (level*2)}#{header}"
+      end
+
+
+      str = []
+      docs_only_at_this_level.each do |doc|
+        str << "#{' ' * (level*2)}" + render(
+          partial: document_partial,
+          locals: {
+            subject: subject_heading_required?(level, docs_only_at_this_level, nested_docs) ? nil : subject_heading,
+            documents: agency.load_documents(doc["document_numbers"])
+          }
+        )
+      end
+      str << display_hierarchy_as_text(nested_docs, agency, options={level: level+1, document_partial: document_partial}) if nested_docs.present?
+
+      tags << str.join("\n").html_safe
+
+    end.join("\n").html_safe
+  end
+
   def subject_heading_required?(level, docs_only_at_this_level, nested_docs)
     level == 1 || (docs_only_at_this_level.present? || nested_docs.present?)
   end

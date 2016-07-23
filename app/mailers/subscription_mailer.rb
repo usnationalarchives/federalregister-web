@@ -75,7 +75,7 @@ class SubscriptionMailer < ActionMailer::Base
       :subject => "[FR] #{mailing_list.title}",
       :to => 'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
     ) do |format|
-      #format.text { render('public_inspection_document_mailing_list') }
+      format.text { render('public_inspection_document_mailing_list') }
       format.html {
         Premailer.new(
           render('public_inspection_document_mailing_list', layout: "mailer/two_col_1_2"),

@@ -1,0 +1,27 @@
+<%-
+  type ||= nil
+  show_see_references = defined?(show_see_references) ? show_see_references : true
+-%>
+<%- agencies.each do |agency_hsh| -%>
+  <%- agency = agency_hsh.values.first -%>
+
+  <%- if agency.document_categories.present? || show_see_references -%>
+<%= agency.name %>
+  <%- end -%>
+  <%- if agency.child_agencies.present? && show_see_references -%>
+    <%- agency.child_agencies.each do |child_agency| -%>
+  See <%= child_agency.name %> (<%= child_agency.document_count_with_child_agencies %>)
+    <%- end -%>
+
+  <%- end -%>
+  <%- agency.document_categories.each do |doc_category| -%>
+  <%= doc_category["type"].try(:upcase) %>
+
+<%= display_hierarchy_as_text(
+        doc_category["documents"],
+        agency,
+        level: 1,
+        document_partial: document_partial
+      ) %>
+  <%- end -%>
+<%- end -%>
