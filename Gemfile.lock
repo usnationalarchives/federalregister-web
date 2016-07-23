@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git@github.com:criticaljuncture/federal_register.git
-  revision: 868cb10a95d0cb68edbd98011489128d765106aa
+  revision: 88fa862e101f2f0fa63a4bc4a33d43aead77dd0f
   ref: officialness
   specs:
     federal_register (0.5.0)
@@ -478,7 +478,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    sendgrid (1.2.0)
+    sendgrid (1.2.4)
       json
     shellany (0.0.1)
     shoulda-matchers (1.0.0.beta3)
