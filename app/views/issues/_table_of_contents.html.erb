@@ -7,13 +7,13 @@
 <% agencies.each do |agency_hsh| %>
   <% agency = agency_hsh.values.first %>
 
-  <% if agency.document_categories.present? || show_see_references %>
+  <% if show_see_references || agency.document_categories.present? %>
     <h2 id="<%= [type, agency.slug].compact.join('-') %>">
       <%= link_to agency.name, agency_path(agency) %>
     </h2>
   <% end %>
 
-  <% if agency.child_agencies.present? && show_see_references %>
+  <% if show_see_references && agency.child_agencies.present? %>
     <ul class="see-references">
       <% agency.child_agencies.each do |child_agency| %>
         <li>

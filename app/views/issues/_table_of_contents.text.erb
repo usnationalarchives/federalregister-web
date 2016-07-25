@@ -5,10 +5,10 @@
 <%- agencies.each do |agency_hsh| -%>
   <%- agency = agency_hsh.values.first -%>
 
-  <%- if agency.document_categories.present? || show_see_references -%>
+  <%- if show_see_references || agency.document_categories.present? -%>
 <%= agency.name %>
   <%- end -%>
-  <%- if agency.child_agencies.present? && show_see_references -%>
+  <%- if show_see_references && agency.child_agencies.present?  -%>
     <%- agency.child_agencies.each do |child_agency| -%>
   See <%= child_agency.name %> (<%= child_agency.document_count_with_child_agencies %>)
     <%- end -%>
