@@ -4,9 +4,9 @@ FactoryGirl.define do
     active_subscriptions_count  1
   end
 
-  factory :article_mailing_list,
+  factory :document_mailing_list,
           parent: :mailing_list,
-          class: MailingList::Article do
+          class: MailingList::Document do
     title 'All Articles'
   end
 

@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :document_subscription, parent: :subscription do
-    mailing_list { build(:article_mailing_list) }
+    mailing_list { build(:document_mailing_list) }
   end
 
   factory :public_inspection_subscription, parent: :subscription do
