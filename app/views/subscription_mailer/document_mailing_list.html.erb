@@ -3,14 +3,14 @@
 <table class="documents">
   <tr>
     <td class="info">
-      <span class="left">subscription results for <%= @results.first.formal_publication_date %></span>
-      <span class="right"><%= pluralize @results.count, "matching document" %></span>
+      <span class="left">subscription results for <%= @presenter.date.to_s(:formal) %></span>
+      <span class="right"><%= pluralize @presenter.filter_to_documents.count, "matching document" %></span>
     </td>
   </tr>
 
   <tr>
     <td>
-      <h1 class="mailing-list-title"><%= @mailing_list.title %></h1>
+      <h1 class="mailing-list-title"><%= @presenter.mailing_list_title %></h1>
     </td>
   </tr>
 

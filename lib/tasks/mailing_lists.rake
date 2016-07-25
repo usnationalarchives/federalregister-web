@@ -1,34 +1,25 @@
 namespace :mailing_lists do
   namespace :documents do
-    desc "Deliver the document mailing list content for a given day"
+    desc "Enqueue the document mailing lists for a given day"
     task :deliver, [:date] => :environment do |t, args|
       date = Date.parse(args[:date])
+      DocumentSubscriptionQueuePopulator.perfom(date)
+    end
 
-      MailingList::Article.active.find_each do |mailing_list|
-        begin
-          mailing_list.deliver!(date, :force_delivery => ENV['FORCE_DELIVERY'])
-        rescue StandardError => e
-          Rails.logger.warn(e)
-          Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
-        end
-      end
+    desc "renames MailingList::Article to MailingList::Document"
+    task :rename_article_to_document => :environment do
+      MailingList.connection.execute("UPDATE mailing_lists
+        SET mailing_lists.type = 'MailingList::Document'
+        WHERE mailing_lists.type = 'MailingList::Article'")
     end
   end
 
   namespace :public_inspection do
-    desc "Deliver the PI mailing list content for the specified documents"
-    task :deliver, [:document_numbers] => :environment do |t, args|
-      new_document_numbers = args[:document_numbers].split(/;/)
-
-      MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
-        begin
-          Rails.logger.info("[#{Time.now.in_time_zone}] checking mailing list #{mailing_list.id} :: #{mailing_list.title}")
-          mailing_list.deliver!(new_document_numbers)
-        rescue StandardError => e
-          Rails.logger.warn(e)
-          Honeybadger.notify(e, :context => {:mailing_list_id => mailing_list.id})
-        end
-      end
+    desc "Enqueue the PI mailing lists for the specified documents"
+    task :deliver, [:date, :document_numbers] => :environment do |t, args|
+      date = args[:date]
+      document_numbers = args[:document_numbers].split(',')
+      PublicInspectionDocumentSubscriptionQueuePopulator.perform(date, document_numbers)
     end
   end
 

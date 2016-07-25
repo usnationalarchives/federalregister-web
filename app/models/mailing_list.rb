@@ -1,4 +1,8 @@
 class MailingList < ApplicationModel
+  @queue = :subscriptions
+
+  BATCH_SIZE = 1000
+
   has_many :subscriptions
 
   has_many :active_subscriptions,
@@ -23,5 +27,19 @@ class MailingList < ApplicationModel
 
   def persist_title
     self.title = title
+  end
+
+  private
+
+  def update_subscription_counts(subscriptions, date)
+    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?', Time.now, date])
+  end
+
+  def log_delivery(subscription_count, document_count)
+    Rails.logger.info("[#{Time.now.in_time_zone}] {type: '#{self.class}', id: #{self.id}, status: 'delivered', subscriptions: #{subscription_count}, documents: #{document_count}}")
+  end
+
+  def log_no_delivery
+    Rails.logger.info("[#{Time.now.in_time_zone}] {type: '#{self.class}', id: #{self.id}, status: 'no results'}")
   end
 end

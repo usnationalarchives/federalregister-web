@@ -3,14 +3,14 @@
 <table class="public-inspection">
   <tr>
     <td class="info">
-      <span class="left">subscription results for <%= @results.first.filed_at.to_date.to_s(:formal) %></span>
-      <span class="right"><%= pluralize @results.count, "matching public inspection document" %></span>
+      <span class="left">subscription results for <%= @presenter.date.to_s(:formal) %></span>
+      <span class="right"><%= pluralize @total_document_count, "matching public inspection document" %></span>
     </td>
   </tr>
 
   <tr>
     <td>
-      <h1 class="mailing-list-title"><%= @mailing_list.title %></h1>
+      <h1 class="mailing-list-title"><%= @mailing_list_title %></h1>
     </td>
   </tr>
 

@@ -1,7 +1,7 @@
-<%= @mailing_list.title %>
+<%= @presenter.mailing_list_title %>
 
 subscription results for <%= @presenter.date.to_s(:formal) %>
-<%= pluralize @results.size, "matching document" %>.
+<%= pluralize @presenter.filter_to_documents.count, "matching document" %>.
 
 ----------------------------------------------------
 

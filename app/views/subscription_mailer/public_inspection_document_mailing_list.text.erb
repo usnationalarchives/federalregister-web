@@ -1,7 +1,7 @@
-<%= @mailing_list.title %>
+<%= @mailing_list_title %>
 
-subscription results for <%= @results.first.filed_at.to_date.to_s(:formal) %>
-<%= pluralize @results.count, "matching public inspection document" %>
+subscription results for <%= @presenter.date.to_s(:formal) %>
+<%= pluralize @total_document_count, "matching public inspection document" %>
 
 ----------------------------------------------------
 
