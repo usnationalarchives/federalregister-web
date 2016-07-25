@@ -1,23 +1,20 @@
 <%= @mailing_list.title %>
 
-<%= @results.first.formal_publication_date %>
-
+subscription results for <%= @presenter.date.to_s(:formal) %>
 <%= pluralize @results.size, "matching document" %>.
 
--------------
+----------------------------------------------------
 
-<%- @results.each do |document| -%>
-<%= document.title %>
+<%= render partial: 'issues/table_of_contents', locals: {
+  agencies: @presenter.agencies,
+  document_partial: @presenter.document_partial,
+  table_of_contents_url: document_issue_url(@presenter.date),
+  show_see_references: false
+} %>
 
-<%= document.html_url %>
+----------------------------------------------------
 
-<%#= document.type.display_type.indefinite_article %> by <%= document.agency_name_sentence(links: false) %>.
 
-<%= document.abstract -%>
-
--------
-
-<% end %>
 If you no longer wish to subscribe to these results, click here:
 <%= unsubscribe_subscription_url('(((token)))') %>
 

@@ -1,0 +1,14 @@
+<%- if subject -%>
+  <%- if documents.size == 1 -%>
+    <%= subject %>
+    <%= documents.first.html_url %>
+  <%- end -%>
+<%- end -%>
+
+<%- documents.each do |document| -%>
+    FR Document: <%= document.document_number %>, <%= short_document_url(document) %>
+    Citation: <%= document.citation %>
+    PDF: <%= document.pdf_url %>
+    <%= "Page".pluralize(document.pages) %>: <%= document.page_range %> (<%= pluralize(document.pages, "page") %>)
+    Permalink: <%= short_document_url(document) %>
+<%- end -%>

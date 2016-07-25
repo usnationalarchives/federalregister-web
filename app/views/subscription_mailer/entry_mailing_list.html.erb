@@ -1,36 +1,46 @@
 <% add_css_file_to_mailer 'subscription_mailer.css' %>
 
-<div class="info">
-  <span class="left">subscription results for <%= @results.first.formal_publication_date %></span>
-  <span class="right"><%= pluralize @results.count, "matching document" %></span>
-</div>
+<table class="documents">
+  <tr>
+    <td class="info">
+      <span class="left">subscription results for <%= @results.first.formal_publication_date %></span>
+      <span class="right"><%= pluralize @results.count, "matching document" %></span>
+    </td>
+  </tr>
 
-<h1>
-  <%= @mailing_list.title %>
-</h1>
+  <tr>
+    <td>
+      <h1 class="mailing-list-title"><%= @mailing_list.title %></h1>
+    </td>
+  </tr>
 
-<%= bootstrap_context_wrapper do %>
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 12, md: 12 %> doc-toc">
+  <tr>
+    <td>
+      <div class="bootstrap-scope">
+        <div class="row">
+          <div class="doc-toc">
+            <%= fr_content_box(
+              FrBox.build(
+                @presenter.fr_content_box_type,
+                title: 'Document Issue Subscription Table of Contents'
+              )
+            ) do %>
+              <% if FrBox.build(@presenter.fr_content_box_type).background_seal? %>
+                <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
+              <% end %>
 
-      <%= fr_content_box(
-        FrBox.build(
-          @presenter.fr_content_box_type,
-          title: 'Document Issue Subscription Table of Contents'
-        )
-      ) do %>
-        <% if FrBox.build(@presenter.fr_content_box_type).background_seal? %>
-          <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
-        <% end %>
-
-        <div class="doc doc-document-issue">
-          <%= render partial: 'issues/table_of_contents', locals: {
-            agencies: @presenter.agencies,
-            document_partial: @presenter.document_partial
-          } %>
+              <div class="doc doc-document-issue">
+                <%= render partial: 'issues/table_of_contents', locals: {
+                  agencies: @presenter.agencies,
+                  document_partial: @presenter.document_partial,
+                  table_of_contents_url: document_issue_url(@presenter.date),
+                  show_see_references: false
+                } %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
-
-    </div>
-  </div>
-<% end %>
+      </div>
+    </td>
+  </tr>
+</table>

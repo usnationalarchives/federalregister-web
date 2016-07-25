@@ -1,0 +1,41 @@
+<div class='toc-documents'>
+  <% if subject %>
+    <h7>
+      <%= link_to_if documents.size == 1,
+        subject, documents.first.html_url %>
+    </h7>
+  <% end %>
+
+  <table class="row">
+    <% documents.each do |document| %>
+      <tr class="toc-document-metadata">
+        <td>
+          <dl>
+            <dt>FR Document:</dt>
+            <dd><%= link_to document.document_number, document.html_url %></dd>
+
+            <dt>Citation:</dt>
+            <dd><%= document.citation %></dd>
+          </dl>
+        </td>
+
+        <td>
+          <dl>
+            <dt class="toc-pdf">
+              <%= link_to 'PDF', document.pdf_url %>
+            </dt>
+            <dd>
+              <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
+              <em>(<%= pluralize(document.pages, "page") %>)</em>
+            </dd>
+
+            <dt class="permalink">
+              <%= link_to 'Permalink', short_document_url(document) %>
+            </dt>
+            <dd></dd>
+          </dl>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

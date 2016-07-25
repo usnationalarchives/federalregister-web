@@ -89,7 +89,7 @@ class SubscriptionMailer < ActionMailer::Base
   def entry_mailing_list(date, mailing_list, results, subscriptions)
     @mailing_list = mailing_list
     @results = DocumentDecorator.decorate_collection(results.to_a)
-    @presenter = TableOfContentsPresenter.new(date, results)
+    @presenter = Mailers::TableOfContentsPresenter.new(date, @results)
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
                       ["Unsubscribe from these results", unsubscribe_subscription_url('(((token)))')]]
@@ -129,7 +129,7 @@ class SubscriptionMailer < ActionMailer::Base
     end
 
     def entry_mailing_list
-      date = '2016-02-01'
+      date = '2016-07-22'
       mailing_list = MailingList.find(2)
       subscriptions = mailing_list.subscriptions
       results = mailing_list.send(:results_for_date, Date.parse(date) )
