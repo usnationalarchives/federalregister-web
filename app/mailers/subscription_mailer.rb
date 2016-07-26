@@ -206,7 +206,7 @@ class SubscriptionMailer < ActionMailer::Base
         special_filings_presenter: special_filings_presenter
       }
 
-      message = SubscriptionMailer.public_inspection_document_mailing_list(presenter, subscriptions)
+      message = SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions)
       message_body = {html: message.html_part.body, text: message.text_part.body}
 
       SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions, message_body)
