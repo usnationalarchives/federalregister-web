@@ -119,7 +119,7 @@ class TableOfContentsPresenter
   end
 
   def filtered_agencies
-    filtered_agencies = []
+    filtered_agencies = {}
 
     if filter_to_documents
       raw_agencies.each do |key, agency|
@@ -129,7 +129,7 @@ class TableOfContentsPresenter
               filtered_agency_slugs.include?(agency_representation["slug"])
             end
             agency.see_also = filtered_see_also
-            filtered_agencies << {key => agency}
+            filtered_agencies[key] = agency
           end
         end
 
@@ -148,12 +148,12 @@ class TableOfContentsPresenter
 
           if filtered_doc_cats.present?
             agency.document_categories = filtered_doc_cats
-            filtered_agencies << {key => agency}
+            filtered_agencies[key] = agency
           end
         end
       end
     end
 
-    filtered_agencies.compact
+    filtered_agencies
   end
 end

@@ -4,9 +4,7 @@
 %>
 
 
-<% agencies.each do |agency_hsh| %>
-  <% agency = agency_hsh.values.first %>
-
+<% agencies.each do |slug, agency| %>
   <% if show_see_references || agency.document_categories.present? %>
     <h2 id="<%= [type, agency.slug].compact.join('-') %>">
       <%= link_to agency.name, agency_path(agency) %>

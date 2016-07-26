@@ -2,9 +2,7 @@
   type ||= nil
   show_see_references = defined?(show_see_references) ? show_see_references : true
 -%>
-<%- agencies.each do |agency_hsh| -%>
-  <%- agency = agency_hsh.values.first -%>
-
+<%- agencies.each do |slug, agency| -%>
   <%- if show_see_references || agency.document_categories.present? -%>
 <%= agency.name %>
   <%- end -%>
