@@ -122,13 +122,13 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def regulations_dot_gov_docket_url
-    "http://www.regulations.gov/#!docketDetail;D=#{regulations_dot_gov_docket_id}"
+    "https://www.regulations.gov/docketDetail?D=#{regulations_dot_gov_docket_id}"
   end
 
 
   def regulations_dot_gov_comments_url
     if regulations_dot_gov_docket_id
-      "http://www.regulations.gov/#!docketBrowser;dct=PS;rpp=25;po=0;D=#{regulations_dot_gov_docket_id}"
+      "https://www.regulations.gov/docketBrowser?dct=PS&rpp=50&po=0&D=#{regulations_dot_gov_docket_id}"
     end
   end
 
