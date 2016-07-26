@@ -35,7 +35,7 @@ class SectionPresenter
   end
 
   def get_documents
-    raw_documents = FederalRegister::Article.search(
+    raw_documents = Document.search(
       conditions: {
         sections: [section_id]
       },
@@ -74,7 +74,7 @@ class SectionPresenter
     dates = []
     date = Date.today
     while dates.count < count || date < Date.today.advance(days: -10)
-      search = FederalRegister::Article.search(
+      search = Document.search(
         order: 'newest',
         conditions: {
           publication_date: {

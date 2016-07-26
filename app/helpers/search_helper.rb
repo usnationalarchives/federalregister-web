@@ -32,7 +32,7 @@ module SearchHelper
   end
 
   def entry_count_for_search_term(search_term)
-    FederalRegister::Article.search_metadata(:conditions => {:term => search_term}).count
+    Document.search_metadata(:conditions => {:term => search_term}).count
   end
 
   def conditions_for_subscription(search)
@@ -62,4 +62,3 @@ module SearchHelper
     parts.to_sentence
   end
 end
-
