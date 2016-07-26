@@ -15,7 +15,7 @@ class Subscription < ApplicationModel
 
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
-      klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Article
+      klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
       self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
     else
       mailing_list_without_autobuilding
@@ -102,7 +102,7 @@ class Subscription < ApplicationModel
 
   def self.article_subscriptions
     scoped(:include => :mailing_list,
-           :conditions => {:mailing_lists => {:type => "MailingList::Article"}})
+           :conditions => {:mailing_lists => {:type => "MailingList::Document"}})
   end
 
   def self.pi_subscriptions
