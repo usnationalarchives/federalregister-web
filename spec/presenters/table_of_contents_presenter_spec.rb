@@ -61,9 +61,7 @@ describe TableOfContentsPresenter do
           presenter_with_filter.agencies.size
         ).to eq(1)
 
-        name, agency = presenter_with_filter.agencies.first.first
-
-        expect(name).to eq('education-department')
+        agency = presenter_with_filter.agencies['education-department']
         expect(
           inspect_documents(agency)
         ).to eq(["2016-04323"])
@@ -82,9 +80,7 @@ describe TableOfContentsPresenter do
             presenter_with_filter.agencies.size
           ).to eq(1)
 
-          name, agency = presenter_with_filter.agencies.first.first
-
-          expect(name).to eq('education-department')
+          agency = presenter_with_filter.agencies['education-department']
           expect(
             inspect_documents(agency)
           ).to eq(["2016-04323", "2016-04338"])
@@ -105,16 +101,12 @@ describe TableOfContentsPresenter do
             presenter_with_filter.agencies.size
           ).to eq(2)
 
-          name, agency = presenter_with_filter.agencies.first.first
-
-          expect(name).to eq('education-department')
+          agency = presenter_with_filter.agencies['education-department']
           expect(
             inspect_documents(agency)
           ).to eq(["2016-04323"])
 
-          name2, agency2 = presenter_with_filter.agencies.last.first
-
-          expect(name2).to eq('environmental-protection-agency')
+          agency2 = presenter_with_filter.agencies['environmental-protection-agency']
           expect(
             inspect_documents(agency2)
           ).to eq(["2016-04245", "2016-04080"])
@@ -145,18 +137,13 @@ describe TableOfContentsPresenter do
           presenter.agencies.size
         ).to eq(2)
 
-        name, agency = presenter.agencies.first.first
-
-        expect(name).to eq('agricultural-marketing-service')
+        agency = presenter.agencies['agricultural-marketing-service']
         expect(
           inspect_documents(agency)
         ).to eq(["2016-04047"])
 
 
-        name2, agency2 = presenter.agencies.last.first
-
-        expect(name2).to eq('agriculture-department')
-
+        agency2 = presenter.agencies['agriculture-department']
         expect(
           agency2.see_also
         ).to eq(
@@ -185,18 +172,13 @@ describe TableOfContentsPresenter do
           presenter.agencies.size
         ).to eq(3)
 
-        name, agency = presenter.agencies[0].first
-
-        expect(name).to eq('air-force-department')
+        agency = presenter.agencies['air-force-department']
         expect(
           inspect_documents(agency)
         ).to eq(["2016-04305"])
 
 
-        name2, agency2 = presenter.agencies[1].first
-
-        expect(name2).to eq('defense-department')
-
+        agency2 = presenter.agencies['defense-department']
         expect(
           agency2.see_also
         ).to eq(
@@ -216,9 +198,8 @@ describe TableOfContentsPresenter do
           inspect_documents(agency2)
         ).to eq(["2016-04328"])
 
-        name3, agency3 = presenter.agencies[2].first
 
-        expect(name3).to eq('engineers-corps')
+        agency3 = presenter.agencies['engineers-corps']
         expect(
           inspect_documents(agency3)
         ).to eq(["2016-04215"])
