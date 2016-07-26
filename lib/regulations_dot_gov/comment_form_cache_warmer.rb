@@ -43,7 +43,7 @@ class RegulationsDotGov::CommentFormCacheWarmer
 
     # load documents open for comment published in last 4 months
     (0..3).map do |i|
-      FederalRegister::Article.search(
+      FederalRegister::Document.search(
         :conditions => {
           :publication_date => {
             :lte => start_date.advance(:months => -1 * i).to_s(:iso),
