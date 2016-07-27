@@ -6,7 +6,7 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
     new(date, document_numbers).enqueue_subscriptions
   end
 
-  def initialize(date)
+  def initialize(date, document_numbers)
     @date = date
     @document_numbers = document_numbers
   end
