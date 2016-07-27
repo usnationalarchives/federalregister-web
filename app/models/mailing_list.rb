@@ -1,5 +1,7 @@
 class MailingList < ApplicationModel
-  @queue = :subscriptions
+  def self.queue
+    :subscriptions
+  end
 
   BATCH_SIZE = 1000
 
