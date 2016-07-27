@@ -138,7 +138,8 @@ after "deploy:update_code",     "bundler:bundle"
 after "bundler:bundle",         "deploy:migrate"
 after "deploy:migrate",         "assets:precompile"
 after "assets:precompile",      "passenger:restart"
-after "passenger:restart",      "varnish:clear_cache"
+after "passenger:restart",      "resque:restart_workers"
+after "resque:restart_workers", "varnish:clear_cache"
 after "varnish:clear_cache",    "honeybadger:notify_deploy"
 
 
@@ -157,6 +158,16 @@ after "varnish:clear_cache",    "honeybadger:notify_deploy"
 namespace :varnish do
   task :clear_cache, :roles => [:worker] do
     run "cd #{current_path} && cd ../federalregister-api-core && RAILS_ENV=#{rails_env} bundle exec rake varnish:expire:everything"
+  end
+end
+
+#############################################################
+# Restart resque workers
+#############################################################
+
+namespace :resque do
+  task :restart_workers, :roles => [:worker] do
+    sudo "monit -g resque_workers_web restart"
   end
 end
 
