@@ -22,7 +22,8 @@
             <%= fr_content_box(
               FrBox.build(
                 @presenter.fr_content_box_type,
-                title: 'Document Issue Subscription Table of Contents'
+                title: 'Document Issue Subscription Table of Contents',
+                header: {hover: false}
               )
             ) do %>
               <% if FrBox.build(@presenter.fr_content_box_type).background_seal? %>

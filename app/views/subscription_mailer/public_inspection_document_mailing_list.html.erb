@@ -25,7 +25,8 @@
                 FrBox.build(
                   @special_filings_presenter.fr_content_box_type,
                   title: 'Matching Special Filings',
-                  filing_type: 'special_filing'
+                  filing_type: 'special_filing',
+                  header: {hover: false}
                 )
               ) do %>
                 <% if FrBox.build(@special_filings_presenter.fr_content_box_type).background_seal? %>
@@ -64,7 +65,8 @@
                 FrBox.build(
                   @regular_filings_presenter.fr_content_box_type,
                   title: 'Matching Regular Filings',
-                  filing_type: 'regular_filing'
+                  filing_type: 'regular_filing',
+                  header: {hover: false}
                 )
               ) do %>
                 <% if FrBox.build(@regular_filings_presenter.fr_content_box_type).background_seal? %>
