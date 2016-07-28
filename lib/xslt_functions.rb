@@ -116,7 +116,7 @@ class XsltFunctions
         doc.img(
           :class => image_class,
           :src => graphic_url('original', graphic_identifier),
-          :style => "max-height: #{(1.6 * data_height.to_i).to_i}px"
+          :style => "max-height: #{(1.29 * data_height.to_i).to_i}px"
         )
       }
     end
