@@ -15,6 +15,7 @@ class Search::Document < Search::Base
     :near,
     :president,
     :presidential_document_type,
+    :presidential_document_type_id,
     :publication_date,
     :regulation_id_number,
     :section_ids,
@@ -22,6 +23,7 @@ class Search::Document < Search::Base
     :significant,
     :small_entity_ids,
     :topics,
+    :topic_ids
   ]
 
   def search_type
