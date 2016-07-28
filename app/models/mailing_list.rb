@@ -9,13 +9,13 @@ class MailingList < ApplicationModel
 
   has_many :active_subscriptions,
     class_name: "Subscription",
-    conditions: "subscriptions.confirmed_at IS NOT NULL and subscriptions.unsubscribed_at IS NULL"
+    conditions: "subscriptions.confirmed_at IS NOT NULL and subscriptions.unsubscribed_at IS NULL and subscriptions.deleted_at IS NULL"
 
   scope :active,
-    conditions: "active_subscriptions_count > 0"
+    conditions: "active_subscriptions_count > 0 and deleted_at IS NULL"
 
   scope :for_entries,
-    conditions: {search_type: 'Entry'}
+    conditions: {search_type: 'Document'}
 
   scope :for_public_inspection_documents,
     conditions: {search_type: 'PublicInspectionDocument'}

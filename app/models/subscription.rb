@@ -16,6 +16,7 @@ class Subscription < ApplicationModel
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
       klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
+      search_conditions ||= {}
       self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
     else
       mailing_list_without_autobuilding
@@ -46,11 +47,11 @@ class Subscription < ApplicationModel
   end
 
   def active?
-    confirmed_at.present? && unsubscribed_at.nil?
+    confirmed_at.present? && unsubscribed_at.nil? && deleted_at.nil?
   end
 
   def was_active?
-    confirmed_at_was.present? && unsubscribed_at_was.nil?
+    confirmed_at_was.present? && unsubscribed_at_was.nil? && deleted_at_was.nil?
   end
 
   def confirm!

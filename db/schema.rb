@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160308182231) do
+ActiveRecord::Schema.define(:version => 20160727211707) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -93,7 +93,10 @@ ActiveRecord::Schema.define(:version => 20160308182231) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "type"
+    t.datetime "deleted_at"
   end
+
+  add_index "mailing_lists", ["deleted_at"], :name => "index_mailing_lists_on_deleted_at"
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "mailing_list_id"
@@ -110,9 +113,11 @@ ActiveRecord::Schema.define(:version => 20160308182231) do
     t.string   "environment"
     t.integer  "user_id"
     t.integer  "comment_id"
+    t.datetime "deleted_at"
   end
 
   add_index "subscriptions", ["comment_id"], :name => "index_subscriptions_on_comment_id"
+  add_index "subscriptions", ["deleted_at"], :name => "index_subscriptions_on_deleted_at"
   add_index "subscriptions", ["email"], :name => "index_subscriptions_on_email"
 
   create_table "users", :force => true do |t|
