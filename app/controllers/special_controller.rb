@@ -17,9 +17,11 @@ class SpecialController < ApplicationController
   end
 
   def home
+    cache_for 1.day
   end
 
   def navigation
+    cache_for 1.day
   end
 
   def shared_assets
