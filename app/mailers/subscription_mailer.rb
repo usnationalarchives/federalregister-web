@@ -188,8 +188,9 @@ class SubscriptionMailer < ActionMailer::Base
 
     def public_inspection_document_mailing_list
       date = Date.today
-      mailing_list = MailingList.find(22251)
+      mailing_list = MailingList.find(1052)
       subscriptions = mailing_list.subscriptions
+      # you may need to limit this to fewer documents to render as a preview :(
       document_numbers = PublicInspectionDocument.available_on(date).map(&:document_number)
 
       results = mailing_list.send(:results_for_document_numbers, document_numbers).group_by(&:filing_type)
