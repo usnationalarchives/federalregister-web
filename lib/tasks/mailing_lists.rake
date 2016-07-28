@@ -129,7 +129,6 @@ namespace :mailing_lists do
       ").each do |count, id|
         mailing_list = MailingList.find(id)
 
-        binding.pry
         duplicates = MailingList.
           where(parameters: mailing_list.parameters.to_json).
           where(type: type).
