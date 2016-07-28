@@ -74,15 +74,7 @@ class MailingList::Document < MailingList
 
   def mailing_list_fields
     [
-      :agencies,
-      :citation,
       :document_number,
-      :end_page,
-      :html_url,
-      :pdf_url,
-      :publication_date,
-      :start_page,
-      :title
     ]
   end
 end

@@ -89,15 +89,8 @@ class MailingList::PublicInspectionDocument < MailingList
 
   def mailing_list_fields
     [
-      :agencies,
       :document_number,
-      :filed_at,
       :filing_type,
-      :publication_date,
-      :title,
-      :toc_subject,
-      :toc_doc,
-      :type
     ]
   end
 end
