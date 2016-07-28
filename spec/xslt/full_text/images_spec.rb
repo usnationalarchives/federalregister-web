@@ -137,7 +137,7 @@ describe "XSLT::FullText::Images" do
         with_tag(
           'img.document-graphic-image',
           with: {
-            'style' => 'max-height: 512px'
+            'style' => 'max-height: 412px'
           }
         )
       end
