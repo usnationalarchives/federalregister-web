@@ -153,13 +153,16 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   def generate_mailer(subject, to, formats)
-    mail(
+    mailer = mail(
       subject: subject,
       to: to
     ) do |format|
       format.text { formats[:text].call }
       format.html { formats[:html].call }
     end
+
+    mailer.transport_encoding = "quoted-printable"
+    mailer
   end
 
   class Preview < MailView
