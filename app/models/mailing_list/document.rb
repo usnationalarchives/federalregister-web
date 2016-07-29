@@ -21,7 +21,7 @@ class MailingList::Document < MailingList
       results = results_for_date(date)
 
       subscriptions = active_subscriptions
-      subscriptions = subscriptions.not_delivered_on(date) unless options[:force_delivery]
+      subscriptions = subscriptions.not_delivered_on(date) unless options["force_delivery"]
 
       presenter = Mailers::TableOfContentsPresenter.new(date, results, self)
 
