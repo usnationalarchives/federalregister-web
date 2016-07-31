@@ -23,6 +23,7 @@ officialness:
   start_date: 2025-05-01
 
 feature_flags:
+  events_search: false
   unified_agenda:
     search: false
   regulatory_plan: false

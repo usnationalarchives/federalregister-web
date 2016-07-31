@@ -149,6 +149,7 @@ MyFr2::Application.routes.draw do
       as: 'public_inspection_search_count'
   end
 
+  if Settings.feature_flags.events_search
   #
   # Events Search
   #
@@ -156,8 +157,10 @@ MyFr2::Application.routes.draw do
   get 'events/search',
     to: 'events/search#show',
     as: 'events_search'
+  end
 
 
+  if Settings.feature_flags.regulatory_plan
   #
   # Regulatory Plans Search
   #
@@ -165,6 +168,7 @@ MyFr2::Application.routes.draw do
   get 'regulatory_plans/search',
     to: 'regulatory_plans/search#show',
     as: 'regulatory_plans_search'
+  end
 
   #
   # Citations
