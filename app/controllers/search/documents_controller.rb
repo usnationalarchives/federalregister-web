@@ -73,6 +73,7 @@ class Search::DocumentsController < ApplicationController
   end
 
   def search_count
+    cache_for 1.day
     valid_conditions = Search::Document.new(params).valid_conditions.symbolize_keys
 
     render json: {
