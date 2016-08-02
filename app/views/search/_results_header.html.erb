@@ -1,10 +1,15 @@
+<%
+  # normalize the conditions being passed
+  search_conditions = search_conditions && search_conditions[:conditions] ? search_conditions[:conditions] : search_conditions
+%>
+
 <div class="search-results-header <%= placement %>">
   <p class="pull-left">
     Showing 1-<%= result_count %> of
     <% search_path = type == :public_inspection ?
-      public_inspection_search_path(search_conditions)
+      public_inspection_search_path(conditions: search_conditions)
       :
-      documents_search_path(search_conditions) %>
+      documents_search_path(conditions: search_conditions) %>
     <%= link_to(
       pluralize(total_documents, "result"),
       search_path
