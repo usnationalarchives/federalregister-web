@@ -7,7 +7,10 @@ class Hyperlinker
   AUTO_LINK_CRE = [/<[^>]+$/, /^[^>]*>/, /<a\b.*?>/i, /<\/a>/i]
 
   def self.replace_text(text, regexp)
-    text.gsub(regexp) do
+    # force to_str to work around issue with SafeBuffer's not
+    #   handling gsub correctly; see this page for more on the issue
+    #   https://makandracards.com/makandra/11171-how-to-fix-gsub-on-safebuffer-objects
+    text.to_str.gsub(regexp) do
       match_data = Regexp.last_match
       left, right = match_data.pre_match, match_data.post_match
 
