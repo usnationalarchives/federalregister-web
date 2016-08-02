@@ -15,6 +15,7 @@ class @CJ.Toggle
       hideText: 'hide'
       showText: 'show'
       textTarget: @el
+      toggleIgnore: '.no-toggle'
       toggleTarget: null
       trigger: 'click'
     }
@@ -43,7 +44,7 @@ class @CJ.ToggleOne extends @CJ.Toggle
       event.preventDefault()
       el = $(this)
 
-      $(toggler.settings.toggleTarget).toggle()
+      $(toggler.settings.toggleTarget).not(toggler.settings.toggleIgnore).toggle()
 
       if $(toggler.settings.toggleTarget).last().css('display') == 'none'
         $(toggler.settings.textTarget).text toggler.settings.showText
