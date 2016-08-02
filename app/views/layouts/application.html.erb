@@ -1,6 +1,10 @@
 <!DOCTYPE html>
   <head>
-    <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
+    <title>
+      Federal Register
+      <%= " :: " unless yield(:page_title).empty? %>
+      <%= yield(:page_title) %>
+    </title>
 
     <!-- Tell search engines to use the proper hostname and protocol -->
     <%= tag(:link, :rel  => 'canonical', :href => 'https://www.federalregister.gov' + request.fullpath.sub(/\/$/,'')) %>
