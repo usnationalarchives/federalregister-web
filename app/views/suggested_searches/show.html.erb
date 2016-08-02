@@ -31,7 +31,7 @@
             <div class="search-actions">
               <p class="pull-left">
                 <%= link_to documents_search_path(
-                      conditions: @presenter.search_conditions.except(:near),
+                      conditions: @presenter.search_conditions,
                       order: "newest", skip_results: '1', anchor: 'advanced'
                     ),
                     class: "search" do %>
@@ -45,8 +45,7 @@
               </p>
             </div>
 
-            <%= auto_link simple_format(@presenter.description) %>
-            <%#= add_citation_links(auto_link(simple_format(@canned_search.description))) %>
+            <%= add_citation_links(auto_link(simple_format(@presenter.description))).html_safe %>
           </div>
         </div>
 

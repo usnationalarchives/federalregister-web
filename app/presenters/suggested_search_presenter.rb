@@ -4,17 +4,13 @@ class SuggestedSearchPresenter
   attr_reader :suggested_search, :section
   class InvalidSuggestedSearch < StandardError; end
 
-  delegate :search_conditions, :title, to: :@suggested_search
+  delegate :description, :search_conditions, :title, to: :@suggested_search
 
   def initialize(slug)
     @suggested_search = SuggestedSearch.find(slug)
     raise InvalidSuggestedSearch unless @suggested_search
 
     @section = Section.find_by_slug(@suggested_search.section)
-  end
-
-  def description
-    suggested_search.description
   end
 
   def documents
