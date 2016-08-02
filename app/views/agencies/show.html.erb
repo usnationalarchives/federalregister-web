@@ -72,9 +72,7 @@
             <% if @presenter.agency.description.present? %>
               <div class="description">
                 <%= add_citation_links(
-                  auto_link(
                     simple_format(@presenter.agency.description)
-                  )
                 ).html_safe %>
               </div>
             <% end %>
