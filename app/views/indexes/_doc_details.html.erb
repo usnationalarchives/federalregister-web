@@ -1,25 +1,4 @@
 <div class='toc-documents'>
-  <h7>
-    <%= link_to subject, "#",
-      class: "toggle",
-      'data-toggle' => {
-        toggleTarget: "##{documents.first.document_number}",
-        textTarget: nil
-      }.to_json %>
-    <%= content_tag("span", documents.size, class: "count_pill") if documents.size > 1 %>
-    <% if documents.any? {|doc|doc.regulations_dot_gov_info["comments_count"] >=
-         1 unless doc.regulations_dot_gov_info.nil?} %>
-      <span class="cj-tooltip" data-tooltip="Contains documents that have received public comments">
-        <%= fr_icon("Chat")%>
-      </span>
-    <% end %>
-    <% if documents.any? {|doc| doc.significant} %>
-      <span class="cj-tooltip"
-         data-tooltip="Contains documents that have been deemed significant under EO 12866">
-         <%= fr_icon("Star")%>
-      </span>
-    <% end %>
-  </h7>
   <div id="<%= documents.first.document_number %>" class="toc-metadata-wrapper">
     <% documents.group_by{|d|d.publication_date.to_date.month}.each do |month, grouped_documents| %>
       <% grouped_documents.each_with_index do |document, index| %>
@@ -35,7 +14,7 @@
             <div class="<%= bootstrap_col xs: 3, md: 3 %>">
               <dl>
                 <dt>Published</dt>
-                <dd><%= link_to(document.publication_date, document.html_url) %></dd>
+                <dd><%= link_to(document.publication_date, document_issue_url(document.publication_date)) %></dd>
               </dl>
             </div>
             <div class="<%= bootstrap_col xs: 4, md: 4 %>">
@@ -47,9 +26,15 @@
               </dl>
 
               <dl>
-                <dt>Pages</dt>
-                <dd><%= link_to(document.page_range, document.pdf_url) %>
-                    (<%= pluralize(document.pages, "Page") %>)</dd>
+                <dt class="toc-pdf">
+                  <%= link_to document.pdf_url do %>
+                    <%= fr_icon 'doc-pdf' %> PDF
+                  <% end %>
+                </dt>
+                <dd>
+                  <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
+                  <em>(<%= pluralize(document.pages, "page") %>)</em>
+                </dd>
               </dl>
             </div>
             <div class="<%= bootstrap_col xs: 2, md: 2 %>">

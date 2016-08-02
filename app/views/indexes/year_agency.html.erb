@@ -33,13 +33,15 @@
             <div class="doc doc-document-issue">
               <%= render partial: 'issues/table_of_contents', locals: {
                 agencies: @presenter.agency,
-                document_partial: @presenter.document_partial
+                document_partial: @presenter.document_partial,
+                display_agency_name: false,
+                fr_index: true
               } %>
             </div>
           <% end %>
         </div>
       </div>
-      
+
     </div>
   </div>
 

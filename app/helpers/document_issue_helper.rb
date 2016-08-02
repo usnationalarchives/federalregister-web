@@ -8,6 +8,7 @@ module DocumentIssueHelper
   def display_hierarchy(docs, agency, options={})
     document_partial = options[:document_partial]
     level = options[:level]
+    fr_index = options.fetch(:fr_index, false)
 
     docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
       docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
@@ -15,7 +16,7 @@ module DocumentIssueHelper
       tags = []
 
       if subject_heading_required?(level, docs_only_at_this_level, nested_docs)
-        header = subject_heading
+        header = fr_index && docs_only_at_this_level.present? ? render_fr_index_subject_header(subject_heading, agency, docs_only_at_this_level) : subject_heading
 
         tags << content_tag("h#{level+3}", header, class: "toc-subject-level")
       end
@@ -31,7 +32,7 @@ module DocumentIssueHelper
             }
           )
         end
-        str << display_hierarchy(nested_docs, agency, options={level: level+1, document_partial: document_partial}) if nested_docs.present?
+        str << display_hierarchy(nested_docs, agency, options={level: level+1, document_partial: document_partial, fr_index: fr_index}) if nested_docs.present?
         str.join("\n").html_safe
       end
     end.join("\n").html_safe
@@ -78,5 +79,16 @@ module DocumentIssueHelper
     agency.load_documents(
       docs_only_at_this_level.first["document_numbers"]
     ).first.try(:html_url)
+  end
+
+  def render_fr_index_subject_header(subject, agency, docs_only_at_this_level)
+    documents = agency.load_documents(docs_only_at_this_level.first["document_numbers"])
+
+    header = render partial: 'indexes/subject_header_with_documents', locals: {
+      subject: subject,
+      documents: documents
+    }
+
+    header
   end
 end

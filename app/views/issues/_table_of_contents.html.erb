@@ -1,11 +1,14 @@
 <%
   type ||= nil
-  show_see_references = defined?(show_see_references) ? show_see_references : true
+  show_see_references = defined?(show_see_references) && !show_see_references.nil? ? show_see_references : true
+  display_agency_name = defined?(display_agency_name) && !display_agency_name.nil? ? display_agency_name : true
+  table_of_contents_url = defined?(table_of_contents_url) ? table_of_contents_url : nil
+  fr_index = defined?(fr_index) ? fr_index : nil
 %>
 
 
 <% agencies.each do |slug, agency| %>
-  <% if show_see_references || agency.document_categories.present? %>
+  <% if (show_see_references || agency.document_categories.present?) && display_agency_name %>
     <h2 id="<%= [type, agency.slug].compact.join('-') %>">
       <%= link_to agency.name, agency_url(agency) %>
     </h2>
@@ -39,7 +42,8 @@
         doc_category["documents"],
         agency,
         level: 1,
-        document_partial: document_partial
+        document_partial: document_partial,
+        fr_index: fr_index
       ) %>
     </div>
   <% end %>
