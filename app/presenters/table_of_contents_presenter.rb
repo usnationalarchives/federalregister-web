@@ -8,7 +8,10 @@ class TableOfContentsPresenter
   end
 
   def retrieve_toc_data
-    HTTParty.get(url)
+    response = HTTParty.get(url)
+
+    raise ActiveRecord::RecordNotFound if response.code == 404
+    response
   end
 
   def url
