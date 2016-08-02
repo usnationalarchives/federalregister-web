@@ -19,7 +19,7 @@
   <% end %>
   <li class="header email"><h5>Via Email:</h5></li>
   <li class="email">
-    <%= semantic_form_for @subscription, :url => subscriptions_path do |f| %>
+    <%= semantic_form_for @subscription, :url => subscriptions_path, :authenticity_token => false do |f| %>
       <%# Serialize the parameters; note that this doesn't recurse %>
       <%= f.fields_for :search_conditions do |cond_f| %>
         <% (@subscription.search_conditions || []).each do |attr, vals| %>

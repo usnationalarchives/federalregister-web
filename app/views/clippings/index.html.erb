@@ -40,6 +40,7 @@
 
 <%= semantic_form_for :folder_clippings,
   url: folder_clippings_path,
+  authenticity_token: false,
   html: {id: 'folder_clippings'} do |f| %>
 
   <div id="clipping-actions" class="clipping-actions">

@@ -30,6 +30,7 @@
   <%= semantic_form_for nil,
     as: :user,
     url: account_path(current_user),
+    authenticity_token: false,
     html: {class: 'user-email-change', method: :put} do |f| %>
 
     <%= f.inputs do %>

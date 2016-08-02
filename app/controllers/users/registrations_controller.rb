@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_filter :verify_authenticity_token
   include UserDataPersistor
 
   def new

@@ -1,6 +1,6 @@
 #= require old/application
 
-#= require utilities/ajax_setup
+#= require utilities/csrf_setup
 #= require namespace
 
 #= require handlebars_helpers

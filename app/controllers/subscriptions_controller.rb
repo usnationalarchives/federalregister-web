@@ -1,7 +1,5 @@
 class SubscriptionsController < ApplicationController
-
   with_options(only: [:new, :create, :confirmation_sent, :confirm, :confirmed, :unsubscribe, :unsubscribed, :destroy]) do |during_creation|
-    during_creation.skip_before_filter :verify_authenticity_token
     during_creation.skip_before_filter :authenticate_user!
   end
 

@@ -5,7 +5,7 @@
 
   <p>We're sorry your confirmation email has expired. Please enter your email address below to recieve a new one.</p>
 
-  <%= semantic_form_for resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post } do |f| %>
+  <%= semantic_form_for resource, :as => resource_name, :url => confirmation_path(resource_name), :authenticity_token => false, :html => { :method => :post } do |f| %>
     <%= f.inputs do %>
       <%= f.input :email, :as => :email %>
     <% end %>
