@@ -109,6 +109,12 @@
   <% end %>
 <% end %>
 
+<% [:topics, :sections].each do |param| %>
+  <% Array((params[:conditions] || {})[param]).each do |val| %>
+    <%= hidden_field_tag "conditions[#{param}][]", val %>
+  <% end %>
+<% end %>
+
 <%= f.buttons do %>
   <%= f.commit_button 'Search', button_html: {
     id: 'conditions_submit',
