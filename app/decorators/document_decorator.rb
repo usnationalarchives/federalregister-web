@@ -8,6 +8,7 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
   include DocumentDecorator::Officialness
+  include DocumentDecorator::RegulationsDotGovInfo
 
   def slug
     html_url.split('/').last

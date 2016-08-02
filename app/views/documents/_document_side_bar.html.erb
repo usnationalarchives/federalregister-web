@@ -1,7 +1,7 @@
 <div class="col-md-3 doc-aside doc-details">
   <%= render partial: 'doc_details', locals: {document: document} %>
 
-  <% if document.regulations_dot_gov_info.present? %>
+  <% if document.display_regulations_dot_gov_enhanced_content? %>
     <%= render partial: 'reg_gov_content', locals: {
       document: document,
       docket_info: document.regulations_dot_gov_info
