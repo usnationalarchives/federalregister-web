@@ -7,8 +7,7 @@
 
 <span class="count-pill reader-aid"><%= documents.size %></span>
 
-<% if documents.any? {|doc| doc.regulations_dot_gov_info["comments_count"] >=
-     1 unless doc.regulations_dot_gov_info.nil?} %>
+<% if documents.any? {|doc| doc.has_comments?} %>
   <span class="cj-tooltip" data-tooltip="Contains documents that have received public comments">
     <%= fr_icon("Chat")%>
   </span>

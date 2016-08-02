@@ -39,14 +39,14 @@
             </div>
             <div class="<%= bootstrap_col xs: 2, md: 2 %>">
               <%= fr_icon("globe") if false %>
-              <% if document.regulations_dot_gov_info %>
+              <% if document.has_comments? %>
                 <span class="cj-tooltip" data-tooltip="Has received public comments">
-                  <%= fr_icon("Chat") if document.regulations_dot_gov_info["comments_count"] > 0 %>
+                  <%= fr_icon("Chat") %>
                 </span>
               <% end %>
               <% if document.significant %>
                 <span class="cj-tooltip" data-tooltip="Has been deemed significant under EO 12866">
-                  <%= fr_icon("Star") if document.significant %>
+                  <%= fr_icon("Star") %>
                 </span>
               <% end %>
             </div>
