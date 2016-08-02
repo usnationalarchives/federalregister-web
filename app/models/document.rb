@@ -24,8 +24,14 @@ class Document < FederalRegister::Document
   end
 
   def public_inspection_document
-    @public_inspection_document ||= PublicInspectionDocument.find(
-      document_number
-    )
+    return @public_inspection_document if @public_inspection_document
+
+    begin
+      @public_inspection_document = PublicInspectionDocument.find(
+        document_number
+      )
+    rescue FederalRegister::Client::RecordNotFound
+      @public_inspection_document = nil
+    end
   end
 end

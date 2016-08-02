@@ -261,27 +261,29 @@
       <% end %>
     </li>
 
-    <li class="public-inspection">
-      <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
-      <%= fr_utility_nav_box(
-        FrBox.build(
-          :public_inspection,
-          title: "Public Inspection"
-        )
-      ) do %>
-        <span class="icon-fr2 icon-fr2-stop-hand"></span>
-        <div class="content">
-          <p>
-            This <%= link_to 'PDF', document.public_inspection_pdf_url %> is
-            the current document as it appeared on Public Inspection on
-            <%= document.public_inspection_document.filed_at %>.
-          </p>
-          <p class="warning">
-            <%= utility_bar_warning_text %>
-          </p>
-        </div>
-      <% end %>
-    </li>
+    <% if document.public_inspection_document.present? %>
+      <li class="public-inspection">
+        <i class="icon-fr2 icon-fr2-doc-pi-pdf" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :public_inspection,
+            title: "Public Inspection"
+          )
+        ) do %>
+          <span class="icon-fr2 icon-fr2-stop-hand"></span>
+          <div class="content">
+            <p>
+              This <%= link_to 'PDF', document.public_inspection_pdf_url %> is
+              the current document as it appeared on Public Inspection on
+              <%= document.public_inspection_document.filed_at %>.
+            </p>
+            <p class="warning">
+              <%= utility_bar_warning_text %>
+            </p>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
 
   </ul>
 </div>
