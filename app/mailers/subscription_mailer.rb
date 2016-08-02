@@ -196,7 +196,7 @@ class SubscriptionMailer < ActionMailer::Base
       # you may need to limit this to fewer documents to render as a preview :(
       document_numbers = PublicInspectionDocument.available_on(date).map(&:document_number)
 
-      results = mailing_list.send(:results_for_document_numbers, document_numbers).group_by(&:filing_type)
+      results = mailing_list.send(:results_for_document_numbers, document_numbers.first(15)).group_by(&:filing_type)
       special_filing_results = results["special"]
       regular_filing_results = results["regular"]
 
