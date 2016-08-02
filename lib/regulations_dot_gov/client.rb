@@ -32,9 +32,9 @@ class RegulationsDotGov::Client
   end
 
   if Rails.env.production?
-    base_uri('http://api.data.gov/regulations/v3/')
+    base_uri('https://api.data.gov/regulations/v3/')
   else
-    base_uri('http://api.data.gov/TEST/regulations/v3/')
+    base_uri('https://api.data.gov/TEST/regulations/v3/')
   end
 
   caches_api_responses :key_name => "regulations_dot_gov",
