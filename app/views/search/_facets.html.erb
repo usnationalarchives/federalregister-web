@@ -2,7 +2,7 @@
   <h4><%= @presenter.facet_name %></h4>
   <ul>
     <% facets.each_with_index do |facet, index| %>
-      <li class="<%= 'on' if facet.on? %> <%= "#{css_class(@presenter.facet_name)}_facet" %> <%= "hidden" if index > @presenter.num_facets - 1 %>">
+      <li class="<%= 'on' if facet.on? %> <%= "#{css_class(@presenter.facet_name)}_facet" %> <%= index > @presenter.num_facets - 1 ? "hidden" : "no-toggle" %>">
         <%= link_to facet.name,
           search_adding_filter(facet.condition, facet.value),
           class: 'facet-name' %>
