@@ -3,6 +3,7 @@ class FrIndexPresenter
 
   def initialize(year)
     raise ActiveRecord::RecordNotFound if year.to_i < 2013
+    
     @year = year.to_i
     @index = HTTParty.get(index_json_url)
   end

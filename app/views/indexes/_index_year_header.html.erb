@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-  <div class='<%= bootstrap_col(xs: 12, md: 12) %> page_summary' id="agency-top-nav">
+  <div class='<%= bootstrap_col(xs: 12, md: 12) %>' id="agency-top-nav">
     <p>
       This index provides descriptive entries and Federal Register page numbers
       for documents published in the daily Federal Register. It includes entries,
@@ -33,14 +33,17 @@
       </p>
     <% end %>
 
-    <p>
-      <%= link_to '' do %>
-        <!-- B.B. TODO: Bob to review implementation possibilities. -->
-        <span class="icon-fr2 icon-fr2-doc-pdf"></span>
-        Stubbed: Download Approved December 2014 Index (PDF)
-      <% end %>
-    </p>
+    <%# TODO: implement this - BB %>
+    <%# <p> %>
+      <%#= link_to '' do %>
+        <%# B.B. TODO: Bob to review implementation possibilities. %>
+        <%#<span class="icon-fr2 icon-fr2-doc-pdf"></span>
+        Stubbed: Download Approved December 2014 Index (PDF) %>
+      <%# end %>
+    <%# </p> %>
 
+    <hr>
+    
     <p>
       Jump to Agencies:
       <%= presenter.agency_representations_by_first_letter.keys.map{

@@ -1,6 +1,13 @@
 // FR INDEX OF INDEXES PAGE
 
 .fr-index {
+  hr { border-color: $fr-gray-20; }
+
+  .page-summary {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
   .title-bar {
     padding: 0;
     position: relative;
