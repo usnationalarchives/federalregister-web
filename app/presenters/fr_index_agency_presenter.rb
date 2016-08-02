@@ -21,10 +21,11 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
 
   def document_types
     return nil if document_index["document_categories"].nil?
+
     document_index["document_categories"].map do |category|
       granule_class = DocumentType.new(category["type"]).granule_class
       DocumentTypeRepresentation.new(
-        name: category["type"].pluralize,
+        name: category["type"],
         granule_class: granule_class,
         anchor_link: "##{agency_slug}-#{category["type"]}".downcase.gsub(' ','-'),
         document_count: document_type_counts[granule_class],

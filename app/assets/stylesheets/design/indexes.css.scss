@@ -18,11 +18,21 @@
       padding-left: 10px;
     }
 
+    .return-link { padding-right: 10px; }
+
     form {
       position: absolute;
       right: 10px;
-      top: 40px;
+      top: 20px;
     }
+  }
+
+  table.agency-stats {
+    min-width: 500px;
+
+    th { font-weight: 500; }
+
+    .align-center { text-align: center; }
   }
 
   .doc-toc {

@@ -6,21 +6,23 @@
     </h1>
 
     <%= link_to "Return to the agency list for the #{presenter.year} FR Index",
-          index_year_path(presenter.year), class: "pull-right" %>
+          index_year_path(presenter.year), class: "pull-right return-link" %>
   </div>
 </div>
 
 <div class="row">
   <div class='<%= bootstrap_col(xs: 12, md: 12) %> page_summary' id="agency-top-nav">
-    <!-- B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. -->
+    <%# B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. %>
     <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
-    <!-- B.B. TODO: Bob to look into implementation details. -->
-    <%= link_to root_path do %>
-      <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= presenter.agency_name %> Index (PDF)
-    <% end %>
+    <%# B.B. TODO: Bob to look into implementation details. %>
+    <% if false %>
+      <%= link_to root_path do %>
+        <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= presenter.agency_name %> Index (PDF)
+      <% end %>
 
-    <hr />
+      <hr />
+    <% end %>
 
     <p>
       <% if presenter.year == Date.current.strftime("%Y").to_i %>
@@ -36,19 +38,25 @@
       <% end %>
     </p>
 
-    <table>
-      <tr>
-        <th>Document Type</th>
-        <th>Documents Published</th>
-        <th>Subjects Covered</th>
-      </tr>
-      <% presenter.document_types.try(:each) do |document_type| %>
-      <tr>
-        <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
-        <td class="entry-count"> <%= document_type.document_count %></td>
-        <td class="subject-count"> <%= document_type.subject_count %></td>
-      </tr>
-      <% end %>
+    <hr>
+
+    <table class="agency-stats">
+      <thead>
+        <tr>
+          <th>Document Type</th>
+          <th class="align-center">Documents Published</th>
+          <th class="align-center">Subjects Covered</th>
+        </tr>
+      <thead>
+      <tbody>
+        <% presenter.document_types.try(:each) do |document_type| %>
+          <tr>
+            <td class="type"> <%= link_to document_type.name, document_type.anchor_link %></td>
+            <td class="entry-count align-center"> <%= document_type.document_count %></td>
+            <td class="subject-count align-center"> <%= document_type.subject_count %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
