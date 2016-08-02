@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   include Userstamp
 
-  protect_from_forgery
+  protect_from_forgery if: :current_user
 
   before_filter :authenticate_user!
   before_filter :set_stampers

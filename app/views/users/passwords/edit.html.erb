@@ -13,6 +13,7 @@
   <%= semantic_form_for resource,
     as: resource_name,
     url: password_path(resource_name),
+    authenticity_token: false,
     html: {
       method: :put,
       class: 'user-password-reset'

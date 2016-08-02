@@ -1,5 +1,3 @@
-<%= csrf_meta_tags %>
-
 <div id="user_utils">
   <div class="ie_shim">
     <div id="document-count-holder">
@@ -9,6 +7,7 @@
             ].join("\n").html_safe
           end %>
       <% if user_signed_in? %>
+        <%= csrf_meta_tags %>
         <%= link_to clippings_path(), :id => "document-in-folders-count", :class => "count_with_icon" do
               [ content_tag(:span, @folders.count, :id => "user_folder_count"),
                 "(#{content_tag(:span, @folders.map{|f| f.clippings.count}.inject(:+) || 0, :id => "user_documents_in_folders_count")})",

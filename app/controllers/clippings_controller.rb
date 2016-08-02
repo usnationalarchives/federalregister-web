@@ -1,5 +1,4 @@
 class ClippingsController < ApplicationController
-  protect_from_forgery :except => [:create, :bulk_create]
   skip_before_filter :authenticate_user!, :only => [:index, :create]
 
   def index

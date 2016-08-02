@@ -43,7 +43,6 @@ class @FR2.CommentFormStore
     formInputs = @commentFormEl().find ':input'
 
     formInputs = formInputs
-      .filter ':input[name!=authenticity_token]'
       .filter ':input[name!=utf8]'
       .filter ':input[name!="comment[confirm_submission]"]'
       .filter ':input[name!="commit"]'

@@ -17,6 +17,7 @@
   <% end %>
 
   <%= semantic_form_for @document_email,
+    authenticity_token: false,
     url: document_email_path(@document.document_number) do |f| %>
 
     <%= f.inputs do %>

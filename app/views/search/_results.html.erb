@@ -14,6 +14,7 @@
             <li class="clip-for-later">
               <%= semantic_form_for :document,
                 url: clippings_path,
+                authenticity_token: false,
                 html: {
                   method: :post,
                   class: "add-to-clipboard"
