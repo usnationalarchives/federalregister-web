@@ -56,7 +56,7 @@ class @FR2.CommentFormFileUploader
         ]
         formData: {
           'comment_attachment[secret]': $('#comment_secret').val()
-          'authenticity_token': window.getAuthenticityTokenFromHead()
+          'authenticity_token': @commentFormEl().find('input[name=authenticity_token]').val()
         }
         filesContainer: @attachmentContainer()
         uploadTemplateId: null

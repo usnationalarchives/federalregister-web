@@ -67,7 +67,6 @@
 
   <%= semantic_form_for @comment,
     :url => comment_path,
-    :authenticity_token => false,
     :html => {
       :"data-document-number" => @comment.document_number,
       :"data-agency" => @comment.agency_name
