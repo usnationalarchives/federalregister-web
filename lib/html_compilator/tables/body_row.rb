@@ -8,6 +8,7 @@ class HtmlCompilator::Tables::BodyRow
   end
 
   def to_html
+    return unless cells.present?
     h.safe_join([
       page_break_row,
       h.content_tag(:tr) {
@@ -88,6 +89,7 @@ class HtmlCompilator::Tables::BodyRow
   end
 
   def append_missing_cells(cells)
+    return [] if cells.empty?
     (cells.sum(&:colspan) ... table.num_columns).each do |i|
       cells << HtmlCompilator::Tables::BodyCell.new(
         :row => self,
