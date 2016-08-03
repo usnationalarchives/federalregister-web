@@ -8,7 +8,7 @@
         </div>
         <div class="public-inspection-list-stats">
           <div class="filings-summary">
-            <%= link_to_unless filing_type.document_count == 0,
+            <%= link_to_if filing_type.display_links?,
               pluralize(filing_type.document_count, 'document'),
               public_inspection_search_path(filing_type.search_conditions)
             %>
@@ -18,7 +18,8 @@
           <ul class="document-stats">
             <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
               <li>
-                <%= link_to pluralize(facet.count, facet.name),
+                <%= link_to_if filing_type.display_links?,
+                  pluralize(facet.count, facet.name),
                   public_inspection_search_path(facet.search_conditions) %>
               </li>
             <% end %>

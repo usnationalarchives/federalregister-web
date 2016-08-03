@@ -88,6 +88,13 @@ class PublicInspectionIssuePresenter
     def special_filing?
       type == 'special-filing'
     end
+
+    def display_links?
+      @display_links ||=
+        (document_count != 0) &&
+        public_inspection_issue.publication_date >=
+          DocumentIssue.current.publication_date
+    end
   end
 
   class RegularFilings < BasicFilings
