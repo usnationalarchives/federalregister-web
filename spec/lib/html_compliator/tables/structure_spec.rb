@@ -297,5 +297,19 @@ describe HtmlCompilator::Tables do
 
       expect(table.body_rows.first.cells.map(&:colspan)).to eql([2])
     end
+
+    it "handles empty rows" do
+      table = parse <<-XML
+        <GPOTABLE CDEF="6,6" COLS="2">
+          <ROW>
+            <ENT>A</ENT>
+            <ENT>B</ENT>
+          </ROW>
+          <ROW />
+        </GPOTABLE>
+      XML
+      table.to_html
+      expect(table.body_rows.last.to_html).to be_nil
+    end
   end
 end
