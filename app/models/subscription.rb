@@ -16,7 +16,7 @@ class Subscription < ApplicationModel
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
       klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
-      search_conditions ||= {}
+      self.search_conditions ||= {}
       self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
     else
       mailing_list_without_autobuilding
