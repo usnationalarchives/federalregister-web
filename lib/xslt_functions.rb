@@ -42,11 +42,11 @@ class XsltFunctions
       ) {
         topics.each do |topic|
           doc.li {
-            doc.a(
-              href: "/topics/#{topic.downcase.gsub(' ', '-')}"
-            ) {
+            # doc.a(
+            #   href: "/topics/#{topic.downcase.gsub(' ', '-')}"
+            # ) {
               doc.text topic
-            }
+            # }
           }
         end
       }
