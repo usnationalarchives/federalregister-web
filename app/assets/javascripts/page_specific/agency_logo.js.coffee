@@ -9,3 +9,6 @@ $(document).ready ()->
 
     agencyLogo
       .css 'margin-top', -marginNeeded
+
+  $(agencyLogo).error ()->
+    $(agencyLogo).hide()
