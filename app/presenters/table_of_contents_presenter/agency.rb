@@ -16,6 +16,7 @@ class TableOfContentsPresenter::Agency
 
   def toc_anchor(type=nil)
     slug = self.slug ? self.slug : name.downcase.gsub('/-|,/')
+    type = type.downcase.gsub(' ', '-') if type
     [type, slug].compact.join('-')
   end
 
