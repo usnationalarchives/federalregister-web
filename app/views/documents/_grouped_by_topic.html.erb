@@ -2,14 +2,14 @@
   <li>
     <h3 id='<%=topic.name%>'><%= topic.name %> <span class='top'><%= link_to 'back to top', "#top" %></h3>
     <ul>
-    <% documents.select{|e| e.topic_ids.include?(topic.id)}.group_by(&:publication_date).each do |pub_date, documents| %>  
+    <% documents.select{|e| e.topic_ids.include?(topic.id)}.group_by(&:publication_date).each do |pub_date, documents| %>
       <li>
         <h4><%= link_to pub_date.to_formatted_s(:pretty), document_issue_path(pub_date) %></h4>
         <ul class="indent raquo">
-          <% documents.each do |entry| %>  
-            <li><%= link_to truncate_words(entry.title, :length => 100), document_issue_path(entry) %></li>
+          <% documents.each do |document| %>
+            <li><%= link_to truncate_words(document.title, :length => 100), document_issue_path(document) %></li>
           <% end %>
-        </ul> 
+        </ul>
       </li>
     <% end %>
     <% if documents.select{|e| e.topic_ids.include?(topic.id)}.empty? %>

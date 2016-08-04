@@ -1,13 +1,21 @@
 <% list_type ||= nil %>
-<%= render :partial => 'documents/list_header', :locals => {:documents => documents} %>
+<%= render partial: 'documents/list_header', locals: {
+  documents: documents
+} %>
 
 <% if list_type %>
   <% if list_type == 'topic' %>
-    <%= render :partial => 'documents/grouped_by_topic',  :locals => {:documents => documents, :topics => topics}%>
+    <%= render partial: 'documents/grouped_by_topic', locals: {
+      documents: documents,
+      topics: topics
+    } %>
   <% elsif list_type == 'agency' %>
-    <%= render :partial => 'documents/grouped_by_date', :locals => {:documents => documents} %>
+    <%= render partial: 'documents/grouped_by_date', locals: {
+      documents: documents
+    } %>
   <% end %>
 <% else %>
-  <%= render :partial => 'documents/grouped_by_date', :locals => {:documents => documents}%>
+  <%= render partial: 'documents/grouped_by_date', locals: {
+    documents: documents
+  }%>
 <% end %>
-
