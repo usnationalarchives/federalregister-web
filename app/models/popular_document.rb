@@ -36,7 +36,7 @@ class PopularDocument
       )
     end
 
-    popular_documents.reject!{|d| d.document.object.nil?}
+    popular_documents.reject{|d| d.document.object.nil?}
   end
 
   attr_reader :document, :document_number
