@@ -34,7 +34,11 @@ class TableOfContentsPresenter::Agency
   def child_agencies
     if attributes['see_also']
       @child_agencies ||= attributes['see_also'].map do |child_agency|
-        presenter.agencies[child_agency['slug']]
+        agency_representation = TableOfContentsPresenter::Agency.new(child_agency, presenter)
+
+        # normal case: corresponding agency from the presenter exists - return it
+        # edge case: agency is mispelled, etc and we can't find it - return a stub
+        presenter.agencies[agency_representation.slug] || agency_representation
       end
     else
       []
@@ -68,6 +72,9 @@ class TableOfContentsPresenter::Agency
 
   def document_count
     return @document_count if @document_count
+    # if we couldn't find a corresponding agency in child agencies
+    # above it won't have all the attributes
+    return 0 unless attributes["document_categories"]
 
     @document_count = attributes["document_categories"].inject(0) do |sum, doc_cat|
       doc_cat["documents"].each do |doc|

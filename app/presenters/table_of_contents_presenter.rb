@@ -116,7 +116,8 @@ class TableOfContentsPresenter
 
   def raw_agencies
     @raw_agencies ||= table_of_contents_data["agencies"].inject({}) do |hsh, agency_hash|
-      hsh[agency_hash['slug']] = TableOfContentsPresenter::Agency.new(agency_hash, self)
+      agency_representation = TableOfContentsPresenter::Agency.new(agency_hash, self)
+      hsh[agency_representation.slug] = agency_representation
       hsh
     end
   end
