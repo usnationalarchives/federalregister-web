@@ -2,6 +2,7 @@ class ExecutiveOrdersController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
+    cache_for 1.day
     @presenter = ExecutiveOrderPresenter.new(
       view_context: view_context
     )
@@ -12,6 +13,7 @@ class ExecutiveOrdersController < ApplicationController
   end
 
   def by_president_and_year
+    cache_for 1.day
     @presenter = EoDispositionTablePresenter.new(
       view_context: view_context,
       president: params[:president],

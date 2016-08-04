@@ -9,6 +9,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    cache_for 1.day
     @presenter = TopicPresenter.new(params[:id])
 
     respond_to do |wants|
