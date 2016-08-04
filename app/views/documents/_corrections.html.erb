@@ -4,9 +4,9 @@
       <%= fr_icon 'alert_alt' %>
 
       <% if document.republication? %>
-        This article is a corrected republication of an article that was published on <%= document.correction_of_document.publication_date %>.
+        This document is a corrected republication of an document that was published on <%= document.correction_of_document.publication_date %>.
       <% else %>
-        This article is a correction of an article that was published on <%= document.correction_of_document.publication_date %>.
+        This document is a correction of an document that was published on <%= document.correction_of_document.publication_date %>.
       <% end %>
       <%= link_to 'View Uncorrected Article', document.correction_of_document.html_url, :class => "button" %>
     </p>
@@ -20,10 +20,10 @@
         <%= fr_icon 'alert_alt' %>
 
         <% if correction.republication? %>
-          This article has been corrected and republished on <%= correction.publication_date %>.
+          This document has been corrected and republished on <%= correction.publication_date %>.
           <%= link_to 'View Republication', correction.html_url, :class => "button" %>
         <% else %>
-          This article was corrected by an article published on <%= correction.publication_date %>.
+          This document was corrected by an document published on <%= correction.publication_date %>.
           <%= link_to 'View Correction', correction.html_url, :class => "button" %>
         <% end %>
       </p>
