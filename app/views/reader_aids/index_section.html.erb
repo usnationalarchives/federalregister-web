@@ -11,6 +11,7 @@
       <div class="<%= presenter.css_columns %>">
         <ul class="fr-list <%= presenter.item_ul_class %>">
           <% group.each do |item| %>
+            <% next if item.nil? %>
             <%= render partial: presenter.item_partial,
               locals: {item: item, presenter: presenter} %>
           <% end %>
