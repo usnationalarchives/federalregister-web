@@ -108,8 +108,10 @@ class Agency < FederalRegister::Agency
   end
 
   def child_agencies(fields=[])
-    return [] unless child_ids.present?
+    return [] unless child_agencies?
 
-    @children ||= Agency.find(child_ids.join(','), fields.present? ? {fields: fields} : {})
+    @children ||= Array(
+      Agency.find(child_ids.join(','), fields.present? ? {fields: fields} : {})
+    )
   end
 end
