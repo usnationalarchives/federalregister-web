@@ -19,15 +19,19 @@
       <% agency.child_agencies.each do |child_agency| %>
         <li>
           <em>See</em>
-          <%= link_to(
-            child_agency.name,
-            "#{table_of_contents_url}##{child_agency.toc_anchor(type)}"
-          ) %>
-          <span class="count_pill count-pill cj-tooltip"
-            data-tooltip="<%= pluralize(child_agency.document_count_with_child_agencies, 'Document') %>"
-            data-tooltip-gravity="w">
-            <%= child_agency.document_count_with_child_agencies %>
-          </span>
+          <% if child_agency.document_count_with_child_agencies > 0 %>
+            <%= link_to(
+              child_agency.name,
+              "#{table_of_contents_url}##{child_agency.toc_anchor(type)}"
+            ) %>
+            <span class="count_pill count-pill cj-tooltip"
+              data-tooltip="<%= pluralize(child_agency.document_count_with_child_agencies, 'Document') %>"
+              data-tooltip-gravity="w">
+              <%= child_agency.document_count_with_child_agencies %>
+            </span>
+          <% else %>
+            <%= child_agency.name %>
+          <% end %>
         </li>
       <% end %>
     </ul>
