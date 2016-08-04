@@ -11,7 +11,7 @@
       <% if document.publication_date.present? %>
         <dt>Publication Date:</dt>
         <dd>
-          <%= link_to document.formal_publication_date,
+          <%= link_to document.publication_date,
                       document_issue_path(document) %>
         </dd>
       <% end %>
