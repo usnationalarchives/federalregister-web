@@ -22,15 +22,15 @@ describe "XSLT::FullText::ListOfSubjects" do
 
       # list items
       expect(html).to have_tag("ul.subject-list") do
-        with_tag("li a", with: {href: "/topics/animal-diseases"}) do
+        with_tag("li") do
           with_text "Animal diseases"
         end
 
-        with_tag("li a", with: {href: "/topics/bison"}) do
+        with_tag("li") do
           with_text "Bison"
         end
 
-        with_tag("li a", with: {href: "/topics/cattle"}) do
+        with_tag("li") do
           with_text "Cattle"
         end
       end
