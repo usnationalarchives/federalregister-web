@@ -45,7 +45,7 @@ class SuggestedSearchPresenter
   def total_documents
     @total_documents ||= Document.search(
       conditions: search_conditions,
-      metadata_only: true
+      metadata_only: 1
     ).count
   end
 
