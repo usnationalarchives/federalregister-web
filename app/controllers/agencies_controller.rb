@@ -15,11 +15,10 @@ class AgenciesController < ApplicationController
 
     respond_to do |wants|
       wants.html
-      wants.rss do
-        base_url = 'https://www.federalregister.gov/articles/search.rss?'
-        options = "conditions[agency_ids]=#{@presenter.agency.id}&order=newest.com"
-        redirect_to base_url + options, status: :moved_permanently
-      end
+      wants.rss {
+        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}",
+          status: :moved_permanently
+      }
     end
   end
 
@@ -30,17 +29,14 @@ class AgenciesController < ApplicationController
     }
   end
 
-  # RW: Old
   def significant_entries
     cache_for 1.day
-    @presenter = AgenciesPresenter.new(FederalRegister::Agency.all)
-    @agency = @presenter.agency(params[:id])
+    @presenter = AgencyPresenter.new(params[:id])
 
     respond_to do |wants|
       wants.rss do
-        base_url = 'https://www.federalregister.gov/articles/search.rss?'
-        options = "conditions[agency_ids]=#{@agency.id}&order=newest.com&conditions[significant]=1"
-        redirect_to base_url + options, status: :moved_permanently
+        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}&conditions[significant]=1",
+          status: :moved_permanently
       end
     end
   end

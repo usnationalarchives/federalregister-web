@@ -1,4 +1,6 @@
 class AgencyPresenter
+  include RouteBuilder::Fr2ApiUrls
+
   attr_reader :agency
 
   delegate :agency_url,
@@ -12,6 +14,34 @@ class AgencyPresenter
 
   def initialize(slug)
     @agency = Agency.find(slug)
+  end
+
+  def feed_urls
+    feeds = []
+
+    feeds << FeedAutoDiscovery.new(
+      url: documents_search_api_url(
+        {conditions: search_conditions[:conditions]},
+        format: :rss
+      ),
+      description: Search::Document.new(
+        conditions: search_conditions[:conditions]
+      ).summary,
+      search_conditions: search_conditions[:conditions]
+    )
+
+    feeds << FeedAutoDiscovery.new(
+      url: documents_search_api_url(
+        {conditions: search_conditions[:conditions].merge(significant: '1')},
+        format: :rss
+      ),
+      description: Search::Document.new(
+        conditions: search_conditions[:conditions].merge(significant: '1')
+      ).summary,
+      search_conditions: search_conditions[:conditions].merge(significant: '1')
+    )
+
+    feeds
   end
 
   def weekly_sparkline
