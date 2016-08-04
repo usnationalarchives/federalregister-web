@@ -9,7 +9,7 @@
 
 <% agencies.each do |slug, agency| %>
   <% if (show_see_references || agency.document_categories.present?) && display_agency_name %>
-    <h2 id="<%= [type, agency.slug].compact.join('-') %>">
+    <h2 id="<%= agency.toc_anchor(type) %>">
       <%= link_to agency.name, agency_url(agency) %>
     </h2>
   <% end %>
@@ -21,7 +21,7 @@
           <em>See</em>
           <%= link_to(
             child_agency.name,
-            "#{table_of_contents_url}##{[type, child_agency.slug].compact.join('-')}"
+            "#{table_of_contents_url}##{child_agency.toc_anchor(type)}"
           ) %>
           <span class="count_pill count-pill cj-tooltip"
             data-tooltip="<%= pluralize(child_agency.document_count_with_child_agencies, 'Document') %>"
@@ -37,7 +37,7 @@
     <h3><%= doc_category["type"].try(:titlecase) %></h3>
 
     <div class="toc-category-level"
-      id=<%= "#{agency.slug}-#{doc_category["type"]}".downcase.gsub(' ','-') %>>
+      id=<%= agency.toc_anchor(doc_category["type"]) %>>
       <%= display_hierarchy(
         doc_category["documents"],
         agency,

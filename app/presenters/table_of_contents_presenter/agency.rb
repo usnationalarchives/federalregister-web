@@ -14,6 +14,11 @@ class TableOfContentsPresenter::Agency
     attributes['slug']
   end
 
+  def toc_anchor(type=nil)
+    slug = self.slug ? self.slug : name.downcase.gsub('/-|,/')
+    [type, slug].compact.join('-')
+  end
+
   def to_param
     slug
   end
