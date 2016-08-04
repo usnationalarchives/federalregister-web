@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TableOfContentsPresenter::Agency
   attr_reader :attributes, :presenter
 
@@ -11,11 +12,17 @@ class TableOfContentsPresenter::Agency
   end
 
   def slug
-    attributes['slug']
+    attributes['slug'].present? ? attributes['slug'] : generated_slug
+  end
+
+  # if an agency was found when creating the toc json then it's slug
+  # will be empty and we need to generate a placeholder - we may be able
+  # to find it if the error was simple (commas, emdash, etc.)
+  def generated_slug
+    name.downcase.gsub(/-|,|:|;|—|\s/, '-')
   end
 
   def toc_anchor(type=nil)
-    slug = self.slug ? self.slug : name.downcase.gsub('/-|,/')
     type = type.downcase.gsub(' ', '-') if type
     [type, slug].compact.join('-')
   end
