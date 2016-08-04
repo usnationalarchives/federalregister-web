@@ -13,7 +13,7 @@
       </li>
     <% end %>
     <% if documents.select{|e| e.topic_ids.include?(topic.id)}.empty? %>
-      <li>No articles exist with this topic in the most recent 100 documents</li>
+      <li>No documents exist with this topic in the most recent 100 documents</li>
     <% end %>
     </ul>
   </li>
