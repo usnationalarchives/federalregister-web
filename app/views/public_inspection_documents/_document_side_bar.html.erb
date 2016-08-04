@@ -9,10 +9,7 @@
 
         <% if document.publication_date.present? %>
           <dt>Scheduled Publication Date:</dt>
-          <dd>
-            <%= link_to document.publication_date,
-                        public_inspection_issue_path(document.publication_date) %>
-          </dd>
+          <dd><%= document.publication_date %></dd>
         <% end %>
 
         <% if document.agencies.present? %>
