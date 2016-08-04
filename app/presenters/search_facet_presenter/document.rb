@@ -39,7 +39,7 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
           value: result.slug,
           name: result.name,
           count: result.count,
-          condition: facet.to_s.pluralize
+          condition: facet == :type ? facet.to_s : facet.to_s.pluralize
         )
       end.sort{|a,b| b.count <=> a.count}
     end
