@@ -34,11 +34,15 @@ class TableOfContentsPresenter
   end
 
   def document_numbers
-    filter_to_documents.present? ? filtered_document_numbers : raw_document_numbers
+    filtering_documents? ? filtered_document_numbers : raw_document_numbers
+  end
+
+  def filtering_documents?
+    filter_to_documents.present?
   end
 
   def documents
-    retrieve_documents.results.map{|d| DocumentDecorator.decorate(d)}
+    retrieve_documents.map{|d| DocumentDecorator.decorate(d)}
   end
 
   # DOCUMENT STATUS
@@ -71,12 +75,20 @@ class TableOfContentsPresenter
   private
 
   def retrieve_documents
-    @documents ||= Document.search(
+    return @documents if @documents
+
+    documents = Document.search(
       QueryConditions.published_on(date).deep_merge(
         per_page: 1000,
         fields: document_fields
       )
-    )
+    ).results
+
+    if filtering_documents?
+      @documents = documents.select{|d| document_numbers.include?(d.document_number)}
+    else
+      @documents = documents
+    end
   end
 
   def document_fields
