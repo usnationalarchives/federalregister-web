@@ -6,6 +6,9 @@
 <%- end -%>
 
 <%- documents.each do |document| -%>
+  <%- if document.is_a?(String) -%>
+    FR Document Number: <%= document %>
+  <%- else -%>
     Filed on: <%= document.filed_at %>
     Scheduled Publication Date: <%= document.publication_date %>
     FR Document: <%= document.document_number %> <%= short_document_path(document) %>
@@ -17,5 +20,6 @@
 
   <%- if document.editorial_note -%>
     Editorial Note: <%= document.editorial_note %>
+  <%- end -%>
   <%- end -%>
 <%- end -%>

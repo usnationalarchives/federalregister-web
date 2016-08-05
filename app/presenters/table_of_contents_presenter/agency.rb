@@ -95,7 +95,7 @@ class TableOfContentsPresenter::Agency
         )
       end
 
-      doc
+      doc.nil? ? doc_num : doc
     end.compact
   end
 

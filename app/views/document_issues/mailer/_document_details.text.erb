@@ -6,9 +6,13 @@
 <%- end -%>
 
 <%- documents.each do |document| -%>
+  <%- if document.is_a?(String) -%>
+    FR Document Number: <%= document %>
+  <%- else -%>
     FR Document Number: <%= document.document_number %>
     Citation: <%= document.citation %>
     PDF: <%= document.pdf_url %>
     <%= "Page".pluralize(document.pages) %>: <%= document.page_range %> (<%= pluralize(document.pages, "page") %>)
     Permalink: <%= short_document_url(document) %>
+  <%- end -%>
 <%- end -%>

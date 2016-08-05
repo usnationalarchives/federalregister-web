@@ -7,53 +7,63 @@
   <% end %>
 
   <% documents.each do |document| %>
-    <div class="row toc-document-metadata">
-      <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
-        <dt>Filed on:</dt>
-        <dd><%= document.filed_at %></dd>
-
-        <dt>Scheduled Pub. Date:</dt>
-        <dd><%= document.publication_date %></dd>
-
-        <dt>FR Document:</dt>
-        <dd>
-          <%= link_to document.document_number, short_document_path(document) %>
-        </dd>
-
-        <% if document.docket_numbers.present? %>
-          <dt><%= "Agency Docket".pluralize(document.docket_numbers) %>:</dt>
-          <dd><%= document.docket_numbers.join(",") %></dd>
-        <% end %>
-      </dl>
-
-      <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
-        <dt class="toc-pdf">
-          <%= link_to document.pdf_url do %>
-            <%= fr_icon 'doc-pdf' %> PDF
-          <% end %>
-        </dt>
-        <dd>
-          <%= pluralize document.num_pages, "Page" %>
-          (<%= number_to_human_size document.pdf_file_size %>)
-        </dd>
-
-        <dt class="permalink">
-          <%= link_to short_document_url(document) do %>
-            <%= fr_icon 'link' %> Permalink
-          <% end %>
-        </dt>
-        <dd></dd>
-      </dl>
-    </div>
-
-    <% if document.editorial_note %>
-      <div class="row toc-editorial-note">
-        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-          <p>
-            <strong>Editorial Note:</strong> <%= document.editorial_note %>
-          </p>
-        </div>
+    <% if document.is_a?(String) %>
+      <%# render the content if we couldn't find the document %>
+      <div class="row toc-document-metadata">
+        <dl class="col-xs-5 col-md-5">
+          <dt>FR Document:</dt>
+          <dd><%= document %></dd>
+        </dl>
       </div>
+    <% else %>
+      <div class="row toc-document-metadata">
+        <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+          <dt>Filed on:</dt>
+          <dd><%= document.filed_at %></dd>
+
+          <dt>Scheduled Pub. Date:</dt>
+          <dd><%= document.publication_date %></dd>
+
+          <dt>FR Document:</dt>
+          <dd>
+            <%= link_to document.document_number, short_document_path(document) %>
+          </dd>
+
+          <% if document.docket_numbers.present? %>
+            <dt><%= "Agency Docket".pluralize(document.docket_numbers) %>:</dt>
+            <dd><%= document.docket_numbers.join(",") %></dd>
+          <% end %>
+        </dl>
+
+        <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+          <dt class="toc-pdf">
+            <%= link_to document.pdf_url do %>
+              <%= fr_icon 'doc-pdf' %> PDF
+            <% end %>
+          </dt>
+          <dd>
+            <%= pluralize document.num_pages, "Page" %>
+            (<%= number_to_human_size document.pdf_file_size %>)
+          </dd>
+
+          <dt class="permalink">
+            <%= link_to short_document_url(document) do %>
+              <%= fr_icon 'link' %> Permalink
+            <% end %>
+          </dt>
+          <dd></dd>
+        </dl>
+      </div>
+
+      <% if document.editorial_note %>
+        <div class="row toc-editorial-note">
+          <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+            <p>
+              <strong>Editorial Note:</strong> <%= document.editorial_note %>
+            </p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
