@@ -71,12 +71,11 @@ class TableOfContentsPresenter
   private
 
   def retrieve_documents
-    @documents ||= Document.find_all(
-      document_numbers,
-      {
+    @documents ||= Document.search(
+      QueryConditions.published_on(date).deep_merge(
         per_page: 1000,
         fields: document_fields
-      }
+      )
     )
   end
 
