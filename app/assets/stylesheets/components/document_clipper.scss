@@ -36,7 +36,7 @@
         background-color: $fr-gray-10;
         border: $fr-gray-20 1px solid;
         border-bottom: 0;
-        z-index: 200;
+        z-index: 1200;
 
         .icon-fr2-flag,
         .icon-fr2-menu_arrow { color: $fr-orange; }
@@ -44,7 +44,7 @@
 
       .menu {
         display: block;
-        z-index: 150;
+        z-index: 1150;
       }
     }
 
