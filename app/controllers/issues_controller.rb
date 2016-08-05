@@ -21,7 +21,7 @@ class IssuesController < ApplicationController
       )
     end
 
-    if @home || @pi
+  if @home || @pi
       @pi_presenter = PublicInspectionIssuePresenter.new(
         @home ? PublicInspectionDocumentIssue.current.publication_date : date
       )

@@ -9,7 +9,7 @@ class DocumentIssuesController < ApplicationController
 
     if DocumentIssue.published_on(parsed_date).has_documents?
       @presenter = TableOfContentsPresenter.new(parsed_date)
-      @doc_presenter = DocumentIssuePresenter.new(parsed_date)
+      @doc_presenter = DocumentIssuePresenter.new(parsed_date, documents: @presenter.documents)
     else
       raise ActiveRecord::RecordNotFound
     end

@@ -124,6 +124,8 @@ class DocumentIssuePresenter
   private
 
   def documents
+    return options[:documents] if options[:documents]
+    
     @documents ||= Document.search(
       search_conditions.deep_merge(
         per_page: 1000,
