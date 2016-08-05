@@ -9,7 +9,9 @@
     from <%= pluralize(presenter.agency_count, 'agency') %>
 
     <% unless navigation %>
-      (<%= pluralize(presenter.page_count, 'Page') %>)
+      <% if presenter.page_count %>
+        (<%= pluralize(presenter.page_count, 'Page') %>)
+      <% end %>
     <% end %>
   </li>
 </ul>

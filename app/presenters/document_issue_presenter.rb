@@ -77,10 +77,11 @@ class DocumentIssuePresenter
     return @page_count if @page_count
 
     sorted = documents.sort_by(&:start_page)
-    if sorted.present?
+
+    if sorted.present? && sorted.last.end_page.present? && sorted.first.start_page.present?
       @page_count = sorted.last.end_page - sorted.first.start_page + 1 #inclusive
     else
-      @page_count = 0
+      @page_count = nil
     end
   end
 

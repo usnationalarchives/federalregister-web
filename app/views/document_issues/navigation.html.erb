@@ -6,9 +6,12 @@
         <div class="fr_stats">
           <h2>
             Current Issue
-            <span class="supplemental">
-              <%= pluralize(@doc_presenter.page_count, 'Page') %>
-            </span>
+
+            <% if @doc_presenter.page_count %>
+              <span class="supplemental">
+                <%= pluralize(@doc_presenter.page_count, 'Page') %>
+              </span>
+            <% end %>
           </h2>
 
           <div class="<%= bootstrap_col xs: 12, md: 12 %> fr-head-meta-counts">
