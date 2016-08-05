@@ -39,12 +39,24 @@ class DocumentDecorator < ApplicationDecorator
     start_page.present? && start_page != 0
   end
 
+  def end_page?
+    end_page.present?
+  end
+
   def page_range
-    end_page != start_page ? "#{start_page}-#{end_page}" : start_page
+    if start_page? && end_page?
+      end_page != start_page ? "#{start_page}-#{end_page}" : start_page
+    else
+      nil
+    end
   end
 
   def pages
-    end_page - start_page + 1
+    if start_page? && end_page?
+      end_page - start_page + 1
+    else
+      'NA'
+    end
   end
 
   def formatted_cfr_references
