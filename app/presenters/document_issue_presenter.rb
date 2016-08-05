@@ -129,7 +129,7 @@ class DocumentIssuePresenter
     @documents ||= Document.search(
       search_conditions.deep_merge(
         per_page: 1000,
-        fields: [:end_page, :publication_date, :start_page, :agencies]
+        fields: [:end_page, :start_page, :agencies]
       )
     )
   end
