@@ -18,13 +18,10 @@ class DocumentIssuePresenter
 
   def entry_dates_for_month
     FederalRegister::Facet::Document::Daily.search(
-      {:conditions =>
-        {:publication_date =>
-          {:gte => @date.beginning_of_month,
-           :lte => @date.end_of_month
-          }
-        }
-      }
+      QueryConditions::DocumentConditions.published_within(
+        @date.beginning_of_month,
+        @date.end_of_month
+      )
     ).select{|result|result.count > 0}.map{|result|result.slug.to_date  }
   end
 
