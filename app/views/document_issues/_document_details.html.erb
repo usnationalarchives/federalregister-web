@@ -30,15 +30,17 @@
         </dl>
 
         <dl class="col-xs-7 col-md-7">
-          <dt class="toc-pdf">
-            <%= link_to document.pdf_url do %>
-              <%= fr_icon 'doc-pdf' %> PDF
-            <% end %>
-          </dt>
-          <dd>
-            <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
-            <em>(<%= pluralize(document.pages, "page") %>)</em>
-          </dd>
+          <% if document.pdf_available? %>
+            <dt class="toc-pdf">
+              <%= link_to document.pdf_url do %>
+                <%= fr_icon 'doc-pdf' %> PDF
+              <% end %>
+            </dt>
+            <dd>
+              <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
+              <em>(<%= pluralize(document.pages, "page") %>)</em>
+            </dd>
+          <% end %>
 
           <dt class="permalink">
             <%= link_to short_document_url(document) do %>
