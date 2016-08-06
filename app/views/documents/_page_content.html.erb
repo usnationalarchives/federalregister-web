@@ -12,7 +12,7 @@
       <% end %>
 
       <div id="fulltext_content_area" class="doc-content-area">
-        <% if document.full_text_xml_url.present? %>
+        <% if document.full_text_available? %>
           <% if Settings.render_documents_from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
           <% elsif Settings.render_documents_from_staging %>
@@ -20,6 +20,19 @@
           <% else %>
             <%= esi document.http_body_html_url %>
           <% end %>
+        <% else %>
+          <p>
+            <% if document.pdf_available?  %>
+              The full text of this document is currently available in
+              <%= link_to 'PDF format', document.pdf_url %>.
+            </p>
+            <p>
+            <% end %>
+
+            The full text of this document is
+            <%= document.pdf_available? ? 'also available' : 'currently only available' %>
+            in <%= link_to 'a basic text format', document.raw_text_url %>.
+          </p>
         <% end %>
       </div>
     <% end %>

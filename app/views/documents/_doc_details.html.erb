@@ -3,10 +3,12 @@
     FrBox.build(document.fr_details_box_type)
   ) do %>
     <dl class='metadata_list'>
-      <dt>Printed version:</dt>
-      <dd>
-        <%= link_to 'PDF', fdsys_document_pdf_url(document) %>
-      </dd>
+      <% if document.pdf_available? %>
+        <dt>Printed version:</dt>
+        <dd>
+          <%= link_to 'PDF', fdsys_document_pdf_url(document) %>
+        </dd>
+      <% end %>
 
       <% if document.publication_date.present? %>
         <dt>Publication Date:</dt>

@@ -78,8 +78,16 @@ class DocumentDecorator < ApplicationDecorator
     end
   end
 
-  def has_full_text?
+  def full_text_available?
     full_text_xml_url.present?
+  end
+
+  def pdf_available?
+    pdf_url.present?
+  end
+
+  def mods_available?
+    mods_url.present?
   end
 
   def effective_date

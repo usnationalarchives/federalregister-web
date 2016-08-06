@@ -30,34 +30,36 @@
       <%# end %>
     </li> -->
 
-    <li class="enhanced">
-      <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
-      <%= fr_utility_nav_box(
-        FrBox.build(
-          :enhanced_content,
-          title: "Enhanced Content - Table of Contents"
-        )
-      ) do %>
-        <p>
-          This tables of contents is a navigational tools, processed from the
-          headings within the legal text of Federal Register documents.
-          This repetition of headings to form internal navigation links
-          has no substantive legal effect.
-        </p>
+    <% if document.full_text_available? %>
+      <li class="enhanced">
+        <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :enhanced_content,
+            title: "Enhanced Content - Table of Contents"
+          )
+        ) do %>
+          <p>
+            This tables of contents is a navigational tools, processed from the
+            headings within the legal text of Federal Register documents.
+            This repetition of headings to form internal navigation links
+            has no substantive legal effect.
+          </p>
 
-        <% if Settings.render_documents_from_raw_xml %>
-          <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
-        <% elsif Settings.render_documents_from_staging %>
-          <%
-            url, path = document.body_html_url.split('full_text/')
-            url = "#{url}table_of_contents/#{path}"
-          %>
-          <%= HTTParty.get(url).html_safe %>
-        <% else %>
-          <%= esi document_table_of_contents_path(document) %>
+          <% if Settings.render_documents_from_raw_xml %>
+            <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
+          <% elsif Settings.render_documents_from_staging %>
+            <%
+              url, path = document.body_html_url.split('full_text/')
+              url = "#{url}table_of_contents/#{path}"
+            %>
+            <%= HTTParty.get(url).html_safe %>
+          <% else %>
+            <%= esi document_table_of_contents_path(document) %>
+          <% end %>
         <% end %>
-      <% end %>
-    </li>
+      </li>
+    <% end %>
 
     <% if Settings.feature_flags.regulatory_plan %>
       <li class="enhanced">
@@ -75,7 +77,9 @@
       </li>
     <% end %>
 
-    <li class="divider"></li>
+    <% if document.full_text_available? || Settings.feature_flags.regulatory_plan %>
+      <li class="divider"></li>
+    <% end %>
 
     <li class='enhanced <%= "unavailable" unless document.accepting_comments? %>'>
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
@@ -166,48 +170,50 @@
 
     <li class="divider"></li>
 
-    <li class="enhanced">
-      <i class="icon-fr2 icon-fr2-print" role="button" data-toggle="dropdown"></i>
-      <%= fr_utility_nav_box(
-        FrBox.build(
-          :enhanced_content,
-          title: "Enhanced Content - Document Print View"
-        )
-      ) do %>
-        <ul>
-          <li><a href="">Print this document</a></li>
-        </ul>
-      <% end %>
-    </li>
+    <% if document.full_text_available? %>
+      <li class="enhanced">
+        <i class="icon-fr2 icon-fr2-print" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :enhanced_content,
+            title: "Enhanced Content - Document Print View"
+          )
+        ) do %>
+          <ul>
+            <li><a href="">Print this document</a></li>
+          </ul>
+        <% end %>
+      </li>
 
-    <li class="enhanced">
-      <i class="icon-fr2 icon-fr2-doc-generic" role="button" data-toggle="dropdown"></i>
-      <%= fr_utility_nav_box(
-        FrBox.build(
-          :enhanced_content,
-          title: "Enhanced Content - Document Tools"
-        )
-      ) do %>
-        <p>
-          These tools are designed to help you understand the official document
-          better and aid in comparing the online edition to the print edition.
-        </p>
+      <li class="enhanced">
+        <i class="icon-fr2 icon-fr2-doc-generic" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :enhanced_content,
+            title: "Enhanced Content - Document Tools"
+          )
+        ) do %>
+          <p>
+            These tools are designed to help you understand the official document
+            better and aid in comparing the online edition to the print edition.
+          </p>
 
-        <ul class="list">
-          <li>
-            <p>
-              These markup elements allow the user to see how the document follows the
-              <a href='http://www.archives.gov/federal-register/write/handbook/ddh.pdf'>
-                Document Drafting Handbook
-              </a> that agencies use to create thier documents. These can be useful
-              for better understanding how a document is structured but
-              <strong>are not part of the published document</strong> itself.
-            </p>
-            <%= link_to 'Display Non-Printed Markup Elements', '#', id: "display-unprinted-elements" %>
-          </li>
-        </ul>
-      <% end %>
-    </li>
+          <ul class="list">
+            <li>
+              <p>
+                These markup elements allow the user to see how the document follows the
+                <a href='http://www.archives.gov/federal-register/write/handbook/ddh.pdf'>
+                  Document Drafting Handbook
+                </a> that agencies use to create thier documents. These can be useful
+                for better understanding how a document is structured but
+                <strong>are not part of the published document</strong> itself.
+              </p>
+              <%= link_to 'Display Non-Printed Markup Elements', '#', id: "display-unprinted-elements" %>
+            </li>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
 
     <li class="enhanced">
       <i class="icon-fr2 icon-fr2-doc-xml" role="button" data-toggle="dropdown"></i>
@@ -226,14 +232,18 @@
             <%= link_to 'JSON: Normalized attributes and metadata',
               document_api_url(document, format: :json) %>
           </li>
-          <li>
-            <%= link_to 'XML: Original full text XML',
-              document.full_text_xml_url %>
-          </li>
-          <li>
-            <%= link_to 'MODS: Government Publishing Office metadata',
-              fdsys_document_mods_url(document) %>
-          </li>
+          <% if document.full_text_available? %>
+            <li>
+              <%= link_to 'XML: Original full text XML',
+                document.full_text_xml_url %>
+            </li>
+          <% end %>
+          <% if document.mods_available? %>
+            <li>
+              <%= link_to 'MODS: Government Publishing Office metadata',
+                fdsys_document_mods_url(document) %>
+            </li>
+          <% end %>
         </ul>
 
         <p>
@@ -244,22 +254,24 @@
       <% end %>
     </li>
 
-    <li class="official">
-      <i class="icon-fr2 icon-fr2-doc-pdf" role="button" data-toggle="dropdown"></i>
-      <%= fr_utility_nav_box(
-        FrBox.build(
-          :official,
-          title: "Official Content"
-        )
-      ) do %>
-        <ul>
-          <li>
-            <%= link_to 'View printed version (PDF)',
-              fdsys_document_pdf_url(document) %>
-          </li>
-        </ul>
-      <% end %>
-    </li>
+    <% if document.pdf_available? %>
+      <li class="official">
+        <i class="icon-fr2 icon-fr2-doc-pdf" role="button" data-toggle="dropdown"></i>
+        <%= fr_utility_nav_box(
+          FrBox.build(
+            :official,
+            title: "Official Content"
+          )
+        ) do %>
+          <ul>
+            <li>
+              <%= link_to 'View printed version (PDF)',
+                fdsys_document_pdf_url(document) %>
+            </li>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
 
     <% if document.public_inspection_document.present? %>
       <li class="public-inspection">
