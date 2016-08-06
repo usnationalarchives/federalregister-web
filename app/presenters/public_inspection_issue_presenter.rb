@@ -55,6 +55,7 @@ class PublicInspectionIssuePresenter
   end
 
   class BasicFilings
+    extend Memoist
     attr_reader :publication_date, :public_inspection_issue
     def initialize(date, presenter)
       @publication_date = date
@@ -90,11 +91,11 @@ class PublicInspectionIssuePresenter
     end
 
     def display_links?
-      @display_links ||=
-        (document_count != 0) &&
-        public_inspection_issue.publication_date >=
-          DocumentIssue.current.publication_date
+      (document_count != 0) &&
+      public_inspection_issue.publication_date >=
+        DocumentIssue.current.publication_date
     end
+    memoize :display_links?
   end
 
   class RegularFilings < BasicFilings
