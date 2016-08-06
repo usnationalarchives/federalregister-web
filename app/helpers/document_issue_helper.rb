@@ -11,7 +11,8 @@ module DocumentIssueHelper
     fr_index = options.fetch(:fr_index, false)
 
     docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
-      docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
+      # we don't expect more than 3 levels of hierarchy in any toc, so check the next two for subject content
+      docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil? && x["subject_#{level+2}"].nil?}
 
       tags = []
 
@@ -43,7 +44,7 @@ module DocumentIssueHelper
     level = options[:level]
 
     docs.group_by{|doc| doc["subject_#{level}"]}.map do |subject_heading, docs|
-      docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil?}
+      docs_only_at_this_level, nested_docs = docs.partition{|x| x["subject_#{level+1}"].nil? && x["subject_#{level+2}"].nil?}
 
       tags = []
 
