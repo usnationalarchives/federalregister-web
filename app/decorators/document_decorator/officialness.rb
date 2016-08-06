@@ -23,4 +23,14 @@ module DocumentDecorator::Officialness
       :public_inspection_document_details
     end
   end
+
+  def fr_content_box_options
+    options = {}
+    unless pdf_available?
+      options.merge!(
+        description: I18n.t('fr_box.description.published_document_no_pdf')
+      )
+    end
+    options
+  end
 end

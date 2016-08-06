@@ -5,7 +5,7 @@
     <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
 
     <%= fr_content_box(
-      FrBox.build(document.fr_content_box_type)
+      FrBox.build(document.fr_content_box_type, document.fr_content_box_options)
     ) do %>
       <% if document.official? %>
         <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
