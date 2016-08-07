@@ -90,11 +90,8 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     :reader_aid
   end
 
-  class Agency < TableOfContentsPresenter::Agency
-  end
-
   def agency
-    @agency ||= {agency_slug => Agency.new(document_index, self) }
+    @agency ||= {agency_slug => TableOfContentsPresenter::Agency.new(document_index, self) }
   end
 
   def documents
