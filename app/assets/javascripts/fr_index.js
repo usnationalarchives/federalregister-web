@@ -54,7 +54,12 @@ $(document).ready(function() {
     });
     /* trigger show or else it won't be shown until the next mouseenter */
     $el.tipsy("show");
-    $('.tipsy.tipsy-n').addClass('popover').css('left', $el.find('dd.document_number').position().left - 300);
+    $('.tipsy.tipsy-n')
+      .addClass('popover')
+      .css(
+        'left',
+        $el.find('dd.document_number').position().left
+      );
 
     /* get the ajax content and show it */
     popover_handler.get_popover_content( $el );

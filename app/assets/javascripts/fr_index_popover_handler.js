@@ -1,8 +1,8 @@
 /* This file defines a generic fr_index popover handler.
- * Actual use of this handler requires the addition of methods 
+ * Actual use of this handler requires the addition of methods
  * appropriate to the particular use.
  * The fields to be retrieved from the API (fields) which must
- * include document_number and how to present the 
+ * include document_number and how to present the
  * data returned (add_popover_content) are required. */
 
 /*global fr_index_popover_handler:true */
@@ -21,7 +21,7 @@ fr_index_popover_handler = {
   url: function() {
     if( this.uses_pi ) {
       return this.pi_base_url + this.current_el.data('document-number') + '.json?' + this.fields;
-    } else { 
+    } else {
       return this.article_url();
     }
   },
@@ -34,7 +34,7 @@ fr_index_popover_handler = {
     var popover_handler = this;
 
     popover_handler.current_el = el;
-     
+
     if( popover_handler.popover_cache[popover_handler.current_el.data('document-number')] === undefined ) {
       $.ajax({
         url: popover_handler.url(),
@@ -42,7 +42,7 @@ fr_index_popover_handler = {
       }).done(function(response) {
         if( popover_handler.uses_pi ) {
           var pi_response = response;
-          /* need to get the title from the document end point and then 
+          /* need to get the title from the document end point and then
            * pass the whole thing as a single object to handlebars */
           $.ajax({
             url: popover_handler.article_url(),
@@ -68,4 +68,3 @@ fr_index_popover_handler = {
     }
   }
 };
-

@@ -85,6 +85,8 @@
 
 .toc-metadata-wrapper {
   display: none;
+
+  .with-ajax-popover { overflow: auto; }
 }
 
 .toc-documents{
@@ -111,7 +113,7 @@
   }
 }
 
-.tipsy.tipsy_inner {
+.tipsy .tipsy-inner {
   .entry_details {
     color: black;
   }
@@ -124,37 +126,41 @@
 
 /* popover customizations */
 
+$tipsy-popover-innner-background-color: rgba(0, 0, 0, 0.8);
+$tipsy-popover-inner-box-shadow-color: rgba(0, 0, 0, 0.3);
+$tipsy-popover-inner-width: 580px;
+
 .tipsy-n.popover .tipsy-inner {
-  padding: 3px;
-  width: 580px;
-  overflow: hidden;
-  background: #000;
-  background: rgba(0, 0, 0, 0.8);
-
+  background-color: $tipsy-popover-innner-background-color;
   border-radius: 6px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-
-  color: #000;
-  font-size: 1.5em;
+  box-shadow: 0 3px 7px $tipsy-popover-inner-box-shadow-color;
+  color: $black;
+  max-width: $tipsy-popover-inner-width;
+  overflow: hidden;
+  padding: 3px;
+  width: $tipsy-popover-inner-width;
 
   .popover-title {
-    font-size: 16px;
-    padding: 9px 15px;
-    line-height: 1;
-    background-color: whiteSmoke;
-    border-top: none;
-    border-bottom: 1px solid #EEE;
+    background-color: $fr-gray-10;
+    border-bottom: 1px solid $fr-gray-10;
     border-radius: 3px 3px 0 0;
+    border-top: 0;
+    font-size: modular-scale(1);
+    line-height: 1;
     margin-bottom: 0;
+    margin-top: 5px;
+    padding: 9px 15px;
   }
 
   .popover-content {
-    padding: 14px;
-    background-color: white;
-    border-radius: 0 0 3px 3px;
-    -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
     background-clip: padding-box;
+
+    background-color: $white;
+    border-radius: 0 0 3px 3px;
+    font-size: modular-scale(0);
+    padding: 14px;
 
     .loading {
       background-position-x: 220px;
@@ -165,21 +171,24 @@
 
     dl {
       margin: 0;
-      font-size: 14px;
       overflow: hidden;
 
       dt {
+        clear: both;
+        float: left;
+        font-weight: 500;
+        margin-right: 5px;
+        margin-bottom: 10px;
         text-align: right;
         width: 75px;
-        float: left;
-        clear: both;
-        margin-bottom: 10px;
+
+        &::after { content: ":"; }
 
         &.significant,
         &.comment_open,
         &.comments_received {
-          margin-top: 3px;
           height: 15px;
+          margin-top: 3px;
         }
 
         &.significant {
@@ -194,10 +203,10 @@
       }
 
       dd {
+        float: left;
         margin-bottom: 10px;
         text-align: left;
         width: 445px;
-        float: left;
       }
     }
   }
