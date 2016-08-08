@@ -23,6 +23,6 @@ module DocumentDecorator::Agencies
       agencies = document.agency_names.map
     end
 
-    agencies.compact
+    agencies ? agencies.compact : ""
   end
 end
