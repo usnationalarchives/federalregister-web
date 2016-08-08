@@ -89,14 +89,10 @@
   .with-ajax-popover { overflow: auto; }
 }
 
-.toc-documents{
-  .icon-fr2-Chat {
-    color: $fr-gray-30;
-  }
-
-  .icon-fr2-Star {
-    color: $fr-orange;
-  }
+.doc-document-issue{
+  .comments-open { color: $fr-green; }
+  .comments-received { color: $fr-gray-30; }
+  .significant { color: $fr-orange; }
 }
 
 .fr-index-agency-metadata {
@@ -166,7 +162,6 @@ $tipsy-popover-inner-width: 580px;
       background-position-x: 220px;
       background-position-y: 7px;
       padding-left: 20px;
-      //background: #fff image-url('ajax-loader.gif') no-repeat 80px 1px;
     }
 
     dl {
@@ -177,29 +172,24 @@ $tipsy-popover-inner-width: 580px;
         clear: both;
         float: left;
         font-weight: 500;
-        margin-right: 5px;
         margin-bottom: 10px;
+        margin-right: 5px;
         text-align: right;
         width: 75px;
 
         &::after { content: ":"; }
 
         &.significant,
-        &.comment_open,
-        &.comments_received {
+        &.comments-open,
+        &.comments-received {
           height: 15px;
-          margin-top: 3px;
+
+          &::after { content: ""; }
         }
 
-        &.significant {
-          //background: sprite-image('icons/icon_significant_entry_index.png', 60px, 0, 50px) no-repeat;
-        }
-        &.comment_open {
-          //background: sprite-image('icons/icon_comment_index_green.png', 60px, 0, 50px) no-repeat;
-        }
-        &.comments_received {
-          //background: sprite-image('icons/icon_comment_index_gray.png', 59px, 0, 50px) no-repeat;
-        }
+        &.comments-open .icon-fr2 { color: $fr-green; }
+        &.comments-received .icon-fr2 { color: $fr-gray-30; }
+        &.significant .icon-fr2 { color: $fr-orange; }
       }
 
       dd {

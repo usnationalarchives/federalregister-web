@@ -7,15 +7,21 @@
 
 <span class="count-pill reader-aid"><%= documents.size %></span>
 
+<% if documents.any? {|doc| doc.accepting_comments?} %>
+  <span class="cj-tooltip comments-open" data-tooltip="Contains documents that open for public comments">
+    <%= fr_icon("Chat") %>
+  </span>
+<% end %>
+
 <% if documents.any? {|doc| doc.has_comments?} %>
-  <span class="cj-tooltip" data-tooltip="Contains documents that have received public comments">
+  <span class="cj-tooltip comments-received" data-tooltip="Contains documents that have received public comments">
     <%= fr_icon("Chat")%>
   </span>
 <% end %>
 
 <% if documents.any? {|doc| doc.significant} %>
-  <span class="cj-tooltip"
+  <span class="cj-tooltip significant"
      data-tooltip="Contains documents that have been deemed significant under EO 12866">
-     <%= fr_icon("Star")%>
+     <%= fr_icon("star")%>
   </span>
 <% end %>
