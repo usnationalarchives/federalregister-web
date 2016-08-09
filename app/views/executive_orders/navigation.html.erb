@@ -1,6 +1,6 @@
 <li id="executive-orders-browse-preview" class="preview executive-orders-browse-preview">
   <ol>
-    <% @presenter.presidential_facet_collections.each do |president, collection| %>
+    <% @presenter.presidential_facet_collections.reverse.each do |president, collection| %>
       <li class="pres_holder <%=president.identifier%>" id="<%=president.identifier%>">
         <div class='photo' title='<%= president.photo_title %>'></div>
         <div class="pres_details">
