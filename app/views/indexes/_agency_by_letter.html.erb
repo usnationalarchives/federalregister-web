@@ -8,7 +8,7 @@
     <li>
       <% if agency.slug.present? %>
         <%= link_to agency.name,
-          year_agency_index_path(@presenter.year, agency.slug),
+          year_agency_index_path(year, agency.slug),
           id: agency.slug %>
       <% else %>
         <%= agency.name %>
@@ -16,7 +16,7 @@
 
       <% if agency.count > 1 %>
         <span class="count-pill cj-tooltip reader-aid"
-          data-tooltip='<%="Documents published in #{@presenter.year}" %>'
+          data-tooltip='<%="Documents published in #{year}" %>'
           data-tooltip-gravity="w">
           <%= agency.count %>
         </span>
@@ -27,12 +27,12 @@
           <li>
             <span class="see-reference">See</span>
             <%= link_to(child_agency.name, agency.slug.nil? ?
-             "##{child_agency.slug}" : year_agency_index_path(@presenter.year, child_agency.slug) )%>
+             "##{child_agency.slug}" : year_agency_index_path(year, child_agency.slug) )%>
 
             <% if child_agency.count > 1 && agency.slug.present?  %>
               <span class="count-pill reader-aid"
                  data-tooltip=
-                 "<%="Documents published in #{@presenter.year}" %>">
+                 "<%="Documents published in #{year}" %>">
                  <%= child_agency.count %>
               </span>
             <% end %>

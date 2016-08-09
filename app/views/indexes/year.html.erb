@@ -29,10 +29,11 @@
           ) do %>
               <% @presenter.agency_representations_by_first_letter.each do
                 |letter, agencies| %>
-                <%= render partial: "agency_by_letter",
-                      locals: {
-                        letter: letter,
-                        agencies: agencies } %>
+                <%= render partial: "agency_by_letter", locals: {
+                  agencies: agencies,
+                  letter: letter,
+                  year: @presenter.year
+                } %>
             <% end %>
           <% end %>
         </div>
