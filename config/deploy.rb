@@ -86,11 +86,11 @@ task :officialness do
   set :gateway, 'fr2_officialness'
 
   role :proxy,  "proxy.fr2.ec2.internal"
-  role :app,    "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal"
+  role :app,    "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
-  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
+  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
 
   set :github_user_repo, 'criticaljuncture'
   set :github_project_repo, 'federalregister-web'
@@ -127,6 +127,7 @@ set :bundler_roles, [:app, :worker]
 set :db_migration_roles, [:worker]
 set :asset_roles, [:app, :worker]
 set :varnish_roles, [:proxy]
+set :honeybadger_roles, [:worker]
 
 
 #############################################################
