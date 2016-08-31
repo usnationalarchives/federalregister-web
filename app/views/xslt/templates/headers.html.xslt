@@ -76,7 +76,7 @@
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:value-of select="$name"/>
+        <xsl:copy-of select="$name"/>
       </xsl:element>
   </xsl:template>
 

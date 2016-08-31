@@ -1,3 +1,4 @@
+# encoding: utf-8
 require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
@@ -49,12 +50,66 @@ describe "XSLT::FullText::ListOfSubjects" do
         </LSTSUB>
       XML
 
-      expect(html).to have_tag('h3.cfr-subjects#los-40-CFR-Part-52') do
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-1') do
         with_text "40 CFR Part 52"
       end
-      expect(html).to have_tag('h3.cfr-subjects#los-40-CFR-Part-81') do
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-2') do
         with_text "40 CFR Part 81"
       end
+    end
+
+    it "creates a header for each CFR part when the part is a link in the XML (with and without additional text)" do
+      process <<-XML
+        <LSTSUB>
+          <HD SOURCE="HED">List of Subjects</HD>
+          <CFR>
+            <a class="cfr external" href="/select-citation/2016/05/07/24-CFR-1000">24 CFR Part 1000</a>
+          </CFR>
+          <P>
+            Aged, Community development block grants, Grant programs—housing and community development, Grant programs—Indians, Indians, Individuals with disabilities, Public housing, Reporting and recordkeeping requirements.
+          </P>
+          <CFR>
+            <a class="cfr external" href="/select-citation/2016/05/07/24-CFR-1003">24 CFR Part 1003</a>.1234
+          </CFR>
+          <P>
+            Alaska, Community development block grants, Grant programs—housing and community development, Grant programs—Indians, Indians, Reporting and recordkeeping requirements.
+          </P>
+        </LSTSUB>
+      XML
+
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-1') do
+        with_tag("a.cfr.external", with: {href: "/select-citation/2016/05/07/24-CFR-1000"}) do
+          with_text "24 CFR Part 1000"
+        end
+      end
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-2') do
+        with_text /\.1234/
+        with_tag("a.cfr.external", with: {href: "/select-citation/2016/05/07/24-CFR-1003"}) do
+          with_text "24 CFR Part 1003"
+        end
+      end
+    end
+
+    it "properly increments header ids when there are more than one list of subjects or outside CFR nodes" do
+      process <<-XML
+        <LSTSUB>
+          <HD SOURCE="HED">List of Subjects</HD>
+          <CFR>24 CFR Part 1000</CFR>
+          <P>Aged</P>
+        </LSTSUB>
+
+        <CFR>I don't belong</CFR>
+
+        <LSTSUB>
+          <HD SOURCE="HED">Extra List of Subjects</HD>
+          <CFR>24 CFR Part 1003</CFR>
+          <P>Alaska</P>
+        </LSTSUB>
+      XML
+
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-1')
+      expect(html).to have_tag('h3.cfr-subjects#los-cfr-2')
+      expect(html).to_not have_tag('h3.cfr-subjects#los-cfr-3')
     end
   end
 end
