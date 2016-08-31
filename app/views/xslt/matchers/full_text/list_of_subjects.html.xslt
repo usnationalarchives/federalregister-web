@@ -52,10 +52,6 @@
   </xsl:template>
 
   <xsl:template match="CFR[ancestor::LSTSUB]">
-    <xsl:variable name="header_content">
-      <xsl:apply-templates />
-    </xsl:variable>
-
     <xsl:call-template name="manual_header">
       <xsl:with-param name="name">
         <xsl:apply-templates />
