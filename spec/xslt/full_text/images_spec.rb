@@ -39,7 +39,7 @@ describe "XSLT::FullText::Images" do
         expect(html).to have_tag 'a', with: {
             class: 'document-graphic-link',
             id: 'g-1',
-            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original_png.png"
           }
       end
 
@@ -52,7 +52,7 @@ describe "XSLT::FullText::Images" do
 
         expect(html).to have_tag 'img', with: {
             class: 'document-graphic-image full',
-            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original_png.png"
           }
       end
     end
@@ -68,7 +68,7 @@ describe "XSLT::FullText::Images" do
         expect(html).to have_tag 'a', with: {
             class: 'document-graphic-link',
             id: 'g-1',
-            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original.png"
+            href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original_png.png"
           }
       end
 
@@ -81,7 +81,7 @@ describe "XSLT::FullText::Images" do
 
         expect(html).to have_tag 'img', with: {
             class: 'document-graphic-image full',
-            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original.png"
+            src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/OB%231.EPS/original_png.png"
           }
       end
     end

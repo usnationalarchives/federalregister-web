@@ -109,13 +109,13 @@ class XsltFunctions
       doc.a(
         class: "document-graphic-link",
         id: link_id,
-        href: graphic_url('original', graphic_identifier),
+        href: graphic_url('original_png', graphic_identifier),
         'data-col-width' => data_width,
         'data-height' => data_height
       ) {
         doc.img(
           :class => image_class,
-          :src => graphic_url('original', graphic_identifier),
+          :src => graphic_url('original_png', graphic_identifier),
           :style => "max-height: #{(1.29 * data_height.to_i).to_i}px"
         )
       }
