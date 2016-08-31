@@ -33,7 +33,7 @@ class XsltFunctions
   end
 
   def list_of_subjects(nodes)
-    topics = nodes.first.content.split(',').map{|t| t.strip.gsub('.', '')}
+    topics = ListOfSubjectsTopicParser.parse(nodes.first.content)
 
     document = blank_document
     Nokogiri::XML::Builder.with(document) do |doc|
