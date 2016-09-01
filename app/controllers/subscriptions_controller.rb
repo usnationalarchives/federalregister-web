@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
     @subscriptions = SubscriptionDecorator.decorate_collection(
       current_user.subscriptions.order("subscriptions.created_at DESC")
     )
-    @article_subscription_count = current_user.subscriptions.article_subscriptions.count
+    @document_subscription_count = current_user.subscriptions.document_subscriptions.count
     @pi_subscription_count = current_user.subscriptions.pi_subscriptions.count
   end
 

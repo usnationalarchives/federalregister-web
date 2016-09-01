@@ -101,7 +101,7 @@ class Subscription < ApplicationModel
     true
   end
 
-  def self.article_subscriptions
+  def self.document_subscriptions
     scoped(:include => :mailing_list,
            :conditions => {:mailing_lists => {:type => "MailingList::Document"}})
   end
