@@ -32,7 +32,6 @@
 #= require utilities/tooltip
 #= require folder_actions
 #= require add_to_folder
-#= require subscription_filters
 #= require tipsy
 #= require document_page
 #= require public_inspection

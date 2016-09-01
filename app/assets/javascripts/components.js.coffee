@@ -16,3 +16,4 @@
 #= require components/subscription_handler
 
 #= require components/my/clippings_manager
+#= require components/my/subscription_filter

@@ -12,7 +12,7 @@
       <%= link_to subscription.mailing_list.title,
         subscription.search_path %>
     </div>
-    <dl class="metadata" id="col-1">
+    <dl class="metadata" class="col-1">
       <dt class="subscription_date">Subscription Started:</dt>
       <dd><%= subscription.subscribed_on %></dd>
 
@@ -23,7 +23,7 @@
       <dd><%= subscription.delivery_count %></dd>
     </dl>
 
-    <dl class="metadata" id="col-2">
+    <dl class="metadata" class="col-2">
       <% if Settings.feature_flags.sparklines.my_fr.subscriptions %>
         <% unless subscription.type == "PublicInspectionDocument" %>
           <dt class="activity">Weekly activity in last year:</dt>

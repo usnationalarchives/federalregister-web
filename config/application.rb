@@ -78,6 +78,7 @@ module MyFr2
       page_specific/homepage.js
       page_specific/search.js
       page_specific/sections.js
+      page_specific/subscription_filters.js
       page_specific/topics.js
 
       admin/highlighted_documents.js

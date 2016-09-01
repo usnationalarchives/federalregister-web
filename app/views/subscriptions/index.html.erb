@@ -1,5 +1,7 @@
 <% page_title "MyFR :: Subscriptions" %>
 
+<% add_javascript src: 'page_specific/subscription_filters' %>
+
 <% title header_class: 'my-subscriptions' do %>
   <%= fr_icon 'message_open' %>
   My Subscriptions
@@ -16,23 +18,28 @@
 
 <% if current_user.confirmed? %>
   <%= render partial: "subscriptions/subscription_metadata_bar", locals: {
-    article_subscription_count: @article_subscription_count,
+    document_subscription_count: @document_subscription_count,
     pi_subscription_count: @pi_subscription_count
   } %>
 <% end %>
 
-<div id="subscription-actions">
-  <div id="subscription-type-filter">
+<div class="subscription-actions">
+  <div class="subscription-type-filter">
     <ul>
       <script type="text/javascript">
-        var subscription_type_filters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;
+        var subscriptionTypeFilters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;
       </script>
 
-      <li class="sub_article first" data-filter-doc-type="article" data-filter-doc-type-display="Document">
+      <li class="sub_document first" data-filter-doc-type="document"
+        data-filter-doc-type-display="Document">
+
         <%= fr_icon 'document_subscription' %>
         <div class="label">Document</div>
       </li>
-      <li class="sub_pi last" data-filter-doc-type="public-inspection-document" data-filter-doc-type-display="Public Inspection Document">
+
+      <li class="sub_pi last" data-filter-doc-type="public-inspection-document"
+        data-filter-doc-type-display="Public Inspection Document">
+
         <%= fr_icon 'pi_subscription' %>
         <div class="label">Public Inspection</div>
       </li>
@@ -42,7 +49,7 @@
 
 <% if current_user.confirmed? %>
   <% if @subscriptions.present? %>
-    <ul id="subscriptions" class="small_content_wrapper">
+    <ul class="subscriptions small_content_wrapper">
       <%= render partial: 'subscription_list_item', collection: @subscriptions,
         as: :subscription %>
     </ul>

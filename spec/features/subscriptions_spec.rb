@@ -159,7 +159,7 @@ feature "Subscriptions", :no_ci do
 
         expect(page).to have_page_title('My Subscriptions')
         expect(page).to have_fr_notice_message(/You do not currently have any subscriptions/)
-        expect(page).to have_subscriptions_metadata_item('li .entry_subscription_on_page_count', 0)
+        expect(page).to have_subscriptions_metadata_item('li .document_subscription_on_page_count', 0)
         expect(page).to have_subscriptions_metadata_item('li .pi_subscription_on_page_count', 0)
       end
 
@@ -169,7 +169,7 @@ feature "Subscriptions", :no_ci do
         login_as(user)
         visit "/my/subscriptions"
 
-        expect(page).to have_subscriptions_metadata_item('li .entry_subscription_on_page_count', 1)
+        expect(page).to have_subscriptions_metadata_item('li .document_subscription_on_page_count', 1)
         expect(page).to have_subscriptions_metadata_item('li .pi_subscription_on_page_count', 0)
 
         expect(page).to have_selector('#subscription-type-filter')
@@ -183,7 +183,7 @@ feature "Subscriptions", :no_ci do
         login_as(user)
         visit "/my/subscriptions"
 
-        expect(page).to have_subscriptions_metadata_item('li .entry_subscription_on_page_count', 0)
+        expect(page).to have_subscriptions_metadata_item('li .document_subscription_on_page_count', 0)
         expect(page).to have_subscriptions_metadata_item('li .pi_subscription_on_page_count', 1)
 
         expect(page).to have_selector('#subscription-type-filter')
