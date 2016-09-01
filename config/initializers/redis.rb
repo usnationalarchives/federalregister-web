@@ -12,6 +12,9 @@ $redis = Redis::Namespace.new(
   REDIS_CONFIG['namespace'],
   :redis => redis
 )
+HTTParty::HTTPCache.redis = $redis
+
+Resque.redis = Redis.new(REDIS_CONNECTION_SETTINGS)
 
 if defined?(PhusionPassenger)
   PhusionPassenger.on_event(:starting_worker_process) do |forked|
@@ -22,9 +25,10 @@ if defined?(PhusionPassenger)
         REDIS_CONFIG['namespace'],
         :redis => Redis.new(REDIS_CONNECTION_SETTINGS)
       )
+
+      HTTParty::HTTPCache.redis = $redis
+
+      Resque.redis = Redis.new(REDIS_CONNECTION_SETTINGS)
     end
   end
 end
-
-HTTParty::HTTPCache.redis = $redis
-Resque.redis = $redis
