@@ -9,18 +9,19 @@ module ClippingHelper
   def csv_download_tag(text, clippings)
     return unless clippings
 
-    # TODO: replace with api client
-    base_url = "https://www.federalregister.gov/api/v1/documents"
+    base_url = "#{Settings.federal_register.api_url}/documents"
     document_numbers = clippings.map{|c| c.document_number}.join(',')
-    fields = [:citation,
-              :type,
-              :title,
-              :publication_date,
-              :start_page,
-              :end_page,
-              :agency_names,
-              :html_url,
-              :pdf_url]
+    fields = [
+      :agency_names,
+      :citation,
+      :end_page,
+      :html_url,
+      :pdf_url,
+      :publication_date,
+      :start_page,
+      :title,
+      :type,
+    ]
     field_params = fields.map{|f| "fields[]=#{f.to_s}"}.join('&')
 
     url = "#{base_url}/#{document_numbers}.csv?#{field_params}"
