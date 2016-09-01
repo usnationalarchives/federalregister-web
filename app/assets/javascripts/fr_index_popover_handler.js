@@ -8,8 +8,8 @@
 /*global fr_index_popover_handler:true */
 fr_index_popover_handler = {
   popover_cache: {},
-  pi_base_url: 'https://www.federalregister.gov/api/v1/public-inspection-documents/',
-  article_base_url: 'https://fr-official.criticaljuncture.org/api/v1/documents/',
+  pi_base_url: '/api/v1/public-inspection-documents/',
+  article_base_url: '/api/v1/documents/',
   current_el: null,
   article_fields: 'fields%5B%5D=title&fields%5B%5D=document_number',
   uses_pi: true,
