@@ -42,8 +42,9 @@
 
 <% if current_user.confirmed? %>
   <% if @subscriptions.present? %>
-    <ul id="subscriptions">
-      <%= render partial: 'subscription_list_item', collection: @subscriptions, as: :subscription %>
+    <ul id="subscriptions" class="small_content_wrapper">
+      <%= render partial: 'subscription_list_item', collection: @subscriptions,
+        as: :subscription %>
     </ul>
   <% else %>
     <%= render partial: 'subscriptions/messages/no_subscriptions' %>

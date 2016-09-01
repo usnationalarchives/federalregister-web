@@ -72,7 +72,7 @@
     }  %>
   <% end %>
 
-  <ul id="clippings" class="clippings">
+  <ul id="clippings" class="clippings small_content_wrapper">
     <% unless @clippings.blank? %>
       <% @clippings.each do |clipping| %>
         <li class="<%= clipping.document.official? ? 'doc-official' : 'doc-published' %>"

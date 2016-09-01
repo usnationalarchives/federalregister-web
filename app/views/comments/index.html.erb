@@ -30,7 +30,7 @@
   comments: @comments
 } %>
 
-<ul id="comments" class="comments">
+<ul id="comments" class="comments small_content_wrapper">
   <% @comments.each do |comment| %>
     <li class="<%= comment.document.official? ? 'doc-official' : 'doc-published' %>"
       data-doc-id="<%= comment.document_number%>"
