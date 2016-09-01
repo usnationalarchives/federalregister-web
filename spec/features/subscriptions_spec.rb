@@ -44,7 +44,7 @@ feature "Subscriptions", :no_ci do
       open_last_email_for(user.email)
 
       expect(current_email).to be_delivered_to(user.email)
-      expect(current_email).to have_subject("[FR] Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment")
+      expect(current_email).to have_subject("[FR] Documents whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment")
 
       click_email_link_matching(/confirm/)
 
@@ -80,7 +80,7 @@ feature "Subscriptions", :no_ci do
 
         expect(current_path).to eq('/my/subscriptions')
 
-        subscription = SubscriptionOnPage.new('Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
+        subscription = SubscriptionOnPage.new('Documents whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
         expect(page).to have_selector('#subscriptions li', count: 1)
         expect(page).to have_flash_notice("Successfully added '#{subscription.subscription_title}' to your account")
 
@@ -267,7 +267,7 @@ feature "Subscriptions", :no_ci do
         page.find('#subscription_0 input[type=submit]').click
 
         expect(current_path).to eq('/my/subscriptions')
-        subscription = SubscriptionOnPage.new('Articles whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
+        subscription = SubscriptionOnPage.new('Documents whose Associated Unified Agenda Deemed Significant Under EO 12866 and in Environment')
 
         expect(page).to have_selector('#subscriptions li', count: 1)
         expect(page).to have_flash_notice("Successfully subscribed to '#{subscription.subscription_title}'")
@@ -304,7 +304,7 @@ feature "Subscriptions", :no_ci do
       open_last_email_for("nobody@federalregister.gov")
 
       expect_sendgrid_header_data(current_email, "to", ["test_user@example.com"])
-      expect(current_email).to have_subject("[FR] All Articles")
+      expect(current_email).to have_subject("[FR] All Documents")
 
       expect(current_email).to have_body_text('Test Document')
       expect(current_email).to have_body_text('Test Document 2')
@@ -334,4 +334,3 @@ feature "Subscriptions", :no_ci do
     end
   end
 end
-

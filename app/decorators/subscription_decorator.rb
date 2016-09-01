@@ -7,16 +7,16 @@ class SubscriptionDecorator < ApplicationDecorator
   end
 
   def display_type
-    type == "Article" ? "Document Subscription" : "Public Inspection Document Subscription"
+    type == "Document" ? "Document Subscription" : "Public Inspection Document Subscription"
   end
 
   def icon_class
-    type == "Article" ? "document_subscription" : "pi_subscription"
+    type == "Document" ? "document_subscription" : "pi_subscription"
   end
 
   def search_path
     case type
-    when "Article"
+    when "Document"
       h.documents_search_path(search_params)
     when "PublicInspectionDocument"
       h.public_inspection_search_path(search_params)
@@ -29,7 +29,7 @@ class SubscriptionDecorator < ApplicationDecorator
 
   def sparkline_url
     url = case type
-          when "Article"
+          when "Document"
             "/articles/search/activity/sparkline/weekly"
           when "PublicInspectionDocument"
             "/public-inspection/search/activity/sparkline/weekly"

@@ -80,7 +80,7 @@ feature "Signing up", :no_ci do
     expect(page).to have_flash_notice('Your account was successfully confirmed. You are now signed in.')
     visit "/my/subscriptions"
 
-    subscription = SubscriptionOnPage.new('All Articles')
+    subscription = SubscriptionOnPage.new('All Documents')
     expect(page).to_not have_fr_warning_message
     expect(page).to have_selector('#subscriptions li', count: 1)
     expect(subscription.visible?).to be(true)

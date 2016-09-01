@@ -8,7 +8,7 @@
       <% else %>
         This document is a correction of an document that was published on <%= document.correction_of_document.publication_date %>.
       <% end %>
-      <%= link_to 'View Uncorrected Article', document.correction_of_document.html_url, :class => "button" %>
+      <%= link_to 'View Uncorrected Document', document.correction_of_document.html_url, :class => "button" %>
     </p>
   </div>
 <% end %>

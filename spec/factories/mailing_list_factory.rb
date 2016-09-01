@@ -7,7 +7,7 @@ FactoryGirl.define do
   factory :document_mailing_list,
           parent: :mailing_list,
           class: MailingList::Document do
-    title 'All Articles'
+    title 'All Documents'
   end
 
   factory :public_inspection_mailing_list,
