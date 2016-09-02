@@ -24,14 +24,14 @@
           <p>
             <% if document.pdf_available?  %>
               The full text of this document is currently available in
-              <%= link_to 'PDF format', document.pdf_url %>.
+              <%= link_to 'PDF format', document.pdf_url, target: :blank %>.
             </p>
             <p>
             <% end %>
 
             The full text of this document is
             <%= document.pdf_available? ? 'also available' : 'currently only available' %>
-            in <%= link_to 'a basic text format', document.raw_text_url %>.
+            in <%= link_to 'a basic text format', document.gpo_raw_text_url, target: :blank %>.
           </p>
         <% end %>
       </div>

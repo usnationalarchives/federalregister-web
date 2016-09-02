@@ -7,6 +7,7 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Clippings
   include DocumentDecorator::Comments
   include DocumentDecorator::Corrections
+  include DocumentDecorator::GovernmentPublishingOffice
   include DocumentDecorator::Officialness
   include DocumentDecorator::RegulationsDotGovInfo
 
