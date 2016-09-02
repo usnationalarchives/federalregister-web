@@ -44,3 +44,10 @@
 
 # STICKY FROM SEMANTIC-UI (doc utility bar)
 #= require semantic-ui/sticky.min.js
+
+# PREVENT TAB NABBING BY changing window.open behavior and
+# passing all target blank to blankshield
+#= require blankshield.min.js
+$(document).ready ()->
+  blankshield.patch()
+  blankshield($('a[target=_blank], a[target=blank]'));
