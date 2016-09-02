@@ -4,10 +4,6 @@
 
 
   <xsl:template match="GPH/GID | MATH/MID">
-    <xsl:if test="not( contains($image_identifiers, text()) )">
-      <xsl:copy-of select="fr:notify_missing_graphic(text(), $document_number, $publication_date)" />
-    </xsl:if>
-
     <xsl:variable name="paragraph_id">
       <xsl:value-of select="concat('g-', count(preceding::GPH/GID)+count(preceding::MATH/MID)+1)" />
     </xsl:variable>
@@ -35,7 +31,7 @@
     </xsl:variable>
 
     <p class="document-graphic">
-      <xsl:copy-of select="fr:gpo_image(text(),$paragraph_id, $image_class, $data_width, $data_height)" />
+      <xsl:copy-of select="fr:gpo_image(text(), $paragraph_id, $image_class, $data_width, $data_height, $images, $document_number, $publication_date)" />
     </p>
   </xsl:template>
 </xsl:stylesheet>

@@ -26,8 +26,8 @@ class HtmlCompilator::DocumentFullText < HtmlCompilator
       'first_page' => (document.start_page.to_s),
       'document_number' => document.document_number,
       'publication_date' => document.publication_date.to_s(:iso),
-      'image_identifiers' => document.images.try(:identifiers).try(:join, ' ') || '',
-      'image_base_url' => document.images.try(:base_url)
+      # create a string that is parsable later "identifier,url identifier,url"
+      'images' => document.images.map{|image| "#{image.identifier},#{image.default_url}"}.join(' ') || ''
     }
   end
 end

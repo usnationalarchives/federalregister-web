@@ -12,7 +12,7 @@ module XsltTestHelper
       'first_page' => "1000",
       'document_number' => '2014-12345',
       'publication_date' => '2014-10-15',
-      'image_identifiers' => ""
+      'images' => ""
     }
     @xslt_vars ||= {}
 

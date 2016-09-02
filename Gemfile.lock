@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git@github.com:criticaljuncture/federal_register.git
-  revision: 88fa862e101f2f0fa63a4bc4a33d43aead77dd0f
+  revision: a8c1e6930be129633692d32d5d508e50c752c019
   ref: officialness
   specs:
     federal_register (0.5.0)
@@ -622,6 +622,3 @@ DEPENDENCIES
   will_paginate (~> 3.0.7)
   will_paginate-bootstrap (~> 1.0.1)
   zeus
-
-BUNDLED WITH
-   1.12.5

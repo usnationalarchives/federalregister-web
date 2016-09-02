@@ -100,22 +100,34 @@ class XsltFunctions
     document.children
   end
 
-  def gpo_image(nodes, link_id, image_class, data_width, data_height)
+  def gpo_image(nodes, link_id, image_class, data_width, data_height, images, document_number, publication_date)
     document = blank_document
+    images = images.split(' ')
 
     graphic_identifier = URI.encode(nodes.first.content)
+    image = images.find{|i| i.include?(graphic_identifier)}
+
+    if image
+      url = image.split(',').last
+    else
+      notify_missing_graphic(nodes, document_number, publication_date)
+      # Stub out url with expected image such that when it's available
+      # we don't need to reprocess. This will break if images url is not
+      # the expected one (eg changes at some point in future)
+      url = graphic_url('original_png', graphic_identifier)
+    end
 
     Nokogiri::XML::Builder.with(document) do |doc|
       doc.a(
         class: "document-graphic-link",
         id: link_id,
-        href: graphic_url('original_png', graphic_identifier),
+        href: url,
         'data-col-width' => data_width,
         'data-height' => data_height
       ) {
         doc.img(
           :class => image_class,
-          :src => graphic_url('original_png', graphic_identifier),
+          :src => url,
           :style => "max-height: #{(1.29 * data_height.to_i).to_i}px"
         )
       }
