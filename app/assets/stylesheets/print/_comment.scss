@@ -1,14 +1,14 @@
-#fr_modal.print_modal { 
+#fr_modal.print_modal {
   .jqmClose,
   .title_bar,
   .print_button { display: none; }
 
   @extend %fr_modal;
   height: auto;
-  
+
   .modal_content { overflow-y: visible; }
 
-  dl { 
+  dl {
     height: auto;
     margin-bottom: 1em;
   }
@@ -16,7 +16,7 @@
   dl dd { width: 400px; }
   dl dd + dd { margin-left: 240px; }
 
-  .document_title { 
+  .document_title {
     font-size: 1.5em;
     line-height: 1.6;
     }
@@ -35,7 +35,7 @@
     border-radius: 6px;
     padding: 10px;
     padding-top: 15px;
-    
+
     dd.tracking_number {
       border: 1px #CCC solid;
       border-radius: 6px;

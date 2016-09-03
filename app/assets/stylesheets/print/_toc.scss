@@ -1,0 +1,27 @@
+.doc-subscribe,
+.doc-background {
+  display: none !important;
+}
+
+.fr-head-metadata-bar,
+.doc-document-issue,
+.doc-toc,
+.doc-toc-nav {
+  a[href]:after {
+    content: none !important; //bootstrap override
+  }
+}
+
+.fr-head-metadata-bar { border: 1px solid $fr-gray-20; }
+
+.doc-document-issue {
+  .toc-category-level {
+    page-break-inside: avoid;
+  }
+
+  .permalink {
+    a[href]:after {
+      content: " (" attr(href) ")" !important;
+    }
+  }
+}

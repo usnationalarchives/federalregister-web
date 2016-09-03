@@ -1,0 +1,35 @@
+.search {
+  .tabs,
+  //.search-bar,
+  .facets {
+    display: none;
+  }
+
+  .search-bar,
+  .col-md-9 {
+    a[href]:after {
+      content: none !important; //bootstrap override
+    }
+  }
+
+  .search-bar {
+    label,
+    .label {
+      border: 0;
+    }
+  }
+
+  // search results
+  .col-md-9 {
+    width: 100%;
+
+    h5 a[href]:after {
+      content: " (" attr(href) ")" !important;
+      font-size: modular-scale(0);
+    }
+
+    .document-clipping-actions { display: none; }
+
+    .description .match { border: 1px solid $fr-gray-20; }
+  }
+}

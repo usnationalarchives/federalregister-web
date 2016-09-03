@@ -1,7 +1,25 @@
+// Turn on elements required for print
 #print-disclaimer {
   display: block;
+  margin-bottom: 40px;
+
+  .fr-box {
+    .fr-seal-block-header,
+    .fr-seal-block-footer {
+      h6 { color: $fr-gray-90 !important; }
+    }
+  }
+  p { padding: 10px; }
 }
 
-#navigation {
+// Turn off main site elements not appropriate for print
+body > .header,
+body > .site-footer,
+.main-title-bar {
   display: none;
+}
+
+@page rotated {
+  // this isn't supported but may/should be someday
+  size: landscape;
 }

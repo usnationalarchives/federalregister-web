@@ -1,0 +1,27 @@
+.metadata_share_bar .document-clipping-actions,
+.document-notice-bar a,
+.doc-nav-wrapper {
+  display: none;
+}
+
+.document-notice-bar {
+  border: 1px solid $fr-gray-20;
+}
+
+.doc .doc-content.with-utility-bar,
+.doc .doc-details {
+  margin-left: 0;
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.doc .doc-content.with-utility-bar .content-block {
+  margin-right: 30px;
+
+  table.wide {
+    page-break-inside: avoid;
+    page: rotated;
+  }
+}

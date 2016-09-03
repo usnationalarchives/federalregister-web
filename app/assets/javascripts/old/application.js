@@ -64,7 +64,7 @@ function generate_print_disclaimer(){
       $("#print-disclaimer-template").html()
     );
 
-    $('#print-disclaimer').append(
+    $('#print-disclaimer .fr-box .content-block').append(
       print_disclaimer_template({})
     );
   }

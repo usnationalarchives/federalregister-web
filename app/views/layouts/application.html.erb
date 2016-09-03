@@ -75,6 +75,17 @@
     <%= esi site_notification_path(:identifier => :global) %>
 
     <div id="main">
+      <div id="print-disclaimer">
+        <%= fr_content_box(
+          FrBox.build(
+            'public_inspection_document',
+            title: 'Legal Status',
+            header: { hover: false }
+          )
+        ) do %>
+        <% end %>
+      </div>
+
       <%= yield(:title_bar) %>
 
       <%= yield %>
