@@ -8,6 +8,7 @@ class WpApi::Content
   WHITELISTED_ATTRIBUTES = [
     'id',
     'link',
+    'menu_order',
     'slug',
   ]
 

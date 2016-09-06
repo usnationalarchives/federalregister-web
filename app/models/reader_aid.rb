@@ -46,8 +46,8 @@ class ReaderAid
         columns: 1
       }
     },
-    'developer-tools' => {
-      title: 'Developer Tools',
+    'developer-resources' => {
+      title: 'Developer Resources',
       icon_class: 'tools',
       type: 'pages',
       index_settings: {
@@ -55,8 +55,8 @@ class ReaderAid
         columns: 1
       }
     },
-    'policy' => {
-      title: 'Policy',
+    'government-policy-and-ofr-procedures' => {
+      title: 'Government Policy and OFR Procedures',
       icon_class: 'legal',
       type: 'pages',
       index_settings: {

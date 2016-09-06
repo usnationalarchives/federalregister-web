@@ -10,12 +10,27 @@
   <div class="row reader-aids-section">
     <div class="<%= bootstrap_col xs: 9, md: 9 %> section">
       <%= fr_details_box FrBox.build(:reader_aid) do %>
+        <% if @presenter.section_page.present? && @presenter.section_page.formatted_content.present? %>
+          <div class="row">
+            <div class="<%= bootstrap_col xs:12, md: 12 %>">
+              <%= @presenter.section_page.formatted_content %>
+            </div>
+          </div>
+        <% end %>
+
         <div class="row">
+          <div class="<%= bootstrap_col xs:12, md: 12 %>">
+            <h4 class="fr-list-header">Reader aid items in this section</h4>
+          </div>
+
           <% @presenter.grouped_items.each do |group| %>
             <div class="<%= @presenter.css_columns %>">
               <ul class="fr-list">
                 <% group.each do |item| %>
-                  <%= render partial: 'item', locals: {item: item, presenter: @presenter} %>
+                  <%= render partial: 'item', locals: {
+                    item: item,
+                    presenter: @presenter
+                  } %>
                 <% end %>
               </ul>
             </div>
@@ -36,7 +51,11 @@
 
         <ul class="fr-list with-bullets reader-aids">
           <% @presenter.sections.each do |section_identifier, section_data| %>
-            <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
+            <li>
+              <%= link_to section_data[:title],
+                reader_aids_section_path(section_identifier),
+                class: "#{'active' if section_data[:title] == @presenter.title}" %>
+            </li>
           <% end %>
         </ul>
       <% end %>

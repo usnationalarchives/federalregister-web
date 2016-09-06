@@ -31,6 +31,10 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     sections.fetch(section_identifier)
   end
 
+  def section_page
+    @section_page ||= type == 'pages' ? WpApi::Client.get_page(slug: section_identifier) : nil
+  end
+
   def section_settings
     section[:index_settings]
   end
@@ -95,7 +99,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def show_view_all
-    items.count > display_count
+    true #items.count > display_count
   end
 
   def item
@@ -120,7 +124,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def items
-    items = type == 'pages' ? pages_collection.content : posts_collection.content
+    items = type == 'pages' ? pages_collection.content.sort_by(&:menu_order) : posts_collection.content
   end
 
   def items_for_display

@@ -144,6 +144,12 @@
 
       &:first-child { padding-left: 0; }
     }
+
+    a {
+      line-height: 18px;
+      padding-bottom: 5px;
+      padding-top: 5px;
+    }
   }
 
   &.search-list,
