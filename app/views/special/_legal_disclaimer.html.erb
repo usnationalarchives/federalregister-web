@@ -1,3 +1,7 @@
 <% section_tag(:id => 'disclaimer') do %>
-  <h1><%= link_to 'Legal Disclaimer', '/policy/legal-status' %></h1>
+  <h1>
+    <%= link_to 'Legal Disclaimer',
+      reader_aid_path('government-policy-and-ofr-procedures', 'about-us',
+      anchor: 'legal-status') %>
+  </h1>
 <% end %>

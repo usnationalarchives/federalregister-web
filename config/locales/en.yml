@@ -59,7 +59,7 @@ en:
         special_filing: "<p>Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection.</p><p>Special Filing documents are filed at various times and/or dates prior to publication.</p>"
         regular_filing: "<p>Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection.</p><p>Regular Filing documents are routinely placed on file at 8:45 a.m. Eastern Time, for publication in the next day’s <em>Federal Register</em>.</p>"
       public_inspection_document_details: "Additional information about this Public Inspection document."
-      published_document: "This document has been published in the <em>Federal Register</em> but is not a legally binding representation. Use the PDF linked in the document sidebar for a legally binding representation."
+      published_document: "This document has been published in the <em>Federal Register</em> but is not a legally binding representation. Use the PDF linked in the document sidebar for the official electronic format."
       published_document_no_pdf: "This document has been published in the <em>Federal Register</em> but is not a legally binding representation. Please use an official source for a legally binding representation."
       published_document_toc: "This is the table of contents as published in the <em>Federal Register</em>."
       published_document_details: "Information about this document as published in the <em>Federal Register</em>."
