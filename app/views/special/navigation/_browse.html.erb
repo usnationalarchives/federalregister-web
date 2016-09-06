@@ -19,7 +19,7 @@
         <% end %>
       </li>
       <li id='document-dates-browse'>
-        <%= link_to(document_issue_path(DocumentIssue.current), class: "dates") do %>
+        <%= link_to(current_document_issue_path, class: "dates") do %>
           <%= fr_icon('calendar-alt') %>
           Dates
         <% end %>
