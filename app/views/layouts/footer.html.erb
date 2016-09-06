@@ -25,9 +25,9 @@
           <ul class="bullets">
             <li><%= link_to "Agencies", agencies_path %></li>
             <li><%= link_to "Topics (CFR Indexing Terms)", topics_path %></li>
-            <li><%= link_to 'Dates', "" %></li>
+            <li><%= link_to 'Dates', current_document_issue_path %></li>
             <li><%= link_to 'Public Inspection', current_public_inspection_issue_path %></li>
-            <li><%= link_to 'Executive Orders', "" %></li>
+            <li><%= link_to 'Executive Orders', executive_orders_path %></li>
           </ul>
         </div>
 
@@ -36,8 +36,9 @@
           <ul class="bullets">
             <li><%= link_to 'Document Search', documents_search_path %></li>
             <li><%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced') %></li>
-            <li><%= link_to 'Events Search', "" %></li>
-            <li><%= link_to 'Unified Agenda Search', "" %></li>
+            <% if Settings.feature_flags.unified_agenda.search %>
+              <li><%= link_to 'Unified Agenda Search', unified_agenda_search_path %></li>
+            <% end %>
             <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
           </ul>
         </div>
@@ -67,6 +68,20 @@
           <ul class="bullets">
             <li><%= link_to "Facebook", 'https://www.facebook.com/FederalRegister/' %></li>
             <li><%= link_to "Twitter", 'https://twitter.com/FedRegister' %></li>
+          </ul>
+        </div>
+
+        <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+          <h2>Information</h2>
+          <ul class="bullets">
+            <li><%= link_to "About This Site", reader_aid_path('government-policy-and-ofr-procedures', 'about-this-site') %></li>
+            <li><%= link_to "Legal Status", reader_aid_path('government-policy-and-ofr-procedures', 'about-this-site', anchor: 'legal-status') %></li>
+            <li><%= link_to "Contact Us", reader_aid_path('government-policy-and-ofr-procedures', 'contact-us') %></li>
+            <li><%= link_to "Privacy", reader_aid_path('government-policy-and-ofr-procedures', 'privacy') %></li>
+            <li><%= link_to "Accessibility", reader_aid_path('government-policy-and-ofr-procedures', 'accessibility') %></li>
+            <li><%= link_to "FOIA", reader_aid_path('government-policy-and-ofr-procedures', 'foia') %></li>
+            <li><%= link_to "No Fear Act", 'https://www.archives.gov/eeo/policy/no-fear-notice.html' %></li>
+            <li><%= link_to "Continuity Information", 'https://www.archives.gov/federal-register/contact.html#coop' %></li>
           </ul>
         </div>
 
