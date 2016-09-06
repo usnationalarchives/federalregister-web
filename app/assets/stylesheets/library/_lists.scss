@@ -2,17 +2,21 @@
   font-size: modular-scale(0);
   list-style-type: none;
   overflow: hidden;
+
   li a.active {
+    color: $color-reader-aid;
     font-weight: bold;
-    color: #b462a2;
   }
 
   &.fr-list-inline {
-    lh, dt, dd {
+    lh,
+    dt,
+    dd {
       float: left;
     }
 
-    lh, dt {
+    lh,
+    dt {
       clear: both;
     }
 
@@ -36,9 +40,9 @@
   }
 
   &.two-col {
-    width: 50%;
     float: left;
     padding-right: 5px;
+    width: 50%;
   }
 
   &.with-stats {
@@ -51,51 +55,51 @@
     }
 
     li {
-      width: 100%;
-      padding: 0;
-      margin: 0;
       color: $fr-gray-40;
-      font-weight: normal;
       font-size: modular-scale(-1);
+      font-weight: normal;
       line-height: 17px;
+      margin: 0;
+      padding: 0;
+      width: 100%;
     }
 
     span.rule_type {
-      float: left;
-      top: 0px;
-      position: relative;
-      margin-right: 10px;
       color: $fr-blue;
+      float: left;
       font-size: 18px;
+      margin-right: 10px;
+      position: relative;
+      top: 0px;
     }
 
     .fr-link {
       float: left;
-      width: 90%;
       font-size: modular-scale(0);
+      width: 90%;
     }
 
     ul.fr-link-stats {
+      clear: both;
+      color: $fr-gray-30 !important;
       display:block;
       margin: 0 0 5px 50px;
-      color: $fr-gray-30 !important;
       overflow: hidden;
-      clear: both;
 
       .icon-fr2 {
-        font-size: 16px;
         color: inherit;
+        font-size: modular-scale(0);
         margin: 0 5px 0 0;
         position: relative;
         top: 2px;
       }
 
       li {
-        width: 14%;
         float: left;
         list-style-type: none;
-        vertical-align: middle;
         padding-bottom: 5px;
+        vertical-align: middle;
+        width: 14%;
       }
 
       span {
@@ -105,7 +109,7 @@
   }
 
   .fr-link {
-    line-height: 18px;
     display: inline-block;
+    line-height: 18px;
   }
 }
