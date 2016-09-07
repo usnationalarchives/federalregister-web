@@ -7,6 +7,7 @@ module UserDataPersistor
     message, redirect_location = associate_clippings_with_user_at_sign_in_up if cookies[:document_numbers]
     message, redirect_location = associate_subscription if session[:subscription_token]
     message, redirect_location = associate_comment_with_user_at_sign_in_up if session[:comment_tracking_number] && session[:comment_secret]
+    message, redirect_location = persist_subscription_messages if session[:subscription_notice] || session[:subscription_warning]
 
     return message, redirect_location
   end
@@ -92,5 +93,17 @@ module UserDataPersistor
     message = {}
 
     return message, redirect_location
+  end
+
+  def persist_subscription_messages
+    if session[:subscription_notice]
+      message = {notice: session[:subscription_notice]}
+      session[:subscription_notice] = nil
+    else session[:subscription_warning]
+      message = {warning: session[:subscription_warning]}
+      session[:subscription_warning] = nil
+    end
+
+    return message, nil
   end
 end

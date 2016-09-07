@@ -35,15 +35,23 @@ class SubscriptionsController < ApplicationController
       if user_signed_in?
         if current_user.confirmed?
           @subscription.confirm!
-          flash[:notice] = "Successfully subscribed to '#{@subscription.mailing_list.title}'"
+          if verified_request?
+            flash[:notice] = I18n.t('subscriptions.save.success', title: @subscription.mailing_list.title)
+          else
+            session[:subscription_notice] = I18n.t('subscriptions.save.success', title: @subscription.mailing_list.title)
+          end
         else
-          flash[:warning] = "Your subscription has been added to your account but you must confirm your email address before we can begin sending you results."
+          if verified_request?
+            flash[:warning] = I18n.t('subscriptions.save.unconfirmed')
+          else
+            session[:subscription_warning] = I18n.t('subscriptions.save.unconfirmed')
+          end
         end
 
         redirect_to subscriptions_url
       elsif @subscription.user_with_this_email_exists?
         session[:subscription_token] = @subscription.token
-        flash[:notice] = "Please sign into to add this subscription to your My FR account."
+        flash[:notice] = I18n.t('subscriptions.save.sign_in_required')
 
         redirect_to new_session_path(user: {email: @subscription.email})
       else

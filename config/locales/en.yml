@@ -39,6 +39,11 @@ en:
     unknown:
       modal_title: "Communications Error"
       modal_html: "We're sorry we are currently unable to communicate with Regulations.gov. <br> You may want try again in a few moments or attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document."
+  subscriptions:
+    save:
+      success: "Successfully subscribed to '%{title}'"
+      unconfirmed: "Your subscription has been added to your account but you must confirm your email address before we can begin sending you results."
+      sign_in_required: "Please sign into to add this subscription to your My FR account."
   user:
     accounts:
       email_change_success: "A confirmation email has been sent to %{email}"
