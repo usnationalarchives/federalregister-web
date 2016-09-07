@@ -50,4 +50,4 @@
 #= require blankshield.min.js
 $(document).ready ()->
   blankshield.patch()
-  blankshield($('a[target=_blank], a[target=blank]'));
+  blankshield($('a[target=_blank], a[target=blank]'))

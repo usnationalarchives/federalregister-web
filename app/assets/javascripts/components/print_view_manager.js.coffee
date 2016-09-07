@@ -21,7 +21,7 @@ print_view_manager = new PrintViewManager()
 
 $(window).bind('hashchange', ->
   if location.hash == "#print"
-    print_view_manager.enter();
+    print_view_manager.enter()
   else
     print_view_manager.exit()
-).trigger('hashchange');
+).trigger('hashchange')
