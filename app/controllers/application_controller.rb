@@ -82,12 +82,12 @@ class ApplicationController < ActionController::Base
   end
 
   # throw exception rather than just resetting session on XSRF error
-  #   in Rails 4 just use `protect_from_forgery with: exception`
+  # in Rails 4 just use `protect_from_forgery with: exception`
   def handle_unverified_request
-    if Rails.env.production?
-      reset_session
-    else
+    if Rails.env.development?
       raise ActionController::InvalidAuthenticityToken
+    else
+      reset_session
     end
   end
 end
