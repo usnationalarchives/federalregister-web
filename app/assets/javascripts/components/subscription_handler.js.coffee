@@ -65,6 +65,11 @@ class @FR2.SubscriptionHandler
 
           form.attr('action', "/my/subscriptions?#{subscriptionParam}")
 
+          # add authenticity_token here as we are unbinding submit events below
+          hiddenField = $('<input type="hidden" name="authenticity_token">')
+          hiddenField.val(getAuthenticityTokenFromHead)
+          hiddenField.appendTo(form)
+
           form.find('.button.commit').addClass('submitting')
           form.find('.button.commit input').prop('disabled', true)
 
