@@ -6,6 +6,7 @@
 #= require strftime
 #= require handlebars-1.0.0.rc.3
 #= require bootstrap/dropdown
+#= require bootstrap/tab
 #= require jquery.clippy.min
 #= require js.cookie
 

@@ -1,0 +1,101 @@
+<div class="bootstrap-scope">
+  <div class="row">
+    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+      <p class="instructions">
+        We've been hard at work to make
+        the content on the site easier to read and navigate and to make it easier to
+        understand the type of content you are currently viewing.
+      </p>
+      <p>
+        You can explore the changes using the tabs below. And you can read more
+        in our blog post <%= link_to 'here', '#' %>.
+      </p>
+
+      <nav>
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#documents" aria-controls="content-boxes" role="tab" data-toggle="tab">Content Boxes</a>
+          </li>
+          <li role="presentation">
+            <a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Document Display</a>
+          </li>
+          <li role="presentation">
+            <a href="#developers" aria-controls="developers" role="tab" data-toggle="tab">Developers</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="content-boxes">
+          <p>
+            Substantive content on FederalRegister.gov is now wrapped in content
+            boxes that describe the type of content and it's source. The title
+            portion of these boxes can be hovered over or clicked to view these
+            additional content descriptions.
+          </p>
+
+          <p><strong>Examples:</strong></p>
+
+          <%= fr_content_box(
+            FrBox.build(:published_document)
+          ) do %>
+            <em>Published Document content is displayed here...</em>
+          <% end %>
+
+          <%= fr_content_box(
+            FrBox.build(:public_inspection_document)
+          ) do %>
+            <em>Unpublished Public Inspection Document content is displayed here...</em>
+          <% end %>
+
+          <%= fr_content_box(
+            FrBox.build(:reader_aid)
+          ) do %>
+            <em>Educational and other helpful Reader Aid content is displayed here...</em>
+          <% end %>
+
+          <%= fr_content_box(
+            FrBox.build(:enhanced_content)
+          ) do %>
+            <em>Enhanced content not present in the published document is displayed here...</em>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="documents">
+          <p>
+            We've changed the way we display documents to make them easier to read
+            and to make document tools easier to use.
+          </p>
+          <p>
+            Documents are now displayed in a single column and working with the
+            Government Publishing Office we've improved the display of tables and
+            images within the documents.
+          </p>
+          <p>
+            We've also added an helpful utility bar that contains document tools
+            and access to social media and other formats. You can find this on
+            the right hand side of published documents.
+          </p>
+
+          <p><strong>Example:</strong></p>
+
+          <%= image_tag asset_path('doc_preview.png') %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="developers">
+          <p>
+            With the exception of MyFR everything on FederalRegister.gov
+            now uses our API as its data source. This is part of our ongoing
+            commitment to maintain and expand our API.
+          </p>
+
+          <p>
+            As part of this we've added many more endpoints to our API which not
+            only power FederalRegister.gov but also make it possible for external
+            developers to do more. Take a look at our
+            <%= link_to "interactive documentation", "/developers/api/v1/" %>
+            to see these new endpoints.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

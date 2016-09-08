@@ -53,3 +53,5 @@
 
 # Instantiate and bind common application js items
 #= require app
+
+#= require launch_modal

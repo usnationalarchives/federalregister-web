@@ -102,6 +102,9 @@ module MyFr2
       Barack_Obama_sm.jpg
       Bill_Clinton_sm.jpg
       George_W_Bush_sm.jpg
+
+      doc_preview.png
+
       official_masthead.png
       official_masthead.svg
       public_inspection_masthead.png
