@@ -22,9 +22,11 @@ class @FR2.CommentFormHandler
 
     @addEvents()
     @decorate()
+    @refreshDocStickyNav()
 
   successPageReady: ->
     @commentFormSuccessHandler.initialize()
+    @refreshDocStickyNav()
 
   removeEvents: ->
     @formWrapper.unbind()
@@ -40,6 +42,9 @@ class @FR2.CommentFormHandler
 
   commentFormEl: ->
     @commentForm.commentFormEl()
+
+  refreshDocStickyNav: ->
+    $('.doc-document ul.doc-nav').sticky('refresh')
 
   previewComment: ->
     @commentFormEl().on 'click', '.comment_preview', (e)=>
@@ -246,6 +251,7 @@ class @FR2.CommentFormHandler
       commentWrapper.remove()
       ajaxCommentData.html('').hide()
       @resetCommentHeader()
+      @refreshDocStickyNav()
 
   resetCommentHeader: ->
     commentBar = $('#comment-bar')

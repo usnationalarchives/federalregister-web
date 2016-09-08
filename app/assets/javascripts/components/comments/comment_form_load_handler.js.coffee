@@ -38,6 +38,7 @@ class @FR2.CommentFormLoadHandler
   uiTriggerLoading: ->
     @commentDiv.append @loadingDiv
     @commentDiv.slideDown 800
+    @commentFormHandler.refreshDocStickyNav()
 
   generateAjaxOptions: ->
     if @commentFormStore.hasStoredComment()
