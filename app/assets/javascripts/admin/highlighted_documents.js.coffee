@@ -5,7 +5,7 @@ class @FR2.HighlightedDocuments
     @documentContent = documentContent
 
     @minimumWidth = 800
-    @minimumHeight = 350
+    @minimumHeight = 452
 
     @page = 0
 
@@ -174,7 +174,7 @@ class @FR2.HighlightedDocuments
         cropHandler.lookupPhotoInfo $(img).data('photo-id')
 
         cropHandler.croppedImage = $('.fr-modal.admin-crop-modal img').cropper({
-          aspectRatio: 2.2857
+          aspectRatio: 1.77
           preview: '.img-preview'
           crop: (e)->
             cropHandler.handleCrop(e)
