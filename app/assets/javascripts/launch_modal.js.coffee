@@ -6,4 +6,4 @@ $('document').ready ->
       {modalClass: 'fr-modal extra-wide launch-modal'}
     )
 
-    #amplify.store 'launchModalViewed', true
+    amplify.store 'launchModalViewed', true
