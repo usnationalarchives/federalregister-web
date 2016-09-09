@@ -34,30 +34,30 @@
             additional content descriptions.
           </p>
 
-          <p><strong>Examples:</strong></p>
+          <p><strong>Examples:</strong> (hover over titles for additional information)</p>
 
           <%= fr_content_box(
             FrBox.build(:published_document)
           ) do %>
-            <em>Published Document content is displayed here...</em>
+            <div class="example">EXAMPLE</div>
           <% end %>
 
           <%= fr_content_box(
             FrBox.build(:public_inspection_document)
           ) do %>
-            <em>Unpublished Public Inspection Document content is displayed here...</em>
+            <div class="example">EXAMPLE</div>
           <% end %>
 
           <%= fr_content_box(
             FrBox.build(:reader_aid)
           ) do %>
-            <em>Educational and other helpful Reader Aid content is displayed here...</em>
+            <div class="example">EXAMPLE</div>
           <% end %>
 
           <%= fr_content_box(
             FrBox.build(:enhanced_content)
           ) do %>
-            <em>Enhanced content not present in the published document is displayed here...</em>
+            <div class="example">EXAMPLE</div>
           <% end %>
         </div>
         <div role="tabpanel" class="tab-pane" id="documents">

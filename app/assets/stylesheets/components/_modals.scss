@@ -360,7 +360,20 @@
     .fr-box {
       margin-bottom: 10px;
 
-      .content-block { min-height: 160px !important; }
+      .content-block {
+        min-height: 160px !important;
+
+        .example {
+          @include gesta;
+          
+          font-size: 80px;
+          font-weight: 700;
+          opacity: 0.15;
+          position: relative;
+          top: -45px;
+          transform: rotate(-10deg);
+        }
+      }
     }
   }
 }
