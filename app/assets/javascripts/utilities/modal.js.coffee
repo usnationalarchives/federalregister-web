@@ -12,13 +12,15 @@ class @FR2.Modal
 
     currentModal = $(options.modalId)
 
-    if currentModal.size() == 0
-      $('body')
-        .append "<div id='#{options.modalId.slice(1)}'/>"
+    if currentModal.size() > 0
+      currentModal.remove()
 
-      currentModal = $(options.modalId)
-      currentModal
-        .addClass modalClass
+    $('body')
+      .append "<div id='#{options.modalId.slice(1)}'/>"
+
+    currentModal = $(options.modalId)
+    currentModal
+      .addClass modalClass
 
 
     modalContent = ['<a href="#" class="jqmClose" "aria-label"="close"><span class="icon-fr2 icon-fr2-badge_x"></span></a>']
