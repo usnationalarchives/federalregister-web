@@ -2,13 +2,15 @@
   <div class="row">
     <div class="<%= bootstrap_col xs: 12, md: 12 %>">
       <p class="instructions">
-        We've been hard at work to make
-        the content on the site easier to read and navigate and to make it easier to
-        understand the type of content you are currently viewing.
+        We've been hard at work to make the various types of content you are
+        viewing on FederalRegister.gov more clear and to improve the display of
+        our documents.
       </p>
       <p>
-        You can explore the changes using the tabs below. And you can read more
-        in our blog post <%= link_to 'here', '#' %>.
+        You can explore the some of the larger changes using the three tabs
+        below. And you can read more about these changes and our reasons for
+        doing so in our blog post <%= link_to 'here', '#' %>. As always your
+        feedback is welcome.
       </p>
 
       <nav>
@@ -20,7 +22,7 @@
             <a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Document Display</a>
           </li>
           <li role="presentation">
-            <a href="#developers" aria-controls="developers" role="tab" data-toggle="tab">Developers</a>
+            <a href="#api" aria-controls="api" role="tab" data-toggle="tab">API Updates</a>
           </li>
         </ul>
       </nav>
@@ -30,7 +32,7 @@
           <p>
             Substantive content on FederalRegister.gov is now wrapped in content
             boxes that describe the type of content and it's source. The title
-            portion of these boxes can be hovered over or clicked to view these
+            portion of these boxes can be hovered over (or clicked) to view these
             additional content descriptions.
           </p>
 
@@ -63,16 +65,15 @@
         <div role="tabpanel" class="tab-pane" id="documents">
           <p>
             We've changed the way we display documents to make them easier to read
-            and to make document tools easier to use.
+            and to make document tools more readily available.
           </p>
           <p>
-            Documents are now displayed in a single column and working with the
-            Government Publishing Office we've improved the display of tables and
-            images within the documents.
+            Documents are now displayed in a single column and we've improved
+            the display of tables and images within the documents.
           </p>
           <p>
-            We've also added an helpful utility bar that contains document tools
-            and access to social media and other formats. You can find this on
+            We've also added a utility bar that contains document tools, access
+            to other formats, social media tools, etc. You can find this on
             the right hand side of published documents.
           </p>
 
@@ -80,17 +81,17 @@
 
           <%= image_tag asset_path('doc_preview.png') %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="developers">
+        <div role="tabpanel" class="tab-pane" id="api">
           <p>
-            With the exception of MyFR everything on FederalRegister.gov
-            now uses our API as its data source. This is part of our ongoing
+            Everything on FederalRegister.gov now uses our API as its data
+            source (with the exception of MyFR content). This is part of our ongoing
             commitment to maintain and expand our API.
           </p>
 
           <p>
-            As part of this we've added many more endpoints to our API which not
-            only power FederalRegister.gov but also make it possible for external
-            developers to do more. Take a look at our
+            As part of this update we've added many more endpoints to our API
+            to not only power FederalRegister.gov but also make it possible for
+            external developers to do more. Take a look at our
             <%= link_to "interactive documentation", "/developers/api/v1/" %>
             to see these new endpoints.
           </p>

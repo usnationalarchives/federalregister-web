@@ -354,6 +354,8 @@
 }
 
 .launch-modal {
+  .nav-tabs { margin-top: 40px; }
+
   .tab-content {
     padding: 10px;
 
@@ -365,7 +367,7 @@
 
         .example {
           @include gesta;
-          
+
           font-size: 80px;
           font-weight: 700;
           opacity: 0.15;
