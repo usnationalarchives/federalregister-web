@@ -30,7 +30,7 @@
 
               <dt>FR Document:</dt>
               <dd>
-                <%= link_to document.document_number, short_document_path(document) %>
+                <%= link_to document.document_number, short_document_url(document) %>
               </dd>
 
               <% if document.docket_numbers.present? %>
