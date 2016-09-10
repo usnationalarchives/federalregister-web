@@ -14,7 +14,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
   def initialize(config)
     @section_identifier = config.fetch(:section_identifier) { nil }
-    raise ActiveRecord:RecordNotFound unless section.present?
+    raise ActiveRecord::RecordNotFound unless section.present?
 
     @page_identifier = config.fetch(:page_identifier) { nil }
     @subpage_identifier = config.fetch(:subpage_identifier) { nil }
