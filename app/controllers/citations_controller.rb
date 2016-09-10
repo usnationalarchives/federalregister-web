@@ -12,7 +12,10 @@ class CitationsController < ApplicationController
     @volume, @page = params[:volume], params[:page]
 
     search = SearchPresenter::Document.new(conditions: {term: "#{@volume} FR #{@page}"}).search
-    document_numbers = search.search_details.suggestions.map(&:document_numbers).flatten
+    document_numbers = search.search_details.suggestions.
+      select{|s| s.respond_to?(:document_numbers)}.
+      map(&:document_numbers).
+      flatten
 
     case document_numbers.size
     when 0
@@ -28,7 +31,10 @@ class CitationsController < ApplicationController
     @eo_number = params[:eo_number]
 
     search = SearchPresenter::Document.new(conditions: {term: "EO #{@eo_number}"}).search
-    document_numbers = search.search_details.suggestions.map(&:document_numbers).flatten
+    document_numbers = search.search_details.suggestions.
+      select{|s| s.respond_to?(:document_numbers)}.
+      map(&:document_numbers).
+      flatten
 
     if document_numbers.size == 0
       render
