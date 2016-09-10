@@ -44,12 +44,14 @@
         }
       ) %>
 
-      <div class="comment_count cj-tooltip"
-        data-tooltip="<%= comment.comment_count_tooltip %>"
-        data-tooltip-gravity="w">
-        <% fr_icon 'conversation-alt' %>
-        <%= comment.comment_count_link %>
-      </div>
+      <% if comment.comment_count %>
+        <div class="comment_count cj-tooltip"
+          data-tooltip="<%= comment.comment_count_tooltip %>"
+          data-tooltip-gravity="w">
+          <% fr_icon 'conversation-alt' %>
+          <%= comment.comment_count_link %>
+        </div>
+      <% end %>
 
       <div class="document_data">
         <div class="title">

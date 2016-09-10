@@ -88,6 +88,8 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def comment_count_link
+    return nil unless comment_count
+    
     if comment_count > 0
       h.link_to(
         comment_count,
