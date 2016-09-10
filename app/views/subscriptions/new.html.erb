@@ -1,11 +1,11 @@
 <% page_title 'Subscriptions' %>
 
-<div class="title"> 
+<div class="title">
   <span>New Subscription</span>
 </div>
 
 <div class="errors">
-  <p class="errors_header">Are you sure you wish to subscribe to <strong><%= link_to h(@mailing_list_title), entries_search_path(:conditions => @subscription.search_conditions) %></strong>?</p>
+  <p class="errors_header">Are you sure you wish to subscribe to <strong><%= link_to h(@mailing_list_title), documents_search_path(:conditions => @subscription.search_conditions) %></strong>?</p>
 </div>
 
 <h3>Subscription Options</h3>
@@ -13,8 +13,8 @@
 <ul class="horizontal icons">
   <% if params[:subscription].nil? || params[:subscription][:email].nil? %>
     <li class="header"><h5>Via RSS:</h5></li>
-  
-    <% feed_url = entries_search_feed_url(:search => {:conditions => @subscription.search_conditions}) %>
+
+    <% feed_url = documents_search_api_url(:conditions => @subscription.search_conditions, format: :rss) %>
     <li class="rss_link"><a href="<%= feed_url %>" title="RSS 2.0 Link">RSS 2.0 Link</a></li>
   <% end %>
   <li class="header email"><h5>Via Email:</h5></li>
@@ -70,5 +70,5 @@
         <%= f.commit_button "Subscribe" %>
       <% end %>
     <% end %>
-  </li>  
+  </li>
 </ul>
