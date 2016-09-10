@@ -88,14 +88,18 @@ class TableOfContentsPresenter::Agency
     doc_numbers.map do |doc_num|
       doc = documents[doc_num]
 
-      unless doc
-        Honeybadger.notify(
-          error_class: "Missing document number for table of contents",
-          error_message: "Document number #{doc_num} not found for #{name}"
-        )
-      end
+      if doc.nil? && presenter.filtering_documents?
+        nil
+      else
+        unless doc
+          Honeybadger.notify(
+            error_class: "Missing document number for table of contents",
+            error_message: "Document number #{doc_num} not found for #{name}"
+          )
+        end
 
-      doc.nil? ? doc_num : doc
+        doc.nil? ? doc_num : doc
+      end
     end.compact
   end
 
