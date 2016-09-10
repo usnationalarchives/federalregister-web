@@ -14,7 +14,7 @@
   <% if params[:subscription].nil? || params[:subscription][:email].nil? %>
     <li class="header"><h5>Via RSS:</h5></li>
 
-    <% feed_url = documents_search_api_url(:conditions => @subscription.search_conditions, format: :rss) %>
+    <% feed_url = documents_search_api_url({conditions: @subscription.search_conditions}, format: :rss) %>
     <li class="rss_link"><a href="<%= feed_url %>" title="RSS 2.0 Link">RSS 2.0 Link</a></li>
   <% end %>
   <li class="header email"><h5>Via Email:</h5></li>
