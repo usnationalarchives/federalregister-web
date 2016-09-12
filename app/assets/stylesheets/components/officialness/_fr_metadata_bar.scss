@@ -74,7 +74,8 @@
         top: 5px;
       }
     }
-    .fr-topic-list.with-stats li:hover { color: $fr-gray-40; }
+
+    .public-inspection-list-stats .document-stats li { color: $text; }
   }
 
   .row { margin-bottom: 0 !important; }
