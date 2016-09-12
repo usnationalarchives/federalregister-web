@@ -35,11 +35,18 @@ module ConditionsHelper
       conditions.delete_if do |k,v|
         if v.is_a?(Array)
           v.empty? || v.join("").empty?
+
         else
           v.blank?
         end
       end
     end
+
+    # within needs a location to be used
+    if conditions[:near] && !conditions[:near][:location]
+      conditions.delete(:near)
+    end
+
     conditions
   end
 
