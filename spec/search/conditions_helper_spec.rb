@@ -6,6 +6,20 @@ end
 
 describe ConditionsHelperSpec do
   context "#clean_conditions" do
+    it "works with empty conditions" do
+      klass = ConditionsHelperSpec.new
+      conditions = {}
+
+      expect(klass.send(:clean_conditions, conditions)).to eq({})
+    end
+
+    it "works with nil conditions" do
+      klass = ConditionsHelperSpec.new
+      conditions = nil
+
+      expect(klass.send(:clean_conditions, conditions)).to eq(nil)
+    end
+
     it "removes the near[within] param when the near[location] param is not present" do
       klass = ConditionsHelperSpec.new
       conditions = {near: {location: "", within: 25}}

@@ -43,7 +43,7 @@ module ConditionsHelper
     end
 
     # within needs a location to be used
-    if conditions[:near] && !conditions[:near][:location]
+    if conditions && conditions[:near] && !conditions[:near][:location]
       conditions.delete(:near)
     end
 
