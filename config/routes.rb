@@ -501,7 +501,7 @@ MyFr2::Application.routes.draw do
       :conditions => { :method => :get },
       as: 'significant_entries_section'
 
-    resources :subscriptions do
+    resources :subscriptions, except: :show do
       member do
         get :unsubscribe
         get :confirm
