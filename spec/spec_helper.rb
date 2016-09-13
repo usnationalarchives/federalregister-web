@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.include RouteBuilder
 
   config.include Models::ApiHelpers#, type: :model
+  config.include Models::SearchHelpers
 
   config.expect_with :rspec do |c|
     # Disable the `should` syntax...

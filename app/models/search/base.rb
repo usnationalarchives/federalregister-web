@@ -104,13 +104,6 @@ class Search::Base
 
   delegate :as_json, :to => :valid_conditions
 
-  def cfr
-    OpenStruct.new(
-      title: conditions[:cfr].try(:[], :title),
-      part: conditions[:cfr].try(:[], :part),
-    )
-  end
-
   private
 
   def add_errors(error)
