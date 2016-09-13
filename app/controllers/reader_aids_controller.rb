@@ -16,7 +16,7 @@ class ReaderAidsController < ApplicationController
   end
 
   def section
-    cache_for 1.hour
+    cache_for 10.minutes
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section]
     )
@@ -36,7 +36,7 @@ class ReaderAidsController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    cache_for 1.hour
+    cache_for 10.minutes
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section],
       page_identifier: params[:page],
@@ -66,7 +66,7 @@ class ReaderAidsController < ApplicationController
 
   # esi for main reader-aids page
   def index_section
-    cache_for 1.hour
+    cache_for 10.minutes
 
     @presenter = ReaderAidsPresenter::IndexSectionPresenter.new(
       section_identifier: params[:section]
