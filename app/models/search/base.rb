@@ -16,7 +16,9 @@ class Search::Base
     @params = params
     @errors = {}
     @validation_errors = {}
+
     @conditions = clean_conditions(params[:conditions]) || {}
+    @conditions = @conditions == "" ? {} : @conditions
 
     # Set Page
     @page = params[:page].to_i
