@@ -30,7 +30,7 @@
         <xsl:call-template name="amdpar_paragraph_id" />
       </xsl:attribute>
 
-      <xsl:copy-of select="fr:amendment_part(text())"/>
+      <xsl:apply-templates select="fr:amendment_part(child::node())"/>
     </p>
 
     <span class="amend-part-wrapper unprinted-element-wrapper">

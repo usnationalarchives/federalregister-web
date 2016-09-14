@@ -56,31 +56,37 @@ class XsltFunctions
   end
 
   def amendment_part(nodes)
-    return "" unless nodes.present?
+    if nodes.first.class == Nokogiri::XML::Text
+      node_text = nodes.first.content
 
-    document = blank_document
+      match = node_text.strip.match(/^(\d+\.) (.*)/)
+      css_class = 'amendment-part-number'
 
-    node_text = nodes.first.content
-    match = node_text.strip.match(/^(\d+\.) (.*)/)
-
-    if match
-      part_number, part_text = match[1], match[2]
-
-      Nokogiri::XML::Builder.with(document) do |doc|
-        doc.span(class: 'amendment-part-number') {
-          doc.text part_number
-        }
-        doc.span(class: 'amendment-part-text') {
-          doc.text " #{part_text}"
-        }
+      unless match
+        match = node_text.strip.match(/^([a-z]\.) (.*)/)
+        css_class = 'amendment-part-subnumber'
       end
-    else
-      Nokogiri::XML::Builder.with(document) do |doc|
-        doc.text node_text
+
+      if match
+        document = blank_document
+        part_number, part_text = match[1], match[2]
+
+        Nokogiri::XML::Builder.with(document) do |doc|
+          doc.span(class: css_class) {
+            doc.text "#{part_number} "
+          }
+
+          doc.text "#{part_text} "
+        end
+
+        # remove the first text node that we're replacing
+        # with our marked up version
+        nodes.shift
+        nodes = prepend_nodes(nodes, document.children)
       end
     end
 
-    document.children
+    nodes
   end
 
   def notify_missing_graphic(nodes, document_number, publication_date)
@@ -144,6 +150,15 @@ class XsltFunctions
 
   def blank_document
     Nokogiri::XML::DocumentFragment.parse ""
+  end
+
+  def prepend_nodes(nodeset, nodes)
+    # insert new nodes in reverse order (the only method we have is push)
+    nodeset = nodeset.reverse
+    nodes.reverse.each{|x| nodeset.push(x) }
+
+    # reverse to get our desired order
+    nodeset.reverse
   end
 
   def graphic_url(size, graphic_identifier)
