@@ -6,6 +6,7 @@
         <% document = documents.select{|d|
           d.document_number == highlight.document_number
         }.first %>
+        <% next if document.nil? %>
         <li>
           <div class='carousel-rounded-box'>
             <div class='text-wrapper'>
