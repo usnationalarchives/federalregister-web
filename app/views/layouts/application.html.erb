@@ -12,16 +12,7 @@
     <link rel="Shortcut Icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://use.typekit.net/rgf3yox.js"></script>
-    <script type="text/javascript">
-      try {
-        Typekit.load({
-          active: function() {
-            $('body').trigger('typekit-active');
-          }
-        })
-      } catch(e) {}
-    </script>
+    <%= render partial: 'layouts/typekit' %>
 
     <%= render partial: 'layouts/meta_tags' %>
     <%# Facebook uses these for parsing when someone adds a link  %>
