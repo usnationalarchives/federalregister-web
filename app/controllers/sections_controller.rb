@@ -1,6 +1,7 @@
 class SectionsController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout false, only: :navigation
+  skip_before_filter :verify_authenticity_token, only: :carousel_preview
+  layout false, only: [:navigation]
 
 
   def show
@@ -24,7 +25,7 @@ class SectionsController < ApplicationController
 
   def homepage
     cache_for 1.day
-    
+
     @presenters = Section.all.map do |section|
       SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
     end
@@ -52,5 +53,11 @@ class SectionsController < ApplicationController
     @presenters = Section.all.map do |section|
       SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
     end
+  end
+
+  def carousel_preview
+    @section = Section.find_by_slug(params[:slug])
+    @highlighted_documents = JSON.parse(params[:highlighted_documents]).map{|h| OpenStruct.new(h)}
+    render layout: "carousel_preview"
   end
 end

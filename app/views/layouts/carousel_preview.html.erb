@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <head>
+    <%= render partial: 'layouts/typekit' %>
+
+    <%= stylesheet_link_tag asset_path('vendor.css'), media: "all" %>
+    <%= stylesheet_link_tag asset_path('application.css'), media: "all" %>
+
+    <%= javascript_include_tag asset_path('vendor.js') %>
+    <%= javascript_include_tag asset_path('application.js') %>
+  </head>
+
+  <body style="width: 525px; overflow: hidden;">
+    <div id="main">
+      <%= yield %>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var carouselWrapper = $('.carousel-home .carousel-wrapper')
+
+        new FR2.CarouselScroller(carouselWrapper)
+        _.each(
+          carouselWrapper.find('.carousel-rounded-box'),
+          function(box) { $(box).trigger('show') }
+        )
+      })
+    </script>
+    <style>
+      .carousel-home .carousel-nav { width: 137px; }
+    </style>
+  </body>
+</html>

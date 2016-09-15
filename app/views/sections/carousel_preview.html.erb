@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="home-section-preview">
+    <div class="col-xs-12 col-md-12">
+      <div class="home-section-preview-carousel carousel-home">
+        <%= carousel(
+          @highlighted_documents,
+          image_size: 'homepage',
+          html_options: {
+            wrapper_class: 'carousel-wrapper-home',
+            wrapper_id: "home-section-carousel-#{@section.slug}"
+          },
+          description: 'outside'
+        ) %>
+      </div>
+    </div>
+  </div>
+</div>

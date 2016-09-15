@@ -409,6 +409,8 @@ MyFr2::Application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_section'
 
+  post '/sections/carousel-preview',
+    to: 'sections#carousel_preview'
 
   #
   # Suggested searches
