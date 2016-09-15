@@ -57,7 +57,9 @@ class SectionsController < ApplicationController
 
   def carousel_preview
     @section = Section.find_by_slug(params[:slug])
-    @highlighted_documents = JSON.parse(params[:highlighted_documents]).map{|h| OpenStruct.new(h)}
+    @highlighted_documents = JSON.parse(
+      URI.unescape(params[:highlighted_documents])
+    ).map{|h| OpenStruct.new(h)}
     render layout: "carousel_preview"
   end
 end
