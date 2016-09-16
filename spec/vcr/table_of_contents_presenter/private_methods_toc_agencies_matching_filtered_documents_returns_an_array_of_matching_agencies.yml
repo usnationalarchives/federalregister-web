@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.federalregister.gov/api/v1/documents/2016-04328,2016-04305,2016-04215.json?fields[]=document_number&fields[]=agencies
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.4.6 (Ubuntu)
+      date:
+      - Fri, 16 Sep 2016 21:24:36 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '1505'
+      connection:
+      - close
+      x-runtime:
+      - '8'
+      x-powered-by:
+      - Phusion Passenger 5.0.6
+      status:
+      - 200 OK
+      x-varnish:
+      - 697296139 697219879
+      age:
+      - '1173'
+      via:
+      - 1.1 varnish
+      etag:
+      - ! '"936ae48301431e28f96456519a04d132" abgroup=1'
+      set-cookie:
+      - ab_group=1; path=/; expires=Mon, 26-Sep-2016 21:24:36 GMT
+      strict-transport-security:
+      - max-age=15552000
+    body:
+      encoding: US-ASCII
+      string: ! '{"count":3,"results":[{"document_number":"2016-04215","agencies":[{"raw_name":"DEPARTMENT
+        OF DEFENSE","name":"Defense Department","id":103,"url":"https://www.federalregister.gov/agencies/defense-department","json_url":"https://www.federalregister.gov/api/v1/agencies/103.json","parent_id":null,"slug":"defense-department"},{"raw_name":"Department
+        of the Army, Corps of Engineers","name":"Engineers Corps","id":142,"url":"https://www.federalregister.gov/agencies/engineers-corps","json_url":"https://www.federalregister.gov/api/v1/agencies/142.json","parent_id":103,"slug":"engineers-corps"}]},{"document_number":"2016-04305","agencies":[{"raw_name":"DEPARTMENT
+        OF DEFENSE","name":"Defense Department","id":103,"url":"https://www.federalregister.gov/agencies/defense-department","json_url":"https://www.federalregister.gov/api/v1/agencies/103.json","parent_id":null,"slug":"defense-department"},{"raw_name":"Department
+        of the Air Force","name":"Air Force Department","id":13,"url":"https://www.federalregister.gov/agencies/air-force-department","json_url":"https://www.federalregister.gov/api/v1/agencies/13.json","parent_id":103,"slug":"air-force-department"}]},{"document_number":"2016-04328","agencies":[{"raw_name":"DEPARTMENT
+        OF DEFENSE","name":"Defense Department","id":103,"url":"https://www.federalregister.gov/agencies/defense-department","json_url":"https://www.federalregister.gov/api/v1/agencies/103.json","parent_id":null,"slug":"defense-department"},{"raw_name":"Office
+        of the Secretary"}]}]}'
+    http_version: '1.1'
+  recorded_at: Fri, 16 Sep 2016 21:22:16 GMT
+recorded_with: VCR 2.6.0
