@@ -26,13 +26,6 @@ class TableOfContentsPresenter
     filter_to_documents.present? ? filtered_agencies : raw_agencies
   end
 
-  def filtered_agency_slugs
-    # grabbing only the child agency slugs
-    @filtered_agency_slugs ||= documents.map do |document|
-      document.excluding_parent_agencies.map(&:slug)
-    end.flatten.uniq
-  end
-
   def document_numbers
     filtering_documents? ? filtered_document_numbers : raw_document_numbers
   end
@@ -133,42 +126,67 @@ class TableOfContentsPresenter
     end
   end
 
+  # filter the toc down to agencies that match (and their parent see references)
   def filtered_agencies
-    filtered_agencies = {}
+    filtered_toc = {}
 
-    if filter_to_documents
-      raw_agencies.each do |key, agency|
-        if agency.see_also && agency.document_categories.empty?
-          if agency.see_also.any?{|sa| filtered_agency_slugs.include?(sa["slug"])}
-            filtered_see_also = agency.see_also.select do |agency_representation|
-              filtered_agency_slugs.include?(agency_representation["slug"])
-            end
-            agency.see_also = filtered_see_also
-            filtered_agencies[key] = agency
-          end
-        end
+    raw_agencies.each do |key, agency|
+      if agency.see_also && agency.document_categories.empty?
+        selected_agency = select_agency_with_see_also_reference_to(agency)
+        filtered_toc[key] = selected_agency if selected_agency
+      end
 
-        if filtered_agency_slugs.include?(agency.slug)
-          filtered_doc_cats = agency.document_categories.select do |cat|
-            filtered_docs = cat["documents"].select do |doc|
-              doc["document_numbers"].any?{|document_number| filtered_document_numbers.include?(document_number)}
-            end
+      if toc_agencies_matching_filtered_documents.include?(agency)
+        filtered_document_categories = filter_document_categories(agency)
 
-            if filtered_docs.present?
-              cat["documents"] = filtered_docs
-            else
-              false
-            end
-          end
-
-          if filtered_doc_cats.present?
-            agency.document_categories = filtered_doc_cats
-            filtered_agencies[key] = agency
-          end
+        if filtered_document_categories.present?
+          agency.document_categories = filtered_document_categories
+          filtered_toc[key] = agency
         end
       end
     end
 
-    filtered_agencies
+    filtered_toc
+  end
+
+  def toc_agencies_matching_filtered_documents
+    return @matching_agencies if @matching_agencies
+
+    @matching_agencies = []
+
+    raw_agencies.each do |key, agency|
+      @matching_agencies << agency if filter_document_categories(agency).present?
+    end
+
+    @matching_agencies
+  end
+
+  def select_agency_with_see_also_reference_to(agency)
+    if agency.see_also.any?{|sa|
+      toc_agencies_matching_filtered_documents.any?{|a| a.slug == sa["slug"]}
+    }
+      agency.see_also = filter_see_also(agency)
+      agency
+    end
+  end
+
+  def filter_see_also(agency)
+    agency.see_also.select do |agency_representation|
+      toc_agencies_matching_filtered_documents.any?{|a| a.slug == agency_representation["slug"]}
+    end
+  end
+
+  def filter_document_categories(agency)
+    agency.document_categories.select do |category|
+      filtered_docs = category["documents"].select do |doc|
+        doc["document_numbers"].any?{|document_number| filtered_document_numbers.include?(document_number)}
+      end
+
+      if filtered_docs.present?
+        category["documents"] = filtered_docs
+      else
+        false
+      end
+    end
   end
 end

@@ -87,6 +87,37 @@ describe TableOfContentsPresenter do
         end
       end
 
+      context "documents assigned to different agencies in ToC than in Publication" do
+        before(:each) do
+          TableOfContentsPresenter.
+            any_instance.
+            stub(:retrieve_toc_data).
+            and_return(
+              JSON.parse(
+                File.read(
+                  File.join(Rails.root, 'spec', 'fixtures', '2016-09-16-document-toc.json')
+                )
+              )
+            )
+        end
+        let(:filter_to_documents) { get_documents ["2016-22507", "2016-22454", "2016-22555"] }
+        let(:presenter_with_filter) {
+          TableOfContentsPresenter.new(date, filter_to_documents)
+        }
+
+        it "#agencies returns executive orders with a multiple documents", :vcr do
+          expect(
+            presenter_with_filter.agencies.size
+          ).to eq(1)
+
+          agency = presenter_with_filter.agencies['presidential-documents']
+
+          expect(
+            inspect_documents(agency)
+          ).to eq(["2016-22507", "2016-22454", "2016-22555"])
+        end
+      end
+
       context "from a multiple agencies" do
         let(:filter_to_documents) {
           get_documents ["2016-04323", "2016-04245", "2016-04080"]
@@ -113,12 +144,6 @@ describe TableOfContentsPresenter do
         end
       end
     end
-  end
-
-  it "#filtered_agency_slugs returns an array of uniq agency slugs", :vcr do
-    expect(
-      presenter_with_filter.filtered_agency_slugs
-    ).to eq(["agricultural-marketing-service", "coast-guard"])
   end
 
   context "see also agencies," do
@@ -204,6 +229,24 @@ describe TableOfContentsPresenter do
           inspect_documents(agency3)
         ).to eq(["2016-04215"])
       end
+    end
+  end
+
+  context "private methods" do
+    let(:documents) {
+      Document.find_all(
+        ["2016-04328", "2016-04305", "2016-04215"],
+        fields: [:document_number, :agencies]
+      ).results
+    }
+
+    let(:presenter) { TableOfContentsPresenter.new(date, documents) }
+
+    it "#toc_agencies_matching_filtered_documents returns an array of matching agencies", :vcr do
+      agencies = presenter.send(:toc_agencies_matching_filtered_documents)
+      expect(agencies.map(&:slug)).to eq(
+        ["air-force-department", "defense-department", "engineers-corps"]
+      )
     end
   end
 
