@@ -7,6 +7,13 @@ class TableOfContentsPresenter::Agency
     @presenter = presenter
   end
 
+  # override inspect to not show the parent presenter attributes
+  def to_s
+    vars = self.instance_variables.reject{|iv| iv == :@presenter}.
+      map{|v| "#{v}=#{instance_variable_get(v).inspect}"}.join(", ")
+    "<#{self.class}: #{vars}>"
+  end
+
   def name
     attributes['name']
   end
