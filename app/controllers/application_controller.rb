@@ -47,6 +47,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from FederalRegister::Client::RecordNotFound, with: ActiveRecord::RecordNotFound
 
   rescue_from Exception, :with => :server_error
   def server_error(exception)
