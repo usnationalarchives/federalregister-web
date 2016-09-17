@@ -6,6 +6,10 @@ describe EntryEmail do
   it { should validate_presence_of(:recipients) }
   it { should validate_presence_of(:document_number) }
 
+  before(:each) do
+    EntryEmail.any_instance.stub(:deliver_email)
+  end
+
   describe '#sender=' do
     it "hashes the sender email address consistently" do
       email_1 = build(:entry_email, sender_hash: nil)
@@ -35,6 +39,7 @@ describe EntryEmail do
   end
 
   it "sends an email after the record is created" do
+    EntryEmail.any_instance.unstub(:deliver_email)
     email = build(:entry_email)
 
     DocumentMailer.should_receive(:email_a_friend).with(email).and_call_original #don't just return nil and call #deliver on it
