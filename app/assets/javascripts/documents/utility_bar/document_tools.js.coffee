@@ -9,6 +9,8 @@ class @FR2.DocumentTools
       $('.unprinted-element-wrapper').not('.printed-page-wrapper')
     )
 
+    @resetUtilityBarHeight()
+
     @unprintedElementsDisplayed = !@unprintedElementsDisplayed
 
   @toggleLinkText: (link, displayed)->
@@ -30,3 +32,9 @@ class @FR2.DocumentTools
       if !@unprintedElementsSetup
         FR2.UnprintedElements.setup()
         @unprintedElementsSetup = !@unprintedElementsSetup
+
+  @resetUtilityBarHeight: ->
+    frBox = $('.doc-nav-wrapper').siblings('.fr-box').first()
+    $('.doc-nav-wrapper').outerHeight(frBox.height() + 'px')
+
+    $('.doc-document ul.doc-nav').sticky('refresh')
