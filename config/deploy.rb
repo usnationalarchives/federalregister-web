@@ -60,7 +60,7 @@ end
 #############################################################
 
 task :staging do
-  set :rails_env,  "staging"
+  set :rails_env, "staging"
   set :branch, `git branch`.match(/\* (.*)/)[1]
 
   set :gateway, 'fr2_staging'
