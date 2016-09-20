@@ -35,21 +35,22 @@ set :rake, "bundle exec rake"
 
 task :production do
   set :rails_env,  "production"
-  set :branch, 'production'
+  set :branch, 'officialness'
 
   set :gateway, 'fr2_production'
 
   role :proxy,  "proxy.fr2.ec2.internal"
   role :app,    "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
-  role :db,     "database.fr2.ec2.internal", {:primary => true}
   role :sphinx, "sphinx.fr2.ec2.internal"
-  role :worker, "worker.fr2.ec2.internal", {:primary => true} #monster image
+  role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
-  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
+  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
 
-  set :github_user_repo, 'usnationalarchives'
-  set :github_project_repo, 'my_fr2'
-  set :github_username, 'usnationalarchives'
+  #set :github_user_repo, 'usnationalarchives'
+  set :github_user_repo, 'criticaljuncture'
+  set :github_project_repo, 'federalregister-web'
+  #set :github_username, 'usnationalarchives'
+  set :github_username, 'criticaljuncture'
   set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
 
@@ -61,14 +62,15 @@ end
 task :staging do
   set :rails_env,  "staging"
   set :branch, `git branch`.match(/\* (.*)/)[1]
+
   set :gateway, 'fr2_staging'
 
   role :proxy,  "proxy.fr2.ec2.internal"
-  role :app,    "web.fr2.ec2.internal"
+  role :app,    "web-1.fr2.ec2.internal"
   role :sphinx, "sphinx.fr2.ec2.internal"
   role :worker, "worker.fr2.ec2.internal", {:primary => true}
 
-  role :rvm, "web.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal"
+  role :rvm, "web-1.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
 
   set :github_user_repo, 'criticaljuncture'
   set :github_project_repo, 'federalregister-web'
@@ -76,28 +78,6 @@ task :staging do
   set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
 
-#############################################################
-# Set Up for Officialness Environment
-#############################################################
-
-task :officialness do
-  #set :rails_env,  "officialness_staging"
-  set :rails_env,  "production"
-  set :branch, 'officialness'
-  set :gateway, 'fr2_officialness'
-
-  role :proxy,  "proxy.fr2.ec2.internal"
-  role :app,    "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal"
-  role :sphinx, "sphinx.fr2.ec2.internal"
-  role :worker, "worker.fr2.ec2.internal", {:primary => true}
-
-  role :rvm, "web-1.fr2.ec2.internal", "web-2.fr2.ec2.internal", "web-3.fr2.ec2.internal", "web-4.fr2.ec2.internal", "web-5.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
-
-  set :github_user_repo, 'criticaljuncture'
-  set :github_project_repo, 'federalregister-web'
-  set :github_username, 'criticaljuncture'
-  set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
-end
 
 #############################################################
 # SCM Settings
