@@ -17,10 +17,7 @@ class Documents::EmailsController < ApplicationController
     @document = Document.find(params[:document_number])
     @document_email = EntryEmail.new(document_email_params)
     @document_email.document_number = @document.document_number
-
-    remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || ''
-    remote_ip = remote_ip.split(/\s*,\s*/).last
-    @document_email.remote_ip = remote_ip
+    @document_email.remote_ip = request.remote_ip
 
     if (!@document_email.requires_captcha? || verify_recaptcha(model: @document_email)) && @document_email.save
       render text: '<div class="flash-message success">Success! Your email will be sent momentarily.</div>', status: 200
