@@ -161,6 +161,10 @@ table.row {
   .toc-document-abstract td {padding-bottom: 20px;}
 }
 
+.public-inspection .toc-documents {
+  .toc-document-metadata td:last-child { width: 225px; }
+}
+
 h1.mailing-list-title { padding-top: 10px !important; }
 
 h2 {

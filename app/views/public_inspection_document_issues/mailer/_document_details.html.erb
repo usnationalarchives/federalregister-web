@@ -12,49 +12,39 @@
         <%# render the content if we couldn't find the document %>
         <tr class="toc-document-metadata">
           <td>
-            <dl>
-              <dt>FR Document:</dt>
-              <dd><%= document %></dd>
-            </dl>
+            <strong>FR Document:</strong> <%= document %>
           </td>
         </tr>
       <% else %>
         <tr class="toc-document-metadata">
           <td>
-            <dl>
-              <dt>Filed on:</dt>
-              <dd><%= document.filed_at %></dd>
+            <strong>Filed on:</strong> <%= document.filed_at %>
+            <br>
+            <strong>Scheduled Pub. Date:</strong> <%= document.publication_date %>
+            <br>
+            <strong>FR Document:</strong>
+            <%= link_to document.document_number, short_document_url(document) %>
 
-              <dt>Scheduled Pub. Date:</dt>
-              <dd><%= document.publication_date %></dd>
-
-              <dt>FR Document:</dt>
-              <dd>
-                <%= link_to document.document_number, short_document_url(document) %>
-              </dd>
-
-              <% if document.docket_numbers.present? %>
-                <dt><%= "Agency Docket".pluralize(document.docket_numbers) %>:</dt>
-                <dd><%= document.docket_numbers.join(",") %></dd>
-              <% end %>
-            </dl>
+            <% if document.docket_numbers.present? %>
+              <br>
+              <strong><%= "Agency Docket".pluralize(document.docket_numbers) %>:</strong>
+              <%= document.docket_numbers.join(",") %>
+            <% end %>
           </td>
 
           <td>
-            <dl>
-              <dt class="toc-pdf">
-                <%= link_to 'PDF', document.pdf_url %>
-              </dt>
-              <dd>
-                <%= pluralize document.num_pages, "Page" %>
-                (<%= number_to_human_size document.pdf_file_size %>)
-              </dd>
+            <strong class="toc-pdf">
+              <%= link_to 'PDF', document.pdf_url %>
+            </strong>
 
-              <dt class="permalink">
-                <%= link_to 'Permalink', short_document_url(document) %>
-              </dt>
-              <dd></dd>
-            </dl>
+            <%= pluralize document.num_pages, "Page" %>
+            <em>(<%= number_to_human_size document.pdf_file_size %>)</em>
+
+            <br>
+
+            <strong class="permalink">
+              <%= link_to 'Permalink', short_document_url(document) %>
+            </strong>
           </td>
         </tr>
 
