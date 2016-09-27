@@ -21,6 +21,13 @@ body {
 
   h1, h2, h3, h4, h5, h6, h7, p {
     line-height: 1.3;
+    margin: 0;
+    padding: 0;
+  }
+
+  table, tr, td {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -150,15 +157,54 @@ img.float_left { padding: 0; }
 p.column_content { padding: 10px 8px 20px !important; }
 h4.h4.float_left { font-family: Arial; }
 
-table.row {
-  margin-bottom: 20px;
-  width: 100%;
+table.documents {
+  width: 700px;
+
+  tr.with-bg td {
+    background-color: $color-published-light;
+  }
 }
 
-.toc-documents {
-  .toc-document-metadata td:last-child { width: 275px; }
+table.row {
+  background-color: $color-published-light;
+  margin-bottom: 20px;
+  width: 100%;
 
-  .toc-document-abstract td {padding-bottom: 20px;}
+  tr,
+  td {
+    background-color: $color-published-light;
+  }
+}
+
+table.public-inspection {
+  width: 700px;
+
+  tr.with-bg td {
+    background-color: $color-public-inspection-light;
+  }
+
+  table.row {
+    background-color: $color-public-inspection-light;
+
+    tr,
+    td {
+      background-color: $color-public-inspection-light;
+    }
+  }
+}
+
+
+
+.toc-documents {
+  .toc-document-metadata {
+    td:first-child { width: 256px; }
+    td:last-child { width: 275px; }
+  }
+
+  .toc-document-abstract td {
+    padding-bottom: 20px;
+    width: 535px;
+  }
 }
 
 .public-inspection .toc-documents {
@@ -168,6 +214,8 @@ table.row {
 h1.mailing-list-title { padding-top: 10px !important; }
 
 h2 {
+  text-decoration: none;
+
   a { text-decoration: none !important; }
 }
 

@@ -15,7 +15,7 @@
     <%= "Page".pluralize(document.pages) %>: <%= document.page_range %> (<%= pluralize(document.pages, "page") %>)
     Permalink: <%= short_document_url(document) %>
     Abstract: <%= strip_tags(
-      document.shortened_abstract(total_document_count > 15 ? 175 : 500)
+      document.shortened_abstract(total_document_count > 15 ? 250 : 500)
     ) %>
   <%- end -%>
 

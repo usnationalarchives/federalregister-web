@@ -2,9 +2,9 @@
   <h6>
     <%= link_to article.title, article.short_article_url %>
   </h6>
-              
+
   <p class="abstract">
-    <%= article.shortened_abstract(result_count > 15 ? 175 : 500) %>
+    <%= article.shortened_abstract(result_count > 15 ? 250 : 500) %>
   </p>
 
   <%- if article.comments_close_on && article.comments_close_on > Date.current %>
