@@ -13,4 +13,21 @@ class Mailers::TableOfContentsPresenter < TableOfContentsPresenter
   def document_partial
     'document_issues/mailer/document_details'
   end
+
+  private
+
+  def document_fields
+    [
+      :abstract,
+      :agencies,
+      :citation,
+      :document_number,
+      :end_page,
+      :html_url,
+      :pdf_url,
+      :publication_date,
+      :start_page,
+      :title,
+    ]
+  end
 end

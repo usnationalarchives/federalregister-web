@@ -12,39 +12,34 @@
         <%# render the content if we couldn't find the document %>
         <tr class="toc-document-metadata">
           <td>
-            <dl>
-              <dt>FR Document:</dt>
-              <dd><%= document %></dd>
-            </dl>
+            <strong>FR Document:</strong> <%= document %>
           </td>
         </tr>
       <% else %>
         <tr class="toc-document-metadata">
           <td>
-            <dl>
-              <dt>FR Document:</dt>
-              <dd><%= link_to document.document_number, document.html_url %></dd>
-
-              <dt>Citation:</dt>
-              <dd><%= document.citation %></dd>
-            </dl>
+            <strong>FR Document:</strong> <%= link_to document.document_number, document.html_url %>
+            <br>
+            <strong>Citation:</strong> <%= document.citation %>
           </td>
 
           <td>
-            <dl>
-              <dt class="toc-pdf">
-                <%= link_to 'PDF', document.pdf_url %>
-              </dt>
-              <dd>
-                <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
-                <em>(<%= pluralize(document.pages, "page") %>)</em>
-              </dd>
+            <strong class="toc-pdf">
+              <%= link_to 'PDF', document.pdf_url %>
+            </strong>
+            <%= "Page".pluralize(document.pages) %> <%= document.page_range %>
+            <em>(<%= pluralize(document.pages, "page") %>)</em>
 
-              <dt class="permalink">
-                <%= link_to 'Permalink', short_document_url(document) %>
-              </dt>
-              <dd></dd>
-            </dl>
+            <br>
+
+            <strong class="permalink">
+              <%= link_to 'Permalink', short_document_url(document) %>
+            </strong>
+          </td>
+        </tr>
+        <tr class="toc-document-abstract">
+          <td colspan="2">
+            <strong>Abstract:</strong> <%= document.shortened_abstract(total_document_count > 15 ? 175 : 500) %>
           </td>
         </tr>
       <% end %>

@@ -4,6 +4,7 @@
   display_agency_name = defined?(display_agency_name) && !display_agency_name.nil? ? display_agency_name : true
   table_of_contents_url = defined?(table_of_contents_url) ? table_of_contents_url : nil
   fr_index = defined?(fr_index) ? fr_index : nil
+  total_document_count ||= 0
 %>
 
 
@@ -47,7 +48,8 @@
         agency,
         level: 1,
         document_partial: document_partial,
-        fr_index: fr_index
+        fr_index: fr_index,
+        total_document_count: total_document_count
       ) %>
     </div>
   <% end %>

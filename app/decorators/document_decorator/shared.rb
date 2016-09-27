@@ -20,4 +20,8 @@ module DocumentDecorator::Shared
   def formal_publication_date
     publication_date.to_s(:formal)
   end
+
+  def shortened_abstract(length=500)
+    h.truncate_words(model.abstract, :length => length) || "<em>[Not available]</em>".html_safe
+  end
 end

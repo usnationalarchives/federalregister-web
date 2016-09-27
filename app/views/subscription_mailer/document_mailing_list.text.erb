@@ -9,7 +9,8 @@ subscription results for <%= @presenter.date.to_s(:formal) %>
   agencies: @presenter.agencies,
   document_partial: @presenter.document_partial,
   table_of_contents_url: document_issue_url(@presenter.date),
-  show_see_references: false
+  show_see_references: false,
+  total_document_count: @presenter.filter_to_documents.count
 } %>
 
 ----------------------------------------------------

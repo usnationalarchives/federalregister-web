@@ -155,6 +155,12 @@ table.row {
   width: 100%;
 }
 
+.toc-documents {
+  .toc-document-metadata td:last-child { width: 275px; }
+
+  .toc-document-abstract td {padding-bottom: 20px;}
+}
+
 h1.mailing-list-title { padding-top: 10px !important; }
 
 h2 {

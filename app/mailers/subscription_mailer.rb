@@ -6,6 +6,7 @@ class SubscriptionMailer < ActionMailer::Base
   add_template_helper(FrBoxHelper)
   add_template_helper(DocumentIssueHelper)
   add_template_helper(IconHelper)
+  add_template_helper(TextHelper)
 
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
 

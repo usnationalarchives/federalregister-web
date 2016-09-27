@@ -1,6 +1,7 @@
 <%-
   type ||= nil
   show_see_references = defined?(show_see_references) ? show_see_references : true
+  total_document_count ||= 0
 -%>
 <%- agencies.each do |slug, agency| -%>
   <%- if show_see_references || agency.document_categories.present? -%>
@@ -19,7 +20,8 @@
         doc_category["documents"],
         agency,
         level: 1,
-        document_partial: document_partial
+        document_partial: document_partial,
+        total_document_count: total_document_count
       ) %>
   <%- end -%>
 <%- end -%>

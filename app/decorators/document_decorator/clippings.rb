@@ -1,8 +1,4 @@
 module DocumentDecorator::Clippings
-  def shortened_abstract(length=500)
-    h.truncate_words(model.abstract, :length => length) || "[No abstract available]"
-  end
-
   def agency_dt_dd
     html = "<dt class=\"agencies\">#{pluralize_without_count(agency_names.size, 'Agency')}:</dt>"
     html = html + agency_dd
