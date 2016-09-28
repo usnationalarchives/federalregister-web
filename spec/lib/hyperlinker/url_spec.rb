@@ -41,6 +41,13 @@ describe Hyperlinker::Url do
     expect(hyperlink("(link: #{url}).")).to eql "(link: #{url_result})."
   end
 
+  it "handles trailing semicolons" do
+    url = "http://example.com/test.cgi?foo=1;bar=2"
+    url_result = generate_result(url)
+    expect(hyperlink(url)).to eql url_result
+    expect(hyperlink("#{url};")).to eql "#{url_result};&#8203;"
+  end
+
   it "handles EOL" do
     url1 = "http://api.rubyonrails.com/Foo.html"
     url2 = "http://www.ruby-doc.org/core/Bar.html"

@@ -41,7 +41,7 @@ module Hyperlinker::Url
         match.to_s
       else
         # don't include trailing punctuation character as part of the URL
-        while href.sub!(/[^#{WORD_PATTERN}\/-=&]$/, '')
+        while href.sub!(/[^#{WORD_PATTERN}\/\-=&]$/, '')
           punctuation.push $&
           if opening = BRACKETS[punctuation.last] and href.scan(opening).size > href.scan(punctuation.last).size
             href << punctuation.pop
