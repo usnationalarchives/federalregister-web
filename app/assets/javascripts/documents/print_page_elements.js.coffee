@@ -88,10 +88,18 @@ class @FR2.PrintPageElements
         .addClass('icon-fr2-doc_filled')
         .removeClass('icon-fr2-doc-generic')
 
-      unprintedElements.correspondingGutterItem(
+      gutterItem = printPageElements.correspondingGutterItem(
         $(this).data('page')
       )
-      .addClass('hover')
+
+      gutterItem.addClass('hover')
+      gutterItem
+        .find('.printed-page')
+        .trigger('mouseenter')
+      gutterItem
+        .find('.icon-fr2')
+        .addClass('icon-fr2-doc_filled')
+        .removeClass('icon-fr2-doc-generic')
 
 
     @printPageIcons().on 'mouseleave', ->
@@ -99,7 +107,15 @@ class @FR2.PrintPageElements
         .removeClass('icon-fr2-doc_filled')
         .addClass('icon-fr2-doc-generic')
 
-      unprintedElements.correspondingGutterItem(
+      gutterItem = printPageElements.correspondingGutterItem(
         $(this).data('page')
       )
-      .removeClass('hover')
+
+      gutterItem.removeClass('hover')
+      gutterItem
+        .find('.printed-page')
+        .trigger('mouseleave')
+      gutterItem
+        .find('.icon-fr2')
+        .removeClass('icon-fr2-doc_filled')
+        .addClass('icon-fr2-doc-generic')
