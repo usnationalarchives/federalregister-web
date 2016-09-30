@@ -3,7 +3,11 @@ ul.subject-list {
   margin-bottom: 30px;
   margin-left: 25px;
 
-  li:before { top: 0px; }
+  li {
+    margin-bottom: 10px;
+    &:before { top: 0px; }
+  }
+
 
   a {
     color: $fr-link;

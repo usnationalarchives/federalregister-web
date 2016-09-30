@@ -1,0 +1,76 @@
+// extend the hit area of the paragraph to make js interactions
+// more managable
+.doc-content .content-block {
+  p {
+    margin-left: -30px;
+    padding-left: 30px;
+    overflow: visible;
+  }
+
+  // make positioning in li's work
+  .bullets li { position: relative; }
+}
+
+.citation-target-icon {
+  color: $color-enhanced-dark;
+  display: none;
+  font-size: 28px;
+  left: 2px;
+  position: absolute;
+  top: 5px;
+  z-index: 100;
+
+  &.pulse {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+}
+
+.citation-target-background {
+  background-color: $color-enhanced-light;
+  border-bottom: 2px solid $color-enhanced;
+  border-top: 2px solid $color-enhanced;
+  display: none;
+  left: 2px;
+  padding: 5px 0;
+  position: absolute;
+  top: -5px;
+  width: 730px;
+  z-index: -1;
+
+  &.pulse {
+    background-color: darken($color-enhanced-light, 2);
+    transition: background-color 0.5s ease-out;
+  }
+}
+
+p {
+  &.single-line {
+    .citation-target-icon { top: 0px; }
+  }
+
+  &.amendment-part {
+    .citation-target-icon { top: 1px; }
+  }
+
+  &.amdpar-subnumber-present {
+    .citation-target-icon {
+      left: 24px;
+      top: 1px;
+    }
+    .citation-target-background { left: 25px; }
+  }
+}
+
+.bullets li {
+  .citation-target-icon {
+    left: -12px;
+    top: 0;
+  }
+
+  .citation-target-background { left: -23px; }
+
+  &.single-line .citation-target-icon {
+    top: -5px;
+  }
+}

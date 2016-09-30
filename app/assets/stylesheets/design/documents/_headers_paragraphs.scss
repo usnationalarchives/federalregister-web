@@ -35,7 +35,8 @@
     }
 
     &:target {
-      background-color: $highlight-yellow;
+      background-color: $color-enhanced-light;
+      transition: background-color 1.5s ease-in;
     }
   }
 

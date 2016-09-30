@@ -12,6 +12,11 @@
       <% end %>
 
       <div id="fulltext_content_area" class="doc-content-area">
+        <div class="citation-target-icon">
+          <%= fr_icon 'bookmark' %>
+        </div>
+        <div class="citation-target-background"></div>
+
         <% if document.full_text_available? %>
           <% if Settings.render_documents_from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>

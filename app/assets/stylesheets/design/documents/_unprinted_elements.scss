@@ -21,10 +21,10 @@ $unprinted-element-color: $color-enhanced-dark;
   display: none;
   float: right;
   line-height: 1;
-  margin-left: -140px;
+  margin-left: -150px;
   padding-right: 5px;
   position: relative;
-  right: -140px;
+  right: -150px;
   text-indent: -24px;
   width: 110px;
 
@@ -123,6 +123,10 @@ p + .unprinted-element-wrapper {
 
       &.blocked .unprinted-element-border {
         border-bottom-color: $printed-page-color;
+      }
+
+      &:hover {
+        .icon-fr2 { color: darken($printed-page-color, 10) !important; }
       }
     }
 
