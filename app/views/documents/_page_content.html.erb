@@ -12,7 +12,9 @@
       <% end %>
 
       <div id="fulltext_content_area" class="doc-content-area">
-        <div class="citation-target-icon">
+        <div class="citation-target-icon cj-fancy-tooltip"
+          data-tooltip="Click to copy a short url for this paragraph"
+          data-short-url="<%= short_document_url(document) %>">
           <%= fr_icon 'bookmark' %>
         </div>
         <div class="citation-target-background"></div>

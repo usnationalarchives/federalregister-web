@@ -13,6 +13,7 @@ class @FR2.ParagraphCitation
     @cb = new FR2.Clipboard
 
   addEvents: ->
+    @addTooltip()
     @enterElement()
     @enterIcon()
     @leaveElement()
@@ -30,6 +31,22 @@ class @FR2.ParagraphCitation
 
   background: ->
     $('.citation-target-background')
+
+  addTooltip: ->
+    CJ.Tooltip.addFancyTooltip(
+      @icon(),
+      {
+        className: 'paragraph-citation-tooltip'
+        delay: 0.3
+        fade: true
+        opacity: 1
+      },
+      {
+        horizontalOffset: -5
+        position: 'centerTop'
+        verticalOffset: -12
+      }
+    )
 
   enterElement: ->
     @contentArea.on 'mouseenter tap', @citationTargetEls(), (event)=>
@@ -90,6 +107,7 @@ class @FR2.ParagraphCitation
     @contentArea.on 'click tap', '.citation-target-icon', =>
       @pulse()
       @copyUrlToClipboard()
+      @setTooltipSuccessMessage()
 
   moveBackgroundTo: (el)->
     el.append(
@@ -114,6 +132,9 @@ class @FR2.ParagraphCitation
     @cb.copyToClipboard @citationUrl()
 
   citationUrl: ->
-    window.location.origin +
-      window.location.pathname +
+    @icon().data('short-url') +
       @icon().data('citation-target')
+
+  setTooltipSuccessMessage: ->
+    $('.tipsy .tipsy-inner')
+      .text("Citation copied to clipboard")

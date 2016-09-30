@@ -44,3 +44,16 @@
     background-color: $color-enhanced-light;
   }
 }
+
+.tipsy.paragraph-citation-tooltip {
+  width: 200px;
+
+  .tipsy-arrow { border-top-color: $color-enhanced-dark; }
+  .tipsy-inner {
+    background-color: $color-enhanced-light;
+    border: 1px solid $color-enhanced-dark;
+    color: $text;
+    font-size: modular-scale(0);
+    font-weight: 500;
+  }
+}
