@@ -61,7 +61,9 @@ class @FR2.PrintPageElements
   @addUIEvents: ->
     printPageElements = this
 
-    @printPageElements().not('.blocked').on 'mouseenter', ->
+    @printPageElements().not('.blocked').on 'mouseenter', (event)->
+      event.stopPropagation()
+      
       $(this).addClass('hover')
 
       printPageElements.correspondingIcon(
