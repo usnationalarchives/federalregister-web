@@ -68,10 +68,6 @@ $(document).ready ->
     )
 
   # utility nav items
-  $('.doc-nav-wrapper a#display-print-page').on 'click', (event)->
-    event.preventDefault()
-    FR2.DocumentTools.togglePrintedPage $(this)
-
   $('.doc-nav-wrapper a#display-unprinted-elements').on 'click', (event)->
     event.preventDefault()
     FR2.DocumentTools.toggleNonPrintedElements $(this)
