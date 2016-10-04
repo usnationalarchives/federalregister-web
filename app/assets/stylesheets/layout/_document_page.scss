@@ -48,12 +48,14 @@
     .fr-seal-block.fr-seal-block-header { z-index: 500; }
 
     .content-block {
-      padding: 35px 140px 20px 30px !important;
+      padding: 35px 130px 20px 30px !important;
 
       #fulltext_content_area {
         position: relative;
         z-index: 200;
       }
+
+      p { padding-right: 10px !important; }
     }
   }
 

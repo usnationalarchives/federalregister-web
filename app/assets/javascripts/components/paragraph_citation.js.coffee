@@ -88,7 +88,13 @@ class @FR2.ParagraphCitation
           parseInt(@background().css('padding-top')) +
           parseInt(@background().css('padding-bottom'))
       )
-      @background().css('width', target.width() + 45)
+
+      if @background().parent('p').hasClass('amendment-part')
+        bgPadding = 58
+      else
+        bgPadding = 38
+        
+      @background().css('width', target.width() + bgPadding)
       @background().show()
 
   leaveElement: ->
