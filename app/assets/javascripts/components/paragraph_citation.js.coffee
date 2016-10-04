@@ -138,8 +138,7 @@ class @FR2.ParagraphCitation
     @cb.copyToClipboard @citationUrl()
 
   citationUrl: ->
-    @icon().data('short-url') +
-      @icon().data('citation-target')
+    "#{@icon().data('short-url')}/#{@icon().data('citation-target').slice(1)}"
 
   setTooltipSuccessMessage: ->
     $('.tipsy .tipsy-inner')
