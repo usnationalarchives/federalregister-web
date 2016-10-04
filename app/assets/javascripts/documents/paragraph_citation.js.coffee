@@ -10,5 +10,12 @@ $(document).ready ()->
           scrollTop: paragraphTarget.offset().top - 20
         }, 500)
 
+      # visually identify the cited paragraph
+      linkIcon = $('<span>')
+        .addClass('icon-fr2 icon-fr2-link')
+        .data('tooltip', 'The url for this page contains a citation. This is the item that is cited.')
+      paragraphTarget.append linkIcon
+      CJ.Tooltip.addTooltip linkIcon
+
     # enable paragraph citations
     new FR2.ParagraphCitation $('#fulltext_content_area')

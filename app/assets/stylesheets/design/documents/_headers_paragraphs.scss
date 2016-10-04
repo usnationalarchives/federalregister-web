@@ -37,6 +37,13 @@
     &:target {
       background-color: $color-enhanced-light;
       transition: background-color 1.5s ease-in;
+
+      .icon-fr2-link {
+        bottom: 5px;
+        color: darken($color-enhanced-light, 30);
+        position: absolute;
+        right: 5px;
+      }
     }
   }
 
