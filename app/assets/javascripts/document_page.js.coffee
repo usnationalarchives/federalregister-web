@@ -43,6 +43,13 @@ $(document).ready ->
         title: ()->
           tooltipData = $(this).data('tooltip-data') || {}
 
+          if $(this).hasClass('printed-page')
+            tooltipData['shortUrl'] = $('#fulltext_content_area').data('short-url')
+
+            if $('#document-citation').data('citation-vol')
+              tooltipData['volume'] = $('#document-citation').data('citation-vol')
+
+
           Handlebars.compile(
             $( $(this).data('tooltip-template') ).html()
           )( tooltipData )

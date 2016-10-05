@@ -8,4 +8,20 @@
     The text following this element occurred on page {{page}} of the
     print and PDF versions of this document.
   </p>
+
+  <dl class="fr-list fr-list-inline">
+    <dt>Page citation</dt>
+    <dd>
+      {{volume}} FR {{page}}
+      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard cj-fancy-tooltip"
+        data-tooltip="Click to copy this page citation"></span>
+    </dd>
+
+    <dt>Page short url</dt>
+    <dd>
+      {{shortUrl}}/page-{{page}}
+      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard cj-fancy-tooltip"
+        data-tooltip="Click to copy a short url to this page"></span>
+    </dd>
+  </dl>
 <% end %>

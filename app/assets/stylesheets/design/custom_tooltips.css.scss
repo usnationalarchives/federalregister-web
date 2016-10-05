@@ -11,7 +11,13 @@
 
     h6 { background-color: $color; }
   }
-  .content-block { background-color: $light-color; }
+  .content-block {
+    background-color: $light-color;
+
+    .icon-fr2-clipboard.copy-to-clipboard:hover {
+      color: darken($color, 50);
+    }
+  }
 }
 
 .tipsy.document-markup-tooltip {
@@ -35,25 +41,39 @@
     padding: 0;
     text-align: left;
 
-    .fr-box .content-block p {
-      margin-bottom: 10px;
+    .fr-box .content-block {
+      p { margin-bottom: 10px; }
+
+      .fr-list {
+        dt { width: 30%; }
+        dd { width: 70%; }
+
+        dt {
+          font-weight: 500;
+
+          &::after { content: ":"; }
+        }
+
+        dd { text-align: left; }
+      }
     }
   }
 
   .fr-box-inherit {
     background-color: $color-enhanced-light;
+
+    .icon-fr2-clipboard.copy-to-clipboard {
+      cursor: pointer;
+    }
   }
 }
 
-.tipsy.paragraph-citation-tooltip {
-  width: 200px;
+.tipsy.paragraph-citation-tooltip,
+.tipsy.dynamic-citation-tooltip {
+  width: 190px;
 
-  .tipsy-arrow { border-top-color: $color-enhanced-dark; }
   .tipsy-inner {
-    background-color: $color-enhanced-light;
-    border: 1px solid $color-enhanced-dark;
-    color: $text;
-    font-size: modular-scale(0);
-    font-weight: 500;
+    font-size: modular-scale(-1);
+    font-weight: 400;
   }
 }

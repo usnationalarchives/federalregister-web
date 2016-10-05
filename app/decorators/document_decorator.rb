@@ -112,4 +112,9 @@ class DocumentDecorator < ApplicationDecorator
 
     @document_metadata_description = description.html_safe
   end
+
+  def citation_vol
+    return unless start_page?
+    citation.split('FR').first().strip
+  end
 end

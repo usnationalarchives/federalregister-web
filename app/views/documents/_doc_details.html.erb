@@ -78,7 +78,10 @@
 
       <% if document.start_page? %>
         <dt>Document Citation:</dt>
-        <dd><%= document.citation %></dd>
+        <dd id="document-citation"
+          data-citation-vol='<%= document.citation_vol %>' >
+          <%= document.citation %>
+        </dd>
 
         <dt>Page:</dt>
         <dd>

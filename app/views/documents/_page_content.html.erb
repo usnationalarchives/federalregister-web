@@ -11,7 +11,9 @@
         <span class="icon-fr2 icon-fr2-NARA1985Seal doc-background"></span>
       <% end %>
 
-      <div id="fulltext_content_area" class="doc-content-area">
+      <div id="fulltext_content_area" class="doc-content-area"
+        data-short-url="<%= short_document_url(document) %>">
+
         <div class="citation-target-icon cj-fancy-tooltip"
           data-tooltip="Click to copy a short url for this paragraph"
           data-short-url="<%= short_document_url(document) %>">
