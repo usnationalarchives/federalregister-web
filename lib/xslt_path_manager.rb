@@ -6,6 +6,9 @@ class XsltPathManager
     @date = date.is_a?(Date) ? date : Date.parse(date)
   end
 
+  def document_xml_enhanced_path(type)
+    "#{document_dir(type, 'xml_enhanced')}/#{document_number}.xml"
+  end
 
   def document_xml_path(type)
     "#{document_dir(type, 'xml')}/#{document_number}.xml"

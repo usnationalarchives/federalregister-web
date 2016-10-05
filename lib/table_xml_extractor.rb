@@ -1,5 +1,5 @@
 class TableXmlExtractor
-  delegate :document_xml_path, :table_xml_dir, :table_xml_path,
+  delegate :document_xml_enhanced_path, :table_xml_dir, :table_xml_path,
     to: :path_manager
 
   def self.compile(document_numbers, date_str)
@@ -17,8 +17,8 @@ class TableXmlExtractor
   end
 
   def perform
-    if File.exists? document_xml_path("full_text")
-      file = File.open(document_xml_path("full_text"))
+    if File.exists? document_xml_enhanced_path("full_text")
+      file = File.open(document_xml_enhanced_path("full_text"))
       document = Nokogiri::XML(file)
 
       tables = document.css('GPOTABLE')
@@ -33,7 +33,7 @@ class TableXmlExtractor
     else
       Honeybadger.notify(
         error_class: 'HtmlCompilator::MissingXmlFile',
-        error_message: document_xml_path("full_text")
+        error_message: document_xml_enhanced_path("full_text")
       )
     end
   end

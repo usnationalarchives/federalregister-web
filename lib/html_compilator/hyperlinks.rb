@@ -5,14 +5,6 @@ class HtmlCompilator::Hyperlinks < HtmlCompilator
     new(document, document.publication_date).perform
   end
 
-  def perform
-    begin
-      save(compile)
-    rescue MissingXmlFile => error
-      Honeybadger.notify(error)
-    end
-  end
-
   def compile
     if File.exists? file_path
       Hyperlinker.perform(File.read(file_path))
@@ -21,10 +13,8 @@ class HtmlCompilator::Hyperlinks < HtmlCompilator
     end
   end
 
-  def save(xml)
-    File.open file_path, 'w' do |f|
-      f.write(xml)
-    end
+  def destination_path
+    document_xml_enhanced_path('full_text')
   end
 
   private
