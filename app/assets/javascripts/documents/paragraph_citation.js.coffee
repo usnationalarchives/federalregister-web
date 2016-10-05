@@ -15,7 +15,13 @@ $(document).ready ()->
         .addClass('icon-fr2 icon-fr2-link')
         .data('tooltip', 'The url for this page contains a citation. This is the item that is cited.')
       paragraphTarget.append linkIcon
-      CJ.Tooltip.addTooltip linkIcon
+      CJ.Tooltip.addFancyTooltip linkIcon,
+        { className: 'dynamic-citation-tooltip'},
+        {
+          horizontalOffset: -5
+          position: 'centerTop'
+          verticalOffset: -12
+        }
 
     # enable paragraph citations
     new FR2.ParagraphCitation $('#fulltext_content_area')

@@ -39,12 +39,13 @@ class @FR2.ParagraphCitation
         className: 'paragraph-citation-tooltip'
         delay: 0.3
         fade: true
+        gravity: 'w'
         opacity: 1
       },
       {
-        horizontalOffset: -5
-        position: 'centerTop'
-        verticalOffset: -12
+        horizontalOffset: -3
+        position: 'centerRight'
+        verticalOffset: -8
       }
     )
 
@@ -93,7 +94,7 @@ class @FR2.ParagraphCitation
         bgPadding = 58
       else
         bgPadding = 38
-        
+
       @background().css('width', target.width() + bgPadding)
       @background().show()
 
