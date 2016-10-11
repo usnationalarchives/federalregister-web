@@ -18,7 +18,7 @@ class FR2.Clipboard
 
   _standardCopy: (text)->
     # create a temporary element off screen.
-    tempEl = $('<div>');
+    tempEl = $('<div>')
 
     tempEl.css({
       position: "absolute",
