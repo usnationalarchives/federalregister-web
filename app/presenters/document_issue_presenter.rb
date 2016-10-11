@@ -73,7 +73,8 @@ class DocumentIssuePresenter
   def page_count
     return @page_count if @page_count
 
-    sorted = documents.sort_by(&:start_page)
+    docs_with_start_pages, docs_without_start_pages = documents.partition{|x| x.start_page.present? }
+    sorted = docs_with_start_pages.sort_by(&:start_page) + docs_without_start_pages
 
     if sorted.present? && sorted.last.end_page.present? && sorted.first.start_page.present?
       @page_count = sorted.last.end_page - sorted.first.start_page + 1 #inclusive
