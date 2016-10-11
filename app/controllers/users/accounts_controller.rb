@@ -9,6 +9,7 @@ class Users::AccountsController < ApplicationController
     current_user.confirmation_token = nil
 
     if current_user.save
+      SendgridClient.new.remove_from_bounce_list(current_user.email)
       current_user.send_confirmation_instructions
 
       current_user.subscriptions.each do |s|
