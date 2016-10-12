@@ -99,6 +99,10 @@ class DocumentDecorator < ApplicationDecorator
     effective_on
   end
 
+  def citation_available?
+    start_page?
+  end
+
   def comments_close_date
     comments_close_on
   end
@@ -118,7 +122,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def citation_vol
-    return unless start_page?
+    return unless citation_available?
     citation.split('FR').first().strip
   end
 end
