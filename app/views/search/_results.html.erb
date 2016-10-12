@@ -9,30 +9,32 @@
           <%= link_to document.title, document.html_url %>
         </h5>
 
-        <div class="document-clipping-actions" data-document-number="<%= document.document_number %>">
-          <ul>
-            <li class="clip-for-later">
-              <%= semantic_form_for :document,
-                url: clippings_path,
-                authenticity_token: false,
-                html: {
-                  method: :post,
-                  class: "add-to-clipboard"
-                } do |f| %>
+        <% unless document.public_inspection_document? %>
+          <div class="document-clipping-actions" data-document-number="<%= document.document_number %>">
+            <ul>
+              <li class="clip-for-later">
+                <%= semantic_form_for :document,
+                  url: clippings_path,
+                  authenticity_token: false,
+                  html: {
+                    method: :post,
+                    class: "add-to-clipboard"
+                  } do |f| %>
 
-                <%= f.inputs do %>
-                  <%= f.input :document_number,
-                    as: :hidden,
-                    value: document.document_number %>
-                <% end %>
+                  <%= f.inputs do %>
+                    <%= f.input :document_number,
+                      as: :hidden,
+                      value: document.document_number %>
+                  <% end %>
 
-                <%= f.buttons do %>
-                  <%= f.commit_button 'Add to clipboard' %>
+                  <%= f.buttons do %>
+                    <%= f.commit_button 'Add to clipboard' %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
+        <% end %>
 
         <p class="metadata">
           by <%= document.agency_name_sentence %>

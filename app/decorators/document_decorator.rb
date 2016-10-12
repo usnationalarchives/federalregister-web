@@ -91,6 +91,10 @@ class DocumentDecorator < ApplicationDecorator
     mods_url.present?
   end
 
+  def public_inspection_document?
+    object.class == PublicInspectionDocument
+  end
+
   def effective_date
     effective_on
   end
