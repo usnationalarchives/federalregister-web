@@ -26,13 +26,17 @@ module SubscriptionHelper
     }
   end
 
-  def subscribe_link(search_conditions={})
-    link_to(new_subscription_path(
+  def subscribe_link(search_conditions={}, options = {})
+    if options[:custom_path]
+      path = options[:custom_path]
+    else
+      path = new_subscription_path(
         subscription: {search_conditions: search_conditions}
-      ),
-      class: 'subscription subscription_action') do
+      )
+    end
 
-      "#{fr_icon('message')} #{fr_icon('rss')} Subscribe".html_safe
+    link_to(path, class: "subscription subscription_action #{options[:class]}") do
+      "#{fr_icon('message') unless options[:custom_path]} #{fr_icon('rss')} Subscribe".html_safe
     end
   end
 end

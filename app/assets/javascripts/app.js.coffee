@@ -49,6 +49,7 @@ $(document).ready ()->
 
   # Subcription modals
   $('a.rss, a.subscription, a.subscription_action').on 'click', (e)->
+    return if $(this).hasClass("no-modal-action")
     e.preventDefault()
 
     FR2.SubscriptionHandler.generateModal()
