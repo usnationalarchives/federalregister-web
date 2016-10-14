@@ -1,10 +1,10 @@
 <div class="bootstrap-scope">
   <div class="row">
     <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-      <p class="instructions">You are now leaving the Federal Register site and will be accessing <span class="external-url">{{url}}</span>
+      <p class="instructions">You are now leaving the Federal Register and will be accessing: <span class="external_link">{{url}}</span>
       </p>
       <%= form_tag "/arbitrary", :method => 'get' do %>
-        <%= label_tag 'accept', 'Do not warn me when leaving the Federal Register site.' %>
+        <%= label_tag 'accept', 'Do not show this warning again' %>
         <%= check_box_tag 'accept' %>
         <%= submit_tag "Continue", :class =>"fr_button medium" %>
       <% end %>

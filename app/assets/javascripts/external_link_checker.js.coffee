@@ -21,7 +21,7 @@ class @FR2.ExternalLinkChecker
     window.FR2.Modal.displayModal(
       'You Are Now Leaving the Federal Register',
       modalBody,
-      {modalClass: 'fr-modal extra-wide external-link-warning-modal'}
+      {modalClass: 'fr-modal external-link-warning-modal'}
     )
 
     @bindModalListeners()
