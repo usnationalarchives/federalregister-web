@@ -53,6 +53,7 @@
 #= require issues
 
 #= require search
+#= require external_link_checker
 
 # Instantiate and bind common application js items
 #= require app
