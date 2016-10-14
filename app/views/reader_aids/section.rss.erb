@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title><%= @presenter.title %></title>
+  <link><%= reader_aids_index_section_url(@presenter.section_identifier) %></link>
+  <description><%= @presenter.title %></description>
+
+  <% @presenter.items_for_display.each do |item| %>
+    <item>
+      <title><%= item.formatted_title %></title>
+      <link><%= item.url(@presenter.section_identifier) %></link>
+      <link><%= item.path(@presenter.section_identifier) %></link>
+      <description><%= sanitize(item.formatted_excerpt, tags: []) %></description>
+    </item>
+  <% end %>
+
+</rss>
