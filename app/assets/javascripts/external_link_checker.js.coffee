@@ -2,6 +2,7 @@ class @FR2.ExternalLinkChecker
   INTERNAL_DOMAINS = [
     "localhost",
     "www.federalregister.gov",
+    "fr2.criticaljuncture.org"
     "federalregister.tenderapp.com"
   ]
 
