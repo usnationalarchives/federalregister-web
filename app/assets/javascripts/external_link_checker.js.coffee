@@ -6,7 +6,7 @@ class @FR2.ExternalLinkChecker
   ]
 
   constructor: (@click_event) ->
-    if @click_event.target.localName == "a" && !@isInternalDomain(@click_event.target.href) && @isExternalUrl(@click_event.target.href) && @showModal()
+    if @click_event.target.localName == "a" && !@isInternalDomain(@click_event.target.href) && @isExternalUrl(@click_event.target.href) && @canShowModal()
       @click_event.preventDefault()
       @url = @click_event.target.href
       @displayModal()
@@ -23,16 +23,19 @@ class @FR2.ExternalLinkChecker
       {modalClass: 'fr-modal extra-wide external-link-warning-modal'}
     )
 
-    $('#fr_modal.external-link-warning-modal form').submit (e) ->
+    @bindModalListeners()
+
+  bindModalListeners: ->
+    $('#fr_modal.external-link-warning-modal form').submit (e) =>
       e.preventDefault()
 
       if $('#fr_modal.external-link-warning-modal [name=accept').prop('checked')
         amplify.store('showExternalModal', false, expires: 2592000000)
 
-      window.location.href = context.url
+      window.location.href = @url
 
-  showModal: ->
-    amplify.store('showExternalModal')
+  canShowModal: ->
+    amplify.store('showExternalModal') != false
 
   isExternalUrl: (url) ->
     relativeUrlRegex = RegExp('^(https?:)//')
