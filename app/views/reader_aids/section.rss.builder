@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title item.formatted_title
         xml.link item.url(@presenter.section_identifier)
-        xml.description sanitize(item.formatted_excerpt, tags: [])
+        xml.description item.rss_excerpt
       end
     end
   end

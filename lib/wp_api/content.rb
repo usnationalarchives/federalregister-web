@@ -45,6 +45,14 @@ class WpApi::Content
     attributes['excerpt'] ? attributes['excerpt']['rendered'] : nil
   end
 
+  def rss_excerpt
+    if excerpt
+      doc = Nokogiri(excerpt)
+      doc.at('a:contains("Continue reading")').try(:remove)
+      doc.text
+    end
+  end
+
   def formatted_excerpt
     if excerpt
       clean_content(excerpt).html_safe
