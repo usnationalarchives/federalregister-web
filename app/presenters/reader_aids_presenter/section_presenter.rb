@@ -12,6 +12,11 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
   RESULTS_PER_PAGE = 100 #seems to be max allowed by WP
 
+  SECTION_IDS_WITH_RSS_FEEDS = [
+    'office-of-the-federal-register-blog',
+    'recent-updates',
+  ]
+
   def initialize(config)
     @section_identifier = config.fetch(:section_identifier) { nil }
     raise ActiveRecord::RecordNotFound unless section.present?
@@ -147,6 +152,10 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     col_width = grid_width / columns
 
     "col-xs-#{col_width} col-md-#{col_width}"
+  end
+
+  def rss_subscription_available?
+    SECTION_IDS_WITH_RSS_FEEDS.include? section_identifier
   end
 
   private
