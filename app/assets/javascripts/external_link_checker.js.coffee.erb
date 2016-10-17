@@ -1,10 +1,5 @@
 class @FR2.ExternalLinkChecker
-  INTERNAL_DOMAINS = [
-    "localhost",
-    "www.federalregister.gov",
-    "fr2.criticaljuncture.org"
-    "federalregister.tenderapp.com"
-  ]
+  INTERNAL_DOMAINS = <%= Settings.external_modal_domain_whitelist %>
 
   constructor: (@click_event) ->
     if @click_event.target.localName == "a" && !@isInternalDomain(@click_event.target.href) && @isExternalUrl(@click_event.target.href) && @canShowModal()

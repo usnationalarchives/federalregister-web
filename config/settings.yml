@@ -4,6 +4,11 @@ canonical_host: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
 
 
+external_modal_domain_whitelist:
+  - "www.federalregister.gov"
+  - "fr2.criticaljuncture.org"
+  - "federalregister.tenderapp.com"
+
 feature_flags:
   events_search: false
   unified_agenda:
