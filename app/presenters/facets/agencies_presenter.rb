@@ -22,7 +22,7 @@ class Facets::AgenciesPresenter
     @agencies ||= document_counts.
       select{|facet| HIGHLIGHTED_AGENCIES.include?(facet.slug)}.
       map{|facet|
-        Agency.new(
+        AgencyPresenterFacet.new(
           name: facet.name,
           slug: facet.slug,
           document_count: facet.count,
@@ -35,7 +35,7 @@ class Facets::AgenciesPresenter
       sort_by(&:name)
   end
 
-  class Agency
+  class AgencyPresenterFacet
     vattr_initialize [
       :comment_count,
       :comment_count_search_conditions,
@@ -48,15 +48,15 @@ class Facets::AgenciesPresenter
 
   private
 
-  def document_counts
-    AgencyFacet.search(
-      QueryConditions::DocumentConditions.published_in_last(1.week)
-    )
-  end
-
   def comment_counts
     @comments_counts ||= AgencyFacet.search(
       QueryConditions::DocumentConditions.comment_period_closing_in(1.week)
+    )
+  end
+
+  def document_counts
+    @document_counts ||= AgencyFacet.search(
+      QueryConditions::DocumentConditions.published_in_last(1.week)
     )
   end
 end
