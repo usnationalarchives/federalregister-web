@@ -139,7 +139,9 @@ class CommentsController < ApplicationController
         @comment.secret = params[:comment][:secret]
 
         # replace line endings that cause char count problems
-        params[:comment]["general_comment"].gsub!(/\r\n/, "\n")
+        if params[:comment]["general_comment"].present?
+          params[:comment]["general_comment"].gsub!(/\r\n/, "\n")
+        end
 
         @comment.attributes = params[:comment]
       end
