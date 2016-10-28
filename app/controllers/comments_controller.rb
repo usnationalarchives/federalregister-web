@@ -70,16 +70,23 @@ class CommentsController < ApplicationController
       record_regulations_dot_gov_error(inner_exception)
 
       # show form to user but with message from regulations.gov
-      render_error_page(
-        parse_message(inner_exception.message, 'message')
-      )
+      regulation_dot_gov_error = parse_message(inner_exception.message)
+      message = regulation_dot_gov_error["message"]
+
+      if regulation_dot_gov_error["longFields"].present? &&
+        regulation_dot_gov_error["longFields"] == ["general_comment"]
+          message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
+      end
+      add_error_to_comment(message)
+      render_error_page
     end
   rescue RegulationsDotGov::Client::ResponseError => exception
     record_regulations_dot_gov_error(exception)
 
-    render_error_page(
+    add_error_to_comment(
       "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.document.comment_url, @comment.document.comment_url}"
     )
+    render_error_page
   end
 
   def persist_for_login
@@ -111,14 +118,14 @@ class CommentsController < ApplicationController
     @comment.update_attribute(:submission_key, "FR2-#{SecureRandom.hex}")
   end
 
-  def render_error_page(error=nil)
-    if error
-      @comment.errors.add(
-        :base,
-        error
-      )
-    end
+  def add_error_to_comment(error)
+    @comment.errors.add(
+      :base,
+      error
+    )
+  end
 
+  def render_error_page
     render :action => :new, :status => 422
   end
 
@@ -130,6 +137,10 @@ class CommentsController < ApplicationController
     begin
       if params[:comment]
         @comment.secret = params[:comment][:secret]
+
+        # replace line endings that cause char count problems
+        params[:comment]["general_comment"].gsub!(/\r\n/, "\n")
+
         @comment.attributes = params[:comment]
       end
     rescue => exception
