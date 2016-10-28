@@ -1,7 +1,7 @@
 $(document).ready ()->
   if $('#fulltext_content_area').length
 
-    if window.location.hash
+    if window.location.hash && window.location.hash != "#open-comment"
       paragraphTarget = $(window.location.hash)
 
       # ensure we scroll to the correct paragraph after webfont load
