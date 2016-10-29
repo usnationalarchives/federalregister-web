@@ -106,7 +106,7 @@ class @FR2.ClippingsFolderHandler
     # add appropriate params
     if @documentNumber
       data.push {
-        name: "folder[document_numbers]",
+        name: "folder[document_numbers][]",
         value: @documentNumber
       }
     else if @clippingIds
