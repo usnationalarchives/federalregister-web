@@ -30,6 +30,23 @@
     </div>
 
     <div class="<%= bootstrap_col xs: 3, md: 3 %> navigation">
+      <% if @presenter.rss_subscription_available? %>
+        <div class="doc-subscribe">
+          <div class="row">
+            <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+              <%= subscribe_box(
+                {},
+                {
+                  custom_path: reader_aids_section_path(@presenter.section_identifier, format: "rss"),
+                  class: "no-modal-action",
+                  rss_only: true
+                }
+              ) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
       <%= fr_details_box(
         FrBox.build(
           :reader_aid,
