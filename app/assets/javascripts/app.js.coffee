@@ -48,8 +48,7 @@ $(document).ready ()->
     FR2.Analytics.trackGAEvent category, action, documentNumber
 
   # Subcription modals
-  $('a.rss, a.subscription, a.subscription_action').on 'click', (e)->
-    return if $(this).hasClass("no-modal-action")
+  $('a.rss, a.subscription, a.subscription_action').not('.no-modal-action').on 'click', (e)->
     e.preventDefault()
 
     FR2.SubscriptionHandler.generateModal()
