@@ -13,6 +13,12 @@
     text-decoration: none;
     width: 130px;
 
+    &.rss-only {
+      position: relative;
+      top: 4px;
+      width: 100px;
+    }
+
     &.subscription:hover {
       background: none;
       color: $color-enhanced-dark !important;

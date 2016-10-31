@@ -20,13 +20,14 @@ module SubscriptionHelper
     ].join("\n").html_safe
   end
 
-  def subscribe_box(search_conditions={})
+  def subscribe_box(search_conditions={}, options={})
     render partial: 'components/subscribe_box', locals: {
+      options: options,
       search_conditions: search_conditions
     }
   end
 
-  def subscribe_link(search_conditions={}, options = {})
+  def subscribe_link(search_conditions={}, options={})
     if options[:custom_path]
       path = options[:custom_path]
     else
@@ -35,8 +36,8 @@ module SubscriptionHelper
       )
     end
 
-    link_to(path, class: "subscription subscription_action #{options[:class]}") do
-      "#{fr_icon('message') unless options[:custom_path]} #{fr_icon('rss')} Subscribe".html_safe
+    link_to(path, class: "subscription subscription_action #{options[:class]} #{'rss-only' if options[:rss_only]}") do
+      "#{fr_icon('message') unless options[:rss_only]} #{fr_icon('rss')} Subscribe".html_safe
     end
   end
 end
