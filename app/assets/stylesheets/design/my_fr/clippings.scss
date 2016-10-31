@@ -110,19 +110,19 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   margin-left: 12px;
   }
 
-#delete-folder-modal {
+.delete-folder-modal {
+  font-size: modular-scale(0);
+
   .icon-fr2.icon-fr2-trash_can {
-    position: relative;
-    top: -1px;
-    margin-right: 2px;
     font-size: 28px;
+    margin-right: 2px;
+    position: relative;
+    top: 4px;
   }
 
   .delete-folder-modal-button {
     float: right;
     margin: 12px 12px 12px 12px;
-    background-color: $fr-red;
-    color: white;
   }
 }
 

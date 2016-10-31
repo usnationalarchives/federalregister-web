@@ -1,16 +1,25 @@
-<div id="delete-folder-modal" class="modal">
-  <a href="#" class="jqmClose">Close</a>
-  <h3 class="title_bar"><span class="icon-fr2 icon-fr2-trash_can"></span>Delete Folder</h3>
-  {{#if numClippings}}
-    <p>
-      A folder can only be deleted if it is empty. There are currently
-      clippings in this folder.
-    </p>
-  {{else}}
-    <p>Are you sure you would like to delete this folder?</p>
+<h3 class="title_bar">
+  <%= fr_icon 'trash_can' %>
+  Delete Folder
+</h3>
 
-    <%= form_tag "/my/folders/{{folderSlug}}", :method => 'delete' do %>
-      <%= submit_tag "Yes, Delete", :class =>"fr_button medium delete-folder-modal-button" %>
+{{#if numClippings}}
+  <p>
+    A folder can only be deleted if it is empty. There are currently
+    clippings in this folder.
+  </p>
+{{else}}
+  <p>Are you sure you would like to delete this folder?</p>
+
+  <%= semantic_form_for :folder,
+    authenticity_token: false,
+    url: "/my/folders/{{folderSlug}}",
+    method: :delete do |f| %>
+
+    <%= f.buttons do %>
+      <%= f.commit_button 'Yes, Delete',
+        wrapper_html: {class: "fr_button medium danger delete-folder-modal-button"},
+        button_html: {class: "browser_reset"} %>
     <% end %>
-  {{/if}}
-</div>
+  <% end %>
+{{/if}}

@@ -1,10 +1,12 @@
 .wf-active .fr_button,
 .fr_button {
+  cursor: pointer;
   font-weight: normal;
   margin: 0;
   padding: 0;
   text-align: center;
-  cursor: pointer;
+
+  input:focus { outline: 0; }
 
   &.primary {
     background: $fr-green;
@@ -36,6 +38,17 @@
       color: $white;
     }
   }
+
+  &.danger {
+    background: $fr-red;
+    color: $white;
+
+    &:hover,
+    &.hover {
+      background: darken($fr-red, 10);
+    }
+  }
+
   &.disabled {
     color: $white;
 
