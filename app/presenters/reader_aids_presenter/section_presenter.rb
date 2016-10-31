@@ -12,7 +12,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
   RESULTS_PER_PAGE = 100 #seems to be max allowed by WP
 
-  SECTION_IDS_WITH_RSS_FEEDS = [
+  SECTION_SLUGS_WITH_RSS_FEEDS = [
     'office-of-the-federal-register-blog',
     'recent-updates',
   ]
@@ -155,7 +155,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def rss_subscription_available?
-    SECTION_IDS_WITH_RSS_FEEDS.include? section_identifier
+    SECTION_SLUGS_WITH_RSS_FEEDS.include? section_identifier
   end
 
   private
