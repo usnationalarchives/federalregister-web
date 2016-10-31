@@ -73,12 +73,19 @@ class DocumentIssuePresenter
   def page_count
     return @page_count if @page_count
 
-    sorted = documents.sort_by(&:start_page)
+    docs_with_start_pages, docs_without_start_pages = documents.partition{|x|
+      x.start_page.present?
+    }
 
-    if sorted.present? && sorted.last.end_page.present? && sorted.first.start_page.present?
-      @page_count = sorted.last.end_page - sorted.first.start_page + 1 #inclusive
-    else
+    if docs_without_start_pages.present?
       @page_count = nil
+    else
+      sorted = docs_with_start_pages.sort_by(&:start_page)
+      if sorted.last.end_page.present? # ensure we have an end_page
+        @page_count = sorted.last.end_page - sorted.first.start_page + 1 #inclusive
+      else
+        @page_count = nil
+      end
     end
   end
 
@@ -125,7 +132,7 @@ class DocumentIssuePresenter
 
   def documents
     return options[:documents] if options[:documents]
-    
+
     @documents ||= Document.search(
       search_conditions.deep_merge(
         per_page: 1000,
