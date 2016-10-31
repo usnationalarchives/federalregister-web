@@ -49,7 +49,7 @@ class WpApi::Content
     if excerpt
       doc = Nokogiri(excerpt)
       doc.at('a:contains("Continue reading")').try(:remove)
-      doc.text
+      doc.text.strip
     end
   end
 
