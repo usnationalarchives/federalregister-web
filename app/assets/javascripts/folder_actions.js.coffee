@@ -1,6 +1,6 @@
 $(document).ready ->
   $('#delete-folder').on 'click', (event)->
-    event.preventDefault();
+    event.preventDefault()
 
     folderData = {
       numClippings: $('#clippings li').size(),
