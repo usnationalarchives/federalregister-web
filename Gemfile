@@ -6,10 +6,10 @@ gem 'rake',  '0.9.2.2'
 gem 'mysql2', '0.3.18'
 gem 'honeybadger'
 
-#gem 'federal_register', '0.5.1'
+gem 'federal_register', '0.6.0'
 #gem 'federal_register', :path => '../federal_register'
-gem 'federal_register', :git => "git@github.com:criticaljuncture/federal_register.git",
-                        :ref => "officialness"
+#gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
+#                        :ref => "master"
 
 gem 'devise', '2.1.2'
 
@@ -25,7 +25,7 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'jquery-rails'
 gem 'underscore-rails', '~> 1.6.0'
 
-gem 'userstamp', :git => "git://github.com/delynn/userstamp.git",
+gem 'userstamp', :git => "https://github.com/delynn/userstamp.git",
                  :ref => "777633"
 
 gem "capistrano", '2.15.4', :require => false
@@ -43,7 +43,7 @@ gem "httmultiparty"
 
 # api caching
 gem 'SystemTimer', :platforms => :ruby_18
-gem 'cachebar', :git => "git@github.com:criticaljuncture/cachebar.git"
+gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
 gem 'redis', '~> 3.0.7'
 gem 'redis-namespace'
 
@@ -76,7 +76,7 @@ gem 'nokogiri', '~> 1.6.6'
 # make app wide settings easier
 gem 'rails_config'
 
-gem 'calendar_helper', :git => "git://github.com/criticaljuncture/calendar_helper.git",
+gem 'calendar_helper', :git => "https://github.com/criticaljuncture/calendar_helper.git",
                        :branch => "master"
 
 # parse more date formats when needed
