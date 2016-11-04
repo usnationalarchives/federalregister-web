@@ -18,3 +18,19 @@
     top: 3px;
   }
 }
+
+@media only screen and (min-width : 510px) and (max-width:768px) {
+  #tender_window {
+    max-width: 500px;
+    margin: 0 !important;
+    left: 0 !important;
+  }
+}
+
+@media only screen and (min-width:375px) and (max-width:510px) {
+  #tender_window {
+    max-width: 360px;
+    margin: 0 !important;
+    left: 0 !important;
+  }
+}
