@@ -1,12 +1,12 @@
 #tender {
   background-color: $fr-dark-blue;
-  border-bottom: 0;
   border: 2px solid $fr-gray-20;
+  border-bottom: 0;
   color: $white;
   display: block;
   padding: 5px 10px 8px;
-  position: absolute;
-  right: -59px;
+  position: fixed;
+  right: -51px;
   top: 200px;
   transform: rotate(-90deg);
   z-index: 5000;
