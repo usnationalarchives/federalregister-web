@@ -400,7 +400,7 @@
   }
 }
 
-@media only screen and (min-width:400px) and (max-width:510px) {
+@media only screen and (min-width:375px) and (max-width:510px) {
   $max-modal-width: 300px;
   .fr-modal {
     width: $max-modal-width;
