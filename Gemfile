@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'hoe', '~> 3.15', '>= 3.15.2' # TODO: needed for bundler to run in docker but we shouldn't have to specify it explicitely
+
 gem 'rails', '3.2.22.5'
-gem 'rake',  '0.9.2.2'
+gem 'rake'
 
 gem 'mysql2', '0.3.18'
 gem 'honeybadger'
@@ -100,6 +102,9 @@ gem 'memoist'
 group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier'
+
+  #ensure connections to missing db don't cause precompilation to fail
+  gem "activerecord-nulldb-adapter"
 end
 
 # group :staging do
