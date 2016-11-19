@@ -114,7 +114,7 @@ describe "XSLT::FullText::Images" do
     context "presidential signatures" do
       before :all do
         @xslt_vars = {
-          'images' => "OB#1.EPS,https://example.com/OB%231.EPS/original_png.png?1278291883"
+          'images' => "OB#1.EPS,https://example.com/OB%231.EPS/original.png?1278291883"
         }
       end
 
@@ -126,7 +126,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://example.com/OB%231.EPS/original_png.png?1278291883"
+          href: "https://example.com/OB%231.EPS/original.png?1278291883"
         }
       end
 
@@ -138,7 +138,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'img', with: {
-          src: "https://example.com/OB%231.EPS/original_png.png?1278291883"
+          src: "https://example.com/OB%231.EPS/original.png?1278291883"
         }
       end
     end
@@ -206,11 +206,11 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original_png.png"
+          href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
 
         expect(html).to have_tag 'img', with: {
-          src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original_png.png"
+          src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
       end
     end

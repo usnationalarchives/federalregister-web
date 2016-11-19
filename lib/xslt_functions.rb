@@ -120,7 +120,7 @@ class XsltFunctions
       # Stub out url with expected image such that when it's available
       # we don't need to reprocess. This will break if images url is not
       # the expected one (eg changes at some point in future)
-      url = graphic_url('original_png', graphic_identifier)
+      url = graphic_url('original', graphic_identifier)
     end
 
     Nokogiri::XML::Builder.with(document) do |doc|
