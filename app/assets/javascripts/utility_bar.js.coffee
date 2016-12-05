@@ -11,6 +11,8 @@ $(document).ready ()->
         el.removeClass('open')
     )
 
+    new FR2.DocumentTableOfContents('ul.doc-nav > li.doc-toc')
+
     $('ul.doc-nav > li').click (e)->
       # this shouldn't be neccessary but is for some reason...
       if e.toElement.tagName != 'A'

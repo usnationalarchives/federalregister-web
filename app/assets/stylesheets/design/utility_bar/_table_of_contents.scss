@@ -1,16 +1,54 @@
-.doc .doc-nav-wrapper .doc-nav > li .dropdown-menu.fr-box .content-block {
-  ul.table-of-contents {
-    @include custom-bullets($color-enhanced, "19px");
+.doc .doc-nav-wrapper .doc-nav {
 
-    max-height: 300px;
-    overflow: scroll;
+  &.toc-open-lock {
+    top: 0 !important;
+    transition: top 0.5s ease 0s;
+  }
 
-    li {
-      &::before { padding-right: 10px; }
+  &.toc-open-lock-removed-transition {
+    transition: top 0.5s ease 0s;
+  }
 
-      &.level-2 { margin-left: 15px; }
-      &.level-3 { margin-left: 30px; }
-      &.level-4 { margin-left: 45px; }
+  // need to override hover actions when locking the menu open
+  .doc-toc {
+    &.open-lock {
+      background-color: $utility-nav-hover-background;
+      border-top: 2px solid $color-enhanced !important;
+      color: $color-enhanced;
+
+      ul.table-of-contents {
+        max-height: 175px !important;
+        transition: max-height 0.5s ease 0s;
+
+        &.interacting { max-height: 300px !important; }
+      }
+    }
+
+    .dropdown-menu.fr-box.doc-toc-wrapper {
+      width: 625px;
+
+      .content-block ul li { margin: 3px 0; }
+    }
+
+    .dropdown-menu.open-lock {
+      display: block !important;
+    }
+  }
+
+  > li .dropdown-menu.fr-box .content-block {
+    ul.table-of-contents {
+      @include custom-bullets($color-enhanced, "19px");
+
+      max-height: 300px;
+      overflow: scroll;
+
+      li {
+        &::before { padding-right: 10px; }
+
+        &.level-2 { margin-left: 15px; }
+        &.level-3 { margin-left: 30px; }
+        &.level-4 { margin-left: 45px; }
+      }
     }
   }
 }
