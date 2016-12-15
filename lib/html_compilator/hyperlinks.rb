@@ -7,7 +7,7 @@ class HtmlCompilator::Hyperlinks < HtmlCompilator
 
   def compile
     if File.exists? file_path
-      Hyperlinker.perform(File.read(file_path))
+      Hyperlinker.perform(File.read(file_path), {date: date})
     else
       raise MissingXmlFile, file_path
     end
