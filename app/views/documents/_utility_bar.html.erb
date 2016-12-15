@@ -31,15 +31,21 @@
     </li> -->
 
     <% if document.full_text_available? %>
-      <li class="enhanced doc-toc">
+      <li class="enhanced">
         <i class="icon-fr2 icon-fr2-bulleted-list" role="button" data-toggle="dropdown"></i>
         <%= fr_utility_nav_box(
           FrBox.build(
             :enhanced_content,
-            title: "Enhanced Content - Table of Contents",
-            box_html: {class: 'doc-toc-wrapper'}
+            title: "Enhanced Content - Table of Contents"
           )
         ) do %>
+          <p>
+            This tables of contents is a navigational tool, processed from the
+            headings within the legal text of Federal Register documents.
+            This repetition of headings to form internal navigation links
+            has no substantive legal effect.
+          </p>
+
           <% if Settings.render_documents_from_raw_xml %>
             <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
           <% elsif Settings.render_documents_from_staging %>

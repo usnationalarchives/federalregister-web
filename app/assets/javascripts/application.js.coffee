@@ -37,7 +37,6 @@
 #= require public_inspection
 #= require utility_bar
 #= require documents/utility_bar/document_tools
-#= require documents/utility_bar/table_of_contents
 #= require documents/missing_image
 #= require documents/paragraph_citation
 
