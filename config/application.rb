@@ -97,11 +97,16 @@ module MyFr2
       *.ttf
       *.woff
 
+      admin/highlighted_documents.js
+      utilities/modal.js
+
+
       clippy.swf
 
       Barack_Obama_sm.jpg
       Bill_Clinton_sm.jpg
       George_W_Bush_sm.jpg
+      Donald_Trump_sm.jpg
 
       doc_preview.png
 
