@@ -11,8 +11,8 @@ varnish:
   enable_cache_headers: true
   ignore_paths: ""
 federal_register:
-  api_url: 'https://fr-official.criticaljuncture.org/api/v1'
-  base_uri: 'https://fr-official.criticaljuncture.org'
+  # api_url: 'https://www.federalregister.gov/api/v1'
+  # base_uri: 'https://www.federalregister.gov'
 regulations_dot_gov:
   debug_output_enabled: true
 
