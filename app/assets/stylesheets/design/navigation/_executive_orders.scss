@@ -70,6 +70,10 @@
     }
   }
 
+  .donald-trump .photo {
+    background: transparent asset-url('presidential_photos/Donald_Trump_sm.jpg', 'image') 0 0 no-repeat;
+  }
+
   .barack-obama .photo {
     background: transparent asset-url('presidential_photos/Barack_Obama_sm.jpg', 'image') 0 0 no-repeat;
   }
