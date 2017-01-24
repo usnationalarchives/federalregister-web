@@ -58,8 +58,6 @@ GEM
       activesupport (= 3.2.22.5)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-nulldb-adapter (0.3.5)
-      activerecord (>= 2.0.0)
     activeresource (3.2.22.5)
       activemodel (= 3.2.22.5)
       activesupport (= 3.2.22.5)
@@ -90,12 +88,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (1.0.10)
-      capybara (>= 1.0, < 3)
-      launchy
-    capybara-webkit (1.6.0)
-      capybara (>= 2.3.0, < 2.5.0)
-      json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -545,15 +537,12 @@ PLATFORMS
 DEPENDENCIES
   SystemTimer
   active_hash
-  activerecord-nulldb-adapter
   attr_extras (~> 3.2.0)
   bootstrap-sass (~> 3.0.3.0)
   cachebar!
   calendar_helper!
   capistrano (= 2.15.4)
   capybara
-  capybara-screenshot
-  capybara-webkit
   carrierwave (= 0.10.0)
   chronic (~> 0.10.2)
   cocaine

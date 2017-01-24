@@ -122,8 +122,8 @@ group :development, :test do
   if RUBY_VERSION == '1.9.3'
     gem 'zeus'
     gem 'capybara'
-    gem 'capybara-webkit'
-    gem 'capybara-screenshot'
+    #gem 'capybara-webkit'
+    #gem 'capybara-screenshot'
   end
 
   gem 'database_cleaner'
