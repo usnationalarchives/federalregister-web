@@ -19,7 +19,7 @@ class Search::DocumentsController < ApplicationController
           redirect_to documents_search_api_url(
             shared_search_params.merge(
               conditions: params[:conditions],
-              per_page: 500
+              per_page: 1000
             ),
             format: :csv
           )
