@@ -29,7 +29,7 @@
     <% if presenter.date_last_issue_published %>
       <p>
         This online index is current as of
-        <strong><%= presenter.date_last_issue_published.to_s(:shorter_ordinal) %></strong>.
+        <strong><%= presenter.date_last_issue_published.to_s(:month_day_year) %></strong>.
       </p>
     <% end %>
 
@@ -43,7 +43,7 @@
     <%# </p> %>
 
     <hr>
-    
+
     <p>
       Jump to Agencies:
       <%= presenter.agency_representations_by_first_letter.keys.map{

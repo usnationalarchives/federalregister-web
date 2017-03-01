@@ -7,7 +7,7 @@
     </span>
     <%= link_to document.title, document.html_url, :class => "fr-link" %>
     <span class="fr-doc-date">
-      <%= document.publication_date.to_s(:formal) %>
+      <%= document.publication_date.to_s(:formal_wo_ordinal) %>
     </span>
   </li>
 <% end %>

@@ -16,9 +16,9 @@ module DocumentDecorator::Shared
     agencies.to_sentence.html_safe
   end
 
-  # Tuesday, December 17th, 2013
+  # Tuesday, December 17, 2013
   def formal_publication_date
-    publication_date.to_s(:formal)
+    publication_date.to_s(:formal_wo_ordinal)
   end
 
   def shortened_abstract(length=500)

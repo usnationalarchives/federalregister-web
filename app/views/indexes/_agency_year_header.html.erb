@@ -27,7 +27,7 @@
     <p>
       <% if presenter.year == Date.current.strftime("%Y").to_i %>
         As of
-        <strong><%= DocumentIssue.current.publication_date.to_s(:shorter_ordinal) %></strong>
+        <strong><%= DocumentIssue.current.publication_date.to_s(:month_day_year) %></strong>
         the
         <%= presenter.agency_name %> has published
         <%= pluralize presenter.total_document_count, "document" %>

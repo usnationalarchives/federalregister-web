@@ -32,7 +32,7 @@ class DocumentDecorator < ApplicationDecorator
 
   # Dec 17th, 2013
   def shorter_ordinal_signing_date
-    signing_date.to_s(:shorter_ordinal)
+    signing_date.to_s(:short_month_day_year)
   end
 
   # Page Count/Range methods
