@@ -66,8 +66,36 @@
     </p>
   </xsl:template>
 
+  <xsl:template match="FP[@SOURCE='FP1' and not(starts-with(text(),'&#x2022;'))]">
+    <p class="flush-paragraph flush-paragraph-1 flush-left">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
   <xsl:template match="FP[@SOURCE='FP-2' and not(starts-with(text(),'&#x2022;'))]">
     <p class="flush-paragraph flush-paragraph-2">
+      <xsl:attribute name="id">
+        <xsl:call-template name="paragraph_id" />
+      </xsl:attribute>
+
+      <xsl:attribute name="data-page">
+        <xsl:call-template name="printed_page" />
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="FP[@SOURCE='FP2' and not(starts-with(text(),'&#x2022;'))]">
+    <p class="flush-paragraph flush-paragraph-2 flush-left">
       <xsl:attribute name="id">
         <xsl:call-template name="paragraph_id" />
       </xsl:attribute>

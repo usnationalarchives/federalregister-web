@@ -58,6 +58,17 @@ describe "XSLT::FullText::Paragraphs" do
         end
     end
 
+    it 'renders <FP SOURCE="FP2"> tags with a class of "flush-paragraph flush-paragraph-2 flush-left"' do
+      process <<-XML
+        <FP SOURCE="FP2">(a) Some document text</FP>
+      XML
+
+      expect(html).to have_tag("p",
+        with: {class: 'flush-paragraph flush-paragraph-2 flush-left'}) do
+          with_text "(a) Some document text"
+        end
+    end
+
     it 'renders <FP SOURCE="FP1-2"> tags with a class of "flush-paragraph flush-paragraph-1-2"' do
       process <<-XML
         <FP SOURCE="FP1-2">A. Historical Overview of the IRF PPS</FP>
@@ -77,6 +88,17 @@ describe "XSLT::FullText::Paragraphs" do
       expect(html).to have_tag("p",
         with: {class: 'flush-paragraph flush-paragraph-1'}) do
           with_text "The Social Security Act"
+        end
+    end
+
+    it 'renders <FP SOURCE="FP1"> tags with a class of "flush-paragraph flush-paragraph-1 flush-left"' do
+      process <<-XML
+        <FP SOURCE="FP1">(i) Some document text</FP>
+      XML
+
+      expect(html).to have_tag("p",
+        with: {class: 'flush-paragraph flush-paragraph-1 flush-left'}) do
+          with_text "(i) Some document text"
         end
     end
 

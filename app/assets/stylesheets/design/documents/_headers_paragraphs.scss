@@ -25,6 +25,8 @@
         text-indent: -1.15em;
       }
 
+      &.flush-left { text-indent: 0; }
+
       &.flush-paragraph-dash {
         &:after {
           content: "_____________________________________________________________";
