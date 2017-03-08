@@ -82,7 +82,7 @@
   var visible = false;
   var initialized = false;
   var host = getHost();
-  if (!host || host === "") host = "https://help.tenderapp.com/";
+  if (!host || host === "") host = "https://federalregister.tenderapp.com/";
 
   var showWidget = function(){
     if( articlePage() ) {
