@@ -87,7 +87,7 @@ describe "XSLT::FullText::Subject" do
         <E T="03">Section 1026.32-Requirements for High-Cost Mortgages,</E>
       </AMDPAR>
     XML
-puts html
+
     expect(html).to have_tag('p.amendment-part#p-amd-1') do
       with_text /1\. The authority citation/
     end
