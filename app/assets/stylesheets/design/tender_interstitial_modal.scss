@@ -1,20 +1,19 @@
 .tender_interstitial_modal {
-  line-height: 1.5em;
-  font-size: 13px;
+  line-height: 20px;
+  font-size: modular-scale(0);
 
-  .title_bar { 
+  .title_bar {
     text-align: center;
     border-bottom: 2px solid $fr_dark_blue;
-    line-height: 0.8em;
   }
 
   .info {
-    text-align: center;
-    font-size: 12px;
-    line-height: 16px;
-    border-bottom: $fr-gray-20 1px solid;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
+    text-align: left;
+    font-size: modular-scale(0);
+    line-height: 20px;
+    border-bottom: 1px solid $fr-gray-20;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   .site_feedback,
@@ -23,11 +22,12 @@
     float: left;
     height: 265px;
     padding-top: 10px;
+    line-height: 20px;
 
-    p { text-align: center; }
+    p { height: 110px; }
   }
 
-  .site_feedback { 
+  .site_feedback {
     border-right: 1px solid $fr-gray-20;
     padding-right: 20px;
     margin-left: 10px;
@@ -46,13 +46,14 @@
     color: $white;
     background-color: $fr-blue;
     width: 70%;
-    height: 100px;
+    height: 130px;
     text-align: center;
     margin-left: 20px;
     margin-top: 10px;
-    @include border-radius(12);
+    border-radius: 12px;
+    padding-top: 5px;
 
-    &:hover { 
+    &:hover {
       background-color: $fr_bright_orange;
       cursor: pointer;
     }
@@ -64,17 +65,12 @@
 
     .icon-fr2 {
       font-size: 100px;
-      top: -15px;
     }
     .button_title {
-      top: -20px;
       position: relative;
     }
   }
 
   .site_feedback .button { margin-left: 27px; }
-  .document_feedback .button { 
-    margin-left: 35px;
-    margin-top: 29px;
-  }
+  .document_feedback .button { margin-left: 35px; }
 }
