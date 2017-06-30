@@ -39,12 +39,19 @@
         <p class="metadata">
           by <%= document.agency_name_sentence %>
           <% if type == :public_inspection %>
-            scheduled for publication
+            <% if document.publication_date.present? %>
+              scheduled for publication on <%= document.publication_date %>.
+            <% end %>
+          <% else %>
+            on <%= link_to document.publication_date, document_issue_path(document) %>.
           <% end %>
-          on
-          <%= link_to_unless type == :public_inspection, document.publication_date,
-            document_issue_path(document) %>.
         </p>
+
+        <% if type == :public_inspection && document.editorial_note.present? %>
+          <p class="editorial-note">
+            <strong>Editorial Note:</strong> <%= document.editorial_note %>
+          </p>
+        <% end %>
 
         <%# multiple pages use this shared result partial but not all provide a search or have an abstract %>
         <% if (search &&

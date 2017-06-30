@@ -84,6 +84,12 @@
 
         &:hover { color: $color-public-inspection-dark; }
       }
+
+      .editorial-note {
+        margin-top: 10px;
+
+        strong { font-weight: 400; }
+      }
     }
 
     .document-clipping-actions {

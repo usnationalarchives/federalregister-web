@@ -9,6 +9,7 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
   def self.search_fields
     [
       :agencies,
+      :editorial_note,
       :excerpts,
       :filing_type,
       :html_url,
