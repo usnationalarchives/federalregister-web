@@ -33,6 +33,8 @@ class XsltFunctions
   end
 
   def list_of_subjects(nodes)
+    return blank_document.children unless nodes.present?
+    
     topics = ListOfSubjectsTopicParser.parse(nodes.first.content)
 
     document = blank_document

@@ -36,6 +36,36 @@ describe "XSLT::FullText::ListOfSubjects" do
         end
       end
     end
+
+    it "creates properly ignores empty P tags" do
+      process <<-XML
+        <LSTSUB>
+          <HD SOURCE="HED">List of Subjects in 9 CFR Part 78</HD>
+          <P/>
+          <P>Animal diseases, Bison, Cattle.</P>
+        </LSTSUB>
+      XML
+
+      # header
+      expect(html).to have_tag("h1") do
+        with_text "List of Subjects in 9 CFR Part 78"
+      end
+
+      # list items
+      expect(html).to have_tag("ul.subject-list") do
+        with_tag("li") do
+          with_text "Animal diseases"
+        end
+
+        with_tag("li") do
+          with_text "Bison"
+        end
+
+        with_tag("li") do
+          with_text "Cattle"
+        end
+      end
+    end
   end
 
   context "multiple CFR pars affected" do
