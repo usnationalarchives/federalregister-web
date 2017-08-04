@@ -12,6 +12,6 @@ class WpApi::SearchResult
   end
 
   def display_term
-    term.html_safe
+    term
   end
 end
