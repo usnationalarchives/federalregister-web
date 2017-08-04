@@ -18,7 +18,7 @@
   </p>
 </div>
 
-<% if document.has_comments? %>
+<% if document.comments_close_on.present? && document.has_comments? %>
   <p class="reg-gov-comments-count">
     Read the
     <%= link_to pluralize(document.comment_count, 'public comment'),
