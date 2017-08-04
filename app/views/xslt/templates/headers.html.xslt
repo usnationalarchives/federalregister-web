@@ -19,6 +19,9 @@
       <xsl:when test="translate(text(),' ','') = 'ADDRESSES:'">
         <xsl:text>addresses</xsl:text>
       </xsl:when>
+      <xsl:when test="translate(text(),' ','') = 'FOR FURTHER INFORMATION CONTACT:'">
+        <xsl:text>further-info</xsl:text>
+      </xsl:when>
       <xsl:otherwise>
         <!--  this number is based off the preceeding number of headers in the
               XML not the preceeding number if headers we display in the html,
