@@ -83,3 +83,11 @@ $(document).ready ->
       event.preventDefault()
       emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
       emailAFriend.display()
+
+    commentButton = $('#start_comment')
+    if commentButton.size() > 0
+      if $('#addresses').size() == 0
+        if $('#further-info').size() == 0
+          commentButton.remove()
+        else
+          commentButton.attr('href', '#furinf')
