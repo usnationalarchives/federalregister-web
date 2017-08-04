@@ -74,12 +74,12 @@ $(document).ready ->
         window.history.back()
     )
 
-  # utility nav items
-  $('.doc-nav-wrapper a#display-unprinted-elements').on 'click', (event)->
-    event.preventDefault()
-    FR2.DocumentTools.toggleNonPrintedElements $(this)
+    # utility nav items
+    $('.doc-nav-wrapper a#display-unprinted-elements').on 'click', (event)->
+      event.preventDefault()
+      FR2.DocumentTools.toggleNonPrintedElements $(this)
 
-  $('.doc-nav-wrapper a#email-a-friend').on 'click', (event)->
-    event.preventDefault()
-    emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
-    emailAFriend.display()
+    $('.doc-nav-wrapper a#email-a-friend').on 'click', (event)->
+      event.preventDefault()
+      emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
+      emailAFriend.display()
