@@ -1,0 +1,15 @@
+.bundle
+bin/*
+log/
+tmp/
+.sass-cache/
+public/assets
+spec/vcr/*.yml
+
+vcr/*
+
+config/varnish.development.vcl
+
+node_modules/*
+
+.env
