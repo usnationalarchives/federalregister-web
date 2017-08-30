@@ -84,7 +84,10 @@ class @FR2.HighlightedDocuments
       @removePhotoGrid()
 
       $.ajax({
-        url: "/admin/photo_candidates/#{@photoForm.find('input[type=text]').val()}"
+        url: "/admin/photo_candidates/#{@photoForm.find('input[type=text]').val()}",
+        data: {
+          search_scope: @photoForm.find('input[name=search_scope]:checked').val() || true
+        }
       }).success (photos)=>
         @photos = photos
         @removePhotosLoading()
