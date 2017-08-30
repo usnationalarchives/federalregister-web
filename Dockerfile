@@ -11,21 +11,20 @@ RUN apt-get update && apt-get install -y build-essential libcurl4-openssl-dev li
 
 # rack version compatible with 1.9.3
 RUN gem install rack --version 1.6.4
-RUN gem install passenger --version 5.0.30
+RUN gem install passenger --version 5.1.6
+RUN gem install rake --version 11.3.0
 RUN passenger-config install-standalone-runtime &&\
   passenger-config build-native-support &&\
   passenger start --runtime-check-only
 
 RUN ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
-RUN gem install bundler
-
 COPY docker/web/service/web/run /etc/service/web/run
 COPY docker/web/my_init.d /etc/my_init.d
 
 RUN adduser app -uid 1000 --system
 
-RUN gem install bundler
+RUN gem install bundler --version 1.13.6
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
@@ -37,7 +36,7 @@ COPY . /home/app/
 
 WORKDIR /home/app
 
-RUN DB_ADAPTER=nulldb RAILS_ENV=production rake assets:precompile &&\
+RUN DB_ADAPTER=nulldb RAILS_ENV=production bundle exec rake assets:precompile &&\
   chown -R app /home/app
 
 ENV TERM=linux

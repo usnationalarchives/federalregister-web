@@ -112,7 +112,7 @@ end
 # end
 
 group :development do
-  gem 'passenger', '~> 5.0.10'
+  gem 'passenger', '~> 5.1.6'
 end
 
 group :development, :test do
