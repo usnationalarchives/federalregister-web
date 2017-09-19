@@ -1,6 +1,8 @@
 module DocumentDecorator::RegulationsDotGovInfo
   def display_regulations_dot_gov_enhanced_content?
-    regulations_dot_gov_info.present? && regulations_dot_gov_info_displayable_attributes?
+    regulations_dot_gov_info.present? &&
+      !regulations_dot_gov_in_default_docket? &&
+      regulations_dot_gov_info_displayable_attributes?
   end
 
   def regulations_dot_gov_info_displayable_attributes?
@@ -13,7 +15,7 @@ module DocumentDecorator::RegulationsDotGovInfo
     ]
 
     displayable = []
-    
+
     displayable_attributes.each do |attr|
       if attr.is_a?(Array)
         displayable << attr.all?{|a| regulations_dot_gov_info[a].present?}
@@ -23,5 +25,11 @@ module DocumentDecorator::RegulationsDotGovInfo
     end
 
     displayable.any?{|boolean| boolean == true}
+  end
+
+  # default dockets end in _0001, eg: CMS_FRDOC_0001
+  def regulations_dot_gov_in_default_docket?
+    regulations_dot_gov_info["docket_id"].present? &&
+      regulations_dot_gov_info["docket_id"].match(/_0001/)
   end
 end

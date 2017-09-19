@@ -57,7 +57,8 @@ class @FR2.SearchTabCount
     options = {
       callback: @getResultCount,
       wait: 350,
-      captureLength: 3
+      captureLength: 3,
+      highlight: false
     }
 
     @searchForm

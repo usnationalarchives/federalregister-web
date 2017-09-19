@@ -39,18 +39,20 @@
             </ul>
           <% end %>
 
-          <h3 class="with-icon">
-            <%= fr_icon 'quote' %>
-            Office of the Federal Register Blog
-          </h3>
-          <ul class="fr-list">
-            <% @search_presenter.posts.each do |post| %>
-              <li>
-                <h5><%= link_to post.formatted_title, post.path %></h5>
-                <%= post.formatted_excerpt %>
-              </li>
-            <% end %>
-          </ul>
+          <% if @search_presenter.posts.present? %>
+            <h3 class="with-icon">
+              <%= fr_icon 'quote' %>
+              Office of the Federal Register Blog
+            </h3>
+            <ul class="fr-list">
+              <% @search_presenter.posts.each do |post| %>
+                <li>
+                  <h5><%= link_to post.formatted_title, post.path %></h5>
+                  <%= post.formatted_excerpt %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
       <% end %>
     </div>

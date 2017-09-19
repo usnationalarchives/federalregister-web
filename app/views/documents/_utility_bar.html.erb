@@ -103,7 +103,7 @@
 
     <li class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
-        <% if document.comment_count && document.public_comments_url %>
+        <% if document.comments_close_on.present? && document.comment_count && document.public_comments_url %>
           <span class="comment_count"><%= document.comment_count %></span>
         <% end %>
       </i>
