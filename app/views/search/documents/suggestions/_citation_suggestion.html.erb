@@ -29,17 +29,36 @@
         </ul>
       </div>
     <% else %>
-      <p>
-        We were unable to find any documents with that citation.
-        FederalRegister.gov covers documents published starting in January of 1994
-        (volumes 59-current).
-      </p>
-      <p>
-        Documents published before 1993 (Volumes 1-58) may be available online at
-        <a href='https://www.govinfo.gov/app/collection/fr'>govinfo.gov</a>
-        or via a
-        <a href='https://catalog.gpo.gov/fdlpdir/public.jsp' class='external'>Federal Depository Library</a>.
-      </p>
+      <% archives_citation = FrArchivesCitation.new(citation_suggestion.volume, citation_suggestion.page) %>
+
+      <% if archives_citation.before_archives? %>
+        <p>
+          Older volumes may be available online at
+          <a href='https://www.govinfo.gov/app/collection/fr'>govinfo.gov</a>
+          or via a
+          <a href="https://catalog.gpo.gov/fdlpdir/public.jsp" class="external">Federal Depository Library</a>.
+        </p>
+      <% end %>
+
+      <% if archives_citation.pdf_url %>
+        <ul>
+          <li class="result-item">
+            <h5>
+              <%= link_to sanitize(
+                    citation_suggestion.name,
+                    tags: %w(span),
+                    attributes: %w(class)
+                  ),
+                  archives_citation.pdf_url %>
+            </h5>
+          </li>
+        </ul>
+      <% else %>
+        <p>
+          We were unable to find any documents with that citation.
+        </p>
+      <% end%>
+      
     <% end %>
   </div>
 </div>
