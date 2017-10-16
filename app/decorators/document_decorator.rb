@@ -10,7 +10,6 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::GovernmentPublishingOffice
   include DocumentDecorator::Officialness
   include DocumentDecorator::RegulationsDotGovInfo
-  include DocumentDecorator::FrArchives
 
   def slug
     html_url.split('/').last
