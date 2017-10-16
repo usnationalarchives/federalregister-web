@@ -81,11 +81,7 @@ module Hyperlinker::Citation
   def self.add_federal_register_links(text)
     Hyperlinker.replace_text(text, /(\d+)\s+FR\s+(\d+)/) do |match|
       volume, page = match.captures
-      if volume.to_i >= 60 # we have 59, but not the page numbers so this feature doesn't help
-        content_tag(:a, match.to_s, :href => citation_path(volume,page))
-      else
-        match.to_s
-      end
+      content_tag(:a, match.to_s, :href => citation_path(volume,page))
     end
   end
 
