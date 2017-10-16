@@ -8,7 +8,7 @@
 <%= bootstrap_context_wrapper do %>
   <div class="row citation">
     <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-      <% if @documents %>
+      <% if @documents && @error.nil? %>
         <%= flash_message :success do %>
           Multiple documents found for the citation
           <span class="citation"><%= @volume %> FR <%= @page %></span>.
@@ -37,23 +37,8 @@
         </ul>
       <% else %>
         <%= flash_message :error do %>
-          No documents found with citation
+          <%= @error %>
           <span class="citation"><%= @volume %> FR <%= @page %></span>.
-        <% end %>
-
-        <% if @volume.to_i < 60 %>
-          <p>
-            FederalRegister.gov contains documents from 1994-present, but only
-            contains citation information for documents published from 1995-present
-            (volume <strong>60</strong> or later).
-          </p>
-
-          <p>
-            Older volumes may be available online at
-            <a href='https://www.govinfo.gov/app/collection/fr'>govinfo.gov</a>
-            or via a
-            <a href='https://catalog.gpo.gov/fdlpdir/public.jsp' class='external'>Federal Depository Library</a>.
-          </p>
         <% end %>
       <% end %>
     </div>

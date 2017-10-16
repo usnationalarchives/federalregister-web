@@ -21,7 +21,16 @@ class CitationsController < ApplicationController
     when 0
       # none found
     when 1
-      redirect_to short_document_path(document_numbers.first)
+      citation = FrArchivesCitation.new(@volume, @page)
+      if citation.after_archives?
+        redirect_to short_document_path(document_numbers.first)
+      elsif citation.pdf_url
+        redirect_to citation.pdf_url
+      elsif citation.before_archives?
+        @error = "Older volumes may be available through a <a href='https://catalog.gpo.gov/fdlpdir/public.jsp' class='external'> Federal Depository Library</a>.".html_safe
+      else
+        @error = 'No documents found with citation'
+      end
     else
       @documents = DocumentDecorator.decorate_collection Document.find_all(document_numbers)
     end
