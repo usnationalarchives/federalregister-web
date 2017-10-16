@@ -1,5 +1,5 @@
 class Citation
-  attr_reader :document_numbers, :public_inspection
+  attr_reader :document_numbers, :public_inspection, :volume, :page
 
   PATTERN = /(\d+)\s+(?:CFR|C\.F\.R\.)\s+(?:[Pp]arts?|[Ss]ections?|[Ss]ec\.|&#xA7;|&#xA7;\s*&#xA7;)?\s*(\d+)(?:\.(\d+))?/
 
@@ -16,6 +16,8 @@ class Citation
     options = options || {}
     @document_numbers = options["document_numbers"] || []
     @public_inspection = options["public_inspection"].try(:[], "count")
+    @volume            = options["volume"]
+    @page              = options["page"]
   end
 
   def matching_fr_entries
