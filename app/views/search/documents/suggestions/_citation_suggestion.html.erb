@@ -45,12 +45,18 @@
           <li class="result-item">
             <h5>
               <%= link_to sanitize(
-                    citation_suggestion.name,
+                    "#{citation_suggestion.name} (Optimized Version #{number_to_human_size(archives_citation.optimized_file_size)})",
                     tags: %w(span),
                     attributes: %w(class)
                   ),
                   archives_citation.pdf_url %>
             </h5>
+            <div class="result-info">
+              <p class="excerpts">
+                <%= link_to "#{citation_suggestion.name} (Full Government Publishing Office Version #{number_to_human_size(archives_citation.original_file_size)})",
+                      archives_citation.gpo_url %>
+              </p>
+            </div>
           </li>
         </ul>
       <% else %>
