@@ -13,6 +13,18 @@ class FrArchivesCitation
     end
   end
 
+  def gpo_url
+    response["gpo_url"]
+  end
+
+  def original_file_size
+    response["original_file_size"]
+  end
+
+  def optimized_file_size
+    response["optimized_file_size"]
+  end
+
   def before_archives?
     (response.code == 404) && is_before_archives
   end
