@@ -105,12 +105,8 @@ describe Hyperlinker::Citation do
   end
 
   describe 'Federal Register citations' do
-    it "links post 1994 FR citations to this site" do
+    it "links all FR citations to this site" do
       expect(hyperlink('60 FR 1000')).to eq '<a href="/citation/60-FR-1000">60 FR 1000</a>'
-    end
-
-    it "does nothing with pre-1994 FR citations" do
-      expect(hyperlink('10 FR 1000')).to eq '10 FR 1000'
     end
   end
 
