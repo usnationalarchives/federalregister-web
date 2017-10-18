@@ -22,7 +22,7 @@ class FrArchivesCitation
   end
 
   def optimized_file_size
-    response["optimized_file_size"]
+    response["slice_file_size"]
   end
 
   def before_archives?
