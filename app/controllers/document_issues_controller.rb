@@ -17,7 +17,8 @@ class DocumentIssuesController < ApplicationController
 
   def search
     cache_for 1.day
-    date = Chronic.parse(params[:date]).to_date
+
+    date = Chronic.parse(params[:date]).try(:to_date)
 
     if date
       redirect_to document_issue_path(date)
