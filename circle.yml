@@ -59,4 +59,4 @@ test:
   override:
     - bundle exec rspec spec --tag ~no_ci --tag ~reg_gov
     - bundle exec rake jshint
-    - coffeelint -r app/assets/javascripts/
+    - coffeelint -f coffeelint.json -r app/assets/javascripts/
