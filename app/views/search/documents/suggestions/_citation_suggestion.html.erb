@@ -38,9 +38,7 @@
           or via a
           <a href="https://catalog.gpo.gov/fdlpdir/public.jsp" class="external">Federal Depository Library</a>.
         </p>
-      <% end %>
-
-      <% if archives_citation.pdf_url %>
+      <% elsif archives_citation.pdf_url %>
         <ul>
           <li class="result-item">
             <h5>
@@ -64,7 +62,7 @@
           We were unable to find any documents with that citation.
         </p>
       <% end%>
-      
+
     <% end %>
   </div>
 </div>
