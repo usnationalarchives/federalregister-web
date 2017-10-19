@@ -6,7 +6,7 @@ gem 'rake',  '0.9.2.2'
 gem 'mysql2', '0.3.18'
 gem 'honeybadger'
 
-gem 'federal_register', '0.6.0'
+gem 'federal_register', '0.6.1'
 #gem 'federal_register', :path => '../federal_register'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
