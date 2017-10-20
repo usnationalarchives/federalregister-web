@@ -47,7 +47,7 @@ class DocumentsController < ApplicationController
       end
 
       wants.pdf do
-        if document_or_pi.is_a?(Document)
+        if document_or_pi.is_a?(Document) && document.pdf_url.present?
           redirect_to document_or_pi.pdf_url, status: :moved_permanently
         else
           redirect_to document_or_pi.html_url
