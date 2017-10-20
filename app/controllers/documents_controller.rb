@@ -35,11 +35,14 @@ class DocumentsController < ApplicationController
                        PublicInspectionDocument.find(params[:document_number])
                      end
 
-    raise ActiveRecord::RecordNotFound unless document_or_pi
-
     respond_to do |wants|
       wants.html do
         url = document_or_pi.html_url
+
+        # the document endpoints can return more than one document
+        # if the document number is comma separated in these cases there is
+        # no one place to redirect to
+        raise ActiveRecord::RecordNotFound unless url
 
         if params[:anchor].present?
           url += '#' + params[:anchor]
@@ -51,8 +54,9 @@ class DocumentsController < ApplicationController
       wants.pdf do
         if document_or_pi.is_a?(Document) && document_or_pi.pdf_url.present?
           redirect_to document_or_pi.pdf_url, status: :moved_permanently
-        else
+        elsif document_or_pi.html_url
           redirect_to document_or_pi.html_url
+        else
         end
       end
     end
