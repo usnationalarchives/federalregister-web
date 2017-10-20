@@ -2,6 +2,8 @@
 machine:
   ruby:
     version: 1.9.3-p551
+  node:
+    version: 7.10.0
   environment:
     RAILS_ENV: test
     RACK_ENV: test
@@ -19,37 +21,15 @@ dependencies:
     - gem install bundler --version 1.7.13
     - cp config/secrets.yml.sample config/secrets.yml
     - mkdir log/test/ && touch log/test/vcr.log
-    #- cd .. && git clone git@github.com:criticaljuncture/fr2
-    #- cd ../fr2 && git checkout officialness
-    #- cp ../fr2/config/amazon.yml.sample ../fr2/config/amazon.yml
-    #- cp ../fr2/config/api_keys.yml.sample ../fr2/config/api_keys.yml
-    #- cp ../fr2/config/deploy_credentials.yml.sample ../fr2/config/deploy_credentials.yml
-    #- cp ../fr2/config/mongoid.yml.sample ../fr2/config/mongoid.yml
-    #- cp ../fr2/config/mysql.yml.sample ../fr2/config/mysql.yml
-    #- cp ../fr2/config/secrets.yml.sample ../fr2/config/secrets.yml
-    #- cp ../fr2/config/sendgrid.yml.sample ../fr2/config/sendgrid.yml
-    #- cp ../fr2/config/test.varnish.yml.sample ../fr2/config/varnish.yml
-    #- cd ../fr2 && bundle
-    #- cd ../fr2 && git submodule update --init
 
 ## Customize database setup commands
 database:
   override:
-    #- 'cd ../fr2 && echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_fr_test\n  adapter: mysql\n" > config/database.yml'
-    #- 'cd ../fr2 && bundle exec rake db:create db:schema:load --trace ASSUME_UNITIALIZED_DB=1'
     - 'echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
     - 'bundle exec rake db:create db:schema:load'
 
 ## Customize test commands
 test:
-  pre:
-    #- cd ../fr2 && mkdir -p tmp/test
-    #- cd ../fr2 && bundle exec rake db:fixtures:load FIXTURES_PATH=../my_fr2/spec/fixtures/fr2/
-    #- cd ../fr2 && rake ts:rebuild
-    #- cd ../fr2 && rake varnish:start
-    #- cd ../fr2 && nohup bash -c "script/server -p 3002 &"
-    #- nohup bash -c "rails s -p 3001 &"
-
   post:
     - >
       if [ -n "${RUN_REGGOV_BUILD}" ]; then
@@ -59,4 +39,4 @@ test:
   override:
     - bundle exec rspec spec --tag ~no_ci --tag ~reg_gov
     - bundle exec rake jshint
-    - coffeelint -r app/assets/javascripts/
+    - coffeelint -f coffeelint.json -r app/assets/javascripts/

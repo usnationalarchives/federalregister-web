@@ -19,8 +19,12 @@ class Citation
   end
 
   def matching_fr_entries
-    Document.find_all(document_numbers).map do |d|
-      DocumentDecorator.decorate(d)
+    begin
+      Document.find_all(document_numbers).map do |d|
+        DocumentDecorator.decorate(d)
+      end
+    rescue FederalRegister::Client::RecordNotFound
+      []
     end
   end
 

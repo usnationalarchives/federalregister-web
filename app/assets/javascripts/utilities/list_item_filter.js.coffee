@@ -115,7 +115,7 @@ class @FR2.TopicListFilter extends @FR2.ListItemFilter
       filterCountTarget: '#item-count'
     }
 
-    _.extend super, topicDefaults
+    _.extend super(), topicDefaults
 
   constructor: (itemList, options)->
     super itemList, options
@@ -133,7 +133,7 @@ class @FR2.AgencyListFilter extends @FR2.ListItemFilter
       nestedItems: true
     }
 
-    _.extend super, agencyDefaults
+    _.extend super(), agencyDefaults
 
   constructor: (itemList, options)->
     super itemList, options

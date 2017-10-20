@@ -142,7 +142,6 @@ class @FR2.CommentFormFileUploader
 
   addDestroyEvents: ->
     @uploaderEl.bind 'fileuploaddestroyed', =>
-      console.log 'destroy'
       @clearCommentPlaceholder()
       @updateUploaderStatus 'destroy'
 
