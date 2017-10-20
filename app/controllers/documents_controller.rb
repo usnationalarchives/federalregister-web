@@ -35,6 +35,8 @@ class DocumentsController < ApplicationController
                        PublicInspectionDocument.find(params[:document_number])
                      end
 
+    raise ActiveRecord::RecordNotFound unless document_or_pi
+
     respond_to do |wants|
       wants.html do
         url = document_or_pi.html_url
