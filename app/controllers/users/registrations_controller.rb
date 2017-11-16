@@ -13,7 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       SendgridClient.new.remove_from_bounce_list(resource.email)
     end
 
-    if resource.save
+
+    begin
+      resource.save!
+
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
@@ -28,10 +31,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         expire_session_data_after_sign_in!
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
-    else
+    rescue
       clean_up_passwords resource
-      respond_with resource
+      flash[:error] = 'Please check your email address and try again.'
+      render :action => :new
     end
   end
 end
-
