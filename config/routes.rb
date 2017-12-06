@@ -11,6 +11,7 @@ MyFr2::Application.routes.draw do
 
   mount ResqueWeb::Engine => "/resque-web"
 
+  match 'status/web/:id', to: 'special#status'
   match 'status', to: 'special#status'
 
   match "/404", to: "errors#record_not_found"
