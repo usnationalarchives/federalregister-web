@@ -2,7 +2,7 @@ namespace :documents do
   namespace :html do
     namespace :compile do
       desc "Converts XSLT into various html representations for a set of FR document numbers"
-      task :all, [:document_numbers] => %w(
+      task :all, [:date] => %w(
         hyperlinks
         table_of_contents
         extract_table_xml
@@ -10,55 +10,43 @@ namespace :documents do
         full_text
       )
 
-      task :hyperlinks, [:document_numbers] => :environment do |t, args|
-        puts args[:document_numbers].inspect
-        documents(
-          parse_document_numbers(args[:document_numbers])
-        ).each do |document|
+      task :hyperlinks, [:date] => :environment do |t, args|
+        documents(args[:date]).each do |document|
           HtmlCompilator::Hyperlinks.perform(document)
         end
       end
 
-      task :full_text, [:document_numbers] => :environment do |t, args|
-        documents(
-          parse_document_numbers(args[:document_numbers])
-        ).each do |document|
+      task :full_text, [:date] => :environment do |t, args|
+        documents(args[:date]).each do |document|
           HtmlCompilator::DocumentFullText.perform(document)
         end
       end
 
-      task :table_of_contents, [:document_numbers] => :environment do |t, args|
-        documents(
-          parse_document_numbers(args[:document_numbers])
-        ).each do |document|
+      task :table_of_contents, [:date] => :environment do |t, args|
+        documents(args[:date]).each do |document|
           HtmlCompilator::TableOfContents.perform(document)
         end
       end
 
-      task :extract_table_xml, [:document_numbers] => :environment do |t, args|
-        raise "DATE not provided via ENV" unless ENV['DATE']
+      task :extract_table_xml, [:date] => :environment do |t, args|
         TableXmlExtractor.compile(
-          parse_document_numbers(args[:document_numbers]),
-          ENV['DATE']
+          documents(args[:date]).map(&:document_number),
+          args[:date]
         )
       end
 
-      task :tables, [:document_numbers] => :environment do |t, args|
-        raise "DATE not provided via ENV" unless ENV['DATE']
+      task :tables, [:date] => :environment do |t, args|
         HtmlCompilator::Tables.compile(
-          parse_document_numbers(args[:document_numbers]),
-          ENV['DATE']
+          documents(args[:date]).map(&:document_number),
+          args[:date]
         )
       end
 
-      def parse_document_numbers(doc_nums)
-        @doc_nums ||= doc_nums.split(';')
-      end
-
-      def documents(doc_nums)
-        Document.find_all(
-          doc_nums,
-          fields: %w(document_number publication_date start_page images)
+      def documents(date)
+        Document.search(
+          date: date,
+          fields: %w(document_number publication_date start_page images),
+          cache_buster: Time.now.to_i
         )
       end
     end
