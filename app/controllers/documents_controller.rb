@@ -48,7 +48,9 @@ class DocumentsController < ApplicationController
           url += '#' + params[:anchor]
         end
 
-        redirect_to url, status: :moved_permanently
+        status = document_or_pi.is_a?(Document) ? :moved_permanently : :found # 301 : 302
+
+        redirect_to url, status: status
       end
 
       wants.pdf do
