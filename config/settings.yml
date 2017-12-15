@@ -1,3 +1,8 @@
+varnish:
+  host: sphinx
+  port: 6082
+
+
 regulations_dot_gov:
   # don't output calls to reg.gov in stdout
   debug_output_enabled: false

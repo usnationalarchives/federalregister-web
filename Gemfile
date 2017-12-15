@@ -97,6 +97,12 @@ gem 'recaptcha', '0.4.0', require: 'recaptcha/rails'
 
 gem 'memoist'
 
+# varnish cache client
+gem 'klarlack', '0.0.7',
+  git: 'https://github.com/criticaljuncture/klarlack.git',
+  ref: 'f4c9706cd542046e7e37a4872b3a272b57cbb31b'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

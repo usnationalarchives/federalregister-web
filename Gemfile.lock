@@ -24,6 +24,13 @@ GIT
       open4
 
 GIT
+  remote: https://github.com/criticaljuncture/klarlack.git
+  revision: f4c9706cd542046e7e37a4872b3a272b57cbb31b
+  ref: f4c9706cd542046e7e37a4872b3a272b57cbb31b
+  specs:
+    klarlack (0.0.7)
+
+GIT
   remote: https://github.com/delynn/userstamp.git
   revision: 777633aa564f8457c999ddb96afa4c5ae18d319f
   ref: 777633
@@ -575,6 +582,7 @@ DEPENDENCIES
   indefinite_article
   jquery-rails
   json_builder
+  klarlack (= 0.0.7)!
   launchy
   mail_view!
   memoist
