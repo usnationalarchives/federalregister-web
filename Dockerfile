@@ -38,8 +38,8 @@ RUN ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 ### SERVICES
 ##################
 
-COPY docker/api/service/web/run /etc/service/web/run
-COPY docker/api/my_init.d /etc/my_init.d
+COPY docker/web/service/run /etc/service/web/run
+COPY docker/web/my_init.d /etc/my_init.d
 
 RUN adduser app -uid 1000 --system
 RUN usermod -a -G docker_env app
