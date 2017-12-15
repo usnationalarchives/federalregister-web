@@ -3,10 +3,15 @@ source 'https://rubygems.org'
 gem 'hoe', '~> 3.15', '>= 3.15.2' # TODO: needed for bundler to run in docker but we shouldn't have to specify it explicitely
 
 gem 'rails', '3.2.22.5'
-gem 'rake'
+gem 'rake', '11.3.0'
+gem 'rack'
+
 
 gem 'mysql2', '0.3.18'
+# production app server
+gem 'passenger', '5.1.11'
 gem 'honeybadger'
+
 
 gem 'federal_register', '0.6.1'
 #gem 'federal_register', :path => '../federal_register'
@@ -113,13 +118,6 @@ group :assets do
   gem "activerecord-nulldb-adapter"
 end
 
-# group :staging do
-#   gem 'therubyracer'
-# end
-
-group :development do
-  gem 'passenger', '~> 5.1.6'
-end
 
 group :development, :test do
   gem 'stylin', '~> 0.1.0'
