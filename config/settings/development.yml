@@ -12,10 +12,10 @@ varnish:
   enable_cache_headers: true
   ignore_paths: ""
 federal_register:
-  # api_url: 'https://www.federalregister.gov/api/v1'
-  # base_uri: 'https://www.federalregister.gov'
-  api_url: 'https://dev-fr2.criticaljuncture.org/api/v1'
-  base_uri: 'https://dev-fr2.criticaljuncture.org'
+  api_url: 'https://www.federalregister.gov/api/v1'
+  base_uri: 'https://www.federalregister.gov'
+  # api_url: 'http://localhost:3000/api/v1'
+  # base_uri: 'http://localhost:3001'
 regulations_dot_gov:
   debug_output_enabled: true
 
