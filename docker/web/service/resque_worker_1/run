@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /home/app
+
+exec /sbin/setuser app rake environment resque:work RAILS_ENV=$RAILS_ENV QUEUE=issue_processor,subscriptions,issue_reprocessor INTERVAL=1 VERBOSE=1 PIDFILE=/home/app/tmp/pids/resque_worker_default_1.pid >> /home/app/log/resque_worker_default.log 2>&1

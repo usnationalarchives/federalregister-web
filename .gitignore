@@ -3,7 +3,6 @@
 db/*.sqlite3
 log/
 tmp/
-config/*.yml
 .screenrc
 tags
 .sass-cache/
