@@ -20,7 +20,7 @@ if defined?(PhusionPassenger)
     if forked
       $redis.client.disconnect
       $redis = Redis::Namespace.new(
-        REDIS_CONFIG['namespace'],
+        SECRETS['redis']['namespace'],
         :redis => Redis.new(REDIS_CONNECTION_SETTINGS)
       )
 
