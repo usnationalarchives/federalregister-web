@@ -1,5 +1,5 @@
 class IssueReprocessor < IssueProcessor
-  @queue :issue_reprocessor
+  @queue = :issue_reprocessor
 
   def perform
     compile_all_html
