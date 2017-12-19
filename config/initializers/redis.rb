@@ -1,15 +1,13 @@
-REDIS_CONFIG = YAML.load_file(Rails.root + 'config/redis.yml')[Rails.env].freeze
-
 REDIS_CONNECTION_SETTINGS = {
-  :db   => REDIS_CONFIG['db'],
-  :host => REDIS_CONFIG['host'],
-  :port => REDIS_CONFIG['port']
+  :db   => SECRETS['redis']['db'],
+  :host => SECRETS['redis']['host'],
+  :port => SECRETS['redis']['port']
 }
 
 redis = Redis.new(REDIS_CONNECTION_SETTINGS)
 
 $redis = Redis::Namespace.new(
-  REDIS_CONFIG['namespace'],
+  SECRETS['redis']['namespace'],
   :redis => redis
 )
 HTTParty::HTTPCache.redis = $redis
@@ -28,7 +26,7 @@ if defined?(PhusionPassenger)
 
       HTTParty::HTTPCache.redis = $redis
 
-      Resque.redis = Redis.new(REDIS_CONNECTION_SETTINGS)
+      Resque.redis = $redis
     end
   end
 end
