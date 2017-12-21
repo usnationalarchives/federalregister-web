@@ -1,31 +1,7 @@
-varnish:
-  host: varnish
-  port: 6082
-
-
-regulations_dot_gov:
-  # don't output calls to reg.gov in stdout
-  debug_output_enabled: false
-federal_register:
-  api_url: 'https://www.federalregister.gov/api/v1'
-  base_uri: 'https://www.federalregister.gov'
-
-# document page full text rendering - false means use esi's
-render_documents_from_raw_xml: false
-
-
 # urls for mailers, redirects, etc - where routes aren't available
 app_url: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
 
-# generic switch for deciding when to raise exception or notify honeybadger
-notify_honeybager: true
-
-rss_helper:
-  url: "https://www.federalregister.gov"
-
-officialness:
-  start_date: 2025-05-01
 
 feature_flags:
   events_search: false
@@ -41,3 +17,27 @@ feature_flags:
       subscriptions: false
   search:
     location: true
+
+federal_register:
+  api_url: 'https://www.federalregister.gov/api/v1'
+  base_uri: 'https://www.federalregister.gov'
+
+# generic switch for deciding when to raise exception or notify honeybadger
+notify_honeybager: true
+
+officialness:
+  start_date: 2025-05-01
+
+regulations_dot_gov:
+  # don't output calls to reg.gov in stdout
+  debug_output_enabled: false
+
+# document page full text rendering - false means use esi's
+render_documents_from_raw_xml: false
+
+rss_helper:
+  url: "https://www.federalregister.gov"
+
+varnish:
+  host: varnish
+  port: 6082
