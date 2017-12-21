@@ -48,13 +48,13 @@ class XsltPathManager
 
   private
 
-  def federalregister_api_core_document_data_path
-    "#{Rails.root}/../federalregister-api-core/data/documents"
+  def document_data_path
+    "#{Rails.root}/data/documents"
   end
 
   def data_dir(type, format)
     File.join(
-      federalregister_api_core_document_data_path,
+      document_data_path,
       type,
       format,
       date.strftime("%Y/%m/%d")
