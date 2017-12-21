@@ -19,15 +19,18 @@ class IssueProcessor
       HtmlCompilator::TableOfContents.perform(document)
     end
 
-    document_numbers = documents(args[:date]).map(&:document_number)
+    document_numbers = documents(date).map(&:document_number)
     TableXmlExtractor.compile(document_numbers, date)
     HtmlCompilator::Tables.compile(document_numbers, date)
   end
 
   def documents(date)
     @documents ||= Document.search(
-      date: date,
+      conditions: {
+        publication_date: {is: date}
+      },
       fields: %w(document_number publication_date start_page images),
+      per_page: 1000,
       cache_buster: Time.now.to_i
     )
   end
