@@ -51,8 +51,9 @@ gem "httmultiparty"
 # api caching
 gem 'SystemTimer', :platforms => :ruby_18
 gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
+
 gem 'redis', '~> 3.0.7'
-gem 'redis-namespace'
+
 
 gem 'sendgrid'
 gem 'active_hash'
