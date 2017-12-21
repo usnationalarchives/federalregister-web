@@ -39,7 +39,7 @@ class FrArchivesCitation
   attr_reader :volume, :page
 
   def is_before_archives
-    response["before_archives"] == false
+    response["before_archives"] == true
   end
 
   def is_after_archives
