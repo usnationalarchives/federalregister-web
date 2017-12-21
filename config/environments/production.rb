@@ -38,10 +38,13 @@ MyFr2::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   smtp_settings = {
-    :address        => "mail.fr2.ec2.internal",
-    :port           => "25",
-    :domain         => "#{APP_HOST_NAME}",
-    :enable_starttls_auto => false
+   :address        => "smtp.sendgrid.net",
+   :port           => "587",
+   :domain         => "#{Settings.app_url}",
+   :user_name      => secrets['sendgrid']['username'],
+   :password       => secrets['sendgrid']['password'],
+   :authentication => :plain,
+   :enable_starttls_auto => false
   }
 
   config.action_mailer.delivery_method = :smtp
