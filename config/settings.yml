@@ -1,5 +1,5 @@
 varnish:
-  host: sphinx
+  host: varnish
   port: 6082
 
 
