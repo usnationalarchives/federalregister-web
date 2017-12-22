@@ -13,7 +13,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:28 GMT
+      - Fri, 22 Dec 2017 18:50:17 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -21,7 +21,7 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '183'
+      - '155'
       etag:
       - ! '"31b8d023560aa12cb0ef7704988b1770"'
       status:
@@ -38,7 +38,7 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"suggestions":{"citation":{"document_numbers":["2017-27513","2017-27451"],"volume":82,"page":60602}},"filters":{}}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:29 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:17 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -52,7 +52,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:29 GMT
+      - Fri, 22 Dec 2017 18:50:18 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -60,13 +60,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '350'
+      - '0'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -105,7 +105,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:29 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:18 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -119,7 +119,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:30 GMT
+      - Fri, 22 Dec 2017 18:50:18 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -127,13 +127,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '350'
+      - '0'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -172,7 +172,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:30 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:18 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -186,7 +186,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:30 GMT
+      - Fri, 22 Dec 2017 18:50:19 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -194,13 +194,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '351'
+      - '1'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -239,7 +239,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:30 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:19 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -253,7 +253,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:31 GMT
+      - Fri, 22 Dec 2017 18:50:19 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -261,13 +261,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '352'
+      - '1'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -306,7 +306,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:31 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:19 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -320,7 +320,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:31 GMT
+      - Fri, 22 Dec 2017 18:50:20 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -328,13 +328,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '352'
+      - '2'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -373,7 +373,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:31 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:20 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -387,7 +387,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:32 GMT
+      - Fri, 22 Dec 2017 18:50:21 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -395,13 +395,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '353'
+      - '2'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -440,7 +440,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:32 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:21 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -454,7 +454,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:33 GMT
+      - Fri, 22 Dec 2017 18:50:21 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -462,13 +462,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '353'
+      - '3'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -507,7 +507,7 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:33 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:21 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -521,7 +521,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:33 GMT
+      - Fri, 22 Dec 2017 18:50:22 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -529,13 +529,13 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '321'
+      - '27'
       etag:
       - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '354'
+      - '4'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -574,5 +574,5 @@ http_interactions:
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:33 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:22 GMT
 recorded_with: VCR 2.6.0

@@ -13,7 +13,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:34 GMT
+      - Fri, 22 Dec 2017 18:50:23 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -21,7 +21,7 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '303'
+      - '146'
       etag:
       - ! '"c6e6683841e74db431303501ba35249b"'
       status:
@@ -38,5 +38,5 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"suggestions":{"public_inspection":{"count":128},"citation":{"document_numbers":[],"volume":1,"page":1}},"filters":{}}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:34 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:23 GMT
 recorded_with: VCR 2.6.0

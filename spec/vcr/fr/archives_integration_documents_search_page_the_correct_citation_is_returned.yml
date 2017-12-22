@@ -13,7 +13,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:25 GMT
+      - Fri, 22 Dec 2017 18:50:14 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -21,7 +21,7 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '227'
+      - '145'
       etag:
       - ! '"8ee095cf497fc49c58450780ad282d54"'
       status:
@@ -38,7 +38,7 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"suggestions":{"public_inspection":{"count":1},"citation":{"document_numbers":[],"volume":35,"page":118}},"filters":{}}'
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:25 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:14 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/.json
@@ -52,7 +52,7 @@ http_interactions:
       message: Not Found
     headers:
       date:
-      - Fri, 22 Dec 2017 18:19:26 GMT
+      - Fri, 22 Dec 2017 18:50:14 GMT
       content-type:
       - text/html; charset=utf-8
       content-length:
@@ -64,7 +64,7 @@ http_interactions:
       vary:
       - Accept-Encoding
       age:
-      - '350'
+      - '91'
       strict-transport-security:
       - max-age=63072000; includeSubDomains; preload;
       x-frame-options:
@@ -77,5 +77,5 @@ http_interactions:
         \ _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname +
         document.location.search + \"&from=\" + document.referrer]);\n</script>"
     http_version: '1.1'
-  recorded_at: Fri, 22 Dec 2017 18:19:26 GMT
+  recorded_at: Fri, 22 Dec 2017 18:50:14 GMT
 recorded_with: VCR 2.6.0

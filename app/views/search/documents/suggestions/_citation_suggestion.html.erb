@@ -41,17 +41,17 @@
       <% elsif archives_citation.pdf_url %>
         <ul>
           <li class="result-item">
-            <h5>
-              <%= link_to sanitize(
-                    "#{citation_suggestion.name} (Optimized Version #{number_to_human_size(archives_citation.optimized_file_size)})",
-                    tags: %w(span),
-                    attributes: %w(class)
-                  ),
-                  archives_citation.pdf_url %>
-            </h5>
             <div class="result-info">
               <p class="excerpts">
-                <%= link_to "#{citation_suggestion.name} (Full Government Publishing Office Version #{number_to_human_size(archives_citation.original_file_size)})",
+                <%= link_to sanitize(
+                      "#{citation_suggestion.name} Size-optimized Issue Pages (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                      tags: %w(span),
+                      attributes: %w(class)
+                    ),
+                    archives_citation.pdf_url %>
+              </p>
+              <p class="excerpts">
+                <%= link_to "#{citation_suggestion.name} Full Government Publishing Office Issue (#{number_to_human_size(archives_citation.original_file_size)})",
                       archives_citation.gpo_url %>
               </p>
             </div>

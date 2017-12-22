@@ -7,7 +7,7 @@ feature "FR Archives Integration", :no_ci do
 
     scenario "The correct citation is returned", :vcr do
       visit '/documents/search/suggestions?conditions%5Bterm%5D=35+FR+118'
-      expect(page).to have_content("35 FR 118 (Optimized Version")
+      expect(page).to have_content("35 FR 118 Size-optimized Issue Pages")
     end
 
     scenario "A citation before the earliest archive issue is requested", :vcr do
@@ -32,7 +32,7 @@ feature "FR Archives Integration", :no_ci do
     scenario "Citation that references an issue that falls within the archives", :vcr do
       visit '/citation/35-FR-117'
       expect(page).to have_text("An issue was located for citation")
-      expect(page).to have_content("35 FR 117 Size-optimized Pages")
+      expect(page).to have_content("35 FR 117 Size-optimized Issue Pages")
     end
 
     scenario "Citation that falls after the archives", :vcr do
