@@ -13,7 +13,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:14 GMT
+      - Fri, 22 Dec 2017 18:19:28 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
@@ -21,7 +21,7 @@ http_interactions:
       connection:
       - close
       x-runtime:
-      - '139'
+      - '183'
       etag:
       - ! '"31b8d023560aa12cb0ef7704988b1770"'
       status:
@@ -38,7 +38,7 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"suggestions":{"citation":{"document_numbers":["2017-27513","2017-27451"],"volume":82,"page":60602}},"filters":{}}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:14 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:29 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -52,21 +52,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:15 GMT
+      - Fri, 22 Dec 2017 18:19:29 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7363'
+      - '350'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -99,13 +99,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:15 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:29 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -119,21 +119,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:16 GMT
+      - Fri, 22 Dec 2017 18:19:30 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7363'
+      - '350'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -166,13 +166,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:16 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:30 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -186,21 +186,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:16 GMT
+      - Fri, 22 Dec 2017 18:19:30 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7364'
+      - '351'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -233,13 +233,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:16 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:30 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -253,21 +253,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:17 GMT
+      - Fri, 22 Dec 2017 18:19:31 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7364'
+      - '352'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -300,13 +300,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:17 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:31 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -320,21 +320,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:17 GMT
+      - Fri, 22 Dec 2017 18:19:31 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7365'
+      - '352'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -367,13 +367,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:17 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:31 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -387,21 +387,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:18 GMT
+      - Fri, 22 Dec 2017 18:19:32 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7366'
+      - '353'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -434,13 +434,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:18 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:32 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -454,21 +454,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:19 GMT
+      - Fri, 22 Dec 2017 18:19:33 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7366'
+      - '353'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -501,13 +501,13 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:19 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:33 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/2017-27513,2017-27451.json
@@ -521,21 +521,21 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:19 GMT
+      - Fri, 22 Dec 2017 18:19:33 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '5492'
+      - '5493'
       connection:
       - close
       x-runtime:
-      - '32'
+      - '321'
       etag:
-      - ! '"2e4216a96a847416ba82c774fd5044e4"'
+      - ! '"ab1d41c26df6c703eeda58f4a8d0c62b"'
       status:
       - 200 OK
       age:
-      - '7367'
+      - '354'
       accept-ranges:
       - bytes
       strict-transport-security:
@@ -568,11 +568,11 @@ http_interactions:
         INSTITUTIONS EXAMINATION COUNCIL","name":"Federal Financial Institutions Examination
         Council","id":168,"url":"https://www.federalregister.gov/agencies/federal-financial-institutions-examination-council","json_url":"https://www.federalregister.gov/api/v1/agencies/168.json","parent_id":null,"slug":"federal-financial-institutions-examination-council"}],"body_html_url":"https://www.federalregister.gov/documents/full_text/html/2017/12/21/2017-27513.html","cfr_references":[],"citation":"82
         FR 60602","comment_url":null,"comments_close_on":null,"correction_of":null,"corrections":[],"dates":"Applicable
-        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC_FRDOC_0001","regulation_id_number":null,"title":"Recently
-        Posted ASC Rules and Notices.","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC_FRDOC_0001","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
+        Date: Immediately.","docket_ids":["Docket No. AS17-09"],"document_number":"2017-27513","effective_on":null,"end_page":60602,"executive_order_notes":null,"executive_order_number":null,"full_text_xml_url":"https://www.federalregister.gov/documents/full_text/xml/2017/12/21/2017-27513.xml","html_url":"https://www.federalregister.gov/documents/2017/12/21/2017-27513/notice-of-amendment-to-asc-rules-of-operation-governing-frequency-of-regular-meetings-of-the","images":{},"json_url":"https://www.federalregister.gov/api/v1/documents/2017-27513.json","mods_url":"https://www.gpo.gov/fdsys/granule/FR-2017-12-21/2017-27513/mods.xml","page_length":1,"pdf_url":"https://www.gpo.gov/fdsys/pkg/FR-2017-12-21/pdf/2017-27513.pdf","public_inspection_pdf_url":"https://s3.amazonaws.com/public-inspection.federalregister.gov/2017-27513.pdf?1513777557","publication_date":"2017-12-21","raw_text_url":"https://www.federalregister.gov/documents/full_text/text/2017/12/21/2017-27513.txt","regulation_id_number_info":{},"regulation_id_numbers":[],"regulations_dot_gov_info":{"docket_id":"ASC-2017-0008","regulation_id_number":null,"title":"ASC
+        Rules of Operation - Amended 12.21.17","comments_count":0,"comments_url":"https://www.regulations.gov/docketBrowser?rpp=50&so=DESC&sb=postedDate&po=0&dct=PS&D=ASC-2017-0008","supporting_documents_count":0,"supporting_documents":[],"metadata":{}},"regulations_dot_gov_url":null,"significant":false,"signing_date":null,"start_page":60602,"subtype":null,"title":"Notice
         of Amendment to ASC Rules of Operation Governing Frequency of Regular Meetings
         of the Appraisal Subcommittee","toc_doc":"Frequency of Regular Meetings; Amendments","toc_subject":"Appraisal
         Subcommittee Rules of Operation:","topics":[],"type":"Notice","volume":82}]}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:19 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:33 GMT
 recorded_with: VCR 2.6.0

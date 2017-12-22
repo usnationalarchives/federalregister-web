@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.federalregister.gov/api/v1/documents/search-details/?conditions%5Bterm%5D=35+FR+117
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 22 Dec 2017 18:19:35 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '120'
+      connection:
+      - close
+      x-runtime:
+      - '191'
+      etag:
+      - ! '"3af758317692737258816a2ced50ea48"'
+      status:
+      - 200 OK
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      strict-transport-security:
+      - max-age=63072000; includeSubDomains; preload;
+      x-frame-options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '{"suggestions":{"public_inspection":{"count":2},"citation":{"document_numbers":[],"volume":35,"page":117}},"filters":{}}'
+    http_version: '1.1'
+  recorded_at: Fri, 22 Dec 2017 18:19:35 GMT
+recorded_with: VCR 2.6.0

@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.federalregister.gov/api/v1/documents/search-details/?conditions%5Bterm%5D=1+FR+1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 22 Dec 2017 18:19:34 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '119'
+      connection:
+      - close
+      x-runtime:
+      - '303'
+      etag:
+      - ! '"c6e6683841e74db431303501ba35249b"'
+      status:
+      - 200 OK
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      strict-transport-security:
+      - max-age=63072000; includeSubDomains; preload;
+      x-frame-options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '{"suggestions":{"public_inspection":{"count":128},"citation":{"document_numbers":[],"volume":1,"page":1}},"filters":{}}'
+    http_version: '1.1'
+  recorded_at: Fri, 22 Dec 2017 18:19:34 GMT
+recorded_with: VCR 2.6.0

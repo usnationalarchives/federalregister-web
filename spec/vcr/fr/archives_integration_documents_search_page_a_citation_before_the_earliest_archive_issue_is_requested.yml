@@ -13,17 +13,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:13 GMT
+      - Fri, 22 Dec 2017 18:19:27 GMT
       content-type:
       - application/json; charset=utf-8
       content-length:
-      - '118'
+      - '119'
       connection:
       - close
       x-runtime:
-      - '148'
+      - '158'
       etag:
-      - ! '"632b99be3475eba67722c81f21250028"'
+      - ! '"c6e6683841e74db431303501ba35249b"'
       status:
       - 200 OK
       age:
@@ -36,9 +36,9 @@ http_interactions:
       - SAMEORIGIN
     body:
       encoding: US-ASCII
-      string: ! '{"suggestions":{"public_inspection":{"count":95},"citation":{"document_numbers":[],"volume":1,"page":1}},"filters":{}}'
+      string: ! '{"suggestions":{"public_inspection":{"count":128},"citation":{"document_numbers":[],"volume":1,"page":1}},"filters":{}}'
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:13 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:27 GMT
 - request:
     method: get
     uri: https://www.federalregister.gov/api/v1/documents/.json
@@ -52,7 +52,7 @@ http_interactions:
       message: Not Found
     headers:
       date:
-      - Thu, 21 Dec 2017 23:52:14 GMT
+      - Fri, 22 Dec 2017 18:19:27 GMT
       content-type:
       - text/html; charset=utf-8
       content-length:
@@ -77,34 +77,5 @@ http_interactions:
         \ _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname +
         document.location.search + \"&from=\" + document.referrer]);\n</script>"
     http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:14 GMT
-- request:
-    method: get
-    uri: http://localhost:3020/api/archives/v1/citation.json?volume=1&page=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers: {}
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      content-type:
-      - application/json; charset=utf-8
-      cache-control:
-      - no-cache
-      x-request-id:
-      - 55bbd73d-3230-4c6d-aa28-3d19493a1163
-      x-runtime:
-      - '0.016333'
-      connection:
-      - close
-      transfer-encoding:
-      - chunked
-    body:
-      encoding: US-ASCII
-      string: ! '{"before_archives":true,"after_archives":false}'
-    http_version: '1.1'
-  recorded_at: Thu, 21 Dec 2017 23:52:14 GMT
+  recorded_at: Fri, 22 Dec 2017 18:19:27 GMT
 recorded_with: VCR 2.6.0
