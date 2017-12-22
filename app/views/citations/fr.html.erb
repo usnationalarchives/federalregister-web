@@ -8,7 +8,7 @@
 <%= bootstrap_context_wrapper do %>
   <div class="row citation">
     <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-      <% if @documents && @error.nil? %>
+      <% if @documents %>
         <%= flash_message :success do %>
           Multiple documents found for the citation
           <span class="citation"><%= @volume %> FR <%= @page %></span>.
@@ -36,30 +36,41 @@
           <% end %>
         </ul>
       <% else %>
-        <% if @citation.try(:pdf_url) %>
+        <% if @fr_archives_citation.pdf_url %>
+
           <%= flash_message :success do %>
-            A citation was locationed for
+            An issue was located for citation
             <span class="citation"><%= @volume %> FR <%= @page %></span>.
           <% end %>
           <ul class="fr-list">
             <li>
               <h6>
-                <%= link_to "#{@volume} FR #{@page} Optimized Version (#{number_to_human_size(@citation.optimized_file_size)})",
-                      @citation.pdf_url %>
+                <%= link_to "#{@volume} FR #{@page} Size-optimized Pages (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
+                      @fr_archives_citation.pdf_url %>
               </h6>
-              <div class="citation-details">
-                <%= link_to "Full Government Publishing Office Version (#{number_to_human_size(@citation.original_file_size)})",
-                      @citation.gpo_url %>
-              </div>
+              <h6>
+                <%= link_to "#{@volume} FR #{@page} Full Government Publishing Office Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
+                      @fr_archives_citation.gpo_url %>
+              </h6>
             </li>
           </ul>
-        <% end %>
 
-        <% if @error %>
+        <% else %>
+
           <%= flash_message :error do %>
-            <%= @error %>
+            No documents found with citation
             <span class="citation"><%= @volume %> FR <%= @page %></span>.
           <% end %>
+
+        <% end %>
+
+        <% if @fr_archives_citation.before_archives? %>
+          <p>
+            Older volumes may be available online at
+            <a href='https://www.gpo.gov/fdsys/browse/collection.action?collectionCode=FR'>FDSys</a>
+            or via a
+            <a href="https://catalog.gpo.gov/fdlpdir/public.jsp" class="external">Federal Depository Library</a>.
+          </p>
         <% end %>
       <% end %>
     </div>

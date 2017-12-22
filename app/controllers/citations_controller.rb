@@ -10,6 +10,7 @@ class CitationsController < ApplicationController
 
   def fr
     @volume, @page = params[:volume], params[:page]
+    @fr_archives_citation = FrArchivesCitation.new(@volume, @page)
 
     search = SearchPresenter::Document.new(conditions: {term: "#{@volume} FR #{@page}"}).search
     document_numbers = search.search_details.suggestions.
@@ -18,19 +19,10 @@ class CitationsController < ApplicationController
       flatten
 
     case document_numbers.size
-    when 0
+        when 0
       # none found
-      @error = 'No documents found with citation'
     when 1
-      @citation = FrArchivesCitation.new(@volume, @page)
-      if @citation.after_archives?
-        redirect_to short_document_path(document_numbers.first)
-      elsif @citation.pdf_url
-      elsif @citation.before_archives?
-        @error = "Older volumes may be available through a <a href='https://catalog.gpo.gov/fdlpdir/public.jsp' class='external'> Federal Depository Library</a>.".html_safe
-      else
-        @error = 'No documents found with citation'
-      end
+      redirect_to short_document_path(document_numbers.first)
     else
       @documents = DocumentDecorator.decorate_collection Document.find_all(document_numbers)
     end
