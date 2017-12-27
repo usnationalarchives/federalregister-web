@@ -41,8 +41,8 @@ MyFr2::Application.configure do
    :address        => "smtp.sendgrid.net",
    :port           => "587",
    :domain         => "#{Settings.app_url}",
-   :user_name      => secrets['sendgrid']['username'],
-   :password       => secrets['sendgrid']['password'],
+   :user_name      => SECRETS['sendgrid']['username'],
+   :password       => SECRETS['sendgrid']['password'],
    :authentication => :plain,
    :enable_starttls_auto => false
   }
