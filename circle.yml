@@ -1,42 +1,42 @@
-## Customize the test machine
-machine:
-  ruby:
-    version: 1.9.3-p551
-  node:
-    version: 7.10.0
-  environment:
-    RAILS_ENV: test
-    RACK_ENV: test
-  hosts:
-    www.fr2.dev: 127.0.0.1
-  services:
-    - redis
-
-## Customize dependencies
-dependencies:
-  pre:
-    - npm install -g jshint
-    - npm install -g coffeelint
-    - gem update --system 1.8.25
-    - gem install bundler --version 1.7.13
-    - cp config/secrets.yml.sample config/secrets.yml
-    - mkdir log/test/ && touch log/test/vcr.log
-
-## Customize database setup commands
-database:
-  override:
-    - 'echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
-    - 'bundle exec rake db:create db:schema:load'
-
-## Customize test commands
-test:
-  post:
-    - >
-      if [ -n "${RUN_REGGOV_BUILD}" ]; then
-        bundle exec rspec spec --tag reg_gov
-      fi
-
-  override:
-    - bundle exec rspec spec --tag ~no_ci --tag ~reg_gov
-    - bundle exec rake jshint
-    - coffeelint -f coffeelint.json -r app/assets/javascripts/
+# ## Customize the test machine
+# machine:
+#   ruby:
+#     version: 1.9.3-p551
+#   node:
+#     version: 7.10.0
+#   environment:
+#     RAILS_ENV: test
+#     RACK_ENV: test
+#   hosts:
+#     www.fr2.dev: 127.0.0.1
+#   services:
+#     - redis
+#
+# ## Customize dependencies
+# dependencies:
+#   pre:
+#     - npm install -g jshint
+#     - npm install -g coffeelint
+#     - gem update --system 1.8.25
+#     - gem install bundler --version 1.7.13
+#     - cp config/secrets.yml.sample config/secrets.yml
+#     - mkdir log/test/ && touch log/test/vcr.log
+#
+# ## Customize database setup commands
+# database:
+#   override:
+#     - 'echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
+#     - 'bundle exec rake db:create db:schema:load'
+#
+# ## Customize test commands
+# test:
+#   post:
+#     - >
+#       if [ -n "${RUN_REGGOV_BUILD}" ]; then
+#         bundle exec rspec spec --tag reg_gov
+#       fi
+#
+#   override:
+#     - bundle exec rspec spec --tag ~no_ci --tag ~reg_gov
+#     - bundle exec rake jshint
+#     - coffeelint -f coffeelint.json -r app/assets/javascripts/
