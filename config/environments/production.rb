@@ -37,6 +37,14 @@ MyFr2::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
+  SECRETS = YAML::load(
+    ERB.new(
+      File.read(
+        File.join(File.dirname(__FILE__), '..', 'secrets.yml')
+      )
+    ).result
+  )
+
   smtp_settings = {
    :address        => "smtp.sendgrid.net",
    :port           => "587",
