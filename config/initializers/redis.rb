@@ -6,23 +6,15 @@ REDIS_CONNECTION_SETTINGS = {
 
 $redis = Redis.new(REDIS_CONNECTION_SETTINGS)
 
-# $redis = Redis::Namespace.new(
-#   SECRETS['redis']['namespace'],
-#   :redis => redis
-# )
 HTTParty::HTTPCache.redis = $redis
 
-Resque.redis = $redis #Redis.new(REDIS_CONNECTION_SETTINGS)
+Resque.redis = $redis
 
 if defined?(PhusionPassenger)
   PhusionPassenger.on_event(:starting_worker_process) do |forked|
     # We're in smart spawning mode.
     if forked
       $redis.client.disconnect
-      # $redis = Redis::Namespace.new(
-      #   SECRETS['redis']['namespace'],
-      #   :redis => Redis.new(REDIS_CONNECTION_SETTINGS)
-      # )
 
       $redis = Redis.new(REDIS_CONNECTION_SETTINGS)
       HTTParty::HTTPCache.redis = $redis
