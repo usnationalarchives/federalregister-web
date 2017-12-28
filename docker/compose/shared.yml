@@ -10,6 +10,8 @@ web:
     - MYSQL_PORT_3306_TCP_ADDR=mysql
     - REDIS_PORT_6379_TCP_ADDR=redis
     - HONEYBADGER_API_KEY=''
+    - AWS_ACCESS_KEY_ID='XXX'
+    - AWS_SECRET_ACCESS_KEY='XXX'
   restart: always
 
 mysql:
