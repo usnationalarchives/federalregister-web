@@ -22,9 +22,17 @@ RUN apt-get update && apt-get install -y ruby1.9.3 ruby1.9.1-dev
 #######################
 
 # libqt4-dev libqtwebkit-dev are for capybara-webkit
-RUN apt-get update && apt-get install -y build-essential libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev mysql-client nodejs libqt4-dev libqtwebkit-dev &&\
+RUN apt-get update && apt-get install -y build-essential libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev mysql-client libqt4-dev libqtwebkit-dev &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
+
+# node js - packages are out of date
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+
+# packages for testing
+RUN npm install -g jshint
+RUN npm install -g coffeelint
 
 
 ##################
