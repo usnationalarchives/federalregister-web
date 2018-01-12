@@ -21,7 +21,7 @@ describe XsltPathManager do
       expect(
         path_manager.document_dir('full_text', 'html')
       ).to eq(
-        "#{Rails.root}/data/documents/full_text/html/2015/01/02"
+        "#{XsltPathManager.shared_data_dir}/documents/full_text/html/2015/01/02"
       )
     end
 
@@ -29,7 +29,7 @@ describe XsltPathManager do
       expect(
         path_manager.document_xml_path('table_of_contents')
       ).to eq(
-        "#{Rails.root}/data/documents/table_of_contents/xml/2015/01/02/2015-01234.xml"
+        "#{XsltPathManager.shared_data_dir}/documents/table_of_contents/xml/2015/01/02/2015-01234.xml"
       )
     end
 
@@ -37,7 +37,7 @@ describe XsltPathManager do
       expect(
         path_manager.document_html_path('full_text')
       ).to eq(
-        "#{Rails.root}/data/documents/full_text/html/2015/01/02/2015-01234.html"
+        "#{XsltPathManager.shared_data_dir}/documents/full_text/html/2015/01/02/2015-01234.html"
       )
     end
   end
@@ -47,7 +47,7 @@ describe XsltPathManager do
       expect(
         path_manager.table_dir('html')
       ).to eq(
-        "#{Rails.root}/data/documents/tables/html/2015/01/02/2015-01234"
+        "#{XsltPathManager.shared_data_dir}/documents/tables/html/2015/01/02/2015-01234"
       )
     end
 
@@ -55,7 +55,7 @@ describe XsltPathManager do
       expect(
         path_manager.table_xml_dir
       ).to eq(
-        "#{Rails.root}/data/documents/tables/xml/2015/01/02/2015-01234"
+        "#{XsltPathManager.shared_data_dir}/documents/tables/xml/2015/01/02/2015-01234"
       )
     end
 
@@ -63,7 +63,7 @@ describe XsltPathManager do
         expect(
         path_manager.table_html_dir
       ).to eq(
-        "#{Rails.root}/data/documents/tables/html/2015/01/02/2015-01234"
+        "#{XsltPathManager.shared_data_dir}/documents/tables/html/2015/01/02/2015-01234"
       )
     end
 
@@ -71,7 +71,7 @@ describe XsltPathManager do
       expect(
         path_manager.table_xml_path(1)
       ).to eq(
-        "#{Rails.root}/data/documents/tables/xml/2015/01/02/2015-01234/1.xml"
+        "#{XsltPathManager.shared_data_dir}/documents/tables/xml/2015/01/02/2015-01234/1.xml"
       )
     end
 
@@ -79,7 +79,7 @@ describe XsltPathManager do
       expect(
         path_manager.table_html_path(1)
       ).to eq(
-        "#{Rails.root}/data/documents/tables/html/2015/01/02/2015-01234/1.html"
+        "#{XsltPathManager.shared_data_dir}/documents/tables/html/2015/01/02/2015-01234/1.html"
       )
     end
   end

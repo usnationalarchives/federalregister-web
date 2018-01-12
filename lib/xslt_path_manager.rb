@@ -48,8 +48,16 @@ class XsltPathManager
 
   private
 
+  def self.shared_data_dir
+    "#{Rails.root}/data/efs"
+  end
+
+  def shared_data_dir
+    self.class.shared_data_dir
+  end
+
   def document_data_path
-    "#{Rails.root}/data/documents"
+    "#{shared_data_dir}/documents"
   end
 
   def data_dir(type, format)
