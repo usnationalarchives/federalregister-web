@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y build-essential libcurl4-openssl-dev li
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
-# packages for testing
+# npm packages for testing
 RUN npm install -g jshint
 RUN npm install -g coffeelint
 
