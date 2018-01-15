@@ -12,6 +12,8 @@ web:
     - HONEYBADGER_API_KEY=''
     - AWS_ACCESS_KEY_ID='XXX'
     - AWS_SECRET_ACCESS_KEY='XXX'
+    - FR_API_URL='https://www.federalregister.gov/api/v1'
+    - FR_BASE_URL='https://www.federalregister.gov'
   restart: always
 
 mysql:

@@ -19,8 +19,8 @@ feature_flags:
     location: true
 
 federal_register:
-  api_url: 'https://www.federalregister.gov/api/v1'
-  base_uri: 'https://www.federalregister.gov'
+  api_url: '<%= ENV["FR_API_URL"] %>'
+  base_uri: '<%= ENV["FR_BASE_URL"] %>'
 
 # generic switch for deciding when to raise exception or notify honeybadger
 notify_honeybager: true

@@ -1,9 +1,3 @@
-federal_register:
-  # api_url: 'http://www.fr2.dev:8081/api/v1'
-  # base_uri: 'http://www.fr2.dev:8081'
-  api_url: 'https://federalregister.gov/api/v1'
-  base_uri: 'https://federalregister.gov'
-
 # APPLICATION SETTINGS
 app_url: 'http://www.fr2.dev:8081'
 
