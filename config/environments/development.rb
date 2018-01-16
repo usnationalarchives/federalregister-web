@@ -31,7 +31,13 @@ MyFr2::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  secrets = File.open( File.join(File.dirname(__FILE__), '..', 'secrets.yml') ) { |yf| YAML::load( yf ) }
+  SECRETS = YAML::load(
+    ERB.new(
+      File.read(
+        File.join(File.dirname(__FILE__), '..', 'secrets.yml')
+      )
+    ).result
+  )
 
   smtp_settings = {
    :address        => "smtp.sendgrid.net",
