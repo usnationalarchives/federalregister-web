@@ -3,7 +3,7 @@ web:
     file: shared.yml
     service: web
   environment:
-    - RAILS_ENV=development
+    RAILS_ENV: development
 
 mysql:
   extends:
