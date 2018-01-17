@@ -3,7 +3,7 @@ class FrIndexPresenter
 
   def initialize(year)
     raise ActiveRecord::RecordNotFound if year.to_i < 2013
-    
+
     @year = year.to_i
     @index = HTTParty.get(index_json_url)
   end
@@ -49,7 +49,7 @@ class FrIndexPresenter
   end
 
   def index_json_url
-    "#{Settings.federal_register.base_uri}/fr_index/#{year}/index.json"
+    "#{Settings.federal_register.internal_base_uri}/fr_index/#{year}/index.json"
   end
 
   def date_last_issue_published

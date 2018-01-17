@@ -14,6 +14,7 @@ web:
     AWS_SECRET_ACCESS_KEY: 'XXX'
     FR_API_URL: 'https://www.federalregister.gov/api/v1'
     FR_BASE_URL: 'https://www.federalregister.gov'
+    FR_INTERNAL_BASE_URL: 'https://www.federalregister.gov'
   restart: always
 
 mysql:

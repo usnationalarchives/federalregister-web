@@ -15,7 +15,7 @@ class TableOfContentsPresenter
   end
 
   def url
-    "#{Settings.federal_register.base_uri}/document_issues/json/#{date.to_s(:ymd)}.json"
+    "#{Settings.federal_register.internal_base_uri}/document_issues/json/#{date.to_s(:ymd)}.json"
   end
 
   def document_partial

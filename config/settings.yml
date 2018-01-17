@@ -21,6 +21,7 @@ feature_flags:
 federal_register:
   api_url: '<%= ENV["FR_API_URL"] %>'
   base_uri: '<%= ENV["FR_BASE_URL"] %>'
+  internal_base_uri: '<%= ENV["FR_INTERNAL_BASE_URL"] %>'
 
 # generic switch for deciding when to raise exception or notify honeybadger
 notify_honeybager: true
