@@ -80,6 +80,7 @@ ENV WEB_PORT 3000
 COPY . /home/app/
 
 WORKDIR /home/app
+RUN mkdir -p /home/app/tmp/pids
 RUN chown -R app /home/app
 
 RUN DB_ADAPTER=nulldb DEVISE_SECRET_KEY=XXX AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX RAILS_ENV=production bundle exec rake assets:precompile &&\
