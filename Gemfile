@@ -45,7 +45,7 @@ gem "pbkdf2"
 gem "cocaine"
 gem "json_builder"
 
-gem "httparty", "0.11.0"
+gem "httparty", "0.14.0"
 gem "httmultiparty"
 
 # api caching

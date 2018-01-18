@@ -7,11 +7,11 @@ GIT
 
 GIT
   remote: https://github.com/criticaljuncture/cachebar.git
-  revision: 83724b95ab284c74fc8d69e8e14d38712e2bf716
+  revision: 556e356156b67be03bc6f025b1cb390c291c76e0
   specs:
     cachebar (1.2.0)
       activesupport
-      httparty (~> 0.11.0)
+      httparty (>= 0.11.0)
       redis
       redis-namespace
 
@@ -119,6 +119,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     commonjs (0.2.7)
+    concurrent-ruby (1.0.5)
     css_parser (1.4.5)
       addressable
     database_cleaner (1.4.1)
@@ -290,10 +291,10 @@ GEM
       httparty (>= 0.7.3)
       mimemagic
       multipart-post
-    httparty (0.11.0)
-      multi_json (~> 1.0)
+    httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    i18n (0.7.0)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
     indefinite_article (0.2.4)
       activesupport
     inflecto (0.0.2)
@@ -337,7 +338,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile (0.6.2)
     mono_logger (1.1.0)
-    multi_json (1.12.2)
+    multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
@@ -418,8 +419,8 @@ GEM
       json (~> 1.4)
     recaptcha (0.4.0)
     redis (3.0.7)
-    redis-namespace (1.5.2)
-      redis (~> 3.0, >= 3.0.4)
+    redis-namespace (1.6.0)
+      redis (>= 3.0.4)
     request_store (1.0.8)
     resque (1.25.2)
       mono_logger (~> 1.0)
@@ -568,7 +569,7 @@ DEPENDENCIES
   hoe (~> 3.15, >= 3.15.2)
   honeybadger
   httmultiparty
-  httparty (= 0.11.0)
+  httparty (= 0.14.0)
   indefinite_article
   jquery-rails
   json_builder
