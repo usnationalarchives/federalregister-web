@@ -47,7 +47,7 @@
 
           <% if description == "outside" %>
             <p class="summary">
-              <%= truncate_words(highlight.curated_abstract.strip, length: 265) %>
+              <%= truncate_words(highlight.curated_abstract.try(:strip), length: 265) %>
             </p>
           <% end %>
         </li>
