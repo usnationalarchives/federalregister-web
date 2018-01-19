@@ -1,5 +1,5 @@
 MyFr2::Application.configure do
-  APP_HOST_NAME = "www.fr2.criticaljuncture.org"
+  APP_HOST_NAME = "fr2.criticaljuncture.org"
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

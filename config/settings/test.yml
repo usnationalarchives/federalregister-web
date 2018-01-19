@@ -1,8 +1,8 @@
 # APPLICATION SETTINGS
-app_url: 'http://www.fr2.dev:8081'
+app_url: 'http://fr2.dev:8081'
 
 # urls for mailers, redirects, etc - where routes aren't available
-fr_comment_url: 'http://www.fr2.dev:8081/my/comments'
+fr_comment_url: 'http://fr2.dev:8081/my/comments'
 rss_helper:
   url: "federalregister.gov"
 
