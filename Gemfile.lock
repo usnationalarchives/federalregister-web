@@ -338,7 +338,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile (0.6.2)
     mono_logger (1.1.0)
-    multi_json (1.13.1)
+    multi_json (1.12.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
@@ -577,6 +577,7 @@ DEPENDENCIES
   launchy
   mail_view!
   memoist
+  multi_json (= 1.12.2)
   mysql2 (= 0.3.18)
   nokogiri (~> 1.6.6)
   passenger (= 5.1.11)

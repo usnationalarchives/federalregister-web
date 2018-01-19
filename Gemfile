@@ -47,6 +47,7 @@ gem "json_builder"
 
 gem "httparty", "0.14.0"
 gem "httmultiparty"
+gem "multi_json", "1.12.2"
 
 # api caching
 gem 'SystemTimer', :platforms => :ruby_18
