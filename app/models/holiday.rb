@@ -1,6 +1,9 @@
 class Holiday
   def self.all
-    @holidays ||= HTTParty.get(url).parsed_response
+    return @holidays if @holidays
+
+    response = HTTParty.get(url)
+    @holidays = response.parsed_response if response.code == 200
   end
 
   def self.find_by_date(date)
