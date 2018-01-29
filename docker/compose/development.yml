@@ -29,7 +29,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - /var/lib/mysql
+      - mysql:/var/lib/mysql
 
   redis:
     extends:
@@ -55,11 +55,13 @@ services:
       IODOCS_HOST: '184.72.241.172'
       IODOCS_PORT: 443
       API_IGNORE_PATHS: "xxx"
-      WEB_IGNORE_PATHS: "xxx"
+      WEB_IGNORE_PATHS: "xxx" # /documents/search | /public-inspection/search | /documents/20*
       CACHE_ASSETS: pass
       CACHE_API: hash
       CACHE_WEB: hash
     depends_on:
       - web
-    links:
-      - web
+
+volumes:
+  mysql:
+    driver: local
