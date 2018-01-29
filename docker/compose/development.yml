@@ -1,20 +1,65 @@
-web:
-  extends:
-    file: shared.yml
-    service: web
-  environment:
-    RAILS_ENV: development
+version: '2'
 
-mysql:
-  extends:
-    file: shared.yml
-    service: mysql
-  ports:
-    - "3306:3306"
+services:
+  web:
+    extends:
+      file: shared.yml
+      service: web
+    build: ../../
+    #image: 264372021245.dkr.ecr.us-east-1.amazonaws.com/federalregister-web:latest
+    environment:
+      RAILS_ENV: development
+      FR_BASE_URL: 'http://127.0.0.1:3000'
+      CONTAINER_ROLE: 'worker'
+    volumes:
+      - /Users/bobburbach/code/critical_juncture/federalregister-web:/home/app/
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
 
-redis:
-  extends:
-    file: shared.yml
-    service: redis
-  ports:
-    - "6379:6379"
+  mysql:
+    extends:
+      file: shared.yml
+      service: mysql
+    ports:
+      - "20000:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - /var/lib/mysql
+
+  redis:
+    extends:
+      file: shared.yml
+      service: redis
+    ports:
+      - "6379:6379"
+
+  varnish:
+    image: 264372021245.dkr.ecr.us-east-1.amazonaws.com/federalregister-varnish:rancher
+    ports:
+      - "6081:6081"
+      - "6082:6082"
+    environment:
+      VCL_FILE: 'development.vcl'
+      VARNISH_MEMORY: 100M
+      API_CORE_HOST: '184.72.241.172'
+      API_CORE_PORT: 443
+      WEB_HOST: web
+      WEB_PORT: '3000'
+      BLOG_HOST: '184.72.241.172'
+      BLOG_PORT: 443
+      IODOCS_HOST: '184.72.241.172'
+      IODOCS_PORT: 443
+      API_IGNORE_PATHS: "xxx"
+      WEB_IGNORE_PATHS: "xxx"
+      CACHE_ASSETS: pass
+      CACHE_API: hash
+      CACHE_WEB: hash
+    depends_on:
+      - web
+    links:
+      - web
