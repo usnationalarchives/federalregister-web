@@ -103,6 +103,9 @@ gem 'resque-retry'
 # google recaptcha integration
 gem 'recaptcha', '0.4.0', require: 'recaptcha/rails'
 
+# Single sign on
+gem 'omniauth-openid-connect'
+
 gem 'memoist'
 
 # varnish cache client
