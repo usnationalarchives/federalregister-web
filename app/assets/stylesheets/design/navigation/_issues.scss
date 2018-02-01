@@ -61,7 +61,7 @@
   .calendar_holder {
     width: 405px;
 
-    .calendars-wrapper { overflow: auto; }
+    .calendars-wrapper { overflow: hidden; }
 
     .calendar-wrapper {
       float: left;
