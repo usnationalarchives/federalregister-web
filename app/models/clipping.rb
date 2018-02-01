@@ -18,18 +18,6 @@ class Clipping < ActiveRecord::Base
     clippings
   end
 
-  def self.create_from_cookie(document_numbers, user)
-    return unless document_numbers.present?
-
-    document_numbers = JSON.parse(document_numbers)
-    document_numbers.each do |doc_hash|
-      doc_hash.each_pair do |document_number, folders|
-        self.persist_document(user, document_number, folders[0])
-      end
-    end
-    user.update_attribute(:new_clippings_count, document_numbers.count)
-  end
-
   def self.all_preloaded_from_cookie(cookie_data)
     document_numbers = retrieve_document_numbers(cookie_data)
     clippings = document_numbers.map{|doc_num| Clipping.new(:document_number => doc_num) }

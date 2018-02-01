@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include UserDataPersistor
   skip_before_filter :authenticate_user!
 
   def new
@@ -8,16 +9,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    redirect_url = valid_redirect_url || subscriptions_path 
-    session[:redirect_url] = nil
-
     session[:user_details] = auth_hash["extra"]["raw_info"].merge(
-      token: auth_hash["credentials"]["token"]
+      token: auth_hash["credentials"]["token"],
+      id:    auth_hash["uid"]
     )
     SendgridClient.new.remove_from_bounce_list(session[:user_details][:email])
-    flash[:success] = "Signed in successfully"
 
-    redirect_to redirect_url
+    message, redirect_location = persist_user_data
+    flash[:notice] = message[:notice] if message[:notice]
+    flash[:warning] = message[:warning] if message[:warning]
+
+    unless message[:notice] || message[:warning]
+      flash[:success] = "Signed in successfully"
+    end
+
+    session[:redirect_url] = nil
+    redirect_to valid_redirect_url || redirect_location
   end
 
   def destroy

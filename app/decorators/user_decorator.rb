@@ -5,7 +5,6 @@ class UserDecorator < ApplicationDecorator
   delegate :clippings,
            :id,
            :email,
-           :new_clippings_count,
            :update_attribute, to: :user
 
   def display_name
@@ -14,5 +13,9 @@ class UserDecorator < ApplicationDecorator
     elsif user.try(:email)
       user.email
     end
+  end
+
+  def confirmed?
+    user.confirmed_at.present?
   end
 end

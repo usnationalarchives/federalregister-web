@@ -90,7 +90,7 @@ module UserDataPersistor
 
   # saving clippings from users session from before signed in or signed up
   def associate_clippings_with_user_at_sign_in_up
-    Clipping.create_from_cookie( cookies[:document_numbers], current_user )
+    create_from_cookie(cookies[:document_numbers], current_user)
 
     # clean up
     cookies[:document_numbers] = nil
@@ -111,5 +111,18 @@ module UserDataPersistor
     end
 
     return message, nil
+  end
+
+  def create_from_cookie(document_numbers, user)
+    return unless document_numbers.present?
+
+    document_numbers = JSON.parse(document_numbers)
+    document_numbers.each do |doc_hash|
+      doc_hash.each_pair do |document_number, folders|
+        Clipping.persist_document(user, document_number, folders[0])
+      end
+    end
+
+    session[:new_clippings_count] = document_numbers.count
   end
 end

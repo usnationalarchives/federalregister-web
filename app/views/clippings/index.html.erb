@@ -66,9 +66,9 @@
     <%= render partial: "clippings/not_logged_in_warning" %>
   <% end %>
 
-  <% if user_signed_in? && current_user.new_clippings_count && current_user.new_clippings_count > 0 %>
+  <% if user_signed_in? && session[:new_clippings_count] && session[:new_clippings_count] > 0 %>
     <%= render partial: "clippings/new_from_cookie", locals: {
-      count: current_user.new_clippings_count
+      count: session[:new_clippings_count]
     }  %>
   <% end %>
 

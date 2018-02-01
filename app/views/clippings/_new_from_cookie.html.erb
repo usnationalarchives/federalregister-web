@@ -6,5 +6,5 @@
 </div>
 <%
   #remove the count once we've displayed this message
-  current_user.model.update_attribute(:new_clippings_count, nil)
+  session[:new_clippings_count] = nil
 %>
