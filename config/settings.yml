@@ -42,3 +42,6 @@ rss_helper:
 varnish:
   host: <%= ENV["VARNISH_ADDR"] || 'varnish' %>
   port: 6082
+
+services:
+  fr_profile_url: "https://ecfr.criticaljuncture.org"
