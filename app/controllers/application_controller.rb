@@ -36,11 +36,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  USER_ID_STUB = 999999999 #B.C. TODO: Replace with user_id from fr-profile once oauth claim for user_id is implemented
+  CONFIRMATION_TIME_STUB = ActiveSupport::TimeZone[Time.zone.name].parse("2018-01-01 1am")
   def current_user
+
     if session[:user_details]
       @current_user ||= User.new(session[:user_details])
-      @current_user.id = USER_ID_STUB
+      @current_user.id = session[:user_details][:id]
+      if session[:user_details][:email_confirmed]
+        @current_user.confirmed_at = CONFIRMATION_TIME_STUB
+      end
       @current_user
     end
   end
