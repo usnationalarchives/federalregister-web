@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       reset_session
     else
       reset_session #B.C. TODO: Remove this manual session reset once the CORS ajax requests are fixed
-      redirect_to SECRETS["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
+      redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
   end
 
