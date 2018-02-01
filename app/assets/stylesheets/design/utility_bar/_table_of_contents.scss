@@ -3,7 +3,7 @@
     @include custom-bullets($color-enhanced, "19px");
 
     max-height: 300px;
-    overflow: scroll;
+    overflow: auto;
 
     li {
       &::before { padding-right: 10px; }
