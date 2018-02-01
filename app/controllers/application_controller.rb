@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include RouteBuilder
   helper RouteBuilder
+  include OmniauthHelper
+  helper OmniauthHelper
 
   include Userstamp
 
@@ -34,8 +36,34 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  USER_ID_STUB = 999999999 #B.C. TODO: Replace with user_id from fr-profile once oauth claim for user_id is implemented
+  def current_user
+    if session[:user_details]
+      @current_user ||= User.new(session[:user_details])
+      @current_user.id = USER_ID_STUB
+      @current_user
+    end
+  end
+
+  def authenticate_user!
+    session[:redirect_to] = current_url unless redirect_blacklist.include?(current_path)
+    redirect_to '/auth/sign_in' unless current_user
+  end
 
   private
+
+  def current_url
+    request.url
+  end
+
+  def current_path
+    request.path
+  end
+
+  def redirect_blacklist
+    []
+  end
+
   def parse_date_from_params
     year  = params[:year]
     month = params[:month]
