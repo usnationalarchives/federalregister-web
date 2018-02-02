@@ -447,28 +447,11 @@ MyFr2::Application.routes.draw do
     constraints: {
       year: /(19|20)\d{2}/
     }
-
   # My FR
   #
   scope 'my' do
-    devise_for :users, :controllers => { :passwords => "users/passwords",
-                                         :confirmations => "users/confirmations",
-                                         :sessions => "users/sessions",
-                                         :registrations => "users/registrations" }
-    devise_scope :user do
-      get 'sign_in', :to => 'users/sessions#new', :as => :new_session
-      get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_session
-      get 'sign_up', :to => 'users/registrations#new', :as => :user_registration
-      post 'sign_up', :to => 'users/registrations#create', :as => :user_registration
-      get 'resend_confirmation', :to => 'users/confirmations#resend', :as => :resend_confirmation
-    end
-
     root :to => "clippings#index",
          :as => :my_root
-
-    resources :accounts,
-      :only => [:index, :update],
-      :controller => "users/accounts"
 
     resources :clippings do
       collection do

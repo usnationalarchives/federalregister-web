@@ -18,8 +18,6 @@ gem 'federal_register', '0.6.5'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
 
-gem 'devise', '2.1.2'
-
 gem 'strong_parameters'
 
 gem 'formtastic', '2.0.2'
