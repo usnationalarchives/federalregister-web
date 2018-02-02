@@ -417,7 +417,7 @@ MyFr2::Application.routes.draw do
   #
   # Single Sign On
   #
-  get '/auth/sign_in', to: 'sessions#new'
+  get '/auth/sign_in', to: 'sessions#new', as: :sign_in
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/sign_out', to: 'sessions#destroy', as: :sign_out
 

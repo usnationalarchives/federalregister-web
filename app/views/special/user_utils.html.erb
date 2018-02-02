@@ -19,10 +19,10 @@
     <ul id="user-nav">
     <% if user_signed_in? %>
       <li>Hi, <%= current_user.display_name %></li>
-      <li><%= link_to "Sign out", '/sign_out' %></li>
+      <li><%= link_to "Sign out", sign_out_path %></li>
     <% else %>
-      <li><%= link_to "Sign in", new_session_path, :id => "sign-in" %></li>
-      <li><%= link_to "Sign up", user_registration_path %></li>
+      <li><%= link_to "Sign in", sign_in_path, :id => "sign-in" %></li>
+      <li><%= link_to "Sign up", sign_in_path %></li>
     <% end %>
     </ul>
   </div> <!-- end ie_shim -->

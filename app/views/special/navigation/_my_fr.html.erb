@@ -8,7 +8,7 @@
 
   <ul class="subnav myfr2-list">
     <li id='myfr2-account'>
-      <%= link_to 'My Account', accounts_path %>
+      <%= link_to 'My Account', "#{Settings.services.fr_profile_url}/profile/edit" %>
     </li>
 
     <li id='myfr2-clipboard'>
@@ -25,9 +25,9 @@
 
     <li id='myfr2-session'>
       <% if user_signed_in? %>
-        <%= link_to 'Sign Out', '/sign_out', class: "myfr2-auth"  %>
+        <%= link_to 'Sign Out', sign_out_path, class: "myfr2-auth"  %>
       <% else %>
-        <%= link_to 'Sign In / Sign Up', '/auth/sign_in', class: "myfr2-auth" %>
+        <%= link_to 'Sign In / Sign Up', sign_in_path, class: "myfr2-auth" %>
       <% end %>
     </li>
   </ul>
