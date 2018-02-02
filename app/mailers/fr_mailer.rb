@@ -1,4 +1,4 @@
-class FRMailer < Devise::Mailer
+class FRMailer < ActionMailer::Base
   include SendGrid
 
   add_template_helper(MailerHelper)
