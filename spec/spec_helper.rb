@@ -27,9 +27,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.include Warden::Test::Helpers, :type => :feature
-  Warden.test_mode!
-
   config.include Features::SessionHelpers, type: :feature
   config.include Features::ClippingHelpers, type: :feature
   config.include Features::SubscriptionHelpers, type: :feature
