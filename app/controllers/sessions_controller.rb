@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
   def valid_redirect_url
     return nil unless session[:redirect_to]
 
-    /\A#{Settings.canonical_host}/.match?(session[:redirect_to]) ? session[:redirect_to] : nil
+    /\A#{Settings.canonical_host}/.match(session[:redirect_to]) ? session[:redirect_to] : nil
   end
 
 end
