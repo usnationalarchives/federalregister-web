@@ -93,7 +93,11 @@ gem 'chronic', '~> 0.10.2'
 # set environment variables
 gem 'dotenv-rails', '~> 1.0.2'
 
+# JSON web tokens (share notifications across services)
+gem 'jwt'
+
 # background jobs
+# resque web interface - rails engine
 gem 'resque'
 gem 'resque-retry'
 
