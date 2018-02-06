@@ -11,11 +11,8 @@ class ClippingsController < ApplicationController
 
       #ensure not nil
       clipboard_clippings = clipboard_clippings ? clipboard_clippings : []
-    elsif !user_signed_in? && cookies[:document_numbers].present?
-      clipboard_clippings = Clipping.
-        all_preloaded_from_cookie(
-          cookies[:document_numbers]
-        )
+    elsif !user_signed_in?
+      redirect_to sign_in_path
     else
       clipboard_clippings = []
     end
