@@ -10,7 +10,6 @@ class Subscription < ApplicationModel
   attr_accessor :search_conditions, :search_type
 
   belongs_to :mailing_list
-  belongs_to :user
   belongs_to :comment
 
   def mailing_list_with_autobuilding

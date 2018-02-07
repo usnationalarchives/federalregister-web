@@ -27,7 +27,7 @@ class SubscriptionsController < ApplicationController
     @subscription.environment = Rails.env
 
     if user_signed_in?
-      @subscription.user = current_user
+      @subscription.user_id = current_user.id
       @subscription.email = current_user.email
     end
 

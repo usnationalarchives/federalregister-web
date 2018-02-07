@@ -24,7 +24,7 @@ module UserDataPersistor
     subscription = Subscription.where(:token => session[:subscription_token]).first
 
     if subscription
-      subscription.user = current_user
+      subscription.user_id = current_user.id
       subscription.save :validate => false
 
       subscription.confirm! if current_user.confirmed?
@@ -55,7 +55,7 @@ module UserDataPersistor
     end
 
     if comment
-      comment.user = current_user
+      comment.user_id = current_user.id
       comment.secret = session[:comment_secret]
       comment.comment_publication_notification = session[:comment_publication_notification]
 
