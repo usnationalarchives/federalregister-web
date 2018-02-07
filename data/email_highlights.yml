@@ -70,7 +70,7 @@ highlights:
   content: "<strong>A MyFR account allows you to easily manage your subscriptions in
             one place.</strong> By creating an account you can review your subscriptions, view current results online,
             and see the last time your subscription matched Federal Register documents.
-            <a href='https://www.federalregister.gov/my/sign_up?utm_campaign=highlights&utm_medium=email&utm_source=federalregister.gov&utm_content=manage_subscription'>Get started here!</a>"
+            <a href='https://www.federalregister.gov/auth/sign_in?utm_campaign=highlights&utm_medium=email&utm_source=federalregister.gov&utm_content=manage_subscription'>Get started here!</a>"
   priority: 1
   enabled: true
   in_rotation: false

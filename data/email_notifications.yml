@@ -59,7 +59,7 @@ notifications:
               content and we're happy to announce that as part of this update we've added 
               subscription management features to our MyFR account service.</p>
             <p>You can get started managing your subscriptions by 
-              <a href='https://www.federalregister.gov/my/sign_up?utm_campaign=feature_notification&utm_content=create_account&utm_medium=email&utm_source=federalregister.gov'>creating an account</a>.</p>
+              <a href='https://www.federalregister.gov/auth/sign_in?utm_campaign=feature_notification&utm_content=create_account&utm_medium=email&utm_source=federalregister.gov'>creating an account</a>.</p>
             <p>And you can learn more about all the new features in our blog posts
               <a href='https://www.federalregister.gov/blog/2013/09/improved-subscription-management?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Improved Subscription Management</a> 
               and <a href='https://www.federalregister.gov/blog/2013/09/subscription-email-improvements?utm_campaign=feature_notification&utm_content=blog_post&utm_medium=email&utm_source=federalregister.gov'>Subscription Email Improvements</a>.</p>
@@ -77,7 +77,7 @@ notifications:
                 Users like you have let us know that they'd like more ways to manage their content and we're happy to announce that as part of this update we've added subscription management features to our MyFR account service.
 
                 
-                You can get started managing your subscriptions by creating an account at https://www.federalregister.gov/my/sign_up.
+                You can get started managing your subscriptions by creating an account at https://www.federalregister.gov/auth/sign_in.
     
 
                 And you can learn more about all the new features in our blog posts 'Improved Subscription Management Now Available' and 'Subscription Email Updates' at https://www.federalregister.gov/blog
