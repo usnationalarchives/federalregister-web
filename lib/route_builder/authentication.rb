@@ -8,4 +8,8 @@ module RouteBuilder::Authentication
     params = options.map{|k,v| "#{k}=#{v}"}.join('&')
     "#{Settings.canonical_host}/auth/sign_in?#{params}"
   end
+
+  def resend_confirmation_path
+    "#{Settings.services.fr_profile_url}/profile/confirmation"
+  end
 end
