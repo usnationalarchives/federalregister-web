@@ -27,7 +27,7 @@
       <% if user_signed_in? %>
         <%= link_to 'Sign Out', sign_out_path, class: "myfr2-auth"  %>
       <% else %>
-        <%= link_to 'Sign In / Sign Up', sign_in_path, class: "myfr2-auth" %>
+        <%= link_to 'Sign In / Sign Up', sign_in_url, class: "myfr2-auth" %>
       <% end %>
     </li>
   </ul>

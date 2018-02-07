@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include RouteBuilder
   helper RouteBuilder
+  include RouteBuilder::Authentication
+  helper RouteBuilder::Authentication
   include OmniauthHelper
   helper OmniauthHelper
 
@@ -38,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     session[:redirect_to] = current_url unless redirect_blacklist.include?(current_path)
-    redirect_to sign_in_path unless current_user
+    redirect_to sign_in_url unless current_user
   end
 
   private

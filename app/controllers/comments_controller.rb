@@ -97,7 +97,7 @@ class CommentsController < ApplicationController
     if params[:commit] == "Sign In"
       redirect_to new_session_path
     else
-      redirect_to sign_in_path
+      redirect_to sign_in_url
     end
   end
 

@@ -19,7 +19,8 @@ en:
         active: You will be notified when a future document mentions the document you commented on.
         active_unconfirmed: Once your email address is confirmed, you will be notified when a future document mentions the document you commented on.
         inactive: You will not be notified when a future document mentions the document you commented on.
-
+  clippings:
+    sign_in_required: "Please sign in to add this clipping to your My FR account."
   comments:
     comment_count:
       one: View the 1 publicly posted comment.
@@ -39,6 +40,8 @@ en:
     unknown:
       modal_title: "Communications Error"
       modal_html: "We're sorry we are currently unable to communicate with Regulations.gov. <br> You may want try again in a few moments or attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document."
+  sessions:
+    sign_in: "You will be redirected back to the Federal Registr after you have signed in or created an account."
   subscriptions:
     save:
       success: "Successfully subscribed to '%{title}'"

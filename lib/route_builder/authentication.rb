@@ -1,5 +1,5 @@
 module RouteBuilder::Authentication
-  def sign_in_url_test(redirect_to=nil, notifications=nil)
+  def sign_in_url(redirect_to=nil, notifications=nil)
     notifications = {info: I18n.t('sessions.sign_in')} unless notifications
     options = {jwt: JwtUtils.encode({notifications: notifications})}
 

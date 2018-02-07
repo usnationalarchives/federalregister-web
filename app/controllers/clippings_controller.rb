@@ -12,7 +12,7 @@ class ClippingsController < ApplicationController
       #ensure not nil
       clipboard_clippings = clipboard_clippings ? clipboard_clippings : []
     elsif !user_signed_in?
-      redirect_to sign_in_path
+      redirect_to sign_in_url(nil, {info: I18n.t('clippings.sign_in_required')})
     else
       clipboard_clippings = []
     end

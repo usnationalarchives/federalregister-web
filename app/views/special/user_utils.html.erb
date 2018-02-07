@@ -21,8 +21,9 @@
       <li>Hi, <%= current_user.display_name %></li>
       <li><%= link_to "Sign out", sign_out_path %></li>
     <% else %>
-      <li><%= link_to "Sign in", sign_in_path, :id => "sign-in" %></li>
-      <li><%= link_to "Sign up", sign_in_path %></li>
+      <li>
+      <%= link_to "Sign in", sign_in_url, :id => "sign-in" %></li>
+      <li><%= link_to "Sign up", sign_in_url %></li>
     <% end %>
     </ul>
   </div> <!-- end ie_shim -->
