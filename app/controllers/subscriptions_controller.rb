@@ -49,14 +49,12 @@ class SubscriptionsController < ApplicationController
         end
 
         redirect_to subscriptions_url
-      elsif @subscription.user_with_this_email_exists?
-        session[:subscription_token] = @subscription.token
-        flash[:notice] = I18n.t('subscriptions.save.sign_in_required')
-
-        redirect_to new_session_path(user: {email: @subscription.email})
       else
-        SubscriptionMailer.subscription_confirmation(@subscription).deliver
-        redirect_to confirmation_sent_subscriptions_url(email: @subscription.email)
+        session[:subscription_token] = @subscription.token
+        redirect_to sign_in_url(
+          nil,
+          @subscription.user_with_this_email_exists? ? I18n.t('subscriptions.save.sign_in_required') : I18n.t('subscriptions.sign_up_required')
+        )
       end
     else
       render action: :new

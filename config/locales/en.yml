@@ -46,7 +46,8 @@ en:
     save:
       success: "Successfully subscribed to '%{title}'"
       unconfirmed: "Your subscription has been added to your account but you must confirm your email address before we can begin sending you results."
-      sign_in_required: "Please sign into to add this subscription to your My FR account."
+      sign_in_required: "Please sign in to add this subscription to your My FR account."
+      sign_up_required: "Please sign up to add this subscription to your My FR account"
   user:
     accounts:
       email_change_success: "A confirmation email has been sent to %{email}"
