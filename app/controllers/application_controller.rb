@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
   before_filter :set_stampers
-  before_filter :decorate_current_user
 
   before_filter :set_page_to_track
 
@@ -22,10 +21,6 @@ class ApplicationController < ActionController::Base
 
   def set_stampers
     User.stamper = self.current_user
-  end
-
-  def decorate_current_user
-    @current_user = UserDecorator.decorate(current_user) if current_user
   end
 
   def set_page_to_track

@@ -12,7 +12,7 @@ module OmniauthHelper
       if session[:user_details][:email_confirmed]
         @current_user.confirmed_at = CONFIRMATION_TIME_STUB
       end
-      @current_user
+      UserDecorator.decorate(@current_user)
     end
   end
 
