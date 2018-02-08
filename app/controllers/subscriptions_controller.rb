@@ -11,15 +11,6 @@ class SubscriptionsController < ApplicationController
     @pi_subscription_count = current_user.subscriptions.pi_subscriptions.count
   end
 
-  def new
-    @subscription = Subscription.new(params[:subscription])
-    @subscription.search_type ||= 'Document'
-
-    @mailing_list_title = @subscription.mailing_list.title
-  rescue FederalRegister::Client::BadRequest
-    render :action => "invalid_subscription"
-  end
-
   def create
     @subscription = Subscription.new(params[:subscription])
 
@@ -57,7 +48,7 @@ class SubscriptionsController < ApplicationController
         )
       end
     else
-      render action: :new
+      raise NotImplementedError
     end
   end
 
