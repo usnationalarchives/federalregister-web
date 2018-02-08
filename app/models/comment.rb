@@ -104,7 +104,7 @@ class Comment < ApplicationModel
   def build_subscription(user, request)
     self.subscription = Subscription.new.tap do |s|
       s.search_conditions = {:citing_document_numbers => document_number }
-      s.user = user
+      s.user_id = user.id
       s.email = user.email
       s.requesting_ip = request.remote_ip
       s.environment = Rails.env
