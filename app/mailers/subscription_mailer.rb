@@ -12,25 +12,6 @@ class SubscriptionMailer < ActionMailer::Base
 
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 
-  def subscription_confirmation(subscription)
-    @subscription = subscription
-    @utility_links = []
-    @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr')
-
-    sendgrid_category "Subscription Confirmation"
-    sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription confirmation'
-
-    mail(
-      :to => subscription.email,
-      :subject => "[FR] #{subscription.mailing_list.title}"
-    ) do |format|
-      format.text { render('subscription_confirmation') }
-      format.html { Premailer.new( render('subscription_confirmation', :layout => "mailer/two_col_1_2"),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
-    end
-  end
-
   def unsubscribe_notice(subscription)
     @subscription = subscription
     @utility_links = []
@@ -167,10 +148,6 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   class Preview < MailView
-    def subscription_confirmation
-      subscription = Subscription.find(2)
-      SubscriptionMailer.subscription_confirmation(subscription)
-    end
 
     def unsubscribe_notice
       subscription = Subscription.find(2)
