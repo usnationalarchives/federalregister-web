@@ -43,7 +43,7 @@ module DocumentDecorator::Comments
     link_text = "Submit a public comment on this document"
     href = comment_url.present? ? comment_url : '#addresses'
 
-    h.link_to link_text, href
+    h.link_to link_text, href, id: 'utility-nav-comment-link'
   end
 
   def comment_period_days_remaining
