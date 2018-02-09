@@ -74,10 +74,6 @@ class ClippingsController < ApplicationController
   end
 
   def add_document_id_to_session(document_number)
-    if cookies[:document_numbers].present?
-      cookies.permanent[:document_numbers] = JSON.parse(cookies[:document_numbers]).push( {document_number => ['my-clippings']} ).to_json
-    else
       cookies.permanent[:document_numbers] = [{document_number => ['my-clippings']}].to_json
-    end
   end
 end
