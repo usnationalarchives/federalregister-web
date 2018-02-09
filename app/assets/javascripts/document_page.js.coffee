@@ -89,5 +89,21 @@ $(document).ready ->
       if $('#addresses').size() == 0
         if $('#further-info').size() == 0
           commentButton.remove()
+
+          # disable utility nav items also
+          utilityNavComment = $('#utility-nav-formal-comment')
+          utilityNavComment.addClass('unavailable')
+          utilityNavComment.find('.fr-box.dropdown-menu')
+            .removeClass('fr-box-enhanced')
+            .addClass('disabled')
+          utilityNavComment.find('li').text('This feature is not available for this document.')
+
+          utilityNavReadComments = $('#utility-nav-public-comments')
+          utilityNavReadComments.addClass('unavailable')
+          utilityNavReadComments.find('.fr-box.dropdown-menu')
+            .removeClass('fr-box-enhanced')
+            .addClass('disabled')
+          utilityNavReadComments.find('li').text('This feature is not available for this document.')
         else
-          commentButton.attr('href', '#furinf')
+          commentButton.attr('href', '#further-info')
+          $('#utility-nav-comment-link').attr('href', '#further-info')

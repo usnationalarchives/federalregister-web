@@ -52,7 +52,7 @@
       <li class="divider"></li>
     <% end %>
 
-    <li class='enhanced <%= "unavailable" unless document.accepting_comments? %>'>
+    <li id="utility-nav-formal-comment" class='enhanced <%= "unavailable" unless document.accepting_comments? %>'>
       <i class="icon-fr2 icon-fr2-Chat" role="button" data-toggle="dropdown"></i>
       <%= fr_utility_nav_box(
         FrBox.build(
@@ -72,7 +72,7 @@
       <% end %>
     </li>
 
-    <li class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
+    <li id="utility-nav-public-comments" class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
         <% if document.comments_close_on.present? && document.comment_count && document.public_comments_url %>
           <span class="comment_count"><%= document.comment_count %></span>
