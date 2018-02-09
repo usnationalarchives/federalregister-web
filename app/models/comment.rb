@@ -22,7 +22,7 @@ class Comment < ApplicationModel
   MAX_ATTACHMENTS = 10
 
   AGENCY_POSTING_GUIDELINES_LEXICON = {
-    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#furinf\'>FOR FURTHER INFORMATION CONTACT</a>",
+    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#further-info\'>FOR FURTHER INFORMATION CONTACT</a>",
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
 

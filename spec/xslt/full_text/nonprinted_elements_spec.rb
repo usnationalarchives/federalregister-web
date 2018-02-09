@@ -33,7 +33,8 @@ describe "XSLT::NonPrintedElements" do
   it "creates the proper elements for FURINF" do
     process <<-XML
       <FURINF>
-        Some text nodes and other content nodes
+        <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
+        <P>Some text nodes and other content nodes</P>
       </FURINF>
     XML
 
@@ -44,6 +45,9 @@ describe "XSLT::NonPrintedElements" do
       with_tag "span.unprinted-element-border"
     end
 
+    expect(html).to have_tag('h1#further-info') do
+      with_text "FOR FURTHER INFORMATION CONTACT:"
+    end
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
