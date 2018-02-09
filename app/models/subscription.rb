@@ -5,8 +5,6 @@ class Subscription < ApplicationModel
   after_create :remove_from_bounce_list
   before_save :update_mailing_list_active_subscriptions_count
 
-  validates_format_of :email, :with => /\A[^ ]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+\z/, :format => "is not a valid email address"
-
   attr_accessor :search_conditions, :search_type
 
   belongs_to :mailing_list
@@ -23,7 +21,7 @@ class Subscription < ApplicationModel
   end
   alias_method_chain :mailing_list, :autobuilding
 
-  validates_presence_of :email, :requesting_ip, :mailing_list, :environment
+  validates_presence_of :requesting_ip, :mailing_list, :environment
 
   def self.not_delivered_on(date)
     scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])

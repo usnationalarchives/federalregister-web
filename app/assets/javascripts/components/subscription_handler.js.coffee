@@ -8,29 +8,7 @@ class @FR2.SubscriptionHandler
     @addModalBehavior()
 
   @addModalBehavior: ->
-    @addEmailHelper()
     @handleSubmit()
-
-  @addEmailHelper: ->
-    emailHelper = new EmailHelper()
-
-    # watch input and debounce
-    $('.fr-modal form.subscription').on 'input onpropertychange', '#subscription_email', ()->
-      input = $(this)
-      clearTimeout input.data('timeout')
-
-      if !emailHelper.initialized
-        emailHelper.initialize input
-
-      emailHelper.reset_help_text()
-
-      # debounce input changes
-      emailCallback = -> emailHelper.validate_or_suggest()
-      input.data('timeout', setTimeout emailCallback, 500)
-
-    # add ability to use the suggested correction
-    $('.fr-modal form.subscription').on 'click', '.email_suggestion .link', ->
-      emailHelper.use_suggestion $(this)
 
   @handleSubmit: ->
     $('.fr-modal form.subscription .commit.button').on 'click', (e)->
@@ -54,30 +32,27 @@ class @FR2.SubscriptionHandler
       subscriptionWrapper.removeClass('error')
 
       if subscription.val()
-        if email.val()
-          subscriptionParam = $.param({
-            'subscription': {
-              'search_conditions': subscription.data('subscription-params')
-              'search_type': searchType.val()
-              'email': email.val()
-            }
-          })
+        subscriptionParam = $.param({
+          'subscription': {
+            'search_conditions': subscription.data('subscription-params')
+            'search_type': searchType.val()
+            'email': email.val()
+          }
+        })
 
-          form.attr('action', "/my/subscriptions?#{subscriptionParam}")
+        form.attr('action', "/my/subscriptions?#{subscriptionParam}")
 
-          # add authenticity_token here as we are unbinding submit events below
-          hiddenField = $('<input type="hidden" name="authenticity_token">')
-          hiddenField.val(getAuthenticityTokenFromHead)
-          hiddenField.appendTo(form)
+        # add authenticity_token here as we are unbinding submit events below
+        hiddenField = $('<input type="hidden" name="authenticity_token">')
+        hiddenField.val(getAuthenticityTokenFromHead)
+        hiddenField.appendTo(form)
 
-          form.find('.button.commit').addClass('submitting')
-          form.find('.button.commit input').prop('disabled', true)
+        form.find('.button.commit').addClass('submitting')
+        form.find('.button.commit input').prop('disabled', true)
 
-          form
-            .unbind('submit')
-            .submit()
-        else
-          email.addClass('error').focus()
+        form
+          .unbind('submit')
+          .submit()
       else
         subscriptionWrapper.addClass('error')
 

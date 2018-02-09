@@ -20,6 +20,8 @@ class SubscriptionsController < ApplicationController
     if user_signed_in?
       @subscription.user_id = current_user.id
       @subscription.email = current_user.email
+    else
+      @subscription.email = nil
     end
 
     if @subscription.save
