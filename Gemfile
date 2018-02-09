@@ -106,7 +106,9 @@ gem 'resque-retry'
 gem 'recaptcha', '0.4.0', require: 'recaptcha/rails'
 
 # Single sign on
-gem 'omniauth-openid-connect'
+gem 'omniauth-openid-connect',
+  git: 'https://github.com/criticaljuncture/omniauth-openid-connect',
+  branch: 'ruby_1.9.3'
 
 gem 'memoist'
 
