@@ -31,9 +31,7 @@ module SubscriptionHelper
     if options[:custom_path]
       path = options[:custom_path]
     else
-      path = new_subscription_path(
-        subscription: {search_conditions: search_conditions}
-      )
+      path = ''
     end
 
     link_to(path, class: "subscription subscription_action #{options[:class]} #{'rss-only' if options[:rss_only]}") do
