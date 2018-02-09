@@ -27,7 +27,7 @@
 
       if( formal_comment_link.length > 0 && formal_comment_link.first().attr('href') != '#addresses') {
         document_feedback_text = "If you would like to submit a formal comment to the issuing agency on the document you are currently viewing, please use the 'Document Feedback' button below.";
-      } else if( $('#addresses').length > 0 || $('#furinf').length > 0 ) {
+      } else if( $('#addresses').length > 0 || $('#further-info').length > 0 ) {
         document_feedback_text = "If you would like to comment on the current document, please use the 'Document Comment' button below for instructions on contacting the issuing agency";
       } else {
         document_feedback_text = "The current document is not open for formal comment, please use other means to contact " + $('.metadata .agencies').html() + " directly.";
@@ -70,7 +70,7 @@
         } else if( $('#addresses').length > 0 ) {
           window.location.href = '#addresses';
         } else {
-          window.location.href = '#furinf';
+          window.location.href = '#further-info';
         }
       });
     } else {
