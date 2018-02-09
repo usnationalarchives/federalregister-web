@@ -16,10 +16,10 @@
         returns 'addresses' if the header is for the ADDRESSES node -->
   <xsl:template name="header_id">
     <xsl:choose>
-      <xsl:when test="translate(text(),' ','') = 'ADDRESSES:'">
+      <xsl:when test="contains('ADDRESSES:', text())">
         <xsl:text>addresses</xsl:text>
       </xsl:when>
-      <xsl:when test="translate(text(),' ','') = 'FOR FURTHER INFORMATION CONTACT:'">
+      <xsl:when test="contains('FOR FURTHER INFORMATION CONTACT:', text())">
         <xsl:text>further-info</xsl:text>
       </xsl:when>
       <xsl:otherwise>

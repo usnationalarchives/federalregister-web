@@ -80,7 +80,7 @@ describe "XSLT::FullText::Headers" do
     end
   end
 
-  it "creates a header for addresses with the proper id" do
+  it "creates a header for ADD with the proper id" do
     process <<-XML
       <ADD>
         <HD SOURCE="HED">ADDRESSES:</HD>
@@ -90,6 +90,19 @@ describe "XSLT::FullText::Headers" do
     expect_equivalent <<-HTML
       <h1 id="addresses">ADDRESSES:</h1>
     HTML
+  end
+
+  it "creates a header for FURINF with the proper id" do
+    process <<-XML
+      <FURINF>
+        <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
+      </FURINF>
+    XML
+
+
+    expect(html).to have_tag('h1#further-info') do
+      with_text "FOR FURTHER INFORMATION CONTACT:"
+    end
   end
 
   it "ignores the appropriate nodes in the PREAMB tag returning the only proper headers" do
@@ -106,9 +119,6 @@ describe "XSLT::FullText::Headers" do
       <EFFDATE>
         <HD SOURCE="HED">DATES:</HD>
       </EFFDATE>
-      <FURINF>
-        <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
-      </FURINF>
     XML
 
     # note: the header id's increase but start at 3
@@ -127,10 +137,6 @@ describe "XSLT::FullText::Headers" do
 
     expect(html).to have_tag('h1#h-4') do
       with_text "DATES:"
-    end
-
-    expect(html).to have_tag('h1#h-5') do
-      with_text "FOR FURTHER INFORMATION CONTACT:"
     end
   end
 end

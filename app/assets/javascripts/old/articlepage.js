@@ -2,10 +2,10 @@ $(document).ready(function () {
     var commentButton = $('#start_comment.how_to_comment');
     if (commentButton.size() > 0) {
       if($('#addresses').size() === 0) {
-        if ($('#furinf').size() === 0) {
+        if ($('#further-info').size() === 0) {
           commentButton.remove();
         } else {
-          commentButton.attr('href', '#furinf');
+          commentButton.attr('href', '#further-info');
         }
       }
     }

@@ -31,7 +31,7 @@ describe "XSLT::FullText::TextOnlyNodes" do
       </FURINF>
     XML
 
-    expect(html).to have_tag('h1#h-1') do
+    expect(html).to have_tag('h1#further-info') do
       with_text "FOR FURTHER INFORMATION CONTACT:"
     end
 
