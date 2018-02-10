@@ -28,7 +28,7 @@ module UserDataPersistor
       subscription.user_id = current_user.id
       subscription.save :validate => false
 
-      subscription.confirm! if current_user.confirmed?
+      subscription.confirm!
     end
 
     # clean up
