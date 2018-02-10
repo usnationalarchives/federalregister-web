@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20160909191221) do
     t.integer  "num_recipients"
     t.integer  "entry_id"
     t.string   "sender_hash"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "document_number"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "folders", :force => true do |t|
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(:version => 20160909191221) do
     t.string   "token"
     t.datetime "confirmed_at"
     t.datetime "unsubscribed_at"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.datetime "last_delivered_at"
-    t.integer  "delivery_count",       :default => 0, :null => false
+    t.integer  "delivery_count"
     t.date     "last_issue_delivered"
     t.string   "environment"
     t.integer  "user_id"
