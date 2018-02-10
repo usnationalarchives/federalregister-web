@@ -1,4 +1,5 @@
 module UserDataPersistor
+  DEFAULT_REDIRECT_LOCATION = '/my/clippings'
 
   def persist_user_data
     # ensure session is set up to generate XSRF tokens
@@ -15,7 +16,7 @@ module UserDataPersistor
     message, redirect_location = associate_comment_with_user_at_sign_in_up if session[:comment_tracking_number] && session[:comment_secret]
     message, redirect_location = persist_subscription_messages if session[:subscription_notice] || session[:subscription_warning]
 
-    return message, redirect_location
+    return message, (redirect_location || DEFAULT_REDIRECT_LOCATION)
   end
 
   private
