@@ -96,6 +96,9 @@ gem 'dotenv-rails', '~> 1.0.2'
 # JSON web tokens (share notifications across services)
 gem 'jwt'
 
+# FR Profile client
+gem 'faraday'
+
 # background jobs
 # resque web interface - rails engine
 gem 'resque'
