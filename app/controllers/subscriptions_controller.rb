@@ -44,9 +44,10 @@ class SubscriptionsController < ApplicationController
         redirect_to subscriptions_url
       else
         session[:subscription_token] = @subscription.token
+
         redirect_to sign_in_url(
           nil,
-          @subscription.user_with_this_email_exists? ? I18n.t('subscriptions.save.sign_in_required') : I18n.t('subscriptions.sign_up_required')
+          {notice: I18n.t('subscriptions.save.sign_in_required') }
         )
       end
     else
