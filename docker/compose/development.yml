@@ -9,8 +9,12 @@ services:
     #image: 264372021245.dkr.ecr.us-east-1.amazonaws.com/federalregister-web:latest
     environment:
       RAILS_ENV: development
-      FR_BASE_URL: 'http://127.0.0.1:3000'
+      FR_BASE_URL: 'http://127.0.0.1:4000'
       CONTAINER_ROLE: 'worker'
+    ports:
+      - "4000:3000"
+    expose:
+      - "4000"
     volumes:
       - /Users/bobburbach/code/critical_juncture/federalregister-web:/home/app/
     links:
