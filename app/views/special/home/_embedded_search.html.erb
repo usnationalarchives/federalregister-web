@@ -2,7 +2,12 @@
   <div class="embedded_search search-bar home-search-embedded">
     <h3 class="with-icon">
       <span class="icon-fr2-Search"></span>
-      Search All Federal Register Documents Since 1994
+      Search Federal Register Documents Since 1994
+
+      <span class="small-right">
+        Older documents may be available in PDF format at
+        <a href='https://www.gpo.gov/fdsys/browse/collection.action?collectionCode=FR'>FDSys</a>
+      </span>
     </h3>
 
     <%= semantic_form_for @search,
@@ -43,27 +48,29 @@
         </ul>
       </div>
 
-      <li class="check_boxes optional" id="conditions_type_input">
-        <fieldset>
-          <legend class="label">
-            <label for="conditions_type">Document Category</label>
-          </legend>
+      <ul>
+        <li class="check_boxes optional" id="conditions_type_input">
+          <fieldset>
+            <legend class="label">
+              <label for="conditions_type">Document Category</label>
+            </legend>
 
-          <ol>
-            <%  DocumentType.document_types_for_search.each do |doc_type| %>
-              <li>
-                <label for="conditions_type_<%= doc_type.identifier %>">
-                  <input name="conditions[type][]" type="hidden" value="">
-                  <input id="conditions_type_<%= doc_type.identifier %>"
-                    name="conditions[type][]"
-                    type="checkbox" value="<%= doc_type.granule_class %>">
-                  <%= doc_type.display_type %>
-                </label>
-              </li>
-            <% end %>
-          </ol>
-        </fieldset>
-      </li>
+            <ol>
+              <%  DocumentType.document_types_for_search.each do |doc_type| %>
+                <li>
+                  <label for="conditions_type_<%= doc_type.identifier %>">
+                    <input name="conditions[type][]" type="hidden" value="">
+                    <input id="conditions_type_<%= doc_type.identifier %>"
+                      name="conditions[type][]"
+                      type="checkbox" value="<%= doc_type.granule_class %>">
+                    <%= doc_type.display_type %>
+                  </label>
+                </li>
+              <% end %>
+            </ol>
+          </fieldset>
+        </li>
+      </ul>
     <% end %>
   </div>
 </div>
