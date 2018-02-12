@@ -2,7 +2,7 @@
 
 <div class="errors">
   <p class="errors_header">
-    Are you sure you wish to unsubscribe <%= h @subscription.email %> from
+    Are you sure you wish to unsubscribe <%= h @subscription.email_from_fr_profile %> from
     <%= link_to h(@subscription.mailing_list.title), documents_search_path(:conditions => @subscription.mailing_list.parameters) %>?
   </p>
   

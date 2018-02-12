@@ -21,7 +21,7 @@ class SubscriptionMailer < ActionMailer::Base
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription unsubscribe'
 
     mail(
-      :to => subscription.email,
+      :to => subscription.email_from_fr_profile,
       :subject => "[FR] #{subscription.mailing_list.title}"
     ) do |format|
       format.text { render('unsubscribe_notice') }

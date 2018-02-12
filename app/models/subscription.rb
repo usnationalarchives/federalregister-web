@@ -47,6 +47,10 @@ class Subscription < ApplicationModel
     confirmed_at.present? && unsubscribed_at.nil? && deleted_at.nil?
   end
 
+  def email_from_fr_profile
+    Ecfr::UserEmailResultSet.get_user_emails(user_id).values.last
+  end
+
   def was_active?
     confirmed_at_was.present? && unsubscribed_at_was.nil? && deleted_at_was.nil?
   end
