@@ -11,10 +11,14 @@ machine:
     www.fr2.dev: 127.0.0.1
   services:
     - redis
+    - docker
+
 
 ## Customize dependencies
 dependencies:
   pre:
+    - sudo apt-get remove mysql-community-server
+    - docker run -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -p 3306:3306 -d mysql:5.6
     - npm install -g jshint
     - npm install -g coffeelint
     - gem update --system 1.8.25
@@ -25,7 +29,7 @@ dependencies:
 ## Customize database setup commands
 database:
   override:
-    - 'echo -e "test:\n  host: localhost\n  username: ubuntu\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
+    - 'echo -e "test:\n  host: 0.0.0.0\n  username: root\n  database: circle_ruby_myfr_test\n  adapter: mysql2\n" > config/database.yml'
     - 'bundle exec rake db:create db:schema:load'
 
 ## Customize test commands
