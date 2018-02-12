@@ -8,18 +8,6 @@ module SubscriptionHelper
     ].join("\n").html_safe
   end
 
-  def actions_for_subscription(subscription)
-    [ content_tag(:dt, 'Actions:', :class => subscription.active? ? 'unsubscribe_link' : 'resubscribe_link'),
-      content_tag(:dd) do
-        if subscription.active?
-          link_to("unsubscribe", subscription_path(subscription), :class => 'unsubscribe')
-        else
-          link_to("resubscribe", confirm_subscription_path(subscription), :class => 'resubscribe')
-        end
-      end
-    ].join("\n").html_safe
-  end
-
   def subscribe_box(search_conditions={}, options={})
     render partial: 'components/subscribe_box', locals: {
       options: options,

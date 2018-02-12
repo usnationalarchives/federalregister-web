@@ -85,10 +85,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_out_path_for(resource)
-    new_session_path
-  end
-
   def use_vcr
     VCR.eject_cassette
     VCR.use_cassette(Settings.vcr.cassette) { yield }
