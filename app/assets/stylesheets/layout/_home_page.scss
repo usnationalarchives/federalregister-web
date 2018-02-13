@@ -117,8 +117,16 @@
 }
 
 .home-search-embedded {
-  padding: 10px 10px 10px 30px;
   margin-bottom: 0;
+  padding: 10px 10px 10px 30px;
+
+  span.small-right {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 16px;
+    width: 192px;
+  }
 }
 
 .home-aid-box {
