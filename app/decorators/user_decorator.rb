@@ -8,11 +8,7 @@ class UserDecorator < ApplicationDecorator
            :update_attribute, to: :user
 
   def display_name
-    if user.try(:first_name) || user.try(:last_name)
-      [user.try(:first_name), user.try(:last_name)].compact.join(' ')
-    elsif user.try(:email)
-      user.email
-    end
+    user.try(:email)
   end
 
   def confirmed?
