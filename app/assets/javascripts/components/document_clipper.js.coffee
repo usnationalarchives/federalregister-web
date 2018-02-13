@@ -158,13 +158,13 @@ class @FR2.DocumentClipper
       menuItem.find('.loader').hide()
       menuItem.find('.icon.checked').show()
 
-    if @userIsSignedIn()
-      url_params = {redirect_to: "/my/clippings"}
+    if !FR2.UserUtils.loggedIn()
+      url_params = {
+        redirect_to: "/my/clippings",
+      }
       url = "/auth/sign_in?#{$.param(url_params)}"
       window.location.href = url
 
-  userIsSignedIn: ->
-    $('#user-nav li').last().text() != "Sign out"
 
   updateClippedStatus: =>
     if @clipper.find('.menu .in-folder').length > 0
