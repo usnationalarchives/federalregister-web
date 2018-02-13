@@ -2,7 +2,6 @@ class Clipping < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   attr_protected []
 
-  belongs_to :user
   belongs_to :folder
 
   validates_presence_of :document_number
@@ -133,4 +132,9 @@ class Clipping < ActiveRecord::Base
       comment
     end
   end
+
+  def user
+    @user ||= User.find(user_id)
+  end
+
 end

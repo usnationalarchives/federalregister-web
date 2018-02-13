@@ -5,7 +5,6 @@ class Folder < ApplicationModel
   stampable
 
   has_many :clippings
-  belongs_to :user, :foreign_key => :creator_id
 
   validates_presence_of :name,
     message: "Folder name must not be blank"
@@ -40,6 +39,10 @@ class Folder < ApplicationModel
 
   def deletable?
     document_numbers.empty?
+  end
+
+  def user
+    User.find(creator_id)
   end
 
 

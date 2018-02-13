@@ -1,5 +1,4 @@
 class Comment < ApplicationModel
-  belongs_to :user
   has_one :subscription
 
   class MissingCommentUrl < StandardError; end
@@ -140,6 +139,13 @@ class Comment < ApplicationModel
     attr_name = normalize_attribute(name)
     comment_form.try(:has_field?, attr_name) || super
   end
+
+  def user
+    if user_id
+      @user ||= User.find(user_id) 
+    end
+  end
+
 
   private
 
