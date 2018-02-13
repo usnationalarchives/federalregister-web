@@ -2,8 +2,6 @@ class Folder < ApplicationModel
   include ActiveModel::ForbiddenAttributesProtection
   attr_protected []
 
-  stampable
-
   has_many :clippings
 
   validates_presence_of :name,
@@ -19,10 +17,6 @@ class Folder < ApplicationModel
 
   def self.my_clipboard
     new(:name => 'My Clipboard', :slug => "my-clippings")
-  end
-
-  def self.for_current_user
-    scoped(:conditions => {:creator_id => User.stamper}).all
   end
 
   def to_param

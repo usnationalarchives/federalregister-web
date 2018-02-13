@@ -30,9 +30,6 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'jquery-rails'
 gem 'underscore-rails', '~> 1.6.0'
 
-gem 'userstamp', :git => "https://github.com/delynn/userstamp.git",
-                 :ref => "777633"
-
 gem "capistrano", '2.15.4', :require => false
 gem "thunder_punch", '0.1.3', :require => false
 gem "rvm-capistrano", "~> 1.5.4", :require => false

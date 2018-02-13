@@ -6,21 +6,14 @@ class ApplicationController < ActionController::Base
   include OmniauthHelper
   helper OmniauthHelper
 
-  include Userstamp
-
   protect_from_forgery if: :current_user
 
   before_filter :authenticate_user!
-  before_filter :set_stampers
 
   before_filter :set_page_to_track
 
   if Rails.env.development? && Settings.vcr.enabled
     around_filter :use_vcr
-  end
-
-  def set_stampers
-    User.stamper = self.current_user
   end
 
   def set_page_to_track
