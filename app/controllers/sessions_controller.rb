@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       token: auth_hash["credentials"]["token"],
       id:    auth_hash["uid"]
     )
+    cookies["expect_signed_in"] = "1"
     SendgridClient.new.remove_from_bounce_list(session[:user_details][:email])
 
     message, redirect_location = persist_user_data
@@ -32,6 +33,7 @@ class SessionsController < ApplicationController
       reset_session
     else
       reset_session #B.C. TODO: Remove this manual session reset once the CORS ajax requests are fixed
+      cookies["expect_signed_in"] = "0"
       redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
   end
