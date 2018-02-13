@@ -44,8 +44,15 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end
 
+  DEFAULT_REDIRECTION_MESSAGE = I18n.t('sessions.sign_in')
   def profile_params
-    params.permit(:redirect_to, :jwt)
+    params.permit(:redirect_to, :jwt).tap do |p_params|
+      unless p_params[:jwt].present?
+        p_params[:jwt] = JwtUtils.encode(
+          {notifications: {info: DEFAULT_REDIRECTION_MESSAGE}}
+        )
+      end
+    end
   end
 
   def profile_url_params
