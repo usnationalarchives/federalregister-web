@@ -116,54 +116,50 @@ class @FR2.DocumentClipper
     _.contains clipboard.documents, @documentNumber
 
   addDocumentToFolder: (menuItem)->
-    documentClipper = this
+    if FR2.UserUtils.loggedIn()
+      documentClipper = this
 
-    menuItem.find('.icon.checked').hide()
-    menuItem.find('.loader').show()
+      menuItem.find('.icon.checked').hide()
+      menuItem.find('.loader').show()
 
-    track_clipping_event('add', @documentNumber, menuItem.data('slug'))
+      track_clipping_event('add', @documentNumber, menuItem.data('slug'))
 
-    data = [
-      {
-        name: "document[document_number]",
-        value: @documentNumber
-      },
-      {
-        name: "document[folder]",
-        value: menuItem.data('slug')
-      }
-    ]
+      data = [
+        {
+          name: "document[document_number]",
+          value: @documentNumber
+        },
+        {
+          name: "document[folder]",
+          value: menuItem.data('slug')
+        }
+      ]
 
-    clip = $.ajax({
-      url: '/my/clippings',
-      data: data,
-      type: "POST"
-    })
+      clip = $.ajax({
+        url: '/my/clippings',
+        data: data,
+        type: "POST"
+      })
 
-    clip.success (response)->
-      menuItem.removeClass('not-in-folder').addClass('in-folder')
+      clip.success (response)->
+        menuItem.removeClass('not-in-folder').addClass('in-folder')
 
-      documentClipper.updateClippedStatus()
+        documentClipper.updateClippedStatus()
 
-      documentClipper.addFolderElementHandler(menuItem)
+        documentClipper.addFolderElementHandler(menuItem)
 
-      if menuItem.data('slug') == "my-clippings"
-        update_user_clipped_document_count stored_document_numbers
-      else
-        update_user_folder_document_count response
+        if menuItem.data('slug') == "my-clippings"
+          update_user_clipped_document_count stored_document_numbers
+        else
+          update_user_folder_document_count response
 
 
 
-    clip.complete (response)->
-      menuItem.find('.loader').hide()
-      menuItem.find('.icon.checked').show()
-
-    if !FR2.UserUtils.loggedIn()
-      url_params = {
-        redirect_to: "/my/clippings",
-      }
-      url = "/auth/sign_in?#{$.param(url_params)}"
-      window.location.href = url
+      clip.complete (response)->
+        menuItem.find('.loader').hide()
+        menuItem.find('.icon.checked').show()
+    else
+      @displayAccountNeededModal(url)
 
 
   updateClippedStatus: =>
@@ -199,7 +195,10 @@ class @FR2.DocumentClipper
   displayAccountNeededModal: ->
     modalTemplate = Handlebars.compile $("#account-needed-modal-template").html()
 
-    FR2.Modal.displayModal("", modalTemplate(), {includeTitle: false})
+    url_params = {redirect_to: window.location.href}
+    redirectUrl = "/auth/sign_in?#{$.param(url_params)}"
+
+    FR2.Modal.displayModal("", modalTemplate({redirectUrl: redirectUrl}), {includeTitle: false})
     @addModalClosedHandler()
 
   addModalClosedHandler: ->
