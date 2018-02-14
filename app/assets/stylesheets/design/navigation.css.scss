@@ -177,6 +177,11 @@
     color: $fr-gray-60;
     line-height: 30px;
   }
+
+  a.inactive {
+    color: $fr-gray-30;
+    pointer-events: none;
+  }
 }
 
 //
