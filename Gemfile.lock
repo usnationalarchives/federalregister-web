@@ -611,6 +611,7 @@ DEPENDENCIES
   pry
   pry-remote
   rack
+  rack-cors
   rails (= 3.2.22.5)
   rails_autolink
   rails_config

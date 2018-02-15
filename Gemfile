@@ -96,6 +96,9 @@ gem 'jwt'
 # FR Profile client
 gem 'faraday'
 
+# CORS support
+gem 'rack-cors', require: 'rack/cors'
+
 # background jobs
 # resque web interface - rails engine
 gem 'resque'
