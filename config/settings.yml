@@ -8,6 +8,8 @@ feature_flags:
   events_search: false
   unified_agenda:
     search: false
+  regulations_dot_gov:
+    submit_comments: false
   regulatory_plan: false
   # google charts image api is deprecated - reimplement in js
   sparklines:

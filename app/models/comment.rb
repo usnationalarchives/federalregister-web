@@ -79,20 +79,25 @@ class Comment < ApplicationModel
   end
 
   def send_to_regulations_dot_gov
-    Dir.mktmpdir do |dir|
-      args = {
-        :comment_on => comment_form.document_id,
-        :submit     => "Submit Comment"
-      }.merge(attributes.slice(*comment_form.fields.map(&:name)))
+    if Settings.feature_flags.regulations_dot_gov.submit_comments
+      Dir.mktmpdir do |dir|
+        args = {
+          :comment_on => comment_form.document_id,
+          :submit     => "Submit Comment"
+        }.merge(attributes.slice(*comment_form.fields.map(&:name)))
 
-      args[:uploadedFile] = attachments.map do |attachment|
-        File.open(attachment.decrypt_to(dir))
+        args[:uploadedFile] = attachments.map do |attachment|
+          File.open(attachment.decrypt_to(dir))
+        end
+
+        self.response = comment_form.client.submit_comment(args)
+        self.comment_tracking_number = response.tracking_number
+
+        # TODO: srm dir
       end
-
-      self.response = comment_form.client.submit_comment(args)
-      self.comment_tracking_number = response.tracking_number
-
-      # TODO: srm dir
+    else
+      self.response                = nil
+      self.comment_tracking_number = 'XXXXXX'
     end
   end
 
