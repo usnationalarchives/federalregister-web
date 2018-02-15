@@ -1,5 +1,6 @@
 class Comment < ApplicationModel
   has_one :subscription
+  extend Memoist
 
   class MissingCommentUrl < StandardError; end
 
@@ -147,9 +148,10 @@ class Comment < ApplicationModel
 
   def user
     if user_id
-      @user ||= User.find(user_id) 
+      User.find(user_id)
     end
   end
+  memoize :user
 
 
   private
