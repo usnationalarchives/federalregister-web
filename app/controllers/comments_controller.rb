@@ -94,11 +94,7 @@ class CommentsController < ApplicationController
       session[field] = params[:comment_notifications][field]
     end
 
-    if params[:commit] == "Sign In"
-      redirect_to new_session_path
-    else
-      redirect_to sign_in_url
-    end
+    redirect_to sign_in_url
   end
 
   private
