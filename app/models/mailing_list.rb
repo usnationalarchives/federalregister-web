@@ -49,3 +49,6 @@ class MailingList < ApplicationModel
     Rails.logger.info("[#{Time.now.in_time_zone}] {type: '#{self.class}', id: #{self.id}, status: 'no results'}")
   end
 end
+
+require_dependency 'mailing_list/document'
+require_dependency 'mailing_list/public_inspection_document'
