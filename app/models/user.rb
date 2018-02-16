@@ -8,7 +8,7 @@ class User
     email = Ecfr::UserEmailResultSet.get_user_emails(user_id).values.first
 
     if email
-      new(id: user_id, email: email)
+      new("sub" => user_id, "email" => email)
     end
   end
 
