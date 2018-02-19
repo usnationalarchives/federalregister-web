@@ -12,6 +12,6 @@ class UserDecorator < ApplicationDecorator
   end
 
   def confirmed?
-    user.confirmed_at.present?
+    user.email_confirmed.present?
   end
 end
