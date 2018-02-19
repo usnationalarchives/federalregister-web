@@ -10,6 +10,9 @@ class FakeController < ApplicationController
 end
 
 describe FakeController do
+  before(:each) do
+    add_arbitrary_route('/test', "fake_controller#test")
+  end
 
   def add_arbitrary_route(route, controller_action)
     test_routes = Proc.new do
@@ -30,7 +33,6 @@ describe FakeController do
 
   describe "Clippings" do
     before(:each) do
-      add_arbitrary_route('/test', "fake_controller#test")
       Clipping.any_instance.stub(:document).and_return(double)
     end
 
@@ -61,8 +63,6 @@ describe FakeController do
         Comment.any_instance.stub(validation_method).and_return(true)
       end
       comment
-
-      add_arbitrary_route('/test', "fake_controller#test")
     end
 
     let(:comment) do
@@ -91,6 +91,26 @@ describe FakeController do
       )
 
       expect(Subscription.first.confirmed_at).to be_truthy
+    end
+
+  end
+
+  describe "Subscriptions" do
+
+    it "associates a subscription with the current user" do
+      subscription = FactoryGirl.create(
+        :subscription,
+        confirmed_at: nil,
+        token:        "abcd1234",
+        user_id:      nil
+      )
+      get :test, nil, authenticated_session.merge(
+        subscription_token: subscription.token
+      )
+
+      subscription.reload
+      expect(subscription.user_id).to eq(authenticated_session[:user_details]["sub"])
+      expect(subscription.confirmed_at).to be_truthy
     end
 
   end
