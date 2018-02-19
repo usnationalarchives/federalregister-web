@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :subscription do
-    user { User.first || build(:user) }
-    email { user.email }
+    user_id 99999
     requesting_ip '127.0.0.1'
     environment 'test'
     confirmed_at { Time.now }
