@@ -159,7 +159,7 @@ class @FR2.DocumentClipper
         menuItem.find('.loader').hide()
         menuItem.find('.icon.checked').show()
     else
-      @displayAccountNeededModal(url)
+      @displayAccountNeededModal()
 
 
   updateClippedStatus: =>
