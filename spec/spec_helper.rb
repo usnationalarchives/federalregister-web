@@ -30,6 +30,7 @@ RSpec.configure do |config|
   config.include Features::SessionHelpers, type: :feature
   config.include Features::ClippingHelpers, type: :feature
   config.include Features::SubscriptionHelpers, type: :feature
+  config.include OauthTestHelpers, type: :controller
 
   config.include Capybara::RSpecMatchers, type: :feature
 
