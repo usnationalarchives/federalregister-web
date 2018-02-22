@@ -31,8 +31,8 @@ class SessionsController < ApplicationController
   def destroy
     if request.xhr?
       reset_session
-    else
       cookies["expect_signed_in"] = "0"
+    else
       redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
   end
