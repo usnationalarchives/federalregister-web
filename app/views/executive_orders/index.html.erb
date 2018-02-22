@@ -25,7 +25,7 @@
       <div class="page-summary reader-aid">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <%= simple_format(@presenter.description) %>
+            <%= auto_link(simple_format(@presenter.description)).html_safe %>
 
             <p>
               Executive orders issued since 1994 are available as a single
