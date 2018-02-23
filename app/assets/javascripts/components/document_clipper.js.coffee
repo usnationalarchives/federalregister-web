@@ -196,7 +196,7 @@ class @FR2.DocumentClipper
     modalTemplate = Handlebars.compile $("#account-needed-modal-template").html()
 
     url_params = {redirect_to: window.location.href}
-    redirectUrl = "/auth/sign_in?#{$.param(url_params)}"
+    redirectUrl = "/my/auth/sign_in?#{$.param(url_params)}"
 
     FR2.Modal.displayModal("", modalTemplate({redirectUrl: redirectUrl}), {includeTitle: false})
     @addModalClosedHandler()
