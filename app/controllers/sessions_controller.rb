@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       reset_session
       cookies["expect_signed_in"] = "0"
     else
-      redirect_to SECRETS["omniauth"]["oidc_url"] + "/my/sign_out?redirect_to=#{URI.escape root_url}"
+      redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
   end
 

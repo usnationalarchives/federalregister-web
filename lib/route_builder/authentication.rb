@@ -6,7 +6,7 @@ module RouteBuilder::Authentication
     options.merge!(redirect_to: redirect_to) if redirect_to
 
     params = options.map{|k,v| "#{k}=#{v}"}.join('&')
-    "#{Settings.canonical_host}/my/auth/sign_in?#{params}"
+    "#{Settings.canonical_host}/auth/sign_in?#{params}"
   end
 
   def resend_confirmation_path

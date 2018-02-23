@@ -6,7 +6,7 @@ class MyFrPresenter
     'My Clipboard' => '/my/',
     'My Subscriptions' => '/my/subscriptions',
     'My Comments' => '/my/comments',
-    'Sign In' => '/my/auth/sign_in',
+    'Sign In' => '/auth/sign_in',
   }
 
   def sections

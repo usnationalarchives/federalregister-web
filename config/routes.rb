@@ -415,6 +415,13 @@ MyFr2::Application.routes.draw do
     to: 'sections#carousel_preview'
 
   #
+  # Single Sign On
+  #
+  get '/auth/sign_in', to: 'sessions#new'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/sign_out', to: 'sessions#destroy', as: :sign_out
+
+  #
   # Suggested searches
   #
   get '/:slug',
@@ -443,14 +450,6 @@ MyFr2::Application.routes.draw do
   # My FR
   #
   scope 'my' do
-
-    #
-    # Single Sign On
-    #
-    get '/auth/sign_in', to: 'sessions#new'
-    get '/auth/:provider/callback', to: 'sessions#create'
-    get '/sign_out', to: 'sessions#destroy', as: :sign_out
-
     root :to => "clippings#index",
          :as => :my_root
 
