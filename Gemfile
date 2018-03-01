@@ -13,7 +13,7 @@ gem 'passenger', '5.2.0'
 gem 'honeybadger'
 
 
-gem 'federal_register', '0.6.1'
+gem 'federal_register', '0.6.5'
 #gem 'federal_register', :path => '../federal_register'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
