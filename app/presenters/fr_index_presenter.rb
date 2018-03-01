@@ -23,7 +23,7 @@ class FrIndexPresenter
         AgencyRepresentation.new(
           name: agency["name"],
           slug: agency["slug"],
-          count: agency_slug_facet_mappings[agency["slug"]],
+          count: agency_slug_facet_mappings[agency["slug"]] || 0,
           see_also_references: process_see_also(agency["see_also"])
         )
       else
