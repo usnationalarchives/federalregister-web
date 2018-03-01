@@ -201,7 +201,7 @@
         <ul class="list">
           <li>
             <%= link_to 'JSON: Normalized attributes and metadata',
-              document_api_url(document, format: :json) %>
+              document.json_url %>
           </li>
           <% if document.full_text_available? %>
             <li>
