@@ -9,7 +9,7 @@ gem 'rack'
 
 gem 'mysql2', '0.3.18'
 # production app server
-gem 'passenger', '5.1.11'
+gem 'passenger', '5.2.0'
 gem 'honeybadger'
 
 
