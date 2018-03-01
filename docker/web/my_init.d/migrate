@@ -6,4 +6,4 @@ if [ "$RAILS_ENV" == "development" ]; then
   rake db:create:all
 fi
 
-exec /sbin/setuser app bundle exec rake db:migrate
+exec /sbin/setuser app rake db:migrate
