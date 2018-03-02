@@ -3,6 +3,8 @@ class DocumentSubscriptionQueuePopulator
   attr_reader :date
 
   def self.perform(date)
+    ActiveRecord::Base.verify_active_connections!
+    
     new(date).enqueue_subscriptions
   end
 

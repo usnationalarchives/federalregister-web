@@ -2,6 +2,8 @@ class NewIssueProcessor < IssueProcessor
   @queue = :issue_processor
 
   def perform
+    ActiveRecord::Base.verify_active_connections!
+    
     compile_all_html
     expire_cache
 
