@@ -1,3 +1,5 @@
+require 'resque/server'
+
 MyFr2::Application.routes.draw do
   get 'error_page', to: 'special#error_page' unless Rails.env.production?
 
@@ -8,7 +10,7 @@ MyFr2::Application.routes.draw do
     mount DocumentMailer::Preview => 'document_mail_view'
   end
 
-  mount ResqueWeb::Engine => "/resque-web"
+  mount Resque::Server.new, :at => "/resque-web"
 
   match 'status/web/:id', to: 'special#status'
   match 'status', to: 'special#status'

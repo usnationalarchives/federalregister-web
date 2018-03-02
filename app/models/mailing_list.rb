@@ -1,7 +1,11 @@
 class MailingList < ApplicationModel
+  extend Resque::Plugins::Retry
   def self.queue
     :subscriptions
   end
+
+  @retry_limit = 3
+  @retry_delay = 60
 
   BATCH_SIZE = 1000
 

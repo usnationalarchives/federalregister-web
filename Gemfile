@@ -95,9 +95,10 @@ gem 'chronic', '~> 0.10.2'
 # set environment variables
 gem 'dotenv-rails', '~> 1.0.2'
 
-# resque web interface - rails engine
+# background jobs
 gem 'resque'
-gem 'resque-web', require: 'resque_web'
+gem 'resque-retry'
+
 
 # google recaptcha integration
 gem 'recaptcha', '0.4.0', require: 'recaptcha/rails'
