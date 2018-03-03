@@ -53,7 +53,7 @@ gem "multi_json", "1.12.2"
 gem 'SystemTimer', :platforms => :ruby_18
 gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
 
-gem 'redis', '~> 3.0.7'
+gem 'redis', '~> 3.3.5'
 
 
 gem 'sendgrid'
