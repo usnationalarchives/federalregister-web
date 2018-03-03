@@ -1,7 +1,7 @@
 .doc-content-area {
   .table-wrapper {
+    overflow-x: auto;
     width: 100%;
-    overflow-x: scroll;
 
     table.wide {
       max-width: initial;
