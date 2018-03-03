@@ -65,13 +65,13 @@ module RouteBuilder::Fr2ApiUrls
   private
 
   def fr2_api_path_for(end_point, params)
-    arr = ["/#{end_point}"]
+    arr = ["/api/v1/#{end_point}"]
     arr << params.to_param unless params.blank?
 
     arr.join('?')
   end
 
   def fr2_api_urlify(path)
-    "#{Settings.federal_register.api_url}/#{path}"
+    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1', '')}"
   end
 end
