@@ -16,7 +16,7 @@ class Search::DocumentsController < ApplicationController
         wants.html
 
         wants.csv do
-          redirect_to documents_search_api_url(
+          redirect_to documents_search_api_path(
             shared_search_params.merge(
               conditions: params[:conditions],
               per_page: 1000
@@ -26,7 +26,7 @@ class Search::DocumentsController < ApplicationController
         end
 
         wants.json do
-          redirect_to documents_search_api_url(
+          redirect_to documents_search_api_path(
             shared_search_params.merge(conditions: params[:conditions]),
             format: :json
           )
