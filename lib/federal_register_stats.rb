@@ -1,16 +1,9 @@
-require 'yaml'
-require 'mysql2'
-require 'redis'
-require 'active_support/core_ext/date/calculations'
-
 class FederalRegisterStats
   attr_reader :beginning_of_month,
     :beginning_of_year,
     :date,
     :end_of_month,
-    :launch_date,
-    :mysql,
-    :redis
+    :launch_date
 
   def initialize(date, env='production')
     #site launched on this day - no stats make sense before this
@@ -20,17 +13,6 @@ class FederalRegisterStats
     @beginning_of_year = @date.beginning_of_year
     @beginning_of_month = @date.beginning_of_month
     @end_of_month = @date.end_of_month
-
-    credentials = YAML.load_file("#{Rails.root}/config/database.yml")[env]
-
-    @mysql = Mysql2::Client.new(
-      :host => credentials['host'],
-      :username => credentials['username'],
-      :password => credentials['password'],
-      :database => credentials['database']
-    )
-
-    @redis = Redis.new
   end
 
   def generate
@@ -49,34 +31,29 @@ class FederalRegisterStats
   private
 
   def users(start_date = nil, end_date = nil)
-    query = "SELECT COUNT(*) as count FROM users"
-
     if start_date
-      query = "#{query} WHERE created_at >= '#{start_date.to_s(:db)}' && created_at <= '#{end_date.to_s(:db)}'"
+      User.where("created_at >= ? && created_at <= ?",start_date.to_s(:db), end_date.to_s(:db)).count
+    else
+      User.count
     end
-
-    mysql.query(query).first["count"]
   end
 
   def subscriptions(start_date = nil, end_date = nil)
-    query = "SELECT COUNT(*) as count FROM subscriptions"
-    where_clause = "WHERE confirmed_at IS NOT NULL AND unsubscribed_at IS NULL"
+    query = Subscription.where("confirmed_at IS NOT NULL AND unsubscribed_at IS NULL")
 
     if start_date
-      where_clause = "#{where_clause} AND created_at >= '#{start_date.to_s(:db)}' AND created_at <= '#{end_date.to_s(:db)}'"
+      query.where("created_at >= ? && created_at <= ?",start_date.to_s(:db), end_date.to_s(:db)).count
+    else
+      query.count
     end
-
-    query = [query, where_clause].join(' ')
-
-    mysql.query(query).first["count"]
   end
 
   def comments_submitted
-    redis.keys("myFR:comment_post_success:#{redisize_date(beginning_of_month)}").map{|k| Hash[redis.zrangebyscore(k, 0, 1000, :with_scores => true)].values}.flatten.sum.to_i
+    $redis.keys("myFR:comment_post_success:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
   end
 
   def comment_forms_opened
-    redis.keys("myFR:comment_opened:#{redisize_date(beginning_of_month)}").map{|k| Hash[redis.zrangebyscore(k, 0, 1000, :with_scores => true)].values}.flatten.sum.to_i
+    $redis.keys("myFR:comment_opened:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
   end
 
   def redisize_date(date)
