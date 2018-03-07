@@ -17,13 +17,13 @@ class IssuesController < ApplicationController
 
     unless @pi
       @doc_presenter = DocumentIssuePresenter.new(
-        @home ? DocumentIssue.current.publication_date : date
+        @home ? DocumentIssue.current.try(:publication_date) : date
       )
     end
 
   if @home || @pi
       @pi_presenter = PublicInspectionIssuePresenter.new(
-        @home ? PublicInspectionDocumentIssue.current.publication_date : date
+        @home ? PublicInspectionDocumentIssue.current.try(:publication_date) : date
       )
     end
   end

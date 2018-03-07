@@ -20,7 +20,7 @@ class TopicPresenter
     feeds = []
 
     feeds << FeedAutoDiscovery.new(
-      url: documents_search_api_url(
+      url: documents_search_api_path(
         {conditions: search_conditions[:conditions]},
         format: :rss
       ),
@@ -31,7 +31,7 @@ class TopicPresenter
     )
 
     feeds << FeedAutoDiscovery.new(
-      url: documents_search_api_url(
+      url: documents_search_api_path(
         {conditions: search_conditions[:conditions].merge(significant: '1')},
         format: :rss
       ),

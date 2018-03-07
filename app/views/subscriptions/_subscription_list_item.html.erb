@@ -55,11 +55,11 @@
       <dt>Other Formats:</dt>
       <dd class="rss_link">
         <% if subscription.type == "PublicInspectionDocument" %>
-          <%= link_to "RSS", public_inspection_search_api_url(
+          <%= link_to "RSS", public_inspection_search_api_path(
             subscription.search_params, format: :rss
           ) %>
         <% else %>
-          <%= link_to "RSS", documents_search_api_url(
+          <%= link_to "RSS", documents_search_api_path(
             subscription.search_params, format: :rss
           ) %>
         <% end %>
@@ -67,7 +67,7 @@
 
       <% unless subscription.type == "PublicInspectionDocument" %>
         <dd class="csv_link">
-          <%= link_to "CSV/Excel", documents_search_api_url(
+          <%= link_to "CSV/Excel", documents_search_api_path(
             subscription.search_params, format: :csv
           ) %>
         </dd>

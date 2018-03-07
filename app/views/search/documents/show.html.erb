@@ -2,7 +2,7 @@
 
 <% if @search.valid? %>
   <% feed_autodiscovery(
-    documents_search_api_url(
+    documents_search_api_path(
       {conditions: @search.valid_conditions.except(:publication_date)},
       format: :rss
     ),
