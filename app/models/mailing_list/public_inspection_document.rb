@@ -1,5 +1,7 @@
 class MailingList::PublicInspectionDocument < MailingList
   def self.perform(mailing_list_id, date, document_numbers, options={})
+    ActiveRecord::Base.verify_active_connections!
+    
     begin
       find(mailing_list_id).deliver!(date, document_numbers, options)
     rescue StandardError => e
