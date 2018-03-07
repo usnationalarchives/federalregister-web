@@ -93,6 +93,16 @@ describe FakeController do
       expect(Subscription.first.confirmed_at).to be_truthy
     end
 
+    it "if a comment cannot be located the UserDataPersistor does not fail" do
+      expect {
+        get :test, nil, authenticated_session.merge(
+          comment_tracking_number:        77777,
+          comment_secret:                 88888,
+          followup_document_notification: "1"
+        )
+      }.to_not raise_error
+    end
+
   end
 
   describe "Subscriptions" do

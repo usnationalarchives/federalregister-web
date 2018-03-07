@@ -78,18 +78,32 @@ module UserDataPersistor
 
     redirect_location = comments_path
 
-    if session[:followup_document_notification] == '1' && !current_user.confirmed?
+    if comment.nil?
+      Honeybadger.notify(
+        "Unable to locate comment",
+        context: {
+          comment_tracking_number:          session[:comment_tracking_number],
+          comment_secret:                   session[:comment_secret],
+          comment_publication_notification: session[:comment_publication_notification],
+          submission_key:                   session[:submission_key],
+          followup_document_notification:   session[:followup_document_notification],
+        }
+      )
+      message = {}
+    elsif session[:followup_document_notification] == '1' && !current_user.confirmed?
       message = {:warning => "Successfully added your comment on '#{comment.document.title}' to your account, but you will not receive notification about followup documents until you have confirmed your email address. #{view_context.link_to 'Resend confirmation email', resend_confirmation_path}."}
     else
       message = {:notice => "Successfully added your comment on '#{comment.document.title}' to your account."}
     end
 
     # clean up
-    session[:comment_tracking_number] = nil
-    session[:comment_secret] = nil
-    session[:comment_publication_notification] = nil
-    session[:submission_key] = nil
-    session[:followup_document_notification] = nil
+    unless comment.nil?
+      session[:comment_tracking_number]          = nil
+      session[:comment_secret]                   = nil
+      session[:comment_publication_notification] = nil
+      session[:submission_key]                   = nil
+      session[:followup_document_notification]   = nil
+    end
 
     return message, redirect_location
   end
