@@ -49,11 +49,11 @@ class FederalRegisterStats
   end
 
   def comments_submitted
-    $redis.keys("myFR:comment_post_success:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
+    $redis.keys("comment_post_success:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
   end
 
   def comment_forms_opened
-    $redis.keys("myFR:comment_opened:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
+    $redis.keys("comment_opened:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
   end
 
   def redisize_date(date)
