@@ -15,13 +15,18 @@ class DocumentsController < ApplicationController
         redirect_to document_path(@document)
       end
     rescue FederalRegister::Client::RecordNotFound
-      @document = FederalRegister::PublicInspectionDocument.find(params[:document_number])
+      begin
+        @document = PublicInspectionDocument.find(params[:document_number])
 
-      @document = PublicInspectionDocumentDecorator.decorate(@document)
-      if @document.html_url == request.url
-        render template: 'public_inspection_documents/show'
-      else
-        redirect_to @document.html_url
+        @document = PublicInspectionDocumentDecorator.decorate(@document)
+
+        if @document.html_url == request.url
+          render template: 'public_inspection_documents/show'
+        else
+          redirect_to @document.html_url
+        end
+      rescue FederalRegister::Client::RecordNotFound
+        raise ActiveRecord::RecordNotFound
       end
     end
   end
@@ -32,7 +37,11 @@ class DocumentsController < ApplicationController
     document_or_pi = begin
                        Document.find(params[:document_number])
                      rescue FederalRegister::Client::RecordNotFound
-                       PublicInspectionDocument.find(params[:document_number])
+                       begin
+                         PublicInspectionDocument.find(params[:document_number])
+                       rescue FederalRegister::Client::RecordNotFound
+                         raise ActiveRecord::RecordNotFound
+                       end
                      end
 
     respond_to do |wants|
