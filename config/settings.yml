@@ -40,5 +40,5 @@ rss_helper:
   url: "https://www.federalregister.gov"
 
 varnish:
-  host: varnish
+  host: <%= ENV["VARNISH_ADDR"] || 'varnish' %>
   port: 6082
