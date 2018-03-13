@@ -1,9 +1,11 @@
 class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIssue::Daily
   def self.current
+    timespan = Rails.env.development? ? 1.year.ago : 1.month.ago
+    
     search(
       conditions: {
         publication_date: {
-          gte: 1.month.ago.to_date.to_s(:iso)
+          gte: timespan.to_date.to_s(:iso)
         }
       }
     ).last
