@@ -10,6 +10,6 @@ module RouteBuilder::Authentication
   end
 
   def resend_confirmation_path
-    "#{Settings.services.fr_profile_url}/profile/confirmation"
+    "#{Settings.services.fr_profile_url}/confirmation"
   end
 end
