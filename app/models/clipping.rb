@@ -134,7 +134,7 @@ class Clipping < ActiveRecord::Base
   end
 
   def user
-    @user ||= User.find(user_id)
+    User.current
   end
 
 end
