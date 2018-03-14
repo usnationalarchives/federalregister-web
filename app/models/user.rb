@@ -1,4 +1,5 @@
 class User
+  class StaleOauthToken < StandardError; end
 
   attr_reader :id, :email, :email_confirmed, :token
 
@@ -12,8 +13,30 @@ class User
     end
   end
 
+  def self.current=(user)
+    RequestStore.store[:current_user] = user
+  end
+
+  def self.current
+    RequestStore.store[:current_user]
+  end
+
+
   def initialize(sso_attributes)
     self.sso_attributes=(sso_attributes)
+  end
+
+  def refresh
+    conn = Faraday.new(url: Rails.application.secrets.oidc_url)
+    response = conn.get '/my/profile/oauth/userinfo' do |req|
+      req.headers["Authorization"]= "Bearer #{token}"
+    end
+
+    if response.status == 200
+      self.sso_attributes = JSON.parse(response.body)
+    else
+      raise StaleOauthToken
+    end
   end
 
   def clippings

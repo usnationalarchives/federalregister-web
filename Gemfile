@@ -116,6 +116,8 @@ gem 'klarlack', '0.0.7',
   git: 'https://github.com/criticaljuncture/klarlack.git',
   ref: 'f4c9706cd542046e7e37a4872b3a272b57cbb31b'
 
+# per-request global storage for Rack.
+gem 'request_store'
 
 # Gems used only for assets and not required
 # in production environments by default.

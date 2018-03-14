@@ -45,6 +45,13 @@ class ApplicationController < ActionController::Base
     []
   end
 
+  def current_user
+    if session[:user_details]
+      User.current = User.new(session[:user_details])
+      User.current
+    end
+  end
+
   def parse_date_from_params
     year  = params[:year]
     month = params[:month]
