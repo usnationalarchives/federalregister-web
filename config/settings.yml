@@ -47,4 +47,4 @@ varnish:
   port: 6082
 
 services:
-  fr_profile_url: "https://ecfr.criticaljuncture.org"
+  fr_profile_url: '<%= ENV["FR_PROFILE_BASE_URL"] %>'
