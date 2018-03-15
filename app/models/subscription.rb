@@ -46,7 +46,7 @@ class Subscription < ApplicationModel
   end
 
   def active?
-    confirmed_at.present? && unsubscribed_at.nil? && deleted_at.nil?
+    unsubscribed_at.nil? && deleted_at.nil?
   end
 
   def email_from_fr_profile
