@@ -6,9 +6,19 @@ module OmniauthHelper
 
   def current_user
     if session[:user_details]
-      @current_user ||= User.new(session[:user_details])
-      UserDecorator.decorate(@current_user)
+      User.current = UserDecorator.decorate(
+        User.new(session[:user_details])
+      )
+
+      User.current
     end
   end
 
+  def refresh_current_user
+    begin
+      current_user.refresh
+    rescue User::StaleOauthToken
+      redirect_to sign_in_url
+    end
+  end
 end

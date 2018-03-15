@@ -1,14 +1,18 @@
 class Subscription < ApplicationModel
   attr_accessible :email, :search_conditions, :search_type
   default_scope :conditions => { :environment => Rails.env }
+
   before_create :generate_token
   after_create :remove_from_bounce_list
+
   before_save :update_mailing_list_active_subscriptions_count
 
   attr_accessor :search_conditions, :search_type
 
   belongs_to :mailing_list
   belongs_to :comment
+
+  validates_presence_of :requesting_ip, :mailing_list, :environment
 
   def mailing_list_with_autobuilding
     if mailing_list_without_autobuilding.nil?
@@ -20,8 +24,6 @@ class Subscription < ApplicationModel
     end
   end
   alias_method_chain :mailing_list, :autobuilding
-
-  validates_presence_of :requesting_ip, :mailing_list, :environment
 
   def self.not_delivered_on(date)
     scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])

@@ -27,8 +27,8 @@ class User
   end
 
   def refresh
-    conn = Faraday.new(url: Rails.application.secrets.oidc_url)
-    response = conn.get '/my/profile/oauth/userinfo' do |req|
+    conn = Faraday.new
+    response = conn.get "#{Settings.services.fr_profile_url}/oauth/userinfo" do |req|
       req.headers["Authorization"]= "Bearer #{token}"
     end
 

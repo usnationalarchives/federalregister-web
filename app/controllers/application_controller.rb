@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   include RouteBuilder
   helper RouteBuilder
+
   include RouteBuilder::Authentication
   helper RouteBuilder::Authentication
+
   include OmniauthHelper
   helper OmniauthHelper
 
@@ -43,13 +45,6 @@ class ApplicationController < ActionController::Base
 
   def redirect_blacklist
     []
-  end
-
-  def current_user
-    if session[:user_details]
-      User.current = User.new(session[:user_details])
-      User.current
-    end
   end
 
   def parse_date_from_params
