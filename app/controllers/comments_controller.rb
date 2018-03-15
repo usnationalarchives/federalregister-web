@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
     during_creation.before_filter :build_comment
   end
 
+  before_filter :refresh_current_user, only: :index
+  
   def index
     @comments = CommentDecorator.decorate_collection(
       current_user.comments.order('created_at DESC').all

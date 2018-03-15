@@ -3,6 +3,8 @@ class SubscriptionsController < ApplicationController
     during_creation.skip_before_filter :authenticate_user!
   end
 
+  before_filter :refresh_current_user, only: :index
+
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(
       current_user.subscriptions.order("subscriptions.created_at DESC")
