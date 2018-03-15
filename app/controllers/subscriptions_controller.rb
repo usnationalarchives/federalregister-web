@@ -14,11 +14,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.new(params[:subscription])
+    @subscription = Subscription.new(params[:subscription].except(:email))
 
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
-    @subscription.email = nil
 
     if user_signed_in?
       @subscription.user_id = current_user.id
