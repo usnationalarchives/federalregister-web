@@ -50,7 +50,16 @@ class SubscriptionsController < ApplicationController
         )
       end
     else
-      raise NotImplementedError
+      Honeybadger.notify(
+        error_class: 'Subscription::Invalid',
+        error_message: 'Unable to create subscripton',
+        context: {
+          subscription: @subscription.attributes,
+          errors: @subscription.errors.messages
+        }
+      )
+
+      raise ActiveRecord::RecordInvalid
     end
   end
 
