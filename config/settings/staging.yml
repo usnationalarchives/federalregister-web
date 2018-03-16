@@ -1,7 +1,6 @@
 # APPLICATION SETTINGS
 app_url: 'https://fr2.criticaljuncture.org'
-
-# urls for mailers, redirects, etc - where routes aren't available
+canonical_host: 'https://fr2.criticaljuncture.org'
 fr_comment_url: 'https://fr2.criticaljuncture.org/my/comments'
 
 # Make any updates -api-core also
