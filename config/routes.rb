@@ -310,6 +310,10 @@ MyFr2::Application.routes.draw do
       to: 'executive_orders#navigation',
       as: :navigation_executive_orders
 
+    esi.get 'esi/layouts/navigation/my-fr',
+      to: 'special#myfr_navigation',
+      as: :navigation_myfr
+
     # FOOTER
     esi.get 'esi/layout/footer',
       to: 'special#footer',
