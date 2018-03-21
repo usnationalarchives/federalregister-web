@@ -58,11 +58,9 @@ class Subscription < ApplicationModel
   end
 
   def confirm!
-    unless active?
-      self.confirmed_at = Time.current
-      self.unsubscribed_at = nil
-      self.save!
-    end
+    self.confirmed_at = Time.current
+    self.unsubscribed_at = nil
+    self.save!
   end
 
   def unsubscribe!
