@@ -14,3 +14,7 @@ s3_buckets:
   zipped_eps_images: eps.images.test.federalregister.gov
   private_images: private.test.images.fr2.dev
   public_images: test.images.fr2.dev
+
+services:
+  fr_profile_url: "https://testdomain.com/my/profile"
+
