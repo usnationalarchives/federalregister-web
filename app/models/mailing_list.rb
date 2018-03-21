@@ -15,8 +15,11 @@ class MailingList < ApplicationModel
     class_name: "Subscription",
     conditions: "subscriptions.confirmed_at IS NOT NULL and subscriptions.unsubscribed_at IS NULL and subscriptions.deleted_at IS NULL"
 
-  scope :active,
-    conditions: "active_subscriptions_count > 0 and deleted_at IS NULL"
+  scope :active, -> {
+    where(deleted_at: nil).
+    joins(:subscriptions).
+    where( {subscriptions: {deleted_at: nil}} )
+  }
 
   scope :for_entries,
     conditions: {search_type: 'Document'}

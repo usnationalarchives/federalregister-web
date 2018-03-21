@@ -5,8 +5,6 @@ class Subscription < ApplicationModel
   before_create :generate_token
   after_create :remove_from_bounce_list
 
-  before_save :update_mailing_list_active_subscriptions_count
-
   attr_accessor :search_conditions, :search_type
 
   belongs_to :mailing_list
@@ -53,10 +51,6 @@ class Subscription < ApplicationModel
     Ecfr::UserEmailResultSet.get_user_emails(user_id).values.last
   end
 
-  def was_active?
-    confirmed_at_was.present? && unsubscribed_at_was.nil? && deleted_at_was.nil?
-  end
-
   def confirm!
     self.confirmed_at = Time.current
     self.unsubscribed_at = nil
@@ -83,16 +77,6 @@ class Subscription < ApplicationModel
 
   def generate_token
     self.token = SecureRandom.hex(20)
-  end
-
-  def update_mailing_list_active_subscriptions_count
-    if was_active? && ! active?
-      MailingList.decrement_counter(:active_subscriptions_count, mailing_list_id)
-    elsif !was_active? && active?
-      MailingList.increment_counter(:active_subscriptions_count, mailing_list_id)
-    end
-
-    true
   end
 
   def self.document_subscriptions
