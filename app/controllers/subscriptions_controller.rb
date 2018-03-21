@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
   before_filter :refresh_current_user, only: :index
 
   def index
+    current_user.refresh
     @subscriptions = SubscriptionDecorator.decorate_collection(
       current_user.subscriptions.order("subscriptions.created_at DESC")
     )
