@@ -18,7 +18,8 @@ class MailingList < ApplicationModel
   scope :active, -> {
     where(deleted_at: nil).
     joins(:subscriptions).
-    where( {subscriptions: {deleted_at: nil}} )
+    where( {subscriptions: {deleted_at: nil}} ).
+    uniq
   }
 
   scope :for_entries,
