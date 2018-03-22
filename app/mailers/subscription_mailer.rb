@@ -33,6 +33,12 @@ class SubscriptionMailer < ActionMailer::Base
 
   # uses sendgrid_recipients for actual recipient list
   def public_inspection_document_mailing_list(presenters, subscriptions, message_body=nil)
+    confirmed_email_addresses_by_user_id = Ecfr::UserEmailResultSet.
+    get_user_emails(subscriptions.map(&:user_id).uniq)
+    confirmed_subscriptions = subscriptions.select do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id]
+    end
+
     @presenter = presenters.fetch(:presenter)
     @special_filings_presenter = presenters.fetch(:special_filings_presenter, nil)
     @regular_filings_presenter = presenters.fetch(:regular_filings_presenter, nil)
@@ -47,9 +53,8 @@ class SubscriptionMailer < ActionMailer::Base
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "PI Subscription"
-    sendgrid_recipients Ecfr::UserEmailResultSet.
-      get_user_emails(subscriptions.map(&:user_id).uniq)
-    sendgrid_substitute "(((token)))", subscriptions.map(&:token)
+    sendgrid_recipients confirmed_subscriptions.map(&:user_id)
+    sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'pi subscription mailing list'
 
     subject = "[FR] #{@mailing_list_title}"
@@ -89,6 +94,11 @@ class SubscriptionMailer < ActionMailer::Base
 
   # uses sendgrid_recipients for actual recipient list
   def document_mailing_list(presenter, subscriptions, message_body=nil)
+    confirmed_email_addresses_by_user_id = Ecfr::UserEmailResultSet.
+      get_user_emails(subscriptions.map(&:user_id).uniq)
+    confirmed_subscriptions = subscriptions.select do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id]
+    end
     @presenter = presenter
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
@@ -97,10 +107,9 @@ class SubscriptionMailer < ActionMailer::Base
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "Subscription"
-    sendgrid_recipients Ecfr::UserEmailResultSet.
-      get_user_emails(subscriptions.map(&:user_id).uniq)
 
-    sendgrid_substitute "(((token)))", subscriptions.map(&:token)
+    sendgrid_recipients confirmed_subscriptions.map(&:user_id)
+    sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
 
     subject = "[FR] #{@presenter.mailing_list_title}"
