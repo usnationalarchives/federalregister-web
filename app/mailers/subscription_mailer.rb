@@ -53,7 +53,9 @@ class SubscriptionMailer < ActionMailer::Base
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "PI Subscription"
-    sendgrid_recipients confirmed_subscriptions.map(&:user_id)
+    sendgrid_recipients confirmed_subscriptions.map do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
+    end
     sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'pi subscription mailing list'
 
@@ -108,7 +110,9 @@ class SubscriptionMailer < ActionMailer::Base
 
     sendgrid_category "Subscription"
 
-    sendgrid_recipients confirmed_subscriptions.map(&:user_id)
+    sendgrid_recipients confirmed_subscriptions.map do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
+    end
     sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
 
