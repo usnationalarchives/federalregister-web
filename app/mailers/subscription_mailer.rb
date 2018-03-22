@@ -48,7 +48,7 @@ class SubscriptionMailer < ActionMailer::Base
 
     sendgrid_category "PI Subscription"
     sendgrid_recipients Ecfr::UserEmailResultSet.
-      get_user_emails(subscriptions.pluck(:user_id).uniq)
+      get_user_emails(subscriptions.map(&:user_id).uniq)
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'pi subscription mailing list'
 
@@ -98,7 +98,7 @@ class SubscriptionMailer < ActionMailer::Base
 
     sendgrid_category "Subscription"
     sendgrid_recipients Ecfr::UserEmailResultSet.
-      get_user_emails(subscriptions.pluck(:user_id).uniq)
+      get_user_emails(subscriptions.map(&:user_id).uniq)
 
     sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
