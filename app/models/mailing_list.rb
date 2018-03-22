@@ -13,7 +13,7 @@ class MailingList < ApplicationModel
 
   has_many :active_subscriptions,
     class_name: "Subscription",
-    conditions: "subscriptions.confirmed_at IS NOT NULL and subscriptions.unsubscribed_at IS NULL and subscriptions.deleted_at IS NULL"
+    conditions: "subscriptions.unsubscribed_at IS NULL and subscriptions.deleted_at IS NULL"
 
   scope :active, -> {
     where(deleted_at: nil).
