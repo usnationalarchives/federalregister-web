@@ -36,7 +36,7 @@ class SubscriptionMailer < ActionMailer::Base
     confirmed_email_addresses_by_user_id = Ecfr::UserEmailResultSet.
     get_user_emails(subscriptions.map(&:user_id).uniq)
     confirmed_subscriptions = subscriptions.select do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id]
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
     end
 
     @presenter = presenters.fetch(:presenter)
@@ -97,7 +97,7 @@ class SubscriptionMailer < ActionMailer::Base
     confirmed_email_addresses_by_user_id = Ecfr::UserEmailResultSet.
       get_user_emails(subscriptions.map(&:user_id).uniq)
     confirmed_subscriptions = subscriptions.select do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id]
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
     end
     @presenter = presenter
 
