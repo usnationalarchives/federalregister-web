@@ -7,7 +7,11 @@ class CommentMailer < ActionMailer::Base
 
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 
+  class NoConfirmedEmail < StandardError; end
+
   def comment_copy(user, comment)
+    begin
+
     @user = user
     @comment = CommentDecorator.decorate( comment )
     @utility_links = [['manage my subscriptions', subscriptions_url()]]
@@ -17,6 +21,8 @@ class CommentMailer < ActionMailer::Base
     sendgrid_category "Comment Copy"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'comment copy email'
 
+    raise NoConfirmedEmail if user.blank?
+
     mail(
       :to => user.email,
       :subject => "[FR] Your comment on #{@comment.document.title}"
@@ -25,6 +31,9 @@ class CommentMailer < ActionMailer::Base
       format.html { Premailer.new( render('comment_copy'),
                                    :with_html_string => true,
                                    :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+    end
+
+    rescue NoConfirmedEmail => exception
     end
   end
 
