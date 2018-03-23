@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
     SendgridClient.new.remove_from_bounce_list(session[:user_details][:email])
 
     message, redirect_location = persist_user_data
+    redirect_location = session[:redirect_to] || redirect_location || '/my/clippings'
+
     flash[:notice] = message[:notice] if message[:notice]
     flash[:warning] = message[:warning] if message[:warning]
 
