@@ -34,6 +34,7 @@ class User
 
     if response.status == 200
       self.sso_attributes = JSON.parse(response.body)
+      response.body
     else
       raise StaleOauthToken
     end

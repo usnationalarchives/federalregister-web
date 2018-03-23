@@ -1,7 +1,7 @@
 class UserDecorator < ApplicationDecorator
   decorates :user
   delegate_all
-  
+
   delegate :clippings,
            :id,
            :email,
@@ -12,6 +12,6 @@ class UserDecorator < ApplicationDecorator
   end
 
   def confirmed?
-    user.email_confirmed.present?
+    user.email_confirmed
   end
 end
