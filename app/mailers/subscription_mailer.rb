@@ -38,6 +38,9 @@ class SubscriptionMailer < ActionMailer::Base
     confirmed_subscriptions = subscriptions.select do |subscription|
       confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
     end
+    recipients = confirmed_subscriptions.map do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
+    end
 
     @presenter = presenters.fetch(:presenter)
     @special_filings_presenter = presenters.fetch(:special_filings_presenter, nil)
@@ -53,9 +56,7 @@ class SubscriptionMailer < ActionMailer::Base
     @highlights = EmailHighlight.pick(2)
 
     sendgrid_category "PI Subscription"
-    sendgrid_recipients confirmed_subscriptions.map do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
-    end
+    sendgrid_recipients recipients
     sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'pi subscription mailing list'
 
@@ -101,6 +102,9 @@ class SubscriptionMailer < ActionMailer::Base
     confirmed_subscriptions = subscriptions.select do |subscription|
       confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
     end
+    recipients = confirmed_subscriptions.map do |subscription|
+      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
+    end
     @presenter = presenter
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
@@ -110,9 +114,7 @@ class SubscriptionMailer < ActionMailer::Base
 
     sendgrid_category "Subscription"
 
-    sendgrid_recipients confirmed_subscriptions.map do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
-    end
+    sendgrid_recipients recipients
     sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
 
