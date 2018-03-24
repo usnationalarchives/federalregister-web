@@ -78,7 +78,8 @@ module UserDataPersistor
 
     if comment.nil?
       Honeybadger.notify(
-        "Unable to locate comment",
+        error_class: "AssociateCommentWithUserAtSignInUp",
+        error_message: "Unable to locate comment",
         context: {
           comment_tracking_number:          session[:comment_tracking_number],
           comment_secret:                   session[:comment_secret],
