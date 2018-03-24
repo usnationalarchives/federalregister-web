@@ -9,7 +9,6 @@ module ClippingHelper
   def csv_download_tag(text, clippings)
     return unless clippings
 
-    base_url = "#{Settings.federal_register.api_url}/documents"
     document_numbers = clippings.map{|c| c.document_number}.join(',')
     fields = [
       :agency_names,
@@ -24,9 +23,9 @@ module ClippingHelper
     ]
     field_params = fields.map{|f| "fields[]=#{f.to_s}"}.join('&')
 
-    url = "#{base_url}/#{document_numbers}.csv?#{field_params}"
+    path = "/api/v1/documents/#{document_numbers}.csv?#{field_params}"
 
-    content_tag(:a, :href => url) do
+    content_tag(:a, :href => path) do
       content_tag(:span, '', :class => "icon-fr2 icon-fr2-download") +
       text
     end
