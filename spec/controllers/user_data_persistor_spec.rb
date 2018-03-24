@@ -12,6 +12,7 @@ end
 describe FakeController do
   before(:each) do
     add_arbitrary_route('/test', "fake_controller#test")
+    User.current = nil
   end
 
   def add_arbitrary_route(route, controller_action)
