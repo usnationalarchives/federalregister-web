@@ -64,6 +64,15 @@ class ReaderAid
         columns: 2
       }
     },
+    'congressional-review' => {
+      title: 'Congressional Review',
+      icon_class: 'government',
+      type: 'pages',
+      index_settings: {
+        display_count: 2,
+        columns: 1
+      }
+    },
   }
 
   INTERACTIVE_PAGES = {
