@@ -1,1 +1,8 @@
-Tools for tracking your favorite Federal Register content. Leverages the FederalRegister.gov API. More details to come.
+# FederalRegister Web
+
+This project contains the code the displays the front-end of FederalRegister.gov.
+All data is consumed from the FederalRegister API.
+
+### Attributions
+
+- Country government by Presenttas from the Noun Project (icon used on Reader Aids pages)
