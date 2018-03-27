@@ -77,17 +77,29 @@ module UserDataPersistor
     redirect_location = comments_path
 
     if comment.nil?
-      Honeybadger.notify(
-        error_class: "AssociateCommentWithUserAtSignInUp",
-        error_message: "Unable to locate comment",
-        context: {
-          comment_tracking_number:          session[:comment_tracking_number],
-          comment_secret:                   session[:comment_secret],
-          comment_publication_notification: session[:comment_publication_notification],
-          submission_key:                   session[:submission_key],
-          followup_document_notification:   session[:followup_document_notification],
-        }
-      )
+      if session[:comment_tracking_number].present?
+        comment = Comment.where(
+          :comment_tracking_number => session[:comment_tracking_number]
+        ).first
+      else
+        comment = Comment.where(
+          :submission_key => session[:submission_key]
+        ).first
+      end
+
+      if comment.blank? || (comment.user_id.blank? || comment.subscription.blank?)
+        Honeybadger.notify(
+          error_class:   "UnexpectedSessionCommentData",
+          error_message: "Unknown data stored in session",
+          context: {
+            comment_tracking_number:          session[:comment_tracking_number],
+            comment_secret:                   session[:comment_secret],
+            comment_publication_notification: session[:comment_publication_notification],
+            submission_key:                   session[:submission_key],
+            followup_document_notification:   session[:followup_document_notification],
+          }
+        )
+      end
       message = {}
     elsif session[:followup_document_notification] == '1' && !current_user.confirmed?
       message = {:warning => "Successfully added your comment on '#{comment.document.title}' to your account, but you will not receive notification about followup documents until you have confirmed your email address. #{view_context.link_to 'Resend confirmation email', resend_confirmation_path}."}
