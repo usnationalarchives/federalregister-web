@@ -76,6 +76,15 @@ class Clipping < ActiveRecord::Base
         creator_id: user.id,
         slug: folder_name
       ).first
+
+      if folder.blank?
+        Honeybadger.notify(
+          error_class:   "ActiveRecord::RecordNotFound",
+          error_message: "Named folder could not be found",
+          context:       {folder_name: folder_name}
+        )
+      end
+
       clipping = Clipping.where(
         document_number: document_number,
         user_id: user.id,
