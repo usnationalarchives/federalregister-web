@@ -8,20 +8,13 @@
 <%= bootstrap_context_wrapper do %>
   <div class="row">
     <div class="<%= bootstrap_col xs:12, md: 12 %> small_content_wrapper">
-      <h3>Almost done!</h3>
-
-      <p>
-        A confirmation email has been sent; simply click the link in the email to
-        confirm your subscription.
-      </p>
-
       <h4>My Federal Register</h4>
       <p>
         A MyFR account allows you to easily manage your subscriptions
         in one place. By creating an account you can review your subscriptions, view
         current results online, and see the last time your subscription matched
         Federal Register documents.
-        You can <%= link_to 'get started here', user_registration_path(:user => {:email => params[:email]}) %>.
+        You can <%= link_to 'get started here', sign_in_url %>.
       </p>
     </div>
   </div>
