@@ -5,7 +5,7 @@ fr_comment_url: 'https://fr2.criticaljuncture.org/my/comments'
 
 feature_flags:
   regulations_dot_gov:
-    submit_comments: true
+    submit_comments: false
 
 # Make any updates -api-core also
 s3_buckets:
