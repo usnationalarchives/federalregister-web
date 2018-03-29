@@ -96,15 +96,7 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   # uses sendgrid_recipients for actual recipient list
-  def document_mailing_list(presenter, subscriptions, message_body=nil)
-    confirmed_email_addresses_by_user_id = Ecfr::UserEmailResultSet.
-      get_user_emails(subscriptions.map(&:user_id).uniq)
-    confirmed_subscriptions = subscriptions.select do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
-    end
-    recipients = confirmed_subscriptions.map do |subscription|
-      confirmed_email_addresses_by_user_id[subscription.user_id.to_s]
-    end
+  def document_mailing_list(presenter, subscriptions, message_body=nil, recipient_emails)
     @presenter = presenter
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
@@ -114,8 +106,8 @@ class SubscriptionMailer < ActionMailer::Base
 
     sendgrid_category "Subscription"
 
-    sendgrid_recipients recipients
-    sendgrid_substitute "(((token)))", confirmed_subscriptions.map(&:token)
+    sendgrid_recipients recipient_emails
+    sendgrid_substitute "(((token)))", subscriptions.map(&:token)
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription mailing list'
 
     subject = "[FR] #{@presenter.mailing_list_title}"

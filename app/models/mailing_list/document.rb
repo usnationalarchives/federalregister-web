@@ -1,37 +1,22 @@
 class MailingList::Document < MailingList
-  def self.perform(mailing_list_id, date, options={})
-    ActiveRecord::Base.verify_active_connections!
-    
-    begin
-      find(mailing_list_id).deliver!(date, options)
-    rescue StandardError => e
-      Rails.logger.warn(e)
-      Honeybadger.notify(e, context: {
-        mailing_list_id: mailing_list_id,
-        date: date,
-        options: options
-      })
-    end
-  end
 
   def model
     ::Document
   end
 
-  def deliver!(date, options={})
-    if has_results?(date)
+  def deliver!(date, subscriptions, confirmed_emails_by_user_id)
+    if subscriptions.present? && has_results?(date)
       results = results_for_date(date)
-
-      subscriptions = active_subscriptions
-      subscriptions = subscriptions.not_delivered_on(date) unless options["force_delivery"]
-
       presenter = Mailers::TableOfContentsPresenter.new(date, results, self)
 
       subscriptions.find_in_batches(batch_size: BATCH_SIZE) do |batch_subscriptions|
         SubscriptionMailer.document_mailing_list(
           presenter,
           batch_subscriptions,
-          message_body(subscriptions.count, presenter, batch_subscriptions)
+          message_body(subscriptions.count, presenter, batch_subscriptions),
+          batch_subscriptions.map do |subscription|
+            confirmed_emails_by_user_id[subscription.user_id.to_s]
+          end
         ).deliver
       end
 
