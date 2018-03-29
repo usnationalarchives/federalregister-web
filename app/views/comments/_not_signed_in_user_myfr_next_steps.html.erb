@@ -6,7 +6,7 @@
 <%= semantic_form_for :comment_notifications,
   :url => persist_for_login_comments_url,
   :authenticity_token => false,
-  :html => {:target => :blank} do |f| %>
+  :html => {:target => (:blank unless iphone?) } do |f| %>
 
   <%= f.inputs do %>
     <% if @comment.agency_participating? %>
