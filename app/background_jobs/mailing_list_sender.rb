@@ -3,7 +3,7 @@ class MailingListSender
   @queue = :subscriptions
 
   def self.perform(mailing_list_id, date, options={})
-    new(mailing_list_id, date, options={}).perform
+    new(mailing_list_id, date, options).perform
   end
 
   def initialize(mailing_list_id, date, options={})
@@ -16,11 +16,20 @@ class MailingListSender
     ActiveRecord::Base.verify_active_connections!
 
     begin
-      mailing_list.deliver!(
-        date,
-        active_and_confirmed_subscriptions,
-        confirmed_emails_by_user_id
-      )
+      if options[:document_numbers]
+        mailing_list.deliver!(
+          date,
+          active_and_confirmed_subscriptions,
+          confirmed_emails_by_user_id,
+          options[:document_numbers]
+        )
+      else
+        mailing_list.deliver!(
+          date,
+          active_and_confirmed_subscriptions,
+          confirmed_emails_by_user_id
+        )
+      end
     rescue StandardError => e
       Rails.logger.warn(e)
       Honeybadger.notify(e, context: {

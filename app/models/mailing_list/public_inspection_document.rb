@@ -1,29 +1,13 @@
 class MailingList::PublicInspectionDocument < MailingList
-  def self.perform(mailing_list_id, date, document_numbers, options={})
-    ActiveRecord::Base.verify_active_connections!
-    
-    begin
-      find(mailing_list_id).deliver!(date, document_numbers, options)
-    rescue StandardError => e
-      Rails.logger.warn(e)
-      Honeybadger.notify(e, context: {
-        mailing_list_id: mailing_list_id,
-        date: date,
-        document_numbers: document_numbers,
-        options: options
-      })
-    end
-  end
 
   def model
     ::PublicInspectionDocument
   end
 
-  def deliver!(date, document_numbers, options={})
-    if has_results?(document_numbers)
+  def deliver!(date, subscriptions, confirmed_emails_by_user_id, document_numbers)
+    if subscriptions.present? && has_results?(document_numbers)
 
       results = results_for_document_numbers(document_numbers).group_by(&:filing_type)
-      subscriptions = active_subscriptions
 
       special_filing_results = results["special"]
       regular_filing_results = results["regular"]
@@ -42,7 +26,10 @@ class MailingList::PublicInspectionDocument < MailingList
         SubscriptionMailer.public_inspection_document_mailing_list(
           presenters,
           batch_subscriptions,
-          message_body(subscriptions.count, presenters, batch_subscriptions)
+          message_body(subscriptions.count, presenters, batch_subscriptions),
+          batch_subscriptions.map do |subscription|
+            confirmed_emails_by_user_id[subscription.user_id.to_s]
+          end
         ).deliver
       end
 

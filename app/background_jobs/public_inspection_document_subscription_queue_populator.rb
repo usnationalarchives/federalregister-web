@@ -15,9 +15,10 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
 
   def enqueue_subscriptions
     options = ENV['FORCE_DELIVERY'].present? ? {force_delivery: ENV['FORCE_DELIVERY']} : {}
+    options.merge!(document_numbers: document_numbers)
 
     MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
-      Resque.enqueue(MailingList::PublicInspectionDocument, mailing_list.id, date, document_numbers, options)
+      Resque.enqueue(MailingListSender, mailing_list.id, date, options)
     end
   end
 end
