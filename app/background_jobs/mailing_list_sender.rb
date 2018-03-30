@@ -16,12 +16,12 @@ class MailingListSender
     ActiveRecord::Base.verify_active_connections!
 
     begin
-      if options[:document_numbers]
+      if options["document_numbers"]
         mailing_list.deliver!(
           date,
           active_and_confirmed_subscriptions,
           confirmed_emails_by_user_id,
-          options[:document_numbers]
+          options["document_numbers"]
         )
       else
         mailing_list.deliver!(
