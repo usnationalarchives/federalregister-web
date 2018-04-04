@@ -1,4 +1,8 @@
 table {
+  &.table-nowrap {
+    th, td { white-space: nowrap; }
+  }
+  
   &.fr-table {
     margin: 30px 0;
     font-size: modular-scale(0);
