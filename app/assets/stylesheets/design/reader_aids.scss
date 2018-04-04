@@ -14,4 +14,11 @@
       }
     }
   }
+
+  table.table-nowrap.congressional-review {
+    td:nth-child(2) {
+      min-width: 500px;
+      white-space: normal;
+    }
+  }
 }
