@@ -19,6 +19,7 @@ module OmniauthHelper
   def refresh_current_user
     begin
       session[:user_details] = current_user.refresh
+      cookies[:user_data] = {email: current_user.email}.to_json
     rescue User::StaleOauthToken
       redirect_to sign_in_url
     end

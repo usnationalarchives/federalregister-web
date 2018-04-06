@@ -4,6 +4,9 @@
 FR2.currentUserStorage = new FR2.NonPersistentStorage()
 
 $(document).ready ()->
+  userData = new FR2.UserData()
+  new FR2.UserNavigationManager(userData)
+
   # Clipboard helper
   $('.clippy').clippy({
     keep_text: true,

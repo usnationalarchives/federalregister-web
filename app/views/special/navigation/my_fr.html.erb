@@ -11,28 +11,28 @@
       <%= content_tag :a,
             'My Account',
             href: "#{Settings.services.fr_profile_url}/edit",
-            class: ('inactive' unless user_signed_in?) %>
+            class: 'my-account-link inactive' %>
     </li>
 
     <li id='myfr2-clipboard'>
       <%= content_tag :a,
             'My Clipboard',
             href: '/my/clippings',
-            class: "myfr2-clipboard #{'inactive' unless user_signed_in?}" %>
+            class: "myfr2-clipboard inactive" %>
     </li>
 
     <li id='myfr2-comments'>
       <%= content_tag :a,
             'My Comments',
             href: '/my/comments',
-            class: "myfr2-comments #{'inactive' unless user_signed_in?}" %>
+            class: "myfr2-comments inactive" %>
     </li>
 
     <li id='myfr2-subscriptions'>
       <%= content_tag :a,
             'My Subscriptions',
             href: '/my/subscriptions',
-            class: "myfr2-subscriptions #{'inactive' unless user_signed_in?}" %>
+            class: "myfr2-subscriptions inactive" %>
     </li>
 
     <li id='myfr2-session'>

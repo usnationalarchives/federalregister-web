@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       id:    auth_hash["uid"]
     )
     cookies["expect_signed_in"] = "1"
+    cookies[:user_data] = {email: current_user.email}.to_json
     SendgridClient.new.remove_from_bounce_list(session[:user_details][:email])
 
     message, redirect_location = persist_user_data
@@ -34,6 +35,7 @@ class SessionsController < ApplicationController
     if request.xhr?
       reset_session
       cookies["expect_signed_in"] = "0"
+      cookies.delete :user_data
     else
       redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end

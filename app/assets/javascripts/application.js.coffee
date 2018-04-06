@@ -15,6 +15,8 @@
 #= require utilities/list_item_filter
 #= require utilities/list_item_sorter
 #= require utilities/non_persistent_storage
+#= require utilities/user_data
+#= require utilities/user_navigation_manager
 #= require utilities/user_utils
 
 #= require components
