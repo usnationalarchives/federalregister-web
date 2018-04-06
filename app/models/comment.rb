@@ -98,7 +98,7 @@ class Comment < ApplicationModel
       end
     else
       self.response                = nil
-      self.comment_tracking_number = 'XXXXXX'
+      self.comment_tracking_number = "XXXXXX-#{SecureRandom.hex(7)}"
     end
   end
 
