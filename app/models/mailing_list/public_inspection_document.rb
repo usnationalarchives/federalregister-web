@@ -23,13 +23,15 @@ class MailingList::PublicInspectionDocument < MailingList
       }
 
       subscriptions.find_in_batches(batch_size: BATCH_SIZE) do |batch_subscriptions|
+        batch_emails = batch_subscriptions.map do |subscription|
+          confirmed_emails_by_user_id[subscription.user_id.to_s]
+        end
+
         SubscriptionMailer.public_inspection_document_mailing_list(
           presenters,
           batch_subscriptions,
-          message_body(subscriptions.count, presenters, batch_subscriptions),
-          batch_subscriptions.map do |subscription|
-            confirmed_emails_by_user_id[subscription.user_id.to_s]
-          end
+          message_body(subscriptions.count, presenters, batch_subscriptions, batch_emails),
+          batch_emails
         ).deliver
       end
 
@@ -45,13 +47,15 @@ class MailingList::PublicInspectionDocument < MailingList
 
   # if we're going to send multiple batches of this email, cache the message body
   # otherwise skip this step as it'll be slower
-  def message_body(subscription_count, presenters, batch_subscriptions)
+  def message_body(subscription_count, presenters, batch_subscriptions, batch_emails)
     return @message_body if @message_body
     return nil unless subscription_count > BATCH_SIZE
 
     message = SubscriptionMailer.public_inspection_document_mailing_list(
       presenters,
-      batch_subscriptions
+      batch_subscriptions,
+      nil,
+      batch_emails
     )
     @message_body = {html: message.html_part.body, text: message.text_part.body}
   end
