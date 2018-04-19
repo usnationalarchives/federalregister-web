@@ -10,10 +10,14 @@ class MailingList::Document < MailingList
       presenter = Mailers::TableOfContentsPresenter.new(date, results, self)
 
       subscriptions.find_in_batches(batch_size: BATCH_SIZE) do |batch_subscriptions|
+        batch_emails = batch_subscriptions.map do |subscription|
+          confirmed_emails_by_user_id[subscription.user_id.to_s]
+        end
+
         SubscriptionMailer.document_mailing_list(
           presenter,
           batch_subscriptions,
-          message_body(subscriptions.count, presenter, batch_subscriptions),
+          message_body(subscriptions.count, presenter, batch_subscriptions, batch_emails),
           batch_subscriptions.map do |subscription|
             confirmed_emails_by_user_id[subscription.user_id.to_s]
           end
@@ -31,11 +35,16 @@ class MailingList::Document < MailingList
 
   # if we're going to send multiple batches of this email, cache the message body
   # otherwise skip this step as it'll be slower
-  def message_body(subscription_count, presenter, batch_subscriptions)
+  def message_body(subscription_count, presenter, batch_subscriptions, batch_emails)
     return @message_body if @message_body
     return nil unless subscription_count > BATCH_SIZE
 
-    message = SubscriptionMailer.document_mailing_list(presenter, batch_subscriptions)
+    message = SubscriptionMailer.document_mailing_list(
+      presenter,
+      batch_subscriptions,
+      nil,
+      batch_emails
+    )
     @message_body = {html: message.html_part.body, text: message.text_part.body}
   end
 
