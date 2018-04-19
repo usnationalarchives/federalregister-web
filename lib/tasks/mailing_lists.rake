@@ -19,7 +19,7 @@ namespace :mailing_lists do
     task :deliver, [:date, :document_numbers] => :environment do |t, args|
       date = args[:date]
       document_numbers = args[:document_numbers].split(',')
-      PublicInspectionDocumentSubscriptionQueuePopulator.perform(date, document_numbers)
+      PublicInspectionDocumentSubscriptionQueuePopulator.perform(document_numbers)
     end
   end
 
