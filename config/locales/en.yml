@@ -68,7 +68,7 @@ en:
         regular_filing: "<p>Public Inspection documents are unpublished documents. Click %{link} to learn more about Public Inspection.</p><p>Regular Filing documents are routinely placed on file at 8:45 a.m. Eastern Time, for publication in the next day’s <em>Federal Register</em>.</p>"
       public_inspection_document_details: "Additional information about this Public Inspection document."
       published_document: "This document has been published in the <em>Federal Register</em>. Use the PDF linked in the document sidebar for the official electronic format."
-      published_document_no_pdf: "This document has been published in the <em>Federal Register</em>. Visit <a href='https://www.gpo.gov/fdsys'>www.gpo.gov/fdsys</a> or use the printed <em>Federal Register</em> if you need an official format."
+      published_document_no_pdf: "This document has been published in the <em>Federal Register</em>. Visit <a href='https://www.govinfo.gov'>https://www.govinfo.gov</a> or use the printed <em>Federal Register</em> if you need an official format."
       published_document_toc: "This is the table of contents as published in the <em>Federal Register</em>."
       published_document_details: "Information about this document as published in the <em>Federal Register</em>."
       reader_aid: Reader Aids help people use FederalRegister.gov and understand the federal rulemaking process. Reader Aids information is not published in the <em>Federal Register</em>.
