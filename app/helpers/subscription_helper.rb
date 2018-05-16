@@ -22,8 +22,13 @@ module SubscriptionHelper
       path = ''
     end
 
+    link_text = []
+    link_text << fr_icon('message') unless options[:rss_only]
+    link_text << fr_icon('rss')
+    link_text << (options[:rss_only] ? "Subscribe via RSS" : "Subscribe")
+
     link_to(path, class: "subscription subscription_action #{options[:class]} #{'rss-only' if options[:rss_only]}") do
-      "#{fr_icon('message') unless options[:rss_only]} #{fr_icon('rss')} Subscribe".html_safe
+      link_text.join(" ").html_safe
     end
   end
 end
