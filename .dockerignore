@@ -1,14 +1,18 @@
 .git/
 .bundle
+
 log/
 tmp/
-.sass-cache/
-public/assets
-spec/vcr/*.yml
 
+.sass-cache/
+
+public/assets
+
+spec/vcr/*.yml
 vcr/*
 
 config/varnish.development.vcl
+vendor/bundle/
 
 node_modules/*
 
