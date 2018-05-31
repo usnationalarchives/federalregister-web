@@ -41,7 +41,6 @@ gem "httmultiparty"
 gem "multi_json", "1.12.2"
 
 # api caching
-gem 'SystemTimer', :platforms => :ruby_18
 gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
 
 gem 'redis', '~> 3.3.5'
@@ -140,7 +139,6 @@ group :development, :test do
   gem 'shoulda-matchers',               '1.0.0.beta3'
 
   if RUBY_VERSION == '1.9.3'
-    gem 'zeus'
     gem 'capybara'
     #gem 'capybara-webkit'
     #gem 'capybara-screenshot'
@@ -152,13 +150,7 @@ group :development, :test do
 
   gem 'codeclimate-test-reporter', :require => nil
   gem 'pry'
-  #gem 'pry-debugger', :platforms => :ruby_19
   gem 'pry-remote', :platforms => :ruby_19
-
-  #gem 'jasmine-rails', '~> 0.4.7'
-  # jasmine dependencies - pre ruby1.9.3
-  #gem 'selenium-webdriver',             '2.35.0'
-  #gem 'rubyzip',                        '0.9.9'
 
   gem 'email_spec'
 
@@ -170,8 +162,12 @@ group :development, :test do
   gem 'guard'
   #auto test runner
   gem 'guard-rspec', require: false
-  # gem needed for guard on OSX
-  gem 'rb-fsevent', require: false
-  # OSX notifications
-  gem 'terminal-notifier-guard', require: false
+
+  install_if -> { RUBY_PLATFORM =~ /darwin/ } do
+    # gem needed for guard on OSX
+    gem 'rb-fsevent', require: false
+
+    # OSX notifications
+    gem 'terminal-notifier-guard', require: false
+  end
 end
