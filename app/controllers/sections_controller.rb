@@ -47,14 +47,6 @@ class SectionsController < ApplicationController
     end
   end
 
-  def navigation
-    cache_for 1.day
-
-    @presenters = Section.all.map do |section|
-      SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
-    end
-  end
-
   def carousel_preview
     @section = Section.find_by_slug(params[:slug])
     @highlighted_documents = JSON.parse(

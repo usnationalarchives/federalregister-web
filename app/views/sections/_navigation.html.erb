@@ -6,7 +6,7 @@
   <% end %>
   <div class="subnav">
     <ul class="left_column">
-      <% @presenters.each do |presenter| %>
+      <% presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>'>
           <%= link_to(
             section_path(presenter.slug),
@@ -19,7 +19,7 @@
       <% end %>
     </ul>
     <ul class="right_column">
-      <% @presenters.each do |presenter| %>
+      <% presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>-preview' class="preview">
 
           <% if presenter.highlighted_documents.present? %>

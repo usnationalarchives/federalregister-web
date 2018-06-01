@@ -1,12 +1,12 @@
 <li id="executive-orders-browse-preview" class="preview executive-orders-browse-preview">
   <ol>
-    <% @presenter.presidential_facet_collections.reverse.each do |president, collection| %>
+    <% presenter.presidential_facet_collections.reverse.each do |president, collection| %>
       <li class="pres_holder <%=president.identifier%>" id="<%=president.identifier%>">
         <div class='photo' title='<%= president.photo_title %>'></div>
         <div class="pres_details">
           <h2><%= president.full_name %></h2>
 
-          <% if president == @presenter.current_president %>
+          <% if president == presenter.current_president %>
             <ol class="recent">
               <% president.recent_executive_orders(3).each do |executive_order| %>
                 <li class="executive_order_wrapper">
@@ -25,10 +25,10 @@
                 <% else %>
                   <%= facet.year %>:
                   <%= link_to facet.count,
-                              executive_orders_by_president_and_year_path(
-                                president.identifier,
-                                facet.year
-                              ) %>
+                    executive_orders_by_president_and_year_path(
+                      president.identifier,
+                      facet.year
+                    ) %>
                 <% end %>
               </li>
             <% end %>

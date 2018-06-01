@@ -281,39 +281,6 @@ MyFr2::Application.routes.draw do
       }
 
 
-    # NAVIGATION
-    esi.get 'esi/layouts/navigation/sections',
-      to: 'sections#navigation',
-      as: :navigation_sections
-
-    esi.get 'esi/layouts/navigation/agencies',
-      to: 'agencies#navigation',
-      as: :navigation_agencies
-
-    esi.get 'esi/layouts/navigation/topics',
-      to: 'topics#navigation',
-      as: :navigation_topics
-
-    esi.get 'esi/layouts/navigation/reader-aids',
-      to: 'reader_aids#navigation',
-      as: :navigation_reader_aids
-
-    esi.get 'esi/layouts/navigation/public-inspection',
-      to: 'public_inspection_document_issues#navigation',
-      as: :navigation_public_inspection
-
-    esi.get 'esi/layouts/navigation/document_issue',
-      to: 'document_issues#navigation',
-      as: :navigation_document_issue
-
-    esi.get 'esi/layouts/navigation/executive-orders',
-      to: 'executive_orders#navigation',
-      as: :navigation_executive_orders
-
-    esi.get 'esi/layouts/navigation/my-fr',
-      to: 'special#myfr_navigation',
-      as: :navigation_myfr
-
     # FOOTER
     esi.get 'esi/layout/footer',
       to: 'special#footer',

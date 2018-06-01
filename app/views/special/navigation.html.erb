@@ -6,15 +6,21 @@
       <% end %>
     </li>
 
-    <%= esi navigation_sections_path %>
+    <%= render partial: 'sections/navigation', locals: {
+      presenters: Section.all.map do |section|
+        SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
+      end
+    } %>
 
     <%= render partial: 'special/navigation/browse' %>
 
     <%= render partial: 'special/navigation/search' %>
 
-    <%= esi navigation_reader_aids_path %>
+    <%= render partial: 'reader_aids/navigation', locals: {
+      reader_aids_sections: ReaderAidsPresenter::Base.new.sections
+    } %>
 
-    <%= esi navigation_myfr_path %>
+    <%= render partial: 'special/navigation/my_fr' %>
 
     <li class="inline_search">
       <%= semantic_form_for 'conditions',

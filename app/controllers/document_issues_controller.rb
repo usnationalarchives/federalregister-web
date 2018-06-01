@@ -58,11 +58,4 @@ class DocumentIssuesController < ApplicationController
 
     render "issues/calendar"
   end
-
-  def navigation
-    cache_for 1.day
-    @doc_presenter = DocumentIssuePresenter.new(
-      DocumentIssue.current.publication_date
-    )
-  end
 end

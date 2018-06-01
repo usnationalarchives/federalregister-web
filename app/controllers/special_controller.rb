@@ -79,10 +79,4 @@ class SpecialController < ApplicationController
   def error_page
     render template: 'errors/500', layout: 'minimal'
   end
-
-  def myfr_navigation
-    cache_for 1.day
-
-    render 'special/navigation/my_fr'
-  end
 end

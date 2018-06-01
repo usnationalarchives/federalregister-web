@@ -9,7 +9,7 @@
     <li>
       <%= link_to 'Reader Aids Home', reader_aids_path %>
     </li>
-    <% @reader_aids_sections.each do |section_slug, section_content| %>
+    <% reader_aids_sections.each do |section_slug, section_content| %>
       <li>
         <%= link_to section_content[:title],
           reader_aids_section_path(section_slug) %>

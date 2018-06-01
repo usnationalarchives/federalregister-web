@@ -22,10 +22,4 @@ class ExecutiveOrdersController < ApplicationController
 
     raise ActiveRecord::RecordNotFound unless @presenter.eo_collection.results.present?
   end
-
-  def navigation
-    cache_for 1.day
-    @presenter = ExecutiveOrderNavPresenter.new
-    render layout: false
-  end
 end

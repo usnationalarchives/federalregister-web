@@ -42,11 +42,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def navigation
-    cache_for 1.day
-    @presenter = Facets::TopicsPresenter.new
-  end
-
   def explore_topics
     cache_for 1.day
     @presenter = Facets::TopicsPresenter.new

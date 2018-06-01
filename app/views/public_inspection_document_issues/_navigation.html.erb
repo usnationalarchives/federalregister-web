@@ -19,9 +19,9 @@
         <div class="<%= bootstrap_col xs: 12, md: 12 %> fr-head-meta-counts">
           <div class="row">
             <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-              <%= render partial: "summary_document_counts", locals: {
+              <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
                 full_width: true,
-                presenter: @pi_presenter
+                presenter: pi_presenter
               } %>
             </div>
           </div>
@@ -49,23 +49,25 @@
 
           <div class="calendars-wrapper">
             <div class="calendar-wrapper cal-double">
-              <%= public_inspection_calendar_esi_for(
+              <%= public_inspection_calendar_for(
                 PublicInspectionDocumentIssue.current.publication_date - 1.month,
                 table_class: 'cal_first',
-                year_select: false
+                year_select: false,
+                view_context: self
               ) %>
             </div>
             <div class="calendar-wrapper cal-double">
-              <%= document_calendar_esi_for(
+              <%= document_calendar_for(
                 PublicInspectionDocumentIssue.current.publication_date,
                 table_class: 'cal_last',
-                year_select: false
+                year_select: false,
+                view_context: self
               ) %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
   </div>
 </li>

@@ -50,14 +50,6 @@ class PublicInspectionDocumentIssuesController < ApplicationController
     render "issues/calendar"
   end
 
-  def navigation
-    cache_for 1.day
-
-    @pi_presenter = PublicInspectionIssuePresenter.new(
-      PublicInspectionDocumentIssue.current.publication_date
-    )
-  end
-
   private
 
   def build_pil_presenters(date, issue_options={})

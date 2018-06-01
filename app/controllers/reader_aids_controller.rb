@@ -75,12 +75,6 @@ class ReaderAidsController < ApplicationController
     render locals: {presenter: @presenter}
   end
 
-  def navigation
-    cache_for 1.day
-
-    @reader_aids_sections = ReaderAidsPresenter::Base.new.sections
-  end
-
   private
 
   def verify_section_exists

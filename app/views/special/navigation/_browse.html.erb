@@ -38,11 +38,29 @@
       </li>
     </ul>
     <ul class="right_column">
-      <%= esi navigation_agencies_path %>
-      <%= esi navigation_topics_path %>
-      <%= esi navigation_document_issue_path %>
-      <%= esi navigation_public_inspection_path %>
-      <%= esi navigation_executive_orders_path %>
+      <%= render partial: 'agencies/navigation', locals: {
+        presenter: Facets::AgenciesPresenter.new
+      } %>
+
+      <%= render partial: 'topics/navigation', locals: {
+        presenter: Facets::TopicsPresenter.new
+      } %>
+
+      <%= render partial: 'document_issues/navigation', locals: {
+        doc_presenter: DocumentIssuePresenter.new(
+          DocumentIssue.current.publication_date
+        )
+      } %>
+
+      <%= render partial: 'public_inspection_document_issues/navigation', locals: {
+        pi_presenter: PublicInspectionIssuePresenter.new(
+          PublicInspectionDocumentIssue.current.publication_date
+        )
+      } %>
+
+      <%= render partial: 'executive_orders/navigation', locals: {
+        presenter: ExecutiveOrderNavPresenter.new
+      } %>
     </ul>
   </div>
 </li>

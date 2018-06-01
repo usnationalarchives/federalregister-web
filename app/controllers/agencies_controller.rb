@@ -41,11 +41,6 @@ class AgenciesController < ApplicationController
     end
   end
 
-  def navigation
-    cache_for 1.day
-    @presenter = Facets::AgenciesPresenter.new
-  end
-
   def explore_agencies
     cache_for 1.day
     @presenter = Facets::AgenciesPresenter.new

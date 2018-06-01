@@ -7,17 +7,17 @@
           <h2>
             Current Issue
 
-            <% if @doc_presenter.page_count %>
+            <% if doc_presenter.page_count %>
               <span class="supplemental">
-                <%= pluralize(@doc_presenter.page_count, 'Page') %>
+                <%= pluralize(doc_presenter.page_count, 'Page') %>
               </span>
             <% end %>
           </h2>
 
           <div class="<%= bootstrap_col xs: 12, md: 12 %> fr-head-meta-counts">
-            <%= render partial: "summary_document_counts", locals: {
+            <%= render partial: "document_issues/summary_document_counts", locals: {
               navigation: true,
-              presenter: @doc_presenter
+              presenter: doc_presenter
             } %>
           </div>
         </div>
@@ -43,17 +43,19 @@
           <h2>Explore</h2>
           <div class="calendars-wrapper">
             <div class="calendar-wrapper cal-double">
-              <%= document_calendar_esi_for(
+              <%= document_calendar_for(
                 DocumentIssue.current.publication_date - 1.month,
                 table_class: 'cal_first',
-                year_select: false
+                year_select: false,
+                view_context: self
               ) %>
             </div>
             <div class="calendar-wrapper cal-double">
-              <%= document_calendar_esi_for(
+              <%= document_calendar_for(
                 DocumentIssue.current.publication_date,
                 table_class: 'cal_last',
-                year_select: false
+                year_select: false,
+                view_context: self
               ) %>
             </div>
           </div>
