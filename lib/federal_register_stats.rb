@@ -16,10 +16,6 @@ class FederalRegisterStats
   end
 
   def generate
-    puts "Total # of MyFR Accounts: #{users(launch_date, end_of_month)}"
-    puts "YTD # of MyFR Accounts: #{users(beginning_of_year, end_of_month)}"
-    puts "New MyFR Accounts in #{beginning_of_month.strftime('%B')}: #{users(beginning_of_month, end_of_month)}"
-
     puts "Total # of Subscriptions:  #{subscriptions(launch_date, end_of_month)}"
     puts "YTD # of Subscriptions:  #{subscriptions(beginning_of_year, end_of_month)}"
     puts "New Subscriptions in #{beginning_of_month.strftime('%B')}: #{subscriptions(beginning_of_month, end_of_month)}"
@@ -29,14 +25,6 @@ class FederalRegisterStats
   end
 
   private
-
-  def users(start_date = nil, end_date = nil)
-    if start_date
-      User.where("created_at >= ? && created_at <= ?",start_date.to_s(:db), end_date.to_s(:db)).count
-    else
-      User.count
-    end
-  end
 
   def subscriptions(start_date = nil, end_date = nil)
     query = Subscription.where("confirmed_at IS NOT NULL AND unsubscribed_at IS NULL")
