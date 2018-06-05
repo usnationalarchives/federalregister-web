@@ -12,6 +12,8 @@ class SearchDetails
   end
 
   def suggestions
+    return [] unless response["suggestions"].present?
+    
     @suggestions ||= response["suggestions"].map do |type, details|
       SearchSuggestion.build(type, details, conditions)
     end.compact.reverse
