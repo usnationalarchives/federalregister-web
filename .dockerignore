@@ -2,7 +2,11 @@
 .bundle
 
 log/
+!log/.gitkeep
+
 tmp/
+!tmp/.gitkeep
+!tmp/pids/.gitkeep
 
 .sass-cache/
 
