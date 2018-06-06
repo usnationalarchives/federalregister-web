@@ -1,4 +1,4 @@
-#!/bin/sh
-cd /home/app
-
-exec /sbin/setuser app BACKGROUND=true LOGFILE=/home/app/log/resque-scheduler.log PIDFILE=/home/app/tmp/pids/resque-scheduler.pid rake environment rescue:scheduler
+# #!/bin/sh
+# cd /home/app
+#
+# exec /sbin/setuser app BACKGROUND=true LOGFILE=/home/app/log/resque-scheduler.log PIDFILE=/home/app/tmp/pids/resque-scheduler.pid rake environment rescue:scheduler
