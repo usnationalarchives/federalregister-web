@@ -3,7 +3,11 @@ class CalendarPresenter::Base
 
   def initialize(date, published_dates, view_context, options={})
     @date = date
+
+    # only allow certain table classes as input
+    options[:table_class] = %w(cal_first cal_last).include?() ? options[:table_class] : nil
     @options = options
+    
     @published_dates = published_dates
     @view = view_context
   end
