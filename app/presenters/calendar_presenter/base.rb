@@ -5,9 +5,9 @@ class CalendarPresenter::Base
     @date = date
 
     # only allow certain table classes as input
-    options[:table_class] = %w(cal_first cal_last).include?() ? options[:table_class] : nil
+    options[:table_class] = %w(cal_first cal_last).include?(options[:table_class]) ? options[:table_class] : nil
     @options = options
-    
+
     @published_dates = published_dates
     @view = view_context
   end
