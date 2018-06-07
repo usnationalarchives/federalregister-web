@@ -27,7 +27,7 @@ gem 'sass-rails',    "~> 3.2.5"
 gem "sass",          "~> 3.2.1"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.5'
 gem 'underscore-rails', '~> 1.6.0'
 
 gem "carrierwave", "0.10.0"
@@ -93,6 +93,7 @@ gem 'faraday'
 
 # CORS support
 gem 'rack-cors', require: 'rack/cors'
+gem 'rack-cache', "~> 1.6.1"
 
 # background jobs
 # resque web interface - rails engine
@@ -130,7 +131,6 @@ end
 
 
 group :development, :test do
-  gem 'stylin', '~> 0.1.0'
   gem 'rubocop'
 
   gem 'rspec-rails',                    '>= 2.5'

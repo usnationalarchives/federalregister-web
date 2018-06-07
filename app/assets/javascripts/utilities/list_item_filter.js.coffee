@@ -106,7 +106,7 @@ class @FR2.ListItemFilter
   updateFilterCount: ()->
     if @settings.filterCountTarget
       $(@settings.filterCountTarget)
-        .html @itemList.find('li:visible:not(".unmatched")').size()
+        .html @itemList.find('li:visible:not(".unmatched")').length
 
 
 class @FR2.TopicListFilter extends @FR2.ListItemFilter

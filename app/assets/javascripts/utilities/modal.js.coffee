@@ -12,7 +12,7 @@ class @FR2.Modal
 
     currentModal = $(options.modalId)
 
-    if currentModal.size() > 0
+    if currentModal.length > 0
       currentModal.remove()
 
     $('body')

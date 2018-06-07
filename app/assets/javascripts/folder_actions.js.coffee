@@ -3,7 +3,7 @@ $(document).ready ->
     event.preventDefault()
 
     folderData = {
-      numClippings: $('#clippings li').size(),
+      numClippings: $('#clippings li').length,
       folderSlug: $('h2.title').data().folderSlug
     }
 

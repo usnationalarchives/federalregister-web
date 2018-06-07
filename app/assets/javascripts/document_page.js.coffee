@@ -29,7 +29,7 @@ $(document).ready ->
         className: ()->
           if $(this).data('tooltip-doc-override')
             docType = $(this).data('tooltip-doc-override')
-          else if $('.document-markup.cj-fancy-tooltip').parents('.doc-official').size() > 0
+          else if $('.document-markup.cj-fancy-tooltip').parents('.doc-official').length > 0
             docType = 'tooltip-doc-official'
           else
             docType = 'tooltip-doc-published'
@@ -85,9 +85,9 @@ $(document).ready ->
       emailAFriend.display()
 
     commentButton = $('#start_comment')
-    if commentButton.size() > 0
-      if $('#addresses').size() == 0
-        if $('#further-info').size() == 0
+    if commentButton.length > 0
+      if $('#addresses').length == 0
+        if $('#further-info').length == 0
           commentButton.remove()
 
           # disable utility nav items also

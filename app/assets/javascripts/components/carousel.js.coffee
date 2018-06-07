@@ -6,7 +6,7 @@ class @FR2.CarouselScroller
 
     # Used for navigation behaviors
     @firstPage = 0
-    @lastPage = @carousel.find('.carousel-scroller > ul li').size() - 1
+    @lastPage = @carousel.find('.carousel-scroller > ul li').length - 1
 
     # need to pass a single carousel instance not a jQuery set
     @carouselScroller = @createScroller(@carousel.get(0), @scrollerDefaults())

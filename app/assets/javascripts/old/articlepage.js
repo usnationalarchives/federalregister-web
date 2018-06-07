@@ -1,8 +1,8 @@
 $(document).ready(function () {
     var commentButton = $('#start_comment.how_to_comment');
-    if (commentButton.size() > 0) {
-      if($('#addresses').size() === 0) {
-        if ($('#further-info').size() === 0) {
+    if (commentButton.length > 0) {
+      if($('#addresses').length === 0) {
+        if ($('#further-info').length === 0) {
           commentButton.remove();
         } else {
           commentButton.attr('href', '#further-info');
@@ -56,7 +56,7 @@ $(document).ready(function () {
     }
 
     function display_cfr_modal(title, html) {
-      if ($('#cfr_citation_modal').size() === 0) {
+      if ($('#cfr_citation_modal').length === 0) {
           $('body').append('<div id="cfr_citation_modal"/>');
       }
       $('#cfr_citation_modal').html(

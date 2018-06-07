@@ -1,4 +1,4 @@
-#= require jquery-1.8.3.min
+#= require jquery-1.12.4
 #= require jquery-ui-1.9.2.custom.min.js
 #= require jquery_ujs
 #= require modernizr.custom.js
@@ -16,7 +16,6 @@
 #= require jqModal
 
 # COMMENT FORMS
-#= require jquery.textarea-expander.js
 #= require blueimpFileupload
 #= require amplify.store-1.1.0.min.js
 #= require jquery.scrollintoview.min.js
