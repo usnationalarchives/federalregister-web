@@ -2,13 +2,13 @@
  * Better Select Multiple - jQuery Plugin
  *
  * based on Alternate Select Multiple (asmSelect) 1.0.4a beta (http://www.ryancramer.com/projects/asmselect/)
- * 
+ *
  * Copyright (c) 2009 by Ryan Cramer - http://www.ryancramer.com
- * Copyright (c) 2010 by Victor Berchet - http://www.github.com/vicb
+ * Copyright (c) 2010-2013 by Victor Berchet - http://www.github.com/vicb
  *
  * Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
  *
- * bsmSelect version: v1.4.0 - 2010-09-05
+ * bsmSelect version: v1.4.7 - 2013-12-19
  */
 
 (function($) {
@@ -28,7 +28,7 @@
      * Generate an UID
      */
     generateUid: function(index) {
-      return this.uid = this.options.containerClass + index;
+      return (this.uid = this.options.containerClass + index);
     },
 
     /**
@@ -37,20 +37,25 @@
     buildDom: function() {
       var self = this, o = this.options;
 
+      if (o.addItemTarget === 'original') {
+        $('option', this.$original).each(function(i, o) {
+          if ($(o).data('bsm-order') === undefined) { $(o).data('bsm-order', i); }
+        });
+      }
+
       for (var index = 0; $('#' + this.generateUid(index)).size(); index++) {}
 
       this.$select = $('<select>', {
         'class': o.selectClass,
-        name: o.selectClass + this.uid,
         id: o.selectClass + this.uid,
         change: $.proxy(this.selectChangeEvent, this),
         click: $.proxy(this.selectClickEvent, this)
       });
 
-      this.$list = $.isFunction(o.listType) 
+      this.$list = $.isFunction(o.listType)
         ? o.listType(this.$original)
         : $('<' + o.listType + '>', { id: o.listClass + this.uid });
-      
+
       this.$list.addClass(o.listClass);
 
       this.$container = $('<div>', { 'class':  o.containerClass, id: this.uid });
@@ -63,12 +68,11 @@
       if (!this.$list.parent().length) { this.$original.before(this.$list); }
 
       if (this.$original.attr('id')) {
-        $('label[for=' + this.$original.attr('id') + ']').attr('for', this.$select.attr('id'));
+        $("label[for='" + this.$original.attr('id') + "']").attr('for', this.$select.attr('id'));
       }
 
       // set up remove event (may be a link, or the list item itself)
-      // if the remove class is actually multiple classes the regex helps to properly creates the selector
-      this.$list.delegate('.' + o.removeClass.replace(/\s/g,'.'), 'click', function() {
+      this.$list.delegate('.' + o.removeClass, 'click', function() {
         self.dropListItem($(this).closest('li'));
         return false;
       });
@@ -81,11 +85,12 @@
      * Check to make sure it's not an IE screwup, and add it to the list
      */
     selectChangeEvent: function() {
-      if ($.browser.msie && $.browser.version < 7 && !this.ieClick) { return; }
+      if ($.browser && $.browser.msie && $.browser.version < 7 && !this.ieClick) { return; }
       var bsmOpt = $('option:selected:eq(0)', this.$select);
       if (bsmOpt.data('orig-option')) {
-        this.addListItem(bsmOpt);
-        this.triggerOriginalChange(bsmOpt.data('orig-option'), 'add');
+        if (this.triggerOriginalChange(bsmOpt.data('orig-option'), 'add') == false) {
+          this.addListItem(bsmOpt);
+        }
       }
       this.ieClick = false;
     },
@@ -110,7 +115,7 @@
         this.buildSelect();
         // opera has an issue where it needs a force redraw, otherwise
         // the items won't appear until something else forces a redraw
-        if ($.browser.opera) { this.$list.hide().show(); }
+        if ($.browser && $.browser.opera) { this.$list.hide().show(); }
       }
     },
 
@@ -119,7 +124,7 @@
      */
     buildSelect: function() {
       var self = this;
-      
+
       this.buildingSelect = true;
 
       // add a first option to be the home option / default selectLabel
@@ -169,7 +174,7 @@
     addSelectOptionGroup: function($parent, $group)
     {
       var self = this,
-        $G = $('<optgroup>', { label: $group.attr('label')} ).appendTo($parent);        
+        $G = $('<optgroup>', { label: $group.attr('label')} ).appendTo($parent);
       if ($group.is(':disabled')) { $G.attr('disabled', 'disabled'); }
       $('option', $group).each(function() { self.addSelectOption($G, $(this)); });
     },
@@ -193,7 +198,7 @@
         .removeAttr('selected')
         .attr('disabled', 'disabled')
         .toggle(!this.options.hideWhenAdded);
-      if ($.browser.msie) { this.$select.hide().show(); } // this forces IE to update display
+      if ($.browser && $.browser.msie && $.browser.version < 8) { this.$select.hide().show(); } // this forces IE to update display
     },
 
     /**
@@ -205,7 +210,7 @@
       $bsmOpt.removeClass(this.options.optionDisabledClass)
         .removeAttr('disabled')
         .toggle(!this.options.hideWhenAdded);
-      if ($.browser.msie) { this.$select.hide().show(); } // this forces IE to update display
+      if ($.browser && $.browser.msie && $.browser.version < 8) { this.$select.hide().show(); } // this forces IE to update display
     },
 
     /**
@@ -227,13 +232,30 @@
 
       $item = $('<li>', { 'class': o.listItemClass })
         .append($('<span>', { 'class': o.listItemLabelClass, html: o.extractLabel($bsmOpt, o)}))
-        .append($('<a>', { href: '#', 'class': o.removeClass, html: o.removeLabel, title: 'Remove ' + o.extractLabel($bsmOpt, o) }))
+        .append($('<a>', { href: '#', 'class': o.removeClass, html: o.removeLabel }))
         .data('bsm-option', $bsmOpt);
 
       this.disableSelectOption($bsmOpt.data('item', $item));
 
-      this.$list[o.addItemTarget == 'top' && !this.buildingSelect ? 'prepend' : 'append']($item.hide());
-      
+      switch (o.addItemTarget) {
+        case 'bottom':
+          this.$list.append($item.hide());
+          break;
+        case 'original':
+          var order = $origOpt.data('bsm-order'), inserted = false;
+          this.$list.children().each(function() {
+            if (order < $(this).data('bsm-option').data('orig-option').data('bsm-order')) {
+              $item.hide().insertBefore(this);
+              inserted = true;
+              return false;
+            }
+          });
+          if (!inserted) { this.$list.append($item.hide()); }
+          break;
+        default:
+          this.$list.prepend($item.hide());
+      }
+
       if (this.buildingSelect) {
         $.bsmSelect.effects.show($item);
       } else {
@@ -246,15 +268,16 @@
     /**
      * Remove an item from the list of selection
      *
-     * @param {jQuey} $item A list item
+     * @param {jQuery} $item A list item
      */
     dropListItem: function($item) {
       var $bsmOpt = $item.data('bsm-option'), o = this.options;
-      $bsmOpt.removeData('item').data('orig-option').removeAttr('selected');
-      (this.buildingSelect ? $.bsmSelect.effects.remove : o.hideEffect)($item);
-      this.enableSelectOption($bsmOpt);
-      o.highlightEffect(this.$select, $item, o.highlightRemovedLabel, o);
-      this.triggerOriginalChange($bsmOpt.data('orig-option'), 'drop');
+      if (this.triggerOriginalChange($bsmOpt.data('orig-option'), 'drop') == false) {
+        $bsmOpt.removeData('item').data('orig-option').removeAttr('selected');
+        (this.buildingSelect ? $.bsmSelect.effects.remove : o.hideEffect)($item);
+        this.enableSelectOption($bsmOpt);
+        o.highlightEffect(this.$select, $item, o.highlightRemovedLabel, o);
+      }
     },
 
     /**
@@ -263,15 +286,19 @@
      *
      * @param {jQuery} $origOpt The option from the original select
      * @param {String} type     Event type
+     *
+     * @return Whether the event default is prevented
      */
     triggerOriginalChange: function($origOpt, type) {
-      this.ignoreOriginalChangeEvent = true;      
-      this.$original.trigger('change', [{
+      var event = $.Event('change');
+      this.ignoreOriginalChangeEvent = true;
+      this.$original.trigger(event, [{
         option: $origOpt,
         value: $origOpt.val(),
         item: $origOpt.data('bsm-option').data('item'),
         type: type
       }]);
+      return event.isDefaultPrevented();
     }
   };
 
@@ -294,9 +321,9 @@
       remove: function($el) { $el.remove(); },
 
       highlight: function ($select, $item, label, conf) {
-        var $highlight, 
+        var $highlight,
           id = $select.attr('id') + conf.highlightClass;
-        $('#' + id).remove();       
+        $('#' + id).remove();
         $highlight = $('<span>', {
           'class': conf.highlightClass,
           id: id,
@@ -354,6 +381,6 @@
     listItemLabelClass: 'bsmListItemLabel',     // Class for the label text that appears in list items
     removeClass: 'bsmListItemRemove',           // Class given to the 'remove' link
     highlightClass: 'bsmHighlight'              // Class given to the highlight <span>
-  }
+  };
 
 })(jQuery);
