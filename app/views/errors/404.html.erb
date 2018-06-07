@@ -14,7 +14,9 @@
       <% content_for(:page_to_track, '/404.html') %>
 
       <script type="text/javascript">
-        _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname + document.location.search + "&from=" + document.referrer]);
+        $(document).ready(function(){
+          _gaq.push(['_trackEvent', 'errors', '404', document.location.pathname + document.location.search + "&from=" + document.referrer]);
+        });
       </script>
     </div>
   </div>
