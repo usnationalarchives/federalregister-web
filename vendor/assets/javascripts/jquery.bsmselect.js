@@ -43,7 +43,7 @@
         });
       }
 
-      for (var index = 0; $('#' + this.generateUid(index)).size(); index++) {}
+      for (var index = 0; $('#' + this.generateUid(index)).length; index++) {}
 
       this.$select = $('<select>', {
         'class': o.selectClass,

@@ -146,7 +146,7 @@ class @FR2.CommentFormFileUploader
       @updateUploaderStatus 'destroy'
 
   clearCommentPlaceholder: ->
-    if @commentField().val() == @attachedCommentMessage() && @attachmentContainer().children('tr:not(.error)').size() == 0
+    if @commentField().val() == @attachedCommentMessage() && @attachmentContainer().children('tr:not(.error)').length == 0
       @commentField().val ''
 
   displayExistingAttachments: ->
