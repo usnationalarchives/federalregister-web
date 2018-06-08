@@ -1,5 +1,5 @@
-#= require jquery-1.12.4
-#= require jquery-ui-1.9.2.custom.min.js
+#= require jquery-3.3.1.js
+#= require jquery-ui-1.12.1.custom.min.js
 #= require jquery_ujs
 #= require modernizr.custom.js
 #= require underscore
