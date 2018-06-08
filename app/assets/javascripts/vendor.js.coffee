@@ -23,8 +23,7 @@
 # EMAIL ADDRESS VALIDATOR/HELPER
 #= require mailcheck.min.js
 
-# TIPSY WITH SOME ADDED OPTIONS/SUPPORT
-#= require jquery.tipsy.svg.js
+#= require jquery.tipsy.js
 
 # PLACEHOLDER SUPPORT FRO IE 8-9
 #= require jquery.textPlaceholder

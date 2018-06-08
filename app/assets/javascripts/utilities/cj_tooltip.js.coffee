@@ -37,11 +37,6 @@ class @CJ.Tooltip
         Tooltip.positionTooltip(tooltip, options.position)
 
 
-  @addFancySVGTooltip: (selector, tooltipOptions, options)->
-    _.extend options, {svg: true}
-    @addFancyTooltip(selector, tooltipOptions, options)
-
-
   @positionTooltip: (tooltip, position)->
     if position == 'centerTop'
       @positionCenterTop tooltip
