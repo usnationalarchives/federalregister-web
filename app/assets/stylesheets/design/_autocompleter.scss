@@ -14,7 +14,9 @@
   padding: 10px 0;
   width: 380px;
 
-  a {
+  .ui-menu-item {
+    @extend %ui-autocomplete-active-state;
+    
     cursor: pointer;
     display: block;
     padding: 5px 10px;
@@ -44,9 +46,6 @@
     @extend %ui-autocomplete-active-state;
   }
 
-}
-.ui-autocomplete {
-  a { @extend %ui-autocomplete-active-state; }
 }
 
 .ui-autocomplete-input + .loader {
