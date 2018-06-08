@@ -4,8 +4,8 @@
   position: absolute;
 }
 
-#navigation .ui-autocomplete,
-.ui-autocomplete {
+#navigation .ui-autocomplete.ui-widget-content,
+.ui-autocomplete.ui-widget-content {
   background: $white;
   border: 1px solid $fr-gray-15;
   border-bottom-left-radius: 5px;
@@ -15,11 +15,23 @@
   width: 380px;
 
   .ui-menu-item {
-    @extend %ui-autocomplete-active-state;
-    
     cursor: pointer;
     display: block;
     padding: 5px 10px;
+
+    color: $fr-link-dark;
+    background: none;
+    border: 0;
+
+    &:hover { background: $fr-gray-5; }
+
+    .ui-state-active {
+    	@extend %ui-autocomplete-active-state;
+
+      background: none;
+      border: 0;
+      color: $fr-orange;
+    }
   }
 }
 
@@ -29,6 +41,7 @@
   &.ui-state-hover,
   &.ui-state-focus {
     background: $fr-gray-5;
+    border: 0;
     color: $fr-orange;
   }
 }
