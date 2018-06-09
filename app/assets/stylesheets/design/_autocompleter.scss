@@ -15,13 +15,14 @@
   width: 380px;
 
   .ui-menu-item {
-    cursor: pointer;
-    display: block;
-    padding: 5px 10px;
-
-    color: $fr-link-dark;
     background: none;
     border: 0;
+    color: $fr-link-dark;
+    cursor: pointer;
+    display: block;
+    height: auto;
+    margin-bottom: 0;
+    padding: 5px 10px;
 
     &:hover { background: $fr-gray-5; }
 
