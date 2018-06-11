@@ -3,7 +3,30 @@ class PresidentialDocumentsController < ApplicationController
 
   def homepage
     cache_for 1.day
-    @presenter = PresidentialDocumentsPresenter.new
+    @presenter = PresidentialDocumentsHomepagePresenter.new
     render layout: false
+  end
+
+  def index
+    @presenter = PresidentialDocumentsPresenter.new(
+      presidential_document_params.merge(view_context: view_context)
+    )
+
+    @presidents = President.all.sort_by(&:starts_on).reverse
+  end
+
+  def by_president_and_year
+    #cache_for 1.day
+    @presenter = PresidentialDocumentsDispositionTablePresenter.new(
+      presidential_document_params.merge(view_context: view_context)
+    )
+
+    raise ActiveRecord::RecordNotFound unless @presenter.presidential_documents_collection.results.present?
+  end
+
+  private
+
+  def presidential_document_params
+    params.permit(:president, :type, :year)
   end
 end

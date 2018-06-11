@@ -71,8 +71,8 @@ class President < ActiveHash::Base
 
   def recent_executive_orders(count)
     Document.search(
-      QueryConditions::PresidentialDocumentConditions.executive_orders_for(
-        self
+      QueryConditions::PresidentialDocumentConditions.all_presidential_documents_for(
+        self, 'executive_order'
       ).deep_merge!({
         conditions: {correction: 0},
         fields: [

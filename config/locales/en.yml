@@ -30,6 +30,16 @@ en:
     comments_no_longer_accepted:
       modal_title: "Comment Submission Not Available"
       modal_html: "This document is not open for comment or is not available for comment submission on FederalRegister.gov. You may want to check the DATES, ADDRESSES, or FOR FURTHER INFORMATION CONTACT sections of this document."
+  presidential_documents:
+    executive_orders:
+      description: "The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR).
+        The OFR numbers each order consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt. For a table of Executive orders that are specific to federal agency rulemaking, see https://www.acus.gov/research-projects/tables-executive-order-requirements."
+    proclamations:
+      description: "The President of the United States communicates information on holidays, commemorations, special observances, and trade through Proclamations. After the President signs a Proclamation, the White House sends it to the Office of the Federal Register (OFR).
+The OFR numbers each proclamation consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt."
+    administrative_orders:
+      description: "The President of the United States issues Administrative orders, which include but are not limited to memoranda, notices, determinations, letters, and messages. After the President signs an Administrative order, the White House sends it to the Office of the Federal Register (OFR).
+The OFR does not number Administrative orders but does publish them in the daily Federal Register shortly after receipt.  Administrative orders are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices"
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: "Service Unavailable"

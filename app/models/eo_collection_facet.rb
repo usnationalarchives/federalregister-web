@@ -8,8 +8,8 @@ class EoCollectionFacet
 
   def facet
     @counts ||= "FederalRegister::Facet::Document::#{type.capitalize}".constantize.search(
-      QueryConditions::PresidentialDocumentConditions.executive_orders_for(
-        president
+      QueryConditions::PresidentialDocumentConditions.all_presidential_documents_for(
+        president, 'executive_order'
       ).deep_merge!({
         conditions: {correction: 0}
       })

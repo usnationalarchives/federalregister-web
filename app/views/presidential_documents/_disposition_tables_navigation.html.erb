@@ -1,0 +1,31 @@
+<%= fr_details_box(
+  FrBox.build(
+    presenter.fr_details_box_type,
+    title: presenter.fr_details_box_title
+  )
+) do %>
+
+  <%= link_to "#{presenter.presidential_document_type.name.pluralize} Index", presidential_documents_path(presenter.type.gsub('_', '-')),
+    class: 'back-to-link' %>
+
+  <% presenter.documents_by_president_and_year.each do |president, presidential_document_collections| %>
+    <h6><%= president.full_name %></h6>
+    <ul>
+      <% presidential_document_collections.each do |presidential_document_collection| %>
+        <li <%= 'class=current' if presenter.current_page?(president, presidential_document_collection) %>>
+          <%= link_to_unless (
+              presenter.current_page?(president, presidential_document_collection) ||
+               presidential_document_collection.presidential_documents.empty?
+            ),
+            presidential_document_collection.year,
+            presidential_documents_by_president_and_year_path(
+              presenter.type.gsub('_','-'),
+              president.identifier,
+              presidential_document_collection.year
+            )
+          %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

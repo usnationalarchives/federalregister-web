@@ -1,25 +1,29 @@
 class QueryConditions::PresidentialDocumentConditions < QueryConditions::DocumentConditions
-  def self.executive_orders(president, year)
+  def self.presidential_documents(president, year, document_types)
+    president_identifier = president ? president.identifier : nil
+
     {
       conditions: {
-        president: president.identifier,
-        presidential_document_type: 'executive_order',
+        president: president_identifier,
+        presidential_document_type: document_types,
         publication_date: {
           year: year
-        }
+        },
+        type: "PRESDOCU",
       }
     }
   end
 
-  def self.executive_orders_for(president)
+  def self.all_presidential_documents_for(president, document_types)
     {
       conditions: {
         president: president.identifier,
-        presidential_document_type: 'executive_order',
+        presidential_document_type: document_types,
         publication_date: {
           gte: president.starts_on,
           lte: president.ends_on
-        }
+        },
+        type: "PRESDOCU",
       }
     }
   end

@@ -5,7 +5,8 @@
   &:hover { color: darken($color-reader-aid, 15); }
 }
 
-.executive-orders {
+.executive-orders,
+.presidential-documents {
   a,
   .fr-box .content-block a {
     @extend %reader-aid-link;
@@ -30,7 +31,7 @@
     .title {
       display: inline-block;
       font-weight: 500;
-      width: 250px;
+      width: 300px;
     }
 
     .links a { margin-right: 15px; }
@@ -47,7 +48,7 @@
     }
   }
 
-  ul.eo-list {
+  ul.document-list {
     list-style: none;
     margin-left: 1.5em;
 
@@ -65,7 +66,7 @@
       position: relative;
       text-align: center;
       top: 3px;
-      width: 25px;
+      width: 30px;
     }
   }
 

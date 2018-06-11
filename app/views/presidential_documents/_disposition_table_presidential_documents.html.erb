@@ -1,0 +1,75 @@
+<%= fr_content_box(
+  FrBox.build(
+    presenter.fr_content_box_type,
+    title: presenter.fr_content_box_title,
+    description: presenter.description
+  )
+) do %>
+
+  <% presenter.presidential_documents_collection.presidential_documents.each do |presidential_document| %>
+    <div class="row executive-order-wrapper">
+      <% if presenter.type == 'executive_orders' %>
+      <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
+        <h5>
+          EO <%= presidential_document.executive_order_number %>:
+        </h5>
+      </div>
+      <% end %>
+
+      <div class="<%= bootstrap_col xs: 10, md: 10 %>">
+        <h5>
+          <%= link_to presidential_document.title, document_path(presidential_document) %>
+        </h5>
+
+        <div class="row metadata_wrapper">
+          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+            <dt>Signed:</dt>
+            <dd><%= presidential_document.signing_date %></dd>
+            <dt>Published:</dt>
+            <dd>
+              <%= link_to presidential_document.publication_date,
+                document_issue_path(presidential_document) %>
+            </dd>
+            <dt>FR Citation:</dt>
+            <dd><%= presidential_document.citation %></dd>
+            <dt>FR Doc. Number:</dt>
+            <dd>
+              <%= link_to presidential_document.document_number,
+                document_path(presidential_document) %>
+           </dd>
+          </dl>
+
+          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+            <dt class="toc-pdf">
+              <%= link_to presidential_document.pdf_url do %>
+                <%= fr_icon 'doc-pdf' %> PDF
+              <% end %>
+            </dt>
+
+            <dd>
+              <%= pluralize presidential_document.pages, 'page' %>
+            </dd>
+
+            <dt class="permalink">
+              <%= link_to short_document_url(presidential_document) do %>
+                <%= fr_icon 'link' %> Permalink
+              <% end %>
+            </dt>
+            <dd></dd>
+          </dl>
+        </div>
+
+        <% if presenter.type == 'executive_orders' %>
+        <% if presidential_document.executive_order_notes.present? %>
+          <div class="row eo-notes">
+            <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+              <%= simple_format add_citation_links(presidential_document.executive_order_notes, :class => "notes") %>
+            </div>
+          </div>
+        <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+<% end %>

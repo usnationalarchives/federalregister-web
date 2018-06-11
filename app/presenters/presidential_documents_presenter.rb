@@ -1,98 +1,102 @@
 class PresidentialDocumentsPresenter
-  HOMEPAGE_TYPES = [
-    "determination",
-    "executive_order",
-    "memorandum",
-    "notice",
-    "proclamation",
-  ]
+  attr_reader :h, :president, :presidential_document_type, :type, :year
 
-  HIGHLIGHTED_HOMEPAGE_TYPES = [
-    "executive_order",
-    "notice",
-    "proclamation"
-  ]
+  def initialize(args)
+    @type = args[:type].gsub('-','_')
+    @h = args[:view_context]
+    @year = args[:year]
 
-  def subtypes
-    @subtypes ||= PresidentialDocumentType.all.
-      sort_by(&:name).
-      select{|pdt| HOMEPAGE_TYPES.include?(pdt.identifier)}
+    @presidential_document_type = PresidentialDocumentType.find(@type.singularize)
+    @president = President.find_by_identifier(args[:president])
   end
 
-  def subtypes_for_homepage
-    @homepage_subtypes ||= PresidentialDocumentType.all.
-      sort_by(&:name).
-      select{|pdt| HIGHLIGHTED_HOMEPAGE_TYPES.include?(pdt.identifier)}
+  def name
+    presidential_document_type.name.pluralize
   end
 
-  def latest_document_by_type(time_frame=2.months, ensure_complete=true)
-    start_date = Date.today - time_frame
-    end_date = Date.today
-
-    results = build_results(start_date, end_date)
-
-    if ensure_complete
-      until required_subtypes_present?(results)
-        end_date = start_date
-        start_date -= time_frame
-
-        results = build_results(start_date, end_date, results)
-      end
-    end
-
-    results
+  def description
+    I18n.t("presidential_documents.#{type}.description").html_safe
   end
 
-  def document_facets_for_month(date)
-    PresidentialDocumentsFacet.search(
-      QueryConditions::DocumentConditions.
-        published_within(
-          date.beginning_of_month,
-          date.end_of_month
-        )
+  def link_to_presidential_documents_for_format(format)
+    text = case format
+           when :json
+             "JSON"
+           when :csv
+             "CSV/Excel"
+           end
+
+    h.link_to text, h.documents_search_path(
+      conditions_for_format(format)
     )
+  end
+
+  def documents_by_president_and_year
+    President.all.sort_by(&:starts_on).reverse.map do |president|
+      presidential_years = president.
+        year_ranges.
+        map do |year_range|
+          PresidentialDocumentCollection.new(
+            president,
+            presidential_document_type.identifier,
+            year_range.first,
+            year_range.second
+          )
+        end.
+        sort_by(&:year).
+        reverse
+      [president, presidential_years]
+    end
+  end
+
+  def presidential_documents_collection
+    @presidential_documents_collection ||= PresidentialDocumentCollection.new(
+      president, presidential_document_type.identifier, year
+    )
+  end
+
+  def fr_content_box_type
+    :reader_aid
+  end
+
+  def fr_content_box_title
+    "#{presidential_document_type.name} Disposition Tables"
+  end
+
+  def fr_details_box_type
+    :reader_aid_navigation
+  end
+
+  def fr_details_box_title
+    "#{presidential_document_type.name} Disposition Tables"
   end
 
   private
 
-  def build_results(start_date, end_date, previous_results={})
-    docs = presidential_documents_for(start_date, end_date).group_by(&:subtype)
-
-    subtypes_for_homepage.each do |subtype|
-      next if previous_results[subtype.identifier]
-
-      if docs[subtype.name].present?
-        previous_results[subtype.identifier] = docs[subtype.name].first
-      end
+  def conditions_for_format(format)
+    if presidential_document_type.identifier == 'executive_order'
+      order = 'executive_order'
+      fields = PresidentialDocumentCollection::EXECUTIVE_ORDER_FIELDS
+    else
+      order = 'document_number'
+      fields = PresidentialDocumentCollection::PRESIDENTIAL_DOCUMENT_FIELDS
     end
 
-    previous_results
-  end
+    fields = case format
+             when :json
+               fields + %w(full_text_xml_url body_html_url json_url)
+             when :csv
+               fields
+             end
 
-  def required_subtypes_present?(docs)
-    (subtypes_for_homepage.map{|st| st.identifier} - docs.keys).empty?
+    QueryConditions::PresidentialDocumentConditions.presidential_documents(
+      president, year, presidential_document_type.identifier
+    ).deep_merge!({
+      conditions: {correction: 0},
+      fields: fields,
+      format: format,
+      order: order,
+      per_page: '1000',
+    })
   end
-
-  def presidential_documents_for(start_date, end_date)
-    Document.search(
-      QueryConditions::DocumentConditions.
-        published_within(start_date, end_date).
-        deep_merge!({
-          conditions: {
-            type: 'PRESDOCU',
-          },
-          fields: [
-            'document_number',
-            'executive_order_number',
-            'html_url',
-            'publication_date',
-            'subtype',
-            'title',
-            'type',
-          ],
-          per_page: '100'
-        })
-    )
-  end
-
 end

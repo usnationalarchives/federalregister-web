@@ -367,6 +367,21 @@ MyFr2::Application.routes.draw do
 
 
   #
+  # Presidential Documents
+  #
+  match '/presidential-documents/:type',
+    to: 'presidential_documents#index',
+    as: :presidential_documents,
+    constraints: {
+      type: Regexp.new("administrative-orders|executive-orders|proclamations")
+    }
+
+  match '/presidential-documents/:type/:president/:year',
+    to: 'presidential_documents#by_president_and_year',
+    as: 'presidential_documents_by_president_and_year'
+
+
+  #
   # Sections
   #
   get '/:section',
