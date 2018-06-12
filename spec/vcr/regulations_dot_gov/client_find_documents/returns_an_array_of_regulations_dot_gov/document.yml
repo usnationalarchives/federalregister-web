@@ -100,4 +100,107 @@ http_interactions:
         Computers"}],"totalNumRecords":1}'
     http_version: '1.1'
   recorded_at: Fri, 03 Apr 2015 21:25:50 GMT
+- request:
+    method: get
+    uri: http://example.com/api/v1/documents.json?s=ITC-2015-0074-0001&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      cache-control:
+      - max-age=604800
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 12 Jun 2018 22:08:56 GMT
+      expires:
+      - Tue, 19 Jun 2018 22:08:56 GMT
+      server:
+      - EOS (vny006/044E)
+      vary:
+      - Accept-Encoding
+      content-length:
+      - '1270'
+      connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: ! "<!doctype html>\n<html>\n<head>\n    <title>Example Domain</title>\n\n
+        \   <meta charset=\"utf-8\" />\n    <meta http-equiv=\"Content-type\" content=\"text/html;
+        charset=utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width,
+        initial-scale=1\" />\n    <style type=\"text/css\">\n    body {\n        background-color:
+        #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: \"Open
+        Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n
+        \   div {\n        width: 600px;\n        margin: 5em auto;\n        padding:
+        50px;\n        background-color: #fff;\n        border-radius: 1em;\n    }\n
+        \   a:link, a:visited {\n        color: #38488f;\n        text-decoration:
+        none;\n    }\n    @media (max-width: 700px) {\n        body {\n            background-color:
+        #fff;\n        }\n        div {\n            width: auto;\n            margin:
+        0 auto;\n            border-radius: 0;\n            padding: 1em;\n        }\n
+        \   }\n    </style>    \n</head>\n\n<body>\n<div>\n    <h1>Example Domain</h1>\n
+        \   <p>This domain is established to be used for illustrative examples in
+        documents. You may use this\n    domain in examples without prior coordination
+        or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
+        information...</a></p>\n</div>\n</body>\n</html>\n"
+    http_version: '1.1'
+  recorded_at: Tue, 12 Jun 2018 22:08:57 GMT
+- request:
+    method: get
+    uri: http://api.data.gov/regulations/v3/documents.json?s=ITC-2015-0074-0001&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - openresty
+      date:
+      - Tue, 12 Jun 2018 22:13:23 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '737'
+      connection:
+      - close
+      x-ratelimit-limit:
+      - '15'
+      x-ratelimit-remaining:
+      - '7'
+      set-cookie:
+      - JSESSIONID=2LZ1GAZVvAUg4mpRpXFnySrs; Path=/; Secure; HttpOnly
+      strict-transport-security:
+      - max-age=31536000;  includeSubDomains; preload
+      - max-age=31536000; preload
+      age:
+      - '1'
+      via:
+      - http/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])
+      x-cache:
+      - MISS
+      access-control-allow-origin:
+      - https://regulationsgov.github.io
+      access-control-allow-methods:
+      - GET, OPTIONS
+    body:
+      encoding: US-ASCII
+      string: ! '{"documents":[{"agencyAcronym":"ITC","allowLateComment":false,"attachmentCount":0,"commentDueDate":null,"commentStartDate":"2015-03-18T00:00:00-04:00","docketId":"ITC-2015-0074","docketTitle":"Investigations;
+        Determinations, Modifications, and Rulings, etc.: Certain Audio Processing
+        Hardware and Software and Products Containing Same","docketType":"Rulemaking","documentId":"ITC-2015-0074-0001","documentStatus":"Posted","documentType":"Notice","frNumber":"2015-06081","numberOfCommentsReceived":0,"openForComment":false,"postedDate":"2015-03-18T00:00:00-04:00","title":"Investigations;
+        Determinations, Modifications, and Rulings, etc.: Certain Audio Processing
+        Hardware and Software and Products Containing Same"}],"totalNumRecords":1}'
+    http_version: '1.1'
+  recorded_at: Tue, 12 Jun 2018 22:13:23 GMT
 recorded_with: VCR 2.6.0
