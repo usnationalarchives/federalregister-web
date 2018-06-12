@@ -24,7 +24,6 @@ class RegulationsDotGov::Client
 
   include HTTMultiParty
 
-  cattr_accessor :api_key
   attr_accessor :cache_backups_enabled, :read_from_cache
 
   if Settings.regulations_dot_gov.debug_output_enabled
@@ -51,9 +50,16 @@ class RegulationsDotGov::Client
   end
 
   def initialize(options={})
-    self.class.api_key ||= SECRETS['data_dot_gov']['api_key'] || 'DEMO_KEY'
 
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
+  end
+
+  def self.api_key
+    RequestStore.store[:api_key] || SECRETS['data_dot_gov']['api_key']
+  end
+
+  def self.api_key=(api_key)
+    RequestStore.store[:api_key] = api_key
   end
 
   def docket_endpoint
