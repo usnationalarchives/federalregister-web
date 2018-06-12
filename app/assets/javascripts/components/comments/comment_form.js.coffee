@@ -117,7 +117,7 @@ class @FR2.CommentForm
               .after select
           else
             input
-              .removeProp 'disabled'
+              .prop 'disabled', false
               .show()
 
         .change()
@@ -178,7 +178,7 @@ class @FR2.CommentForm
     @submitButtonWrapper()
       .removeClass 'disabled'
       .find 'input'
-      .removeProp 'disabled'
+      .prop 'disabled', false
 
     @submitButtonWrapper()
       .find '.event-overlay'
