@@ -2,8 +2,6 @@ class Comment < ApplicationModel
   has_one :subscription
   extend Memoist
 
-  class MissingCommentUrl < StandardError; end
-
   attr_protected :agency_name,
     :agency_participating,
     :comment_publication_notification,
@@ -114,20 +112,6 @@ class Comment < ApplicationModel
       s.requesting_ip = request.remote_ip
       s.environment = Rails.env
       s.search_type = 'Entry'
-    end
-  end
-
-  def load_comment_form(api_options={})
-    HTTParty::HTTPCache.reading_from_cache(
-      api_options.fetch(:read_from_cache) { true }
-    ) do
-      client = RegulationsDotGov::Client.new
-
-      if document.comment_url
-        self.comment_form = client.get_comment_form(regulations_dot_gov_document_id)
-      else
-        raise MissingCommentUrl
-      end
     end
   end
 

@@ -4,6 +4,7 @@ class RegulationsDotGov::CommentFormCacheWarmer
 
     HTTParty::HTTPCache.reading_from_cache(false) do
       client = RegulationsDotGov::Client.new
+      client.api_key = SECRETS["data_dot_gov"]["primary_comment_api_key"]
 
       options_to_load = Set.new
       documents.each do |document|

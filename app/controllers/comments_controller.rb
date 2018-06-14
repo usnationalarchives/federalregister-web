@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
   rescue RegulationsDotGov::Client::InvalidSubmission => exception
     begin
       # reload the form from regs.gov
-      @comment.load_comment_form(:read_from_cache => false)
+      @service.load_comment_form(:read_from_cache => false)
 
       record_regulations_dot_gov_error(exception)
 
@@ -128,26 +128,10 @@ class CommentsController < ApplicationController
   end
 
   def build_comment
-    @comment = Comment.new
-    @comment.document_number = params[:document_number]
-    @comment.load_comment_form
+    @service = RegulationsDotGovCommentService.new(params)
+    @comment = CommentDecorator.decorate(@service.comment)
+    @service.build_comment
 
-    begin
-      if params[:comment]
-        @comment.secret = params[:comment][:secret]
-
-        # replace line endings that cause char count problems
-        if params[:comment]["general_comment"].present?
-          params[:comment]["general_comment"].gsub!(/\r\n/, "\n")
-        end
-
-        @comment.attributes = params[:comment]
-      end
-    rescue => exception
-      record_regulations_dot_gov_error(exception)
-    end
-
-    @comment = CommentDecorator.decorate( @comment )
     @comment_attachments = @comment.attachments
   rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed, RegulationsDotGov::Client::ServerError => exception
     record_regulations_dot_gov_error( exception )
@@ -159,7 +143,7 @@ class CommentsController < ApplicationController
 
     # we're in a before filter here
     return false
-  rescue Comment::MissingCommentUrl => exception
+  rescue RegulationsDotGovCommentService::MissingCommentUrl => exception
     response.headers['Comments-No-Longer-Accepted'] = "1"
 
     render :json => {
