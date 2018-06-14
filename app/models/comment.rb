@@ -77,28 +77,10 @@ class Comment < ApplicationModel
     @attachments.compact!
   end
 
-  def send_to_regulations_dot_gov
-    if Settings.feature_flags.regulations_dot_gov.submit_comments
-      Dir.mktmpdir do |dir|
-        args = {
-          :comment_on => comment_form.document_id,
-          :submit     => "Submit Comment"
-        }.merge(attributes.slice(*comment_form.fields.map(&:name)))
-
-        args[:uploadedFile] = attachments.map do |attachment|
-          File.open(attachment.decrypt_to(dir))
-        end
-
-        self.response = comment_form.client.submit_comment(args)
-        self.comment_tracking_number = response.tracking_number
-
-        # TODO: srm dir
-      end
-    else
-      self.response                = nil
-      self.comment_tracking_number = "XXXXXX-#{SecureRandom.hex(7)}"
-    end
-  end
+  # def send_to_regulations_dot_gov
+  #   self.response = comment_form.client.submit_comment(args)
+  #   self.comment_tracking_number = response.tracking_number
+  # end
 
   def comment_data
     @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
@@ -136,6 +118,17 @@ class Comment < ApplicationModel
     end
   end
   memoize :user
+
+  def add_error(error)
+    errors.add(:base, error)
+  end
+
+  # generates a stub submission key until these are returned from regulations.gov
+  # non-participating agencies don't have comment tracking numbers but we want
+  # to give users a way to reference thier comment in help tickets, etc.
+  def add_submission_key
+    update_attribute(:submission_key, "FR2-#{SecureRandom.hex}")
+  end
 
 
   private

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   end
 
   before_filter :refresh_current_user, only: :index
-  
+
   def index
     @comments = CommentDecorator.decorate_collection(
       current_user.comments.order('created_at DESC').all
@@ -26,69 +26,38 @@ class CommentsController < ApplicationController
     # 'reloaded' message to the viewer when the form is rendered.
     @comment_reloaded = params[:comment].except("secret").present?
 
-    render :action => :new
+    render action: :new
   end
 
   def create
-    if user_signed_in?
-      @comment.user_id = current_user.id
+    if @comment.valid?
+      response = @service.send_to_regulations_dot_gov
 
-      if @comment.agency_participates_on_regulations_dot_gov?
-        @comment.comment_publication_notification = true
-      end
+      if response.status < 400
+        @comment.response = response
+        @comment.comment_tracking_number = response.tracking_number
+        @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
 
-      @comment.build_subscription(current_user, request)
-    end
+        if user_signed_in?
+          @comment.user_id = current_user.id
 
-    @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
+          if @comment.agency_participates_on_regulations_dot_gov?
+            @comment.comment_publication_notification = true
+          end
 
-    if @comment.save
-      @comment.subscription.confirm! if current_user && current_user.confirmed?
+          @comment.build_subscription(current_user, request)
+        end
+        @comment.save
 
-      track_ipaddress "comment_post_success", request.remote_ip
-
-      render_created_comment
-    else
-      track_ipaddress "comment_post_failure", request.remote_ip
-
-      render_error_page
-    end
-  rescue RegulationsDotGov::Client::InvalidSubmission => exception
-    begin
-      # reload the form from regs.gov
-      @service.load_comment_form(:read_from_cache => false)
-
-      record_regulations_dot_gov_error(exception)
-
-     # try to save with the updated form from the reload above
-      if @comment.save
+        track_ipaddress "comment_post_success", request.remote_ip
         render_created_comment
       else
-        # show invalid form to user with our error messages
-        # if say a required field was added after the form was last cached by us
-        render_error_page(exception.code)
+        track_ipaddress "comment_post_failure", request.remote_ip
+        render_error_page(response.status)
       end
-    rescue RegulationsDotGov::Client::ResponseError => inner_exception
-      record_regulations_dot_gov_error(inner_exception)
-
-      # show form to user but with message from regulations.gov
-      regulation_dot_gov_error = parse_message(inner_exception.message)
-      message = regulation_dot_gov_error["message"]
-
-      if regulation_dot_gov_error["longFields"].present? &&
-        regulation_dot_gov_error["longFields"] == ["general_comment"]
-          message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
-      end
-      add_error_to_comment(message)
-      render_error_page(exception.code)
+    else
+      render action: new
     end
-  rescue RegulationsDotGov::Client::ResponseError => exception
-    record_regulations_dot_gov_error(exception)
-
-    add_error_to_comment(
-      "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.document.comment_url, @comment.document.comment_url}"
-    )
-    render_error_page(exception.code)
   end
 
   def persist_for_login
@@ -102,33 +71,21 @@ class CommentsController < ApplicationController
   private
 
   def render_created_comment
-    add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
-
+    @comment.add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
     @comment = CommentDecorator.decorate(@comment)
 
     CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
 
-    render :action => :show, :status => 200
+    render action: :show, status: 200
   end
 
-  # generate a stub submission key until these are returned from regulations.gov
-  def add_submission_key
-    @comment.update_attribute(:submission_key, "FR2-#{SecureRandom.hex}")
-  end
-
-  def add_error_to_comment(error)
-    @comment.errors.add(
-      :base,
-      error
-    )
-  end
 
   def render_error_page(status=422)
-    render :action => :new, :status => status
+    render action: :new, status: status
   end
 
   def build_comment
-    @service = RegulationsDotGovCommentService.new(params)
+    @service = RegulationsDotGovCommentService.new(request.remote_ip, params)
     @comment = CommentDecorator.decorate(@service.comment)
     @service.build_comment
 
@@ -162,20 +119,6 @@ class CommentsController < ApplicationController
   def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
     notify_honeybadger(exception)
-  end
-
-  # sometimes the message is a json encoded string
-  # other times it's just a string
-  def parse_message(message, key=nil)
-    begin
-      if key
-        JSON.parse(message)[key]
-      else
-        JSON.parse(message)
-      end
-    rescue JSON::ParserError
-      message
-    end
   end
 
   def json_for_regulations_dot_gov_errors(exception)
