@@ -50,7 +50,6 @@ class RegulationsDotGov::Client
   end
 
   def initialize(options={})
-
     raise APIKeyError, "Must provide an api.data.gov API Key" unless self.class.api_key.present?
   end
 
@@ -202,18 +201,18 @@ class RegulationsDotGov::Client
         if response['openForComment'] == false
           raise CommentPeriodClosed.new(stringify_response(response), 409)
         elsif response['message'] =~ /does not participate/
-          raise NonParticipatingAgeny.new( stringify_response(response) )
+          raise NonParticipatingAgeny.new(stringify_response(response), response.code)
         else
-          raise ResponseError.new( stringify_response(response) )
+          raise ResponseError.new(stringify_response(response), response.code)
         end
       when 404
-        raise RecordNotFound.new( stringify_response(response) )
+        raise RecordNotFound.new(stringify_response(response), response.code)
       when 429
-        raise OverRateLimit.new( stringify_response(response) )
+        raise OverRateLimit.new( stringify_response(response), response.code)
       when 500, 502, 503
-        raise ServerError.new( stringify_response(response), response.code )
+        raise ServerError.new( stringify_response(response), response.code)
       else
-        raise ResponseError.new( stringify_response(response) )
+        raise ResponseError.new( stringify_response(response), response.code)
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")
@@ -234,13 +233,13 @@ class RegulationsDotGov::Client
       when 200, 201
         response
       when 400, 406
-        raise InvalidSubmission.new( stringify_response(response) )
+        raise InvalidSubmission.new( stringify_response(response), response.code)
       when 429
-        raise OverRateLimit.new( stringify_response(response) )
+        raise OverRateLimit.new( stringify_response(response), response.code)
       when 500, 502, 503
-        raise ServerError.new( stringify_response(response) )
+        raise ServerError.new( stringify_response(response), response.code)
       else
-        raise ResponseError.new( stringify_response(response) )
+        raise ResponseError.new( stringify_response(response), response.code)
       end
     rescue SocketError
       raise ResponseError.new("Hostname lookup failed")

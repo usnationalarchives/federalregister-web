@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
       else
         # show invalid form to user with our error messages
         # if say a required field was added after the form was last cached by us
-        render_error_page
+        render_error_page(exception.code)
       end
     rescue RegulationsDotGov::Client::ResponseError => inner_exception
       record_regulations_dot_gov_error(inner_exception)
@@ -80,7 +80,7 @@ class CommentsController < ApplicationController
           message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
       end
       add_error_to_comment(message)
-      render_error_page
+      render_error_page(exception.code)
     end
   rescue RegulationsDotGov::Client::ResponseError => exception
     record_regulations_dot_gov_error(exception)
@@ -88,7 +88,7 @@ class CommentsController < ApplicationController
     add_error_to_comment(
       "We had trouble communicating with Regulations.gov; try again or visit #{view_context.link_to @comment.document.comment_url, @comment.document.comment_url}"
     )
-    render_error_page
+    render_error_page(exception.code)
   end
 
   def persist_for_login
@@ -123,8 +123,8 @@ class CommentsController < ApplicationController
     )
   end
 
-  def render_error_page
-    render :action => :new, :status => 422
+  def render_error_page(status=422)
+    render :action => :new, :status => status
   end
 
   def build_comment
