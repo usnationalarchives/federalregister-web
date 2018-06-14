@@ -21,6 +21,7 @@ class RegulationsDotGovCommentService
       api_options.fetch(:read_from_cache) { true }
     ) do
       client = RegulationsDotGov::Client.new
+      client.api_key = SECRETS["data_dot_gov"]["primary_comment_api_key"]
 
       if comment.document.comment_url
         comment.comment_form = client.get_comment_form(comment.regulations_dot_gov_document_id)
