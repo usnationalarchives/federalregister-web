@@ -24,7 +24,7 @@ class RegulationsDotGovCommentService
       api_options.fetch(:read_from_cache) { true }
     ) do
       client = RegulationsDotGov::Client.new
-      client.api_key = SECRETS["data_dot_gov"]["primary_comment_api_key"]
+      client.class.api_key = SECRETS["data_dot_gov"]["primary_comment_api_key"]
 
       if comment.document.comment_url
         @comment_form = client.get_comment_form(comment.regulations_dot_gov_document_id)
@@ -123,7 +123,7 @@ class RegulationsDotGovCommentService
   def submit_comment(args)
     increment_comment_tracking_keys
 
-    comment_form.client.api_key = api_key
+    comment_form.client.class.api_key = api_key
 
     begin
       comment_form.client.submit_comment(args)
