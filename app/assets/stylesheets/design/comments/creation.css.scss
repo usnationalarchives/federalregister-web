@@ -640,7 +640,9 @@ div.alternative-comment-modal {
         color: $white;
         font-weight: bold;
         height: 20px;
+        margin: 10px 0;
         padding: 5px;
+        width: 200px;
 
         &:hover { background-color: $fr-orange; }
       }
