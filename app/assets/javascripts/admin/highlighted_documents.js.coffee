@@ -88,7 +88,7 @@ class @FR2.HighlightedDocuments
         data: {
           search_scope: @photoForm.find('input[name=search_scope]:checked').val() || true
         }
-      }).success (photos)=>
+      }).done (photos)=>
         @photos = photos
         @removePhotosLoading()
         @displayPhotoGrid()
@@ -194,7 +194,7 @@ class @FR2.HighlightedDocuments
   lookupPhotoInfo: (photoId) ->
     $.ajax({
       url: "/admin/photo_candidates/#{photoId}/info"
-    }).success (info)=>
+    }).done (info)=>
       @addPhotoInfo(info)
 
   addPhotoInfo: (info)->

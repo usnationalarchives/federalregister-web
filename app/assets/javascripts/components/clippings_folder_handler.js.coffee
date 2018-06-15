@@ -127,7 +127,7 @@ class @FR2.ClippingsFolderHandler
         )
     })
 
-    folderCreate.success (response)=>
+    folderCreate.done (response)=>
       track_folder_event('create', 1)
       track_clipping_event('add', @document_number, folderName)
 

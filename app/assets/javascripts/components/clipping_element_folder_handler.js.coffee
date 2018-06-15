@@ -96,7 +96,7 @@ class @FR2.ClippingElementFolderHandler
         )
     })
 
-    clippingDelete.success (response)=>
+    clippingDelete.done (response)=>
       @folderEl.removeClass('in-folder').addClass('not-in-folder')
 
       @folderEl.find('a span.icon').remove()

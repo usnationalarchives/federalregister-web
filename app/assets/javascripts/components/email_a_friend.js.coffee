@@ -18,10 +18,10 @@ class @FR2.EmailAFriend
       dataType: "html"
     })
 
-    form.complete (response)=>
+    form.always (response)=>
       @modal
         .find('.loader')
-        .replaceWith(response.responseText)
+        .replaceWith(response)
 
       @disableSubmit()
 
@@ -62,7 +62,7 @@ class @FR2.EmailAFriend
         data: @modal.find('form').serializeArray()
       })
 
-      form.success (response)=>
+      form.done (response)=>
         @submitSuccess(response)
 
       form.fail (response)=>

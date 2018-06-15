@@ -141,7 +141,7 @@ class @FR2.DocumentClipper
         type: "POST"
       })
 
-      clip.success (response)->
+      clip.done (response)->
         menuItem.removeClass('not-in-folder').addClass('in-folder')
 
         documentClipper.updateClippedStatus()
@@ -155,7 +155,7 @@ class @FR2.DocumentClipper
 
 
 
-      clip.complete (response)->
+      clip.always (response)->
         menuItem.find('.loader').hide()
         menuItem.find('.icon.checked').show()
     else

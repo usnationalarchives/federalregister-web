@@ -82,7 +82,7 @@ class @FR2.ClippingsManager
       type: "POST"
     })
 
-    deleteClippings.success (response)->
+    deleteClippings.done (response)->
       _.each response.folder.documents, (doc_id)->
         $("#clippings li[data-doc-id='" + doc_id + "']")
           .animate({opacity: 0}, 600)
@@ -141,7 +141,7 @@ class @FR2.ClippingsManager
         type: "POST"
       })
 
-      moveClippings.success (response)=>
+      moveClippings.done (response)=>
         loader.hide()
 
         documentCountText = documentCount.find('.document_count_inner')
