@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
         render_error_page(response.status)
       end
     else
-      render action: new
+      render action: :new, status: 400
     end
   end
 
