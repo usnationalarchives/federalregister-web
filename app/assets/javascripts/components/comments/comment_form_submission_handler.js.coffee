@@ -72,7 +72,7 @@ class @FR2.CommentFormSubmissionHandler
     @_rollUpCommentAndReplace response, (response)=>
       successPage = $('<div>')
         .addClass 'comment_wrapper'
-        .html response.responseText
+        .html response
         .hide()
 
       @ajaxCommentData
