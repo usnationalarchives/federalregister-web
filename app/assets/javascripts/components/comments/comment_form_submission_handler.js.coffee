@@ -40,7 +40,6 @@ class @FR2.CommentFormSubmissionHandler
 
     $.extend settings, options
 
-
     $.ajax {
       url: settings.url
       type: settings.type
@@ -73,7 +72,7 @@ class @FR2.CommentFormSubmissionHandler
     @_rollUpCommentAndReplace response, (response)=>
       successPage = $('<div>')
         .addClass 'comment_wrapper'
-        .html response
+        .html response.responseText
         .hide()
 
       @ajaxCommentData
@@ -88,7 +87,18 @@ class @FR2.CommentFormSubmissionHandler
 
   error: (response)->
     @_rollUpCommentAndReplace response, (response)=>
-      @commentFormHandler.commentFormLoadHandler.success response.responseText
+      commentPage = $('<div>')
+        .addClass 'comment_wrapper'
+        .html response.responseText
+        .hide()
+
+      @ajaxCommentData
+        .append commentPage
+      @ajaxCommentData
+        .animate {height: commentPage.css 'height'}, 800
+      commentPage
+        .slideDown 800, =>
+          @commentFormHandler.commentFormReady()
 
   _rollUpCommentAndReplace: (response, replaceWith)->
     @ajaxCommentData = $('.ajax-comment-data')
