@@ -24,7 +24,6 @@ class Comment < ApplicationModel
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
 
-  before_create :send_to_regulations_dot_gov
   before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
@@ -76,11 +75,6 @@ class Comment < ApplicationModel
 
     @attachments.compact!
   end
-
-  # def send_to_regulations_dot_gov
-  #   self.response = comment_form.client.submit_comment(args)
-  #   self.comment_tracking_number = response.tracking_number
-  # end
 
   def comment_data
     @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
