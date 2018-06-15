@@ -78,7 +78,7 @@ class @FR2.CommentFormLoadHandler
       data: settings.data
       timeout: settings.timeout
       success: (response)->
-        loadHandler.success response
+        loadHandler.done response
       error: (response)->
         loadHandler.error response
     }
