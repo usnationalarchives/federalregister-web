@@ -88,6 +88,7 @@ module MyFr2
       print.css
       vendor.css
 
+      mailers/comment_mailer.css
       mailers/common.css
       mailers/fr_mailer.css
       mailers/subscription_mailer.css
