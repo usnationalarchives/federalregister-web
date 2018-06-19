@@ -159,6 +159,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'shoulda-matchers', '1.0.0.beta3'
 
+  gem 'timecop'
+
   gem "vcr",     "~> 2.6.0"
   gem 'watchr', '0.7'
 

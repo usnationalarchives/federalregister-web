@@ -67,6 +67,13 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, isolate_redis: true) do
+    $redis.flushdb
+  end
+  config.after(:each, isolate_redis: true) do
+    $redis.flushdb
+  end
+
   config.before(:each) { reset_mailer }
 
   Capybara.run_server = true

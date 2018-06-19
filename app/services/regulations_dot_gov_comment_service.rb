@@ -2,6 +2,8 @@ class RegulationsDotGovCommentService
   attr_reader :args, :comment, :remote_ip
   attr_accessor :comment_form
 
+  delegate :document_number, to: :@comment
+
   class MissingCommentUrl < StandardError; end
 
   HOURLY_SUBMISSION_LIMIT = 10
@@ -53,9 +55,11 @@ class RegulationsDotGovCommentService
   end
 
   def send_to_regulations_dot_gov
-    return OpenStruct.new(
-      tracking_number: "XXXXXX-#{SecureRandom.hex(7)}",
-      status: 200
+    return RegulationsDotGov::CommentFormResponse.new(nil,
+      {
+        "status" => 200,
+        "trackingNumber" => "XXXXXX-#{SecureRandom.hex(7)}",
+      }
     ) unless Settings.feature_flags.regulations_dot_gov.submit_comments
 
     Dir.mktmpdir do |dir|
@@ -74,8 +78,6 @@ class RegulationsDotGovCommentService
     end
   end
 
-  private
-
   def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
     Honeybadger.notify(exception)
@@ -86,15 +88,15 @@ class RegulationsDotGovCommentService
     $redis.expire hourly_comment_tracking_key, 2.hours
 
     if hourly_requests_for_ip == HOURLY_SUBMISSION_LIMIT
-      $redis.incr(bulk_totals_comment_tracking_key, HOURLY_SUBMISSION_LIMIT)
+      $redis.incrby bulk_totals_comment_tracking_key, HOURLY_SUBMISSION_LIMIT
     else
-      $redis.incr(bulk_totals_comment_tracking_key)
+      $redis.incr bulk_totals_comment_tracking_key
     end
   end
 
   def api_key
     return @api_key if @api_key
-
+    # binding.remote_pry
     if hourly_requests_for_ip >= HOURLY_SUBMISSION_LIMIT
       @api_key = SECRETS['data_dot_gov']['secondary_comment_api_key']
     else
@@ -105,15 +107,19 @@ class RegulationsDotGovCommentService
   end
 
   def hourly_requests_for_ip
-    $redis.get(hourly_comment_tracking_key)
+    $redis.get(hourly_comment_tracking_key).to_i
   end
 
   def hourly_comment_tracking_key
     "cc:#{Time.current.hour}:#{document_number}:#{hashed_remote_ip}"
   end
 
+  def daily_bulk_requests_for_ip
+    $redis.get(bulk_totals_comment_tracking_key).to_i
+  end
+
   def bulk_totals_comment_tracking_key
-    "cc_bulk_totals:#{Date.current.to_s(:iso)}:#{remote_ip}"
+    "cc_bulk_totals:#{Date.current.to_s(:iso)}:#{document_number}:#{remote_ip}"
   end
 
   def hashed_remote_ip

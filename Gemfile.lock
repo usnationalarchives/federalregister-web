@@ -484,6 +484,7 @@ GEM
     terminal-notifier-guard (1.6.4)
     thor (0.20.0)
     tilt (1.4.1)
+    timecop (0.9.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -586,6 +587,7 @@ DEPENDENCIES
   shoulda-matchers (= 1.0.0.beta3)
   strong_parameters
   terminal-notifier-guard
+  timecop
   uglifier
   underscore-rails (~> 1.6.0)
   vcr (~> 2.6.0)
