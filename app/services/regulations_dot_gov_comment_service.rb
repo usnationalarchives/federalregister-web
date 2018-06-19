@@ -60,10 +60,10 @@ class RegulationsDotGovCommentService
         comment_on: comment_form.document_id,
         submit: "Submit Comment"
       }.merge(
-        attributes.slice(*comment_form.fields.map(&:name))
+        comment.attributes.slice(*comment_form.fields.map(&:name))
       )
 
-      args[:uploadedFile] = attachments.map do |attachment|
+      args[:uploadedFile] = comment.attachments.map do |attachment|
         File.open(attachment.decrypt_to(dir))
       end
 
