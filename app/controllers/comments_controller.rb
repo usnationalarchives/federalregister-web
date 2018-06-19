@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
 
     begin
       CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
-    rescue Errno::ENOENT => exception
+    rescue => exception
       Rails.logger.error(exception)
       notify_honeybadger(exception)
     end
