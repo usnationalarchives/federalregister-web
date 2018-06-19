@@ -1,26 +1,26 @@
-@import "library/colors.scss";
+@import "library/colors";
 
 %bordered {
+  border-bottom:1px solid $fr-gray-20;
+  border-top: 1px solid $fr-gray-20;
   margin-top: 5px;
   padding: 3px 5px;
-  border-top: 1px solid #CCC;
-  border-bottom:1px solid #CCC;
 }
 
 #main-content {
-  width: 680px;
   overflow: hidden;
+  width: 680px;
 
   .intro {
     padding-bottom: 20px;
 
     .comment_tracking_number {
-      border: 1px #CCC solid;
-      background-color: #EFEFEF;
+      background-color: $fr-gray-5;
       border-radius: 6px;
+      border: 1px $fr-gray-20 solid;
+      font-size: 18px;
       padding: 10px;
       text-align: center;
-      font-size: 18px;
 
       .tracking_number {
         font-family: courier;
@@ -30,9 +30,9 @@
   }
 
   .document_title a {
+    color: $fr-blue;
     font-size: 1.5em;
     font-weight: bold;
-    color: $fr-blue;
     text-decoration: none;
   }
 
@@ -41,25 +41,25 @@
   }
 
   dl {
-    overflow: hidden;
     margin-bottom: 10px;
+    overflow: hidden;
 
     dt {
-      font-weight: bold;
-      float: left;
-      width: 200px;
       clear: both;
+      float: left;
+      font-weight: bold;
+      width: 200px;
     }
     dd {
-      width: 400px;
       float: left;
+      width: 400px;
     }
   }
 
   .disclaimer {
-    text-align: center;
-    margin-top: 35px;
     font-size: 0.9em;
     font-style: italic;
+    margin-top: 35px;
+    text-align: center;
   }
 }
