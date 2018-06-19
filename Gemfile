@@ -131,37 +131,36 @@ end
 
 
 group :development, :test do
-  gem 'rubocop'
-
-  gem 'rspec-rails',                    '>= 2.5'
-  gem 'watchr',                         '0.7'
-  gem "factory_girl_rails",             "~> 4.0",      :require => false if RUBY_VERSION == '1.9.3'
-  gem 'shoulda-matchers',               '1.0.0.beta3'
-
   if RUBY_VERSION == '1.9.3'
     gem 'capybara'
     #gem 'capybara-webkit'
     #gem 'capybara-screenshot'
   end
 
+  gem 'codeclimate-test-reporter', :require => nil
   gem 'database_cleaner'
+  gem 'email_spec'
+
+  gem "factory_girl_rails", "~> 4.0", require: false if RUBY_VERSION == '1.9.3'
+  gem "fakeweb", "~> 1.3.0"
+
+  #auto test runner
+  gem 'guard'
+  gem 'guard-rspec', require: false
 
   gem 'launchy'
 
-  gem 'codeclimate-test-reporter', :require => nil
   gem 'pry'
   gem 'pry-remote', :platforms => :ruby_19
 
-  gem 'email_spec'
-
-  gem "vcr",     "~> 2.6.0"
-  gem "fakeweb", "~> 1.3.0"
-
+  gem 'rspec-rails', '>= 2.5'
   gem 'rspec-html-matchers', '~> 0.5.0'
 
-  gem 'guard'
-  #auto test runner
-  gem 'guard-rspec', require: false
+  gem 'rubocop'
+  gem 'shoulda-matchers', '1.0.0.beta3'
+
+  gem "vcr",     "~> 2.6.0"
+  gem 'watchr', '0.7'
 
   install_if -> { RUBY_PLATFORM =~ /darwin/ } do
     # gem needed for guard on OSX
