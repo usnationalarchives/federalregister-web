@@ -74,7 +74,12 @@ class CommentsController < ApplicationController
     @comment.add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
     @comment = CommentDecorator.decorate(@comment)
 
-    CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
+    begin
+      CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
+    rescue Errno::ENOENT => exception
+      Rails.logger.error(exception)
+      notify_honeybadger(exception)
+    end
 
     render action: :show, status: 200
   end
