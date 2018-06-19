@@ -55,13 +55,6 @@ class RegulationsDotGovCommentService
   end
 
   def send_to_regulations_dot_gov
-    return RegulationsDotGov::CommentFormResponse.new(nil,
-      {
-        "status" => 200,
-        "trackingNumber" => "XXXXXX-#{SecureRandom.hex(7)}",
-      }
-    ) unless Settings.feature_flags.regulations_dot_gov.submit_comments
-
     Dir.mktmpdir do |dir|
       args = {
         comment_on: comment_form.document_id,
@@ -132,7 +125,17 @@ class RegulationsDotGovCommentService
     comment_form.client.class.api_key = api_key
 
     begin
-      comment_form.client.submit_comment(args)
+      if Settings.feature_flags.regulations_dot_gov.submit_comments
+        comment_form.client.submit_comment(args)
+      else
+        #stub a return object
+        RegulationsDotGov::CommentFormResponse.new(nil,
+          {
+            "status" => 200,
+            "trackingNumber" => "STUBBED-#{SecureRandom.hex(7)}",
+          }
+        )
+      end
     rescue RegulationsDotGov::Client::InvalidSubmission => exception
       record_regulations_dot_gov_error(exception)
 
