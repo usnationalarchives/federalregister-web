@@ -44,7 +44,7 @@ namespace :documents do
 
       def documents(date)
         Document.search(
-          date: date,
+          conditions: {publication_date: {is: date}},
           fields: %w(document_number publication_date start_page images),
           cache_buster: Time.now.to_i
         )
