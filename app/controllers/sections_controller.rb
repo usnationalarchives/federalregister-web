@@ -52,6 +52,11 @@ class SectionsController < ApplicationController
     @highlighted_documents = JSON.parse(
       URI.unescape(params[:highlighted_documents])
     ).map{|h| OpenStruct.new(h)}
-    render layout: "carousel_preview"
+
+    if @highlighted_documents.present?
+      render layout: "carousel_preview"
+    else
+      render text: ""
+    end
   end
 end
