@@ -145,7 +145,10 @@ class RegulationsDotGovCommentService
       record_regulations_dot_gov_error(exception)
 
       comment.add_error(
-        I18n.regulations_dot_gov_errors.modal_html(regulations_dot_gov_link: @comment.document.comment_url)
+        I18n.t(
+          'regulations_dot_gov_errors.unknown.modal_html',
+          regulations_dot_gov_link: @comment.document.comment_url
+        )
       )
       return exception
     end
