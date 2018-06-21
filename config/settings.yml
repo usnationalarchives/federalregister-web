@@ -9,7 +9,7 @@ feature_flags:
   unified_agenda:
     search: false
   regulations_dot_gov:
-    submit_comments: false
+    submit_comments: <%= ENV["REG_GOV_SUBMIT_COMMENTS"] || false %>
   regulatory_plan: false
   # google charts image api is deprecated - reimplement in js
   sparklines:

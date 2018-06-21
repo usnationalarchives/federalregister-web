@@ -9,7 +9,7 @@ regulations_dot_gov:
 
 feature_flags:
   regulations_dot_gov:
-    submit_comments: true
+    submit_comments: <%= ENV["REG_GOV_SUBMIT_COMMENTS"] || true %>
 
 
 # Make any updates -api-core also
