@@ -77,8 +77,8 @@
             <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
               <h3>
                 <%= link_to president.full_name,
-                  executive_orders_by_president_and_year_path(
-                    president.identifier, orders_by_year.first.year
+                  presidential_documents_by_president_and_year_path(
+                    'executive-orders', president.identifier, orders_by_year.first.year
                   ) %>
               </h3>
 
@@ -93,7 +93,8 @@
                 <% orders_by_year.each do |eo_collection| %>
                   <li>
                     <%= link_to_if eo_collection.results.present?, eo_collection.year,
-                      executive_orders_by_president_and_year_path(
+                      presidential_documents_by_president_and_year_path(
+                        'executive-orders',
                         president.identifier,
                         eo_collection.year
                       ) %>

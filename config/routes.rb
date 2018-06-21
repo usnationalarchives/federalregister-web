@@ -357,13 +357,11 @@ MyFr2::Application.routes.draw do
   #
   # Executive Orders
   #
-  match '/executive-orders',
-    to: 'executive_orders#index',
-    as: 'executive_orders'
+  get '/executive-orders',
+    to: redirect('/presidential-documents/executive-orders')
 
-  match '/executive-orders/:president/:year',
-    to: 'executive_orders#by_president_and_year',
-    as: 'executive_orders_by_president_and_year'
+  get '/executive-orders/:president/:year',
+    to: redirect('/presidential-documents/executive-orders/%{president}/%{year}')
 
 
   #

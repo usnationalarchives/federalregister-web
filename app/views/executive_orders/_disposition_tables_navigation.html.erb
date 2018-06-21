@@ -5,7 +5,7 @@
   )
 ) do %>
 
-  <%= link_to 'Executive Order Index', executive_orders_path,
+  <%= link_to 'Executive Order Index', presidential_documents_path('executive-orders'),
     class: 'back-to-link' %>
 
   <% presenter.orders_by_president_and_year.each do |president, eo_collections| %>
@@ -18,8 +18,8 @@
                eo_collection.results.empty?
             ),
             eo_collection.year,
-            executive_orders_by_president_and_year_path(
-              president.identifier, eo_collection.year
+            presidential_documents_by_president_and_year_path(
+              'executive-orders', president.identifier, eo_collection.year
             )
           %>
         </li>

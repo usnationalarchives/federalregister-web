@@ -25,7 +25,8 @@
                 <% else %>
                   <%= facet.year %>:
                   <%= link_to facet.count,
-                    executive_orders_by_president_and_year_path(
+                    presidential_documents_by_president_and_year_path(
+                      'executive-orders',
                       president.identifier,
                       facet.year
                     ) %>
