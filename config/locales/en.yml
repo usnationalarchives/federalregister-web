@@ -37,9 +37,9 @@ en:
     proclamations:
       description: "The President of the United States communicates information on holidays, commemorations, special observances, and trade through Proclamations. After the President signs a Proclamation, the White House sends it to the Office of the Federal Register (OFR).
 The OFR numbers each proclamation consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt."
-    administrative_orders:
-      description: "The President of the United States issues Administrative orders, which include but are not limited to memoranda, notices, determinations, letters, and messages. After the President signs an Administrative order, the White House sends it to the Office of the Federal Register (OFR).
-The OFR does not number Administrative orders but does publish them in the daily Federal Register shortly after receipt.  Administrative orders are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices"
+    other_presidential_documents:
+      description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, and messages. After they are signed, the White House sends it to the Office of the Federal Register (OFR).
+The OFR does not number these documents but does publish them in the daily Federal Register shortly after receipt.   They are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices."
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: "Service Unavailable"

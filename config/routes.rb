@@ -373,7 +373,7 @@ MyFr2::Application.routes.draw do
     to: 'presidential_documents#index',
     as: :presidential_documents,
     constraints: {
-      type: Regexp.new("administrative-orders|executive-orders|proclamations")
+      type: Regexp.new("other-presidential-documents|executive-orders|proclamations")
     }
 
   match '/presidential-documents/:type/:president/:year',

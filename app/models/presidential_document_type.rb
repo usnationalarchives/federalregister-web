@@ -2,7 +2,7 @@ class PresidentialDocumentType < ActiveHash::Base
   include ActiveHash::Enum
   enum_accessor :identifier
 
-  ADMINISTRATIVE_ORDER_TYPES = %w(determination memorandum notice presidential_order)
+  OTHER_PRESIDENTIAL_DOCUMENTS = %w(determination memorandum notice presidential_order)
 
   self.data = [
     {id: 1, name: "Determination",      node_name: "DETERM",    identifier: "determination"},
@@ -13,19 +13,19 @@ class PresidentialDocumentType < ActiveHash::Base
     {id: 6, name: "Presidential Order", node_name: "PRORDER",   identifier: "presidential_order"},
   ]
 
-  def self.administrative_order_types
+  def self.other_presidential_document_types
     all.select do |type|
-      ADMINISTRATIVE_ORDER_TYPES.include? type.identifier
+      OTHER_PRESIDENTIAL_DOCUMENTS.include? type.identifier
     end
   end
 
   # patch in an amalgamation type (administrative orders)
   def self.find(type)
-    if type == 'administrative_order'
+    if type == 'other_presidential_document'
       OpenStruct.new(
-        name: "Administrative Order",
-        identifier: administrative_order_types.map(&:identifier),
-        id: administrative_order_types.map(&:id)
+        name: "Other Presidential Document",
+        identifier: other_presidential_document_types.map(&:identifier),
+        id: other_presidential_document_types.map(&:id)
       )
     else
       where(identifier: type).first
