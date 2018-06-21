@@ -190,7 +190,7 @@ class RegulationsDotGovCommentService
 
   def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
-    notify_honeybadger(exception)
+    Honeybadger.notify(exception)
   end
 
   class RegulationsDotGovError
