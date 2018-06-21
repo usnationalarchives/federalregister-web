@@ -74,11 +74,22 @@ RSpec.describe RegulationsDotGovCommentService do
 
     it "#increment_comment_tracking_keys works as expected across hour boundaries", :isolate_redis do
       # set up IP to have gone over the submission limit in the past and be on the verge of exceeding it again
+      comments_in_previous_hour = RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 10
       Timecop.freeze(Time.current-1.hour) do
-        $redis.incrby comment_service.hourly_comment_tracking_key, RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 10
-        $redis.incrby comment_service.bulk_totals_comment_tracking_key, RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 10
+        $redis.incrby(
+          comment_service.hourly_comment_tracking_key,
+          comments_in_previous_hour
+        )
+        $redis.incrby(
+          comment_service.bulk_totals_comment_tracking_key,
+          comments_in_previous_hour
+        )
       end
-      $redis.incrby comment_service.hourly_comment_tracking_key, RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT - 1
+      # comments so far this hour
+      $redis.incrby(
+        comment_service.hourly_comment_tracking_key,
+        RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT - 1
+      )
 
       # resets hourly
       expect{
@@ -91,7 +102,7 @@ RSpec.describe RegulationsDotGovCommentService do
       expect(
         comment_service.daily_bulk_requests_for_ip
       ).to be(
-        RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 20
+        RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + comments_in_previous_hour
       )
     end
   end
