@@ -5,7 +5,6 @@
   &:hover { color: darken($color-reader-aid, 15); }
 }
 
-.executive-orders,
 .presidential-documents {
   a,
   .fr-box .content-block a {
@@ -44,6 +43,21 @@
         color: $fr-blue;
 
         &:hover { color: $fr-orange; }
+      }
+    }
+  }
+
+  .document-type {
+    h3 {
+      border-bottom: 1px solid $color-reader-aid;
+
+      a.more-details {
+        float: right;
+        font-size: modular-scale(0) !important;
+        font-weight: normal;
+        margin-right: 1px;
+        position: relative;
+        top: 9px;
       }
     }
   }
