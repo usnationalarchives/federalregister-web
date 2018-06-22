@@ -60,6 +60,14 @@
         top: 9px;
       }
     }
+
+    ul.fr-list.fr-list-inline {
+      li {
+        float: left;
+        line-height: 20px;
+        margin-right: 20px;
+      }
+    }
   }
 
   ul.document-list {

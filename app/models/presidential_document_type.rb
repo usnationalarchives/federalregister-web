@@ -22,13 +22,23 @@ class PresidentialDocumentType < ActiveHash::Base
   # patch in an amalgamation type (administrative orders)
   def self.find(type)
     if type == 'other_presidential_document'
-      OpenStruct.new(
+      doc_type = new(
         name: "Other Presidential Document",
         identifier: other_presidential_document_types.map(&:identifier),
-        id: other_presidential_document_types.map(&:id)
+        id: other_presidential_document_types.map(&:id),
       )
+      doc_type.attributes[:type] = 'other_presidential_document'
+      doc_type
     else
       where(identifier: type).first
     end
+  end
+
+  def type
+    attributes[:type] || identifier
+  end
+
+  def slug
+    type.pluralize.gsub('_', '-')
   end
 end

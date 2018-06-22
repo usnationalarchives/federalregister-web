@@ -8,6 +8,12 @@ class PresidentialDocumentsController < ApplicationController
   end
 
   def index
+    cache_for 1.day
+    @presenter = PresidentialDocumentsIndexPresenter.new
+  end
+
+  def show
+    cache_for 1.day
     @presenter = PresidentialDocumentsPresenter.new(
       presidential_document_params.merge(view_context: view_context)
     )
@@ -16,7 +22,7 @@ class PresidentialDocumentsController < ApplicationController
   end
 
   def by_president_and_year
-    #cache_for 1.day
+    cache_for 1.day
     @presenter = PresidentialDocumentsDispositionTablePresenter.new(
       presidential_document_params.merge(view_context: view_context)
     )

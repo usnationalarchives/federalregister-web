@@ -1,0 +1,129 @@
+<% header_type 'reader-aids' %>
+<% page_title @presenter.name %>
+<% description truncate_words(
+    strip_tags(@presenter.description),
+    :length => 300
+  ) %>
+
+<% title title_bar_class: "reader-aids" do %>
+  <%= fr_icon 'stars' %>
+  <%= @presenter.name %>
+<% end %>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row presidential-documents">
+    <div class="<%= bootstrap_col(xs: 12, md:12) %>">
+
+      <div class="agency-header">
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <h1><%= @presenter.name %></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-summary reader-aid">
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <%= auto_link(simple_format(@presenter.description)).html_safe %>
+
+            <p>
+              <%= @presenter.name.pluralize %> issued since 1994 are available as a single
+              bulk download and as a bulk download by President, or you can
+              browse by President and year from the list below. More details
+              about our APIs and other developer tools can be found on our
+              <%= link_to 'developer pages',
+                reader_aids_section_path('developer-resources') %>.
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+            <ul class="bulk-files">
+              <li>
+                <span class="title">All <%= @presenter.name.pluralize %> since 1994</span>
+                <span class="links">
+                  <%= @presenter.link_to_presidential_documents_for_format(:csv) %>
+                  <%= @presenter.link_to_presidential_documents_for_format(:json) %>
+                </span>
+              </li>
+
+              <% @presidents.each do |president| %>
+                <li>
+                  <span class="title"><%= president.full_name %></span>
+                  <span class="links">
+                    <%= @presenter.link_to_presidential_documents_for_format(:csv) %>
+                    <%= @presenter.link_to_presidential_documents_for_format(:json) %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <%= fr_content_box(
+        FrBox.build(
+          @presenter.fr_content_box_type,
+          title: @presenter.fr_content_box_title,
+          description: @presenter.description
+        )
+      ) do %>
+        <% @presenter.documents_by_president_and_year.each do |president, documents_by_year| %>
+          <div class="president-wrapper">
+            <div class="row">
+              <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
+                <h3>
+                  <%= link_to president.full_name,
+                    presidential_documents_by_president_and_year_path(
+                      'executive-orders', president.identifier, documents_by_year.first.year
+                    ) %>
+                </h3>
+
+                <p>
+                  <%= president.full_name %> issued
+                  <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
+                  between <%= documents_by_year.last.year %>
+                  and <%= documents_by_year.first.year %>.
+                </p>
+
+                <ul class="document-list">
+                  <% documents_by_year.each do |presidential_document_collection| %>
+                    <li>
+                      <%= link_to_if presidential_document_collection.presidential_documents.present?, presidential_document_collection.year,
+                        presidential_documents_by_president_and_year_path(
+                          @presenter.type.gsub('_','-'),
+                          president.identifier,
+                          presidential_document_collection.year
+                        ) %>
+
+                      <% if presidential_document_collection.presidential_documents.present? %>
+                        <% if @presenter.type == 'executive_orders' %>
+                          EO <%= presidential_document_collection.minimum_eo_number %>
+                          <% if presidential_document_collection.maximum_eo_number &&
+                            presidential_document_collection.maximum_eo_number != presidential_document_collection.minimum_eo_number %>
+                              - EO <%= presidential_document_collection.maximum_eo_number %>
+                          <% end %>
+                        <% end %>
+
+                        <span class="count-pill reader-aid cj-tooltip"
+                          data-tooltip="<%= pluralize(presidential_document_collection.count,  @presenter.name.singularize.downcase) %>"
+                          data-tooltip-gravity="w">
+                          <%= presidential_document_collection.count %>
+                        </span>
+                      <% else %>
+                        No <%= @presenter.presidential_document_type.name.pluralize.downcase %> issued.
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

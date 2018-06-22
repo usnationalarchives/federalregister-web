@@ -85,4 +85,8 @@ class President < ActiveHash::Base
       })
     ).first(count)
   end
+
+  def in_office
+    "#{starts_on.year}-#{ends_on.year}"
+  end
 end
