@@ -33,7 +33,7 @@
       <li id='executive-orders-browse'>
         <%= link_to(presidential_documents_path('executive-orders'), class: "executive-orders") do %>
           <%= fr_icon('stars') %>
-          Executive Orders
+          Presidential Documents          
         <% end %>
       </li>
     </ul>
@@ -58,8 +58,8 @@
         )
       } %>
 
-      <%= render partial: 'executive_orders/navigation', locals: {
-        presenter: ExecutiveOrderNavPresenter.new
+      <%= render partial: 'presidential_documents/navigation', locals: {
+        presenter: PresidentialDocumentsIndexPresenter.new
       } %>
     </ul>
   </div>

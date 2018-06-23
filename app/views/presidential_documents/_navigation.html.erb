@@ -1,0 +1,38 @@
+<li id="executive-orders-browse-preview" class="preview browse-preview presidential-documents">
+  <ul>
+    <% presenter.subtypes.each do |doc_type| %>
+      <li>
+        <h4>
+          <%= link_to doc_type.name.pluralize,
+            presidential_documents_path(doc_type.slug) %>
+
+          <%= link_to "view",
+            presidential_documents_path(doc_type.slug),
+            class: 'more-details' %>
+        </h4>
+
+        <%= auto_link(simple_format(
+          presenter.short_description_for(doc_type)
+        )) %>
+
+        <% if doc_type.type == 'executive_order' %>
+        <ul class="executive-order-list">
+          <% President.all.last.recent_executive_orders(2).each do |document| %>
+            <li>
+              <div class="fr-doc-eo-number">
+                <%= "Executive Order #{document.executive_order_number}" %>
+              </div>
+
+              <%= link_to document.title, document.html_url, class: "fr-link" %>
+
+              <div class="fr-doc-date">
+                <%= document.publication_date.to_s(:formal_wo_ordinal) %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</li>

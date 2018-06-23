@@ -153,15 +153,14 @@
     display: block;
 
     &.fr-doc-title {
-      font-size: 15px;
+      font-size: modular-scale(0);
       font-weight: bold;
     }
 
     &.fr-doc-date {
-      margin-bottom: 7px;
       color: $fr-gray-30;
-      font-size: 12px;
-      line-height: 13px;
+      font-size: modular-scale(-1);
+      margin-bottom: 7px;
     }
   }
 

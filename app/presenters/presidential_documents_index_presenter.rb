@@ -27,6 +27,10 @@ class PresidentialDocumentsIndexPresenter
     I18n.t("presidential_documents.#{doc_type.type.pluralize}.description").html_safe
   end
 
+  def short_description_for(doc_type)
+    I18n.t("presidential_documents.#{doc_type.type.pluralize}.short_description").html_safe
+  end
+
   def counts_for(doc_type)
     counts_by_type[doc_type]
   end

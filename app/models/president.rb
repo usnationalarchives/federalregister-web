@@ -77,10 +77,11 @@ class President < ActiveHash::Base
         conditions: {correction: 0},
         fields: [
           'executive_order_number',
-          'title',
           'html_url',
+          'publication_date',
+          'title',
         ],
-        order: 'executive_order_number DESC',
+        order: 'executive_order',
         per_page: count
       })
     ).first(count)

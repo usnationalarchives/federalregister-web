@@ -5,7 +5,7 @@
     <span class="fr-doc-title">
       <%= "#{document.subtype} #{document.executive_order_number}" %>
     </span>
-    <%= link_to document.title, document.html_url, :class => "fr-link" %>
+    <%= link_to document.title, document.html_url, class: "fr-link" %>
     <span class="fr-doc-date">
       <%= document.publication_date.to_s(:formal_wo_ordinal) %>
     </span>
