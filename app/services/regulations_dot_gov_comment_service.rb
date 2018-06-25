@@ -82,7 +82,7 @@ class RegulationsDotGovCommentService
 
     if hourly_requests_for_ip == HOURLY_SUBMISSION_LIMIT
       $redis.incrby bulk_totals_comment_tracking_key, HOURLY_SUBMISSION_LIMIT
-    else
+    elsif hourly_requests_for_ip > HOURLY_SUBMISSION_LIMIT
       $redis.incr bulk_totals_comment_tracking_key
     end
   end
