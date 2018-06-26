@@ -11,7 +11,7 @@ class RegulationsDotGov::Client
   class ResponseError < StandardError
     attr_reader :code
     alias_method :status, :code
-    
+
     def initialize(message, code=nil)
       super(message)
       @code = code
@@ -217,9 +217,9 @@ class RegulationsDotGov::Client
         raise ResponseError.new( stringify_response(response), response.code)
       end
     rescue SocketError
-      raise ResponseError.new("Hostname lookup failed")
+      raise ResponseError.new("Hostname lookup failed", 504)
     rescue Timeout::Error
-      raise ResponseError.new("Request timed out")
+      raise ResponseError.new("Request timed out", 504)
     end
   end
 
@@ -244,9 +244,9 @@ class RegulationsDotGov::Client
         raise ResponseError.new( stringify_response(response), response.code)
       end
     rescue SocketError
-      raise ResponseError.new("Hostname lookup failed")
+      raise ResponseError.new("Hostname lookup failed", 504)
     rescue Timeout::Error
-      raise ResponseError.new("Request timed out")
+      raise ResponseError.new("Request timed out", 504)
     end
   end
 
