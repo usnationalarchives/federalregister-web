@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './spec/support/xslt_test_helper'
 include XsltTestHelper
 
@@ -183,6 +185,22 @@ describe "XSLT::FullText::Typeface" do
         expect_equivalent <<-HTML
           <p id="p-1" data-page="1000">
             NO<sub>X</sub>
+          </p>
+        HTML
+      end
+    end
+
+    context "T=7333" do
+      it "converts to an subscript" do
+        process <<-XML
+          <P>
+            ATSM F2012-18<E T="7333">ε</E>
+          </P>
+        XML
+
+        expect_equivalent <<-HTML
+          <p id="p-1" data-page="1000">
+            ATSM F2012-18<sup>&epsilon;</sup>
           </p>
         HTML
       end
