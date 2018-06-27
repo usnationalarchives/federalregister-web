@@ -56,6 +56,13 @@
     <xsl:call-template name="optional_following_whitespace" />
   </xsl:template>
 
+  <xsl:template match="E[@T=7333]">
+    <sup>
+      <xsl:apply-templates />
+    </sup>
+    <xsl:call-template name="optional_following_whitespace" />
+  </xsl:template>
+
   <xsl:template match="E[@T=52]">
     <sub>
       <xsl:apply-templates />
