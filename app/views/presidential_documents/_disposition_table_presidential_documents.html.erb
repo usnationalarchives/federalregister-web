@@ -7,7 +7,7 @@
 ) do %>
 
   <% presenter.presidential_documents_collection.presidential_documents.each do |presidential_document| %>
-    <div class="row executive-order-wrapper">
+    <div class="row presidential-document-wrapper">
       <% if presenter.type == 'executive_orders' %>
       <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
         <h5>
