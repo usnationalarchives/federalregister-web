@@ -60,3 +60,7 @@ $(document).ready ()->
   FR2.documentClippers = []
   _.each $('.document-clipping-actions'), (clipper)->
     FR2.documentClippers.push(new FR2.DocumentClipper(clipper))
+
+  # Add space above navigation for user utils
+  if $('.logo').siblings('div#user_utils').length > 0
+    $('.logo .hgroup').css('position', 'relative').css('top', '20px')
