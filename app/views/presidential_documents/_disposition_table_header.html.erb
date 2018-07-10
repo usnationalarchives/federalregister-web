@@ -2,7 +2,7 @@
   <div class="row">
     <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
       <h1>
-        <%= "#{presenter.year} #{presenter.president.full_name} Executive Orders" %>
+        <%= "#{presenter.year} #{presenter.president.full_name} #{presenter.presidential_document_type.name.pluralize}" %>
       </h1>
     </div>
   </div>
