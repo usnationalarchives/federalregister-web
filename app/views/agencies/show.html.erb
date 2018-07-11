@@ -25,8 +25,10 @@
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <h1>
               <% if @presenter.agency.logo.present? %>
-                <%= image_tag @presenter.agency.logo_url(:thumb),
-                  class: 'agency-logo' %>
+                <%= image_tag 'orange_loader.gif',
+                  alt: 'agency logo',
+                  class: 'agency-logo loading',
+                  data: {src: @presenter.agency.logo_url(:thumb)} %>
               <% end %>
               <%= @presenter.name %>
             </h1>

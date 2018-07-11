@@ -9,6 +9,7 @@
 #= require bootstrap/tab
 #= require jquery.clippy.min
 #= require js.cookie
+#= require jquery.lazy.min
 
 # RANDOM ASSORTMENT UTILITIES
 #= require jquery.utilities

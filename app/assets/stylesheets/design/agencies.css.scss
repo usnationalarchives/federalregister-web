@@ -10,6 +10,8 @@
     float: left;
     padding-left: 5px;
     padding-right: 10px;
+
+    &.loading { margin-top: 10px; }
   }
 }
 
