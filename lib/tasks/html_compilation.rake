@@ -46,6 +46,7 @@ namespace :documents do
         Document.search(
           conditions: {publication_date: {is: date}},
           fields: %w(document_number publication_date start_page images),
+          per_page: 1000,
           cache_buster: Time.now.to_i
         )
       end
