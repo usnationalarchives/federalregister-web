@@ -54,7 +54,7 @@ class RegulationsDotGovCommentService
     end
   end
 
-  def send_to_regulations_dot_gov
+  def send_to_regulations_dot_gov(submission_type=:submit)
     Dir.mktmpdir do |dir|
       args = {
         comment_on: comment_form.document_id,
@@ -67,7 +67,54 @@ class RegulationsDotGovCommentService
         File.open(attachment.decrypt_to(dir))
       end
 
-      submit_comment(args)
+      if submission_type == :submit
+        begin
+          submit_comment(args)
+        rescue RegulationsDotGov::Client::InvalidSubmission => exception
+          record_regulations_dot_gov_error(exception)
+
+          # comment form may have changed since last retrieved
+          reload_comment_form_and_resubmit(exception)
+        rescue RegulationsDotGov::Client::ResponseError => exception
+          record_regulations_dot_gov_error(exception)
+
+          comment.add_error(
+            I18n.t(
+              'regulations_dot_gov_errors.unknown.modal_html',
+              regulations_dot_gov_link: @comment.document.comment_url
+            )
+          )
+          return exception
+        end
+      elsif submission_type == :resubmit
+        begin
+          submit_comment(args)
+        # our re-submission could also have an error
+        # we just return that and don't attempt any more niceties
+        rescue RegulationsDotGov::Client::ResponseError => inner_exception
+          record_regulations_dot_gov_error(inner_exception)
+
+          # show form to user but with message from regulations.gov
+          regulation_dot_gov_error = RegulationsDotGovError.new(inner_exception)
+          message = regulation_dot_gov_error.message
+
+          # add a note about long message - char counts aren't calculated the same
+          # between systems leading to inadvertant over char limit messages at the
+          # boundary (multibyte chars are counted more than once by regulations.gov)
+          if regulation_dot_gov_error["longFields"].present?
+            if regulation_dot_gov_error["longFields"] == ["general_comment"]
+              message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
+            else
+              regulation_dot_gov_error["longFields"].each do |field|
+                message += "<br><br> #{field} exceeds maximum length."
+              end
+            end
+          end
+
+          comment.add_error(message)
+          return inner_exception
+        end
+      end
     end
   end
 
@@ -124,70 +171,32 @@ class RegulationsDotGovCommentService
 
     comment_form.client.class.api_key = api_key
 
-    begin
-      if Settings.feature_flags.regulations_dot_gov.submit_comments
-        comment_form.client.submit_comment(args)
-      else
-        #stub a return object
-        RegulationsDotGov::CommentFormResponse.new(nil,
-          {
-            "status" => 200,
-            "trackingNumber" => "STUBBED-#{SecureRandom.hex(7)}",
-          }
-        )
-      end
-    rescue RegulationsDotGov::Client::InvalidSubmission => exception
-      record_regulations_dot_gov_error(exception)
-
-      # comment form may have changed since last retrieved
-      reload_comment_form_and_resubmit(exception)
-    rescue RegulationsDotGov::Client::ResponseError => exception
-      record_regulations_dot_gov_error(exception)
-
-      comment.add_error(
-        I18n.t(
-          'regulations_dot_gov_errors.unknown.modal_html',
-          regulations_dot_gov_link: @comment.document.comment_url
-        )
+    if Settings.feature_flags.regulations_dot_gov.submit_comments
+      comment_form.client.submit_comment(args)
+    else
+      #stub a return object
+      RegulationsDotGov::CommentFormResponse.new(nil,
+        {
+          "status" => 200,
+          "trackingNumber" => "STUBBED-#{SecureRandom.hex(7)}",
+        }
       )
-      return exception
     end
   end
 
   def reload_comment_form_and_resubmit(exception)
-    begin
-      # reload the form from regs.gov
-      load_comment_form(:read_from_cache => false)
+    # reload the form from regs.gov
+    load_comment_form(:read_from_cache => false)
 
-      if comment.valid?
-        # resend the updated form with the current data
-        response = send_to_regulations_dot_gov
-        return response
-      else
-        # return the exception
-        # comment has been updated and will show invalid form to user with our error messages
-        # ex: a required field was added after the form was last cached by us
-        return exception
-      end
-    # our re-submission could also have an error
-    # we just return that and don't attempt any more niceties
-    rescue RegulationsDotGov::Client::ResponseError => inner_exception
-      record_regulations_dot_gov_error(inner_exception)
-
-      # show form to user but with message from regulations.gov
-      regulation_dot_gov_error = RegulationsDotGovError.new(inner_exception)
-      message = regulation_dot_gov_error.message
-
-      # add a note about long message - char counts aren't calculated the same
-      # between systems leading to inadvertant over char limit messages at the
-      # boundary
-      if regulation_dot_gov_error["longFields"].present? &&
-        regulation_dot_gov_error["longFields"] == ["general_comment"]
-          message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
-      end
-
-      comment.add_error(message)
-      return inner_exception
+    if comment.valid?
+      # resend the updated form with the current data
+      response = send_to_regulations_dot_gov(:resubmit)
+      return response
+    else
+      # return the exception
+      # comment has been updated and will show invalid form to user with our error messages
+      # ex: a required field was added after the form was last cached by us
+      return exception
     end
   end
 
