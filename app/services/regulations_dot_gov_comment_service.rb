@@ -136,7 +136,7 @@ class RegulationsDotGovCommentService
 
   def api_key
     return @api_key if @api_key
-    # binding.remote_pry
+
     if hourly_requests_for_ip >= HOURLY_SUBMISSION_LIMIT
       @api_key = SECRETS['data_dot_gov']['secondary_comment_api_key']
     else
