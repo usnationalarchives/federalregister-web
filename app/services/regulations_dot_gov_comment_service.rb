@@ -101,7 +101,7 @@ class RegulationsDotGovCommentService
           # add a note about long message - char counts aren't calculated the same
           # between systems leading to inadvertant over char limit messages at the
           # boundary (multibyte chars are counted more than once by regulations.gov)
-          if regulation_dot_gov_error["longFields"].present?
+          if regulation_dot_gov_error.respond_to?(:[]) && regulation_dot_gov_error["longFields"].present?
             if regulation_dot_gov_error["longFields"] == ["general_comment"]
               message += "<br><br> If you are attempting to submit a comment of substantial length we recommend adding the comment as a file attachment below instead."
             else
