@@ -224,9 +224,6 @@ class RegulationsDotGov::Client
   end
 
   def self.post(url, options)
-    #query = options.fetch(:query){ Hash.new }
-    #options[:query] = query.merge!(:api_key => api_key)
-    reg_gov_url = url
     url = url + "?api_key=#{api_key}"
 
     begin
@@ -238,7 +235,7 @@ class RegulationsDotGov::Client
       when 400, 406
         raise InvalidSubmission.new( stringify_response(response), response.code)
       when 429
-        message = "We were unable to successfully submit your comment at this time because Regulations.gov has received too many comments in the last hour. Please try submitting your comment again later or attempt to comment directly via Regulations.gov: #{reg_gov_url}, or via any other method described in the document."
+        message = "We were unable to successfully submit your comment at this time because Regulations.gov has received too many comments in the last hour. Please try submitting your comment again later or attempt to comment directly via Regulations.gov, or via any other method described in the document."
         raise OverRateLimit.new(message, response.code)
       when 500, 502, 503
         raise ServerError.new( stringify_response(response), response.code)
