@@ -201,7 +201,9 @@ Styleguide 1.1 FR Boxes
 
 .fr-seal-block {
   &.fr-seal-block-header {
-    position: absolute;
+    margin-bottom: 10px;
+
+    &.with-hover{ position: absolute; }
 
     h6 {
       float:left;

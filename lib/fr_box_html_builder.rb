@@ -58,7 +58,7 @@ class FrBoxHtmlBuilder
   end
 
   def fr_box_header
-    view_context.content_tag(:div, class: "fr-seal-block fr-seal-block-header") do
+    view_context.content_tag(:div, class: "fr-seal-block fr-seal-block-header #{'with-hover' if @header_options[:hover]}") do
       view_context.content_tag(:div, class: "fr-seal-content") do
         description = @header_options[:hover] ? fr_box_header_description : "".html_safe
 
