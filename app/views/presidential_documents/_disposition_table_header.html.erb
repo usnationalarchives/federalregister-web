@@ -18,13 +18,17 @@
         <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize) %>
 
         <% if presenter.type == 'executive_orders' %>
-          , from EO <%= presenter.presidential_documents_collection.minimum_eo_number %>
-          through EO <%= presenter.presidential_documents_collection.maximum_eo_number %>
-        <% end %>.
+          (from EO <%= presenter.presidential_documents_collection.minimum_eo_number %>
+          through EO <%= presenter.presidential_documents_collection.maximum_eo_number %>).
+        <% elsif presenter.type == 'other_presidential_documents' %>
+          (this total includes only documents submitted to the OFR by the White House Office of the Executive Clerk).
+        <% else %>
+        .
+        <% end %>
       </p>
 
       <p>
-        These <%= pluralize(presenter.presidential_documents_collection.count, presenter.name.downcase.singularize) %>
+        These <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize) %>
         can be downloaded in
         <%= presenter.link_to_presidential_documents_for_format(:csv) %>
         and

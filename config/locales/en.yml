@@ -41,7 +41,7 @@ en:
       short_description: "The President of the United States communicates information on holidays, commemorations, special observances, and trade through Proclamations."
     other_presidential_documents:
       description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, and messages. After they are signed, the White House sends it to the Office of the Federal Register (OFR).
-        \n\n The OFR does not number these documents but does publish them in the daily Federal Register shortly after receipt.   They are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices."
+        \n\n The OFR does not number these documents but does publish them in the daily Federal Register shortly after receipt. They are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices."
       short_description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, and messages."
   regulations_dot_gov_errors:
     service_unavailable:

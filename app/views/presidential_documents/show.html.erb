@@ -35,6 +35,13 @@
               <%= link_to 'developer pages',
                 reader_aids_section_path('developer-resources') %>.
             </p>
+
+            <% if @presenter.type == 'other_presidential_documents' %>
+              <p class="document-count-note">
+                <%= fr_icon('alert') %>
+                <strong>Note</strong>: The Federal Register collection includes only documents submitted to the OFR by the White House Office of the Executive Clerk.
+              </p>
+            <% end %>
           </div>
         </div>
 
@@ -68,9 +75,16 @@
         FrBox.build(
           @presenter.fr_content_box_type,
           title: @presenter.fr_content_box_title,
-          description: @presenter.description
+          description: auto_link(simple_format(@presenter.description)).html_safe
         )
       ) do %>
+        <% if @presenter.type == 'other_presidential_documents' %>
+          <p class="document-count-note">
+            <%= fr_icon('alert') %>
+            <strong>Note</strong>: The counts indicated include only documents submitted to the OFR by the White House Office of the Executive Clerk.
+          </p>
+        <% end %>
+
         <% @presenter.documents_by_president_and_year.each do |president, documents_by_year| %>
           <div class="president-wrapper">
             <div class="row">
@@ -78,7 +92,9 @@
                 <h3>
                   <%= link_to president.full_name,
                     presidential_documents_by_president_and_year_path(
-                      'executive-orders', president.identifier, documents_by_year.first.year
+                      @presenter.type.gsub('_','-'),
+                      president.identifier,
+                      documents_by_year.first.year
                     ) %>
                 </h3>
 

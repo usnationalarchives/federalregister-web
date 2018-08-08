@@ -30,10 +30,18 @@
     .title {
       display: inline-block;
       font-weight: 500;
-      width: 300px;
+      width: 350px;
     }
 
     .links a { margin-right: 15px; }
+  }
+
+  .document-count-note {
+    .icon-fr2 {
+      color: $color-reader-aid;
+      font-size: modular-scale(3);
+      top: 4px;
+    }
   }
 
   .president-wrapper {
