@@ -27,14 +27,14 @@ Styleguide 1.1 FR Boxes
       .fr-seal-content {
         &:hover,
         &.hover {
-          margin-top: 0;
           background-color: $main-color;
+          margin-top: 0;
           position: relative;
           z-index: 100;
 
           .fr-seal-meta {
-            margin-top: 0;
             display: inline-block;
+            margin-top: 0;
           }
         }
       }
@@ -47,19 +47,17 @@ Styleguide 1.1 FR Boxes
 }
 
 .fr-box {
-  position:relative;
-  /* show box as inactive unless we specify the proper box type */
+  // show box as inactive unless we specify the proper box type
   @include fr-doc($color-inactive, $color-inactive-light);
+  position:relative;
 
   .fr-seal-stamp {
-    width: 120px;
-    height: 100px;
-
     float: left;
-    margin-right: 20px;
-    margin-left: 15px;
-
     font-size: 150px;
+    height: 100px;
+    margin-left: 15px;
+    margin-right: 20px;
+    width: 120px;
 
     .fr-stamp {
       display: block;
@@ -76,17 +74,18 @@ Styleguide 1.1 FR Boxes
       }
 
       .fr-seal-stamp {
-        font-size: 125px;
         color: $public-inspection-fr-stamp;
+        font-size: 125px;
+
         .fr-stamp { top: 10px; }
       }
     }
   }
 
   .content-block {
-    padding: 35px 10px 25px 10px;
     color: $text;
     font-size: modular-scale(0);
+    padding: 35px 10px 25px 10px;
 
     &.simple {
       padding-left: 20px;
@@ -134,24 +133,27 @@ Styleguide 1.1 FR Boxes
   &.fr-box-small {
     padding-bottom: 0;
     padding-left:0 !important;
-    .fr-seal-meta {padding-top: 0}
+
+    .fr-seal-meta { padding-top: 0; }
+
     .fr-seal-content {
-      p {padding: 10px}
+      p { padding: 10px; }
     }
   }
 
   &.fr-box-full {
     .fr-seal-block {
       h6 {
-        width: 100%;
         color: $white;
-        font-size: modular-scale(-2);
         font-family: inherit;
+        font-size: modular-scale(-2);
+        width: 100%;
       }
 
       &.fr-seal-block-header { text-align: left; }
       &.fr-seal-block-footer {
         border-bottom-width: 2px;
+
         h6 { display: none; }
       }
     }
@@ -159,19 +161,19 @@ Styleguide 1.1 FR Boxes
 }
 
 .fr-seal-block {
+  @include gesta;
   color: $white;
   overflow: inherit;
   width: 100%;
-  @include gesta;
 
   h6 {
+    clear: both;
+    color: inherit !important;
     display: inline-block;
-    text-transform: uppercase;
     font-size: modular-scale(-2) !important;
     font-weight: 700;
-    clear: both;
     margin: 0 !important;
-    color: inherit !important;
+    text-transform: uppercase;
   }
 
   a {
@@ -184,15 +186,15 @@ Styleguide 1.1 FR Boxes
   }
 
   .fr-seal-meta {
-    padding: 15px 15px 20px 15px;
-    margin-top: -10px;
     display: none;
+    margin-top: -10px;
+    padding: 15px 15px 20px 15px;
 
     p {
-      padding: 10px 130px 0 15px;
       @include apertura-condensed;
-      font-size: modular-scale(0);
       color: $white;
+      font-size: modular-scale(0);
+      padding: 10px 130px 0 15px;
     }
   }
 }
@@ -209,14 +211,14 @@ Styleguide 1.1 FR Boxes
     }
   }
   &.fr-seal-block-footer {
-    position: absolute;
     bottom: 0;
+    position: absolute;
 
     h6 {
       float:right;
-      padding-top: 3px;
-      padding-right: 5px;
       padding-left: 40px !important;
+      padding-right: 5px;
+      padding-top: 3px;
     }
   }
 }
