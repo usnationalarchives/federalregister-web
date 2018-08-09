@@ -9,11 +9,19 @@
   <% presenter.presidential_documents_collection.presidential_documents.each do |presidential_document| %>
     <div class="row presidential-document-wrapper">
       <% if presenter.type == 'executive_orders' %>
-      <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
-        <h5>
-          EO <%= presidential_document.executive_order_number %>:
-        </h5>
-      </div>
+        <div class="<%= bootstrap_col xs: 2, md: 2 %> eo-number">
+          <h5>
+            EO <%= presidential_document.executive_order_number %>:
+          </h5>
+        </div>
+      <% elsif presenter.type == 'proclamations' %>
+        <div class="<%= bootstrap_col xs: 2, md: 2 %> proc-number">
+          <% if presidential_document.proclamation_number %>
+            <h5>
+              Proc. <%= presidential_document.proclamation_number %>:
+            </h5>
+          <% end %>
+        </div>
       <% end %>
 
       <div class="<%= bootstrap_col xs: 10, md: 10 %>">
@@ -59,14 +67,14 @@
           </dl>
         </div>
 
-        <% if presenter.type == 'executive_orders' %>
-        <% if presidential_document.executive_order_notes.present? %>
-          <div class="row eo-notes">
-            <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-              <%= simple_format add_citation_links(presidential_document.executive_order_notes, :class => "notes") %>
+        <% if presenter.type == 'executive_orders' && presenter.type == 'proclamations' %>
+          <% if presidential_document.disposition_notes.present? %>
+            <div class="row disposition-notes">
+              <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+                <%= simple_format add_citation_links(presidential_document.disposition_notes, class: "notes") %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
         <% end %>
       </div>
 
