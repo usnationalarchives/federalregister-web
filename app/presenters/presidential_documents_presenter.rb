@@ -77,6 +77,9 @@ class PresidentialDocumentsPresenter
     if presidential_document_type.identifier == 'executive_order'
       order = 'executive_order'
       fields = PresidentialDocumentCollection::EXECUTIVE_ORDER_FIELDS
+    elsif presidential_document_type.identifier == 'proclamation'
+      order = 'proclamation_number'
+      fields = PresidentialDocumentCollection::PROCLAMATION_FIELDS
     else
       order = 'document_number'
       fields = PresidentialDocumentCollection::PRESIDENTIAL_DOCUMENT_FIELDS

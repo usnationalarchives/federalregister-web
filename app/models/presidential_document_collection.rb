@@ -24,6 +24,10 @@ class PresidentialDocumentCollection
     :disposition_notes,
   ]
 
+  PROCLAMATION_FIELDS = FIELDS + [
+    :proclamation_number,
+  ]
+
   def initialize(president, document_types, year, date_range=nil)
     @president = president
     @year = year
@@ -38,6 +42,9 @@ class PresidentialDocumentCollection
     if document_types == 'executive_order'
       order = 'executive_order_number'
       fields = EXECUTIVE_ORDER_FIELDS
+    elsif document_types == 'proclamation'
+      order = 'proclamation_number'
+      fields = PROCLAMATION_FIELDS
     else
       order = 'document_number'
       fields = PRESIDENTIAL_DOCUMENT_FIELDS
