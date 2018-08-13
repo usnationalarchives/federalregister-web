@@ -39,7 +39,7 @@
             <% if @presenter.type == 'other_presidential_documents' %>
               <p class="document-count-note">
                 <%= fr_icon('alert') %>
-                <strong>Note</strong>: The Federal Register collection includes only documents submitted to the OFR by the White House Office of the Executive Clerk.
+                <strong>Note</strong>: This Federal Register collection includes only documents submitted to the OFR by the White House Office of the Executive Clerk.
               </p>
             <% end %>
           </div>
@@ -49,7 +49,10 @@
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <ul class="bulk-files">
               <li>
-                <span class="title">All <%= @presenter.name.pluralize %> since 1994</span>
+                <span class="title">
+                  <% unless @presenter.type == 'other_presidential_documents' %>All <% end %>
+                  <%= @presenter.name.pluralize %> since 1994
+                </span>
                 <span class="links">
                   <%= @presenter.link_to_presidential_documents_for_format(:csv) %>
                   <%= @presenter.link_to_presidential_documents_for_format(:json) %>
