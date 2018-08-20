@@ -22,14 +22,6 @@
         </div>
       </div>
 
-      <div class="page-summary reader-aid">
-        <div class="row">
-          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <%= auto_link(simple_format(@presenter.description)).html_safe %>
-          </div>
-        </div>
-      </div>
-
       <%= fr_content_box(
         FrBox.build(
           @presenter.fr_content_box_type,

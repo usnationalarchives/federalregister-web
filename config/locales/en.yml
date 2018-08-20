@@ -35,14 +35,20 @@ en:
       description: "The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR).
         \n\n The OFR numbers each order consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt. For a table of Executive orders that are specific to federal agency rulemaking, see https://www.acus.gov/research-projects/tables-executive-order-requirements."
       short_description: "The President of the United States manages the operations of the Executive branch of Government through Executive orders."
+      fr_box_title: Executive Order Disposition Tables
+      fr_details_box_title: Executive Order Disposition Tables
     proclamations:
-      description: "The President of the United States communicates information on holidays, commemorations, special observances, and trade through Proclamations. After the President signs a Proclamation, the White House sends it to the Office of the Federal Register (OFR).
+      description: "The President of the United States communicates information on holidays, commemorations, special observances, trade, and policy through Proclamations. After the President signs a Proclamation, the White House sends it to the Office of the Federal Register (OFR).
         \n\n The OFR numbers each proclamation consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt."
-      short_description: "The President of the United States communicates information on holidays, commemorations, special observances, and trade through Proclamations."
+      short_description: "The President of the United States communicates information on holidays, commemorations, special observances, trade, and policy through Proclamations."
+      fr_box_title: Proclamation Tables
+      fr_details_box_title: Proclamation Tables
     other_presidential_documents:
-      description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, and messages. After they are signed, the White House sends it to the Office of the Federal Register (OFR).
+      description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, messages, and orders. After they are signed, the White House sends it to the Office of the Federal Register (OFR).
         \n\n The OFR does not number these documents but does publish them in the daily Federal Register shortly after receipt. They are grouped into four kinds of documents: Presidential orders, Memoranda, Determinations, and Notices."
-      short_description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, and messages."
+      short_description: "The President of the United States issues other types of documents, including but not limited to; memoranda, notices, determinations, letters, messages, and orders."
+      fr_box_title: Other Presidential Document Tables
+      fr_details_box_title: Other Presidential Document Tables
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: "Service Unavailable"

@@ -60,7 +60,7 @@ class PresidentialDocumentsPresenter
   end
 
   def fr_content_box_title
-    "#{presidential_document_type.name} Disposition Tables"
+    I18n.t("presidential_documents.#{type}.fr_box_title").html_safe
   end
 
   def fr_details_box_type
@@ -68,7 +68,7 @@ class PresidentialDocumentsPresenter
   end
 
   def fr_details_box_title
-    "#{presidential_document_type.name} Disposition Tables"
+    I18n.t("presidential_documents.#{type}.fr_details_box_title").html_safe
   end
 
   private
