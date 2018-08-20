@@ -175,7 +175,7 @@
     {
       var self = this,
         $G = $('<optgroup>', { label: $group.attr('label')} ).appendTo($parent);
-      if ($group.is(':disabled')) { $G.attr('disabled', 'disabled'); }
+      if ($group.is(':disabled')) { $G.prop('disabled', 'disabled'); }
       $('option', $group).each(function() { self.addSelectOption($G, $(this)); });
     },
 
@@ -183,7 +183,7 @@
      * Select the first item of the new select
      */
     selectFirstItem: function() {
-      $('option:eq(0)', this.$select).attr('selected', 'selected');
+      $('option:eq(0)', this.$select).prop('selected', 'selected');
     },
 
     /**
@@ -196,7 +196,7 @@
     disableSelectOption: function($bsmOpt) {
       $bsmOpt.addClass(this.options.optionDisabledClass)
         .removeAttr('selected')
-        .attr('disabled', 'disabled')
+        .prop('disabled', 'disabled')
         .toggle(!this.options.hideWhenAdded);
       if ($.browser && $.browser.msie && $.browser.version < 8) { this.$select.hide().show(); } // this forces IE to update display
     },
@@ -227,7 +227,7 @@
 
       if (!this.buildingSelect) {
         if ($origOpt.is(':selected')) { return; } // already have it
-        $origOpt.attr('selected', 'selected');
+        $origOpt.prop('selected', 'selected');
       }
 
       $item = $('<li>', { 'class': o.listItemClass })

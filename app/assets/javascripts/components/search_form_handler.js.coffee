@@ -34,7 +34,7 @@ class @FR2.SearchFormHandler
   togglePresidentialDocumentTypes: ->
     typeCheckboxes = $('.presidential_dependent')
 
-    if $('#conditions_type_presdocu').attr('checked')
+    if $('#conditions_type_presdocu').prop('checked')
       typeCheckboxes
         .show()
         .find(':input')
@@ -43,7 +43,7 @@ class @FR2.SearchFormHandler
       typeCheckboxes
         .hide()
         .find(':input')
-        .attr('disabled', 'disabled')
+        .prop('disabled', 'disabled')
 
   clearForm: (event)=>
     event.preventDefault()
@@ -59,7 +59,7 @@ class @FR2.SearchFormHandler
 
     @searchForm
       .find('select option:eq(0)')
-      .attr('selected','selected')
+      .prop('selected','selected')
 
     @searchForm
       .find('#conditions_agency_ids option')
@@ -67,7 +67,7 @@ class @FR2.SearchFormHandler
 
     @searchForm
       .find('#conditions_within option:eq(3)')
-      .attr('selected','selected')
+      .prop('selected','selected')
 
     @searchForm
       .find('.bsmListItem')
