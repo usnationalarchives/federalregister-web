@@ -1,8 +1,8 @@
 %reader-aid-link {
-  color: $color-reader-aid;
+  color: $color-reader-aid !important;
 
-  &:visited { color: $color-reader-aid; }
-  &:hover { color: darken($color-reader-aid, 15); }
+  &:visited { color: $color-reader-aid !important; }
+  &:hover { color: darken($color-reader-aid, 15) !important; }
 }
 
 .presidential-documents {
@@ -11,7 +11,16 @@
     @extend %reader-aid-link;
   }
 
-  .agency-header { @extend %agency-header; }
+  .agency-header {
+    @extend %agency-header;
+
+    .header-link {
+      float: right;
+      font-size: modular-scale(-1);
+      position: relative;
+      top: 15px;
+    }
+  }
 
   .page-summary {
     margin-bottom: 2em;

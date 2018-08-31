@@ -17,7 +17,14 @@
       <div class="agency-header">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <h1><%= @presenter.name %></h1>
+            <h1>
+              <%= @presenter.name %>
+              
+              <span class="header-link">
+                <%= link_to 'view all Presidential Documents',
+                  all_presidential_documents_path %>
+              </span>
+            </h1>
           </div>
         </div>
       </div>
