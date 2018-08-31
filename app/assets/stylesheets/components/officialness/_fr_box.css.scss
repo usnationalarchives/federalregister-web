@@ -88,6 +88,7 @@ Styleguide 1.1 FR Boxes
     padding: 35px 10px 25px 10px;
 
     &.simple {
+      padding-bottom: 45px;
       padding-left: 20px;
       padding-right: 20px !important;
     }
@@ -221,6 +222,7 @@ Styleguide 1.1 FR Boxes
       padding-left: 40px !important;
       padding-right: 5px;
       padding-top: 3px;
+      text-align: right;
     }
   }
 }
