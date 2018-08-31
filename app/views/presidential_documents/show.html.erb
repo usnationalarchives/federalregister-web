@@ -78,7 +78,7 @@
         FrBox.build(
           @presenter.fr_content_box_type,
           title: @presenter.fr_content_box_title,
-          description: auto_link(simple_format(@presenter.description)).html_safe
+          description: auto_link(simple_format(@presenter.table_description)).html_safe,
         )
       ) do %>
         <% if @presenter.type == 'other_presidential_documents' %>

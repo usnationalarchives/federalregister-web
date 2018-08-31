@@ -6,7 +6,7 @@ class PresidentialDocumentsIndexPresenter
   end
 
   def description
-    'Content needed'
+    'Presidential Documents'
   end
 
   def subtypes

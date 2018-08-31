@@ -18,6 +18,10 @@ class PresidentialDocumentsPresenter
     I18n.t("presidential_documents.#{type}.description").html_safe
   end
 
+  def table_description
+    I18n.t("presidential_documents.#{type}.tables", president: President.first.full_name).html_safe
+  end
+
   def link_to_presidential_documents_for_format(format)
     text = case format
            when :json
