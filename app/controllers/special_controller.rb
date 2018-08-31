@@ -21,7 +21,7 @@ class SpecialController < ApplicationController
   end
 
   def navigation
-    #cache_for 1.day
+    cache_for 1.day
   end
 
   def shared_assets
