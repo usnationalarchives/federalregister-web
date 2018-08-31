@@ -49,7 +49,12 @@
               <ul class="fr-list fr-list-inline">
                 <% @presenter.counts_for(doc_type.type).each do |president, count| %>
                   <li>
-                    <%= president.full_name %>
+                    <%= link_to president.full_name,
+                      presidential_documents_by_president_and_year_path(
+                        doc_type.name.downcase.pluralize.gsub(' ','-'),
+                        president.identifier,
+                        president.ends_on.year < Date.current.year ? president.ends_on.year : Date.current.year
+                      ) %>
                     <span class="count-pill reader-aid cj-tooltip"
                       data-tooltip="<%= pluralize(count, doc_type.name.downcase) %> (<%= president.in_office %>)"
                       data-tooltip-gravity="w">
