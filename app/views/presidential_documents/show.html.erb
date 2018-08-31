@@ -19,7 +19,7 @@
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <h1>
               <%= @presenter.name %>
-              
+
               <span class="header-link">
                 <%= link_to 'view all Presidential Documents',
                   all_presidential_documents_path %>
@@ -67,11 +67,16 @@
               </li>
 
               <% @presidents.each do |president| %>
+                <% @president_presenter = PresidentialDocumentsPresenter.new(
+                  type: @presenter.presidential_document_type.identifier,
+                  president: president.identifier,
+                  view_context: @presenter.h
+                ) %>
                 <li>
                   <span class="title"><%= president.full_name %></span>
                   <span class="links">
-                    <%= @presenter.link_to_presidential_documents_for_format(:csv) %>
-                    <%= @presenter.link_to_presidential_documents_for_format(:json) %>
+                    <%= @president_presenter.link_to_presidential_documents_for_format(:csv) %>
+                    <%= @president_presenter.link_to_presidential_documents_for_format(:json) %>
                   </span>
                 </li>
               <% end %>
