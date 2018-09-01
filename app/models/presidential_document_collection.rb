@@ -17,7 +17,6 @@ class PresidentialDocumentCollection
 
   EXECUTIVE_ORDER_FIELDS = FIELDS + [
     :disposition_notes,
-    :executive_order_notes,
     :executive_order_number,
   ]
 
@@ -26,6 +25,7 @@ class PresidentialDocumentCollection
   ]
 
   PROCLAMATION_FIELDS = FIELDS + [
+    :disposition_notes,
     :proclamation_number,
   ]
 
