@@ -68,7 +68,7 @@
 
               <% @presidents.each do |president| %>
                 <% @president_presenter = PresidentialDocumentsPresenter.new(
-                  type: @presenter.presidential_document_type.identifier,
+                  type: @presenter.presidential_document_type.name.downcase.pluralize.gsub(' ','-'),
                   president: president.identifier,
                   view_context: @presenter.h
                 ) %>
