@@ -67,7 +67,7 @@
           </dl>
         </div>
 
-        <% if presenter.type == 'executive_orders' && presenter.type == 'proclamations' %>
+        <% if presenter.type == 'executive_orders' || presenter.type == 'proclamations' %>
           <% if presidential_document.disposition_notes.present? %>
             <div class="row disposition-notes">
               <div class="<%= bootstrap_col xs: 12, md: 12 %>">
