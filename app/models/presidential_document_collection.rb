@@ -51,7 +51,7 @@ class PresidentialDocumentCollection
       fields = PRESIDENTIAL_DOCUMENT_FIELDS
     end
 
-    @results = Document.search(
+    results = Document.search(
       QueryConditions::PresidentialDocumentConditions.presidential_documents(
         president, year, document_types
       ).deep_merge!({
@@ -62,7 +62,9 @@ class PresidentialDocumentCollection
       })
     ).map do |document|
       DocumentDecorator.decorate(document)
-    end.compact.reverse
+    end.compact
+
+    @results = %w(executive_order proclamation).include?(document_types) ? results.reverse : results
   end
   alias_method :presidential_documents, :results
 
