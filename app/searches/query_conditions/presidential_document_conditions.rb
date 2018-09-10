@@ -6,7 +6,7 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
       conditions: {
         president: president_identifier,
         presidential_document_type: document_types,
-        publication_date: {
+        signing_date: {
           year: year
         },
         type: "PRESDOCU",
@@ -19,7 +19,7 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
       conditions: {
         president: president.identifier,
         presidential_document_type: document_types,
-        publication_date: {
+        signing_date: {
           gte: president.starts_on,
           lte: president.ends_on
         },
