@@ -22,10 +22,10 @@ class MailingList::Document < MailingList
             confirmed_emails_by_user_id[subscription.user_id.to_s]
           end
         ).deliver
-      end
 
-      update_subscription_counts(subscriptions, date)
-      log_delivery(subscriptions.count, results.size)
+        update_delivery_status(batch_subscriptions, date)
+        log_delivery(batch_subscriptions.count, results.size)
+      end
     else
       log_no_delivery
     end
@@ -72,5 +72,9 @@ class MailingList::Document < MailingList
     [
       :document_number,
     ]
+  end
+
+  def update_delivery_status(subscriptions, date)
+    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?', Time.now, date])
   end
 end

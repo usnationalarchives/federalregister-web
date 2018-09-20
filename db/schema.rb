@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180321215246) do
+ActiveRecord::Schema.define(:version => 20180920170239) do
 
   create_table "clippings", :force => true do |t|
     t.integer  "user_id"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(:version => 20180321215246) do
   create_table "mailing_lists", :force => true do |t|
     t.text     "parameters"
     t.string   "title"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "type"
     t.datetime "deleted_at"
   end
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20180321215246) do
     t.string   "token"
     t.datetime "confirmed_at"
     t.datetime "unsubscribed_at"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.datetime "last_delivered_at"
     t.integer  "delivery_count"
     t.date     "last_issue_delivered"
@@ -105,12 +105,14 @@ ActiveRecord::Schema.define(:version => 20180321215246) do
     t.integer  "user_id"
     t.integer  "comment_id"
     t.datetime "deleted_at"
+    t.string   "last_documents_delivered_hash"
   end
 
   add_index "subscriptions", ["comment_id"], :name => "index_subscriptions_on_comment_id"
   add_index "subscriptions", ["deleted_at"], :name => "index_subscriptions_on_deleted_at"
   add_index "subscriptions", ["email"], :name => "index_subscriptions_on_email"
   add_index "subscriptions", ["mailing_list_id", "deleted_at"], :name => "index_subscriptions_on_mailing_list_id_and_deleted_at"
+  add_index "subscriptions", ["mailing_list_id", "last_documents_delivered_hash"], :name => "mailing_list_documents"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :limit => 120, :default => ""

@@ -5,6 +5,8 @@ class MailingList::PublicInspectionDocument < MailingList
   end
 
   def deliver!(date, subscriptions, confirmed_emails_by_user_id, document_numbers)
+    subscriptions = subscriptions.not_delivered_for(document_numbers)
+
     if subscriptions.present? && has_results?(document_numbers)
 
       results = results_for_document_numbers(document_numbers).group_by(&:filing_type)
@@ -33,10 +35,10 @@ class MailingList::PublicInspectionDocument < MailingList
           message_body(subscriptions.count, presenters, batch_subscriptions, batch_emails),
           batch_emails
         ).deliver
-      end
 
-      update_subscription_counts(subscriptions, date)
-      log_delivery(subscriptions.count, results.size)
+        update_delivery_status(batch_subscriptions, date, document_numbers)
+        log_delivery(batch_subscriptions.count, results.size)
+      end
     else
       log_no_delivery
     end
@@ -85,5 +87,9 @@ class MailingList::PublicInspectionDocument < MailingList
       :document_number,
       :filing_type,
     ]
+  end
+
+  def update_delivery_status(subscriptions, date, document_numbers)
+    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?, last_documents_delivered_hash = ?', Time.now, date, Digest::MD5.hexdigest(document_numbers.sort)])
   end
 end

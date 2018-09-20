@@ -1,6 +1,10 @@
 class MailingListSender
   extend Memoist
+
+  extend Resque::Plugins::Retry
   @queue = :subscriptions
+  @retry_limit = 3
+  @retry_delay = 60
 
   def self.perform(mailing_list_id, date, options={})
     new(mailing_list_id, date, options).perform
@@ -52,6 +56,7 @@ class MailingListSender
     if options["force_delivery"]
       subscriptions
     else
+      # date here can also be a datetime when mailing list is public inspection
       subscriptions.not_delivered_on(date)
     end
   end
