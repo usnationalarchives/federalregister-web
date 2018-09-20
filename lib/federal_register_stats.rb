@@ -27,7 +27,7 @@ class FederalRegisterStats
   private
 
   def subscriptions(start_date = nil, end_date = nil)
-    query = Subscription.where("confirmed_at IS NOT NULL AND unsubscribed_at IS NULL")
+    query = Subscription.where("unsubscribed_at IS NULL")
 
     if start_date
       query.where("created_at >= ? && created_at <= ?",start_date.to_s(:db), end_date.to_s(:db)).count

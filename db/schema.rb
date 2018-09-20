@@ -91,10 +91,8 @@ ActiveRecord::Schema.define(:version => 20180920170239) do
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "mailing_list_id"
-    t.string   "email"
     t.string   "requesting_ip"
     t.string   "token"
-    t.datetime "confirmed_at"
     t.datetime "unsubscribed_at"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
@@ -110,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20180920170239) do
 
   add_index "subscriptions", ["comment_id"], :name => "index_subscriptions_on_comment_id"
   add_index "subscriptions", ["deleted_at"], :name => "index_subscriptions_on_deleted_at"
-  add_index "subscriptions", ["email"], :name => "index_subscriptions_on_email"
   add_index "subscriptions", ["mailing_list_id", "deleted_at"], :name => "index_subscriptions_on_mailing_list_id_and_deleted_at"
   add_index "subscriptions", ["mailing_list_id", "last_documents_delivered_hash"], :name => "mailing_list_documents"
 

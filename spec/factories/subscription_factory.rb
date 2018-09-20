@@ -3,7 +3,6 @@ FactoryGirl.define do
     user_id 99999
     requesting_ip '127.0.0.1'
     environment 'test'
-    confirmed_at { Time.now }
   end
 
   factory :document_subscription, parent: :subscription do

@@ -27,18 +27,6 @@ class Subscription < ApplicationModel
     scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])
   end
 
-  def self.confirmed
-    where("subscriptions.confirmed_at IS NOT NULL")
-  end
-
-  def self.unconfirmed
-    where(:confirmed_at => nil)
-  end
-
-  def self.not_delivered_for(document_numbers)
-    scoped(conditions: ["subscriptions.last_documents_delivered_hash != ?", Digest::MD5.hexdigest(document_numbers.sort)])
-  end
-
   def public_inspection_search_possible?
     Search::PublicInspection.new(search_conditions).valid_search?
   end
@@ -53,12 +41,6 @@ class Subscription < ApplicationModel
 
   def email_from_fr_profile
     Ecfr::UserEmailResultSet.get_user_emails(user_id).values.last
-  end
-
-  def confirm!
-    self.confirmed_at = Time.current
-    self.unsubscribed_at = nil
-    self.save!
   end
 
   def unsubscribe!

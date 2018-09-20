@@ -242,19 +242,19 @@ feature "Subscriptions", :no_ci do
           expect(page).to have_selector('#subscriptions .subscription_data a.resubscribe')
         end
 
-        scenario "activating a subscription", :js do
-          create(:document_subscription, user: user, confirmed_at: nil)
-          manually_sign_in(user.email, user.password)
-          visit "/my/subscriptions"
-
-          unsubscribe_link = page.find('#subscriptions .subscription_data a.resubscribe')
-
-          unsubscribe_link.click
-          expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
-
-          reload_page
-          expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
-        end
+        # scenario "activating a subscription", :js do
+        #   create(:document_subscription, user: user, confirmed_at: nil)
+        #   manually_sign_in(user.email, user.password)
+        #   visit "/my/subscriptions"
+        #
+        #   unsubscribe_link = page.find('#subscriptions .subscription_data a.resubscribe')
+        #
+        #   unsubscribe_link.click
+        #   expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
+        #
+        #   reload_page
+        #   expect(page).to have_selector('#subscriptions .subscription_data a.unsubscribe')
+        # end
       end
 
       scenario "creating a new subscription", :js do

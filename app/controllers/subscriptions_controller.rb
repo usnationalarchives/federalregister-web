@@ -63,26 +63,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def confirmation_sent
-  end
-
-  def confirm
-    @subscription = Subscription.find_by_token!(params[:id])
-    @subscription.confirm!
-
-    respond_to do |format|
-      format.html {
-        redirect_to confirmed_subscriptions_path(type: @subscription.mailing_list.type)
-      }
-      format.json {
-        render json: {unsubscribe_url: subscription_path(@subscription)}
-      }
-    end
-  end
-
-  def confirmed
-  end
-
   def unsubscribe
     @subscription = Subscription.find_by_token!(params[:id])
   end

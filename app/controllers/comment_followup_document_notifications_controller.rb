@@ -2,8 +2,6 @@ class CommentFollowupDocumentNotificationsController < ApplicationController
   before_filter :find_comment
 
   def create
-    @comment.subscription.confirm!
-
     respond_to do |format|
       format.json { render :json => { :link_text => t('notifications.links.remove'),
                                       :method => 'delete',

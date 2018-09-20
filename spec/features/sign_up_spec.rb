@@ -4,7 +4,7 @@ feature "Signing up", :no_ci do
   let(:user) { build(:user) }
 
   scenario "signing up with prior subscriptions attributed to your email address", :js do
-    create(:document_subscription, user: nil, email: user.email, confirmed_at: 1.month.ago)
+    create(:document_subscription, user: nil, email: user.email)
 
     manually_sign_up(user.email, user.password)
 
