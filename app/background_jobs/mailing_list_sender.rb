@@ -45,15 +45,15 @@ class MailingListSender
   attr_reader :mailing_list_id, :date, :options
 
   def active_and_confirmed_subscriptions
-    mailing_list.
+    subscriptions = mailing_list.
       active_subscriptions.
-      where(user_id: confirmed_emails_by_user_id.keys).tap do |subscriptions|
-        if options["force_delivery"]
-          subscriptions
-        else
-          subscriptions.not_delivered_on(date)
-        end
-      end
+      where(user_id: confirmed_emails_by_user_id.keys)
+
+    if options["force_delivery"]
+      subscriptions
+    else
+      subscriptions.not_delivered_on(date)
+    end
   end
 
   def confirmed_emails_by_user_id
