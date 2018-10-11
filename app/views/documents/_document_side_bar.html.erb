@@ -1,6 +1,26 @@
 <div class="col-md-3 doc-aside doc-details">
   <%= render partial: 'doc_details', locals: {document: document} %>
 
+  <div class="row">
+    <%= fr_details_box(
+      FrBox.build(
+        :enhanced_content,
+        title: "Document Statistics",
+        header: {
+          hover: I18n.t('document.document_statistics.hover')
+        }
+      )
+    ) do %>
+      <dl class='metadata_list'>
+        <dt>Page views:</dt>
+        <dd>
+          <%= document.page_views[:count] %>
+          as of <%= document.page_views[:last_updated] %>
+        </dd>
+      </dl>
+    <% end %>
+  </div>
+
   <% if document.display_regulations_dot_gov_enhanced_content? %>
     <%= render partial: 'reg_gov_content', locals: {
       document: document,
