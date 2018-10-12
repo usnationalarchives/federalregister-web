@@ -126,8 +126,6 @@ module MyFr2
 
       regulations_dot_gov_logo.png
       regulations_dot_gov_logo_sidebar.png
-
-      universal_federated_analytics.js
     )
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
