@@ -28,7 +28,7 @@ en:
       none: There are no publicly posted comments.
   documents:
     document_statistics:
-      hover: "Document page views are updated periodically throughout the day and are cumulative counts for this document including its time on Public Inspection."
+      hover: "Document page views are updated periodically throughout the day and are cumulative counts for this document including its time on Public Inspection. Counts are subject to sampling, reprocessing and revision (up or down) throughout the day."
   federal_register_dot_gov_errors:
     comments_no_longer_accepted:
       modal_title: "Comment Submission Not Available"
