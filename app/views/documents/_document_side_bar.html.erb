@@ -14,7 +14,7 @@
       <dl class='metadata_list'>
         <dt>Page views:</dt>
         <dd>
-          <%= document.page_views[:count] %>
+          <%= number_with_delimiter(document.page_views[:count]) %>
           as of <%= document.page_views[:last_updated] %>
         </dd>
       </dl>
