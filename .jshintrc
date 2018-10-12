@@ -21,7 +21,7 @@
       // Defined in vendor libraries
       "Handlebars",
       "_",
-      "_gaq",
+      "gtag",
       "strftime",
       "CJ",
       "FR2",

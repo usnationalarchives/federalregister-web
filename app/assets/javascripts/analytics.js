@@ -32,7 +32,7 @@ function track_clipping_event(action, document_number, folder_slug) {
 
   label = user_state + "/" + folder_type + "/" + page_type + "/" + document_number;
 
-  _gaq.push(['_trackEvent', 'Clipping', action, label]);
+  gtag('event', 'Clipping', {'event_action': action, 'event_label': label});
 }
 
 function track_folder_event(action, document_count) {
@@ -45,7 +45,7 @@ function track_folder_event(action, document_count) {
 
   label = user_state + "/" + folder_type + "/" + page_type;
 
-  _gaq.push(['_trackEvent', 'Folder', action, label, document_count]);
+  gtag('event', 'Folder', {'event_action': action, 'event_label': label, 'value': document_count});
 }
 
 
@@ -53,7 +53,7 @@ $(document).ready(function(){
   // NAVIGATION
   $(".dropdown.nav_myfr2 ul.subnav li a").each(function() {
     $(this).bind('click', function() {
-      _gaq.push(['_trackEvent', 'Navigation', 'MyFR', $(this).html()]);
+      gtag('event', 'Navigation', {'event_action': 'Navigation', 'event_label': 'MyFR', 'value': $(this).html()});
     });
   });
 });
