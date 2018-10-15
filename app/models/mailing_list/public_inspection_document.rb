@@ -90,6 +90,6 @@ class MailingList::PublicInspectionDocument < MailingList
   end
 
   def update_delivery_status(subscriptions, date, document_numbers)
-    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?, last_documents_delivered_hash = ?', Time.now, date, Digest::MD5.hexdigest(document_numbers.sort)])
+    Subscription.where(id: subscriptions.map(&:id)).update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?, last_documents_delivered_hash = ?', Time.now, date, Digest::MD5.hexdigest(document_numbers.sort)])
   end
 end

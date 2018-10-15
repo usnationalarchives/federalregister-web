@@ -75,6 +75,6 @@ class MailingList::Document < MailingList
   end
 
   def update_delivery_status(subscriptions, date)
-    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?', Time.now, date])
+    Subscription.where(id: subscriptions.map(&:id)).update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?', Time.now, date])
   end
 end
