@@ -1,10 +1,10 @@
 module MailerHelper
   include RouteBuilder::Documents
 
-  def add_css_file_to_mailer(css_path, options={})
-    asset_path = options.fetch(:mailer, true) ? "mailers/#{css_path}" : css_path
+  def add_css_file_to_mailer(path, options={})
+    path = options.fetch(:mailer, true) ? "mailers/#{path}" : path
 
-    content_for :mailer_template_css, Rails.application.assets.find_asset(asset_path)
+    content_for :mailer_template_css, asset_path(path)
   end
 
   def mailer_asset_url(asset)

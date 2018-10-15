@@ -5,8 +5,8 @@
 
     <title>Federal Register</title>
     <style type="text/css">
-      <%= Rails.application.assets.find_asset('mailers/common.css') %>
-      <%= Rails.application.assets.find_asset('mailers/subscription_mailer.css') %>
+      <%= asset_path('mailers/common.css') %>
+      <%= asset_path('mailers/subscription_mailer.css') %>
       <%= yield :mailer_template_css %>
     </style>
 
