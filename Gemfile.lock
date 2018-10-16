@@ -348,6 +348,9 @@ GEM
     premailer (1.8.6)
       css_parser (>= 1.3.6)
       htmlentities (>= 4.0.0)
+    premailer-rails (1.10.2)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -563,6 +566,7 @@ DEPENDENCIES
   pbkdf2
   pickup (= 0.0.8)
   premailer (= 1.8.6)
+  premailer-rails
   pry
   pry-remote
   rack

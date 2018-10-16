@@ -49,6 +49,7 @@ gem 'redis', '~> 3.3.5'
 gem 'sendgrid'
 gem 'active_hash'
 
+gem 'premailer-rails'
 gem "premailer", "1.8.6"
 gem "css_parser", "1.4.5"
 
