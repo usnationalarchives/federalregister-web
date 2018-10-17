@@ -43,10 +43,6 @@ class Subscription < ApplicationModel
     unsubscribed_at.nil? && deleted_at.nil?
   end
 
-  def email_from_fr_profile
-    Ecfr::UserEmailResultSet.get_user_emails(user_id).values.last
-  end
-
   def unsubscribe!
     unless self.unsubscribed_at
       self.unsubscribed_at = Time.current
