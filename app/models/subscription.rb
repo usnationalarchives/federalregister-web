@@ -1,5 +1,5 @@
 class Subscription < ApplicationModel
-  attr_accessible :email, :search_conditions, :search_type
+  attr_accessible :search_conditions, :search_type
   default_scope :conditions => { :environment => Rails.env }
 
   before_create :generate_token
@@ -35,6 +35,10 @@ class Subscription < ApplicationModel
     token
   end
 
+  def user
+    @user ||= User.find(user_id)
+  end
+
   def active?
     unsubscribed_at.nil? && deleted_at.nil?
   end
@@ -55,7 +59,7 @@ class Subscription < ApplicationModel
 
   def remove_from_bounce_list
     begin
-      SendgridClient.new.remove_from_bounce_list(email)
+      SendgridClient.new.remove_from_bounce_list(user.email)
     rescue StandardError => e
       Honeybadger.notify(e)
     end

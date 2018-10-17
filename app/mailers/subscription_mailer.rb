@@ -13,7 +13,7 @@ class SubscriptionMailer < ActionMailer::Base
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 
   def unsubscribe_notice(subscription, preview_options={})
-    email_address = preview_options.delete(:email_address) || subscription.email_from_fr_profile
+    email_address = preview_options.delete(:email_address) || subscription.user.email
 
     @subscription = subscription
     @utility_links = []
