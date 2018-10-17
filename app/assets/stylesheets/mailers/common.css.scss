@@ -1,6 +1,35 @@
 @import "library/colors";
 @import "library/official_colors";
 
+@import "mixins/fonts";
+
+// Font sizes based on ratios
+$em-base: 16px;
+@import 'bourbon/modular-scale';
+
+//-----------------------------------------------
+// Typesetting for FederalRegister.gov
+// 16px @ 1:1.125 (major-second)
+//-----------------------------------------------
+$modular-scale-ratio: $major-second; //1.125
+$modular-scale-base: 16px;
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px; // Scale origin
+  font-weight: 300;
+
+  h1, h2, h3, h4, h5, h6, h7, p {
+    line-height: 1.3;
+    margin: 0;
+    padding: 0;
+  }
+
+  table, tr, td {
+    margin: 0;
+    padding: 0;
+  }
+}
 
 /* Client-specific Styles */
 #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" button. */
@@ -164,6 +193,19 @@ h4, .h4{
   height:auto;
   }
 
+.two-column-wrapper {
+  padding-top: 10px;
+}
+
+.bodyContent .content-wrapper {
+  padding: 20px 0;
+
+  p {
+    font-size: modular-scale(0);
+    padding: 5px 0;
+  }
+}
+
 /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER /\/\/\/\/\/\/\/\/\/\ */
 
 #templateFooter{
@@ -206,14 +248,16 @@ h4, .h4{
   background-color:#FFFFFF;
   border:0;
 
-  div.utility_links { padding-top: 20px; }
+  div.utility_links { padding: 20px 0; }
   }
 
 #disclaimer {
+  > div { padding: 10px; }
+
   h3 {
     color: $fr-gray-40;
     font-size: 13px;
-    margin: 20px 0 0 0;
+    margin: 0;
   }
 
   p {

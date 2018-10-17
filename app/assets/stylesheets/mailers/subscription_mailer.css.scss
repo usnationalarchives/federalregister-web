@@ -14,23 +14,6 @@ $em-base: 16px;
 $modular-scale-ratio: $major-second; //1.125
 $modular-scale-base: 16px;
 
-body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 16px; // Scale origin
-  font-weight: 300;
-
-  h1, h2, h3, h4, h5, h6, h7, p {
-    line-height: 1.3;
-    margin: 0;
-    padding: 0;
-  }
-
-  table, tr, td {
-    margin: 0;
-    padding: 0;
-  }
-}
-
 @import "components/officialness/fr_box";
 @import "design/issues/table_of_contents";
 

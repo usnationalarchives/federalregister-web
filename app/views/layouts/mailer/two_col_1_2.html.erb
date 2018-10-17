@@ -5,12 +5,10 @@
 
     <title>Federal Register</title>
 
-    <style type="text/css">
-      <%= asset_path('mailers/common.css') %>
-      <%= asset_path('mailers/fr_mailer.css') %>
-      <%= yield :mailer_template_css %>
-    </style>
-
+    <%= stylesheet_link_tag asset_path('mailers/common.css'), media: 'all' %>
+    <% if yield(:mailer_template_css).present? %>
+      <%= stylesheet_link_tag yield(:mailer_template_css), media: 'all' %>
+    <% end %>
 
     <meta name="description" lang="en" content="This email was generated from FederalRegister.gov as a result of a user action; such as creating an account, subscribing to content emails, opting into notifications, etc. We retain only the only the personally identifiable information minimally necessary to operate the MyFR service. We do not retain any information about third parties who receive 'email a friend' notifications through the subscription service. For more information, please read our Privacy and Security Policy at https://www.federalregister.gov/reader-aids/government-policy-and-ofr-procedures/privacy. The documents received via our email subscriptions service originate from FederalRegister.gov, which displays an unofficial 'Web 2.0' version of the daily Federal Register. The official electronic version in PDF format is also available as a link from FederalRegister.gov or directly from GPO's govinfo website at https://www.govinfo.gov/. For more information, please read our Legal Status page at https://www.federalregister.gov/reader-aids/policy/legal-status. The documents received via email from our Public Inspection web page originate from official copies filed at the Office of the Federal Register. For more information, please read our About Public Inspection page at https://www.federalregister.gov/reader-aids/using-federalregister-gov/understanding-public-inspection." />
   </head>
@@ -92,7 +90,7 @@
               <tr>
                 <td align="center" valign="top">
                   <!-- // Begin Template Footer \\ -->
-                  <table border="0" cellpadding="10" cellspacing="0" width="650" id="templateFooter">
+                  <table border="0" cellpadding="10" cellspacing="0" width="100%" id="templateFooter">
                     <tr>
                       <td valign="top" class="footerContent">
 
