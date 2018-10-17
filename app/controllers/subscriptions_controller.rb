@@ -26,7 +26,6 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       if user_signed_in?
         if current_user.confirmed?
-          @subscription.confirm!
           if verified_request?
             flash[:notice] = I18n.t('subscriptions.save.success', title: @subscription.mailing_list.title)
           else
