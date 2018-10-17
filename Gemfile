@@ -142,7 +142,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'email_spec'
 
-  gem "factory_girl_rails", "~> 4.0", require: false if RUBY_VERSION == '1.9.3'
+  gem "factory_girl_rails", "~> 4.0"#, require: false if RUBY_VERSION == '1.9.3'
   gem "fakeweb", "~> 1.3.0"
 
   #auto test runner

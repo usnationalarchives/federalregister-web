@@ -12,7 +12,9 @@ class SubscriptionMailer < ActionMailer::Base
 
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 
-  def unsubscribe_notice(subscription)
+  def unsubscribe_notice(subscription, preview_options={})
+    email_address = preview_options.delete(:email_address) || subscription.email_from_fr_profile
+
     @subscription = subscription
     @utility_links = []
     @highlights = EmailHighlight.highlights_with_selected(1, 'manage_subscriptions_via_my_fr')
@@ -21,7 +23,7 @@ class SubscriptionMailer < ActionMailer::Base
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'subscription unsubscribe'
 
     mail(
-      :to => subscription.email_from_fr_profile,
+      :to => email_address,
       :subject => "[FR] #{subscription.mailing_list.title}"
     ) do |format|
       format.text { render('unsubscribe_notice') }
@@ -83,7 +85,7 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   # uses sendgrid_recipients for actual recipient list
-  def document_mailing_list(presenter, subscriptions, message_body=nil, recipient_emails)
+  def document_mailing_list(presenter, subscriptions, message_body, recipient_emails)
     @presenter = presenter
 
     @utility_links = [['Manage my subscriptions', subscriptions_url(:utm_campaign => "utility_links", :utm_medium => "email", :utm_source => "federalregister.gov", :utm_content => "manage_subscription")],
@@ -143,26 +145,26 @@ class SubscriptionMailer < ActionMailer::Base
   class Preview < MailView
 
     def unsubscribe_notice
-      subscription = Subscription.find(2)
-      SubscriptionMailer.unsubscribe_notice(subscription)
+      subscription = Subscription.find(1)
+      SubscriptionMailer.unsubscribe_notice(subscription, email_address: 'test@example.com')
     end
 
     def document_mailing_list
       date = Date.today
-      mailing_list = MailingList.find(2)
-      subscriptions = mailing_list.subscriptions
+      mailing_list = MailingList::Document.find(1)
+      subscriptions = []#mailing_list.subscriptions
       results = mailing_list.send(:results_for_date, date)
       presenter = Mailers::TableOfContentsPresenter.new(date, results, mailing_list)
 
-      message = SubscriptionMailer.document_mailing_list(presenter, subscriptions)
+      message = SubscriptionMailer.document_mailing_list(presenter, subscriptions, nil, [])
       message_body = {html: message.html_part.body, text: message.text_part.body}
 
-      SubscriptionMailer.document_mailing_list(presenter, subscriptions, message_body)
+      SubscriptionMailer.document_mailing_list(presenter, subscriptions, message_body, [])
     end
 
     def public_inspection_document_mailing_list
-      date = Date.today
-      mailing_list = MailingList.find(1052)
+      date = PublicInspectionDocumentIssue.current.publication_date
+      mailing_list = MailingList::PublicInspectionDocument.find(2)
       subscriptions = mailing_list.subscriptions
       # you may need to limit this to fewer documents to render as a preview :(
       document_numbers = PublicInspectionDocument.available_on(date).map(&:document_number)
@@ -181,10 +183,10 @@ class SubscriptionMailer < ActionMailer::Base
         special_filings_presenter: special_filings_presenter
       }
 
-      message = SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions)
+      message = SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions, nil, [])
       message_body = {html: message.html_part.body, text: message.text_part.body}
 
-      SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions, message_body)
+      SubscriptionMailer.public_inspection_document_mailing_list(presenters, subscriptions, message_body, [])
     end
   end
 end

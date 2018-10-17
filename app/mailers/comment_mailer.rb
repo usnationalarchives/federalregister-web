@@ -55,14 +55,26 @@ class CommentMailer < ActionMailer::Base
   end
 
   class Preview < MailView
-    def comment_copy
+    def comment_copy_participating_agency
       VCR.eject_cassette
       VCR.use_cassette("development") {
         user = User.new(:email => 'name@example.com',
                         :name  => 'Jill Smith',
-                        :cofirmation => '123456789')
-        comment = Comment.find(89)
-        comment.secret = '6mge902mb11t6g'
+                        :confirmation => '123456789')
+        comment = FactoryGirl.build(:comment, created_at: Time.current)
+
+        CommentMailer.comment_copy(user, comment)
+      }
+    end
+
+    def comment_copy_non_participating_agency
+      VCR.eject_cassette
+      VCR.use_cassette("development") {
+        user = User.new(:email => 'name@example.com',
+                        :name  => 'Jill Smith',
+                        :confirmation => '123456789')
+        comment = FactoryGirl.build(:comment, :non_participating_agency, created_at: Time.current)
+
         CommentMailer.comment_copy(user, comment)
       }
     end
@@ -72,9 +84,8 @@ class CommentMailer < ActionMailer::Base
       VCR.use_cassette("development") {
         user = User.new(:email => 'name@example.com',
                         :name  => 'Jill Smith',
-                        :cofirmation => '123456789')
-        comment = Comment.find(89)
-        comment.secret = '6mge902mb11t6g'
+                        :confirmation => '123456789')
+        comment = FactoryGirl.build(:comment, :publicly_posted)
         CommentMailer.comment_posting_notification(user, comment)
       }
     end
