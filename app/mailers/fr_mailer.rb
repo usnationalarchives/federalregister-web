@@ -27,9 +27,7 @@ class FRMailer < ActionMailer::Base
       :to => 'nobody@federalregister.gov' # should use sendgrid_recipients for actual recipient list
     ) do |format|
       format.text { render('generic_notification') }
-      format.html { Premailer.new( render('generic_notification'),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+      format.html { render('generic_notification') }
     end
   end
 

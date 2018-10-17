@@ -25,14 +25,14 @@ class SubscriptionMailer < ActionMailer::Base
       :subject => "[FR] #{subscription.mailing_list.title}"
     ) do |format|
       format.text { render('unsubscribe_notice') }
-      format.html { Premailer.new( render('unsubscribe_notice', :layout => "mailer/two_col_1_2"),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+      format.html {
+        render('unsubscribe_notice', :layout => "mailer/two_col_1_2")
+      }
     end
   end
 
   # uses sendgrid_recipients for actual recipient list
-  def public_inspection_document_mailing_list(presenters, subscriptions, message_body=nil, recipient_emails)
+  def public_inspection_document_mailing_list(presenters, subscriptions, message_body, recipient_emails)
     @presenter = presenters.fetch(:presenter)
     @special_filings_presenter = presenters.fetch(:special_filings_presenter, nil)
     @regular_filings_presenter = presenters.fetch(:regular_filings_presenter, nil)
@@ -75,11 +75,7 @@ class SubscriptionMailer < ActionMailer::Base
       formats = {
         text: Proc.new { render('public_inspection_document_mailing_list') },
         html: Proc.new {
-          Premailer.new(
-            render('public_inspection_document_mailing_list', layout: "mailer/two_col_1_2"),
-            with_html_string: true,
-            warn_level: Premailer::Warnings::SAFE
-          ).to_inline_css
+          render('public_inspection_document_mailing_list', layout: "mailer/two_col_1_2")
         }
       }
       generate_mailer(subject, to, formats)
@@ -124,11 +120,7 @@ class SubscriptionMailer < ActionMailer::Base
       formats = {
         text: Proc.new { render('document_mailing_list') },
         html: Proc.new {
-          Premailer.new(
-            render('document_mailing_list', layout: "mailer/two_col_1_2"),
-            with_html_string: true,
-            warn_level: Premailer::Warnings::SAFE
-          ).to_inline_css
+          render('document_mailing_list', layout: "mailer/two_col_1_2")
         }
       }
       generate_mailer(subject, to, formats)

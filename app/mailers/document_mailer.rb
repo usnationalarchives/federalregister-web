@@ -27,11 +27,7 @@ class DocumentMailer < ActionMailer::Base
     ) do |format|
       format.text { render('email_a_friend') }
       format.html {
-        Premailer.new(
-          render('email_a_friend', layout: "mailer/two_col_1_2", locals: {legal: true}),
-          with_html_string: true,
-          warn_level: Premailer::Warnings::SAFE
-        ).to_inline_css
+        render('email_a_friend', layout: "mailer/two_col_1_2", locals: {legal: true})
       }
     end
   end

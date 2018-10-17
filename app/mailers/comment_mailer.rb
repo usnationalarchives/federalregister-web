@@ -28,9 +28,7 @@ class CommentMailer < ActionMailer::Base
       :subject => "[FR] Your comment on #{@comment.document.title}"
     ) do |format|
       format.text { render('comment_copy') }
-      format.html { Premailer.new( render('comment_copy'),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+      format.html { render('comment_copy') }
     end
 
     rescue NoConfirmedEmail => exception
@@ -52,9 +50,7 @@ class CommentMailer < ActionMailer::Base
       :subject => "[FR] Your comment on #{@comment.document.citation} has been publicly posted"
     ) do |format|
       format.text { render('comment_posting_notification') }
-      format.html { Premailer.new( render('comment_posting_notification'),
-                                   :with_html_string => true,
-                                   :warn_level => Premailer::Warnings::SAFE).to_inline_css }
+      format.html { render('comment_posting_notification') }
     end
   end
 
