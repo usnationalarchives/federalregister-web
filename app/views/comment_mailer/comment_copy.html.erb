@@ -1,6 +1,6 @@
 <% add_css_file_to_mailer('comment_mailer.css') %>
 
-<div class="intro">
+<div class="intro content-wrapper">
   <p>
     Thank you for creating a comment, your feedback is important.
     We have successfully submitted your comment to Regulations.gov
@@ -39,11 +39,13 @@
   </p>
 </div>
 
-<p>
-  Below are details on the comment you submitted:
-</p>
+<div class="content-wrapper">
+  <p>
+    Below are details on the comment you submitted:
+  </p>
+</div>
 
-<div>
+<div class="content-wrapper">
   <% document = @comment.document %>
   <div class="document_title"><%= link_to document.title, document.html_url %></div>
   <div class="agency">A <%= document.type %> by <%= @comment.agency_name %></div>

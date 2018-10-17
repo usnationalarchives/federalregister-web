@@ -1,5 +1,7 @@
-<p>Hello, you have been unsubscribed from "<strong><%= @subscription.mailing_list.title %></strong>".</p>
+<% add_css_file_to_mailer 'subscription_mailer.css' %>
 
-<p>If this was done in error, use the link below to resubscribe:</p>
-  
-<p><%= link_to confirm_subscription_url(@subscription), confirm_subscription_url(@subscription) %></p>
+<div class="content-wrapper">
+  <p>Hello, you have been unsubscribed from "<strong><%= @subscription.mailing_list.title %></strong>".</p>
+
+  <p>If this was done in error you may manage your subscriptions online at <%= link_to subscriptions_url, subscriptions_url %></p>
+</div>
