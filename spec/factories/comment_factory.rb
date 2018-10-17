@@ -3,7 +3,6 @@ FactoryGirl.define do
   factory :comment do
     sequence(:document_number) {|n| "2011-#{1000+n}"}
     confirm_submission { true }
-    user_id 2
     comment_tracking_number 'XXXX-1234-XXXX'
     comment_publication_notification false
     agency_name 'Department of Agriculture'
