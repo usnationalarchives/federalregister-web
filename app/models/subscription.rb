@@ -49,6 +49,12 @@ class Subscription < ApplicationModel
       self.save!
     end
   end
+  alias_method :suspend!, :unsubscribe!
+
+  def activate!
+    self.unsubscribed_at = nil
+    self.save!
+  end
 
 
   private

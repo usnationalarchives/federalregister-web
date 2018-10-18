@@ -1,5 +1,10 @@
 class SubscriptionsController < ApplicationController
-  with_options(only: [:new, :create, :confirmation_sent, :confirm, :confirmed, :unsubscribe, :unsubscribed, :destroy]) do |during_creation|
+  with_options(only: [
+    :new, :create,
+    :confirmation_sent, :confirm, :confirmed,
+    :activate, :suspend,
+    :unsubscribe, :unsubscribed, :destroy
+  ]) do |during_creation|
     during_creation.skip_before_filter :authenticate_user!
   end
 
@@ -66,6 +71,24 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find_by_token!(params[:id])
   end
 
+  def activate
+    if request.xhr?
+      subscription = Subscription.find_by_token!(params[:id])
+      subscription.activate!
+
+      render json: {unsubscribe_url: suspend_subscription_path(subscription.token)}
+    end
+  end
+
+  def suspend
+    if request.xhr?
+      subscription = Subscription.find_by_token!(params[:id])
+      subscription.suspend!
+
+      render json: {resubscribe_url: activate_subscription_path(subscription.token)}
+    end
+  end
+
   def destroy
     @subscription = Subscription.find_by_token!(params[:id])
     @subscription.unsubscribe!
@@ -79,7 +102,7 @@ class SubscriptionsController < ApplicationController
         redirect_to unsubscribed_subscriptions_url
       }
       format.json {
-        render json: {resubscribe_url: confirm_subscription_url(@subscription)}
+        render json: {resubscribe_url: activate_subscription_url(@subscription.token)}
       }
     end
   end

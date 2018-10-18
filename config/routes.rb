@@ -485,6 +485,8 @@ MyFr2::Application.routes.draw do
 
     resources :subscriptions, except: [:show, :new] do
       member do
+        get :activate
+        delete :suspend
         get :unsubscribe
       end
 
