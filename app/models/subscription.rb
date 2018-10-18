@@ -27,6 +27,10 @@ class Subscription < ApplicationModel
     scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])
   end
 
+  def self.not_delivered_for(document_numbers)
+    scoped(conditions: ["subscriptions.last_documents_delivered_hash != ?", Digest::MD5.hexdigest(document_numbers.sort)])
+  end
+
   def public_inspection_search_possible?
     Search::PublicInspection.new(search_conditions).valid_search?
   end
