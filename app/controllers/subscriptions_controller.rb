@@ -101,9 +101,6 @@ class SubscriptionsController < ApplicationController
       format.html {
         redirect_to unsubscribed_subscriptions_url
       }
-      format.json {
-        render json: {resubscribe_url: activate_subscription_url(@subscription.token)}
-      }
     end
   end
 
