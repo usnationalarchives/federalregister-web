@@ -28,7 +28,12 @@ class Subscription < ApplicationModel
   end
 
   def self.not_delivered_for(document_numbers)
-    scoped(conditions: ["subscriptions.last_documents_delivered_hash != ?", Digest::MD5.hexdigest(document_numbers.sort)])
+    scoped(
+      conditions: [
+        "subscriptions.last_documents_delivered_hash != ?",
+        Digest::MD5.hexdigest( Array(document_numbers).sort.join(',') )
+      ]
+    )
   end
 
   def public_inspection_search_possible?
