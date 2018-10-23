@@ -33,10 +33,6 @@ class MailingList < ApplicationModel
 
   private
 
-  def update_subscription_counts(subscriptions, date)
-    subscriptions.update_all(['delivery_count = delivery_count + 1, last_delivered_at = ?, last_issue_delivered = ?', Time.now, date])
-  end
-
   def log_delivery(subscription_count, document_count)
     Rails.logger.info("[#{Time.now.in_time_zone}] {type: '#{self.class}', id: #{self.id}, status: 'delivered', subscriptions: #{subscription_count}, documents: #{document_count}}")
   end
