@@ -30,7 +30,7 @@ class Subscription < ApplicationModel
   def self.not_delivered_for(document_numbers)
     scoped(
       conditions: [
-        "subscriptions.last_documents_delivered_hash != ?",
+        "subscriptions.last_documents_delivered_hash IS NULL OR subscriptions.last_documents_delivered_hash != ?",
         Digest::MD5.hexdigest( Array(document_numbers).sort.join(',') )
       ]
     )
