@@ -18,9 +18,7 @@ class MailingList::Document < MailingList
           presenter,
           batch_subscriptions,
           message_body(subscriptions.count, presenter, batch_subscriptions, batch_emails),
-          batch_subscriptions.map do |subscription|
-            confirmed_emails_by_user_id[subscription.user_id.to_s]
-          end
+          batch_emails
         ).deliver
 
         update_delivery_status(batch_subscriptions, date)
