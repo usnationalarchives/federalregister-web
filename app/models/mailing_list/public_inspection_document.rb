@@ -4,8 +4,8 @@ class MailingList::PublicInspectionDocument < MailingList
     ::PublicInspectionDocument
   end
 
-  def deliver!(date, subscriptions, confirmed_emails_by_user_id, document_numbers)
-    subscriptions = subscriptions.not_delivered_for(document_numbers)
+  def deliver!(date, subscriptions, confirmed_emails_by_user_id, document_numbers, options={})
+    subscriptions = options["force_delivery"] ? subscriptions : subscriptions.not_delivered_for(document_numbers)
 
     if subscriptions.present? && has_results?(document_numbers)
 

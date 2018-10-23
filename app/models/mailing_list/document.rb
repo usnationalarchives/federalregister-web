@@ -4,7 +4,9 @@ class MailingList::Document < MailingList
     ::Document
   end
 
-  def deliver!(date, subscriptions, confirmed_emails_by_user_id)
+  def deliver!(date, subscriptions, confirmed_emails_by_user_id, options={})
+    subscriptions = options["force_delivery"] ? subscriptions : subscriptions.not_delivered_on(date)
+
     if subscriptions.present? && has_results?(date)
       results = results_for_date(date)
       presenter = Mailers::TableOfContentsPresenter.new(date, results, self)

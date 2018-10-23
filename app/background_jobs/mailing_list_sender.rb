@@ -49,16 +49,9 @@ class MailingListSender
   attr_reader :mailing_list_id, :date, :options
 
   def active_and_confirmed_subscriptions
-    subscriptions = mailing_list.
+    mailing_list.
       active_subscriptions.
       where(user_id: confirmed_emails_by_user_id.keys)
-
-    if options["force_delivery"]
-      subscriptions
-    else
-      # date here can also be a datetime when mailing list is public inspection
-      subscriptions.not_delivered_on(date)
-    end
   end
 
   def confirmed_emails_by_user_id
