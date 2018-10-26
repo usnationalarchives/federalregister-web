@@ -59,10 +59,6 @@ module UserDataPersistor
 
       comment.build_subscription(current_user, request)
 
-      if session[:followup_document_notification] == '1'
-        comment.subscription.confirm!
-      end
-
       comment.save :validate => false
 
       if comment.user_id
