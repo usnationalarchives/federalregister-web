@@ -25,6 +25,7 @@ module UserDataPersistor
     if subscription
       subscription.user_id = current_user.id
       subscription.save :validate => false
+      subscription.reload
       subscription.remove_from_bounce_list
     end
 
