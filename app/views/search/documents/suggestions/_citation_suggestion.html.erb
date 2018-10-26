@@ -33,25 +33,40 @@
 
       <% if archives_citation.before_archives? %>
         <p>
+          The 1936-1994 official print volumes of the Federal Register have been
+          digitalized and are available online in PDF format. The citation you
+          entered is for a document that would have published before our collection.
+        </p>
+
+        <p>
           Older volumes may be available online at
           <a href='https://www.govinfo.gov/app/collection/fr'>govinfo.gov</a>
           or via a
           <a href="https://catalog.gpo.gov/fdlpdir/public.jsp" class="external">Federal Depository Library</a>.
         </p>
       <% elsif archives_citation.pdf_url %>
+        <p>
+          The 1936-1994 official print volumes of the Federal Register have been
+          digitalized and are available online in PDF format.
+          <% if archives_citation.publication_date %>
+            We found the following published on
+            <%= archives_citation.publication_date.to_s(:month_day_year) %>.
+          <% end %>
+        </p>
+
         <ul>
           <li class="result-item">
             <div class="result-info">
               <p class="excerpts">
                 <%= link_to sanitize(
-                      "#{citation_suggestion.name} Size-optimized Issue Pages (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                      "#{citation_suggestion.name} Document View (#{number_to_human_size(archives_citation.optimized_file_size)})",
                       tags: %w(span),
                       attributes: %w(class)
                     ),
                     archives_citation.pdf_url %>
               </p>
               <p class="excerpts">
-                <%= link_to "#{citation_suggestion.name} Full Government Publishing Office Issue (#{number_to_human_size(archives_citation.original_file_size)})",
+                <%= link_to "#{citation_suggestion.name} Full Archival Issue (#{number_to_human_size(archives_citation.original_file_size)})",
                       archives_citation.gpo_url %>
               </p>
             </div>

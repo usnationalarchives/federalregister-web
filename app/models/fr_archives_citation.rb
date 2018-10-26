@@ -33,6 +33,13 @@ class FrArchivesCitation
     (response.code == 404) && is_after_archives
   end
 
+  def publication_date
+    begin
+      Date.parse response["publication_date"]
+    rescue
+      nil
+    end
+  end
 
   private
 
@@ -75,4 +82,3 @@ class FrArchivesCitation
   end
 
 end
-
