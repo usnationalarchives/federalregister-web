@@ -65,9 +65,6 @@ class Subscription < ApplicationModel
     self.save!
   end
 
-
-  private
-
   def remove_from_bounce_list
     begin
       SendgridClient.new.remove_from_bounce_list(user.email)
@@ -75,6 +72,8 @@ class Subscription < ApplicationModel
       Honeybadger.notify(e)
     end
   end
+
+  private
 
   def generate_token
     self.token = SecureRandom.hex(20)
