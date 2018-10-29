@@ -42,14 +42,25 @@
             An issue was located for citation
             <span class="citation"><%= @volume %> FR <%= @page %></span>.
           <% end %>
+          <p>
+            The 1936-1994 official print volumes of the Federal Register have been
+            digitalized and are available online in PDF format.
+            <% if @fr_archives_citation.publication_date %>
+              We found the following published on
+              <%= @fr_archives_citation.publication_date.to_s(:month_day_year) %>.
+            <% end %>
+          </p>
+
           <ul class="fr-list">
             <li>
               <h6>
-                <%= link_to "#{@volume} FR #{@page} Size-optimized Issue Pages (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
+                <%= link_to "#{@volume} FR #{@page} :: Document View (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
                       @fr_archives_citation.pdf_url %>
               </h6>
+            </li>
+            <li>
               <h6>
-                <%= link_to "#{@volume} FR #{@page} Full Government Publishing Office Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
+                <%= link_to "#{@volume} FR #{@page} :: Full Archival Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
                       @fr_archives_citation.gpo_url %>
               </h6>
             </li>
@@ -62,15 +73,6 @@
             <span class="citation"><%= @volume %> FR <%= @page %></span>.
           <% end %>
 
-        <% end %>
-
-        <% if @fr_archives_citation.before_archives? %>
-          <p>
-            Older volumes may be available online at
-            <a href='https://www.gpo.gov/fdsys/browse/collection.action?collectionCode=FR'>FDSys</a>
-            or via a
-            <a href="https://catalog.gpo.gov/fdlpdir/public.jsp" class="external">Federal Depository Library</a>.
-          </p>
         <% end %>
       <% end %>
     </div>
