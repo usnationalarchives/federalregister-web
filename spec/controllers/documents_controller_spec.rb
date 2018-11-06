@@ -8,6 +8,7 @@ describe DocumentsController do
     describe "wants.html" do
       context "when document doesn't exist" do
         it "raises RecordNotFound" do
+          binding.pry
           expect{
             get :tiny_url, document_number: document_number
           }.to raise_error(ActiveRecord::RecordNotFound)
