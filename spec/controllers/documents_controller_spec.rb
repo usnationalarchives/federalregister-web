@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe DocumentsController do
-  context "GET short_document (/d/:document_number)", :no_ci do
+  context "GET short_document (/d/:document_number)" do
     let(:document_number) { '2035-0001'}
     let(:document_html_url_base) { '/documents/2035/01/01/2035-0001'}
 
@@ -10,7 +10,7 @@ describe DocumentsController do
         it "raises RecordNotFound" do
           expect{
             get :tiny_url, document_number: document_number
-          }.to raise_error(FederalRegister::Client::RecordNotFound)
+          }.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         context "but public inspection document exists" do
