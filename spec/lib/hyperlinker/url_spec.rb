@@ -14,7 +14,10 @@ describe Hyperlinker::Url do
 
   def generate_result(link_text, href = nil)
     href ||= link_text
-    %{<a href="#{CGI::escapeHTML(href)}">#{Hyperlinker::Url.add_line_break_indicators(link_text)}</a>}.gsub(/'/,'&#x27;')
+    %{<a href="#{CGI::escapeHTML(href)}">#{Hyperlinker::Url.add_line_break_indicators(link_text)}</a>}.
+      # cast the decimal encoded apostrophe (') to a hex encoded value
+      # so that url comparisons with these characters work
+      gsub(/&#39;/,'&#x27;')
   end
 
   it "handles brackets" do

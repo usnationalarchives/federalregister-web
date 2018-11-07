@@ -548,6 +548,7 @@ DEPENDENCIES
   guard-rspec
   hoe (~> 3.15, >= 3.15.2)
   honeybadger
+  htmlentities
   httmultiparty
   httparty (= 0.14.0)
   indefinite_article

@@ -53,6 +53,8 @@ gem 'premailer-rails'
 gem "premailer", "1.8.6"
 gem "css_parser", "1.4.5"
 
+gem 'htmlentities'
+
 # pick item(s) from collection by it's weight/probability
 gem "pickup", "0.0.8"
 
