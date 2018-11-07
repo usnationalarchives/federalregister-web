@@ -32,7 +32,7 @@ gem 'underscore-rails', '~> 1.6.0'
 
 gem "carrierwave", "0.10.0"
 gem "fog", "~> 1.32.0"
-gem "pbkdf2"
+
 gem "cocaine"
 gem "json_builder"
 

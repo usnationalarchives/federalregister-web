@@ -12,7 +12,7 @@ module EncryptionUtils
   end
 
   def encryption_key
-    PBKDF2.new(:password => secret, :salt=> salt, :iterations=>1000, :key_length => 256).bin_string
+    OpenSSL::PKCS5.pbkdf2_hmac(secret, salt, 1000, 256, OpenSSL::Digest::SHA256.new)
   end
 
   def encryption_cipher

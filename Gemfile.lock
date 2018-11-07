@@ -342,7 +342,6 @@ GEM
     passenger (5.3.2)
       rack
       rake (>= 0.8.1)
-    pbkdf2 (0.1.0)
     pickup (0.0.8)
     polyglot (0.3.5)
     powerpack (0.1.1)
@@ -564,7 +563,6 @@ DEPENDENCIES
   nokogiri (~> 1.6.6)
   omniauth-openid-connect!
   passenger (= 5.3.2)
-  pbkdf2
   pickup (= 0.0.8)
   premailer (= 1.8.6)
   premailer-rails
