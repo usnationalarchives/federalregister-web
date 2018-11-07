@@ -13,7 +13,7 @@ gem 'passenger', '5.3.2'
 gem 'honeybadger'
 
 
-gem 'federal_register', '0.6.7'
+gem 'federal_register', '0.6.8'
 #gem 'federal_register', :path => '../federal_register'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
@@ -36,9 +36,9 @@ gem "fog", "~> 1.32.0"
 gem "cocaine"
 gem "json_builder"
 
-gem "httparty", "0.14.0"
+gem "httparty"
 gem "httmultiparty"
-gem "multi_json", "1.12.2"
+gem "multi_json"
 
 # api caching
 gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
@@ -53,6 +53,7 @@ gem 'premailer-rails'
 gem "premailer", "1.8.6"
 gem "css_parser", "1.4.5"
 
+# url hyperlinker
 gem 'htmlentities'
 
 # pick item(s) from collection by it's weight/probability
