@@ -132,11 +132,9 @@ end
 
 
 group :development, :test do
-  if RUBY_VERSION == '1.9.3'
-    gem 'capybara'
-    #gem 'capybara-webkit'
-    #gem 'capybara-screenshot'
-  end
+  gem 'capybara'
+  #gem 'capybara-webkit'
+  #gem 'capybara-screenshot'
 
   gem 'codeclimate-test-reporter', :require => nil
   gem 'database_cleaner'
