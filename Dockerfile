@@ -52,7 +52,7 @@ RUN adduser app -uid 1000 --system &&\
 ### GEMS & PASSENGER INSTALL
 ###############################
 
-RUN gem install bundler --version 1.13.6
+RUN gem install bundler
 
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
