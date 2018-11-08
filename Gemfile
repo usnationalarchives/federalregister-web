@@ -158,7 +158,7 @@ group :development, :test do
   gem 'rspec-rails', '>= 2.5'
   gem 'rspec-html-matchers', '~> 0.5.0'
 
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.57.0'
   gem 'shoulda-matchers', '1.0.0.beta3'
 
   gem 'timecop'
