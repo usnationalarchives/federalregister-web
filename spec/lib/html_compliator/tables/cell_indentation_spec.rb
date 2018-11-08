@@ -18,11 +18,11 @@ describe HtmlCompilator::Tables do
         stub_cell = table.body_rows.first.cells.first
         calculated_indentation = stub_cell.primary_indentation
         expect(calculated_indentation).to eql(indentation),
-          "<ROW I=#{sprintf '%02d', i_value}> should lead to primary indentation of #{indentation} but was #{calculated_indentation}"
+          "<ROW I=#{sprintf '%02d', i_value}> expected primary indentation of #{indentation} but was #{calculated_indentation}"
 
         calculated_hanging = stub_cell.hanging_indentation
         expect(calculated_hanging).to eql(hanging),
-          "<ROW I=#{sprintf '%02d', i_value}> should lead to hanging value of #{hanging} but was #{calculated_hanging}"
+          "<ROW I=#{sprintf '%02d', i_value}> expected hanging value of #{hanging} but was #{calculated_hanging}"
       end
     end
   end

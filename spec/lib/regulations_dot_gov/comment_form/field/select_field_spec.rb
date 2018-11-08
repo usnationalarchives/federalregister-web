@@ -11,7 +11,7 @@ module RegulationsDotGov
                       "attributeName" => "country"}
         field = CommentForm::Field.build(client, attributes, agency_acronym)
 
-        client.should_receive(:get_option_elements).with("country", {})
+        expect(client).to receive(:get_option_elements).with("country", {})
         field.option_values
       end
     end

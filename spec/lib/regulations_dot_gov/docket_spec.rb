@@ -55,13 +55,15 @@ describe RegulationsDotGov::Docket, :reg_gov do
 
   describe "#supporting_documents" do
     let(:docket_id) { "EPA-HQ-SFUND-2005-0011" }
-    let(:docket)    { RegulationsDotGov::Docket.new(client,
-                                                    track_response_keys({'docketId' => docket_id})) }
+    let(:docket) {
+      RegulationsDotGov::Docket.new(client, track_response_keys({'docketId' => docket_id}))
+    }
 
     it "is called with the proper arguments" do
       client.stub(:find_documents)
 
-      client.should_receive(:find_documents).with(:dktid => docket_id, :dct => "SR", :so => "DESC", :sb => "docId")
+      expect(client).to receive(:find_documents).
+        with(dktid: docket_id, dct: "SR", so: "DESC", sb: "docId")
 
       docket.supporting_documents
     end
@@ -69,14 +71,16 @@ describe RegulationsDotGov::Docket, :reg_gov do
 
   context "associated documents" do
     let(:docket_id) { docket_id = "APHIS-2013-0071" }
-    let(:docket)    { RegulationsDotGov::Docket.new(client,
-                                                    track_response_keys({'docketId' => docket_id})) }
+    let(:docket)    {
+      RegulationsDotGov::Docket.new(client, track_response_keys({'docketId' => docket_id}))
+    }
 
     describe "#supporting_documents" do
       it "is called with the proper arguments" do
         client.stub(:find_documents)
 
-        client.should_receive(:find_documents).with(:dktid => docket_id, :dct => "SR", :so => "DESC", :sb => "docId")
+        expect(client).to receive(:find_documents).
+          with(dktid: docket_id, dct: "SR", so: "DESC", sb: "docId")
 
         docket.supporting_documents
       end
@@ -86,7 +90,8 @@ describe RegulationsDotGov::Docket, :reg_gov do
       it "is called with the proper arguments" do
         client.stub(:count_documents)
 
-        client.should_receive(:count_documents).with(:dktid => docket_id, :dct => "SR")
+        expect(client).to receive(:count_documents).
+          with(dktid: docket_id, dct: "SR")
 
         docket.supporting_documents_count
       end
@@ -96,7 +101,8 @@ describe RegulationsDotGov::Docket, :reg_gov do
       it "is called with the proper arguments" do
         client.stub(:count_documents)
 
-        client.should_receive(:count_documents).with(:dktid => docket_id, :dct => "PS")
+        expect(client).to receive(:count_documents).
+          with(dktid: docket_id, dct: "PS")
 
         docket.comments_count
       end

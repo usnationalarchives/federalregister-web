@@ -37,9 +37,12 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(OpenStruct.new(:parsed_response => {}))
+      RegulationsDotGov::Client.stub(:get).and_return(
+        OpenStruct.new(parsed_response: {})
+      )
 
-      RegulationsDotGov::Client.should_receive(:get).with(client.docket_endpoint, :query=>{:docketId => docket_id})
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.docket_endpoint, query: {docketId: docket_id})
 
       client.find_docket(docket_id)
     end
@@ -55,15 +58,14 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.
-        stub(:get).
-        and_return(OpenStruct.new(:parsed_response => {:documents => []}))
+      RegulationsDotGov::Client.stub(:get).and_return(
+        OpenStruct.new(parsed_response: {documents: []})
+      )
 
-      RegulationsDotGov::Client.
-        should_receive(:get).
-        with(client.document_search_endpoint, :query=>{:s => keyword})
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.document_search_endpoint, query: {s: keyword})
 
-      client.find_documents(:s => keyword)
+      client.find_documents(s: keyword)
     end
   end
 
@@ -71,20 +73,19 @@ describe RegulationsDotGov::Client, :reg_gov do
     let(:keyword) { 'ITC-2013-0207-0001' }
 
     it "returns a count of documents matching the search", :vcr do
-      count = client.count_documents(:s => keyword)
+      count = client.count_documents(s: keyword)
       expect(count).to be_kind_of(Integer)
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.
-        stub(:get).
-        and_return(OpenStruct.new(:parsed_response => {:totalNumRecords => 1}))
+      RegulationsDotGov::Client.stub(:get).and_return(
+        OpenStruct.new(parsed_response: {totalNumRecords: 1})
+      )
 
-      RegulationsDotGov::Client.
-        should_receive(:get).
-        with(client.document_search_endpoint, :query=>{:s => keyword, :countsOnly => 1})
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.document_search_endpoint, query: {s: keyword, countsOnly: 1})
 
-      client.count_documents(:s => keyword)
+      client.count_documents(s: keyword)
     end
   end
 
@@ -98,13 +99,12 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.
-        stub(:get).
-        and_return(OpenStruct.new(:parsed_response => {}))
+      RegulationsDotGov::Client.stub(:get).and_return(
+        OpenStruct.new(parsed_response: {})
+      )
 
-      RegulationsDotGov::Client.
-        should_receive(:get).
-        with(client.document_endpoint, :query=>{:federalRegisterNumber => document_number})
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.document_endpoint, query: {federalRegisterNumber: document_number})
 
       client.find_by_document_number(document_number)
     end
@@ -128,9 +128,12 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(OpenStruct.new(:parsed_response => {}))
+      RegulationsDotGov::Client.stub(:get).and_return(
+        OpenStruct.new(parsed_response: {})
+      )
 
-      RegulationsDotGov::Client.should_receive(:get).with(client.comment_endpoint, :query=>{:D => regulations_dot_gov_document_id})
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.comment_endpoint, query: {D: regulations_dot_gov_document_id})
 
       client.get_comment_form(regulations_dot_gov_document_id)
     end
@@ -148,7 +151,10 @@ describe RegulationsDotGov::Client, :reg_gov do
     it "performs a get request with the required arguments" do
       response = double(:response).as_null_object
 
-      RegulationsDotGov::Client.should_receive(:get).with(client.lookup_endpoint, :query=>{:field => field_name}).and_return(response)
+      expect(RegulationsDotGov::Client).to receive(:get).
+        with(client.lookup_endpoint, query: {field: field_name}).
+        and_return(response)
+
       client.get_option_elements(field_name)
     end
   end

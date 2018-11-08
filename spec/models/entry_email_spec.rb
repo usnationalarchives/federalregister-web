@@ -1,10 +1,37 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EntryEmail do
-  it { should validate_presence_of(:remote_ip) }
-  it { should validate_presence_of(:sender) }
-  it { should validate_presence_of(:recipients) }
-  it { should validate_presence_of(:document_number) }
+  describe "validations" do
+    it "has a valid factory" do
+      expect(
+        build(:entry_email).valid?
+      ).to be(true)
+    end
+
+    it "requires a remote_ip" do
+      expect(
+        build(:entry_email, remote_ip: nil).valid?
+      ).to be(false)
+    end
+
+    it "requires a sender" do
+      expect(
+        build(:entry_email, sender: nil).valid?
+      ).to be(false)
+    end
+
+    it "requires recipients" do
+      expect(
+        build(:entry_email, recipients: nil).valid?
+      ).to be(false)
+    end
+
+    it "requires a document_number" do
+      expect(
+        build(:entry_email, document_number: nil).valid?
+      ).to be(false)
+    end
+  end
 
   before(:each) do
     EntryEmail.any_instance.stub(:deliver_email)
@@ -23,14 +50,14 @@ describe EntryEmail do
       expect(email_1.sender_hash).to eq(email_2.sender_hash)
     end
 
-    it "should add an error if sender is not a valid email address" do
+    it "adds an error if sender is not a valid email address" do
       email = build(:entry_email, sender: "NOT-A-VALID-EMAIL-ADDRESS")
 
       email.valid?
       expect(email.errors[:sender].size).to eq(1)
     end
 
-    it "should accept valid sender emails" do
+    it "accepts valid sender emails" do
       email = build(:entry_email, :sender => "john@example.com")
 
       email.valid?
@@ -42,7 +69,9 @@ describe EntryEmail do
     EntryEmail.any_instance.unstub(:deliver_email)
     email = build(:entry_email)
 
-    DocumentMailer.should_receive(:email_a_friend).with(email).and_call_original #don't just return nil and call #deliver on it
+    expect(DocumentMailer).to receive(:email_a_friend).
+      with(email).and_call_original #don't just return nil and call #deliver on it
+
     email.save!
   end
 
@@ -68,14 +97,14 @@ describe EntryEmail do
       ).not_to raise_error
     end
 
-    it "should add errors when recipients are invalid" do
+    it "adds errors when recipients are invalid" do
       email.recipients = ["NOT-AN-EMAIL-ADDRESS", "doe@foo_com", "john@example.com"]
 
       email.valid?
       expect(email.errors[:recipients].size).to eq(2)
     end
 
-    it "should allow valid recipients" do
+    it "allows valid recipients" do
       email.recipients = ["john@example.com"]
 
       email.valid?
@@ -130,13 +159,13 @@ describe EntryEmail do
   describe "#requires_captcha?" do
     it "calls requires_captcha_with_message? if message is present" do
       email = build(:entry_email, message: "HI")
-      EntryEmail.any_instance.should_receive(:requires_captcha_with_message?)
+      expect_any_instance_of(EntryEmail).to receive(:requires_captcha_with_message?)
       email.requires_captcha?
     end
 
     it "calls requires_captcha_without_message? if message is not present" do
       email = build(:entry_email)
-      EntryEmail.any_instance.should_receive(:requires_captcha_without_message?)
+      expect_any_instance_of(EntryEmail).to receive(:requires_captcha_without_message?)
       email.requires_captcha?
     end
   end

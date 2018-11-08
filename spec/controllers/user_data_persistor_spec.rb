@@ -76,7 +76,7 @@ describe FakeController do
     it "if a comment tracking number and secret are stored in the session, and a matching comment exists in the database, the CommentMailer is called" do
       Ecfr::UserEmailResultSet.stub(:get_user_emails).and_return(values: ['test@example.com'])
       CommentMailer.stub_chain(:comment_copy, :deliver)
-      CommentMailer.should_receive(:comment_copy)#.with(User.new(id: 9999, email: 'john_doe@example.com'))
+      expect(CommentMailer).to receive(:comment_copy)#.with(User.new(id: 9999, email: 'john_doe@example.com'))
       get :test, nil, authenticated_session.merge(
         comment_tracking_number: 123,
         comment_secret:          9999999999
@@ -121,7 +121,6 @@ describe FakeController do
 
       subscription.reload
       expect(subscription.user_id).to eq(authenticated_session[:user_details]["sub"])
-      #expect(subscription.confirmed_at).to be_truthy
     end
 
   end

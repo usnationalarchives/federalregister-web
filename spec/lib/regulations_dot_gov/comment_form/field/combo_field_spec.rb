@@ -32,7 +32,9 @@ module RegulationsDotGov
                       "dependsOn" => "country"}
         field = CommentForm::Field.build(client, attributes, agency_acronym)
 
-        client.should_receive(:get_option_elements).with("us_state", {"dependentOnValue" => "United States"})
+        expect(client).to receive(:get_option_elements).
+          with("us_state", {"dependentOnValue" => "United States"})
+
         field.options_for_parent_value('United States')
       end
     end
@@ -47,10 +49,18 @@ module RegulationsDotGov
 
         us_state_options = [FactoryGirl.build(:comment_form_state_option), FactoryGirl.build(:comment_form_state_option)]
 
-        client.should_receive(:get_option_elements).with("us_state", {"dependentOnValue" => "United States"}).and_return( us_state_options )
-        client.should_receive(:get_option_elements).with("us_state", {"dependentOnValue" => "Canada"}).and_return([])
+        expect(client).to receive(:get_option_elements).
+          with("us_state", {"dependentOnValue" => "United States"}).
+          and_return( us_state_options )
 
-        expect( field.dependencies ).to eq({"United States" => us_state_options.map{|o| [o.value, o.label]}, "Canada" => []})
+        expect(client).to receive(:get_option_elements).
+          with("us_state", {"dependentOnValue" => "Canada"}).
+          and_return([])
+
+        expect( field.dependencies ).to eq({
+          "United States" => us_state_options.map{|o| [o.value, o.label]},
+          "Canada" => []
+        })
       end
     end
 
@@ -81,7 +91,10 @@ module RegulationsDotGov
                       "dependsOn" => "unknown_field"}
         field = CommentForm::Field.build(client, attributes, agency_acronym)
 
-        expect{ field.dependent_values }.to raise_exception(RegulationsDotGov::CommentForm::Field::ComboField::UnrecogonizedDependencyError, "Combo field #{field.name} has unrecognized dependency for #{field.dependent_on}; needs to be configured.")
+        expect{ field.dependent_values }.to raise_exception(
+          RegulationsDotGov::CommentForm::Field::ComboField::UnrecogonizedDependencyError,
+          "Combo field #{field.name} has unrecognized dependency for #{field.dependent_on}; needs to be configured."
+        )
       end
     end
   end

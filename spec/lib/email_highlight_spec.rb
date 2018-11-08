@@ -45,11 +45,11 @@ describe EmailHighlight do
         awesome_highlight.enabled = false
       end
 
-      it "should return nil for a disabled highlight unless proper option is passed" do
+      it "returns nil for a disabled highlight unless proper option is passed" do
         expect( EmailHighlight.find(awesome_highlight.name) ).to be(nil)
       end
 
-      it "should return nil for a disabled highlight unless proper option is passed" do
+      it "returns nil for a disabled highlight unless proper option is passed" do
         expect( EmailHighlight.find(awesome_highlight.name, :disabled => true) ).to be(awesome_highlight)
       end
     end

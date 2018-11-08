@@ -36,11 +36,11 @@ describe EmailNotification do
         awesome_notification.enabled = false
       end
 
-      it "should return nil for a disabled notification unless proper option is passed" do
+      it "returns nil for a disabled notification unless proper option is passed" do
         expect( EmailNotification.find(awesome_notification.name) ).to be(nil)
       end
 
-      it "should return the notification for a disabled notification when proper option is passed" do
+      it "returns the notification for a disabled notification when proper option is passed" do
         expect( EmailNotification.find(awesome_notification.name, :disabled => true) ).to be(awesome_notification)
       end
     end
