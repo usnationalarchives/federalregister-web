@@ -12,7 +12,7 @@ describe EmailHighlight do
       highlights = EmailHighlight.highlights
 
       expect( highlights ).to be_kind_of(Array)
-      expect( highlights ).to have(5).items
+      expect( highlights.size ).to eq(5)
     end
   end
 
@@ -21,7 +21,7 @@ describe EmailHighlight do
       rotatable_highlights = EmailHighlight.rotatable_highlights
 
       expect( rotatable_highlights ).to be_kind_of(Array)
-      expect( rotatable_highlights ).to have(4).items
+      expect( rotatable_highlights.size ).to eq(4)
     end
   end
 
@@ -117,7 +117,7 @@ describe EmailHighlight do
 
     it "returns the (unique) number of items requested" do
       highlights = EmailHighlight.pick(3)
-      expect( highlights ).to have(3).items
+      expect( highlights.size ).to eq(3)
       expect( highlights[0] ).not_to eq(highlights[1])
       expect( highlights[1] ).not_to eq(highlights[2])
       expect( highlights[2] ).not_to eq(highlights[0])
@@ -154,12 +154,12 @@ describe EmailHighlight do
 
     it "returns the number of additional highlights requested (in addition to the selected highlight)" do
       expect(
-        EmailHighlight.highlights_with_selected(1, awesome_highlight.name)
-      ).to have(2).items
+        EmailHighlight.highlights_with_selected(1, awesome_highlight.name).size
+      ).to eq(2)
 
       expect(
-        EmailHighlight.highlights_with_selected(2, awesome_highlight.name)
-      ).to have(3).items
+        EmailHighlight.highlights_with_selected(2, awesome_highlight.name).size
+      ).to eq(3)
     end
   end
 end

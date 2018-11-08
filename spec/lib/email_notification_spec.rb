@@ -12,7 +12,7 @@ describe EmailNotification do
       notifications = EmailNotification.notifications
 
       expect( notifications ).to be_kind_of(Array)
-      expect( notifications ).to have(2).items
+      expect( notifications.size ).to eq(2)
     end
   end
 
