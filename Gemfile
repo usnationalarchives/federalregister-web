@@ -153,7 +153,7 @@ group :development, :test do
   gem 'launchy'
 
   gem 'pry'
-  gem 'pry-remote', :platforms => :ruby_19
+  gem 'pry-remote'
 
   gem 'rspec-rails', '>= 2.5'
   gem 'rspec-html-matchers', '~> 0.5.0'
