@@ -21,6 +21,8 @@ gem 'federal_register', '0.6.8'
 gem 'strong_parameters'
 
 gem 'formtastic', '2.0.2'
+
+# model decorators
 gem "draper", "~> 1.3.0"
 
 gem 'sass-rails',    "~> 3.2.5"
@@ -154,6 +156,11 @@ group :development, :test do
 
   gem 'pry'
   gem 'pry-remote'
+
+  # required by current version of draper via its railtie
+  # removed in ruby 2.2
+  # but not avail in rails 3.2 activesupport
+  gem 'test-unit', '~> 3.0'
 
   gem 'rspec-rails', '>= 2.5'
   gem 'rspec-html-matchers', '~> 0.5.0'
