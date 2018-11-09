@@ -32,8 +32,9 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'jquery-rails', '~> 3.1.5'
 gem 'underscore-rails', '~> 1.6.0'
 
-gem "carrierwave", "0.10.0"
-gem "fog", "~> 1.32.0"
+# file uploads (comment attachments)
+gem "carrierwave", "0.11.2"
+gem 'fog-aws'
 
 gem "cocaine"
 gem "json_builder"
