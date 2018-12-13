@@ -5,7 +5,7 @@ class CitationsController < ApplicationController
 
   def cfr
     title, part, section = params[:citation].match(CFR_REGEXP)[1..3]
-    redirect_to govinfo_cfr_url(title, part, section)
+    redirect_to govinfo_cfr_xml_url(title, part, section)
   end
 
   def fr

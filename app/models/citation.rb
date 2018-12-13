@@ -1,6 +1,8 @@
 class Citation
   attr_reader :document_numbers, :public_inspection, :volume, :page
 
+  include RouteBuilder::ExternalUrls
+
   PATTERN = /(\d+)\s+(?:CFR|C\.F\.R\.)\s+(?:[Pp]arts?|[Ss]ections?|[Ss]ec\.|&#xA7;|&#xA7;\s*&#xA7;)?\s*(\d+)(?:\.(\d+))?/
 
   CITATION_TYPES = {
@@ -33,15 +35,15 @@ class Citation
   def url
     case citation_type
     when 'USC'
-      "https://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=browse_usc&docid=Cite:+#{part_1}USC#{part_2}"
+      govinfo_usc_pdf_url(part_1, part_2)
     when 'CFR'
-      "https://frwebgate.access.gpo.gov/cgi-bin/get-cfr.cgi?YEAR=current&TITLE=#{part_1}&PART=#{part_2}&SECTION=#{part_3}&SUBPART=&TYPE=TEXT"
+      govinfo_cfr_pdf_url(part_1, part_2, part_3)
     when 'FR'
       "/citation/#{part_1}/#{part_2}" if part_1.to_i >= 59
     when 'FR-DocNum'
-      "/a/#{part_1}"
+      "/d/#{part_1}"
     when 'PL'
-      "https://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=#{part_1}_cong_public_laws&docid=f:publ#{sprintf("%03d",part_2.to_i)}.#{part_1}" if part_1.to_i >= 104
+      govinfo_public_law_pdf_url(part_1, part_2) if part_1.to_i >= 104
     end
   end
 
