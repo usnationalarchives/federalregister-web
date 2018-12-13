@@ -17,19 +17,31 @@ module RouteBuilder::ExternalUrls
     "https://www.regulations.gov/document?D=#{document_id}"
   end
 
-  def fdsys_document_issue_pdf_url(date)
-    "https://www.gpo.gov/fdsys/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
+  def govinfo_document_issue_pdf_url(date)
+    "https://www.govinfo.gov/content/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
   end
 
-  def fdsys_document_pdf_url(document)
-    "https://www.gpo.gov/fdsys/pkg/FR-#{document.publication_date.to_s(:iso)}/pdf/#{document.document_number}.pdf"
+  def govinfo_document_issue_pdf_url(document)
+    gov_info_fr_document_url(document, 'pdf')
   end
 
-  def fdsys_document_mods_url(document)
-    "https://www.gpo.gov/fdsys/granule/FR-#{document.publication_date.to_s(:iso)}/#{document.document_number}/mods.xml"
+  def govinfo_document_mods_url(document)
+    gov_info_fr_document_url(document, 'mods')
   end
 
-  def fdsys_cfr_url(title, part, section)
-    "http://api.fdsys.gov/link?collection=cfr&titlenum=#{title}&partnum=#{part}&sectionnum=#{section}&year=mostrecent&link-type=xml"
+  def govinfo_document_html_url(document)
+    gov_info_fr_document_url(document, 'html')
+  end
+
+  def govinfo_cfr_url(title, part, section)
+    "#{gov_info_link_service('cfr')}/#{title}/#{part}?sectionnum=#{section}&year=mostrecent&link-type=xml"
+  end
+
+  def gov_info_fr_document_url(document, type)
+    "#{gov_info_link_service('fr')}/#{document.document_number}?link-type=#{type}"
+  end
+
+  def gov_info_link_service(service)
+    "https://www.govinfo.gov/link/#{service}"
   end
 end

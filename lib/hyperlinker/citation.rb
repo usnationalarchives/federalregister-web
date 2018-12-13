@@ -1,11 +1,11 @@
 module Hyperlinker::Citation
   module UrlHelpers
     def usc_url(title, section)
-      "https://api.fdsys.gov/link?collection=uscode&title=#{title}&year=mostrecent&section=#{section}&type=usc&link-type=html"
+      "https://www.govinfo.gov/link/uscode/#{title}/#{section}?type=usc&year=mostrecent&link-type=html"
     end
 
     def public_law_url(congress, law)
-      "https://api.fdsys.gov/link?collection=plaw&congress=#{congress}&lawtype=public&lawnum=#{law.to_i}&link-type=html"
+      "https://www.govinfo.gov/link/plaw/#{congress}/public/#{law.to_i}?link-type=html"
     end
 
     def patent_url(number_possibly_with_commas)
@@ -19,9 +19,10 @@ module Hyperlinker::Citation
 
     def cfr_url(year, title, volume, part, section='')
       return if year.blank?
-      return if volume.blank?
+      return if title.blank?
+      return if part.blank?
 
-      "https://www.gpo.gov/fdsys/pkg/CFR-#{year}-title#{title}-vol#{volume}/xml/CFR-#{year}-title#{title}-vol#{volume}-#{section.present? ? "sec#{part}-#{section}" : "part#{part}"}.xml"
+      "https://www.govinfo.gov/link/cfr/#{title}/#{part}?sectionnum=#{section}&year=#{year}&link-type=xml"
     end
 
     def ecfr_url(title,part)

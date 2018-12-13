@@ -1,7 +1,7 @@
 module PublicInspectionHelper
   def public_inspection_uscode_link
     link_to '44 U.S.C. 1503 & 1507',
-      "http://www.gpo.gov/fdsys/pkg/USCODE-2009-title44/html/USCODE-2009-title44-chap15.htm"
+      "https://www.govinfo.gov/content/pkg/USCODE-2009-title44/html/USCODE-2009-title44-chap15.htm"
   end
 
   def utility_bar_warning_text

@@ -2,7 +2,7 @@ module DocumentIssueHelper
   include RouteBuilder
 
   def issue_pdf_url(date)
-    fdsys_document_issue_pdf_url(date)
+    govinfo_document_issue_pdf_url(date)
   end
 
   def display_hierarchy(docs, agency, options={})

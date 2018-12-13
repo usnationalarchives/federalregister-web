@@ -1,6 +1,8 @@
 class DocumentDecorator < ApplicationDecorator
   delegate_all
 
+  include RouteBuilder::ExternalUrls
+
   include DocumentDecorator::Shared
 
   include DocumentDecorator::Agencies
