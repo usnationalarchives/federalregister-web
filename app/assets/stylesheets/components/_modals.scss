@@ -31,7 +31,8 @@
     margin-bottom: 2em;
   }
 
-  .external_link {
+  .external_link,
+  .external-link {
     background: $fr-gray-10;
     display: block;
     margin: 0.5em 0 1em;
@@ -382,6 +383,8 @@
 
 .external-link-warning-modal {
   form {
+    label { font-weight: 300; }
+
     input[type=checkbox] {
       margin-bottom: 6px;
       margin-left: 4px;
@@ -391,13 +394,20 @@
       display: inherit;
       margin-top: 10px;
     }
+
+    .fr_button {
+      height: 40px;
+      margin: 20px auto 0;
+      width: 400px;
+    }
   }
 
-  .external_link {
+  .external-link {
     background: none;
-    display: block;
+    font-weight: 400;
     padding: 0.5em;
     text-align: center;
+    word-break: break-word;
   }
 }
 

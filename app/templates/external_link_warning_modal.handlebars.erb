@@ -1,12 +1,16 @@
 <div class="bootstrap-scope">
   <div class="row">
     <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-      <p class="instructions">You are now leaving the Federal Register and will be accessing: <span class="external_link">{{url}}</span>
+      <p class="instructions">
+        You are now leaving FederalRegister.gov and will be accessing:
       </p>
-      <%= form_tag "/arbitrary", :method => 'get' do %>
+
+      <div class="external-link">{{url}}</div>
+
+      <%= form_tag "/", method: 'get' do %>
         <%= label_tag 'accept', 'Do not show this warning again' %>
         <%= check_box_tag 'accept' %>
-        <%= submit_tag "Continue", :class =>"fr_button medium" %>
+        <%= submit_tag "Continue", :class =>"fr_button primary large" %>
       <% end %>
     </div>
   </div>
