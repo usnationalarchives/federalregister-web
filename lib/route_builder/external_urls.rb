@@ -30,20 +30,20 @@ module RouteBuilder::ExternalUrls
     "https://www.govinfo.gov/content/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
   end
 
-  def govinfo_document_issue_pdf_url(document)
-    gov_info_fr_document_url(document, 'pdf')
+  def govinfo_document_pdf_url(document)
+    govinfo_fr_document_url(document, 'pdf')
   end
 
   def govinfo_document_mods_url(document)
-    gov_info_fr_document_url(document, 'mods')
+    govinfo_fr_document_url(document, 'mods')
   end
 
   def govinfo_document_html_url(document)
-    gov_info_fr_document_url(document, 'html')
+    govinfo_fr_document_url(document, 'html')
   end
 
-  def gov_info_fr_document_url(document, type)
-    "#{gov_info_link_service('fr')}/#{document.document_number}?link-type=#{type}"
+  def govinfo_fr_document_url(document, type)
+    "#{govinfo_link_service('fr')}/#{document.document_number}?link-type=#{type}"
   end
 
 
@@ -60,7 +60,7 @@ module RouteBuilder::ExternalUrls
   end
 
   def govinfo_cfr_url(title, part, section, type)
-    "#{gov_info_link_service('cfr')}/#{title}/#{part}?sectionnum=#{section}&year=mostrecent&link-type=#{type}"
+    "#{govinfo_link_service('cfr')}/#{title}/#{part}?sectionnum=#{section}&year=mostrecent&link-type=#{type}"
   end
 
 
@@ -73,7 +73,7 @@ module RouteBuilder::ExternalUrls
   end
 
   def govinfo_public_law_url(congress, law, type)
-    "#{gov_info_link_service('plaw')}/#{congress}/public/#{law}?link-type=#{type}"
+    "#{govinfo_link_service('plaw')}/#{congress}/public/#{law}?link-type=#{type}"
   end
 
 
@@ -86,7 +86,7 @@ module RouteBuilder::ExternalUrls
   end
 
   def govinfo_usc_url(title, section, type)
-    "#{gov_info_link_service('uscode')}/#{title}/#{section}?type=usc&year=mostrecent&link-type=#{type}"
+    "#{govinfo_link_service('uscode')}/#{title}/#{section}?type=usc&year=mostrecent&link-type=#{type}"
   end
 
 
@@ -94,7 +94,7 @@ module RouteBuilder::ExternalUrls
   # BASE URLS
   #
 
-  def gov_info_link_service(service)
+  def govinfo_link_service(service)
     "https://www.govinfo.gov/link/#{service}"
   end
 end
