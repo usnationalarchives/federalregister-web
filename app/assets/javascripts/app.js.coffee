@@ -65,6 +65,6 @@ $(document).ready ()->
   if $('.logo').siblings('div#user_utils').length > 0
     $('.logo .hgroup').css('position', 'relative').css('top', '20px')
 
-  # External link checker
-  document.onclick = (e) ->
-    new FR2.ExternalLinkChecker(e)
+  # External link modal
+  $('body').on 'click', 'a', ->
+    new FR2.ExternalLinkChecker($(this))
