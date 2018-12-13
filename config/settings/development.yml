@@ -1,3 +1,10 @@
+external_modal_domain_whitelist:
+  - "www.federalregister.gov"
+  - "www.archives.gov"
+  - "www.govinfo.gov"
+  - "federalregister.tenderapp.com"
+  - "fr2.criticaljuncture.org"
+
 vcr:
   enabled: true
   library_dir: "vcr/dev"
