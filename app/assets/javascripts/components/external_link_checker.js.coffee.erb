@@ -1,11 +1,12 @@
 class @FR2.ExternalLinkChecker
-  WHITELISTED_DOMAINS = <%= Settings.external_modal_domain_whitelist %>
+  @WHITELISTED_DOMAINS = <%= raw Settings.external_modal_domain_whitelist %>
 
-  constructor: (@el)->
+  constructor: (@event)->
+    @el = $(@event.target)
     @url = @el.attr('href')
 
     if @showModal() && !@isInternalDomain() && @isExternalUrl()
-      @el.preventDefault()
+      @event.preventDefault()
       @displayModal()
 
   displayModal: ->
@@ -22,7 +23,7 @@ class @FR2.ExternalLinkChecker
     @addModalEvents()
 
   addModalEvents: ->
-    $('#fr_modal.external-link-warning-modal form').on 'submit' (e)=>
+    $('#fr_modal.external-link-warning-modal form').on 'submit', (e)=>
       e.preventDefault()
 
       if $('#fr_modal.external-link-warning-modal [name=accept').prop('checked')
@@ -41,7 +42,7 @@ class @FR2.ExternalLinkChecker
 
   isInternalDomain: ->
     isInternal = false
-    $.each WHITELISTED_DOMAINS, (i, internalDomain) =>
+    $.each @constructor.WHITELISTED_DOMAINS, (i, internalDomain) =>
       if RegExp("^https?://#{internalDomain}").test(@url)
         isInternal = true
 
