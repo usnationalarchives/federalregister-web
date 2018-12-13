@@ -5,7 +5,6 @@ fr_comment_url: 'https://www.federalregister.gov/my/comments'
 
 
 external_modal_domain_whitelist:
-  - "www.federalregister.gov"
   - "www.archives.gov"
   - "www.govinfo.gov"
   - "federalregister.tenderapp.com"

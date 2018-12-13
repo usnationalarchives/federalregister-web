@@ -5,7 +5,7 @@ class @FR2.ExternalLinkChecker
     @el = $(@event.target)
     @url = @el.attr('href')
 
-    if @showModal() && !@isInternalDomain() && @isExternalUrl()
+    if @isExternalUrl() && !@isOwnDomain() && @showModal() && !@isWhitelistedDomain()
       @event.preventDefault()
       @displayModal()
 
@@ -34,16 +34,12 @@ class @FR2.ExternalLinkChecker
   showModal: ->
     amplify.store('showExternalModal') != false
 
+  isOwnDomain: ->
+    RegExp("^#{window.location.origin}").test(@url)
+
   isExternalUrl: ->
-    relativeUrlRegex = RegExp('^(https?:)//')
+    RegExp('^(https?:)//').test(@url)
 
-    if relativeUrlRegex.test(@url)
-      true
-
-  isInternalDomain: ->
-    isInternal = false
-    $.each @constructor.WHITELISTED_DOMAINS, (i, internalDomain) =>
-      if RegExp("^https?://#{internalDomain}").test(@url)
-        isInternal = true
-
-    isInternal
+  isWhitelistedDomain: ->
+    _.any @constructor.WHITELISTED_DOMAINS, (domain)=>
+      RegExp("^https?://#{domain}").test(@url)
