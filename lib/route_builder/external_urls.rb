@@ -27,22 +27,22 @@ module RouteBuilder::ExternalUrls
   #
 
   def govinfo_document_issue_pdf_url(date)
-    "https://www.govinfo.gov/content/pkg/FR-#{date.to_s(:to_s)}/pdf/FR-#{date.to_s(:to_s)}.pdf"
+    "https://www.govinfo.gov/content/pkg/FR-#{date.to_s(:iso)}/pdf/FR-#{date.to_s(:iso)}.pdf"
   end
 
   def govinfo_document_pdf_url(document)
-    govinfo_fr_document_url(document, 'pdf')
+    "https://www.govinfo.gov/content/pkg/FR-#{document.publication_date.to_s(:iso)}/pdf/#{document.document_number}.pdf"
   end
 
   def govinfo_document_mods_url(document)
-    govinfo_fr_document_url(document, 'mods')
+    "https://www.govinfo.gov/metadata/granule/FR-#{document.publication_date.to_s(:iso)}/#{document.document_number}/mods.xml"
   end
 
   def govinfo_document_html_url(document)
-    govinfo_fr_document_url(document, 'html')
+    "https://www.govinfo.gov/content/pkg/FR-#{document.publication.to_s(:iso)}/html/#{document.document_number}.htm"
   end
 
-  def govinfo_fr_document_url(document, type)
+  def govinfo_fr_document_link_service_url(document, type)
     "#{govinfo_link_service('fr')}/#{document.document_number}?link-type=#{type}"
   end
 
