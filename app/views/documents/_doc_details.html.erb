@@ -6,7 +6,7 @@
       <% if document.pdf_available? %>
         <dt>Printed version:</dt>
         <dd>
-          <%= link_to 'PDF', govinfo_document_pdf_url(document) %>
+          <%= link_to 'PDF', document.pdf_url %>
         </dd>
       <% end %>
 
