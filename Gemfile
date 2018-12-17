@@ -129,15 +129,11 @@ gem 'request_store'
 # (tracking memory usage)
 gem 'proc-wait3'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'coffee-rails', '~> 4.2'
-  gem 'uglifier'
+gem 'coffee-rails', '~> 4.2'
+gem 'uglifier'
 
-  #ensure connections to missing db don't cause precompilation to fail
-  gem "activerecord-nulldb-adapter"
-end
+#ensure connections to missing db don't cause precompilation to fail
+gem "activerecord-nulldb-adapter"
 
 
 group :development, :test do
