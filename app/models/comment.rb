@@ -2,20 +2,6 @@ class Comment < ApplicationModel
   has_one :subscription
   extend Memoist
 
-  attr_protected :agency_name,
-    :agency_participating,
-    :comment_publication_notification,
-    :comment_published_at,
-    :comment_tracking_number,
-    :created_at,
-    :document_number,
-    :encrypted_comment_data,
-    :id,
-    :iv,
-    :salt,
-    :submission_key,
-    :user_id
-
   include EncryptionUtils
   MAX_ATTACHMENTS = 10
 

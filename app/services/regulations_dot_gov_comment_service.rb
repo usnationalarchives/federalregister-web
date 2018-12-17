@@ -40,18 +40,37 @@ class RegulationsDotGovCommentService
   def assign_attributes_to_comment
     begin
       if args[:comment]
-        comment.secret = args[:comment][:secret]
+        comment_params = sanitize_comment_params(args[:comment])
+        comment.secret = comment_params[:secret]
 
         # replace line endings that cause char count problems
-        if args[:comment]["general_comment"].present?
-          args[:comment]["general_comment"].gsub!(/\r\n/, "\n")
+        if comment_params["general_comment"].present?
+          comment_params["general_comment"].gsub!(/\r\n/, "\n")
         end
 
-        comment.attributes = args[:comment]
+        comment.attributes = comment_params
       end
     rescue => exception
       record_regulations_dot_gov_error(exception)
     end
+  end
+
+  def sanitize_comment_params(comment_params)
+    comment_params.delete(
+      :agency_name,
+      :agency_participating,
+      :checked_comment_publication_at,
+      :comment_publication_notification,
+      :comment_tracking_number,
+      :created_at,
+      :document_number,
+      :encrypted_comment_data,
+      :id,
+      :iv,
+      :salt,
+      :submission_key,
+      :user_id,
+    )
   end
 
   def send_to_regulations_dot_gov(submission_type=:submit)
