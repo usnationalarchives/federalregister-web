@@ -12,12 +12,12 @@ MyFr2::Application.routes.draw do
 
   mount Resque::Server.new, :at => "/resque-web"
 
-  match 'status/web/:id', to: 'special#status'
-  match 'status', to: 'special#status'
+  get 'status/web/:id', to: 'special#status'
+  get 'status', to: 'special#status'
 
-  match "/404", to: "errors#record_not_found"
-  match "/405", to: "errors#not_authorized"
-  match "/500", to: "errors#server_error"
+  get "/404", to: "errors#record_not_found"
+  get "/405", to: "errors#not_authorized"
+  get "/500", to: "errors#server_error"
 
   #
   # Documents
@@ -447,7 +447,7 @@ MyFr2::Application.routes.draw do
       end
     end
 
-    match 'folders/my-clippings', to: redirect('/my/clippings')
+    get 'folders/my-clippings', to: redirect('/my/clippings')
     resources :folders
     resources :folder_clippings do
       collection do
