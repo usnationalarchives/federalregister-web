@@ -5,6 +5,8 @@ MyFr2::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  config.eager_load = true
+
   # Full error reports are disabled
   config.consider_all_requests_local       = false
   # Turn off rack-cache as we set the expires header and use varnish for cache
