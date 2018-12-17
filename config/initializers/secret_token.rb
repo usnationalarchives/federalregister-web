@@ -5,3 +5,4 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 MyFr2::Application.config.secret_token = SECRETS['session_secret_token']
+MyFr2::Application.config.secret_key_base = SECRETS['session_secret_token']
