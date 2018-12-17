@@ -1,6 +1,6 @@
 class Subscription < ApplicationModel
   attr_accessible :search_conditions, :search_type
-  default_scope :conditions => { :environment => Rails.env }
+  default_scope where(environment: Rails.env)
 
   before_create :generate_token
   after_create :remove_from_bounce_list, if: Proc.new {|sub| sub.user.present?}

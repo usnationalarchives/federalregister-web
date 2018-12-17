@@ -14,11 +14,13 @@ class MailingList < ApplicationModel
     uniq
   }
 
-  scope :for_entries,
-    conditions: {search_type: 'Document'}
+  scope :for_entries, -> {
+    where(search_type: 'Document')
+  }
 
-  scope :for_public_inspection_documents,
-    conditions: {search_type: 'PublicInspectionDocument'}
+  scope :for_public_inspection_documents, -> {
+    where(search_type: 'PublicInspectionDocument')
+  }
 
   before_create :persist_title
   serialize :parameters, JSON
