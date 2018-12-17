@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'hoe', '~> 3.15', '>= 3.15.2' # TODO: needed for bundler to run in docker but we shouldn't have to specify it explicitely
 
-gem 'rails', '3.2.22.5'
+gem 'rails', '4.0.13'
 gem 'rake', '11.3.0'
 gem 'rack'
 
@@ -18,15 +18,14 @@ gem 'federal_register', '0.6.8'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
 
-gem 'strong_parameters'
 
-gem 'formtastic', '2.0.2'
+gem 'formtastic', '2.3.1'
 
 # model decorators
 gem "draper", "~> 1.3.0"
 
-gem 'sass-rails',    "~> 3.2.5"
-gem "sass",          "~> 3.2.1"
+gem 'sass-rails',    "~> 4.0.5"
+gem "sass",          "~> 3.2.2"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'jquery-rails', '~> 3.1.5'
@@ -133,7 +132,7 @@ gem 'proc-wait3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'coffee-rails', '~> 3.2.2'
+  gem 'coffee-rails', '~> 4.2'
   gem 'uglifier'
 
   #ensure connections to missing db don't cause precompilation to fail
