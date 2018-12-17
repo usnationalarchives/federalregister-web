@@ -3,9 +3,10 @@ class MailingList < ApplicationModel
 
   has_many :subscriptions
 
-  has_many :active_subscriptions,
-    class_name: "Subscription",
-    conditions: "subscriptions.unsubscribed_at IS NULL and subscriptions.deleted_at IS NULL"
+  has_many :active_subscriptions, -> {
+      where(unsubscribed_at: nil, deleted_at: nil)
+    },
+    class_name: "Subscription"
 
   scope :active, -> {
     where(deleted_at: nil).
