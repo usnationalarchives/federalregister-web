@@ -1,7 +1,4 @@
 class Folder < ApplicationModel
-  include ActiveModel::ForbiddenAttributesProtection
-  attr_protected []
-
   has_many :clippings
 
   validates_presence_of :name,

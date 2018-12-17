@@ -1,6 +1,4 @@
 class EntryEmail < ActiveRecord::Base
-  attr_accessible :document_number, :sender, :recipients, :message, :send_me_a_copy
-
   validates_presence_of :sender
   validates_presence_of :document_number, :remote_ip, :recipients
   validate :sender_email_is_valid, :if => Proc.new{|e| e.sender.present?}

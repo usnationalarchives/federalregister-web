@@ -1,7 +1,4 @@
 class Clipping < ActiveRecord::Base
-  include ActiveModel::ForbiddenAttributesProtection
-  attr_protected []
-
   belongs_to :folder
 
   validates_presence_of :document_number

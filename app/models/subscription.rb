@@ -1,5 +1,4 @@
 class Subscription < ApplicationModel
-  attr_accessible :search_conditions, :search_type
   default_scope where(environment: Rails.env)
 
   before_create :generate_token

@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.new(params[:subscription].except(:email))
+    @subscription = Subscription.new(subscription_params)
 
     @subscription.requesting_ip = request.remote_ip
     @subscription.environment = Rails.env
@@ -105,5 +105,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def unsubscribed
+  end
+
+  def subscription_params
+    params.require(:subscription).permit(
+      :search_conditions,
+      :search_type,
+    )
   end
 end
