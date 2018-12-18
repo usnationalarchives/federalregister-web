@@ -39,7 +39,7 @@ module RouteBuilder::ExternalUrls
   end
 
   def govinfo_document_html_url(document)
-    "https://www.govinfo.gov/content/pkg/FR-#{document.publication.to_s(:iso)}/html/#{document.document_number}.htm"
+    "https://www.govinfo.gov/content/pkg/FR-#{document.publication_date.to_s(:iso)}/html/#{document.document_number}.htm"
   end
 
   def govinfo_fr_document_link_service_url(document, type)
