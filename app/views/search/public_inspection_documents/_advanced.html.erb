@@ -33,8 +33,8 @@
               :required => false %>
 <% end %>
 
-<%= f.buttons do %>
-  <%= f.commit_button 'Search', button_html: {
+<%= f.actions do %>
+  <%= f.action 'Search', button_html: {
     id: 'conditions_submit',
     class: 'fr_button primary large'
   } %>

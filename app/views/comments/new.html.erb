@@ -161,10 +161,10 @@
         :as => :boolean,
         :label => 'I read and understand the statement above.' %>
     <% end %>
-    <%= f.buttons do %>
-      <%= f.commit_button "Submit Comment",
-        :wrapper_html => {:class => 'disabled'},
-        :button_html => {:disabled => 'disabled'} %>
+    <%= f.actions do %>
+      <%= f.action "Submit Comment",
+        wrapper_html: {class: 'disabled'},
+        button_html: {disabled: 'disabled'} %>
       <%= content_tag(
         :li,
         link_to(

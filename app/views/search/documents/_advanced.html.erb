@@ -46,10 +46,10 @@
 
   <%= f.input :president,
     as: :check_boxes,
-    collection: President.all,
+    collection: President.all.
+      map{|p| [p.name, p.identifier]},
     label: "President",
     required: false,
-    value_method: :identifier,
     wrapper_html: {class: "presidential_dependent"} %>
 
   <%= f.input :docket_id,
@@ -127,8 +127,8 @@
   <% end %>
 <% end %>
 
-<%= f.buttons do %>
-  <%= f.commit_button 'Search', button_html: {
+<%= f.actions do %>
+  <%= f.action 'Search', button_html: {
     id: 'conditions_submit',
     class: 'fr_button primary large'
   } %>

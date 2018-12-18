@@ -16,7 +16,7 @@
     url: "/my/folders/{{folderSlug}}",
     method: :delete do |f| %>
 
-    <%= f.buttons do %>
+    <%= f.actions do %>
       <%= f.commit_button 'Yes, Delete',
         wrapper_html: {class: "fr_button medium danger delete-folder-modal-button"},
         button_html: {class: "browser_reset"} %>

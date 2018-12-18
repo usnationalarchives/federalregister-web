@@ -36,9 +36,13 @@
       :value => @comment.secret %>
   <% end %>
 
-  <%= f.buttons do %>
-    <%= f.commit_button :sign_in, :label => 'Sign In', :wrapper_html => {:class => 'comment_form_sign_in fr_button large'} %>
-    <%= f.commit_button :sign_up, :label => 'Sign Up', :wrapper_html => {:class => 'comment_form_sign_up fr_button large'}%>
+  <%= f.actions do %>
+    <%= f.action :sign_in, as: :button,
+      label: 'Sign In',
+      wrapper_html: {class: 'comment_form_sign_in fr_button large'} %>
+    <%= f.action :sign_in, as: :button,
+      label: 'Sign Up',
+      wrapper_html: {class: 'comment_form_sign_up fr_button large'} %>
   <% end %>
 
 <% end %>
