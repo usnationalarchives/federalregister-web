@@ -1,7 +1,11 @@
 include EncryptionUtils
 FactoryGirl.define do
+  sequence :document_number do |n|
+    "2011-#{1000+n}"
+  end
+
   factory :comment do
-    sequence(:document_number) {|n| "2011-#{1000+n}"}
+    document_number { generate(:document_number) }
     confirm_submission { true }
     comment_tracking_number 'XXXX-1234-XXXX'
     comment_publication_notification false

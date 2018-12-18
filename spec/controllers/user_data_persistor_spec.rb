@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-# Create FakeController to test UserDataPersistor in Isolation
-class FakeController < ApplicationController
+# Create TestHarnessController to test UserDataPersistor in Isolation
+class TestHarnessController < ApplicationController
   include UserDataPersistor
 
   def test
@@ -9,15 +9,15 @@ class FakeController < ApplicationController
   end
 end
 
-describe FakeController do
+describe TestHarnessController do
   before(:each) do
-    add_arbitrary_route('/test', "fake_controller#test")
+    add_test_harness_route('/test', "test_harness#test")
     User.current = nil
   end
 
-  def add_arbitrary_route(route, controller_action)
+  def add_test_harness_route(route, controller_action)
     test_routes = Proc.new do
-      get route => controller_action
+      get route, to: controller_action
     end
     Rails.application.routes.eval_block(test_routes)
   end
@@ -50,11 +50,9 @@ describe FakeController do
         expect(clipping[attribute]).to eq(value)
       end
     end
-
   end
 
   describe "Comments" do
-
     before(:each) do
       validation_methods = [
         :send_to_regulations_dot_gov,
@@ -67,33 +65,21 @@ describe FakeController do
     end
 
     let(:comment) do
-      FactoryGirl.create(
-        :comment_skipped_validations,
+      create(:comment_skipped_validations,
         comment_tracking_number: 123,
       )
     end
 
     it "if a comment tracking number and secret are stored in the session, and a matching comment exists in the database, the CommentMailer is called" do
-      Ecfr::UserEmailResultSet.stub(:get_user_emails).and_return(values: ['test@example.com'])
+      Ecfr::UserEmailResultSet.stub(:get_user_emails).and_return(values: ['john_doe@example.com'])
       CommentMailer.stub_chain(:comment_copy, :deliver)
-      expect(CommentMailer).to receive(:comment_copy)#.with(User.new(id: 9999, email: 'john_doe@example.com'))
+      expect(CommentMailer).to receive(:comment_copy)
+
       get :test, nil, authenticated_session.merge(
         comment_tracking_number: 123,
-        comment_secret:          9999999999
+        comment_secret: 'abcd1234',
       )
     end
-
-    # it "if a comment tracking number and secret are stored in the session, marks a subscription as confirmed if the followup_document_notification flag has been set" do
-    #   CommentDecorator.any_instance.stub(:document).and_return(double)
-    #   CommentMailer.stub_chain(:comment_copy, :deliver)
-    #   get :test, nil, authenticated_session.merge(
-    #     comment_tracking_number:        123,
-    #     comment_secret:                 9999999999,
-    #     followup_document_notification: "1"
-    #   )
-    #
-    #   expect(Subscription.first.confirmed_at).to be_truthy
-    # end
 
     it "if a comment cannot be located the UserDataPersistor does not fail" do
       expect {
@@ -104,11 +90,9 @@ describe FakeController do
         )
       }.to_not raise_error
     end
-
   end
 
   describe "Subscriptions" do
-
     it "associates a subscription with the current user" do
       subscription = FactoryGirl.create(
         :subscription,
@@ -122,7 +106,5 @@ describe FakeController do
       subscription.reload
       expect(subscription.user_id).to eq(authenticated_session[:user_details]["sub"])
     end
-
   end
-
 end
