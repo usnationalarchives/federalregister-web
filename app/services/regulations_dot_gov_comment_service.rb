@@ -1,5 +1,5 @@
 class RegulationsDotGovCommentService
-  attr_reader :args, :comment, :remote_ip
+  attr_reader :args, :comment, :remote_ip, :api_key_type
   attr_accessor :comment_form
 
   delegate :document_number, to: :@comment
@@ -76,7 +76,12 @@ class RegulationsDotGovCommentService
           # comment form may have changed since last retrieved
           reload_comment_form_and_resubmit(exception)
         rescue RegulationsDotGov::Client::ResponseError => exception
-          record_regulations_dot_gov_error(exception)
+          if bulk_submission? && exception.class == RegulationsDotGov::Client::OverRateLimit
+            notify = false
+          else
+            notify = true
+          end
+          record_regulations_dot_gov_error(exception, notify)
 
           comment.add_error(
             I18n.t(
@@ -118,9 +123,9 @@ class RegulationsDotGovCommentService
     end
   end
 
-  def record_regulations_dot_gov_error(exception)
+  def record_regulations_dot_gov_error(exception, notify=true)
     Rails.logger.error(exception)
-    Honeybadger.notify(exception)
+    Honeybadger.notify(exception) if notify
   end
 
   def increment_comment_tracking_keys
@@ -144,6 +149,10 @@ class RegulationsDotGovCommentService
     end
 
     @api_key
+  end
+
+  def bulk_submission?
+    api_key == SECRETS['data_dot_gov']['secondary_comment_api_key']
   end
 
   def hourly_requests_for_ip
@@ -198,11 +207,6 @@ class RegulationsDotGovCommentService
       # ex: a required field was added after the form was last cached by us
       return exception
     end
-  end
-
-  def record_regulations_dot_gov_error(exception)
-    Rails.logger.error(exception)
-    Honeybadger.notify(exception)
   end
 
   class RegulationsDotGovError

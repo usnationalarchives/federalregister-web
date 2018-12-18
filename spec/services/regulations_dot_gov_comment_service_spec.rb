@@ -106,4 +106,35 @@ RSpec.describe RegulationsDotGovCommentService do
       )
     end
   end
+
+  context "over rate limit errors" do
+    before(:each) do
+      allow(RegulationsDotGov::Client).to receive(:api_key).and_return('XXXX')
+      client = RegulationsDotGov::Client.new
+      allow(comment_service).to receive(:comment_form).and_return(
+        double('comment_form',
+          document_id: '1234', fields: [], attachments: [], client: client
+        )
+      )
+      allow_any_instance_of(Comment).to receive(:document).and_return(
+        double('document', comment_url: 'https://example.com')
+      )
+    end
+
+    it "notifies us if the submission is not bulk" do
+      allow(comment_service).to receive(:bulk_submission?).and_return(false)
+      allow(comment_service).to receive(:submit_comment).and_raise(RegulationsDotGov::Client::OverRateLimit.new('', 429))
+
+      expect(Honeybadger).to receive(:notify)
+      comment_service.send_to_regulations_dot_gov
+    end
+
+    it "does not notify us if the submission is bulk" do
+      allow(comment_service).to receive(:bulk_submission?).and_return(true)
+      allow(comment_service).to receive(:submit_comment).and_raise(RegulationsDotGov::Client::OverRateLimit.new('', 429))
+
+      expect(Honeybadger).not_to receive(:notify)
+      comment_service.send_to_regulations_dot_gov
+    end
+  end
 end
