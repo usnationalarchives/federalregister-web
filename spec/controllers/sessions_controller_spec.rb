@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../spec_helper'
+
 describe SessionsController do
   let(:session_user_details) {
     OmniAuth::AuthHash.new(
@@ -17,7 +19,7 @@ describe SessionsController do
         once.
         with(stubbed_auth_hash[:extra][:raw_info][:email])
 
-      get :create
+      get :create, provider: 'ofr'
 
       # Sets cookie JS and varnish relies upon
       expect(cookies["expect_signed_in"]).to eq "1"
@@ -36,7 +38,7 @@ describe SessionsController do
     it "AJAX requests delete the session and remove the signed in cookie" do
       xhr :get, :destroy
 
-      expect(session).to eq({})
+      expect(session.empty?).to be(true)
       expect(cookies["expect_signed_in"]).to eq "0"
     end
 
