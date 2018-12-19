@@ -52,8 +52,6 @@ gem 'sendgrid'
 gem 'active_hash'
 
 gem 'premailer-rails'
-gem "premailer", "1.8.6"
-gem "css_parser", "1.4.5"
 
 # url hyperlinker
 gem 'htmlentities'
