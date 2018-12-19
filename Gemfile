@@ -24,9 +24,9 @@ gem 'formtastic', '2.3.1'
 # model decorators
 gem "draper", "~> 1.3.0"
 
-gem 'sass-rails',    "~> 4.0.5"
-gem "sass",          "~> 3.2.2"
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'sass-rails'
+gem "sass"
+gem 'bootstrap-sass'
 
 gem 'jquery-rails', '~> 3.1.5'
 gem 'underscore-rails', '~> 1.6.0'
