@@ -22,7 +22,6 @@ src_dir: 'assets/'
 #   - dist/**/*.js
 #
 src_files:
-  - 'application-shared.js'
   - 'application.js'
 
 # stylesheets

@@ -24,21 +24,9 @@ class SpecialController < ApplicationController
     cache_for 1.day
   end
 
-  def shared_assets
-    cache_for 1.day
-  end
-
   def header
     cache_for 1.day
     render template: "special/header/#{params[:type].gsub('-','_')}"
-  end
-
-  def fr2_assets
-    cache_for 1.day
-  end
-
-  def my_fr_assets
-    cache_for 1.day
   end
 
   def status

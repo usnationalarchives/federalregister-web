@@ -62,7 +62,6 @@ module MyFr2
     config.assets.precompile += %w(
       vendor.js
       admin/vendor.js
-      ie-shared.js
       search.js
       tender_widget_custom.js
 
@@ -81,7 +80,6 @@ module MyFr2
       admin/highlighted_documents.js
       utilities/modal.js
 
-      application-ie.css
       print.css
       vendor.css
 
