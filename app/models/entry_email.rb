@@ -75,7 +75,7 @@ class EntryEmail < ActiveRecord::Base
   end
 
   def no_more_than_5_messages_in_a_day
-    if EntryEmail.count(:conditions => ["created_at > ? AND remote_ip = ?", 1.day.ago, remote_ip]) >= 5
+    if EntryEmail.where("created_at > ? AND remote_ip = ?", 1.day.ago, remote_ip).count >= 5
       errors.add(:base, "You cannot send more than 5 messages from the same IP address in a 24 hour period.")
     end
   end
