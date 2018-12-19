@@ -43,6 +43,8 @@ RSpec.configure do |config|
   config.include Models::ApiHelpers#, type: :model
   config.include Models::SearchHelpers
 
+  config.include RSpecHtmlMatchers
+
   config.expect_with :rspec do |c|
     # Disable the `should` syntax...
     c.syntax = :expect

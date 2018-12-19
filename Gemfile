@@ -145,7 +145,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'email_spec'
 
-  gem "factory_girl_rails", "~> 4.0"#, require: false if RUBY_VERSION == '1.9.3'
+  gem "factory_girl_rails", "~> 4.0"
   gem "fakeweb", "~> 1.3.0"
 
   #auto test runner
@@ -162,8 +162,8 @@ group :development, :test do
   # but not avail in rails 3.2 activesupport
   gem 'test-unit', '~> 3.0'
 
-  gem 'rspec-rails', '>= 2.5'
-  gem 'rspec-html-matchers', '~> 0.5.0'
+  gem 'rspec-rails', '~> 3.2'
+  gem 'rspec-html-matchers'#, '~> 0.5.0'
 
   gem 'rubocop', '~> 0.57.0'
 
