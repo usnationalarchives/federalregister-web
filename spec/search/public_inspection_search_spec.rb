@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Search::PublicInspection do
   context "#valid_search? with invalid conditions" do

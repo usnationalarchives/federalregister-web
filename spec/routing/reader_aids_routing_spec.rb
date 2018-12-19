@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe "RouteBuilder::ReaderAidUrls" do
   it "#public_inspection_learn_path returns the proper path" do

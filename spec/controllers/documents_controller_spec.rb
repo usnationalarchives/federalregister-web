@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe DocumentsController do
   context "GET short_document (/d/:document_number)" do

@@ -1,5 +1,5 @@
 # encoding: utf-8
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe "ListOfSubjectsTopicParser" do
   context "it returns a proper list of topics" do

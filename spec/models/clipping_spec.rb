@@ -1,4 +1,4 @@
-#require File.dirname(__FILE__) + '/../spec_helper'
+#require 'spec_helper'
 
 #describe Clipping do
   #it { should validate_presence_of(:document_number) }

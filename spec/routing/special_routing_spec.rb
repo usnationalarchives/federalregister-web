@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe "special routes" do
   it "/special/header/type routes to special#header" do

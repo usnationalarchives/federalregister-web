@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 # Create TestHarnessController to test UserDataPersistor in Isolation
 class TestHarnessController < ApplicationController

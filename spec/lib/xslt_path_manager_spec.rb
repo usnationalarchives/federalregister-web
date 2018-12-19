@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe XsltPathManager do
   let(:path_manager) { XsltPathManager.new('2015-01234', '2015-01-02') }
