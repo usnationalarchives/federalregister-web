@@ -19,7 +19,6 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
-  config.treat_symbols_as_metadata_keys_with_true_values = true
 
   config.mock_with :rspec
   config.use_transactional_fixtures = false
