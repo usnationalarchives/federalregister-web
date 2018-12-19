@@ -66,7 +66,9 @@ describe CommentsHelper do
       let(:options) { comment_input_field_options(field) }
 
       before(:each) do
-        client.stub(:get_option_elements) { [build(:comment_form_state_option)] }
+        allow(client).to receive(:get_option_elements).and_return(
+          [build(:comment_form_state_option)]
+        )
       end
 
       it "adds as: :select to the options" do
