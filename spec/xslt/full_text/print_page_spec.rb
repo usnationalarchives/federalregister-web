@@ -24,12 +24,11 @@ describe "XSLT::PrintPage" do
     XML
 
     expect(html).to have_tag("span.printed-page-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.printed-page.unprinted-element.document-markup",
-          with: {"data-text" => "Start Printed Page 1000"} do
+      with_tag "span.unprinted-element-border"
+      with_tag "span.printed-page.unprinted-element.document-markup",
+        with: {"data-text" => "Start Printed Page 1000"} do
 
-          with_text "Start Printed Page 1000"
-        end
+        with_text "Start Printed Page 1000"
       end
     end
   end

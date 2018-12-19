@@ -262,19 +262,17 @@ describe "XSLT::NonPrintedElements" do
     XML
 
     expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-text" => "Start Sub-Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
+        with: {"data-text" => "Start Sub-Part"}
     end
 
     expect(html).to match("Some text nodes and other content nodes")
 
     expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border" do
-        with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-          with: {"data-text" => "End Sub-Part"}
-      end
+      with_tag "span.unprinted-element-border"
+      with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
+        with: {"data-text" => "End Sub-Part"}
     end
   end
 
