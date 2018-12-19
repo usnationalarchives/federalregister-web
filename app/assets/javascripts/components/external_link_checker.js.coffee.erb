@@ -1,5 +1,5 @@
 class @FR2.ExternalLinkChecker
-  @WHITELISTED_DOMAINS = <%= raw Settings.external_modal_domain_whitelist %>
+  @WHITELISTED_DOMAINS = <%= Settings.external_modal_domain_whitelist %>
 
   constructor: (@event)->
     @el = $(@event.target)
