@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fr2_icons';
-  src:asset-url('fr2_icons/fr2_icons.eot', 'fonts');
-  src:asset-url('fr2_icons/fr2_icons.eot?#iefix', 'fonts') format('embedded-opentype'),
-                asset-url('fr2_icons/fr2_icons.woff2', 'fonts') format('woff2'),
-    asset-url('fr2_icons/fr2_icons.woff', 'fonts') format('woff'),
-    asset-url('fr2_icons/fr2_icons.ttf', 'fonts') format('truetype'),
-    asset-url('fr2_icons/fr2_icons.svg#fr2_icons', 'fonts') format('svg');
+  src:asset-url('fr2_icons/fr2_icons.eot');
+  src:asset-url('fr2_icons/fr2_icons.eot?#iefix') format('embedded-opentype'),
+                asset-url('fr2_icons/fr2_icons.woff2') format('woff2'),
+    asset-url('fr2_icons/fr2_icons.woff') format('woff'),
+    asset-url('fr2_icons/fr2_icons.ttf') format('truetype'),
+    asset-url('fr2_icons/fr2_icons.svg#fr2_icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
