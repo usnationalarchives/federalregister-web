@@ -34,10 +34,12 @@
 <% end %>
 
 <%= f.actions do %>
-  <%= f.action 'Search', button_html: {
-    id: 'conditions_submit',
-    class: 'fr_button primary large'
-  } %>
+  <%= f.action :submit, as: :button,
+    label: 'Search',
+    button_html: {
+      id: 'conditions_submit',
+      class: 'fr_button primary large'
+    } %>
 
   <li>
     <%= link_to "Clear Form", public_inspection_search_path({}),

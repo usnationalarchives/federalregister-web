@@ -28,7 +28,8 @@
                   <% end %>
 
                   <%= f.actions do %>
-                    <%= f.action 'Add to clipboard' %>
+                    <%= f.action :submit, as: :button,
+                      label: 'Add to clipboard' %>
                   <% end %>
                 <% end %>
               </li>

@@ -10,8 +10,7 @@
       </span>
     </h3>
 
-    <%= semantic_form_for @search,
-      as: :conditions,
+    <%= semantic_form_for :conditions,
       url: documents_search_path,
       html: {
         method: :get,

@@ -47,7 +47,7 @@
   <%= f.input :president,
     as: :check_boxes,
     collection: President.all.
-      map{|p| [p.name, p.identifier]},
+      map{|p| [p.full_name, p.identifier]},
     label: "President",
     required: false,
     wrapper_html: {class: "presidential_dependent"} %>
@@ -128,10 +128,12 @@
 <% end %>
 
 <%= f.actions do %>
-  <%= f.action 'Search', button_html: {
-    id: 'conditions_submit',
-    class: 'fr_button primary large'
-  } %>
+  <%= f.action :submit, as: :button,
+    label: 'Search',
+    button_html: {
+      id: 'conditions_submit',
+      class: 'fr_button primary large'
+    } %>
 
   <li>
     <%= link_to "Clear Form", documents_search_path({}),

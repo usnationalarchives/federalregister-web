@@ -1,10 +1,11 @@
 <%= f.inputs do %>
   <span class="icon-fr2 icon-fr2-folder"></span>
-  <%= f.input :name, :label => 'Folder Name', :required => false %>
+  <%= f.input :name, label: 'Folder Name', required: false %>
 <% end %>
 
 <%= f.actions do %>
-  <%= f.action 'Create Folder',
+  <%= f.action :submit, as: :button,
+    label: 'Create Folder',
     wrapper_html: {class: "fr_button medium primary"},
     button_html: {class: "browser_reset"} %>
 <% end %>

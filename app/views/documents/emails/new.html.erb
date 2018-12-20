@@ -47,7 +47,8 @@
     <% end %>
 
     <%= f.actions do %>
-      <%= f.action "Send",
+      <%= f.action :submit, as: :button,
+        label: "Send",
         wrapper_html: {class: "fr_button medium primary"},
         button_html: {class: "browser_reset"} %>
     <% end %>

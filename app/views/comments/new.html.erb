@@ -162,7 +162,8 @@
         :label => 'I read and understand the statement above.' %>
     <% end %>
     <%= f.actions do %>
-      <%= f.action "Submit Comment",
+      <%= f.action :submit, as: :button,
+        label: "Submit Comment",
         wrapper_html: {class: 'disabled'},
         button_html: {disabled: 'disabled'} %>
       <%= content_tag(

@@ -17,7 +17,8 @@
     method: :delete do |f| %>
 
     <%= f.actions do %>
-      <%= f.commit_button 'Yes, Delete',
+      <%= f.actions :submit, as: :button,
+        label: 'Yes, Delete',
         wrapper_html: {class: "fr_button medium danger delete-folder-modal-button"},
         button_html: {class: "browser_reset"} %>
     <% end %>
