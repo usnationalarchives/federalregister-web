@@ -82,7 +82,7 @@ class CommentsController < ApplicationController
     @comment = CommentDecorator.decorate(@comment)
 
     begin
-      CommentMailer.comment_copy(@comment.user, @comment).deliver if user_signed_in?
+      CommentMailer.comment_copy(@comment.user, @comment).deliver_now if user_signed_in?
     rescue => exception
       Rails.logger.error(exception)
       notify_honeybadger(exception)

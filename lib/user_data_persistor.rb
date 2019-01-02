@@ -66,7 +66,7 @@ module UserDataPersistor
         CommentMailer.comment_copy(
           User.new("id" => current_user.id, "email" => current_user.email),
           comment
-        ).deliver
+        ).deliver_now
       end
     end
 

@@ -15,7 +15,7 @@ namespace :email do
       emails.each_slice(1000) do |emails|
         puts "Delivering notification to: #{emails.inspect}"
 
-        notification.deliver!(emails)
+        notification.deliver_now(emails)
       end
     end
   end

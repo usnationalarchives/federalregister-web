@@ -34,7 +34,7 @@ class MailingList::PublicInspectionDocument < MailingList
           batch_subscriptions,
           message_body(subscriptions.count, presenters, batch_subscriptions, batch_emails),
           batch_emails
-        ).deliver
+        ).deliver_now
 
         update_delivery_status(batch_subscriptions, date, document_numbers)
         log_delivery(batch_subscriptions.count, results.size)

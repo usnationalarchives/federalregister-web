@@ -94,7 +94,7 @@ class SubscriptionsController < ApplicationController
     @subscription.unsubscribe!
 
     unless request.xhr?
-      SubscriptionMailer.unsubscribe_notice(@subscription).deliver
+      SubscriptionMailer.unsubscribe_notice(@subscription).deliver_now
     end
 
     respond_to do |format|

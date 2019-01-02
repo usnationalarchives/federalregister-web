@@ -85,7 +85,7 @@ class EntryEmail < ActiveRecord::Base
   end
 
   def deliver_email
-    DocumentMailer.email_a_friend(self).deliver
+    DocumentMailer.email_a_friend(self).deliver_now
   end
 
   # very basic sanity check...no whitespace in username, very lax host name

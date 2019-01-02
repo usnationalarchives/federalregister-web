@@ -297,7 +297,7 @@ feature "Subscriptions", :no_ci do
       user = create(:user, confirmed_at: 1.day.ago)
       subscription = create(:document_subscription, user: user)
 
-      subscription.mailing_list.deliver!(Date.parse('2014-01-01'))
+      subscription.mailing_list.deliver_now(Date.parse('2014-01-01'))
 
       # we use Sendgrid to deliver mailing lists
       # so we go about this differently for subscriptions

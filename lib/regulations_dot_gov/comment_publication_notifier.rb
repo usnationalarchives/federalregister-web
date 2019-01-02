@@ -7,7 +7,7 @@ class RegulationsDotGov::CommentPublicationNotifier
 
       if documents.size > 0
         comment.comment_document_number = documents.first.document_id
-        CommentMailer.comment_posting_notification(comment.user, comment).deliver
+        CommentMailer.comment_posting_notification(comment.user, comment).deliver_now
       end
 
       comment.save(:validate => false)
