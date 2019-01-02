@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'hoe', '~> 3.15', '>= 3.15.2' # TODO: needed for bundler to run in docker but we shouldn't have to specify it explicitely
 
-gem 'rails', '4.0.13'
+gem 'rails', '4.2.11'
 gem 'rake', '11.3.0'
 gem 'rack'
 
