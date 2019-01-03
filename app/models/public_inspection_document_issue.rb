@@ -1,7 +1,7 @@
 class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIssue::Daily
   def self.current
     timespan = Rails.env.development? ? 1.year.ago : 1.month.ago
-    
+
     search(
       conditions: {
         publication_date: {
@@ -31,7 +31,7 @@ class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIs
   end
 
   def self.available_for?(date)
-    available_on(date) && available_on(date).regular_filings.documents > 0
+    available_on(date)
   end
 
   def self.for_month(date)

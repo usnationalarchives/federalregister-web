@@ -69,28 +69,34 @@
             </span>
           </h1>
 
-          <%= render partial: 'issues/table_of_contents',
-            locals: {
-              type: "special-filing",
-              agencies: @special_filings_presenter.agencies,
-              document_partial: @special_filings_presenter.document_partial
-            } %>
+          <% if @special_filings_presenter.agencies.present? %>
+            <%= render partial: 'issues/table_of_contents',
+              locals: {
+                type: "special-filing",
+                agencies: @special_filings_presenter.agencies,
+                document_partial: @special_filings_presenter.document_partial
+              } %>
+          <% else %>
+            <p>No documents</p>
+          <% end %>
         </div>
       <% end %>
     </div>
 
     <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
-      <%= fr_details_box(
-        FrBox.build(
-          @special_filings_presenter.fr_details_box_type,
-          title: "Special Filing Agencies"
-        )
-      ) do %>
-        <%= render partial: 'issues/toc_agency_nav',
-          locals: {
-            type: 'special-filing',
-            agencies: @special_filings_presenter.agencies
-          } %>
+      <% if @special_filings_presenter.agencies.present? %>
+        <%= fr_details_box(
+          FrBox.build(
+            @special_filings_presenter.fr_details_box_type,
+            title: "Special Filing Agencies"
+          )
+        ) do %>
+          <%= render partial: 'issues/toc_agency_nav',
+            locals: {
+              type: 'special-filing',
+              agencies: @special_filings_presenter.agencies
+            } %>
+        <% end %>
       <% end %>
     </div>
 
@@ -119,28 +125,34 @@
             </span>
           </h1>
 
-          <%= render partial: 'issues/table_of_contents',
-            locals: {
-              type: "regular-filing",
-              agencies: @regular_filings_presenter.agencies,
-              document_partial: @regular_filings_presenter.document_partial
-            } %>
+          <% if @regular_filings_presenter.agencies.present? %>
+            <%= render partial: 'issues/table_of_contents',
+              locals: {
+                type: "regular-filing",
+                agencies: @regular_filings_presenter.agencies,
+                document_partial: @regular_filings_presenter.document_partial
+              } %>
+          <% else %>
+            <p>No documents</p>
+          <% end %>
         </div>
       <% end %>
     </div>
 
     <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
-      <%= fr_details_box(
-        FrBox.build(
-          @regular_filings_presenter.fr_details_box_type,
-          title: "Regular Filing Agencies"
-        )
-      ) do %>
-        <%= render partial: 'issues/toc_agency_nav',
-          locals: {
-            type: 'regular-filing',
-            agencies: @regular_filings_presenter.agencies
-          } %>
+      <% if @regular_filings_presenter.agencies.present? %>
+        <%= fr_details_box(
+          FrBox.build(
+            @regular_filings_presenter.fr_details_box_type,
+            title: "Regular Filing Agencies"
+          )
+        ) do %>
+          <%= render partial: 'issues/toc_agency_nav',
+            locals: {
+              type: 'regular-filing',
+              agencies: @regular_filings_presenter.agencies
+            } %>
+        <% end %>
       <% end %>
     </div>
   </div>
