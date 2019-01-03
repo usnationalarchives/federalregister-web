@@ -36,6 +36,7 @@ class SessionsController < ApplicationController
       reset_session
       cookies["expect_signed_in"] = "0"
       cookies.delete :user_data
+      render nothing: true
     else
       redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
