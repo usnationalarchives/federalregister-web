@@ -55,16 +55,22 @@ module Hyperlinker::Url
         if final_fragment.present?
           final_fragment.sub!(/#{Regexp.escape(trailing_punctuation)}\z/, '')
 
-          content_tag(:a, add_line_break_indicators(initial_href), link_attributes.merge('href' => href)) +
+          content_tag(:a,
+            add_line_break_indicators(initial_href),
+            link_attributes.merge('href' => href).sort.to_h
+          ) +
             page_break.html_safe +
             content_tag(:a,
               add_line_break_indicators(final_fragment),
-              link_attributes.merge('href' => href)
+              link_attributes.merge('href' => href).sort.to_h
             ) +
             add_line_break_indicators(trailing_punctuation)
         else
-          content_tag(:a, add_line_break_indicators(initial_href), link_attributes.merge('href' => href)) +
-            add_line_break_indicators(trailing_punctuation)
+          content_tag(:a,
+            add_line_break_indicators(initial_href),
+            link_attributes.merge('href' => href).sort.to_h
+          ) +
+          add_line_break_indicators(trailing_punctuation)
         end
       end
     end

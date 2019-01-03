@@ -53,7 +53,10 @@ module Hyperlinker::Citation
     Hyperlinker.replace_text(text, /(?:\bE\.\s*O\.|\bE\s*O\b|\bExecutive Order\b)(?:\s+No\.?)?\s+([0-9,]+)/i) do |match|
       eo_number = match[1].gsub(/,/,'').to_i
       if eo_number >= 12890
-        content_tag :a, match.to_s, :href => executive_order_path(eo_number), :class => "eo"
+        content_tag(:a, match.to_s,
+          class: "eo",
+          href: executive_order_path(eo_number),
+        )
       else
         match.to_s
       end
@@ -63,10 +66,11 @@ module Hyperlinker::Citation
   def self.add_usc_links(text)
     Hyperlinker.replace_text(text, /(\d+)\s+U\.?S\.?C\.?\s+(\d+)/) do |match|
       title, part = match.captures
-      content_tag :a, match.to_s,
-          :href => usc_url(title, part),
-          :class => "usc external",
-          :target => "_blank"
+      content_tag(:a, match.to_s,
+        class: "usc external",
+        href: usc_url(title, part),
+        target: "_blank",
+      )
     end
   end
 
@@ -75,14 +79,17 @@ module Hyperlinker::Citation
     Hyperlinker.replace_text(text, /(\d+)\s+(?:CFR|C\.F\.R\.)\s+(?:[Pp]arts?|[Ss]ections?|[Ss]ec\.|&#xA7;|&#xA7;\s*&#xA7;)?\s*(\d+)(?:\.(\d+))?/) do |match|
       title, part, section = match.captures
 
-      content_tag(:a, match.to_s.html_safe, :href => select_cfr_citation_path(date,title,part,section), :class => "cfr external")
+      content_tag(:a, match.to_s.html_safe,
+        class: "cfr external",
+        href: select_cfr_citation_path(date,title,part,section),
+      )
     end
   end
 
   def self.add_federal_register_links(text)
     Hyperlinker.replace_text(text, /(\d+)\s+FR\s+(\d+)/) do |match|
       volume, page = match.captures
-      content_tag(:a, match.to_s, :href => citation_path(volume,page))
+      content_tag(:a, match.to_s, href: citation_path(volume,page))
     end
   end
 
@@ -90,13 +97,15 @@ module Hyperlinker::Citation
     Hyperlinker.replace_text(text, /(FR Doc\.? )([A-Z0-9]+-[0-9]+)([,;\. ])/) do |match|
       pre, doc_number, post = match.captures
 
-      "#{pre}#{content_tag(:a, doc_number, :href => "/a/#{doc_number}")}#{post}"
+      "#{pre}#{content_tag(:a, doc_number, href: "/a/#{doc_number}")}#{post}"
     end
   end
 
   def self.add_regulatory_plan_links(text)
     Hyperlinker.replace_text(text, /\b(\d{4}\s*-\s*[A-Z]{2}\d{2})\b/) do |match|
-      content_tag :a, match.to_s, :href => short_regulatory_plan_path(:regulation_id_number => match[1])
+      content_tag(:a, match.to_s,
+        href: short_regulatory_plan_path(:regulation_id_number => match[1])
+      )
     end
   end
 
@@ -105,7 +114,11 @@ module Hyperlinker::Citation
       congress, law = match.captures
 
       if congress.to_i >= 104
-        content_tag :a, match.to_s, :href => public_law_url(congress,law), :class => "publ external", :target => "_blank"
+        content_tag(:a, match.to_s,
+          class: "publ external",
+          href: public_law_url(congress,law),
+          target: "_blank",
+        )
       else
         match.to_s
       end
@@ -115,7 +128,11 @@ module Hyperlinker::Citation
   def self.add_patent_links(text)
     Hyperlinker.replace_text(text, /Patent Number ([0-9,]+)/) do |match|
       number = match[1]
-      content_tag :a, match.to_s, :href => patent_url(number), :class => "patent external", :target => "_blank"
+      content_tag(:a, match.to_s,
+        class: "patent external",
+        href: patent_url(number),
+        target: "_blank",
+      )
     end
   end
 end
