@@ -37,8 +37,8 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(
-        OpenStruct.new(parsed_response: {})
+      allow(RegulationsDotGov::Client).to receive(:get).and_return(
+        double(parsed_response: {})
       )
 
       expect(RegulationsDotGov::Client).to receive(:get).
@@ -58,8 +58,8 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(
-        OpenStruct.new(parsed_response: {documents: []})
+      allow(RegulationsDotGov::Client).to receive(:get).and_return(
+        double(parsed_response: {documents: []})
       )
 
       expect(RegulationsDotGov::Client).to receive(:get).
@@ -78,8 +78,9 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(
-        OpenStruct.new(parsed_response: {totalNumRecords: 1})
+
+      allow(RegulationsDotGov::Client).to receive(:get).and_return(
+        double(parsed_response: {totalNumRecords: 1})
       )
 
       expect(RegulationsDotGov::Client).to receive(:get).
@@ -99,8 +100,8 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with the proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(
-        OpenStruct.new(parsed_response: {})
+      allow(RegulationsDotGov::Client).to receive(:get).and_return(
+        double(parsed_response: {})
       )
 
       expect(RegulationsDotGov::Client).to receive(:get).
@@ -128,8 +129,8 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
 
     it 'performs a get request with proper arguments' do
-      RegulationsDotGov::Client.stub(:get).and_return(
-        OpenStruct.new(parsed_response: {})
+      allow(RegulationsDotGov::Client).to receive(:get).and_return(
+        double(parsed_response: {})
       )
 
       expect(RegulationsDotGov::Client).to receive(:get).
@@ -139,7 +140,7 @@ describe RegulationsDotGov::Client, :reg_gov do
     end
   end
 
-  describe "#get_option_elements" do
+  describe "#get_option_elements", :vcr do
     let(:field_name) { 'country' }
     it "returns an array of option elements for select and combo fields" do
       options = client.get_option_elements(field_name)

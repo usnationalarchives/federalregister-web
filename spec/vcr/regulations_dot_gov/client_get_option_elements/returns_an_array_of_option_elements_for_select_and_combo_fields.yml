@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.data.gov/regulations/v3/lookup.json?field=country&api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/json; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - openresty
+      date:
+      - Thu, 03 Jan 2019 00:50:07 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '13713'
+      connection:
+      - close
+      vary:
+      - Accept-Encoding
+      x-ratelimit-limit:
+      - '42'
+      x-ratelimit-remaining:
+      - '41'
+      strict-transport-security:
+      - max-age=31536000;  includeSubDomains; preload
+      - max-age=31536000; preload
+      age:
+      - '0'
+      via:
+      - https/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])
+      x-cache:
+      - MISS
+      access-control-allow-origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"list":[{"default":true,"label":"United States","value":"United States"},{"default":false,"label":"United
+        Kingdom","value":"United Kingdom"},{"default":false,"label":"Canada","value":"Canada"},{"default":false,"label":"Australia","value":"Australia"},{"default":false,"label":"----------","value":"XX"},{"default":false,"label":"Afghanistan","value":"Afghanistan"},{"default":false,"label":"Albania","value":"Albania"},{"default":false,"label":"Algeria","value":"Algeria"},{"default":false,"label":"American
+        Samoa","value":"American Samoa"},{"default":false,"label":"Andorra","value":"Andorra"},{"default":false,"label":"Angola","value":"Angola"},{"default":false,"label":"Anguilla","value":"Anguilla"},{"default":false,"label":"Antarctica","value":"Antarctica"},{"default":false,"label":"Antigua
+        and Barbuda","value":"Antigua and Barbuda"},{"default":false,"label":"Argentina","value":"Argentina"},{"default":false,"label":"Armenia","value":"Armenia"},{"default":false,"label":"Aruba","value":"Aruba"},{"default":false,"label":"Austria","value":"Austria"},{"default":false,"label":"Azerbaijan","value":"Azerbaijan"},{"default":false,"label":"Bahamas","value":"Bahamas"},{"default":false,"label":"Bahrain","value":"Bahrain"},{"default":false,"label":"Bangladesh","value":"Bangladesh"},{"default":false,"label":"Barbados","value":"Barbados"},{"default":false,"label":"Belarus","value":"Belarus"},{"default":false,"label":"Belgium","value":"Belgium"},{"default":false,"label":"Belize","value":"Belize"},{"default":false,"label":"Benin","value":"Benin"},{"default":false,"label":"Bermuda","value":"Bermuda"},{"default":false,"label":"Bhutan","value":"Bhutan"},{"default":false,"label":"Bolivia","value":"Bolivia"},{"default":false,"label":"Bosnia
+        and Herzegovina","value":"Bosnia and Herzegovina"},{"default":false,"label":"Botswana","value":"Botswana"},{"default":false,"label":"Brazil","value":"Brazil"},{"default":false,"label":"British
+        Indian Ocean","value":"British Indian Ocean"},{"default":false,"label":"Brunei","value":"Brunei"},{"default":false,"label":"Bulgaria","value":"Bulgaria"},{"default":false,"label":"Burkina
+        Faso","value":"Burkina Faso"},{"default":false,"label":"Burma (Myanmar)","value":"Burma
+        (Myanmar)"},{"default":false,"label":"Burundi","value":"Burundi"},{"default":false,"label":"Cambodia","value":"Cambodia"},{"default":false,"label":"Cameroon","value":"Cameroon"},{"default":false,"label":"Cape
+        Verde","value":"Cape Verde"},{"default":false,"label":"Cayman Islands","value":"Cayman
+        Islands"},{"default":false,"label":"Central African Republic","value":"Central
+        African Republic"},{"default":false,"label":"Chad","value":"Chad"},{"default":false,"label":"Chile","value":"Chile"},{"default":false,"label":"China","value":"China"},{"default":false,"label":"Christmas
+        Island","value":"Christmas Island"},{"default":false,"label":"Cocos (Keeling)
+        Islands","value":"Cocos (Keeling) Islands"},{"default":false,"label":"Colombia","value":"Colombia"},{"default":false,"label":"Comoros","value":"Comoros"},{"default":false,"label":"Congo,
+        Democratic Republic of the","value":"Congo, Democratic Republic of the"},{"default":false,"label":"Congo,
+        Republic of the","value":"Congo, Republic of the"},{"default":false,"label":"Cook
+        Islands","value":"Cook Islands"},{"default":false,"label":"Costa Rica","value":"Costa
+        Rica"},{"default":false,"label":"Croatia","value":"Croatia"},{"default":false,"label":"Cuba","value":"Cuba"},{"default":false,"label":"Cyprus","value":"Cyprus"},{"default":false,"label":"Czech
+        Republic","value":"Czech Republic"},{"default":false,"label":"Denmark","value":"Denmark"},{"default":false,"label":"Djibouti","value":"Djibouti"},{"default":false,"label":"Dominica","value":"Dominica"},{"default":false,"label":"Dominican
+        Republic","value":"Dominican Republic"},{"default":false,"label":"East Timor","value":"East
+        Timor"},{"default":false,"label":"Ecuador","value":"Ecuador"},{"default":false,"label":"Egypt","value":"Egypt"},{"default":false,"label":"El
+        Salvador","value":"El Salvador"},{"default":false,"label":"Equatorial Guinea","value":"Equatorial
+        Guinea"},{"default":false,"label":"Eritrea","value":"Eritrea"},{"default":false,"label":"Estonia","value":"Estonia"},{"default":false,"label":"Ethiopia","value":"Ethiopia"},{"default":false,"label":"Falkland
+        Islands (Malvinas)","value":"Falkland Islands (Malvinas)"},{"default":false,"label":"Faroe
+        Islands","value":"Faroe Islands"},{"default":false,"label":"Fiji","value":"Fiji"},{"default":false,"label":"Finland","value":"Finland"},{"default":false,"label":"France","value":"France"},{"default":false,"label":"French
+        Guiana","value":"French Guiana"},{"default":false,"label":"French Polynesia","value":"French
+        Polynesia"},{"default":false,"label":"Gabon","value":"Gabon"},{"default":false,"label":"Gambia","value":"Gambia"},{"default":false,"label":"Georgia","value":"Georgia"},{"default":false,"label":"Germany","value":"Germany"},{"default":false,"label":"Ghana","value":"Ghana"},{"default":false,"label":"Gibraltar","value":"Gibraltar"},{"default":false,"label":"Greece","value":"Greece"},{"default":false,"label":"Greenland","value":"Greenland"},{"default":false,"label":"Grenada","value":"Grenada"},{"default":false,"label":"Guadeloupe","value":"Guadeloupe"},{"default":false,"label":"Guam","value":"Guam"},{"default":false,"label":"Guatemala","value":"Guatemala"},{"default":false,"label":"Guinea","value":"Guinea"},{"default":false,"label":"Guinea-Bissau","value":"Guinea-Bissau"},{"default":false,"label":"Guyana","value":"Guyana"},{"default":false,"label":"Haiti","value":"Haiti"},{"default":false,"label":"Honduras","value":"Honduras"},{"default":false,"label":"Hong
+        Kong","value":"Hong Kong"},{"default":false,"label":"Hungary","value":"Hungary"},{"default":false,"label":"Iceland","value":"Iceland"},{"default":false,"label":"India","value":"India"},{"default":false,"label":"Indonesia","value":"Indonesia"},{"default":false,"label":"Iraq","value":"Iraq"},{"default":false,"label":"Ireland","value":"Ireland"},{"default":false,"label":"Israel","value":"Israel"},{"default":false,"label":"Italy","value":"Italy"},{"default":false,"label":"Ivory
+        Coast","value":"Ivory Coast"},{"default":false,"label":"Jamaica","value":"Jamaica"},{"default":false,"label":"Japan","value":"Japan"},{"default":false,"label":"Jordan","value":"Jordan"},{"default":false,"label":"Kazakhstan","value":"Kazakhstan"},{"default":false,"label":"Kenya","value":"Kenya"},{"default":false,"label":"Kiribati","value":"Kiribati"},{"default":false,"label":"Korea,
+        South","value":"Korea, South"},{"default":false,"label":"Kuwait","value":"Kuwait"},{"default":false,"label":"Kyrgyzstan","value":"Kyrgyzstan"},{"default":false,"label":"Laos","value":"Laos"},{"default":false,"label":"Latvia","value":"Latvia"},{"default":false,"label":"Lebanon","value":"Lebanon"},{"default":false,"label":"Lesotho","value":"Lesotho"},{"default":false,"label":"Liberia","value":"Liberia"},{"default":false,"label":"Liechtenstein","value":"Liechtenstein"},{"default":false,"label":"Lithuania","value":"Lithuania"},{"default":false,"label":"Luxembourg","value":"Luxembourg"},{"default":false,"label":"Macau","value":"Macau"},{"default":false,"label":"Macedonia,
+        Republic of","value":"Macedonia, Republic of"},{"default":false,"label":"Madagascar","value":"Madagascar"},{"default":false,"label":"Malawi","value":"Malawi"},{"default":false,"label":"Malaysia","value":"Malaysia"},{"default":false,"label":"Maldives","value":"Maldives"},{"default":false,"label":"Mali","value":"Mali"},{"default":false,"label":"Malta","value":"Malta"},{"default":false,"label":"Marshall
+        Islands","value":"Marshall Islands"},{"default":false,"label":"Martinique","value":"Martinique"},{"default":false,"label":"Mauritania","value":"Mauritania"},{"default":false,"label":"Mauritius","value":"Mauritius"},{"default":false,"label":"Mayotte","value":"Mayotte"},{"default":false,"label":"Mexico","value":"Mexico"},{"default":false,"label":"Micronesia","value":"Micronesia"},{"default":false,"label":"Moldova","value":"Moldova"},{"default":false,"label":"Mongolia","value":"Mongolia"},{"default":false,"label":"Montserrat","value":"Montserrat"},{"default":false,"label":"Morocco","value":"Morocco"},{"default":false,"label":"Mozambique","value":"Mozambique"},{"default":false,"label":"Namibia","value":"Namibia"},{"default":false,"label":"Nauru","value":"Nauru"},{"default":false,"label":"Nepal","value":"Nepal"},{"default":false,"label":"Netherlands","value":"Netherlands"},{"default":false,"label":"Netherlands
+        Antilles","value":"Netherlands Antilles"},{"default":false,"label":"New Caledonia","value":"New
+        Caledonia"},{"default":false,"label":"New Zealand","value":"New Zealand"},{"default":false,"label":"Nicaragua","value":"Nicaragua"},{"default":false,"label":"Niger","value":"Niger"},{"default":false,"label":"Nigeria","value":"Nigeria"},{"default":false,"label":"Niue","value":"Niue"},{"default":false,"label":"Norfolk
+        Island","value":"Norfolk Island"},{"default":false,"label":"Northern Mariana
+        Islands","value":"Northern Mariana Islands"},{"default":false,"label":"Norway","value":"Norway"},{"default":false,"label":"Oman","value":"Oman"},{"default":false,"label":"Pakistan","value":"Pakistan"},{"default":false,"label":"Palau","value":"Palau"},{"default":false,"label":"Palestinian
+        Territory","value":"Palestinian Territory"},{"default":false,"label":"Panama","value":"Panama"},{"default":false,"label":"Papua
+        New Guinea","value":"Papua New Guinea"},{"default":false,"label":"Paraguay","value":"Paraguay"},{"default":false,"label":"Peru","value":"Peru"},{"default":false,"label":"Philippines","value":"Philippines"},{"default":false,"label":"Pitcairn
+        Island","value":"Pitcairn Island"},{"default":false,"label":"Poland","value":"Poland"},{"default":false,"label":"Portugal","value":"Portugal"},{"default":false,"label":"Puerto
+        Rico","value":"Puerto Rico"},{"default":false,"label":"Qatar","value":"Qatar"},{"default":false,"label":"Romania","value":"Romania"},{"default":false,"label":"Russia","value":"Russia"},{"default":false,"label":"Rwanda","value":"Rwanda"},{"default":false,"label":"Saint
+        Helena","value":"Saint Helena"},{"default":false,"label":"Saint Kitts and
+        Nevis","value":"Saint Kitts and Nevis"},{"default":false,"label":"Saint Lucia","value":"Saint
+        Lucia"},{"default":false,"label":"Saint Pierre and Miquelon","value":"Saint
+        Pierre and Miquelon"},{"default":false,"label":"Saint Vincent and the Grenadines","value":"Saint
+        Vincent and the Grenadines"},{"default":false,"label":"Samoa","value":"Samoa"},{"default":false,"label":"San
+        Marino","value":"San Marino"},{"default":false,"label":"Saudi Arabia","value":"Saudi
+        Arabia"},{"default":false,"label":"Senegal","value":"Senegal"},{"default":false,"label":"Serbia
+        and Montenegro","value":"Serbia and Montenegro"},{"default":false,"label":"Seychelles","value":"Seychelles"},{"default":false,"label":"Sierra
+        Leone","value":"Sierra Leone"},{"default":false,"label":"Singapore","value":"Singapore"},{"default":false,"label":"Slovakia","value":"Slovakia"},{"default":false,"label":"Slovenia","value":"Slovenia"},{"default":false,"label":"Solomon
+        Islands","value":"Solomon Islands"},{"default":false,"label":"Somalia","value":"Somalia"},{"default":false,"label":"South
+        Africa","value":"South Africa"},{"default":false,"label":"South Georgia and
+        the South Sandwich Islands","value":"South Georgia and the South Sandwich
+        Islands"},{"default":false,"label":"Spain","value":"Spain"},{"default":false,"label":"Sri
+        Lanka","value":"Sri Lanka"},{"default":false,"label":"Suriname","value":"Suriname"},{"default":false,"label":"Svalbard
+        and Jan Mayen","value":"Svalbard and Jan Mayen"},{"default":false,"label":"Swaziland","value":"Swaziland"},{"default":false,"label":"Sweden","value":"Sweden"},{"default":false,"label":"Switzerland","value":"Switzerland"},{"default":false,"label":"Taiwan","value":"Taiwan"},{"default":false,"label":"Tajikistan","value":"Tajikistan"},{"default":false,"label":"Tanzania","value":"Tanzania"},{"default":false,"label":"Thailand","value":"Thailand"},{"default":false,"label":"Togo","value":"Togo"},{"default":false,"label":"Tokelau","value":"Tokelau"},{"default":false,"label":"Tonga","value":"Tonga"},{"default":false,"label":"Trinidad
+        and Tobago","value":"Trinidad and Tobago"},{"default":false,"label":"Tunisia","value":"Tunisia"},{"default":false,"label":"Turkey","value":"Turkey"},{"default":false,"label":"Turkmenistan","value":"Turkmenistan"},{"default":false,"label":"Turks
+        and Caicos Islands","value":"Turks and Caicos Islands"},{"default":false,"label":"Tuvalu","value":"Tuvalu"},{"default":false,"label":"Uganda","value":"Uganda"},{"default":false,"label":"Ukraine","value":"Ukraine"},{"default":false,"label":"United
+        Arab Emirates","value":"United Arab Emirates"},{"default":false,"label":"United
+        States Minor Outlying Islands","value":"United States Minor Outlying Islands"},{"default":false,"label":"Uruguay","value":"Uruguay"},{"default":false,"label":"Uzbekistan","value":"Uzbekistan"},{"default":false,"label":"Vanuatu","value":"Vanuatu"},{"default":false,"label":"Vatican","value":"Vatican"},{"default":false,"label":"Venezuela","value":"Venezuela"},{"default":false,"label":"Vietnam","value":"Vietnam"},{"default":false,"label":"Virgin
+        Islands, British","value":"Virgin Islands, British"},{"default":false,"label":"Virgin
+        Islands, U. S.","value":"Virgin Islands, U. S."},{"default":false,"label":"Wallis
+        and Futuna","value":"Wallis and Futuna"},{"default":false,"label":"Western
+        Sahara","value":"Western Sahara"},{"default":false,"label":"Yemen","value":"Yemen"},{"default":false,"label":"Zambia","value":"Zambia"},{"default":false,"label":"Zimbabwe        ","value":"Zimbabwe"}]}'
+    http_version: '1.1'
+  recorded_at: Thu, 03 Jan 2019 00:50:07 GMT
+recorded_with: VCR 2.6.0

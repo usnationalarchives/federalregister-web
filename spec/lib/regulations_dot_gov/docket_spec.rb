@@ -60,8 +60,6 @@ describe RegulationsDotGov::Docket, :reg_gov do
     }
 
     it "is called with the proper arguments" do
-      client.stub(:find_documents)
-
       expect(client).to receive(:find_documents).
         with(dktid: docket_id, dct: "SR", so: "DESC", sb: "docId")
 
@@ -77,8 +75,6 @@ describe RegulationsDotGov::Docket, :reg_gov do
 
     describe "#supporting_documents" do
       it "is called with the proper arguments" do
-        client.stub(:find_documents)
-
         expect(client).to receive(:find_documents).
           with(dktid: docket_id, dct: "SR", so: "DESC", sb: "docId")
 
@@ -88,8 +84,6 @@ describe RegulationsDotGov::Docket, :reg_gov do
 
     describe "#supporting_documents_count" do
       it "is called with the proper arguments" do
-        client.stub(:count_documents)
-
         expect(client).to receive(:count_documents).
           with(dktid: docket_id, dct: "SR")
 
@@ -99,8 +93,6 @@ describe RegulationsDotGov::Docket, :reg_gov do
 
     describe "#comments_count" do
       it "is called with the proper arguments" do
-        client.stub(:count_documents)
-
         expect(client).to receive(:count_documents).
           with(dktid: docket_id, dct: "PS")
 
