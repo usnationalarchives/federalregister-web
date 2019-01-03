@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe SessionsController do
+describe UserDataPersistor do
   # create our own abtract controller with action for testing
-  controller do
+  controller(ApplicationController) do
+    include UserDataPersistor
     def new
       persist_user_data
     end
