@@ -3,7 +3,7 @@ class IssueProcessor
   attr_reader :date
 
   def self.perform(date)
-    ActiveRecord::Base.verify_active_connections!
+    ActiveRecord::Base.clear_active_connections!
     
     new(date).perform
   end

@@ -2,7 +2,7 @@ class IssueReprocessor < IssueProcessor
   @queue = :issue_reprocessor
 
   def perform
-    ActiveRecord::Base.verify_active_connections!
+    ActiveRecord::Base.clear_active_connections!
     
     compile_all_html
     expire_cache

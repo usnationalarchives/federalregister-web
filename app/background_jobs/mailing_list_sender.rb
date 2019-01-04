@@ -17,7 +17,7 @@ class MailingListSender
   end
 
   def perform
-    ActiveRecord::Base.verify_active_connections!
+    ActiveRecord::Base.clear_active_connections!
 
     begin
       if options["document_numbers"]

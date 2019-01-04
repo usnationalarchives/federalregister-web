@@ -3,7 +3,7 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
   attr_reader :date, :document_numbers
 
   def self.perform(document_numbers)
-    ActiveRecord::Base.verify_active_connections!
+    ActiveRecord::Base.clear_active_connections!
 
     new(document_numbers).enqueue_subscriptions
   end
