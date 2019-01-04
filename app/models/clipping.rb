@@ -3,7 +3,7 @@ class Clipping < ActiveRecord::Base
 
   validates_presence_of :document_number
 
-  def self.with_preloaded_articles
+  def self.with_preloaded_documents
     clippings = all
 
     document_numbers = clippings.map{|c| c.document_number}

@@ -26,12 +26,12 @@
     #end
   #end
 
-  #describe '.with_preloaded_articles' do
+  #describe '.with_preloaded_documents' do
     #it 'fetches multiple articles at once' do
       #clipping_1 = FactoryGirl.create(:clipping)
       #clipping_2 = FactoryGirl.create(:clipping)
       #FederalRegister::Document.should_receive(:find_all).with([clipping_1.document_number, clipping_2.document_number]).and_return([])
-      #clippings = Clipping.with_preloaded_articles
+      #clippings = Clipping.with_preloaded_documents
       #clippings.should have(2).items
     #end
 
@@ -39,7 +39,7 @@
       #clipping_1 = FactoryGirl.create(:clipping, :document_number => "XXXX-1200")
       #clipping_2 = FactoryGirl.create(:clipping, :document_number => "2011-1234")
       #FederalRegister::Document.should_receive(:find_all).with([clipping_1.document_number]).and_return([])
-      #clippings = Clipping.where("document_number like 'XXXX-%'").with_preloaded_articles
+      #clippings = Clipping.where("document_number like 'XXXX-%'").with_preloaded_documents
       #clippings.should have(1).item
     #end
   #end

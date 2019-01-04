@@ -7,7 +7,7 @@ class ClippingsController < ApplicationController
         scoped(
           :conditions => {:folder_id => nil, :user_id => current_user.id}
         ).
-        with_preloaded_articles
+        with_preloaded_documents
 
       #ensure not nil
       clipboard_clippings = clipboard_clippings ? clipboard_clippings : []

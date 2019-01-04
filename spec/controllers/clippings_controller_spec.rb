@@ -3,7 +3,7 @@
 #describe ClippingsController do
   ## describe '#index' do
   ##   it "preloads article data" do
-  ##     Clipping.should_receive(:with_preloaded_articles).once
+  ##     Clipping.should_receive(:with_preloaded_documents).once
   ##     get :index
   ##   end
   ## end
