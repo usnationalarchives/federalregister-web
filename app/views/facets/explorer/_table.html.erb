@@ -20,7 +20,7 @@
           <%= link_to_unless item.document_count == 0,
               item.document_count,
               documents_search_path(
-                params: item.document_count_search_conditions,
+                params: item.document_count_search_conditions.to_h,
                 utm_source: utm_source,
                 utm_medium: utm_medium,
                 utm_content: "#{utm_content_type}_with_documents_last_7"
@@ -30,7 +30,7 @@
           <%= link_to_unless  item.comment_count == 0,
               item.comment_count,
               documents_search_path(
-                params: item.comment_count_search_conditions,
+                params: item.comment_count_search_conditions.to_h,
                 utm_source: utm_source,
                 utm_medium: utm_medium,
                 utm_content: "#{utm_content_type}_with_comments_closing_soon"
