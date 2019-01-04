@@ -169,12 +169,8 @@ group :development, :test do
 
   gem "vcr",     "~> 2.6.0"
   gem 'watchr', '0.7'
+end
 
-  install_if -> { RUBY_PLATFORM =~ /darwin/ } do
-    # gem needed for guard on OSX
-    gem 'rb-fsevent', require: false
-
-    # OSX notifications
-    gem 'terminal-notifier-guard', require: false
-  end
+group :development do
+  gem 'web-console', '~> 2.0'
 end
