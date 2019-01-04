@@ -250,7 +250,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mysql2 (0.3.21)
+    mysql2 (0.5.2)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -514,7 +514,7 @@ DEPENDENCIES
   mail_view!
   memoist
   multi_json
-  mysql2 (= 0.3.21)
+  mysql2 (= 0.5.2)
   nokogiri (~> 1.6.6)
   omniauth-openid-connect!
   passenger (= 5.3.6)
