@@ -4,7 +4,7 @@ class MailingList::Document < MailingList
     ::Document
   end
 
-  def deliver!(date, subscriptions, confirmed_emails_by_user_id, options={})
+  def deliver_now(date, subscriptions, confirmed_emails_by_user_id, options={})
     subscriptions = options["force_delivery"] ? subscriptions : subscriptions.not_delivered_on(date)
 
     if subscriptions.present? && has_results?(date)
