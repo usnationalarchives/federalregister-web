@@ -81,7 +81,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   private
 
   def load_presenter
-    @presenter ||= SearchPresenter::PublicInspection.new(params)
+    @presenter ||= SearchPresenter::PublicInspection.new(params.permit!.to_h)
     @search = @presenter.search
   end
 end

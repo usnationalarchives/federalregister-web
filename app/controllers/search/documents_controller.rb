@@ -90,7 +90,7 @@ class Search::DocumentsController < ApplicationController
   private
 
   def load_presenter
-    @presenter = SearchPresenter::Document.new(params)
+    @presenter = SearchPresenter::Document.new(params.permit!.to_h)
     @search = @presenter.search
   end
 end

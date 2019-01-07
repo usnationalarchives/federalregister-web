@@ -35,27 +35,27 @@
               <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
                 <div class="facets">
                   <%= esi( documents_search_facets_path(
-                      params.except(:action).merge(facet: 'publication_date')
+                      @presenter.params.merge(facet: 'publication_date')
                     )
                   ) unless @search.publication_date.present? %>
 
                   <%= esi( documents_search_facets_path(
-                      params.except(:action).merge(facet: 'type')
+                      @presenter.params.merge(facet: 'type')
                     )
                   ) unless @search.type.present? %>
 
                   <%= esi( documents_search_facets_path(
-                      params.except(:action).merge(facet: 'agency', num_facets: 6, limit: 12)
+                      @presenter.params.merge(facet: 'agency', num_facets: 6, limit: 12)
                     )
                   ) unless @search.agencies.present? %>
 
                   <%= esi( documents_search_facets_path(
-                      params.except(:action).merge(facet: 'topic', num_facets: 6)
+                      @presenter.params.merge(facet: 'topic', num_facets: 6)
                     )
                   ) unless @search.topics.present? %>
 
                   <%= esi( documents_search_facets_path(
-                      params.except(:action).merge(facet: 'section', num_facets: 6)
+                      @presenter.params.merge(facet: 'section', num_facets: 6)
                     )
                   ) unless @search.sections.present? || @search.section_ids.present? %>
                 </div>
@@ -64,11 +64,12 @@
 
             <% col_span = @search.results.present? ? 9 : 12 %>
             <div class="<%= bootstrap_col(xs: col_span, md: col_span) %>">
-              <% if (params[:page].blank? || params[:page] == '1') && params[:order].blank? %>
-                <%= esi documents_search_suggestions_path(params.except(:action))%>
+              <% if (@presenter.params[:page].blank? || @presenter.params[:page] == '1') &&
+                @presenter.params[:order].blank? %>
+                <%= esi documents_search_suggestions_path(@presenter.params)%>
               <% end %>
 
-              <%= esi(documents_search_results_path(params)) %>
+              <%= esi(documents_search_results_path(@presenter.params)) %>
             </div>
           </div>
         <% else %>

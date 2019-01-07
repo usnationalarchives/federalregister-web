@@ -1,7 +1,7 @@
 class SearchPresenter::Base
   attr_accessor :params
   def initialize(params)
-    @params = params
+    @params = params.symbolize_keys.except(:controller, :action)
   end
 
   def supported_orders
