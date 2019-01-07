@@ -27,6 +27,7 @@
               description: @presenter.description
             )
           ) do %>
+            <% if @presenter.agency_representations.present? %>
               <% @presenter.agency_representations_by_first_letter.each do
                 |letter, agencies| %>
                 <%= render partial: "agency_by_letter", locals: {
@@ -34,6 +35,9 @@
                   letter: letter,
                   year: @presenter.year
                 } %>
+              <% end %>
+            <% else %>
+              No FR Index data available.
             <% end %>
           <% end %>
         </div>

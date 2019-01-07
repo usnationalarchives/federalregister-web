@@ -33,22 +33,24 @@
       </p>
     <% end %>
 
-    <%# TODO: implement this - BB %>
-    <%# <p> %>
-      <%#= link_to '' do %>
-        <%# B.B. TODO: Bob to review implementation possibilities. %>
-        <%#<span class="icon-fr2 icon-fr2-doc-pdf"></span>
-        Stubbed: Download Approved December 2014 Index (PDF) %>
-      <%# end %>
-    <%# </p> %>
+    <% if presenter.agency_representations.present? %>
+      <%# TODO: implement this - BB %>
+      <%# <p> %>
+        <%#= link_to '' do %>
+          <%# B.B. TODO: Bob to review implementation possibilities. %>
+          <%#<span class="icon-fr2 icon-fr2-doc-pdf"></span>
+          Stubbed: Download Approved December 2014 Index (PDF) %>
+        <%# end %>
+      <%# </p> %>
 
-    <hr>
+      <hr>
 
-    <p>
-      Jump to Agencies:
-      <%= presenter.agency_representations_by_first_letter.keys.map{
-        |letter| (link_to(letter.upcase, "#letter-#{letter}"))
-      }.join(' | ').html_safe %>
-    </p>
+      <p>
+        Jump to Agencies:
+        <%= presenter.agency_representations_by_first_letter.keys.map{
+          |letter| (link_to(letter.upcase, "#letter-#{letter}"))
+        }.join(' | ').html_safe %>
+      </p>
+    <% end %>
   </div>
 </div>

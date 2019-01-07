@@ -18,6 +18,8 @@ class FrIndexPresenter
   end
 
   def agency_representations
+    return [] if index["agencies"].nil?
+
     @agency_representations ||= index["agencies"].map do |agency|
       if agency["slug"].present?
         AgencyRepresentation.new(
