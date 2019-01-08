@@ -23,15 +23,12 @@ class Subscription < ApplicationModel
   alias_method_chain :mailing_list, :autobuilding
 
   def self.not_delivered_on(date)
-    scoped(:conditions => ["subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date])
+    where("subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date)
   end
 
   def self.not_delivered_for(document_numbers)
-    scoped(
-      conditions: [
-        "subscriptions.last_documents_delivered_hash IS NULL OR subscriptions.last_documents_delivered_hash != ?",
-        Digest::MD5.hexdigest( Array(document_numbers).sort.join(',') )
-      ]
+    where("subscriptions.last_documents_delivered_hash IS NULL OR subscriptions.last_documents_delivered_hash != ?",
+      Digest::MD5.hexdigest( Array(document_numbers).sort.join(',') )
     )
   end
 
@@ -79,12 +76,12 @@ class Subscription < ApplicationModel
   end
 
   def self.document_subscriptions
-    scoped(:include => :mailing_list,
-           :conditions => {:mailing_lists => {:type => "MailingList::Document"}})
+    include(:mailing_list).
+    where(mailing_lists: {type: "MailingList::Document"})
   end
 
   def self.pi_subscriptions
-    scoped(:include => :mailing_list,
-           :conditions => {:mailing_lists => {:type => "MailingList::PublicInspectionDocument"}})
+    include(:mailing_list).
+    where(mailing_lists: {type: "MailingList::PublicInspectionDocument"})
   end
 end

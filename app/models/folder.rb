@@ -21,7 +21,7 @@ class Folder < ApplicationModel
   end
 
   def self.find_by_user_and_slug(user, slug)
-    scoped(:conditions => {:creator_id => user.id, :slug => slug}).first
+    where(creator_id: user.id, slug: slug).first
   end
 
   def document_numbers

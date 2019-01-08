@@ -102,7 +102,7 @@ class Clipping < ActiveRecord::Base
   # this is to ensure users can only find documents they have created
   # user should almost always be the current_user
   def self.find_by_user_and_id(user, id)
-    scoped(:conditions => {:user_id => user.id, :id => id}).first
+    where(user_id: user.id, id: id).first
   end
 
   def document

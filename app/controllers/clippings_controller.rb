@@ -4,9 +4,7 @@ class ClippingsController < ApplicationController
   def index
     if user_signed_in? && current_user.clippings.present?
       clipboard_clippings = Clipping.
-        scoped(
-          :conditions => {:folder_id => nil, :user_id => current_user.id}
-        ).
+        where(folder_id: nil, user_id: current_user.id).
         with_preloaded_documents
 
       #ensure not nil
