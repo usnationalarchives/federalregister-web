@@ -66,5 +66,5 @@ $(document).ready ()->
     $('.logo .hgroup').css('position', 'relative').css('top', '20px')
 
   # External link modal
-  $('body').on 'click', 'a', (e)->
+  $('body').on 'click', 'a:not(.formal_comment)', (e)->
     new FR2.ExternalLinkChecker(e)
