@@ -8,11 +8,6 @@
   }
 }
 
-form.user-sign-up {
-  fieldset.inputs .label { width: 185px; }
-  fieldset.buttons { margin-left: 205px; }
-}
-
 h2.title {
   @extend %page-title;
 
