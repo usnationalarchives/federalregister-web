@@ -41,6 +41,10 @@ class Comment < ApplicationModel
   def comment_form=(comment_form)
     self.agency_name = comment_form.agency_name
     @comment_form = comment_form
+
+    comment_form.fields.each do |field|
+      self.class.send :attr_accessor, field.name.to_sym
+    end
   end
 
   def attachment_tokens=(tokens)
@@ -81,9 +85,9 @@ class Comment < ApplicationModel
   end
 
   def attributes=(attr)
-    super(
-      Hash[ attr.select{|k,v| respond_to?("#{k}=")} ]
-    )
+    attr.select{|k,v| respond_to?("#{k}=")}.each do |k,v|
+      self.send("#{k}=",v)
+    end
   end
 
   def respond_to?(name, include_private = false)
@@ -128,7 +132,7 @@ class Comment < ApplicationModel
 
   def required_fields_are_present
     comment_form.fields.select(&:required?).each do |field|
-      if @attributes[field.name].blank?
+      if self.send(field.name).blank?
         errors.add(field.name, "You can't leave this field blank")
       end
     end
@@ -147,23 +151,20 @@ class Comment < ApplicationModel
   end
 
   def fields_do_not_exceed_maximum_length
+    # binding.remote_pry
     comment_form.text_fields.each do |field|
-      if @attributes[field.name].present? && field.max_length && @attributes[field.name].length > field.max_length
+      val = self.send(field.name)
+      if val.present? && field.max_length && val.length > field.max_length
         errors.add(field.name, "cannot exceed #{field.max_length} characters")
       end
     end
   end
 
+  # fix calls to "#{attr_name}_before_type_cast"
   def method_missing(name, *val)
     attr_name = normalize_attribute(name)
     if respond_to?( attr_name )
-      @attributes ||= []
-
-      if name.to_s =~ /=$/
-        @attributes[attr_name] = val.first
-      else
-        @attributes[attr_name]
-      end
+      self.send attr_name
     else
       super
     end

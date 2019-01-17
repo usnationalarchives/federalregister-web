@@ -56,7 +56,7 @@ class RegulationsDotGovCommentService
   end
 
   def sanitize_comment_params(comment_params)
-    comment_params.delete(
+    comment_params.except(
       :agency_name,
       :agency_participating,
       :checked_comment_publication_at,
@@ -79,7 +79,10 @@ class RegulationsDotGovCommentService
         comment_on: comment_form.document_id,
         submit: "Submit Comment"
       }.merge(
-        comment.attributes.slice(*comment_form.fields.map(&:name))
+        comment_form.fields.inject({}){|hsh, field|
+          hsh[field.name] = comment.send(field.name)
+          hsh
+        }
       )
 
       args[:uploadedFile] = comment.attachments.map do |attachment|
