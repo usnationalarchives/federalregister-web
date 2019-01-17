@@ -236,7 +236,7 @@
         }
       }
 
-      fieldset.buttons .fr_button {
+      fieldset.actions .fr_button {
         position: relative;
 
         input { font-size: modular-scale(0); }
@@ -344,7 +344,7 @@
       }
     }
 
-    fieldset.buttons {
+    fieldset.actions {
       margin: 0;
 
       .commit.button {

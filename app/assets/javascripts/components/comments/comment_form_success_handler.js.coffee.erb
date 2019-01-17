@@ -85,8 +85,8 @@ class @FR2.CommentFormSuccessHandler
     @ajaxCommentData().on 'click', '.warning.message .resend_email_confirmation', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Resend Email Confirmation'
 
-    @ajaxCommentData().on 'click', '.buttons .comment_form_sign_in', ()=>
+    @ajaxCommentData().on 'click', '.actions .comment_form_sign_in', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Sign In'
 
-    @ajaxCommentData().on 'click', '.buttons .comment_form_sign_up', ()=>
+    @ajaxCommentData().on 'click', '.actions .comment_form_sign_up', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Sign Up'
