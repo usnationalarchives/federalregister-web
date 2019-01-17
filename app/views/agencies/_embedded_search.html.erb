@@ -1,6 +1,5 @@
 <div class="embedded_search search_bar search-bar">
-  <%= semantic_form_for @search,
-    as: :conditions,
+  <%= semantic_form_for :conditions,
     url: documents_search_path,
     authenticity_token: false,
     html: {

@@ -106,8 +106,7 @@
       <% if @presenter.total_significant_document_count > 0 %>
         <div class="row row-eq-height">
           <div class="<%= bootstrap_col(xs: 8, md: 8) %>">
-            <%= render :partial => 'embedded_search', locals: {
-              search: @search,
+            <%= render partial: 'embedded_search', locals: {
               agency: @presenter.agency
             } %>
           </div>
