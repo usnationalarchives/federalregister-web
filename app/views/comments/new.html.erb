@@ -67,11 +67,10 @@
     </p>
   </div>
 
-  <%= semantic_form_for @comment,
-    :url => comment_path,
-    :html => {
-      :"data-document-number" => @comment.document_number,
-      :"data-agency" => @comment.agency_name
+  <%= semantic_form_for @comment, url: comment_path,
+    html: {
+      "data-document-number" => @comment.document_number,
+      "data-agency" => @comment.agency_name
     } do |f| %>
 
     <% if @comment_reloaded %>
@@ -81,6 +80,7 @@
         <a href="#" id="comment-start-over">Start over</a>.
       </div>
     <% end %>
+
     <% if @comment.errors.present? %>
       <div class="errors">
         <%= @comment.human_error_messages %>
@@ -98,6 +98,7 @@
       </li>
 
       <% comment_field = (@comment.comment_form.fields.detect{|field| field.name == 'general_comment'}) %>
+
       <%= f.input comment_field.name, comment_input_field_options(comment_field) %>
 
       <% if @comment.comment_form.allow_attachments? %>
@@ -162,10 +163,10 @@
         :label => 'I read and understand the statement above.' %>
     <% end %>
     <%= f.actions do %>
-      <%= f.action :submit, as: :button,
+      <%= f.action :submit, as: :input,
         label: "Submit Comment",
-        wrapper_html: {class: 'disabled'},
-        button_html: {disabled: 'disabled'} %>
+        wrapper_html: {class: 'commit button disabled'},
+        button_html: {disabled: 'create disabled'} %>
       <%= content_tag(
         :li,
         link_to(
