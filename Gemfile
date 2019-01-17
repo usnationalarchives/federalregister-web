@@ -19,7 +19,7 @@ gem 'federal_register', '0.6.8'
 #                        :ref => "master"
 
 
-gem 'formtastic', '2.3.1'
+gem 'formtastic', '3.0.0'
 
 # model decorators
 gem "draper", "~> 1.3.0"

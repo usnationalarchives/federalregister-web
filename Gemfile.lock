@@ -178,8 +178,8 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    formtastic (2.3.1)
-      actionpack (>= 3.0)
+    formtastic (3.0.0)
+      actionpack (>= 3.2.13)
     geokit (1.4.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -503,7 +503,7 @@ DEPENDENCIES
   faraday
   federal_register (= 0.6.8)
   fog-aws
-  formtastic (= 2.3.1)
+  formtastic (= 3.0.0)
   geokit (= 1.4.1)
   guard
   guard-rspec
@@ -559,4 +559,4 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0.1)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
