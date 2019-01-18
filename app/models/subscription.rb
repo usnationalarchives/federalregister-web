@@ -76,12 +76,12 @@ class Subscription < ApplicationModel
   end
 
   def self.document_subscriptions
-    include(:mailing_list).
+    includes(:mailing_list).
     where(mailing_lists: {type: "MailingList::Document"})
   end
 
   def self.pi_subscriptions
-    include(:mailing_list).
+    includes(:mailing_list).
     where(mailing_lists: {type: "MailingList::PublicInspectionDocument"})
   end
 end
