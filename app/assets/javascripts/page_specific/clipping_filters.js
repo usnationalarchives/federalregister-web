@@ -28,7 +28,7 @@ function filter_clippings_by_type(el) {
     doc_type_filters.push( doc_type );
   }
 
-  var documents_to_hide = _.filter( $('#clippings li'), function(clipping) {
+  var documents_to_hide = _.filter( $('ul#clippings li'), function(clipping) {
                         return ! _.include(doc_type_filters, $(clipping).data('doc-type') );
                       });
 
@@ -43,9 +43,10 @@ $(document).ready( function() {
     $('#doc-type-filter li').each( function() {
         if ( _.include( doc_type_filters, $(this).data('filter-doc-type') ) ) {
         $(this).addClass('on');
-        $(this).data('tooltip', 'Hide articles of type ' + $(this).data('filter-doc-type-display') );
+        $(this).data('tooltip', 'Hide documents of type ' + $(this).data('filter-doc-type-display') );
       } else {
         $(this).addClass('disabled');
+        $(this).data('tooltip', 'No documents of type ' + $(this).data('filter-doc-type-display') + ' have been clipped' );
       }
     });
 
