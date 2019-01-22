@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe TableOfContentsPresenter do
   before(:each) do
-    TableOfContentsPresenter.
-      any_instance.
-      stub(:retrieve_toc_data).
+    allow_any_instance_of(TableOfContentsPresenter).to receive(:retrieve_toc_data).
       and_return(
         JSON.parse(
           File.read(
@@ -89,9 +87,7 @@ describe TableOfContentsPresenter do
 
       context "documents assigned to different agencies in ToC than in Publication" do
         before(:each) do
-          TableOfContentsPresenter.
-            any_instance.
-            stub(:retrieve_toc_data).
+          allow_any_instance_of(TableOfContentsPresenter).to receive(:retrieve_toc_data).
             and_return(
               JSON.parse(
                 File.read(

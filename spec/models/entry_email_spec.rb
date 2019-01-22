@@ -34,7 +34,7 @@ describe EntryEmail do
   end
 
   before(:each) do
-    EntryEmail.any_instance.stub(:deliver_email)
+    allow_any_instance_of(EntryEmail).to receive(:deliver_email)
   end
 
   describe '#sender=' do
@@ -66,7 +66,7 @@ describe EntryEmail do
   end
 
   it "sends an email after the record is created" do
-    EntryEmail.any_instance.unstub(:deliver_email)
+    allow_any_instance_of(EntryEmail).to receive(:deliver_email).and_call_original
     email = build(:entry_email)
 
     expect(DocumentMailer).to receive(:email_a_friend).

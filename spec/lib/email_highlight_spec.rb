@@ -29,7 +29,7 @@ describe EmailHighlight do
     let(:awesome_highlight) { FactoryGirl.build(:email_highlight, :name => "awesome_feature") }
 
     before(:each) do
-      EmailHighlight.stub(:highlights).and_return( [awesome_highlight] )
+      allow(EmailHighlight).to receive(:highlights).and_return( [awesome_highlight] )
     end
 
     it "returns the requested highlight when it exists" do
@@ -59,7 +59,7 @@ describe EmailHighlight do
     let(:awesome_highlight) { FactoryGirl.build(:email_highlight, :name => "awesome_feature") }
 
     before(:each) do
-      EmailHighlight.stub(:highlights).and_return( [awesome_highlight] )
+      allow(EmailHighlight).to receive(:highlights).and_return( [awesome_highlight] )
     end
 
     it "returns the requested highlight (by name) when highlight is in rotation" do
@@ -90,7 +90,7 @@ describe EmailHighlight do
     let(:old_highlight) { FactoryGirl.build(:email_highlight, :name => "old_feature", :in_rotation => false) }
 
     before(:each) do
-      EmailHighlight.stub(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight] )
+      allow(EmailHighlight).to receive(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight] )
     end
 
     it "creates a weight hash for rotatable highlights" do
@@ -108,7 +108,7 @@ describe EmailHighlight do
     let(:old_highlight) { FactoryGirl.build(:email_highlight, :name => "old_feature") }
 
     before(:each) do
-      EmailHighlight.stub(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
+      allow(EmailHighlight).to receive(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
     end
 
     it "returns an array of items" do
@@ -142,8 +142,8 @@ describe EmailHighlight do
     let(:old_highlight) { FactoryGirl.build(:email_highlight, :name => "old_feature") }
 
     before(:each) do
-      EmailHighlight.stub(:highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
-      EmailHighlight.stub(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
+      allow(EmailHighlight).to receive(:highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
+      allow(EmailHighlight).to receive(:rotatable_highlights).and_return( [awesome_highlight, so_so_highlight, old_highlight] )
     end
 
     it "returns the selected highlight" do

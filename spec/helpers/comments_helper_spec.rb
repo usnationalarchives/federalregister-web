@@ -99,7 +99,7 @@ describe CommentsHelper do
       let(:field_options) { [build(:comment_form_state_option)] }
 
       before(:each) do
-        client.stub(:get_option_elements) { field_options }
+        allow(client).to receive(:get_option_elements).and_return(field_options)
       end
 
       it "adds as: :string to the options" do

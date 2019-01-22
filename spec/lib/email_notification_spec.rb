@@ -20,7 +20,7 @@ describe EmailNotification do
     let(:awesome_notification) { FactoryGirl.build(:email_notification, :name => "awesome_notification") }
 
     before(:each) do
-      EmailNotification.stub(:notifications).and_return( [awesome_notification] )
+      allow(EmailNotification).to receive(:notifications).and_return( [awesome_notification] )
     end
 
     it "returns the requested notification when it exists" do

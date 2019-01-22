@@ -169,7 +169,7 @@ describe "XSLT::FullText::Images" do
       end
 
       it "does not notify honeybadger" do
-        Honeybadger.stub(:notify)
+        allow(Honeybadger).to receive(:notify)
 
         process <<-XML
           <GPH DEEP="320" SPAN="1">
@@ -183,7 +183,7 @@ describe "XSLT::FullText::Images" do
 
     context "xml identifier does not have corresponding image present in api" do
       it "notifies honeybadger" do
-        Honeybadger.stub(:notify)
+        allow(Honeybadger).to receive(:notify)
 
         process <<-XML
           <GPH DEEP="320" SPAN="1">
