@@ -1,4 +1,4 @@
-class EntryEmail < ActiveRecord::Base
+class EntryEmail < ApplicationRecord
   validates_presence_of :sender
   validates_presence_of :document_number, :remote_ip, :recipients
   validate :sender_email_is_valid, :if => Proc.new{|e| e.sender.present?}

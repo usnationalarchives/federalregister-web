@@ -1,4 +1,4 @@
-class Folder < ApplicationModel
+class Folder < ApplicationRecord
   has_many :clippings
 
   validates_presence_of :name,

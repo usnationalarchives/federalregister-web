@@ -1,4 +1,4 @@
-class Subscription < ApplicationModel
+class Subscription < ApplicationRecord
   default_scope { where(environment: Rails.env) }
 
   before_create :generate_token

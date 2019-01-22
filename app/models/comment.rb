@@ -1,4 +1,4 @@
-class Comment < ApplicationModel
+class Comment < ApplicationRecord
   has_one :subscription
   extend Memoist
 

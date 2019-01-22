@@ -1,4 +1,4 @@
-class MailingList < ApplicationModel
+class MailingList < ApplicationRecord
   BATCH_SIZE = 1000
 
   has_many :subscriptions

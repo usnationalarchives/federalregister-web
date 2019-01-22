@@ -1,4 +1,4 @@
-class Clipping < ActiveRecord::Base
+class Clipping < ApplicationRecord
   belongs_to :folder
 
   validates_presence_of :document_number

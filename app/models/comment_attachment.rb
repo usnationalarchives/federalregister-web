@@ -1,4 +1,4 @@
-class CommentAttachment < ApplicationModel
+class CommentAttachment < ApplicationRecord
   include EncryptionUtils
   require 'open-uri'
 
