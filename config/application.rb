@@ -77,5 +77,7 @@ module MyFr2
     HTTParty::HTTPCache.logger = Rails.logger
     HTTParty::HTTPCache.timeout_length = 30 # seconds
     HTTParty::HTTPCache.cache_stale_backup_time = 120 # seconds
+
+    config.active_record.belongs_to_required_by_default = false
   end
 end
