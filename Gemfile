@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'hoe', '~> 3.15', '>= 3.15.2' # TODO: needed for bundler to run in docker but we shouldn't have to specify it explicitely
-
-gem 'rails', '4.2.11'
-gem 'rake', '11.3.0'
+gem 'rails', '5.0.7.1'
+gem 'rake'
 gem 'rack'
 
 
@@ -22,13 +20,13 @@ gem 'federal_register', '0.6.8'
 gem 'formtastic', '3.0.0'
 
 # model decorators
-gem "draper", "~> 1.3.0"
+gem "draper"
 
 gem 'sass-rails'
 gem "sass"
 gem 'bootstrap-sass'
 
-gem 'jquery-rails', '~> 3.1.5'
+gem 'jquery-rails'
 gem 'underscore-rails', '~> 1.6.0'
 
 # file uploads (comment attachments)
@@ -73,7 +71,7 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'attr_extras', '~> 3.2.0'
 
 # xslt parsing
-gem 'nokogiri', '~> 1.6.6'
+gem 'nokogiri'
 
 
 # make app wide settings easier
@@ -102,7 +100,7 @@ gem 'rack-cache', "~> 1.6.1"
 # background jobs
 # resque web interface - rails engine
 gem 'resque'
-gem 'resque-retry'
+# gem 'resque-retry'
 
 
 # google recaptcha integration
@@ -158,7 +156,7 @@ group :development, :test do
   # required by current version of draper via its railtie
   # removed in ruby 2.2
   # but not avail in rails 3.2 activesupport
-  gem 'test-unit', '~> 3.0'
+  # gem 'test-unit', '~> 3.0'
 
   gem 'rspec-rails', '~> 3.2'
   gem 'rspec-html-matchers'#, '~> 0.5.0'
