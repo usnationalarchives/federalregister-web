@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   around_filter :log_memory_usage unless Rails.env.test?
 
   if Rails.env.development? && Settings.vcr.enabled
-    around_filter :use_vcr
+    around_action :use_vcr
   end
 
   def set_page_to_track
