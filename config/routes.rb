@@ -1,6 +1,5 @@
 require 'resque/server'
-
-MyFr2::Application.routes.draw do
+Rails.application.routes.draw do
   get 'error_page', to: 'special#error_page' unless Rails.env.production?
 
   if Rails.env.development?
