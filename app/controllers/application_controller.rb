@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery if: :current_user
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
-  before_filter :set_page_to_track
+  before_action :set_page_to_track
 
   around_filter :log_memory_usage unless Rails.env.test?
 

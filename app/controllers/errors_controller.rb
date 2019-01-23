@@ -1,5 +1,5 @@
 class ErrorsController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
 
   def server_error
     handle_error(500, "Server Error")

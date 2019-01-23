@@ -1,5 +1,5 @@
 class ClippingsController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:index, :create]
+  skip_before_action :authenticate_user!, :only => [:index, :create]
 
   def index
     if user_signed_in? && current_user.clippings.present?

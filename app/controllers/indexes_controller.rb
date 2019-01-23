@@ -1,5 +1,5 @@
 class IndexesController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
 
   def year_agency
     cache_for 1.day

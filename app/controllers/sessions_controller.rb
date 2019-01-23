@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   include UserDataPersistor
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
 
   def new
     session[:redirect_to] = profile_params.delete(:redirect_to)

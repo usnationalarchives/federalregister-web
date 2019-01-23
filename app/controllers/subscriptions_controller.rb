@@ -5,10 +5,10 @@ class SubscriptionsController < ApplicationController
     :activate, :suspend,
     :unsubscribe, :unsubscribed, :destroy
   ]) do |during_creation|
-    during_creation.skip_before_filter :authenticate_user!
+    during_creation.skip_before_action :authenticate_user!
   end
 
-  before_filter :refresh_current_user, only: :index
+  before_action :refresh_current_user, only: :index
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(

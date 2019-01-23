@@ -1,6 +1,6 @@
 class ReaderAidsController < ApplicationController
-  skip_before_filter :authenticate_user!
-  before_filter :verify_section_exists, only: :view_all
+  skip_before_action :authenticate_user!
+  before_action :verify_section_exists, only: :view_all
   layout false, only: [:navigation, :homepage, :index_section]
 
   def index

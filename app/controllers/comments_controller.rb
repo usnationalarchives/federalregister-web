@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
   protect_from_forgery :except => :reload
-  skip_before_filter :authenticate_user!, :only => :persist_for_login
+  skip_before_action :authenticate_user!, :only => :persist_for_login
 
   with_options(:only => [:new, :reload, :create]) do |during_creation|
     during_creation.layout false
-    during_creation.skip_before_filter :authenticate_user!
-    during_creation.before_filter :build_comment
+    during_creation.skip_before_action :authenticate_user!
+    during_creation.before_action :build_comment
   end
 
-  before_filter :refresh_current_user, only: :index
+  before_action :refresh_current_user, only: :index
 
   def index
     @comments = CommentDecorator.decorate_collection(

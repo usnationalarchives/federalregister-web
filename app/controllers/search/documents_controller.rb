@@ -1,7 +1,7 @@
 class Search::DocumentsController < ApplicationController
   include ConditionsHelper
-  before_filter :load_presenter, except: [:facets, :help]
-  skip_before_filter :authenticate_user!
+  before_action :load_presenter, except: [:facets, :help]
+  skip_before_action :authenticate_user!
 
   def header
     cache_for 1.day

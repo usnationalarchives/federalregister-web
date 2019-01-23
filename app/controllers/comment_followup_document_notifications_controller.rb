@@ -1,5 +1,5 @@
 class CommentFollowupDocumentNotificationsController < ApplicationController
-  before_filter :find_comment
+  before_action :find_comment
 
   def create
     respond_to do |format|

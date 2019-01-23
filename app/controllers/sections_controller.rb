@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
-  skip_before_filter :authenticate_user!
-  skip_before_filter :verify_authenticity_token, only: :carousel_preview
+  skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: :carousel_preview
   layout false, only: [:navigation]
 
 

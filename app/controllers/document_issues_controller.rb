@@ -1,5 +1,5 @@
 class DocumentIssuesController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
   layout false, only: [:by_month, :navigation]
 
   def show
