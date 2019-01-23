@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe RegulationsDotGovCommentService do
-  before(:all) {
-    SECRETS["comment_ip_salt"] = '1234567890'
-    SECRETS['data_dot_gov']['primary_comment_api_key'] = 'AAABBBCCC'
-    SECRETS['data_dot_gov']['secondary_comment_api_key'] = 'XXXYYYZZZ'
-  }
-
   let(:comment_service) {
     ip = '192.168.0.1'
     args = {document_number: '2018-00001'}

@@ -1,7 +1,5 @@
+# Settings specified here will take precedence over those in config/application.rb
 MyFr2::Application.configure do
-  APP_HOST_NAME = "fr2.criticaljuncture.org"
-  # Settings specified here will take precedence over those in config/application.rb
-
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -39,30 +37,23 @@ MyFr2::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # load secrets
-  SECRETS = YAML::load(
-    ERB.new(
-      File.read(
-        File.join(File.dirname(__FILE__), '..', 'secrets.yml')
-      )
-    ).result
-  )
-
   smtp_settings = {
-   :address        => "smtp.sendgrid.net",
-   :port           => "587",
-   :domain         => "#{Settings.app_url}",
-   :user_name      => SECRETS['sendgrid']['username'],
-   :password       => SECRETS['sendgrid']['password'],
-   :authentication => :plain,
-   :enable_starttls_auto => false
+    address: "smtp.sendgrid.net",
+    port: "587",
+    domain: "#{Settings.app_url}",
+    user_name: Rails.application.secrets['sendgrid']['username'],
+    password: Rails.application.secrets['sendgrid']['password'],
+    authentication: :plain,
+    enable_starttls_auto: false
   }
 
-
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings   = smtp_settings
+  config.action_mailer.smtp_settings = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "https://"}
+  config.action_mailer.default_url_options = {
+    host: "#{Settings.app_url.gsub('https://', '')}",
+    protocol: "https://"
+  }
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

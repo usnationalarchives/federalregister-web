@@ -1,7 +1,5 @@
-  APP_HOST_NAME = "www.federalregister.gov"
+# Settings specified here will take precedence over those in config/application.rb.
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -53,28 +51,23 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  SECRETS = YAML::load(
-    ERB.new(
-      File.read(
-        File.join(File.dirname(__FILE__), '..', 'secrets.yml')
-      )
-    ).result
-  )
-
   smtp_settings = {
-   :address        => "smtp.sendgrid.net",
-   :port           => "587",
-   :domain         => "#{Settings.app_url}",
-   :user_name      => SECRETS['sendgrid']['username'],
-   :password       => SECRETS['sendgrid']['password'],
-   :authentication => :plain,
-   :enable_starttls_auto => false
+    address: "smtp.sendgrid.net",
+    port: "587",
+    domain: "#{Settings.app_url}",
+    user_name: Rails.application.secrets['sendgrid']['username'],
+    password: Rails.application.secrets['sendgrid']['password'],
+    authentication: :plain,
+    enable_starttls_auto: false
   }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings   = smtp_settings
+  config.action_mailer.smtp_settings = smtp_settings
 
-  config.action_mailer.default_url_options = {:host => "#{APP_HOST_NAME}", :protocol => "https://"}
+  config.action_mailer.default_url_options = {
+    host: "#{Settings.app_url.gsub('https://', '')}",
+    protocol: "https://"
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
       cookies.delete :user_data
       render nothing: true
     else
-      redirect_to SECRETS["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
+      redirect_to Rails.application.secrets["omniauth"]["oidc_url"] + "/sign_out?redirect_to=#{URI.escape root_url}"
     end
   end
 

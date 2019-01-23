@@ -1,6 +1,5 @@
+# Settings specified here will take precedence over those in config/application.rb.
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -42,13 +41,6 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  SECRETS = YAML::load(
-    ERB.new(
-      File.read(
-        File.join(File.dirname(__FILE__), '..', 'secrets.yml')
-      )
-    ).result
-  )
   config.assets.digest = false
   config.assets.unknown_asset_fallback = false
 
@@ -56,22 +48,22 @@ Rails.application.configure do
   config.assets.quiet = true
 
   smtp_settings = {
-   :address        => "smtp.sendgrid.net",
-   :port           => "587",
-   :domain         => "#{Settings.app_url}",
-   :user_name      => SECRETS['sendgrid']['username'],
-   :password       => SECRETS['sendgrid']['password'],
-   :authentication => :plain,
-   :enable_starttls_auto => false
+    address: "smtp.sendgrid.net",
+    port: "587",
+    domain: "#{Settings.app_url}",
+    user_name: Rails.application.secrets['sendgrid']['username'],
+    password: Rails.application.secrets['sendgrid']['password'],
+    authentication: :plain,
+    enable_starttls_auto: false
   }
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings   = smtp_settings
+  config.action_mailer.smtp_settings = smtp_settings
 
-
-  config.action_mailer.default_url_options = {:host => "#{Settings.app_url.split('//').last}", :protocol => "http://"}
+  config.action_mailer.default_url_options = {
+    host: "#{Settings.app_url.split('//').last}",
+    protocol: "http://"
+  }
 
   if Settings.vcr.enabled
     file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"
