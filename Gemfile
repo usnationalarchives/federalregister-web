@@ -65,7 +65,7 @@ gem 'indefinite_article'
 gem 'geokit', '1.4.1', :require => 'geokit'
 gem 'rails_autolink'
 
-gem 'will_paginate', '~> 3.0.7'
+gem 'will_paginate'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 gem 'attr_extras', '~> 3.2.0'
