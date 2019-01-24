@@ -26,7 +26,7 @@ class RegulationsDotGovCommentService
       api_options.fetch(:read_from_cache) { true }
     ) do
       client = RegulationsDotGov::Client.new
-      client.class.api_key = Rails.application.secrets["data_dot_gov"]["primary_comment_api_key"]
+      client.class.api_key = Rails.application.secrets[:data_dot_gov][:primary_comment_api_key]
 
       if comment.document.comment_url
         @comment_form = client.get_comment_form(comment.regulations_dot_gov_document_id)
@@ -164,16 +164,16 @@ class RegulationsDotGovCommentService
     return @api_key if @api_key
 
     if hourly_requests_for_ip >= HOURLY_SUBMISSION_LIMIT
-      @api_key = Rails.application.secrets['data_dot_gov']['secondary_comment_api_key']
+      @api_key = Rails.application.secrets[:data_dot_gov][:secondary_comment_api_key]
     else
-      @api_key = Rails.application.secrets['data_dot_gov']['primary_comment_api_key']
+      @api_key = Rails.application.secrets[:data_dot_gov][:primary_comment_api_key]
     end
 
     @api_key
   end
 
   def bulk_submission?
-    api_key == Rails.application.secrets['data_dot_gov']['secondary_comment_api_key']
+    api_key == Rails.application.secrets[:data_dot_gov][:secondary_comment_api_key]
   end
 
   def hourly_requests_for_ip
@@ -193,7 +193,7 @@ class RegulationsDotGovCommentService
   end
 
   def hashed_remote_ip
-    Digest::MD5.hexdigest "#{Rails.application.secrets["comment_ip_salt"]}#{remote_ip}"
+    Digest::MD5.hexdigest "#{Rails.application.secrets[:comment_ip_salt]}#{remote_ip}"
   end
 
   def submit_comment(args)

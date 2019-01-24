@@ -56,7 +56,7 @@ class RegulationsDotGov::Client
   end
 
   def self.api_key
-    RequestStore.store[:api_key] || Rails.application.secrets['data_dot_gov']['api_key']
+    RequestStore.store[:api_key] || Rails.application.secrets[:data_dot_gov][:api_key]
   end
 
   def self.api_key=(api_key)

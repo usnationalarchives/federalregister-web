@@ -20,6 +20,6 @@ class JwtUtils
   end
 
   def self.jwt_secret_key
-    Rails.application.secrets["jwt_secret"].to_s
+    Rails.application.secrets[:jwt_secret].to_s
   end
 end
