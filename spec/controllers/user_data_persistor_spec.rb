@@ -6,7 +6,7 @@ describe UserDataPersistor do
     include UserDataPersistor
     def new
       persist_user_data
-      render nothing: true
+      head :ok
     end
   end
 

@@ -24,7 +24,7 @@ class CommentAttachmentsController < ApplicationController
   def destroy
     @comment_attachment = CommentAttachment.find_by_token!(params[:id])
     @comment_attachment.destroy
-    render :nothing => true
+    head :ok
   end
 
   private
