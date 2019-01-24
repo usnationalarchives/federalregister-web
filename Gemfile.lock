@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/criticaljuncture/cachebar.git
-  revision: 556e356156b67be03bc6f025b1cb390c291c76e0
+  revision: a4c2bf7485bc64325b87e454c38940290d37899b
   specs:
-    cachebar (1.2.0)
+    cachebar (1.3.0)
       activesupport
       httparty (>= 0.11.0)
       redis

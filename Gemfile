@@ -41,7 +41,7 @@ gem "httmultiparty"
 gem "multi_json"
 
 # api caching
-gem 'cachebar', :git => "https://github.com/criticaljuncture/cachebar.git"
+gem 'cachebar', git: "https://github.com/criticaljuncture/cachebar.git"
 
 gem 'redis', '~> 3.3.5'
 
