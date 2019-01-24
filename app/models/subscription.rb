@@ -11,16 +11,18 @@ class Subscription < ApplicationRecord
 
   validates_presence_of :requesting_ip, :mailing_list, :environment
 
-  def mailing_list_with_autobuilding
-    if mailing_list_without_autobuilding.nil?
-      klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
-      self.search_conditions ||= {}
-      self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
-    else
-      mailing_list_without_autobuilding
+  module MailingListAutobuilder
+    def mailing_list
+      if super.nil?
+        klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
+        self.search_conditions ||= {}
+        self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
+      else
+        super
+      end
     end
   end
-  alias_method_chain :mailing_list, :autobuilding
+  prepend MailingListAutobuilder
 
   def self.not_delivered_on(date)
     where("subscriptions.last_issue_delivered IS NULL OR subscriptions.last_issue_delivered < ?", date)
