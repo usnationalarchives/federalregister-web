@@ -85,5 +85,5 @@ RSpec.configure do |config|
   Capybara.app_host = "http://fr2.dev:8081"
   Capybara.current_driver = :webkit
   Capybara.javascript_driver = :webkit
-  Capybara.default_wait_time = 5
+  Capybara.default_max_wait_time = 5
 end
