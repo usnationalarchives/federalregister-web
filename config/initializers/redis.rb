@@ -1,5 +1,5 @@
-require 'resque-scheduler'
-require 'resque/scheduler/server'
+# require 'resque-scheduler'
+# require 'resque/scheduler/server'
 
 REDIS_CONNECTION_SETTINGS = {
   :db   => Rails.application.secrets['redis']['db'],
