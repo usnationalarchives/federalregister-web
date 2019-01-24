@@ -52,12 +52,12 @@ RUN adduser app -uid 1000 --system &&\
 ### GEMS & PASSENGER INSTALL
 ###############################
 
-RUN gem install bundler -v '~> 1.17.3'
+RUN gem install bundler -v '~> 2.0'
 
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
-RUN bundle install --system --full-index &&\
+RUN bundle install &&\
   passenger-config install-standalone-runtime &&\
   passenger start --runtime-check-only
 
