@@ -9,7 +9,7 @@ describe DocumentsController do
       context "when document doesn't exist" do
         it "raises RecordNotFound" do
           expect{
-            get :tiny_url, document_number: document_number
+            get :tiny_url, params: {document_number: document_number}
           }.to raise_error(ActiveRecord::RecordNotFound)
         end
 
@@ -22,7 +22,7 @@ describe DocumentsController do
           }
 
           let(:get_tiny_url) {
-            get :tiny_url, document_number: pi_document.document_number
+            get :tiny_url, params: {document_number: pi_document.document_number}
           }
 
           it "redirects to the public inspection page (document page)" do
@@ -46,7 +46,7 @@ describe DocumentsController do
         }
 
         let(:get_tiny_url) {
-          get :tiny_url, document_number: document.document_number
+          get :tiny_url, params: {document_number: document.document_number}
         }
 
         it "redirects to the full document page if the document exists" do

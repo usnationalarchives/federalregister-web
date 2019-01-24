@@ -19,7 +19,7 @@ describe SessionsController do
         once.
         with(stubbed_auth_hash[:extra][:raw_info][:email])
 
-      get :create, provider: 'ofr'
+      get :create, params: {provider: 'ofr'}
 
       # Sets cookie JS and varnish relies upon
       expect(cookies["expect_signed_in"]).to eq "1"
@@ -36,7 +36,7 @@ describe SessionsController do
     end
 
     it "AJAX requests delete the session and remove the signed in cookie" do
-      xhr :get, :destroy
+      get :destroy, xhr: true
 
       expect(session.empty?).to be(true)
       expect(cookies["expect_signed_in"]).to eq "0"

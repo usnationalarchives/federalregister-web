@@ -31,7 +31,7 @@ describe UserDataPersistor do
 
     it "persists a document if a document number is saved in the cookie" do
       cookies[:document_numbers] = [{'2014-13781' => ['my-clippings']}].to_json
-      get :new, nil, authenticated_session
+      get :new, session: authenticated_session
 
       clipping = Clipping.first
 
@@ -58,7 +58,7 @@ describe UserDataPersistor do
       allow(Ecfr::UserEmailResultSet).to receive(:get_user_emails).and_return(values: ['john_doe@example.com'])
       expect(CommentMailer).to receive_message_chain('comment_copy.deliver_now').and_return(true)
 
-      get :new, nil, authenticated_session.merge(
+      get :new, session: authenticated_session.merge(
         comment_tracking_number: 123,
         comment_secret: 'abcd1234',
       )
@@ -66,7 +66,7 @@ describe UserDataPersistor do
 
     it "if a comment cannot be located the UserDataPersistor does not fail" do
       expect {
-        get :new, nil, authenticated_session.merge(
+        get :new, session: authenticated_session.merge(
           comment_tracking_number:        77777,
           comment_secret:                 88888,
           followup_document_notification: "1"
@@ -82,7 +82,7 @@ describe UserDataPersistor do
         token:        "abcd1234",
         user_id:      nil
       )
-      get :new, nil, authenticated_session.merge(
+      get :new, session: authenticated_session.merge(
         subscription_token: subscription.token
       )
 
