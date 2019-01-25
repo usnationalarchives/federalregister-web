@@ -74,7 +74,7 @@ class Search::DocumentsController < ApplicationController
 
   def search_count
     cache_for 1.day
-    valid_conditions = Search::Document.new(params).valid_conditions.symbolize_keys
+    valid_conditions = Search::Document.new(params.permit!.to_h).valid_conditions
 
     render json: {
       count: ::Document.search_metadata(conditions: valid_conditions).count,

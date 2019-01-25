@@ -65,7 +65,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
 
   def search_count
     cache_for 1.day
-    valid_conditions = Search::PublicInspection.new(params).valid_conditions.symbolize_keys
+    valid_conditions = Search::PublicInspection.new(params.permit!.to_h).valid_conditions
 
     render json: {
       count: ::PublicInspectionDocument.search_metadata(conditions: valid_conditions).count,
