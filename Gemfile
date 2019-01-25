@@ -75,7 +75,7 @@ gem 'nokogiri'
 
 
 # make app wide settings easier
-gem 'rails_config'
+gem 'config'
 
 gem 'calendar_helper', :git => "https://github.com/criticaljuncture/calendar_helper.git",
                        :branch => "master"
