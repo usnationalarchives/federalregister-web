@@ -94,7 +94,7 @@ COPY --chown=1000:1000 . /home/app/
 
 WORKDIR /home/app
 
-RUN DB_ADAPTER=nulldb DEVISE_SECRET_KEY=XXX AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX RAILS_ENV=production bundle exec rake assets:precompile &&\
+RUN DB_ADAPTER=nulldb SECRET_KEY_BASE=XXX AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX RAILS_ENV=production bundle exec rake assets:precompile &&\
   chown -R app /home/app/public
 
 # CI setup
