@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module MyFr2
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -22,6 +25,7 @@ module MyFr2
 
     # Use routes to pickup exceptions - allows us to serve pretty error pages
     config.exceptions_app = self.routes
+
 
     config.action_dispatch.rescue_responses.merge!(
       'FederalRegister::Client::RecordNotFound' => :not_found

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.6.1'
+gem 'rails', '5.2.2'
 gem 'rake'
 gem 'rack'
 
@@ -133,6 +133,8 @@ gem "activerecord-nulldb-adapter"
 
 
 group :development, :test do
+  gem 'bootsnap', '~> 1.3', '>= 1.3.2'
+
   gem 'capybara'
   #gem 'capybara-webkit'
   #gem 'capybara-screenshot'
