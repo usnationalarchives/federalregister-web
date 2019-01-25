@@ -155,11 +155,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-remote'
 
-  # required by current version of draper via its railtie
-  # removed in ruby 2.2
-  # but not avail in rails 3.2 activesupport
-  # gem 'test-unit', '~> 3.0'
-
   gem 'rspec-rails', '~> 3.2'
   gem 'rspec-html-matchers'#, '~> 0.5.0'
 
