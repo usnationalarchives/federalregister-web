@@ -7,11 +7,9 @@
           <span class="type"><%= filter.value %></span>
           <span class="name"><%= filter.name %></span>
 
-          <%= link_to search_removing_filter(filter.condition, filter.value),
-            title: 'Remove Filter',
-            class: 'remove'  do %>
-              <%= fr_icon 'badge_x' %>
-            <% end %>
+          <%= presenter.link_to_remove_search_filter filter do
+            fr_icon 'badge_x'
+          end %>
         </li>
       <% end %>
     </ul>

@@ -40,6 +40,10 @@ class Search::DocumentsController < ApplicationController
   def results
     cache_for 1.day
     @search_details = @search.search_details
+    @facet_presenter = SearchFacetPresenter::Document.new(
+      facet_params.to_h,
+      view_context
+    )
 
     respond_to do |wants|
       wants.html do
@@ -50,7 +54,10 @@ class Search::DocumentsController < ApplicationController
 
   def facets
     cache_for 1.day
-    @presenter = SearchFacetPresenter::Document.new(params)
+    @presenter = SearchFacetPresenter::Document.new(
+      facet_params.to_h,
+      view_context
+    )
 
     if params[:all]
       render partial: "search/facet", collection: @presenter.facets, as: :facet
@@ -92,5 +99,16 @@ class Search::DocumentsController < ApplicationController
   def load_presenter
     @presenter = SearchPresenter::Document.new(params.permit!.to_h)
     @search = @presenter.search
+  end
+
+  def facet_params
+    params.slice!(
+      :all,
+      :conditions,
+      :facet,
+    )
+
+    params[:conditions] = Search::Document.new(params).valid_conditions
+    params.permit!
   end
 end

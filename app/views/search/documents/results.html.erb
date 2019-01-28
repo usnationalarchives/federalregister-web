@@ -4,7 +4,8 @@
 
     <% if @search_details.filters.present? %>
       <%= render partial: "search/filters", locals: {
-          filters: @search_details.filters
+          filters: @search_details.filters,
+          presenter: @facet_presenter,
         } %>
     <% end %>
 

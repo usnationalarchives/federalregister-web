@@ -1,7 +1,5 @@
 <li class="<%= 'on' if facet.on? %>">
-  <%= link_to facet.name,
-    search_adding_filter(facet.condition, facet.value),
-    class: 'facet-name' %>
+  <%= @presenter.link_to_search_filter(facet) %>
 
   <span class='facet-document-count'>
     <%= number_with_delimiter facet.count %>

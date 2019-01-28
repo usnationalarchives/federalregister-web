@@ -3,9 +3,7 @@
   <ul>
     <% facets.each_with_index do |facet, index| %>
       <li class="<%= 'on' if facet.on? %> <%= "#{css_class(@presenter.facet_name)}_facet" %> <%= index > @presenter.num_facets - 1 ? "hidden" : "no-toggle" %>">
-        <%= link_to facet.name,
-          search_adding_filter(facet.condition, facet.value),
-          class: 'facet-name' %>
+        <%= @presenter.link_to_search_filter(facet) %>
 
         <span class='facet-document-count'>
           <%= number_with_delimiter facet.count %>
