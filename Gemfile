@@ -6,7 +6,7 @@ gem 'rake'
 gem 'rack'
 gem 'mysql2', '0.5.2'
 gem 'passenger', '~> 6.0' # production app server
-gem 'bootsnap', '~> 1.3', '>= 1.3.2'
+gem 'bootsnap', '~> 1.3', '>= 1.3.2', require: false
 
 
 # AR like interface to static data hash based classes
