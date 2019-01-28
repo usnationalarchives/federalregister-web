@@ -1,5 +1,5 @@
 # Settings specified here will take precedence over those in config/application.rb
-MyFr2::Application.configure do
+Rails.application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
