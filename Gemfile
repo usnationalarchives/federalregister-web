@@ -131,8 +131,8 @@ gem 'redis', '~> 3.3.5'
 gem 'request_store'
 
 # background jobs, resque web interface - rails engine
-gem 'resque'
-# gem 'resque-retry'
+gem 'resque', '~> 1.27.0'
+gem 'resque-retry'
 
 # sass integration
 gem 'sass-rails'
