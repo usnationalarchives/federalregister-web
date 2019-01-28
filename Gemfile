@@ -9,6 +9,7 @@ gem 'mysql2', '0.5.2'
 # production app server
 gem 'passenger', '~> 6.0'
 gem 'honeybadger'
+gem 'bootsnap', '~> 1.3', '>= 1.3.2'
 
 
 gem 'federal_register', '0.6.8'
@@ -133,8 +134,6 @@ gem "activerecord-nulldb-adapter"
 
 
 group :development, :test do
-  gem 'bootsnap', '~> 1.3', '>= 1.3.2'
-
   gem 'capybara'
   #gem 'capybara-webkit'
   #gem 'capybara-screenshot'
