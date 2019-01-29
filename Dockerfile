@@ -41,11 +41,18 @@ RUN ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 
 
 ##################
-### APP USER
+### SERVICES
 ##################
+
+
+COPY docker/web/my_init.d /etc/my_init.d
+COPY docker/web/service /etc/service
 
 RUN adduser app -uid 1000 --system &&\
   usermod -a -G docker_env app
+
+# rotate logs
+COPY docker/web/files/logrotate/app /etc/logrotate.d/app
 
 
 ###############################
@@ -57,7 +64,7 @@ RUN gem install bundler -v '~> 2.0'
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
-RUN bundle install &&\
+RUN bundle install --system &&\
   passenger-config install-standalone-runtime &&\
   passenger start --runtime-check-only
 
@@ -70,20 +77,8 @@ RUN bundle install &&\
 # since we set up the dockerfile for the project
 RUN apt-get update && unattended-upgrade -d
 
-
 ENV PASSENGER_MIN_INSTANCES 1
 ENV WEB_PORT 3000
-
-
-##################
-### SERVICES
-##################
-
-COPY docker/web/my_init.d /etc/my_init.d
-COPY docker/web/service /etc/service
-
-# rotate logs
-COPY docker/web/files/logrotate/app /etc/logrotate.d/app
 
 
 ##################
@@ -95,7 +90,7 @@ COPY --chown=1000:1000 . /home/app/
 WORKDIR /home/app
 
 RUN DB_ADAPTER=nulldb SECRET_KEY_BASE=XXX AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX RAILS_ENV=production bundle exec rake assets:precompile &&\
-  chown -R app /home/app/public
+  chown -R app /home/app
 
 # CI setup
 RUN mkdir log/test/ && touch log/test/vcr.log && chown -R app log
