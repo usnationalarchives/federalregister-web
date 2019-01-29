@@ -8,6 +8,7 @@ tmp/
 !tmp/.gitkeep
 !tmp/pids/.gitkeep
 !tmp/cache/sass/.gitkeep
+!tmp/cache/bootsnap-compile-cache/.gitkeep
 
 .sass-cache/
 
