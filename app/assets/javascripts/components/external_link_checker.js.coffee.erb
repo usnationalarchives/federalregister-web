@@ -26,7 +26,7 @@ class @FR2.ExternalLinkChecker
     $('#fr_modal.external-link-warning-modal form').on 'submit', (e)=>
       e.preventDefault()
 
-      if $('#fr_modal.external-link-warning-modal [name=accept').prop('checked')
+      if $('#fr_modal.external-link-warning-modal input[name=accept]').prop('checked')
         amplify.store('showExternalModal', false, expires: 2592000000)
 
       window.location.href = @url
