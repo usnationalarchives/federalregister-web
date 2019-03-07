@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180920170239) do
+ActiveRecord::Schema.define(:version => 20190307191045) do
 
   create_table "clippings", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20180920170239) do
   add_index "comments", ["agency_participating"], :name => "index_comments_on_agency_participating"
   add_index "comments", ["comment_publication_notification"], :name => "index_comments_on_comment_publication_notification"
   add_index "comments", ["comment_tracking_number"], :name => "index_comments_on_comment_tracking_number"
+  add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["document_number"], :name => "index_comments_on_document_number"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
