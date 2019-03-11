@@ -12,8 +12,7 @@
       </span>
 
       <% if document.publication_date %>
-        on <%= date_tag( document.publication_date,
-                         datetime: document.publication_date) %>
+        on <%= document.publication_date %>
       <% end %>
     </p>
   </div>

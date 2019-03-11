@@ -113,12 +113,9 @@ class DocumentDecorator < ApplicationDecorator
     return @document_metadata_description if @document_metadata_description
 
     description = "#{type.with_indefinite_article(true)} by " +
-    content_tag(:span, agency_name_sentence, class: "agencies") +
-    " on " +
-    h.link_to(
-      h.date_tag(publication_date, datetime: publication_date),
-      h.document_issue_path(model)
-    )
+      content_tag(:span, agency_name_sentence, class: "agencies") +
+      " on " +
+      h.link_to(publication_date, h.document_issue_path(model))
 
     @document_metadata_description = description.html_safe
   end

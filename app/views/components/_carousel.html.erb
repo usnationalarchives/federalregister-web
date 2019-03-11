@@ -17,12 +17,8 @@
               <p class="metadata" >
                 by <%= document.agency_name_sentence %>
                 on
-                <%= link_to date_tag(
-                    document.publication_date,
-                    datetime: document.publication_date.to_s(:iso)
-                  ),
-                  document_issue_path(document.publication_date)
-                %>
+                <%= link_to document.publication_date,
+                  document_issue_path(document.publication_date) %>
               </p>
 
               <% if description == "inside" %>
