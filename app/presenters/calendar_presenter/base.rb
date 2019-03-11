@@ -72,9 +72,6 @@ class CalendarPresenter::Base
   end
 
   def year_select?
-    ActiveRecord::Type::Boolean.new.type_cast_from_database(
-      options[:year_select]
-    )
-    # TODO: Rails5 change to: ActiveRecord::Type::Boolean.new.cast(options[:year_select])
+    ActiveRecord::Type::Boolean.new.cast(options[:year_select])
   end
 end
