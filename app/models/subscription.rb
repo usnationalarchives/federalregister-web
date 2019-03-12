@@ -2,7 +2,6 @@ class Subscription < ApplicationRecord
   default_scope { where(environment: Rails.env) }
 
   before_create :generate_token
-  after_create :remove_from_bounce_list, if: Proc.new {|sub| sub.user.present?}
 
   attr_accessor :search_conditions, :search_type
 
@@ -61,14 +60,6 @@ class Subscription < ApplicationRecord
   def activate!
     self.unsubscribed_at = nil
     self.save!
-  end
-
-  def remove_from_bounce_list
-    begin
-      SendgridClient.new.remove_from_bounce_list(user.email)
-    rescue StandardError => e
-      Honeybadger.notify(e)
-    end
   end
 
   private

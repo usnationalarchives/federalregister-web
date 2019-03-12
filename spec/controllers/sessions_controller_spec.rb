@@ -14,11 +14,6 @@ describe SessionsController do
     it "Creates the user session properly" do
       request.env["omniauth.auth"] = stubbed_auth_hash
 
-      # Removes user email from the Sendgrid bounce list
-      expect_any_instance_of(SendgridClient).to receive(:remove_from_bounce_list).
-        once.
-        with(stubbed_auth_hash[:extra][:raw_info][:email])
-
       get :create, params: {provider: 'ofr'}
 
       # Sets cookie JS and varnish relies upon

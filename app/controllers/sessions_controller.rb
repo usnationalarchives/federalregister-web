@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
     )
     cookies["expect_signed_in"] = "1"
     cookies[:user_data] = {email: current_user.email}.to_json
-    SendgridClient.new.remove_from_bounce_list(session[:user_details][:email])
 
     message, redirect_location = persist_user_data
     redirect_location = session[:redirect_to] || redirect_location || '/my/clippings'
