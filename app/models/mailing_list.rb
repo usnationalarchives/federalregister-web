@@ -12,7 +12,7 @@ class MailingList < ApplicationRecord
     where(deleted_at: nil).
     joins(:subscriptions).
     where( {subscriptions: {deleted_at: nil}} ).
-    uniq
+    distinct
   }
 
   scope :for_entries, -> {
