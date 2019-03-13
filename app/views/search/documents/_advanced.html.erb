@@ -1,6 +1,18 @@
-<%= render :partial => "search/date_form", :locals => {:f => f, :attribute => :publication_date, :label => "Publication Date"} %>
-<%= render :partial => "search/date_form", :locals => {:f => f, :attribute => :effective_date, :label => "Effective Date"} %>
-<%= render :partial => "search/date_form", :locals => {:f => f, :attribute => :comment_date, :label => "Comment Close Date"} %>
+<%= render partial: "search/date_form", locals: {
+  f: f,
+  attribute: :publication_date,
+  label: "Publication Date"
+} %>
+<%= render partial: "search/date_form", locals: {
+  f: f,
+  attribute: :effective_date,
+  label: "Effective Date"
+} %>
+<%= render partial: "search/date_form", locals: {
+  f: f,
+  attribute: :comment_date,
+  label: "Comment Close Date"
+} %>
 
 <%= f.inputs :class => 'show_labels' do %>
   <li class="string optional agency ui-front">
