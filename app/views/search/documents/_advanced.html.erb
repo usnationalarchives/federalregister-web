@@ -53,13 +53,13 @@
     wrapper_html: {class: "presidential_dependent"} %>
 
   <%= f.input :docket_id,
-    input_html: {:placeholder => "EPA-HQ-OPPT-2005-0049"},
+    input_html: {placeholder: "EPA-HQ-OPPT-2005-0049"},
     label: "Agency Docket",
     required: false,
     wrapper_html: {class: 'docket'} %>
 
   <%= f.input :regulation_id_number,
-    input_html: {:placeholder => "2070-AJ57"},
+    input_html: {placeholder: "2070-AJ57"},
     label: "Regulation ID Number (RIN)",
     required: false,
     wrapper_html: {class: 'reg_id'} %>
@@ -137,6 +137,6 @@
 
   <li>
     <%= link_to "Clear Form", documents_search_path({}),
-      :class => "clear_form" %>
+      class: "clear_form" %>
   </li>
 <% end %>
