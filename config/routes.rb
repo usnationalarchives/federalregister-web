@@ -18,28 +18,30 @@ Rails.application.routes.draw do
   get "/405", to: "errors#not_authorized"
   get "/500", to: "errors#server_error"
 
+
   #
   # Documents
   #
+
   get 'documents/current',
     to: "document_issues#current",
     as: :current_document_issue
 
   get 'documents/:year/:month/:day',
-      to: "document_issues#show",
-      as: :document_issue,
-      constraints: {
-        year:  /\d{4}/,
-        month: /\d{1,2}/,
-        day:   /\d{1,2}/
-      }
+    to: "document_issues#show",
+    as: :document_issue,
+    constraints: {
+      year:  /\d{4}/,
+      month: /\d{1,2}/,
+      day:   /\d{1,2}/
+    }
 
   get 'document_issues/search',
-      to: "document_issues#search",
-      as: :document_issues_search,
-      constraints: {
-        date:  /\d{1,2}\/\d{1,2}\/\d{4}/
-      }
+    to: "document_issues#search",
+    as: :document_issues_search,
+    constraints: {
+      date:  /\d{1,2}\/\d{1,2}\/\d{4}/
+    }
 
   get 'documents/:document_number/emails/new',
     to: 'documents/emails#new',
@@ -50,22 +52,23 @@ Rails.application.routes.draw do
     as: :document_email
 
   get 'documents/:year/:month/:day/:document_number/:slug',
-      to: "documents#show",
-      as: :document,
-      constraints: {
-        year:  /\d{4}/,
-        month: /\d{1,2}/,
-        day:   /\d{1,2}/,
-        slug:  /[^\/]+/
-      }
+    to: "documents#show",
+    as: :document,
+    constraints: {
+      year:  /\d{4}/,
+      month: /\d{1,2}/,
+      day:   /\d{1,2}/,
+      slug:  /[^\/]+/
+    }
 
   # don't break old urls
   get '/a/:document_number(/:anchor)',
-      to: "documents#tiny_url"
+    to: "documents#tiny_url"
 
   get '/d/:document_number(/:anchor)',
-      to: "documents#tiny_url",
-      as: :short_document
+    to: "documents#tiny_url",
+    as: :short_document
+
 
   #
   # Documents Search
@@ -107,21 +110,21 @@ Rails.application.routes.draw do
 
   # legacy route that redirects to current
   get 'public-inspection',
-      to: 'public_inspection_document_issues#public_inspection',
-      as: :public_inspection
+    to: 'public_inspection_document_issues#public_inspection',
+    as: :public_inspection
 
   get 'public-inspection/current',
     to: "public_inspection_document_issues#current",
     as: :current_public_inspection_issue
 
   get 'public-inspection/:year/:month/:day',
-      to: "public_inspection_document_issues#show",
-      as: :public_inspection_issue,
-      constraints: {
-        year:  /\d{4}/,
-        month: /\d{1,2}/,
-        day:   /\d{1,2}/
-      }
+    to: "public_inspection_document_issues#show",
+    as: :public_inspection_issue,
+    constraints: {
+      year:  /\d{4}/,
+      month: /\d{1,2}/,
+      day:   /\d{1,2}/
+    }
 
 
   #
@@ -150,26 +153,28 @@ Rails.application.routes.draw do
       as: 'public_inspection_search_count'
   end
 
-  if Settings.feature_flags.events_search
+
   #
   # Events Search
   #
 
-  get 'events/search',
-    to: 'events/search#show',
-    as: 'events_search'
+  if Settings.feature_flags.events_search
+    get 'events/search',
+      to: 'events/search#show',
+      as: 'events_search'
   end
 
 
-  if Settings.feature_flags.regulatory_plan
   #
   # Regulatory Plans Search
   #
 
-  get 'regulatory_plans/search',
-    to: 'regulatory_plans/search#show',
-    as: 'regulatory_plans_search'
+  if Settings.feature_flags.regulatory_plan
+    get 'regulatory_plans/search',
+      to: 'regulatory_plans/search#show',
+      as: 'regulatory_plans_search'
   end
+
 
   #
   # Citations
@@ -195,11 +200,11 @@ Rails.application.routes.draw do
     to: 'citations#eo',
     contraints: {eo_number: /\d+/}
 
+
   #
   # ESI Routes
   #
   with_options(:quiet => true) do |esi|
-
     #CALENDAR
     esi.get 'esi/document_issues/:year/:month',
       to: 'document_issues#by_month',
@@ -290,28 +295,30 @@ Rails.application.routes.draw do
   #
   # Reader Aids
   #
+
   get 'reader-aids',
-      to: 'reader_aids#index',
-      as: :reader_aids
+    to: 'reader_aids#index',
+    as: :reader_aids
 
   get 'reader-aids/search',
-      to: 'reader_aids#search',
-      as: :reader_aids_search
+    to: 'reader_aids#search',
+    as: :reader_aids_search
 
   get 'reader-aids/:section',
-      to: 'reader_aids#section',
-      as: :reader_aids_section
+    to: 'reader_aids#section',
+    as: :reader_aids_section
 
   get 'reader-aids/:section/*date/:page',
-      to: 'reader_aids#show',
-      as: :reader_aid_blog_post,
-      contraints: {
-        section: ['office-of-the-federal-register-blog', 'recent-updates']
-      }
+    to: 'reader_aids#show',
+    as: :reader_aid_blog_post,
+    contraints: {
+      section: ['office-of-the-federal-register-blog', 'recent-updates']
+    }
 
   get 'reader-aids/:section/:page(/*subpage)',
-      to: 'reader_aids#show',
-      as: :reader_aid
+    to: 'reader_aids#show',
+    as: :reader_aid
+
 
   #
   # Home
@@ -322,6 +329,7 @@ Rails.application.routes.draw do
   #
   # Topics
   #
+
   get 'topics/suggestions',
     controller: "topics",
     actions: "suggestions",
@@ -339,6 +347,7 @@ Rails.application.routes.draw do
   #
   # Agencies
   #
+
   get 'agencies/suggestions',
     controller: "agencies",
     actions: "suggestions",
@@ -356,6 +365,7 @@ Rails.application.routes.draw do
   #
   # Executive Orders
   #
+
   get '/executive-orders',
     to: redirect('/presidential-documents/executive-orders')
 
@@ -366,6 +376,7 @@ Rails.application.routes.draw do
   #
   # Presidential Documents
   #
+
   get '/presidential-documents',
     to: 'presidential_documents#index',
     as: :all_presidential_documents
@@ -385,6 +396,7 @@ Rails.application.routes.draw do
   #
   # Sections
   #
+
   get '/:section',
     to: 'sections#show',
     as: :section,
@@ -401,24 +413,30 @@ Rails.application.routes.draw do
   post '/sections/carousel-preview',
     to: 'sections#carousel_preview'
 
+
   #
   # Single Sign On
   #
+
   get '/auth/sign_in', to: 'sessions#new'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
+
   #
   # Suggested searches
   #
+
   get '/:slug',
     to: 'suggested_searches#show',
     as: :suggested_search,
     constraints: SuggestedSearchContraint.new
 
+
   #
   # FR Index
   #
+
   get '/index/:year',
     controller: "indexes",
     action: "year",
@@ -434,8 +452,11 @@ Rails.application.routes.draw do
     constraints: {
       year: /(19|20)\d{2}/
     }
+
+  #
   # My FR
   #
+  
   scope 'my' do
     root :to => "clippings#index",
          :as => :my_root
