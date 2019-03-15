@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # basic rails stack
-gem 'rails', '5.2.2'
+gem 'rails', '5.2.2.1'
 gem 'rake'
 gem 'rack'
 gem 'mysql2', '0.5.2'
