@@ -222,7 +222,7 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    formtastic (3.0.0)
+    formtastic (3.1.5)
       actionpack (>= 3.2.13)
     fugit (1.1.8)
       et-orbi (~> 1.1, >= 1.1.7)
@@ -548,7 +548,7 @@ DEPENDENCIES
   faraday
   federal_register (= 0.6.8)
   fog-aws
-  formtastic (= 3.0.0)
+  formtastic
   geokit (= 1.4.1)
   guard
   guard-rspec

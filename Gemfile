@@ -61,7 +61,7 @@ gem 'federal_register', '0.6.8'
 gem 'fog-aws'
 
 # forms
-gem 'formtastic', '3.0.0'
+gem 'formtastic'
 
 # geocoding and distance calculation API
 gem 'geokit', '1.4.1', require: 'geokit'
