@@ -50,11 +50,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = smtp_settings
 
-  config.action_mailer.default_url_options = {
-    host: "#{Settings.app_url.gsub('https://', '')}",
-    protocol: "https://"
-  }
-
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
@@ -68,3 +63,8 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+Rails.application.routes.default_url_options = {
+  host: "#{Settings.app_url.gsub('https://', '')}",
+  protocol: "https://"
+}

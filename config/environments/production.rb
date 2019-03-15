@@ -64,11 +64,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = smtp_settings
 
-  config.action_mailer.default_url_options = {
-    host: "#{Settings.app_url.gsub('https://', '')}",
-    protocol: "https://"
-  }
-
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "my_fr2_#{Rails.env}"
@@ -100,3 +95,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Rails.application.routes.default_url_options = {
+  host: "#{Settings.app_url.gsub('https://', '')}",
+  protocol: "https://"
+}
