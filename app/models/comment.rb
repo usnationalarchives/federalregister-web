@@ -151,7 +151,6 @@ class Comment < ApplicationRecord
   end
 
   def fields_do_not_exceed_maximum_length
-    # binding.remote_pry
     comment_form.text_fields.each do |field|
       val = self.send(field.name)
       if val.present? && field.max_length && val.length > field.max_length

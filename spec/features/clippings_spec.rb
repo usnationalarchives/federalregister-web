@@ -86,7 +86,6 @@ feature "Creating clippings", :no_ci do
 
       manually_sign_in(user.email, user.password)
 
-      #binding.pry
       visit '/articles/2014/01/01/4242-4242/test-document'
       expect(page).to have_user_util("#doc_count", 1)
 
