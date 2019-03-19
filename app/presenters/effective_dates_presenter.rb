@@ -71,7 +71,7 @@ class EffectiveDatesPresenter
       end
 
       def tooltip_text
-        delay_reasons
+        delay_reasons.to_sentence
       end
 
       private
