@@ -1,6 +1,7 @@
 Date::DATE_FORMATS[:default] = "%m/%d/%Y"
 Date::DATE_FORMATS[:date] = "%m/%d/%Y"
 Date::DATE_FORMATS[:day_date] = "%A %d"
+Date::DATE_FORMATS[:month_day] = "%B %-d"
 Date::DATE_FORMATS[:month_day_year] = "%B %-d, %Y"
 Date::DATE_FORMATS[:month_year] = "%B %Y"
 Date::DATE_FORMATS[:ymd] = "%Y/%m/%d"

@@ -1,0 +1,77 @@
+<% header_type 'reader-aids' %>
+<% page_title "Reader Aids :: Using FederalRegister.Gov" %>
+
+<%= title title_bar_class: "reader-aids" do %>
+  <%= fr_icon 'Directions' %>
+  Using FederalRegister.Gov
+<% end %>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row reader-aids-section">
+    <div class="<%= bootstrap_col xs: 9, md: 9 %> section">
+
+      <%= fr_details_box FrBox.build(:reader_aid) do %>
+        <div class="row">
+          <div class="<%= bootstrap_col xs: 12, md: 12 %> page_content">
+            <h1>Table of Effective Dates &amp; Time Periods</h1>
+            <p>
+              <%# </p><p><strong>March 2019</strong></p> %>
+              <p>This table is used by the Office of the Federal Register to compute certain dates, such as effective dates and comment deadlines, which appear in agency documents. In computing these dates, the day after publication is counted as the first day. When a date falls on a weekend or holiday, the next Federal business day is used. (See 1 CFR 18.17)</p>
+
+              <p>A new table will be published in the first issue of each month. You can also <%= link_to 'view', @auxillary_presenter.govinfo_table_html_url, rel: 'noopener', target: '_blank' %> and <%= link_to 'print', @auxillary_presenter.govinfo_table_pdf_url, rel: 'noopener', target: '_blank' %> this table on govinfo.gov.</p>
+
+            <table class="table">
+              <tr>
+                <thead>
+                  <th>Date of FR Publication</th>
+                  <% EffectiveDatesPresenter::DAY_DELAY_INTERVALS.each do |day_delay_interval| %>
+                    <th><%= "#{day_delay_interval} Days After Publication" %></th>
+                  <% end %>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <% @auxillary_presenter.publication_dates.each do |publication_date| %>
+                    <tr>
+                      <td><%= publication_date %></td>
+                      <% publication_date.day_delay_intervals.each do |day_delay_interval| %>
+                        <td>
+                          <span class="tooltip" data-tooltip="<%= day_delay_interval.tooltip_text %>" data-tooltip-gravity="n">
+                            <%= "#{day_delay_interval}#{'*' if day_delay_interval.tooltip_text.present?}" %>
+                          </span>
+                        </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </tr>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="<%= bootstrap_col xs: 3, md: 3 %> navigation">
+      <div class="row">
+        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+          <%= fr_details_box(
+            FrBox.build(
+              :reader_aid,
+              title: 'Reader Aid Navigation',
+              header: {hover: false}
+            )
+          ) do %>
+            <h5><%= link_to "All Reader Aids Content", reader_aids_path %></h5>
+
+            <ul class="fr-list with-bullets reader-aids">
+              <% @presenter.sections.each do |section_identifier, section_data| %>
+                <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<% end %>
+

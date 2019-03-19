@@ -27,6 +27,7 @@ class ReaderAidsController < ApplicationController
       @presenter = ReaderAidsPresenter::SectionPresenter.new(
         section_identifier: params[:section]
       )
+      @auxillary_presenter = ReaderAid.auxillary_presenter_for(params[:page])
 
       cache_for 1.day
       render ReaderAid.template_for(params[:page]) and return

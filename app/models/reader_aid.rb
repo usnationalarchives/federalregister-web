@@ -76,7 +76,19 @@ class ReaderAid
   }
 
   INTERACTIVE_PAGES = {
-    'utilizing-complex-search-terms' => 'search/documents/help'
+    'utilizing-complex-search-terms' => {
+      template: 'search/documents/help',
+    },
+    'table-of-effective-dates-time-periods' => {
+      template: 'reader_aids/table_of_effective_dates_time_periods',
+      auxillary_presenter: Proc.new do
+        publication_date = Date.parse(DocumentIssue.current.slug)
+        EffectiveDatesPresenter.new(
+          start_date: publication_date,
+          end_date:   publication_date.advance(days: 90)
+        )
+      end
+    }
   }
 
   def self.interactive_page?(slug)
@@ -84,6 +96,10 @@ class ReaderAid
   end
 
   def self.template_for(slug)
-    INTERACTIVE_PAGES[slug]
+    INTERACTIVE_PAGES[slug][:template]
+  end
+
+  def self.auxillary_presenter_for(slug)
+    INTERACTIVE_PAGES[slug][:auxillary_presenter].call
   end
 end
