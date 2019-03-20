@@ -71,7 +71,9 @@ class EffectiveDatesPresenter
       end
 
       def tooltip_text
-        delay_reasons.map(&:titleize).to_sentence
+        if delay_reasons.present?
+          "Delay due to #{delay_reasons.to_sentence}"
+        end
       end
 
       private
