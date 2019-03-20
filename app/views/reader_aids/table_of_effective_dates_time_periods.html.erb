@@ -19,12 +19,12 @@
 
               <p>A new table will be published in the first issue of each month. You can also <%= link_to 'view', @auxillary_presenter.govinfo_table_html_url, rel: 'noopener', target: '_blank' %> and <%= link_to 'print', @auxillary_presenter.govinfo_table_pdf_url, rel: 'noopener', target: '_blank' %> this table on govinfo.gov.</p>
 
-            <table class="table">
+            <table class="table table-condensed" style="font-size: smaller;">
               <thead>
                 <tr>
                   <th>Date of FR Publication</th>
                   <% EffectiveDatesPresenter::DAY_DELAY_INTERVALS.each do |day_delay_interval| %>
-                    <th><%= "#{day_delay_interval} Days After Publication" %></th>
+                    <th class="text-center"><%= "#{day_delay_interval} Days After Publication" %></th>
                   <% end %>
                 </tr>
               </thead>
@@ -33,7 +33,7 @@
                   <tr>
                     <td><%= publication_date %></td>
                     <% publication_date.day_delay_intervals.each do |day_delay_interval| %>
-                      <td class="cj-tooltip" data-tooltip="<%= day_delay_interval.tooltip_text %>" data-tooltip-gravity="s">
+                      <td class="cj-tooltip text-center" data-tooltip="<%= day_delay_interval.tooltip_text %>" data-tooltip-gravity="s">
                         <%= "#{day_delay_interval}#{'*' if day_delay_interval.tooltip_text.present?}" %>
                       </td>
                     <% end %>
