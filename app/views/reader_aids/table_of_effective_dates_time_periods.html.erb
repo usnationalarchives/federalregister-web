@@ -30,7 +30,7 @@
               <tbody>
                 <% @auxillary_presenter.publication_dates.each do |publication_date| %>
                   <tr>
-                    <td><%= publication_date %></td>
+                    <th><%= publication_date %></th>
                     <% publication_date.day_delay_intervals.each do |day_delay_interval| %>
                       <td class="cj-tooltip text-center" data-tooltip="<%= day_delay_interval.tooltip_text %>" data-tooltip-gravity="s">
                         <%= "#{day_delay_interval}#{'*' if day_delay_interval.tooltip_text.present?}" %>
