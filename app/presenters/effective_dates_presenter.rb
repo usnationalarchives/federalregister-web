@@ -26,11 +26,16 @@ class EffectiveDatesPresenter
   attr_reader :start_date, :end_date
 
   def first_monthly_publication_date
-    candidate = Date.current.beginning_of_month
-    while !issue_should_be_available?(candidate)
-      candidate = candidate.advance(days: 1)
-    end
-    candidate.to_s(:iso)
+    FederalRegister::Facet::Document::Daily.search(
+      conditions: {
+        publication_date: {
+          gte: start_date.beginning_of_month.to_s(:iso),
+          lte: (start_date.beginning_of_month + 2.weeks).to_s(:iso)
+        }
+      }
+    ).
+      detect{|x| x.count > 0}.
+      slug
   end
 
   def issue_should_be_available?(date)
