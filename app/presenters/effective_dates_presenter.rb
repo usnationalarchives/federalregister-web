@@ -59,9 +59,13 @@ class EffectiveDatesPresenter
     end
 
     def day_delay_intervals
-      EffectiveDatesPresenter::DAY_DELAY_INTERVALS.map do |day_delay_interval|
-        data = time_periods.fetch(day_delay_interval.to_s)
-        DayDelayInterval.new(Date.parse(data.fetch('date')), data.fetch('delay_reasons'))
+      EffectiveDatesPresenter::DAY_DELAY_INTERVALS.map do |interval|
+        data = time_periods.fetch(interval.to_s)
+        DayDelayInterval.new(
+          Date.parse(data.fetch('date')),
+          data.fetch('delay_reasons'),
+          interval
+        )
       end
     end
 
@@ -74,9 +78,10 @@ class EffectiveDatesPresenter
 
       attr_reader :date
 
-      def initialize(date, delay_reasons)
+      def initialize(date, delay_reasons, interval)
         @date          = date
         @delay_reasons = delay_reasons
+        @interval      = interval
       end
 
       def to_s
@@ -84,14 +89,23 @@ class EffectiveDatesPresenter
       end
 
       def tooltip_text
-        if delay_reasons.present?
-          "Delay due to #{delay_reasons.to_sentence}"
-        end
+        "#{interval} Days After Publication#{delay_text}"
+      end
+
+      def delay?
+        delay_reasons.present?
       end
 
       private
 
-      attr_reader :delay_reasons
+      attr_reader :delay_reasons, :interval
+
+      def delay_text
+        if delay_reasons.present?
+          " (Delay due to #{delay_reasons.to_sentence})"
+        end
+      end
+
     end
 
 
