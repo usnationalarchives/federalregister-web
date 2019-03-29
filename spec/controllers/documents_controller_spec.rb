@@ -51,7 +51,7 @@ describe DocumentsController do
 
         it "redirects to the full document page if the document exists" do
           expect(
-            FederalRegister::Document
+            Document
           ).to receive(:find).
             with(document.document_number).
             and_return(document)
