@@ -37,7 +37,7 @@ class CalendarPresenter::Base
   end
 
   def next_month_text
-    if date.months_since(1) <= issue.current.publication_date
+    if date.months_since(1) <= current_issue_date
       view.link_to(
         'Next &raquo;'.html_safe,
         next_month_path({
@@ -60,7 +60,7 @@ class CalendarPresenter::Base
   end
 
   def current_issue_date
-    issue.current.publication_date
+    @current_issue_date ||= issue.current.publication_date
   end
 
   def current_date
