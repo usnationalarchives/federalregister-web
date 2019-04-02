@@ -138,11 +138,11 @@ class @FR2.CommentFormLoadHandler
     else
       modalTitle = "We're sorry something <br> went wrong"
       modalHtml = "
-        <p>We've encountered an error and we have been notified.</p>
+        <p>We're sorry we are currently unable to submit your comment to Regulations.gov.</p>
         <p>
-          You may also comment directly on Regulations.gov here:
-          <br>
-          <a href='#{@commentLink().attr('href')}'>#{@commentLink().attr('href')}</a>
+          You may want try again in a few moments or attempt to comment via Regulations.gov: <br>
+          <a href='#{@commentLink().attr('href')}'>#{@commentLink().attr('href')}</a>,
+          <br>or via any other method described in the document.
         </p>
       "
       @trackCommentFormOpenError 'FederalRegister.gov Error'
