@@ -102,9 +102,6 @@ class CommentsController < ApplicationController
 
     render :json => json_for_regulations_dot_gov_errors(exception),
       :status => exception.code && exception.code < 500 ? exception.code : 500
-
-    # we're in a before filter here
-    return false
   rescue RegulationsDotGovCommentService::MissingCommentUrl => exception
     response.headers['Comments-No-Longer-Accepted'] = "1"
 
@@ -116,9 +113,6 @@ class CommentsController < ApplicationController
         "federal_register_dot_gov_errors.comments_no_longer_accepted.modal_html"
       )
     }
-
-    # we're in a before filter here
-    return false
   end
 
   def record_regulations_dot_gov_error(exception)
