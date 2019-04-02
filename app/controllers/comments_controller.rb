@@ -100,18 +100,14 @@ class CommentsController < ApplicationController
 
     response.headers['Regulations-Dot-Gov-Problem'] = "1"
 
-    render :json => json_for_regulations_dot_gov_errors(exception),
-      :status => exception.code && exception.code < 500 ? exception.code : 500
+    render json: json_for_regulations_dot_gov_errors(exception),
+      status: exception.code && exception.code < 500 ? exception.code : 500
   rescue RegulationsDotGovCommentService::MissingCommentUrl => exception
     response.headers['Comments-No-Longer-Accepted'] = "1"
 
-    render :json => {
-      :modalTitle => t(
-        "federal_register_dot_gov_errors.comments_no_longer_accepted.modal_title"
-      ),
-      :modalHtml => t(
-        "federal_register_dot_gov_errors.comments_no_longer_accepted.modal_html"
-      )
+    render json: {
+      modalTitle: t("federal_register_dot_gov_errors.comments_no_longer_accepted.modal_title"),
+      modalHtml: t("federal_register_dot_gov_errors.comments_no_longer_accepted.modal_html")
     }
   end
 
