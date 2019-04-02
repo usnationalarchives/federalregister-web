@@ -137,8 +137,22 @@ class @FR2.CommentFormLoadHandler
 
     else
       modalTitle = "We're sorry something went wrong"
-      modalHtml = "We've encountered an error and we have been notified. Please try again later."
+      modalHtml = "We've encountered an error and we have been notified. Please try again later. \n\n You may also comment directly on Regulations.gov here: #{@commentLink.href}"
       @trackCommentFormOpenError 'FederalRegister.gov Error'
+
+      siteNotification = ''
+
+      $.ajax {
+        async: false,
+        url: '/api/v1/site_notifications/comment',
+        dataType: 'json'
+        success: (response)->
+          if response.active
+            siteNotification = "<div class='#{response.notification_type}'>#{response.description}</div>"
+
+      }
+
+      modalHtml = "#{siteNotification} #{modalHtml}"
 
     FR2.Modal.displayModal modalTitle, modalHtml
 
