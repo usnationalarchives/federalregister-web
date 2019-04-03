@@ -2,7 +2,7 @@
 
 <div class="comment_form_wrapper" data-comment-due="<%= @comment.comment_form.comments_close_at ? @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) : '' %>">
   <div class="instructions">
-    <%= esi site_notification_path(:identifier => :comment) %>
+    <%= esi site_notification_path(identifier: :comment) %>
 
     <% if @comment.comment_form.comments_close_at %>
       <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
@@ -50,18 +50,20 @@
     </p>
 
     <p>
-      You can also view
+      You can view
       <% if @comment.comment_form.alternative_ways_to_comment.present? %>
         <a href="#" class="fr_modal_link reg_gov_alternative_ways_to_comment"
           data-modal-title="Alternative Ways to Comment"
           data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">
           alternative ways to comment
-        </a>.
+        </a>
       <% else %>
         <%= link_to 'alternative ways to comment',
           '#addresses',
-          :class => 'alternative_ways_to_comment addresses' %>
+          class: 'alternative_ways_to_comment addresses' %>
       <% end %>
+      or you may also comment via Regulations.gov at,
+      <%= link_to @comment.document.comment_url, @comment.document.comment_url %>.
     </p>
   </div>
 
