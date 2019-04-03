@@ -53,5 +53,7 @@
 
 #= require search
 
+#= require swagger
+
 # Instantiate and bind common application js items
 #= require app
