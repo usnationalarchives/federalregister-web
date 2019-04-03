@@ -27,7 +27,6 @@ module MyFr2
     # Use routes to pickup exceptions - allows us to serve pretty error pages
     config.exceptions_app = self.routes
 
-
     config.action_dispatch.rescue_responses.merge!(
       'FederalRegister::Client::RecordNotFound' => :not_found
     )

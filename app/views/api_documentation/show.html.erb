@@ -1,5 +1,7 @@
-<%= stylesheet_link_tag 'swagger', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'swagger' %>
+<%# When Uglify tries to compress the swagger-ui-bundle file, it malformats/breaks the swagger-ui-bundle js file (likely because the file is already minified (an unminified version is unavailable) and/or uses new JS functionality that didn't exist in the version of Uglifier we're using.) %>
+<script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+<%= stylesheet_link_tag asset_path('swagger.css'), media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag asset_path('swagger.js') %>
 
 <% page_title 'API Documentation' %>
 
