@@ -1,7 +1,7 @@
 $(document).ready ->
 
   window.ui = SwaggerUIBundle(
-    url: "/developers/documentation.json",
+    url: "/developers/documentation/api/v1.json",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [

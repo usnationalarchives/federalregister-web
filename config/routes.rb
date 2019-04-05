@@ -425,7 +425,7 @@ Rails.application.routes.draw do
   #
   # API Documentation
   #
-  get '/developers/documentation', to: 'api_documentation#show', as: :api_documentation #TODO: It's probably desirable for this route to be changed to /developers/api for consistency with old URL scheme.  Varnish currently sets the backend to io_docs, which would need to change first.
+  get '/developers/documentation/api/v1', to: 'api_documentation#show', as: :api_documentation
 
   
   #
