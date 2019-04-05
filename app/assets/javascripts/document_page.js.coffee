@@ -85,7 +85,7 @@ $(document).ready ->
       emailAFriend.display()
 
     commentButton = $('#start_comment')
-    if commentButton.length > 0
+    if commentButton.length > 0 && !$('#comment-bar').data('reggov-comment-url')
       if $('#addresses').length == 0
         if $('#further-info').length == 0
           commentButton.remove()
