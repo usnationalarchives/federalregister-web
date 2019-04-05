@@ -60,13 +60,16 @@ en:
   regulations_dot_gov_errors:
     service_unavailable:
       modal_title: "Service Unavailable"
-      modal_html: "<p>We're sorry we are currently unable to communicate with Regulations.gov.</p> <p>You may want try again in a few moments or attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
+      modal_html: "<p>We're sorry we are currently unable to communicate with Regulations.gov.</p> <p>You may want try again in a few moments, attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
     comments_closed:
       modal_title: Comment Period Closed
       modal_html: "<p>The comment period on this document is closed and comments are no longer being accepted on Regulations.gov. We apologize for any inconvenience.</p>"
+    over_rate_limit:
+      modal_title: "Over Rate Limit"
+      modal_html: "<p>We're sorry we are currently unable to load the comment form from Regulations.gov because they have received too many requests in the last hour.</p> <p>You may want try again in a few moments, attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
     unknown:
       modal_title: "Communications Error"
-      modal_html: "<p>We're sorry we are currently unable to communicate with Regulations.gov.</p> <p>You may want try again in a few moments or attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
+      modal_html: "<p>We're sorry we are currently unable to communicate with Regulations.gov.</p> <p>You may want try again in a few moments, attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
   sessions:
     sign_in: "You will be redirected back to the Federal Register after you have signed in or created an account."
   subscriptions:

@@ -75,12 +75,11 @@ class RegulationsDotGovCommentService
 
           # comment form may have changed since last retrieved
           reload_comment_form_and_resubmit(exception)
+        rescue RegulationsDotGov::Client::OverRateLimit => exception
+          notify = bulk_submission? ? false : true
+          record_regulations_dot_gov_error(exception, notify)
+          return exception
         rescue RegulationsDotGov::Client::ResponseError => exception
-          if bulk_submission? && exception.class == RegulationsDotGov::Client::OverRateLimit
-            notify = false
-          else
-            notify = true
-          end
           record_regulations_dot_gov_error(exception, notify)
 
           comment.add_error(

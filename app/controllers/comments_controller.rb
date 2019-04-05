@@ -52,8 +52,15 @@ class CommentsController < ApplicationController
         track_ipaddress "comment_post_success", request.remote_ip
         render_created_comment
       else
+        headers = {}
+        # prevent nginx from seeing the underlying 429
+        if response.is_a?(RegulationsDotGov::Client::OverRateLimit)
+          response.code = 500
+          headers["Regulations-Dot-Gov-Over-Rate-Limit"] = 1
+        end
+
         track_ipaddress "comment_post_failure", request.remote_ip
-        render_error_page(response.status)
+        render_error_page(response.status, headers)
       end
     else
       render action: :new, status: 400
@@ -85,7 +92,8 @@ class CommentsController < ApplicationController
   end
 
 
-  def render_error_page(status=422)
+  def render_error_page(status=422, headers={})
+    headers.each {|k,v| response.headers[k] = v}
     render action: :new, status: status
   end
 
@@ -97,8 +105,12 @@ class CommentsController < ApplicationController
     @comment_attachments = @comment.attachments
   rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::CommentPeriodClosed, RegulationsDotGov::Client::ServerError => exception
     record_regulations_dot_gov_error( exception )
-
-    response.headers['Regulations-Dot-Gov-Problem'] = "1"
+  
+    if exception.is_a?(RegulationsDotGov::Client::OverRateLimit)
+      response.headers['Regulations-Dot-Gov-Over-Rate-Limit'] = "1"
+    else
+      response.headers['Regulations-Dot-Gov-Problem'] = "1"
+    end
 
     render json: json_for_regulations_dot_gov_errors(exception),
       status: exception.code && exception.code < 500 ? exception.code : 500
@@ -121,6 +133,10 @@ class CommentsController < ApplicationController
       error = 'service_unavailable'
     elsif exception.code == 409
       error = 'comments_closed'
+    elsif exception.code == 429
+      # change from 429 so that nginx doesn't render a rate limit page
+      exception.code = 500
+      error = 'over_rate_limit'
     else
       error = 'unknown'
     end

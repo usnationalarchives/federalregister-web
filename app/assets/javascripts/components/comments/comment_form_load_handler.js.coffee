@@ -111,7 +111,8 @@ class @FR2.CommentFormLoadHandler
         @trackCommentFormOpenSuccess()
 
   error: (response)->
-    if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1" || response.getResponseHeader('Comments-No-Longer-Accepted') == "1"
+    if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1" || response.getResponseHeader('Comments-No-Longer-Accepted') == "1" || response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"
+      
       responseText = JSON.parse response.responseText
       modalTitle = responseText.modalTitle
       modalHtml  = responseText.modalHtml
@@ -120,6 +121,8 @@ class @FR2.CommentFormLoadHandler
         @trackCommentFormOpenError 'Regulations.gov Error'
       else if response.getResponseHeader('Comments-No-Longer-Accepted') == "1"
         @trackCommentFormOpenError 'Comments No Longer Accepted Error'
+      else if response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"
+        @trackCommentFormOpenError 'Over Rate Limit Error'
 
       siteNotification = ''
 
@@ -136,12 +139,13 @@ class @FR2.CommentFormLoadHandler
       modalHtml = "#{siteNotification} #{modalHtml}"
 
     else
+      reggov_url = @formWrapper().data('reggov-comment-url')
       modalTitle = "We're sorry something <br> went wrong"
       modalHtml = "
         <p>We're sorry we are currently unable to submit your comment to Regulations.gov.</p>
         <p>
           You may want try again in a few moments or attempt to comment via Regulations.gov: <br>
-          <a href='#{@commentLink().attr('href')}'>#{@commentLink().attr('href')}</a>,
+          <a href='#{reggov_url}'>#{reggov_url}</a>,
           <br>or via any other method described in the document.
         </p>
       "

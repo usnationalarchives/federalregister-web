@@ -9,7 +9,7 @@ end
 class RegulationsDotGov::Client
   class APIKeyError < StandardError; end
   class ResponseError < StandardError
-    attr_reader :code
+    attr_accessor :code
     alias_method :status, :code
 
     def initialize(message, code=nil)

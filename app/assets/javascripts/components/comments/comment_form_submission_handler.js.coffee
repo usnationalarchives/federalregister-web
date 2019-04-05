@@ -86,6 +86,22 @@ class @FR2.CommentFormSubmissionHandler
       @commentFormStore().clearSavedFormState()
 
   error: (response)->
+    if response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"
+      reggov_url = @commentFormHandler.commentFormLoadHandler.formWrapper().data('reggov-comment-url')
+
+      modalTitle = "Over Rate Limit"
+      modalHtml = "
+        <p>
+          We were unable to successfully submit your comment at this time because Regulations.gov
+          has received too many comments in the last hour.
+        </p>
+        <p>
+          Please try submitting your comment again later, attempt to comment directly via Regulations.gov at
+          <a href='#{reggov_url}'>#{reggov_url}</a>, or via any other method
+          described in the document.
+        </p>"
+      FR2.Modal.displayModal modalTitle, modalHtml
+
     @_rollUpCommentAndReplace response, (response)=>
       commentPage = $('<div>')
         .addClass 'comment_wrapper'
