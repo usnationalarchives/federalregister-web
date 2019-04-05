@@ -25,7 +25,7 @@ class SwaggerJsonBuilder
   private
 
   def servers
-    Array.new([{"url": Settings.federal_register.api_url}]).tap do |array|
+    Array.new([{"url": "#{Settings.app_url}/api/v1/"}]).tap do |array|
       if Rails.env.staging? || Rails.env.development?
         all_servers.each {|server| array << server}
       end
@@ -34,9 +34,8 @@ class SwaggerJsonBuilder
 
   def all_servers
     [
-      {"url": "http://localhost:4002/api/v1/"},
-      {"url": "http://fr2.criticaljuncture.org/api/v1/"},
-      {"url": "http://www.federalregister.gov/api/v1/"},
+      {"url": "https://fr2.criticaljuncture.org/api/v1/"},
+      {"url": "https://www.federalregister.gov/api/v1/"},
     ]
   end
 
