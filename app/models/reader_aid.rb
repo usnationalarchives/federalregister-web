@@ -100,6 +100,6 @@ class ReaderAid
   end
 
   def self.auxillary_presenter_for(slug)
-    INTERACTIVE_PAGES[slug][:auxillary_presenter].call
+    INTERACTIVE_PAGES[slug][:auxillary_presenter].try(:call)
   end
 end
