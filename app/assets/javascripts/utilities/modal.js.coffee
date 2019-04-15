@@ -40,16 +40,19 @@ class @FR2.Modal
 
 
     currentModal.jqmShow().centerScreen()
-    @addCloseHandler(options.modalId)
+    @addCloseHandler(options)
 
-  @addCloseHandler: (modalId)->
-    $("#{modalId}").jqm({
+  @addCloseHandler: (options)->
+    $("#{options.modalId}").jqm({
       onHide: (hash) ->
-        hash.w.fadeOut(
-          '400',
-          -> hash.o.remove()
-        )
-        $("#{modalId}").trigger('modalClose')
+        if options.onHide
+          options.onHide(hash)
+        else
+          hash.w.fadeOut(
+            '400',
+            -> hash.o.remove()
+          )
+          $("#{options.modalId}").trigger('modalClose')
     })
 
   @closeModal: (modalId)->
