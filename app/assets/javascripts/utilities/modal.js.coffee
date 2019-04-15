@@ -38,6 +38,8 @@ class @FR2.Modal
       toTop: true
     })
 
+    if options.alternateModalCloseSelector
+      currentModal.jqmAddClose(options.alternateModalCloseSelector)
 
     currentModal.jqmShow().centerScreen()
     @addCloseHandler(options)
