@@ -71,7 +71,6 @@ class @FR2.HighlightedDocuments
       submitButton.prop('disabled', false)
 
   addPhotoSearch: ->
-    @page = 0
     @photoForm = @photoContent.find('form.photo-search')
 
     @watchSearchButton()
@@ -79,6 +78,8 @@ class @FR2.HighlightedDocuments
     @photoForm.on 'submit', (event)=>
       event.preventDefault()
       event.stopPropagation()
+
+      @page = 0
 
       @displayPhotosLoading()
       @removePhotoGrid()
@@ -134,7 +135,7 @@ class @FR2.HighlightedDocuments
         $('#admin-photo-grid-template').html()
       )({
         currentPage: @page + 1
-        pages: Math.floor(@photos.length / 24)
+        pages: Math.ceil(@photos.length / 24)
         photos: @paginatePhotos()
       })
     )
