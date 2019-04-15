@@ -5,3 +5,5 @@ $(document).ready ->
     FR2.commentFormHandlerInstance = new FR2.CommentFormHandler(
       $('#comment-bar.comment')
     )
+  else
+    new FR2.CommentingUnavailableHandler( $('#comment-bar.comment') )

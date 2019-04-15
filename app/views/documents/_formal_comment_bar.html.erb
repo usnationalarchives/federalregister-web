@@ -4,7 +4,8 @@
   data-reggov-comment-url="<%= document.comment_url %>"
   data-comments-close-on="<%= document.comments_close_on %>"
   data-comment-days-remaining="<%= document.comment_period_days_remaining %>"
-  data-comment-period-open="<%= document.document_comment_period_open? %>">
+  data-comment-period-open="<%= document.document_comment_period_open? %>"
+  data-reg-gov-participating-agency="<%= document.participating_agency? %>">
   <p>
     <%= fr_icon 'Chat' %>
     <% if document.document_comment_period_open? %>

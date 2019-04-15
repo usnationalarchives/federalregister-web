@@ -14,6 +14,18 @@ class Agency < FederalRegister::Agency
     }
   end
 
+  PARTICIPATING_AGENCIES_FILE = 'data/regulations_dot_gov_participating_agencies.csv'
+
+  def self.participating_agency_acronyms
+    @participating_agency_ids ||= CSV.new(
+      File.open(PARTICIPATING_AGENCIES_FILE),
+      :headers => :first_row,
+      :skip_blanks => true
+    ).map do |row|
+      row["Acronym"]
+    end
+  end
+
   def total_document_count
     @document_count ||= ::Document.search(
       search_conditions.deep_merge!(

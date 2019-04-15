@@ -128,4 +128,15 @@ class DocumentDecorator < ApplicationDecorator
     return unless citation_available?
     citation.split('FR').first().strip
   end
+
+  def participating_agency?
+    participating_agency_acronyms = Agency.participating_agency_acronyms
+    agencies.any? do|agency|
+      agency = Agency.find(agency.slug)
+      if agency
+        participating_agency_acronyms.include? agency.short_name
+      end
+    end
+  end
+
 end

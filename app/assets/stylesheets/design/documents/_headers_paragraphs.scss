@@ -2,6 +2,11 @@
 .fr-box-official .content-block {
   h3.cfr-subjects { margin-left: 25px; }
 
+  #addresses:target {
+    background-color: $color-enhanced-light;
+    transition: background-color 1.5s ease-in;
+  }
+
   p {
     &.flush-paragraph {
       padding-bottom: 0;
