@@ -130,15 +130,22 @@ class @FR2.HighlightedDocuments
   displayPhotoGrid: ->
     @removePhotoGrid()
 
-    @photoContent.prepend(
-      Handlebars.compile(
-        $('#admin-photo-grid-template').html()
-      )({
-        currentPage: @page + 1
-        pages: Math.ceil(@photos.length / 24)
-        photos: @paginatePhotos()
-      })
-    )
+    if @photos.length > 0
+      @photoContent.prepend(
+        Handlebars.compile(
+          $('#admin-photo-grid-template').html()
+        )({
+          currentPage: @page + 1
+          pages: Math.ceil(@photos.length / 24)
+          photos: @paginatePhotos()
+        })
+      )
+    else
+      @photoContent.prepend(
+        $('<div>').addClass('photo-grid-wrapper').html(
+          $('<p>').addClass('error').html('No photos found.')
+        )
+      )
 
     @addPhotoPageChangeHandler()
     @addPhotoClickHandler()
