@@ -7,7 +7,7 @@ class DocumentIssuesController < ApplicationController
 
     parsed_date = parse_date_from_params
 
-    if DocumentIssue.published_on(parsed_date).has_documents?
+    if DocumentIssue.published_on(parsed_date).try(:has_documents?)
       @presenter = TableOfContentsPresenter.new(parsed_date)
       @doc_presenter = DocumentIssuePresenter.new(parsed_date, documents: @presenter.documents)
     else
