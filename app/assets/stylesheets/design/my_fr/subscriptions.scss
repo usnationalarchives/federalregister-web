@@ -109,6 +109,11 @@ ul.subscriptions {
 .subscription_data {
   .active { color: $fr-green; }
   .inactive { color: $fr-red; }
+
+  .csv_link,
+  .rss_link {
+    display: inline-block;
+  }
 }
 
 .tipsy.commented-on-document { width: 600px; }

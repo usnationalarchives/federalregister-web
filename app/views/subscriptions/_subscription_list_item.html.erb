@@ -42,12 +42,12 @@
       <dt class="<%= subscription.active? ? 'unsubscribe_link' : 'resubscribe_link' %>">Status:</dt>
       <% if subscription.active? %>
         <dd>
-          <span class='active'>active</span> : :
+          <span class='active'>active</span> :
           <%= link_to "suspend", suspend_subscription_path(subscription.token) , class: 'unsubscribe' %>
         </dd>
       <% else %>
         <dd>
-          <span class='inactive'>inactive</span> : :
+          <span class='inactive'>inactive</span> :
           <%= link_to "re-activate", activate_subscription_path(subscription.token) , class: 'resubscribe' %>
         </dd>
       <% end %>
@@ -74,7 +74,7 @@
       <% end %>
 
       <% if subscription.comment.present? %>
-        <dt>Related Document</dt>
+        <dt>Related Document:</dt>
         <dd>
           You commented on <br>
           <%= link_to subscription.comment.document.document_number,
