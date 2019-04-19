@@ -151,6 +151,7 @@ gem 'underscore-rails', '~> 1.6.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
+gem 'sitemap_generator'
 
 group :development do
   gem 'web-console', '~> 2.0'

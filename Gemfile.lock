@@ -472,6 +472,8 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
+    sitemap_generator (6.0.2)
+      builder (~> 3.0)
     slop (3.6.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -588,6 +590,7 @@ DEPENDENCIES
   sass
   sass-rails
   sendgrid
+  sitemap_generator
   timecop
   uglifier
   underscore-rails (~> 1.6.0)
