@@ -25,4 +25,16 @@ class QueryConditions::PublicInspectionDocumentConditions < QueryConditions
       }
     }
   end
+
+  def self.published_within(start_date, end_date)
+    {
+      conditions: {
+        publication_date: {
+          gte: iso(start_date),
+          lte: iso(end_date)
+        }
+      }
+    }
+  end
+
 end

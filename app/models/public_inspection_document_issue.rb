@@ -42,4 +42,13 @@ class PublicInspectionDocumentIssue < FederalRegister::Facet::PublicInspectionIs
       )
     )
   end
+
+  def self.within(start_date, end_date)
+    search(
+      QueryConditions::DocumentConditions.published_within(
+        Date.new(2019,1,1),
+        end_date
+      )
+    )
+  end
 end

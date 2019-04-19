@@ -60,4 +60,13 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
       )
     )
   end
+
+  def self.within(start_date, end_date)
+    search(
+      QueryConditions::DocumentConditions.published_within(
+        start_date,
+        end_date
+      )
+    )
+  end
 end
