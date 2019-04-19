@@ -11,6 +11,7 @@ class NewIssueProcessor < IssueProcessor
     sleep(60)
 
     deliver_mailing_lists
+    update_sitemap!
   end
 
   private
@@ -22,4 +23,10 @@ class NewIssueProcessor < IssueProcessor
   def deliver_mailing_lists
     DocumentSubscriptionQueuePopulator.perform(date)
   end
+
+  def update_sitemap!
+    Rails.application.load_tasks
+    Rake::Task['sitemap:refresh'].invoke
+  end
+
 end
