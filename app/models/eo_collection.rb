@@ -23,8 +23,10 @@ class EoCollection
 
   def results
     @results ||= Document.search(
-      QueryConditions::PresidentialDocumentConditions.executive_orders(
-        president, year
+      QueryConditions::PresidentialDocumentConditions.presidential_documents(
+        president,
+        year,
+        'executive_order'
       ).deep_merge!({
         conditions: {correction: 0},
         fields: FIELDS,
