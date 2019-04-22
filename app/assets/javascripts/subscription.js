@@ -10,6 +10,13 @@ function resubscribe_success($link, response) {
   $link.attr('href', response.unsubscribe_url);
 }
 
+function destroy_subscription_success($link) {
+  $('.fr-modal').jqmHide();
+  var subscriptionId = $link.data('subscription-id');
+  var subscriptionDiv = $("ul.subscriptions").find("[data-subscription-id='" + subscriptionId + "']");
+  subscriptionDiv.hide();
+}
+
 
 $(document).ready( function() {
   /* set height so that dotted border on subscription data is 
@@ -30,7 +37,7 @@ $(document).ready( function() {
 
     $.ajax({
       url: $link.attr('href'),
-      type: 'DELETE',
+      type: 'GET',
       dataType: 'json',
 
       success: function(response) {
@@ -54,6 +61,37 @@ $(document).ready( function() {
 
       success: function(response) {
         resubscribe_success($link, response);
+      },
+      error: function(error) {
+      }
+    });
+  });
+
+
+  /* delete */
+  $('#subscriptions').delegate('.subscription_data a.confirm-subscription-destroy-js', 'click', function(event) {
+    event.preventDefault();
+
+    var $link = $(this);
+
+    var anchorTag = "<a data-subscription-id='" + $link.data('subscription-id') + "' class='fr_button medium primary destroy-js' href='" + $link.attr('href') + "'>Delete</a>";
+
+    FR2.Modal.displayModal(
+      'Please Confirm Deletion',
+      "<p>Are you sure you would like to delete this subscription?</p>" + anchorTag
+    );
+  });
+
+  $("#subscriptions").on( "click", "a.destroy-js", function( event ) {
+    event.preventDefault();
+    var $link = $(this);
+
+    $.ajax({
+      url: $link.attr('href'),
+      type: 'DELETE',
+      dataType: 'json',
+      success: function(response) {
+        destroy_subscription_success($link);
       },
       error: function(error) {
       }

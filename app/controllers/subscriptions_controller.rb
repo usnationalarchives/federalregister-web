@@ -81,26 +81,22 @@ class SubscriptionsController < ApplicationController
   end
 
   def suspend
-    if request.xhr?
-      subscription = Subscription.find_by_token!(params[:id])
-      subscription.suspend!
+    subscription = Subscription.find_by_token!(params[:id])
+    subscription.suspend!
 
+    if request.xhr?
       render json: {resubscribe_url: activate_subscription_path(subscription.token)}
+    else
+      SubscriptionMailer.unsubscribe_notice(subscription).deliver
+      redirect_to unsubscribed_subscriptions_url
     end
   end
 
   def destroy
-    @subscription = Subscription.find_by_token!(params[:id])
-    @subscription.unsubscribe!
-
-    unless request.xhr?
-      SubscriptionMailer.unsubscribe_notice(@subscription).deliver_now
-    end
-
-    respond_to do |format|
-      format.html {
-        redirect_to unsubscribed_subscriptions_url
-      }
+    if request.xhr?
+      @subscription = Subscription.find_by_token!(params[:id])
+      @subscription.destroy
+      render json: {}
     end
   end
 

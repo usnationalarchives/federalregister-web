@@ -51,6 +51,13 @@
           <%= link_to "re-activate", activate_subscription_path(subscription.token) , class: 'resubscribe' %>
         </dd>
       <% end %>
+      <dd>
+        <%= link_to "delete", subscription_path(subscription.token),
+              class: 'confirm-subscription-destroy-js',
+              data: {
+                'subscription-id': subscription.id
+              } %>
+      </dd>
 
       <dt>Other Formats:</dt>
       <dd class="rss_link">
