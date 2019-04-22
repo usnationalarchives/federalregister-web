@@ -95,8 +95,9 @@ class SubscriptionsController < ApplicationController
   def destroy
     if request.xhr?
       @subscription = Subscription.find_by_token!(params[:id])
+      public_inspection_document = @subscription.public_inspection?
       @subscription.destroy
-      render json: {}
+      render json: {publicInspectionDocument: public_inspection_document}
     end
   end
 

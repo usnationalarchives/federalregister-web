@@ -62,6 +62,10 @@ class Subscription < ApplicationRecord
     self.save!
   end
 
+  def public_inspection?
+    mailing_list.class == MailingList::PublicInspectionDocument
+  end
+
   private
 
   def generate_token

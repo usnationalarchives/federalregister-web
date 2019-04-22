@@ -10,11 +10,20 @@ function resubscribe_success($link, response) {
   $link.attr('href', response.unsubscribe_url);
 }
 
-function destroy_subscription_success($link) {
+function destroy_subscription_success($link, response) {
   $('.fr-modal').jqmHide();
   var subscriptionId = $link.data('subscription-id');
   var subscriptionDiv = $("ul.subscriptions").find("[data-subscription-id='" + subscriptionId + "']");
   subscriptionDiv.hide();
+
+
+  if (response.publicInspectionDocument) {
+    var piDocCount = $('.pi-doc-count-js').text();
+    $('.pi-doc-count-js').text(piDocCount - 1);
+  } else {
+    var docCount = $('.doc-count-js').text();
+    $('.doc-count-js').text(docCount - 1);
+  }
 }
 
 
@@ -91,7 +100,7 @@ $(document).ready( function() {
       type: 'DELETE',
       dataType: 'json',
       success: function(response) {
-        destroy_subscription_success($link);
+        destroy_subscription_success($link, response);
       },
       error: function(error) {
       }
