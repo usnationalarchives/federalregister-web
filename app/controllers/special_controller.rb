@@ -42,8 +42,7 @@ class SpecialController < ApplicationController
   end
 
   def status
-    current_time_on_database = Clipping.connection.select_values("SELECT NOW()").first
-    render :text => "Current time is: #{current_time_on_database} (MyFR)"
+    render :text => "Serving requests (MyFR)"
   end
 
   def site_notifications
