@@ -82,6 +82,9 @@ ENV WEB_PORT 3000
 COPY docker/web/my_init.d /etc/my_init.d
 COPY docker/web/service /etc/service
 
+# rotate logs
+COPY docker/web/files/logrotate/app /etc/logrotate.d/app
+
 
 ##################
 ### APP
