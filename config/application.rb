@@ -137,9 +137,9 @@ module MyFr2
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
-    unless Rails.env.development? || Rails.env.test?
-      # add passenger process id to logs
-      config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }]
+    unless Rails.env.test?
+      # add passenger process id and request uuid to logs
+      config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }, :uuid]
     end
 
     # Configure HTTParty API caching

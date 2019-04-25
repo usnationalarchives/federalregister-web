@@ -273,6 +273,7 @@ GEM
     premailer-rails (1.10.2)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
+    proc-wait3 (1.8.0)
     pry (0.12.0)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -492,6 +493,7 @@ DEPENDENCIES
   pickup (= 0.0.8)
   premailer (= 1.8.6)
   premailer-rails
+  proc-wait3
   pry
   pry-remote
   rack
@@ -525,4 +527,4 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0.1)
 
 BUNDLED WITH
-   1.17.1
+   1.17.3

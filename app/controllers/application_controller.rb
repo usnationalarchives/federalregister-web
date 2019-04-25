@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_page_to_track
 
+  around_filter :log_memory_usage unless Rails.env.test?
+
   if Rails.env.development? && Settings.vcr.enabled
     around_filter :use_vcr
   end
@@ -97,5 +99,15 @@ class ApplicationController < ActionController::Base
     else
       reset_session
     end
+  end
+
+  def log_memory_usage
+    pid = Process.pid
+
+    start_mem = Process.getrusage.maxrss
+    yield
+    end_mem = Process.getrusage.maxrss
+
+    Rails.logger.warn "[memory usage: #{pid} #{start_mem} #{end_mem} #{end_mem-start_mem}]"
   end
 end

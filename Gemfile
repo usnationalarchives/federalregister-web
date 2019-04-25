@@ -126,6 +126,10 @@ gem 'klarlack', '0.0.7',
 # per-request global storage for Rack.
 gem 'request_store'
 
+# add methods to the ruby Process command via C-extensions
+#(tracking memory usage in sidekiq middleware)
+gem 'proc-wait3'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
