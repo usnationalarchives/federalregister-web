@@ -127,7 +127,7 @@ gem 'klarlack', '0.0.7',
 gem 'request_store'
 
 # add methods to the ruby Process command via C-extensions
-#(tracking memory usage in sidekiq middleware)
+# (tracking memory usage)
 gem 'proc-wait3'
 
 # Gems used only for assets and not required
