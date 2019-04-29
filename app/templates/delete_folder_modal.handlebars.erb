@@ -16,11 +16,11 @@
     url: "/my/folders/{{folderSlug}}",
     method: :delete do |f| %>
 
-    <%= f.actions do %>
-      <%= f.actions :submit, as: :button,
-        label: 'Yes, Delete',
-        wrapper_html: {class: "fr_button medium danger delete-folder-modal-button"},
-        button_html: {class: "browser_reset"} %>
-    <% end %>
+    <%# NOTE: Post-upgrade to Rails 5, using formtastic's 'f.buttons do f.button end' API fails to properly render the correct layout in staging (it works in development).  Formtastic has since deprecated the f.buttons API in favor fo 'f.actions' and this may be at play.  It was necessary to fall back to raw HTML to ensure the modal button (and associated JS classes were rendered properly) %>
+    <fieldset class="buttons"><ol>
+      <li class="commit button fr_button medium danger delete-folder-modal-button">
+        <input class="browser_reset submit" name="commit" type="submit" value="Yes, Delete">
+      </li>
+    </ol></fieldset>
   <% end %>
 {{/if}}
