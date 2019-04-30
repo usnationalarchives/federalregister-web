@@ -1,44 +1,19 @@
-<div class="nav" id="navigation">
-  <ul class="container">
-    <li id='nav-home' class="nav-home">
-      <%= link_to(root_path, class: "home", 'aria-label' => 'Home') do %>
-        <%= fr_icon('home') %>
-      <% end %>
-    </li>
+<li id='nav-home' class="nav-home">
+  <%= link_to(root_path, class: "home", 'aria-label' => 'Home') do %>
+    <%= fr_icon('home') %>
+  <% end %>
+</li>
 
-    <%= render partial: 'sections/navigation', locals: {
-      presenters: Section.all.map do |section|
-        SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
-      end
-    } %>
+<%= render partial: 'sections/navigation', locals: {
+  presenters: Section.all.map do |section|
+    SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
+  end
+} %>
 
-    <%= render partial: 'special/navigation/browse' %>
+<%= render partial: 'special/navigation/browse' %>
 
-    <%= render partial: 'special/navigation/search' %>
+<%= render partial: 'special/navigation/search' %>
 
-    <%= render partial: 'reader_aids/navigation', locals: {
-      reader_aids_sections: ReaderAidsPresenter::Base.new.sections
-    } %>
-
-    <%= render partial: 'special/navigation/my_fr' %>
-
-    <li class="inline_search">
-      <%= semantic_form_for 'conditions',
-        as: :conditions,
-        url: documents_search_path,
-        html: {method: :get, class: "search-form"} do |f| %>
-
-        <label for="term">Search the Federal Register</label>
-        <%= f.text_field :term,
-          class: 'search-term',
-          placeholder: 'Search Documents',
-          "aria-label" => 'Search Documents' %>
-
-        <%= f.button fr_icon('Search').html_safe,
-          class: 'search-submit',
-          id: 'conditions_submit',
-          "aria-label" => 'Search' %>
-      <% end %>
-    </li>
-  </ul>
-</div>
+<%= render partial: 'reader_aids/navigation', locals: {
+  reader_aids_sections: ReaderAidsPresenter::Base.new.sections
+} %>

@@ -8,7 +8,32 @@
 
 <div class="header" id="header_refresh">
   <div class="header_wrapper">
-    <%= esi navigation_path %>
+    <div class="nav" id="navigation">
+      <ul class="container">
+        <%= esi navigation_path %>
+        <%= render partial: 'special/navigation/my_fr' %>
+
+        <li class="inline_search">
+          <%= semantic_form_for 'conditions',
+            as: :conditions,
+            url: documents_search_path,
+            html: {method: :get, class: "search-form"} do |f| %>
+
+            <label for="term">Search the Federal Register</label>
+            <%= f.text_field :term,
+              class: 'search-term',
+              placeholder: 'Search Documents',
+              "aria-label" => 'Search Documents' %>
+
+            <%= f.button fr_icon('Search').html_safe,
+              class: 'search-submit',
+              id: 'conditions_submit',
+              "aria-label" => 'Search' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
     <%= esi user_utils_path %>
 
     <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
