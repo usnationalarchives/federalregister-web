@@ -1,8 +1,9 @@
 module SearchHelper
   def working_search_example(search_term)
-    content_tag(:code) do
-      link_to search_term, documents_search_path(:conditions => {:term => search_term}), :target => "_blank"
-    end
+    link_to search_term,
+      documents_search_path(:conditions => {:term => search_term}),
+      :class => 'code-styling',
+      :target => "_blank"
   end
 
   def entry_count_for_search_term(search_term)

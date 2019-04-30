@@ -2,6 +2,13 @@
   .reader-aids-section {
     .section { padding-left: 10px !important; }
 
+    .code-styling {
+      background-color: $fr-gray-2;
+      font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+      font-size: modular-scale(-1);
+      white-space: normal;
+    }
+
     .content-block {
       a {
         color: $color-reader-aid;
