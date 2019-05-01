@@ -33,7 +33,7 @@ class User
     end
 
     if response.status == 200
-      user_attrs = JSON.parse(response.body)
+      user_attrs = JSON.parse(response.body).merge('token' => token)
       self.sso_attributes = user_attrs
       user_attrs
     else
