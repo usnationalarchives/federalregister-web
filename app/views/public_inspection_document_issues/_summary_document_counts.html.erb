@@ -20,7 +20,9 @@
               <li>
                 <%= link_to_if filing_type.display_links?,
                   pluralize(facet.count, facet.name),
-                  public_inspection_search_path(facet.search_conditions) %>
+                  public_inspection_search_path(
+                    conditions: facet.search_conditions[:conditions].except(:publication_date)
+                  ) %>
               </li>
             <% end %>
           </ul>
