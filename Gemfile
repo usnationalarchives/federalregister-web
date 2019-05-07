@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
 # basic rails stack
-gem 'rails', '5.2.2.1'
+gem 'rails', '5.2.3'
 gem 'rake'
 gem 'rack'
 gem 'mysql2', '0.5.2'
 gem 'passenger', '~> 6.0' # production app server
-gem 'bootsnap', '~> 1.3', '>= 1.3.2', require: false
+gem 'bootsnap', require: false
 
 
 # AR like interface to static data hash based classes
