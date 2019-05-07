@@ -30,7 +30,7 @@
     <%= date_f.input :is,
       input_html: {
         placeholder: Date.current.to_s,
-        value: f.object.send(attribute).try(:[], "is")
+        value: f.object.send(attribute).try(:[], :is)
       },
       wrapper_html: {
         class: 'date exact_date'
@@ -38,7 +38,7 @@
 
     <%= date_f.input :year, as: :select,
       collection: (1994..Date.current.year).to_a.reverse,
-      selected: f.object.send(attribute).try(:[], "year"),
+      selected: f.object.send(attribute).try(:[], :year),
       wrapper_html: {
         class: 'date exact_year'
       } %>
@@ -47,7 +47,7 @@
       label: "On or after",
       input_html: {
         placeholder: 1.year.ago.to_date.to_s,
-        value: f.object.send(attribute).try(:[], "gte")
+        value: f.object.send(attribute).try(:[], :gte)
       },
       wrapper_html: {
         class: 'date range range_start'
@@ -57,7 +57,7 @@
       label: "On or before",
       input_html: {
         placeholder: Date.current.to_s,
-        value: f.object.send(attribute).try(:[], "lte")
+        value: f.object.send(attribute).try(:[], :lte)
       },
       wrapper_html: {
         class: 'date range range_end'

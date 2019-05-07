@@ -4,7 +4,7 @@
       <% filters.each do |filter| %>
         <li class="filter">
           <%= fr_icon 'filter' %>
-          <span class="type"><%= filter.value %></span>
+          <span class="type"><%= filter.condition.singularize.humanize %></span>
           <span class="name"><%= filter.name %></span>
 
           <%= presenter.link_to_remove_search_filter filter do

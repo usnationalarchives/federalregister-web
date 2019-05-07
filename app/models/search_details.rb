@@ -1,6 +1,8 @@
 class SearchDetails
   attr_reader :conditions
 
+  PLURAL_FILTERS = [:agencies, :topics, :type]
+
   def initialize(conditions={})
     @conditions = conditions
   end
@@ -30,8 +32,14 @@ class SearchDetails
   def filters
     if response["filters"].present?
       @filters ||= response["filters"].keys.map do |filter_type|
-        Filter.new(filter_type, response["filters"][filter_type])
-      end
+        if PLURAL_FILTERS.include?(filter_type.to_sym)
+          response["filters"][filter_type].map do |filter|
+            Filter.new(filter_type, filter)
+          end
+        else
+          Filter.new(filter_type, response["filters"][filter_type])
+        end
+      end.flatten
     end
   end
 

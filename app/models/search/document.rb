@@ -46,7 +46,7 @@ class Search::Document < Search::Base
 
   (SEARCH_CONDITIONS + DOCUMENT_SEARCH_CONDITIONS).each do |param|
     define_method(param) do
-      conditions[param]
+      conditions[param.to_sym]
     end
   end
 end

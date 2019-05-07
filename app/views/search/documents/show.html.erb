@@ -1,17 +1,17 @@
-<% page_title @search.term.blank? ? 'Document Search' : "Document Search Results for '#{@search.term}'" %>
+<% page_title @presenter.search.term.blank? ? 'Document Search' : "Document Search Results for '#{@presenter.search.term}'" %>
 
-<% if @search.valid? %>
+<% if @presenter.search.valid? %>
   <% feed_autodiscovery(
     documents_search_api_path(
-      {conditions: @search.valid_conditions.except(:publication_date)},
+      {conditions: @presenter.search.valid_conditions.except(:publication_date)},
       format: :rss
     ),
-    @search.summary,
-    search_conditions: @search.valid_conditions.except(:publication_date)
+    @presenter.search.summary,
+    search_conditions: @presenter.search.valid_conditions.except(:publication_date)
   ) %>
 <% end %>
 
-<% if @search.blank? %>
+<% if @presenter.search.blank? %>
   <% description 'Easy, powerful search of all Federal Register documents since 1994' %>
 <% end %>
 
@@ -28,62 +28,64 @@
 
       <%= esi(documents_search_header_path(params)) %>
 
-      <% unless @search.conditions_blank? %>
-        <% if @search.valid? %>
+      <% unless @presenter.search.conditions_blank? %>
+        <% if @presenter.search.valid? %>
           <div class="row">
-            <% if @search.results.present? %>
+            <% if @presenter.search.results.present? %>
               <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
                 <div class="facets">
                   <%= esi( documents_search_facets_path(
-                      @presenter.params.merge(facet: 'publication_date')
+                      @presenter.search.params.merge(facet: 'publication_date')
                     )
-                  ) unless @search.publication_date.present? %>
+                  ) unless @presenter.search.publication_date.present? %>
 
                   <%= esi( documents_search_facets_path(
-                      @presenter.params.merge(facet: 'type')
+                      @presenter.search.params.merge(facet: 'type')
                     )
-                  ) unless @search.type.present? %>
+                  ) %>
 
                   <%= esi( documents_search_facets_path(
-                      @presenter.params.merge(facet: 'agency', num_facets: 6, limit: 12)
+                      @presenter.search.params.merge(facet: 'agency', num_facets: 6, limit: 12)
                     )
-                  ) unless @search.agencies.present? %>
+                  ) %>
 
                   <%= esi( documents_search_facets_path(
-                      @presenter.params.merge(facet: 'topic', num_facets: 6)
+                      @presenter.search.params.merge(facet: 'topic', num_facets: 6)
                     )
-                  ) unless @search.topics.present? %>
+                  ) %>
 
                   <%= esi( documents_search_facets_path(
-                      @presenter.params.merge(facet: 'section', num_facets: 6)
+                      @presenter.search.params.merge(facet: 'section', num_facets: 6)
                     )
-                  ) unless @search.sections.present? || @search.section_ids.present? %>
+                  ) %>
                 </div>
               </div>
             <% end %>
 
-            <% col_span = @search.results.present? ? 9 : 12 %>
+            <% col_span = @presenter.search.results.present? ? 9 : 12 %>
             <div class="<%= bootstrap_col(xs: col_span, md: col_span) %>">
-              <% if (@presenter.params[:page].blank? || @presenter.params[:page] == '1') &&
-                @presenter.params[:order].blank? %>
-                <%= esi documents_search_suggestions_path(@presenter.params)%>
+              <% if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') &&
+                @presenter.search.params[:order].blank? %>
+                <%= esi documents_search_suggestions_path(@presenter.search.params)%>
               <% end %>
 
-              <%= esi(documents_search_results_path(@presenter.params)) %>
+              <%= esi(documents_search_results_path(@presenter.search.params)) %>
             </div>
           </div>
         <% else %>
-          <div class="flash-message error">
-            <h5>
-              We encountered some errors with your search, please correct them and try again.
-            </h5>
+          <% unless @presenter.search.valid? %>
+            <div class="flash-message error">
+              <h5>
+                We encountered some errors with your search, please correct them and try again.
+              </h5>
 
-            <ul class="bullets">
-              <% @search.validation_errors.values.each do |err| %>
-                <li class=""><%= err %></li>
-              <% end %>
-            </ul>
-          </div>
+              <ul class="bullets">
+                <% @presenter.search.validation_errors.values.each do |err| %>
+                  <li class=""><%= err %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
 

@@ -102,13 +102,13 @@ class Search::DocumentsController < ApplicationController
   end
 
   def facet_params
-    params.slice!(
+    facet_params = params.permit(
       :all,
-      :conditions,
       :facet,
+      conditions: {}
     )
 
-    params[:conditions] = Search::Document.new(params).valid_conditions
-    params.permit!
+    facet_params[:conditions] = Search::Document.new(facet_params.to_h).valid_conditions
+    facet_params
   end
 end

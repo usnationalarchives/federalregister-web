@@ -21,7 +21,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
               conditions: params[:conditions],
               per_page: 500
             ),
-            :format => :csv
+            format: :csv
           )
         end
 
@@ -93,13 +93,13 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   end
 
   def facet_params
-    params.slice!(
+    facet_params = params.permit(
       :all,
       :facet,
       conditions: {}
     )
 
-    params[:conditions] = Search::Document.new(params).valid_conditions
-    params.permit!
+    facet_params[:conditions] = Search::PublicInspection.new(facet_params.to_h).valid_conditions
+    facet_params
   end
 end

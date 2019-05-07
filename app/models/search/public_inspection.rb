@@ -24,7 +24,7 @@ class Search::PublicInspection < Search::Base
 
   (SEARCH_CONDITIONS + PUBLIC_INSPECTION_SEARCH_CONDITIONS).each do |param|
     define_method(param) do
-      conditions[param]
+      conditions[param.to_sym]
     end
   end
 end

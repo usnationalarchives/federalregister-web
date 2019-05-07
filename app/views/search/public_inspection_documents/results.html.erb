@@ -4,39 +4,42 @@
 
     <% if @search_details.filters.present? %>
       <%= render partial: "search/filters", locals: {
-          filters: @search_details.filters
-          } %>
+          filters: @search_details.filters,
+          presenter: @facet_presenter,
+        } %>
     <% end %>
 
-  <% if @search.results.present? %>
-    <%= render partial: 'search_info', locals: {
-        search: @search
-      } %>
+    <% if @search.results.present? %>
+      <%= render partial: 'search_info', locals: {
+          supported_orders: @presenter.supported_orders,
+          search: @search
+        } %>
 
-    <div class="row">
-      <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-        <%= will_paginate @search.results, params: {action: :show},
-          renderer: BootstrapPagination::Rails %>
+      <div class="row">
+        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+          <%= will_paginate @search.results, params: {action: :show},
+            renderer: BootstrapPagination::Rails %>
+        </div>
       </div>
-    </div>
 
-    <%= render partial: 'search/results',
-      locals: {
-        type: :public_inspection,
-        documents: @search.results,
-        search: @search
-      }
-    %>
+      <%= render partial: 'search/results',
+        locals: {
+          type: :public_inspection,
+          documents: @search.results,
+          search: @search
+        }
+      %>
 
-    <div class="row">
-      <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-        <%= will_paginate @search.results, params: {action: :show},
-          renderer: BootstrapPagination::Rails %>
+      <div class="row">
+        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+          <%= will_paginate @search.results, params: {action: :show},
+            renderer: BootstrapPagination::Rails %>
+        </div>
       </div>
-    </div>
-  <% else %>
-    <div class="errors">
-      <p class="errors_header">No Public Inspection documents were found.</p>
-    </div>
-  <% end %>
+    <% else %>
+      <div class="errors">
+        <p class="errors_header">No Public Inspection documents were found.</p>
+      </div>
+    <% end %>
+  </div>
 </div>

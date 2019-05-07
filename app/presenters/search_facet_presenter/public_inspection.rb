@@ -2,7 +2,7 @@ class SearchFacetPresenter::PublicInspection < SearchFacetPresenter::Base
   FACETS = [:agency, :agencies, :type]
 
   def search_type
-    FederalRegister::PublicInspectionDocument
+    ::PublicInspectionDocument
   end
 
   def self.define_facet(facet)
@@ -16,7 +16,7 @@ class SearchFacetPresenter::PublicInspection < SearchFacetPresenter::Base
           value: result.slug,
           name: result.name,
           count: result.count,
-          condition: facet.to_s
+          condition: facet == :type ? facet.to_s : facet.to_s.pluralize
         )
       end.sort{|a,b| b.count <=> a.count}
     end

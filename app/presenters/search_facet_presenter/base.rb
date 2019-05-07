@@ -1,16 +1,14 @@
 class SearchFacetPresenter::Base
-  PLURAL_FILTERS = [:topic_ids] # agency_ids; comment back in to be able to remove individual agencies
-
   attr_reader :params, :h
 
   def initialize(params, view_context)
-    @params = params
+    @params = params.deep_symbolize_keys
     @h = view_context
   end
 
   def facets
     Array(self.send(params[:facet] + "_facets")).
-      reject{|x| x.on? || x.count == 0}
+      reject{|facet| facet.count == 0 || self.facet_on?(facet)}
   end
 
   def conditions
@@ -34,14 +32,14 @@ class SearchFacetPresenter::Base
   def link_to_search_filter(facet)
     h.link_to(
       facet.name,
-      search_filter_path(facet.condition, facet.value),
+      search_filter_path(facet.condition.to_sym, facet.value),
       class: 'facet-name'
     )
   end
 
   def link_to_remove_search_filter(facet, &block)
     h.link_to(
-      remove_search_filter_path(facet.condition, facet.value),
+      remove_search_filter_path(facet.condition.to_sym, facet.value),
       title: 'Remove Filter',
       class: 'remove',
     ) do
@@ -49,29 +47,34 @@ class SearchFacetPresenter::Base
     end
   end
 
+  def facet_on?(facet)
+    condition = facet.condition.to_sym
+    params[:conditions][condition] && params[:conditions][condition].include?(facet.value)
+  end
+
   private
 
   def search_filter_path(condition, value)
-    conditions = params.dup[:conditions] || {}
+    conditions = params.deep_dup[:conditions] || {}
 
-    if PLURAL_FILTERS.include?(condition)
+    if SearchDetails::PLURAL_FILTERS.include?(condition)
       conditions[condition] ||= []
-      conditions[condition] << value
+      conditions[condition] << value unless conditions[condition].include?(value)
     else
       conditions[condition] = value
     end
-    params.except(:quiet, :all, :facet).recursive_merge(:page => nil, :action => :show, :conditions => conditions)
+
+    params.except(:quiet, :all, :facet).recursive_merge(page: nil, action: :show, conditions: conditions)
   end
 
   def remove_search_filter_path(condition, value)
-    conditions = params.dup[:conditions] || {}
-
-    if PLURAL_FILTERS.include?(condition)
+    conditions = params.deep_dup[:conditions] || {}
+    if SearchDetails::PLURAL_FILTERS.include?(condition)
       conditions[condition] ||= []
       conditions[condition] = conditions[condition] - [value.to_s]
     else
       conditions.except!(condition)
     end
-    params.except(:quiet).merge(:page => nil, :action => :show, :conditions => conditions)
+    params.except(:quiet).merge(page: nil, action: :show, conditions: conditions)
   end
 end
