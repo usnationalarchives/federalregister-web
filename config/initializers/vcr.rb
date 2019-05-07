@@ -18,6 +18,7 @@ end
 if defined?(VCR) && Rails.env.development? && Settings.vcr.enabled
   VCR.configure do |c|
     c.default_cassette_options = { :record => :new_episodes }
+    c.allow_http_connections_when_no_cassette = true
 
     c.ignore_hosts *Settings.vcr.ignore_hosts
     c.cassette_library_dir = Rails.root.join(Settings.vcr.library_dir).to_s
