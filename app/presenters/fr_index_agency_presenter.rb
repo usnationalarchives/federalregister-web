@@ -9,6 +9,17 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     raise ActiveRecord::RecordNotFound if @document_index.code == 404
   end
 
+  def index_pdf_url
+    document_index.dig('pdf', 'url')
+  end
+
+  def index_pdf_month
+    month = document_index.dig('pdf', 'approval_date')
+    if month
+      Date::MONTHNAMES[month]
+    end
+  end
+
   class DocumentTypeRepresentation
     vattr_initialize [
       :name,

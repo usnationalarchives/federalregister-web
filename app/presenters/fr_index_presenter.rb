@@ -8,6 +8,18 @@ class FrIndexPresenter
     @index = HTTParty.get(index_json_url)
   end
 
+  def index_pdf_url
+    index.dig('pdf', 'url')
+  end
+
+  def index_pdf_month
+    month = index.dig('pdf', 'approval_date')
+    if month
+      Date::MONTHNAMES[month]
+    end
+  end
+
+
   class AgencyRepresentation
     vattr_initialize [
       :name,

@@ -15,10 +15,9 @@
     <%# B.B. TODO: Bob to turn into a helper and allow arbitrary conditions to be passed. %>
     <%#= render :partial => 'agencies/embedded_search', :locals => {:search => @search, :agency_year => year} %>
 
-    <%# B.B. TODO: Bob to look into implementation details. %>
-    <% if false %>
-      <%= link_to root_path do %>
-        <span class="icon-fr2 icon-fr2-doc-pdf"></span> Stubbed: Download Approved December 2014 <%= presenter.agency_name %> Index (PDF)
+    <% if presenter.index_pdf_url %>
+      <%= link_to presenter.index_pdf_url do %>
+        <span class="icon-fr2 icon-fr2-doc-pdf"></span> <%= "Download Approved #{presenter.index_pdf_month} #{presenter.year} #{presenter.agency_name} Index (PDF)" %>
       <% end %>
 
       <hr />

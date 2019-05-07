@@ -34,14 +34,15 @@
     <% end %>
 
     <% if presenter.agency_representations.present? %>
-      <%# TODO: implement this - BB %>
-      <%# <p> %>
-        <%#= link_to '' do %>
-          <%# B.B. TODO: Bob to review implementation possibilities. %>
-          <%#<span class="icon-fr2 icon-fr2-doc-pdf"></span>
-          Stubbed: Download Approved December 2014 Index (PDF) %>
-        <%# end %>
-      <%# </p> %>
+      <% if presenter.index_pdf_url %>
+        <p>
+          <%= link_to presenter.index_pdf_url do %>
+            <span class="icon-fr2 icon-fr2-doc-pdf"></span> <%= "Download Approved #{presenter.index_pdf_month} #{presenter.year} Index (PDF)" %>
+          <% end %>
+
+          <hr />
+        </p>
+      <% end %>
 
       <hr>
 
