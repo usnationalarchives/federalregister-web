@@ -1,15 +1,31 @@
 <div class="row">
   <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
     <ul class="active-filters">
-      <% filters.each do |filter| %>
-        <li class="filter">
-          <%= fr_icon 'filter' %>
-          <span class="type"><%= filter.condition.singularize.humanize %></span>
-          <span class="name"><%= filter.name %></span>
+      <% filters.group_by(&:condition).each do |condition, filters| %>
+        <li class="filter-group row">
+          <div class="<%= bootstrap_col(xs: 2, md: 2) %>">
+            <%= fr_icon 'filter' %>
+            <span class="type"><%= condition.singularize.humanize %></span>
+          </div>
+          
+          <div class="<%= bootstrap_col(xs: 10, md: 10) %>">
+            <ul class="filters">
+              <% filters.each_with_index do |filter, index| %>
+                <li class="filter">
+                  <span class="name">
+                    <% if index > 0 %>
+                      <span class="filter-connector">or </span>
+                    <% end %>
+                    <%= filter.name %>
+                  </span>
 
-          <%= presenter.link_to_remove_search_filter filter do
-            fr_icon 'badge_x'
-          end %>
+                  <%= presenter.link_to_remove_search_filter filter do
+                    fr_icon 'badge_x'
+                  end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </li>
       <% end %>
     </ul>

@@ -1,5 +1,5 @@
 .active-filters {
-  .filter {
+  .filter-group {
     background-color: $fr-yellow;
     border-radius: 5px;
     margin-bottom: 5px;
@@ -20,7 +20,21 @@
       &::after { content: ":"; }
     }
 
-    .name { width: 490px; }
+    .filters {
+      display: inline-block;
+      width: 560px;
+
+      .filter {
+        &:first-child { padding-top: 0; }
+        
+        padding: 3px 0;
+
+        .filter-connector {
+          color: $fr-golden;
+          font-weight: 500;
+        }
+      }
+    }
 
     .icon-fr2 {
       color: $fr-golden;
@@ -29,11 +43,8 @@
       margin-right: -27px;
     }
 
-    a .icon-fr2 {
-      display: inline;
-      left: 670px;
-      position: absolute;
-      top: 6px;
+    a.remove .icon-fr2 {
+      float: right;
 
       &:hover { color: $fr-red; }
     }
