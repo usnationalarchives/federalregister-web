@@ -14,7 +14,7 @@
       pluralize(total_documents, "result"),
       search_path
     )%>
-    since 1994.
+    <%= 'since 1994.' unless type == :public_inspection %>
 
     <% documents_left = total_documents - result_count %>
     <% if documents_left > 0 %>
