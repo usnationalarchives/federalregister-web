@@ -2,7 +2,7 @@ class SearchFacetPresenter::Base
   attr_reader :params, :h
 
   def initialize(params, view_context)
-    @params = params.deep_symbolize_keys
+    @params = params.with_indifferent_access
     @h = view_context
   end
 
@@ -71,7 +71,7 @@ class SearchFacetPresenter::Base
     conditions = params.deep_dup[:conditions] || {}
     if SearchDetails::PLURAL_FILTERS.include?(condition)
       conditions[condition] ||= []
-      conditions[condition] = conditions[condition] - [value.to_s]
+      conditions[condition] = conditions[condition] - Array(value.to_s)
     else
       conditions.except!(condition)
     end
