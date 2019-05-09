@@ -1,14 +1,14 @@
-<div class="row">
-  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+<!-- <div class="row">
+   <div class="<%= bootstrap_col(xs: 12, md: 12) %>"> -->
     <ul class="active-filters">
       <% filters.group_by(&:condition).each do |condition, filters| %>
         <li class="filter-group row">
-          <div class="<%= bootstrap_col(xs: 2, md: 2) %>">
+          <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
             <%= fr_icon 'filter' %>
             <span class="type"><%= condition.singularize.humanize %></span>
           </div>
           
-          <div class="<%= bootstrap_col(xs: 10, md: 10) %>">
+          <div class="<%= bootstrap_col(xs: 9, md: 9) %>">
             <ul class="filters">
               <% filters.each_with_index do |filter, index| %>
                 <li class="filter">
@@ -29,5 +29,5 @@
         </li>
       <% end %>
     </ul>
-  </div>
-</div>
+<!--  </div>
+ </div> -->

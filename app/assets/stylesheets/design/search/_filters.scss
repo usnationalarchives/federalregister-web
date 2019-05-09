@@ -2,8 +2,8 @@
   .filter-group {
     background-color: $fr-yellow;
     border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 10px 30px 9px 35px;
+    margin: 0;
+    padding: 10px 10px 9px 25px;
     position: relative;
 
     .icon-fr2,
@@ -22,7 +22,7 @@
 
     .filters {
       display: inline-block;
-      width: 560px;
+      width: 100%;
 
       .filter {
         &:first-child { padding-top: 0; }
@@ -33,14 +33,21 @@
           color: $fr-golden;
           font-weight: 500;
         }
+
+        .name { width: 95%; }
+
+        a.remove { float: right; }
       }
     }
 
     .icon-fr2 {
       color: $fr-golden;
       font-size: 22px;
-      left: -26px;
-      margin-right: -27px;
+      
+      &.icon-fr2-filter {
+        left: -26px;
+        margin-right: -27px;
+      }
     }
 
     a.remove .icon-fr2 {
