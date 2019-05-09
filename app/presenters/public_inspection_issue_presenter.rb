@@ -91,9 +91,13 @@ class PublicInspectionIssuePresenter
     end
 
     def display_links?
-      (document_count != 0) &&
-      public_inspection_issue.publication_date >=
-        DocumentIssue.current.publication_date
+      # pil isn't technically current on Saturdays as documents have published as part of the import of
+      # Monday's issue but we don't yet have an updated pil
+      pil_current = public_inspection_issue.publication_date >= DocumentIssue.current.publication_date
+      
+      pil_current = true if Rails.env.development?
+
+      (document_count != 0) && pil_current
     end
     memoize :display_links?
   end
