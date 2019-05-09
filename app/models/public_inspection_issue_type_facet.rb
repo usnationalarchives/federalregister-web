@@ -2,7 +2,7 @@ class PublicInspectionIssueTypeFacet < FederalRegister::Facet::PublicInspectionI
   def search_conditions(type)
     conditions.deep_merge(
       conditions: {
-        type: type
+        type: Array(type)
       }
     )
   end

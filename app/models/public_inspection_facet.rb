@@ -3,7 +3,7 @@ class PublicInspectionFacet < FederalRegister::Facet::PublicInspectionDocument::
   def search_conditions
     result_set.conditions.deep_merge(
       conditions: {
-        type: slug
+        type: Array(slug)
       }
     )
   end

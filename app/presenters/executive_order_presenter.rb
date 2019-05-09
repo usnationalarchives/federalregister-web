@@ -76,7 +76,7 @@ class ExecutiveOrderPresenter
 
     {
       conditions: {
-        type: "PRESDOCU",
+        type: ["PRESDOCU"],
         presidential_document_type_id: 2,
         correction: 0,
         president: president_identifier

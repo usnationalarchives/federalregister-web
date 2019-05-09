@@ -83,7 +83,7 @@ class Agency < FederalRegister::Agency
   def search_conditions
     {
       conditions: {
-        agencies: slug
+        agencies: Array(slug)
       },
       order: 'newest'
     }
