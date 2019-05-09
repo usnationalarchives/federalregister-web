@@ -52,7 +52,7 @@ gem "draper"
 gem 'faraday'
 
 # FR API ruby library
-gem 'federal_register', '0.6.8'
+gem 'federal_register', '0.6.9'
 #gem 'federal_register', :path => '../federal_register'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
