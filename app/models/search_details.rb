@@ -9,7 +9,7 @@ class SearchDetails
 
   def response
     @response ||= HTTParty.get(
-      "#{Settings.federal_register.api_url}/documents/search-details/?#{{conditions: conditions}.to_param}"
+      "#{Settings.federal_register.api_url}/documents/search-details?#{{conditions: conditions}.to_param}"
     )
   end
 
