@@ -13,6 +13,7 @@ external_modal_domain_whitelist:
 
 feature_flags:
   events_search: false
+  fr_index_pdfs: false
   unified_agenda:
     search: false
   regulations_dot_gov:

@@ -10,6 +10,8 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   end
 
   def index_pdf_url
+    return unless Settings.feature_flags.fr_index_pdfs
+
     document_index.dig('pdf', 'url')
   end
 
