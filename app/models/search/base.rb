@@ -18,7 +18,7 @@ class Search::Base
     @validation_errors = {}
 
     @conditions = clean_conditions(params[:conditions]) || {}
-    @conditions = @conditions == "" ? {} : @conditions.deep_symbolize_keys
+    @conditions = @conditions == "" ? {} : @conditions.with_indifferent_access
 
     # Set Page
     @page = params[:page].to_i
