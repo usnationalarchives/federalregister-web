@@ -35,13 +35,19 @@ class @FR2.Calendar
     event.preventDefault()
 
     $.ajax({
-      url: "/esi/document_issues/#{$(event.target).val()}/#{@calendar.data('calendar-month')}"
+      url: "#{@._calendarYearBaseUrl()}/#{$(event.target).val()}/#{@calendar.data('calendar-month')}"
       dataType: 'html'
       beforeSend: @showLoader
       complete: =>
         @calendar.find('.loader').remove()
       success: @swapCalendars
     })
+
+  _calendarYearBaseUrl: =>
+    if this.wrapper.data('document-type-js') == 'public-inspection'
+      '/esi/public_inspection_issues'
+    else
+      "/esi/document_issues/"
 
   showLoader: =>
     @calendar.remove()

@@ -37,7 +37,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
+        <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper"
+             data-document-type-js="public-inspection">
           <%= public_inspection_calendar_esi_for(
             @presenter.date,
             current_date: @presenter.date.to_s(:iso)
