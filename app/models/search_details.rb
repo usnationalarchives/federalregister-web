@@ -9,7 +9,7 @@ class SearchDetails
 
   def response
     @response ||= HTTParty.get(
-      "#{Settings.federal_register.api_url}/documents/search-details?#{{conditions: conditions}.to_param}"
+      "#{Settings.federal_register.api_url}/documents/search-details?#{{conditions: valid_search_detail_conditions}.to_param}"
     )
   end
 
@@ -41,6 +41,10 @@ class SearchDetails
         end
       end.flatten
     end
+  end
+
+  def valid_search_detail_conditions
+    @conditions.except(:special_filing)
   end
 
   class Filter
