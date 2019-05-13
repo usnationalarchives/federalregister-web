@@ -30,6 +30,10 @@ class Search::Document < Search::Base
     ::Document
   end
 
+  def search_details
+    @search_details ||= SearchDetails::Document.new(conditions)
+  end
+
   def near
     OpenStruct.new(
       location: conditions[:near].try(:[], :location),

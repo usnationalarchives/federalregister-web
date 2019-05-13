@@ -15,6 +15,10 @@ class Search::PublicInspection < Search::Base
     ::PublicInspectionDocument
   end
 
+  def search_details
+    @search_details ||= SearchDetails::PublicInspectionDocument.new(conditions)
+  end
+
   def document_count
     ::Document.search_metadata(
       conditions: Search::Document.new(conditions).

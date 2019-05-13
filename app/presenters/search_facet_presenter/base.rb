@@ -57,7 +57,7 @@ class SearchFacetPresenter::Base
   def search_filter_path(condition, value)
     conditions = params.deep_dup[:conditions] || {}
 
-    if SearchDetails::PLURAL_FILTERS.include?(condition)
+    if SearchDetails::Base::PLURAL_FILTERS.include?(condition)
       conditions[condition] ||= []
       conditions[condition] << value unless conditions[condition].include?(value)
     else
@@ -69,7 +69,7 @@ class SearchFacetPresenter::Base
 
   def remove_search_filter_path(condition, value)
     conditions = params.deep_dup[:conditions] || {}
-    if SearchDetails::PLURAL_FILTERS.include?(condition)
+    if SearchDetails::Base::PLURAL_FILTERS.include?(condition)
       conditions[condition] ||= []
       conditions[condition] = conditions[condition] - Array(value.to_s)
     else

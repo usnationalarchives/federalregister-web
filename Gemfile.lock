@@ -200,7 +200,7 @@ GEM
     fakeweb (1.3.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    federal_register (0.6.9)
+    federal_register (0.7.1)
       httparty (>= 0.14.0)
     ffi (1.9.25)
     fog-aws (0.7.3)
@@ -548,7 +548,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fakeweb (~> 1.3.0)
   faraday
-  federal_register (= 0.6.9)
+  federal_register (= 0.7.1)
   fog-aws
   formtastic
   geokit (= 1.4.1)

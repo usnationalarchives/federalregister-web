@@ -48,10 +48,6 @@ class Search::Base
     false
   end
 
-  def search_details
-    @search_details ||= SearchDetails.new(conditions)
-  end
-
   def per_page
     params[:per_page] || 20
   end

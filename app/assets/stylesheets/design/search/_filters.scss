@@ -1,10 +1,14 @@
 .active-filters {
+  margin-bottom: 20px;
+  
   .filter-group {
     background-color: $fr-yellow;
     border-radius: 5px;
     margin: 0;
     padding: 10px 10px 9px 25px;
     position: relative;
+
+    &.row { margin-bottom: 10px !important; }
 
     .icon-fr2,
     .name,
