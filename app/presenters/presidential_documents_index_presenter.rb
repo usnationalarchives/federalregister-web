@@ -43,10 +43,9 @@ class PresidentialDocumentsIndexPresenter
 
     President.all.reverse.each do |president|
       facets = PresidentialDocumentsFacet.search(
-        conditions: {
-          president: president.identifier,
-          type: ["PRESDOCU"],
-        }
+        QueryConditions::PresidentialDocumentConditions.all_presidential_documents_for(
+          president, []
+        ).deep_merge!({conditions: {correction: 0}})
       )
 
       facets.each do |facet|
