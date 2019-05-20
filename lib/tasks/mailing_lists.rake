@@ -58,6 +58,28 @@ namespace :mailing_lists do
     end
   end
 
+  desc "delete mailing lists that include invalid parameters"
+  task :delete_mailing_lists_with_invalid_parameters => :environment do
+    no_longer_valid_parameters = ["publication_date", 'effective_date', 'comment_date']
+    mailing_list_ids = []
+    MailingList.where(deleted_at: nil).find_each do |mailing_list|
+      if mailing_list.parameters.keys.any?{|key| no_longer_valid_parameters.include? key }
+        mailing_list_ids << mailing_list.id
+      end
+    end
+
+    current_time = Time.current
+    ApplicationModel.transaction do
+      MailingList.
+        where(id: mailing_list_ids).
+        joins(:subscriptions).
+        group(:mailing_list_id).
+        having("max(last_delivered_at) IS NULL OR max(last_delivered_at) < '#{Date.current.beginning_of_year.to_s(:iso)}'").
+        to_a.
+        each{|x| x.update!(deleted_at: current_time) }
+    end
+  end
+
   desc "collapses mailing lists with the same parameters and updates their subscriptions"
   task :collapse_duplicates => :environment do
     cleaner = MailingListCleaner.new
