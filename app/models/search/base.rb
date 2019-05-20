@@ -91,6 +91,10 @@ class Search::Base
     result_metadata.description
   end
 
+  def subscription_summary
+    result_metadata.subscription_description
+  end
+
   def conditions_blank?
     conditions.blank?
   end

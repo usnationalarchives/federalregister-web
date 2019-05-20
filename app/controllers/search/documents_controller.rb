@@ -13,7 +13,13 @@ class Search::DocumentsController < ApplicationController
 
     if valid_search?
       respond_to do |wants|
-        wants.html
+        wants.html do
+          if disallowed_subscription_params?
+            @subscription_search = SearchPresenter::Document.new(subscription_params).search
+          else
+            @subscription_search = @search
+          end
+        end
 
         wants.csv do
           redirect_to documents_search_api_path(
@@ -112,4 +118,16 @@ class Search::DocumentsController < ApplicationController
     facet_params[:conditions] = Search::Document.new(facet_params.to_h).valid_conditions
     facet_params
   end
+  DISALLOWED_SUBSCRIPTION_SEARCH_PARAMS = 'publication_date', 'effective_date', 'comment_date'
+  def subscription_params
+    ActionController::Parameters.new({
+      conditions: params[:conditions].except(*DISALLOWED_SUBSCRIPTION_SEARCH_PARAMS)
+    })
+  end
+
+  def disallowed_subscription_params?
+    params[:conditions] &&
+    DISALLOWED_SUBSCRIPTION_SEARCH_PARAMS.any?{|x| params[:conditions] && params[:conditions][x]}
+  end
+
 end

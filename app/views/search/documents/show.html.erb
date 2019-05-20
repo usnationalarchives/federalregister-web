@@ -1,13 +1,13 @@
 <% page_title @presenter.search.term.blank? ? 'Document Search' : "Document Search Results for '#{@presenter.search.term}'" %>
 
-<% if @presenter.search.valid? %>
+<% if @subscription_search.valid? %>
   <% feed_autodiscovery(
     documents_search_api_path(
-      {conditions: @presenter.search.valid_conditions.except(:publication_date)},
+      {conditions: @subscription_search.valid_conditions},
       format: :rss
     ),
-    @presenter.search.summary,
-    search_conditions: @presenter.search.valid_conditions.except(:publication_date)
+    @subscription_search.summary,
+    search_conditions: @subscription_search.valid_conditions
   ) %>
 <% end %>
 
