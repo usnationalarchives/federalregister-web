@@ -4,5 +4,6 @@
 require_relative 'config/environment'
 
 require 'resque/tasks'
+require 'resque/scheduler/tasks'
 
 Rails.application.load_tasks
