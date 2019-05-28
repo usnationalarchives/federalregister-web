@@ -64,11 +64,13 @@
     required: false,
     wrapper_html: {class: 'reg_id'} %>
 
-  <%= f.input :significant,
-    as: :check_boxes,
-    collection: [['Deemed Significant Under EO 12866', 1]],
-    label: "Significant Regulatory Actions",
-    required: false %>
+
+  <%= f.inputs class: "choices", title: 'Significant Regulatory Actions' do %>
+    <%= f.input :significant,
+      as: :boolean,
+      label: 'Deemed Significant Under EO 12866',
+      required: false %>
+  <% end %>
 
   <%= f.input :small_entity_ids,
     as: :check_boxes,

@@ -65,7 +65,8 @@
       @extend %advanced-legend;
 
       &.label,
-      label {
+      label,
+      span {
         @extend %advanced-legend;
       }
     }
@@ -194,16 +195,27 @@
   }
 
   fieldset.choices {
-    legend label {
-      color: $search-form-label-text;
-      width: 180px;
+    legend {
+      float: left;
+      margin-right: 16px;
+
+      label,
+      span {
+        color: $search-form-label-text;
+        width: 180px;
+      }
+
+      span {
+        top: 17px;
+        position: relative;
+      }
     }
 
-    ol.choices-group {
+    ol {
       position: relative;
       top: 12px;
 
-      li.choice {
+      li {
         display: inline-block;
 
         label {
