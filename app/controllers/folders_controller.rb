@@ -52,7 +52,7 @@ class FoldersController < ApplicationController
       else
         errors = folder.errors.messages.map{|key, value| value}.flatten
       end
-      render text: {errors: errors}.to_json, status: 400
+      render plain: {errors: errors}.to_json, status: 400
     end
   end
 

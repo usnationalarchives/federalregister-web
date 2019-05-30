@@ -56,7 +56,7 @@ class SectionsController < ApplicationController
     if @highlighted_documents.present?
       render layout: "carousel_preview"
     else
-      render text: ""
+      render plain: ""
     end
   end
 end

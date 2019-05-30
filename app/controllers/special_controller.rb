@@ -30,7 +30,7 @@ class SpecialController < ApplicationController
   end
 
   def status
-    render :text => "Serving requests (MyFR)"
+    render plain: "Serving requests (MyFR)"
   end
 
   def site_notifications

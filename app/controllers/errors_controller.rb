@@ -18,11 +18,11 @@ class ErrorsController < ApplicationController
   def handle_error(status_code, text)
     # ESI routes should return correct status codes, but no error page
     if params[:quiet]
-      render nothing: true, status: status_code
+      render head status_code
     else
       respond_to do |format|
         format.html { render template: "errors/#{status_code}", status: status_code }
-        format.all { render text: text, status: status_code }
+        format.all { render plain: text, status: status_code }
       end
     end
   end

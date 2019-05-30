@@ -29,9 +29,9 @@ class FolderClippingsController < ApplicationController
                                    :doc_count => clipping_count,
                                    :documents => clipping_ids } }
     elsif ! clipping_ids.present?
-      render :text => "No clipping ids present", :status => 400
+      render plain: "No clipping ids present", status: 400
     else
-      render :text => "Unable to find folder with slug '#{slug}'", :status => 404
+      render plain: "Unable to find folder with slug '#{slug}'", status: 404
     end
   end
 
@@ -98,7 +98,7 @@ class FolderClippingsController < ApplicationController
                                      :documents => document_numbers } }
       end
     else
-      render :text => "No clipping ids or document number present", :status => 400
+      render plain: "No clipping ids or document number present", :status => 400
     end
   end
 
