@@ -53,7 +53,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
             gte: Date.new(year,1,1).to_s(:iso),
             lte: Date.new(year,12,31).to_s(:iso)
           },
-          agencies: [agency_slug]
+          agencies: Array(agency_slug)
         }
       ).
       inject({}) do |hsh, facet|
@@ -103,7 +103,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
             gte: Date.new(year,1,1).to_s(:iso),
             lte: Date.new(year,12,31).to_s(:iso)
           },
-          agencies: agency_slug
+          agencies: Array(agency_slug)
         },
         per_page: 1000,
         fields: [

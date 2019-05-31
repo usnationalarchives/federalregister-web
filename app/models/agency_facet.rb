@@ -6,7 +6,7 @@ class AgencyFacet < FederalRegister::Facet::Agency
   def search_conditions
     result_set.conditions.deep_merge(
       conditions: {
-        agencies: slug
+        agencies: Array(slug)
       },
       order: 'newest'
     )

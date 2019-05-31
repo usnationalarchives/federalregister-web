@@ -20,7 +20,7 @@ class TopicFacet < FederalRegister::Facet::Topic
   def search_conditions
     result_set.conditions.deep_merge(
       conditions: {
-        topics: slug
+        topics: Array(slug)
       },
       order: 'newest'
     )
