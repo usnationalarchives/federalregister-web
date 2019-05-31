@@ -1,7 +1,15 @@
 class SearchDetails::Base
   attr_reader :conditions
 
-  PLURAL_FILTERS = [:agencies, :topics, :type, :presidential_document_type, :president, :small_entity_ids]
+  PLURAL_FILTERS = [
+    :agencies,
+    :president,
+    :presidential_document_type,
+    :sections,
+    :small_entity_ids,
+    :topics,
+    :type,
+  ]
 
   def initialize(conditions={})
     @conditions = conditions
