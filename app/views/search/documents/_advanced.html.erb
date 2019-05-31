@@ -69,7 +69,8 @@
     <%= f.input :significant,
       as: :boolean,
       label: 'Deemed Significant Under EO 12866',
-      required: false %>
+      required: false,
+      unchecked_value: '' %>
   <% end %>
 
   <%= f.input :small_entity_ids,
