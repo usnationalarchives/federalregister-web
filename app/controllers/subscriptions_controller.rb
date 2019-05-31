@@ -109,8 +109,8 @@ class SubscriptionsController < ApplicationController
 
   def subscription_params
     params.require(:subscription).permit(
-      :search_conditions,
       :search_type,
+      search_conditions: {}
     )
   end
 end
