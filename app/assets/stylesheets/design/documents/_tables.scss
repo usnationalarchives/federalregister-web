@@ -10,7 +10,22 @@
 
   table {
     display: block;
+    margin-bottom: 20px;
     padding: 10px;
+
+    caption {
+      color: $text;
+      margin-bottom: 10px;
+      text-align: center;
+
+      p {margin: 0 !important;}
+    }
+
+    tfoot {
+      font-style: italic;
+
+      tr:first-child td {padding-top: 20px;}
+    }
 
     th {
       vertical-align: middle;
@@ -20,7 +35,6 @@
       padding: 6px;
     }
 
-    //TODO: BB turn me on and add some styles
     tr.page_break { display: none; }
 
     .right {
