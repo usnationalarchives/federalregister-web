@@ -63,9 +63,10 @@
     min-width: 150px;
     padding: 5px;
 
-    font-size: 12px;
-    input {
-      font-size: 12px;
+    font-size: modular-scale(0);
+    input,
+    button {
+      font-size: modular-scale(0);
     }
   }
   &.small  { min-width: 100px; }

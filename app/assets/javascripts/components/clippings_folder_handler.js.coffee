@@ -19,7 +19,7 @@ class @FR2.ClippingsFolderHandler
       e.stopPropagation()
       @create()
 
-    @form.on 'click', '.button.commit', (e)=>
+    @form.on 'click', '.action.commit', (e)=>
       e.preventDefault()
       e.stopPropagation()
       @create()
@@ -37,22 +37,22 @@ class @FR2.ClippingsFolderHandler
     @form.find('.folder_create').hide()
 
   setSavingState: ->
-    @form.find('li.button.commit')
+    @form.find('li.action.commit')
       .addClass 'saving'
       .append $('<div>').addClass('loader')
 
-    @form.find('input[type=submit]')
+    @form.find('button[type=submit]')
       .val 'Creating folder and saving clipping(s)...'
       .prop 'disabled', true
 
 
   removeSavingState: ->
-    @form.find('li.button.commit')
+    @form.find('li.action.commit')
       .removeClass 'saving'
       .find $('.loader')
       .remove()
 
-    @form.find('input[type=submit]')
+    @form.find('button[type=submit]')
       .val ''
       .prop 'disabled', false
 
@@ -61,7 +61,7 @@ class @FR2.ClippingsFolderHandler
 
     @removeSavingState()
 
-    @form.find('input[type=submit]')
+    @form.find('button[type=submit]')
       .val 'Folder created and clipping added'
       .prop 'disabled', false
 
@@ -76,7 +76,7 @@ class @FR2.ClippingsFolderHandler
   setFailState: (response)->
     @removeSavingState()
 
-    @form.find('input[type=submit]')
+    @form.find('button[type=submit]')
       .val 'Create Folder'
       .prop 'disabled', false
 

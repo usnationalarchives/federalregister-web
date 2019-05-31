@@ -35,18 +35,18 @@ class @FR2.EmailAFriend
         e.preventDefault()
         @submitForm()
 
-      @modal.on 'click', 'form .commit.button', (e)=>
+      @modal.on 'click', 'form .action.commit', (e)=>
         e.preventDefault()
         @submitForm()
 
   disableSubmit: ->
-    @modal.find('form .commit.button').addClass('disabled')
+    @modal.find('form .action.commit').addClass('disabled')
 
   enableSubmit: ->
-    @modal.find('form .commit.button').removeClass('disabled')
+    @modal.find('form .action.commit').removeClass('disabled')
 
   enabled: ->
-    ! @modal.find('form .commit.button').hasClass('disabled')
+    ! @modal.find('form .action.commit').hasClass('disabled')
 
   validForm: ->
     $('input[name="entry_email[sender]"]').val() != "" &&
@@ -72,19 +72,19 @@ class @FR2.EmailAFriend
         @removeLoaderFromButton()
 
   addLoaderToButton: ->
-    button = @modal.find('form .commit.button')
+    button = @modal.find('form .action.commit')
 
     button.append $('<div>').addClass('loader')
     button.addClass('submitting')
 
   removeLoaderFromButton: =>
-    button = @modal.find('form .commit.button')
+    button = @modal.find('form .action.commit')
 
     button.find('.loader').remove()
     button.removeClass('submitting')
 
   submitting: ->
-    @modal.find('form .commit.button').hasClass('submitting')
+    @modal.find('form .action.commit').hasClass('submitting')
 
   submitSuccess: (response)=>
     @modal.find('.wrapper').html(response)
