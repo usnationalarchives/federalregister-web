@@ -105,6 +105,7 @@ class Search::DocumentsController < ApplicationController
     facet_params = params.permit(
       :all,
       :facet,
+      :order,
       conditions: {}
     )
 
