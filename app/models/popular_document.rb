@@ -28,7 +28,7 @@ class PopularDocument
 
     popular_documents_by_comment.each do |comment|
       popular_documents << self.new(
-        comment.comment_count.value,
+        comment.attributes["comment_count"],
         comment.document_number,
         DocumentDecorator.decorate(
           documents.find{|d| d.document_number == comment.document_number}
