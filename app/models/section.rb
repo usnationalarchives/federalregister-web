@@ -49,7 +49,7 @@ class Section < ActiveHash::Base
   def suggested_searches
     @suggested_searches ||= SuggestedSearch.search(
       conditions: {
-        sections: [slug]
+        sections: Array(slug)
       }
     )[slug]
   end
@@ -79,7 +79,7 @@ class Section < ActiveHash::Base
       published_on(date).
       deep_merge!(
         conditions: {
-          sections: [slug]
+          sections: Array(slug)
         }
       )
   end
@@ -89,7 +89,7 @@ class Section < ActiveHash::Base
       with_open_comment_periods_on(date).
       deep_merge!(
         conditions: {
-          sections: [slug]
+          sections: Array(slug)
         }
       )
   end

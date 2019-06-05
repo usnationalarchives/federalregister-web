@@ -57,7 +57,7 @@ class SectionPagePresenter
     {
       conditions:
       {
-        sections: slug
+        sections: Array(slug)
       }
     }
   end
@@ -70,7 +70,7 @@ class SectionPagePresenter
         last_five_issues_with_doc_counts.first
       ).deep_merge!(
         conditions: {
-          sections: [slug]
+          sections: Array(slug)
         },
         per_page: 1000
       )
