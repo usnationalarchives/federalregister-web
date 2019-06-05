@@ -67,7 +67,7 @@ class Comment < ApplicationRecord
   end
 
   def comment_data
-    @comment_data ||= JSON.parse(decrypt(encrypted_comment_data))
+    JSON.parse(decrypt(encrypted_comment_data))
   end
 
   def build_subscription(user, request)
@@ -84,8 +84,8 @@ class Comment < ApplicationRecord
     document.regulations_dot_gov_info["document_id"]
   end
 
-  def attributes=(attr)
-    attr.select{|k,v| respond_to?("#{k}=")}.each do |k,v|
+  def attributes=(attrs)
+    attrs.select{|k,v| respond_to?("#{k}=")}.each do |k,v|
       self.send("#{k}=",v)
     end
   end
@@ -117,11 +117,11 @@ class Comment < ApplicationRecord
   private
 
   def persist_comment_data
-    @comment_data = comment_form.humanize_form_data(attributes)
+    comment_attrs = comment_form.fields.map(&:name).inject({}){|hsh, n| hsh[n] = self.send(n); hsh}
+    comment_data = comment_form.humanize_form_data(comment_attrs)
+    comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name)}
 
-    @comment_data << {:label => "Uploaded Files", :values => attachments.map(&:original_file_name)}
-
-    self.encrypted_comment_data = encrypt(@comment_data.to_json)
+    self.encrypted_comment_data = encrypt(comment_data.to_json)
   end
 
   def attachments_are_uniquely_named

@@ -98,7 +98,7 @@ class CommentsController < ApplicationController
   end
 
   def build_comment
-    @service = RegulationsDotGovCommentService.new(request.remote_ip, params)
+    @service = RegulationsDotGovCommentService.new(request.remote_ip, params.permit!.to_h.with_indifferent_access)
     @comment = CommentDecorator.decorate(@service.comment)
     @service.build_comment
 
