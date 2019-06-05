@@ -678,7 +678,20 @@ div.alternative-comment-modal {
 
     p { margin-bottom: 10px; }
 
-    .formtastic.comment_notifications ol { margin-bottom: 0; }
+    .formtastic.comment_notifications {
+      ol { margin-bottom: 0; }
+
+      .actions {
+        margin-top: 10px;
+
+        .button_action {
+          height: 30px;
+          overflow: auto;
+          display: inline-block;
+        }
+        button { height: 30px; }
+      }
+    }
 
     li {
       clear: both;
