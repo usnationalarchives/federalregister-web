@@ -21,6 +21,7 @@ class Search::Document < Search::Base
     :section_ids,
     :sections,
     :significant,
+    :signing_date,
     :small_entity_ids,
     :topics,
     :topic_ids
