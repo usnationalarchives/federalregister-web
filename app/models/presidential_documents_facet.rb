@@ -6,7 +6,7 @@ class PresidentialDocumentsFacet < FederalRegister::Facet::PresidentialDocumentT
   def search_conditions
     result_set.conditions.deep_merge(
       conditions: {
-        presidential_document_type: slug
+        presidential_document_type: Array(slug)
       }
     )
   end

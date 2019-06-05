@@ -9,7 +9,7 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
         signing_date: {
           year: year
         },
-        type: "PRESDOCU",
+        type: ["PRESDOCU"],
       }
     }
   end
@@ -23,7 +23,7 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
           gte: president.starts_on,
           lte: president.ends_on
         },
-        type: "PRESDOCU",
+        type: ["PRESDOCU"],
       }
     }
   end

@@ -79,7 +79,7 @@ class PresidentialDocumentsHomepagePresenter
         published_within(start_date, end_date).
         deep_merge!({
           conditions: {
-            type: 'PRESDOCU',
+            type: ['PRESDOCU'],
           },
           fields: [
             'document_number',

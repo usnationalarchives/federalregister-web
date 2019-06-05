@@ -45,7 +45,7 @@ class PresidentialDocumentsIndexPresenter
       facets = PresidentialDocumentsFacet.search(
         conditions: {
           president: president.identifier,
-          type: "PRESDOCU",
+          type: ["PRESDOCU"],
         }
       )
 
