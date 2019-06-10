@@ -27,7 +27,6 @@
 
 #= require_tree ./components/comments/
 #= require page_specific/comment_creation
-#= require page_specific/comment_notifications
 
 #= require_self
 

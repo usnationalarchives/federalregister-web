@@ -13,6 +13,7 @@ class @FR2.CommentFormSuccessHandler
     $('.ajax-comment-data')
 
   add_events: ->
+    @commentNotifications()
     @printComment()
     @analytics()
 
@@ -26,6 +27,10 @@ class @FR2.CommentFormSuccessHandler
     flashMessage
       .html 'You have successfully submitted an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="<%= asset_path('regulations_dot_gov_logo.png') %>" class="reg_gov_logo">'
 
+  commentNotifications: ->
+    @ajaxCommentData().on 'click', '.action.commit', (e)->
+      e.preventDefault()
+      $(this).closest('form').submit()
 
   printComment: ->
     @ajaxCommentData().on 'click', 'a#print-comment', (e)->
