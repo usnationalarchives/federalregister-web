@@ -15,7 +15,10 @@ $(document).ready ->
   })
 
 $(document).on 'submit', 'form[method=post]', (event) ->
-  hiddenField = $('<input type="hidden" name="authenticity_token">')
-  hiddenField.val(getAuthenticityTokenFromHead)
-  hiddenField.appendTo(event.currentTarget)
-  true
+  if $(event.currentTarget).find('input[name="authenticity_token"]')
+    return true
+  else
+    hiddenField = $('<input type="hidden" name="authenticity_token">')
+    hiddenField.val(getAuthenticityTokenFromHead)
+    hiddenField.appendTo(event.currentTarget)
+    true
