@@ -5,7 +5,6 @@
 
 <%= semantic_form_for :comment_notifications,
   :url => persist_for_login_comments_url,
-  :authenticity_token => false,
   :html => {:target => (:blank unless iphone?) } do |f| %>
 
   <%= f.inputs do %>
@@ -24,7 +23,7 @@
     <% if @comment.agency_participating? %>
       <%= f.input :comment_tracking_number,
         :as => :hidden,
-        :value => @comment.comment_tracking_number %>
+        input_html: {value: @comment.comment_tracking_number} %>
     <% end %>
 
     <%= f.input :submission_key,
@@ -33,17 +32,17 @@
 
     <%= f.input :comment_secret,
       :as => :hidden,
-      :value => @comment.secret %>
+      input_html: {value: @comment.secret} %>
   <% end %>
 
   <%= f.actions do %>
     <%= f.action :submit, as: :button,
       label: 'Sign In',
-      wrapper_html: {class: 'comment_form_sign_in fr_button large primary'},
+      wrapper_html: {class: 'commit comment_form_sign_in fr_button large primary'},
       button_html: {class: 'browser_reset'} %>
     <%= f.action :submit, as: :button,
       label: 'Sign Up',
-      wrapper_html: {class: 'comment_form_sign_up fr_button large primary'},
+      wrapper_html: {class: 'commit comment_form_sign_up fr_button large primary'},
       button_html: {class: 'browser_reset'} %>
   <% end %>
 
