@@ -85,7 +85,7 @@ class CommentsController < ApplicationController
       CommentMailer.comment_copy(@comment.user, @comment).deliver_now if user_signed_in?
     rescue => exception
       Rails.logger.error(exception)
-      notify_honeybadger(exception)
+      Honeybadger.notify(exception)
     end
 
     render action: :show, status: 200
@@ -125,7 +125,7 @@ class CommentsController < ApplicationController
 
   def record_regulations_dot_gov_error(exception)
     Rails.logger.error(exception)
-    notify_honeybadger(exception)
+    Honeybadger.notify(exception)
   end
 
   def json_for_regulations_dot_gov_errors(exception)
