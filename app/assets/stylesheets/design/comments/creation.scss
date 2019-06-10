@@ -613,7 +613,10 @@ div.alternative-comment-modal {
   margin-top: 20px;
   padding: 15px;
 
-  h2 { font-size: 1.8em; }
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
 
   p { padding-left: 60px; }
 
