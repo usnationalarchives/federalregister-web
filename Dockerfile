@@ -44,12 +44,18 @@ RUN ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 ### SERVICES
 ##################
 
-
 COPY docker/web/my_init.d /etc/my_init.d
 COPY docker/web/service /etc/service
 
-RUN adduser app -uid 1000 --system &&\
+
+###############################
+### APP USER/GROUP
+###############################
+
+RUN addgroup --gid 1000 app &&\
+  adduser app -uid 1000 --gid 1000 --system &&\
   usermod -a -G docker_env app
+
 
 # rotate logs
 COPY docker/web/files/logrotate/app /etc/logrotate.d/app

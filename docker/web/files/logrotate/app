@@ -1,5 +1,5 @@
 /home/app/log/*.log {
-  su app
+  su app app
   daily
   missingok
   rotate 90
@@ -8,4 +8,5 @@
   notifempty
   copytruncate
   dateext
+  minsize 50M
 }
