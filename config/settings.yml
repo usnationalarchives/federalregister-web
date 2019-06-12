@@ -9,6 +9,7 @@ external_modal_domain_whitelist:
   - "www.govinfo.gov"
   - "federalregister.tenderapp.com"
   - "s3.amazonaws.com/public-inspection."
+  - "s3.amazonaws.com/archives."
 
 feature_flags:
   events_search: false
