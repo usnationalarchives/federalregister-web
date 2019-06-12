@@ -1,9 +1,9 @@
 module EncryptionUtils
-  def salt
+  def comment_salt
     self.salt = (self[:salt] || SecureRandom.hex(127))
   end
 
-  def iv
+  def comment_iv
     self.iv = (self[:iv] || SecureRandom.hex(127))
   end
 
@@ -12,14 +12,14 @@ module EncryptionUtils
   end
 
   def encryption_key
-    OpenSSL::PKCS5.pbkdf2_hmac(secret, salt, 1000, 256, OpenSSL::Digest::SHA256.new)
+    OpenSSL::PKCS5.pbkdf2_hmac(secret, comment_salt, 1000, 256, OpenSSL::Digest::SHA256.new)
   end
 
   def encryption_cipher
     cipher = generate_cipher
     cipher.encrypt
     cipher.key = encryption_key
-    cipher.iv  = iv
+    cipher.iv  = comment_iv
     cipher
   end
 
@@ -27,7 +27,7 @@ module EncryptionUtils
     cipher = generate_cipher
     cipher.decrypt
     cipher.key = encryption_key
-    cipher.iv = iv
+    cipher.iv = comment_iv
     cipher
   end
 

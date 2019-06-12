@@ -31,7 +31,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
       cipher = model.generate_cipher
       cipher.encrypt
       cipher.key = model.encryption_key
-      cipher.iv  = model.iv
+      cipher.iv  = model.comment_iv
 
       buf = ""
       File.open(current_path, "wb") do |outf|

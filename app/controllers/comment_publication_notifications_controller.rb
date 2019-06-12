@@ -1,8 +1,9 @@
 class CommentPublicationNotificationsController < ApplicationController
+  before_action :find_comment
+  
   def create
-    @comment = current_user.comments.first(:conditions => {:comment_tracking_number => params[:comment_tracking_number]})
     @comment.comment_publication_notification = true
-    @comment.save :validate => false
+    @comment.save(validate: false)
 
     respond_to do |format|
       format.json { render :json => { :link_text => t('notifications.links.remove'),
@@ -12,18 +13,21 @@ class CommentPublicationNotificationsController < ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.first(
-      conditions: {
-        comment_tracking_number: params[:comment_tracking_number]
-      }
-    )
     @comment.comment_publication_notification = false
-    @comment.save :validate => false
+    @comment.save(validate: false)
 
     respond_to do |format|
       format.json { render :json => { :link_text => t('notifications.links.add'),
                                       :method => 'post',
                                       :description => t('notifications.comment.publication.inactive')} }
     end
+  end
+
+  private
+
+  def find_comment
+    @comment = current_user.comments.where(
+      comment_tracking_number: params[:comment_tracking_number]
+    ).first
   end
 end

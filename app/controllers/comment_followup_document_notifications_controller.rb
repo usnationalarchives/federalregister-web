@@ -2,6 +2,8 @@ class CommentFollowupDocumentNotificationsController < ApplicationController
   before_action :find_comment
 
   def create
+    @comment.subscription.activate!
+    
     respond_to do |format|
       format.json { render :json => { :link_text => t('notifications.links.remove'),
                                       :method => 'delete',
@@ -23,14 +25,14 @@ class CommentFollowupDocumentNotificationsController < ApplicationController
 
   def find_comment
     if params[:comment_tracking_number].present?
-      @comment = current_user.comments.first(:conditions => {
-        :comment_tracking_number => params[:comment_tracking_number]
-      })
+      @comment = current_user.comments.where(
+        comment_tracking_number: params[:comment_tracking_number]
+      ).first
     else
       #agency not participating
-      @comment = current_user.comments.first(:conditions => {
-        :submission_key => params[:submission_key]
-      })
+      @comment = current_user.comments.where(
+        submission_key: params[:submission_key]
+      ).first
     end
   end
 end
