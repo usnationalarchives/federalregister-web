@@ -1,5 +1,0 @@
-array( @comment_attachments || [@comment_attachment] ) do |attachment|
-  name  attachment.attachment_file_name
-  size  attachment.file_size || attachment.attachment.try(:file).try(:size)
-  error attachment.errors.full_messages.to_sentence
-end

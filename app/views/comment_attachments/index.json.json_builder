@@ -1,5 +1,0 @@
-array( @comment_attachments || [@comment_attachment].compact ) do |attachment|
-  name  attachment.original_file_name || attachment.attachment_file_name
-  size  attachment.file_size || attachment.attachment.file.size
-  token attachment.token
-end

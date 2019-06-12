@@ -134,11 +134,7 @@
             :table,
             content_tag(:tbody),
             :class => "attachments",
-            :"data-existing" => render(
-              :template => "comment_attachments/index",
-              :formats => [:json],
-              :handlers => [:json_builder]
-            )
+            :"data-existing" => @comment_attachments.map{|a| a.to_jq_upload}.to_json
           ) %>
         </li>
       <% end %>
