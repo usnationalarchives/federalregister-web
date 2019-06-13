@@ -1,11 +1,3 @@
-# need to monkey patch the module directly because
-# of the way it is called in the underlying library
-module HTTMultiParty
-  def self.file_present?(args)
-    true
-  end
-end
-
 class RegulationsDotGov::Client
   class APIKeyError < StandardError; end
   class ResponseError < StandardError
@@ -24,7 +16,7 @@ class RegulationsDotGov::Client
   class OverRateLimit < ResponseError; end
   class NonParticipatingAgeny < ResponseError; end
 
-  include HTTMultiParty
+  include HTTParty
 
   attr_accessor :cache_backups_enabled, :read_from_cache
 
