@@ -247,10 +247,6 @@ GEM
     hashie (3.6.0)
     honeybadger (4.1.0)
     htmlentities (4.3.4)
-    httmultiparty (0.3.16)
-      httparty (>= 0.7.3)
-      mimemagic
-      multipart-post
     httparty (0.17.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -556,7 +552,6 @@ DEPENDENCIES
   guard-rspec
   honeybadger
   htmlentities
-  httmultiparty
   httparty
   indefinite_article
   jquery-rails

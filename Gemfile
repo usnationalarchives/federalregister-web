@@ -74,7 +74,6 @@ gem 'honeybadger'
 
 # http requests
 gem "httparty"
-gem "httmultiparty"
 
 # adds indefinite article methods to String and Symbol
 gem 'indefinite_article'
