@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ErrorHandler
+
   include RouteBuilder
   helper RouteBuilder
 

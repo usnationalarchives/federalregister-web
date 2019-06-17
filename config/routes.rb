@@ -14,10 +14,9 @@ Rails.application.routes.draw do
   get 'status/web/:id', to: 'special#status'
   get 'status', to: 'special#status'
 
-  get "/404", to: "errors#record_not_found"
-  get "/405", to: "errors#not_authorized"
-  get "/500", to: "errors#server_error"
-
+  match '/404', to: 'application#not_found', via: :all, as: :not_found
+  match '/405', to: 'application#not_authorized', via: :all, as: :not_authorized
+  match '/500', to: 'application#server_error', via: :all, as: :server_error
 
   #
   # Documents
