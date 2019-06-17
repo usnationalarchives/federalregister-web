@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include OmniauthHelper
   helper OmniauthHelper
 
-  protect_from_forgery if: :current_user
+  protect_from_forgery if: :current_user, with: :exception
 
   before_action :authenticate_user!
 
@@ -60,28 +60,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from FederalRegister::Client::RecordNotFound, with: :not_found
-
-  rescue_from Exception, :with => :server_error
-  def server_error(exception)
-    Rails.logger.error(exception)
-    honeybadger_options = {:exception => exception}
-    honeybadger_options[:environment_name] = "#{Rails.env}_scanbot" if request.user_agent =~ /ScanAlert/
-    Honeybadger.notify(honeybadger_options)
-
-    raise exception
-  end
-
-  rescue_from ActionView::MissingTemplate, :with => :missing_template
-  def missing_template(exception)
-    if exception.is_a?(ActionView::MissingTemplate) &&
-      !Collector.new(collect_mimes_from_class_level).negotiate_format(request)
-      head :not_acceptable
-    else
-      raise exception
-    end
-  end
-
   def use_vcr
     VCR.eject_cassette
     VCR.use_cassette(Settings.vcr.cassette) { yield }
@@ -89,16 +67,6 @@ class ApplicationController < ActionController::Base
 
   def rescue_action_in_public_with_honeybadger(exception)
     rescue_action_in_public_without_honeybadger(exception)
-  end
-
-  # throw exception rather than just resetting session on XSRF error
-  # in Rails 4 just use `protect_from_forgery with: exception`
-  def handle_unverified_request
-    if Rails.env.development?
-      raise ActionController::InvalidAuthenticityToken
-    else
-      reset_session
-    end
   end
 
   def log_memory_usage
