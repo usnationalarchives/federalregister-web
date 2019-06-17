@@ -118,7 +118,7 @@ class RegulationsDotGov::Client
   end
 
   def submit_comment(fields)
-    response = self.class.post(comment_endpoint, :body => fields)
+    response = self.class.post(comment_endpoint, :body => fields, multipart: true)
     RegulationsDotGov::CommentFormResponse.new(self, response)
   end
 
@@ -239,10 +239,5 @@ class RegulationsDotGov::Client
     rescue Timeout::Error
       raise ResponseError.new("Request timed out", 504)
     end
-  end
-
-  # force multipart content-type on POST
-  def self.hash_contains_files?(hsh)
-    true
   end
 end
