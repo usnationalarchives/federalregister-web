@@ -22,6 +22,6 @@ class Holiday
   private
 
   def self.url
-    "#{Settings.federal_register.api_url}/holidays"
+    "#{Settings.federal_register.internal_api_url}/holidays"
   end
 end

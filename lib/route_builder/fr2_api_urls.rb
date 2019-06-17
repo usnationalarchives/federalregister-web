@@ -72,6 +72,6 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   def fr2_api_urlify(path)
-    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1', '')}"
+    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1/', '')}"
   end
 end

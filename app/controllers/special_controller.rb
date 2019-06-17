@@ -36,7 +36,7 @@ class SpecialController < ApplicationController
   def site_notifications
     cache_for 1.minute
     raw_response = HTTParty.get(
-      "#{Settings.federal_register.api_url}/site_notifications/#{params[:identifier]}"
+      "#{Settings.federal_register.internal_api_url}/site_notifications/#{params[:identifier]}"
     )
     if raw_response.code == 404
       head :ok

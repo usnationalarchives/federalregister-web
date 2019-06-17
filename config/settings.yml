@@ -31,6 +31,7 @@ feature_flags:
 federal_register:
   api_url: '<%= ENV["FR_API_URL"] %>'
   base_uri: '<%= ENV["FR_BASE_URL"] %>'
+  internal_api_url: '<%= ENV["FR_INTERNAL_API_URL"] %>'
   internal_base_uri: '<%= ENV["FR_INTERNAL_BASE_URL"] %>'
 
 federal_register_archives:
