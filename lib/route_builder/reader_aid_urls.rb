@@ -10,6 +10,6 @@ module RouteBuilder::ReaderAidUrls
   end
 
   def reader_aids_search_help_url
-    "#{Settings.federal_register.base_uri}/reader-aids/videos-tutorials/utilizing-complex-search-terms"
+    "#{Settings.federal_register.base_url}/reader-aids/videos-tutorials/utilizing-complex-search-terms"
   end
 end

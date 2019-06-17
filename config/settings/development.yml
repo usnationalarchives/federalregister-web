@@ -25,7 +25,7 @@ regulations_dot_gov:
 # APPLICATION SETTINGS
 federal_register:
   api_url: 'https://www.federalregister.gov/api/v1'
-  base_uri: 'https://www.federalregister.gov'
+  base_url: 'https://www.federalregister.gov'
 
 federal_register_archives:
   api_url: 'http://localhost:3020'
