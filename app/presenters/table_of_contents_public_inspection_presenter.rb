@@ -1,6 +1,6 @@
 class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
   def url
-    "#{Settings.federal_register.internal_base_uri}/public_inspection_issues/json/#{date.strftime('%Y/%m/%d')}/#{url_type}.json"
+    "#{Settings.federal_register.internal_base_url}/public_inspection_issues/json/#{date.strftime('%Y/%m/%d')}/#{url_type}.json"
   end
 
   def document_partial

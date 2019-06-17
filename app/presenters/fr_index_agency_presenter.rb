@@ -71,7 +71,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   end
 
   def url
-    "#{Settings.federal_register.internal_base_uri}/fr_index/#{year}/#{agency_slug}.json"
+    "#{Settings.federal_register.internal_base_url}/fr_index/#{year}/#{agency_slug}.json"
   end
 
   def document_partial
