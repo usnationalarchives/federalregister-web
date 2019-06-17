@@ -14,7 +14,7 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   def document_api_url(document, options, params={})
-    fr2_api_urlify(documens_api_path(documents, options, params))
+    fr2_api_urlify(document_api_path(document, options, params))
   end
 
   def documents_api_path(documents, options, params={})
@@ -72,6 +72,6 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   def fr2_api_urlify(path)
-    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1/', '')}"
+    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1', '')}"
   end
 end
