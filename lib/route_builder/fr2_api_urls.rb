@@ -48,6 +48,22 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   ### PUBLIC INSPECTION DOCUMENTS
+  
+  def public_inspection_document_api_path(document, options, params={})
+    path = "public-inspection-documents/#{document.document_number}"
+
+    # document api path doesn't support format currently
+    if options && options[:format]
+      path += ".#{options[:format]}"
+    end
+
+    fr2_api_path_for(path, params)
+  end
+
+  def public_inspection_document_api_url(document, options, params={})
+    fr2_api_urlify(public_inspection_document_api_path(document, options, params))
+  end
+
   def public_inspection_search_api_path(params, options)
     path = "public-inspection-documents"
 

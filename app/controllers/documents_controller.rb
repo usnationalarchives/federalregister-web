@@ -1,32 +1,45 @@
 class DocumentsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :find_document
 
   def show
     cache_for 1.day
 
-    begin
-      @document = Document.find(params[:document_number])
+    respond_to do |wants|
+      wants.html do
+        if @document.is_a?(Document)
+          @document = DocumentDecorator.decorate(@document)
+          
+          if document_path(@document) == request.path
+            render
+          else
+            redirect_to document_path(@document)
+          end
+        elsif @document.is_a?(PublicInspectionDocument)
+          @document = PublicInspectionDocumentDecorator.decorate(@document)
 
-      @document = DocumentDecorator.decorate(@document)
-
-      if document_path(@document) == request.path
-        render
-      else
-        redirect_to document_path(@document)
+          if @document.html_url == request.url
+            render template: 'public_inspection_documents/show'
+          else
+            redirect_to @document.html_url
+          end
+        end
       end
-    rescue FederalRegister::Client::RecordNotFound
-      begin
-        @document = PublicInspectionDocument.find(params[:document_number])
 
-        @document = PublicInspectionDocumentDecorator.decorate(@document)
+      wants.json do
+        if @document.is_a?(Document)
+          redirect_to document_api_url(@document, {format: :json})
+        elsif @document.is_a?(PublicInspectionDocument)
+          redirect_to public_inspection_document_api_url(@document, {format: :json})
+        end
+      end
 
-        if @document.html_url == request.url
-          render template: 'public_inspection_documents/show'
-        else
+      wants.pdf do
+        if @document.is_a?(Document) && @document.pdf_url.present?
+          redirect_to @document.pdf_url, status: :moved_permanently
+        elsif @document.html_url
           redirect_to @document.html_url
         end
-      rescue FederalRegister::Client::RecordNotFound
-        raise ActiveRecord::RecordNotFound
       end
     end
   end
@@ -34,19 +47,9 @@ class DocumentsController < ApplicationController
   def tiny_url
     cache_for 1.day
 
-    document_or_pi = begin
-                       Document.find(params[:document_number])
-                     rescue FederalRegister::Client::RecordNotFound
-                       begin
-                         PublicInspectionDocument.find(params[:document_number])
-                       rescue FederalRegister::Client::RecordNotFound
-                         raise ActiveRecord::RecordNotFound
-                       end
-                     end
-
     respond_to do |wants|
       wants.html do
-        url = document_or_pi.html_url
+        url = @document.html_url
 
         # the document endpoints can return more than one document
         # if the document number is comma separated in these cases there is
@@ -57,18 +60,32 @@ class DocumentsController < ApplicationController
           url += '#' + params[:anchor]
         end
 
-        status = document_or_pi.is_a?(Document) ? :moved_permanently : :found # 301 : 302
+        status = @document.is_a?(Document) ? :moved_permanently : :found # 301 : 302
 
         redirect_to url, status: status
       end
 
       wants.pdf do
-        if document_or_pi.is_a?(Document) && document_or_pi.pdf_url.present?
-          redirect_to document_or_pi.pdf_url, status: :moved_permanently
-        elsif document_or_pi.html_url
-          redirect_to document_or_pi.html_url
+        if @document.is_a?(Document) && @document.pdf_url.present?
+          redirect_to @document.pdf_url, status: :moved_permanently
+        elsif @document.html_url
+          redirect_to @document.html_url
         else
         end
+      end
+    end
+  end
+
+  private
+
+  def find_document
+    begin
+      @document = Document.find(params[:document_number])
+    rescue FederalRegister::Client::RecordNotFound
+      begin
+        @document = PublicInspectionDocument.find(params[:document_number])
+      rescue FederalRegister::Client::RecordNotFound
+        raise ActiveRecord::RecordNotFound
       end
     end
   end
