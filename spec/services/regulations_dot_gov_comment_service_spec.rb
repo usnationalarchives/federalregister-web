@@ -67,37 +67,40 @@ RSpec.describe RegulationsDotGovCommentService do
     end
 
     it "#increment_comment_tracking_keys works as expected across hour boundaries", :isolate_redis do
-      # set up IP to have gone over the submission limit in the past and be on the verge of exceeding it again
-      comments_in_previous_hour = RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 10
-      Timecop.freeze(Time.current-1.hour) do
+      Timecop.freeze("#{Date.current.to_s(:iso)} 12:00:00") do
+        # set up IP to have gone over the submission limit in the past and be on the verge of exceeding it again
+        comments_in_previous_hour = RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + 10
+        Timecop.freeze(Time.current-1.hour) do
+          $redis.incrby(
+            comment_service.hourly_comment_tracking_key,
+            comments_in_previous_hour
+          )
+          $redis.incrby(
+            comment_service.bulk_totals_comment_tracking_key,
+            comments_in_previous_hour
+          )
+        end
+        
+        # comments so far this hour
         $redis.incrby(
           comment_service.hourly_comment_tracking_key,
-          comments_in_previous_hour
+          RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT - 1
         )
-        $redis.incrby(
-          comment_service.bulk_totals_comment_tracking_key,
-          comments_in_previous_hour
+
+        # resets hourly
+        expect{
+          comment_service.increment_comment_tracking_keys
+        }.to change{
+          comment_service.hourly_requests_for_ip
+        }.from(9).to(10)
+
+        # cumulative for the day
+        expect(
+          comment_service.daily_bulk_requests_for_ip
+        ).to eq(
+          RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + comments_in_previous_hour
         )
       end
-      # comments so far this hour
-      $redis.incrby(
-        comment_service.hourly_comment_tracking_key,
-        RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT - 1
-      )
-
-      # resets hourly
-      expect{
-        comment_service.increment_comment_tracking_keys
-      }.to change{
-        comment_service.hourly_requests_for_ip
-      }.from(9).to(10)
-
-      # cumulative for the day
-      expect(
-        comment_service.daily_bulk_requests_for_ip
-      ).to eq(
-        RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + comments_in_previous_hour
-      )
     end
   end
 
