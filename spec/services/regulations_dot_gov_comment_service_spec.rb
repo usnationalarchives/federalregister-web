@@ -52,7 +52,7 @@ RSpec.describe RegulationsDotGovCommentService do
 
       expect(
         comment_service.daily_bulk_requests_for_ip
-      ).to be(10)
+      ).to eq(10)
     end
 
     it "#increment_comment_tracking_keys increments the bulk tracking key by 1 when over the hourly limit", :isolate_redis do
@@ -63,7 +63,7 @@ RSpec.describe RegulationsDotGovCommentService do
 
       expect(
         comment_service.daily_bulk_requests_for_ip
-      ).to be(11)
+      ).to eq(11)
     end
 
     it "#increment_comment_tracking_keys works as expected across hour boundaries", :isolate_redis do
@@ -95,7 +95,7 @@ RSpec.describe RegulationsDotGovCommentService do
       # cumulative for the day
       expect(
         comment_service.daily_bulk_requests_for_ip
-      ).to be(
+      ).to eq(
         RegulationsDotGovCommentService::HOURLY_SUBMISSION_LIMIT + comments_in_previous_hour
       )
     end
