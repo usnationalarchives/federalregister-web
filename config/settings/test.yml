@@ -15,6 +15,12 @@ s3_buckets:
   private_images: private.test.images.fr2.dev
   public_images: test.images.fr2.dev
 
+federal_register:
+  api_url: 'https://www.federalregister.gov/api/v1'
+  base_url: 'https://www.federalregister.gov'
+  internal_api_url: 'https://www.federalregister.gov/api/v1'
+  internal_base_url: 'https://www.federalregister.gov'
+
 services:
-  fr_profile_url: "https://testdomain.com/my/profile"
+  fr_profile_url: "https://example.com/my/profile"
 
