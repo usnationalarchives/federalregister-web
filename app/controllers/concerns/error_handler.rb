@@ -7,7 +7,7 @@ module ErrorHandler
     render_error(500, "Server Error")
   end
 
-  def not_found#(exception=nil)
+  def not_found(exception=nil)
     render_error(404, "Not Found")
   end
 
@@ -20,7 +20,7 @@ module ErrorHandler
   def render_error(status_code, text)
     # ESI routes should return correct status codes, but no error page
     if params[:quiet]
-      render head status_code
+      head status_code
     else
       respond_to do |format|
         format.html { render template: "errors/#{status_code}", status: status_code }
