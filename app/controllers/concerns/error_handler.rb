@@ -32,10 +32,11 @@ module ErrorHandler
   included do
     # don't include in dev/test like environments
     unless Rails.application.config.consider_all_requests_local
+      rescue_from StandardError, with: :server_error
+
+      rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from FederalRegister::Client::RecordNotFound, with: :not_found
       rescue_from URI::InvalidURIError, with: :not_found
-
-      rescue_from StandardError, with: :server_error
     end
   end
 end
