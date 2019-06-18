@@ -4,14 +4,14 @@ class MailingList < ApplicationRecord
   has_many :subscriptions
 
   has_many :active_subscriptions, -> {
-      where(unsubscribed_at: nil, deleted_at: nil)
+      where(deleted_at: nil, unsubscribed_at: nil)
     },
     class_name: "Subscription"
 
   scope :active, -> {
     where(deleted_at: nil).
     joins(:subscriptions).
-    where( {subscriptions: {deleted_at: nil}} ).
+    where( {subscriptions: {deleted_at: nil, unsubscribed_at: nil}} ).
     distinct
   }
 
