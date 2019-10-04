@@ -71,11 +71,11 @@
 
             <h2 id="part_6" class="title_bar">Part VI: Precedence Searches</h2>
 
-            <p>We also support queries based on word (or phrase) ordering. This precedence search makes use of the <code>&lt;&lt;</code> operator and is useful when you know the rough order of words in a phrase in an document, but not the exact phrase.</p>
+            <p>We also support queries based on word (or phrase) ordering. This precedence search makes use of the <code>&lt;&lt;</code> operator and is useful when you know the rough order of words in a phrase in a document, but not the exact phrase.</p>
 
             <p><strong>Usage:</strong> <%= working_search_example('rebuilt << parts') %>, ensures that matches contain those words in the order indicated.</p>
 
-            <p><strong>Example:</strong> Let’s say you are looking for an document that you know contains the words 'rebuilt', 'reclaimed', 'vehicular', and 'parts' in that order, but you aren't sure exactly how the phrase was constructed (perhaps it was: 'rebuilt or reclaimed vehicular and boat parts are now...'). By searching: <%= working_search_example('rebuilt << reclaimed << vehicular << parts') %>, you would match the items you are looking for without needing to know the exact order of the phrase in advance.</p>
+            <p><strong>Example:</strong> Let’s say you are looking for a document that you know contains the words 'rebuilt', 'reclaimed', 'vehicular', and 'parts' in that order, but you aren't sure exactly how the phrase was constructed (perhaps it was: 'rebuilt or reclaimed vehicular and boat parts are now...'). By searching: <%= working_search_example('rebuilt << reclaimed << vehicular << parts') %>, you would match the items you are looking for without needing to know the exact order of the phrase in advance.</p>
 
             <p>Like many of the search types above, all of these search options can be combined to create more powerful searches (some more useful than others). To continue with our example in Part VI above, perhaps you wanted to search for phrases like, 'rebuilt and reclaimed vehicular parts' and 'rebuilt and reclaimed boat parts'. You could combine boolean operators with precedence searching and modify your search to be: <%= working_search_example('rebuilt << reclaimed << (vehicular | boat) << parts') %>, to match both of the new, slightly modified phrases.</p>
 
