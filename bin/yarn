@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby2.3
+#!/usr/bin/env ruby2.5
 APP_ROOT = File.expand_path('..', __dir__)
 Dir.chdir(APP_ROOT) do
   begin

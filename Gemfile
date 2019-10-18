@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # basic rails stack
-gem 'rails', '5.2.3'
+gem 'rails', '6.0.0'
 gem 'rake'
 gem 'rack'
 gem 'mysql2', '0.5.2'
@@ -134,7 +134,7 @@ gem 'resque', '~> 1.27.0'
 gem 'resque-retry'
 
 # sass integration
-gem 'sass-rails'
+gem 'sass-rails', '~> 5.1'
 gem "sass"
 
 # email provider integration
@@ -166,7 +166,7 @@ group :development, :test do
   gem 'email_spec'
 
   gem "factory_girl_rails", "~> 4.0"
-  gem "fakeweb", "~> 1.3.0"
+  gem 'webmock'
 
   #auto test runner
   gem 'guard'

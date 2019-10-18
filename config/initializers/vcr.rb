@@ -3,7 +3,7 @@ if defined?(VCR) && Rails.env.test?
     c.default_cassette_options = { :record => :new_episodes }
     c.ignore_hosts '127.0.0.1', 'localhost'
     c.cassette_library_dir = Rails.root.join("spec", "vcr")
-    c.hook_into :fakeweb
+    c.hook_into :webmock
 
     c.filter_sensitive_data('<API_KEY>') { Rails.application.secrets[:data_dot_gov][:api_key] }
     c.filter_sensitive_data('<API_KEY>') { Rails.application.secrets[:data_dot_gov][:primary_comment_api_key] }
@@ -23,7 +23,7 @@ if defined?(VCR) && Rails.env.development? && Settings.vcr.enabled
     c.ignore_hosts *Settings.vcr.ignore_hosts
     c.cassette_library_dir = Rails.root.join(Settings.vcr.library_dir).to_s
 
-    c.hook_into :fakeweb
+    c.hook_into :webmock
 
     if Settings.vcr.log_output
       c.debug_logger = File.open(Rails.root.join("log", "#{Settings.vcr.cassette}.vcr.log"), 'w')
