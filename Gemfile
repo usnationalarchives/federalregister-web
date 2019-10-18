@@ -40,7 +40,7 @@ gem 'chronic', '~> 0.10.2'
 gem "cocaine"
 
 # coffeescript integration
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 
 # app wide settings
 gem 'config'
@@ -184,6 +184,6 @@ group :development, :test do
 
   gem 'timecop'
 
-  gem "vcr",     "~> 2.6.0"
+  gem "vcr", "~> 2.6.0"
   gem 'watchr', '0.7'
 end
