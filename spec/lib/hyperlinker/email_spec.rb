@@ -30,7 +30,7 @@ describe Hyperlinker::Email do
   it "hyperlinks emails with special characters" do
     email_raw    = "and/&re$la*+r-a.o'rea=l~ly@tenderlovemaking.com"
     email_sanitized = "and/&amp;re$la*+r-a.o&#39;rea=l~ly@tenderlovemaking.com"
-    email_sanitized_and_escaped = "and%2F%26re%24la%2A%2Br-a.o%27rea%3Dl%7Ely@tenderlovemaking.com"
+    email_sanitized_and_escaped = "and%2F%26re%24la%2A%2Br-a.o%27rea%3Dl~ly@tenderlovemaking.com"
 
     expect(hyperlink(email_raw)).to eql %{<a href="mailto:#{email_sanitized_and_escaped}">#{email_sanitized}</a>}
   end
