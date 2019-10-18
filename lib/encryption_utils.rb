@@ -4,7 +4,7 @@ module EncryptionUtils
   end
 
   def comment_iv
-    self.iv = (self[:iv] || SecureRandom.hex(127))
+    self.iv = (self[:iv] || SecureRandom.hex(8))
   end
 
   def generate_cipher
@@ -12,7 +12,7 @@ module EncryptionUtils
   end
 
   def encryption_key
-    OpenSSL::PKCS5.pbkdf2_hmac(secret, comment_salt, 1000, 256, OpenSSL::Digest::SHA256.new)
+    OpenSSL::PKCS5.pbkdf2_hmac(secret, comment_salt, 1000, 32, OpenSSL::Digest::SHA256.new)
   end
 
   def encryption_cipher
