@@ -9,7 +9,7 @@ FROM quay.io/criticaljuncture/baseimage:18.04
 ### RUBY
 #######################
 
-RUN apt-get update && apt-get install -y ruby2.5 ruby2.5-dev
+RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
 
 
 #######################
