@@ -27,7 +27,7 @@ class MailingList < ApplicationRecord
   serialize :parameters, JSON
 
   def title
-    self['title'] || model.search_metadata(conditions: parameters).description
+    self['title'] || model.search_metadata(conditions: parameters).description.truncate(1000, separator: /\s/)
   end
 
   def persist_title
