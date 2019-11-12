@@ -1,4 +1,19 @@
 class Fr::Client
+  class Error < StandardError
+    attr_reader :record
+    def initialize(record=nil, message="")
+      @record = record
+      super(message)
+    end
+  end
+
+  class BadRequest < Error; end
+  class InvalidRequest < Error; end
+  class RecordNotFound < Error; end
+  class ResponseError < Error; end
+  class ServerError < Error; end
+  class UnknownStatusCode < Error; end
+  class Forbidden < Error; end
 
   def self.client
     if Settings.log_http_requests
