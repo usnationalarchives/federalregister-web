@@ -1,7 +1,5 @@
-<%# When Uglify tries to compress the swagger-ui-bundle file, it malformats/breaks the swagger-ui-bundle js file (likely because the file is already minified (an unminified version is unavailable) and/or uses new JS functionality that didn't exist in the version of Uglifier we're using.) %>
-<script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
 <%= stylesheet_link_tag asset_path('swagger.css'), media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag asset_path('swagger.js') %>
+<% add_javascript src: 'swagger' %>
 
 <% page_title 'API Documentation' %>
 
@@ -12,7 +10,11 @@
 <div class="page-summary with-header">
   <h1>FR API Documentation</h1>
 
-  <p>Our various endpoints are detailed below in interactive documentation, detailing the different endpoints and possible parameters.  No API keys are needed; all you need is an HTTP client or browser.</p>
+  <p>
+    Our various endpoints are detailed below in interactive documentation,
+    detailing the different endpoints and possible parameters. 
+    No API keys are needed; all you need is an HTTP client or browser.
+  </p>
 
 </div>
 

@@ -1,12 +1,15 @@
-$(document).ready ->
+#= require swagger-ui/swagger-ui-bundle.js
+#= require swagger-ui/swagger-ui-standalone-preset.js
 
+
+$(document).ready ->
   window.ui = SwaggerUIBundle(
-    url: "/developers/documentation/api/v1.json",
+    url: "/api/v1/documentation.json",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
       SwaggerUIBundle.presets.apis,
-      # SwaggerUIStandalonePreset
+      SwaggerUIStandalonePreset
     ],
     plugins: [
       SwaggerUIBundle.plugins.DownloadUrl
