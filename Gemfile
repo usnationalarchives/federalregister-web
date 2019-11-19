@@ -102,7 +102,7 @@ gem 'nokogiri'
 # Single sign on
 gem 'omniauth_openid_connect',
   git: 'https://github.com/criticaljuncture/omniauth-openid-connect',
-  branch: 'fix_redundant_token_verification'
+  branch: 'master'
 
 # pick item(s) from collection by it's weight/probability
 gem "pickup", "0.0.8"
