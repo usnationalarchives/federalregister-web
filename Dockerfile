@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
 ### VARIOUS PACKAGES
 #######################
 
-RUN apt-get update && apt-get install -y libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev mysql-client secure-delete \
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev libssl-dev mysql-client secure-delete \
   # capybara-webkit
   libqt4-dev libqtwebkit-dev &&\
   apt-get clean &&\
