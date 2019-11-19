@@ -73,12 +73,15 @@ Rails.application.configure do
     file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"
     raise "VCR cassette is too large! Max cassette size is #{Settings.vcr.max_cassette_size}Mb. Check the file size in #{Settings.vcr.library_dir}." if (File.size(file).to_f / 1024000) > Settings.vcr.max_cassette_size
   end
+  
   # Raises error for missing translations.
-  # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.hosts << "dev-fr2.criticaljuncture.org"
 end
 
 Rails.application.routes.default_url_options = {
