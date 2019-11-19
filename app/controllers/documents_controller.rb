@@ -83,7 +83,7 @@ class DocumentsController < ApplicationController
       if publication_date
         @document = Document.find(params[:document_number], publication_date: publication_date)
       else
-        @document = Document.find(params[:document_number]
+        @document = Document.find(params[:document_number])
       end
     rescue FederalRegister::Client::RecordNotFound
       begin
