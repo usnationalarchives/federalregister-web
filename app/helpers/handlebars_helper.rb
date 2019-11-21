@@ -5,7 +5,7 @@ module HandlebarsHelper
     html = ['<script id="']
     html << id
     html << '-template" type="text/x-handlebars-template">'
-    html << render( :file => File.join(File.dirname(__FILE__), '..', 'templates', "#{name}.handlebars") )
+    html << render(file: Rails.root.join('app', 'templates', "#{name}.handlebars"))
     html << '</script>'
     html.join('').html_safe
   end
