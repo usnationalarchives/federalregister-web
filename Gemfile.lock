@@ -214,7 +214,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    federal_register (0.7.3)
+    federal_register (0.7.4)
       httparty (>= 0.14.0)
     ffi (1.11.2)
     fog-aws (0.7.3)
@@ -569,7 +569,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails (~> 4.0)
   faraday
-  federal_register (= 0.7.3)
+  federal_register (= 0.7.4)
   fog-aws
   formtastic
   geokit (= 1.4.1)
