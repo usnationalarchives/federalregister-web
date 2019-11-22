@@ -74,7 +74,7 @@ class WpApi::Content
   def categories
     categories = []
 
-    attributes['categories'].map do |category_id|
+    attributes['categories']&.map do |category_id|
       categories << WpApi::Category.find(category_id)
     end
 
