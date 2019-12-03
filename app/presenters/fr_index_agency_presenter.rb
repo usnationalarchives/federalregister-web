@@ -16,9 +16,9 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   end
 
   def index_pdf_month
-    month = document_index.dig('pdf', 'approval_date')
-    if month
-      Date::MONTHNAMES[month]
+    date = document_index.dig('pdf', 'approval_date')
+    if date
+      Date::MONTHNAMES[Date.parse(date).month]
     end
   end
 
@@ -84,7 +84,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
   end
 
   def url
-    "#{Settings.federal_register.internal_base_url}/fr_index/#{year}/#{agency_slug}.json"
+    "#{Settings.federal_register.internal_base_url}/fr_index/json/#{year}/#{agency_slug}.json"
   end
 
   def document_partial
