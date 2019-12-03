@@ -55,3 +55,6 @@ s3_buckets:
 
 services:
   fr_profile_url: "https://ecfr.criticaljuncture.org"
+
+feature_flags:
+  fr_index_pdfs: true
