@@ -3,3 +3,20 @@
 .swagger-ui .information-container {
   display: none;
 }
+
+.page-summary p {
+  margin: 10px 0;
+}
+
+// don't show these in the schemas section
+#model-Format,
+#model-FrDate,
+#model-FrYear {
+  display: none;
+}
+
+// we have a lot of enum value and enumerating them
+// makes the forms hard to read
+.parameter__enum.renderedMarkdown {
+  display: none;
+}
