@@ -205,7 +205,7 @@ GEM
     erubi (1.9.0)
     et-orbi (1.1.7)
       tzinfo
-    excon (0.45.4)
+    excon (0.71.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
