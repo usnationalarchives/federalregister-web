@@ -63,7 +63,7 @@ class PublicInspectionIssuePresenter
     end
 
     def formatted_updated_at
-      filings.last_updated_at.to_s(:time_then_date)
+      filings.last_updated_at.try(:to_s, :time_then_date)
     end
 
     def agency_count
