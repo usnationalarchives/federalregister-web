@@ -6,7 +6,10 @@ tmp/
 .screenrc
 tags
 .sass-cache/
+
 public/assets
+public/sitemap*
+
 spec/vcr/*.yml
 
 config/settings.local.yml
