@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery if: :current_user, with: :exception
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:not_authorized, :not_found, :server_error]
 
   before_action :set_page_to_track
 
