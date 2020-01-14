@@ -14,6 +14,8 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
   private
 
   def retrieve_documents
+    return [] unless document_numbers.present?
+    
     @documents ||= PublicInspectionDocument.find_all(
       document_numbers,
       {
