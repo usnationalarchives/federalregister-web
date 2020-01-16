@@ -2,7 +2,7 @@ class SitemapPresenter
   extend Memoist
 
   def documents
-    Array.new.tap do |docs|
+    # Array.new.tap do |docs|
       # NOTE: Used since we can't bulk query api-core for all document records
       queryable_date_ranges.each do |date_range|
         page = 0
@@ -10,12 +10,12 @@ class SitemapPresenter
         while page == 0 || results.next_url.present? do
           page = page + 1
           results = get_documents(date_range, page)
-          results.each {|doc| docs << DocumentDecorator.new(doc) }
+          results.each {|doc| yield(doc) }
         end
       end
-    end
+    # end
   end
-  memoize :documents
+  # memoize :documents
 
   def get_documents(date_range, page)
     Document.search(
@@ -25,11 +25,7 @@ class SitemapPresenter
           lte: date_range.last
         }
       },
-      fields: [
-        :document_number,
-        :publication_date,
-        :slug,
-      ],
+      fields: [:html_url],
       order: 'oldest',
       per_page: 2000,
       page: page

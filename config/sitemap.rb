@@ -43,14 +43,8 @@ SitemapGenerator::Sitemap.create do
 
   # DOCUMENTS
   sitemap_presenter.documents.each do |document|
-    publication_date = document.publication_date
-    add document_path(
-      publication_date.year,
-      publication_date.month,
-      publication_date.day,
-      document.document_number,
-      document.slug
-    ), :changefreq => 'monthly'#, :lastmod => document.updated_at
+    # publication_date = document.publication_date
+    add document.html_url, :changefreq => 'monthly'#, :lastmod => document.updated_at
   end
 
   # DOCUMENT ISSUES
