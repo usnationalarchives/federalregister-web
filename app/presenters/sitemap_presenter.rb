@@ -2,34 +2,24 @@ class SitemapPresenter
   extend Memoist
 
   def documents
-    # Array.new.tap do |docs|
-      # NOTE: Used since we can't bulk query api-core for all document records
-      queryable_date_ranges.each do |date_range|
-        page = 0
+    queryable_date_ranges.each do |date_range|
+      results = Document.search(
+        conditions: {
+          publication_date: {
+            gte: date_range.first,
+            lte: date_range.last
+          }
+        },
+        fields: [:html_url],
+        order: 'oldest',
+        per_page: 2000
+      )
 
-        while page == 0 || results.next_url.present? do
-          page = page + 1
-          results = get_documents(date_range, page)
-          results.each {|doc| yield(doc) }
-        end
+      while results do
+        results.each {|doc| yield(doc) }
+        results = results.next
       end
-    # end
-  end
-  # memoize :documents
-
-  def get_documents(date_range, page)
-    Document.search(
-      conditions: {
-        publication_date: {
-          gte: date_range.first,
-          lte: date_range.last
-        }
-      },
-      fields: [:html_url],
-      order: 'oldest',
-      per_page: 2000,
-      page: page
-    )
+    end
   end
 
   def document_issues

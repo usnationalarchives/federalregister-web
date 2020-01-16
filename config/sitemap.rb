@@ -42,7 +42,7 @@ SitemapGenerator::Sitemap.create do
   end
 
   # DOCUMENTS
-  sitemap_presenter.documents.each do |document|
+  sitemap_presenter.documents do |document|
     # publication_date = document.publication_date
     add document.html_url, :changefreq => 'monthly'#, :lastmod => document.updated_at
   end
