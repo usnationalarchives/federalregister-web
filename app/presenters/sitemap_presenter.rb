@@ -5,20 +5,36 @@ class SitemapPresenter
     Array.new.tap do |docs|
       # NOTE: Used since we can't bulk query api-core for all document records
       queryable_date_ranges.each do |date_range|
-        Document.search(
-          conditions: {
-            publication_date: {
-              gte: date_range.first,
-              lte: date_range.last
-            }
-          },
-          order: 'oldest',
-          per_page: 1000
-        ).each {|doc| docs << DocumentDecorator.new(doc) }
+        page = 0
+
+        while page == 0 || results.next_url.present? do
+          page = page + 1
+          results = get_documents(date_range, page)
+          results.each {|doc| docs << DocumentDecorator.new(doc) }
+        end
       end
     end
   end
   memoize :documents
+
+  def get_documents(date_range, page)
+    Document.search(
+      conditions: {
+        publication_date: {
+          gte: date_range.first,
+          lte: date_range.last
+        }
+      },
+      fields: [
+        :document_number,
+        :publication_date,
+        :slug,
+      ],
+      order: 'oldest',
+      per_page: 2000,
+      page: page
+    )
+  end
 
   def document_issues
     issues = Array.new
