@@ -6,7 +6,7 @@ class Ecfr::UserEmailResultSet
       Rails.application.secrets[:fr_profile][:basic_username],
       Rails.application.secrets[:fr_profile][:basic_password],
     )
-    response = conn.post "#{Settings.services.fr_profile_url}/api/profile/v1/emails", {ids: Array.wrap(user_ids)}
+    response = conn.post "#{Settings.services.fr_profile_internal_url}/api/profile/v1/emails", {ids: Array.wrap(user_ids)}
     JSON.parse(response.body)
   end
 

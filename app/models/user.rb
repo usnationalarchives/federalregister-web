@@ -28,7 +28,7 @@ class User
 
   def refresh
     conn = Faraday.new
-    response = conn.get "#{Settings.services.fr_profile_url}/oauth/userinfo" do |req|
+    response = conn.get "#{Settings.services.fr_profile_internal_url}/oauth/userinfo" do |req|
       req.headers["Authorization"]= "Bearer #{token}"
     end
 
