@@ -2,7 +2,7 @@ class PopularDocument
   def self.popular(options={})
     popular_documents_by_comment = Comment.
       select('count(*) as comment_count, document_number').
-      where('created_at >= ?', Date.current - 3.months).
+      where('created_at >= ?', Date.current - 2.weeks).
       group(:document_number).
       order('comment_count DESC').
       limit(40)
