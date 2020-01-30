@@ -8,7 +8,7 @@
         documents_search_path(
           conditions: search_refinement_suggestion.search_conditions
         ) %>
-      <%= search_refinement_suggestion.search_summary.html_safe %>?
+      <%= CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe %>?
     </p>
   </div>
 </div>
