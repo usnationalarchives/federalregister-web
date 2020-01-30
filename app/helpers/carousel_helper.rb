@@ -6,11 +6,13 @@ module CarouselHelper
         document_numbers,
         fields: [:agencies, :document_number, :publication_date, :type]
       )
-    else
+    elsif highlights.size == 1
       documents = Document.find(
         highlights.first.document_number,
         fields: [:agencies, :document_number, :publication_date, :type]
       )
+    else
+      documents = []
     end
 
     render partial: 'components/carousel', locals: {
