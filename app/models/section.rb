@@ -55,7 +55,7 @@ class Section < ActiveHash::Base
   end
 
   def highlighted_documents_for(date)
-    @highlighted_documents ||= FederalRegister::Section.search(
+    RequestStore.store["section_page_#{slug}_#{date.to_s(:iso)}"] || FederalRegister::Section.search(
       conditions: {
         publication_date: {is: date.to_s(:iso)}
       }

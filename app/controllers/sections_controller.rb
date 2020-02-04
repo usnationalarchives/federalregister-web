@@ -26,8 +26,10 @@ class SectionsController < ApplicationController
   def homepage
     cache_for 1.day
 
+    date = DocumentIssue.current.publication_date
     @presenters = Section.all.map do |section|
-      SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
+      RequestStore.store["section_page_#{section.slug}_#{date.to_s(:iso)}"] ||= section.highlighted_documents_for(date)
+      SectionPagePresenter.new(section, date)
     end
 
     render layout: false
