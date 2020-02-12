@@ -55,7 +55,7 @@ class MailingListSender
   end
 
   def confirmed_emails_by_user_id
-    Ecfr::UserEmailResultSet.
+    Ofr::UserEmailResultSet.
       get_user_emails(mailing_list.active_subscriptions.pluck(:user_id).uniq)
   end
   memoize :confirmed_emails_by_user_id

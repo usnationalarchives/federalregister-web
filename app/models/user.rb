@@ -6,7 +6,7 @@ class User
   def self.find(user_id)
     return unless user_id
 
-    email = Ecfr::UserEmailResultSet.get_user_emails(user_id).values.first
+    email = Ofr::UserEmailResultSet.get_user_emails(user_id).values.first
 
     if email
       new("sub" => user_id, "email" => email)

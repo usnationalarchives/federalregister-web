@@ -55,7 +55,7 @@ describe UserDataPersistor do
     end
 
     it "if a comment tracking number and secret are stored in the session, and a matching comment exists in the database, the CommentMailer is called" do
-      allow(Ecfr::UserEmailResultSet).to receive(:get_user_emails).and_return(values: ['john_doe@example.com'])
+      allow(Ofr::UserEmailResultSet).to receive(:get_user_emails).and_return(values: ['john_doe@example.com'])
       expect(CommentMailer).to receive_message_chain('comment_copy.deliver_now').and_return(true)
 
       get :new, session: authenticated_session.merge(
