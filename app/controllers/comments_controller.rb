@@ -103,6 +103,13 @@ class CommentsController < ApplicationController
     @service.build_comment
 
     @comment_attachments = @comment.attachments
+  rescue RegulationsDotGov::Client::CommentPeriodClosed => exception
+    if exception.is_a?(RegulationsDotGov::Client::CommentPeriodClosed)
+      Resque.enqueue_to(:document_updater, 'CommentUrlRemover', @comment.document_number)
+    end
+    
+    response.headers['Comments-No-Longer-Accepted'] = "1"
+    render json: json_for_regulations_dot_gov_errors(exception), status: exception.code
   rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::ServerError => exception
     record_regulations_dot_gov_error( exception )
   
@@ -114,11 +121,7 @@ class CommentsController < ApplicationController
 
     render json: json_for_regulations_dot_gov_errors(exception),
       status: exception.code && exception.code < 500 ? exception.code : 500
-  rescue RegulationsDotGovCommentService::MissingCommentUrl, RegulationsDotGov::Client::CommentPeriodClosed => exception
-    if exception.is_a?(RegulationsDotGov::Client::CommentPeriodClosed)
-      Resque.enqueue_to(:document_updater, 'CommentUrlRemover', @comment.document_number)
-    end
-
+  rescue RegulationsDotGovCommentService::MissingCommentUrl
     response.headers['Comments-No-Longer-Accepted'] = "1"
 
     render json: {
