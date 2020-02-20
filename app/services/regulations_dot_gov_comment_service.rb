@@ -118,7 +118,8 @@ class RegulationsDotGovCommentService
         # our re-submission could also have an error
         # we just return that and don't attempt any more niceties
         rescue RegulationsDotGov::Client::ResponseError => inner_exception
-          record_regulations_dot_gov_error(inner_exception)
+          notify = inner_exception.is_a?(RegulationsDotGov::Client::InvalidSubmission) ? false : true
+          record_regulations_dot_gov_error(inner_exception, notify)
 
           # show form to user but with message from regulations.gov
           regulation_dot_gov_error = RegulationsDotGovError.new(inner_exception)
