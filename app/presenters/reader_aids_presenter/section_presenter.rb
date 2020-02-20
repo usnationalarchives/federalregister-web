@@ -113,7 +113,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     return @item if @item
 
     if items.present?
-      matched_item = items.detect{|item| item.slug == item_identifier}
+      matched_item = items.detect{|item| URI.decode(item.slug) == item_identifier}
 
       if matched_item
         @item = matched_item
