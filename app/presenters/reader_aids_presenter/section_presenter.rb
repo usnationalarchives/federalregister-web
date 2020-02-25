@@ -80,6 +80,8 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     }
 
     pages_collection = WpApi::Client.get_pages(config)
+  rescue WpApi::Client::PageNotFound
+    raise ActiveRecord::RecordNotFound
   end
 
   def posts_collection
