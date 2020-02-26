@@ -17,8 +17,10 @@ RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
 #######################
 
 RUN apt-get update && apt-get install -y libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev libssl-dev mysql-client secure-delete \
-  # capybara-webkit
-  libqt4-dev libqtwebkit-dev &&\
+    # capybara-webkit
+    libqt4-dev libqtwebkit-dev \
+    # aws tools
+    awscli &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
@@ -61,6 +63,7 @@ RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc
 
 # rotate logs
 COPY docker/web/files/logrotate/app /etc/logrotate.d/app
+COPY docker/web/files/logrotate/persist_logs.sh /opt/persist_logs.sh
 
 
 ###############################
