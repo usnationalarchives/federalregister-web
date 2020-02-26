@@ -56,6 +56,8 @@ RUN addgroup --gid 1000 app &&\
   adduser app -uid 1000 --gid 1000 --system &&\
   usermod -a -G docker_env app
 
+# switch to app user automatically when exec into container
+RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc
 
 # rotate logs
 COPY docker/web/files/logrotate/app /etc/logrotate.d/app
