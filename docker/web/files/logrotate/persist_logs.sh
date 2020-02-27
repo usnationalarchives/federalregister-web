@@ -1,13 +1,15 @@
 #! /bin/bash
 set -eu
 
+
 persist_logs=${PERSIST_LOGS:-false}
+k8s=${K8S:-false}
 
 if [ "$persist_logs" = "true" ]; then
   log_bucket=$LOG_BUCKET
   hostname=$(hostname)
 
-  if [ "$K8S" = "true" ]; then
+  if [ "$k8s" = "true" ]; then
     pod_name=$(hostname | rev | cut -d '-' -f 3- | rev)
   else
     pod_name=$(hostname)
