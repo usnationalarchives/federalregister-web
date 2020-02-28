@@ -1,7 +1,6 @@
 #! /bin/bash
 set -eu
 
-
 persist_logs=${PERSIST_LOGS:-false}
 k8s=${K8S:-false}
 
