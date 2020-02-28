@@ -8,7 +8,7 @@
   copytruncate
   dateext
   sharedscripts
-  postrotate
+  lastaction
     /opt/persist_logs.sh >> /var/log/cron.log 2>&1
   endscript
 }
