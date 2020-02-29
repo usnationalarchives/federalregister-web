@@ -25,8 +25,7 @@ if [ "$persist_logs" = "true" ]; then
     upload_path="${year}/${month}/${pod_name}/${hostname}-${log_name}"
     
     if [ ! "$("aws s3 ls s3://${log_bucket}/${upload_path}")" ]; then
-      result=$("aws s3api put-object --bucket ${log_bucket} --key ${upload_path} --body ${f}")
-      echo "${result}"
+      aws s3api put-object --bucket ${log_bucket} --key ${upload_path} --body ${f}
     else
       echo "file ${upload_path} already exists"
     fi
