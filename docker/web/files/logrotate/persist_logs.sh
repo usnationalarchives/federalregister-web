@@ -24,7 +24,11 @@ if [ "$persist_logs" = "true" ]; then
     month=$(echo "${f}" | cut -d '-' -f2 | cut -c5-6)
     upload_path="${year}/${month}/${pod_name}/${hostname}-${log_name}"
     
-    if [ ! "$("aws s3 ls s3://${log_bucket}/${upload_path}")" ]; then
+    # capture exit code
+    aws s3 ls s3://${log_bucket}/${upload_path} && exit_code=$? || exit_code=$?
+    
+    if [ $exit_code -eq 1 ]; then
+      echo "uploading ${upload_path}"
       aws s3api put-object --bucket ${log_bucket} --key ${upload_path} --body ${f}
     else
       echo "file ${upload_path} already exists"
