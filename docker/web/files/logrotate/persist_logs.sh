@@ -20,8 +20,8 @@ if [ "$persist_logs" = "true" ]; then
   for f in /home/app/log/*.gz
   do
     log_name=$(echo "${f}" | rev | cut -d '/' -f1 | rev)
-    year=$(echo "${f}" | cut -d '-' -f2 | cut -c1-4)
-    month=$(echo "${f}" | cut -d '-' -f2 | cut -c5-6)
+    year=$(echo "${f}" | rev | cut -d '-' -f1 | rev | cut -c1-4)
+    month=$(echo "${f}" | rev | cut -d '-' -f1 | rev | cut -c5-6)
     upload_path="${year}/${month}/${pod_name}/${hostname}-${log_name}"
     
     # capture exit code
