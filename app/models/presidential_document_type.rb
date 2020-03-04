@@ -28,10 +28,12 @@ class PresidentialDocumentType < ActiveHash::Base
         id: other_presidential_document_types.map(&:id),
       )
       doc_type.attributes[:type] = 'other_presidential_document'
-      doc_type
     else
-      where(identifier: type).first
+      doc_type = where(identifier: type).first
     end
+
+    raise ActiveRecord::RecordNotFound unless doc_type
+    doc_type
   end
 
   def type
