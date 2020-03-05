@@ -9,6 +9,6 @@
   dateext
   sharedscripts
   lastaction
-    /opt/persist_logs.sh >> /var/log/cron.log 2>&1
+    /opt/persist_logs.sh >> /home/app/tmp/persist_logs.log 2>&1
   endscript
 }
