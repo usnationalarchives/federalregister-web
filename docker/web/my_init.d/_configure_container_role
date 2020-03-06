@@ -1,11 +1,16 @@
 #!/bin/bash
 
+# only worker container should run migrate and clear cache
 if ! [ "$CONTAINER_ROLE" = "worker" ]; then
-  rm -rf /etc/my_init.d/migrate
-  rm -rf /etc/my_init.d/varnish
+  rm -f /etc/my_init.d/migrate
+  rm -f /etc/my_init.d/varnish
 fi
 
 # logs are rotated with a sidecar in k8s
 if [ "$K8S" = "true" ]; then
   rm -f /etc/logrotate.d/app
+fi
+
+if ! [ "$CONTAINER_PROCESS" = "resque" ]; then
+  rm -rf /etc/services/resque_scheduler
 fi
