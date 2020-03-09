@@ -7,7 +7,7 @@ class PresidentialDocumentsPresenter
     @year = args[:year]
 
     @presidential_document_type = PresidentialDocumentType.find(@type.singularize)
-    @president = President.find_by_identifier!(args[:president])
+    @president = President.find_by_identifier!(args[:president]) if args[:president]
   end
 
   def name
