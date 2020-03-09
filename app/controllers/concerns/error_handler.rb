@@ -35,6 +35,7 @@ module ErrorHandler
       rescue_from StandardError, with: :server_error
 
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
+      rescue_from ActiveHash::RecordNotFound, with: :not_found
       rescue_from FederalRegister::Client::RecordNotFound, with: :not_found
       rescue_from URI::InvalidURIError, with: :not_found
     end
