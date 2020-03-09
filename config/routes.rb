@@ -389,7 +389,10 @@ Rails.application.routes.draw do
 
   get '/presidential-documents/:type/:president/:year',
     to: 'presidential_documents#by_president_and_year',
-    as: 'presidential_documents_by_president_and_year'
+    as: 'presidential_documents_by_president_and_year',
+    constraints: {
+      type: Regexp.new("other-presidential-documents|executive-orders|proclamations")
+    }
 
 
   #
