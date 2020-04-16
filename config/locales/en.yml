@@ -54,7 +54,7 @@ en:
   presidential_documents:
     executive_orders:
       description: "The President of the United States manages the operations of the Executive branch of Government through Executive orders. After the President signs an Executive order, the White House sends it to the Office of the Federal Register (OFR).
-        \n\n The OFR numbers each order consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt. For a table of Executive orders that are specific to federal agency rulemaking, see https://www.acus.gov/research-projects/tables-executive-order-requirements."
+        \n\n The OFR numbers each order consecutively as part of a series and publishes it in the daily Federal Register shortly after receipt. For a table of Executive orders that are specific to federal agency rulemaking, see https://sourcebook.acus.gov/wiki/White_House_Orders,_Bulletins,_and_Memoranda/view#Table_of_Executive_Order_Requirements."
       short_description: "The President of the United States manages the operations of the Executive branch of Government through Executive orders."
       fr_box_title: Executive Order Disposition Tables
       fr_details_box_title: Executive Order Disposition Tables
