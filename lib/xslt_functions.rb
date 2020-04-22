@@ -164,6 +164,6 @@ class XsltFunctions
   end
 
   def graphic_url(size, graphic_identifier)
-    "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/#{graphic_identifier}/#{size}.png"
+    "https://#{Settings.s3_buckets.public_images}/#{graphic_identifier}/#{size}.png"
   end
 end

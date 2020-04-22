@@ -19,7 +19,6 @@ external_modal_domain_whitelist:
   - "images.federalregister.gov"
   - "public-inspection.federalregister.gov"
   - "uploads.federalregister.gov"
-  
 
 feature_flags:
   announcements: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("FEATURE_FLAG_ANNOUNCEMENTS", false) ) %>

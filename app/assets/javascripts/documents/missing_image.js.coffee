@@ -1,5 +1,5 @@
 $(document).ready ->
-  missingDocumentImageUrlBase = "https://s3.amazonaws.com/images.#{window.location.hostname.replace('www.', '')}/missingimage"
+  missingDocumentImageUrlBase = "https://images.#{window.location.hostname.replace('www.', '')}/missingimage"
 
   $('#fulltext_content_area').on 'error', 'img.document-graphic-image', ->
     link = $(this)

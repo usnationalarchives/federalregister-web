@@ -206,11 +206,11 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          href: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
 
         expect(html).to have_tag 'img', with: {
-          src: "https://s3.amazonaws.com/#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          src: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
       end
     end
