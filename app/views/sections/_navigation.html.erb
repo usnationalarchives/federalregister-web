@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-xs-6 col-md-6 open-comment-periods">
                   <%= link_to documents_search_path(
-                    :conditions => presenter.open_comment_period_conditions,
+                    :conditions => presenter.open_comment_period_conditions.fetch(:conditions),
                     :utm_source => 'navigation',
                     :utm_medium => 'dropdown',
                     :utm_content => 'comment_periods_open'
