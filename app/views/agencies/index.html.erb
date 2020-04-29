@@ -58,7 +58,7 @@
             <%= link_to agency.name, agency.url %>
 
             <% if @presenter.children_of(agency) %>
-              <ul>
+              <ul class="sub-agencies-list">
                 <% @presenter.children_of(agency).each do |sub_agency| %>
                   <li data-filter-alpha="<%= sub_agency.name.first %>"
                       data-filter-live="<%= sub_agency.name %>"
