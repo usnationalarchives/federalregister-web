@@ -1,4 +1,14 @@
-<div class="title"><span>Subscriptions</span></div>
+<% page_title 'Unsubscribe' %>
 
-<h3>Unsubscribe</h3>
-<p>You have been successfully unsubscribed from that search result.</p>
+<% title do %>
+  <%= fr_icon 'document_subscription' %>
+  <%= 'Subscriptions' %>
+<% end %>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="row">
+    <div class="<%= bootstrap_col(xs: 12, md:12) %>">
+      <p>You have been successfully unsubscribed from that search result.</p>
+    </div>
+  </div>
+<% end %>
