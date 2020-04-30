@@ -43,9 +43,14 @@ class @FR2.Modal
     @addCloseHandler(options.modalId)
 
   @addCloseHandler: (modalId)->
-    $('body').on 'click', "#{modalId} a.jqmClose", (e)=>
-      e.preventDefault()
-      @closeModal(modalId)
+    $("#{modalId}").jqm({
+      onHide: (hash) ->
+        hash.w.fadeOut(
+          '400',
+          -> hash.o.remove()
+        )
+        $("#{modalId}").trigger('modalClose')
+    })
 
   @closeModal: (modalId)->
     $("#{modalId}").jqmHide()

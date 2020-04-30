@@ -10,3 +10,10 @@ a.link { text-decoration: underline !important; }
   user-select: none;
 }
 
+.invisible {
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible !important;
+}

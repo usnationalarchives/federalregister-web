@@ -70,13 +70,13 @@ class @FR2.CommentFormSuccessHandler
 
       FR2.Modal.displayModal modalTitle, modalHtml, {modalClass: "print_modal"}
 
-      $('body').addClass 'hide_body_content'
-
-    @formWrapper().on 'modalClose', 'a#print-comment', ->
-      $('body').removeClass 'hide_body_content'
+    $('body').on 'modalClose', (e) ->
+      $('body').removeClass('invisible')
 
     $('body').on 'click', '.print_modal .print_button', (e)->
       e.preventDefault()
+      $('body').addClass 'invisible'
+      $('#fr_modal').addClass 'visible'
       window.print()
 
   trackCommentEvent: (category)->
