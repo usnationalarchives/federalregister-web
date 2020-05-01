@@ -790,3 +790,17 @@ div.alternative-comment-modal {
     }
   }
 }
+
+@media print {
+
+  #fr_modal.print_modal {
+    border: none !important;
+    position: absolute !important;
+    left: 5px !important;
+    top: 5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+}
