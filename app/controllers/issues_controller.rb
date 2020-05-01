@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   skip_before_action :authenticate_user!
-  layout false, only: :summary
+  layout false, only: [:summary, :late_summary]
 
   def summary
     cache_for 1.day
@@ -26,5 +26,13 @@ class IssuesController < ApplicationController
         @home ? PublicInspectionDocumentIssue.current.try(:publication_date) : date
       )
     end
+  end
+
+  def late_summary
+    cache_for 1.day
+
+    @pi_presenter = PublicInspectionIssuePresenter.new(
+      PublicInspectionDocumentIssue.current.try(:publication_date)
+    )
   end
 end

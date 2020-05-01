@@ -227,6 +227,9 @@ Rails.application.routes.draw do
       to: 'issues#summary',
       as: :issue_summary
 
+    esi.get 'esi/issues/late_summary',
+      to: 'issues#late_summary',
+      as: :late_issue_summary
 
     # HEADER
     esi.get 'special/navigation',

@@ -8,7 +8,7 @@
 <%= bootstrap_context_wrapper do %>
 
   <% if DocumentIssue.current_issue_is_late? %>
-    <%= render partial: 'special/late_issue' %>
+    <%= esi late_issue_summary_path %>
   <% else %>
     <%= esi issue_summary_path(path: 'home') %>
   <% end %>

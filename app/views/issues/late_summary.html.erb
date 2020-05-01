@@ -15,3 +15,9 @@
     </p>
   </div>
 </div>
+
+<%= render partial: 'public_inspection_document_issues/summary',
+  locals: {
+    presenter: @pi_presenter,
+    home: true
+  } %>
