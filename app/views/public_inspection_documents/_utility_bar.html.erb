@@ -14,7 +14,9 @@
             <%= link_to short_document_url(document),
                         short_document_url(document),
                         class: "shorter_url" %>
-            <%= clippy( short_document_url(document) ) %>
+            <span class="content-block clipboard-copy" data-clipboard-text="<%= short_document_url(document) %>">
+              <span class="icon-fr2 icon-fr2-clipboard cj-tooltip" data-tooltip='Click to copy this short document URL'></span>
+            </span>
           </dd>
         </dl>
         <ul>

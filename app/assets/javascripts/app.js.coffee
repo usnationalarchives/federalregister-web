@@ -68,3 +68,11 @@ $(document).ready ()->
   # External link modal
   $('body').on 'click', 'a:not(.formal_comment)', (e)->
     new FR2.ExternalLinkChecker(e)
+
+  # Copy-to-clipboard links
+  if $('.clipboard-copy').length > 0
+    $('.clipboard-copy').on 'click', (e)->
+      clipboard = new FR2.Clipboard
+      clipboard.copyToClipboard $(this).data('clipboardText')
+
+
