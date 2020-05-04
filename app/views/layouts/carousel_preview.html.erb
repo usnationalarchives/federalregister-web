@@ -5,8 +5,8 @@
     <%= stylesheet_link_tag asset_path('vendor.css'), media: "all" %>
     <%= stylesheet_link_tag asset_path('application.css'), media: "all" %>
 
-    <%= javascript_include_tag asset_path('vendor.js') %>
-    <%= javascript_include_tag asset_path('application.js') %>
+    <%= javascript_include_tag asset_path('vendor.js'), nonce: content_security_policy_nonce %>
+    <%= javascript_include_tag asset_path('application.js'), nonce: content_security_policy_nonce %>
   </head>
 
   <body style="width: 525px; overflow: hidden;">
@@ -14,7 +14,7 @@
       <%= yield %>
     </div>
 
-    <script type="text/javascript">
+    <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
       $(document).ready(function() {
         var carouselWrapper = $('.carousel-home .carousel-wrapper')
 

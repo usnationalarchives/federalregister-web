@@ -8,13 +8,13 @@ module JavascriptHelper
   def add_javascript(options={})
     content_for :javascripts do
       if options[:src]
-        javascript_include_tag(options.delete(:src), options)
+        javascript_include_tag(options.delete(:src), options.merge(nonce: content_security_policy_nonce))
       elsif options[:partial]
         render options.delete(:partial)
       else
         content = yield
         if content !~ /^\s*<script\b/
-          javascript_tag(content)
+          javascript_tag(content, nonce: content_security_policy_nonce)
         else
           content
         end

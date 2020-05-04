@@ -3,6 +3,9 @@ app_url: 'https://www.federalregister.gov'
 canonical_host: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
 
+csp:
+  report_only: <%= ENV["CSP_REPORT_ONLY"] || false %>
+  esi_unifying_nonce:  <%= ENV["ESI_UNIFYING_NONCE"] || 'REPLACE_ME_NONCE' %> #Nginx will replace this value to ensure all ESIs share the same nonce
 
 external_modal_domain_whitelist:
   - "www.archives.gov"

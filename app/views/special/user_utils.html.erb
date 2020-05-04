@@ -29,7 +29,7 @@
   </div> <!-- end ie_shim -->
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
   <% folder_details = folder_details_for_javascript(@folders) %>
 
   var stored_document_numbers = <%= @clipboard_clippings ? document_numbers_for_javascript(@clipboard_clippings).to_json.html_safe : '[]' %>

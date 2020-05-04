@@ -26,7 +26,7 @@
 <div class="subscription-actions">
   <div class="subscription-type-filter">
     <ul>
-      <script type="text/javascript">
+      <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
         var subscriptionTypeFilters = <%= current_user.confirmed? ? @subscriptions.map{|s| s.type.underscore.dasherize}.uniq.to_json.html_safe : {}.to_json %>;
       </script>
 

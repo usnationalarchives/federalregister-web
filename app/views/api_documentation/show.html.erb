@@ -1,4 +1,4 @@
-<script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+<script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js" nonce="<%= content_security_policy_nonce %>"></script>
 <%= stylesheet_link_tag asset_path('swagger.css'), media: 'all', 'data-turbolinks-track' => true %>
 <% add_javascript src: 'swagger' %>
 

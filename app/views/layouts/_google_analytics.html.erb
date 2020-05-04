@@ -1,6 +1,6 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17607887-1"></script>
-<script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17607887-1" nonce="<%= content_security_policy_nonce %>"></script>
+<script nonce="<%= content_security_policy_nonce %>">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -14,5 +14,5 @@
 
 <% if Rails.env.production? %>
   <!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
-  <script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NARA&subagency=fedreg" id="_fed_an_ua_tag"></script>
+  <script async type="text/javascript" nonce="<%= content_security_policy_nonce %>" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NARA&subagency=fedreg" id="_fed_an_ua_tag"></script>
 <% end %>

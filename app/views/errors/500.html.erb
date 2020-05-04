@@ -13,7 +13,7 @@
 
       <% content_for(:page_to_track, '/500.html') %>
 
-      <script type="text/javascript">
+      <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
         $(document).ready(function(){
           gtag('event', 'errors', {'event_action': '500', 'event_label': document.location.pathname + document.location.search + "&from=" + document.referrer})
         });

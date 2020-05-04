@@ -23,8 +23,8 @@
     <%= stylesheet_link_tag asset_path('application.css'), media: "all" %>
     <%= stylesheet_link_tag asset_path('print.css'), media: "print" %>
 
-    <%= javascript_include_tag asset_path('vendor.js') %>
-    <%= javascript_include_tag asset_path('application.js') %>
+    <%= javascript_include_tag asset_path('vendor.js'), nonce: content_security_policy_nonce %>
+    <%= javascript_include_tag asset_path('application.js'), nonce: content_security_policy_nonce %>
 
     <%= yield :javascripts %>
     <%= yield :feeds %>

@@ -1,5 +1,5 @@
 <div id="disqus_thread"></div>
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
   var disqus_config = function () {
     this.page.url = '<%= url %>';
     this.page.identifier = '<%= identifier %>';
