@@ -81,7 +81,6 @@ feature "Document", :no_ci do
 
         expect(page).to have_document_details_content('dt', 'Shorter URL:')
         expect(page).to have_document_details_link_with_content('dd', short_document_url(document).gsub('example.com', 'fr2.local:8081'), short_document_url(document).gsub('example.com', 'fr2.local:8081'))
-        expect(page).to have_document_details_content('dd .clippy_wrapper', "")
       end
     end
 

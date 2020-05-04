@@ -7,12 +7,6 @@ $(document).ready ()->
   userData = new FR2.UserData()
   new FR2.UserNavigationManager(userData)
 
-  # Clipboard helper
-  $('.clippy').clippy({
-    keep_text: true,
-    clippy_path: '/assets/clippy.swf'
-  })
-
   # Tooltips
   CJ.Tooltip.addTooltip(
     '.cj-tooltip',
