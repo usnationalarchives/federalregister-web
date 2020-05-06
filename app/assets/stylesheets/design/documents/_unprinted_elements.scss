@@ -44,7 +44,7 @@ $unprinted-element-color: $color-enhanced-dark;
   }
 
   .text {
-    @include apertura-condensed;
+    @include sans_serif;
     font-size: modular-scale(-1);
   }
 

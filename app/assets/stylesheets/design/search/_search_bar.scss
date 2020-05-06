@@ -34,7 +34,7 @@
 
   label,
   .label {
-    @include apertura-condensed;
+    @include sans_serif;
     display: block;
     float: left;
     font-size: modular-scale(1);
@@ -97,7 +97,7 @@
   }
 
   .search-result-count {
-    @include apertura-condensed;
+    @include sans_serif;
     background: $fr-gray-2;
     border-radius: 5px;
     border: 1px solid $fr-gray-20;

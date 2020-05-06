@@ -2,7 +2,7 @@ form.formtastic,
 form.formtastic .string {
   .email_suggestion,
   .email_invalid {
-    @include gesta;
+    @include sans_serif;
     font-size: modular-scale(0);
     font-style: italic;
     font-weight: 400;

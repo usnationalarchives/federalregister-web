@@ -43,7 +43,7 @@
   }
 
   a {
-    @include basic_font;
+    @include sans_serif;
     color: $fr-gray-60;
     cursor: pointer;
     display: block;

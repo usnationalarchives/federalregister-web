@@ -127,7 +127,7 @@
       margin-left: 0;
 
       &.see-references {
-        @include apertura-condensed;
+        @include sans_serif;
         font-size: modular-scale(0);
 
         + h2 { margin-top: 30px !important; } // add spacing if an agency header follows
@@ -178,7 +178,7 @@
     }
 
     .toc-editorial-note {
-      @include apertura-condensed;
+      @include sans_serif;
 
       font-weight: 500;
       margin-bottom: 0 !important;
@@ -189,7 +189,7 @@
   }
 
   dl {
-    @include apertura-condensed;
+    @include sans_serif;
     font-size: modular-scale(0);
     margin-left: 0px;
 

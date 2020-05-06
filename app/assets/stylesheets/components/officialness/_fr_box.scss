@@ -94,7 +94,7 @@ Styleguide 1.1 FR Boxes
     }
 
     p {
-      @include gesta;
+      @include sans_serif;
 
       &:last-child { padding-bottom: 0; }
     }
@@ -162,7 +162,7 @@ Styleguide 1.1 FR Boxes
 }
 
 .fr-seal-block {
-  @include gesta;
+  @include sans_serif;
   color: $white;
   overflow: inherit;
   width: 100%;
@@ -192,7 +192,7 @@ Styleguide 1.1 FR Boxes
     padding: 15px 15px 20px 15px;
 
     p {
-      @include apertura-condensed;
+      @include sans_serif;
       color: $white;
       font-size: modular-scale(0);
       padding: 10px 130px 0 15px;

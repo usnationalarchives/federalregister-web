@@ -13,7 +13,7 @@ body {
 }
 
 .wf-active body {
-  @include gesta;
+  @include sans_serif;
 
   line-height: 1.3;
 
@@ -27,7 +27,7 @@ body {
 
 .wf-active .bootstrap-scope {
   h1, h2, h3, h4, h5, h6, h7, p {
-    @include gesta;
+    @include sans_serif;
     line-height: 1.3;
   }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .wf-active .metadata-content-area {
-  @include apertura-condensed;
+  @include sans_serif;
 
   h1 {
     color: $fr-gray-80;
@@ -67,10 +67,10 @@ body {
   .fr-box-public-inspection,
   .fr-box-published {
     .content-block {
-      @include calluna;
+      @include serif;
 
       h1, h2, h3, h4 {
-        @include apertura-condensed;
+        @include sans_serif;
         font-weight: bold;
         word-wrap: break-word;
         text-align: left;
@@ -101,7 +101,7 @@ body {
   .fr-box-public-inspection,
   .fr-box-published {
     h1, h2, h3, h4, h5, h6, h7 {
-      @include apertura-condensed;
+      @include sans_serif;
       font-weight: bold;
       word-wrap: break-word;
       margin-left: 0;

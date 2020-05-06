@@ -20,7 +20,7 @@
     color: $color;
     font-size: modular-scale(4);
     font-weight: 500;
-    @include gesta;
+    @include sans_serif;
 
     display: inline-block;
     position: relative;
