@@ -5,10 +5,6 @@ $(document).ready ->
     if $('html').hasClass('wf-active')
       FR2.PrintPageElements.setup()
       FR2.UnprintedElements.setup()
-    else
-      $('body').on 'typekit-active', ->
-        FR2.PrintPageElements.setup()
-        FR2.UnprintedElements.setup()
 
     # setup sidbar positioning
     document_height = $('.doc-document .doc-content').outerHeight()

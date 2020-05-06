@@ -4,12 +4,6 @@ $(document).ready ()->
     if window.location.hash && window.location.hash != "#open-comment" && window.location.hash != "#addresses"
       paragraphTarget = $(window.location.hash)
 
-      # ensure we scroll to the correct paragraph after webfont load
-      $('body').on 'typekit-active', ->
-        $('html, body').stop().animate({
-          scrollTop: paragraphTarget.offset().top - 20
-        }, 500)
-
       # visually identify the cited paragraph
       linkIcon = $('<span>')
         .addClass('icon-fr2 icon-fr2-link')

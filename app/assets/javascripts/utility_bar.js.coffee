@@ -22,18 +22,3 @@ $(document).ready ()->
       $('.doc-document ul.doc-nav').sticky({
         context: '.doc-content.with-utility-bar'
       })
-
-      # set the height of the nav wrapper after we've loaded web fonts
-      # otherwise the height won't be correct
-      $('body').on 'typekit-active', ->
-        $('.doc-document ul.doc-nav').sticky('refresh')
-
-        # ideally we don't want a timeout here but semantic-ui sticky
-        # makes the wrapper bigger than it should be - so we wait for it
-        # to finish before fixing.
-        setTimeout(
-          ->
-            frBox = $('.doc-nav-wrapper').siblings('.fr-box').first()
-            $('.doc-nav-wrapper').outerHeight(frBox.height() + 'px')
-          1000
-        )
