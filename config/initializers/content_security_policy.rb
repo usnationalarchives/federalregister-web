@@ -39,7 +39,7 @@ Rails.application.config.content_security_policy do |policy|
   ]
   policy.style_src *style_srcs
 
-policy.font_src :self, 'https://use.typekit.net'
+policy.font_src :self
 
   img_srcs = [
     :self,
@@ -62,7 +62,6 @@ policy.font_src :self, 'https://use.typekit.net'
     'https://lede-photos.federalregister.gov',
     'https://agency-logos.federalregister.gov',
     'https://public-inspection.federalregister.gov',
-    'https://p.typekit.net',
   ]
   policy.img_src *img_srcs
 
