@@ -2,9 +2,8 @@ $(document).ready ->
   if $('.doc-document .doc-content').length > 0
     # properly position unprinted elements based on their location in the
     # document and events after fonts have loaded
-    if $('html').hasClass('wf-active')
-      FR2.PrintPageElements.setup()
-      FR2.UnprintedElements.setup()
+    FR2.PrintPageElements.setup()
+    FR2.UnprintedElements.setup()
 
     # setup sidbar positioning
     document_height = $('.doc-document .doc-content').outerHeight()
