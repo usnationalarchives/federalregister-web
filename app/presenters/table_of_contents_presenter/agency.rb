@@ -26,7 +26,7 @@ class TableOfContentsPresenter::Agency
   # will be empty and we need to generate a placeholder - we may be able
   # to find it if the error was simple (commas, emdash, etc.)
   def generated_slug
-    name.downcase.gsub(/-|,|:|;|—|\s/, '-')
+    name.downcase.gsub(/-|,|:|;|—|\s/, '-').gsub(',','')
   end
 
   def toc_anchor(type=nil)
