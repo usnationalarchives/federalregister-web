@@ -28,7 +28,7 @@ class Agency < FederalRegister::Agency
 
   def total_document_count
     @document_count ||= ::Document.search(
-      search_conditions.deep_merge!(
+      search_conditions.slice(:conditions).deep_merge!(
         metadata_only: 1
       )
     ).count
@@ -48,7 +48,7 @@ class Agency < FederalRegister::Agency
 
   def total_public_inspection_document_count
     @pi_document_count ||= ::PublicInspectionDocument.search(
-        search_conditions.deep_merge!(
+        search_conditions.slice(:conditions).deep_merge!(
           metadata_only: 1
         )
       ).count
@@ -68,7 +68,7 @@ class Agency < FederalRegister::Agency
 
   def total_significant_document_count
     @significant_document_count ||= ::Document.search(
-        search_conditions.deep_merge!(
+        search_conditions.slice(:conditions).deep_merge!(
           conditions: {
             significant: 1
           },

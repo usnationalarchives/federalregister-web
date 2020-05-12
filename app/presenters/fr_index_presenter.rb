@@ -118,7 +118,6 @@ class FrIndexPresenter
             lte: Date.new(year,12,31).to_s(:iso)
           }
         },
-        per_page: 1000
       }
     )
   end

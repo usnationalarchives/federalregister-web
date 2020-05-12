@@ -32,7 +32,7 @@ class SearchFacetPresenter::Document < SearchFacetPresenter::Base
     define_method("#{facet}_facets") do
       results = "FederalRegister::Facet::Document::#{facet.capitalize}".
         constantize.
-        search(params)
+        search(params.slice('conditions'))
 
       results.map do |result|
         Facet.new(
