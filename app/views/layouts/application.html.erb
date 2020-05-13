@@ -9,7 +9,9 @@
     <!-- Tell search engines to use the proper hostname and protocol -->
     <%= tag(:link, :rel  => 'canonical', :href => 'https://www.federalregister.gov' + request.fullpath.sub(/\/$/,'')) %>
 
-    <link rel="Shortcut Icon" href="/favicon.ico">
+    <link rel="alternate icon" type="image/png" href="<%= image_url('header/Nara1985Seal.png') %>">
+    <link rel="icon" type="image/svg+xml" href="<%= image_url('header/Nara1985Seal.svg') %>">
+
     <meta name="viewport" content="initial-scale=1.0">
 
     <%= render partial: 'layouts/meta_tags' %>
