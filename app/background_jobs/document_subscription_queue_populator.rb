@@ -3,6 +3,8 @@ class DocumentSubscriptionQueuePopulator
   attr_reader :date
 
   def self.perform(date)
+    return unless Settings.feature_flags.subscriptions.deliver
+
     ActiveRecord::Base.clear_active_connections!
 
     new(date).enqueue_subscriptions

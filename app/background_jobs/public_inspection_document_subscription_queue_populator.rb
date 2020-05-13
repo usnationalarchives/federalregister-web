@@ -3,6 +3,8 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
   attr_reader :date, :document_numbers
 
   def self.perform(document_numbers)
+    return unless Settings.feature_flags.subscriptions.deliver_pil
+
     ActiveRecord::Base.clear_active_connections!
 
     new(document_numbers).enqueue_subscriptions

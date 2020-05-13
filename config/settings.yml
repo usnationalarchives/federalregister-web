@@ -28,6 +28,9 @@ feature_flags:
       subscriptions: false
   search:
     location: true
+  subscriptions:
+    deliver: <%= ENV['DELIVER_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_SUBSCRIPTIONS']) : true %>
+    deliver_pil: <%= ENV['DELIVER_PIL_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_PIL_SUBSCRIPTIONS']) : true %>
 
 federal_register:
   api_url: '<%= ENV["FR_API_URL"] %>'
