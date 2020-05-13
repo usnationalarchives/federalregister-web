@@ -1,42 +1,42 @@
 class PopularDocument
+
+  POPULAR_DOCUMENT_COUNT = 40
+  DOCUMENT_CUTOFF        = 90.days
   def self.popular(options={})
-    popular_documents_by_comment = Comment.
-      select('count(*) as comment_count, document_number').
-      where('created_at >= ?', Date.current - 2.weeks).
-      group(:document_number).
-      order('comment_count DESC').
-      limit(40)
+    results = Document.search(
+      conditions: {
+        publication_date: {gte: Date.current - DOCUMENT_CUTOFF}
+      },
+      fields: %w(document_number html_url page_views type title),
+      per_page: 1000,
+    )
 
-    return [] unless popular_documents_by_comment.to_a.present?
-
-    document_numbers = popular_documents_by_comment.map{|d| d.document_number}
-
-    documents = Document.find_all(
-      document_numbers,
-      fields: [
-        :comments_close_on,
-        :document_number,
-        :html_url,
-        :publication_date,
-        :regulations_dot_gov_info,
-        :title,
-        :type,
-      ]
-    ).results.compact
-
-    popular_documents = []
-
-    popular_documents_by_comment.each do |comment|
-      popular_documents << self.new(
-        comment.attributes["comment_count"],
-        comment.document_number,
-        DocumentDecorator.decorate(
-          documents.find{|d| d.document_number == comment.document_number}
-        )
-      )
+    documents_by_document_number = {}
+    while results do
+      results.each{|doc| documents_by_document_number[doc.document_number] = doc }
+      results = results.next
     end
 
-    popular_documents.reject{|d| d.document.object.nil?}
+    comment_counts_by_document_number = Comment.
+      select('count(*) AS comment_count, document_number').
+      where(document_number: documents_by_document_number.keys).
+      group(:document_number).
+      each_with_object(Hash.new) do |comment, hsh|
+        hsh[comment.document_number] = comment.attributes['comment_count']
+      end
+
+    comment_counts_by_document_number.
+      sort_by{|document_number, comment_count| (comment_count * documents_by_document_number.fetch(document_number).page_views.fetch(:count).to_i ) }.
+      first(POPULAR_DOCUMENT_COUNT).
+      map do |document_number, comment_count|
+        self.new(
+          comment_count,
+          document_number,
+          DocumentDecorator.decorate(
+            documents_by_document_number.fetch(document_number)
+          )
+        )
+      end
   end
 
   attr_reader :document, :document_number
