@@ -15,7 +15,7 @@ class Search::DocumentsController < ApplicationController
       respond_to do |wants|
         wants.html do
           if disallowed_subscription_params?
-            @subscription_search = SearchPresenter::Document.new(subscription_params).search
+            @subscription_search = SearchPresenter::Document.new(subscription_params.permit!.to_h).search
           else
             @subscription_search = @search
           end
