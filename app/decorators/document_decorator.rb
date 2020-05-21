@@ -32,6 +32,10 @@ class DocumentDecorator < ApplicationDecorator
       gsub("https", "http")
   end
 
+  def internal_body_html_url
+    body_html_url.gsub(Settings.federal_register.base_url, Settings.federal_register.internal_base_url)
+  end
+
   # Dec 17th, 2013
   def shorter_ordinal_signing_date
     signing_date.to_s(:short_month_day_year)
