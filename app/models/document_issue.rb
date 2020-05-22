@@ -19,7 +19,7 @@ class DocumentIssue < FederalRegister::Facet::Document::Daily
   end
 
   def self.pdf_download_available?(date)
-    date > Date.parse('1995-01-01')
+    date > Date.parse('1994-01-02')
   end
 
   def self.last_issue_published(year)
