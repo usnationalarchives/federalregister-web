@@ -230,3 +230,27 @@ Styleguide 1.1 FR Boxes
   &.fr-seal-block-header h6 { padding-right: 20px; }
   &.fr-seal-block-footer h6 { padding-left: 20px !important; }
 }
+
+.bootstrap-scope {
+  .popover-content {
+    padding: 0px;
+    margin: -1px;
+
+    .fr-box-inherit {
+      // background-color: $color-enhanced-light;
+      background-color: #D8D8D8;
+
+      .icon-fr2-clipboard.copy-to-clipboard {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .popover.right .arrow:after {
+    border-left-color: #D8D8D8;
+  }
+
+  .popover.left .arrow:after {
+    border-left-color: #D8D8D8;
+  }
+}

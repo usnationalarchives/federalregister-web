@@ -1,4 +1,23 @@
 $(document).ready ->
+  #Whitelist DOM elements for bootstrap popovers
+  bootstrapDomElementWhitelist = $.fn.tooltip.Constructor.DEFAULTS.whiteList
+  bootstrapDomElementWhitelist['dl'] = []
+  bootstrapDomElementWhitelist['dt'] = []
+  bootstrapDomElementWhitelist['dd'] = []
+  bootstrapDomElementWhitelist['dd'] = []
+  bootstrapDomElementWhitelist['dd'] = []
+  bootstrapDomElementWhitelist.span = ['data-clipboard-text', 'data-tooltip']
+
+  $('.bootstrap-popover').popover({container: '.bootstrap-scope', trigger: 'manual'})
+
+  # This is used to enable event delegation-based clipboard copying
+  $( "body" ).on "click", '.copy-to-clipboard', (event) ->
+    event.preventDefault()
+    clipboard = new FR2.Clipboard
+    clipboard.copyToClipboard $(this).data('clipboardText')
+    $('.tipsy .tipsy-inner').text('Selection copied to clipboard')
+  # ***************************
+
   if $('.doc-document .doc-content').length > 0
     # properly position unprinted elements based on their location in the
     # document and events after fonts have loaded
@@ -17,6 +36,36 @@ $(document).ready ->
           'height',
           sidebar_height + amount_document_should_be_lower_than_sidebar + side_bar_top_offset
         )
+
+    $(".bootstrap-popover").on "click", (event) ->
+      event.preventDefault()
+      tooltipData = $(this).data('tooltip-data') || {}
+
+      if $(this).hasClass('printed-page')
+        tooltipData['shortUrl'] = $('#fulltext_content_area').data('short-url')
+
+        if $('#document-citation').data('citation-vol')
+          tooltipData['volume'] = $('#document-citation').data('citation-vol')
+
+      isVisible = $(this).data('bs.popover').tip().hasClass('in')
+      if isVisible
+        $(this).popover('hide')
+      else
+        $(this).data('bs.popover').options.content = Handlebars.compile(
+          $( $(this).data('tooltip-template') ).html()
+        )( tooltipData )
+        $(this).popover('show')
+        #The tooltips have to be reinitialized since the tipsy element isn't in the DOM yet
+        CJ.Tooltip.addTooltip(
+          '.cj-tooltip',
+          {
+            offset: 5
+            opacity: 0.9
+            delay: 0.3
+            fade: true
+          }
+        )
+
 
     CJ.Tooltip.addFancyTooltip(
       $('.document-markup.cj-fancy-tooltip'),

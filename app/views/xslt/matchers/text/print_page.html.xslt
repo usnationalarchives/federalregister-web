@@ -18,7 +18,7 @@
 
     <span class="printed-page-wrapper unprinted-element-wrapper">
       <span class="unprinted-element-border"></span>
-      <span class="printed-page unprinted-element cj-fancy-tooltip document-markup">
+      <span class="printed-page unprinted-element document-markup bootstrap-popover">
         <xsl:attribute name="id">
           <xsl:text>page-</xsl:text><xsl:value-of select="@P" />
         </xsl:attribute>
@@ -35,14 +35,34 @@
           <xsl:value-of select="'#print-page-tooltip-template'" />
         </xsl:attribute>
 
+        <xsl:attribute name="data-toggle">
+          <xsl:value-of select="'popover'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-original-title">
+          <xsl:value-of select="''" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-placement">
+          <xsl:value-of select="'left'" />
+        </xsl:attribute>
+
+        <xsl:attribute name="data-html">
+          <xsl:value-of select="'true'" />
+        </xsl:attribute>
+
         <xsl:attribute name="data-tooltip-data">
           <xsl:text>{"page": </xsl:text>
           <xsl:value-of select="@P" />
           <xsl:text>}</xsl:text>
         </xsl:attribute>
 
-        <span class="icon-fr2 icon-fr2-doc-generic"></span>
-        <span class="text">
+        <span class="icon-fr2 icon-fr2-doc-generic">
+        </span>
+        <span class="text cj-tooltip">
+          <xsl:attribute name="data-tooltip">
+            <xsl:value-of select="'Click for more print page information'" />
+          </xsl:attribute>
           <xsl:text>Start Printed Page </xsl:text>
           <xsl:value-of select="@P" />
         </span>

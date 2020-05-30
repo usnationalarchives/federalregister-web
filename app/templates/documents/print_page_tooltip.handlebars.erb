@@ -13,15 +13,17 @@
     <dt>Page citation</dt>
     <dd>
       {{volume}} FR {{page}}
-      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard cj-fancy-tooltip"
-        data-tooltip="Click to copy this page citation"></span>
+      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard clipboard-copy cj-tooltip"
+        data-tooltip="Click to copy page citation"
+        data-clipboard-text="{{volume}} FR {{page}}"></span>
     </dd>
 
     <dt>Page short url</dt>
     <dd>
       {{shortUrl}}/page-{{page}}
-      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard cj-fancy-tooltip"
-        data-tooltip="Click to copy a short url to this page"></span>
+      <span class="icon-fr2 icon-fr2-clipboard copy-to-clipboard clipboard-copy cj-tooltip"
+        data-tooltip="Click to copy short URL"
+        data-clipboard-text="{{shortUrl}}"></span>
     </dd>
   </dl>
 <% end %>

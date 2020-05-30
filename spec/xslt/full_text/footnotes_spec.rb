@@ -77,9 +77,9 @@ describe "XSLT::FullText::Footnotes" do
       <span class="printed-page printed-page-inline unprinted-element icon-fr2 icon-fr2-doc-generic document-markup" data-page="1001"></span>
       <span class="printed-page-wrapper unprinted-element-wrapper">
         <span class="unprinted-element-border"></span>
-        <span class="printed-page unprinted-element cj-fancy-tooltip document-markup" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-tooltip-data="{&quot;page&quot;: 1001}">
-          <span class="icon-fr2 icon-fr2-doc-generic"></span>
-          <span class="text">Start Printed Page 1001</span>
+        <span class="printed-page unprinted-element document-markup bootstrap-popover" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 1001}">
+        <span class="icon-fr2 icon-fr2-doc-generic"></span>
+        <span class="text cj-tooltip" data-tooltip="Click for more print page information">Start Printed Page 1001</span>
         </span>
       </span>
       <p id="p-3" data-page="1001">
