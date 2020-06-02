@@ -64,7 +64,13 @@ class PresidentialDocumentCollection
       DocumentDecorator.decorate(document)
     end.compact
 
-    @results = %w(executive_order proclamation).include?(document_types) ? results.reverse : results
+    @results = %w(executive_order).include?(document_types) ? results.reverse : results
+
+    if document_types == 'proclamation'
+      @results = @results.sort_by{|document| document.proclamation_number.to_i}.reverse
+    else
+      @results
+    end
   end
   alias_method :presidential_documents, :results
 
