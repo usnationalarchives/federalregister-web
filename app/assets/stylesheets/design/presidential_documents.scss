@@ -110,6 +110,10 @@
   }
 
   .presidential-document-wrapper {
+    h5 {
+      font-size: modular-scale(0);
+    }
+
     &.row {
       margin-bottom: 10px !important;
 
