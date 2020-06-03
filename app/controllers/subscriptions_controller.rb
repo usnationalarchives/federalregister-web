@@ -9,6 +9,7 @@ class SubscriptionsController < ApplicationController
   end
 
   before_action :refresh_current_user, only: :index
+  skip_before_action :verify_authenticity_token, only: :suspend
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(
