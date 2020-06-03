@@ -47,7 +47,6 @@ policy.font_src :self
     :report_sample,
 
     'https://s3.amazonaws.com', # FR stores images on s3 but not ideal to be open to all of s3
-    'https://www.google-analytics.com',
 
     'https://eps.images.fr2.criticaljuncture.org',
     'https://private.images.fr2.criticaljuncture.org',
@@ -72,6 +71,7 @@ policy.font_src :self
   connect_srcs = [
     :self,
     'https://api.honeybadger.io',
+    "https://www.google-analytics.com",
 
     # zendesk
     'https://ekr.zdassets.com',
