@@ -16,7 +16,7 @@
         </p>
       </div>
 
-      <%= form_for(@subscription, :html=>{:method=>"delete"}, :authenticity_token => false) do |f| %>
+      <%= form_for(@subscription, url: suspend_subscription_path(@subscription.token), method: 'GET', authenticity_token: false) do |f| %>
         <%= f.submit 'Unsubscribe', class: 'fr_button secondary medium' %>
       <% end %>
 
