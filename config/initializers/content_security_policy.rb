@@ -84,7 +84,7 @@ policy.font_src :self
 
   if ['production', 'staging'].include?(Rails.env)
     policy.report_uri -> {
-      "https://report-uri.honeybadger.io/v1/browser/csp?api_key=#{Rails.application.secrets.honeybadger_csp_api_key}&env=#{Rails.env}&#{{context: try(:honeybadger_context) || {} }.to_query}"
+      "https://api.honeybadger.io/v1/browser/csp?api_key=#{Rails.application.secrets.honeybadger_csp_api_key}&env=#{Rails.env}&#{{context: try(:honeybadger_context) || {} }.to_query}"
     }
   end
 end
