@@ -17,7 +17,7 @@
       </div>
 
       <%= form_for(@subscription, url: suspend_subscription_path(@subscription.token), method: 'GET', authenticity_token: false) do |f| %>
-        <%= f.submit 'Unsubscribe', class: 'fr_button secondary medium' %>
+        <%= f.submit 'Unsubscribe', class: 'btn fr_button secondary medium' %>
       <% end %>
 
     </div>
