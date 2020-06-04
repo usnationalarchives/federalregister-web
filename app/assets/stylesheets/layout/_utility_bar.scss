@@ -43,6 +43,12 @@
         padding: 8px 0;
         position: relative;
 
+        .clipboard-copy {
+          padding: 0 !important;
+
+          .icon-fr2.icon-fr2-clipboard { font-size: modular-scale(1); }
+        }
+        
         .icon-fr2 {
           font-size: 25px;
 
