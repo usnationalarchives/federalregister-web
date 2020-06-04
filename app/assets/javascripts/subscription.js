@@ -87,7 +87,7 @@ $(document).ready( function() {
 
     FR2.Modal.displayModal(
       'Please Confirm Deletion',
-      "<p>Are you sure you would like to delete this subscription?</p>" + anchorTag
+      "<p>Are you sure you would like to delete this subscription? This can not be undone.</p>" + anchorTag
     );
   });
 
