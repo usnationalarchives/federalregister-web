@@ -15,7 +15,7 @@ class Subscription < ApplicationRecord
       if super.nil?
         klass = search_type == 'PublicInspectionDocument' ? MailingList::PublicInspectionDocument : MailingList::Document
         self.search_conditions ||= {}
-        self.mailing_list = klass.find_by_parameters(search_conditions.to_json) || klass.new(:parameters => search_conditions)
+        self.mailing_list = klass.find_by_parameters(search_conditions) || klass.new(:parameters => search_conditions)
       else
         super
       end
