@@ -795,11 +795,17 @@ div.alternative-comment-modal {
   #fr_modal.print_modal {
     border: none !important;
     position: absolute !important;
+    height: 800px !important;
     left: 5px !important;
     top: 5px !important;
     margin: 0 !important;
+    max-height: none;
     padding: 0 !important;
     overflow: visible !important;
+
+    .modal_content {
+      height: 800px !important;
+    }
   }
 
 }
