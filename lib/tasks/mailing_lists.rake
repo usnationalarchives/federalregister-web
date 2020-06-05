@@ -135,7 +135,7 @@ namespace :mailing_lists do
         mailing_list = MailingList.find(id)
 
         duplicates = MailingList.
-          where(parameters: mailing_list.parameters.to_json).
+          where(parameters: mailing_list.parameters).
           where(type: type).
           where(MailingList.arel_table[:id].not_eq(mailing_list.id))
 
@@ -146,7 +146,6 @@ namespace :mailing_lists do
 
           ml.update_attributes({
             deleted_at: Time.now,
-            active_subscriptions_count: 0
           })
         end
       end
