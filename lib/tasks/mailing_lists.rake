@@ -69,7 +69,7 @@ namespace :mailing_lists do
     end
 
     current_time = Time.current
-    ApplicationModel.transaction do
+    ApplicationRecord.transaction do
       MailingList.
         where(id: mailing_list_ids).
         joins(:subscriptions).
