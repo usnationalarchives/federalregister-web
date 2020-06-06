@@ -61,6 +61,7 @@ policy.font_src :self
     'https://lede-photos.federalregister.gov',
     'https://agency-logos.federalregister.gov',
     'https://public-inspection.federalregister.gov',
+    "https://www.google-analytics.com",
   ]
   policy.img_src *img_srcs
 
