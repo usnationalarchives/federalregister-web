@@ -1,7 +1,7 @@
 class PopularDocument
 
   POPULAR_DOCUMENT_COUNT = 40
-  DOCUMENT_CUTOFF        = 90.days
+  DOCUMENT_CUTOFF        = 30.days
   def self.popular(options={})
     results = Document.search(
       conditions: {
