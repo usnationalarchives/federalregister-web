@@ -62,6 +62,7 @@ policy.font_src :self
     'https://agency-logos.federalregister.gov',
     'https://public-inspection.federalregister.gov',
     "https://www.google-analytics.com",
+    "https://www.googletagmanager.com/",
   ]
   policy.img_src *img_srcs
 
