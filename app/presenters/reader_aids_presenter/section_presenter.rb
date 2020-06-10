@@ -32,6 +32,9 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     @display_count = config.fetch(:display_count) { nil }
 
     @per_page_offset = 0
+    if config.fetch(:validate_item) { false }
+      item
+    end
   end
 
   def section

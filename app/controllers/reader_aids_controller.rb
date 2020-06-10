@@ -41,7 +41,8 @@ class ReaderAidsController < ApplicationController
     @presenter = ReaderAidsPresenter::SectionPresenter.new(
       section_identifier: params[:section],
       page_identifier: params[:page],
-      subpage_identifier: params[:subpage]
+      subpage_identifier: params[:subpage],
+      validate_item: true
     )
   end
 
