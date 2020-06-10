@@ -4,7 +4,7 @@
   <% if presenter.show_authorship? %>
     <span class="byline">
       <span class="authorship">
-        <%= link_to item.author.name, item.author.link %> - <%= link_to item.modified, item.path(presenter.section_identifier) %>
+        <%= item.author.name %> - <%= link_to item.modified, item.path(presenter.section_identifier) %>
       </span>
     </span>
   <% end %>
