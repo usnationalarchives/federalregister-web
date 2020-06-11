@@ -13,7 +13,15 @@ class AgencyPresenter
     :url, to: :@agency
 
   def initialize(slug)
-    @agency = Agency.find(slug)
+    begin
+      @agency = Agency.find(slug)
+    rescue FederalRegister::Client::RecordNotFound
+      raise ActiveRecord::RecordNotFound
+    end
+
+    if @agency == []
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def feed_urls
