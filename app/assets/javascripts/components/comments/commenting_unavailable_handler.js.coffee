@@ -29,6 +29,7 @@ class @FR2.CommentingUnavailableHandler
               1500,
               () -> window.location.hash = location
             )
+            $(location).next().addClass('highlight')
         },
       )
 

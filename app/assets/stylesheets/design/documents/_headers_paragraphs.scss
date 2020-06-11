@@ -40,7 +40,7 @@
       }
     }
 
-    &:target {
+    &:target,&.highlight {
       background-color: $color-enhanced-light;
       transition: background-color 1.5s ease-in;
 
