@@ -67,6 +67,8 @@ $(document).ready ()->
   if $('.clipboard-copy').length > 0
     $('.clipboard-copy').on 'click', (e)->
       clipboard = new FR2.Clipboard
+      successMessage = "Shorter document URL copied to clipboard"
       clipboard.copyToClipboard $(this).data('clipboardText')
+      $('.tipsy .tipsy-inner').text(successMessage)
 
 
