@@ -37,8 +37,8 @@ jobs:
               docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake db:create db:schema:load --trace && rspec spec --profile 10 --tag ~no_ci --tag reg_gov"
             fi
       - deploy:
-          name: Push to latest if master
+          name: Push to latest if main
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
               docker push $REPO_URL:latest
             fi
