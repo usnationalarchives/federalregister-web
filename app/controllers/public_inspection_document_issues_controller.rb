@@ -11,6 +11,16 @@ class PublicInspectionDocumentIssuesController < ApplicationController
     build_pil_presenters(parse_date_from_params)
   end
 
+  def search
+    date = Chronic.parse(params[:date]).try(:to_date)
+
+    if date
+      redirect_to public_inspection_issue_path(date)
+    else
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
   def current
     cache_for 1.day
 

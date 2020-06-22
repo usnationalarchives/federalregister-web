@@ -125,6 +125,13 @@ Rails.application.routes.draw do
       day:   /\d{1,2}/
     }
 
+  get 'public_inspection_issues/search',
+    to: "public_inspection_document_issues#search",
+    as: :public_inspection_issues_search,
+    constraints: {
+      date:  /\d{1,2}\/\d{1,2}\/\d{4}/
+    }
+
 
   #
   # Public Inspection Documents Search
