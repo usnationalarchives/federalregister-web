@@ -22,6 +22,10 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     end
   end
 
+  def filtering_documents?
+    false
+  end
+
   class DocumentTypeRepresentation
     vattr_initialize [
       :name,
