@@ -73,7 +73,7 @@ describe "document routes" do
     it "document_table_of_contents_path return the proper path to the file on disk" do
       expect(
         document_table_of_contents_path(document)
-      ).to eql("/documents/table_of_contents/html/2014/01/01/2014-00001.html")
+      ).to eql("/documents/table_of_contents/html/2014/01/01/2014-00001.html?quiet=true")
     end
   end
 

@@ -30,7 +30,7 @@ module RouteBuilder::Documents
   add_static_route :document_table_of_contents do |document|
     file_path = document.body_html_url.split('full_text/').last
 
-    "/documents/table_of_contents/#{file_path}"
+    "/documents/table_of_contents/#{file_path}?quiet=true"
   end
 
   private
