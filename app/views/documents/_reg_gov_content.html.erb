@@ -33,10 +33,10 @@
         <% end %>
       <% end %>
 
-      <% if document.comments_close_on.present? && docket_info['comments_count'] && docket_info['comments_url'] %>
+      <% if document.comments_close_on.present? && docket_info['docket_comments_count'] && docket_info['comments_url'] %>
         <dt>Public Comments:</dt>
         <dd>
-          <%= link_to pluralize(docket_info['comments_count'], 'comment'),
+          <%= link_to pluralize(docket_info['docket_comments_count'], 'comment'),
                       docket_info['comments_url'],
                       :target => "_blank",
                       :class => 'reg_gov_view_comments' %>

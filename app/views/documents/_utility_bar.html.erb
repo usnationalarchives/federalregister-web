@@ -77,26 +77,27 @@
       <% end %>
     </li>
 
-    <li id="utility-nav-public-comments" class='enhanced <%= "unavailable" unless document.possible_regulations_dot_gov_comments? %>'>
+    <li id="utility-nav-public-comments" class='enhanced <%= "unavailable" unless document.has_comments? %>'>
       <i class="icon-fr2 icon-fr2-conversation-alt" role="button" data-toggle="dropdown">
-        <% if document.comments_close_on.present? && document.comment_count && document.public_comments_url %>
+        <% if document.has_comments? %>
           <span class="comment_count"><%= document.comment_count %></span>
         <% end %>
       </i>
       <%= fr_utility_nav_box(
         FrBox.build(
-          (document.possible_regulations_dot_gov_comments? ? :enhanced_content : :disabled),
+          (document.has_comments? ? :enhanced_content : :disabled),
           title: "Enhanced Content - Read Public Comments"
         )
       ) do %>
         <ul>
           <li>
-            <% if document.possible_regulations_dot_gov_comments? %>
+            <% if document.has_comments? %>
               <%= link_to document.has_comments? ?
                 "Read the #{pluralize(document.comment_count, 'public comment')} on this document"
                 :
                 "There are no public comments on this document",
                 document.public_comments_url, target: :blank %>
+                <%= fr_icon('info_circle', class: 'cj-tooltip comment-count-explanation', data: {tooltip: I18n.t('comments.comment_count.explanation'), 'tooltip-gravity': 'w' }) %>
             <% else %>
               This feature is not available for this document.
             <% end %>

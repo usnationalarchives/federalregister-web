@@ -10,7 +10,7 @@ module DocumentDecorator::RegulationsDotGovInfo
       'docket_id',
       'regulation_id_number',
       'regulatory_plan',
-      ['comments_count', 'comments_url'],
+      ['docket_comments_count', 'comments_url'],
       ['supporting_documents_count', 'supporting_documents']
     ]
 
@@ -32,4 +32,9 @@ module DocumentDecorator::RegulationsDotGovInfo
     regulations_dot_gov_info["docket_id"].present? &&
       regulations_dot_gov_info["docket_id"].match(/_0001/)
   end
+
+  def regulations_dot_gov_document_id
+    regulations_dot_gov_info["document_id"]
+  end
+
 end

@@ -1,4 +1,5 @@
 class Document < FederalRegister::Document
+
   def excluding_parent_agencies
     agency_names = agencies.map{|a| a.name}
 

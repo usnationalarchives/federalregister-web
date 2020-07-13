@@ -177,6 +177,11 @@
                     margin-right: 10px;
                     width: 22px;
 
+                    &.comment-count-explanation {
+                      font-size: modular-scale(-1);
+                      float: none;
+                    }
+
                     &.icon-fr2-facebook { top: -2px; }
                   }
                 }

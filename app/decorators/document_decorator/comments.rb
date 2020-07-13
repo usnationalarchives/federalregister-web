@@ -1,10 +1,11 @@
 module DocumentDecorator::Comments
-  def possible_regulations_dot_gov_comments?
-    regulations_dot_gov_info && (comments_close_on.present? || has_comments?)
-  end
 
   def has_comments?
     comment_count && comment_count > 0
+  end
+
+  def docket_comment_count
+    regulations_dot_gov_info && regulations_dot_gov_info['docket_comments_count']
   end
 
   def comment_count
@@ -65,8 +66,8 @@ module DocumentDecorator::Comments
   end
 
   def public_comments_url
-    return nil unless regulations_dot_gov_info && regulations_dot_gov_info['comments_url']
+    return unless has_comments?
 
-    regulations_dot_gov_info['comments_url']
+    "https://beta.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
   end
 end
