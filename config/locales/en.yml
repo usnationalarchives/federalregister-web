@@ -44,7 +44,7 @@ en:
       one: View the 1 publicly posted comment.
       other: View the %{count} publicly posted comments.
       none: There are no publicly posted comments.
-      explanation: This count refers to the total comment/submissions received on this document as reported by Regulations.gov. Agencies review all submissions, however some agencies may choose to redact, or withhold, certain submissions (or portions thereof) such as those containing private or proprietary information, inappropriate language, or duplicate/near duplicate examples of a mass-mail campaign.
+      explanation: This count refers to the total comment/submissions received on this document as reported by Regulations.gov. Agencies review all submissions and may choose to redact, or withhold, certain submissions (or portions thereof). Submitted comments may not be available to be read until the agency has approved them.
   documents:
     document_statistics:
       hover: "Document page views are updated periodically throughout the day and are cumulative counts for this document including its time on Public Inspection. Counts are subject to sampling, reprocessing and revision (up or down) throughout the day."
