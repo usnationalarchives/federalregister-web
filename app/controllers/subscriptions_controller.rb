@@ -73,19 +73,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def activate
-    if request.xhr?
-      subscription = Subscription.find_by_token!(params[:id])
-      subscription.activate!
+    subscription = Subscription.find_by_token!(params[:id])
+    subscription.activate!
 
-      render json: {unsubscribe_url: suspend_subscription_path(subscription.token)}
-    end
+    render json: {unsubscribe_url: suspend_subscription_path(subscription.token)}
   end
 
   def suspend
     subscription = Subscription.find_by_token!(params[:id])
     subscription.suspend!
 
-    if request.xhr?
+    if params[:skip_email]
       render json: {resubscribe_url: activate_subscription_path(subscription.token)}
     else
       SubscriptionMailer.unsubscribe_notice(subscription).deliver
@@ -94,12 +92,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    if request.xhr?
-      @subscription = Subscription.find_by_token!(params[:id])
-      public_inspection_document = @subscription.public_inspection?
-      @subscription.destroy
-      render json: {publicInspectionDocument: public_inspection_document}
-    end
+    @subscription = Subscription.find_by_token!(params[:id])
+    public_inspection_document = @subscription.public_inspection?
+    @subscription.destroy
+    render json: {publicInspectionDocument: public_inspection_document}
   end
 
   def unsubscribed

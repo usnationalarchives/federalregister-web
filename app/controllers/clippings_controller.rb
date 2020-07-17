@@ -32,7 +32,7 @@ class ClippingsController < ApplicationController
       add_document_id_to_session( clipping_attributes[:document_number] )
     end
 
-    if request.xhr?
+    if params[:ajax_request]
       render json: {
         folder: {name: 'My Clippings', slug: 'my-clippings' }
       }

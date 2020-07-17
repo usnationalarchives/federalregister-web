@@ -31,7 +31,7 @@ describe SessionsController do
     end
 
     it "AJAX requests delete the session and remove the signed in cookie" do
-      get :destroy, xhr: true
+      get :destroy, params: {ajax_request: true}
 
       expect(session.empty?).to be(true)
       expect(cookies["expect_signed_in"]).to eq "0"

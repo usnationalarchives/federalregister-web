@@ -132,6 +132,10 @@ class @FR2.DocumentClipper
         {
           name: "document[folder]",
           value: menuItem.data('slug')
+        },
+        {
+          name: 'ajax_request',
+          value: true
         }
       ]
 

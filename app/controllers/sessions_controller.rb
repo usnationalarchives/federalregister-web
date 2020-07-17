@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if request.xhr?
+    if params[:ajax_request]
       reset_session
       cookies["expect_signed_in"] = "0"
       cookies.delete :user_data

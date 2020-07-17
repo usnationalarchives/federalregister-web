@@ -43,7 +43,7 @@
       <% if subscription.active? %>
         <dd>
           <span class='active'>active</span> :
-          <%= link_to "suspend", suspend_subscription_path(subscription.token) , class: 'unsubscribe' %>
+          <%= link_to "suspend", suspend_subscription_path(subscription.token, skip_email: true) , class: 'unsubscribe' %>
         </dd>
       <% else %>
         <dd>
