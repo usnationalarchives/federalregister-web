@@ -92,12 +92,12 @@
         <ul>
           <li>
             <% if document.has_comments? %>
+              <p><%= I18n.t('comments.comment_count.explanation') %></p>
               <%= link_to document.has_comments? ?
                 "Read the #{pluralize(document.comment_count, 'public comment')} on this document"
                 :
                 "There are no public comments on this document",
                 document.public_comments_url, target: :blank %>
-                <%= fr_icon('info_circle', class: 'cj-tooltip comment-count-explanation', data: {tooltip: I18n.t('comments.comment_count.explanation'), 'tooltip-gravity': 'w' }) %>
             <% else %>
               This feature is not available for this document.
             <% end %>
