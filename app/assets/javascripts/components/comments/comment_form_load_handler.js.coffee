@@ -43,7 +43,7 @@ class @FR2.CommentFormLoadHandler
   generateAjaxOptions: ->
     if @commentFormStore.hasStoredComment()
       @ajaxOptions = {
-        url: "/my/documents/#{@documentNumber}/comments/reload"
+        url: "/my/documents/#{@documentNumber}/comments/reload.html"
         type: 'POST'
         data: @commentFormStore.getStoredComment()
       }
