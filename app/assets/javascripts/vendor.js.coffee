@@ -49,4 +49,4 @@
 #= require blankshield.min.js
 $(document).ready ()->
   blankshield.patch()
-  blankshield($('a[target=_blank], a[target=blank]').not('#start_comment'))
+  blankshield($('a[target=_blank], a[target=blank]').not('#start_comment').not('.blankshield-off'))
