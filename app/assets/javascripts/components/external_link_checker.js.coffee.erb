@@ -29,9 +29,10 @@ class @FR2.ExternalLinkChecker
       if $('#fr_modal.external-link-warning-modal input[name=accept]').prop('checked')
         amplify.store('showExternalModal', false, expires: 2592000000)
 
-      if @el.attr('target') == "_blank"
+      if (@el.attr('target') == "_blank") || (@el.attr('target') == "blank")
         FR2.Modal.closeModal('#fr_modal')
-        window.open(@url)
+        window.open(@url, '_blank', 'noopener,noreferrer')
+        window.opener = null
       else
         window.location.href = @url
 

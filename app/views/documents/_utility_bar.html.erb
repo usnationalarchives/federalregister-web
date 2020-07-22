@@ -97,7 +97,7 @@
                 "Read the #{pluralize(document.comment_count, 'public comment')} on this document"
                 :
                 "There are no public comments on this document",
-                document.public_comments_url, target: :blank %>
+                document.public_comments_url, target: '_blank' %>
             <% else %>
               This feature is not available for this document.
             <% end %>

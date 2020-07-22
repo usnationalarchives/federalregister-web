@@ -137,6 +137,9 @@ gem 'resque-retry'
 gem 'sass-rails', '~> 5.1'
 gem "sass"
 
+# add safer handling for target="_blank"
+gem 'safe_target_blank'
+
 # email provider integration
 gem 'sendgrid'
 

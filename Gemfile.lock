@@ -462,6 +462,8 @@ GEM
     ruby_dep (1.5.0)
     rufus-scheduler (3.5.2)
       fugit (~> 1.1, >= 1.1.5)
+    safe_target_blank (1.0.2)
+      rails
     safe_yaml (1.0.4)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -607,6 +609,7 @@ DEPENDENCIES
   rspec-html-matchers
   rspec-rails (~> 3.2)
   rubocop (~> 0.57.0)
+  safe_target_blank
   sass
   sass-rails (~> 5.1)
   sendgrid

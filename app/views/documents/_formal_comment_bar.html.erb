@@ -23,7 +23,7 @@
   <div class="reg-gov-comments-count">
     Read the
     <%= link_to pluralize(document.comment_count, 'public comment'),
-      document.public_comments_url, target: '_blank', class: 'blankshield-off' %>
+      document.public_comments_url, target: '_blank' %>
     <%= fr_icon('info_circle', class: 'cj-tooltip', data: {tooltip: I18n.t('comments.comment_count.explanation'), 'tooltip-gravity': 'e' }) %>
   </div>
 <% end %>
