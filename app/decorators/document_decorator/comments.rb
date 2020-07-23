@@ -52,7 +52,7 @@ module DocumentDecorator::Comments
       '#addresses'
     end
 
-    h.link_to link_text, href, id: 'utility-nav-comment-link'
+    h.link_to link_text, href, id: 'utility-nav-comment-link', class: 'force-event-propagation'
   end
 
   def comment_period_days_remaining

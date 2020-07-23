@@ -16,7 +16,8 @@ $(document).ready ()->
       if e.toElement.tagName != 'A'
         e.preventDefault()
 
-      e.stopPropagation()
+      if !$(e.target).hasClass('force-event-propagation')
+        e.stopPropagation()
 
     if $('.doc-nav-wrapper').length > 0
       $('.doc-document ul.doc-nav').sticky({
