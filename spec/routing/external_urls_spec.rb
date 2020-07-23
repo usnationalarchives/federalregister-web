@@ -25,7 +25,7 @@ describe "external url routes" do
       expect(
         regulations_dot_gov_docket_supporting_documents_url(docket_id)
       ).to eq(
-        "https://www.regulations.gov/docketBrowser?rpp=50&po=0&dct=SR&D=#{docket_id}"
+        "https://beta.regulations.gov/docket/#{docket_id}/document?documentTypes=Supporting%20%26%20Related%20Material"
       )
     end
 

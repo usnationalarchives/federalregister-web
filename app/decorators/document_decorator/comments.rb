@@ -42,7 +42,15 @@ module DocumentDecorator::Comments
 
   def comment_link
     link_text = "Submit a public comment on this document"
-    href = comment_url.present? ? comment_url : '#addresses'
+    href = if comment_url.present?
+      if Settings.regulations_dot_gov.use_beta
+        "https://beta.regulations.gov/comment/#{regulations_dot_gov_document_id}"
+      else
+        comment_url
+      end
+    else
+      '#addresses'
+    end
 
     h.link_to link_text, href, id: 'utility-nav-comment-link'
   end
