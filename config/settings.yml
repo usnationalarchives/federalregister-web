@@ -13,6 +13,13 @@ external_modal_domain_whitelist:
   - "federalregister.tenderapp.com"
   - "s3.amazonaws.com/public-inspection."
   - "s3.amazonaws.com/archives."
+  - "agency-logos.federalregister.gov"
+  - "archives.federalregister.gov"
+  - "ecfr.federalregister.gov"
+  - "images.federalregister.gov"
+  - "public-inspection.federalregister.gov"
+  - "uploads.federalregister.gov"
+  
 
 feature_flags:
   announcements: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("FEATURE_FLAG_ANNOUNCEMENTS", false) ) %>
