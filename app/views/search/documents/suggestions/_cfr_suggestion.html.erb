@@ -17,6 +17,10 @@
           <%= link_to 'eCFR',
             Hyperlinker::Citation.ecfr_url(cfr_suggestion.title, cfr_suggestion.part) %>
         </li>
+        <li>
+          <%= link_to 'beta eCFR',
+            Hyperlinker::Citation.beta_ecfr_url(cfr_suggestion.title, cfr_suggestion.part) %>
+        </li>
       </ul>
     </div>
   </div>

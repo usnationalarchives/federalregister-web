@@ -28,6 +28,11 @@ module Hyperlinker::Citation
     def ecfr_url(title,part)
       "http://www.ecfr.gov/cgi-bin/searchECFR?idno=#{title}&q1=#{part}&rgn1=PARTNBR&op2=and&q2=&rgn2=Part"
     end
+
+    def beta_ecfr_url(title,part)
+      cfr_reference = "#{title} CFR #{part}"
+      "https://ecfr.federalregister.gov/cfr-reference?#{{cfr: {reference: cfr_reference}}.to_query}"
+    end
   end
 
   extend Hyperlinker::Citation::UrlHelpers
