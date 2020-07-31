@@ -43,7 +43,7 @@ services:
       - "6379:6379"
 
   varnish:
-    image: 264372021245.dkr.ecr.us-east-1.amazonaws.com/federalregister-varnish:rancher
+    image: 264372021245.dkr.ecr.us-east-1.amazonaws.com/federalregister-varnish:latest
     ports:
       - "6081:6081"
       - "6082:6082"
