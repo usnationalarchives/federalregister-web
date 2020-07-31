@@ -1,0 +1,17 @@
+.announcement {
+  background-color: $fr-nav-orange;
+  border-bottom: 1px solid $fr-orange;
+  color: $white;
+
+  .announcement-inner {
+    margin: 0 auto;
+    text-align: center;
+    width: 950px;
+
+    a {
+      color: $white;
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+}

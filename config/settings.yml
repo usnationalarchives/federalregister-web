@@ -15,6 +15,7 @@ external_modal_domain_whitelist:
   - "s3.amazonaws.com/archives."
 
 feature_flags:
+  announcements: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("FEATURE_FLAG_ANNOUNCEMENTS", false) ) %>
   events_search: false
   fr_index_pdfs: true
   unified_agenda:

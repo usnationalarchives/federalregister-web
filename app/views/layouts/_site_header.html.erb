@@ -8,7 +8,15 @@
 
 <div class="header" id="header_refresh">
   <div class="header_wrapper">
-    <div class="nav" id="navigation">
+    <% if Settings.feature_flags.announcements %>
+      <div class="announcement">
+        <div class="announcement-inner">
+          <%= esi site_notification_path(identifier: :announcement) %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="nav <%= 'announcement-present' if Settings.feature_flags.announcements %>" id="navigation">
       <ul class="container">
         <%= esi navigation_path %>
         <%= render partial: 'special/navigation/my_fr' %>
