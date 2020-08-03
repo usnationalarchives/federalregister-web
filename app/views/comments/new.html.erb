@@ -63,7 +63,7 @@
           class: 'alternative_ways_to_comment addresses' %>
       <% end %>
       or you may also comment via Regulations.gov at,
-      <%= link_to @comment.document.comment_url, @comment.document.comment_url %>.
+      <%= link_to @comment.document.calculated_comment_url, @comment.document.calculated_comment_url %>.
     </p>
   </div>
 

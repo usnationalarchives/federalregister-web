@@ -9,7 +9,7 @@ describe "external url routes" do
       expect(
         regulations_dot_gov_docket_url(docket_id)
       ).to eq(
-        "https://www.regulations.gov/docket?D=#{docket_id}"
+        "https://beta.regulations.gov/docket/#{docket_id}"
       )
     end
 

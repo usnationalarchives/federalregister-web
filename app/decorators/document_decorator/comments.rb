@@ -43,16 +43,20 @@ module DocumentDecorator::Comments
   def comment_link
     link_text = "Submit a public comment on this document"
     href = if comment_url.present?
-      if Settings.regulations_dot_gov.use_beta
-        "https://beta.regulations.gov/comment/#{regulations_dot_gov_document_id}"
-      else
-        comment_url
-      end
+      calculated_comment_url
     else
       '#addresses'
     end
 
     h.link_to link_text, href, id: 'utility-nav-comment-link', class: 'force-event-propagation'
+  end
+
+  def calculated_comment_url
+    if Settings.regulations_dot_gov.use_beta
+      "https://beta.regulations.gov/comment/#{regulations_dot_gov_document_id}"
+    else
+      comment_url
+    end
   end
 
   def comment_period_days_remaining

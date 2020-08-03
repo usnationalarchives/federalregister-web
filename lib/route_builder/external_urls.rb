@@ -6,7 +6,11 @@ module RouteBuilder::ExternalUrls
   #
 
   def regulations_dot_gov_docket_url(docket_id)
-    "https://www.regulations.gov/docket?D=#{docket_id}"
+    if Settings.regulations_dot_gov.use_beta
+      "https://beta.regulations.gov/docket/#{docket_id}"
+    else
+      "https://www.regulations.gov/docket?D=#{docket_id}"
+    end
   end
 
   def regulations_dot_gov_docket_comments_url(docket_id)
