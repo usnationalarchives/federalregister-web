@@ -29,7 +29,7 @@
 
   <xsl:template match="SECTNO[ancestor::CONTENTS]">
     <dt class="sectno sectno-citation">
-      <xsl:variable name="section_number" select="."/>
+      <xsl:variable name="section_number" select="normalize-space(.)"/>
 
       <xsl:attribute name="id">
         <xsl:value-of select="concat('sectno-citation-', $section_number)" />

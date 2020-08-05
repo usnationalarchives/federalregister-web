@@ -135,6 +135,25 @@ describe "XSLT::FullText::Section" do
         end
     end
 
+    it "strips trailing spaces from <SECTNO> tags when generating <dt> tags.  The example below is taken from document 2016-15980's XML." do
+      process <<-XML
+      <CONTENTS>
+        <SUBPART>
+        <HD SOURCE="HED">Subpart A—General</HD>
+        <SECHD>Sec.</SECHD>
+        <SECTNO>363.1 </SECTNO>
+        <SUBJECT>
+        </SUBJECT>
+      </CONTENTS>
+      XML
+
+      puts html
+      expect(html).to have_tag("dt",
+        with: {class: 'sectno-citation'}) do
+          with_tag("a", with: {href: "#sectno-reference-363.1"})
+        end
+    end
+
     it "renders SUBJECT nodes as a div with proper class" do
       process <<-XML
         <CONTENTS>
