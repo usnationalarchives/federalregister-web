@@ -121,6 +121,20 @@ describe "XSLT::FullText::Section" do
         end
     end
 
+    it "renders the sectno-reference div without an additional space when a 'thinspace' character (#x2009) is included in the <SECTNO> tag between the § and the section number.  The example below is taken from document 2016-15980's XML." do
+
+      process <<-XML
+        <SECTION>
+          <SECTNO>§ 361.51 </SECTNO>
+        </SECTION>
+      XML
+
+      expect(html).to have_tag("div",
+        with: {class: 'section'}) do
+          with_tag("div", with: {class: "sectno sectno-reference", id: "sectno-reference-361.51"})
+        end
+    end
+
     it "renders SUBJECT nodes as a div with proper class" do
       process <<-XML
         <CONTENTS>

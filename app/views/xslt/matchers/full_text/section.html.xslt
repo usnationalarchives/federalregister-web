@@ -63,7 +63,8 @@
 
   <xsl:template match="SECTNO[ancestor::SECTION]">
     <div class="sectno sectno-reference">
-      <xsl:variable name="section_number" select="translate(.,'§ ','')"/>
+      <xsl:variable name="section_number" select="translate(translate(.,'§ ',''),'&#x2009;','')"/>
+
 
       <xsl:attribute name="id">
         <xsl:value-of select="concat('sectno-reference-', $section_number)" />
