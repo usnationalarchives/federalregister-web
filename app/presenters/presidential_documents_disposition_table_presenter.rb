@@ -10,4 +10,9 @@ class PresidentialDocumentsDispositionTablePresenter < PresidentialDocumentsPres
   def current_page?(president, presidential_document_collection)
     president == self.president && presidential_document_collection.year == year.to_i
   end
+
+  def valid_year?
+    (1936..Date.current.year).include? year.to_i
+  end
+
 end

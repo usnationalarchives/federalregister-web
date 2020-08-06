@@ -27,7 +27,7 @@ class PresidentialDocumentsController < ApplicationController
       presidential_document_params.merge(view_context: view_context)
     )
 
-    raise ActiveRecord::RecordNotFound unless @presenter.presidential_documents_collection.results.present?
+    raise ActiveRecord::RecordNotFound unless @presenter.valid_year? && @presenter.presidential_documents_collection.results.present?
   end
 
   private
