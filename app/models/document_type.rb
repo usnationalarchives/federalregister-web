@@ -36,7 +36,7 @@ class DocumentType
 
       if Settings.notify_honeybager
         Honeybadger.notify(
-          error_class: "Unkown Document Type",
+          error_class: "Unknown Document Type",
           error_message: message
         )
       else
