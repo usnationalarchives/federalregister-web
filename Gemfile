@@ -143,6 +143,9 @@ gem 'safe_target_blank'
 # email provider integration
 gem 'sendgrid'
 
+# background jobs
+gem 'sidekiq', '~> 5.2.9'
+
 # js minification
 gem 'uglifier'
 

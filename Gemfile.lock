@@ -156,6 +156,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.12.2)
+    connection_pool (2.2.3)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -476,6 +477,11 @@ GEM
     sendgrid (1.2.4)
       json
     shellany (0.0.1)
+    sidekiq (5.2.9)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (~> 2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 4.2)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -608,6 +614,7 @@ DEPENDENCIES
   sass
   sass-rails (~> 5.1)
   sendgrid
+  sidekiq (~> 5.2.9)
   sitemap_generator
   timecop
   uglifier
