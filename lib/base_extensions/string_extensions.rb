@@ -29,9 +29,15 @@ class String
 
   # Capitalizes the first character of all words not found in words_to_skip_capitalization_of()
   # Examples of skipped words include 'of', 'the', 'or', etc.  Also capitalizes the first character
-  # of the string regardless.
+  # of the string regardless.  Capitalizes letters following a period or dash.
   def capitalize_most_words
-    self.split.collect{ |w| words_to_skip_capitalization_of.include?(w.downcase) ? w : w.capitalize_first }.join(" ").capitalize_first
+    self.
+      split.
+      collect{ |w| words_to_skip_capitalization_of.include?(w.downcase) ? w : w.capitalize_first }.
+      join(" ").
+      capitalize_first.
+      gsub(/\-[a-z]/) {|s| s.upcase }.
+      gsub(/\.[a-z]/) {|s| s.upcase }
   end
 
   # Capitalizes the first character of all words in string
