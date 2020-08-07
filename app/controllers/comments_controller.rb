@@ -105,7 +105,11 @@ class CommentsController < ApplicationController
     @comment_attachments = @comment.attachments
   rescue RegulationsDotGov::Client::CommentPeriodClosed => exception
     if exception.is_a?(RegulationsDotGov::Client::CommentPeriodClosed)
-      Sidekiq::Client.enqueue_to(:document_updater, 'CommentUrlRemover', @comment.document_number)
+      Sidekiq::Client.push(
+        'class' => 'CommentUrlRemover',
+        'args' => [@comment.document_number],
+        'queue' => 'document_updater'
+      )
     end
     
     response.headers['Comments-No-Longer-Accepted'] = "1"
