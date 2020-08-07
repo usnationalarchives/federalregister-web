@@ -1,24 +1,25 @@
 class DocumentSubscriptionQueuePopulator
-  @queue = :subscriptions
+  include Sidekiq::Worker
+
+  sidekiq_options :queue => :subscriptions, :retry => 0
+
   attr_reader :date
 
-  def self.perform(date)
+  def perform(date)
     return unless Settings.feature_flags.subscriptions.deliver
+
+    @date = date
 
     ActiveRecord::Base.clear_active_connections!
 
-    new(date).enqueue_subscriptions
-  end
-
-  def initialize(date)
-    @date = date
+    enqueue_subscriptions
   end
 
   def enqueue_subscriptions
     options = ENV['FORCE_DELIVERY'].present? ? {force_delivery: ENV['FORCE_DELIVERY']} : {}
 
     MailingList::Document.active.find_each do |mailing_list|
-      Resque.enqueue(MailingListSender, mailing_list.id, date, options)
+      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, date, options)
     end
   end
 end

@@ -1,22 +1,20 @@
 class MailingListSender
   extend Memoist
+  include Sidekiq::Worker
 
-  extend Resque::Plugins::Retry
-  @queue = :subscriptions
-  @retry_limit = 3
-  @retry_delay = 60
-
-  def self.perform(mailing_list_id, date, options={})
-    new(mailing_list_id, date, options).perform
+  sidekiq_options :queue => :subscriptions, :retry => 3
+  sidekiq_retry_in do |count|
+    60
+  end
+  sidekiq_retries_exhausted do |msg, ex|
+    Honeybadger.notify(ex, force: true)
   end
 
-  def initialize(mailing_list_id, date, options={})
+  def perform(mailing_list_id, date, options={})
     @mailing_list_id = mailing_list_id
     @date            = date
     @options         = options
-  end
 
-  def perform
     ActiveRecord::Base.clear_active_connections!
 
     begin

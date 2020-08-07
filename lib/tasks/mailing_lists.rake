@@ -3,7 +3,7 @@ namespace :mailing_lists do
     desc "Enqueue the document mailing lists for a given day"
     task :deliver, [:date] => :environment do |t, args|
       date = Date.parse(args[:date])
-      DocumentSubscriptionQueuePopulator.perform(date)
+      DocumentSubscriptionQueuePopulator.new.perform(date)
     end
 
     desc "renames MailingList::Article to MailingList::Document"
@@ -19,7 +19,7 @@ namespace :mailing_lists do
     task :deliver, [:date, :document_numbers] => :environment do |t, args|
       date = args[:date]
       document_numbers = args[:document_numbers].split(',')
-      PublicInspectionDocumentSubscriptionQueuePopulator.perform(document_numbers)
+      PublicInspectionDocumentSubscriptionQueuePopulator.new.perform(document_numbers)
     end
   end
 

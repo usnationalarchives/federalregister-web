@@ -1,17 +1,17 @@
 class PublicInspectionDocumentSubscriptionQueuePopulator
-  @queue = :subscriptions
+  include Sidekiq::Worker
+
+  sidekiq_options :queue => :subscriptions, :retry => 0
+
   attr_reader :date, :document_numbers
 
-  def self.perform(document_numbers)
+  def perform(document_numbers)
     return unless Settings.feature_flags.subscriptions.deliver_pil
+    @document_numbers = document_numbers
 
     ActiveRecord::Base.clear_active_connections!
 
-    new(document_numbers).enqueue_subscriptions
-  end
-
-  def initialize(document_numbers)
-    @document_numbers = document_numbers
+    enqueue_subscriptions
   end
 
   def enqueue_subscriptions
@@ -20,7 +20,7 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
 
     current_datetime = DateTime.current
     MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
-      Resque.enqueue(MailingListSender, mailing_list.id, current_datetime, options)
+      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, current_datetime, options)
     end
   end
 end

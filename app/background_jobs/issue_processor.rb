@@ -1,16 +1,7 @@
 class IssueProcessor
   include CacheUtils
+  include Sidekiq::Worker
   attr_reader :date
-
-  def self.perform(date)
-    ActiveRecord::Base.clear_active_connections!
-    
-    new(date).perform
-  end
-
-  def initialize(date)
-    @date = date
-  end
 
   private
 

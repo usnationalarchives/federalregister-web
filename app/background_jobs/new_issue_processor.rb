@@ -1,9 +1,11 @@
 class NewIssueProcessor < IssueProcessor
-  @queue = :issue_processor
 
-  def perform
+  sidekiq_options :queue => :issue_processor, :retry => 0
+
+  def perform(date)
     ActiveRecord::Base.clear_active_connections!
-    
+    @date = date
+
     compile_all_html
     expire_cache
 
@@ -21,7 +23,7 @@ class NewIssueProcessor < IssueProcessor
   end
 
   def deliver_mailing_lists
-    DocumentSubscriptionQueuePopulator.perform(date)
+    DocumentSubscriptionQueuePopulator.new.perform(date)
   end
 
   def update_sitemap!

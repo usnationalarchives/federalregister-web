@@ -1,9 +1,11 @@
 class IssueReprocessor < IssueProcessor
-  @queue = :issue_reprocessor
 
-  def perform
+  sidekiq_options :queue => :issue_reprocessor, :retry => 0
+
+  def perform(date)
     ActiveRecord::Base.clear_active_connections!
-    
+    @date = date
+
     compile_all_html
     expire_cache
   end
