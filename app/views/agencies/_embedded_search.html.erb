@@ -19,8 +19,8 @@
       "aria-label" => 'Search' %>
 
     <ul>
-      <%= content_tag(:li, class: "hidden optional", id: "conditions_agency_ids_input") do %>
-        <%= hidden_field_tag('conditions[agency_ids]', agency.id) %>
+      <%= content_tag(:li, class: "hidden optional", id: "conditions_agencies_input") do %>
+        <%= hidden_field_tag('conditions[agencies][]', agency.slug) %>
       <% end %>
     </ul>
 
