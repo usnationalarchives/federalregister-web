@@ -232,6 +232,10 @@ Styleguide 1.1 FR Boxes
 }
 
 .bootstrap-scope {
+  .popover {
+    max-width: 500px;
+  }
+
   .popover-content {
     padding: 0px;
     margin: -1px;
