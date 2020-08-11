@@ -21,7 +21,7 @@ module CacheUtils
 
     def client
       host = "#{Settings.varnish.host}:#{Settings.varnish.port}"
-      @client ||= Varnish::Client.new(host, timeout: 60)
+      Varnish::Client.new(host, timeout: 60)
     end
   end
 end
