@@ -19,7 +19,7 @@ class DocumentSubscriptionQueuePopulator
     options = ENV['FORCE_DELIVERY'].present? ? {force_delivery: ENV['FORCE_DELIVERY']} : {}
 
     MailingList::Document.active.find_each do |mailing_list|
-      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, date, options)
+      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, date, options.stringify_keys)
     end
   end
 end

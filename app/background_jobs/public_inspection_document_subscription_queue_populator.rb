@@ -20,7 +20,7 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
 
     current_datetime = DateTime.current
     MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
-      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, current_datetime, options)
+      Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, current_datetime, options.stringify_keys)
     end
   end
 end
