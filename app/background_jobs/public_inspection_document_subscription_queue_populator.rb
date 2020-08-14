@@ -18,7 +18,7 @@ class PublicInspectionDocumentSubscriptionQueuePopulator
     options = ENV['FORCE_DELIVERY'].present? ? {force_delivery: ENV['FORCE_DELIVERY']} : {}
     options.merge!(document_numbers: document_numbers)
 
-    current_datetime = DateTime.current
+    current_datetime = Date.current.to_s(:iso)
     MailingList::PublicInspectionDocument.active.find_each do |mailing_list|
       Sidekiq::Client.enqueue(MailingListSender, mailing_list.id, current_datetime, options.stringify_keys)
     end
