@@ -131,8 +131,15 @@ class DocumentDecorator < ApplicationDecorator
 
   def participating_agency?
     participating_agency_acronyms = Agency.participating_agency_acronyms
-    agencies.any? do|agency|
-      agency = Agency.find(agency.slug)
+    
+    agencies.any? do |agency|
+      begin
+        agency = Agency.find(agency.slug)
+      rescue FederalRegister::Client::ResponseError => error
+        Honeybadger.notify(error)
+        agency = nil
+      end
+
       if agency
         participating_agency_acronyms.include? agency.short_name
       end
