@@ -76,6 +76,11 @@
   @import "design/documents/tables";
   @import "design/documents/unprinted_elements";
 }
+
+.document-table {
+  @import "design/documents/tables";
+}
+
 @import "design/documents";
 @import "design/public_inspection";
 

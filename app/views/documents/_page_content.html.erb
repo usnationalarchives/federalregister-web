@@ -1,5 +1,17 @@
 <%= render partial: 'document_tooltips' %>
 
+<%= modal(:basic,
+    footer: false,
+    header: false,
+    modal_class: 'document-table-modal',
+    modal_id: 'bootstrap-table-modal',
+) do %>
+  <%= fr_content_box(
+    FrBox.build(document.fr_content_box_type, document.fr_content_box_options)
+  ) do %>
+  <% end %>
+<% end %>
+
 <div class="col-md-9 doc-content with-utility-bar">
   <div class="row">
     <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>

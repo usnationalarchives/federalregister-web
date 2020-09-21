@@ -12,6 +12,83 @@
 
 .jqmOverlay { background-color: $black; }
 
+.modal {
+  .close-icon {
+    position: absolute;
+    top: -22px;
+    right: -22px;
+  }
+
+  .modal-dialog {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 5%;
+    right: 5%;
+    top: 5%;
+    bottom: 5%;
+
+    width: auto;
+  }
+
+  .modal-content {
+    height: 100%; // Seems necessary for FR Box to fill entire modal
+  }
+
+  .modal-body {
+    padding: 0;
+    height: 100%; // Seems necessary for FR Box to fill entire modal
+
+    .content-block {
+      padding-top: 0px; // Used to try and bring the table higher
+    }
+
+    .content-block:not(.no-overflow) {
+      // Needed for modal to be scrollable--it's not by default
+      height: calc(100% - 21px);
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+
+    table {
+      // Needed so borders appear on th's when scrolling with fixed headers
+      border-collapse: separate;
+
+      caption {
+        position: sticky;
+      }
+    }
+
+    th {
+      position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -ms-sticky;
+      position: -o-sticky;
+      position: sticky;
+      z-index: 1; // Formula superscripts/subscripts appear on top of th's without this.
+    }
+
+  }
+
+  .icon-fr2-badge_x {
+    font-size: 24px;
+  }
+
+  .fr-box {
+    height: 100%; // Seems necessary for FR Box to fill entire modal
+  }
+
+  .fr-seal-block-header {
+    // Used to prevent document tables from obscuring the FR box header seal.
+    position: relative !important;
+    margin-bottom: 18px !important;
+  }
+}
+
+.modal-backdrop {
+  background-color: rgb(255, 255, 255) !important;
+}
+
 .fr-modal {
   background-color: $white;
   border: 5px solid $fr-dark-blue;
@@ -22,6 +99,15 @@
   position: fixed;
   top: 5em;
   width: 500px;
+
+  &.document-table {
+    bottom: 5%;
+    left: 5%;
+    max-height: none;
+    right: 5%;
+    top: 5%;
+    width: auto;
+  }
 
   &.wide { width: 650px; }
   &.extra-wide { width: 900px; }

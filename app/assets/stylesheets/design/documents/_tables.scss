@@ -1,6 +1,6 @@
 .doc-content-area {
   .table-wrapper {
-    overflow-x: auto;
+    overflow-x: visible;
     width: 100%;
 
     table.wide {
@@ -12,6 +12,7 @@
     display: block;
     margin-bottom: 20px;
     padding: 10px;
+    border-collapse: separate;
 
     caption {
       color: $text;
@@ -29,6 +30,12 @@
 
     th {
       vertical-align: middle;
+      position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -ms-sticky;
+      position: -o-sticky;
+      position: sticky;
+      z-index: 1; // Formula superscripts/subscripts appear on top of th's without this.
     }
 
     th,td {

@@ -7,15 +7,17 @@ $(document).ready ()->
   userData = new FR2.UserData()
   new FR2.UserNavigationManager(userData)
 
+  tooltipOptions = {
+    offset:  5
+    opacity: 0.9
+    delay:   0.3
+    fade:    true
+  }
+
   # Tooltips
   CJ.Tooltip.addTooltip(
     '.cj-tooltip',
-    {
-      offset: 5
-      opacity: 0.9
-      delay: 0.3
-      fade: true
-    }
+    tooltipOptions
   )
 
   # Toggle show/hides
@@ -71,4 +73,7 @@ $(document).ready ()->
       clipboard.copyToClipboard $(this).data('clipboardText')
       $('.tipsy .tipsy-inner').text(successMessage)
 
-
+  # Fixed Header Handling
+  if $('.doc-content-area').length > 0
+    manager = new FR2.TableFixedHeaderManager(tooltipOptions)
+    manager.perform()

@@ -48,6 +48,9 @@
 
 #= require_tree ./documents
 #= require fr_index_popover_handler
+#= require table_fixed_header_handler
+#= require table_fixed_header_manager
+#= require table_modal_handler
 #= require fr_index
 #= require issues
 
