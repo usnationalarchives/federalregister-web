@@ -9,6 +9,7 @@
 #= require bootstrap/tab
 #= require bootstrap/tooltip
 #= require bootstrap/popover
+#= require bootstrap/modal
 #= require js.cookie
 #= require jquery.lazy.min
 

@@ -1,0 +1,27 @@
+<% modal_javascript modal_id, set_cookie: set_cookie if open_on_page_load %>
+
+
+<div id="<%= modal_id %>" class="<%= modal_class %> modal" role="dialog"
+  aria-labelledby="genericModal" aria-hidden tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <span class="icon-fr2 icon-fr2-badge_x close-icon" data-dismiss="modal"></span></a>
+      <% if header %>
+        <div class="modal-header">
+          <h3>
+            <%= modal_header %>
+          </h3>
+        </div>
+      <% end %>
+
+      <div class="modal-body">
+        <%= modal_body %>
+      </div>
+
+      <% if footer %>
+        <div class="modal-footer">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
