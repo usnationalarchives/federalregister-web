@@ -1,4 +1,7 @@
 class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
+
+  add_attribute :page_views
+
   def excluding_parent_agencies
     # Public Inspection Documents only get a parent agency associated when
     # it is a co-publication between the parent and child agencies, so the
@@ -18,4 +21,20 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
       :type,
     ]
   end
+
+  def page_views
+    if attributes["page_views"]
+      last_updated = begin
+        DateTime.parse(attributes["page_views"]["last_updated"])
+      rescue
+        nil
+      end
+
+      {
+        count: attributes["page_views"]["count"],
+        last_updated: last_updated
+      }
+    end
+  end
+
 end
