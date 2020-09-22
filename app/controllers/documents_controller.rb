@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  include DocumentLookup
+
   skip_before_action :authenticate_user!
   before_action :find_document
 
@@ -9,29 +11,17 @@ class DocumentsController < ApplicationController
       wants.html do
         if @document.is_a?(Document)
           @document = DocumentDecorator.decorate(@document)
-          
+
           if document_path(@document) == request.path
             render
           else
             redirect_to document_path(@document)
           end
-        elsif @document.is_a?(PublicInspectionDocument)
-          @document = PublicInspectionDocumentDecorator.decorate(@document)
-
-          if @document.html_url == request.url
-            render template: 'public_inspection_documents/show'
-          else
-            redirect_to @document.html_url
-          end
         end
       end
 
       wants.json do
-        if @document.is_a?(Document)
-          redirect_to document_api_url(@document, {format: :json})
-        elsif @document.is_a?(PublicInspectionDocument)
-          redirect_to public_inspection_document_api_url(@document, {format: :json})
-        end
+        redirect_to document_api_url(@document, {format: :json})
       end
 
       wants.pdf do
@@ -76,29 +66,4 @@ class DocumentsController < ApplicationController
     end
   end
 
-  private
-
-  def find_document
-    begin
-      if publication_date
-        @document = Document.find(params[:document_number], publication_date: publication_date)
-      else
-        @document = Document.find(params[:document_number])
-      end
-    rescue FederalRegister::Client::RecordNotFound
-      begin
-        @document = PublicInspectionDocument.find(params[:document_number])
-      rescue FederalRegister::Client::RecordNotFound
-        raise ActiveRecord::RecordNotFound
-      end
-    end
-  end
-
-  def publication_date
-    begin
-      Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
-    rescue
-      nil
-    end
-  end
 end

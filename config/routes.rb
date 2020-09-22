@@ -60,6 +60,16 @@ Rails.application.routes.draw do
       slug:  /[^\/]+/
     }
 
+  get 'public_inspection_documents/:year/:month/:day/:document_number/:slug',
+    to: "public_inspection_documents#show",
+    as: :public_inspection_document,
+    constraints: {
+      year:  /\d{4}/,
+      month: /\d{1,2}/,
+      day:   /\d{1,2}/,
+      slug:  /[^\/]+/
+    }
+
   # don't break old urls
   get '/a/:document_number(/:anchor)',
     to: "documents#tiny_url"
