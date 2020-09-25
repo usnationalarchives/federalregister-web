@@ -12,8 +12,10 @@ class @FR2.TableFixedHeaderManager
 
       $(this).closest('.table-wrapper').prepend(expandTableLink)
 
+      docContentWidth = 584
+
       # Wide table handling
-      if $(this).data('point-width') > 300
+      if $(this).find('thead').width() > docContentWidth
         # Turn off fixed headers
         $(this).closest('.table-wrapper').css('overflow-x', 'hidden')
         # Apply gradient to table
