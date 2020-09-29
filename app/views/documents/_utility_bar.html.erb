@@ -267,7 +267,7 @@
             <p>
               This <%= link_to 'PDF', document.public_inspection_pdf_url %> is
               the current document as it appeared on Public Inspection on
-              <%= document.public_inspection_document.filed_at %>.
+              <%= document.public_inspection_document.filed_at %>.  <%= "It was viewed #{document.public_inspection_document.page_views[:count]} times while on Public Inspection." if document.public_inspection_document.page_views  %>
             </p>
             <p class="warning">
               <%= utility_bar_warning_text %>
