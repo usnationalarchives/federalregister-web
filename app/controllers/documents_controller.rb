@@ -17,6 +17,8 @@ class DocumentsController < ApplicationController
           else
             redirect_to document_path(@document)
           end
+        elsif @document.is_a?(PublicInspectionDocument)
+          redirect_to @document.html_url
         end
       end
 
