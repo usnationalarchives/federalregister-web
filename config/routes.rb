@@ -60,15 +60,6 @@ Rails.application.routes.draw do
       slug:  /[^\/]+/
     }
 
-  get 'public_inspection_documents/:year/:month/:day/:document_number/:slug',
-    to: redirect('/public-inspection/%{document_number}/%{slug}')
-  get 'public-inspection/:document_number/:slug',
-    to: "public_inspection_documents#show",
-    as: :public_inspection_document,
-    constraints: {
-      slug:  /[^\/]+/
-    }
-
   # don't break old urls
   get '/a/:document_number(/:anchor)',
     to: "documents#tiny_url"
@@ -168,6 +159,14 @@ Rails.application.routes.draw do
       as: 'public_inspection_search_count'
   end
 
+  get 'public_inspection_documents/:year/:month/:day/:document_number/:slug',
+    to: redirect('/public-inspection/%{document_number}/%{slug}')
+  get 'public-inspection/:document_number/:slug',
+    to: "public_inspection_documents#show",
+    as: :public_inspection_document,
+    constraints: {
+      slug:  /[^\/]+/
+    }
 
   #
   # Events Search
