@@ -61,14 +61,11 @@ Rails.application.routes.draw do
     }
 
   get 'public_inspection_documents/:year/:month/:day/:document_number/:slug',
-    to: redirect('/public-inspection/%{year}/%{month}/%{day}/%{document_number}/%{slug}')
-  get 'public-inspection/:year/:month/:day/:document_number/:slug',
+    to: redirect('/public-inspection/%{document_number}/%{slug}')
+  get 'public-inspection/:document_number/:slug',
     to: "public_inspection_documents#show",
     as: :public_inspection_document,
     constraints: {
-      year:  /\d{4}/,
-      month: /\d{1,2}/,
-      day:   /\d{1,2}/,
       slug:  /[^\/]+/
     }
 
