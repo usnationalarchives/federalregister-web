@@ -15,7 +15,9 @@ class PublicInspectionDocumentsController < ApplicationController
         elsif @document.is_a?(PublicInspectionDocument)
           @document = PublicInspectionDocumentDecorator.decorate(@document)
 
-          if @document.html_url == request.url
+          if @document.revoked_and_older_date?
+            render_error(404, "Not Found")
+          elsif @document.html_url == request.url
             render template: 'public_inspection_documents/show'
           else
             redirect_to @document.html_url
