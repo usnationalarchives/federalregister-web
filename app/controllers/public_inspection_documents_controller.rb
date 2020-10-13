@@ -17,7 +17,7 @@ class PublicInspectionDocumentsController < ApplicationController
 
           if @document.revoked_and_older_date?
             render_error(404, "Not Found")
-          elsif @document.html_url == request.url
+          elsif URI::parse(@document.html_url).path == request.path
             render template: 'public_inspection_documents/show'
           else
             redirect_to @document.html_url
