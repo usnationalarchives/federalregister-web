@@ -33,6 +33,15 @@
             <% end %>
           </p>
 
+          <% if document.agency_letters.present? %>
+            <p>The following agency letters are available:</p>
+            <ul>
+            <% document.agency_letters.each do |agency_letter| %>
+              <li><%= link_to agency_letter.title, agency_letter.url %></li>
+            <% end %>
+            </ul>
+          <% end %>
+
           <p class="pi_notice">
             Although we make a concerted effort to reproduce the original document
             in full on our Public Inspection pages, in some cases graphics may not
