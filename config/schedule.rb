@@ -18,3 +18,11 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, lambda { "2>&1 | sed \"s/^/[$(date)] /\" >> #{path}/log/#{log}.log" }
+
+every 1.day, at: '6PM' do
+  set :log, 'regulations_dot_gov_comments_posted'
+  rake 'regulations_dot_gov:notify_comment_publication'
+end
+
