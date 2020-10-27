@@ -7,3 +7,13 @@ end
 Sidekiq.configure_client do |config|
   config.redis = { url: redis_url }
 end
+
+require "sidekiq/throttled"
+Sidekiq::Throttled.setup!
+
+Sidekiq::Throttled::Registry.add(:reg_gov_api, {
+  threshold: {
+    limit:  Settings.regulations_dot_gov.throttle.at,
+    period: Settings.regulations_dot_gov.throttle.per,
+  }
+})

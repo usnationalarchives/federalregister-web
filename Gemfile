@@ -144,6 +144,7 @@ gem 'sendgrid'
 
 # background jobs
 gem 'sidekiq', '~> 5.2.9'
+gem "sidekiq-throttled"
 
 # js minification
 gem 'uglifier'
