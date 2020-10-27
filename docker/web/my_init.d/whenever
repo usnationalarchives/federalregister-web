@@ -1,0 +1,5 @@
+#!/bin/bash
+set -ex
+cd /home/app
+
+exec whenever --update-crontab --user app

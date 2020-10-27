@@ -4,6 +4,7 @@
 if ! [ "$CONTAINER_ROLE" = "worker" ]; then
   rm -f /etc/my_init.d/migrate
   rm -f /etc/my_init.d/varnish
+  rm -rf /etc/my_init.d/whenever
 fi
 
 # logs are rotated with a sidecar in k8s
