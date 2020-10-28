@@ -65,8 +65,8 @@ regulations_dot_gov:
   api_base_url: <%= ENV["REG_GOV_API_BASE_URL"] || 'https://api-staging.regulations.gov/v4' %>
 
   throttle:
-    at: <%= ENV["REG_GOV_JOBS_THROTTLE_AT"] || 2 %>
-    per: <%= ENV["REG_GOV_JOBS_THROTTLE_PER"] || 5 %>
+    at: <%= ENV["WEB_REG_GOV_JOBS_THROTTLE_AT"] || 1 %>
+    per: <%= ENV["WEB_REG_GOV_JOBS_THROTTLE_PER"] || 60 %>
 
 # document page full text rendering - false means use esi's
 render_documents_from_raw_xml: false

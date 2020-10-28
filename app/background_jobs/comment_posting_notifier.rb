@@ -2,8 +2,16 @@ class CommentPostingNotifier
   include Sidekiq::Worker
   include Sidekiq::Throttled::Worker
 
-  sidekiq_options :queue => :reg_gov
-  sidekiq_throttle_as :reg_gov_api
+  sidekiq_options :queue => :web_reg_gov
+
+  sidekiq_throttle({
+    # Allow maximum 1 concurrent jobs of this class at a time.
+    :concurrency => { :limit => 1 },
+    :threshold => {
+      limit:  Settings.regulations_dot_gov.throttle.at,
+      period: Settings.regulations_dot_gov.throttle.per,
+    }
+  })
 
   def perform(comment_id)
     comment = Comment.find(comment_id)
