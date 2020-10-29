@@ -53,7 +53,7 @@ module DocumentDecorator::Comments
 
   def calculated_comment_url
     if Settings.regulations_dot_gov.use_beta
-      "https://beta.regulations.gov/comment/#{regulations_dot_gov_document_id}"
+      "https://beta.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
     else
       comment_url
     end
