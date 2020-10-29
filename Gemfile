@@ -127,6 +127,7 @@ gem 'redis', '~> 3.3.5'
 
 # per-request global storage for Rack.
 gem 'request_store'
+gem 'request_store-sidekiq', '~> 0.1'
 
 # background jobs, resque web interface - rails engine
 gem 'resque', '~> 1.27.0'
