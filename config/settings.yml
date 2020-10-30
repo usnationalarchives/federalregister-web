@@ -10,7 +10,6 @@ csp:
 external_modal_domain_whitelist:
   - "www.archives.gov"
   - "www.govinfo.gov"
-  - "federalregister.tenderapp.com"
   - "s3.amazonaws.com/public-inspection."
   - "s3.amazonaws.com/archives."
   - "agency-logos.federalregister.gov"
