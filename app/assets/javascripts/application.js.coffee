@@ -55,7 +55,7 @@
 #= require issues
 
 #= require search
-
+#= require zendesk_customizer
 
 # Instantiate and bind common application js items
 #= require app

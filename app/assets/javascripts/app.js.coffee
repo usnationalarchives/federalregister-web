@@ -77,3 +77,6 @@ $(document).ready ()->
   if $('.doc-content-area').length > 0
     manager = new FR2.TableFixedHeaderManager(tooltipOptions)
     manager.perform()
+
+  # Populate additional context in zendesk support requests
+  zendeskCustomizer = new FR2.ZendeskCustomizer
