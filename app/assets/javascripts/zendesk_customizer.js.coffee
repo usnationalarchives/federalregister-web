@@ -6,7 +6,7 @@ class @FR2.ZendeskCustomizer
       webWidget: {
         contactForm: {
           fields: [
-            { id: 360053300454, prefill: { '*': "FR: #{navigator.userAgent}" } }
+            { id: 360053300454, prefill: { '*': this.browserMetadata() } }
           ]
         }
       }
@@ -28,4 +28,7 @@ class @FR2.ZendeskCustomizer
         iframe.contentDocument.head.appendChild style
       ), 1
 
-
+  browserMetadata: ->
+    metadata = _.pick(bowser, 'name', 'version','osname', 'osversion', 'blink')
+    metadata.project = 'FR'
+    JSON.stringify(metadata)
