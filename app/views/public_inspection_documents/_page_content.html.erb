@@ -34,12 +34,17 @@
           </p>
 
           <% if document.agency_letters.present? %>
-            <p>The following letter(s) were electronically-signed and submitted by the publishing agency in accordance with 1 CFR 18.13(b).</p>
-            <ul>
-            <% document.agency_letters.each do |agency_letter| %>
-              <li><%= link_to agency_letter.title, agency_letter.url %></li>
-            <% end %>
-            </ul>
+            <div class="pil-agency-letters">
+              <p>
+                The following letter(s) were electronically-signed and submitted by the
+                publishing agency in accordance with 1 CFR 18.13(b).
+              </p>
+              <ul>
+              <% document.agency_letters.each do |agency_letter| %>
+                <li><%= link_to agency_letter.title, agency_letter.url %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
 
           <p class="pi_notice">
