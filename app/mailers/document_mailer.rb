@@ -22,7 +22,7 @@ class DocumentMailer < ActionMailer::Base
     mail(
       subject: "[FR] #{@entry_email.sender} has sent you '#{@document.title}'",
       to: 'email-a-friend@federalregister.gov', #use sendgrid_recipients above
-      from: @entry_email.sender,
+      from: 'FederalRegister.gov <no-reply@federalregister.gov>',
       reply_to: @entry_email.sender
     ) do |format|
       format.text { render('email_a_friend') }
@@ -35,7 +35,7 @@ class DocumentMailer < ActionMailer::Base
   class Preview < MailView
     def email_a_friend
       entry_email = EntryEmail.last
-      entry_email.sender = 'bob@example.com'
+      entry_email.sender = 'no-reply@federalregister.gov'
       entry_email.recipients = ['andrew@example.com', 'rich@example.com', 'brandon@example.com']
       entry_email.message = "Hello old friends, you might find this interesting..."
       DocumentMailer.email_a_friend(entry_email)
