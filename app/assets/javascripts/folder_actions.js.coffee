@@ -4,7 +4,8 @@ $(document).ready ->
 
     folderData = {
       numClippings: $('#clippings li').length,
-      folderSlug: $('h2.title').data().folderSlug
+      folderSlug: $('h2.title').data().folderSlug,
+      token: $('meta[name="csrf-token"]').attr('content')
     }
 
     modalTemplate = Handlebars.compile $("#delete-folder-modal-template").html()
