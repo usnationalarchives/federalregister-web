@@ -39,7 +39,7 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
   end
 
   def agency_letters
-    attributes["agency_letters"].map do |attributes|
+    attributes["agency_letters"]&.map do |attributes|
       OpenStruct.new(attributes)
     end
   end
