@@ -146,4 +146,8 @@ class DocumentDecorator < ApplicationDecorator
     end
   end
 
+  def table_of_contents_sorting_algorithm
+    lambda {|doc| [doc.start_page, doc.end_page, doc.document_number] }
+  end
+
 end
