@@ -39,7 +39,7 @@
   <% end %>
 
   <% agency.document_categories.each do |doc_category| %>
-    <h3><%= doc_category["type"].try(:titlecase) %></h3>
+    <h3><%= doc_category["type"].try(:titlecase).try(:pluralize) %></h3>
 
     <div class="toc-category-level"
       id=<%= agency.toc_anchor(doc_category["type"]) %>>
