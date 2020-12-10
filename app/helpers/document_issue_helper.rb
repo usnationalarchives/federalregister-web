@@ -30,7 +30,17 @@ module DocumentIssueHelper
             partial: document_partial,
             locals: {
               subject: subject_heading_required?(level, docs_only_at_this_level, nested_docs) ? nil : subject_heading,
-              documents: agency.load_documents(doc["document_numbers"]),
+              documents: agency.
+                load_documents(doc["document_numbers"]).
+                sort_by do |doc|
+                  if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
+                    table_of_contents_sorting_algorithm = lambda { |doc| doc }
+                  else
+                    table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
+                  end
+
+                  table_of_contents_sorting_algorithm.call(doc)
+                end,
               total_document_count: total_document_count
             }
           )
@@ -63,7 +73,17 @@ module DocumentIssueHelper
           partial: document_partial,
           locals: {
             subject: subject_heading_required?(level, docs_only_at_this_level, nested_docs) ? nil : subject_heading,
-            documents: agency.load_documents(doc["document_numbers"]),
+            documents: agency.
+              load_documents(doc["document_numbers"]).
+              sort_by do |doc|
+                if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
+                  table_of_contents_sorting_algorithm = lambda { |doc| doc }
+                else
+                  table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
+                end
+
+                table_of_contents_sorting_algorithm.call(doc)
+              end,
             total_document_count: total_document_count
           }
         )

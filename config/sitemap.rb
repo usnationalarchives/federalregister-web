@@ -92,7 +92,9 @@ SitemapGenerator::Sitemap.create do
   end
 
   sitemap_presenter.executive_orders.each do |eo|
-    add executive_order_path(eo.executive_order_number)
+    if eo.executive_order_number.present?
+      add executive_order_path(eo.executive_order_number)
+    end
   end
 
 end

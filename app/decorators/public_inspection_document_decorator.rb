@@ -24,6 +24,10 @@ class PublicInspectionDocumentDecorator < ApplicationDecorator
     model.last_public_inspection_issue < Date.current
   end
 
+  def table_of_contents_sorting_algorithm
+    lambda {|doc| doc.document_number}
+  end
+
   private
 
   def revoked?
