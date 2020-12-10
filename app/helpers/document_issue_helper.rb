@@ -34,7 +34,7 @@ module DocumentIssueHelper
                 load_documents(doc["document_numbers"]).
                 sort_by do |doc|
                   if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
-                    table_of_contents_sorting_algorithm = lambda { |doc| doc }
+                    table_of_contents_sorting_algorithm = lambda { |doc| [9999999, 9999999, doc] }
                   else
                     table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
                   end
@@ -77,7 +77,7 @@ module DocumentIssueHelper
               load_documents(doc["document_numbers"]).
               sort_by do |doc|
                 if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
-                  table_of_contents_sorting_algorithm = lambda { |doc| doc }
+                  table_of_contents_sorting_algorithm = lambda { |doc| [9999999, 9999999, doc] }
                 else
                   table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
                 end

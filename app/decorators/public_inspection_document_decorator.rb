@@ -25,7 +25,7 @@ class PublicInspectionDocumentDecorator < ApplicationDecorator
   end
 
   def table_of_contents_sorting_algorithm
-    lambda {|doc| doc.document_number}
+    lambda {|doc| [0, 0, doc.document_number] }
   end
 
   private
