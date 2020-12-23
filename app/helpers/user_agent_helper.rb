@@ -1,5 +1,5 @@
 module UserAgentHelper
-  def iphone?
-    request.user_agent.match(/iPhone/)
+  def ios?
+    request.user_agent.match(/iPhone|iPad/)
   end
 end
