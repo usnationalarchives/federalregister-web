@@ -97,7 +97,7 @@ class FrIndexPresenter
       AgencyRepresentation.new(
         name: child_agency["name"],
         slug: child_agency["slug"],
-        count: agency_slug_facet_mappings[child_agency["slug"]],
+        count: agency_slug_facet_mappings[child_agency["slug"]] || 0,
       )
     end
   end
