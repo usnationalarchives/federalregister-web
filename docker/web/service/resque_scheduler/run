@@ -1,4 +1,0 @@
-#!/bin/sh
-cd /home/app
-
-exec /sbin/setuser app rake environment resque:scheduler
