@@ -31,19 +31,6 @@ class President < ActiveHash::Base
     },
   ]
 
-  def photo_title
-    case identifier
-    when 'donald-trump'
-      "Photo Courtesy, Whitehouse.gov"
-    when 'barack-obama'
-      "Photo Courtesy, WhiteHouse.gov"
-    when 'george-w-bush'
-      "Photo Courtesy, George W. Bush Presidential Library"
-    when 'william-j-clinton'
-      "Photo Courtesy, William J. Clinton Presidential Library"
-    end
-  end
-
   def year_ranges
     return @year_ranges if @year_ranges
 
