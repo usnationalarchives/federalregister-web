@@ -142,7 +142,7 @@
     }
 
     &.add-to-folder {
-      right: 32px;
+      right: 70px;
       width: 197px;
 
       .button { width: 160px; }
@@ -154,7 +154,7 @@
     }
 
     &.jump-to-folder {
-      right: 234px;
+      right: 270px;
 
       &.hover .menu {
         right: 38px;
@@ -163,6 +163,26 @@
           border-top-left-radius: 6px;
         }
       }
+    }
+  }
+
+  #select-all-clippings {
+    @include border-radius(6);
+
+    background-color: $white;
+    border: 1px solid $fr-gray-20;
+    color: $fr-gray-60;
+    font-size: 22px;
+    height: 23px;
+    padding: 0 4px 0 4px;
+    position: absolute;
+    right: 47px;
+    top: 3px;
+    width: 18px;
+    z-index: 1000;
+
+    #select-all-clippings {
+      left: -1px;
     }
   }
 

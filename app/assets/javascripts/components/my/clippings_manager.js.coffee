@@ -43,6 +43,11 @@ class @FR2.ClippingsManager
     @actionBar.on 'mouseleave', '.jump-to-folder', ()->
       clippingManager.hideMenu this
 
+    @actionBar.on 'click', '#select-all-clippings', (event)->
+      event.preventDefault()
+      $('#clippings .clipping_id').each ()->
+        $(this).prop('checked', true)
+
     @actionBar.on 'click', '.remove-clipping', (event)->
       event.preventDefault()
       clippingManager.deleteClippings()
