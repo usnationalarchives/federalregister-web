@@ -59,12 +59,17 @@
             <ul class="bulk-files">
               <li>
                 <span class="title">
-                  <% unless @presenter.type == 'other_presidential_documents' %>All <% end %>
-                  <%= @presenter.name.pluralize %> since 1994
+                  <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize} since 1994" %>
+                  <%= all_eo_description %>
                 </span>
                 <span class="links">
                   <%= @presenter.link_to_presidential_documents_for_format(:csv) %>
                   <%= @presenter.link_to_presidential_documents_for_format(:json) %>
+                  <%= feed_autodiscovery(
+                    @presenter.feed_autodiscovery.url,
+                    all_eo_description,
+                    search_conditions: @presenter.feed_autodiscovery.search_conditions
+                  ) %>
                 </span>
               </li>
 
@@ -83,6 +88,7 @@
                 </li>
               <% end %>
             </ul>
+            <%= subscribe_link %>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 class PresidentialDocumentsPresenter
+  include RouteBuilder::Fr2ApiUrls
   attr_reader :h, :president, :presidential_document_type, :type, :year
 
   def initialize(args)
@@ -32,6 +33,21 @@ class PresidentialDocumentsPresenter
 
     h.link_to text, h.documents_search_path(
       conditions_for_format(format)
+    )
+  end
+
+  def feed_autodiscovery
+    search_conditions = conditions_for_format(:json)
+
+    FeedAutoDiscovery.new(
+      url: documents_search_api_path(
+        {conditions: search_conditions[:conditions]},
+        format: :rss
+      ),
+      description: Search::Document.new(
+        conditions: search_conditions[:conditions]
+      ).summary,
+      search_conditions: search_conditions[:conditions]
     )
   end
 
