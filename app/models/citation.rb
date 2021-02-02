@@ -23,6 +23,8 @@ class Citation
   end
 
   def matching_fr_entries
+    return [] unless document_numbers.present?
+
     begin
       Document.find_all(document_numbers).map do |d|
         DocumentDecorator.decorate(d)
