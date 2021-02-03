@@ -7,6 +7,10 @@
   total_document_count ||= 0
 %>
 
+<% if editorial_note_text.present? %>
+  <h3><%= editorial_note_title %></h3>
+  <div><%= auto_link(simple_format editorial_note_text) %></div>
+<% end %>
 
 <% agencies.each do |slug, agency| %>
   <% if (show_see_references || agency.document_categories.present?) && display_agency_name %>

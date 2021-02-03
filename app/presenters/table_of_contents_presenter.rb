@@ -14,6 +14,18 @@ class TableOfContentsPresenter
     response
   end
 
+  def editorial_note_title
+    table_of_contents_data.dig('note','title')
+  end
+
+  def editorial_note_text
+    text = table_of_contents_data.dig('note','text')
+    if text
+      text.gsub(/\n/, '<br/>')
+    end
+  end
+
+
   def url
     "#{Settings.federal_register.internal_base_url}/document_issues/json/#{date.to_s(:ymd)}.json"
   end
