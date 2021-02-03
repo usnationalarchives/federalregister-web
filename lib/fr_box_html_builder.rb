@@ -93,7 +93,7 @@ class FrBoxHtmlBuilder
 
   def fr_box_footer
     view_context.content_tag(:div, class: "fr-seal-block fr-seal-block-footer") do
-      view_context.content_tag(:h6, @box_obj.title)
+      view_context.content_tag(:h6, @box_obj.title) unless @box_html_options[:suppress_footer_title]
     end
   end
 
