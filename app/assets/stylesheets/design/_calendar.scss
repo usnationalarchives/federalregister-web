@@ -87,7 +87,7 @@
     color: $color-enhanced-dark !important;
 
     &:hover {
-      background: $color-enhanced-dark;
+      background: $color-enhanced-dark !important;
       color: $white !important;
     }
 
