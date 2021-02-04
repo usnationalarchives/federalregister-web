@@ -87,3 +87,6 @@ $(document).ready ()->
   if $('.doc-content-area').length > 0
     manager = new FR2.TableFixedHeaderManager(tooltipOptions)
     manager.perform()
+
+  if $( "#fulltext_content_area" ).length > 0
+    new FR2.FootnoteHandler
