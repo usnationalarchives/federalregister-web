@@ -30,7 +30,8 @@ $(document).ready ->
     amount_document_should_be_lower_than_sidebar = 50
     side_bar_top_offset = 30
 
-    if document_height < sidebar_height + amount_document_should_be_lower_than_sidebar
+    fullTextAvailable = $('.doc-nav-wrapper .icon-fr2-print').length > 0
+    if fullTextAvailable && (document_height < sidebar_height + amount_document_should_be_lower_than_sidebar)
       $('.doc-content .fr-box')
         .css(
           'height',
