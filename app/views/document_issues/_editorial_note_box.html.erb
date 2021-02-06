@@ -3,7 +3,10 @@
     'published_document_toc',
     title:       editorial_note_title,
     filing_type: 'special_filing',
-    box_html:    {suppress_footer_title: true}
+    box_html:    {
+      class: 'editorial-note-fr-box',
+      suppress_footer_title: true,
+    }
   )
 ) do %>
   <div class="row editorial-note-box">
@@ -15,4 +18,3 @@
     </div>
   </div>
 <% end %>
-
