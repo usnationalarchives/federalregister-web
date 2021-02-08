@@ -1,0 +1,20 @@
+<%= fr_content_box(
+  FrBox.build(
+    'published_document_toc',
+    title:       editorial_note_title,
+    filing_type: 'special_filing',
+    box_html:    {
+      class: 'editorial-note-fr-box',
+      suppress_footer_title: true,
+    }
+  )
+) do %>
+  <div class="row editorial-note-box">
+    <div class="col-xs-1 col-md-1">
+      <span class="icon-fr2 icon-fr2-alert_alt"></span>
+    </div>
+    <div class="col-xs-11 col-md-11">
+      <%= auto_link(simple_format editorial_note_text) %>
+    </div>
+  </div>
+<% end %>

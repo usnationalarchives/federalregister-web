@@ -7,7 +7,6 @@
   total_document_count ||= 0
 %>
 
-
 <% agencies.each do |slug, agency| %>
   <% if (show_see_references || agency.document_categories.present?) && display_agency_name %>
     <h2 id="<%= agency.toc_anchor(type) %>">

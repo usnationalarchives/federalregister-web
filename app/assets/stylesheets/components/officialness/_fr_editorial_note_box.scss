@@ -1,0 +1,32 @@
+.bootstrap-scope .doc-toc {
+  .editorial-note-fr-box {
+    .content-block {
+      padding: 35px 20px 1px 20px !important
+    }
+  }
+
+}
+
+.editorial-note-box {
+
+  .icon-fr2-alert_alt {
+    font-size: 39px !important;
+    left: -5px;
+    color: $fr-gray-50;
+  }
+
+  .fr-seal-block-footer {
+    h6 {
+      display: none !important;
+    }
+  }
+
+  p {
+    white-space: pre-wrap;
+  }
+
+  p:last-child {
+    margin-bottom: 0px !important;
+  }
+
+}
