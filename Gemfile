@@ -31,7 +31,7 @@ gem 'calendar_helper',
   branch: 'master'
 
 # file uploads (comment attachments)
-gem "carrierwave", "0.11.2"
+gem "carrierwave", "1.3.2"
 
 # parse more date formats when needed
 gem 'chronic', '~> 0.10.2'
