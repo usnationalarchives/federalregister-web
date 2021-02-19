@@ -1,0 +1,125 @@
+<% @comment = Comment.new %>
+<div class="comment_wrapper">
+  <%# TODO: due date %>
+  <div class="comment_form_wrapper">
+    <div class="instructions">
+      <%# TODO esi site_notification_path(identifier: :comment) %>
+
+      <% if false && @comment.comment_form.comments_close_at %>
+        <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
+          <div class="notice warning">
+            <p>
+              Comments on this document close in less than 1 hour.
+              Ensure that you submit your comment before
+              <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
+            </p>
+          </div>
+        <% elsif @comment.comment_form.comments_close_at < Time.now && @comment.comment_form.comments_close_at + 2.hours > Time.now %>
+            <div class="notice warning">
+            <p>
+              Comments on this document may no longer be open.
+              The comment close date was <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p>
+        Thank you for taking the time to create a comment. Your input is important.
+        Regulations.gov has provided
+        <a href="https://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf"
+          class="reg_gov_comment_tips"
+          target="_blank">
+          tips for submitting an effective comment
+        </a><%# TODO @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+
+        <% if false && @comment.comment_form.posting_guidelines %>
+          and this agency has also provided
+          <a href="#" class="fr_modal_link reg_gov_posting_guidelines"
+            data-modal-title="Agency Posting Guidelines"
+            data-modal-html="<p><%# TODO @comment.comment_form.posting_guidelines %></p>">
+             additional posting guidelines
+          </a>.
+        <% end %>
+      </p>
+
+      <p>
+        Once you have filled in the required fields below you can preview and/or
+        submit your comment to <%= @comment.agency_name %> for review.
+        All comments are considered public and will be posted online once
+        <%= @comment.agency_name %> has reviewed them.
+      </p>
+
+      <p>
+        You can view
+        <% if false && @comment.comment_form.alternative_ways_to_comment.present? %>
+          <a href="#" class="fr_modal_link reg_gov_alternative_ways_to_comment"
+            data-modal-title="Alternative Ways to Comment"
+            data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">
+            alternative ways to comment
+          </a>
+        <% else %>
+          <%= link_to 'alternative ways to comment',
+            '#addresses',
+            class: 'alternative_ways_to_comment addresses' %>
+        <% end %>
+        or you may also comment via Regulations.gov at,
+        <%# TODO link_to @comment.document.calculated_comment_url, @comment.document.calculated_comment_url %>.
+      </p>
+    </div>
+
+    <%= semantic_form_for 'comment', url: '#', html: {
+      id: "new_comment",
+        data: {
+          document_number: nil,
+          agency: nil
+        }
+      } do |f| %>
+      <% if false && @comment_reloaded %>
+        <div class="notice message comment_reloaded">
+          It appears that you have attempted to comment on this document before
+          so we've restored your progress. <br>
+          <a href="#" id="comment-start-over">Start over</a>.
+        </div>
+      <% end %>
+
+      <% if false && @comment.errors.present? %>
+        <div class="errors">
+          <%= @comment.human_error_messages %>
+        </div>
+      <% end %>
+
+      <%= f.inputs do %>
+        <li class="public text input required">
+          <label for="comment[comment]" class="label">
+            Comment
+            <abbr title="required">*</abbr>
+          </label>
+          <textarea rows="20" id="comment" name="comment[comment]">TEST COMMENT</textarea>
+          <p class="inline-hints">
+          </p>
+        </li>
+        <hr>
+      <% end %>
+
+      <%= f.actions do %>
+        <%= f.action :submit, as: :input,
+          label: "Submit Comment",
+          #wrapper_html: {class: 'commit button disabled'},
+          #button_html: {disabled: 'create disabled'}
+          wrapper_html: {class: 'commit button'},
+          button_html: {disabled: 'create'}
+        %>
+        <%= content_tag(
+          :li,
+          link_to(
+            'Preview Comment',
+            '#',
+            :class => 'comment_preview'
+          )
+        ) %>
+      <% end %>
+    <% end %>
+
+  </div> <!-- end comment_form_wrapper -->
+</div>
