@@ -3,4 +3,4 @@ class @FR2.Analytics
     @trackGAEvent category, agency, documentNumber
 
   @trackGAEvent: (category, action, label)->
-    gtag('event', category, {'event_action': action, 'event_label': label})
+    # gtag('event', category, {'event_action': action, 'event_label': label})

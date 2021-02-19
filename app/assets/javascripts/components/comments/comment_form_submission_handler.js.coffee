@@ -26,41 +26,46 @@ class @FR2.CommentFormSubmissionHandler
       .attr 'value', 'Submitting Comment'
 
   submitForm: (options)->
-    settings = {
-      url: @commentFormEl().attr 'action'
-      dataType: 'html'
-      type: 'POST'
-      data: @commentFormEl().serialize()
-    }
+    # TODO: implement actual form submissions
+    console.log('Submitting form:')
+    _.each @commentFormEl().find('input,textarea'), (el) ->
+      console.log(el.name + ': ' + el.value)
+    # console.log(@commentFormEl().serialize())
+    #settings = {
+    #  url: @commentFormEl().attr 'action'
+    #  dataType: 'html'
+    #  type: 'POST'
+    #  data: @commentFormEl().serialize()
+    #}
 
-    agency = @commentFormEl().data('agency')
-    documentNumber = @commentFormEl().data('document-number')
+    #agency = @commentFormEl().data('agency')
+    #documentNumber = @commentFormEl().data('document-number')
 
-    submitHandler = this
+    #submitHandler = this
 
-    $.extend settings, options
+    #$.extend settings, options
 
-    $.ajax {
-      url: settings.url
-      type: settings.type
-      dataType: settings.dataType
-      data: settings.data
-      success: (response)->
-        submitHandler.success response
-        submitHandler.trackCommentFormSubmissionSuccess()
+    #$.ajax {
+    #  url: settings.url
+    #  type: settings.type
+    #  dataType: settings.dataType
+    #  data: settings.data
+    #  success: (response)->
+    #    submitHandler.success response
+    #    submitHandler.trackCommentFormSubmissionSuccess()
 
-      error: (response)->
-        if response.status == 422
-          submitHandler.trackCommentFormSubmissionError(
-            'Comment: Submit Comment Form Validation Error'
-          )
-        else
-          submitHandler.trackCommentFormSubmissionError(
-            "Comment: Submit Comment Form Error #{response.error}"
-          )
+    #  error: (response)->
+    #    if response.status == 422
+    #      submitHandler.trackCommentFormSubmissionError(
+    #        'Comment: Submit Comment Form Validation Error'
+    #      )
+    #    else
+    #      submitHandler.trackCommentFormSubmissionError(
+    #        "Comment: Submit Comment Form Error #{response.error}"
+    #      )
 
-        submitHandler.error response
-    }
+    #    submitHandler.error response
+    #}
 
   trackCommentFormSubmissionSuccess: ->
     @commentFormHandler.trackCommentEvent 'Comment: Submit Comment Form Success'
@@ -75,8 +80,9 @@ class @FR2.CommentFormSubmissionHandler
         .html response
         .hide()
 
-      @ajaxCommentData
-        .append successPage
+      # TODO: confirm removal: now reusing same form instead of fetching
+      # @ajaxCommentData
+        # .append successPage
       @ajaxCommentData
         .animate {height: successPage.css 'height'}, 800
       successPage
@@ -108,8 +114,9 @@ class @FR2.CommentFormSubmissionHandler
         .html response.responseText
         .hide()
 
-      @ajaxCommentData
-        .append commentPage
+      # TODO: confirm removal: now reusing same form instead of fetching
+      # @ajaxCommentData
+        # .append commentPage
       @ajaxCommentData
         .animate {height: commentPage.css 'height'}, 800
       commentPage
@@ -118,7 +125,7 @@ class @FR2.CommentFormSubmissionHandler
 
   _rollUpCommentAndReplace: (response, replaceWith)->
     @ajaxCommentData = $('.ajax-comment-data')
-    commentWrapper = @ajaxCommentData.find '.comment_wrapper'
+    commentWrapper = $('.comment_wrapper')
 
     @ajaxCommentData
       .animate {height: '42px'}, 400
@@ -126,5 +133,6 @@ class @FR2.CommentFormSubmissionHandler
       .scrollintoview {duration: 400}
 
     commentWrapper.slideUp 400, ->
-      commentWrapper.remove()
-      replaceWith response
+      # TODO: confirm removal: now reusing same form instead of fetching
+      # commentWrapper.remove()
+      # replaceWith response

@@ -1,9 +1,11 @@
+<%# TODO: remove @comment %>
 <% @comment = Comment.new %>
 <div class="comment_wrapper">
   <%# TODO: due date %>
   <div class="comment_form_wrapper">
     <div class="instructions">
-      <%# TODO esi site_notification_path(identifier: :comment) %>
+      <%# TODO: handle esi %>
+      <%# esi site_notification_path(identifier: :comment) %>
 
       <% if false && @comment.comment_form.comments_close_at %>
         <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
@@ -31,7 +33,8 @@
           class="reg_gov_comment_tips"
           target="_blank">
           tips for submitting an effective comment
-        </a><%# TODO @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+        </a><%# @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+        <%# TODO: handle posting guidelines %>
 
         <% if false && @comment.comment_form.posting_guidelines %>
           and this agency has also provided
@@ -64,7 +67,8 @@
             class: 'alternative_ways_to_comment addresses' %>
         <% end %>
         or you may also comment via Regulations.gov at,
-        <%# TODO link_to @comment.document.calculated_comment_url, @comment.document.calculated_comment_url %>.
+        <%# link_to @comment.document.calculated_comment_url, @comment.document.calculated_comment_url %>.
+        <%# TODO: handle document.caluclated_comment_url if necessary %>
       </p>
     </div>
 
@@ -75,6 +79,7 @@
           agency: nil
         }
       } do |f| %>
+      <%# TODO: handle comment reloading %>
       <% if false && @comment_reloaded %>
         <div class="notice message comment_reloaded">
           It appears that you have attempted to comment on this document before
@@ -83,6 +88,7 @@
         </div>
       <% end %>
 
+      <%# TODO: support error states %>
       <% if false && @comment.errors.present? %>
         <div class="errors">
           <%= @comment.human_error_messages %>
@@ -90,6 +96,13 @@
       <% end %>
 
       <%= f.inputs do %>
+        <li class="input hidden">
+          <%= hidden_field_tag(
+              'comment[secret]',
+              nil
+            ) %>
+        </li>
+
         <li class="public text input required">
           <label for="comment[comment]" class="label">
             Comment
@@ -103,6 +116,7 @@
       <% end %>
 
       <%= f.actions do %>
+        <%# TODO: Ensure that submit button has appropriate classes for disabling/enabling based on form state %>
         <%= f.action :submit, as: :input,
           label: "Submit Comment",
           #wrapper_html: {class: 'commit button disabled'},

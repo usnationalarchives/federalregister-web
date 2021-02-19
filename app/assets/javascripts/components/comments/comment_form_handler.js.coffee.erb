@@ -1,5 +1,5 @@
 class @FR2.CommentFormHandler
-  constructor: ($formWrapper)->
+  constructor: ($formWrapper, initialized)->
     @formWrapper = $formWrapper
 
     @commentFormStore = new FR2.CommentFormStore this
@@ -9,6 +9,7 @@ class @FR2.CommentFormHandler
     @commentFormSuccessHandler = new FR2.CommentFormSuccessHandler this
 
     @startComment()
+    @initialized = initialized
 
     if window.location.hash == "#open-comment"
       @openCommentFromUrlHash()
@@ -17,11 +18,16 @@ class @FR2.CommentFormHandler
     @removeEvents()
 
     @commentForm.initialize()
-    @commentFormFileUploader.initialize()
-    @commentFormStore.addStorageEvents()
+    # TODO: restore file upload functionality
+    # @commentFormFileUploader.initialize()
+    # TODO: restore form saving
+    # @commentFormStore.addStorageEvents()
 
-    @addEvents()
-    @decorate()
+    # TODO: Refine - Prevent duplicate events if the box is closed and opened again
+    unless @initialized
+      @addEvents()
+      @decorate()
+
     @refreshDocStickyNav()
 
   successPageReady: ->
@@ -38,6 +44,7 @@ class @FR2.CommentFormHandler
   decorate: ->
     @addPublicIcons()
     @addTooltipToPublicIcons()
+    # TODO: review this after/during restore of upload functionality
     @improveUploadButton()
 
   commentFormEl: ->
@@ -146,7 +153,7 @@ class @FR2.CommentFormHandler
     @fileUploadButtonWrapper().append addFileButton
 
     @fileUploadButton().on 'hover', ()=>
-      addFileButton.toggleClass('hover');
+      addFileButton.toggleClass('hover')
 
   loadCommentForm: ->
     @commentFormLoadHandler.load()
@@ -164,8 +171,9 @@ class @FR2.CommentFormHandler
       FR2.Modal.displayModal modalTitle, modalHtml
 
   submitCommentForm: ->
-    @commentFormStore.storeComment()
-    @trackCommentFormSubmitStart()
+    # TODO: restore comment saving and tracking
+    # @commentFormStore.storeComment()
+    # @trackCommentFormSubmitStart()
     @commentFormSubmissionHandler.submit()
 
   startComment: ->
@@ -202,7 +210,7 @@ class @FR2.CommentFormHandler
       @commentFormStore.clearSavedFormState()
 
       ajaxCommentData = $('.ajax-comment-data')
-      commentWrapper = ajaxCommentData.find '.comment_wrapper'
+      commentWrapper = $('.comment_wrapper')
 
       ajaxCommentData
         .animate {height: '42px'}, 400
@@ -240,7 +248,7 @@ class @FR2.CommentFormHandler
 
   closeCommentForm: ->
     ajaxCommentData = $('.ajax-comment-data')
-    commentWrapper = ajaxCommentData.find '.comment_wrapper'
+    commentWrapper = $('.comment_wrapper')
 
     ajaxCommentData
       .animate {height: '42px'}, 400
@@ -248,8 +256,9 @@ class @FR2.CommentFormHandler
        .scrollintoview {duration: 500}
 
     commentWrapper.slideUp 400, =>
-      commentWrapper.remove()
-      ajaxCommentData.html('').hide()
+      # TODO: confirm removal: now reusing same form instead of fetching
+      # commentWrapper.remove()
+      # ajaxCommentData.html('').hide()
       @resetCommentHeader()
       @refreshDocStickyNav()
 
@@ -268,7 +277,7 @@ class @FR2.CommentFormHandler
       )(data)
     )
     commentBar.height('inherit')
-    new FR2.CommentFormHandler(commentBar)
+    new FR2.CommentFormHandler(commentBar, true)
 
   storeComment: ->
     @commentFormStore.storeComment()

@@ -15,7 +15,9 @@ class @FR2.CommentFormLoadHandler
     $('.ajax-comment-data')
 
   setup: ->
-    @commentDiv = $('<div>')
+    # TODO: check to see if this is valid reuse of this element.
+    # We do not want to create new elements if the user closes the form
+    @commentDiv = $('.ajax-comment-data') || $('<div>')
       .addClass 'ajax-comment-data'
       .hide()
 
@@ -54,34 +56,40 @@ class @FR2.CommentFormLoadHandler
 
   load: ->
     @uiTriggerLoading()
-    @generateAjaxOptions()
+    # TODO: stored comments
+    # @generateAjaxOptions()
     @loadForm()
 
 
   loadForm: ->
-    settings = {
-      url: ''
-      dataType: 'html'
-      type: 'GET'
-      data: ''
-      timeout: 30000
-    }
+    # TODO: stored comments
+    # settings = {
+    #   url: ''
+    #   dataType: 'html'
+    #   type: 'GET'
+    #   data: ''
+    #   timeout: 30000
+    # }
 
     loadHandler = this
 
-    $.extend settings, @ajaxOptions
+    # TODO: stored comments
+    # $.extend settings, @ajaxOptions
 
-    $.ajax {
-      url: settings.url
-      type: settings.type
-      dataType: settings.dataType
-      data: settings.data
-      timeout: settings.timeout
-      success: (response)->
-        loadHandler.success response
-      error: (response)->
-        loadHandler.error response
-    }
+    loadHandler.success()
+
+    # TODO: stored comments
+    # $.ajax {
+    #   url: settings.url
+    #   type: settings.type
+    #   dataType: settings.dataType
+    #   data: settings.data
+    #   timeout: settings.timeout
+    #   success: (response)->
+    #     loadHandler.success response
+    #   error: (response)->
+    #     loadHandler.error response
+    # }
 
   trackCommentFormOpenSuccess: ()->
     @commentFormHandler.trackCommentEvent 'Comment: Open Comment Form Success'
@@ -89,30 +97,30 @@ class @FR2.CommentFormLoadHandler
   trackCommentFormOpenError: (error)->
     @commentFormHandler.trackCommentEvent "Comment: Open Comment Form #{error}"
 
-  success: (response)->
-    @generateCommentForm response
+  success: ->
+    @generateCommentForm()
 
     commentFormWrapper = @commentFormWrapper
 
     @loadingDiv.fadeOut 600, ()=>
       @commentFormHandler.updateCommentHeader()
 
-      ajaxCommentData = @ajaxCommentData()
-      ajaxCommentData
-        .css 'height', '42px'
-        .animate(
-          { height: commentFormWrapper.css 'height' }, 800, ()->
-            ajaxCommentData.css 'height', 'auto'
-        )
+    ajaxCommentData = @ajaxCommentData()
+    ajaxCommentData
+      .css 'height', '42px'
+      .animate(
+        { height: commentFormWrapper.css 'height' }, 800, ()->
+          ajaxCommentData.css 'height', 'auto'
+      )
 
-      commentFormWrapper.slideDown 800, ()=>
-        @commentFormHandler.commentFormReady()
-        @addTrackingEvents()
-        @trackCommentFormOpenSuccess()
+    commentFormWrapper.slideDown 800, () =>
+      @commentFormHandler.commentFormReady()
+      # TODO: tracking
+      # @addTrackingEvents()
+      # @trackCommentFormOpenSuccess()
 
   error: (response)->
     if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1" || response.getResponseHeader('Comments-No-Longer-Accepted') == "1" || response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"
-      
       responseText = JSON.parse response.responseText
       modalTitle = responseText.modalTitle
       modalHtml  = responseText.modalHtml
@@ -170,10 +178,7 @@ class @FR2.CommentFormLoadHandler
     $('.ajax-comment-data').fadeOut 600
 
   generateCommentForm: (response)->
-    @commentFormWrapper = $('<div>')
-      .addClass 'comment_wrapper'
-      .html response
-      .hide()
+    @commentFormWrapper = $('.comment_wrapper')
 
     @commentDiv.append @commentFormWrapper
 
