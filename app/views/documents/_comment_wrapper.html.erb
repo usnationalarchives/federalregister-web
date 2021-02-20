@@ -1,5 +1,22 @@
-<%# TODO: remove @comment %>
-<% @comment = Comment.new %>
+<%# TODO: Revise form field configuration options  %>
+<% @comment = Comment.new(
+    comment_form: RegulationsDotGov::CommentForm.new(
+      nil,
+      {
+        'agencyName' => 'Test Agency',
+        'fieldList' => [
+          {'attributeName' => 'comment', 'label' => 'Comment', 'uiControl' => 'text'},
+          {'attributeName' => 'email', 'label' => 'Email Address', 'uiControl' => 'text'},
+          {'attributeName' => 'firstName', 'label' => 'First Name', 'uiControl' => 'text'},
+          {'attributeName' => 'lastName', 'label' => 'Last Name', 'uiControl' => 'text'},
+          {'attributeName' => 'city', 'label' => 'City', 'uiControl' => 'text'},
+          {'attributeName' => 'state', 'label' => 'State', 'uiControl' => 'text'},
+          {'attributeName' => 'zip', 'label' => 'Zip', 'uiControl' => 'text'},
+          {'attributeName' => 'Country', 'label' => 'Zip', 'uiControl' => 'text'},
+        ]
+      }
+    )
+   ).decorate %>
 <div class="comment_wrapper">
   <%# TODO: due date %>
   <div class="comment_form_wrapper">
@@ -102,6 +119,12 @@
               nil
             ) %>
         </li>
+
+        <% @comment.comment_form.fields.reject{|field| field.name == "general_comment"}.each do |field| %>
+          <%#= TODO: Pass in comment_input_field_options(field) as a second argument here. %>
+          <%= f.input field.name %>
+        <% end %>
+
 
         <li class="public text input required">
           <label for="comment[comment]" class="label">
