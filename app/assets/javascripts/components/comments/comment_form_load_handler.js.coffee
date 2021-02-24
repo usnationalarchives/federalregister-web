@@ -42,24 +42,19 @@ class @FR2.CommentFormLoadHandler
     @commentDiv.slideDown 800
     @commentFormHandler.refreshDocStickyNav()
 
-  generateAjaxOptions: ->
+  loadStoredComment: ->
     if @commentFormStore.hasStoredComment()
-      @ajaxOptions = {
-        url: "/my/documents/#{@documentNumber}/comments/reload.html"
-        type: 'POST'
-        data: @commentFormStore.getStoredComment()
-      }
-    else
-      @ajaxOptions = {
-        url: "/my/documents/#{@documentNumber}/comments/new"
-      }
+      @commentFormHandler
+        .commentForm
+        .loadComment(@commentFormStore.getStoredComment())
 
   load: ->
     @uiTriggerLoading()
-    # TODO: stored comments
     # @generateAjaxOptions()
     @loadForm()
-
+    # TODO: ensure that the timing with the animation works.
+    # we need loadForm to initialize the @commentForm before populating
+    @loadStoredComment()
 
   loadForm: ->
     # TODO: stored comments

@@ -48,10 +48,11 @@ class @FR2.CommentFormStore
       .filter ':input[name!="comment[confirm_submission]"]'
       .filter ':input[name!="commit"]'
 
-    activeInputs = _.filter formInputs, (input)->
-      $(input).val() != ""
-
-    $(activeInputs).serialize()
+    _.reduce formInputs, (memo, input)->
+      if $(input).val() != ""
+        memo[input.name] = input.value
+      memo
+    , {}
 
   clearSavedFormState: ->
     @setStoredComment null

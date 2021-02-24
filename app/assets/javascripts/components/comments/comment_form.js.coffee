@@ -176,6 +176,10 @@ class @FR2.CommentForm
   storeComment: ->
     @commentFormHandler.storeComment()
 
+  loadComment: (commentData) ->
+    _.map commentData, (value, name) =>
+      @commentFormEl().find("[name='" + name + "']").val(value)
+
   enableSubmitButton: ->
     @submitButtonWrapper()
       .removeClass 'disabled'
