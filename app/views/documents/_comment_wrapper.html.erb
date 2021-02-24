@@ -1,22 +1,3 @@
-<%# TODO: Revise form field configuration options  %>
-<% @comment = Comment.new(
-    comment_form: RegulationsDotGov::CommentForm.new(
-      nil,
-      {
-        'agencyName' => 'Test Agency',
-        'fieldList' => [
-          {'attributeName' => 'comment', 'label' => 'Comment', 'uiControl' => 'text'},
-          {'attributeName' => 'email', 'label' => 'Email Address', 'uiControl' => 'text'},
-          {'attributeName' => 'firstName', 'label' => 'First Name', 'uiControl' => 'text'},
-          {'attributeName' => 'lastName', 'label' => 'Last Name', 'uiControl' => 'text'},
-          {'attributeName' => 'city', 'label' => 'City', 'uiControl' => 'text'},
-          {'attributeName' => 'state', 'label' => 'State', 'uiControl' => 'text'},
-          {'attributeName' => 'zip', 'label' => 'Zip', 'uiControl' => 'text'},
-          {'attributeName' => 'Country', 'label' => 'Zip', 'uiControl' => 'text'},
-        ]
-      }
-    )
-   ).decorate %>
 <div class="comment_wrapper">
   <%# TODO: due date %>
   <div class="comment_form_wrapper">
@@ -89,13 +70,14 @@
       </p>
     </div>
 
-    <%= semantic_form_for 'comment', url: '#', html: {
+    <%= semantic_form_for 'v4Comment', url: '#', html: {
       id: "new_comment",
         data: {
           document_number: nil,
           agency: nil
         }
       } do |f| %>
+
       <%# TODO: handle comment reloading %>
       <% if false && @comment_reloaded %>
         <div class="notice message comment_reloaded">
@@ -120,22 +102,30 @@
             ) %>
         </li>
 
-        <% @comment.comment_form.fields.reject{|field| field.name == "general_comment"}.each do |field| %>
-          <%#= TODO: Pass in comment_input_field_options(field) as a second argument here. %>
-          <%= f.input field.name %>
-        <% end %>
-
-
-        <li class="public text input required">
-          <label for="comment[comment]" class="label">
-            Comment
-            <abbr title="required">*</abbr>
-          </label>
-          <textarea rows="20" id="comment" name="comment[comment]">TEST COMMENT</textarea>
-          <p class="inline-hints">
-          </p>
-        </li>
+        <%# TODO: Consider getting the JS prevalidation working here for the max field size %>
+        <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 2, 'data-size-warn-at' => 2, class: 'public'} %>
         <hr>
+        <%= f.input :email, required: false %>
+        <%= f.input :submitterType, label: 'Submitter Type (will be hidden via JS)', collection:
+          [
+            'Anonymous',
+            'Individual',
+            'Organization',
+          ]
+        %>
+        <%# Individual Submitter Fields %>
+        <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public'} %>
+        <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public'} %>
+        <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
+        <%= f.input :state, collection: state_options, required: false, wrapper_html: {class: 'public'} %>
+        <%= f.input :zip, required: false %>
+        <%= f.input :country, collection: country_options, required: false  %>
+        <%= f.input :phone, required: false %>
+
+        <%# Organization Submitter Fields %>
+        <%= f.input :organizationType, label: "Organization Type", wrapper_html: {class: 'public'} %>
+        <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
+
       <% end %>
 
       <%= f.actions do %>

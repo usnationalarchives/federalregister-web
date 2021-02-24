@@ -82,7 +82,7 @@
   padding-top: 10px;
 }
 
-.formtastic.comment {
+.formtastic.comment, .formtastic.v4Comment  {
   background-color: $fr-gray-10;
   border-radius: 5px;
   padding: 15px;
@@ -146,7 +146,7 @@
   li#comment_us_state_input select + span.public { left: 2px; }
 }
 
-.formtastic.comment fieldset {
+.formtastic.comment fieldset, .formtastic.v4Comment fieldset {
   .label {
     display: inline-block;
     font-size: 15px;
@@ -173,7 +173,7 @@
   }
 }
 
-.formtastic.comment {
+.formtastic.comment, .formtastic.v4Comment {
   input[type='text'],
   select,
   textarea {
@@ -216,7 +216,7 @@
   margin-bottom: 20px;
 }
 
-.formtastic.comment {
+.formtastic.comment, .formtastic.v4Comment {
   .actions {
     margin-bottom: 30px;
     margin-left: 210px;
