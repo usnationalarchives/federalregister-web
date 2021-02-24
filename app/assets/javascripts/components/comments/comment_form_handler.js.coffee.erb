@@ -158,6 +158,9 @@ class @FR2.CommentFormHandler
   loadCommentForm: ->
     @commentFormLoadHandler.load()
 
+  resetCommentForm: ->
+    @commentFormEl().trigger("reset")
+
   openCommentFromUrlHash: ->
     # we want the dom element so we can check for existence rather than
     # a jquery empty set []
@@ -205,21 +208,23 @@ class @FR2.CommentFormHandler
     @commentFormEl().on 'click', 'a#comment-start-over', (e)=>
       e.preventDefault()
 
-      @trackCommentFormStartOver()
+      # TODO: restore tracking
+      # @trackCommentFormStartOver()
 
       @commentFormStore.clearSavedFormState()
 
-      ajaxCommentData = $('.ajax-comment-data')
+      # ajaxCommentData = $('.ajax-comment-data')
       commentWrapper = $('.comment_wrapper')
 
-      ajaxCommentData
-        .animate {height: '42px'}, 400
-      ajaxCommentData
-        .scrollintoview {duration: 400}
+      # ajaxCommentData
+        # .animate {height: '42px'}, 400
+      # ajaxCommentData
+        # .scrollintoview {duration: 400}
 
-      commentWrapper.slideUp 400, =>
-        commentWrapper.remove()
-        @loadCommentForm()
+      # commentWrapper.slideUp 400, =>
+      @resetCommentForm()
+      # TODO: reset files
+      @hideReloadedCommentInformationBox()
 
   updateCommentHeader: ->
     flashMessage = $('#comment-bar.comment p')
@@ -284,3 +289,9 @@ class @FR2.CommentFormHandler
 
   addStorageEvents: ->
     @commentFormStore.addStorageEvents()
+
+  showReloadedCommentInformationBox: ->
+    @commentFormEl().find(".comment_reloaded").show()
+
+  hideReloadedCommentInformationBox: ->
+    @commentFormEl().find(".comment_reloaded").slideUp 400, ->

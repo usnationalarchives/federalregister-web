@@ -214,6 +214,9 @@
 
 .comment_wrapper .notice.comment_reloaded {
   margin-bottom: 20px;
+  &.hidden {
+    display: none;
+  }
 }
 
 .formtastic.comment, .formtastic.v4Comment {

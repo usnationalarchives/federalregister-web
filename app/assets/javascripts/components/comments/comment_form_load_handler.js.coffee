@@ -44,6 +44,7 @@ class @FR2.CommentFormLoadHandler
 
   loadStoredComment: ->
     if @commentFormStore.hasStoredComment()
+      @commentFormHandler.showReloadedCommentInformationBox()
       @commentFormHandler
         .commentForm
         .loadComment(@commentFormStore.getStoredComment())

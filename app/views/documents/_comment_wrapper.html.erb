@@ -79,14 +79,11 @@
         }
       } do |f| %>
 
-      <%# TODO: handle comment reloading %>
-      <% if false && @comment_reloaded %>
-        <div class="notice message comment_reloaded">
-          It appears that you have attempted to comment on this document before
-          so we've restored your progress. <br>
-          <a href="#" id="comment-start-over">Start over</a>.
-        </div>
-      <% end %>
+      <div class="notice message comment_reloaded hidden">
+        It appears that you have attempted to comment on this document before
+        so we've restored your progress. <br>
+        <a href="#" id="comment-start-over">Start over</a>.
+      </div>
 
       <%# TODO: support error states %>
       <% if false && @comment.errors.present? %>
