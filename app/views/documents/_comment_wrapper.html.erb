@@ -102,6 +102,7 @@
 
         <%# TODO: Consider getting the JS prevalidation working here for the max field size %>
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 2, 'data-size-warn-at' => 2, class: 'public'} %>
+        <%= render partial: "file_upload_input" %>
         <hr>
         <%= f.input :email, required: false %>
         <%= f.input :sendEmailReceipt,
@@ -128,7 +129,6 @@
         <%# Organization Submitter Fields %>
         <%= f.input :organizationType, label: "Organization Type", wrapper_html: {class: 'public'} %>
         <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
-
       <% end %>
 
       <%= f.actions do %>
