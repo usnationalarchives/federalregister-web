@@ -74,7 +74,7 @@
     <%= semantic_form_for 'v4Comment', url: '#', html: {
       id: "new_comment",
         data: {
-          document_number: nil,
+          document_number: document.document_number,
           agency: nil
         }
       } do |f| %>
@@ -104,6 +104,11 @@
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 2, 'data-size-warn-at' => 2, class: 'public'} %>
         <hr>
         <%= f.input :email, required: false %>
+        <%= f.input :sendEmailReceipt,
+              label: 'Send Email Receipt',
+              as: :boolean,
+              required: false,
+              hint: 'Opt to receive email confirmation of submission and tracking number from Regulations.gov' %>
         <%= f.input :submitterType, label: 'Submitter Type (will be hidden via JS)', collection:
           [
             'Anonymous',
