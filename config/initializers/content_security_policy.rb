@@ -78,7 +78,11 @@ policy.font_src :self
     # zendesk
     'https://ekr.zdassets.com',
     'https://ofr.zendesk.com',
-  ]
+
+    # Regulations.gov
+    'https://api.regulations.gov',
+    (Rails.env.development? ? 'https://api-staging.regulations.gov' : nil)
+  ].compact
 
   policy.connect_src *connect_srcs
   policy.frame_ancestors :none
