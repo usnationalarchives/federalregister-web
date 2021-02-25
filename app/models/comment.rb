@@ -10,22 +10,24 @@ class Comment < ApplicationRecord
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
 
-  before_create :persist_comment_data
+  # TODO: Determine whether we care to persist comment data
+  # before_create :persist_comment_data
   # TODO: implement delete_attachments
   #after_create :delete_attachments
 
   attr_accessor :secret, :confirm_submission, :response
   attr_reader :attachments, :comment_form, :followup_document_notification
 
-  validate :required_fields_are_present
-  validate :fields_do_not_exceed_maximum_length
-  validate :not_too_many_attachments
-  validate :attachments_are_uniquely_named
-  validate :all_attachments_could_be_found
+  #TODO: Determine what validations are necessary in a V4 world since we've disabled all existing validations.
+  # validate :required_fields_are_present
+  # validate :fields_do_not_exceed_maximum_length
+  # validate :not_too_many_attachments
+  # validate :attachments_are_uniquely_named
+  # validate :all_attachments_could_be_found
 
-  validates_inclusion_of :confirm_submission,
-    :in => [true, 1, "1"],
-    :message => "You must confirm the above statement."
+  # validates_inclusion_of :confirm_submission,
+  #   :in => [true, 1, "1"],
+  #   :message => "You must confirm the above statement."
 
   validates_presence_of :document_number
 
