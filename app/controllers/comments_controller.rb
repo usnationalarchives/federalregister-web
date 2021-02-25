@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
 
       #TODO: Confirm whether we can assume that an agency is participating if they're in the YML file?
-      if comment.agency_participating#@comment.agency_participates_on_regulations_dot_gov?
+      if @comment.agency_participating#@comment.agency_participates_on_regulations_dot_gov?
         @comment.comment_publication_notification = true
       end
 
