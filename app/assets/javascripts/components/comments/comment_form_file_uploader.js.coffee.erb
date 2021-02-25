@@ -4,6 +4,7 @@ class @FR2.CommentFormFileUploader
   @ATTACHED_COMMENT_MESSAGE: 'See attached file(s)'
 
   constructor: (commentFormHandler)->
+    @fileUploadSubmissionKey = null
     @commentFormHandler = commentFormHandler
 
   initialize: ->
@@ -37,27 +38,64 @@ class @FR2.CommentFormFileUploader
   attachedCommentMessage: ->
     @constructor.ATTACHED_COMMENT_MESSAGE
 
+  fetchFileUploadSubmissionKey: ->
+    deferred = $.Deferred()
+
+    unless @fileUploadSubmissionKey
+      $.ajax(
+        url:"<%= Settings.regulations_dot_gov.api_base_url %>/submission-keys",
+        type: "POST",
+        contentType: "application/vnd.api+json",
+        crossDomain: true,
+        data: JSON.stringify({ data: { type: "submission-keys" }}),
+        dataType: 'json',
+        beforeSend: (xhr, settings) ->
+          xhr.setRequestHeader(
+            'x-api-key',
+            "<%= Settings.regulations_dot_gov.api_key %>"
+          )
+        success: (data, status) =>
+          @fileUploadSubmissionKey = data.data.id
+          deferred.resolve(@fileUploadSubmissionKey)
+        error: () ->
+          @fileUploadSubmissionKey = "key"
+          deferred.reject()
+        complete: ->
+      )
+    else
+      deferred.resolve(@fileUploadSubmissionKey)
+
+    return deferred.promise()
+
   attachUploader: ->
     @uploaderEl = $( @commentFormEl().find('#fileupload') )
+    uploader = @
 
     @uploader = @uploaderEl.fileupload(
       {
-        url: '/my/comment_attachments.json'
-        autoUpload: true,
+        url: ''
         dataType: 'json',
-        processQueue: [
-          {
-            action: 'validate',
-            always: true,
-            acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
-            maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
-            maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
-          }
-        ]
-        formData: {
-          'comment_attachment[secret]': $('#comment_secret').val()
-          'authenticity_token': @commentFormEl().find('input[name=authenticity_token]').val()
-        }
+        autoUpload: true,
+        add: (e, data) =>
+          # Ensure populated submission key before uploading document
+          @fetchFileUploadSubmissionKey()
+            .done (submissionKey) =>
+              $.each data.files, (i, file) =>
+                # TODO: Upload files
+                console.log('uploading ' + file.name)
+                # data.url = XXXX
+                # jqXHR = data.submit()
+                  # .success (result, status, jqXHR) ->
+                    # console.log('success')
+                  # .error (result, status, jqXHR) ->
+                    # console.log('error')
+                  # .complete (result, status, jqXHR) ->
+                    # console.log('complete')
+            .fail () =>
+              # TODO: handle failures
+              console.log('Failed to fetch file upload submission key')
+        # processQueue: [],
+        # formData: {},
         filesContainer: @attachmentContainer()
         uploadTemplateId: null
         downloadTemplateId: null
@@ -67,7 +105,7 @@ class @FR2.CommentFormFileUploader
           template o
         downloadTemplate: (o)->
           source = $("#comment-attachment-complete-template").html()
-          template = Handlebars.compile source;
+          template = Handlebars.compile source
           template o
       }
     )
