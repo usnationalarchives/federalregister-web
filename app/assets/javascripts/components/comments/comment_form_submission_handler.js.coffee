@@ -81,8 +81,8 @@ class @FR2.CommentFormSubmissionHandler
         .hide()
 
       # TODO: confirm removal: now reusing same form instead of fetching
-      # @ajaxCommentData
-        # .append successPage
+      @ajaxCommentData
+        .append successPage
       @ajaxCommentData
         .animate {height: successPage.css 'height'}, 800
       successPage
@@ -115,8 +115,8 @@ class @FR2.CommentFormSubmissionHandler
         .hide()
 
       # TODO: confirm removal: now reusing same form instead of fetching
-      # @ajaxCommentData
-        # .append commentPage
+      @ajaxCommentData
+        .append commentPage
       @ajaxCommentData
         .animate {height: commentPage.css 'height'}, 800
       commentPage
@@ -133,6 +133,8 @@ class @FR2.CommentFormSubmissionHandler
       .scrollintoview {duration: 400}
 
     commentWrapper.slideUp 400, ->
+      #TODO: Formerly, the replaceWith function was being called to replace with page contents.  For some reason this wasn't working with the new code (likely because we're not replacing the form in totality any longer).  This is a replacement call for rendering.
+      commentWrapper.html(response).slideDown 800
       # TODO: confirm removal: now reusing same form instead of fetching
       # commentWrapper.remove()
       # replaceWith response
