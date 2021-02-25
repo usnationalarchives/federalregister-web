@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     reg_gov_agency_name = reg_gov_document_id.try(:split, '-').try(:first)
     reg_gov_agency      = RegulationsDotGov::CommentForm::AGENCY_NAMES[reg_gov_agency_name]
 
-    @comment = Comment.create!(
+    @comment = Comment.new(
       document_number:         params['document_number'],
       comment_tracking_number: params['reg_gov_response_data']['id'],
       comment_document_number: reg_gov_document_id,
@@ -43,6 +43,19 @@ class CommentsController < ApplicationController
       agency_participating:    reg_gov_agency.present?,
     )
 
+    if user_signed_in?
+      @comment.user_id = current_user.id
+
+      #TODO: Confirm whether we can assume that an agency is participating if they're in the YML file?
+      if comment.agency_participating#@comment.agency_participates_on_regulations_dot_gov?
+        @comment.comment_publication_notification = true
+      end
+
+      @comment.build_subscription(current_user, request)
+    end
+    @comment.save!
+
+    track_ipaddress "comment_post_success", request.remote_ip
     render_created_comment
   end
 
