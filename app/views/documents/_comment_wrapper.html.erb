@@ -101,6 +101,7 @@
         </li>
 
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'public'} %>
+        <%= render partial: "file_upload_input" %>
         <hr>
         <%= f.input :email, required: false %>
         <%= f.input :sendEmailReceipt,
