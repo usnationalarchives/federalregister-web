@@ -20,6 +20,7 @@ services:
       FR_INTERNAL_BASE_URL: 'https://www.federalregister.gov'
       RAILS_SESSION_KEY: XXXXxxxxXXXXxxxxXXXXxxxxXXXXxxxx
       CONTAINER_PROCESS: rails
+      REG_GOV_API_KEY: xxxxxxxxxxxxxxxxxx
     restart: always
 
   mysql:

@@ -61,6 +61,8 @@ regulations_dot_gov:
   # don't output calls to reg.gov in stdout
   debug_output_enabled: false
   use_beta: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch('USE_REGS_GOV_BETA', true)) %>
+  api_key: <%= ENV["REG_GOV_API_KEY"] %>
+  api_base_url: <%= ENV["REG_GOV_API_BASE_URL"] || "https://api.regulations.gov/v4" %>
 
 
 # document page full text rendering - false means use esi's
