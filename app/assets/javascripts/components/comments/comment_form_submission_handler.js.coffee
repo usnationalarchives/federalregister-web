@@ -30,42 +30,75 @@ class @FR2.CommentFormSubmissionHandler
     console.log('Submitting form:')
     _.each @commentFormEl().find('input,textarea'), (el) ->
       console.log(el.name + ': ' + el.value)
-    # console.log(@commentFormEl().serialize())
-    #settings = {
-    #  url: @commentFormEl().attr 'action'
-    #  dataType: 'html'
-    #  type: 'POST'
-    #  data: @commentFormEl().serialize()
-    #}
+    settings = {
+     url: @commentFormEl().attr 'action'
+     dataType: 'html'
+     type: 'POST'
+     data: @commentFormEl().serialize()
+    }
 
-    #agency = @commentFormEl().data('agency')
-    #documentNumber = @commentFormEl().data('document-number')
+    agency = @commentFormEl().data('agency')
+    documentNumber = @commentFormEl().data('document-number')
 
-    #submitHandler = this
+    submitHandler = this
 
-    #$.extend settings, options
+    $.extend settings, options
 
-    #$.ajax {
-    #  url: settings.url
-    #  type: settings.type
-    #  dataType: settings.dataType
-    #  data: settings.data
-    #  success: (response)->
-    #    submitHandler.success response
-    #    submitHandler.trackCommentFormSubmissionSuccess()
+    #TODO: This is a stub for comment form submission.  It should be made dynamic with the content of the actual reg.gov response.
+    settings.url = "/my/documents/#{documentNumber}/comments"
+    settings.data = {
+      "serializedForm": @commentFormEl().serialize(),
+      "reg_gov_response_data": {
+          "id": "klb-dy99-pl2c",
+          "type": "comments",
+          "attributes": {
+              "zip":                 null,
+              "country":             null,
+              "lastName":            "Anonymous",
+              "city":                null,
+              "receiveDate":         "2021-02-18T21:37:52.238+0000",
+              "submissionKey":       null,
+              "submitterRep":        null,
+              "userId":              "b3bda779-8165-4c17-ad31-f3389d77af3c",
+              "organizationType":    null,
+              "firstName":           "Anonymous",
+              "submissionType":      "API",
+              "submitterType":       "ANONYMOUS",
+              "commentOnDocumentId": "CPSC-2013-0025-0004",
+              "stateProvinceRegion": null,
+              "phone":               null,
+              "organization":        null,
+              "sendEmailReceipt":    false,
+              "numItemsReceived":    0,
+              "files":               null,
+              "comment":             "test comment",
+              "category":            null,
+              "email":               null
+          }
+      }
+    }
 
-    #  error: (response)->
-    #    if response.status == 422
-    #      submitHandler.trackCommentFormSubmissionError(
-    #        'Comment: Submit Comment Form Validation Error'
-    #      )
-    #    else
-    #      submitHandler.trackCommentFormSubmissionError(
-    #        "Comment: Submit Comment Form Error #{response.error}"
-    #      )
+    $.ajax {
+     url: settings.url
+     type: settings.type
+     dataType: settings.dataType
+     data: settings.data
+     success: (response)->
+       submitHandler.success response
+       submitHandler.trackCommentFormSubmissionSuccess()
 
-    #    submitHandler.error response
-    #}
+     error: (response)->
+       if response.status == 422
+         submitHandler.trackCommentFormSubmissionError(
+           'Comment: Submit Comment Form Validation Error'
+         )
+       else
+         submitHandler.trackCommentFormSubmissionError(
+           "Comment: Submit Comment Form Error #{response.error}"
+         )
+
+       submitHandler.error response
+    }
 
   trackCommentFormSubmissionSuccess: ->
     @commentFormHandler.trackCommentEvent 'Comment: Submit Comment Form Success'
