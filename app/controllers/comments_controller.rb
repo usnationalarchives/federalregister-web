@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   with_options(:only => [:new, :reload, :create]) do |during_creation|
     during_creation.layout false
     during_creation.skip_before_action :authenticate_user!
-    during_creation.before_action :build_comment
+    # TODO: Confirm this is unneeded
+    # during_creation.before_action :build_comment
   end
 
   before_action :refresh_current_user, only: :index
@@ -30,6 +31,22 @@ class CommentsController < ApplicationController
   end
 
   def create
+    reg_gov_document_id = params['reg_gov_response_data']['attributes']['commentOnDocumentId']
+    reg_gov_agency_name = reg_gov_document_id.try(:split, '-').try(:first)
+    reg_gov_agency      = RegulationsDotGov::CommentForm::AGENCY_NAMES[reg_gov_agency_name]
+
+    @comment = Comment.create!(
+      document_number:         params['document_number'],
+      comment_tracking_number: params['reg_gov_response_data']['id'],
+      comment_document_number: reg_gov_document_id,
+      agency_name:             reg_gov_agency,
+      agency_participating:    reg_gov_agency.present?,
+    )
+
+    render_created_comment
+  end
+
+  def old_create
     if @comment.valid?
       response = @service.send_to_regulations_dot_gov
 
@@ -81,12 +98,13 @@ class CommentsController < ApplicationController
     @comment.add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
     @comment = CommentDecorator.decorate(@comment)
 
-    begin
-      CommentMailer.comment_copy(@comment.user, @comment).deliver_now if user_signed_in?
-    rescue => exception
-      Rails.logger.error(exception)
-      Honeybadger.notify(exception)
-    end
+    #TODO: Since Reg.gov's API seems to be handling this, it seems like this behavior should go away.  Confirm this is the case
+    # begin
+    #   CommentMailer.comment_copy(@comment.user, @comment).deliver_now if user_signed_in?
+    # rescue => exception
+    #   Rails.logger.error(exception)
+    #   Honeybadger.notify(exception)
+    # end
 
     render action: :show, status: 200
   end

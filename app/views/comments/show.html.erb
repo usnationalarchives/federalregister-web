@@ -37,8 +37,11 @@
     <div class="print">
       <span class="icon-fr2 icon-fr2-print"></span>
       <p>
+        <%#= TODO: Confirm it's fine to just serialize the  %>
         <%= link_to 'Print your comment', '#',
-          :'data-comment-data' => @comment.comment_data.to_json,
+          # :'data-comment-data' => @comment.comment_data.to_json,
+          :'data-comment-data' => {
+          }.to_json,
           :'data-current-document-details' => {
             :title  => @comment.document.title,
             :agency => @comment.agency_name,
