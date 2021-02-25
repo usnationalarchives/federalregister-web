@@ -100,9 +100,7 @@
             ) %>
         </li>
 
-        <%# TODO: Consider getting the JS prevalidation working here for the max field size %>
-        <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 2, 'data-size-warn-at' => 2, class: 'public'} %>
-        <%= render partial: "file_upload_input" %>
+        <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'public'} %>
         <hr>
         <%= f.input :email, required: false %>
         <%= f.input :sendEmailReceipt,
@@ -129,16 +127,27 @@
         <%# Organization Submitter Fields %>
         <%= f.input :organizationType, label: "Organization Type", wrapper_html: {class: 'public'} %>
         <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
+
+        <hr>
+
+        <li class="boolean input required" id='comment_confirmation_text'>
+          <label for="null">
+            You are filing a document into an official docket. Any personal
+            information included in your <strong>comment text and/or uploaded
+            attachment(s)</strong> may be publicly viewable on the web.
+          </label>
+        </li>
+        <%= f.input :confirm_submission,
+          :as => :boolean,
+          :label => 'I read and understand the statement above.' %>
+
       <% end %>
 
       <%= f.actions do %>
-        <%# TODO: Ensure that submit button has appropriate classes for disabling/enabling based on form state %>
         <%= f.action :submit, as: :input,
           label: "Submit Comment",
-          #wrapper_html: {class: 'commit button disabled'},
-          #button_html: {disabled: 'create disabled'}
-          wrapper_html: {class: 'commit button'},
-          button_html: {disabled: 'create'}
+          wrapper_html: {class: 'commit button disabled'},
+          button_html: {disabled: 'create disabled'}
         %>
         <%= content_tag(
           :li,

@@ -13,9 +13,8 @@ class @FR2.CommentForm
   initialize: ->
     @addFormEvents()
     @addCommentSecret()
-    # TODO: restore button disabling
-    # @setSubmitButtonState()
-    # @addSubmitButtonWarningModal()
+    @setSubmitButtonState()
+    @addSubmitButtonWarningModal()
 
   commentFormEl: ->
     if @_commentFormEl == null || @_commentFormEl == undefined || @_commentFormEl == []
@@ -27,11 +26,10 @@ class @FR2.CommentForm
     @commentFormHandler.commentFormFileUploader
 
   addFormEvents: ->
-    # TODO: restore form events
-    # @comboBoxChangeHandler()
-    # @removeErrorsOnChange()
-    # @maxCharacterWarning()
-    # @confirmCommentSubmission()
+    @comboBoxChangeHandler()
+    @removeErrorsOnChange()
+    @maxCharacterWarning()
+    @confirmCommentSubmission()
     @formSubmit()
 
   parseFields: ->
@@ -159,7 +157,8 @@ class @FR2.CommentForm
       @setSubmitButtonState()
 
   setSubmitButtonState: ()->
-    if @commentConfirmationChecked() && @uploaderReady()
+    #TODO: If needed, wire in the equivalent V4 uploader is ready logic.
+    if @commentConfirmationChecked() && true#@uploaderReady()
       @enableSubmitButton()
     else
       @disableSubmitButton()
@@ -204,8 +203,7 @@ class @FR2.CommentForm
       .find '.event-overlay'
 
     if overlay.length == 0
-      # TODO: restore overlay based on validations
-      # overlay = $('<div>').addClass 'event-overlay'
+      overlay = $('<div>').addClass 'event-overlay'
 
       overlay
         .css({
