@@ -14,6 +14,10 @@ a.link { text-decoration: underline !important; }
   visibility: hidden !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .visible {
   visibility: visible !important;
 }

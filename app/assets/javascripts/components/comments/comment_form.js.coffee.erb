@@ -16,6 +16,7 @@ class @FR2.CommentForm
     @setSubmitButtonState()
     @addSubmitButtonWarningModal()
     @_updateCommentCategories()
+    @_addSubmitterTypeHandling()
 
   commentFormEl: ->
     if @_commentFormEl == null || @_commentFormEl == undefined || @_commentFormEl == []
@@ -283,3 +284,22 @@ class @FR2.CommentForm
   _agencyAcronym: ->
     $('#comment-bar').data('reggov-agency')
 
+  _addSubmitterTypeHandling: ->
+    context = this
+    $("#new_comment").on( "click", ".submitter-type-js", () ->
+      dataSubmitterTypeIdentifier = $(this).data('submitter-type')
+
+      # Set submitter type field
+      $("#comment_submitterType").val( context._upcaseFirstWord(dataSubmitterTypeIdentifier) )
+
+      # Toggle field visibility
+      $('.submitter-section-js').each( (index) ->
+        if $(this).data('submitter-type') == dataSubmitterTypeIdentifier
+          $(this).removeClass('hidden')
+        else
+          $(this).addClass('hidden')
+      )
+    )
+
+  _upcaseFirstWord: (string) ->
+    string.charAt(0).toUpperCase() + string.slice(1)

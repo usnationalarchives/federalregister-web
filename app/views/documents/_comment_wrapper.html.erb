@@ -110,28 +110,45 @@
               as: :boolean,
               required: false,
               hint: 'Opt to receive email confirmation of submission and tracking number from Regulations.gov' %>
-        <%= f.input :submitterType, label: 'Submitter Type (will be hidden via JS)', collection:
+
+        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="individual">
+          <%= fr_icon 'megaphone' %>
+          An Individual
+        </span></br>
+        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="organization">
+          <%= fr_icon 'users' %>
+          An Organization
+        </span></br>
+        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="anonymous">
+          <%= fr_icon 'globe' %>
+          Anonymous
+        </span>
+
+        <%= f.input :submitterType, as: :hidden, label: 'Submitter Type (will be hidden via JS)', collection:
           [
             'Anonymous',
             'Individual',
             'Organization',
           ]
         %>
-        <%# Individual Submitter Fields %>
-        <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public'} %>
-        <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public'} %>
-        <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
-        <%= f.input :state, collection: state_options, required: false, wrapper_html: {class: 'public'} %>
-        <%= f.input :zip, required: false %>
-        <%= f.input :country, collection: country_options, required: false  %>
-        <%= f.input :phone, required: false %>
 
-        <%# Organization Submitter Fields %>
-        <%= f.input :organizationType,
-              label: "Organization Type",
-              collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
-              wrapper_html: {class: 'public'} %>
-        <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
+        <div class="submitter-section-js hidden" data-submitter-type="individual">
+          <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public'} %>
+          <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public'} %>
+          <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
+          <%= f.input :state, collection: state_options, required: false, wrapper_html: {class: 'public'} %>
+          <%= f.input :zip, required: false %>
+          <%= f.input :country, collection: country_options, required: false  %>
+          <%= f.input :phone, required: false %>
+        </div>
+
+        <div class="submitter-section-js hidden" data-submitter-type="organization">
+          <%= f.input :organizationType,
+                label: "Organization Type",
+                collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
+                wrapper_html: {class: 'public'} %>
+          <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
+        </div>
 
         <hr>
 
