@@ -6,6 +6,9 @@ class @FR2.CommentFormFileUploader
   constructor: (commentFormHandler)->
     @fileUploadSubmissionKey = null
     @commentFormHandler = commentFormHandler
+    @submissionKeyUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/submission-keys"
+    @fileUploadUrlsUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/file-upload-urls"
+    # @uploadedFiles = []
 
   initialize: ->
     @attachUploader()
@@ -38,35 +41,6 @@ class @FR2.CommentFormFileUploader
   attachedCommentMessage: ->
     @constructor.ATTACHED_COMMENT_MESSAGE
 
-  fetchFileUploadSubmissionKey: ->
-    deferred = $.Deferred()
-
-    unless @fileUploadSubmissionKey
-      $.ajax(
-        url:"<%= Settings.regulations_dot_gov.api_base_url %>/submission-keys",
-        type: "POST",
-        contentType: "application/vnd.api+json",
-        crossDomain: true,
-        data: JSON.stringify({ data: { type: "submission-keys" }}),
-        dataType: 'json',
-        beforeSend: (xhr, settings) ->
-          xhr.setRequestHeader(
-            'x-api-key',
-            "<%= Settings.regulations_dot_gov.api_key %>"
-          )
-        success: (data, status) =>
-          @fileUploadSubmissionKey = data.data.id
-          deferred.resolve(@fileUploadSubmissionKey)
-        error: () ->
-          @fileUploadSubmissionKey = "key"
-          deferred.reject()
-        complete: ->
-      )
-    else
-      deferred.resolve(@fileUploadSubmissionKey)
-
-    return deferred.promise()
-
   attachUploader: ->
     @uploaderEl = $( @commentFormEl().find('#fileupload') )
     uploader = @
@@ -76,24 +50,10 @@ class @FR2.CommentFormFileUploader
         url: ''
         dataType: 'json',
         autoUpload: true,
+        sequentialUploads: true
         add: (e, data) =>
-          # Ensure populated submission key before uploading document
-          @fetchFileUploadSubmissionKey()
-            .done (submissionKey) =>
-              $.each data.files, (i, file) =>
-                # TODO: Upload files
-                console.log('uploading ' + file.name)
-                # data.url = XXXX
-                # jqXHR = data.submit()
-                  # .success (result, status, jqXHR) ->
-                    # console.log('success')
-                  # .error (result, status, jqXHR) ->
-                    # console.log('error')
-                  # .complete (result, status, jqXHR) ->
-                    # console.log('complete')
-            .fail () =>
-              # TODO: handle failures
-              console.log('Failed to fetch file upload submission key')
+          @uploadFileToRegulationsDotGovBucket(data)
+          true
         # processQueue: [],
         # formData: {},
         filesContainer: @attachmentContainer()
@@ -110,6 +70,101 @@ class @FR2.CommentFormFileUploader
       }
     )
     .data('blueimpFileupload')
+
+  uploadFileToRegulationsDotGovBucket: (data) ->
+    data = data
+    uploader = @
+
+    # Ensure populated submission key before uploading document
+    @fetchFileUploadSubmissionKey()
+      .done (submissionKey) =>
+        console.log("Key retrieved: " + submissionKey)
+
+        # Fetch a file upload URL for each file selected
+        data.type = "PUT"
+        $.each data.files, (i, file) =>
+          console.log("Processing file: " + file.name)
+          @populateFileUploadUrlOnFile(file)
+            .done (fileUploadUrl) ->
+
+              # TODO: try saving the fileUploadUrl on the file object
+              # instead of creating a new mapping object
+              file.fileUploadUrl = fileUploadUrl
+
+
+              data.url = fileUploadUrl
+
+              data.type = "PUT"
+              # TODO: track uploaded files
+              # @uploadedFiles.push(file)
+
+              # TODO: enable when CORS issue is resolved
+              data.process().done ->
+                data.submit()
+      .fail () =>
+        # TODO: handle failures
+        console.log('Failed to fetch file upload submission key')
+
+  fetchFileUploadSubmissionKey: ->
+    deferred = $.Deferred()
+
+    unless @fileUploadSubmissionKey
+      $.ajax(
+        url: @submissionKeyUrl,
+        type: "POST",
+        contentType: "application/vnd.api+json",
+        crossDomain: true,
+        data: JSON.stringify({ data: { type: "submission-keys" }}),
+        dataType: 'json',
+        beforeSend: (xhr, settings) ->
+          xhr.setRequestHeader(
+            'x-api-key',
+            "<%= Settings.regulations_dot_gov.api_key %>"
+          )
+        success: (res, status) =>
+          @fileUploadSubmissionKey = res.data.id
+          deferred.resolve(@fileUploadSubmissionKey)
+        error: () ->
+          @fileUploadSubmissionKey = "key"
+          deferred.reject()
+        complete: ->
+      )
+
+    return deferred.promise()
+
+  populateFileUploadUrlOnFile: (file) ->
+    deferred = $.Deferred()
+
+    $.ajax(
+      url: @fileUploadUrlsUrl,
+      type: "POST",
+      contentType: "application/vnd.api+json",
+      crossDomain: true,
+      data: JSON.stringify({
+        data: {
+          type: "file-upload-urls",
+          attributes: {
+            fileName: file.name,
+            submissionKey: @fileUploadSubmissionKey,
+            # TODO: support other content types
+            contentType: "image/jpeg"
+          }
+        }
+      }),
+      dataType: 'json',
+      beforeSend: (xhr, settings) ->
+        xhr.setRequestHeader(
+          'x-api-key',
+          "<%= Settings.regulations_dot_gov.api_key %>"
+        )
+      success: (res, status) =>
+        deferred.resolve(res.data.id)
+      error: () ->
+        deferred.reject()
+      complete: ->
+    )
+
+    return deferred.promise()
 
   attachmentEl: ->
     $('.attachments tbody')

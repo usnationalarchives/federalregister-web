@@ -24,10 +24,10 @@
       data-modal-template-name='regulations-dot-gov-attachment-requirements-template'
     >Attachment Requirements</a>.
   </p>
-  <%# content_tag(
+  <%= content_tag(
     :table,
     content_tag(:tbody),
     :class => "attachments",
-    :"data-existing" => @comment_attachments.map{|a| a.to_jq_upload}.to_json
+    :"data-existing" => [].to_json # @comment_attachments.map{|a| a.to_jq_upload}.to_json
   ) %>
 </li>
