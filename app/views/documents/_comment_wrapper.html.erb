@@ -101,6 +101,7 @@
         </li>
 
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'public'} %>
+        <%= f.input :category, label: 'What is your comment about?', collection: [] %>
         <%= render partial: "file_upload_input" %>
         <hr>
         <%= f.input :email, required: false %>
@@ -126,7 +127,10 @@
         <%= f.input :phone, required: false %>
 
         <%# Organization Submitter Fields %>
-        <%= f.input :organizationType, label: "Organization Type", wrapper_html: {class: 'public'} %>
+        <%= f.input :organizationType,
+              label: "Organization Type",
+              collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
+              wrapper_html: {class: 'public'} %>
         <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public'} %>
 
         <hr>
