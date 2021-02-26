@@ -15,6 +15,31 @@ class @FR2.CommentForm
     @addCommentSecret()
     @setSubmitButtonState()
     @addSubmitButtonWarningModal()
+    @_updateCommentCategories()
+
+  _updateCommentCategories: ->
+    agencyAcronym = 'FDA'
+    $.ajax(
+      url: "https://api.regulations.gov/v4/agency-categories?filter[acronym]=#{agencyAcronym}",
+      type: "GET",
+      contentType: "application/vnd.api+json",
+      crossDomain: true,
+      dataType: 'json',
+      beforeSend: (xhr, settings) ->
+        xhr.setRequestHeader(
+          'x-api-key',
+          'COjlEHEje5dOL5upgpkEd9M7BHgdHgv01xyyJ3pJ' #DO NOT COMMIT!!!!!
+        )
+      success: (data, status) =>
+        categoryDropdown = $("#comment_category")
+        $.each(data.data, (x) ->
+          category = this.attributes.category
+          categoryDropdown.append($("<option />").val(category).text(category))
+        )
+
+      error: () ->
+        alert("Sorry, we're currently unable to reach Regulations.gov")
+    )
 
   commentFormEl: ->
     if @_commentFormEl == null || @_commentFormEl == undefined || @_commentFormEl == []
