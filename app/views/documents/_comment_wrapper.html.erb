@@ -108,21 +108,36 @@
         <%= f.input :sendEmailReceipt,
               label: 'Send Email Receipt',
               as: :boolean,
-              required: false,
-              hint: 'Opt to receive email confirmation of submission and tracking number from Regulations.gov' %>
+              required: false %>
 
-        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="individual">
-          <%= fr_icon 'megaphone' %>
-          An Individual
-        </span></br>
-        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="organization">
-          <%= fr_icon 'users' %>
-          An Organization
-        </span></br>
-        <span class="fr_button medium secondary submitter-type-js" data-submitter-type="anonymous">
-          <%= fr_icon 'globe' %>
-          Anonymous
-        </span>
+        <li class="string input optional stringish" id="comment_email_input">
+          <label for="comment_email" class="label">Tell us about yourself! I am...*</label>
+        </li>
+        <div class="bootstrap-scope submitter-type-selector">
+          <div class="row">
+            <div class="col-xs-4 col-md-4 submitter-type-js" data-submitter-type="individual">
+              <div>
+                <%= fr_icon 'megaphone' %></br>
+                An Individual
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4 submitter-type-js" data-submitter-type="organization">
+              <div>
+                <%= fr_icon 'users' %></br>
+                An Organization
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4 submitter-type-js" data-submitter-type="anonymous">
+              <div>
+                <%= fr_icon 'globe' %></br>
+                Anonymous
+              </div>
+            </div>
+          </div>
+          </br>
+          </br>
+          </br>
+        </div>
 
         <%= f.input :submitterType, as: :hidden, label: 'Submitter Type (will be hidden via JS)', collection:
           [

@@ -80,6 +80,20 @@
   background-color: $fr-gray-15;
   padding: 20px;
   padding-top: 10px;
+
+  .submitter-type-js {
+    cursor: pointer;
+
+    div {
+      margin: auto;
+      width: 50%;
+    }
+
+    .icon-fr2 {
+      font-size: 70px;
+      color: $fr-gray-30 !important;
+    }
+  }
 }
 
 .formtastic.comment {
