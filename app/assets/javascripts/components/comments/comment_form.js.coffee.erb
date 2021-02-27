@@ -273,10 +273,14 @@ class @FR2.CommentForm
         )
       success: (data, status) =>
         categoryDropdown = $("#comment_category")
-        $.each(data.data, (x) ->
-          category = this.attributes.category
-          categoryDropdown.append($("<option />").val(category).text(category))
-        )
+        if data.data.length > 0
+          $.each(data.data, (x) ->
+            category = this.attributes.category
+            categoryDropdown.append($("<option />").val(category).text(category))
+          )
+        else
+          $('#comment_category_input').addClass('hidden')
+
 
       error: () ->
     )
