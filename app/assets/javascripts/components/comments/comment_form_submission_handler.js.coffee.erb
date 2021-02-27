@@ -1,6 +1,7 @@
 class @FR2.CommentFormSubmissionHandler
   constructor: (commentFormHandler)->
     @commentFormHandler = commentFormHandler
+    @regulationsDotGovCommentUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/comments"
 
   commentFormStore: ->
     @commentFormHandler.commentFormStore
@@ -10,6 +11,9 @@ class @FR2.CommentFormSubmissionHandler
 
   commentFormEl: ->
     @commentForm().commentFormEl()
+
+  commentFormFileUploader: ->
+    @commentFormHandler.commentFormFileUploader
 
   submitButton: ->
     @commentFormEl().find '.commit.button'
@@ -26,15 +30,76 @@ class @FR2.CommentFormSubmissionHandler
       .attr 'value', 'Submitting Comment'
 
   submitForm: (options)->
-    # TODO: implement actual form submissions
-    console.log('Submitting form:')
-    _.each @commentFormEl().find('input,textarea'), (el) ->
-      console.log(el.name + ': ' + el.value)
+    @submitCommentToRegulationsDotGov()
+      .done (res, status) =>
+        @persistComment(options, res.data)
+      .fail (res, status) ->
+        # TODO: handle failure
+
+  formData: ->
+    # TODO: consider extracting this function
+    # move array to constant
+    # populate rest of allowed attributes
+    regulationsDotGovAllowedFields = [
+      "comment",
+      "commentOnDocumentId",
+      "submissionType",
+      "submitterType",
+    ]
+
+    # Extract fields that we want to pass to regulations.gov
+    formElements = @commentFormEl().serializeArray()
+
+    data = _.reduce formElements, (memo, el)->
+      if el.value
+        match = el.name.match(/comment\[(\w*)\]/)
+        if match && _.contains(regulationsDotGovAllowedFields, match[1])
+          memo[match[1]] = el.value
+      memo
+    , {}
+
+    uploader = @commentFormFileUploader()
+
+    if uploader.fileUploadSubmissionKey
+      data["submissionType"] = "API"  # TODO: always set this?
+      data["submissionKey"] = uploader.fileUploadSubmissionKey
+      _.each uploader.uploadedFiles, (file) ->
+        data.files ||= []
+        data.files.push(file.name)
+
+    data
+
+  submitCommentToRegulationsDotGov: ->
+    if false # Stub request
+      $.ajax {
+        crossDomain: true,
+        contentType: "application/vnd.api+json",
+        beforeSend: (xhr, settings) ->
+          xhr.setRequestHeader(
+            'x-api-key',
+            "<%= Settings.regulations_dot_gov.api_key %>"
+          )
+        url: @regulationsDotGovCommentUrl,
+        type: 'POST',
+        data: JSON.stringify({
+          "data": {
+            "attributes": @formData(),
+            "type":"comments"
+          }
+        })
+      }
+    else
+      console.log(@formData())
+      $.Deferred().resolve({
+        # TODO: fake response from regulations.gov
+      })
+
+  persistComment: (options, responseData) ->
     settings = {
-     url: @commentFormEl().attr 'action'
-     dataType: 'html'
-     type: 'POST'
-     data: @commentFormEl().serialize()
+      url: @commentFormEl().attr 'action'
+      dataType: 'html'
+      type: 'POST'
+      data: @commentFormEl().serialize()
     }
 
     agency = @commentFormEl().data('agency')
