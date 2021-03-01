@@ -54,8 +54,7 @@ class @FR2.CommentFormFileUploader
         add: (e, data) =>
           @uploadFileToRegulationsDotGovBucket(data)
           true
-        # processQueue: [],
-        # formData: {},
+        formData: {},
         filesContainer: @attachmentContainer()
         uploadTemplateId: null
         downloadTemplateId: null
@@ -79,26 +78,29 @@ class @FR2.CommentFormFileUploader
     @fetchFileUploadSubmissionKey()
       .done (submissionKey) =>
         console.log("Key retrieved: " + submissionKey)
+        # data.url = "https://fr-test-bucket-01.s3-us-west-2.amazonaws.com/capybara3.jpg"
 
         # Fetch a file upload URL for each file selected
-        data.type = "PUT"
         $.each data.files, (i, file) =>
           console.log("Processing file: " + file.name)
           @populateFileUploadUrlOnFile(file)
             .done (fileUploadUrl) ->
 
-              # TODO: try saving the fileUploadUrl on the file object
+              # TODO: Investigate saving the fileUploadUrl on the file object
               # instead of creating a new mapping object
+              # then retrieve the URLs when persisting comment receipt
               file.fileUploadUrl = fileUploadUrl
-
-
-              data.url = fileUploadUrl
-
-              data.type = "PUT"
               uploader.uploadedFiles.push(file)
 
-              # TODO: enable when CORS issue is resolved
-              data.process().done ->
+              data.process().done (data) =>
+                data.type = "PUT"
+                data.url = fileUploadUrl
+                data.data = data.files[0] # TODO: support multiple files
+                data.crossDomain = true
+                data.fileUploadUrl = fileUploadUrl
+                data.contentType = false
+                data.processData = false
+                # TODO: may have to break out into multiple $.ajax calls for multipl submissions
                 data.submit()
       .fail () =>
         # TODO: handle failures
@@ -128,6 +130,8 @@ class @FR2.CommentFormFileUploader
           deferred.reject()
         complete: ->
       )
+    else
+      deferred.resolve(@fileUploadSubmissionKey)
 
     return deferred.promise()
 
