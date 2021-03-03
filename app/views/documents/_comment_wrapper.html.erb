@@ -99,7 +99,7 @@
               nil
             ) %>
         </li>
-
+        <%= f.input :commentOnDocumentId, as: :hidden, input_html: {value: document.regulations_dot_gov_info['document_id']} %>
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'public validate-required-js'} %>
         <%= f.input :category, label: 'What is your comment about?', collection: [] %>
         <%= render partial: "file_upload_input" %>
