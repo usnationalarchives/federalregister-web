@@ -17,6 +17,7 @@ class @FR2.CommentForm
     @addSubmitButtonWarningModal()
     @_updateCommentCategories()
     @_addSubmitterTypeHandling()
+    @_addInlineValidations()
 
   commentFormEl: ->
     if @_commentFormEl == null || @_commentFormEl == undefined || @_commentFormEl == []
@@ -29,6 +30,7 @@ class @FR2.CommentForm
 
   addFormEvents: ->
     @comboBoxChangeHandler()
+    @_respondToRequiredFieldChanges()
     @removeErrorsOnChange()
     @maxCharacterWarning()
     @confirmCommentSubmission()
@@ -160,7 +162,7 @@ class @FR2.CommentForm
 
   setSubmitButtonState: ()->
     #TODO: If needed, wire in the equivalent V4 uploader is ready logic.
-    if @commentConfirmationChecked() && true#@uploaderReady()
+    if @commentConfirmationChecked() && @_formPassesPrevalidation()#@uploaderReady()
       @enableSubmitButton()
     else
       @disableSubmitButton()
@@ -244,6 +246,8 @@ class @FR2.CommentForm
         "Your files are still being uploaded. Please wait until they are complete and try again."
     else if ! @commentConfirmationChecked()
       "Please read and confirm the statement regarding the submission of personal information."
+    else if ! @_formPassesPrevalidation()
+      "Please ensure all required fields in the form above are populated."
     else
       false
 
@@ -303,7 +307,43 @@ class @FR2.CommentForm
         else
           $(this).addClass('hidden')
       )
+
+      # Ensure inline validations are recalculated based on fields made visible/hidden via submitter type selection
+      context.setSubmitButtonState()
     )
 
   _upcaseFirstWord: (string) ->
     string.charAt(0).toUpperCase() + string.slice(1)
+
+  _formPassesPrevalidation: () ->
+    _.all(this._requiredFields(), (el) ->
+      $(el).val() != ""
+    )
+
+  _requiredFields: () ->
+    isVisible = (el) ->
+      $(el).is(":visible")
+    _.filter(this._validatableFields(), isVisible)
+
+  _validatableFields: () ->
+    $('#new_comment .validate-required-js textarea, #new_comment .validate-required-js input, #new_comment .validate-required-js select')
+
+  _addInlineValidations: () ->
+    this._validatableFields().each () ->
+      $(this).on('blur', () ->
+        if $(this).val() == ''
+          $(this).after("<p class='inline-errors'>This field is required</p>")
+        else
+          # TODO: Ensure this takes into account the length validation on the text field
+          $(this).closest('li').find('.inline-errors').remove()
+      )
+
+  _respondToRequiredFieldChanges: () ->
+    context = this
+    $(".validate-required-js").change( (e) ->
+      context.setSubmitButtonState()
+    )
+
+
+
+
