@@ -298,7 +298,7 @@ class @FR2.CommentForm
       dataSubmitterTypeIdentifier = $(this).data('submitter-type')
 
       # Set submitter type field
-      $("#comment_submitterType").val( context._upcaseFirstWord(dataSubmitterTypeIdentifier) )
+      $("#comment_submitterType").val( dataSubmitterTypeIdentifier.toUpperCase() )
 
       # Toggle field visibility
       $('.submitter-section-js').each( (index) ->
@@ -311,9 +311,6 @@ class @FR2.CommentForm
       # Ensure inline validations are recalculated based on fields made visible/hidden via submitter type selection
       context.setSubmitButtonState()
     )
-
-  _upcaseFirstWord: (string) ->
-    string.charAt(0).toUpperCase() + string.slice(1)
 
   _formPassesPrevalidation: () ->
     _.all(this._requiredFields(), (el) ->
