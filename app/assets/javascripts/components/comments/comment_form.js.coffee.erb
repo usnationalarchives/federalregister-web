@@ -277,7 +277,7 @@ class @FR2.CommentForm
       beforeSend: (xhr, settings) ->
         xhr.setRequestHeader(
           'x-api-key',
-          "<%= Settings.regulations_dot_gov.api_key %>"
+          "<%= Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key] %>"
         )
       success: (data, status) =>
         categoryDropdown = $("#comment_category")

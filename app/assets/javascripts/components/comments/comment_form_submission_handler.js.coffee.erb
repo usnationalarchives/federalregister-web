@@ -98,7 +98,7 @@ class @FR2.CommentFormSubmissionHandler
         beforeSend: (xhr, settings) ->
           xhr.setRequestHeader(
             'x-api-key',
-            "<%= Settings.regulations_dot_gov.api_key %>"
+            "<%= Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key] %>"
           )
         url: @regulationsDotGovCommentUrl,
         type: 'POST',
