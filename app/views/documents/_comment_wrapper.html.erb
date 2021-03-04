@@ -105,10 +105,10 @@
         <%= render partial: "file_upload_input" %>
         <hr>
         <%= f.input :email, required: false %>
-        <%= f.input :sendEmailReceipt,
-              label: 'Send Email Receipt',
-              as: :boolean,
-              required: false %>
+        <li class="boolean input optional" id="comment_sendEmailReceipt_input">
+          <label for="comment_sendEmailReceipt" class="">
+          <input type="checkbox" name="comment[sendEmailReceipt]" id="comment_sendEmailReceipt" value="1">Send Email Receipt</label>
+        </li>
 
         <li class="string input optional stringish" id="comment_email_input">
           <label for="comment_email" class="label">Tell us about yourself! I am...*</label>
