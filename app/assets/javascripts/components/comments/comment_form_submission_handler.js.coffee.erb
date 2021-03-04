@@ -129,38 +129,41 @@ class @FR2.CommentFormSubmissionHandler
 
     $.extend settings, options
 
-    #TODO: This is a stub for comment form submission.  It should be made dynamic with the content of the actual reg.gov response.
+    # Example Response from reg.gov
+    # data = {
+    #   "reg_gov_response_data": {
+    #     "id": "klb-dy99-pl2c",
+    #     "type": "comments",
+    #     "attributes": {
+    #         "zip":                 null,
+    #         "country":             null,
+    #         "lastName":            "Anonymous",
+    #         "city":                null,
+    #         "receiveDate":         "2021-02-18T21:37:52.238+0000",
+    #         "submissionKey":       null,
+    #         "submitterRep":        null,
+    #         "userId":              "b3bda779-8165-4c17-ad31-f3389d77af3c",
+    #         "organizationType":    null,
+    #         "firstName":           "Anonymous",
+    #         "submissionType":      "API",
+    #         "submitterType":       "ANONYMOUS",
+    #         "commentOnDocumentId": "CPSC-2013-0025-0004",
+    #         "stateProvinceRegion": null,
+    #         "phone":               null,
+    #         "organization":        null,
+    #         "sendEmailReceipt":    false,
+    #         "numItemsReceived":    0,
+    #         "files":               null,
+    #         "comment":             "test comment",
+    #         "category":            null,
+    #         "email":               null
+    #     }
+    #   }
+    # }
+
     settings.url = "/my/documents/#{documentNumber}/comments"
     settings.data = {
-      "serializedForm": @commentFormEl().serialize(),
-      "reg_gov_response_data": {
-          "id": "klb-dy99-pl2c",
-          "type": "comments",
-          "attributes": {
-              "zip":                 null,
-              "country":             null,
-              "lastName":            "Anonymous",
-              "city":                null,
-              "receiveDate":         "2021-02-18T21:37:52.238+0000",
-              "submissionKey":       null,
-              "submitterRep":        null,
-              "userId":              "b3bda779-8165-4c17-ad31-f3389d77af3c",
-              "organizationType":    null,
-              "firstName":           "Anonymous",
-              "submissionType":      "API",
-              "submitterType":       "ANONYMOUS",
-              "commentOnDocumentId": "CPSC-2013-0025-0004",
-              "stateProvinceRegion": null,
-              "phone":               null,
-              "organization":        null,
-              "sendEmailReceipt":    false,
-              "numItemsReceived":    0,
-              "files":               null,
-              "comment":             "test comment",
-              "category":            null,
-              "email":               null
-          }
-      }
+      "reg_gov_response_data": responseData
     }
 
     $.ajax {
