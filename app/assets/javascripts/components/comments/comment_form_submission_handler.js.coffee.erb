@@ -219,6 +219,13 @@ class @FR2.CommentFormSubmissionHandler
         #{errorDetails}
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
+    else if response.status == 503
+      modalTitle = "Regulations.gov is Currently Unavailable"
+      modalHtml = "
+        <p>
+          Comments are submitted to Regulations.gov, but their system is currently unavailable.
+        </p>"
+      FR2.Modal.displayModal modalTitle, modalHtml
 
     @_rollUpCommentAndReplace response, (response)=>
       commentPage = $('<div>')
