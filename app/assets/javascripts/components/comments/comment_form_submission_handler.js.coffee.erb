@@ -39,15 +39,7 @@ class @FR2.CommentFormSubmissionHandler
         context.error(res)
 
   formData: ->
-    # TODO: consider extracting this function
-    # move array to constant
-    # populate rest of allowed attributes
-    regulationsDotGovAllowedFields = [
-      "comment",
-      "commentOnDocumentId",
-      "submissionType",
-      "submitterType",
-    ]
+    regulationsDotGovAllowedFields = this._regulationsDotGovAllowedFields()
 
     # Extract fields that we want to pass to regulations.gov
     formElements = @commentFormEl().serializeArray()
@@ -71,6 +63,27 @@ class @FR2.CommentFormSubmissionHandler
 
     data
 
+  _regulationsDotGovAllowedFields: () ->
+    basicFields = [
+      "comment",
+      "category",
+      "email",
+      "sendEmailReceipt",
+      "commentOnDocumentId",
+      "submissionType",
+      "submitterType",
+    ]
+
+    submitterType = $("#comment_submitterType").val()
+    #TODO: Ideally we'd dynamically get this from the DOM but we have multiple input types (select, string, etc).  Refactor if we have time.
+    console.log("Submitter Type: #{submitterType}")
+    if submitterType == 'INDIVIDUAL'
+      basicFields.concat(['firstName', 'lastName', 'city', 'state', 'zip', 'country', 'phone'])
+    else if submitterType == 'ORGANIZATION'
+      basicFields.concat(['organizationType', 'organizationName'])
+    else
+      basicFields
+
   submitCommentToRegulationsDotGov: ->
     if false # Stub request
       $.ajax {
@@ -91,7 +104,6 @@ class @FR2.CommentFormSubmissionHandler
         })
       }
     else
-      console.log(@formData())
       $.Deferred().resolve({
         # TODO: fake response from regulations.gov
       })
@@ -208,7 +220,6 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 400
-      console.log(response)
       errorDetails = response.responseJSON.errors[0].title
       modalTitle = "Submission Error"
       modalHtml = "
