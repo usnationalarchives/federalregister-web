@@ -43,12 +43,18 @@ class @FR2.CommentFormSubmissionHandler
 
     # Extract fields that we want to pass to regulations.gov
     formElements = @commentFormEl().serializeArray()
+    booleanFields = ['comment[sendEmailReceipt]']
 
     data = _.reduce formElements, (memo, el)->
       if el.value
         match = el.name.match(/comment\[(\w*)\]/)
         if match && _.contains(regulationsDotGovAllowedFields, match[1])
-          memo[match[1]] = el.value
+          if _.contains(booleanFields, el.name)
+            #Coerce 1,0 => true/false
+            value = !!el.value
+          else
+            value = el.value
+          memo[match[1]] = value
       memo
     , {}
 
