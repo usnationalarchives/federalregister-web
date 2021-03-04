@@ -151,7 +151,7 @@
           <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public validate-required-js'} %>
           <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public validate-required-js'} %>
           <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
-          <%= f.input :state, collection: state_options, required: false, wrapper_html: {class: 'public'} %>
+          <%= f.input :stateProvinceRegion, label: 'State', collection: state_options, required: false, wrapper_html: {class: 'public'} %>
           <%= f.input :zip, required: false %>
           <%= f.input :country, collection: country_options, required: false  %>
           <%= f.input :phone, required: false %>
@@ -162,7 +162,7 @@
                 label: "Organization Type",
                 collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
                 wrapper_html: {class: 'public validate-required-js'} %>
-          <%= f.input :organizationName, label: "Organization Name", wrapper_html: {class: 'public validate-required-js'} %>
+          <%= f.input :organization, label: "Organization Name", wrapper_html: {class: 'public validate-required-js'} %>
         </div>
 
         <hr>

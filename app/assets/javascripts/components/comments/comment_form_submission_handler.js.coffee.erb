@@ -84,9 +84,9 @@ class @FR2.CommentFormSubmissionHandler
     #TODO: Ideally we'd dynamically get this from the DOM but we have multiple input types (select, string, etc).  Refactor if we have time.
     console.log("Submitter Type: #{submitterType}")
     if submitterType == 'INDIVIDUAL'
-      basicFields.concat(['firstName', 'lastName', 'city', 'state', 'zip', 'country', 'phone'])
+      basicFields.concat(['firstName', 'lastName', 'city', 'stateProvinceRegion', 'zip', 'country', 'phone'])
     else if submitterType == 'ORGANIZATION'
-      basicFields.concat(['organizationType', 'organizationName'])
+      basicFields.concat(['organizationType', 'organization'])
     else
       basicFields
 
