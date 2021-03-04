@@ -244,20 +244,12 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
 
-    @_rollUpCommentAndReplace response, (response)=>
-      commentPage = $('<div>')
-        .addClass 'comment_wrapper'
-        .html response.responseText
-        .hide()
-
-      # TODO: confirm removal: now reusing same form instead of fetching
-      @ajaxCommentData
-        .append commentPage
-      @ajaxCommentData
-        .animate {height: commentPage.css 'height'}, 800
-      commentPage
-        .slideDown 800, =>
-          @commentFormHandler.commentFormReady()
+    # Re-enable submit button to ensure users can attempt a resubmission since we're no longer refreshing the form via AJAX.
+    @submitButton()
+      .removeClass 'submitting'
+      .find 'input'
+      .prop 'disabled', false
+      .attr 'value', 'Submit Comment'
 
   _rollUpCommentAndReplace: (response, replaceWith)->
     @ajaxCommentData = $('.ajax-comment-data')
