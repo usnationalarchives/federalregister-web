@@ -1,4 +1,6 @@
 class @FR2.CommentForm
+  SUBMIT_BUTTON_REFRESH_INTERVAL = 2000
+
   constructor: (commentFormId, commentFormHandler)->
     @commentFormId = commentFormId
     @commentFormHandler = commentFormHandler
@@ -36,6 +38,7 @@ class @FR2.CommentForm
     @maxCharacterWarning()
     @confirmCommentSubmission()
     @formSubmit()
+    @_refreshSubmitButtonStateOnInterval()
 
   parseFields: ->
     fields = []
@@ -344,3 +347,10 @@ class @FR2.CommentForm
 
   _setDefaultSubmitterType: () ->
     $("#comment_submitterType").val('ANONYMOUS')
+
+  _refreshSubmitButtonStateOnInterval: () ->
+    context = this
+    this.refreshIntervalId = setInterval(
+      context.setSubmitButtonState.bind(context),
+      context.SUBMIT_BUTTON_REFRESH_INTERVAL
+    )
