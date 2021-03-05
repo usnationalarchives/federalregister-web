@@ -287,7 +287,7 @@ class @FR2.CommentForm
             categoryDropdown.append($("<option />").val(category).text(category))
           )
         else
-          $('#comment_category_input').addClass('hidden')
+          $('#comment_category_input').addClass('cj-hidden')
 
 
       error: () ->
@@ -307,9 +307,9 @@ class @FR2.CommentForm
       # Toggle field visibility
       $('.submitter-section-js').each( (index) ->
         if $(this).data('submitter-type') == dataSubmitterTypeIdentifier
-          $(this).removeClass('hidden')
+          $(this).removeClass('cj-hidden')
         else
-          $(this).addClass('hidden')
+          $(this).addClass('cj-hidden')
       )
 
       # Ensure inline validations are recalculated based on fields made visible/hidden via submitter type selection
