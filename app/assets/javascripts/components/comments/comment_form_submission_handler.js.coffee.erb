@@ -95,6 +95,7 @@ class @FR2.CommentFormSubmissionHandler
       $.ajax {
         crossDomain: true,
         contentType: "application/vnd.api+json",
+        excludeCsrfTokenHeader: true,
         beforeSend: (xhr, settings) ->
           xhr.setRequestHeader(
             'x-api-key',

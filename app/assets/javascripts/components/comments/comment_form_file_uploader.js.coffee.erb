@@ -62,6 +62,7 @@ class @FR2.CommentFormFileUploader
         sequentialUploads: true,
         dataType: 'xml',
         singleFileUploads: false,
+        excludeCsrfTokenHeader: true,
         add: (e, data) ->
           if (e.isDefaultPrevented())
             false
@@ -156,6 +157,7 @@ class @FR2.CommentFormFileUploader
         crossDomain: true,
         data: JSON.stringify({ data: { type: "submission-keys" }}),
         dataType: 'json',
+        excludeCsrfTokenHeader: true,
         beforeSend: (xhr, settings) ->
           xhr.setRequestHeader(
             'x-api-key',
@@ -182,6 +184,7 @@ class @FR2.CommentFormFileUploader
       type: "POST",
       contentType: "application/vnd.api+json",
       crossDomain: true,
+      excludeCsrfTokenHeader: true,
       data: JSON.stringify({
         data: {
           type: "file-upload-urls",

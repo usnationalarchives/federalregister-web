@@ -274,6 +274,7 @@ class @FR2.CommentForm
       contentType: "application/vnd.api+json",
       crossDomain: true,
       dataType: 'json',
+      excludeCsrfTokenHeader: true,
       beforeSend: (xhr, settings) ->
         xhr.setRequestHeader(
           'x-api-key',
