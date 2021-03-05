@@ -17,7 +17,7 @@
     <p class="comment_tracking_number">
         Comment Tracking Number:
         <%= link_to @comment.comment_tracking_number,
-          "https://www.regulations.gov/searchResults?rpp=25&po=0&s=#{@comment.comment_tracking_number}",
+          "https://www.regulations.gov/search?filter=#{@comment.comment_tracking_number}",
           :class => 'tracking_number' %>
     </p>
   <% else %>

@@ -41,7 +41,7 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def regulations_dot_gov_comment_search_result_url
-    "#{regulations_dot_gov_base_url}/searchResults?rpp=25&po=0&s=#{comment_tracking_number}"
+    "#{regulations_dot_gov_base_url}/search?filter=#{comment_tracking_number}"
   end
 
   def posted_comment_url
