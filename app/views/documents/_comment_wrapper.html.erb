@@ -149,7 +149,7 @@
           ]
         %>
 
-        <div class="submitter-section-js hidden" data-submitter-type="individual">
+        <div class="submitter-section-js cj-hidden" data-submitter-type="individual">
           <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public validate-required-js'} %>
           <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public validate-required-js'} %>
           <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
@@ -159,7 +159,7 @@
           <%= f.input :phone, required: false %>
         </div>
 
-        <div class="submitter-section-js hidden" data-submitter-type="organization">
+        <div class="submitter-section-js cj-hidden" data-submitter-type="organization">
           <%= f.input :organizationType,
                 label: "Organization Type",
                 collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
