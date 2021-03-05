@@ -160,6 +160,7 @@ class @FR2.CommentFormHandler
 
   resetCommentForm: ->
     @commentFormEl().trigger("reset")
+    @commentFormFileUploader.reset()
 
   openCommentFromUrlHash: ->
     # we want the dom element so we can check for existence rather than

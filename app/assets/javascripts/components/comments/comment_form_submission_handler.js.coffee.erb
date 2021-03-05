@@ -6,6 +6,9 @@ class @FR2.CommentFormSubmissionHandler
   commentFormStore: ->
     @commentFormHandler.commentFormStore
 
+  commentFormFileUploader: ->
+    @commentFormHandler.commentFormFileUploader
+
   commentForm: ->
     @commentFormHandler.commentForm
 
@@ -212,6 +215,7 @@ class @FR2.CommentFormSubmissionHandler
           @commentFormHandler.successPageReady()
 
       @commentFormStore().clearSavedFormState()
+      @commentFormFileUploader().reset()
 
   error: (response)->
     if response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"

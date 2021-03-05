@@ -308,3 +308,8 @@ class @FR2.CommentFormFileUploader
           file.error = 'A file with the same name has already been attached.'
 
       priorValidations.call(this, file)
+
+  reset: ->
+    @attachmentContainer().empty()
+    @uploadedFiles = []
+    @fileUploadSubmissionKey = null
