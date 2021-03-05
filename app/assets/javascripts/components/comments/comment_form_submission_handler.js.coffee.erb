@@ -247,6 +247,13 @@ class @FR2.CommentFormSubmissionHandler
           Comments are submitted to Regulations.gov, but their system is currently unavailable.
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
+    else if response.status == 404
+      modalTitle = "Comment Submission Error"
+      modalHtml = "
+        <p>
+          Regulations.gov didn't recognize the regulations.gov document id we have on file for this document.  Please try again later.
+        </p>"
+      FR2.Modal.displayModal modalTitle, modalHtml
 
     # Re-enable submit button to ensure users can attempt a resubmission since we're no longer refreshing the form via AJAX.
     @submitButton()
