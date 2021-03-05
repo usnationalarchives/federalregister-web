@@ -7,7 +7,7 @@ class @FR2.CommentFormFileUploader
     @fileUploadSubmissionKey = null
     @commentFormHandler = commentFormHandler
     @submissionKeyUrl = "#{@commentFormHandler.regulationsDotGovBaseUrl()}/submission-keys"
-    @fileUploadUrlsUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/file-upload-urls"
+    @fileUploadUrlsUrl = "#{@commentFormHandler.regulationsDotGovBaseUrl()}/file-upload-urls"
     @uploadedFiles = []
 
   initialize: ->
