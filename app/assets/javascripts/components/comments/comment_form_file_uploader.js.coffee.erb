@@ -106,8 +106,9 @@ class @FR2.CommentFormFileUploader
             {
               name: file.name,
               size: file.size,
-              url: res.url,
-              thumbnailUrl: res.url,
+              # url: res.url,
+              url: null,
+              # thumbnailUrl: res.url,
               # TODO: handle deletes
               # deleteUrl: "handle deletes",
               # deleteType: "DELETE",
@@ -122,6 +123,14 @@ class @FR2.CommentFormFileUploader
           source = $("#comment-attachment-complete-template").html()
           template = Handlebars.compile source
           template o
+        destroy: (e, data) ->
+          if e.isDefaultPrevented()
+            return false
+
+          t = $(@).data('blueimp-fileupload') ||$(this).data('fileupload')
+          t._transition(data.context).done ->
+            $(@).remove()
+            t._trigger('destroyed', e, data)
       }
     )
     .data('blueimpFileupload')
@@ -255,7 +264,12 @@ class @FR2.CommentFormFileUploader
       @updateUploaderStatus 'complete'
 
   addDestroyEvents: ->
-    @uploaderEl.bind 'fileuploaddestroyed', =>
+    @uploaderEl.bind 'fileuploaddestroyed', (e, data) =>
+
+      # TODO: extract and update draft
+      removedFileName = data.context.data('name')
+      @uploadedFiles = _.without @uploadedFiles, _.findWhere(@uploadedFiles, { name: removedFileName })
+
       @clearCommentPlaceholder()
       @updateUploaderStatus 'destroy'
 
