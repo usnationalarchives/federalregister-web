@@ -91,7 +91,11 @@
 
     .icon-fr2 {
       font-size: 70px;
-      color: $fr-gray-30 !important;
+      color: $fr-gray-30;
+    }
+
+    .icon-fr2.selected {
+      color: $fr-blue;
     }
   }
 }
