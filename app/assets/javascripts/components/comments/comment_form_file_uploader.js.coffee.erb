@@ -6,7 +6,7 @@ class @FR2.CommentFormFileUploader
   constructor: (commentFormHandler)->
     @fileUploadSubmissionKey = null
     @commentFormHandler = commentFormHandler
-    @submissionKeyUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/submission-keys"
+    @submissionKeyUrl = "#{@commentFormHandler.regulationsDotGovBaseUrl()}/submission-keys"
     @fileUploadUrlsUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/file-upload-urls"
     @uploadedFiles = []
 
@@ -136,6 +136,7 @@ class @FR2.CommentFormFileUploader
     .data('blueimpFileupload')
 
   fetchFileUploadSubmissionKey: ->
+    context = this
     deferred = $.Deferred()
 
     unless @fileUploadSubmissionKey
@@ -149,7 +150,7 @@ class @FR2.CommentFormFileUploader
         beforeSend: (xhr, settings) ->
           xhr.setRequestHeader(
             'x-api-key',
-            "<%= Settings.regulations_dot_gov.api_key %>"
+            context.commentFormHandler.apiKey()
           )
         success: (res, status) =>
           @fileUploadSubmissionKey = res.data.id
@@ -164,6 +165,7 @@ class @FR2.CommentFormFileUploader
     return deferred.promise()
 
   requestFileUploadUrl: (file, fileUploadSubmissionKey) ->
+    context = this
     deferred = $.Deferred()
 
     $.ajax(
@@ -186,7 +188,7 @@ class @FR2.CommentFormFileUploader
       beforeSend: (xhr, settings) ->
         xhr.setRequestHeader(
           'x-api-key',
-          "<%= Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key] %>"
+          context.commentFormHandler.apiKey()
         )
       success: (res, status) =>
         deferred.resolve(res.data.id)

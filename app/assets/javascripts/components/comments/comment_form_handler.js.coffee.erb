@@ -295,3 +295,9 @@ class @FR2.CommentFormHandler
 
   hideReloadedCommentInformationBox: ->
     @commentFormEl().find(".comment_reloaded").slideUp 400, ->
+
+  apiKey: ->
+    $('#new_comment').data('api-key')
+
+  regulationsDotGovBaseUrl: ->
+    $('#new_comment').data('regulations-dot-gov-base-url')

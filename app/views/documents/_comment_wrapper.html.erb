@@ -75,6 +75,8 @@
       id: "new_comment",
         data: {
           document_number: document.document_number,
+          api_key: Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key],
+          regulations_dot_gov_base_url: Settings.regulations_dot_gov.api_base_url,
           agency: nil
         }
       } do |f| %>

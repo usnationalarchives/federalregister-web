@@ -1,7 +1,7 @@
 class @FR2.CommentFormSubmissionHandler
   constructor: (commentFormHandler)->
     @commentFormHandler = commentFormHandler
-    @regulationsDotGovCommentUrl = "<%= Settings.regulations_dot_gov.api_base_url %>/comments"
+    @regulationsDotGovCommentUrl = "#{@commentFormHandler.regulationsDotGovBaseUrl()}/comments"
 
   commentFormStore: ->
     @commentFormHandler.commentFormStore
@@ -82,7 +82,6 @@ class @FR2.CommentFormSubmissionHandler
 
     submitterType = $("#comment_submitterType").val()
     #TODO: Ideally we'd dynamically get this from the DOM but we have multiple input types (select, string, etc).  Refactor if we have time.
-    console.log("Submitter Type: #{submitterType}")
     if submitterType == 'INDIVIDUAL'
       basicFields.concat(['firstName', 'lastName', 'city', 'stateProvinceRegion', 'zip', 'country', 'phone'])
     else if submitterType == 'ORGANIZATION'
@@ -91,6 +90,7 @@ class @FR2.CommentFormSubmissionHandler
       basicFields
 
   submitCommentToRegulationsDotGov: ->
+    context = this
     if true
       $.ajax {
         crossDomain: true,
@@ -98,7 +98,7 @@ class @FR2.CommentFormSubmissionHandler
         beforeSend: (xhr, settings) ->
           xhr.setRequestHeader(
             'x-api-key',
-            "<%= Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key] %>"
+            context.commentFormHandler.apiKey()
           )
         url: @regulationsDotGovCommentUrl,
         type: 'POST',

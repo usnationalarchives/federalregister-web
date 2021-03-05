@@ -267,9 +267,9 @@ class @FR2.CommentForm
         FR2.Modal.displayModal modalTitle, modalHtml
 
   _updateCommentCategories: ->
-    agencyAcronym = this._agencyAcronym()
+    context = this
     $.ajax(
-      url:"<%= Settings.regulations_dot_gov.api_base_url %>/agency-categories?filter[acronym]=#{agencyAcronym}",
+      url: "#{context.commentFormHandler.regulationsDotGovBaseUrl()}/agency-categories?filter[acronym]=#{context._agencyAcronym()}",
       type: "GET",
       contentType: "application/vnd.api+json",
       crossDomain: true,
@@ -277,7 +277,7 @@ class @FR2.CommentForm
       beforeSend: (xhr, settings) ->
         xhr.setRequestHeader(
           'x-api-key',
-          "<%= Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key] %>"
+          context.commentFormHandler.apiKey()
         )
       success: (data, status) =>
         categoryDropdown = $("#comment_category")
