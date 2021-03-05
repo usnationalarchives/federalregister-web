@@ -100,7 +100,7 @@
         <%= f.input :category, label: 'What is your comment about?', collection: [] %>
         <%= render partial: "file_upload_input" %>
         <hr>
-        <%= f.input :email, required: false %>
+        <%= f.input :email, hint: 'this will NOT be posted on regulations.gov', required: false %>
         <li class="boolean input optional" id="comment_sendEmailReceipt_input">
           <label for="comment_sendEmailReceipt" class="">
           <input type="checkbox" name="comment[sendEmailReceipt]" id="comment_sendEmailReceipt" value="1">Opt to receive email confirmation of submission and tracking number?</label>
