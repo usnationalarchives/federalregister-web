@@ -50,12 +50,68 @@ class @FR2.CommentFormFileUploader
         url: ''
         dataType: 'json',
         autoUpload: true,
-        sequentialUploads: true
-        add: (e, data) =>
-          @uploadFileToRegulationsDotGovBucket(data)
-          true
-        formData: {},
+        sequentialUploads: true,
+        dataType: 'xml',
+        singleFileUploads: false,
+        add: (e, data) ->
+          if (e.isDefaultPrevented())
+            false
+
+          t = $(@)
+          that = t.data('blueimp-fileupload') || t.data('fileupload')
+          options = that.options
+
+          data.context = that._renderUpload(data.files)
+            .data('data', data)
+            .addClass('processing')
+
+          val = if options.prependFiles then 'prepend' else 'append'
+          options.filesContainer[val](data.context)
+
+          that._forceReflow(data.context)
+          that._transition(data.context)
+
+          data.process ->
+            t.fileupload('process', data)
+            .always ->
+              data.context.each (index) ->
+                $(@).find('.size').text(
+                  that._formatFileSize(data.files[index].size)
+                )
+              .removeClass('processing')
+              that._renderPreviews(data)
+            .done ->
+              uploader.fetchFileUploadSubmissionKey().then (fileUploadSubmissionKey) ->
+                _.each data.files, (file) ->
+                  uploader.requestFileUploadUrl(file, fileUploadSubmissionKey).then (fileUploadUrl) ->
+                    data.type = "PUT"
+                    data.data = file
+                    data.crossDomain = true
+                    data.contentType = false
+                    data.processData = false
+                    data.url = fileUploadUrl
+
+                    uploaderEl = uploader.uploaderEl
+                    that = uploaderEl.data('blueimp-fileupload')
+
+                    data.submit()
+                      .success ->
+                        uploader.uploadedFiles.push(file)
+              .fail ->
+                # TODO:
+        # formData: {},
         filesContainer: @attachmentContainer()
+        getFilesFromResponse: (res, files) ->
+          _.map res.files, (file) ->
+            {
+              name: file.name,
+              size: file.size,
+              url: res.url,
+              thumbnailUrl: res.url,
+              # TODO: handle deletes
+              # deleteUrl: "handle deletes",
+              # deleteType: "DELETE",
+            }
         uploadTemplateId: null
         downloadTemplateId: null
         uploadTemplate: (o)->
@@ -69,42 +125,6 @@ class @FR2.CommentFormFileUploader
       }
     )
     .data('blueimpFileupload')
-
-  uploadFileToRegulationsDotGovBucket: (data) ->
-    data = data
-    uploader = @
-
-    # Ensure populated submission key before uploading document
-    @fetchFileUploadSubmissionKey()
-      .done (submissionKey) =>
-        console.log("Key retrieved: " + submissionKey)
-        # data.url = "https://fr-test-bucket-01.s3-us-west-2.amazonaws.com/capybara3.jpg"
-
-        # Fetch a file upload URL for each file selected
-        $.each data.files, (i, file) =>
-          console.log("Processing file: " + file.name)
-          @populateFileUploadUrlOnFile(file)
-            .done (fileUploadUrl) ->
-
-              # TODO: Investigate saving the fileUploadUrl on the file object
-              # instead of creating a new mapping object
-              # then retrieve the URLs when persisting comment receipt
-              file.fileUploadUrl = fileUploadUrl
-              uploader.uploadedFiles.push(file)
-
-              data.process().done (data) =>
-                data.type = "PUT"
-                data.url = fileUploadUrl
-                data.data = data.files[0] # TODO: support multiple files
-                data.crossDomain = true
-                data.fileUploadUrl = fileUploadUrl
-                data.contentType = false
-                data.processData = false
-                # TODO: may have to break out into multiple $.ajax calls for multipl submissions
-                data.submit()
-      .fail () =>
-        # TODO: handle failures
-        console.log('Failed to fetch file upload submission key')
 
   fetchFileUploadSubmissionKey: ->
     deferred = $.Deferred()
@@ -126,7 +146,6 @@ class @FR2.CommentFormFileUploader
           @fileUploadSubmissionKey = res.data.id
           deferred.resolve(@fileUploadSubmissionKey)
         error: () ->
-          @fileUploadSubmissionKey = "key"
           deferred.reject()
         complete: ->
       )
@@ -135,7 +154,7 @@ class @FR2.CommentFormFileUploader
 
     return deferred.promise()
 
-  populateFileUploadUrlOnFile: (file) ->
+  requestFileUploadUrl: (file, fileUploadSubmissionKey) ->
     deferred = $.Deferred()
 
     $.ajax(
@@ -148,7 +167,7 @@ class @FR2.CommentFormFileUploader
           type: "file-upload-urls",
           attributes: {
             fileName: file.name,
-            submissionKey: @fileUploadSubmissionKey,
+            submissionKey: fileUploadSubmissionKey,
             # TODO: support other content types
             contentType: "image/jpeg"
           }
@@ -166,7 +185,6 @@ class @FR2.CommentFormFileUploader
         deferred.reject()
       complete: ->
     )
-
     return deferred.promise()
 
   attachmentEl: ->
