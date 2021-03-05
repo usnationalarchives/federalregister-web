@@ -25,12 +25,7 @@
 
       <p>
         Thank you for taking the time to create a comment. Your input is important.
-        Regulations.gov has provided
-        <a href="https://www.regulations.gov/docs/Tips_For_Submitting_Effective_Comments.pdf"
-          class="reg_gov_comment_tips"
-          target="_blank">
-          tips for submitting an effective comment
-        </a><%# @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
+        <%# @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
         <%# TODO: handle posting guidelines %>
 
         <% if false && @comment.comment_form.posting_guidelines %>
