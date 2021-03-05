@@ -2,7 +2,7 @@ class CommentAttachment < ApplicationRecord
   include EncryptionUtils
   require 'open-uri'
 
-  ALLOWED_EXTENSIONS = ["bmp", "xls", "pdf", "gif", "jpg", "jpeg", "png", "ppt", "rtf", "sgml", "tiff", "tif", "txt" , "wpd", "xml", "docx", "xlsx", "pptx"]
+  ALLOWED_EXTENSIONS = ["bmp", "docx", "gif", "jpg", "jpeg", "pdf", "png", "pptx", "rtf", "sgml", "tif", "tiff", "txt" , "wpd", "xlsx", "xml"]
   MAX_FILE_SIZE = 10_485_760
 
   attr_accessor :secret
