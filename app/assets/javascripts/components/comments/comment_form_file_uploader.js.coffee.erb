@@ -49,6 +49,15 @@ class @FR2.CommentFormFileUploader
       {
         url: ''
         dataType: 'json',
+        processQueue: [
+          {
+            action: 'validate',
+            always: true,
+            acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
+            maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
+            maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
+          }
+        ],
         autoUpload: true,
         sequentialUploads: true,
         dataType: 'xml',
