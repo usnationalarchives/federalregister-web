@@ -81,8 +81,10 @@ policy.font_src :self
 
     # Regulations.gov
     'https://api.regulations.gov',
+    'https://uploads-regulations-gov.s3.amazonaws.com',
     (Rails.env.development? ? 'https://api-staging.regulations.gov' : nil),
-    (Rails.env.staging? ? 'https://api-staging.regulations.gov' : nil)
+    (Rails.env.staging? ? 'https://api-staging.regulations.gov' : nil),
+    ((Rails.env.development? || Rails.env.staging?) ? 'https://staging-uploads-regulations-gov.s3.amazonaws.com' : nil),
   ].compact
 
   policy.connect_src *connect_srcs
