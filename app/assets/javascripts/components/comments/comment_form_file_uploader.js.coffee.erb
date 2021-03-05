@@ -191,8 +191,7 @@ class @FR2.CommentFormFileUploader
           attributes: {
             fileName: file.name,
             submissionKey: fileUploadSubmissionKey,
-            # TODO: support other content types
-            contentType: "image/jpeg"
+            contentType: file.type
           }
         }
       }),
