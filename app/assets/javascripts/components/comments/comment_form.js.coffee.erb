@@ -339,6 +339,7 @@ class @FR2.CommentForm
     this._validatableFields().each () ->
       $(this).on('blur', () ->
         if $(this).val() == ''
+          $(this).closest('li').find('.inline-errors').remove()
           $(this).after("<p class='inline-errors'>This field is required</p>")
         else
           # TODO: Ensure this takes into account the length validation on the text field
