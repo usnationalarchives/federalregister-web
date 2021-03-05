@@ -81,7 +81,8 @@ policy.font_src :self
 
     # Regulations.gov
     'https://api.regulations.gov',
-    (Rails.env.development? ? 'https://api-staging.regulations.gov' : nil)
+    (Rails.env.development? ? 'https://api-staging.regulations.gov' : nil),
+    (Rails.env.staging? ? 'https://api-staging.regulations.gov' : nil)
   ].compact
 
   policy.connect_src *connect_srcs
