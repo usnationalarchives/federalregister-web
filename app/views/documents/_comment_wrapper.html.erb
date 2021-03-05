@@ -1,6 +1,5 @@
 <div class="comment_wrapper">
-  <%# TODO: due date %>
-  <div class="comment_form_wrapper">
+  <div class="comment_form_wrapper" data-comment-due="<%= document.comments_close_on.to_time.to_s(:datetime_with_abbv_zone) %>">
     <div class="instructions">
       <%# TODO: handle esi %>
       <%# esi site_notification_path(identifier: :comment) %>
