@@ -608,6 +608,8 @@ div.alternative-comment-modal {
 }
 
 .comment_wrapper {
+  position: relative;
+  top: -20px;
   display: none;
   .notice,
   .comment_next_steps {
