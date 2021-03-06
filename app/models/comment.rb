@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   extend Memoist
 
   include EncryptionUtils
-  MAX_ATTACHMENTS = 10
+  MAX_ATTACHMENTS = 20
 
   AGENCY_POSTING_GUIDELINES_LEXICON = {
     'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#further-info\'>FOR FURTHER INFORMATION CONTACT</a>",
