@@ -7,7 +7,6 @@ $(document).ready ->
   # this requires the context to be set on the ajax block
   # making the call context: {element: this}
 
-  #
   $.ajaxPrefilter ( options, originalOptions, jqXHR ) ->
     unless options.excludeCsrfTokenHeader
       options.beforeSend = (xhr) ->
