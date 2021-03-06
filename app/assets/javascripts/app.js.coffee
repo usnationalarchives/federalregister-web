@@ -44,7 +44,7 @@ $(document).ready ()->
     action = button.attr('href')
     documentNumber = button.closest('div.comment').data('document-number')
 
-    # FR2.Analytics.trackGAEvent category, action, documentNumber
+    FR2.Analytics.trackGAEvent category, action, documentNumber
 
   # Subcription modals
   $('a.rss, a.subscription, a.subscription_action').not('.no-modal-action').on 'click', (e)->
@@ -79,4 +79,4 @@ $(document).ready ()->
     manager.perform()
 
   # Populate additional context in zendesk support requests
-  # zendeskCustomizer = new FR2.ZendeskCustomizer
+  zendeskCustomizer = new FR2.ZendeskCustomizer
