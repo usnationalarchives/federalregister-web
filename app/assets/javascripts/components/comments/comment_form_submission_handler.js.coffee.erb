@@ -258,6 +258,13 @@ class @FR2.CommentFormSubmissionHandler
           Regulations.gov didn't recognize the regulations.gov document id we have on file for this document.  Please try again later.
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
+    else if response.status == 500
+      modalTitle = "Comment Submission Error"
+      modalHtml = "
+        <p>
+          We encountered an unexpected error when attempting to submit your comment to Regulations.gov
+        </p>"
+      FR2.Modal.displayModal modalTitle, modalHtml
 
     # Re-enable submit button to ensure users can attempt a resubmission since we're no longer refreshing the form via AJAX.
     @submitButton()
