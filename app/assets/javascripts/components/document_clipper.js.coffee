@@ -9,10 +9,10 @@ class @FR2.DocumentClipper
 
     @folderElementHandlers = {}
 
-    #@hideAndDisableForm()
-    #@addClipper()
-    #@addClipperEvents()
-    #@addTooltip()
+    @hideAndDisableForm()
+    @addClipper()
+    @addClipperEvents()
+    @addTooltip()
 
   hideAndDisableForm: ->
     @clipper.find('form.add-to-clipboard')
