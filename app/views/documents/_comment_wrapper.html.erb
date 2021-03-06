@@ -96,7 +96,7 @@
             ) %>
         </li>
         <%= f.input :commentOnDocumentId, as: :hidden, input_html: {value: document.regulations_dot_gov_info['document_id']} %>
-        <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'public validate-required-js'} %>
+        <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'validate-required-js'} %>
         <%= f.input :category, label: 'What is your comment about?', collection: [] %>
         <%= render partial: "file_upload_input" %>
         <hr>
@@ -144,10 +144,10 @@
         %>
 
         <div class="submitter-section-js cj-hidden" data-submitter-type="individual">
-          <%= f.input :firstName, label: "First Name", class: 'public', wrapper_html: {class: 'public validate-required-js'} %>
-          <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'public validate-required-js'} %>
-          <%= f.input :city, required: false, wrapper_html: {class: 'public'} %>
-          <%= f.input :stateProvinceRegion, label: 'State', collection: state_options, required: false, wrapper_html: {class: 'public'} %>
+          <%= f.input :firstName, label: "First Name", wrapper_html: {class: 'validate-required-js'} %>
+          <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'validate-required-js'} %>
+          <%= f.input :city, required: false %>
+          <%= f.input :stateProvinceRegion, label: 'State', collection: state_options, required: false %>
           <%= f.input :zip, required: false %>
           <%= f.input :country, collection: country_options, required: false  %>
           <%= f.input :phone, required: false %>
@@ -157,8 +157,8 @@
           <%= f.input :organizationType,
                 label: "Organization Type",
                 collection: ['Company', 'Organization', 'Federal', 'State', 'Local', 'Tribal', 'Regional', 'Foreign', 'U.S. House of Representatives', 'U.S. Senate'],
-                wrapper_html: {class: 'public validate-required-js'} %>
-          <%= f.input :organization, label: "Organization Name", wrapper_html: {class: 'public validate-required-js'} %>
+                wrapper_html: {class: 'validate-required-js'} %>
+          <%= f.input :organization, label: "Organization Name", wrapper_html: {class: 'validate-required-js'} %>
         </div>
 
         <hr>
