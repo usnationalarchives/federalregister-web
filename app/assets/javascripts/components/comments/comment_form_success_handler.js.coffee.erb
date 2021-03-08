@@ -53,7 +53,8 @@ class @FR2.CommentFormSuccessHandler
       })
 
   printComment: ->
-    @ajaxCommentData().on 'click', 'a#print-comment', (e)->
+    $('.comment_wrapper').on 'click', 'a#print-comment', (e) ->
+
       e.preventDefault()
 
       printModalLink = $(this)

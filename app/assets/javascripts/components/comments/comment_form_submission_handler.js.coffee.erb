@@ -199,6 +199,8 @@ class @FR2.CommentFormSubmissionHandler
     @commentFormHandler.trackCommentEvent category
 
   success: (response)->
+    @commentFormHandler.successPageReady()
+
     @_rollUpCommentAndReplace response, (response)=>
       successPage = $('<div>')
         .addClass 'comment_wrapper'
@@ -212,7 +214,6 @@ class @FR2.CommentFormSubmissionHandler
         .animate {height: successPage.css 'height'}, 800
       successPage
         .slideDown 800, =>
-          @commentFormHandler.successPageReady()
 
       @commentFormStore().clearSavedFormState()
       @commentFormFileUploader().reset()
