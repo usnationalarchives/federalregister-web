@@ -21,9 +21,9 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def agency_name(capitalized=false)
-    the = capitalized ? 'The ' : 'the '
-
-    the + model.agency_name
+    if model.agency_name
+      "#{capitalized ? 'The' : 'the'} #{model.agency_name}"
+    end
   end
 
   def commented_at
