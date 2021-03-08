@@ -97,7 +97,7 @@ class @FR2.CommentFormFileUploader
                     data.type = "PUT"
                     data.data = file
                     data.crossDomain = true
-                    data.contentType = false
+                    data.contentType = file.type
                     data.processData = false
                     data.url = fileUploadUrl
 
