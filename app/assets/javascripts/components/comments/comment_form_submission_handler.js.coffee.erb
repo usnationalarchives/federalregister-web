@@ -178,7 +178,9 @@ class @FR2.CommentFormSubmissionHandler
      success: (response)->
        submitHandler.success response
        submitHandler.trackCommentFormSubmissionSuccess()
-
+     headers: {
+       'X-CSRFToken': window.getAuthenticityTokenFromHead()
+     }
      error: (response)->
        if response.status == 422
          submitHandler.trackCommentFormSubmissionError(
