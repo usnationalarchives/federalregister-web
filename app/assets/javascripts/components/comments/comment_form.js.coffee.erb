@@ -269,6 +269,22 @@ class @FR2.CommentForm
 
         FR2.Modal.displayModal modalTitle, modalHtml
 
+  reset: ->
+    @commentFormEl().trigger("reset")
+    @commentFormFileUploader().reset()
+    @_clearSubmitterType()
+    @setSubmitButtonState()
+
+  _clearSubmitterType: ->
+    # Remove 'selected' color from all submitter icons
+    $('.submitter-type-js .icon-fr2').removeClass('selected')
+
+    # Set submitter type field
+    $("#comment_submitterType").val(null)
+
+    # Toggle field visibility
+    $('.submitter-section-js').addClass('cj-hidden')
+
   _updateCommentCategories: ->
     context = this
     $.ajax(

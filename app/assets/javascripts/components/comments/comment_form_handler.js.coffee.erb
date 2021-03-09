@@ -158,10 +158,6 @@ class @FR2.CommentFormHandler
   loadCommentForm: ->
     @commentFormLoadHandler.load()
 
-  resetCommentForm: ->
-    @commentFormEl().trigger("reset")
-    @commentFormFileUploader.reset()
-
   openCommentFromUrlHash: ->
     # we want the dom element so we can check for existence rather than
     # a jquery empty set []
@@ -223,7 +219,7 @@ class @FR2.CommentFormHandler
         # .scrollintoview {duration: 400}
 
       # commentWrapper.slideUp 400, =>
-      @resetCommentForm()
+      @commentForm.reset()
       # TODO: reset files
       @hideReloadedCommentInformationBox()
 
