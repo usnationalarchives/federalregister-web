@@ -38,7 +38,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(
       document_number:         params['document_number'],
       comment_tracking_number: params['reg_gov_response_data']['id'],
-      comment_document_number: reg_gov_document_id,
       agency_name:             reg_gov_agency,
       agency_participating:    reg_gov_agency.present?,
     )
