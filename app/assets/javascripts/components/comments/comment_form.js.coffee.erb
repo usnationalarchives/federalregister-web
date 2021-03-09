@@ -359,7 +359,8 @@ class @FR2.CommentForm
   _requiredFields: () ->
     isVisible = (el) ->
       $(el).is(":visible")
-    _.filter(this._validatableFields(), isVisible)
+    _.filter(this._validatableFields(), isVisible).
+      concat( $("#comment_submitterType") ) #Add submitter type since it's a hidden field
 
   _validatableFields: () ->
     $('#new_comment .validate-required-js textarea, #new_comment .validate-required-js input, #new_comment .validate-required-js select')
