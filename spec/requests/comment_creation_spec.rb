@@ -45,7 +45,7 @@ describe "Comments#create" do
     expect(comment).to have_attributes(
       document_number: '2021-03790',
       comment_tracking_number: 'klb-dy99-pl2c',
-      comment_document_number: 'CPSC-2013-0025-0004',
+      comment_document_number: nil, #The CommentPublicationNotifier populates this field if a comment has been published.
       agency_name: 'Consumer Product Safety Commission',
       agency_participating: true
     )
