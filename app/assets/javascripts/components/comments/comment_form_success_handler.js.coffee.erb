@@ -87,35 +87,35 @@ class @FR2.CommentFormSuccessHandler
     @commentFormHandler.trackCommentEvent category
 
   analytics: ->
-    @ajaxCommentData().on 'click', '.tracking_number', ()=>
+    @commentWrapper().on 'click', '.tracking_number', ()=>
       @trackCommentEvent 'Comment Success: Comment Tracking Number'
 
-    @ajaxCommentData().on 'click', '.my_fr .notifications.posting.remove', ()=>
+    @commentWrapper().on 'click', '.my_fr .notifications.posting.remove', ()=>
       @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt Out'
 
-    @ajaxCommentData().on 'click', '.my_fr .notifications.posting', ()=>
+    @commentWrapper().on 'click', '.my_fr .notifications.posting', ()=>
       @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt In'
 
-    @ajaxCommentData().on 'click', '.my_fr .notifications.followup.remove', ()=>
+    @commentWrapper().on 'click', '.my_fr .notifications.followup.remove', ()=>
       @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt Out'
 
-    @ajaxCommentData().on 'click', '.my_fr .notifications.followup', ()=>
+    @commentWrapper().on 'click', '.my_fr .notifications.followup', ()=>
       @trackCommentEvent 'Comment Success: MyFR Posting Notification Opt In'
 
-    @ajaxCommentData().on 'click', '#print-comment', ()=>
+    @commentWrapper().on 'click', '#print-comment', ()=>
       @trackCommentEvent 'Comment Success: Print Comment'
 
-    @ajaxCommentData().on 'click', '.social_media .twitter', ()=>
+    @commentWrapper().on 'click', '.social_media .twitter', ()=>
       @trackCommentEvent 'Comment Success: Social Media Twitter'
 
-    @ajaxCommentData().on 'click', '.social_media .facebook', ()=>
+    @commentWrapper().on 'click', '.social_media .facebook', ()=>
       @trackCommentEvent 'Comment Success: Social Media Facebook'
 
-    @ajaxCommentData().on 'click', '.warning.message .resend_email_confirmation', ()=>
+    @commentWrapper().on 'click', '.warning.message .resend_email_confirmation', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Resend Email Confirmation'
 
-    @ajaxCommentData().on 'click', '.actions .comment_form_sign_in', ()=>
+    @commentWrapper().on 'click', '.actions .comment_form_sign_in', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Sign In'
 
-    @ajaxCommentData().on 'click', '.actions .comment_form_sign_up', ()=>
+    @commentWrapper().on 'click', '.actions .comment_form_sign_up', ()=>
       @trackCommentEvent 'Comment Success:  MyFR Sign Up'

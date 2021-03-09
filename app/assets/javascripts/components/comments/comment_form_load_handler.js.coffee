@@ -103,14 +103,6 @@ class @FR2.CommentFormLoadHandler
     @loadingDiv.fadeOut 600, ()=>
       @commentFormHandler.updateCommentHeader()
 
-    ajaxCommentData = @ajaxCommentData()
-    ajaxCommentData
-      .css 'height', '42px'
-      .animate(
-        { height: commentFormWrapper.css 'height' }, 800, ()->
-          ajaxCommentData.css 'height', 'auto'
-      )
-
     commentFormWrapper.slideDown 800, () =>
       @commentFormHandler.commentFormReady()
       @addTrackingEvents()
@@ -185,26 +177,26 @@ class @FR2.CommentFormLoadHandler
     @commentFormHandler.addStorageEvents()
 
   addTrackingEvents: ->
-    @ajaxCommentData().on 'click', '.reg_gov_comment_tips', ()=>
+    @commentWrapper().on 'click', '.reg_gov_comment_tips', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Comment Tips"
 
-    @ajaxCommentData().on 'click', '.reg_gov_posting_guidelines', ()=>
+    @commentWrapper().on 'click', '.reg_gov_posting_guidelines', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Agency Posting Guidelines Modal"
 
-    @ajaxCommentData().on 'click', '.reg_gov_alternative_ways_to_comment', ()=>
+    @commentWrapper().on 'click', '.reg_gov_alternative_ways_to_comment', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Alternative Ways to Comment Modal"
 
-    @ajaxCommentData().on 'click', '.alternative_ways_to_comment.addresses', ()=>
+    @commentWrapper().on 'click', '.alternative_ways_to_comment.addresses', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: FederalRegister.gov Alternative Ways to Comment"
 
-    @ajaxCommentData().on 'click', '.comment_preview', ()=>
+    @commentWrapper().on 'click', '.comment_preview', ()=>
       @commentFormHandler.trackCommentEvent "Comment Form: Comment Preview Modal"
 
-    @ajaxCommentData().on 'click', '#comment-privacy-policy', ()=>
+    @commentWrapper().on 'click', '#comment-privacy-policy', ()=>
       @commentFormHandler.trackCommentEvent "Comment Footer: Regulations.gov Privacy Policy"
 
-    @ajaxCommentData().on 'click', '#comment-user-notice', ()=>
+    @commentWrapper().on 'click', '#comment-user-notice', ()=>
       @commentFormHandler.trackCommentEvent "Comment Footer: Regulations.gov User Notice"
 
-    @ajaxCommentData().on 'click', '.attachment_requirements', ()=>
+    @commentWrapper().on 'click', '.attachment_requirements', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Attachment Requirements Modal"
