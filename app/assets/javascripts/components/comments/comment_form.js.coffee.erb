@@ -19,6 +19,7 @@ class @FR2.CommentForm
     @addSubmitButtonWarningModal()
     @_updateCommentCategories()
     @_addSubmitterTypeHandling()
+    @_setSubmitterType()
     @_addInlineValidations()
 
   commentFormEl: ->
@@ -29,6 +30,9 @@ class @FR2.CommentForm
 
   commentFormFileUploader: ->
     @commentFormHandler.commentFormFileUploader
+
+  commentFormStore: ->
+    @commentFormHandler.commentFormStore
 
   addFormEvents: ->
     @comboBoxChangeHandler()
@@ -355,6 +359,17 @@ class @FR2.CommentForm
       context.setSubmitButtonState()
     )
 
+  _setSubmitterType: () ->
+    # Must be called after _addSubmitterTypeHandling
+    # We could extract the binding events to a _toggleSubmitterType function in the future and call from both initializer functions
+    if @commentFormStore().hasStoredComment()
+      submitterType = @commentFormStore().getStoredComment()['comment[submitterType]']
+      if submitterType
+        $("#comment_submitterType").val(submitterType)
+
+        $('.submitter-type-js[data-submitter-type="' + submitterType.toLowerCase() + '"]')
+          .first()
+          .click()
 
   _refreshSubmitButtonStateOnInterval: () ->
     context = this
