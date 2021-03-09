@@ -177,9 +177,6 @@ class @FR2.CommentFormLoadHandler
     @commentFormHandler.addStorageEvents()
 
   addTrackingEvents: ->
-    @commentWrapper().on 'click', '.reg_gov_comment_tips', ()=>
-      @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Comment Tips"
-
     @commentWrapper().on 'click', '.reg_gov_posting_guidelines', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Agency Posting Guidelines Modal"
 

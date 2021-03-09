@@ -32,17 +32,6 @@
 
       <p>
         Thank you for taking the time to create a comment. Your input is important.
-        <%# @comment.comment_form.posting_guidelines.present? ? '' : '.' %>
-        <%# TODO: handle posting guidelines %>
-
-        <% if false && @comment.comment_form.posting_guidelines %>
-          and this agency has also provided
-          <a href="#" class="fr_modal_link reg_gov_posting_guidelines"
-            data-modal-title="Agency Posting Guidelines"
-            data-modal-html="<p><%# TODO @comment.comment_form.posting_guidelines %></p>">
-             additional posting guidelines
-          </a>.
-        <% end %>
       </p>
 
       <p>
