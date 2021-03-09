@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  class OldV3SubmissionError < StandardError; end
   protect_from_forgery :except => :reload
   skip_before_action :authenticate_user!, :only => :persist_for_login
 
@@ -31,6 +32,11 @@ class CommentsController < ApplicationController
   end
 
   def create
+    if params['comment'].present?
+      # Make sure we proactively 500 if someone is attempting to submit an older version of the comment form during deployment
+      raise OldV3SubmissionError
+    end
+
     reg_gov_document_id = params['reg_gov_response_data']['attributes']['commentOnDocumentId']
     reg_gov_agency_name = reg_gov_document_id.try(:split, '-').try(:first)
     reg_gov_agency      = RegulationsDotGov::CommentForm::AGENCY_NAMES[reg_gov_agency_name]
