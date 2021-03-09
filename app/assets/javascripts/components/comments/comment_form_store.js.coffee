@@ -29,19 +29,11 @@ class @FR2.CommentFormStore
       Object.keys(@getStoredComment()) != ["comment[secret]"]
 
   addStorageEvents: ->
+    @commentFormEl().on 'click', '.submitter-type-js', ()=>
+      @_attemptSave()
+
     @commentFormEl().on 'keyup change', ':input', ()=>
-      if !@recentlySaved && @saveTimeout == null
-        @recentlySaved = true
-
-        saveCommentAndResetTimeout = ()=>
-          @setStoredComment @serializeForm()
-          @recentlySaved = false
-          @saveTimeout = null
-
-        @saveTimeout = setTimeout(
-          saveCommentAndResetTimeout,
-          @saveTimeoutDuration
-        )
+      @_attemptSave()
 
   serializeForm: ->
     formInputs = @commentFormEl().find ':input'
@@ -52,11 +44,18 @@ class @FR2.CommentFormStore
       .filter ':input[name!="comment[confirm_submission]"]'
       .filter ':input[name!="commit"]'
 
-    _.reduce formInputs, (memo, input)->
+    formData = _.reduce formInputs, (memo, input)->
       if $(input).val() != ""
         memo[input.name] = input.value
       memo
     , {}
+
+    console.log({
+      action: 'serialize',
+      formData: formData,
+    })
+
+    formData
 
   clearSavedFormState: ->
     @setStoredComment null
@@ -64,3 +63,16 @@ class @FR2.CommentFormStore
   storeComment: ->
     @setStoredComment @serializeForm()
 
+  _attemptSave: ->
+    if !@recentlySaved && @saveTimeout == null
+      @recentlySaved = true
+
+      saveCommentAndResetTimeout = ()=>
+        @setStoredComment @serializeForm()
+        @recentlySaved = false
+        @saveTimeout = null
+
+      @saveTimeout = setTimeout(
+        saveCommentAndResetTimeout,
+        @saveTimeoutDuration
+      )
