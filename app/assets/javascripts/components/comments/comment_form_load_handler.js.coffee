@@ -111,9 +111,8 @@ class @FR2.CommentFormLoadHandler
 
     commentFormWrapper.slideDown 800, () =>
       @commentFormHandler.commentFormReady()
-      # TODO: tracking
-      # @addTrackingEvents()
-      # @trackCommentFormOpenSuccess()
+      @addTrackingEvents()
+      @trackCommentFormOpenSuccess()
 
   error: (response)->
     if response.getResponseHeader('Regulations-Dot-Gov-Problem') == "1" || response.getResponseHeader('Comments-No-Longer-Accepted') == "1" || response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"

@@ -168,9 +168,8 @@ class @FR2.CommentFormHandler
       FR2.Modal.displayModal modalTitle, modalHtml
 
   submitCommentForm: ->
-    # TODO: restore comment saving and tracking
     @commentFormStore.storeComment()
-    # @trackCommentFormSubmitStart()
+    @trackCommentFormSubmitStart()
     @commentFormSubmissionHandler.submit()
 
   startComment: ->
@@ -202,8 +201,7 @@ class @FR2.CommentFormHandler
     @commentFormEl().on 'click', 'a#comment-start-over', (e)=>
       e.preventDefault()
 
-      # TODO: restore tracking
-      # @trackCommentFormStartOver()
+      @trackCommentFormStartOver()
 
       @commentFormStore.clearSavedFormState()
 
