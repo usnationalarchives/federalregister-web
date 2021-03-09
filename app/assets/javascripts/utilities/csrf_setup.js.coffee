@@ -10,6 +10,9 @@ $(document).ready ->
   $.ajaxPrefilter ( options, originalOptions, jqXHR ) ->
     unless options.excludeCsrfTokenHeader
       options.beforeSend = (xhr) ->
+        if originalOptions.beforeSend
+          originalOptions.beforeSend()
+
         xhr.setRequestHeader(
           'X-CSRF-Token',
           getAuthenticityTokenFromHead()
