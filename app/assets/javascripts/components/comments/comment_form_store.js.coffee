@@ -50,11 +50,6 @@ class @FR2.CommentFormStore
       memo
     , {}
 
-    console.log({
-      action: 'serialize',
-      formData: formData,
-    })
-
     formData
 
   clearSavedFormState: ->
