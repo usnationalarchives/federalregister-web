@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  protect_from_forgery :except => [:reload, :create]
+  protect_from_forgery :except => :reload
   skip_before_action :authenticate_user!, :only => :persist_for_login
 
   with_options(:only => [:new, :reload, :create]) do |during_creation|
