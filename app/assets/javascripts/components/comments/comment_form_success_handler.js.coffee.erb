@@ -12,6 +12,9 @@ class @FR2.CommentFormSuccessHandler
   ajaxCommentData: ->
     $('.ajax-comment-data')
 
+  commentWrapper: ->
+    @commentFormHandler.commentWrapper()
+
   add_events: ->
     @commentNotifications()
     @printComment()

@@ -47,6 +47,9 @@ class @FR2.CommentFormHandler
   commentFormEl: ->
     @commentForm.commentFormEl()
 
+  commentWrapper: ->
+    $('.comment_wrapper')
+
   refreshDocStickyNav: ->
     $('.doc-document ul.doc-nav').sticky('refresh')
 
@@ -206,7 +209,6 @@ class @FR2.CommentFormHandler
       @commentFormStore.clearSavedFormState()
 
       # ajaxCommentData = $('.ajax-comment-data')
-      commentWrapper = $('.comment_wrapper')
 
       # ajaxCommentData
         # .animate {height: '42px'}, 400
@@ -245,14 +247,13 @@ class @FR2.CommentFormHandler
 
   closeCommentForm: ->
     ajaxCommentData = $('.ajax-comment-data')
-    commentWrapper = $('.comment_wrapper')
 
     ajaxCommentData
       .animate {height: '42px'}, 400
     ajaxCommentData
        .scrollintoview {duration: 500}
 
-    commentWrapper.slideUp 400, =>
+    @commentWrapper().slideUp 400, =>
       # TODO: confirm removal: now reusing same form instead of fetching
       # commentWrapper.remove()
       # ajaxCommentData.html('').hide()

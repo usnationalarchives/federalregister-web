@@ -6,13 +6,15 @@ class @FR2.CommentFormLoadHandler
     @setup()
 
   formWrapper: ->
+    # This is now only comment-bar, which sits on top of comment_wrapper.
+    # We previously inserted the comment form into this div.
     @commentFormHandler.formWrapper
 
   commentLink: ->
     @formWrapper().find 'a#start_comment'
 
-  ajaxCommentData: ->
-    $('.ajax-comment-data')
+  commentWrapper: ->
+    @commentFormHandler.commentWrapper()
 
   setup: ->
     # TODO: check to see if this is valid reuse of this element.
