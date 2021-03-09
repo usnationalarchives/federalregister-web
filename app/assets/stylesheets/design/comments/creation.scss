@@ -97,6 +97,10 @@
     .icon-fr2.selected {
       color: $fr-blue;
     }
+
+    input[type="radio"] {
+      margin-bottom: 6px;
+    }
   }
 
   #comment_email_input .inline-hints {

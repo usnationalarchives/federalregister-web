@@ -330,6 +330,12 @@ class @FR2.CommentForm
       # Add 'selected' color to selected submitter icon
       $(this).find('.icon-fr2').addClass('selected')
 
+      # Deselect all radio options
+      $('.submitter-type-js input:radio').prop('checked', false)
+
+      # Select radio option for submitter type
+      $(this).find('input:radio').prop('checked', true)
+
       # Set submitter type field
       $("#comment_submitterType").val( dataSubmitterTypeIdentifier.toUpperCase() )
 
