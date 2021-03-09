@@ -60,13 +60,6 @@ module UserDataPersistor
       comment.build_subscription(current_user, request)
 
       comment.save :validate => false
-
-      if comment.user_id
-        CommentMailer.comment_copy(
-          User.new("id" => current_user.id, "email" => current_user.email),
-          comment
-        ).deliver_now
-      end
     end
 
     redirect_location = comments_path

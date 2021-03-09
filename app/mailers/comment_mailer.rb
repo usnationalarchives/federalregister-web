@@ -9,32 +9,6 @@ class CommentMailer < ActionMailer::Base
 
   class NoConfirmedEmail < StandardError; end
 
-  def comment_copy(user, comment)
-    begin
-
-    @user = user
-    @comment = CommentDecorator.decorate( comment )
-    @utility_links = [['manage my subscriptions', subscriptions_url()]]
-    @highlights = EmailHighlight.pick(2)
-    @fr_comments_url = Settings.fr_comment_url
-
-    sendgrid_category "Comment Copy"
-    sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'comment copy email'
-
-    raise NoConfirmedEmail if user.blank?
-
-    mail(
-      :to => user.email,
-      :subject => "[FR] Your comment on #{@comment.document.title}"
-    ) do |format|
-      format.text { render('comment_copy') }
-      format.html { render('comment_copy') }
-    end
-
-    rescue NoConfirmedEmail => exception
-    end
-  end
-
   def comment_posting_notification(user, comment)
     @user = user
     @comment = CommentDecorator.decorate( comment )
