@@ -18,10 +18,7 @@ class @FR2.CommentFormHandler
     @removeEvents()
 
     @commentForm.initialize()
-    # TODO: restore file upload functionality
     @commentFormFileUploader.initialize()
-    # TODO: I don't think we need to add these events on every commentFormReady
-    # @commentFormStore.addStorageEvents()
 
     # TODO: Refine - Prevent duplicate events if the box is closed and opened again
     unless @initialized
