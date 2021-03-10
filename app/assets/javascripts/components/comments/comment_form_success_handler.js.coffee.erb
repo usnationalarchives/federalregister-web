@@ -28,7 +28,7 @@ class @FR2.CommentFormSuccessHandler
       .html 'You have successfully submitted an official comment to Regulations.gov. <img alt="Regulations.gov Logo" src="<%= asset_path('regulations_dot_gov_logo.png') %>" class="reg_gov_logo">'
 
   commentNotifications: ->
-    @ajaxCommentData().on 'click', '.action.commit', (e)->
+    @commentWrapper().on 'click', '.action.commit', (e)->
       e.preventDefault()
       $(this).closest('form').submit()
 
