@@ -22,10 +22,9 @@ class @FR2.CommentFormStore
     amplify.store @documentNumber(), commentVal
 
   hasStoredComment: ->
+    # Ensure that fields other than 'secret' are populated
     @getStoredComment()? &&
       Object.keys(@getStoredComment()).length &&
-      # TODO: refine this last condition as we figure out how to
-      # deal with params and secrets
       Object.keys(@getStoredComment()) != ["comment[secret]"]
 
   addStorageEvents: ->

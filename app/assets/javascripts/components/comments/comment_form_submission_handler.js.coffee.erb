@@ -37,9 +37,6 @@ class @FR2.CommentFormSubmissionHandler
     @submitCommentToRegulationsDotGov()
       .done (res, status) =>
         @persistComment(options, res.data)
-      .fail (res, status) ->
-        # TODO: handle failure
-        context.error(res)
 
   formData: ->
     regulationsDotGovAllowedFields = this._regulationsDotGovAllowedFields()
@@ -64,7 +61,7 @@ class @FR2.CommentFormSubmissionHandler
     uploader = @commentFormFileUploader()
 
     if uploader.fileUploadSubmissionKey
-      data["submissionType"] = "API"  # TODO: always set this?
+      data["submissionType"] = "API"
       data["submissionKey"] = uploader.fileUploadSubmissionKey
       _.each uploader.uploadedFiles, (file) ->
         data.files ||= []
@@ -94,29 +91,24 @@ class @FR2.CommentFormSubmissionHandler
 
   submitCommentToRegulationsDotGov: ->
     context = this
-    if true
-      $.ajax {
-        crossDomain: true,
-        contentType: "application/vnd.api+json",
-        excludeCsrfTokenHeader: true,
-        beforeSend: (xhr, settings) ->
-          xhr.setRequestHeader(
-            'x-api-key',
-            context.commentFormHandler.apiKey()
-          )
-        url: @regulationsDotGovCommentUrl,
-        type: 'POST',
-        data: JSON.stringify({
-          "data": {
-            "attributes": @formData(),
-            "type":"comments"
-          }
-        })
-      }
-    else
-      $.Deferred().resolve({
-        # TODO: fake response from regulations.gov
+    $.ajax {
+      crossDomain: true,
+      contentType: "application/vnd.api+json",
+      excludeCsrfTokenHeader: true,
+      beforeSend: (xhr, settings) ->
+        xhr.setRequestHeader(
+          'x-api-key',
+          context.commentFormHandler.apiKey()
+        )
+      url: @regulationsDotGovCommentUrl,
+      type: 'POST',
+      data: JSON.stringify({
+        "data": {
+          "attributes": @formData(),
+          "type":"comments"
+        }
       })
+    }
 
   persistComment: (options, responseData) ->
     settings = {

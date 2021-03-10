@@ -20,7 +20,6 @@ class @FR2.CommentFormHandler
     @commentForm.initialize()
     @commentFormFileUploader.initialize()
 
-    # TODO: Refine - Prevent duplicate events if the box is closed and opened again
     unless @initialized
       @addEvents()
       @decorate()
@@ -41,7 +40,6 @@ class @FR2.CommentFormHandler
   decorate: ->
     @addPublicIcons()
     @addTooltipToPublicIcons()
-    # TODO: review this after/during restore of upload functionality
     @improveUploadButton()
 
   commentFormEl: ->
@@ -207,17 +205,7 @@ class @FR2.CommentFormHandler
       @trackCommentFormStartOver()
 
       @commentFormStore.clearSavedFormState()
-
-      # ajaxCommentData = $('.ajax-comment-data')
-
-      # ajaxCommentData
-        # .animate {height: '42px'}, 400
-      # ajaxCommentData
-        # .scrollintoview {duration: 400}
-
-      # commentWrapper.slideUp 400, =>
       @commentForm.reset()
-      # TODO: reset files
       @hideReloadedCommentInformationBox()
 
   updateCommentHeader: ->
@@ -254,9 +242,6 @@ class @FR2.CommentFormHandler
        .scrollintoview {duration: 500}
 
     @commentWrapper().slideUp 400, =>
-      # TODO: confirm removal: now reusing same form instead of fetching
-      # commentWrapper.remove()
-      # ajaxCommentData.html('').hide()
       @resetCommentHeader()
       @refreshDocStickyNav()
 

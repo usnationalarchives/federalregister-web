@@ -6,7 +6,7 @@ class @FR2.CommentFormLoadHandler
     @setup()
 
   formWrapper: ->
-    # This is now only comment-bar, which sits on top of comment_wrapper.
+    # This is now only comment-bar which sits on top of comment_wrapper.
     # We previously inserted the comment form into this div.
     @commentFormHandler.formWrapper
 
@@ -17,8 +17,6 @@ class @FR2.CommentFormLoadHandler
     @commentFormHandler.commentWrapper()
 
   setup: ->
-    # TODO: check to see if this is valid reuse of this element.
-    # We do not want to create new elements if the user closes the form
     @commentDiv = $('.ajax-comment-data') || $('<div>')
       .addClass 'ajax-comment-data'
       .hide()
@@ -54,8 +52,6 @@ class @FR2.CommentFormLoadHandler
   load: ->
     @uiTriggerLoading()
     @loadForm()
-    # TODO: ensure that the timing with the animation works.
-    # we need loadForm to initialize the @commentForm before populating
     @loadStoredComment()
     @trackOpenComment()
 
