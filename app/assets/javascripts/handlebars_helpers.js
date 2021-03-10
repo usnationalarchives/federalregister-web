@@ -155,3 +155,9 @@ Handlebars.registerHelper('defaultSubscriptionToPIDocument', function(val, optio
     return options.fn(this);
   }
 });
+
+Handlebars.registerHelper('insertLineBreakForNewlines', function(text) {
+  text = Handlebars.Utils.escapeExpression(text);
+  text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+  return new Handlebars.SafeString(text);
+});
