@@ -43,44 +43,40 @@ class @FR2.CommentForm
     @formSubmit()
     @_refreshSubmitButtonStateOnInterval()
 
-  parseFields: ->
+  previewFields: ->
+    formData = @commentFormHandler
+      .commentFormSubmissionHandler
+      .formData()
+
     fields = []
-    $els = @commentFormEl().find('.inputs > ol > li')
+    _.each formData, (fieldValue, fieldName) ->
+      label = switch fieldName
+        when 'comment' then 'Comment'
+        when 'files' then 'Upload File(s)'
+        when 'firstName' then 'First Name'
+        when 'lastName' then 'Last Name'
+        when 'city' then 'City'
+        when 'stateProvinceRegion' then 'State/Province/Region'
+        when 'zip' then 'ZIP/Postal Code'
+        when 'country' then 'Country'
+        when 'organizationType' then 'Organization Type'
+        when 'organization' then 'Organization Name'
+        when 'phone' then 'Phone'
+        # when 'email' then 'Email Address'
+        # when 'category' then 'Category' # TODO: check language
 
-    $els = @removeNotSentFields($els)
-
-    _.each $els, (el)=>
-      listItem = $(el)
-      key = listItem.find('label').text().replace('*','')
-      field = {'label': key}
-
-      if listItem.hasClass('combo')
-        input = listItem.find('select').first()
-        if input.length > 0
-          field.values = Array @getOptionValue(input)
+      if label && fieldValue
+        if fieldName == 'files' && fieldValue && fieldValue.length
+          values = [fieldValue.join(", ")]
         else
-          field.values = Array @getItemValue(listItem, 'input')
+          values = [fieldValue]
 
-      else if listItem.hasClass('stringish')
-        field.values = Array @getItemValue(listItem, 'input')
-      else if listItem.hasClass('text')
-        field.values = Array @getItemValue(listItem, 'textarea')
-      else if listItem.hasClass('select')
-        input = listItem.find('select').first()
-        field.values = Array @getOptionValue(input)
-      else if listItem.hasClass('file')
-        attachments = listItem.find('.attachments tr')
+        fields.push({
+          label: label,
+          values: values
+        })
 
-        attachment_names = _.map attachments, (el)->
-          $(el).data('name')
-
-        if attachment_names.length
-          field.values =  attachment_names
-        else
-          Array 'None attached'
-
-      fields.push field
-
+    fields.files = @commentFormHandler.commentFormFileUploader.uploadedFiles || 'None attached'
     fields
 
   removeNotSentFields: ($els)->

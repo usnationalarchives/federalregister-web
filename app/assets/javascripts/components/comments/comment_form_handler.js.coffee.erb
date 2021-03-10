@@ -57,7 +57,7 @@ class @FR2.CommentFormHandler
     @commentFormEl().on 'click', '.comment_preview', (e)=>
       e.preventDefault()
 
-      fields = @commentForm.parseFields()
+      fields = @commentForm.previewFields()
       html = @renderCommentSummary fields
 
       Handlebars.registerPartial 'comment_summary', $('#comment-summary-template').html()
