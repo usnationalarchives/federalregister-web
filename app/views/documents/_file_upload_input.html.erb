@@ -27,7 +27,6 @@
   <%= content_tag(
     :table,
     content_tag(:tbody),
-    :class => "attachments",
-    :"data-existing" => [].to_json # TODO: support @comment_attachments.map{|a| a.to_jq_upload}.to_json
+    :class => "attachments"
   ) %>
 </li>

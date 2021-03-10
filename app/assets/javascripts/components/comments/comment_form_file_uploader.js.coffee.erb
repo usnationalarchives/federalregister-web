@@ -15,7 +15,6 @@ class @FR2.CommentFormFileUploader
     @addCompleteEvents()
     @addUploadEvents()
     @addDestroyEvents()
-    # @displayExistingAttachments()
     @displayAttachmentErrors()
     @commentForm().uploaderReady true
 
@@ -107,21 +106,13 @@ class @FR2.CommentFormFileUploader
                     data.submit()
                       .success ->
                         uploader.uploadedFiles.push(file)
-              .fail ->
-                # TODO:
-        # formData: {},
         filesContainer: @attachmentContainer()
         getFilesFromResponse: (res, files) ->
           _.map res.files, (file) ->
             {
               name: file.name,
               size: file.size,
-              # url: res.url,
               url: null,
-              # thumbnailUrl: res.url,
-              # TODO: handle deletes
-              # deleteUrl: "handle deletes",
-              # deleteType: "DELETE",
             }
         uploadTemplateId: null
         downloadTemplateId: null
@@ -279,7 +270,6 @@ class @FR2.CommentFormFileUploader
   addDestroyEvents: ->
     @uploaderEl.bind 'fileuploaddestroyed', (e, data) =>
 
-      # TODO: extract and update draft
       removedFileName = data.context.data('name')
       @uploadedFiles = _.without @uploadedFiles, _.findWhere(@uploadedFiles, { name: removedFileName })
 
