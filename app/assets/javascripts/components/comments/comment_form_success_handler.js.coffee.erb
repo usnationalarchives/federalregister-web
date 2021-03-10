@@ -9,9 +9,6 @@ class @FR2.CommentFormSuccessHandler
   formWrapper: ->
     @commentFormHandler.formWrapper
 
-  ajaxCommentData: ->
-    $('.ajax-comment-data')
-
   commentWrapper: ->
     @commentFormHandler.commentWrapper()
 
@@ -35,7 +32,7 @@ class @FR2.CommentFormSuccessHandler
       e.preventDefault()
       $(this).closest('form').submit()
 
-    @ajaxCommentData().on 'click', '.comment_next_steps .my_fr a.notifications', (e)->
+    @commentWrapper().on 'click', '.my_fr a.notifications', (e)->
       e.preventDefault()
       e.stopPropagation()
 
