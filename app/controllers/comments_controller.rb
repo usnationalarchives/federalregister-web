@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   class OldV3SubmissionError < StandardError; end
-  protect_from_forgery :except => :reload
+  protect_from_forgery except: :reload, with: :reset_session
   skip_before_action :authenticate_user!, :only => :persist_for_login
 
   with_options(:only => [:new, :reload, :create]) do |during_creation|
