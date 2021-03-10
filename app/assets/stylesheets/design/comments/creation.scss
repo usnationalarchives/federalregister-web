@@ -635,6 +635,10 @@ div.alternative-comment-modal {
 
     p.info { text-align: left; }
   }
+
+  label.required-error {
+    color: $fr-red;
+  }
 }
 
 .comment_wrapper .comment_next_steps {

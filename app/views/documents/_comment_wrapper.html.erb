@@ -101,8 +101,9 @@
           <input type="checkbox" name="comment[sendEmailReceipt]" id="comment_sendEmailReceipt" value="1">Opt to receive email confirmation of submission and tracking number?</label>
         </li>
 
-        <li class="string input optional stringish" id="comment_email_input">
+        <li class="string input optional stringish" id="comment_submitterType_input">
           <label for="comment_email" class="label">Tell us about yourself! I am...<abbr title="required">*</abbr></label>
+          <input id="comment_submitterType" type="hidden" name="comment[submitterType]">
         </li>
         <div class="bootstrap-scope submitter-type-selector">
           <div class="row">
@@ -132,14 +133,6 @@
           </br>
           </br>
         </div>
-
-        <%= f.input :submitterType, as: :hidden, label: 'Submitter Type (will be hidden via JS)', collection:
-          [
-            'Anonymous',
-            'Individual',
-            'Organization',
-          ]
-        %>
 
         <div class="submitter-section-js cj-hidden" data-submitter-type="individual">
           <%= f.input :firstName, label: "First Name", wrapper_html: {class: 'validate-required-js'} %>

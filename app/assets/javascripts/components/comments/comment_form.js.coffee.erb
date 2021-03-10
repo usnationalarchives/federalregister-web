@@ -259,6 +259,7 @@ class @FR2.CommentForm
       false
 
   addSubmitButtonWarningModal: ->
+    context = this
     @submitButtonWrapper().on 'click', (e)=>
       if @submitButtonWrapper().hasClass 'disabled'
         e.preventDefault()
@@ -268,6 +269,20 @@ class @FR2.CommentForm
         modalHtml  = @getSubmitButtonState()
 
         FR2.Modal.displayModal modalTitle, modalHtml
+        context._highlightLabelsForMissingFields()
+
+  _highlightLabelsForMissingFields: ->
+    # Clear red for all labels
+    $.each(this._requiredFields(), () ->
+      $(this).siblings('label').removeClass('required-error')
+    )
+
+    # Apply red to missing required fields
+    blankRequiredFields = _.filter(this._requiredFields(), (el) -> $(el).val() == '' )
+    $.each(blankRequiredFields, () ->
+      $(this).siblings('label').addClass('required-error')
+    )
+
 
   reset: ->
     @commentFormEl().trigger("reset")
