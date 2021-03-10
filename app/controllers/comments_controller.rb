@@ -66,44 +66,6 @@ class CommentsController < ApplicationController
     render_created_comment
   end
 
-  def old_create
-    if @comment.valid?
-      response = @service.send_to_regulations_dot_gov
-
-      if response.status < 400
-        @comment.response = response
-        @comment.comment_tracking_number = response.tracking_number
-        @comment.agency_participating = @comment.agency_participates_on_regulations_dot_gov?
-
-        if user_signed_in?
-          @comment.user_id = current_user.id
-
-          if @comment.agency_participates_on_regulations_dot_gov?
-            @comment.comment_publication_notification = true
-          end
-
-          @comment.build_subscription(current_user, request)
-        end
-        @comment.save
-
-        track_ipaddress "comment_post_success", request.remote_ip
-        render_created_comment
-      else
-        headers = {}
-        # prevent nginx from seeing the underlying 429
-        if response.is_a?(RegulationsDotGov::Client::OverRateLimit)
-          response.code = 500
-          headers["Regulations-Dot-Gov-Over-Rate-Limit"] = 1
-        end
-
-        track_ipaddress "comment_post_failure", request.remote_ip
-        render_error_page(response.status, headers)
-      end
-    else
-      render action: :new, status: 400
-    end
-  end
-
   def persist_for_login
     %w(comment_tracking_number comment_secret comment_publication_notification followup_document_notification submission_key).each do |field|
       session[field] = params[:comment_notifications][field]
@@ -117,14 +79,6 @@ class CommentsController < ApplicationController
   def render_created_comment
     @comment.add_submission_key if @comment.comment_tracking_number.nil? && @comment.submission_key.nil?
     @comment = CommentDecorator.decorate(@comment)
-
-    #TODO: Since Reg.gov's API seems to be handling this, it seems like this behavior should go away.  Confirm this is the case
-    # begin
-    #   CommentMailer.comment_copy(@comment.user, @comment).deliver_now if user_signed_in?
-    # rescue => exception
-    #   Rails.logger.error(exception)
-    #   Honeybadger.notify(exception)
-    # end
 
     render action: :show, status: 200
   end
