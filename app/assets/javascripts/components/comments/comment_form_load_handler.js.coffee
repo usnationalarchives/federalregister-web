@@ -53,41 +53,19 @@ class @FR2.CommentFormLoadHandler
 
   load: ->
     @uiTriggerLoading()
-    # @generateAjaxOptions()
     @loadForm()
     # TODO: ensure that the timing with the animation works.
     # we need loadForm to initialize the @commentForm before populating
     @loadStoredComment()
+    @trackOpenComment()
+
+  trackOpenComment: ->
+    $.ajax
+      url: "/my/documents/#{@documentNumber}/comments/new"
 
   loadForm: ->
-    # TODO: stored comments
-    # settings = {
-    #   url: ''
-    #   dataType: 'html'
-    #   type: 'GET'
-    #   data: ''
-    #   timeout: 30000
-    # }
-
     loadHandler = this
-
-    # TODO: stored comments
-    # $.extend settings, @ajaxOptions
-
     loadHandler.success()
-
-    # TODO: stored comments
-    # $.ajax {
-    #   url: settings.url
-    #   type: settings.type
-    #   dataType: settings.dataType
-    #   data: settings.data
-    #   timeout: settings.timeout
-    #   success: (response)->
-    #     loadHandler.success response
-    #   error: (response)->
-    #     loadHandler.error response
-    # }
 
   trackCommentFormOpenSuccess: ()->
     @commentFormHandler.trackCommentEvent 'Comment: Open Comment Form Success'

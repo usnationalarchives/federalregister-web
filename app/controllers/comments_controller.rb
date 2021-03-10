@@ -20,6 +20,8 @@ class CommentsController < ApplicationController
 
   def new
     track_ipaddress "comment_opened", request.remote_ip
+
+    head :ok
   end
 
   def reload
