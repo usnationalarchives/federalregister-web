@@ -1,6 +1,7 @@
 #= require jquery-3.3.1.js
 #= require jquery-ui-1.12.1.custom.min.js
 #= require jquery_ujs
+#= require honeybadger.min.js
 #= require modernizr.custom.js
 #= require underscore
 #= require strftime

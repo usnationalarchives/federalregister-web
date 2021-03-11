@@ -66,7 +66,7 @@
     <%= yield :templates %>
   </head>
 
-  <body id="<%= controller_name %>" class="<%= action_name %>">
+  <body id="<%= controller_name %>" class="<%= action_name %>" data-environment="<%= Rails.env %>" data-honeybadger-js-api-key="<%= Rails.application.secrets.honeybadger_js_api_key %>">
     <%= render partial: 'layouts/site_header' %>
 
     <%= esi site_notification_path(:identifier => :global) %>
