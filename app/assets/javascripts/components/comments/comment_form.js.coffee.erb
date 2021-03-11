@@ -164,7 +164,7 @@ class @FR2.CommentForm
 
   setSubmitButtonState: ()->
     #TODO: If needed, wire in the equivalent V4 uploader is ready logic.
-    if @commentConfirmationChecked() && @_formPassesPrevalidation()#@uploaderReady()
+    if @commentConfirmationChecked() && @_formPassesPrevalidation() && @uploaderReady()
       @enableSubmitButton()
     else
       @disableSubmitButton()
