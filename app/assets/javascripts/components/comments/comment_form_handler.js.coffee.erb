@@ -234,13 +234,6 @@ class @FR2.CommentFormHandler
           commentFormHandler.closeCommentForm()
 
   closeCommentForm: ->
-    ajaxCommentData = $('.ajax-comment-data')
-
-    ajaxCommentData
-      .animate {height: '42px'}, 400
-    ajaxCommentData
-       .scrollintoview {duration: 500}
-
     @commentWrapper().slideUp 400, =>
       @resetCommentHeader()
       @refreshDocStickyNav()

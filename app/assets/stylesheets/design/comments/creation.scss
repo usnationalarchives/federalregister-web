@@ -64,17 +64,6 @@
   }
 }
 
-.ajax-comment-data {
-  @include rounded-bottom(6);
-  background-color: $fr-gray-15;
-  margin-bottom: 23px;
-  min-height: 48px;
-  position: relative;
-  top: -23px;
-
-  p { font-family: sans_serif-1, sans_serif-2, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
-}
-
 .comment_form_wrapper {
   @include rounded-bottom(6);
   background-color: $fr-gray-15;

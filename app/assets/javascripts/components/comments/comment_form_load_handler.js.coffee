@@ -17,29 +17,9 @@ class @FR2.CommentFormLoadHandler
     @commentFormHandler.commentWrapper()
 
   setup: ->
-    @commentDiv = $('.ajax-comment-data') || $('<div>')
-      .addClass 'ajax-comment-data'
-      .hide()
-
-    @loadingDiv = $('<div>')
-      .addClass 'loading'
-      .append(
-        $('<span>')
-          .addClass 'loader'
-          .html 'Loading Comment Form'
-          .append(
-            $('<span>')
-              .addClass 'spinner'
-          )
-      )
-
     @documentNumber = @formWrapper().data 'document-number'
 
-    @formWrapper().after @commentDiv
-
   uiTriggerLoading: ->
-    @commentDiv.append @loadingDiv
-    @commentDiv.slideDown 800
     @commentFormHandler.refreshDocStickyNav()
 
   loadStoredComment: ->
@@ -74,8 +54,7 @@ class @FR2.CommentFormLoadHandler
 
     commentFormWrapper = @commentFormWrapper
 
-    @loadingDiv.fadeOut 600, ()=>
-      @commentFormHandler.updateCommentHeader()
+    @commentFormHandler.updateCommentHeader()
 
     commentFormWrapper.slideDown 800, () =>
       @commentFormHandler.commentFormReady()
@@ -138,12 +117,8 @@ class @FR2.CommentFormLoadHandler
 
     FR2.Modal.displayModal modalTitle, modalHtml
 
-    $('.ajax-comment-data').fadeOut 600
-
   generateCommentForm: (response)->
     @commentFormWrapper = $('.comment_wrapper')
-
-    @commentDiv.append @commentFormWrapper
 
     @commentFormHandler.commentForm = new FR2.CommentForm('#new_comment', @commentFormHandler)
     @commentForm = @commentFormHandler.commentForm
