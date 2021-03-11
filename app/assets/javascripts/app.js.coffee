@@ -7,7 +7,7 @@ $(document).ready ()->
   Honeybadger.configure({
     apiKey:      $('body').data('honeybadger-js-api-key'),
     environment: $('body').data('environment'),
-  });
+  })
 
   userData = new FR2.UserData()
   new FR2.UserNavigationManager(userData)
