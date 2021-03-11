@@ -37,6 +37,8 @@ class @FR2.CommentFormSubmissionHandler
     @submitCommentToRegulationsDotGov()
       .done (res, status) =>
         @persistComment(options, res.data)
+      .fail (res, status) ->
+        context.error(res)
 
   formData: ->
     regulationsDotGovAllowedFields = this._regulationsDotGovAllowedFields()
