@@ -249,6 +249,13 @@ class @FR2.CommentFormSubmissionHandler
           We encountered an unexpected error when attempting to submit your comment to Regulations.gov
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
+    else
+      modalTitle = "Comment Submission Error"
+      modalHtml = "
+        <p>
+          We encountered an unexpected error when attempting to submit your comment to Regulations.gov
+        </p>"
+      FR2.Modal.displayModal modalTitle, modalHtml
 
     # Re-enable submit button to ensure users can attempt a resubmission since we're no longer refreshing the form via AJAX.
     @submitButton()
