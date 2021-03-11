@@ -219,6 +219,7 @@ class @FR2.CommentFormSubmissionHandler
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 400
       errorDetails = response.responseJSON.errors[0].title
+      Honeybadger.notify("Regulations.gov HTTP 400 on Submission", context: response, fingerprint: errorDetails)
       modalTitle = "Submission Error"
       modalHtml = "
         <p>
@@ -229,6 +230,7 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 503
+      Honeybadger.notify("Regulations.gov is Unavailable (503)", context: response)
       modalTitle = "Regulations.gov is Currently Unavailable"
       modalHtml = "
         <p>
@@ -250,6 +252,7 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
     else
+      Honeybadger.notify("Unhandled Regulations.gov Error #{response.status}", context: response)
       modalTitle = "Comment Submission Error"
       modalHtml = "
         <p>
