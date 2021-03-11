@@ -42,6 +42,7 @@ class @FR2.CommentForm
     @confirmCommentSubmission()
     @formSubmit()
     @_refreshSubmitButtonStateOnInterval()
+    @_addCountrySpecificRegionToggling()
 
   previewFields: ->
     formData = @commentFormHandler
@@ -411,3 +412,59 @@ class @FR2.CommentForm
       context.setSubmitButtonState.bind(context),
       context.SUBMIT_BUTTON_REFRESH_INTERVAL
     )
+
+  _addCountrySpecificRegionToggling: () ->
+    this._updateStateProvinceRegion()
+    $("#comment_country").on('change', this._updateStateProvinceRegion.bind(this) )
+
+  _updateStateProvinceRegion: () ->
+    context = this
+    countryIdentifier = $("#comment_country").val()
+    if countryIdentifier == 'Canada'
+      context._enableSelectStateField()
+      context._disableFreeTextStateField()
+
+      canadaOptions = $('#canada-options').data('options')
+      context._changeSelectOptions('Province', canadaOptions )
+    else if (countryIdentifier != 'United States') && (countryIdentifier != '')
+      $('.free-text-state-field-js').
+        val('').
+        prop('disabled', false).
+        closest('li').show()
+
+      $('.select-state-field-js').
+        prop('disabled', true).
+        closest('li').hide()
+    else
+      context._enableSelectStateField()
+      context._disableFreeTextStateField()
+      usaOptions = $('#usa-options').data('options')
+      omitRefresh = $('.select-state-field-js').siblings('label').text() == 'State' #Check whether the select options need to be refreshed since we don't want a USA state reset if already selected
+      context._changeSelectOptions('State', usaOptions, omitRefresh)
+
+  _changeSelectOptions: (labelName, options, omitRefresh = false) ->
+    selectInput = $('.select-state-field-js')
+    selectInput.siblings('label').text(labelName)
+
+    if omitRefresh
+      return
+    else
+      selectInput.empty()
+      selectInput.val('')
+      selectInput.append( $("<option></option>") )
+      $.each(options, (key, value) ->
+        option = $("<option></option>").attr('value', value).
+          attr('value', key).
+          text(key)
+        selectInput.append(option)
+      )
+
+  _enableSelectStateField: () ->
+    $('.select-state-field-js').
+      prop('disabled', false).
+      closest('li').show()
+
+  _disableFreeTextStateField: () ->
+    $('.free-text-state-field-js').
+      prop('disabled', true).
+      closest('li').hide()

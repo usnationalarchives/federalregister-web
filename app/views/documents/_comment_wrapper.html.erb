@@ -133,7 +133,10 @@
           <%= f.input :firstName, label: "First Name", wrapper_html: {class: 'validate-required-js'} %>
           <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'validate-required-js'} %>
           <%= f.input :city, required: false %>
-          <%= f.input :stateProvinceRegion, label: 'State', collection: state_options, required: false %>
+          <div id="canada-options" data-options="<%= canada_province_options.to_json %>"></div>
+          <div id="usa-options" data-options="<%= usa_state_options.to_json %>"></div>
+          <%= f.input :stateProvinceRegion, label: 'Region', required: false, input_html: {disabled: true, class: 'free-text-state-field-js'} %>
+          <%= f.input :stateProvinceRegion, label: 'State', collection: usa_state_options, required: false, input_html: {class: 'select-state-field-js'} %>
           <%= f.input :zip, required: false %>
           <%= f.input :country, collection: country_options, required: false  %>
           <%= f.input :phone, required: false %>
