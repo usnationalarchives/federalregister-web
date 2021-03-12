@@ -52,8 +52,8 @@ class @FR2.CommentFormFileUploader
           {
             action: 'validate',
             always: true,
-            acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
-            maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
+            acceptFileTypes: /(\.|\/)(<%= Comment::ALLOWED_EXTENSIONS.join('|')%>)$/i
+            maxFileSize: <%= Comment::MAX_FILE_SIZE %>
             maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
           },
           {
