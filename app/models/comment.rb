@@ -15,7 +15,7 @@ class Comment < ApplicationRecord
   attr_accessor :secret, :confirm_submission, :response
   attr_reader :attachments, :comment_form, :followup_document_notification
 
-  # validate :required_fields_are_present
+  validates_presence_of :document_number, :comment_tracking_number
 
   # validates_inclusion_of :confirm_submission,
   #   :in => [true, 1, "1"],
