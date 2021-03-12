@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  AGENCY_NAMES = YAML::load_file(Rails.root.join('data', 'regulations_dot_gov_agencies.yml'))
   class OldV3SubmissionError < StandardError; end
   protect_from_forgery except: :reload, with: :reset_session
   skip_before_action :authenticate_user!, :only => :persist_for_login
@@ -6,8 +7,6 @@ class CommentsController < ApplicationController
   with_options(:only => [:new, :reload, :create]) do |during_creation|
     during_creation.layout false
     during_creation.skip_before_action :authenticate_user!
-    # TODO: Confirm this is unneeded
-    # during_creation.before_action :build_comment
   end
 
   before_action :refresh_current_user, only: :index
@@ -24,15 +23,6 @@ class CommentsController < ApplicationController
     head :ok
   end
 
-  def reload
-    # Check to see if there's any other than the current secret
-    # in the comment form store. If not we don't care to show a
-    # 'reloaded' message to the viewer when the form is rendered.
-    @comment_reloaded = params[:comment].except("secret").present?
-
-    render action: :new
-  end
-
   def create
     if params['comment'].present?
       # Make sure we proactively 500 if someone is attempting to submit an older version of the comment form during deployment
@@ -41,7 +31,7 @@ class CommentsController < ApplicationController
 
     reg_gov_document_id = params['reg_gov_response_data']['attributes']['commentOnDocumentId']
     reg_gov_agency_name = reg_gov_document_id.try(:split, '-').try(:first)
-    reg_gov_agency      = RegulationsDotGov::CommentForm::AGENCY_NAMES[reg_gov_agency_name]
+    reg_gov_agency      = AGENCY_NAMES[reg_gov_agency_name]
 
     @comment = Comment.new(
       document_number:         params['document_number'],
@@ -81,78 +71,6 @@ class CommentsController < ApplicationController
     @comment = CommentDecorator.decorate(@comment)
 
     render action: :show, status: 200
-  end
-
-
-  def render_error_page(status=422, headers={})
-    headers.each {|k,v| response.headers[k] = v}
-    render action: :new, status: status
-  end
-
-  def build_comment
-    @service = RegulationsDotGovCommentService.new(request.remote_ip, params.permit!.to_h)
-    @comment = CommentDecorator.decorate(@service.comment)
-    @service.build_comment
-
-    @comment_attachments = @comment.attachments
-  rescue RegulationsDotGov::Client::CommentPeriodClosed => exception
-    if exception.is_a?(RegulationsDotGov::Client::CommentPeriodClosed)
-      Sidekiq::Client.push(
-        'class' => 'CommentUrlRemover',
-        'args' => [@comment.document_number],
-        'queue' => 'document_updater'
-      )
-    end
-    
-    response.headers['Comments-No-Longer-Accepted'] = "1"
-    render json: json_for_regulations_dot_gov_errors(exception), status: exception.code
-  rescue RegulationsDotGov::Client::ResponseError, RegulationsDotGov::Client::ServerError => exception
-    record_regulations_dot_gov_error( exception )
-  
-    if exception.is_a?(RegulationsDotGov::Client::OverRateLimit)
-      response.headers['Regulations-Dot-Gov-Over-Rate-Limit'] = "1"
-    else
-      response.headers['Regulations-Dot-Gov-Problem'] = "1"
-    end
-
-    render json: json_for_regulations_dot_gov_errors(exception),
-      status: exception.code && exception.code < 500 ? exception.code : 500
-  rescue RegulationsDotGovCommentService::MissingCommentUrl
-    response.headers['Comments-No-Longer-Accepted'] = "1"
-
-    render json: {
-      modalTitle: t("federal_register_dot_gov_errors.comments_no_longer_accepted.modal_title"),
-      modalHtml: t("federal_register_dot_gov_errors.comments_no_longer_accepted.modal_html")
-    }
-  end
-
-  def record_regulations_dot_gov_error(exception)
-    Rails.logger.error(exception)
-    Honeybadger.notify(exception)
-  end
-
-  def json_for_regulations_dot_gov_errors(exception)
-    if [500, 502, 503].include?(exception.code)
-      error = 'service_unavailable'
-    elsif exception.code == 409
-      error = 'comments_closed'
-    elsif exception.code == 429
-      # change from 429 so that nginx doesn't render a rate limit page
-      exception.code = 500
-      error = 'over_rate_limit'
-    else
-      error = 'unknown'
-    end
-
-    json = {
-      :modalTitle => t(
-        "regulations_dot_gov_errors.#{error}.modal_title"
-      ),
-      :modalHtml => t(
-        "regulations_dot_gov_errors.#{error}.modal_html",
-        :regulations_dot_gov_link => view_context.link_to(@comment.document.comment_url, @comment.document.comment_url)
-      )
-    }
   end
 
   def track_ipaddress(key, ipaddress)

@@ -509,13 +509,8 @@ Rails.application.routes.draw do
 
     get 'documents/:document_number/comments/new' => 'comments#new',
      :as => :new_comment
-    post 'documents/:document_number/comments/reload' => 'comments#reload',
-     :as => :reload_comment
     post 'documents/:document_number/comments' => 'comments#create',
      :as => :comment
-
-    resources :comment_attachments,
-      :only => [:create, :destroy]
 
     resource :comment_publication_notifications,
       :only => [:create, :destroy]

@@ -16,8 +16,8 @@
       data-modal-title='Attachment Requirements'
       data-modal-data='<%=
         {
-          :maxSize => number_to_human_size(CommentAttachment::MAX_FILE_SIZE),
-          :fileTypes => CommentAttachment::ALLOWED_EXTENSIONS.sort,
+          :maxSize => number_to_human_size(Comment::MAX_FILE_SIZE),
+          :fileTypes => Comment::ALLOWED_EXTENSIONS.sort,
           :maxAttachments => Comment::MAX_ATTACHMENTS,
         }.to_json
       %>'

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe PopularDocument do
 
   describe ".popular" do
-    let(:fake_comment_form) { RegulationsDotGov::CommentForm.new(nil, {'fieldList' => []}) }
 
     it "returns a list of documents scored in ascending order" do
       doc_response = FederalRegister::ResultSet.new(
@@ -13,8 +12,8 @@ describe PopularDocument do
           ] },
         Document
       )
-      FactoryGirl.create(:comment, document_number: 'foo', comment_form: fake_comment_form)
-      FactoryGirl.create(:comment, document_number: 'bar', comment_form: fake_comment_form)
+      FactoryGirl.create(:comment, document_number: 'foo')
+      FactoryGirl.create(:comment, document_number: 'bar')
 
       allow(Document).to receive(:search).and_return(doc_response)
 
@@ -42,7 +41,7 @@ describe PopularDocument do
         Document
       )
       allow(Document).to receive(:search).and_return(doc_response)
-      FactoryGirl.create(:comment, document_number: 'foo', comment_form: fake_comment_form)
+      FactoryGirl.create(:comment, document_number: 'foo')
 
       result = PopularDocument.popular.count
 
