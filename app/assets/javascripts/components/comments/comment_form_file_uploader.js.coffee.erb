@@ -280,12 +280,13 @@ $.blueimp.fileupload.prototype.processActions.fetchUrlFromRegulationsDotGov = (d
       file = data.files[data.index]
       uploader.requestFileUploadUrl(file, fileUploadSubmissionKey)
         .done (fileUploadUrl) ->
+          # Set url attribute on file so it can be retrieved during 'fileuploadsubmit'
           file.url = fileUploadUrl
-          dfd.resolveWith(@, data)
+          dfd.resolveWith(@, [data])
         .fail (e) ->
           data.files.error = true
           errorMessages = _.map e.errors, (error) ->
             error.title
           file.error = errorMessages.join(', ')
-          dfd.rejectWith(@, data)
+          dfd.rejectWith(@, [data])
   return dfd.promise()
