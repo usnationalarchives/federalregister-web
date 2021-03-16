@@ -304,7 +304,7 @@ $.blueimp.fileupload.prototype.processActions.rejectDuplicates = (data, options)
 
   if duplicateNameDetected
     data.files.error = true
-    file.error = "A file with this name has already been uploaded. Please upload a file with a unique name. - File Size: " + file.size + " KB"
+    file.error = "A file with this name has already been uploaded. Please upload a file with a unique name."
     dfd.rejectWith(@, [data])
   else
     dfd.resolveWith(@, [data])
