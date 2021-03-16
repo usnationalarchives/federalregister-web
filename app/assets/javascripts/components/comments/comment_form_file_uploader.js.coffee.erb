@@ -42,10 +42,10 @@ class @FR2.CommentFormFileUploader
 
   attachUploader: ->
     @uploaderEl = $( @commentFormEl().find('#fileupload') )
-    uploader = @
 
     @uploader = @uploaderEl.fileupload(
       {
+        commentFormFileUploader: @,
         url: ''
         dataType: 'json',
         processQueue: [
@@ -55,58 +55,20 @@ class @FR2.CommentFormFileUploader
             acceptFileTypes: /(\.|\/)(<%= CommentAttachment::ALLOWED_EXTENSIONS.join('|')%>)$/i
             maxFileSize: <%= CommentAttachment::MAX_FILE_SIZE %>
             maxNumberOfFiles: <%= Comment::MAX_ATTACHMENTS %>
+          },
+          {
+            action: 'fetchUrlFromRegulationsDotGov'
+          },
+          {
+            action: 'rejectDuplicates'
           }
         ],
         autoUpload: true,
-        sequentialUploads: true,
+        sequentialUploads: false,
         dataType: 'xml',
-        singleFileUploads: false,
+        singleFileUploads: true,
         excludeCsrfTokenHeader: true,
-        add: (e, data) ->
-          if (e.isDefaultPrevented())
-            false
-
-          t = $(@)
-          that = t.data('blueimp-fileupload') || t.data('fileupload')
-          options = that.options
-
-          data.context = that._renderUpload(data.files)
-            .data('data', data)
-            .addClass('processing')
-
-          val = if options.prependFiles then 'prepend' else 'append'
-          options.filesContainer[val](data.context)
-
-          that._forceReflow(data.context)
-          that._transition(data.context)
-
-          data.process ->
-            t.fileupload('process', data)
-            .always ->
-              data.context.each (index) ->
-                $(@).find('.size').text(
-                  that._formatFileSize(data.files[index].size)
-                )
-              .removeClass('processing')
-              that._renderPreviews(data)
-            .done ->
-              uploader.fetchFileUploadSubmissionKey().then (fileUploadSubmissionKey) ->
-                _.each data.files, (file) ->
-                  uploader.requestFileUploadUrl(file, fileUploadSubmissionKey).then (fileUploadUrl) ->
-                    data.type = "PUT"
-                    data.data = file
-                    data.crossDomain = true
-                    data.contentType = file.type
-                    data.processData = false
-                    data.url = fileUploadUrl
-
-                    uploaderEl = uploader.uploaderEl
-                    that = uploaderEl.data('blueimp-fileupload')
-
-                    data.submit()
-                      .success ->
-                        uploader.uploadedFiles.push(file)
-        filesContainer: @attachmentContainer()
+        filesContainer: @attachmentContainer(),
         getFilesFromResponse: (res, files) ->
           _.map res.files, (file) ->
             {
@@ -157,8 +119,8 @@ class @FR2.CommentFormFileUploader
         success: (res, status) =>
           @fileUploadSubmissionKey = res.data.id
           deferred.resolve(@fileUploadSubmissionKey)
-        error: () ->
-          deferred.reject()
+        error: (e) ->
+          deferred.reject(e.responseJSON)
         complete: ->
       )
     else
@@ -194,9 +156,8 @@ class @FR2.CommentFormFileUploader
         )
       success: (res, status) =>
         deferred.resolve(res.data.id)
-      error: () ->
-        deferred.reject()
-      complete: ->
+      error: (e) ->
+        deferred.reject(e.responseJSON)
     )
     return deferred.promise()
 
@@ -232,6 +193,14 @@ class @FR2.CommentFormFileUploader
   addUploadEvents: ->
     @uploaderEl
       .bind 'fileuploadsubmit', (e, data)=>
+        file = data.files[0]
+        data.type = "PUT"
+        data.data = file
+        data.crossDomain = true
+        data.contentType = file.type
+        data.processData = false
+        data.url = file.url
+
         @updateUploaderStatus 'submit'
         true
 
@@ -261,6 +230,7 @@ class @FR2.CommentFormFileUploader
 
   addCompleteEvents: ->
     @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
+      data.commentFormFileUploader.uploadedFiles.push(data.files[0])
       if @commentField().val() == ''
         @commentField().val( @attachedCommentMessage() )
 
@@ -303,3 +273,40 @@ class @FR2.CommentFormFileUploader
     @attachmentContainer().empty()
     @uploadedFiles = []
     @fileUploadSubmissionKey = null
+
+$.blueimp.fileupload.prototype.processActions.fetchUrlFromRegulationsDotGov = (data, options) ->
+  dfd = $.Deferred()
+
+  uploader = data.commentFormFileUploader
+  uploader.fetchFileUploadSubmissionKey()
+    .then (fileUploadSubmissionKey) =>
+      file = data.files[data.index]
+      uploader.requestFileUploadUrl(file, fileUploadSubmissionKey)
+        .done (fileUploadUrl) ->
+          # Set url attribute on file so it can be retrieved during 'fileuploadsubmit'
+          file.url = fileUploadUrl
+          dfd.resolveWith(@, [data])
+        .fail (e) ->
+          data.files.error = true
+          errorMessages = _.map e.errors, (error) ->
+            error.title
+          file.error = errorMessages.join(', ')
+          dfd.rejectWith(@, [data])
+  return dfd.promise()
+
+$.blueimp.fileupload.prototype.processActions.rejectDuplicates = (data, options) ->
+  dfd = $.Deferred()
+  uploader = data.commentFormFileUploader
+  file = data.files[data.index]
+
+  duplicateNameDetected = _.find data.commentFormFileUploader.uploadedFiles, (uploadedFile) ->
+    file.name == uploadedFile.name
+
+  if duplicateNameDetected
+    data.files.error = true
+    file.error = "A file with this name has already been uploaded. Please upload a file with a unique name."
+    dfd.rejectWith(@, [data])
+  else
+    dfd.resolveWith(@, [data])
+
+  return dfd.promise()
