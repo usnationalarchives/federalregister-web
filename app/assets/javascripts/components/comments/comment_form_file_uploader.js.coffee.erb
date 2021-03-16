@@ -157,8 +157,8 @@ class @FR2.CommentFormFileUploader
         success: (res, status) =>
           @fileUploadSubmissionKey = res.data.id
           deferred.resolve(@fileUploadSubmissionKey)
-        error: () ->
-          deferred.reject()
+        error: (e) ->
+          deferred.reject(e.responseJSON)
         complete: ->
       )
     else
@@ -194,9 +194,8 @@ class @FR2.CommentFormFileUploader
         )
       success: (res, status) =>
         deferred.resolve(res.data.id)
-      error: () ->
-        deferred.reject()
-      complete: ->
+      error: (e) ->
+        deferred.reject(e.responseJSON)
     )
     return deferred.promise()
 
