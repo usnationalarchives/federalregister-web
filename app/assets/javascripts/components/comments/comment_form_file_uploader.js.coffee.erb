@@ -63,7 +63,7 @@ class @FR2.CommentFormFileUploader
         autoUpload: true,
         sequentialUploads: true,
         dataType: 'xml',
-        singleFileUploads: false,
+        singleFileUploads: true,
         excludeCsrfTokenHeader: true,
         filesContainer: @attachmentContainer(),
         getFilesFromResponse: (res, files) ->
