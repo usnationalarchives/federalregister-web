@@ -225,12 +225,9 @@ class @FR2.CommentFormFileUploader
       .bind 'fileuploadfail', (e,data)=>
         @updateUploaderStatus 'destroy'
 
-    @uploaderEl
-      .bind 'fileuploadprocessdone', (e, data) =>
-        data.commentFormFileUploader.uploadedFiles.push(data.files[0])
-
   addCompleteEvents: ->
     @uploaderEl.bind 'fileuploadcompleted', (e, data)=>
+      data.commentFormFileUploader.uploadedFiles.push(data.files[0])
       if @commentField().val() == ''
         @commentField().val( @attachedCommentMessage() )
 
