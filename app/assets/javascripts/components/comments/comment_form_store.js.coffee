@@ -49,6 +49,9 @@ class @FR2.CommentFormStore
       memo
     , {}
 
+    if formData['comment[comment]'] == "See attached file(s)"
+      formData['comment[comment]'] = null
+
     formData
 
   clearSavedFormState: ->
