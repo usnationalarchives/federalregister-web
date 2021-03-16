@@ -58,6 +58,9 @@ class @FR2.CommentFormFileUploader
           },
           {
             action: 'fetchUrlFromRegulationsDotGov'
+          },
+          {
+            action: 'rejectDuplicates'
           }
         ],
         autoUpload: true,
@@ -289,4 +292,21 @@ $.blueimp.fileupload.prototype.processActions.fetchUrlFromRegulationsDotGov = (d
             error.title
           file.error = errorMessages.join(', ')
           dfd.rejectWith(@, [data])
+  return dfd.promise()
+
+$.blueimp.fileupload.prototype.processActions.rejectDuplicates = (data, options) ->
+  dfd = $.Deferred()
+  uploader = data.commentFormFileUploader
+  file = data.files[data.index]
+
+  duplicateNameDetected = _.find data.commentFormFileUploader.uploadedFiles, (uploadedFile) ->
+    file.name == uploadedFile.name
+
+  if duplicateNameDetected
+    data.files.error = true
+    file.error = "A file with this name has already been uploaded. Please upload a file with a unique name. - File Size: " + file.size + " KB"
+    dfd.rejectWith(@, [data])
+  else
+    dfd.resolveWith(@, [data])
+
   return dfd.promise()
