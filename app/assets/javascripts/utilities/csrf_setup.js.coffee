@@ -11,7 +11,7 @@ $(document).ready ->
     unless options.excludeCsrfTokenHeader
       options.beforeSend = (xhr) ->
         if originalOptions.beforeSend
-          originalOptions.beforeSend()
+          originalOptions.beforeSend(xhr)
 
         xhr.setRequestHeader(
           'X-CSRF-Token',
