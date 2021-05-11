@@ -30,6 +30,7 @@
           header: {hover: false},
         )
       ) do %>
+        <p>This page contains documents that have been published in the Federal Register. After a Presidential document is signed it has to be delivered to to the Office of the Federal Register, where it gets priority processing. It may take a few days for presidential documents be delivered and then to be published. Documents will appear on public inspection before publishing. If you are looking for a recently signed Presidential document you may wish to check the White House <%= link_to 'website', 'https://www.whitehouse.gov/briefing-room/presidential-actions' %></p>
         <% @presenter.subtypes.each do |doc_type| %>
           <div class="row document-type">
             <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
