@@ -184,6 +184,10 @@
     #select-all-clippings {
       left: -1px;
     }
+
+    .icon-fr2-badge_check_mark  {
+      &:hover { color: $fr-orange; }
+    }
   }
 
   .remove-clipping {
