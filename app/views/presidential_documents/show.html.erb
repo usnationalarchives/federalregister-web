@@ -32,7 +32,9 @@
       <div class="page-summary reader-aid">
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <%= auto_link(simple_format(@presenter.description)).html_safe %>
+            <p><%= auto_link(simple_format(@presenter.description)).html_safe %></p>
+
+            <p><%= t('presidential_documents.processing_delay_note').html_safe %></p>
 
             <p>
               <%= @presenter.name.pluralize %> issued since 1994 are available as a single
