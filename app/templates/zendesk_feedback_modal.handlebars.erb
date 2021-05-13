@@ -3,6 +3,7 @@
     <%= f.input :name, label: 'Your Name' %>
     <%= f.input :email, label: 'Email' %>
     <%= f.input :comment, as: :text, label: 'How can we help you?' %>
+    <%= f.input :attachment, as: :file, label: 'Upload Attachment', required: false %>
     <%= f.input :technical_help, as: :boolean, label: 'This contact form is only for website help or website suggestions. If you have questions or comments regarding a published document please contact the publishing agency. Comments or questions about document content cannot be answered. Please do not provide confidential information or personal data.' %>
   <% end %>
 

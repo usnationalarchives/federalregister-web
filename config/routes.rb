@@ -480,6 +480,8 @@ Rails.application.routes.draw do
       year: /(19|20)\d{2}/
     }
 
+  resources :zendesk_tickets, only: [:create]
+
   #
   # My FR
   #

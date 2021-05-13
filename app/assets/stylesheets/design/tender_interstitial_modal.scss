@@ -4,16 +4,25 @@
     font-weight: bold;
   }
 
+  label.required-error {
+    color: $fr-red !important;
+  }
+
+  #zendesk_ticket_name, #zendesk_ticket_email {
+    width: 98%;
+    height: 2rem;
+  }
+
   li {
     padding-bottom: 19px;
   }
 
   textarea {
-    width: 100%;
+    width: 98%;
   }
 
   button {
-    width: 100%;
+    width: 98%;
     border-color: #7aa13d;
   }
 

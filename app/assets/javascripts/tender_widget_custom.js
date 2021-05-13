@@ -111,12 +111,8 @@
   var initializeZenDesk = function () {
     var zendeskTemplate = $('#zendesk-feedback-modal-template');
     var compiled = Handlebars.compile( zendeskTemplate.html() );
-    FR2.Modal.displayModal( 'Submit Feedback', compiled({}) )
+    FR2.Modal.displayModal( 'Website Feedback', compiled({}) )
     new FR2.ZendeskFormHandler
-    // Unhide form
-    // Instantiate the coffeescript Handler for the form
-
-    // Post via AJAX to Rails Backend
   }
 
   var initialize = function(){
