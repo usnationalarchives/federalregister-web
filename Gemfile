@@ -53,6 +53,8 @@ gem 'federal_register', '0.7.7'
 #gem 'federal_register', :path => '../federal_register'
 #gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
 #                        :ref => "master"
+  # :git => 'https://github.com/criticaljuncture/federal_register',
+  # :branch => 'batch_multi_get_requests'
 
 # aws integration
 gem 'fog-aws'
@@ -155,8 +157,13 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 gem 'sitemap_generator'
 
+# zendesk-based support tickets
+gem 'zendesk_api'
+
 group :development do
   gem 'web-console', '~> 2.0'
+  gem "spring"
+  gem 'spring-commands-rspec'
 end
 
 group :development, :test do

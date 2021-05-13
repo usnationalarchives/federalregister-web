@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w(
   vendor.js
   admin/vendor.js
   search.js
+  tender_widget_custom.js
 
   page_specific/agencies.js
   page_specific/agency_logo.js

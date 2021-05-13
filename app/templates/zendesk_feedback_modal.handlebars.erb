@@ -1,0 +1,14 @@
+<%= semantic_form_for :zendesk_ticket, :authenticity_token => false, :url => zendesk_tickets_path do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name, label: 'Your Name' %>
+    <%= f.input :email, label: 'Email' %>
+    <%= f.input :comment, as: :text, label: 'How can we help you?' %>
+    <%= f.input :technical_help, as: :boolean, label: 'This contact form is only for website help or website suggestions. If you have questions or comments regarding a published document please contact the publishing agency. Comments or questions about document content cannot be answered. Please do not provide confidential information or personal data.' %>
+  <% end %>
+
+  <%= f.actions do%>
+    <%= f.action :submit, as: :button,
+      label: "Submit",
+      button_html: {class: "commit fr_button medium primary"} %>
+  <% end %>
+<% end %>

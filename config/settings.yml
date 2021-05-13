@@ -10,6 +10,7 @@ csp:
 external_modal_domain_whitelist:
   - "www.archives.gov"
   - "www.govinfo.gov"
+  - "federalregister.tenderapp.com"
   - "s3.amazonaws.com/public-inspection."
   - "s3.amazonaws.com/archives."
   - "agency-logos.federalregister.gov"
@@ -77,3 +78,6 @@ varnish:
 services:
   fr_profile_internal_url: '<%= ENV["FR_PROFILE_INTERNAL_BASE_URL"] %>'
   fr_profile_url: '<%= ENV["FR_PROFILE_BASE_URL"] %>'
+
+zendesk:
+  api_url: <%= ENV["ZENDESK_API_URL"] || 'https://ofr.zendesk.com/api/v2' %>

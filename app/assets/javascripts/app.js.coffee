@@ -84,4 +84,4 @@ $(document).ready ()->
     manager.perform()
 
   # Populate additional context in zendesk support requests
-  zendeskCustomizer = new FR2.ZendeskCustomizer
+  # zendeskCustomizer = new FR2.ZendeskCustomizer
