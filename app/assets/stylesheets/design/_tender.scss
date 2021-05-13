@@ -19,6 +19,23 @@
   }
 }
 
+#zendesk-link {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  a {
+    background-color: #3f5b75 !important;
+    border-radius: 999rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  .icon-fr-2 {
+    color: white;
+    font-size: 22px;
+  }
+}
+
 @media only screen and (min-width : 510px) and (max-width:768px) {
   #tender_window {
     max-width: 500px;
