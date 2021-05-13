@@ -33,15 +33,6 @@
     <%= add_handlebars_template('flickr_exit_modal') %>
     <%= add_handlebars_template('print_disclaimer') %>
 
-    <!-- Zendesk Widget -->
-    <%= javascript_include_tag("https://static.zdassets.com/ekr/snippet.js?key=#{Rails.application.secrets.zendesk_js_key}",
-      asyc: true,
-      defer: true,
-      nonce: true,
-      id: "ze-snippet",
-      data: { turbolinks_track: false }
-      ) unless Rails.env.development? || Rails.env.test? %>
-
     <!-- email suggestion templates -->
     <%= add_handlebars_template('email_suggestion') %>
     <%= add_handlebars_template('email_invalid') %>
