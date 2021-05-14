@@ -39,9 +39,28 @@ class @FR2.ZendeskFormHandler
       this._highlightLabelsForMissingFields()
 
   _displayForm: ->
+    if !$('#interstitial_tender_modal').is(":visible") # eg the user is on a non-document page
+      this._initializeModal()
+
     zendeskTemplate = $('#zendesk-feedback-modal-template')
     compiled = Handlebars.compile( zendeskTemplate.html() )
     $('.tender_interstitial_modal').html(compiled({}))
+
+  _initializeModal: ->
+    interstitial_tender_modal_template = $('#interstitial-tender-modal-template')
+    interstitial_tender_modal_template = Handlebars.compile( interstitial_tender_modal_template.html() )
+    FR2.Modal.displayModal(
+      '',
+      interstitial_tender_modal_template({
+        document_feedback_text: '',
+        document_button_enabled: false
+      }),
+      {
+        modalId: '#interstitial_tender_modal',
+        includeTitle: false,
+        modalClass: 'fr_modal wide'
+      }
+    )
 
   _displaySuccessMessage: ->
     template = $('#feedback-success-template')
