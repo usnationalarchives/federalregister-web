@@ -50,8 +50,6 @@
 
       $('#interstitial_tender_modal').on('click', '.site_feedback .button', function(event) {
         event.preventDefault();
-        $('#interstitial_tender_modal').remove();
-
         show();
       });
 
@@ -109,9 +107,6 @@
   };
 
   var initializeZenDesk = function () {
-    var zendeskTemplate = $('#zendesk-feedback-modal-template');
-    var compiled = Handlebars.compile( zendeskTemplate.html() );
-    FR2.Modal.displayModal( 'Website Feedback', compiled({}) )
     new FR2.ZendeskFormHandler
   }
 

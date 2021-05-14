@@ -1,6 +1,7 @@
 class @FR2.ZendeskFormHandler
 
   constructor: ->
+    this._displayForm()
     this.bindHandlers()
 
   bindHandlers: ->
@@ -37,11 +38,16 @@ class @FR2.ZendeskFormHandler
     else
       this._highlightLabelsForMissingFields()
 
+  _displayForm: ->
+    zendeskTemplate = $('#zendesk-feedback-modal-template')
+    compiled = Handlebars.compile( zendeskTemplate.html() )
+    $('.tender_interstitial_modal').html(compiled({}))
+
   _displaySuccessMessage: ->
     template = $('#feedback-success-template')
     compiled = Handlebars.compile( template.html() )
     $('form.zendesk_ticket').remove()
-    $('#fr_modal h3').after(compiled({}))
+    $('#interstitial_tender_modal h3').after(compiled({}))
 
   _formData: ->
     form = $('form.zendesk_ticket')

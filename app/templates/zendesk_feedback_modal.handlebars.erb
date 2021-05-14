@@ -1,3 +1,5 @@
+<h3 class="title_bar">Website Feedback</h3>
+
 <%= semantic_form_for :zendesk_ticket, :authenticity_token => false, :url => zendesk_tickets_path do |f| %>
   <%= f.inputs do %>
     <%= f.input :name, label: 'Your Name' %>
