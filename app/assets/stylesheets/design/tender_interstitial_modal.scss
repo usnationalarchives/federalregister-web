@@ -37,7 +37,7 @@
     text-align: center;
   }
 
-  .info {
+  .info:not(.omit-custom-styling) {
     border-bottom: 1px solid $fr-gray-20;
     font-size: modular-scale(0);
     line-height: 20px;
