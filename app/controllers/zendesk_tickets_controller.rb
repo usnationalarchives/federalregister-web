@@ -6,7 +6,11 @@ class ZendeskTicketsController < ApplicationController
       form_params,
       params[:browser_metadata]
     ))
-    ticket.comment.uploads << form_params[:attachment].tempfile if form_params[:attachment].present?
+    ticket.comment.uploads << {
+      :filename => form_params[:attachment].original_filename,
+      :file     => form_params[:attachment].tempfile,
+    }
+
 
     if ticket.save
       render json: {}
