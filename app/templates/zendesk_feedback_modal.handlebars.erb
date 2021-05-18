@@ -2,7 +2,7 @@
 
 <%= semantic_form_for :zendesk_ticket, :authenticity_token => false, :url => zendesk_tickets_path do |f| %>
   <%= f.inputs do %>
-    <%= f.input :name, label: 'Your Name' %>
+    <%= f.input :name, label: 'Your Name', required: false %>
     <%= f.input :email, label: 'Email' %>
     <%= f.input :comment, as: :text, label: 'How can we help you?' %>
     <%= f.input :attachment, as: :file, label: 'Upload Attachment', required: false %>
