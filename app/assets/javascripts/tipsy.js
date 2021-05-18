@@ -48,7 +48,6 @@ $(document).ready(function(){
   /* clipping actions */
   $('#clipping-actions #add-to-folder').tipsy( {gravity: 's', fallback: "Select clipping(s) below to move them", fade: true, offset: 2});
   $('#clipping-actions #remove-clipping').tipsy( {gravity: 's', fallback: "Delete selected clipping(s)", fade: true, offset: 2});
-  $('#clipping-actions #select-all-clippings').tipsy( {gravity: 's', fallback: "Select all clippings", fade: true, offset: 2});
 
   /* Doctype Filters */
   $('#clipping-actions #doc-type-filter li:not(.disabled)').tipsy( {gravity: 's', fade: false, offset: 2, title: function() { return $(this).data('tooltip');} });

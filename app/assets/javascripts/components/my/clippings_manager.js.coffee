@@ -4,6 +4,10 @@ class @FR2.ClippingsManager
 
     @addMenus()
     @addEvents()
+    # Initialize select all checkbox state
+    $('#clipping-actions #select-all-clippings').
+      tipsy( {gravity: 's', fade: true, offset: 2})
+    @_refreshSelectAllTooltip(false)
 
   addMenus: ->
     @addViewFolderMenu()
@@ -45,12 +49,42 @@ class @FR2.ClippingsManager
 
     @actionBar.on 'click', '#select-all-clippings', (event)->
       event.preventDefault()
-      $('#clippings .clipping_id').each ()->
-        $(this).prop('checked', true)
+      checkboxes = $('#clippings .clipping_id')
+
+      if clippingManager._allClippingsChecked()
+        checkboxes.each ()->
+          $(this).prop('checked', false)
+      else
+        checkboxes.each ()->
+          $(this).prop('checked', true)
+      clippingManager._refreshSelectAllTooltip(true)
+
+    # update select all tooltip when a clipping is selected
+    $('#clippings').on 'click', 'input.clipping_id', (event)->
+      clippingManager._refreshSelectAllTooltip(false)
 
     @actionBar.on 'click', '.remove-clipping', (event)->
       event.preventDefault()
       clippingManager.deleteClippings()
+
+  _refreshSelectAllTooltip: (changeOnScreenTooltip) ->
+    selectAllCheckbox = $('#clipping-actions #select-all-clippings')
+    if this._allClippingsChecked()
+      message = 'Deselect all clippings'
+    else
+      message = 'Select all clippings'
+
+    selectAllCheckbox.prop('title', message)
+    if changeOnScreenTooltip
+      $('.tipsy .tipsy-inner').text(message)
+
+  _allClippingsChecked: ->
+    allChecked = true
+    checkboxes = $('#clippings .clipping_id')
+    checkboxes.each ->
+      unless $(this).prop('checked')
+        allChecked   = false
+    allChecked
 
   showMenu: (el)->
     $(el).addClass 'hover'
