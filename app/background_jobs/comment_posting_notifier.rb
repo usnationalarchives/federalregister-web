@@ -17,10 +17,10 @@ class CommentPostingNotifier
     comment = Comment.find(comment_id)
     comment.checked_comment_publication_at = Time.current
 
-    documents = client.find_documents(:s => comment.comment_tracking_number, :dct => "PS")
+    reg_dot_gov_comments = client.find_comments('filter[searchTerm]' => comment.comment_tracking_number)
 
-    if documents.size > 0
-      comment.comment_document_number = documents.first.document_id
+    if reg_dot_gov_comments.size > 0
+      comment.comment_document_number = reg_dot_gov_comments.first.regulations_dot_gov_document_id
       CommentMailer.comment_posting_notification(comment.user, comment).deliver_now
     end
 
@@ -30,9 +30,9 @@ class CommentPostingNotifier
   private
 
   def client
-    klass = RegulationsDotGov::Client
-    klass.api_key = Rails.application.secrets[:data_dot_gov][:comment_notifier_api_key]
-    klass.new
+    RegulationsDotGov::V4::Client.new(
+      api_key: Rails.application.secrets[:data_dot_gov][:comment_notifier_api_key]
+    )
   end
 
 end
