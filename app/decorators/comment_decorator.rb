@@ -5,11 +5,7 @@ class CommentDecorator < ApplicationDecorator
     :to => :comment_form
 
   def regulations_dot_gov_base_url
-    if Rails.env.production?
-      "https://www.regulations.gov"
-    else
-      "http://regstest.erulemaking.net"
-    end
+    "https://www.regulations.gov"
   end
 
   def human_error_messages
