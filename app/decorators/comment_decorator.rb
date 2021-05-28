@@ -37,12 +37,12 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def regulations_dot_gov_comment_search_result_url
-    "#{regulations_dot_gov_base_url}/search?filter=#{comment_tracking_number}"
+    "#{regulations_dot_gov_base_url}/search/comment?filter=#{comment_tracking_number}"
   end
 
   def posted_comment_url
     if comment_document_number
-      "#{regulations_dot_gov_base_url}/document?D=#{comment_document_number}"
+      "#{regulations_dot_gov_base_url}/search?filter=#{comment_document_number}"
     else
       ""
     end
