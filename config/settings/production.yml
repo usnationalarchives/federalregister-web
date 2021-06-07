@@ -8,6 +8,7 @@ regulations_dot_gov:
   base_uri: <%= ENV["REG_GOV_BASE_URL"] || 'https://api.data.gov/regulations/v3' %>
 
 feature_flags:
+  allow_bot_traffic: true
   regulations_dot_gov:
     submit_comments: <%= ENV["REG_GOV_SUBMIT_COMMENTS"] || true %>
 

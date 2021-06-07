@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'status/web/:id', to: 'special#status'
   get 'status', to: 'special#status'
+  get '/robots.txt', to: 'special#robots'
 
   match '/404', to: 'application#not_found', via: :all, as: :not_found
   match '/405', to: 'application#not_authorized', via: :all, as: :not_authorized

@@ -29,6 +29,11 @@ class SpecialController < ApplicationController
     render template: "special/header/#{params[:type].gsub('-','_')}"
   end
 
+  def robots
+    cache_for 1.day
+    render 'robots.txt.erb', layout: false, content_type: 'text/plain'
+  end
+
   def status
     render plain: "Serving requests (MyFR)"
   end

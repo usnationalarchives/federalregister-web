@@ -1,0 +1,18 @@
+<% if Settings.feature_flags.allow_bot_traffic %>
+  Sitemap: https://www.federalregister.gov/sitemap_index.xml.gz
+
+  User-Agent: *
+  Disallow: /documents/current
+  Disallow: /documents/email-a-friend
+
+  Disallow: /articles/search
+  Disallow: /documents/search
+  Disallow: /public-inspection/search
+  Disallow: /regulations/search
+
+  Disallow: /my/
+  Disallow: /auth/
+<% else %>
+  User-Agent: *
+  Disallow: /
+<% end %>
