@@ -100,6 +100,9 @@ COPY --chown=1000:1000 . /home/app/
 
 WORKDIR /home/app
 
+# link persisted sitemaps
+RUN ln -sf /home/app/data/efs/sitemaps /home/app/public/sitemaps
+
 RUN DB_ADAPTER=nulldb SECRET_KEY_BASE=XXX ATTACHMENTS_AWS_ACCESS_KEY_ID=XXX ATTACHMENTS_AWS_SECRET_ACCESS_KEY=XXX RAILS_ENV=production bundle exec rake assets:precompile &&\
   chown -R app /home/app
 
