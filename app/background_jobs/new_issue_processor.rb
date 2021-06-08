@@ -28,7 +28,11 @@ class NewIssueProcessor < IssueProcessor
 
   def update_sitemap!
     Rails.application.load_tasks
-    Rake::Task['sitemap:refresh'].invoke
+    begin
+      Rake::Task['sitemap:refresh'].invoke
+    ensure
+      Rake::Task['sitemap:refresh'].reenable
+    end
   end
 
 end
