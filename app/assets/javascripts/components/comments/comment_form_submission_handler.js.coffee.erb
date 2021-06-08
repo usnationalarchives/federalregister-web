@@ -203,6 +203,7 @@ class @FR2.CommentFormSubmissionHandler
 
   error: (response)->
     if response.getResponseHeader('Regulations-Dot-Gov-Over-Rate-Limit') == "1"
+      Honeybadger.notify("Regulations.gov Over Rate Limit", context: response)
       reggov_url = @commentFormHandler.commentFormLoadHandler.formWrapper().data('reggov-comment-url')
 
       modalTitle = "Over Rate Limit"
@@ -238,6 +239,7 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 404
+      Honeybadger.notify("Regulations.gov Not Found Error (404)", context: response)
       modalTitle = "Comment Submission Error"
       modalHtml = "
         <p>
@@ -245,6 +247,7 @@ class @FR2.CommentFormSubmissionHandler
         </p>"
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 500
+      Honeybadger.notify("Regulations.gov Server Error (500)", context: response)
       modalTitle = "Comment Submission Error"
       modalHtml = "
         <p>
