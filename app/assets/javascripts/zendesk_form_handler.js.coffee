@@ -93,7 +93,7 @@ class @FR2.ZendeskFormHandler
     )
 
   _requiredFields: () ->
-    $("form.zendesk_ticket input, form.zendesk_ticket textarea, #zendesk_ticket_technical_help").not(":hidden").not(":file").not(":").not("#zendesk_ticket_name")
+    $("form.zendesk_ticket input, form.zendesk_ticket textarea, #zendesk_ticket_technical_help").not(":hidden").not(":file")
 
   _highlightLabelsForMissingFields: ->
     # Clear red for all labels
