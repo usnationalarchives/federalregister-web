@@ -93,10 +93,15 @@ class @FR2.ZendeskFormHandler
         $(el).is(':checked')
       else
         $(el).val() != ""
-    )
+    ) and this._isValidEmail()
 
   _requiredFields: () ->
     $("form.zendesk_ticket input, form.zendesk_ticket textarea, #zendesk_ticket_technical_help").not(":hidden").not(":file")
+
+  _isValidEmail: () ->
+    emailAddress = $('#zendesk_ticket_email').val()
+    emailRegex   = /\S+@\S+\.\S+/
+    emailRegex.test(emailAddress)
 
   _highlightLabelsForMissingFields: ->
     # Clear red for all labels
@@ -116,4 +121,6 @@ class @FR2.ZendeskFormHandler
     else
       $("#zendesk_ticket_technical_help").parent('label').addClass('required-error')
 
-
+    # Apply red to invalid email
+    if ! this._isValidEmail()
+      $('#zendesk_ticket_email_input label').addClass('required-error')
