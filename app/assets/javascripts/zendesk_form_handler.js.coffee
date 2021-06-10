@@ -89,7 +89,10 @@ class @FR2.ZendeskFormHandler
 
   _formPassesPrevalidation: () ->
     _.all(this._requiredFields(), (el) ->
-      $(el).val() != ""
+      if $(el).is(':checkbox')
+        $(el).is(':checked')
+      else
+        $(el).val() != ""
     )
 
   _requiredFields: () ->
