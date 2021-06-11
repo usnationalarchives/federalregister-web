@@ -1,9 +1,8 @@
 #!/bin/bash
-
+set -ex
 cd /home/app
-
 if [ "$RAILS_ENV" == "development" ]; then
-  rake db:create:all
+  exec /sbin/setuser app bundle exec rake db:create:all db:migrate
+else
+  exec /sbin/setuser app bundle exec rake db:migrate
 fi
-
-exec /sbin/setuser app rake db:migrate
