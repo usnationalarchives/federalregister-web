@@ -1,6 +1,7 @@
 class SitemapPresenter
   extend Memoist
 
+  MAX_RETRIES = 3
   def documents
     queryable_date_ranges.each do |date_range|
       results = Document.search(
@@ -17,7 +18,17 @@ class SitemapPresenter
 
       while results do
         results.each {|doc| yield(doc) }
-        results = results.next
+        retry_count = 0
+        begin
+          results = results.next
+        rescue Net::OpenTimeout => e
+          if retry_count <= MAX_RETRIES
+            retry
+            retry_count += 1
+          else
+            raise e
+          end
+        end
       end
     end
   end
