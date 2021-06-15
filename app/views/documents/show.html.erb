@@ -7,6 +7,7 @@
     type: "article",
     published_time: @document.publication_date.to_s(:iso)
   ) %>
+<%= add_handlebars_template('interstitial_tender_modal', 'interstitial-tender-modal') %>
 
 <% title do %>
   <%= fr_icon @document.document_type.identifier %>

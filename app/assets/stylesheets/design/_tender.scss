@@ -1,0 +1,56 @@
+#tender {
+  background-color: $fr-dark-blue;
+  border: 2px solid $fr-gray-20;
+  border-bottom: 0;
+  color: $white;
+  display: block;
+  padding: 5px 10px 8px;
+  position: fixed;
+  right: -51px;
+  top: 200px;
+  transform: rotate(-90deg);
+  z-index: 5000;
+
+  .icon-fr2 {
+    font-size: modular-scale(2);
+    margin-left: -5px;
+    margin-right: -2px;
+    top: 3px;
+  }
+}
+
+#zendesk-link {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9999;
+
+  a {
+    background-color: #3f5b75 !important;
+    border-radius: 999rem;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .icon-fr-2 {
+    color: white;
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width : 510px) and (max-width:768px) {
+  #tender_window {
+    max-width: 500px;
+    margin: 0 !important;
+    left: 0 !important;
+  }
+}
+
+@media only screen and (min-width:375px) and (max-width:510px) {
+  #tender_window {
+    max-width: 360px;
+    margin: 0 !important;
+    left: 0 !important;
+  }
+}

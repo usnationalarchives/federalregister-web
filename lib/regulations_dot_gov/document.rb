@@ -20,7 +20,7 @@ class RegulationsDotGov::Document < RegulationsDotGov::GenericDocument
 
   def comment_url
     if raw_attributes['openForComment']
-      "http://www.regulations.gov/#!submitComment;D=#{document_id}"
+      "http://www.regulations.gov/commenton/#{document_id}"
     end
   end
 

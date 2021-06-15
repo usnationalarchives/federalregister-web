@@ -263,6 +263,7 @@ GEM
       concurrent-ruby (~> 1.0)
     indefinite_article (0.2.4)
       activesupport
+    inflection (1.0.0)
     ipaddress (0.8.3)
     jaro_winkler (1.5.1)
     jquery-rails (4.3.3)
@@ -489,6 +490,9 @@ GEM
     sitemap_generator (6.0.2)
       builder (~> 3.0)
     slop (3.6.0)
+    spring (2.1.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -542,6 +546,12 @@ GEM
     xpath (2.1.0)
       nokogiri (~> 1.3)
     zeitwerk (2.4.2)
+    zendesk_api (1.29.0)
+      faraday (>= 0.9.0, < 2.0.0)
+      hashie (>= 3.5.2, < 5.0.0)
+      inflection
+      mini_mime
+      multipart-post (~> 2.0)
 
 PLATFORMS
   ruby
@@ -609,6 +619,8 @@ DEPENDENCIES
   sendgrid
   sidekiq (~> 5.2.9)
   sitemap_generator
+  spring
+  spring-commands-rspec
   timecop
   uglifier
   underscore-rails (~> 1.6.0)
@@ -618,6 +630,7 @@ DEPENDENCIES
   webmock
   will_paginate
   will_paginate-bootstrap (~> 1.0.1)
+  zendesk_api
 
 BUNDLED WITH
    2.1.4

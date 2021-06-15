@@ -1,0 +1,102 @@
+.zendesk_ticket {
+  label {
+    display: block;
+    font-weight: bold;
+  }
+
+  label.required-error {
+    color: $fr-red !important;
+  }
+
+  #zendesk_ticket_name, #zendesk_ticket_email {
+    width: 98%;
+    height: 2rem;
+  }
+
+  li {
+    padding-bottom: 19px;
+  }
+
+  textarea {
+    width: 98%;
+    height: 100px;
+  }
+
+  button {
+    width: 98%;
+    border-color: #7aa13d;
+  }
+
+}
+
+.tender_interstitial_modal {
+  font-size: modular-scale(0);
+  line-height: 20px;
+
+  .title_bar {
+    border-bottom: 2px solid $fr_dark_blue;
+    text-align: center;
+  }
+
+  .info:not(.omit-custom-styling) {
+    border-bottom: 1px solid $fr-gray-20;
+    font-size: modular-scale(0);
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    text-align: left;
+  }
+
+  .site_feedback,
+  .document_feedback {
+    float: left;
+    height: 265px;
+    line-height: 20px;
+    padding-top: 10px;
+    width: 45%;
+
+    p { height: 110px; }
+  }
+
+  .site_feedback {
+    border-right: 1px solid $fr-gray-20;
+    margin-left: 10px;
+    padding-right: 20px;
+  }
+
+  .document_feedback { padding-left: 25px; }
+
+  .agency_question {
+    clear: both;
+    font-size: 12px;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .button {
+    background-color: $fr-blue;
+    color: $white;
+    height: 130px;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-top: 5px;
+    text-align: center;
+    width: 70%;
+
+    &:hover {
+      background-color: $fr-nav-orange;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      background-color: $fr-gray-10;
+      cursor: default;
+    }
+
+    .icon-fr2 { font-size: 100px; }
+    .button_title { position: relative; }
+  }
+
+  .site_feedback .button { margin-left: 27px; }
+  .document_feedback .button { margin-left: 35px; }
+}

@@ -33,15 +33,6 @@
     <%= add_handlebars_template('flickr_exit_modal') %>
     <%= add_handlebars_template('print_disclaimer') %>
 
-    <!-- Zendesk Widget -->
-    <%= javascript_include_tag("https://static.zdassets.com/ekr/snippet.js?key=#{Rails.application.secrets.zendesk_js_key}",
-      asyc: true,
-      defer: true,
-      nonce: true,
-      id: "ze-snippet",
-      data: { turbolinks_track: false }
-      ) unless Rails.env.development? || Rails.env.test? %>
-
     <!-- email suggestion templates -->
     <%= add_handlebars_template('email_suggestion') %>
     <%= add_handlebars_template('email_invalid') %>
@@ -55,6 +46,11 @@
     <%= add_handlebars_template('comment_preview') %>
     <%= add_handlebars_template('regulations_dot_gov_attachment_requirements') %>
     <%= add_handlebars_template('comment_print_summary') %>
+
+    <!-- tender modal for directing users to proper spots for comment -->
+    <%= add_handlebars_template('interstitial_tender_modal') %>
+    <%= add_handlebars_template('zendesk_feedback_modal') %>
+    <%= add_handlebars_template('feedback_success') %>
 
     <!-- subscription modal for selecting from multiple subscription options -->
     <%= add_handlebars_template('subscription_modal') %>
