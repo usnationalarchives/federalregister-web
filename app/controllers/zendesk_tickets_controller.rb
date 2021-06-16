@@ -13,8 +13,10 @@ class ZendeskTicketsController < ApplicationController
       }
     end
 
-
-    if ticket.save
+    if params[:browser_metadata].blank?
+      Honeybadger.notify('Missing browser metadata', context: form_params)
+      render json: {}
+    elsif ticket.save
       render json: {}
     else
       render json: {errors: ticket.errors}, status: 422
