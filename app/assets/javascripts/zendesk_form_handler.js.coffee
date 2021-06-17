@@ -77,7 +77,11 @@ class @FR2.ZendeskFormHandler
   _browserMetadata: ->
     metadata = _.pick(bowser, 'name', 'version','osname', 'osversion', 'blink')
     metadata.project = 'FR'
+    metadata.currentPage = this._currentPage()
     JSON.stringify(metadata)
+
+  _currentPage: ->
+    window.location.href
 
   _bindModalCloseHandler: () ->
     # The JQM overlay remains if the close button is selected.  Override the close handler so it's removed.
