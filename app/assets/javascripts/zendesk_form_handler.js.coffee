@@ -17,6 +17,7 @@ class @FR2.ZendeskFormHandler
   submitForm: ->
     context = this
     if this._formPassesPrevalidation()
+      this._disableSubmitButton()
       $.ajax({
         contentType: false,
         processData: false,
@@ -24,8 +25,10 @@ class @FR2.ZendeskFormHandler
         type: 'POST',
         data: this._formData(),
         success: () ->
+          context._enableSubmitButton()
           context._displaySuccessMessage()
         error: (xhr, status, error) ->
+          context._enableSubmitButton()
           Honeybadger.notify(
             "Failure to submit zendesk comment",
             {context: {
@@ -37,6 +40,12 @@ class @FR2.ZendeskFormHandler
       })
     else
       this._highlightLabelsForMissingFields()
+
+  _disableSubmitButton: ->
+    $('#interstitial_tender_modal button:submit').prop('disabled', true)
+
+  _enableSubmitButton: ->
+    $('#interstitial_tender_modal button:submit').prop('disabled', false)
 
   _displayForm: ->
     if !$('#interstitial_tender_modal').is(":visible") # eg the user is on a non-document page
@@ -78,6 +87,7 @@ class @FR2.ZendeskFormHandler
     metadata = _.pick(bowser, 'name', 'version','osname', 'osversion', 'blink')
     metadata.project = 'FR'
     metadata.currentPage = this._currentPage()
+    metadata.referrer    = document.referrer
     JSON.stringify(metadata)
 
   _currentPage: ->
