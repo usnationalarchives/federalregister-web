@@ -9,6 +9,11 @@ $(document).ready ()->
     environment: $('body').data('environment'),
   })
 
+  FR2.CommentSubmissionHoneybadger = Honeybadger.factory({
+    apiKey:      $('body').data('honeybadger-js-comment-submission-api-key'),
+    environment: $('body').data('environment'),
+  })
+
   userData = new FR2.UserData()
   new FR2.UserNavigationManager(userData)
 
