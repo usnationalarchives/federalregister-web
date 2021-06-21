@@ -82,6 +82,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "dev-fr2.criticaljuncture.org"
+  config.hosts << "fr2.criticaljuncture.org"
 end
 
 Rails.application.routes.default_url_options = {
