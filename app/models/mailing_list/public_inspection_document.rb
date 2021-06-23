@@ -63,9 +63,11 @@ class MailingList::PublicInspectionDocument < MailingList
   end
 
   def has_results?(document_numbers)
-    model.search_metadata(
-      conditions: mailing_list_conditions(document_numbers)
-    ).count > 0
+    document_numbers.in_groups_of(130,false).any? do |batch_ids|
+      model.search_metadata(
+        conditions: mailing_list_conditions(batch_ids)
+      ).count > 0
+    end
   end
 
   def results_for_document_numbers(document_numbers)
