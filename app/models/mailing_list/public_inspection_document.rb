@@ -69,11 +69,13 @@ class MailingList::PublicInspectionDocument < MailingList
   end
 
   def results_for_document_numbers(document_numbers)
-    model.search(
-      conditions: mailing_list_conditions(document_numbers),
-      fields: mailing_list_fields,
-      per_page: 1000
-    ).to_a
+    document_numbers.in_groups_of(130,false).flat_map do |batch_ids|
+      model.search(
+        conditions: mailing_list_conditions(batch_ids),
+        fields: mailing_list_fields,
+        per_page: 1000
+      ).to_a
+    end
   end
 
   def mailing_list_conditions(document_numbers)
