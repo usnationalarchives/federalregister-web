@@ -15,6 +15,8 @@ class CommentPostingNotifier
 
   def perform(comment_id)
     comment = Comment.find(comment_id)
+    return if comment.comment_document_number.present?
+
     comment.checked_comment_publication_at = Time.current
 
     reg_dot_gov_comments = client.find_comments('filter[searchTerm]' => comment.comment_tracking_number)
