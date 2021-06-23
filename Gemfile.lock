@@ -114,7 +114,7 @@ GEM
     attr_required (1.0.1)
     autoprefixer-rails (9.7.2)
       execjs
-    bindata (2.4.4)
+    bindata (2.4.10)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.4)
