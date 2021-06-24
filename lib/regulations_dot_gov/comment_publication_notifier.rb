@@ -2,12 +2,18 @@ class RegulationsDotGov::CommentPublicationNotifier
   extend Memoist
 
   def perform
-    comments.find_each do |comment|
-      if confirmed_emails_by_user_id[comment.user_id]
-        CommentPostingNotifier.perform_async(comment.id)
-      end
+    comments_with_confirmed_emails.each do |comment|
+      CommentPostingNotifier.perform_async(comment.id)
     end
   end
+
+  def comments_with_confirmed_emails
+    comments.select do |comment|
+      confirmed_emails_by_user_id[comment.user_id.to_s]
+    end
+  end
+
+  private
 
   def comments
     Comment.
@@ -17,8 +23,7 @@ class RegulationsDotGov::CommentPublicationNotifier
       where(:comment_document_number => nil).
       where(:agency_participating => true)
   end
-
-  private
+  memoize :comments
 
   def confirmed_emails_by_user_id
     Ofr::UserEmailResultSet.
