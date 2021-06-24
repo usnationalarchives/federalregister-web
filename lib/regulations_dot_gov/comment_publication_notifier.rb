@@ -1,4 +1,6 @@
 class RegulationsDotGov::CommentPublicationNotifier
+  extend Memoist
+
   def perform
     comments.find_each do |comment|
       if confirmed_emails_by_user_id[comment.user_id]
