@@ -1,7 +1,9 @@
 class RegulationsDotGov::CommentPublicationNotifier
   def perform
     comments.find_each do |comment|
-      CommentPostingNotifier.perform_async(comment.id)
+      if confirmed_emails_by_user_id[comment.user_id]
+        CommentPostingNotifier.perform_async(comment.id)
+      end
     end
   end
 
@@ -13,5 +15,13 @@ class RegulationsDotGov::CommentPublicationNotifier
       where(:comment_document_number => nil).
       where(:agency_participating => true)
   end
+
+  private
+
+  def confirmed_emails_by_user_id
+    Ofr::UserEmailResultSet.
+      get_user_emails(comments.pluck(:user_id).uniq)
+  end
+  memoize :confirmed_emails_by_user_id
 
 end
