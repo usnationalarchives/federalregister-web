@@ -19,6 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
+job_type :rake, [
+  'cd :path',
+  'source /etc/container_environment.sh',
+  'rake :task --trace :output',
+].join(' && ')
+
 set :output, lambda { "2>&1 | sed \"s/^/[$(date)] /\" >> #{path}/log/#{log}.log" }
 
 every 1.day, at: '6PM' do
