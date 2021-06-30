@@ -64,7 +64,7 @@
 
             <p>You can use a quoted string quorum search to allow for a form of fuzzy matching. Quorum searches use the <code>'/'</code> operated followed by a number.</p>
 
-            <p><strong>Usage:</strong> <%= working_search_example('"rebuilt forgn domestic vehicular boat parts"/3') %> would match any document that contains at least 3 of the 6 words. This is especially useful when you are looking for a familiar document with phrasing you remember or for documents that deal with a smaller subclass of common wording as in the example.</p>
+            <p><strong>Usage:</strong> <%= working_search_example('"rebuilt foreign domestic vehicular boat parts"/3') %> would match any document that contains at least 3 of the 6 words. This is especially useful when you are looking for a familiar document with phrasing you remember or for documents that deal with a smaller subclass of common wording as in the example.</p>
 
             <p><strong>Example:</strong> Returning to the example in Part IV above, you could search: <%= working_search_example('"rebuilt vehicular boat parts"/3') %> which would allow matches on documents containing rebuilt, vehicular, and parts; rebuilt, boat, and parts; and vehicular, rebuilt, and parts. Remember this search is for matching words in a document, not a phrase matching using the <code>'~'</code> operator as shown in Part IV proximity searches.</p>
 
