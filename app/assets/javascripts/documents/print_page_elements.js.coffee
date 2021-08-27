@@ -48,14 +48,17 @@ class @FR2.PrintPageElements
         inlineEl.remove()
 
   @alignGutterElements: ->
-    _.each @printPageIcons(), (inlineEl)=>
-      gutterItem = @correspondingGutterItem(
-        $(inlineEl).data('page')
-      )
+    adjustments = _.map @printPageIcons(), (el) =>
+      gutterItem = @correspondingGutterItem( $(el).data('page') )
+      return {
+        gutterItem: gutterItem,
+        topValue:   $(el).position().top - gutterItem.position().top
+      }
 
-      gutterItem.css(
+    _.each adjustments, (adjustment) =>
+      adjustment.gutterItem.css(
         'top',
-        $(inlineEl).position().top - gutterItem.position().top
+        adjustment.topValue
       )
 
   @addUIEvents: ->
