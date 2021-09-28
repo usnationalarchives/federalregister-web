@@ -21,8 +21,7 @@
     <%# TODO: for facebook image below, show curated image if present %>
     <link rel="image_src" href="https://www.federalregister.gov/images/fbdisplay.jpg" />
 
-    <link href="<%= asset_url('fr2_icons/fr2_icons.woff2') %>"
-      rel="preload" as="font" type="font/woff2" crossorigin>
+    <%= render 'layouts/webfonts' %>
 
     <link href="<%= asset_path('vendor.css') %>", media="all", rel="preload stylesheet", as="style">
     <link href="<%= asset_path('application.css') %>", media="all", rel="preload stylesheet", as="style">
