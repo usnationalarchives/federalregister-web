@@ -38,6 +38,13 @@ Rails.application.config.content_security_policy do |policy|
   ]
   policy.style_src *style_srcs
 
+  font_srcs = [
+    :self,
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com'
+  ]
+  policy.font_src *font_srcs
+
   img_srcs = [
     :self,
     :data,
