@@ -67,7 +67,7 @@ body {
   .fr-box-public-inspection,
   .fr-box-published {
     .content-block {
-      @include serif;
+      @include sans_serif;
 
       h1, h2, h3, h4 {
         @include sans_serif;
