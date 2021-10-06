@@ -17,7 +17,10 @@ class @FR2.FormUtils
     if $input.val()? && $input.val() != ""
       string = $input.val()
       usedChars = string.length
-      newLines  = string.match(/\n/g).length # NOTE: regulations.gov appears to count newlines as two characters
+      if string.match(/\n/g) # NOTE: regulations.gov appears to count newlines as two characters
+        newLines = string.match(/\n/g).length
+      else
+        newLines = 0
 
     maxChars - usedChars - newLines
 
