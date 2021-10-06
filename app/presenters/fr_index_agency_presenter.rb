@@ -44,7 +44,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
       DocumentTypeRepresentation.new(
         name: category["type"],
         granule_class: granule_class,
-        anchor_link: "##{agency_slug}-#{category["type"]}".downcase.gsub(' ','-'),
+        anchor_link: "##{category["type"]}-#{agency_slug}".downcase.gsub(' ','-'),
         document_count: document_type_counts[granule_class],
         subject_count: category["documents"].group_by{|d|d["subject_1"]}.keys.size,
       )
