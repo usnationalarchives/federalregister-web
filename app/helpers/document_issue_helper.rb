@@ -30,17 +30,10 @@ module DocumentIssueHelper
             partial: document_partial,
             locals: {
               subject: subject_heading_required?(level, docs_only_at_this_level, nested_docs) ? nil : subject_heading,
-              documents: agency.
-                load_documents(doc["document_numbers"]).
-                sort_by do |doc|
-                  if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
-                    table_of_contents_sorting_algorithm = lambda { |doc| [9999999, 9999999, doc] }
-                  else
-                    table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
-                  end
-
-                  table_of_contents_sorting_algorithm.call(doc)
-                end,
+              documents: apply_sorting_algorithm(
+                agency.
+                load_documents(doc["document_numbers"])
+              ),
               total_document_count: total_document_count
             }
           )
@@ -107,7 +100,8 @@ module DocumentIssueHelper
   end
 
   def render_fr_index_subject_header(subject, agency, docs_only_at_this_level)
-    documents = agency.load_documents(docs_only_at_this_level.first["document_numbers"])
+    documents = apply_sorting_algorithm(agency.load_documents(docs_only_at_this_level.first["document_numbers"]))
+    Rails.logger.info "#render_fr_index_subject #{documents.map(&:document_number)}"
 
     header = render partial: 'indexes/subject_header_with_documents', locals: {
       subject: subject,
@@ -115,5 +109,20 @@ module DocumentIssueHelper
     }
 
     header
+  end
+
+
+  private
+
+  def apply_sorting_algorithm(docs)
+    docs.sort_by do |doc|
+      if doc.is_a? String #Handle edge cases where the doc cannot be found--eg corrections
+        table_of_contents_sorting_algorithm = lambda { |doc| [9999999, 9999999, doc] }
+      else
+        table_of_contents_sorting_algorithm = doc.table_of_contents_sorting_algorithm
+      end
+
+      table_of_contents_sorting_algorithm.call(doc)
+    end
   end
 end
