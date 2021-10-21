@@ -101,7 +101,6 @@ module DocumentIssueHelper
 
   def render_fr_index_subject_header(subject, agency, docs_only_at_this_level)
     documents = apply_sorting_algorithm(agency.load_documents(docs_only_at_this_level.first["document_numbers"]))
-    Rails.logger.info "#render_fr_index_subject #{documents.map(&:document_number)}"
 
     header = render partial: 'indexes/subject_header_with_documents', locals: {
       subject: subject,
