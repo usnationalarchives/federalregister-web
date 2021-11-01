@@ -318,7 +318,8 @@ class @FR2.CommentForm
           )
         else
           $('#comment_category_input').addClass('cj-hidden')
-      error: () ->
+      error: (response) ->
+        FR2.CommentSubmissionHoneybadger.notify("Regulations.gov error when updating comment categories", context: response)
         modalTitle = "Regulations.gov Unavailable"
         modalHtml = "
           <p>
