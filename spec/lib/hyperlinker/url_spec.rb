@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 # cribbed from https://github.com/tenderlove/rails_autolink/blob/master/test/test_rails_autolink.rb
 
-describe Hyperlinker::Url do
+describe "Hyperlinker::Url" do
   def hyperlink(text, options={})
-    Hyperlinker::Url.perform(text, options)
+    FederalRegisterReferenceParser.hyperlink_with_fr_defaults(text, date: Date.today, options: {class: nil, target: nil})
   end
 
   def h(str)
@@ -14,7 +14,7 @@ describe Hyperlinker::Url do
 
   def generate_result(link_text, href = nil)
     href ||= link_text
-    %{<a href="#{CGI::escapeHTML(href)}">#{Hyperlinker::Url.add_line_break_indicators(link_text)}</a>}
+    %{<a href="#{CGI::escapeHTML(href)}" class="external" target="_blank" rel="noopener noreferrer">#{ReferenceParser::UrlPrtpage.add_line_break_indicators(link_text)}</a>}
   end
 
   it "handles brackets" do
@@ -45,20 +45,20 @@ describe Hyperlinker::Url do
     url = "http://example.com/test.cgi?foo=1;bar=2"
     url_result = generate_result(url)
     expect(hyperlink(url)).to eql url_result
-    expect(hyperlink("#{url};")).to eql "#{url_result};&#8203;"
+    expect(hyperlink("#{url};")).to eql "#{generate_result("#{url};")}"
   end
 
   it "handles EOL" do
     url1 = "http://api.rubyonrails.com/Foo.html"
     url2 = "http://www.ruby-doc.org/core/Bar.html"
 
-    expect(hyperlink("<p>#{url1}<br />#{url2}<br /></p>")).to eql %(<p><a href="#{url1}">http://api.rubyonrails.com/&#8203;Foo.html</a><br /><a href="#{url2}">http://www.ruby-doc.org/&#8203;core/&#8203;Bar.html</a><br /></p>)
+    expect(hyperlink("<p>#{url1}<br />#{url2}<br /></p>")).to eql %(<p><a href="#{url1}" class="external" target="_blank" rel="noopener noreferrer">http://api.rubyonrails.com/&#8203;Foo.html</a><br /><a href="#{url2}" class="external" target="_blank" rel="noopener noreferrer">http://www.ruby-doc.org/&#8203;core/&#8203;Bar.html</a><br /></p>)
   end
 
   it "handle misc formatting" do
     link_raw     = 'http://www.rubyonrails.com'
     link_result  = generate_result(link_raw)
-    link_result_with_options = %{<a href="#{link_raw}" target="_blank">#{link_raw}</a>}
+    link_result_with_options = %{<a href="#{link_raw}" class="external" target="_blank" rel="noopener noreferrer">#{link_raw}</a>}
 
     expect(hyperlink(nil)).to eql('')
     expect(hyperlink('')).to eql('')
@@ -204,7 +204,7 @@ describe Hyperlinker::Url do
     XML
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://energy.gov/foo?a=1&amp;b=2">http://energy.gov/&#8203;foo?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>
+        <a href="http://energy.gov/foo?a=1&amp;b=2" class="external" target="_blank" rel="noopener noreferrer">http://energy.gov/&#8203;foo?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>
       </E>
     XML
   end
@@ -220,9 +220,9 @@ describe Hyperlinker::Url do
 
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://energy.gov/fe/2015-lng-study">http://</a>
+        <a href="http://energy.gov/fe/2015-lng-study" class="external" target="_blank" rel="noopener noreferrer">http://</a>
         <PRTPAGE P="81301"/>
-        <a href="http://energy.gov/fe/2015-lng-study">energy.gov/&#8203;fe/&#8203;2015-lng-study</a>
+        <a href="http://energy.gov/fe/2015-lng-study" class="external" target="_blank" rel="noopener noreferrer">energy.gov/&#8203;fe/&#8203;2015-lng-study</a>
       </E>
     XML
 
@@ -236,9 +236,9 @@ describe Hyperlinker::Url do
 
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://www.energy.gov/fe/2015-lng-study">http://www.energy.gov/&#8203;fe/&#8203;2015-</a>
+        <a href="http://www.energy.gov/fe/2015-lng-study" class="external" target="_blank" rel="noopener noreferrer">http://www.energy.gov/&#8203;fe/&#8203;2015-</a>
         <PRTPAGE P="81301"/>
-        <a href="http://www.energy.gov/fe/2015-lng-study">lng-study</a>
+        <a href="http://www.energy.gov/fe/2015-lng-study" class="external" target="_blank" rel="noopener noreferrer">lng-study</a>
       </E>
     XML
 
@@ -252,9 +252,9 @@ describe Hyperlinker::Url do
 
     expect(result).to eql(<<-XML)
       <E T="03">
-        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">http://www.energy.gov/&#8203;fe/&#8203;2015/&#8203;</a>
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2" class="external" target="_blank" rel="noopener noreferrer">http://www.energy.gov/&#8203;fe/&#8203;2015/&#8203;</a>
         <PRTPAGE P="81301"/>
-        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2">foo/&#8203;bar/&#8203;baz?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>. a very interesting piece
+        <a href="http://www.energy.gov/fe/2015/foo/bar/baz?a=1&amp;b=2" class="external" target="_blank" rel="noopener noreferrer">foo/&#8203;bar/&#8203;baz?&#8203;a=&#8203;1&amp;&#8203;b=&#8203;2</a>. a very interesting piece
       </E>
     XML
   end

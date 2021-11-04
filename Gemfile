@@ -33,6 +33,11 @@ gem 'calendar_helper',
   git: "https://github.com/criticaljuncture/calendar_helper.git",
   branch: 'master'
 
+# link citations & internal references
+gem 'reference_parser',
+  github: 'criticaljuncture/reference_parser',
+  branch: 'main'
+
 # parse more date formats when needed
 gem 'chronic', '~> 0.10.2'
 

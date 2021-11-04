@@ -40,6 +40,16 @@ GIT
       omniauth (~> 1.9)
       openid_connect (~> 1.1)
 
+GIT
+  remote: https://github.com/criticaljuncture/reference_parser.git
+  revision: 83c3f39576efa13289245748af5ca4ced083f78e
+  branch: main
+  specs:
+    reference_parser (0.1.0)
+      actionview
+      activesupport
+      htmlentities
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -603,6 +613,7 @@ DEPENDENCIES
   rake
   recaptcha (= 0.4.0)
   redis (~> 3.3.5)
+  reference_parser!
   request_store
   request_store-sidekiq (~> 0.1)
   rexml
