@@ -15,7 +15,7 @@ vcr:
   log_output: false
   max_cassette_size: 4.0 #Mb
 varnish:
-  host: 127.0.0.1
+  host: <%= ENV["VARNISH_ADDR"] || '127.0.0.1' %>
   enable_cache_headers: true
 
 regulations_dot_gov:
