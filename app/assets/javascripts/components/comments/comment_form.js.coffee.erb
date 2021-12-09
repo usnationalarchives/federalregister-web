@@ -379,7 +379,10 @@ class @FR2.CommentForm
   _addInlineValidations: () ->
     this._validatableFields().each () ->
       $(this).on('blur', () ->
-        if $(this).val() == ''
+        if $(this).closest('li').find('.inline-errors').hasClass('char-count-error-js')
+          # no-op
+        else if $(this).val() == ''
+
           $(this).closest('li').find('.inline-errors').remove()
           $(this).after("<p class='inline-errors'>This field is required</p>")
         else

@@ -47,7 +47,7 @@ class @FR2.FormUtils
       if errorField.length == 0
         $input
           .after(
-            $('<p>').addClass 'inline-errors'
+            $('<p>').addClass 'inline-errors char-count-error-js'
           )
         errorField = $input
           .siblings 'p.inline-errors'
