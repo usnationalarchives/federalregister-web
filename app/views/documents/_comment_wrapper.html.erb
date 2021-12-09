@@ -128,7 +128,7 @@
         </div>
 
         <div class="submitter-section-js cj-hidden" data-submitter-type="individual">
-          <%= f.input :firstName, label: "First Name", wrapper_html: {class: 'validate-required-js'} %>
+          <%= f.input :firstName, label: "First Name", wrapper_html: {class: 'validate-required-js', 'data-size-warn-at' => 5,  'data-max-size' => 25} %>
           <%= f.input :lastName, label: "Last Name", wrapper_html: {class: 'validate-required-js'} %>
           <%= f.input :city, required: false %>
           <div id="canada-options" data-options="<%= canada_province_options.to_json %>"></div>
