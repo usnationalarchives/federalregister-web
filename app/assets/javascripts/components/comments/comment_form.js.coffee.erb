@@ -249,7 +249,7 @@ class @FR2.CommentForm
     else if ! @commentConfirmationChecked()
       "Please read and confirm the statement regarding the submission of personal information."
     else if ! @_formPassesPrevalidation()
-      "Please ensure all required fields in the form above are populated."
+      "Please ensure all required fields in the form above are populated and have no errors."
     else
       false
 
@@ -365,6 +365,13 @@ class @FR2.CommentForm
   _formPassesPrevalidation: () ->
     _.all(this._requiredFields(), (el) ->
       $(el).val() != ""
+    ) && _.all(this._visibleCharCountFields(), (el) ->
+      $(el).siblings('.inline-errors:not(.warning)').length == 0
+    )
+
+  _visibleCharCountFields: () ->
+    _.filter(this._requiredFields(), (el) ->
+      $(el).is(":visible") && $(el).closest('li').data('max-size')
     )
 
   _requiredFields: () ->
