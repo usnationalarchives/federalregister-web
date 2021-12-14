@@ -2,14 +2,24 @@
 ### BASE (FIRST)
 #######################
 
-FROM quay.io/criticaljuncture/baseimage:18.04
+FROM quay.io/criticaljuncture/baseimage:20.04
 
 
 #######################
 ### RUBY
 #######################
 
-RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
+ARG RUBY_VERSION=2.6-jemalloc
+
+# install ruby
+RUN apt update &&\
+  apt install -y \
+    # ruby
+    fullstaq-ruby-common fullstaq-ruby-${RUBY_VERSION} &&\
+  apt-get clean &&\
+  apt-get autoremove &&\
+  apt-get purge &&\
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
 
 #######################
@@ -18,7 +28,7 @@ RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
 
 RUN apt-get update && apt-get install -y libcurl4-openssl-dev libpcre3-dev git libmysqlclient-dev libssl-dev mysql-client secure-delete \
     # capybara-webkit
-    libqt4-dev libqtwebkit-dev \
+    qt5-default \
     # aws tools
     awscli &&\
   apt-get clean &&\
@@ -65,6 +75,16 @@ RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc
 COPY docker/web/files/logrotate/app /etc/logrotate.d/app
 COPY docker/web/files/logrotate/persist_logs.sh /opt/persist_logs.sh
 
+###############################
+### ADDITIONAL RUBY SETUP
+###############################
+RUN chown -R app /usr/lib/fullstaq-ruby
+
+# make available in default path
+ENV PATH "/usr/lib/fullstaq-ruby/versions/${RUBY_VERSION}/bin:${PATH}"
+USER app
+ENV PATH "/usr/lib/fullstaq-ruby/versions/${RUBY_VERSION}/bin:${PATH}"
+USER root
 
 ###############################
 ### GEMS & PASSENGER INSTALL
