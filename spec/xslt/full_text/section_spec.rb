@@ -147,7 +147,6 @@ describe "XSLT::FullText::Section" do
       </CONTENTS>
       XML
 
-      puts html
       expect(html).to have_tag("dt",
         with: {class: 'sectno-citation'}) do
           with_tag("a", with: {href: "#sectno-reference-363.1"})
