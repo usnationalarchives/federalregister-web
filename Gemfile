@@ -15,6 +15,9 @@ gem 'active_hash'
 #ensure connections to missing db don't cause precompilation to fail
 gem "activerecord-nulldb-adapter"
 
+# URI encoding (Ruby 2.7 deprecates URI.encode)
+gem 'addressable'
+
 # remove boilerplate code for abstracting small, focused classes
 gem 'attr_extras', '~> 3.2.0'
 

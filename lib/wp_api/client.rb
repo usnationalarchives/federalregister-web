@@ -78,7 +78,7 @@ class WpApi::Client
   private
 
   def self.get(uri)
-    super( URI.encode(uri) )
+    super( Addressable::URI.escape(uri) )
   end
 
   def self.build_url(endpoint, params)

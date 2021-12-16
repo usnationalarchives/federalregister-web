@@ -563,6 +563,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   activerecord-nulldb-adapter
+  addressable
   attr_extras (~> 3.2.0)
   bootsnap
   bootstrap-sass
