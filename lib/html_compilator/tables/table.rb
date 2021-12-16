@@ -80,7 +80,7 @@ class HtmlCompilator::Tables::Table
   end
 
   def h
-    @h ||= ActionView::Base.new
+    @h ||= ActionView::Base.new(ActionView::LookupContext.new([]))
   end
 
   def transform(xml)
