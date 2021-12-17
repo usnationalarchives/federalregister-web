@@ -246,8 +246,8 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.3.0)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
+    formtastic (4.0.0)
+      actionpack (>= 5.2.0)
     geokit (1.4.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
