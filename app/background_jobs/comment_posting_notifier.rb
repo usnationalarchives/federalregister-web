@@ -4,7 +4,7 @@ class CommentPostingNotifier
 
   sidekiq_options :queue => :web_reg_gov, :retry => 0
 
-  sidekiq_throttle({
+  sidekiq_throttle(**{
     # Allow maximum 1 concurrent jobs of this class at a time.
     :concurrency => { :limit => 1 },
     :threshold => {
