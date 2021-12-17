@@ -135,10 +135,6 @@ gem 'request_store-sidekiq', '~> 0.1'
 # explicit add needed to support Ruby 2.7
 gem 'rexml'
 
-# background jobs, resque web interface - rails engine
-gem 'resque', '~> 1.27.0'
-gem 'resque-retry'
-
 # sass integration
 gem 'sass-rails', '~> 5.1'
 gem "sass"

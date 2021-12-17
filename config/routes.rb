@@ -1,4 +1,3 @@
-require 'resque/server'
 Rails.application.routes.draw do
   get 'error_page', to: 'special#error_page' unless Rails.env.production?
 
@@ -8,8 +7,6 @@ Rails.application.routes.draw do
     mount CommentMailer::Preview => 'comment_mail_view'
     mount DocumentMailer::Preview => 'document_mail_view'
   end
-
-  mount Resque::Server.new, :at => "/resque-web"
 
   get 'status/web/:id', to: 'special#status'
   get 'status', to: 'special#status'
