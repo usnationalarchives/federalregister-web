@@ -439,6 +439,7 @@ GEM
       redis (>= 3.3, < 5)
       resque (~> 1.26)
       rufus-scheduler (~> 3.2)
+    rexml (3.2.5)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -634,6 +635,7 @@ DEPENDENCIES
   request_store-sidekiq (~> 0.1)
   resque (~> 1.27.0)
   resque-retry
+  rexml
   rspec-html-matchers
   rspec-rails (~> 3.2)
   rubocop (~> 0.57.0)

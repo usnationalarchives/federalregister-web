@@ -132,6 +132,9 @@ gem 'redis', '~> 3.3.5'
 gem 'request_store'
 gem 'request_store-sidekiq', '~> 0.1'
 
+# explicit add needed to support Ruby 2.7
+gem 'rexml'
+
 # background jobs, resque web interface - rails engine
 gem 'resque', '~> 1.27.0'
 gem 'resque-retry'
