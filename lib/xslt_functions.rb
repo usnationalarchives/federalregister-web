@@ -112,7 +112,7 @@ class XsltFunctions
     document = blank_document
     images = images.split(' ')
 
-    graphic_identifier = URI.encode(nodes.first.content)
+    graphic_identifier = Addressable::URI.escape(nodes.first.content)
     image = images.find{|i| i.include?(graphic_identifier)}
 
     if image

@@ -23,7 +23,7 @@ describe Hyperlinker::Email do
     expect(hyperlink("hello #{email_raw}")).to eql %(hello #{email_result})
 
     email2_raw    = '+david@loudthinking.com'
-    email2_result = %{<a href="mailto:#{URI.escape(email2_raw, '+')}">#{email2_raw}</a>}
+    email2_result = %{<a href="mailto:#{Addressable::URI.escape(email2_raw, '+')}">#{email2_raw}</a>}
     expect(hyperlink(email2_raw)).to eql email2_result
   end
 
