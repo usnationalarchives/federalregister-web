@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../../spec_helper'
-
+ 
 # cribbed from https://github.com/tenderlove/rails_autolink/blob/master/test/test_rails_autolink.rb
 
 describe Hyperlinker::Email do
@@ -23,7 +23,8 @@ describe Hyperlinker::Email do
     expect(hyperlink("hello #{email_raw}")).to eql %(hello #{email_result})
 
     email2_raw    = '+david@loudthinking.com'
-    email2_result = %{<a href="mailto:#{Addressable::URI.escape(email2_raw, '+')}">#{email2_raw}</a>}
+    encoded_email2 = "#{CGI.escape('+')}david@loudthinking.com"
+    email2_result = %{<a href="mailto:#{encoded_email2}">#{email2_raw}</a>}
     expect(hyperlink(email2_raw)).to eql email2_result
   end
 
