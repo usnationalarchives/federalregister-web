@@ -52,7 +52,7 @@ class SectionsController < ApplicationController
   def carousel_preview
     @section = Section.find_by_slug(params[:slug])
     @highlighted_documents = JSON.parse(
-      URI.unescape(params[:highlighted_documents])
+      Addressable::URI.unencode(params[:highlighted_documents])
     ).map{|h| OpenStruct.new(h)}
 
     if @highlighted_documents.present?
