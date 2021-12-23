@@ -52,11 +52,7 @@ module DocumentDecorator::Comments
   end
 
   def calculated_comment_url
-    if Settings.regulations_dot_gov.use_beta
-      "https://www.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
-    else
-      comment_url
-    end
+    "https://www.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
   end
 
   def comment_period_days_remaining
@@ -80,6 +76,6 @@ module DocumentDecorator::Comments
   def public_comments_url
     return unless has_comments?
 
-    "https://beta.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
+    "https://www.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
   end
 end

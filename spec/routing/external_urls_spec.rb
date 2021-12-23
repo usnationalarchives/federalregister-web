@@ -9,7 +9,7 @@ describe "external url routes" do
       expect(
         regulations_dot_gov_docket_url(docket_id)
       ).to eq(
-        "https://beta.regulations.gov/docket/#{docket_id}"
+        "https://www.regulations.gov/docket/#{docket_id}"
       )
     end
 
@@ -25,7 +25,7 @@ describe "external url routes" do
       expect(
         regulations_dot_gov_docket_supporting_documents_url(docket_id)
       ).to eq(
-        "https://beta.regulations.gov/docket/#{docket_id}/document?documentTypes=Supporting%20%26%20Related%20Material"
+        "https://www.regulations.gov/docket/#{docket_id}/document?documentTypes=Supporting%20%26%20Related%20Material"
       )
     end
 
