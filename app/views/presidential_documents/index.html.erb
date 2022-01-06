@@ -1,5 +1,5 @@
 <% header_type 'reader-aids' %>
-<% page_title 'Presdential Documents' %>
+<% page_title 'Presidential Documents' %>
 <% description truncate_words(
     strip_tags(@presenter.description),
     :length => 300
@@ -54,7 +54,7 @@
                       presidential_documents_by_president_and_year_path(
                         doc_type.name.downcase.pluralize.gsub(' ','-'),
                         president.identifier,
-                        president.ends_on.year < Date.current.year ? president.ends_on.year : Date.current.year
+                        president.ends_on.year < Date.current.year ? president.ends_on.year : @presenter.most_recent_year(president, doc_type)
                       ) %>
                     <span class="count-pill reader-aid cj-tooltip"
                       data-tooltip="<%= pluralize(count, doc_type.name.downcase) %> (<%= president.in_office %>)"
