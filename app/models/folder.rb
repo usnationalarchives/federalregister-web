@@ -5,6 +5,7 @@ class Folder < ApplicationRecord
     message: "Folder name must not be blank"
 
   validates_uniqueness_of :name,
+    case_sensitive: true,
     scope: :creator_id,
     message: Proc.new{|e,f| "You have already created a folder named \"#{f[:value]}\"."}
 
