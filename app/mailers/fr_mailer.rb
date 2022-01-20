@@ -1,7 +1,7 @@
 class FRMailer < ActionMailer::Base
   include SendGrid
 
-  add_template_helper(MailerHelper)
+  helper(MailerHelper)
 
   layout "mailer/two_col_1_2"
 

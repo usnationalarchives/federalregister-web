@@ -1,8 +1,8 @@
 class DocumentMailer < ActionMailer::Base
   include SendGrid
 
-  add_template_helper(MailerHelper)
-  add_template_helper(TextHelper)
+  helper(MailerHelper)
+  helper(TextHelper)
 
   sendgrid_enable :opentracking, :clicktracking, :ganalytics
 

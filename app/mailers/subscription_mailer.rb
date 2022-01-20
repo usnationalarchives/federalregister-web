@@ -1,12 +1,12 @@
 class SubscriptionMailer < ActionMailer::Base
   include SendGrid
 
-  add_template_helper(MailerHelper)
-  add_template_helper(BootstrapHelper)
-  add_template_helper(FrBoxHelper)
-  add_template_helper(DocumentIssueHelper)
-  add_template_helper(IconHelper)
-  add_template_helper(TextHelper)
+  helper(MailerHelper)
+  helper(BootstrapHelper)
+  helper(FrBoxHelper)
+  helper(DocumentIssueHelper)
+  helper(IconHelper)
+  helper(TextHelper)
 
   default :from => "Federal Register Subscriptions <subscriptions@mail.federalregister.gov>"
 
