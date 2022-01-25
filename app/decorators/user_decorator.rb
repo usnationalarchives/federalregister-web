@@ -5,7 +5,7 @@ class UserDecorator < ApplicationDecorator
   delegate :clippings,
            :id,
            :email,
-           :update_attribute, to: :user
+           :update, to: :user
 
   def display_name
     user.try(:email)

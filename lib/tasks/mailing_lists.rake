@@ -51,7 +51,7 @@ namespace :mailing_lists do
         else
           deleted_at = Time.now
           mailing_list.deleted_at = deleted_at
-          mailing_list.subscriptions.each{|s| s.update_attributes(deleted_at: deleted_at)}
+          mailing_list.subscriptions.each{|s| s.update(deleted_at: deleted_at)}
           mailing_list.save
         end
       end
@@ -144,7 +144,7 @@ namespace :mailing_lists do
             where(mailing_list_id: ml.id).
             update_all(mailing_list_id: mailing_list.id)
 
-          ml.update_attributes({
+          ml.update({
             deleted_at: Time.now,
           })
         end

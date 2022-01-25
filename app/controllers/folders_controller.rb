@@ -28,7 +28,7 @@ class FoldersController < ApplicationController
       elsif clipping_ids
         clipping_ids.each do |id|
           clipping = Clipping.find(id)
-          clipping.update_attributes(folder_id: folder.id)
+          clipping.update(folder_id: folder.id)
         end
       end
 
