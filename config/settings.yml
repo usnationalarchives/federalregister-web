@@ -1,5 +1,6 @@
 # urls for mailers, redirects, etc - where routes aren't available
 app_url: 'https://www.federalregister.gov'
+permitted_hosts: <%= ENV["PERMITTED_HOSTS"] || "" %>
 canonical_host: 'https://www.federalregister.gov'
 fr_comment_url: 'https://www.federalregister.gov/my/comments'
 

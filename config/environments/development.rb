@@ -96,6 +96,9 @@ Rails.application.configure do
 
   config.hosts << "dev-fr2.criticaljuncture.org"
   config.hosts << "fr2.criticaljuncture.org"
+  Settings.permitted_hosts.split(',').each do |host|
+    config.hosts << host
+  end
   
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
