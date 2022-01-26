@@ -31,7 +31,7 @@ class SpecialController < ApplicationController
 
   def robots
     cache_for 1.day
-    render 'robots.txt.erb', layout: false, content_type: 'text/plain'
+    render 'robots', layout: false, content_type: 'text/plain'
   end
 
   def status
