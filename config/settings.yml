@@ -30,6 +30,7 @@ feature_flags:
     submit_comments: <%= ENV["REG_GOV_SUBMIT_COMMENTS"] || false %>
   regulatory_plan: false
   # google charts image api is deprecated - reimplement in js
+  report_deprecations: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("REPORT_DEPRECATIONS", false) ) %>
   sparklines:
     agencies: false
     topics: false
