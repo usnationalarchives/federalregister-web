@@ -90,3 +90,4 @@ $(document).ready ()->
 
   if $( "#fulltext_content_area" ).length > 0
     new FR2.FootnoteHandler
+    new FR2.ContentCopyToClipboard

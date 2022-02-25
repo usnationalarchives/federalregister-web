@@ -47,6 +47,7 @@
 #= require old/navigation
 
 #= require_tree ./documents
+#= require content_copy_to_clipboard
 #= require fr_index_popover_handler
 #= require footnote_handler
 #= require table_fixed_header_handler
