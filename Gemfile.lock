@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://github.com/criticaljuncture/reference_parser.git
-  revision: 83c3f39576efa13289245748af5ca4ced083f78e
+  revision: 15a8ceba7b6cf68336bf65e7054aed06949c8541
   branch: main
   specs:
     reference_parser (0.1.0)
