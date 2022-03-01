@@ -1,0 +1,33 @@
+class @FR2.HoneybadgerConfigurer
+  constructor: () ->
+
+    Honeybadger.configure({
+      apiKey:      @._environmentApiKey(),
+      environment: @._environment(),
+      enableUncaught: <% if Settings.feature_flags.honeybadger_js %>true<% else %>false<% end %>,      
+    })
+
+    <% unless Settings.feature_flags.honeybadger_js %>
+    Honeybadger.beforeNotify(@._ignore_everything)
+    <% end %>
+
+    FR2.CommentSubmissionHoneybadger = Honeybadger.factory({
+      apiKey:      @._environmentCommentSubmissionApiKey(),
+      environment: @._environment(),
+    })
+
+  _environmentApiKey: ->
+    $('body').data('honeybadger-js-api-key')
+
+  _environmentCommentSubmissionApiKey: ->
+    $('body').data('honeybadger-js-comment-submission-api-key')
+
+  _environment: ->
+    $('body').data('environment')
+
+  _ignore_everything: (notice) ->
+    if Object.keys(notice.context).length == 0
+      console.log("Not notifying HB notice.message: " + notice.message)
+      return false
+    else
+      return true

@@ -4,15 +4,7 @@
 FR2.currentUserStorage = new FR2.NonPersistentStorage()
 
 $(document).ready ()->
-  Honeybadger.configure({
-    apiKey:      $('body').data('honeybadger-js-api-key'),
-    environment: $('body').data('environment'),
-  })
-
-  FR2.CommentSubmissionHoneybadger = Honeybadger.factory({
-    apiKey:      $('body').data('honeybadger-js-comment-submission-api-key'),
-    environment: $('body').data('environment'),
-  })
+  new FR2.HoneybadgerConfigurer()
 
   userData = new FR2.UserData()
   new FR2.UserNavigationManager(userData)

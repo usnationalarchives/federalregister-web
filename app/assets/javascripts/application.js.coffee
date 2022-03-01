@@ -10,6 +10,7 @@
 # Namespaced JS Classes
 #= require utilities/analytics
 #= require utilities/cj_tooltip
+#= require utilities/honeybadger_configurer
 #= require utilities/modal
 #= require utilities/toggle
 #= require utilities/list_item_filter

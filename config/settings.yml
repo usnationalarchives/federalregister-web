@@ -25,6 +25,7 @@ feature_flags:
   announcements: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("FEATURE_FLAG_ANNOUNCEMENTS", false) ) %>
   events_search: false
   fr_index_pdfs: true
+  honeybadger_js: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("FEATURE_FLAG_HONEYBADGER_JS", false)) %>
   unified_agenda:
     search: false
   regulations_dot_gov:
