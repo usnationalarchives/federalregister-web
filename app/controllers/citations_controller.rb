@@ -7,7 +7,7 @@ class CitationsController < ApplicationController
     title, part, section = params[:citation].match(CFR_REGEXP)[1..3]
 
     cfr_reference = "#{title} CFR #{part}#{".#{section}" if section.present?}"
-    redirect_to "https://ecfr.federalregister.gov/cfr-reference?#{{cfr: {reference: cfr_reference}}.to_query}"
+    redirect_to "https://www.ecfr.gov/cfr-reference?#{{cfr: {reference: cfr_reference}}.to_query}"
   end
 
   def fr

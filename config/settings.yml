@@ -16,7 +16,7 @@ external_modal_domain_whitelist:
   - "s3.amazonaws.com/archives."
   - "agency-logos.federalregister.gov"
   - "archives.federalregister.gov"
-  - "ecfr.federalregister.gov"
+  - "www.ecfr.gov"
   - "images.federalregister.gov"
   - "public-inspection.federalregister.gov"
   - "uploads.federalregister.gov"
