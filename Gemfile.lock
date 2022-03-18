@@ -309,6 +309,11 @@ GEM
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    lograge (0.11.2)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -595,6 +600,7 @@ DEPENDENCIES
   jwt
   klarlack (= 0.0.7)!
   launchy
+  lograge
   mail_view!
   memoist
   mysql2 (= 0.5.2)

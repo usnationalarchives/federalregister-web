@@ -35,11 +35,6 @@ module MyFr2
       'FederalRegister::Client::RecordNotFound' => :not_found
     )
 
-    unless Rails.env.test?
-      # add passenger process id and request uuid to logs
-      config.log_tags = [Proc.new { "PID: %.5d" % Process.pid }, :uuid]
-    end
-
     config.active_record.belongs_to_required_by_default = false
   end
 end

@@ -85,6 +85,9 @@ gem "httparty"
 # adds indefinite article methods to String and Symbol
 gem 'indefinite_article'
 
+# structured logging
+gem 'lograge'
+
 # JSON web tokens (share notifications across services)
 gem 'jwt'
 
