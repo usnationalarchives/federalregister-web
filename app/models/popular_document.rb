@@ -1,42 +1,35 @@
 class PopularDocument
 
-  POPULAR_DOCUMENT_COUNT = 40
+  POPULAR_DOCUMENT_COUNT = 8
   DOCUMENT_CUTOFF        = 30.days
   def self.popular(options={})
-    results = Document.search(
-      conditions: {
-        publication_date: {gte: Date.current - DOCUMENT_CUTOFF}
-      },
-      fields: %w(document_number html_url page_views type title),
-      per_page: 1000,
-    )
-
-    documents_by_document_number = {}
-    while results do
-      results.each{|doc| documents_by_document_number[doc.document_number] = doc }
-      results = results.next
-    end
-
+    cutoff_date = Date.current - DOCUMENT_CUTOFF
     comment_counts_by_document_number = Comment.
-      select('count(*) AS comment_count, document_number').
-      where(document_number: documents_by_document_number.keys).
+      where("created_at > '#{cutoff_date.to_s(:iso)}'").
       group(:document_number).
-      each_with_object(Hash.new) do |comment, hsh|
-        hsh[comment.document_number] = comment.attributes['comment_count']
-      end
-
-    comment_counts_by_document_number.
-      sort_by{|document_number, comment_count| (comment_count * documents_by_document_number.fetch(document_number).page_views.fetch(:count).to_i ) }.
-      first(POPULAR_DOCUMENT_COUNT).
-      map do |document_number, comment_count|
-        self.new(
-          comment_count,
-          document_number,
-          DocumentDecorator.decorate(
-            documents_by_document_number.fetch(document_number)
+      count
+    document_numbers = comment_counts_by_document_number.
+      sort_by {|doc_number, count| count}.
+      reverse. #eg [['2022-27931',997],...]
+      map{|x| x.first}. 
+      first(POPULAR_DOCUMENT_COUNT)
+    
+    if document_numbers.present?
+      Document.
+        find_all(document_numbers).
+        map do |document, comment_count|
+          doc_number = document.document_number
+          self.new(
+            comment_counts_by_document_number.fetch(doc_number),
+            doc_number,
+            DocumentDecorator.decorate(document)
           )
-        )
-      end
+        end.
+        sort_by{|x| comment_counts_by_document_number.fetch(x.document_number) }.
+        reverse
+    else
+      []
+    end
   end
 
   attr_reader :document, :document_number

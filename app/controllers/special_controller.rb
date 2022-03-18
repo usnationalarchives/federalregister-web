@@ -63,7 +63,7 @@ class SpecialController < ApplicationController
   def popular_documents
     cache_for 1.hour
 
-    @popular_documents = PopularDocument.popular.sort_by(&:comment_count).reverse.first(8)
+    @popular_documents = PopularDocument.popular.sort_by(&:comment_count).reverse.first(PopularDocument::POPULAR_DOCUMENT_COUNT)
 
     render 'special/home/popular_documents'
   end
