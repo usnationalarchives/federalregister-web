@@ -1,6 +1,6 @@
 class FederalRegisterReferenceParser
   def self.hyperlink_with_fr_defaults(html, date: nil, options: {})
-    ReferenceParser.new(only: only).hyperlink(html, options: build_options(date: date, options: options), default: {target: "_blank"})
+    ReferenceParser.new(only: only, options: {timeout: 5.minutes}).hyperlink(html, options: build_options(date: date, options: options), default: {target: "_blank"})
   end
 
   def self.ecfr_url(title,part)
