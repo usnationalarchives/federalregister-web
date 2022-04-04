@@ -64,6 +64,22 @@
           </div>
         </div>
       <% end %>
+      <% if document.agency_letters.present? %>
+        <div class="row toc-editorial-note">
+          <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+            <p>
+              <strong>The following letter(s) were electronically-signed and submitted by the
+              publishing agency in accordance with 1 CFR 18.13(b).</strong>
+              </p>
+              <ul>
+              <% document.agency_letters.each do |agency_letter| %>
+                <li><%= link_to agency_letter.title, agency_letter.url %></li>
+              <% end %>
+              </ul>
+            </p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>

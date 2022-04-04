@@ -28,6 +28,7 @@ class TableOfContentsPublicInspectionPresenter < TableOfContentsPresenter
   def document_fields
     [
       :agencies,
+      :agency_letters,
       :docket_numbers,
       :document_number,
       :editorial_note,
