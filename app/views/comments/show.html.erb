@@ -60,58 +60,6 @@
       </p>
     </div>
 
-    <div class="social_media">
-      <span class="icon-fr2 icon-fr2-sharing"></span>
-
-      <p>
-        Public participation is vital to a functioning democracy,
-        get others involved!
-      </p>
-
-      <ul class="media_buttons">
-        <li>
-          <div class="left">
-            <%= link_to_twitter(
-              fr_icon('twitter'),
-              "I commented on #{short_document_url(@comment.document)}."
-            ) %>
-          </div>
-          <div class="right">
-            <p>
-              <%= link_to_twitter(
-                "Create a tweet",
-                "I commented on #{short_document_url(@comment.document)}. #federalregister"
-              ) %>.
-              We'll provide a basic tweet with a link to the document you
-              commented on. You'll be able to customize the message before
-              you tweet.
-            </p>
-          </div>
-        </li>
-        <li>
-          <div class="left">
-            <%= link_to_facebook(
-              fr_icon('facebook'),
-              short_document_url(@comment.document),
-              @comment.document.title
-            ) %>
-          </div>
-          <div class="right">
-            <p>
-              <%= link_to_facebook(
-                "Post to your Facebook wall",
-                short_document_url(@comment.document),
-                @comment.document.title
-              ) %>.
-              We'll provide the title of the document you commented on and a
-              link to it. You'll be able to customize your Facebook wall
-              message before it is posted.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-
     <div class="retrieval">
       <% if @comment.agency_participating? %>
         <p>
