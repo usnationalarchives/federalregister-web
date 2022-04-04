@@ -19,7 +19,10 @@ class Documents::EmailsController < ApplicationController
     @document_email.document_number = @document.document_number
     @document_email.remote_ip = request.remote_ip
 
-    if (!@document_email.requires_captcha? || verify_recaptcha(model: @document_email)) && @document_email.save
+    if (!@document_email.requires_captcha? || 
+      (params['g-recaptcha-response'].present? &&
+      verify_recaptcha(model: @document_email)
+    )) && @document_email.save
       render plain: '<div class="flash-message success">Success! Your email will be sent momentarily.</div>', status: 200
     else
       render action: :new, status: 400
