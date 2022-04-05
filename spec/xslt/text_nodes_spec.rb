@@ -78,6 +78,28 @@ describe "XSLT::TextNodes" do
     end
   end
 
+  context "whitespace around urls" do
+    it "compresses blank after url" do
+      process <<~XML
+        <P>
+        Lorem ipsum dolor sit amet: 
+            <E T="03">lorem@ipsum.local</E>
+            ; or lorem 
+            <E T="03">https://ipsum.local/index.php/current-meetings/</E>
+            .
+        </P>
+      XML
+
+      expect(html.strip).to eql(<<~XML.strip)
+        <p id="p-1" data-page="1000">
+        Lorem ipsum dolor sit amet: 
+            <em>lorem@ipsum.local</em>; or lorem 
+            <em>https://ipsum.local/index.php/current-meetings/</em>.
+        </p>
+      XML
+    end
+  end
+
   context "nodes that start with a bullet '&#x2022;'" do
     it "removes bullets from the P and FP nodes" do
       process <<-XML

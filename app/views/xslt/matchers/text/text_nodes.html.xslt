@@ -48,9 +48,9 @@
             a subscript if it starts with a ', | ; | : | ) | ] so that the text
             is position correctly -->
       <xsl:when test="
-          preceding-sibling::*[1][self::E][@T=51 or @T=52 or @T=53 or @T=54]
+          preceding-sibling::*[1][self::E][@T=51 or @T=52 or @T=53 or @T=54 or @T=03]
           and
-          contains(',;:)]', substring(normalize-space(.),1,1))
+          contains('.,;:)]', substring(normalize-space(.),1,1))
         ">
         <xsl:call-template name="string-ltrim">
           <xsl:with-param name="string" select="$text_content" />
