@@ -140,6 +140,9 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     all_documents = []
     loop do
       results.each {|d| all_documents << DocumentDecorator.decorate(d)}
+      if results.errors.present?
+        Honeybadger.notify("Errors encountered when fetching documents for #{year} #{agency_slug}: #{results.errors}")
+      end
       break if results.next == nil
       results = results.next
     end
