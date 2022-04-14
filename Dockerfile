@@ -66,7 +66,9 @@ COPY docker/web/service /etc/service
 
 RUN addgroup --gid 1000 app &&\
   adduser app -uid 1000 --gid 1000 --system &&\
-  usermod -a -G docker_env app
+  usermod -a -G docker_env app &&\
+  # Add app user to teletypewriter group so passenger can log to stdout
+  usermod -a -G tty app
 
 # switch to app user automatically when exec into container
 RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc

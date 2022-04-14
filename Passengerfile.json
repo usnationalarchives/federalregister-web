@@ -1,6 +1,7 @@
 {
   "nginx_config_template": "nginx.conf.erb",
   "port": 3001,
+  "log_file": "/dev/tty",
   "max_pool_size": 15,
   "min_instances": 15
 }
