@@ -122,6 +122,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
           },
           agencies: Array(agency_slug)
         },
+        order: 'id',
         per_page: 1000,
         fields: [
           :document_number,
