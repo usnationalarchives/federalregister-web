@@ -122,7 +122,12 @@ class XsltFunctions
       # Stub out url with expected image such that when it's available
       # we don't need to reprocess. This will break if images url is not
       # the expected one (eg changes at some point in future)
-      url = graphic_url('original', graphic_identifier)
+      if Settings.feature_flags.use_carrierwave_images_in_api
+        normalized_identifier = graphic_identifier.upcase
+        url = "https://#{Settings.s3_buckets.image_variants}/#{normalized_identifier}/#{normalized_identifier}_original_size.png"
+      else
+        url = graphic_url('original', graphic_identifier)
+      end
     end
 
     Nokogiri::XML::Builder.with(document) do |doc|

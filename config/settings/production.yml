@@ -16,5 +16,6 @@ feature_flags:
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.federalregister.gov
+  image_variants: img.federalregister.gov
   private_images: private.images.federalregister.gov
   public_images: images.federalregister.gov

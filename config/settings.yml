@@ -18,6 +18,7 @@ external_modal_domain_whitelist:
   - "archives.federalregister.gov"
   - "www.ecfr.gov"
   - "images.federalregister.gov"
+  - "img.federalregister.gov"
   - "public-inspection.federalregister.gov"
   - "uploads.federalregister.gov"
 
@@ -44,6 +45,7 @@ feature_flags:
   subscriptions:
     deliver: <%= ENV['DELIVER_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_SUBSCRIPTIONS']) : true %>
     deliver_pil: <%= ENV['DELIVER_PIL_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_PIL_SUBSCRIPTIONS']) : true %>
+  use_carrierwave_images_in_api: <%= ActiveModel::Type::Boolean.new.cast(ENV['USE_CARRIERWAVE_IMAGES_IN_API']) || false %>
 
 federal_register:
   api_url: '<%= ENV["FR_API_URL"] %>'
