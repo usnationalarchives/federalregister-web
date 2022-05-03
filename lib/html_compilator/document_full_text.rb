@@ -27,7 +27,17 @@ class HtmlCompilator::DocumentFullText < HtmlCompilator
       'document_number' => document.document_number,
       'publication_date' => document.publication_date.to_s(:iso),
       # create a string that is parsable later "identifier,url identifier,url"
-      'images' => document.images.map{|image| "#{image.identifier},#{image.default_url}"}.join(' ') || ''
+      'images' => document.images.map{|image| "#{image.identifier},#{default_image_url(image)}"}.join(' ') || ''
     }
+  end
+
+  private
+
+  def default_image_url(image)
+    if Settings.feature_flags.use_carrierwave_images_in_api
+      image.attributes[1]['original_size']
+    else
+      image.default_url
+    end
   end
 end
