@@ -2,10 +2,14 @@
 module GpoImages
   module ImageIdentifierNormalizer
     def normalize_image_identifier(filename)
-      image_identifier(filename).downcase
+      if Settings.feature_flags.use_carrierwave_images_in_api
+        remove_extensions(filename).upcase
+      else
+        remove_extensions(filename).downcase
+      end
     end
 
-    def image_identifier(filename)
+    def remove_extensions(filename)
       filename.gsub(/\.?eps/i,"")
     end
   end

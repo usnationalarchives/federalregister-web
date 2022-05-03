@@ -112,7 +112,9 @@ class XsltFunctions
     document = blank_document
     images = images.split(' ')
 
-    graphic_identifier = Addressable::URI.escape(nodes.first.content)
+    graphic_identifier = normalize_image_identifier(
+      Addressable::URI.escape(nodes.first.content)
+    )
     image = images.find{|i| i.include?(graphic_identifier)}
 
     if image
@@ -123,8 +125,7 @@ class XsltFunctions
       # we don't need to reprocess. This will break if images url is not
       # the expected one (eg changes at some point in future)
       if Settings.feature_flags.use_carrierwave_images_in_api
-        normalized_identifier = graphic_identifier.upcase
-        url = "https://#{Settings.s3_buckets.image_variants}/#{normalized_identifier}/#{normalized_identifier}_original_size.png"
+        url = "https://#{Settings.s3_buckets.image_variants}/#{graphic_identifier}/#{graphic_identifier}_original_size.png"
       else
         url = graphic_url('original', graphic_identifier)
       end
