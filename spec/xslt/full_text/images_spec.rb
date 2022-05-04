@@ -3,13 +3,18 @@ include XsltTestHelper
 
 describe "XSLT::FullText::Images" do
   before :all do
+    Settings.feature_flags.use_carrierwave_images_in_api = true
     @template = "matchers/full_text.html.xslt"
+  end
+
+  after :all do
+    Settings.feature_flags.use_carrierwave_images_in_api = false
   end
 
   context "with embedded images present" do
     before :all do
       @xslt_vars = {
-        'images' => "EP01MY09.017,https://example.com/EP01MY09.017/original.png?1444464221 EP01MY09.018,https://example.com/EP01MY09.018/original.png?1444464222"
+        'images' => "EP01MY09.017,https://example.com/EP01MY09.017/EP01MY09.017_original_size.png?1444464221 EP01MY09.018,https://example.com/EP01MY09.018/EP01MY09.018_original_size.png?1444464222"
       }
     end
 
@@ -113,8 +118,9 @@ describe "XSLT::FullText::Images" do
 
     context "presidential signatures" do
       before :all do
+        # Settings.feature_flags.use_carrierwave_images_in_api = true
         @xslt_vars = {
-          'images' => "OB#1.EPS,https://example.com/OB%231.EPS/original.png?1278291883"
+          'images' => "OB#1,https://example.com/OB%231/original_size.png?1278291883"
         }
       end
 
@@ -126,7 +132,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://example.com/OB%231.EPS/original.png?1278291883"
+          href: "https://example.com/OB%231/original_size.png?1278291883"
         }
       end
 
@@ -138,7 +144,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'img', with: {
-          src: "https://example.com/OB%231.EPS/original.png?1278291883"
+          src: "https://example.com/OB%231/original_size.png?1278291883"
         }
       end
     end
@@ -152,7 +158,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://example.com/EP01MY09.017/original.png?1444464221"
+          href: "https://example.com/EP01MY09.017/EP01MY09.017_original_size.png?1444464221"
         }
       end
 
@@ -164,7 +170,7 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'img', with: {
-          src: "https://example.com/EP01MY09.018/original.png?1444464222"
+          src: "https://example.com/EP01MY09.018/EP01MY09.018_original_size.png?1444464222"
         }
       end
 
@@ -206,11 +212,13 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          href: "https://#{Settings.s3_buckets.image_variants}/EP01MY09.019/EP01MY09.019_original_size.png"
+          # href: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
 
         expect(html).to have_tag 'img', with: {
-          src: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          # src: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
+          src: "https://#{Settings.s3_buckets.image_variants}/EP01MY09.019/EP01MY09.019_original_size.png"
         }
       end
     end
