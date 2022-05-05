@@ -71,9 +71,10 @@ class MailingList::PublicInspectionDocument < MailingList
     )
     @message_body = {html: message.html_part.body, text: message.text_part.body}
   end
-
+ 
+  GROUP_SIZE = 100
   def has_results?(document_numbers)
-    document_numbers.in_groups_of(130,false).any? do |batch_ids|
+    document_numbers.in_groups_of(GROUP_SIZE,false).any? do |batch_ids|
       model.search_metadata(
         conditions: mailing_list_conditions(batch_ids)
       ).count > 0
@@ -81,7 +82,7 @@ class MailingList::PublicInspectionDocument < MailingList
   end
 
   def results_for_document_numbers(document_numbers)
-    document_numbers.in_groups_of(130,false).flat_map do |batch_ids|
+    document_numbers.in_groups_of(GROUP_SIZE,false).flat_map do |batch_ids|
       model.search(
         conditions: mailing_list_conditions(batch_ids),
         fields: mailing_list_fields,
