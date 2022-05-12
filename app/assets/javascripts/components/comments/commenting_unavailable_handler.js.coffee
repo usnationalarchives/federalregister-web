@@ -12,7 +12,7 @@ class @FR2.CommentingUnavailableHandler
 
       FR2.Modal.displayModal(
         'Direct Commenting Unavailable',
-        "<p>Submitting a formal comment directly via federalregister.gov is not available for this document.  #{context._optionalMessage()}However, you can click the button below to view more information on alternate methods of comment submission.</p></br><a class='fr_button medium primary jqm-close-js'>View Additional Information</a>",
+        "<p>Submitting a formal comment directly via federalregister.gov is not available for this document at this time.  #{context._optionalMessage()}However, you can click the button below to view more information on alternate methods of comment submission.</p></br><a class='fr_button medium primary jqm-close-js'>View Additional Information</a>",
         {
           'modalId': "#commentingUnavailableModal",
           'alternateModalCloseSelector': '.jqm-close-js',
