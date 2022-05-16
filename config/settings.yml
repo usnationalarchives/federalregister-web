@@ -61,7 +61,6 @@ officialness:
   start_date: 2025-05-01
 
 regulations_dot_gov:
-  base_uri: <%= ENV["REG_GOV_BASE_URL"] || 'https://api.data.gov/TEST/regulations/v3' %>
   # don't output calls to reg.gov in stdout
   debug_output_enabled: false
   api_base_url: <%= ENV["REG_GOV_API_BASE_URL"] || 'https://api-staging.regulations.gov/v4' %>

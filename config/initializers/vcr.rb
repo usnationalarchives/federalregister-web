@@ -6,8 +6,6 @@ if defined?(VCR) && Rails.env.test?
     c.hook_into :webmock
 
     c.filter_sensitive_data('<API_KEY>') { Rails.application.secrets[:data_dot_gov][:api_key] }
-    c.filter_sensitive_data('<API_KEY>') { Rails.application.secrets[:data_dot_gov][:primary_comment_api_key] }
-    c.filter_sensitive_data('<API_KEY>') { Rails.application.secrets[:data_dot_gov][:secondary_comment_api_key] }
     c.filter_sensitive_data('<DEMO_KEY>') { 'DEMO_KEY' }
     c.debug_logger = File.open(Rails.root.join("log", Rails.env, "vcr.log"), 'w')
   end
