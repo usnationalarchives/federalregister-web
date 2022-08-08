@@ -10,9 +10,7 @@
       <p class="comment_tracking_number">
         Comment Tracking Number:
         <span class="tracking_number">
-          <%= link_to @comment.comment_tracking_number,
-            @comment.regulations_dot_gov_comment_search_result_url,
-            :target => :blank %>
+          <%= @comment.comment_tracking_number %>
         </span>
       </p>
     <% else %>
