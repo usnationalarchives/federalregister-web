@@ -23,7 +23,7 @@ class MailingListSender
           date,
           active_and_confirmed_subscriptions,
           confirmed_emails_by_user_id,
-          options["document_numbers"]
+          options
         )
       else
         mailing_list.deliver_now(
