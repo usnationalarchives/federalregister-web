@@ -204,6 +204,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2'
   gem 'rspec-html-matchers'#, '~> 0.5.0'
 
+  # parallel rspec
+  gem "parallel_tests"
+  gem "turbo_tests"
+
+  # rspec results for CI
+  gem "rspec_junit_formatter"
+
   gem 'rubocop', '~> 0.57.0'
 
   gem 'timecop'

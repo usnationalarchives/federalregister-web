@@ -75,11 +75,11 @@ RSpec.configure do |config|
   config.before(:each) { reset_mailer }
 
   Capybara.run_server = true
-  Capybara.server_port = 14000
+  Capybara.server_port = 14000 + ENV['TEST_ENV_NUMBER'].to_i
   Capybara.app = Rack::Builder.parse_file(File.expand_path('../../config.ru', __FILE__)).first
 
-  Capybara.asset_host = "http://fr2.dev:8081"
-  Capybara.app_host = "http://fr2.dev:8081"
+  Capybara.asset_host = "http://fr2.dev:#{8081 + ENV['TEST_ENV_NUMBER'].to_i}"
+  Capybara.app_host = "http://fr2.dev:#{8081 + ENV['TEST_ENV_NUMBER'].to_i}"
   Capybara.current_driver = :webkit
   Capybara.javascript_driver = :webkit
   Capybara.default_max_wait_time = 5

@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *shared
-  database: <%= ENV["MYSQL_DATABASE"] %>_test
+  database: <%= ENV["MYSQL_DATABASE"] || 'federalregister_web' %>_test<%= (ENV['TEST_ENV_NUMBER'] == "1") ? "" : ENV['TEST_ENV_NUMBER']  %>
 
 staging:
   <<: *shared

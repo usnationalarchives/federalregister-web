@@ -1,44 +1,19 @@
-version: 2
+version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: criticaljuncture/pilot
-    steps:
-      - checkout
-      - setup_remote_docker:
-          reusable: true
-          exclusive: false
-      - run:
-          name: Authenticate to docker repository
-          command: |
-            set -x
-            eval `aws ecr --no-include-email get-login`
-            docker login -u $QUAY_USERNAME -p $QUAY_PASSWORD quay.io
-      - run:
-          name: Build container
-          command: |
-            /var/lib/pilot/bin/pilot build federalregister-web .
-      - run:
-          name: Start container and run tests
-          command: |
-            set -x
-            docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake db:create db:schema:load --trace && rspec spec --profile 10 --tag ~no_ci --tag ~reg_gov"
-      - run:
-          name: Start container and run linters
-          command: |
-            set -x
-            docker-compose -f docker/compose/ci.yml run web bash -c "rake jshint && coffeelint -f coffeelint.json -r app/assets/javascripts/"
-      - run:
-          name: Run Regulations.gov test as appropriate
-          command: |
-            set -x
+orbs:
+  cj: criticaljuncture/cj-orb@0.1
+
+workflows:
+  workflow:
+    jobs:
+      - cj/build_rails_image:
+          branch: << pipeline.git.branch >>
+          context: [ofr-ecr, ofr-quay, orb-slack, pilot, sidekiq-pro]
+          ecr: true
+          repo_image: federalregister-web
+          lint_command: docker-compose -f docker/compose/ci.yml run web bash -c "rake jshint && coffeelint -f coffeelint.json -r app/assets/javascripts/"
+          test_command: |
+            docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake parallel:setup --trace && parallel_rspec -o '--tag ~no_ci --tag ~reg_gov'"
             if [ -n "${RUN_REGGOV_BUILD}" ]; then
-              docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake db:create db:schema:load --trace && rspec spec --profile 10 --tag ~no_ci --tag reg_gov"
-            fi
-      - deploy:
-          name: Push to latest if main
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              /var/lib/pilot/bin/pilot push federalregister-web
+              docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake parallel:setup --trace && parallel_rspec -o '--tag ~no_ci --tag reg_gov'"
             fi
