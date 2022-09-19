@@ -69,7 +69,7 @@ module DocumentDecorator::Comments
 
   def checked_regulationsdotgov_at
     if regulations_dot_gov_info && regulations_dot_gov_info['checked_regulationsdotgov_at']
-      Time.parse(regulations_dot_gov_info['checked_regulationsdotgov_at'])
+      Time.parse(regulations_dot_gov_info['checked_regulationsdotgov_at']).localtime
     end
   end
 
