@@ -67,6 +67,12 @@ module DocumentDecorator::Comments
     end
   end
 
+  def checked_regulationsdotgov_at
+    if regulations_dot_gov_info && regulations_dot_gov_info['checked_regulationsdotgov_at']
+      Time.parse(regulations_dot_gov_info['checked_regulationsdotgov_at'])
+    end
+  end
+
   def regulations_dot_gov_agency_id
     return '' unless regulations_dot_gov_info && regulations_dot_gov_info['agency_id']
 

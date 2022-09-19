@@ -30,7 +30,7 @@ class CommentDecorator < ApplicationDecorator
 
   def comment_posted
     if comment.comment_document_number
-      "Publically posted - #{h.link_to comment.comment_document_number, posted_comment_url}".html_safe
+      "Publicly posted - #{h.link_to comment.comment_document_number, posted_comment_url}".html_safe
     else
       "Not posted by agency as of #{Date.today}"
     end
