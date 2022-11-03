@@ -12,11 +12,6 @@ describe "XSLT::FullText::Images" do
   end
 
   context "with embedded images present" do
-    before :all do
-      @xslt_vars = {
-        'images' => "EP01MY09.017,https://example.com/EP01MY09.017/EP01MY09.017_original_size.png?1444464221 EP01MY09.018,https://example.com/EP01MY09.018/EP01MY09.018_original_size.png?1444464222"
-      }
-    end
 
     it "renders the basic markup for an embedded image" do
       process <<-XML
@@ -117,14 +112,10 @@ describe "XSLT::FullText::Images" do
     end
 
     context "presidential signatures" do
-      before :all do
-        # Settings.feature_flags.use_carrierwave_images_in_api = true
-        @xslt_vars = {
-          'images' => "OB#1,https://example.com/OB%231/original_size.png?1278291883"
-        }
-      end
 
       it "adds the proper url to the link tag" do
+        allow(ImageVariant).to receive(:find).and_return([ImageVariant.new("url" => "https://example.com/OB%231/original_size.png")])
+
         process <<-XML
           <GPH DEEP="640" SPAN="3">
             <GID>OB#1.EPS</GID>
@@ -132,11 +123,13 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://example.com/OB%231/original_size.png?1278291883"
+          href: "https://example.com/OB%231/original_size.png"
         }
       end
 
       it "adds the proper source url to the img tag" do
+        allow(ImageVariant).to receive(:find).and_return([ImageVariant.new("url" => "https://example.com/OB%231/original_size.png")])
+
         process <<-XML
           <GPH DEEP="640" SPAN="3">
             <GID>OB#1.EPS</GID>
@@ -144,13 +137,15 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'img', with: {
-          src: "https://example.com/OB%231/original_size.png?1278291883"
+          src: "https://example.com/OB%231/original_size.png"
         }
       end
     end
 
     context "xml identifier has corresponding image present in api" do
       it "adds the proper url to the link tag" do
+        allow(ImageVariant).to receive(:find).and_return([ImageVariant.new("url" => "https://example.com/EP01MY09.017/EP01MY09.017_original_size.png")])
+
         process <<-XML
           <GPH DEEP="640" SPAN="3">
           <GID>EP01MY09.017</GID>
@@ -158,11 +153,13 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'a', with: {
-          href: "https://example.com/EP01MY09.017/EP01MY09.017_original_size.png?1444464221"
+          href: "https://example.com/EP01MY09.017/EP01MY09.017_original_size.png"
         }
       end
 
       it "adds the proper source url to the img tag" do
+        allow(ImageVariant).to receive(:find).and_return([ImageVariant.new("url" => "https://example.com/EP01MY09.018/EP01MY09.018_original_size.png")])
+
         process <<-XML
           <GPH DEEP="640" SPAN="3">
           <GID>EP01MY09.018</GID>
@@ -170,11 +167,13 @@ describe "XSLT::FullText::Images" do
         XML
 
         expect(html).to have_tag 'img', with: {
-          src: "https://example.com/EP01MY09.018/EP01MY09.018_original_size.png?1444464222"
+          src: "https://example.com/EP01MY09.018/EP01MY09.018_original_size.png"
         }
       end
 
       it "does not notify honeybadger" do
+        allow(ImageVariant).to receive(:find).and_return([ImageVariant.new("url" => "https://example.com/EP01MY09.018/EP01MY09.018_original_size.png")])
+
         allow(Honeybadger).to receive(:notify)
 
         process <<-XML
@@ -189,6 +188,7 @@ describe "XSLT::FullText::Images" do
 
     context "xml identifier does not have corresponding image present in api" do
       it "notifies honeybadger" do
+        allow(ImageVariant).to receive(:find).and_raise(FederalRegister::Client::RecordNotFound)
         allow(Honeybadger).to receive(:notify)
 
         process <<-XML
@@ -205,6 +205,7 @@ describe "XSLT::FullText::Images" do
       # on the document in the api. In many cases this means we won't have to reprocess
       # the xml-> for the image to appear.
       it "adds a stub url (what we currently expect the url to be)" do
+        allow(ImageVariant).to receive(:find).and_raise(FederalRegister::Client::RecordNotFound)
         process <<-XML
           <GPH DEEP="320" SPAN="1">
           <GID>EP01MY09.019</GID>
@@ -213,11 +214,9 @@ describe "XSLT::FullText::Images" do
 
         expect(html).to have_tag 'a', with: {
           href: "https://#{Settings.s3_buckets.image_variants}/EP01MY09.019/EP01MY09.019_original_size.png"
-          # href: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
         }
 
         expect(html).to have_tag 'img', with: {
-          # src: "https://#{Settings.s3_buckets.public_images}/EP01MY09.019/original.png"
           src: "https://#{Settings.s3_buckets.image_variants}/EP01MY09.019/EP01MY09.019_original_size.png"
         }
       end

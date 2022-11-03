@@ -115,34 +115,40 @@ class XsltFunctions
     graphic_identifier = normalize_image_identifier(
       Addressable::URI.escape(nodes.first.content)
     )
-    image = images.find{|i| i.include?(graphic_identifier)}
+    fallback_url = "https://#{Settings.s3_buckets.image_variants}/#{graphic_identifier}/#{graphic_identifier}_original_size.png"
+    begin
+      image_variants = ImageVariant.find(graphic_identifier)
 
-    if image
-      url = image.split(',').last
-    else
+      original_size_image_variant = image_variants.find { |x| x.style == "original_size" }
+
+      image = if original_size_image_variant
+        original_size_image_variant
+      else
+        image_variants.first
+      end
+    rescue FederalRegister::Client::RecordNotFound
+      image = ImageVariant.new('url' => fallback_url)
       notify_missing_graphic(nodes, document_number, publication_date)
       # Stub out url with expected image such that when it's available
       # we don't need to reprocess. This will break if images url is not
       # the expected one (eg changes at some point in future)
-      if Settings.feature_flags.use_carrierwave_images_in_api
-        url = "https://#{Settings.s3_buckets.image_variants}/#{graphic_identifier}/#{graphic_identifier}_original_size.png"
-      else
-        url = graphic_url('original', graphic_identifier)
-      end
+    rescue => e
+      image = ImageVariant.new('url' => fallback_url)
+      Honeybadger.notify(e, context: {identifier: graphic_identifier})
     end
 
     Nokogiri::XML::Builder.with(document) do |doc|
       doc.a(
         class: "document-graphic-link",
         id: link_id,
-        href: url,
+        href: image.url,
         'data-col-width' => data_width,
         'data-height' => data_height
       ) {
         doc.img(
           :class => image_class,
           :loading => 'lazy',
-          :src => url,
+          :src => image.url,
           :style => "max-height: #{(1.29 * data_height.to_i).to_i}px"
         )
       }
