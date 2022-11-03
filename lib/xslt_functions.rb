@@ -141,6 +141,7 @@ class XsltFunctions
       ) {
         doc.img(
           :class => image_class,
+          :loading => 'lazy',
           :src => url,
           :style => "max-height: #{(1.29 * data_height.to_i).to_i}px"
         )
