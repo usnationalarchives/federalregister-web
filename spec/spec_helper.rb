@@ -20,6 +20,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
+  config.example_status_persistence_file_path = "spec/rspec_example_status_persistence_file.txt"
 
   config.include FactoryGirl::Syntax::Methods
 

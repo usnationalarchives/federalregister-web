@@ -10,6 +10,7 @@ tags
 public/assets
 public/sitemap*
 
+spec/rspec_example_status_persistence_file.txt
 spec/vcr/*.yml
 
 config/settings.local.yml
