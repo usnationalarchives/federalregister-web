@@ -4,7 +4,7 @@
       <%= fr_icon 'alert_alt' %>
 
       <% if document.republication? %>
-        This document is a corrected republication of a document that was published on <%= document.correction_of_document.publication_date %>.
+        This document is a corrected republication of a document published on <%= document.correction_of_document.publication_date %>.
       <% else %>
         This document is a correction of a document that was published on <%= document.correction_of_document.publication_date %>.
       <% end %>
