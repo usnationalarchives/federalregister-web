@@ -12,6 +12,15 @@ module DocumentDecorator::Comments
     regulations_dot_gov_info && regulations_dot_gov_info['comments_count']
   end
 
+  def republished_document_comment_url
+    if republication?
+      republished_document = correction_of_document
+      if republished_document.document_comment_period_open?
+        republished_document.html_url
+      end
+    end
+  end
+
   def accepting_comments?
     document_comment_period_open? || regulations_dot_gov_accepting_comments?
   end

@@ -12,7 +12,7 @@ module DocumentDecorator::Corrections
 
     doc_num = correction_of.split('documents/').last.split('.').first
     @doc = DocumentDecorator.decorate(
-      Document.find(doc_num, fields: ["html_url", "publication_date"])
+      Document.find(doc_num, fields: ["html_url", "publication_date", "comments_close_on"])
     )
   end
 
