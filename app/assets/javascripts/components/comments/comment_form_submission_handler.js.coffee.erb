@@ -220,6 +220,7 @@ class @FR2.CommentFormSubmissionHandler
       FR2.Modal.displayModal modalTitle, modalHtml
     else if response.status == 400
       errorDetails = response.responseJSON.errors[0].title
+      response.jsPageLoadStartTimestamp = new Date(performance.timing.connectStart).toString()
       FR2.CommentSubmissionHoneybadger.notify("Regulations.gov HTTP 400 on Submission", context: response, fingerprint: errorDetails)
       modalTitle = "Submission Error"
       modalHtml = "
