@@ -1,5 +1,4 @@
 class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
-  extend Memoist
   attr_reader :year, :agency_slug, :document_index
 
   def initialize(year, agency_slug)
@@ -121,7 +120,7 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
             gte: Date.new(year,1,1).to_s(:iso),
             lte: Date.new(year,12,31).to_s(:iso)
           },
-          agency_ids: agency_id_and_descendant_agency_ids
+          agencies: Array(agency_slug)
         },
         order: 'id',
         per_page: 1000,
@@ -151,12 +150,5 @@ class FrIndexAgencyPresenter #TODO: Refactor public/private interfaces
     @documents = all_documents
   end
 
-  private
-
-  def agency_id_and_descendant_agency_ids
-    agency = Agency.find(agency_slug)
-    [agency.id] + agency.child_ids
-  end
-  memoize :agency_id_and_descendant_agency_ids
 
 end
