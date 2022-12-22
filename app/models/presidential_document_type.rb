@@ -2,7 +2,7 @@ class PresidentialDocumentType < ActiveHash::Base
   include ActiveHash::Enum
   enum_accessor :identifier
 
-  OTHER_PRESIDENTIAL_DOCUMENTS = %w(determination memorandum notice presidential_order)
+  OTHER_PRESIDENTIAL_DOCUMENTS = %w(determination memorandum notice other presidential_order)
 
   self.data = [
     {id: 1, name: "Determination",      node_name: "DETERM",    identifier: "determination"},
@@ -11,6 +11,7 @@ class PresidentialDocumentType < ActiveHash::Base
     {id: 4, name: "Notice",             node_name: "PRNOTICE",  identifier: "notice"},
     {id: 5, name: "Proclamation",       node_name: "PROCLA",    identifier: "proclamation"},
     {id: 6, name: "Presidential Order", node_name: "PRORDER",   identifier: "presidential_order"},
+    {id: 7, name: "Other",              node_name: "OTHER",     identifier: "other"},
   ]
 
   def self.other_presidential_document_types
