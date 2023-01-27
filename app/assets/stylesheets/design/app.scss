@@ -246,4 +246,37 @@ span.unsaved {
 }
 
 
+// Experimental CSS Grid Layout
+// =====================================================
 
+.explicit-grid {
+  display: grid;
+  // grid-template-columns: repeat(12, 1fr)
+  // grid-template-rows: repeat(12, 1fr)
+  // grid-template-areas: {
+  //   "explore-agencies explore-topics"
+  // }
+}
+
+@media only screen and (max-width: 500px) {
+  * {
+    color: red;
+  }
+  .explicit-grid {
+    grid-template-areas: 
+      "explore-agencies"
+      "explore-topics";
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  * {
+    color: purple;
+  }
+  .explicit-grid {
+    grid-template-areas: 
+      "explore-agencies explore-topics";
+  }
+}
+
+// =====================================================
