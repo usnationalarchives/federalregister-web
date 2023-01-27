@@ -1,9 +1,4 @@
 <div class="site-footer" id="footer">
-<%= bootstrap_context_wrapper do %>
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 12, md: 12 %> wrapper">
-
-      <div class="row">
         <div class="<%= bootstrap_col xs: 3, md: 3 %>">
           <h2>Home</h2>
           <ul class="bullets">
@@ -42,9 +37,7 @@
             <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
           </ul>
         </div>
-      </div>
 
-      <div class="row">
         <div class="<%= bootstrap_col xs: 3, md: 3 %>">
           <h2>Reader Aids</h2>
           <ul class="bullets">
@@ -85,10 +78,6 @@
           </ul>
         </div>
 
-      </div>
-    </div>
-  </div>
-
   <div id="zendesk-link">
     <a href="https://federalregister.tenderapp.com/discussion/new?discussion" class="trigger_tender btn">
       <%= fr_icon 'Chat' %>
@@ -111,5 +100,4 @@
   <% if Rails.env.production? %>
     <%= javascript_include_tag asset_path('tender_widget_custom.js'), async: true, nonce: content_security_policy_nonce %>
   <% end %>
-<% end %>
 </div>
