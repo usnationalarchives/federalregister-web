@@ -56,7 +56,12 @@ class PresidentialDocumentsIndexPresenter
         most_recent_year = year
       end
     end
-    most_recent_year
+
+    if (president.identifier == 'joe-biden') && (doc_type == PresidentialDocumentType.find('executive_order'))
+      2022
+    else
+      most_recent_year
+    end
   end
 
   def counts_by_type
