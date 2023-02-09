@@ -2,6 +2,55 @@
   .icon-fr2 { font-size: modular-scale(6); }
 }
 
+#comment_commentUrl_input {
+  width: 875px; /* Provide additional width for multi-agency table to fill */
+}
+
+.multi-agency-table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  width: 100%;
+
+  th {
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  td, th {
+    padding: 8px; /* add padding to cells */
+  }
+
+  tr td:last-child {
+    white-space: nowrap; /* Set Docket ID to not wrap on to two lines */
+  }
+}
+
+.multi-agency-radio-js {
+  display: none;
+}
+
+.green-btn {
+  background-color: $fr-green;
+  color: $white;
+  cursor: pointer;
+  font-weight: bold;
+  height: 23px;
+  min-width: inherit;
+  padding: 6px;
+  text-transform: none;
+  width: 102px;
+
+  &:hover,
+  &.hover {
+    color: white;
+    background-color: lighten($fr-green, 20);
+  }
+
+  &.selected {
+    background-color: lighten($fr-green, 20);
+  }
+}
+
 h2.title .icon-fr2-comment { top: 5px; }
 
 body .tipsy.agency-not-participating { width: 250px; }

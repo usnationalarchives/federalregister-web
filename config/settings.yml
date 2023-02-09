@@ -27,6 +27,7 @@ feature_flags:
   events_search: false
   fr_index_pdfs: true
   honeybadger_js: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("FEATURE_FLAG_HONEYBADGER_JS", false)) %>
+  multi_agency_comment_submission: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("MULTI_AGENCY_COMMENT_SUBMISSION", false)) %>
   unified_agenda:
     search: false
   regulations_dot_gov:

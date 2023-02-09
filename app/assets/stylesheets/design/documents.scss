@@ -87,3 +87,16 @@
   text-align: right;
   width: 100%;
 }
+
+.reg-gov-docket-container {
+  margin-bottom: 35px;
+
+  .sub-heading {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  li {
+    font-size: modular-scale(-1);
+  }
+}

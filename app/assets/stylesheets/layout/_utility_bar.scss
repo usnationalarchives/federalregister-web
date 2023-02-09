@@ -136,7 +136,7 @@
           min-height: 69px;
           padding: 0;
           top: -21px;
-          width: 500px;
+          width: 635px;
 
           &.fr-box {
             .content-block {
@@ -232,5 +232,32 @@
         &.enhanced { background-color: $utility-nav-hover-background-light }
       }
     }
+  }
+}
+
+#comment-count-explanation-modal {
+  .table-container {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  table {
+    th {
+      text-align: left;
+    }
+
+    th:nth-last-child(2) {
+      text-align: right;
+    }
+
+    td:nth-last-child(2) {
+      text-align: right;
+    }
+
+    .last-synced-tooltip {
+      font-size: 12px;
+      opacity: 50%;
+    }
+
   }
 }

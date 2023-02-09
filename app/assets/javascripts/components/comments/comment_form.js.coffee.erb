@@ -43,6 +43,8 @@ class @FR2.CommentForm
     @formSubmit()
     @_refreshSubmitButtonStateOnInterval()
     @_addCountrySpecificRegionToggling()
+    if this._multiAgencyCommentSubmissionPage()
+      @_handleMultiAgencyStateChanges()
 
   previewFields: ->
     formData = @commentFormHandler
@@ -328,6 +330,9 @@ class @FR2.CommentForm
         FR2.Modal.displayModal modalTitle, modalHtml
     )
 
+  _updateAgencyAcronym: (agencyAcronym) ->
+    $('#comment-bar').data('reggov-agency', agencyAcronym);
+
   _agencyAcronym: ->
     $('#comment-bar').data('reggov-agency')
 
@@ -367,7 +372,7 @@ class @FR2.CommentForm
       $(el).val() != ""
     ) && _.all(this._visibleCharCountFields(), (el) ->
       $(el).siblings('.inline-errors:not(.warning)').length == 0
-    )
+    ) && this._multiAgencyCommentRecipientPassesValidation()
 
   _visibleCharCountFields: () ->
     _.filter(this._requiredFields(), (el) ->
@@ -477,3 +482,109 @@ class @FR2.CommentForm
     $('.free-text-state-field-js').
       prop('disabled', true).
       closest('li').hide()
+
+  changeFormFieldVisibilityPostMultiAgencySelection: ->
+    this._showAllCommentFields()
+    this._showChangeCommentRecipientLink()
+    this._hideMultiAgencyFields()
+
+  _multiAgencyForm: () ->
+    $('.multi-agency-js').length > 0
+
+  _multiAgencyCommentRecipientPassesValidation: () ->
+    if this._multiAgencyForm()
+      this._multiAgencyCommentRecipientSelected()
+    else
+      true
+
+  _multiAgencyCommentRecipientSelected: () ->
+    $("input[name='comment[regsDotGovDocumentId]']:checked").length > 0
+
+  _multiAgencyCommentSubmissionPage: ->
+    $('.multi-agency-js').length > 0
+
+  _handleMultiAgencyStateChanges: ->
+    context = this
+    $('#new_comment').on "click", '.agency-select-btn-js', (e) ->
+      context._replaceDynamicAgencyText(
+        $(this).data('agencyName'),
+        $(this).data('regsDotGovDocumentId'),
+      )
+
+      # Click invisible radio button to store agency selection
+      $(this).prevAll('.multi-agency-radio-js').first().click()
+      context._highlightSelectedAgencyButton($(this))
+
+      # Update comment category options via regs.gov API if we detect a difference
+      selectedAgencyAcronym = $(this).data('agencyAcronym')
+      if context._agencyAcronym() != selectedAgencyAcronym
+        context._updateAgencyAcronym(selectedAgencyAcronym)
+        context._updateCommentCategories()
+
+    $('#new_comment').on "click", '.multi-agency-radio-js', (e) ->
+      context._updateCommentOnDocumentId(e.target.value)
+      context.changeFormFieldVisibilityPostMultiAgencySelection()
+
+    # Handle behavior when "Start Over" is clicked
+    $('#new_comment').on "click", '#comment-start-over', (e) ->
+      context._displayOnlyMultiAgencyFields()
+      context._hideChangeCommentRecipientLink()
+
+    # Handle behavior for when "Change Agency" is clicked
+    $('#new_comment').on "click", '#change-recipient-fields-js', (e) ->
+      e.preventDefault()
+      context._displayOnlyMultiAgencyFields()
+      context._clearDynamicAgencyText()
+      context._hideChangeCommentRecipientLink()
+
+  _displayOnlyMultiAgencyFields: ->
+    this._uncheckMultiAgencyRadioButtons()
+    this._showMultiAgencyFields()
+    this._hideAllCommentFields()
+
+  _highlightSelectedAgencyButton: (el) ->
+    $('.agency-select-btn-js').removeClass('selected')
+    el.addClass('selected')
+
+  _updateCommentOnDocumentId: (regsDotGovDocumentId) ->
+    $('#comment_commentOnDocumentId').val(regsDotGovDocumentId)
+
+  _uncheckMultiAgencyRadioButtons: ->
+    $("input.multi-agency-radio-js").prop("checked", false);
+
+  _showMultiAgencyFields: ->
+    this._showElement(".multi-agency-js")
+
+  _hideMultiAgencyFields: ->
+    this._hideElement(".multi-agency-js")
+
+  _hideAllCommentFields: ->
+    this._hideElement('.comment-form-fields-js')
+  
+  _showAllCommentFields: ->
+    this._showElement('.comment-form-fields-js')
+
+  _showChangeCommentRecipientLink: ->
+    this._showElement('#change-recipient-fields-js', 'fast')
+  
+  _hideChangeCommentRecipientLink: ->
+    this._hideElement("#change-recipient-fields-js", 'fast')
+
+  _showElement: (selector, speed="slow") ->
+    $(selector).show(speed)
+
+  _hideElement: (selector, speed="slow") ->
+    $(selector).hide(speed)
+
+  _clearDynamicAgencyText: ->
+    $("#dynamic-agency-text-js").html("")
+  
+  _replaceDynamicAgencyText: (agencyName, regsDotGovDocumentId) ->
+    $("#dynamic-agency-text-js").html(
+      Handlebars.compile(
+        $('#agency-comment-selection-template').html()
+      )({
+        agencyName: agencyName,
+        regsDotGovDocumentId: regsDotGovDocumentId
+      })
+    )

@@ -4,12 +4,12 @@ module DocumentDecorator::Comments
     comment_count && comment_count > 0
   end
 
-  def docket_comment_count
-    regulations_dot_gov_info && regulations_dot_gov_info['docket_comments_count']
-  end
-
   def comment_count
-    regulations_dot_gov_info && regulations_dot_gov_info['comments_count']
+    if Settings.feature_flags.multi_agency_comment_submission
+      commentable_documents.map(&:comment_count).compact.sum
+    else
+      regulations_dot_gov_info && regulations_dot_gov_info['comments_count']
+    end
   end
 
   def republished_document_comment_url
@@ -26,13 +26,18 @@ module DocumentDecorator::Comments
   end
 
   def document_comment_period_open?
+    # NOTE: This method provides us with a way to know whether the document is open for comment irrespective of whether its publishing agencies receive submissions at regulations.gov.  We still want to show a "Submit a comment" link in these cases, but link to text in the FR document itself
     comments_close_on.present? && comments_close_on >= Time.current.to_date
   end
 
   # occasionally comment periods are extended on regulations.gov past the
   # originally published date in the document
   def regulations_dot_gov_accepting_comments?
-    comment_url.present? && publication_date.to_time > 4.months.ago
+    if Settings.feature_flags.multi_agency_comment_submission
+      commentable_documents.present?
+    else
+      comment_url.present? && publication_date.to_time > 4.months.ago
+    end
   end
 
   def formal_comment_link
@@ -61,7 +66,15 @@ module DocumentDecorator::Comments
   end
 
   def calculated_comment_url
-    "https://www.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
+    if Settings.feature_flags.multi_agency_comment_submission
+      if default_regs_dot_gov_document
+        "https://www.regulations.gov/commenton/#{default_regs_dot_gov_document.id}"
+      else
+        nil #ie Not needed if no regs dot gov doc exists
+      end
+    else
+      "https://www.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
+    end
   end
 
   def comment_period_days_remaining
@@ -91,6 +104,46 @@ module DocumentDecorator::Comments
   def public_comments_url
     return unless has_comments?
 
-    "https://www.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
+    if Settings.feature_flags.multi_agency_comment_submission
+      doc_with_max_comments = commentable_documents.max_by{|x| x.comment_count}
+      if doc_with_max_comments
+        "https://www.regulations.gov/document/#{doc_with_max_comments.id}/comment"
+      else
+        nil #ie Not needed if no regs dot gov doc exists
+      end
+    else
+      "https://www.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
+    end
+
   end
+
+  def commentable_documents
+    regs_dot_gov_documents.select(&:commentable?)
+  end
+
+  def dockets_displayed_in_enhanced_content
+    dockets.reject(&:default_docket?)
+  end
+
+  def dockets
+    dockets_attributes = attributes['dockets']
+    if dockets_attributes.present?
+      dockets_attributes.map do |attrs|
+        Docket.new(attrs.stringify_keys)
+      end
+    else
+      []
+    end
+  end
+
+  def regs_dot_gov_documents
+    dockets.flat_map(&:regs_dot_gov_documents)
+  end
+
+  private
+
+  def default_regs_dot_gov_document
+    commentable_documents.first
+  end
+
 end

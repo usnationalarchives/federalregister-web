@@ -1,0 +1,33 @@
+<div id="comment-count-explanation-modal" style="<%= "display: none" unless local_assigns[:visible] %>">
+  <% dockets = document.commentable_documents.map(&:docket).uniq %>
+  <p><%= "#{pluralize(document.comment_count, "comment")} #{document.comment_count == 1 ? "has" : "have"} been received at regulations.gov, across #{pluralize(dockets.count, "docket")}." %></p>
+  
+  <p>Agencies review all submissions and may choose to redact, or withhold, certain submissions (or portions thereof). Submitted comments may not be available to be read until the agency has approved them.</p>
+  </br>
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>Docket Title</th>
+        <th>Document ID</th>
+        <th>Comments</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% document.commentable_documents.each do |doc| %>
+          <tr>
+            <td style="padding-top: 20px"><%= doc.docket.try(:title) %></td>
+            <td><%= link_to doc.id, "https://www.regulations.gov/document/#{doc.id}" %></td>
+            <td>
+              <span><%= doc.comment_count %></span>
+            </td>
+            <td>
+              <% if doc.updated_at %>
+                <span data-tooltip="<%= "Last synced with regulations.gov at #{doc.updated_at.to_s(:datetime)}" %>" data-tooltip-gravity="e" class="icon-fr2 icon-fr2-info_circle cj-tooltip last-synced-tooltip" original-title=""></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

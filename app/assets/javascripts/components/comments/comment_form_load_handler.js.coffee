@@ -25,9 +25,11 @@ class @FR2.CommentFormLoadHandler
   loadStoredComment: ->
     if @commentFormStore.hasStoredComment()
       @commentFormHandler.showReloadedCommentInformationBox()
-      @commentFormHandler
-        .commentForm
-        .loadComment(@commentFormStore.getStoredComment())
+      commentForm = @commentFormHandler.commentForm
+      commentForm.loadComment(@commentFormStore.getStoredComment())
+      #NOTE: Assume that if a stored comment exists, an agency was already selected
+      if commentForm._multiAgencyCommentSubmissionPage()
+        commentForm.changeFormFieldVisibilityPostMultiAgencySelection()
 
   load: ->
     @uiTriggerLoading()
@@ -146,3 +148,8 @@ class @FR2.CommentFormLoadHandler
 
     @commentWrapper().on 'click', '.attachment_requirements', ()=>
       @commentFormHandler.trackCommentEvent "Comment Instructions: Regulations.gov Attachment Requirements Modal"
+
+  _uncheckMultiAgencyDocumentSelection: ->
+    # If we don't uncheck the multi-agency radio button, it's not apparent to the user how they can continue entering comment information
+    $('.multi-agency-radio-js').prop("checked", false)
+

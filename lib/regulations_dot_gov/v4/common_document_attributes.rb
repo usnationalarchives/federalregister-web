@@ -46,6 +46,10 @@ module RegulationsDotGov::V4::CommonDocumentAttributes
     raw_attribute_value('openForComment') && !non_participating_agency?
   end
 
+  def regulations_dot_gov_open_for_comment
+    raw_attribute_value('openForComment')
+  end
+
   def title
     raw_attribute_value('title')
   end

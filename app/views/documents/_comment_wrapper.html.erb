@@ -27,33 +27,22 @@
         Thank you for taking the time to create a comment. Your input is important.
       </p>
 
-      <p>
-        <% agency_name = document.agencies.map(&:name).first %>
-        Once you have filled in the required fields below you can preview and/or
-        submit your comment to the <%= agency_name %> for review.
-        All comments are considered public and will be posted online once the
-        <%= agency_name %> has reviewed them.
-      </p>
-
-      <p>
-        You can view
-        <% if false && @comment.comment_form.alternative_ways_to_comment.present? %>
-          <a href="#" class="fr_modal_link reg_gov_alternative_ways_to_comment"
-            data-modal-title="Alternative Ways to Comment"
-            data-modal-html="<p><%= @comment.comment_form.alternative_ways_to_comment %></p>">
-            alternative ways to comment
-          </a>
-        <% else %>
-          <%= link_to 'alternative ways to comment',
-            '#addresses',
-            class: 'alternative_ways_to_comment addresses' %>
+      <div id="dynamic-agency-text-js">
+        <% if document.commentable_documents.count < 2 %>
+          <p>
+            <% agency_name = document.agencies.map(&:name).first %>
+            Once you have filled in the required fields below you can preview and/or submit your comment to the <%= agency_name %> for review.  All comments are considered public and will be posted online once the <%= agency_name %> has reviewed them.
+          </p>
+          <p>
+            You can view <%= link_to 'alternative ways to comment',
+                '#addresses',
+                class: 'alternative_ways_to_comment addresses' %> or you may also comment via Regulations.gov at <%= link_to document.calculated_comment_url, document.calculated_comment_url %>.
+          </p>
         <% end %>
-        or you may also comment via Regulations.gov at,
-        <%= link_to document.calculated_comment_url, document.calculated_comment_url %>.
-      </p>
+      </div>
     </div>
 
-    <%= semantic_form_for :comment, url: '#', authenticity_token: false, html: {
+    <%= semantic_form_for :comment, url: "#{Settings.regulations_dot_gov.api_base_url}/comments", authenticity_token: false, html: {
       id: "new_comment",
         data: {
           document_number: document.document_number,
@@ -83,6 +72,48 @@
               nil
             ) %>
         </li>
+        <% if multi_agency_comment_submission %>
+          <li><%= link_to "Change Comment Recipient", "#", id: "change-recipient-fields-js", style: "display: none;" %></li>
+          <fieldset class="choices multi-agency-js">
+            <legend class="label">
+              <label>Comment Recipient<abbr title="required">*</abbr></label>
+            </legend>
+            Multiple comment recipients are available for this document.  Please select an option below.
+            </br>
+            </br>
+            <ol class="choices-group">
+              <li class="radio input required" id="comment_commentUrl_input">
+                <table class="multi-agency-table" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Agency</th>
+                      <th>Docket</th>
+                      <th>Docket ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% document.dockets.each do |docket| %>
+                      <% docket.regs_dot_gov_documents.select(&:commentable?).each do |doc| %>
+                        <tr>
+                          <td>
+                            <input class="multi-agency-radio-js" type="radio" value="<%= doc.id %>" name="<%= "hiddenAgencyRadio-#{doc.id}" %>">
+                            <a class="btn green-btn agency-select-btn-js" data-agency-name="<%= docket.agency_name %>" data-agency-acronym="<%= docket.agency_name %>" data-regs-dot-gov-document-id="<%= doc.id %>">Select</a>
+                          </td>
+                          <td><%= docket.agency_name %></td>
+                          <td><%= docket.title %></td>
+                          <td><%= link_to docket.id, "https://www.regulations.gov/docket/#{docket.id}" %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </li>
+            </ol>
+          </fieldset>
+        <% end %>
+
+        <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>"> 
         <%= f.input :commentOnDocumentId, as: :hidden, input_html: {value: document.regulations_dot_gov_info['document_id']} %>
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'validate-required-js'} %>
         <%= f.input :category, label: 'What is your comment about?', collection: [], required: false %>
@@ -161,8 +192,10 @@
           :as => :boolean,
           :label => 'I read and understand the statement above.' %>
 
+        </div>
       <% end %>
 
+      <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>"> 
       <%= f.actions do %>
         <%= f.action :submit, as: :input,
           label: "Submit Comment",
@@ -191,6 +224,7 @@
           target="_blank">
           user notice
         </a>.
+      </div>
       </div>
     <% end %>
   </div> <!-- end comment_form_wrapper -->

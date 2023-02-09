@@ -29,8 +29,12 @@ module DocumentDecorator::RegulationsDotGovInfo
 
   # default dockets end in _0001, eg: CMS_FRDOC_0001
   def regulations_dot_gov_in_default_docket?
-    regulations_dot_gov_info["docket_id"].present? &&
-      regulations_dot_gov_info["docket_id"].match(/_0001/)
+    if Settings.feature_flags.multi_agency_comment_submission
+      dockets.all?(&:default_docket?)
+    else
+      regulations_dot_gov_info["docket_id"].present? &&
+        regulations_dot_gov_info["docket_id"].match(/_0001/)
+    end
   end
 
   def regulations_dot_gov_document_id

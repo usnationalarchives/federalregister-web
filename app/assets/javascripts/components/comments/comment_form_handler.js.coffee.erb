@@ -13,6 +13,7 @@ class @FR2.CommentFormHandler
 
     if window.location.hash == "#open-comment"
       @openCommentFromUrlHash()
+    @_enableCommentSidebarTogglingViaLink()
 
   commentFormReady: ->
     @removeEvents()
@@ -272,3 +273,22 @@ class @FR2.CommentFormHandler
 
   regulationsDotGovBaseUrl: ->
     $('#new_comment').data('regulations-dot-gov-base-url')
+
+  _showPublicCommentSidebar: ->
+    el = $('#utility-nav-public-comments')
+    el.find('.dropdown-menu').show()
+
+  _enableCommentSidebarTogglingViaLink: ->
+    context = this
+    $("#metadata_content_area").on( "click", ".deploy-comment-sidebar-js", (e) ->
+      e.preventDefault()
+      context._scrollToCommentSidebar()
+    )
+
+  _scrollToCommentSidebar: ->
+    context = this
+    $('html, body').animate(
+      {scrollTop: $("#utility-nav-public-comments").offset().top},
+      2000,
+      context._showPublicCommentSidebar
+    );
