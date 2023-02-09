@@ -54,7 +54,7 @@
                       presidential_documents_by_president_and_year_path(
                         doc_type.name.downcase.pluralize.gsub(' ','-'),
                         president.identifier,
-                        president.ends_on.year < Date.current.year ? president.ends_on.year : @presenter.most_recent_year(president, doc_type)
+                        president.ends_on.year < Date.current.year ? president.ends_on.year : @presenter.most_recent_year(president, doc_type.identifier)
                       ) %>
                     <span class="count-pill reader-aid cj-tooltip"
                       data-tooltip="<%= pluralize(count, doc_type.name.downcase) %> (<%= president.in_office %>)"

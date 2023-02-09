@@ -39,13 +39,19 @@ class PresidentialDocumentsIndexPresenter
     most_recent_year = 'placeholder'
     president.year_ranges.keys.each do |year|
       signing_date = {gte: Date.new(year,1,1).to_s(:iso), lte: Date.new(year,12,31).to_s(:iso)}
+
+      standard_doc_types = ['executive_order', 'proclamation']
+      presidential_document_types = if standard_doc_types.include? doc_type
+        Array.wrap(doc_type)
+      else
+        []
+      end
       results = PresidentialDocumentsFacet.search(
         QueryConditions::PresidentialDocumentConditions.all_presidential_documents_for(
-          president, []
+          president, presidential_document_types
         ).deep_merge!({conditions: {correction: 0, signing_date: signing_date}})
       ).results
 
-      standard_doc_types = ['executive_order', 'proclamation']
       if standard_doc_types.include?  doc_type
         results = Array.wrap(results.find{|x| x.attributes.fetch('slug') == doc_type})
       else
@@ -57,11 +63,7 @@ class PresidentialDocumentsIndexPresenter
       end
     end
 
-    if (president.identifier == 'joe-biden') && (doc_type == PresidentialDocumentType.find('executive_order'))
-      2022
-    else
-      most_recent_year
-    end
+    most_recent_year
   end
 
   def counts_by_type
