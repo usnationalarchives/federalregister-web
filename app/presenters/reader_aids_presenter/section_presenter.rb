@@ -163,6 +163,10 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     SECTION_SLUGS_WITH_RSS_FEEDS.include? section_identifier
   end
 
+  def css_class
+    section[:css_class]
+  end
+
   private
 
   def item_identifier

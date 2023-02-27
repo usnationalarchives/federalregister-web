@@ -37,6 +37,16 @@ class ReaderAid
         columns: 1
       }
     },
+    'federal-register-statistics' => {
+      title: 'Federal Register & CFR Statistics',
+      css_class: 'visible-bullets',
+      icon_class: 'lightbulb-active',
+      type: 'pages',
+      index_settings: {
+        display_count: 2,
+        columns: 1
+      }
+    },
     'videos-tutorials' => {
       title: 'Videos & Tutorials',
       icon_class: 'movie',

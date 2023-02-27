@@ -7,7 +7,7 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row reader-aids-section">
+  <div class="row reader-aids-section <%= @presenter.css_class %>">
     <div class="<%= bootstrap_col xs: 9, md: 9 %> section">
       <%= fr_details_box FrBox.build(:reader_aid) do %>
         <% if @presenter.section_page.present? && @presenter.section_page.formatted_content.present? %>
@@ -18,24 +18,26 @@
           </div>
         <% end %>
 
-        <div class="row">
-          <div class="<%= bootstrap_col xs:12, md: 12 %>">
-            <h4 class="fr-list-header">Reader aid items in this section</h4>
-          </div>
-
-          <% @presenter.grouped_items.each do |group| %>
-            <div class="<%= @presenter.css_columns %>">
-              <ul class="fr-list">
-                <% group.each do |item| %>
-                  <%= render partial: 'item', locals: {
-                    item: item,
-                    presenter: @presenter
-                  } %>
-                <% end %>
-              </ul>
+        <% if @presenter.grouped_items.flatten.present? %>
+          <div class="row">
+            <div class="<%= bootstrap_col xs:12, md: 12 %>">
+              <h4 class="fr-list-header">Reader aid items in this section</h4>
             </div>
-          <% end %>
-        </div>
+
+            <% @presenter.grouped_items.each do |group| %>
+              <div class="<%= @presenter.css_columns %>">
+                <ul class="fr-list">
+                  <% group.each do |item| %>
+                    <%= render partial: 'item', locals: {
+                      item: item,
+                      presenter: @presenter
+                    } %>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 

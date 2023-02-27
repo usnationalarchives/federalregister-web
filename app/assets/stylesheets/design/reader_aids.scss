@@ -15,6 +15,14 @@
     }
   }
 
+  .reader-aids-section.visible-bullets {
+    ul,
+    ol {
+      @include custom-bullets("black");
+      margin-left: 20px;
+    }
+  }
+
   table.table-nowrap.congressional-review {
     td:nth-child(2) {
       min-width: 500px;
