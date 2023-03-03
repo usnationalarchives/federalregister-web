@@ -372,7 +372,7 @@ class @FR2.CommentForm
       $(el).val() != ""
     ) && _.all(this._visibleCharCountFields(), (el) ->
       $(el).siblings('.inline-errors:not(.warning)').length == 0
-    ) && this._multiAgencyCommentRecipientPassesValidation()
+    ) 
 
   _visibleCharCountFields: () ->
     _.filter(this._requiredFields(), (el) ->
@@ -490,15 +490,6 @@ class @FR2.CommentForm
 
   _multiAgencyForm: () ->
     $('.multi-agency-js').length > 0
-
-  _multiAgencyCommentRecipientPassesValidation: () ->
-    if this._multiAgencyForm()
-      this._multiAgencyCommentRecipientSelected()
-    else
-      true
-
-  _multiAgencyCommentRecipientSelected: () ->
-    $("input[name='comment[regsDotGovDocumentId]']:checked").length > 0
 
   _multiAgencyCommentSubmissionPage: ->
     $('.multi-agency-js').length > 0
