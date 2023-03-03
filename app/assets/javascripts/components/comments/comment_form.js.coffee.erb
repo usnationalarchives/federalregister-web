@@ -297,7 +297,7 @@ class @FR2.CommentForm
     # Toggle field visibility
     $('.submitter-section-js').addClass('cj-hidden')
 
-  _updateCommentCategories: ->
+  _updateCommentCategories: (displayModalonFailure = true) ->
     context = this
     $.ajax(
       url: "#{context.commentFormHandler.regulationsDotGovBaseUrl()}/agency-categories?filter[acronym]=#{context._agencyAcronym()}",
@@ -327,7 +327,8 @@ class @FR2.CommentForm
           <p>
             Regulations.gov appears to be unavailable.  You may view the comment form below, but you'll need to submit your commment a bit later.
           </p>"
-        FR2.Modal.displayModal modalTitle, modalHtml
+        if displayModalonFailure
+          FR2.Modal.displayModal modalTitle, modalHtml
     )
 
   _updateAgencyAcronym: (agencyAcronym) ->
@@ -510,7 +511,8 @@ class @FR2.CommentForm
       selectedAgencyAcronym = $(this).data('agencyAcronym')
       if context._agencyAcronym() != selectedAgencyAcronym
         context._updateAgencyAcronym(selectedAgencyAcronym)
-        context._updateCommentCategories()
+        if selectedAgencyAcronym # The selected regs.gov doc may not always have an agency stored for the docket
+          context._updateCommentCategories(false)
 
     $('#new_comment').on "click", '.multi-agency-radio-js', (e) ->
       context._updateCommentOnDocumentId(e.target.value)
