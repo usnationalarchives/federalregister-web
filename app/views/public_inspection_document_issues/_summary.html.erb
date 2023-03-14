@@ -1,7 +1,7 @@
 <!-- issue public inspection metadata -->
-<div id="pi-metadata-bar" class="row pi-metadata-bar <%= home ? 'home' : '' %>">
+<div id="pi-metadata-bar" class="explicit-grid pi-metadata-bar <%= home ? 'home' : '' %>">
   <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
-    <div class="<%= bootstrap_col xs: 3, md: 3 %> fr-head-meta-label-holder">
+    <div class="fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <h4>
           <%
@@ -17,15 +17,47 @@
       </div>
     </div>
 
-    <div class="<%= bootstrap_col xs: 9, md: 9 %> fr-head-meta-counts">
-      <div class="row">
-        <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
-          full_width: false,
-          presenter: presenter
-        } %>
-      </div>
+    <div class="fr-head-meta-counts">
+      <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
+        full_width: false,
+        presenter: presenter
+      } %>
     </div>
-
-    <div class="clearfix"></div>
   </div>
 </div>
+
+
+
+<!-- OLD TAKE -->
+<% if false %>
+  <div id="pi-metadata-bar" class="row pi-metadata-bar <%= home ? 'home' : '' %>">
+    <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
+      <div class="<%= bootstrap_col xs: 3, md: 3 %> fr-head-meta-label-holder">
+        <div class="fr-head-meta-label">
+          <h4>
+            <%
+              link_text = home ? "Public Inspection" : presenter.date
+              link_path = home ? current_public_inspection_issue_path : public_inspection_issue_path(presenter.date)
+            %>
+
+            <%= link_to(
+              "<i class=\"icon-fr2-clipboard\"></i>#{link_text}".html_safe,
+              link_path
+            ) %>
+          </h4>
+        </div>
+      </div>
+
+      <div class="<%= bootstrap_col xs: 9, md: 9 %> fr-head-meta-counts">
+        <div class="row">
+          <%= render partial: "public_inspection_document_issues/summary_document_counts", locals: {
+            full_width: false,
+            presenter: presenter
+          } %>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+<% end %>

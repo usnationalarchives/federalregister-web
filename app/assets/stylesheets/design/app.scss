@@ -267,6 +267,62 @@ span.unsaved {
   }
 }
 
+// ==================== PI METADATA BAR====================
+
+.pi-metadata-bar.explicit-grid {
+  // Grid-layout for overall pi metadata bar
+  .fr-head-metadata-bar-public-inspection {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .fr-head-meta-label-holder {
+    grid-area: fr-head-meta-label-holder;
+  }
+
+  // Grid-layout for regular-filing/special filing areas
+  .fr-head-meta-counts {
+    grid-area: fr-head-meta-counts;
+
+    display: grid;
+    gap: 2rem;
+  }
+
+  .special-filing-counts {
+    grid-area: special-filing-counts;
+  }
+
+  .regular-filing-counts {
+    grid-area: regular-filing-counts;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .fr-head-metadata-bar-public-inspection {
+    grid-template-areas: "fr-head-meta-label-holder"
+                        "fr-head-meta-counts";
+  }
+
+  .fr-head-meta-counts {
+    grid-template-areas: "special-filing"
+                         "regular-filing";
+    padding: 0 1rem;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .fr-head-metadata-bar-public-inspection {
+    grid-template-columns: minmax(276px, 1fr) 1fr 1fr;
+    grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";
+  }
+
+  .fr-head-meta-counts {
+    grid-template-areas: "special-filing regular-filing"
+  }
+}
+
+// ========================================================
+
 @media only screen and (max-width: 500px) {
   * {
     color: red;
