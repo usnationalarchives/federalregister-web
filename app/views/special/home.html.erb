@@ -16,14 +16,13 @@
   <%= render partial: 'special/home/embedded_search' %>
   <%= esi home_sections_path %>
 
-  <div class="row">
-    <%= esi home_popular_documents_path %>
-    <%= esi home_presidential_documents_path %>
-  </div>
 
   <%= esi home_reader_aids_path %>
 
   <div class="explicit-grid">
+    <%= esi home_popular_documents_path %>
+    <%= esi home_presidential_documents_path %>
+
     <%= esi home_explore_agencies_path %>
     <%= esi home_explore_topics_path %>
   </div>
