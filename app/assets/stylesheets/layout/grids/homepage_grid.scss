@@ -1,0 +1,37 @@
+.pres-doc-preview {
+  grid-area: pres-doc-preview;
+}
+
+#popular-documents {
+  grid-area: popular-documents;
+}
+
+#explore-agencies {
+  grid-area: explore-agencies;
+}
+
+#explore-topics {
+  grid-area: explore-topics;
+}
+
+.explicit-grid {
+  display: grid;
+}
+
+@media only screen and (max-width: 500px) {
+  .explicit-grid {
+    grid-template-areas: 
+      "popular-documents"
+      "pres-doc-preview"
+      "explore-agencies"
+      "explore-topics";
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .explicit-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "popular-documents popular-documents popular-documents pres-doc-preview"
+                         "explore-agencies explore-agencies explore-topics explore-topics";
+  }
+}

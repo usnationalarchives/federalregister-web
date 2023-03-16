@@ -1,0 +1,30 @@
+#reg-metadata-bar.metadata-explicit-grid {
+
+  .fr-head-metadata-bar-official {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .fr-head-meta-label-holder {
+    grid-area: fr-head-meta-label-holder;
+  }
+
+  .fr-head-meta-counts {
+    grid-area: fr-head-meta-counts;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .fr-head-metadata-bar-official {
+    grid-template-areas: "fr-head-meta-label-holder"
+                        "fr-head-meta-counts";
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .fr-head-metadata-bar-official {
+    grid-template-columns: minmax(276px, 276px) 1fr;
+    grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";
+  }
+}
