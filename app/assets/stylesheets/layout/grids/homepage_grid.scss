@@ -1,3 +1,23 @@
+#reg-metadata-bar {
+  grid-area: reg-metadata-bar
+}
+
+#pi-metadata-bar {
+  grid-area: pi-metadata-bar
+}
+
+#embedded-search-area {
+  grid-area: embedded-search-area;
+}
+
+#carousel-elements {
+  grid-area: carousel-elements;
+}
+
+.home-aid-box {
+  grid-area: home-aid-box;
+}
+
 .pres-doc-preview {
   grid-area: pres-doc-preview;
 }
@@ -14,24 +34,35 @@
   grid-area: explore-topics;
 }
 
-.explicit-grid {
+.homepage-grid {
   display: grid;
 }
 
 @media only screen and (max-width: 500px) {
-  .explicit-grid {
+  .homepage-grid {
     grid-template-areas: 
+      "reg-metadata-bar"
+      "pi-metadata-bar"
+      "embedded-search-area"
+      "carousel-elements"
       "popular-documents"
       "pres-doc-preview"
+      // "home-aid-box"
       "explore-agencies"
       "explore-topics";
   }
 }
 
 @media only screen and (min-width: 500px) {
-  .explicit-grid {
+  .homepage-grid {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "popular-documents popular-documents popular-documents pres-doc-preview"
-                         "explore-agencies explore-agencies explore-topics explore-topics";
+    grid-template-areas:
+      "reg-metadata-bar reg-metadata-bar reg-metadata-bar reg-metadata-bar"
+      "pi-metadata-bar pi-metadata-bar pi-metadata-bar pi-metadata-bar"
+      "embedded-search-area embedded-search-area embedded-search-area embedded-search-area"
+      "carousel-elements carousel-elements carousel-elements carousel-elements"
+      "popular-documents popular-documents popular-documents pres-doc-preview"
+      //  "home-aid-box"
+      "explore-agencies explore-agencies explore-topics explore-topics";
   }
 }

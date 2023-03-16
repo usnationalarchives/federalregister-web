@@ -43,7 +43,7 @@
 
 @media only screen and (min-width: 500px) {
   .fr-head-metadata-bar-public-inspection {
-    grid-template-columns: minmax(276px, 1fr) 1fr;
+    grid-template-columns: minmax(276px, 276px) 1fr;
     grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";
   }
 

@@ -6,23 +6,17 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-
-  <% if DocumentIssue.current_issue_is_late? %>
-    <%= esi late_issue_summary_path %>
-  <% else %>
-    <%= esi issue_summary_path(path: 'home') %>
-  <% end %>
-
-  <%= render partial: 'special/home/embedded_search' %>
-  <%= esi home_sections_path %>
-
-
-  <%= esi home_reader_aids_path %>
-
-  <div class="explicit-grid">
+  <div class="homepage-grid">
+    <% if DocumentIssue.current_issue_is_late? %>
+      <%= esi late_issue_summary_path %>
+    <% else %>
+      <%= esi issue_summary_path(path: 'home') %>
+    <% end %>
+    <%= render partial: 'special/home/embedded_search' %>
+    <%= esi home_sections_path %>
+    <%= esi home_reader_aids_path %>
     <%= esi home_popular_documents_path %>
     <%= esi home_presidential_documents_path %>
-
     <%= esi home_explore_agencies_path %>
     <%= esi home_explore_topics_path %>
   </div>
