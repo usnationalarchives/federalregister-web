@@ -25,10 +25,6 @@
       "expected_result_count"
   }
 
-  #old-doc-availability-message {
-    display: none;
-  }
-
   #expected_result_count {
     justify-self: end;
   }
@@ -42,6 +38,16 @@
       "doc-type-filter doc-type-filter doc-type-filter ."
   }
 
+}
+
+// Add separate grid for aligning embedded search header
+#embedded-search-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  h3 {
+    grid-column: span 3;
+  }
 }
 
 // Add separate grid for aligning label, term field, and icon
