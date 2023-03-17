@@ -1,11 +1,10 @@
-<li class="dropdown previewable nav_browse">
+<li class="dropdown nav_browse">
   <%= link_to('', class: "browse top_nav") do %>
     <%= fr_icon('Eye') %>
     Browse
     <%= fr_icon('menu_arrow') %>
   <% end %>
-  <div class="subnav browse-list">
-    <ul class="left_column">
+    <ul class="subnav">
       <li id='agencies-browse'>
         <%= link_to(agencies_path, class: "agencies") do %>
           <%= fr_icon('mindmap') %>
@@ -37,30 +36,4 @@
         <% end %>
       </li>
     </ul>
-    <ul class="right_column">
-      <%= render partial: 'agencies/navigation', locals: {
-        presenter: Facets::AgenciesPresenter.new
-      } %>
-
-      <%= render partial: 'topics/navigation', locals: {
-        presenter: Facets::TopicsPresenter.new
-      } %>
-
-      <%= render partial: 'document_issues/navigation', locals: {
-        doc_presenter: DocumentIssuePresenter.new(
-          DocumentIssue.current.publication_date
-        )
-      } %>
-
-      <%= render partial: 'public_inspection_document_issues/navigation', locals: {
-        pi_presenter: PublicInspectionIssuePresenter.new(
-          PublicInspectionDocumentIssue.current.publication_date
-        )
-      } %>
-
-      <%= render partial: 'presidential_documents/navigation', locals: {
-        presenter: PresidentialDocumentsIndexPresenter.new
-      } %>
-    </ul>
-  </div>
 </li>

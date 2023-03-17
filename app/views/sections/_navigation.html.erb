@@ -1,11 +1,10 @@
-<li class="dropdown previewable nav_sections">
+<li class="dropdown nav_sections">
   <%= link_to('', class: "top_nav") do %>
     <%= fr_icon('thumbnails') %>
     Sections
     <%= fr_icon('menu_arrow') %>
   <% end %>
-  <div class="subnav">
-    <ul class="left_column">
+    <ul class="subnav">
       <% presenters.each do |presenter| %>
         <li id='<%= presenter.slug %>'>
           <%= link_to(
@@ -18,98 +17,4 @@
         </li>
       <% end %>
     </ul>
-    <ul class="right_column">
-      <% presenters.each do |presenter| %>
-        <li id='<%= presenter.slug %>-preview' class="preview">
-
-          <% if presenter.highlighted_documents.present? %>
-            <div class="row">
-              <div class="col-xs-12 col-md-12 carousel-nav">
-                <%= carousel(
-                  Array(presenter.highlighted_documents.first),
-                  image_size: 'navigation',
-                  html_options: {
-                    wrapper_class: 'carousel-wrapper-nav',
-                    wrapper_id: "nav-carousel-#{presenter.slug}"
-                  },
-                  description: 'none'
-                  ) %>
-              </div>
-            </div>
-          <% end %>
-
-          <div class="bootstrap-scope">
-            <div class="wrapper">
-
-              <div class="row">
-                <% presenter.
-                    suggested_searches.
-                    first(4).
-                    in_columns(2).
-                    each do |searches| %>
-
-                  <div class="col-xs-6 col-md-6 suggested-searches">
-                    <% searches.each do |suggested_search| %>
-                      <div class="suggested-search">
-                        <h1>
-                          <%= link_to suggested_search.title,
-                            suggested_search_path(suggested_search.slug) %>
-                        </h1>
-                        <p class="result-count">
-                          <%= suggested_search.documents_in_last_year %>
-                          documents in the last year
-                        </p>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-              </div> <!-- .suggested_searches -->
-
-              <div class="daily_stats row">
-                <div class="col-xs-6 col-md-6 new_articles">
-                  <%= link_to documents_search_path(
-                    :conditions => presenter.new_document_conditions,
-                    :utm_source => 'navigation',
-                    :utm_medium => 'dropdown',
-                    :utm_content => 'new_articles'
-                  ) do %>
-                    <span class="count">
-                      <%= presenter.new_documents %>
-                    </span>
-                    <span class="details">
-                      <%= pluralize_without_count(
-                        presenter.new_documents,
-                        'New Document'
-                      ) %>
-                      In this Issue
-                    </span>
-                  <% end %>
-                </div>
-                <div class="col-xs-6 col-md-6 open-comment-periods">
-                  <%= link_to documents_search_path(
-                    :conditions => presenter.open_comment_period_conditions.fetch(:conditions),
-                    :utm_source => 'navigation',
-                    :utm_medium => 'dropdown',
-                    :utm_content => 'comment_periods_open'
-                  ) do %>
-                    <span class="count">
-                      <%= presenter.open_comment_periods %>
-                    </span>
-                    <span class="details">
-                      <%= pluralize_without_count(
-                        presenter.open_comment_periods,
-                        'Document'
-                      ) %>
-                      Open for Comment
-                    </span>
-                  <% end %>
-                </div>
-              </div> <!-- .daily_stats -->
-
-            </div> <!-- .wrapper -->
-          </div> <!-- .bootstrap-scope -->
-        </li>
-      <% end %>
-    </ul>
-  </div>
 </li>
