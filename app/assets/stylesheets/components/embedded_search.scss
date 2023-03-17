@@ -101,7 +101,6 @@ $filter-disabled-bg-color: #FFFFFF;
   #conditions_type_input { display: none; }
 
   ul, ol {
-    position: absolute;
     list-style: none;
   }
 
@@ -110,12 +109,9 @@ $filter-disabled-bg-color: #FFFFFF;
     height: 45px;
     left: 0px;
     padding-top: 5px;
-    position: relative;
 
     ul {
       overflow: hidden;
-      position: absolute;
-      right: 172px;
       width: 110px;
     }
 
@@ -135,5 +131,9 @@ $filter-disabled-bg-color: #FFFFFF;
         top: 4px;
       }
     }
+  }
+
+  #expected_result_count {
+    width: 180px;
   }
 }

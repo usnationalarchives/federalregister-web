@@ -1,0 +1,65 @@
+
+#search-input {
+  grid-area: search-input;
+}
+
+#expected_result_count {
+  grid-area: expected_result_count;
+}
+
+#doc-type-filter {
+  grid-area: doc-type-filter;
+  justify-self: end;
+}
+
+#embedded_entry_search_form {
+  display: grid;
+}
+
+@media only screen and (max-width: 500px) {
+  #embedded_entry_search_form {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "search-input"
+      "doc-type-filter"
+      "expected_result_count"
+  }
+
+  #old-doc-availability-message {
+    display: none;
+  }
+
+  #expected_result_count {
+    justify-self: end;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  #embedded_entry_search_form {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+      "search-input search-input search-input expected_result_count"
+      "doc-type-filter doc-type-filter doc-type-filter ."
+  }
+
+}
+
+// Add separate grid for aligning label, term field, and icon
+#embedded-search-area #search-input {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+
+  label: {
+    justify-self: end;
+  }
+
+  #conditions_term {
+    width: 100%;
+    grid-column: span 10;
+
+  }
+
+  #conditions_submit {
+    justify-self: start;
+  }
+}

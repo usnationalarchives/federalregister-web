@@ -3,7 +3,7 @@
       <span class="icon-fr2-Search"></span>
       Search Federal Register Documents Since 1994
 
-      <span class="small-right">
+      <span id="old-doc-availability-message" class="small-right">
         Older documents may be available in PDF format at
         <a href='https://www.govinfo.gov/app/collection/fr'>govinfo.gov</a>
       </span>
@@ -17,15 +17,17 @@
         class: 'documents'
       } do |f| %>
 
-      <label>Find</label>
-      <%= f.text_field :term,
-        class: 'search-term',
-        placeholder: 'Search term or citation' %>
+      <div id="search-input">
+        <label>Find</label>
+        <%= f.text_field :term,
+          class: 'search-term',
+          placeholder: 'Search term or citation' %>
 
-      <%= f.button fr_icon('Search').html_safe,
-        class: 'search-submit',
-        id: 'conditions_submit',
-        "aria-label" => 'Search' %>
+        <%= f.button fr_icon('Search').html_safe,
+          class: 'search-submit',
+          id: 'conditions_submit',
+          "aria-label" => 'Search' %>
+      </div>
 
       <span id="expected_result_count" class="search-result-count">
         <span class="document-count"></span>

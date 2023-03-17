@@ -12,7 +12,6 @@
   }
 
   .doc-type-filter ul {
-    right: 281px;
     width: 142px;
   }
 }
@@ -39,7 +38,7 @@
   @include border-radius(3);
   background-color: $fr-gray-5;
   overflow: hidden;
-  height: 374px;
+  // height: 374px;
 
   ul {
     list-style-type: none;
