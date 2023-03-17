@@ -57,3 +57,11 @@
     &.reader-aids { @include masthead_png('reader_aids'); }
   }
 }
+
+@media only screen and (max-width: 500px) { 
+  // ie reduce logo size at smaller screen sizes
+  .hgroup {
+    top: 0px !important;
+    height: 63px !important;
+  }
+}
