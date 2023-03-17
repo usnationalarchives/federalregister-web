@@ -1,7 +1,7 @@
 <div id="home-section-preview-content-<%= presenter.slug %>"
   class="row home-section-preview-content">
 
-  <div class="col-xs-8 col-md-8 home-section-preview-carousel carousel-home">
+  <div class="col-xs-12 col-md-8 home-section-preview-carousel carousel-home">
     <%= carousel(
       presenter.highlighted_documents,
       image_size: 'homepage',
@@ -13,7 +13,7 @@
     ) %>
   </div>
 
-  <div class="col-xs-4 col-md-4 home-section-preview-suggested-searches">
+  <div class="col-xs-12 col-md-4 home-section-preview-suggested-searches">
     <h4 class="with-icon lowercase">
       <%= fr_icon presenter.icon %>
       Suggested Searches
