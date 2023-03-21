@@ -73,5 +73,6 @@ Rails.application.config.assets.precompile += %w(
 
   swagger.js
   swagger.css
+  layout/_home_page.css
 )
 
