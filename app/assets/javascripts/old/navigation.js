@@ -10,7 +10,61 @@ function setup_previewable_nav(el) {
     preview.find('.carousel-rounded-box').trigger('show');
 }
 
+// New Mobile Navbar Handling
+//=====================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Handle toggling of subnav
+  var toggleableList = document.querySelectorAll('#navigation .container > li.dropdown');
+  toggleableList.forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        var el = event.target.closest('li');
+        if (el === item) { // ie make sure we're only handling clicks to the subnav item (eg 'Browse', 'Sections', etc)
+          event.preventDefault();
+          if (el.classList.contains('active')) {
+            el.classList.remove('active');
+            event.target.classList.remove('active');
+          } else {
+            el.classList.add('active');
+            event.target.classList.add('active');
+          }
+        }
+      // }
+    });
+  });
+
+  // Hide non-essential nav components when viewport width is reduced
+  var navCollapsingHandler = function () {
+    var hamburgerIsCollapsed = !$("#navigation").hasClass("hamburger-expanded");
+    if ((window.innerWidth <= 500) && hamburgerIsCollapsed) {
+      $('#navigation li.dropdown').each(function() { $(this).hide(); } );
+    } else {
+      $('#navigation li.dropdown').each(function() { $(this).show(); } );
+    }
+  };
+  // Run on page load to ensure nav is constrained if viewport is already limited
+  navCollapsingHandler();
+  window.addEventListener('resize', function() {
+    navCollapsingHandler();
+  });
+
+  // Handle clicks on hamburger icon
+  var menuIcon = document.querySelector('#nav-hamburger');
+  menuIcon.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('navigation').classList.toggle('hamburger-expanded');
+    $('#navigation li.dropdown').each(function() { $(this).toggle(); });
+  });
+
+});
+//=====================================================================
+
 $(document).ready( function() {
+  // NOTE: Most of this code can likely be removed since it deals with the concept of left and right navigation submenu, which will not exist in the future.
+  if (true) {
+    return;
+  }
+
   var navigation_timeout = null;
 
   $('#navigation .dropdown').bind('mouseenter', function(event) {

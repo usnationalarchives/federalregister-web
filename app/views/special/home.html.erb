@@ -13,12 +13,13 @@
       <%= esi issue_summary_path(path: 'home') %>
     <% end %>
     <%= render partial: 'special/home/embedded_search' %>
-    <%= esi home_sections_path %>
+    <% if false # For now, don't display carousel nav until OFR confirms we want to retain it %>
+      <%= esi home_sections_path %>
+    <% end %>
     <%= esi home_reader_aids_path %>
     <%= esi home_popular_documents_path %>
     <%= esi home_presidential_documents_path %>
     <%= esi home_explore_agencies_path %>
     <%= esi home_explore_topics_path %>
   </div>
-
 <% end %>

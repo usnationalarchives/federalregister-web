@@ -687,3 +687,144 @@
     }
   }
 }
+
+.hamburger-expanded-only {
+  display: none;
+}
+
+$small-viewport-width: 500px !default;
+@media only screen and (max-width: #{$small-viewport-width}) {
+
+  // Change the page header to allow for dynamic viewport widths
+  // ==============================================
+  #navigation {
+    .container {
+      width: auto; // Make nav width dynamic at small sizes
+    }
+  }
+
+  #header_refresh {
+    .announcement-inner {
+      width: auto;
+    }
+    .site-notification-text {
+      width: auto;
+    }
+
+    .logo {
+      width: auto !important;
+
+      .hgroup.official {
+        width: auto;
+      }
+    }
+
+    #user_utils {
+      width: auto;
+      margin-bottom: 15px;
+    }
+  }
+  // ==============================================
+
+  #navigation.hamburger-expanded {
+
+    .hamburger-expanded-only {
+      display: initial;
+    }
+
+    a {
+      font-size: 17px;
+      font-weight: 500;
+      padding: 5px 10px;
+    }
+
+    .subnav.reader-aids-list a {
+      line-height: normal;
+      padding: 7px 10px;
+    }
+
+    .container {
+      width: auto;
+      height: auto;
+    }
+
+    li {
+      float: none;
+      border: none; // Remove left-hand outline border
+    }
+
+    #nav-home {
+      width: 100%;
+    }
+
+    li.dropdown {
+      position: static;
+      height: auto; //prevents nav items from stacking on top of each other
+      width: 100% !important;
+
+      &:hover .subnav,
+      &.hover .subnav {
+        display: initial; //prevents the pop-out display:block hovering that occurs normally
+      }
+
+      li {
+        display: none;
+        border-top: none;
+      }
+
+      .icon-fr2-menu_arrow {
+        float: none;
+        top: 0px;
+      }
+
+    }
+
+    li.inline_search {
+      float: none;
+      height: 50px;
+      margin: 8px 8px;
+
+      $searchFieldHeight: 35px;
+      form {
+        height: $searchFieldHeight;
+        width: auto;
+
+        #conditions_term {
+          height: $searchFieldHeight;
+        }
+
+        #conditions_submit {
+          height: $searchFieldHeight;
+          top: auto;
+        }
+      }
+
+    }
+    
+    //===============
+    // Handle hiding of subnav items
+    li.dropdown.active {
+      li {
+        padding-left: 20px;
+        display: block;
+      }
+    }
+
+    .subnav {
+      border: none; // Remove left-hand border on subnav
+      display: initial;
+      position: static;
+
+      li:last-child {
+        border: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: #{$small-viewport-width}) {
+  .mobile-only {
+    display: none !important;
+  }
+
+}

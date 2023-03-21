@@ -2,5 +2,10 @@
   .wrapper {
     margin: 0;
     padding: 0;
+
+    .container.fixed {
+      width: 970px !important;
+      max-width: none !important;
+    }
   }
 }
