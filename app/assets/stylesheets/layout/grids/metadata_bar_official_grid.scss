@@ -15,14 +15,14 @@
 
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: $small-viewport-width) {
   .fr-head-metadata-bar-official {
     grid-template-areas: "fr-head-meta-label-holder"
                         "fr-head-meta-counts";
   }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: $small-viewport-width) {
   .fr-head-metadata-bar-official {
     grid-template-columns: minmax(276px, 276px) 1fr;
     grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";

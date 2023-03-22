@@ -38,7 +38,7 @@
   display: grid;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: $small-viewport-width) {
   .homepage-grid {
     grid-template-areas: 
       "reg-metadata-bar"
@@ -52,7 +52,7 @@
   }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: $small-viewport-width) {
   .homepage-grid {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:

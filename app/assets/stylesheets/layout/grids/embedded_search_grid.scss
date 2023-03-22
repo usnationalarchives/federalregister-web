@@ -16,7 +16,7 @@
   display: grid;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: $small-viewport-width) {
   #embedded_entry_search_form {
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -30,7 +30,7 @@
   }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: $small-viewport-width) {
   #embedded_entry_search_form {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 

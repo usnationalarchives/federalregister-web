@@ -692,7 +692,6 @@
   display: none;
 }
 
-$small-viewport-width: 500px !default;
 @media only screen and (max-width: #{$small-viewport-width}) {
 
   // Change the page header to allow for dynamic viewport widths
