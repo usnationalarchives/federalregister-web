@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Hide non-essential nav components when viewport width is reduced
+  var smallViewportWidth = 501;
   var navCollapsingHandler = function () {
     var hamburgerIsCollapsed = !$("#navigation").hasClass("hamburger-expanded");
-    if ((window.innerWidth <= 500) && hamburgerIsCollapsed) {
+    if ((window.innerWidth <= smallViewportWidth) && hamburgerIsCollapsed) {
       $('#navigation li.dropdown').each(function() { $(this).hide(); } );
     } else {
       $('#navigation li.dropdown').each(function() { $(this).show(); } );
