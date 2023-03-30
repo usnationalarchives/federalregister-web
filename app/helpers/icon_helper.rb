@@ -7,4 +7,11 @@ module IconHelper
 
     content_tag(:span, '', options)
   end
+
+  def sprite_icon(name, options={}, width: "32", height: "32", fill: "currentColor")
+    tag.svg(class: "bi", width: width, height: height, fill: fill) do
+      tag.use("xlink:href" => "#{asset_path('fr-icons.svg')}##{name}")
+    end
+  end
+
 end
