@@ -1,8 +1,7 @@
-#reg-metadata-bar.metadata-explicit-grid {
+.metadata-explicit-grid {
 
-  .fr-head-metadata-bar-official {
+  .fr-head-metadata-bar {
     display: grid;
-    gap: 2rem;
   }
 
   .fr-head-meta-label-holder {
@@ -16,15 +15,29 @@
 }
 
 @media only screen and (max-width: $small-viewport-width) {
-  .fr-head-metadata-bar-official {
+
+  .fr-head-metadata-bar {
     grid-template-areas: "fr-head-meta-label-holder"
-                        "fr-head-meta-counts";
+                         "fr-head-meta-counts";
+    grid-column-gap: 0rem;
+    grid-row-gap: 0rem;
+  }
+
+  .fr-head-meta-counts {
+    padding: 0 1rem 1rem 1rem;
+    margin-top: 15px;
   }
 }
 
 @media only screen and (min-width: $small-viewport-width) {
-  .fr-head-metadata-bar-official {
+  .fr-head-metadata-bar {
     grid-template-columns: minmax(276px, 276px) 1fr;
     grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";
+    gap: 2rem;
   }
+
+  .fr-head-meta-counts {
+    margin-top: 5px;
+  }
+
 }

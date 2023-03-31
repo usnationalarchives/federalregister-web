@@ -7,7 +7,6 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
-    margin-top: 6px;
 
     a { color: $main-color; }
 
@@ -179,7 +178,6 @@
 .pi-metadata-bar {
   .fr-head-metadata-bar {
     .fr-head-meta-counts {
-      margin-top: 0;
 
       .row { margin-bottom: 0 !important; }
 
@@ -254,3 +252,14 @@
   .fr-list.with-stats li { padding: 0; }
 }
 // scss-lint:enable MergeableSelector
+
+
+@media only screen and (max-width: $small-viewport-width) {
+  #reg-metadata-bar .fr-head-metadata-bar h4 {
+    font-size: $metadata-bar-font-size;
+  }
+
+  #pi-metadata-bar .fr-head-metadata-bar h4 {
+    font-size: $metadata-bar-font-size;
+  }
+}
