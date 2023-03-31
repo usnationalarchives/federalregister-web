@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
             el.classList.remove('active');
             event.target.classList.remove('active');
           } else {
+            // Close any open subnav item
+            $('#navigation > ul').find('*').removeClass('active');
+            // Open the selectived subnav item
             el.classList.add('active');
             event.target.classList.add('active');
           }
