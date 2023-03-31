@@ -700,6 +700,11 @@
     .container {
       width: auto; // Make nav width dynamic at small sizes
     }
+
+    #nav-hamburger {
+      margin-top: 4px;
+    }
+
   }
 
   #header_refresh {
@@ -726,6 +731,10 @@
   // ==============================================
 
   #navigation.hamburger-expanded {
+
+    #nav-hamburger {
+      margin-top: -2px; // The hamburger icon jitters on expansion otherwise
+    }
 
     .hamburger-expanded-only {
       display: initial;
