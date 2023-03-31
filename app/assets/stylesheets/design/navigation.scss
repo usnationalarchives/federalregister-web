@@ -732,6 +732,10 @@
 
   #navigation.hamburger-expanded {
 
+    #nav-home {
+      display: none
+    }
+
     #nav-hamburger {
       margin-top: -2px; // The hamburger icon jitters on expansion otherwise
     }
