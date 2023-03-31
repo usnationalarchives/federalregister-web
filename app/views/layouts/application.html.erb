@@ -68,6 +68,7 @@
 
     <%= esi site_notification_path(:identifier => :global) %>
 
+    <main>
     <div id="main">
       <div id="print-disclaimer">
         <%= fr_content_box(
@@ -118,6 +119,7 @@
 
       <%= yield %>
     </div>
+    </main>
 
     <%= esi footer_path %>
   </body>
