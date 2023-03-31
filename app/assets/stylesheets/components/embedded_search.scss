@@ -148,3 +148,9 @@ $filter-disabled-bg-color: #FFFFFF;
 
 
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  #embedded-search-header h3 {
+    font-size: $metadata-bar-font-size;
+  }
+}

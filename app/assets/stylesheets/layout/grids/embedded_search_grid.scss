@@ -18,15 +18,15 @@
 
 @media only screen and (max-width: $small-viewport-width) {
   #embedded_entry_search_form {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
-      "search-input"
-      "doc-type-filter"
-      "expected_result_count"
+      "search-input search-input search-input search-input"
+      ". . doc-type-filter expected_result_count"
   }
 
   #expected_result_count {
     justify-self: end;
+    margin-top: 4px;
   }
 }
 
@@ -61,11 +61,11 @@
 
   #conditions_term {
     width: 100%;
-    grid-column: span 10;
-
+    grid-column: span 11;
   }
 
   #conditions_submit {
     justify-self: start;
+    grid-column: span 1;
   }
 }
