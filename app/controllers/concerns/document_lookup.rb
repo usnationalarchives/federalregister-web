@@ -6,9 +6,9 @@ module DocumentLookup
   def find_document
     begin
       if publication_date
-        @document = Document.find(params[:document_number], publication_date: publication_date)
+        @document = Document.find(document_number, publication_date: publication_date)
       else
-        @document = Document.find(params[:document_number])
+        @document = Document.find(document_number)
       end
     rescue FederalRegister::Client::RecordNotFound
       begin
@@ -17,6 +17,12 @@ module DocumentLookup
         raise ActiveRecord::RecordNotFound
       end
     end
+  end
+
+  def document_number
+    # replace endash, emdash with hyphen
+    hyphen, en_dash, em_dash = "-", "–", "—"
+    params[:document_number].gsub(/[#{en_dash}#{em_dash}]/, hyphen)
   end
 
   def publication_date
