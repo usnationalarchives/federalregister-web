@@ -1,11 +1,6 @@
 <div id="user_utils">
   <div class="ie_shim">
     <div id="document-count-holder">
-      <%= link_to clippings_path(), :id => 'document-count', :class => "count_with_icon #{user_signed_in? ? '' : 'alert'}" do
-            [ content_tag(:span, @clipboard_clippings.size, :id => "doc_count"),
-              content_tag(:span, "", :class => "icon-fr2 icon-fr2-flag")
-            ].join("\n").html_safe
-          end %>
       <% if user_signed_in? %>
         <%= csrf_meta_tags %>
         <%= link_to clippings_path(), :id => "document-in-folders-count", :class => "count_with_icon" do
@@ -20,10 +15,6 @@
     <% if user_signed_in? %>
       <li>Hi, <%= current_user.display_name %></li>
       <li><%= link_to "Sign out", sign_out_path %></li>
-    <% else %>
-      <li>
-      <%= link_to "Sign in", sign_in_url, :id => "sign-in" %></li>
-      <li><%= link_to "Sign up", sign_in_url %></li>
     <% end %>
     </ul>
   </div> <!-- end ie_shim -->
