@@ -2,7 +2,7 @@ class WpApi::Client
   class PageNotFound < StandardError; end
 
   include HTTParty
-  base_uri "#{Settings.federal_register.internal_base_url}/blog/wp-json/wp/v2"
+  base_uri "#{Settings.federal_register.wordpress_url}/blog/wp-json/wp/v2"
 
   ##############################
   # ENDPOINTS

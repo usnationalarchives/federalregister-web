@@ -26,6 +26,7 @@ regulations_dot_gov:
 federal_register:
   api_url: 'https://www.federalregister.gov/api/v1'
   base_url: 'https://www.federalregister.gov'
+  wordpress_url: 'https://fr2.criticaljuncture.org'
 
 federal_register_archives:
   api_url: 'http://localhost:3020'
