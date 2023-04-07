@@ -1,35 +1,28 @@
-<div class="row home-aid-box">
-  <div class="col-xs-12 col-md-12">
-    <%= fr_details_box FrBox.build(:reader_aid) do %>
-      <div class="row">
-        <div class="col-xs-8 col-md-8">
-          <p>
-            Increase your understanding of the Federal Register eco-system and
-            improve your FederalRegister.gov skills with these helpful, unofficial
-            educational articles and videos. See more of our reader aids
-            <%= link_to "here", reader_aids_path %>.
-          </p>
-        </div>
-
-        <div class="col-xs-4 col-md-4 section">
-          <p class="blog">
-            <span class="icon-fr2 icon-fr2-quote"></span>
-            Read the <%= link_to 'Office of the Federal Register Blog', reader_aids_section_path("office-of-the-federal-register-blog") %>
-          </p>
-        </div>
+<div class="home-aid-box">
+  <%= fr_details_box FrBox.build(:reader_aid) do %>
+      <div id="home-aid-tagline">
+        <p>
+          Increase your understanding of the Federal Register eco-system and
+          improve your FederalRegister.gov skills with these helpful, unofficial
+          educational articles and videos. See more of our reader aids
+          <%= link_to "here", reader_aids_path %>.
+        </p>
       </div>
 
-      <div class="row">
-        <div class="col-xs-8 col-md-8 section">
-          <%= render template: 'reader_aids/index_section',
-            locals: {presenter: @using_fr_presenter} %>
-        </div>
-        <div class="col-xs-4 col-md-4 section">
-          <%= render template: 'reader_aids/index_section',
-            locals: {presenter: @recent_updates_presenter} %>
-        </div>
+      <div id="ofr-blog-callout">
+        <p class="blog">
+          <span class="icon-fr2 icon-fr2-quote"></span>
+          Read the <%= link_to 'Office of the Federal Register Blog', reader_aids_section_path("office-of-the-federal-register-blog") %>
+        </p>
       </div>
 
-    <% end %>
-  </div>
+      <div id="using-fr" class="section">
+        <%= render template: 'reader_aids/index_section',
+          locals: {presenter: @using_fr_presenter} %>
+      </div>
+      <div id="recent-site-updates" class="section">
+        <%= render template: 'reader_aids/index_section',
+          locals: {presenter: @recent_updates_presenter} %>
+      </div>
+  <% end %>
 </div>

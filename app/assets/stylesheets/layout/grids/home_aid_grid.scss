@@ -1,0 +1,46 @@
+.fr-box-reader-aid .content-block.simple {
+  display: grid;
+
+  #home-aid-tagline {
+    grid-area: home-aid-tagline;
+  }
+
+  #ofr-blog-callout {
+    grid-area: ofr-blog-callout;
+  }
+
+  #using-fr {
+    grid-area: using-fr;
+  }
+
+  #recent-site-updates {
+    grid-area: recent-site-updates;
+  }
+}
+
+@media only screen and (max-width: $small-viewport-width) {
+  .fr-box-reader-aid .content-block.simple {
+    grid-template-areas: "home-aid-tagline"
+                         "ofr-blog-callout"
+                         "using-fr"
+                         "recent-site-updates";
+    grid-row-gap: 1rem;
+  }
+
+  .home-aid-box  {
+    h4 {margin-left: 40px;}
+
+    .icon-fr2-quote {margin-left: 3px !important;}
+  }
+}
+
+@media only screen and (min-width: $small-viewport-width) {
+  .fr-box-reader-aid .content-block.simple {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "home-aid-tagline home-aid-tagline home-aid-tagline ofr-blog-callout"
+                         "using-fr using-fr using-fr recent-site-updates";
+    grid-column-gap: 5rem;
+
+    #using-fr {margin-left: 37px;}
+  }
+}
