@@ -36,6 +36,7 @@
 
 .homepage-grid {
   display: grid;
+  row-gap: 0.5rem;
 }
 
 @media only screen and (max-width: $small-viewport-width) {
