@@ -17,10 +17,9 @@
       } do |f| %>
 
       <div id="search-input">
-        <label>Find</label>
         <%= f.text_field :term,
           class: 'search-term',
-          placeholder: 'Search term or citation' %>
+          placeholder: 'Enter a search term or citation' %>
 
         <%= f.button fr_icon('Search').html_safe,
           class: 'search-submit',
