@@ -13,9 +13,9 @@ function setup_previewable_nav(el) {
 // New Mobile Navbar Handling
 //=====================================================================
 document.addEventListener('DOMContentLoaded', function() {
-  
+
   // Handle toggling of subnav
-  var toggleableList = document.querySelectorAll('#navigation .container > li.dropdown');
+  var toggleableList = document.querySelectorAll('#non-essential-nav > li.dropdown');
   toggleableList.forEach(function(item) {
     item.addEventListener('click', function(event) {
         var el = event.target.closest('li');
@@ -36,28 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Hide non-essential nav components when viewport width is reduced
-  var smallViewportWidth = 501;
-  var navCollapsingHandler = function () {
-    var hamburgerIsCollapsed = !$("#navigation").hasClass("hamburger-expanded");
-    if ((window.innerWidth <= smallViewportWidth) && hamburgerIsCollapsed) {
-      $('#navigation li.dropdown').each(function() { $(this).hide(); } );
-    } else {
-      $('#navigation li.dropdown').each(function() { $(this).show(); } );
-    }
-  };
-  // Run on page load to ensure nav is constrained if viewport is already limited
-  navCollapsingHandler();
-  window.addEventListener('resize', function() {
-    navCollapsingHandler();
-  });
-
   // Handle clicks on hamburger icon
   var menuIcon = document.querySelector('#nav-hamburger');
   menuIcon.addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('navigation').classList.toggle('hamburger-expanded');
-    $('#navigation li.dropdown').each(function() { $(this).toggle(); });
   });
 
 });

@@ -832,6 +832,21 @@
       }
     }
   }
+
+  // if the hamburger menu is not expanded, don't display the non-essential nav items
+  #navigation {
+    #non-essential-nav {
+      display: none;
+    }
+  }
+
+  // if the hamburger menu is expanded, display the non-essential nav items
+  #navigation.hamburger-expanded {
+    #non-essential-nav {
+      display: block;
+    }
+  }
+
 }
 
 @media only screen and (min-width: #{$small-viewport-width}) {
