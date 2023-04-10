@@ -792,24 +792,28 @@
     }
 
     li.inline_search {
-      float: none;
-      height: 50px;
-      margin: 8px 8px;
+      position: absolute;
+      top: 2px;
+      right: 0;
 
-      $searchFieldHeight: 35px;
-      form {
-        height: $searchFieldHeight;
-        width: auto;
+    //   float: none;
+    //   height: 50px;
+    //   margin: 8px 8px;
 
-        #conditions_term {
-          height: $searchFieldHeight;
-        }
+    //   $searchFieldHeight: 35px;
+    //   form {
+    //     height: $searchFieldHeight;
+    //     width: auto;
 
-        #conditions_submit {
-          height: $searchFieldHeight;
-          top: auto;
-        }
-      }
+    //     #conditions_term {
+    //       height: $searchFieldHeight;
+    //     }
+
+    //     #conditions_submit {
+    //       height: $searchFieldHeight;
+    //       top: auto;
+    //     }
+    //   }
 
     }
     
