@@ -848,6 +848,10 @@
     }
   }
 
+  #non-essential-nav .subnav li a .icon-fr2 {
+    margin-right: 5px;
+  }
+
   // if the hamburger menu is not expanded, don't display the non-essential nav items
   #navigation {
     #non-essential-nav {
