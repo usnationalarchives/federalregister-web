@@ -1,0 +1,13 @@
+@media only screen and (max-width: $small-viewport-width) {
+
+  #non-essential-nav .top_nav {
+    display: grid; 
+    grid-template-columns: 8% 1fr;
+    column-gap: 4px;
+
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) {
+      top: 7px;
+    }
+  }
+
+}

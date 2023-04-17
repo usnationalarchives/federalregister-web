@@ -1,8 +1,10 @@
 <li class="dropdown nav_sections">
   <%= link_to('', class: "top_nav") do %>
     <%= fr_icon('thumbnails') %>
-    Sections
-    <%= fr_icon('menu_arrow') %>
+    <span>
+      Sections
+      <%= fr_icon('menu_arrow') %>
+    </span>
   <% end %>
     <ul class="subnav">
       <% presenters.each do |presenter| %>
