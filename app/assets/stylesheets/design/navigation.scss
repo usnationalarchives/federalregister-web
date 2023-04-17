@@ -823,6 +823,17 @@
       li {
         padding-left: 20px;
         display: block;
+        max-height: 1000px;
+        transition: max-height 1s ease-in-out;
+      }
+    }
+
+    li.dropdown {
+      li {
+        padding-left: 20px;
+        display: block;
+        max-height: 0px;
+        overflow: hidden;
       }
     }
 
