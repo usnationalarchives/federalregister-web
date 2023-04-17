@@ -840,7 +840,9 @@
   // if the hamburger menu is not expanded, don't display the non-essential nav items
   #navigation {
     #non-essential-nav {
-      display: none;
+      max-height: 0px;
+      overflow: hidden;
+      // transition: max-height 1s ease-out;  //If we add back the transition here, it seems to create awkward jumpiness, thus moved to the area below
     }
   }
 
@@ -848,6 +850,13 @@
   #navigation.hamburger-expanded {
     #non-essential-nav {
       display: block;
+      max-height: 1000px;
+      transition: max-height 1s ease-out;
+    }
+
+    #non-essential-nav.hide {
+      display: block;
+      max-height: 0px;
     }
   }
 

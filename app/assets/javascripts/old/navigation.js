@@ -37,10 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Handle clicks on hamburger icon
-  var menuIcon = document.querySelector('#nav-hamburger');
-  menuIcon.addEventListener('click', function (e) {
+  var hamburgerIcon = document.querySelector('#nav-hamburger');
+  hamburgerIcon.addEventListener('click', function (e) {
     e.preventDefault();
-    document.getElementById('navigation').classList.toggle('hamburger-expanded');
+    // Apply slide down animation
+    var $slideDown = $('#non-essential-nav');
+    if ($slideDown.hasClass('show')) {
+      $slideDown.removeClass('show');
+      document.getElementById('navigation').classList.toggle('hamburger-expanded');
+    } else {
+      $slideDown.removeClass('hide').addClass('show');
+      document.getElementById('navigation').classList.toggle('hamburger-expanded');
+    }
   });
 
 });

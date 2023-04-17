@@ -10,16 +10,17 @@
   <% end %>
 </li>
 
-<%= render partial: 'sections/navigation', locals: {
-  presenters: Section.all.map do |section|
-    SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
-  end
-} %>
+<div id="non-essential-nav">
+  <%= render partial: 'sections/navigation', locals: {
+    presenters: Section.all.map do |section|
+      SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
+    end
+  } %>
 
-<%= render partial: 'special/navigation/browse' %>
+  <%= render partial: 'special/navigation/browse' %>
 
-<%= render partial: 'special/navigation/search' %>
+  <%= render partial: 'special/navigation/search' %>
 
-<%= render partial: 'reader_aids/navigation', locals: {
-  reader_aids_sections: ReaderAidsPresenter::Base.new.sections
-} %>
+  <%= render partial: 'reader_aids/navigation', locals: {
+    reader_aids_sections: ReaderAidsPresenter::Base.new.sections
+  } %>
