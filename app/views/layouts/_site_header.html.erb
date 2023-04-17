@@ -26,7 +26,7 @@
           <%= semantic_form_for 'conditions',
             as: :conditions,
             url: documents_search_path,
-            html: {method: :get, class: "search-form"} do |f| %>
+            html: {id: "nav-search", method: :get, class: "search-form"} do |f| %>
 
             <label for="term">Search the Federal Register</label>
             <%= f.text_field :term,

@@ -705,6 +705,28 @@
       margin-top: 4px;
     }
 
+    // Handle expansion of search bar to full width for mobile layout
+    li.inline_search {
+      float: none;
+      position: absolute;
+      top: 0px;
+      width: 88%;
+      left: 40px;
+
+      .search-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: auto;
+
+        #conditions_submit {
+          justify-self: end;
+        }
+      }
+
+      .search-form .search-submit {
+        top: 0px;
+      }
+    }
   }
 
   #header_refresh {
@@ -738,6 +760,10 @@
 
     #nav-hamburger {
       margin-top: -2px; // The hamburger icon jitters on expansion otherwise
+    }
+
+    #nav-search {
+      top: 2px; // The nav-search jitters on expansion otherwise
     }
 
     .hamburger-expanded-only {
@@ -791,32 +817,7 @@
 
     }
 
-    li.inline_search {
-      position: absolute;
-      top: 2px;
-      right: 0;
 
-    //   float: none;
-    //   height: 50px;
-    //   margin: 8px 8px;
-
-    //   $searchFieldHeight: 35px;
-    //   form {
-    //     height: $searchFieldHeight;
-    //     width: auto;
-
-    //     #conditions_term {
-    //       height: $searchFieldHeight;
-    //     }
-
-    //     #conditions_submit {
-    //       height: $searchFieldHeight;
-    //       top: auto;
-    //     }
-    //   }
-
-    }
-    
     //===============
     // Handle hiding of subnav items
     li.dropdown.active {

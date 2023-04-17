@@ -4,13 +4,13 @@
   <% end %>
 </li>
 
-<li id='nav-home' class="nav-home">
-  <%= link_to(root_path, class: "home", 'aria-label' => 'Home') do %>
-    <%= fr_icon('home') %>
-  <% end %>
-</li>
-
 <div id="non-essential-nav">
+  <li id='nav-home' class="nav-home">
+    <%= link_to(root_path, class: "home", 'aria-label' => 'Home') do %>
+      <%= fr_icon('home') %>
+    <% end %>
+  </li>
+
   <%= render partial: 'sections/navigation', locals: {
     presenters: Section.all.map do |section|
       SectionPagePresenter.new(section, DocumentIssue.current.publication_date)
