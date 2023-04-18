@@ -715,16 +715,22 @@
 
       .search-form {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 10%;
         width: auto;
 
         #conditions_submit {
           justify-self: end;
         }
-      }
 
-      .search-form .search-submit {
-        top: 0px;
+        .search-term {
+          float: none;
+          width: auto;
+        }
+        
+        .search-submit {
+          top: 0px;
+        }
+
       }
     }
   }
