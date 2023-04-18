@@ -1,6 +1,7 @@
 @media only screen and (max-width: $small-viewport-width) {
 
-  #non-essential-nav .top_nav {
+  // Used to ensure nav/subnav icons and text are aligned on a vertical axis
+  #non-essential-nav .top_nav, #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a {
     display: grid; 
     grid-template-columns: 8% 1fr;
     column-gap: 4px;
