@@ -129,7 +129,7 @@
   border: 1px solid $nav-border-color;
   box-shadow: 0 3px 5px $fr-gray-40;
   display: none;
-  left: -22px;
+  left: -1px;
   position: absolute;
   top: 30px;
   width: 200px;
@@ -857,6 +857,11 @@
 
   #non-essential-nav .subnav li a .icon-fr2 {
     margin-right: 5px;
+  }
+
+  #public-inspection-browse.li a .icon-fr2 {
+    color: red !important;
+    margin-right: 10px !important;
   }
 
   // if the hamburger menu is not expanded, don't display the non-essential nav items
