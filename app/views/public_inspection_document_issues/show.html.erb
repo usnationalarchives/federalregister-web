@@ -36,6 +36,20 @@
           <%= subscribe_box(search_type: 'PublicInspectionDocument') %>
         </div>
       </div>
+
+      <div class="row">
+        <div class="<%= bootstrap_col xs:12, md:12 %>">
+          <div class="date_input_holder">
+            <h2>Go to a specific date</h2>
+            <%= form_tag public_inspection_issues_search_path, :method => :get, :id => "date_selector" do %>
+              <label>Go to a specific date:</label>
+              <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+              <%= submit_tag 'Go' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper"
              data-document-type-js="public-inspection">
