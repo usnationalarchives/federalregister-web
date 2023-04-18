@@ -18,20 +18,16 @@
   grid-area: home-aid-box;
 }
 
-.pres-doc-preview {
-  grid-area: pres-doc-preview;
-}
-
-#popular-documents {
-  grid-area: popular-documents;
-}
-
 #explore-agencies {
   grid-area: explore-agencies;
 }
 
 #explore-topics {
   grid-area: explore-topics;
+}
+
+#popular-and-presdoc-container {
+  grid-area: popular-and-presdoc-container;
 }
 
 .homepage-grid {
@@ -45,6 +41,7 @@
       "reg-metadata-bar"
       "pi-metadata-bar"
       "embedded-search-area"
+      "popular-and-presdoc-container"
       "popular-documents"
       "pres-doc-preview"
       "home-aid-box"
@@ -60,7 +57,7 @@
       "reg-metadata-bar reg-metadata-bar reg-metadata-bar reg-metadata-bar"
       "pi-metadata-bar pi-metadata-bar pi-metadata-bar pi-metadata-bar"
       "embedded-search-area embedded-search-area embedded-search-area embedded-search-area"
-      "popular-documents popular-documents popular-documents pres-doc-preview"
+      "popular-and-presdoc-container popular-and-presdoc-container popular-and-presdoc-container popular-and-presdoc-container"
       "home-aid-box home-aid-box home-aid-box home-aid-box"
       "explore-agencies explore-agencies explore-topics explore-topics";
   }

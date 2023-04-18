@@ -1,0 +1,13 @@
+#popular-and-presdoc-container {
+  display: grid;
+}
+
+@media only screen and (max-width: $small-viewport-width) {
+}
+
+@media only screen and (min-width: $small-viewport-width) {
+  #popular-and-presdoc-container {
+    grid-template-columns: 2fr 1fr;
+    column-gap: 1rem;
+  }
+}
