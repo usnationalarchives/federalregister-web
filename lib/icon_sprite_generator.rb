@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class IconSpriteGenerator
 
-  def self.transform_xml(xml_input, icon_id)
+  def self.transform_xml(xml_input, icon_id=nil)
     doc = Nokogiri::XML(xml_input)
     symbol_id = doc.at('g')['id']
     viewBox = doc.at('svg')['viewBox']
@@ -10,7 +10,7 @@ class IconSpriteGenerator
     path_data = doc.at('path')['d']
     
     symbol = Nokogiri::XML::Node.new('symbol', doc)
-    symbol['id'] = symbol_id
+    symbol['id'] = icon_id || symbol_id
     symbol['viewBox'] = viewBox
     
     path = Nokogiri::XML::Node.new('path', doc)
