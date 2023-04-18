@@ -14,6 +14,50 @@
     padding-right: 30px !important;
   }
 
+  .date_input_holder {
+    h2 {
+      border-bottom: 1px solid black;
+      color: black;
+      font-size: 1em;
+      margin-top: 0px;
+      text-transform: uppercase;
+    }
+
+    form {
+      margin-left: 5px;
+      margin-right: 10px;
+      overflow: hidden;
+
+      label { display: none; }
+
+      input.browse_search {
+        @include rounded-left(4);
+        border: 1px solid $fr-gray-40;
+        border-right: 0;
+        float: left;
+        height: 30px;
+        padding-left: 10px;
+        width: 155px;
+      }
+
+      input[type="submit"] {
+        @include rounded-right(4);
+        background: 0;
+        background-color: $fr-gray-5;
+        border: 1px solid $fr-gray-40;
+        border-left: 0;
+        height: 30px;
+        padding: 0;
+        width: 35px;
+
+        // for reference: background png/svg is $fr-gray-50
+        &:hover {
+          background-color: $fr-gray-15;
+        }
+      }
+    }
+  }
+
   .doc-subscribe { padding-right: 0px; }
 
   .download-wrapper {
