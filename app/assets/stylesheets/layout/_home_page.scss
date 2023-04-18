@@ -1,4 +1,5 @@
 @import "essential";
+$with-icon-left-margin: -36px;
 
 .bootstrap-scope .embedded_search.search-bar.home-search-embedded {
   padding-left: 10px;
@@ -109,7 +110,7 @@
     margin-top: 5px;
 
     h4.with-icon.lowercase .icon-fr2 {
-      margin-left: -36px;
+      margin-left: $with-icon-left-margin;
       margin-right: 3px;
     }
 
@@ -226,13 +227,13 @@ $small-viewport-width: 500px !default;
     }
   }
 
+  // This allows the content in the .with-icon sections to be full width in mobile since the actual content below the headings is not wrapped in any containing element
+  #explore-agencies h4.with-icon ~ * , #explore-topics h4.with-icon ~ *  {
+    margin-left: $with-icon-left-margin;
+    // the scss compiler did not like inputting the absolute value of the $with-icon-left-margin variable below hence the manual specificaton below
+    width: calc(100% + 36px);
+    max-width: calc(100% + 36px);
+  }
+  
 }
-
-// @media only screen and (max-width: $small-viewport-width) {
-
-// }
-
-// @media only screen and (min-width: $small-viewport-width) {
-
-// }
 
