@@ -9,15 +9,19 @@
 
 #doc-type-filter {
   grid-area: doc-type-filter;
-  justify-self: end;
-}
-
-#old-doc-availability-message {
-  grid-area: old-doc-availability-message;
 }
 
 #embedded_entry_search_form {
   display: grid;
+}
+
+#old-doc-availability-message {
+  grid-area: old-doc-availability-message;
+  grid-area: old-doc-availability-message / 1 / span 1 / span 4;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+  width: auto;
 }
 
 @media only screen and (max-width: $small-viewport-width) {
@@ -25,19 +29,8 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
       "search-input search-input search-input search-input"
-      ". . doc-type-filter expected_result_count"
+      "doc-type-filter . . expected_result_count"
       "old-doc-availability-message old-doc-availability-message old-doc-availability-message old-doc-availability-message"
-  }
-
-  #expected_result_count {
-    justify-self: end;
-    margin-top: 4px;
-  }
-
-  #old-doc-availability-message {
-    width: auto;
-    grid-area: old-doc-availability-message / 1 / span 1 / span 4;
-    text-align: right;
   }
 }
 
@@ -46,13 +39,9 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
       "search-input search-input search-input expected_result_count"
-      "doc-type-filter doc-type-filter doc-type-filter old-doc-availability-message"
+      "doc-type-filter doc-type-filter doc-type-filter ."
+      "old-doc-availability-message old-doc-availability-message old-doc-availability-message old-doc-availability-message"
   }
-
-  #old-doc-availability-message {
-    margin: 3px 0px 0px 7px;
-  }
-
 }
 
 // Add separate grid for aligning embedded search header

@@ -108,7 +108,7 @@ $filter-disabled-bg-color: #FFFFFF;
     clear: both;
     height: 45px;
     left: 0px;
-    padding-top: 5px;
+    padding-top: 4px;
 
     ul {
       overflow: hidden;
@@ -116,8 +116,8 @@ $filter-disabled-bg-color: #FFFFFF;
     }
 
     li {
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
 
       &:hover,
       &.hover,
@@ -127,8 +127,7 @@ $filter-disabled-bg-color: #FFFFFF;
 
       .icon-fr2 {
         font-size: 23px;
-        left: -1px;
-        top: 4px;
+        top: 6px;
       }
     }
   }
@@ -152,5 +151,29 @@ $filter-disabled-bg-color: #FFFFFF;
 @media only screen and (max-width: $small-viewport-width) {
   #embedded-search-header h3 {
     font-size: $metadata-bar-font-size;
+
+    .icon-fr2-Search {
+      font-size: 23px;
+    }
+  }
+
+  #doc-type-filter {
+    justify-self: start;
+  }
+
+  #expected_result_count {
+    justify-self: end;
+    margin-top: 4px;
+  }
+
+}
+
+@media only screen and (min-width: $small-viewport-width) {
+  .doc-type-filter {
+    margin-right: 14px;
+  }
+
+  #doc-type-filter {
+    justify-self: end;
   }
 }
