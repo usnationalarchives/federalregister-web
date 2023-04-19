@@ -10,31 +10,31 @@
       <li id='agencies-browse'>
         <%= link_to(agencies_path, class: "agencies") do %>
           <%= fr_icon('mindmap') %>
-          Agencies
+          <span>Agencies</span>
         <% end %>
       </li>
       <li id='topics-browse'>
         <%= link_to(topics_path, class: "topics") do %>
           <%= fr_icon('molecular') %>
-          Topics (CFR Indexing Terms)
+          <span>Topics (CFR Indexing Terms)</span>
         <% end %>
       </li>
       <li id='document-dates-browse'>
         <%= link_to(current_document_issue_path, class: "dates") do %>
           <%= fr_icon('calendar-alt') %>
-          Dates
+          <span>Dates</span>
         <% end %>
       </li>
       <li id='public-inspection-browse'>
         <%= link_to(current_public_inspection_issue_path, class: "public-inspection") do %>
           <%= fr_icon('clipboard') %>
-          Public Inspection
+          <span>Public Inspection</span>
         <% end %>
       </li>
       <li id='executive-orders-browse'>
         <%= link_to(all_presidential_documents_path, class: "executive-orders") do %>
           <%= fr_icon('stars') %>
-          Presidential Documents
+          <span>Presidential Documents</span>
         <% end %>
       </li>
     </ul>

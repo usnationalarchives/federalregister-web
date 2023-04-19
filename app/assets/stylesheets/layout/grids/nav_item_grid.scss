@@ -12,3 +12,16 @@
   }
 
 }
+
+@media only screen and (min-width: $small-viewport-width) {
+  // This is a fix for vertical axis icon/text alignment in the browse menu
+  #non-essential-nav .nav_browse .subnav a {
+    display: grid; 
+    grid-template-columns: 13% 1fr;
+    column-gap: 4px;
+
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) {
+      top: 7px;
+    }
+  }
+}
