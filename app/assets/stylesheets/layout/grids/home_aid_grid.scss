@@ -36,9 +36,9 @@
 
 @media only screen and (min-width: $small-viewport-width) {
   .fr-box-reader-aid .content-block.simple {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "home-aid-tagline home-aid-tagline home-aid-tagline ofr-blog-callout"
-                         "using-fr using-fr using-fr recent-site-updates";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "home-aid-tagline home-aid-tagline ofr-blog-callout"
+                         "using-fr using-fr recent-site-updates";
     grid-column-gap: 5rem;
 
     #using-fr {margin-left: 37px;}
