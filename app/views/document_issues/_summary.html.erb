@@ -9,7 +9,7 @@
           link_path = home ? current_document_issue_path : document_issue_path(presenter.date)
         %>
         <%= link_to(
-          "<i class=\"icon-fr2-calendar-alt\"></i>#{link_text}".html_safe,
+          "<i class=\"icon-fr2-calendar-alt\"></i><span>#{link_text}</span>".html_safe,
           link_path
         ) %>
       </h4>

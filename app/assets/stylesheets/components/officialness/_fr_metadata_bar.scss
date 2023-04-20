@@ -7,6 +7,7 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
+    padding-bottom: 10px;
 
     a { color: $main-color; }
 
@@ -255,11 +256,26 @@
 
 
 @media only screen and (max-width: $small-viewport-width) {
-  #reg-metadata-bar .fr-head-metadata-bar h4 {
-    font-size: $metadata-bar-font-size;
+  @mixin mobile-metadata-bars {
+    .fr-head-meta-label {
+      height: auto;
+
+      h4 {
+        font-size: $metadata-bar-font-size;
+        i {
+          left: -17px;
+          top: -1px;
+        }
+        span {
+          position: relative;
+          left: -13px;
+          top: -9px;
+        }
+      }
+    }
   }
 
-  #pi-metadata-bar .fr-head-metadata-bar h4 {
-    font-size: $metadata-bar-font-size;
+  .homepage-grid #reg-metadata-bar,#pi-metadata-bar {
+    @include mobile-metadata-bars()
   }
 }
