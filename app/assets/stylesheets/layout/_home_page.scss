@@ -228,6 +228,26 @@ $small-viewport-width: 500px !default;
     width: calc(100% + 36px);
     max-width: calc(100% + 36px);
   }
+
+  .home-aid-box {
+    // The changes below help create a left-aligned, scannable hierarchy and ensure the content under the headers is indented slightly
+    #home-aid-tagline {
+      margin-left: -10px;
+    }
+
+    .blog {
+      margin-left: -15px;
+    }
+
+    h4 {
+      margin-left: 27px;
+    }
+
+    .icon-fr2-quote {
+      font-size: 29px;
+    }
+
+  }
   
 }
 
