@@ -172,14 +172,8 @@ $with-icon-left-margin: -36px;
   }
 
   table.fr-table.fr-monthly-overview {
-    float: left;
     font-size: 14px;
     margin-bottom: 0;
-
-    &.alpha {
-      width: 120px;
-      margin-right: 10px;
-    }
 
     th {
       padding-left: 0;

@@ -1,0 +1,5 @@
+#monthly-document-counts {
+  display: grid;
+  column-gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
