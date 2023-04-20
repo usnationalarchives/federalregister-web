@@ -5,18 +5,14 @@
 
   .bar {
     height: 25px;
-    display: inline-block;
     background: image-url($background-image) repeat-x scroll left top;
 
-    &.left {
-      margin-left: -1999px;
-      padding-left: 1999px;
-    }
-
-    &.right { width: 25px; }
+    &.left {flex-grow: 0.9;}
+    &.right {flex-grow: 0.1;}
   }
 
   h1 {
+    margin-left: auto;
     color: $color;
     font-size: modular-scale(4);
     font-weight: 500;
@@ -39,6 +35,10 @@
 }
 
 .main-title-bar {
+  display: flex;
+  max-width: 970px;
+  margin: auto;
+
   @include title_bar($color-official, "blue_title_bar.png");
 
   &.public-inspection {
