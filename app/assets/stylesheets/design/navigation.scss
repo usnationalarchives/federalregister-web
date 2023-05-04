@@ -1,5 +1,5 @@
 #navigation {
-  border-top: 4px solid $fr-nav-orange;
+  border-top: 3px solid $fr-nav-orange;
   
   z-index: 1000;
 
@@ -696,19 +696,29 @@
   // Change the page header to allow for dynamic viewport widths
   // ==============================================
   #navigation {
+    border-top: 3px solid white; // This is needed so the thin horizontal line at the top of the nav does not jitter
+
     .container {
       width: auto; // Make nav width dynamic at small sizes
     }
 
     #nav-hamburger {
-      margin-top: 4px;
+      margin-top: 3px;
+
+      svg {
+        margin-top: 8px;
+      }
+    }
+
+    ul.container {
+      height: 48px;
     }
 
     // Handle expansion of search bar to full width for mobile layout
     li.inline_search {
       float: none;
       position: absolute;
-      top: 0px;
+      top: 8px;
       width: 88%;
       left: 40px;
 
