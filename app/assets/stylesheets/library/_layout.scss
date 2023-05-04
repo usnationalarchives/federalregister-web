@@ -9,3 +9,9 @@
     }
   }
 }
+
+// Some MyFR pages need a fixed layout specification to prevent bleeding off the page
+#main.fixed-width-layout {
+  margin: auto !important;
+  width: 970px !important;
+}
