@@ -27,9 +27,5 @@
     display: grid; 
     grid-template-columns: 13% 1fr;
     column-gap: 4px;
-
-    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) {
-      top: 7px;
-    }
   }
 }
