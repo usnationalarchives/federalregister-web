@@ -1,14 +1,22 @@
 @media only screen and (max-width: $small-viewport-width) {
 
+  @mixin nav-grid-properties {
   // Used to ensure nav/subnav icons and text are aligned on a vertical axis
-  #non-essential-nav .top_nav, #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a {
     display: grid; 
     grid-template-columns: 8% 1fr;
     column-gap: 4px;
+  }
 
-    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) {
-      top: 7px;
-    }
+  //Top Nav Icon Alignment
+  #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a {
+    @include nav-grid-properties;
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: 5px; }
+  }
+
+  //Subnav Icon Alignment
+  #non-essential-nav .top_nav {
+    @include nav-grid-properties;
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: 7px; }
   }
 
 }
