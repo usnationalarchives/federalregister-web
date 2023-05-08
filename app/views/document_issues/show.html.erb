@@ -81,7 +81,7 @@
 
         <div class="row">
           <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
-            <%#= document_calendar_esi_for(
+            <%= document_calendar_esi_for(
               @presenter.date,
               current_date: @presenter.date.to_s(:iso)
             ) %>
