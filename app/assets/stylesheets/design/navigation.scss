@@ -737,6 +737,7 @@
 
         .search-term {
           float: none;
+          font-size: 16px; // iOS needs at least 16px to not auto-zoom on touch
           width: auto;
         }
         
