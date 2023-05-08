@@ -7,6 +7,12 @@
     height: 25px;
     background: image-url($background-image) repeat-x scroll left top;
 
+    &.left-extender {
+      position: absolute;
+      width: 5000px;
+      right: 100%;
+    }
+
     &.left {flex-grow: 0.9;}
     &.right {flex-grow: 0.1;}
   }
@@ -38,6 +44,7 @@
   display: flex;
   max-width: 970px;
   margin: auto;
+  position: relative;
 
   @include title_bar($color-official, "blue_title_bar.png");
 

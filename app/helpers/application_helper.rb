@@ -28,6 +28,7 @@ module ApplicationHelper
     end
 
     title_bar = content_tag(:div, class: "main-title-bar #{title_bar_class}") do
+      content_tag(:div, '', class: 'bar left-extender') +
       content_tag(:div, '', class: 'bar left') +
         header +
         content_tag(:div, '', class: 'bar right')
