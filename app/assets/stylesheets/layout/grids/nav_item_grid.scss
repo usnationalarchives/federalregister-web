@@ -19,6 +19,13 @@
     span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: 7px; }
   }
 
+  // This ensures accurate spacing between icons and descriptions in the nav for pages that have yet to be made mobile-friendly
+  body:not(#special.home) {
+    #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a, #non-essential-nav .top_nav {
+      grid-template-columns: 3.5% 1fr;
+    }
+  }
+
 }
 
 @media only screen and (min-width: $small-viewport-width) {
