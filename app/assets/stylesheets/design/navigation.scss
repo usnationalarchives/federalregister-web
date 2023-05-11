@@ -888,11 +888,6 @@
     }
   }
 
-  #navigation {
-    // This ensures the orange nav stripe streteches across mobile for pages yet to be  made mobile-friendly
-    border-top: 4px solid $fr-nav-orange !important;
-  }
-
 }
 
 @media only screen and (min-width: #{$small-viewport-width}) {

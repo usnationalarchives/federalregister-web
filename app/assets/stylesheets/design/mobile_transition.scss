@@ -1,0 +1,30 @@
+// This CSS relates to handling pages in transition that have not yet been made fully mobile-friendly.  Once the entire site has been migrated to mobile, we should remove this file.
+
+@mixin fixed-width-layout-properties {
+  width: 970px !important;
+  margin: auto !important;
+}
+
+body:not(#special.home) {
+  // Ensures the header elements (nav and title) stretch across the viewport in fixed width mobile nav
+  .header { @include fixed-width-layout-properties() }
+  .main-title-bar { @include fixed-width-layout-properties() }
+}
+
+
+@media only screen and (max-width: #{$small-viewport-width}) {
+  #navigation {
+    // This ensures the orange nav stripe streteches across fixed width mobile viewport
+    border-top: 4px solid $fr-nav-orange !important;
+  }
+
+  // Ensures accurate spacing between icons and descriptions in fixed width mobile nav
+  body:not(#special.home) {
+    #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a, #non-essential-nav .top_nav {
+      grid-template-columns: 3.5% 1fr;
+    }
+  }
+}
+
+// Some MyFR pages need a fixed layout specification to prevent bleeding off the page
+#main.fixed-width-layout { @include fixed-width-layout-properties() } 

@@ -1,14 +1,3 @@
-@mixin fixed-width-layout-properties {
-  width: 970px !important;
-  margin: auto !important;
-}
-
-body:not(#special.home) {
-  // This block of styling ensures the header elements stretches across the viewport in mobile for pages yet to be made mobile-friendly
-  .header { @include fixed-width-layout-properties() }
-  .main-title-bar { @include fixed-width-layout-properties() }
-}
-
 .bootstrap-scope {
   .wrapper {
     margin: 0;
@@ -19,6 +8,3 @@ body:not(#special.home) {
     }
   }
 }
-
-// Some MyFR pages need a fixed layout specification to prevent bleeding off the page
-#main.fixed-width-layout { @include fixed-width-layout-properties() } 
