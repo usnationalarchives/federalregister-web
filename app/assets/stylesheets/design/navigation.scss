@@ -1,6 +1,4 @@
 #navigation {
-  border-top: 3px solid $fr-nav-orange;
-  
   z-index: 1000;
 
   .container {
@@ -700,8 +698,7 @@
   // Change the page header to allow for dynamic viewport widths
   // ==============================================
   #navigation {
-    border-top: 3px solid white; // This is needed so the thin horizontal line at the top of the nav does not jitter
-
+    
     .container {
       width: auto; // Make nav width dynamic at small sizes
     }
@@ -903,9 +900,19 @@
     }
   }
 
+  #navigation {
+    // This ensures the orange nav stripe streteches across mobile for pages yet to be  made mobile-friendly
+    border-top: 4px solid $fr-nav-orange !important;
+  }
+
 }
 
 @media only screen and (min-width: #{$small-viewport-width}) {
+
+  body {
+    border-top: 4px solid $fr-nav-orange !important;
+  }
+
   .mobile-only {
     display: none !important;
   }
