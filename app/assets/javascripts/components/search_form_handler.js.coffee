@@ -13,6 +13,10 @@ class @FR2.SearchFormHandler
     $('.clear_form')
       .bind('click', @clearForm)
 
+    # Ensure we trigger a full-page refresh of the search page when clicking on "Advanced Search" from the "Document Search" page
+    $(".advanced-search")
+      .bind('click', @_triggerAdvancedSearchFullPageRefresh)
+
     $("#toggle_advanced")
       .bind('click', @toggleAdvancedSearch)
 
@@ -80,6 +84,10 @@ class @FR2.SearchFormHandler
       .val('')
 
     @calculateExpectedResults()
+
+  _triggerAdvancedSearchFullPageRefresh: (event) =>
+    window.location.href = "/documents/search#advanced"
+    window.location.reload()
 
   toggleAdvancedSearch: =>
     currentlyOpen = location.hash == "#advanced"
