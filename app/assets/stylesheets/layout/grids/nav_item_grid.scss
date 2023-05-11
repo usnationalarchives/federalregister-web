@@ -5,18 +5,19 @@
     display: grid; 
     grid-template-columns: 8% 1fr;
     column-gap: 4px;
+    align-items: center;
   }
 
   //Top Nav Icon Alignment
   #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a {
     @include nav-grid-properties;
-    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: 5px; }
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: auto; } 
   }
 
   //Subnav Icon Alignment
   #non-essential-nav .top_nav {
     @include nav-grid-properties;
-    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: 7px; }
+    span.icon-fr2:first-child:not(.icon-fr2-menu_arrow) { top: auto; }
   }
 
 }
@@ -27,5 +28,6 @@
     display: grid; 
     grid-template-columns: 13% 1fr;
     column-gap: 4px;
+    align-items: center;
   }
 }
