@@ -640,7 +640,7 @@
   border: 1px solid $fr-gray-30;
   border-radius: 3px;
   height: 24px;
-  margin: 2px 5px 0;
+  margin: 1px 5px 0;
   position: relative;
   width: 210px;
 
@@ -703,12 +703,8 @@
       width: auto; // Make nav width dynamic at small sizes
     }
 
-    #nav-hamburger {
-      margin-top: 3px;
-
-      svg {
-        margin-top: 8px;
-      }
+    #nav-hamburger a {
+      padding-top: 10px;
     }
 
     ul.container {
@@ -777,19 +773,11 @@
       display: none
     }
 
-    #nav-hamburger {
-      margin-top: -2px; // The hamburger icon jitters on expansion otherwise
-    }
-
-    #nav-search {
-      top: 2px; // The nav-search jitters on expansion otherwise
-    }
-
     .hamburger-expanded-only {
       display: initial;
     }
 
-    a {
+    a:not(#nav-hamburger a) {
       font-size: 17px;
       font-weight: 500;
       padding: 5px 10px;
