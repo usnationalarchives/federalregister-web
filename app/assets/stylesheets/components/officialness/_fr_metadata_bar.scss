@@ -278,4 +278,9 @@
   .homepage-grid #reg-metadata-bar,#pi-metadata-bar {
     @include mobile-metadata-bars()
   }
+
+}
+
+body:not(.homepage-grid) > #reg-metadata-bar, body:not(.homepage-grid) > #pi-metadata-bar {
+  margin-top: 1rem;
 }
