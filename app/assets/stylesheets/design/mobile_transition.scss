@@ -2,7 +2,8 @@
 
 @mixin fixed-width-layout-properties {
   width: 970px !important;
-  margin: auto !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body:not(#special.home) {
