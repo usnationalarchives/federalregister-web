@@ -34,6 +34,7 @@ ul.subscriptions {
 
   .subscription_data {
     @extend %capsule_metadata_dash_separated;
+    min-height: 165px;
     width: 178px;
   }
 
