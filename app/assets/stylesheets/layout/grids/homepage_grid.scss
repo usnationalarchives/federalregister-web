@@ -33,6 +33,7 @@
 .homepage-grid {
   display: grid;
   column-gap: 1rem;
+  padding-bottom: 40px;
   row-gap: 1rem;
 }
 
@@ -45,9 +46,7 @@
       "popular-and-presdoc-container"
       "popular-documents"
       "pres-doc-preview"
-      "home-aid-box"
-      "explore-agencies"
-      "explore-topics";
+      "home-aid-box";
   }
 }
 
@@ -59,7 +58,6 @@
       "pi-metadata-bar pi-metadata-bar pi-metadata-bar pi-metadata-bar"
       "embedded-search-area embedded-search-area embedded-search-area embedded-search-area"
       "popular-and-presdoc-container popular-and-presdoc-container popular-and-presdoc-container popular-and-presdoc-container"
-      "home-aid-box home-aid-box home-aid-box home-aid-box"
-      "explore-agencies explore-agencies explore-topics explore-topics";
+      "home-aid-box home-aid-box home-aid-box home-aid-box";
   }
 }
