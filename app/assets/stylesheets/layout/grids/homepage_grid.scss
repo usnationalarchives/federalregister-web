@@ -38,10 +38,10 @@
 
 @media only screen and (max-width: $small-viewport-width) {
   .homepage-grid {
-    grid-template-areas: 
-      "embedded-search-area"
+    grid-template-areas:
       "reg-metadata-bar"
       "pi-metadata-bar"
+      "embedded-search-area"
       "popular-and-presdoc-container"
       "popular-documents"
       "pres-doc-preview"
