@@ -16,8 +16,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_page_to_track
 
-  around_action :log_memory_usage unless Rails.env.test?
-
   if Rails.env.development? && Settings.vcr.enabled
     around_action :use_vcr
   end
@@ -69,15 +67,5 @@ class ApplicationController < ActionController::Base
 
   def rescue_action_in_public_with_honeybadger(exception)
     rescue_action_in_public_without_honeybadger(exception)
-  end
-
-  def log_memory_usage
-    pid = Process.pid
-
-    start_mem = Process.getrusage.maxrss
-    yield
-    end_mem = Process.getrusage.maxrss
-
-    Rails.logger.warn "[memory usage: #{pid} #{start_mem} #{end_mem} #{end_mem-start_mem}]"
   end
 end

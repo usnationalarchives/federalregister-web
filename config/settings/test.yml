@@ -6,6 +6,9 @@ fr_comment_url: 'http://fr2.dev:8081/my/comments'
 rss_helper:
   url: "federalregister.gov"
 
+lograge:
+  enabled: false
+
 regulations_dot_gov:
   debug_output_enabled: true
 
@@ -23,4 +26,3 @@ federal_register:
 
 services:
   fr_profile_url: "https://example.com/my/profile"
-

@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require_relative "../../lib/json_logger"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -62,6 +63,11 @@ Rails.application.configure do
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :debug
 
+  # override default tagged logging
+  logger = ActiveSupport::Logger.new($stdout)
+  logger.formatter = JsonLogger.new
+  config.logger = logger
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -100,9 +106,6 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
-
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

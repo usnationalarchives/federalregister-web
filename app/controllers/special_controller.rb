@@ -38,6 +38,12 @@ class SpecialController < ApplicationController
     render plain: "Serving requests (MyFR)"
   end
 
+  # used by k8s probe to know when container
+  # is ready / able to receive request
+  def alive
+    render json: {}.to_json, status: :ok
+  end
+
   def site_notifications
     cache_for 1.day
     raw_response = HTTParty.get(

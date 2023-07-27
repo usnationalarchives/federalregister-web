@@ -57,6 +57,9 @@ federal_register:
 federal_register_archives:
   api_url: '<%= ENV["FR_ARCHIVES_API_URL"] %>'
 
+lograge:
+  enabled: true
+
 # generic switch for deciding when to raise exception or notify honeybadger
 notify_honeybager: true
 

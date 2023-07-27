@@ -1,7 +1,5 @@
 {
   "nginx_config_template": "nginx.conf.erb",
-  "port": 3001,
-  "log_file": "/dev/stdout",
-  "max_pool_size": 15,
-  "min_instances": 15
+  "disable_log_prefix": true,
+  "log_file": "/dev/stdout"
 }

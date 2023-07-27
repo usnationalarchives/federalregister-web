@@ -86,7 +86,8 @@ gem "httparty"
 gem 'indefinite_article'
 
 # structured logging
-gem 'lograge'
+gem "lograge"
+gem "lograge-sql"
 
 # JSON web tokens (share notifications across services)
 gem 'jwt'
