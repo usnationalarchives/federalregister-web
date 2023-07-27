@@ -1,3 +1,5 @@
+permitted_hosts: <%= ENV["PERMITTED_HOSTS"] %>
+
 external_modal_domain_whitelist:
   - "www.federalregister.gov"
   - "www.archives.gov"

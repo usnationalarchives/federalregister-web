@@ -84,7 +84,7 @@ Rails.application.configure do
     file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"
     raise "VCR cassette is too large! Max cassette size is #{Settings.vcr.max_cassette_size}Mb. Check the file size in #{Settings.vcr.library_dir}." if (File.size(file).to_f / 1024000) > Settings.vcr.max_cassette_size
   end
-  
+
   # Raises error for missing translations.
 
   # Annotate rendered view with file names.
@@ -96,10 +96,10 @@ Rails.application.configure do
 
   config.hosts << "dev-fr2.criticaljuncture.org"
   config.hosts << "fr2.criticaljuncture.org"
-  Settings.permitted_hosts.split(',').each do |host|
+  Settings.permitted_hosts&.split(',')&.each do |host|
     config.hosts << host
   end
-  
+
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
