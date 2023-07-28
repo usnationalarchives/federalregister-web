@@ -157,11 +157,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.2.2)
     config (3.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    connection_pool (2.2.3)
+    connection_pool (2.4.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -395,8 +395,6 @@ GEM
       httpclient
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-protection (2.0.5)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.4.4)
@@ -433,10 +431,10 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     recaptcha (0.4.0)
-    redis (3.3.5)
+    redis (4.8.1)
     redis-namespace (1.6.0)
       redis (>= 3.0.4)
-    redis-prescription (1.0.0)
+    redis-prescription (2.6.0)
     request_store (1.5.0)
       rack (>= 1.4)
     request_store-sidekiq (0.1.0)
@@ -498,15 +496,14 @@ GEM
     sendgrid (1.2.4)
       json
     shellany (0.0.1)
-    sidekiq (5.2.9)
-      connection_pool (~> 2.2, >= 2.2.2)
+    sidekiq (6.5.9)
+      connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 4.2)
-    sidekiq-throttled (0.13.0)
+      redis (>= 4.5.0, < 5)
+    sidekiq-throttled (0.18.0)
       concurrent-ruby
-      redis-prescription
-      sidekiq
+      redis-prescription (~> 2.2)
+      sidekiq (~> 6.4)
     sitemap_generator (6.0.2)
       builder (~> 3.0)
     slop (3.6.0)
@@ -632,7 +629,7 @@ DEPENDENCIES
   rails_autolink
   rake
   recaptcha (= 0.4.0)
-  redis (~> 3.3.5)
+  redis
   reference_parser!
   request_store
   request_store-sidekiq (~> 0.1)
@@ -645,7 +642,7 @@ DEPENDENCIES
   sass
   sass-rails (~> 5.1)
   sendgrid
-  sidekiq (~> 5.2.9)
+  sidekiq (~> 6.5.5)
   sidekiq-throttled
   sitemap_generator
   spring

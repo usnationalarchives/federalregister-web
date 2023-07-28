@@ -135,7 +135,7 @@ gem 'rails_autolink'
 gem 'recaptcha', '0.4.0', require: 'recaptcha/rails'
 
 # redis integration - background jobs, etc.
-gem 'redis', '~> 3.3.5'
+gem 'redis'
 
 # per-request global storage for Rack.
 gem 'request_store'
@@ -155,7 +155,7 @@ gem 'safe_target_blank'
 gem 'sendgrid'
 
 # background jobs
-gem 'sidekiq', '~> 5.2.9'
+gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-throttled"
 
 # js minification

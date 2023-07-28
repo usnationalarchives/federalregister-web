@@ -39,11 +39,11 @@ Sidekiq.configure_server do |config|
 
   config.log_formatter = Sidekiq::Logger::Formatters::LokiJSON.new
   config.options[:job_logger] = Sidekiq::OfrJobLogger
-  config.on(:heartbeat) do
-    Sidekiq.logger.debug "first heartbeat or recovering from an outage and need to reestablish our heartbeat"
-  end
+  # config.on(:heartbeat) do
+  #   Sidekiq.logger.debug "first heartbeat or recovering from an outage and need to reestablish our heartbeat"
+  # end
 
-  config.redis = { url: redis_url, reconnect: 0}
+  config.redis = { url: redis_url }
 end
 
 Sidekiq.configure_client do |config|
