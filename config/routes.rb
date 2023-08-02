@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     mount DocumentMailer::Preview => 'document_mail_view'
   end
 
-  get 'status/web/:id', to: 'special#status'
+  get 'alive' => 'special#alive'
   get 'status', to: 'special#status'
+
   get '/robots.txt', to: 'special#robots'
 
   match '/404', to: 'application#not_found', via: :all, as: :not_found
@@ -446,7 +447,7 @@ Rails.application.routes.draw do
   #
   get '/developers/documentation/api/v1', to: 'api_documentation#show', as: :api_documentation
 
-  
+
   #
   # Suggested searches
   #
@@ -482,7 +483,7 @@ Rails.application.routes.draw do
   #
   # My FR
   #
-  
+
   scope 'my' do
     root :to => "clippings#index",
          :as => :my_root
