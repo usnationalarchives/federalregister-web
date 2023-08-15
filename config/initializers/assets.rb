@@ -20,7 +20,6 @@ Rails.application.config.assets.precompile += %w(
   vendor.js
   admin/vendor.js
   search.js
-  tender_widget_custom.js
 
   admin/highlighted_documents.js
   utilities/modal.js
@@ -63,4 +62,3 @@ Rails.application.config.assets.precompile += %w(
   swagger.css
   layout/_home_page.css
 )
-

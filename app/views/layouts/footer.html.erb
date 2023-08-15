@@ -87,17 +87,4 @@
 
   <%= render partial: 'layouts/google_analytics',
     locals: {custom_page_to_track: @page_to_track} %>
-
-  <script nonce="<%= content_security_policy_nonce %>">
-    Tender = {
-      hideToggle: true,
-      widgetToggles: $(".trigger_tender")
-    }
-  </script>
-
-  <%= javascript_include_tag asset_path('tender_widget_custom.js'), nonce: content_security_policy_nonce %>
-
-  <% if Rails.env.production? %>
-    <%= javascript_include_tag asset_path('tender_widget_custom.js'), async: true, nonce: content_security_policy_nonce %>
-  <% end %>
 </div>

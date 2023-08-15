@@ -1,4 +1,9 @@
-(function(){
+Tender = {
+  hideToggle: true,
+  widgetToggles: $(".trigger_tender")
+}
+
+// (function(){
 
   var articlePageRegEx = new RegExp('\/documents\/\\d{4}');
   var articlePage = function() {
@@ -107,4 +112,4 @@
     }
   }
 
-})();
+// })();
