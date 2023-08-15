@@ -443,6 +443,15 @@ Rails.application.routes.draw do
 
 
   #
+  # API
+  #
+  scope "api" do
+    namespace :v1 do
+      resources :clippings, only: [:index]
+    end
+  end
+
+  #
   # API Documentation
   #
   get '/developers/documentation/api/v1', to: 'api_documentation#show', as: :api_documentation

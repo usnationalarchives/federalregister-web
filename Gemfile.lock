@@ -93,6 +93,11 @@ GEM
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
     active_hash (1.4.0)
       activesupport (>= 2.2.2)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (6.1.4.4)
       activesupport (= 6.1.4.4)
       globalid (>= 0.3.6)
@@ -144,6 +149,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    case_transform (0.2)
+      activesupport
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -303,6 +310,7 @@ GEM
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
+    jsonapi-renderer (0.2.2)
     jwt (1.5.1)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -578,6 +586,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  active_model_serializers (~> 0.10)
   activerecord-nulldb-adapter
   addressable
   attr_extras (~> 3.2.0)

@@ -12,6 +12,9 @@ gem 'bootsnap', require: false
 # AR like interface to static data hash based classes
 gem 'active_hash'
 
+# json generation
+gem "active_model_serializers", "~> 0.10"
+
 #ensure connections to missing db don't cause precompilation to fail
 gem "activerecord-nulldb-adapter"
 

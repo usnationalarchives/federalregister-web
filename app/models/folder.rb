@@ -13,6 +13,10 @@ class Folder < ApplicationRecord
 
   before_validation :generate_slug
 
+  # used to stub values for serialization when creating a
+  # faux 'my-clipboard' folder
+  attr_accessor :doc_count, :documents
+
   def self.my_clipboard
     new(:name => 'My Clipboard', :slug => "my-clippings")
   end
