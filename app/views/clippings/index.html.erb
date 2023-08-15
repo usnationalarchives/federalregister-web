@@ -8,7 +8,6 @@
 
 <%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
 <%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
-<%= add_javascript src: 'page_specific/clippings' %>
 
 <%= content_tag(:div, flash[:notice], class: 'flash notice') if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  class: 'flash error') if flash[:error]  %>
@@ -36,8 +35,6 @@
   folder: @folder,
   clippings: @clippings
 } %>
-
-<% add_javascript src: 'page_specific/clipping_filters' %>
 
 <%= semantic_form_for :folder_clippings,
   url: folder_clippings_path,

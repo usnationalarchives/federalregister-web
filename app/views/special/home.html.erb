@@ -1,5 +1,5 @@
 <% page_title "Home - #{DocumentIssue.current.publication_date.to_s(:formal_no_year)}" %>
-<% add_javascript src: 'page_specific/homepage' %>
+
 <% content_for :page_specific_css do %>
   <%= stylesheet_link_tag asset_path('layout/_home_page.css'), media: "all" %>
 <% end %>

@@ -22,18 +22,6 @@ Rails.application.config.assets.precompile += %w(
   search.js
   tender_widget_custom.js
 
-  page_specific/agencies.js
-  page_specific/agency_logo.js
-  page_specific/clippings.js
-  page_specific/clipping_filters.js
-  page_specific/comment_creation.js
-  page_specific/comment_notifications.js
-  page_specific/homepage.js
-  page_specific/search.js
-  page_specific/sections.js
-  page_specific/subscription_filters.js
-  page_specific/topics.js
-
   admin/highlighted_documents.js
   utilities/modal.js
 

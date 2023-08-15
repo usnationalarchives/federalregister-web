@@ -27,7 +27,6 @@
 #= require user_session
 
 #= require_tree ./components/comments/
-#= require page_specific/comment_creation
 
 #= require_self
 

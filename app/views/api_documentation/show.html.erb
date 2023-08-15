@@ -1,6 +1,10 @@
-<script src="//unpkg.com/swagger-ui-dist@3.23.4/swagger-ui-bundle.js" nonce="<%= content_security_policy_nonce %>"></script>
-<%= stylesheet_link_tag asset_path('swagger.css'), media: 'all', 'data-turbolinks-track' => true %>
-<% add_javascript src: 'swagger' %>
+<%= javascript_include_tag "//unpkg.com/swagger-ui-dist@3.23.4/swagger-ui-bundle.js",
+  asyc: true,
+  defer: true,
+  nonce: content_security_policy_nonce %>
+
+<link href="<%= asset_path('swagger.css') %>%", media="all",
+  rel="preload stylesheet", as="style", data-turbolinks-track="true">
 
 <% page_title 'API Documentation' %>
 
