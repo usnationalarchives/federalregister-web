@@ -34,9 +34,13 @@ RUN apt-get update && apt-get install -y libcurl4-openssl-dev libpcre3-dev git l
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
-# node js - packages are out of date
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - &&\
-  apt-get install -y nodejs &&\
+
+##################
+### NODE
+##################
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
