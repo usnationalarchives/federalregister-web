@@ -19,7 +19,6 @@ Rails.application.config.sass.load_paths << "#{Rails.root}/vendor/asssets/styles
 Rails.application.config.assets.precompile += %w(
   vendor.js
   admin/vendor.js
-  search.js
 
   admin/highlighted_documents.js
   utilities/modal.js
