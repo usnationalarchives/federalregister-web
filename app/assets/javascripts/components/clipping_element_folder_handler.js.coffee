@@ -88,12 +88,7 @@ class @FR2.ClippingElementFolderHandler
     clippingDelete = $.ajax({
       url: '/my/folder_clippings/delete',
       data: data,
-      type: "POST",
-      beforeSend: (xhr)->
-        xhr.setRequestHeader(
-          'X-CSRF-Token',
-          $('meta[name="csrf-token"]').attr('content')
-        )
+      type: "POST"
     })
 
     clippingDelete.done (response)=>

@@ -119,12 +119,7 @@ class @FR2.ClippingsFolderHandler
     folderCreate = $.ajax({
       url: '/my/folders',
       data: data,
-      type: "POST",
-      beforeSend: (xhr)->
-        xhr.setRequestHeader(
-          'X-CSRF-Token',
-          $('meta[name="csrf-token"]').attr('content')
-        )
+      type: "POST"
     })
 
     folderCreate.done (response)=>
