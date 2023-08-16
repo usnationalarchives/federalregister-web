@@ -1,9 +1,29 @@
 <%= javascript_include_tag "//unpkg.com/swagger-ui-dist@3.23.4/swagger-ui-bundle.js",
   asyc: true,
   defer: true,
+  id: "swaggerUiBundle",
   nonce: content_security_policy_nonce %>
 
-<link href="<%= asset_path('swagger.css') %>%", media="all",
+<script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
+  var script = document.querySelector('#swaggerUiBundle');
+
+  script.addEventListener('load', function() {
+    window.ui = SwaggerUIBundle({
+      url: "/api/v1/documentation.json",
+      dom_id: '#swagger-ui',
+      deepLinking: true,
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIBundle.SwaggerUIStandalonePreset
+      ],
+      plugins: [
+        SwaggerUIBundle.plugins.DownloadUrl
+      ]
+    })
+  });
+</script>
+
+<link href="<%= asset_path('swagger.css') %>", media="all",
   rel="preload stylesheet", as="style", data-turbolinks-track="true">
 
 <% page_title 'API Documentation' %>

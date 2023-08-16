@@ -58,7 +58,6 @@ Rails.application.config.assets.precompile += %w(
   regulations_dot_gov_logo.png
   regulations_dot_gov_logo_sidebar.png
 
-  swagger.js
   swagger.css
   layout/_home_page.css
 )
