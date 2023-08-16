@@ -15,11 +15,19 @@ class @FR2.ClippingsManager
 
   addViewFolderMenu: ->
     template = Handlebars.compile $("#jump-to-folder-menu-template").html()
-    @actionBar.append template(user_folder_details)
+    @actionBar.append template(@userFolderDetails())
 
   addAddToFolderMenu: ->
     template = Handlebars.compile $("#add-to-folder-menu-template").html()
-    @actionBar.append template(user_folder_details)
+    @actionBar.append template(@userFolderDetails())
+
+  userFolderDetails: ->
+    folderDetails = FR2.currentUserStorage.get('userFolderDetails')
+
+    if folderDetails == undefined
+      JSON.parse('{"folders": []}')
+    else
+      folderDetails
 
   addEvents: ->
     clippingManager = this

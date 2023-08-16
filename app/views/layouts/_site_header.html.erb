@@ -43,7 +43,7 @@
       </ul>
     </div>
 
-    <%= esi user_utils_path %>
+    <%= esi csrf_protection_path %>
 
     <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
     <%= esi header_path(header_type) %>

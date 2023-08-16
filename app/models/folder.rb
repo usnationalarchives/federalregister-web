@@ -15,7 +15,7 @@ class Folder < ApplicationRecord
 
   # used to stub values for serialization when creating a
   # faux 'my-clipboard' folder
-  attr_accessor :doc_count, :documents
+  attr_accessor :doc_count, :documents, :document_types
 
   def self.my_clipboard
     new(:name => 'My Clipboard', :slug => "my-clippings")

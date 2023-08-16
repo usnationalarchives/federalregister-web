@@ -2,18 +2,7 @@ class SpecialController < ApplicationController
   skip_before_action :authenticate_user!
   layout false, except: :home
 
-  def user_utils
-    if user_signed_in?
-      @clipboard_clippings = Clipping.where(folder_id: nil, user_id: current_user.id).with_preloaded_documents || []
-      @folders = FolderDecorator.decorate( Folder.where(creator_id: current_user.id).all )
-    elsif cookies[:document_numbers].present?
-      @clipboard_clippings = Clipping.all_preloaded_from_cookie( cookies[:document_numbers] ) || []
-      @folders   = []
-    else
-      cache_for 1.day
-      @clipboard_clippings = []
-      @folders = []
-    end
+  def csrf_protection
   end
 
   def home

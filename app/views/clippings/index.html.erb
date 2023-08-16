@@ -43,9 +43,6 @@
 
   <div id="clipping-actions" class="clipping-actions">
     <div id="doc-type-filter" class="doc-type-filter">
-      <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
-        var doc_type_filters = <%= @clippings.map{|c| c.document.document_type.granule_class.downcase}.uniq.compact.to_json.html_safe %>;
-      </script>
       <ul>
         <%= my_fr_document_filters %>
       </ul>

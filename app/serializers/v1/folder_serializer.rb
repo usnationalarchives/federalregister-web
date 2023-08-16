@@ -13,4 +13,9 @@ class V1::FolderSerializer < ActiveModel::Serializer
     object.documents ||
       object.document_numbers
   end
+
+  attribute :document_types do
+    object.document_types ||
+      object.clippings.map{|c| c.document.type.downcase.gsub(" ", "_")}.uniq.compact
+  end
 end

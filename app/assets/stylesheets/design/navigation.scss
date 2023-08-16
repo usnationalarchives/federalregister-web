@@ -698,7 +698,7 @@
   // Change the page header to allow for dynamic viewport widths
   // ==============================================
   #navigation {
-    
+
     .container {
       width: auto; // Make nav width dynamic at small sizes
     }
@@ -733,7 +733,7 @@
           font-size: 16px; // iOS needs at least 16px to not auto-zoom on touch
           width: auto;
         }
-        
+
         .search-submit {
           top: 0px;
         }
@@ -757,12 +757,6 @@
       .hgroup.official {
         width: auto;
       }
-    }
-
-    #user_utils {
-      display: none;
-      width: auto;
-      margin-bottom: 15px;
     }
   }
   // ==============================================

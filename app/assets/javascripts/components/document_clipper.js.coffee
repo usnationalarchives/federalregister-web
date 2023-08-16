@@ -20,8 +20,21 @@ class @FR2.DocumentClipper
       .bind 'submit', (event)->
         event.preventDefault()
 
+  storedDocumentNumbers: ->
+    storedDocumentNumbers = FR2.currentUserStorage.get('storedDocumentNumbers')
+
+    if storedDocumentNumbers == undefined
+      []
+    else
+      storedDocumentNumbers
+
   folderDetails: ->
-    FR2.currentUserStorage.get('userFolderDetails')
+    folderDetails = FR2.currentUserStorage.get('userFolderDetails')
+
+    if folderDetails == undefined
+      JSON.parse('{"folders": []}')
+    else
+      folderDetails
 
   addClipper: ->
     attachTo = @clipper.find 'li.clip-for-later'
@@ -145,7 +158,7 @@ class @FR2.DocumentClipper
         type: "POST"
       })
 
-      clip.done (response)->
+      clip.done (response) =>
         menuItem.removeClass('not-in-folder').addClass('in-folder')
 
         documentClipper.updateClippedStatus()
@@ -153,7 +166,7 @@ class @FR2.DocumentClipper
         documentClipper.addFolderElementHandler(menuItem)
 
         if menuItem.data('slug') == "my-clippings"
-          update_user_clipped_document_count stored_document_numbers
+          update_user_clipped_document_count @storedDocumentNumbers()
         else
           update_user_folder_document_count response
 

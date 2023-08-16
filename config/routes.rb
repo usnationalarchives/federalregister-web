@@ -250,9 +250,9 @@ Rails.application.routes.draw do
       to: 'special#navigation',
       as: :navigation
 
-    esi.get '/esi/special/user_utils',
-      to: 'special#user_utils',
-      as: :user_utils
+    esi.get '/esi/special/csrf_protection',
+      to: 'special#csrf_protection',
+      as: :csrf_protection
 
     esi.get 'special/header/:type',
       to: 'special#header',
