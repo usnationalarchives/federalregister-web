@@ -180,5 +180,6 @@ class @FR2.AgencyListFilter extends @FR2.ListItemFilter
 
       if showChildAgencies
         items.show()
+        $('.list-item-filter.live-filter input').trigger('keyup')
       else
         items.hide()
