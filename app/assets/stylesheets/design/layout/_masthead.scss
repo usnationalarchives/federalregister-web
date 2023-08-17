@@ -15,17 +15,6 @@
   }
 }
 
-@mixin masthead_png($name) {
-  background-image: image-url('header/#{$name}_masthead.png');
-  width: image-width('header/#{$name}_masthead.png');
-  height: image-height('header/#{$name}_masthead.png');
-
-  a {
-    height: image-height('header/#{$name}_masthead.png');
-    width: image-width('header/#{$name}_masthead.png');
-  }
-}
-
 @mixin masthead_svg($name) {
   background-image: image-url('header/#{$name}_masthead.svg');
   background-position: 0 0;
@@ -34,7 +23,7 @@
   a { height: 100px; }
 }
 
-.mdrnzr-svg .logo {
+.logo {
   @extend %header_logo;
 
   .hgroup {
@@ -45,16 +34,6 @@
     &.official { @include masthead_svg('official'); }
     &.public-inspection { @include masthead_svg('public_inspection'); }
     &.reader-aids { @include masthead_svg('reader_aids'); }
-  }
-}
-
-.mdrnzr-no-svg .logo {
-  @extend %header_logo;
-
-  .hgroup {
-    &.official { @include masthead_png('official'); }
-    &.public-inspection { @include masthead_png('public_inspection'); }
-    &.reader-aids { @include masthead_png('reader_aids'); }
   }
 }
 

@@ -2,7 +2,6 @@
 #= require jquery-ui-1.12.1.custom.min.js
 
 #= require honeybadger.min.js
-#= require modernizr.custom.js
 #= require underscore
 #= require strftime
 #= require handlebars-1.0.0.rc.3

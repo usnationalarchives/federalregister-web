@@ -7,7 +7,7 @@
   z-index: -1;
 }
 
-.mdrnzr-svg body .nara-background-seal {
+body .nara-background-seal {
   @include background_seal;
 
   background-clip: content-box;
@@ -16,18 +16,11 @@
   background-position: center; // scss-lint:disable DuplicateProperty
   background-repeat: no-repeat;
   background-size: 100% 100%;
-}
 
-.mdrnzr-svg.mdrnzr-cssgradients body .nara-background-seal {
   .nara-background-seal-fade {
-    background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    background-image: -webkit-linear-gradient(bottom, $white, rgba(255, 255, 255, 0));
     background-image: linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     background-repeat: repeat-x;
     bottom: 0px;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 1)', GradientType=1);
     height: 351px;
     position: absolute;
     width: 442px;
@@ -38,32 +31,17 @@
 // so below a certain width we display it in a cropped form so that the browser
 // doesn't paint it outside of the viewport and then scroll for it.
 @media (max-width: 970px) {
-  .mdrnzr-svg body .nara-background-seal {
+  body .nara-background-seal {
     background-position: left;
     background-size: 200% 200%;
     width: 221px;
-  }
 
-  .mdrnzr-svg.mdrnzr-cssgradients body .nara-background-seal .nara-background-seal-fade {
-    width: 221px;
-  }
-}
-
-
-.mdrnzr-no-svg body .nara-background-seal {
-  @include background_seal;
-
-  background: image-url('header/Nara1985Seal.png') no-repeat right top;
-  height: 450px;
-  width: 450px;
-}
-
-// See note above about side scrolling at smaller window sizes
-@media (max-width: 970px) {
-  .mdrnzr-no-svg body .nara-background-seal {
-    width: 221px;
+    .nara-background-seal-fade {
+      width: 221px;
+    }
   }
 }
+
 
 #print-disclaimer { display: none; }
 
