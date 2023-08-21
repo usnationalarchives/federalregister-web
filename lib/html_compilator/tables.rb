@@ -22,7 +22,7 @@ class HtmlCompilator::Tables
     return unless xml_paths.present?
 
     FileUtils.mkdir_p(table_html_dir)
-    Dir.glob("#{table_html_dir}/*.html").each{|x| File.unlink(x) }
+    Dir.glob("#{table_html_dir}/*.html").each{|x| File.unlink(x) if File.exist?(x) }
 
     xml_paths.each do |xml_path|
       i = xml_path.split('/').last.to_i
