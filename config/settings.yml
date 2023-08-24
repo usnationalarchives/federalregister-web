@@ -81,14 +81,17 @@ render_documents_from_raw_xml: false
 rss_helper:
   url: "https://www.federalregister.gov"
 
-varnish:
-  host: <%= ENV["VARNISH_ADDR"] || 'varnish' %>
-  port: 6082
-
-
 services:
   fr_profile_internal_url: '<%= ENV["FR_PROFILE_INTERNAL_BASE_URL"] %>'
   fr_profile_url: '<%= ENV["FR_PROFILE_BASE_URL"] %>'
+
+sidekiq:
+  # kilobytes (integer) like 1048576 (1GB)
+  memory_threshold: '<%= ENV["SIDEKIQ_MEMORY_THRESHOLD"] %>'
+
+varnish:
+  host: <%= ENV["VARNISH_ADDR"] || 'varnish' %>
+  port: 6082
 
 zendesk:
   api_url: <%= ENV["ZENDESK_API_URL"] || 'https://ofr.zendesk.com/api/v2' %>
