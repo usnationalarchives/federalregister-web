@@ -91,23 +91,6 @@ class XsltFunctions
     nodes
   end
 
-  def notify_missing_graphic(nodes, document_number, publication_date)
-    document = blank_document
-    node_text = nodes.first.content
-
-    Honeybadger.notify(
-      error_class: 'HTML::Compilator',
-      error_message: "Missing Graphic #{node_text} for FR Doc #{document_number} on #{publication_date}",
-      parameters: {
-        graphic_identifier: node_text,
-        document_number: document_number,
-        publication_date: publication_date
-      }
-    )
-
-    document.children
-  end
-
   def gpo_image(nodes, link_id, image_class, data_width, data_height, images, document_number, publication_date)
     document = blank_document
     images = images.split(' ')
@@ -128,7 +111,6 @@ class XsltFunctions
       end
     rescue FederalRegister::Client::RecordNotFound
       image = ImageVariant.new('url' => fallback_url)
-      notify_missing_graphic(nodes, document_number, publication_date)
       # Stub out url with expected image such that when it's available
       # we don't need to reprocess. This will break if images url is not
       # the expected one (eg changes at some point in future)
