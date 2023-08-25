@@ -25,12 +25,14 @@ class V1::ClippingsController < ApiController
 
     clippings_response = ActiveModelSerializers::SerializableResource.new(
       @clippings,
-      each_serializer: V1::ClippingSerializer
+      each_serializer: V1::ClippingSerializer,
+      root: ""
     ).as_json
 
     folders_response = ActiveModelSerializers::SerializableResource.new(
       @folders,
-      each_serializer: V1::FolderSerializer
+      each_serializer: V1::FolderSerializer,
+      root: ""
     ).as_json
 
     render json: {
