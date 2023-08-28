@@ -12,6 +12,9 @@ Rails.application.config.content_security_policy_nonce_directives = %w[script-sr
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :none
 
+  internal_srcs = ["*.federalregister.gov", "*.ecfr.gov"]
+  internal_srcs << "*.criticaljuncture.org" unless Rails.env.production?
+
   script_srcs = [
     :self,
     :unsafe_inline,
@@ -39,30 +42,16 @@ Rails.application.config.content_security_policy do |policy|
   ]
   policy.style_src *style_srcs
 
-policy.font_src :self
+  policy.font_src :self
 
   img_srcs = [
     :self,
     :data,
     :report_sample,
-
     'https://s3.amazonaws.com', # FR stores images on s3 but not ideal to be open to all of s3
-
-    'https://eps.images.fr2.criticaljuncture.org',
-    'https://private.images.fr2.criticaljuncture.org',
-    'https://images.fr2.criticaljuncture.org',
-    'https://lede-photos.fr2.criticaljuncture.org',
-    'https://agency-logos.fr2.criticaljuncture.org',
-    'https://public-inspection.fr2.criticaljuncture.org',
-
-    'https://eps.images.federalregister.gov',
-    'https://private.images.federalregister.gov',
-    'https://images.federalregister.gov',
-    'https://lede-photos.federalregister.gov',
-    'https://agency-logos.federalregister.gov',
-    'https://public-inspection.federalregister.gov',
     "https://www.google-analytics.com",
     "https://www.googletagmanager.com/",
+    *internal_srcs
   ]
   policy.img_src *img_srcs
 
@@ -97,6 +86,3 @@ policy.font_src :self
     }
   end
 end
-
-
-
