@@ -1,5 +1,9 @@
 permitted_hosts: <%= ENV["PERMITTED_HOSTS"] %>
 
+active_model_serializers:
+  # defautl to enabled for dev environments (opposite other environments)
+  disable_logging: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("DISABLE_AMS_LOGGING", false)) %>
+
 external_modal_domain_whitelist:
   - "www.federalregister.gov"
   - "www.archives.gov"
