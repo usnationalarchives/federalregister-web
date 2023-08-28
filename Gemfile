@@ -27,10 +27,6 @@ gem 'attr_extras', '~> 3.2.0'
 # bootstrap sass integration
 gem 'bootstrap-sass'
 
-# http caching - reg.gov api caching
-gem 'cachebar',
-  git: "https://github.com/criticaljuncture/cachebar.git"
-
 # html calendar generation
 gem 'calendar_helper',
   git: "https://github.com/criticaljuncture/calendar_helper.git",

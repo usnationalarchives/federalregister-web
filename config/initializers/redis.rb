@@ -5,5 +5,3 @@ REDIS_CONNECTION_SETTINGS = {
 }
 
 $redis = Redis.new(REDIS_CONNECTION_SETTINGS)
-
-HTTParty::HTTPCache.redis = $redis
