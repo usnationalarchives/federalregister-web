@@ -17,13 +17,6 @@
             <p>
               <%= @presenter.item.formatted_content %>
             </p>
-
-            <% if @presenter.commentable? %>
-              <%= disqus_comments_for(
-                slug: @presenter.page_slug,
-                title: @presenter.title
-              ) %>
-            <% end %>
           </div>
         </div>
       <% end %>
@@ -46,7 +39,7 @@
           </div>
         </div>
       <% end %>
-      
+
       <%= fr_details_box(
         FrBox.build(
           :reader_aid,

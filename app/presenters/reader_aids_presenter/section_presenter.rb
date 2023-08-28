@@ -59,10 +59,6 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
       join('/')
   end
 
-  def commentable?
-    type == "posts"
-  end
-
   def title
     section.fetch(:title)
   end
