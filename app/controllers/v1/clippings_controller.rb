@@ -7,9 +7,9 @@ class V1::ClippingsController < ApiController
     if user_signed_in?
       @clippings = Clipping.where(user_id: current_user.id).
         includes(:folder).
-        with_preloaded_documents
+        with_preloaded_documents || []
 
-      @folders = @clippings.nil? ? [] : @clippings.map(&:folder).uniq
+      @folders = @clippings.blank? ? [] : @clippings.map(&:folder).uniq
 
       # roll up clippings not in a folder into the clipboard
       clipboard_clippings = @clippings&.select{|c| c.folder_id.nil?} || []
