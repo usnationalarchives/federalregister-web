@@ -9,8 +9,6 @@ class FrIndexPresenter
   end
 
   def index_pdf_url
-    return unless Settings.feature_flags.fr_index_pdfs
-
     index.dig('pdf', 'url')
   end
 
