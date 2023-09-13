@@ -48,21 +48,6 @@
             <%= add_citation_links(auto_link(simple_format(@presenter.description))).html_safe %>
           </div>
         </div>
-
-        <% if Settings.feature_flags.sparklines.suggested_searches %>
-          <div class="row">
-            <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-              <%= document_frequency_sparklines(
-                'Matching Document Frequency',
-                [
-                  @presenter.weekly_sparkline,
-                  @presenter.monthly_sparkline,
-                  @presenter.quarterly_sparkline,
-                ]
-              ) %>
-            </div>
-          </div>
-        <% end %>
       </div>
 
       <div class="search-results-wrapper">

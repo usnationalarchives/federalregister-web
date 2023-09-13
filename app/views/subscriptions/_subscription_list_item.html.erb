@@ -24,14 +24,6 @@
     </dl>
 
     <dl class="metadata" class="col-2">
-      <% if Settings.feature_flags.sparklines.my_fr.subscriptions %>
-        <% unless subscription.type == "PublicInspectionDocument" %>
-          <dt class="activity">Weekly activity in last year:</dt>
-          <dd>
-            <img alt="Sparkline of weekly activity in last year." src="<%#= subscription.sparkline_url %>">
-          </dd>
-        <% end %>
-      <% end %>
     </dl>
     <dl class="metadata" id="col-3">
     </dl>

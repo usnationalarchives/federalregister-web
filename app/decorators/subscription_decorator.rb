@@ -27,20 +27,6 @@ class SubscriptionDecorator < ApplicationDecorator
     {conditions: mailing_list.parameters}
   end
 
-  def sparkline_url
-    url = case type
-          when "Document"
-            "/articles/search/activity/sparkline/weekly"
-          when "PublicInspectionDocument"
-            "/public-inspection/search/activity/sparkline/weekly"
-          end
-
-    chart_params = {:chart_options => {:chart_bg_color => 'F5F8F9'}}
-
-    "#{url}?#{chart_params.to_query}&#{mailing_list.parameters.to_query}"
-  end
-
-
   def delivery_count
     model.delivery_count || 0
   end

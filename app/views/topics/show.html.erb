@@ -34,25 +34,6 @@
         </div>
       </div>
 
-      <% if Settings.feature_flags.sparklines.topics %>
-        <% if @presenter.total_document_count > 0 %>
-          <div class="page-summary">
-            <div class="row">
-              <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-                <%= document_frequency_sparklines(
-                  'Matching Document Frequency',
-                  [
-                    @presenter.weekly_sparkline,
-                    @presenter.monthly_sparkline,
-                    @presenter.quarterly_sparkline,
-                  ]
-                ) %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-
       <% if @presenter.total_document_count > 0 %>
         <%= embedded_search_results @presenter %>
       <% else %>
