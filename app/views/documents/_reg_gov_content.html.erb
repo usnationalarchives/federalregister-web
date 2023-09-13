@@ -8,94 +8,35 @@
       height: '26',
       width: '140' %>
 
+    <% # TODO: Not sure this should be dl anymore - but if it stays we should
+       # be using dt/dd's as well as the current structure isn't semantic %>
     <dl class="metadata_list">
-
-
-      <% if Settings.feature_flags.multi_agency_comment_submission %>
-
-        <% document.dockets_displayed_in_enhanced_content.each do |docket| %>
-          <div class="reg-gov-docket-container">
-            <b><%= docket.title %></b></br>
-            <div>
-              <div class="sub-heading">
-                <%= link_to docket.id, "https://www.regulations.gov/docket/#{docket.id}" %>
-              </div>
-              <% if docket.supporting_documents.present? %>
-                <div class="sub-heading">Supporting Documents:</div>
-                <ol class="fr-list with-bullets supporting-docs">
-                  <% docket.supporting_documents.each do |supporting_doc| %>
-                    <li><%= link_to truncate_words(supporting_doc['title'], length: 80),
-                              regulations_dot_gov_supporting_document_url(supporting_doc['document_id']),
-                              :target => "_blank",
-                              :title => supporting_doc['title'] %>
-                    </li>
-                  <% end %>
-                </ol>
-                <% if docket.supporting_documents.count > 3 %>
-                  <%= link_to "See all #{docket.supporting_documents_count} supporting documents",
-                              regulations_dot_gov_docket_supporting_documents_url(docket.id),
-                              :target => "_blank" %>
-                <% end %>
-              <% end %>
+      <% document.dockets_displayed_in_enhanced_content.each do |docket| %>
+        <div class="reg-gov-docket-container">
+          <b><%= docket.title %></b></br>
+          <div>
+            <div class="sub-heading">
+              <%= link_to docket.id, "https://www.regulations.gov/docket/#{docket.id}" %>
             </div>
+            <% if docket.supporting_documents.present? %>
+              <div class="sub-heading">Supporting Documents:</div>
+              <ol class="fr-list with-bullets supporting-docs">
+                <% docket.supporting_documents.each do |supporting_doc| %>
+                  <li><%= link_to truncate_words(supporting_doc['title'], length: 80),
+                            regulations_dot_gov_supporting_document_url(supporting_doc['document_id']),
+                            :target => "_blank",
+                            :title => supporting_doc['title'] %>
+                  </li>
+                <% end %>
+              </ol>
+              <% if docket.supporting_documents.count > 3 %>
+                <%= link_to "See all #{docket.supporting_documents_count} supporting documents",
+                            regulations_dot_gov_docket_supporting_documents_url(docket.id),
+                            :target => "_blank" %>
+              <% end %>
+            <% end %>
           </div>
-        <% end %>
-
-      <% else %>
-
-        <% if docket_info['docket_id'].present? %>
-          <dt>Docket Number:</dt>
-          <dd>
-            <%= link_to docket_info['docket_id'],
-                        regulations_dot_gov_docket_url(docket_info['docket_id']),
-                        class: 'reg_gov_docket' %>
-          </dd>
-        <% end %>
-
-        <% if docket_info['regulation_id_number'].present? %>
-          <dt>Docket Name:</dt>
-          <dd><%= h docket_info["title"] %></dd>
-
-          <dt>Docket RIN</dt>
-          <% if docket_info['regulatory_plan'].present? && docket_info['regulatory_plan']['html_url'].present? %>
-            <dd>
-              <%= link_to docket_info['regulation_id_number'],
-                          docket_info['regulatory_plan']['html_url'],
-                          :title => docket_info['regulatory_plan']['title'],
-                          :class => "tip_left" %>
-            </dd>
-          <% else %>
-            <dd><%= docket_info['regulation_id_number'] %></dd>
-          <% end %>
-        <% end %>
-
-        <% if docket_info['supporting_documents_count'] &&
-                docket_info['supporting_documents_count'] > 0 %>
-
-          <dt>Supporting/Related Materials:</dt>
-
-          <% docket_info['supporting_documents'].each do |doc| %>
-          <dd>
-            <%= link_to truncate_words(doc['title'], :length => 65),
-                        regulations_dot_gov_supporting_document_url(doc['document_id']),
-                        :target => "_blank",
-                        :title => doc['title'],
-                        :class => "tip_left reg_gov_supporting_documents" %>
-          </dd>
-          <% end %>
-
-          <% if docket_info['supporting_documents_count'] > 10 %>
-          <dd>
-            <strong>
-              <%= link_to "See all #{docket_info['supporting_documents_count']} supporting documents",
-                          regulations_dot_gov_docket_supporting_documents_url(docket_info['docket_id']),
-                          :target => "_blank",
-                          :class => "tip_left reg_gov_all_supporting_documents" %>
-              </strong>
-          </dd>
-          <% end %>
-        <% end %>
-
+        </div>
       <% end %>
     </dl>
   <% end %>

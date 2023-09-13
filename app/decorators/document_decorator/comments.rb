@@ -5,11 +5,7 @@ module DocumentDecorator::Comments
   end
 
   def comment_count
-    if Settings.feature_flags.multi_agency_comment_submission
-      commentable_documents.map(&:comment_count).compact.sum
-    else
-      regulations_dot_gov_info && regulations_dot_gov_info['comments_count']
-    end
+    commentable_documents.map(&:comment_count).compact.sum
   end
 
   def republished_document_comment_url
@@ -33,11 +29,7 @@ module DocumentDecorator::Comments
   # occasionally comment periods are extended on regulations.gov past the
   # originally published date in the document
   def regulations_dot_gov_accepting_comments?
-    if Settings.feature_flags.multi_agency_comment_submission
-      commentable_documents.present?
-    else
-      comment_url.present? && publication_date.to_time > 4.months.ago
-    end
+    commentable_documents.present?
   end
 
   def formal_comment_link
@@ -66,14 +58,10 @@ module DocumentDecorator::Comments
   end
 
   def calculated_comment_url
-    if Settings.feature_flags.multi_agency_comment_submission
-      if default_regs_dot_gov_document
-        "https://www.regulations.gov/commenton/#{default_regs_dot_gov_document.id}"
-      else
-        nil #ie Not needed if no regs dot gov doc exists
-      end
+    if default_regs_dot_gov_document
+      "https://www.regulations.gov/commenton/#{default_regs_dot_gov_document.id}"
     else
-      "https://www.regulations.gov/commenton/#{regulations_dot_gov_document_id}"
+      nil #ie Not needed if no regs dot gov doc exists
     end
   end
 
@@ -104,17 +92,12 @@ module DocumentDecorator::Comments
   def public_comments_url
     return unless has_comments?
 
-    if Settings.feature_flags.multi_agency_comment_submission
-      doc_with_max_comments = commentable_documents.max_by{|x| x.comment_count}
-      if doc_with_max_comments
-        "https://www.regulations.gov/document/#{doc_with_max_comments.id}/comment"
-      else
-        nil #ie Not needed if no regs dot gov doc exists
-      end
+    doc_with_max_comments = commentable_documents.max_by{|x| x.comment_count}
+    if doc_with_max_comments
+      "https://www.regulations.gov/document/#{doc_with_max_comments.id}/comment"
     else
-      "https://www.regulations.gov/document/#{regulations_dot_gov_document_id}/comment"
+      nil #ie Not needed if no regs dot gov doc exists
     end
-
   end
 
   def commentable_documents
