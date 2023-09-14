@@ -3,12 +3,7 @@ include XsltTestHelper
 
 describe "XSLT::FullText::Images" do
   before :all do
-    Settings.feature_flags.use_carrierwave_images_in_api = true
     @template = "matchers/full_text.html.xslt"
-  end
-
-  after :all do
-    Settings.feature_flags.use_carrierwave_images_in_api = false
   end
 
   context "with embedded images present" do

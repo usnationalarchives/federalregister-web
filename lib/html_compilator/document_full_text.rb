@@ -34,10 +34,6 @@ class HtmlCompilator::DocumentFullText < HtmlCompilator
   private
 
   def default_image_url(image)
-    if Settings.feature_flags.use_carrierwave_images_in_api
-      image.attributes[1]['original_size']
-    else
-      image.default_url
-    end
+    image.attributes[1]['original_size']
   end
 end
