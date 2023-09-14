@@ -6,7 +6,7 @@ class RSSUrlBuilder
   end
 
   def base_url
-    @base_url = "https://www.#{Settings.rss_helper.url}/documents/search.rss?"
+    @base_url = "#{Settings.services.fr.web.base_url}/documents/search.rss?"
   end
 
   def options

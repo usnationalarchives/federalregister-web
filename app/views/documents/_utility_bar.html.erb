@@ -17,9 +17,9 @@
             has no substantive legal effect.
           </p>
 
-          <% if Settings.render_documents_from_raw_xml %>
+          <% if Settings.app.document_render.from_raw_xml %>
             <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
-          <% elsif Settings.render_documents_from_staging %>
+          <% elsif Settings.app.document_render.from_remote %>
             <%
               url, path = document.body_html_url.split('full_text/')
               url = "#{url}table_of_contents/#{path}"

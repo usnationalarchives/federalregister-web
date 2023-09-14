@@ -14,7 +14,7 @@ class CommentMailer < ActionMailer::Base
     @comment = CommentDecorator.decorate( comment )
     @utility_links = [["view documents I've comment on", comments_url()]]
     @highlights = EmailHighlight.pick(2)
-    @fr_comments_url = Settings.fr_comment_url
+    @fr_comments_url = "#{Settings.services.fr.web.base_url}/my/comments"
 
     sendgrid_category "Comment Posting Notification"
     sendgrid_ganalytics_options :utm_source => 'federalregister.gov', :utm_medium => 'email', :utm_campaign => 'comment publication notification email'

@@ -1,6 +1,6 @@
 class FrArchivesCitation
   include HTTParty
-  base_uri Settings.federal_register_archives.api_url
+  base_uri Settings.services.fr.archives.internal_base_url
 
   def initialize(volume, page)
     @volume = volume

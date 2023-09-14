@@ -25,7 +25,7 @@ class SwaggerJsonBuilder
   private
 
   def servers
-    Array.new([{"url": "#{Settings.app_url}/api/v1/"}]).tap do |array|
+    Array.new([{"url": "#{Settings.services.fr.api_core.base_url}/"}]).tap do |array|
       if Rails.env.staging? || Rails.env.development?
         all_servers.each {|server| array << server}
       end

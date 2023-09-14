@@ -1,11 +1,11 @@
 class @FR2.ExternalLinkChecker
-  @WHITELISTED_DOMAINS = <%= Settings.external_modal_domain_whitelist %>
+  @ALLOWED_DOMAINS = <%= Settings.app.external_modal_domain_allow_list %>
 
   constructor: (@event)->
     @el = $(@event.target)
     @url = @el.attr('href')
 
-    if @isExternalUrl() && !@isOwnDomain() && @showModal() && !@isWhitelistedDomain()
+    if @isExternalUrl() && !@isOwnDomain() && @showModal() && !@isAllowedDomain()
       @event.preventDefault()
       @displayModal()
 
@@ -45,6 +45,6 @@ class @FR2.ExternalLinkChecker
   isExternalUrl: ->
     RegExp('^(https?:)//').test(@url)
 
-  isWhitelistedDomain: ->
-    _.any @constructor.WHITELISTED_DOMAINS, (domain)=>
+  isAllowedDomain: ->
+    _.any @constructor.ALLOWED_DOMAINS, (domain)=>
       RegExp("^https?://#{domain}").test(@url)

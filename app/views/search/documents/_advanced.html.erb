@@ -98,7 +98,7 @@
   <% end %>
 <% end %>
 
-<% if Settings.feature_flags.search.location %>
+<% if Settings.app.search.location_search_enabled %>
   <%= f.fields_for :near do |location_f| %>
     <% f.inputs name: "Mentioning Locations Near", class: 'zip' do %>
       <%= location_f.input :location,

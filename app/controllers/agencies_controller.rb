@@ -16,7 +16,7 @@ class AgenciesController < ApplicationController
     respond_to do |wants|
       wants.html
       wants.rss {
-        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}",
+        redirect_to "#{Settings.services.fr.web.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}",
           status: :moved_permanently
       }
     end
@@ -35,7 +35,7 @@ class AgenciesController < ApplicationController
 
     respond_to do |wants|
       wants.rss do
-        redirect_to "#{Settings.federal_register.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}&conditions[significant]=1",
+        redirect_to "#{Settings.services.fr.web.base_url}/documents/search.rss?conditions[agencies][]=#{@presenter.agency.slug}&conditions[significant]=1",
           status: :moved_permanently
       end
     end

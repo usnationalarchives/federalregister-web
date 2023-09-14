@@ -1,11 +1,3 @@
-# APPLICATION SETTINGS
-app_url: 'http://fr2.dev:8081'
-
-# urls for mailers, redirects, etc - where routes aren't available
-fr_comment_url: 'http://fr2.dev:8081/my/comments'
-rss_helper:
-  url: "federalregister.gov"
-
 lograge:
   enabled: false
 
@@ -18,11 +10,12 @@ s3_buckets:
   private_images: private.test.images.fr2.dev
   public_images: test.images.fr2.dev
 
-federal_register:
-  api_url: 'https://www.federalregister.gov/api/v1'
-  base_url: 'https://www.federalregister.gov'
-  internal_api_url: 'https://www.federalregister.gov/api/v1'
-  internal_base_url: 'https://www.federalregister.gov'
-
 services:
-  fr_profile_url: "https://example.com/my/profile"
+  fr:
+    api_core:
+      internal_base_url: https://www.federalregister.gov/api/v1
+    web:
+      internal_base_url: https://www.federalregister.gov
+  ofr:
+    profile:
+      base_url: "https://example.com/my/profile"

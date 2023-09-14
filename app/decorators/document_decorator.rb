@@ -33,7 +33,7 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def internal_body_html_url
-    body_html_url.gsub(Settings.federal_register.base_url, Settings.federal_register.internal_base_url)
+    body_html_url.gsub(Settings.services.fr.web.base_url, Settings.services.fr.web.internal_base_url)
   end
 
   # Dec 17th, 2013
@@ -131,7 +131,7 @@ class DocumentDecorator < ApplicationDecorator
 
   def participating_agency?
     participating_agency_acronyms = Agency.participating_agency_acronyms
-    
+
     agencies.any? do |agency|
       begin
         agency = Agency.find(agency.slug)

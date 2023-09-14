@@ -36,7 +36,7 @@ class SpecialController < ApplicationController
   def site_notifications
     cache_for 1.day
     raw_response = HTTParty.get(
-      "#{Settings.federal_register.internal_api_url}/site_notifications/#{params[:identifier]}"
+      "#{Settings.services.fr.api_core.internal_base_url}/site_notifications/#{params[:identifier]}"
     )
     if (raw_response.code == 200) && raw_response.parsed_response.present?
       @response = raw_response.parsed_response

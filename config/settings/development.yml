@@ -1,15 +1,38 @@
-permitted_hosts: <%= ENV["PERMITTED_HOSTS"] %>
-
 active_model_serializers:
-  # defautl to enabled for dev environments (opposite other environments)
-  disable_logging: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("DISABLE_AMS_LOGGING", false)) %>
+  # default to enabled for dev environments (opposite other environments)
+  disable_logging: false
 
-external_modal_domain_whitelist:
-  - "www.federalregister.gov"
-  - "www.archives.gov"
-  - "www.govinfo.gov"
-  - "federalregister.tenderapp.com"
-  - "fr2.criticaljuncture.org"
+app:
+  # document page full text rendering
+  document_render:
+    # should we get precompiled content from remote (eg in development)
+    from_remote: true
+  subscriptions:
+    deliver: false
+    deliver_pil: false
+
+lograge:
+  enabled: false
+
+regulations_dot_gov:
+  debug_output_enabled: true
+
+# Make any updates -api-core also
+s3_buckets:
+  zipped_eps_images: eps.images.federalregister.gov
+  image_variants: img.fr2.criticaljuncture.org
+  private_images: private.images.fr2.local
+  public_images: images.fr2.local
+
+varnish:
+  enable_cache_headers: false
+  host: varnish
+
+####################################
+# DEVELOPMENT ONLY SETTINGS
+####################################
+
+permitted_hosts:
 
 vcr:
   enabled: true
@@ -20,52 +43,3 @@ vcr:
   re_record_interval: 7 #days
   log_output: false
   max_cassette_size: 4.0 #Mb
-varnish:
-  host: <%= ENV["VARNISH_ADDR"] || '127.0.0.1' %>
-  enable_cache_headers: true
-
-regulations_dot_gov:
-  debug_output_enabled: true
-
-
-# APPLICATION SETTINGS
-federal_register:
-  api_url: 'https://www.federalregister.gov/api/v1'
-  base_url: 'https://www.federalregister.gov'
-  wordpress_url: 'https://fr2.criticaljuncture.org'
-
-federal_register_archives:
-  api_url: 'http://localhost:3020'
-
-app_url: 'http://127.0.0.1:8080'
-canonical_host: 'http://localhost:6081'
-
-# document page full text rendering
-render_documents_from_raw_xml: false
-render_documents_from_staging: true
-
-# urls for mailers, redirects, etc
-fr_comment_url: 'http://127.0.0.1:8080/my/comments'
-
-lograge:
-  enabled: false
-
-# generic switch for deciding when to raise exception or notify honeybadger
-notify_honeybager: false
-
-# using browser sync
-browser_sync:
-  enabled: false
-
-# Make any updates -api-core also
-s3_buckets:
-  zipped_eps_images: eps.images.federalregister.gov
-  image_variants: img.fr2.criticaljuncture.org
-  private_images: private.images.fr2.local
-  public_images: images.fr2.local
-
-services:
-  fr_profile_url: "https://ecfr.criticaljuncture.org"
-
-feature_flags:
-  fr_index_pdfs: true

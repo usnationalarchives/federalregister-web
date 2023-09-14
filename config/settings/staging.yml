@@ -1,15 +1,6 @@
-# APPLICATION SETTINGS
-app_url: 'https://fr2.criticaljuncture.org'
-canonical_host: 'https://fr2.criticaljuncture.org'
-fr_comment_url: 'https://fr2.criticaljuncture.org/my/comments'
-
-
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.federalregister.gov
   image_variants: img.fr2.criticaljuncture.org
   private_images: private.images.fr2.criticaljuncture.org
   public_images: images.fr2.criticaljuncture.org
-
-feature_flags:
-  fr_index_pdfs: true

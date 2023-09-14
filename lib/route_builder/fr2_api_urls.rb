@@ -48,7 +48,7 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   ### PUBLIC INSPECTION DOCUMENTS
-  
+
   def public_inspection_document_api_path(document, options, params={})
     path = "public-inspection-documents/#{document.document_number}"
 
@@ -88,6 +88,6 @@ module RouteBuilder::Fr2ApiUrls
   end
 
   def fr2_api_urlify(path)
-    "#{Settings.federal_register.api_url}/#{path.sub('/api/v1/', '')}"
+    "#{Settings.services.fr.api_core.base_url}/#{path.sub('/api/v1/', '')}"
   end
 end

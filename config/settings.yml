@@ -1,100 +1,111 @@
-# urls for mailers, redirects, etc - where routes aren't available
-app_url: 'https://www.federalregister.gov'
-canonical_host: 'https://www.federalregister.gov'
-fr_comment_url: 'https://www.federalregister.gov/my/comments'
-
 active_model_serializers:
-  disable_logging: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("DISABLE_AMS_LOGGING", true)) %>
+  disable_logging: true
 
-csp:
-  report_only: <%= ENV["CSP_REPORT_ONLY"] || false %>
-  esi_unifying_nonce:  <%= ENV["ESI_UNIFYING_NONCE"] || 'REPLACE_ME_NONCE' %> #Nginx will replace this value to ensure all ESIs share the same nonce
+app:
+  allow_bot_traffic: false
+  csp:
+    report_only: false
+  external_modal_domain_allow_list:
+    - "www.archives.gov"
+    - "www.govinfo.gov"
+    - "agency-logos.federalregister.gov"
+    - "archives.federalregister.gov"
+    - "www.ecfr.gov"
+    - "images.federalregister.gov"
+    - "img.federalregister.gov"
+    - "public-inspection.federalregister.gov"
+    - "uploads.federalregister.gov"
+  honeybadger_js:
+    # see issue #342
+    enableUncaught: false
+  officialness:
+    # controls when officialness design would switch on
+    start_date: 2050-05-01
+  # document page full text rendering
+  document_render:
+    # false means use precompiled content via esi's
+    from_raw_xml: false
+    # should we get precompiled content from remote (as opposed to local fs)
+    # primarily a dev setting
+    from_remote: false
+  search:
+    location_search_enabled: true
+  subscriptions:
+    deliver: true
+    deliver_pil: true
 
-external_modal_domain_whitelist:
-  - "www.archives.gov"
-  - "www.govinfo.gov"
-  - "federalregister.tenderapp.com"
-  - "s3.amazonaws.com/public-inspection."
-  - "s3.amazonaws.com/archives."
-  - "agency-logos.federalregister.gov"
-  - "archives.federalregister.gov"
-  - "www.ecfr.gov"
-  - "images.federalregister.gov"
-  - "img.federalregister.gov"
-  - "public-inspection.federalregister.gov"
-  - "uploads.federalregister.gov"
 
+# host, password, and username are generally retrived from credentials
+# in development these are likely from the ENV set by the helm deploy
+database:
+  adapter: mysql2
+  encoding: utf8
+  host:
+  name: federalregister_web
+  password:
+  port: 3306
+  reconnect: true
+  username:
+
+# feature flags should ideally be short lived switches before full rollout
+# long-lived switches should placed in the `app` settings block
 feature_flags:
-  announcements: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("FEATURE_FLAG_ANNOUNCEMENTS", false) ) %>
+  # TODO: refactor announcements to not need feature flag
+  announcements: false
   events_search: false
-  fr_index_pdfs: true
-  honeybadger_js: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("FEATURE_FLAG_HONEYBADGER_JS", false)) %>
-  multi_agency_comment_submission: <%= ActiveModel::Type::Boolean.new.cast(ENV.fetch("MULTI_AGENCY_COMMENT_SUBMISSION", false)) %>
   unified_agenda:
     search: false
-  regulations_dot_gov:
-    submit_comments: <%= ENV["REG_GOV_SUBMIT_COMMENTS"] || false %>
   regulatory_plan: false
-  # google charts image api is deprecated - reimplement in js
-  report_deprecations: <%= ActiveModel::Type::Boolean.new.cast( ENV.fetch("REPORT_DEPRECATIONS", false) ) %>
-  sparklines:
-    agencies: false
-    topics: false
-    suggested_searches: false
-    my_fr:
-      subscriptions: false
-  search:
-    location: true
-  subscriptions:
-    deliver: <%= ENV['DELIVER_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_SUBSCRIPTIONS']) : true %>
-    deliver_pil: <%= ENV['DELIVER_PIL_SUBSCRIPTIONS'].present? ? ActiveModel::Type::Boolean.new.cast(ENV['DELIVER_PIL_SUBSCRIPTIONS']) : true %>
-  use_carrierwave_images_in_api: <%= ActiveModel::Type::Boolean.new.cast(ENV['USE_CARRIERWAVE_IMAGES_IN_API']) || false %>
-
-federal_register:
-  api_url: '<%= ENV["FR_API_URL"] %>'
-  base_url: '<%= ENV["FR_BASE_URL"] %>'
-  internal_api_url: '<%= ENV["FR_INTERNAL_API_URL"] %>'
-  internal_base_url: '<%= ENV["FR_INTERNAL_BASE_URL"] %>'
-  wordpress_url: '<%= ENV["FR_INTERNAL_BASE_URL"] %>'
-
-federal_register_archives:
-  api_url: '<%= ENV["FR_ARCHIVES_API_URL"] %>'
 
 lograge:
   enabled: true
 
-# generic switch for deciding when to raise exception or notify honeybadger
-notify_honeybager: true
-
-officialness:
-  start_date: 2025-05-01
+# this can be turned on during a rails upgrade to detect deprecations
+# ex: enable on staging to check the daily imports, etc.
+rails:
+  report_deprecations: false
 
 regulations_dot_gov:
+  api_base_url: "https://api-staging.regulations.gov/v4"
   # don't output calls to reg.gov in stdout
   debug_output_enabled: false
-  api_base_url: <%= ENV["REG_GOV_API_BASE_URL"] || 'https://api-staging.regulations.gov/v4' %>
-
   throttle:
-    at: <%= ENV["WEB_REG_GOV_JOBS_THROTTLE_AT"] || 1 %>
-    per: <%= ENV["WEB_REG_GOV_JOBS_THROTTLE_PER"] || 60 %>
-
-# document page full text rendering - false means use esi's
-render_documents_from_raw_xml: false
-
-rss_helper:
-  url: "https://www.federalregister.gov"
-
-services:
-  fr_profile_internal_url: '<%= ENV["FR_PROFILE_INTERNAL_BASE_URL"] %>'
-  fr_profile_url: '<%= ENV["FR_PROFILE_BASE_URL"] %>'
+    at: 1
+    per: 60
 
 sidekiq:
   # kilobytes (integer) like 1048576 (1GB)
-  memory_threshold: '<%= ENV["SIDEKIQ_MEMORY_THRESHOLD"] %>'
+  memory_threshold:
 
 varnish:
-  host: <%= ENV["VARNISH_ADDR"] || 'varnish' %>
+  enable_cache_headers: true
+  # expected to be set by helm/deployment
+  host:
   port: 6082
 
 zendesk:
-  api_url: <%= ENV["ZENDESK_API_URL"] || 'https://ofr.zendesk.com/api/v2' %>
+  api_url: "https://ofr.zendesk.com/api/v2"
+
+################################################################
+# these are set by helm based on deployment settings
+# below are examples/production defaults
+################################################################
+
+services:
+  fr:
+    api_core:
+      base_url: https://www.federalregister.gov/api/v1
+      internal_base_url: http://varnish.fr-prod.svc.cluster.local:6081/api/v1
+
+    archives:
+      internal_base_url: http://archives.fr-prod.svc.cluster.local:3000
+
+    web:
+      base_url: https://www.federalregister.gov
+      internal_base_url: http://varnish.fr-prod.svc.cluster.local:6081
+  ofr:
+    profile:
+      base_url: https://www.federalregister.gov/my/profile
+      internal_base_url: http://varnish.fr-prod.svc.cluster.local:6081/my/profile
+    wordpress:
+      internal_base_url: http://varnish.fr-prod.svc.cluster.local:6081

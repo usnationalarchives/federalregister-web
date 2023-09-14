@@ -1,6 +1,6 @@
 module DocumentDecorator::Officialness
   def official?
-    publication_date >= Settings.officialness.start_date
+    publication_date >= Settings.app.officialness.start_date
   end
 
   def document?

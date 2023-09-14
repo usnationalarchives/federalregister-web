@@ -6,10 +6,10 @@ module RouteBuilder::Authentication
     options.merge!(redirect_to: redirect_to) if redirect_to
 
     params = options.map{|k,v| "#{k}=#{v}"}.join('&')
-    "#{Settings.canonical_host}/auth/sign_in?#{params}"
+    "#{Settings.services.fr.web.base_url}/auth/sign_in?#{params}"
   end
 
   def resend_confirmation_path
-    "#{Settings.services.fr_profile_url}/confirmation"
+    "#{Settings.services.ofr.profile.base_url}/confirmation"
   end
 end

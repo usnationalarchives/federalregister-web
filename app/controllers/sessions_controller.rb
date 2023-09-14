@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def new
     session[:redirect_to] = profile_params.delete(:redirect_to)
 
-    redirect_to ["#{Settings.canonical_host}/auth/ofr", profile_url_params].compact.join('?')
+    redirect_to ["#{Settings.services.fr.web.base_url}/auth/ofr", profile_url_params].compact.join('?')
   end
 
   def create
@@ -65,7 +65,7 @@ class SessionsController < ApplicationController
   def valid_redirect_url
     return nil unless session[:redirect_to]
 
-    /\A#{Settings.canonical_host}/.match(session[:redirect_to]) ? session[:redirect_to] : nil
+    /\A#{Settings.services.fr.web.base_url}/.match(session[:redirect_to]) ? session[:redirect_to] : nil
   end
 
 end

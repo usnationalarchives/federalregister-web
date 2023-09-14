@@ -8,7 +8,7 @@ class EffectiveDate
   private
 
   def self.url
-    "#{Settings.federal_register.internal_api_url}/effective-dates"
+    "#{Settings.services.fr.api_core.internal_base_url}/effective-dates"
   end
 
 end

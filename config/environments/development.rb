@@ -70,7 +70,7 @@ Rails.application.configure do
   smtp_settings = {
     address: "smtp.sendgrid.net",
     port: "587",
-    domain: "#{Settings.app_url}",
+    domain: "#{Settings.services.fr.web.base_url}",
     user_name: Rails.application.secrets[:sendgrid][:username],
     password: Rails.application.secrets[:sendgrid][:password],
     authentication: :plain,
@@ -107,6 +107,6 @@ Rails.application.configure do
 end
 
 Rails.application.routes.default_url_options = {
-  host: "#{Settings.app_url.split('//').last}",
+  host: "#{Settings.services.fr.web.base_url.split('://').last}",
   protocol: "http://"
 }

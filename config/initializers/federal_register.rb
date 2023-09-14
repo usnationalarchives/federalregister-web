@@ -1,1 +1,1 @@
-FederalRegister::Base.override_base_uri Settings.federal_register.internal_api_url
+FederalRegister::Base.override_base_uri Settings.services.fr.api_core.internal_base_url

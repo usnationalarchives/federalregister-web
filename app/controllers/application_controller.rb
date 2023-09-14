@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cache_for(time)
-    if !Rails.env.development? || Settings.varnish.enable_cache_headers
+    if Settings.varnish.enable_cache_headers
       expires_in time, :public => true
     end
   end

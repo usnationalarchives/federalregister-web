@@ -34,15 +34,15 @@
         <div class="citation-target-background"></div>
 
         <% if document.full_text_available? %>
-          <% if Settings.render_documents_from_raw_xml %>
+          <% if Settings.app.document_render.from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
-          <% elsif Settings.render_documents_from_staging %>
+          <% elsif Settings.app.document_render.from_remote %>
             <%
               content = begin
                 HTTParty.get(document.http_body_html_url.gsub('http', 'https'))
               rescue SocketError
                 ""
-              end 
+              end
             %>
             <%= content.html_safe %>
           <% else %>

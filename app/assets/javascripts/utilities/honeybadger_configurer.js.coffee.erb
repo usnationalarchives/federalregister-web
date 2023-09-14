@@ -4,10 +4,10 @@ class @FR2.HoneybadgerConfigurer
     Honeybadger.configure({
       apiKey:      @._environmentApiKey(),
       environment: @._environment(),
-      enableUncaught: <% if Settings.feature_flags.honeybadger_js %>true<% else %>false<% end %>,      
+      enableUncaught: <%= Settings.app.honeybadger_js.enableUncaught %>
     })
 
-    <% unless Settings.feature_flags.honeybadger_js %>
+    <% unless Settings.app.honeybadger_js.enableUncaught %>
     Honeybadger.beforeNotify(@._ignore_everything)
     <% end %>
 

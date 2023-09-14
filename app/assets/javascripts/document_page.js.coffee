@@ -1,5 +1,5 @@
 $(document).ready ->
-  #Whitelist DOM elements for bootstrap popovers
+  #allow additional DOM elements for bootstrap popovers
   bootstrapDomElementWhitelist = $.fn.tooltip.Constructor.DEFAULTS.whiteList
   bootstrapDomElementWhitelist['dl'] = []
   bootstrapDomElementWhitelist['dt'] = []

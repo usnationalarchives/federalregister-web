@@ -6,7 +6,7 @@ class DocumentSubscriptionQueuePopulator
   attr_reader :date
 
   def perform(date)
-    return unless Settings.feature_flags.subscriptions.deliver
+    return unless Settings.app.subscriptions.deliver
 
     @date = date
 

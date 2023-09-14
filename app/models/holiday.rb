@@ -22,6 +22,6 @@ class Holiday
   private
 
   def self.url
-    "#{Settings.federal_register.internal_api_url}/holidays"
+    "#{Settings.services.fr.api_core.internal_base_url}/holidays"
   end
 end
