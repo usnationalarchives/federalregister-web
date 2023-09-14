@@ -1,5 +1,4 @@
 {
-  "nginx_config_template": "nginx.conf.erb",
   "disable_log_prefix": true,
   "log_file": "/dev/stdout"
 }
