@@ -103,6 +103,8 @@ services:
     web:
       base_url: https://www.federalregister.gov
       internal_base_url: http://varnish.fr-prod.svc.cluster.local:6081
+      oidc_url: https://www.federalregister.gov/my/profile
+      oidc_redirect_url: https://www.federalregister.gov/auth/ofr/callback
   ofr:
     profile:
       base_url: https://www.federalregister.gov/my/profile

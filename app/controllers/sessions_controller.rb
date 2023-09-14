@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
       cookies.delete :user_data
       head :ok
     else
-      redirect_to Rails.application.secrets[:omniauth][:oidc_url] + "/sign_out?redirect_to=#{root_url}"
+      redirect_to Settings.services.fr.web.oidc_url + "/sign_out?redirect_to=#{root_url}"
     end
   end
 

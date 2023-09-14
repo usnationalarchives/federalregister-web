@@ -1,5 +1,5 @@
-if Rails.application.secrets[:omniauth][:oidc_url]
-  oidc_uri = URI.parse(Rails.application.secrets[:omniauth][:oidc_url])
+if Settings.services.fr.web.oidc_url
+  oidc_uri = URI.parse(Settings.services.fr.web.oidc_url)
   if oidc_uri.scheme == "http"
     WebFinger.url_builder = URI::HTTP
     SWD.url_builder = URI::HTTP
@@ -16,14 +16,14 @@ if Rails.application.secrets[:omniauth][:oidc_url]
       scope: [:openid, :email, :profile],
       response_type: :code,
       discovery: true,
-      issuer: Rails.application.secrets[:omniauth][:oidc_url],
+      issuer: Settings.services.fr.web.oidc_url,
       client_options: {
         port: oidc_uri.port,
         scheme: oidc_uri.scheme,
         host: oidc_uri.host,
         identifier: Rails.application.secrets[:omniauth][:oidc_application_id],
         secret: Rails.application.secrets[:omniauth][:oidc_secret],
-        redirect_uri: Rails.application.secrets[:omniauth][:oidc_redirect_url],
+        redirect_uri: Settings.services.fr.web.oidc_redirect_url,
       },
       setup: SETUP_PROC
     }
