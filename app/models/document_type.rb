@@ -34,13 +34,13 @@ class DocumentType
     else
       message = "unknown document type #{type}"
 
-      if Settings.notify_honeybager
+      if Rails.env.development?
+        raise message.inspect
+      else
         Honeybadger.notify(
           error_class: "Unknown Document Type",
           error_message: message
         )
-      else
-        raise message.inspect
       end
 
       "uncategorized"
