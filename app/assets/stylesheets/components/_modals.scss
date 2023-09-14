@@ -440,33 +440,6 @@
   }
 }
 
-.launch-modal {
-  .nav-tabs { margin-top: 40px; }
-
-  .tab-content {
-    padding: 10px;
-
-    .fr-box {
-      margin-bottom: 10px;
-
-      .content-block {
-        min-height: 160px !important;
-
-        .example {
-          @include sans_serif;
-
-          font-size: 80px;
-          font-weight: 700;
-          opacity: 0.15;
-          position: relative;
-          top: -45px;
-          transform: rotate(-10deg);
-        }
-      }
-    }
-  }
-}
-
 .external-link-warning-modal {
   form {
     label { font-weight: 300; }
