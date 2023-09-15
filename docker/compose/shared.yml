@@ -10,14 +10,10 @@ services:
     environment:
       WEB_PORT: 3000
       PASSENGER_MIN_INSTANCES: 2
-      MYSQL_PORT_3306_TCP_ADDR: mysql
       REDIS_PORT_6379_TCP_ADDR: redis
       HONEYBADGER_API_KEY: ''
       ATTACHMENTS_AWS_ACCESS_KEY_ID: 'XXX'
       ATTACHMENTS_AWS_SECRET_ACCESS_KEY: 'XXX'
-      FR_API_URL: 'https://www.federalregister.gov/api/v1'
-      FR_BASE_URL: 'https://www.federalregister.gov'
-      FR_INTERNAL_BASE_URL: 'https://www.federalregister.gov'
       RAILS_SESSION_KEY: XXXXxxxxXXXXxxxxXXXXxxxxXXXXxxxx
       CONTAINER_PROCESS: rails
       REG_GOV_API_KEY: xxxxxxxxxxxxxxxxxx

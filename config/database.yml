@@ -1,19 +1,22 @@
 shared: &shared
-  adapter: <%= ENV['DB_ADAPTER'] || 'mysql2' %>
-  database: <%= ENV["MYSQL_DATABASE"] || 'federalregister_web' %>
-  username: <%= ENV["MYSQL_USERNAME"] || 'root' %>
-  password: <%= ENV["MYSQL_PASSWORD"] %>
-  port: <%= ENV["MYSQL_PORT_3306_TCP_PORT"] || 3306 %>
-  host: '<%= ENV["MYSQL_PORT_3306_TCP_ADDR"] || '127.0.0.1' %>'
-  reconnect: true
-  encoding: utf8
+  adapter: <%= Settings.database.adapter %>
+  database: <%= Settings.database.name %>
+  username: <%= Rails.application.credentials.dig(:database, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  port: <%= Settings.database.port %>
+  host: '<%= Rails.application.credentials.dig(:database, :host) %>'
+  reconnect: <%= Settings.database.reconnect %>
+  encoding: <%= Settings.database.encoding %>
 
 development:
   <<: *shared
+  host: '<%= Settings.database.host %>'
+  password: <%= Settings.database.password %>
+  username: <%= Settings.database.username %>
 
 test:
   <<: *shared
-  database: <%= ENV["MYSQL_DATABASE"] || 'federalregister_web' %>_test<%= (ENV['TEST_ENV_NUMBER'] == "1") ? "" : ENV['TEST_ENV_NUMBER']  %>
+  database: <%= Settings.database.name %>_test<%= (ENV['TEST_ENV_NUMBER'] == "1") ? "" : ENV['TEST_ENV_NUMBER']  %>
 
 staging:
   <<: *shared

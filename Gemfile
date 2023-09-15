@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 6.1.4'
 gem 'rake'
 gem 'rack'
-gem 'mysql2', '0.5.2'
+gem 'mysql2', '0.5.5'
 gem 'passenger', '~> 6.0' # production app server
 gem 'bootsnap', require: false
 

@@ -7,7 +7,7 @@
 Rails.application.config.content_security_policy_report_only = Settings.app.csp.report_only
 
 Rails.application.config.content_security_policy_nonce_generator = -> request {
-  Rails.application.credentials.csp.esi_unifying_nonce
+  Rails.application.credentials.dig(:csp, :esi_unifying_nonce)
 }
 Rails.application.config.content_security_policy_nonce_directives = %w[script-src]
 

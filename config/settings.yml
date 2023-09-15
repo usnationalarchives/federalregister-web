@@ -35,13 +35,13 @@ app:
     deliver_pil: true
 
 
-# host, password, and username are generally retrived from credentials
-# in development these are likely from the ENV set by the helm deploy
+# host, password and username are retrived from credentials
+# development environment uses ENV vars for these so keys are defined here
 database:
   adapter: mysql2
   encoding: utf8
   host:
-  name: federalregister_web
+  name: federal_register_web
   password:
   port: 3306
   reconnect: true

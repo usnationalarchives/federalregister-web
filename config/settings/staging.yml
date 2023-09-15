@@ -1,3 +1,6 @@
+database:
+  name: federal_register_web_staging
+
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.federalregister.gov

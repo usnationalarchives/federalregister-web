@@ -4,12 +4,15 @@ services:
   web:
     image: $CI_IMAGE
     volumes:
-      - /tmp/test-results:/home/app/tmp/test-results    
+      - /tmp/test-results:/home/app/tmp/test-results
     extends:
       file: shared.yml
       service: web
     environment:
       RAILS_ENV: test
+      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
+      # intended for the bin/wait_for_mysql script only
+      MYSQL_PORT_3306_TCP_ADDR: mysql
       DB_STRUCTURE_ACCESS_KEY: ''
       DB_STRUCTURE_SECRET: ''
     links:
