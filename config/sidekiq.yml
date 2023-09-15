@@ -1,2 +1,12 @@
 ---
-:logfile: log/sidekiq.log
+:concurrency: 1
+:queues:
+  - issue_processor
+  - subscriptions
+  - issue_reprocessor
+  - web_reg_gov
+
+# env specific settings if needed
+#development:
+#staging:
+#production:
