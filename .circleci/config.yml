@@ -13,7 +13,4 @@ workflows:
           repo_image: federalregister-web
           lint_command: docker-compose -f docker/compose/ci.yml run web bash -c "rake jshint && coffeelint -f coffeelint.json -r app/assets/javascripts/"
           test_command: |
-            docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake parallel:setup --trace && parallel_rspec -o '--tag ~no_ci --tag ~reg_gov'"
-            if [ -n "${RUN_REGGOV_BUILD}" ]; then
-              docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake parallel:setup --trace && parallel_rspec -o '--tag ~no_ci --tag reg_gov'"
-            fi
+            docker-compose -f docker/compose/ci.yml run web bash -c "bin/wait_for_mysql && rake parallel:setup --trace && parallel_rspec -o '--tag ~no_ci'"
