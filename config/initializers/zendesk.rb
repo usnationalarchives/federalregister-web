@@ -6,8 +6,8 @@ class ZendeskClient < ZendeskAPI::Client
       # Mandatory:
       config.url = Settings.zendesk.api_url
       # Basic / Token Authentication
-      config.username = Rails.application.secrets[:zendesk][:api_username]
-      config.token = Rails.application.secrets[:zendesk][:api_token]
+      config.username = Rails.application.credentials.dig(:zendesk, :api, :username)
+      config.token = Rails.application.credentials.dig(:zendesk, :api, :token)
       config.retry = true
       config.logger = Logger.new(STDOUT)
     end

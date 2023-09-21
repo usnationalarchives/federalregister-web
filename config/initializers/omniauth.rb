@@ -21,8 +21,8 @@ if Settings.services.fr.web.oidc_url
         port: oidc_uri.port,
         scheme: oidc_uri.scheme,
         host: oidc_uri.host,
-        identifier: Rails.application.secrets[:omniauth][:oidc_application_id],
-        secret: Rails.application.secrets[:omniauth][:oidc_secret],
+        identifier: Rails.application.credentials.dig(:services, :fr, :web, :oidc_application_id),
+        secret: Rails.application.credentials.dig(:services, :fr, :web, :oidc_secret),
         redirect_uri: Settings.services.fr.web.oidc_redirect_url,
       },
       setup: SETUP_PROC

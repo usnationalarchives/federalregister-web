@@ -4,6 +4,9 @@ lograge:
 regulations_dot_gov:
   debug_output_enabled: true
 
+redis:
+  host: 127.0.0.1
+
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.test.federalregister.gov

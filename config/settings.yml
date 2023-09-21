@@ -65,6 +65,13 @@ lograge:
 rails:
   report_deprecations: false
 
+# host is retrived from credentials
+# development environment uses ENV vars for this so key is defined here
+redis:
+  db: 0
+  host:
+  port: 6379
+
 regulations_dot_gov:
   api_base_url: "https://api-staging.regulations.gov/v4"
   # don't output calls to reg.gov in stdout

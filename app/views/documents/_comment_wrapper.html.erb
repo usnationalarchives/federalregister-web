@@ -46,7 +46,7 @@
       id: "new_comment",
         data: {
           document_number: document.document_number,
-          api_key: Rails.application.secrets[:data_dot_gov][:v4_commenting_api_key],
+          api_key: Rails.application.credentials.dig(:data_dot_gov, :regulations_dot_gov, :v4_commenting_api_key),
           regulations_dot_gov_base_url: Settings.regulations_dot_gov.api_base_url,
           agency: nil
         }
@@ -113,7 +113,7 @@
           </fieldset>
         <% end %>
 
-        <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>"> 
+        <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>">
         <%= f.input :commentOnDocumentId, as: :hidden, input_html: {value: document.regulations_dot_gov_info['document_id']} %>
         <%= f.input :comment, as: :text, wrapper_html: {'data-max-size' => 5000, 'data-size-warn-at' => 250, class: 'validate-required-js'} %>
         <%= f.input :category, label: 'What is your comment about?', collection: [], required: false %>
@@ -195,7 +195,7 @@
         </div>
       <% end %>
 
-      <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>"> 
+      <div class="comment-form-fields-js" style="<%= "display: none;" if multi_agency_comment_submission %>">
       <%= f.actions do %>
         <%= f.action :submit, as: :input,
           label: "Submit Comment",

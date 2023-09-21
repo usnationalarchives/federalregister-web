@@ -17,6 +17,7 @@ services:
       RAILS_SESSION_KEY: XXXXxxxxXXXXxxxxXXXXxxxxXXXXxxxx
       CONTAINER_PROCESS: rails
       REG_GOV_API_KEY: xxxxxxxxxxxxxxxxxx
+      SETTINGS__REDIS__HOST: redis
     restart: always
 
   mysql:

@@ -7,7 +7,7 @@
 Rails.application.config.content_security_policy_report_only = Settings.app.csp.report_only
 
 Rails.application.config.content_security_policy_nonce_generator = -> request {
-  Rails.application.credentials.dig(:csp, :esi_unifying_nonce)
+  Rails.application.credentials.dig(:app, :csp, :esi_unifying_nonce)
 }
 Rails.application.config.content_security_policy_nonce_directives = %w[script-src]
 
@@ -73,8 +73,7 @@ Rails.application.config.content_security_policy do |policy|
     # Regulations.gov
     'https://api.regulations.gov',
     'https://uploads-regulations-gov.s3.amazonaws.com',
-    (Rails.env.development? ? 'https://api-staging.regulations.gov' : nil),
-    (Rails.env.staging? ? 'https://api-staging.regulations.gov' : nil),
+    ((Rails.env.development? || Rails.env.staging?) ? 'https://api-staging.regulations.gov' : nil),
     ((Rails.env.development? || Rails.env.staging?) ? 'https://staging-uploads-regulations-gov.s3.amazonaws.com' : nil),
   ].compact
 
@@ -84,7 +83,7 @@ Rails.application.config.content_security_policy do |policy|
 
   if ['production', 'staging'].include?(Rails.env)
     policy.report_uri -> {
-      "https://api.honeybadger.io/v1/browser/csp?api_key=#{Rails.application.secrets.honeybadger_csp_api_key}&env=#{Rails.env}&#{{context: try(:honeybadger_context) || {} }.to_query}"
+      "https://api.honeybadger.io/v1/browser/csp?api_key=#{Rails.application.credentials.dig(:honeybadger, :csp_api_key)}&env=#{Rails.env}&#{{context: try(:honeybadger_context) || {} }.to_query}"
     }
   end
 end

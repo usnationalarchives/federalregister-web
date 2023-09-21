@@ -33,7 +33,7 @@ class CommentPostingNotifier
 
   def client
     RegulationsDotGov::V4::Client.new(
-      api_key: Rails.application.secrets[:data_dot_gov][:comment_notifier_api_key]
+      api_key: Rails.application.credentials.dig(:data_dot_gov, :regulations_dot_gov, :comment_notifier_api_key)
     )
   end
 
