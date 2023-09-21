@@ -25,3 +25,8 @@ $(window).bind('hashchange', ->
   else
     print_view_manager.exit()
 ).trigger('hashchange')
+
+# Handle "Print this document" link on document page
+printLink = document.querySelector('a[href="#print"]')
+printLink.addEventListener 'click', (event) ->
+  window.print()
