@@ -8,7 +8,7 @@
 
 // Turn off main site elements not appropriate for print
 body > .header,
-body > .site-footer,
+body > #footer,
 .main-title-bar {
   display: none;
 }

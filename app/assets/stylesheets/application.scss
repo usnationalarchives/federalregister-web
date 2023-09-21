@@ -107,3 +107,10 @@
 @import "design/popular_documents";
 @import "design/reader_aids";
 @import "design/mobile_transition";
+
+@media print {
+  @import "print/site";
+  @import "print/search";
+  @import "print/toc";
+  @import "print/document_page";
+}
