@@ -16,6 +16,7 @@ class MailingList::PublicInspectionDocument < MailingList
       regular_filing_results = results["regular"]
       if special_filing_results.blank? && regular_filing_results.blank?
         Honeybadger.notify("Special and regular filings unexpectedly returned no results", context: {
+          mailing_list_id: id,
           date: date,
           document_numbers: document_numbers,
           options: options,
