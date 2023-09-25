@@ -28,5 +28,6 @@ $(window).bind('hashchange', ->
 
 # Handle "Print this document" link on document page
 printLink = document.querySelector('a[href="#print"]')
-printLink.addEventListener 'click', (event) ->
-  window.print()
+if printLink
+  printLink.addEventListener 'click', (event) ->
+    window.print()
