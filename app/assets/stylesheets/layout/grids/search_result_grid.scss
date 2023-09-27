@@ -27,7 +27,6 @@
   }
 
   .search-bar .search-options {
-
     width: auto !important;
   }
 
@@ -40,6 +39,78 @@
     // Re-align search button to middle
     margin-left: 0px !important;
   }
+
+  .search-info ul.actions {
+    // Re-align 'Relevant', 'Newest', 'Oldest' Sort buttons
+    top: auto !important;
+    margin-bottom: 7px !important;
+  }
+
+
+  // Experimental advanced search form adjustments
+  // =====================================
+  .search .advanced {
+    // JS Radio buttons
+    fieldset.date_options legend,  fieldset.cfr legend, fieldset.zip legend{
+      float: none !important;
+      text-align: left;
+    }
+
+    // Ensure "On or before" range field is aligned properly
+    li.date.range.range_end {
+      margin-left: 9px !important;
+    }
+
+    // Reduce size of date range input fields
+    li.date.range.range_start input, li.date.range.range_end input {
+      width: 90px;
+    }
+
+    // Text Input Fields
+    li.agency label, li.docket label, li.reg_id label{
+      text-align: left !important;
+      float: none;
+      padding-left: 0px;
+    }
+
+    li.docket, li.reg_id {
+      height: auto;
+    }
+
+    // Checkboxes
+    #conditions_type_input legend, #conditions_small_entity_ids_input legend {
+      float: none;
+      padding: 0px;
+      margin-bottom: 0px;
+
+      label {
+        float: none; 
+      }
+    }
+
+    // Input Wrapper Padding
+    .input-wrapper {
+      padding: 0 1em 0 !important;
+    }
+
+    // Agency Pill Selection
+    .bsmList {
+      margin-left: 0.5em !important;
+    }
+
+    // Manual Adjustments
+    #conditions_type_input legend label{
+      margin-left: -25px;
+    }
+
+    #conditions_small_entity_ids_input legend label{
+      margin-left: -76px;
+    }
+
+  }
+
+
+
 
 }
 

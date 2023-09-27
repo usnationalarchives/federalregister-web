@@ -16,6 +16,7 @@
 @import "design/layout";
 @import "layout";
 
+@import "layout/grids/agencies_grid";
 @import "layout/grids/embedded_search_grid";
 @import "layout/grids/footer_grid";
 @import "layout/grids/homepage_grid";
@@ -25,6 +26,7 @@
 @import "layout/grids/monthly_document_counts_grid";
 @import "layout/grids/popular_and_presdoc_container_grid";
 @import "layout/grids/nav_item_grid";
+@import "layout/grids/search_result_grid";
 @import "layout/grids/site_grid";
 
 @import "components/buttons";
