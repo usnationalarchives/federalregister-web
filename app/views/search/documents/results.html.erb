@@ -1,46 +1,40 @@
-<div class="row result_set result-set"
+<div class="result_set result-set"
   data-expected-result-count="<%= @search.result_metadata.count %>">
-  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
 
-    <% if @search_details.filters.present? %>
-      <%= render partial: "search/filters", locals: {
-          filters: @search_details.filters,
-          presenter: @facet_presenter,
-        } %>
-    <% end %>
+  <% if @search_details.filters.present? %>
+    <%= render partial: "search/filters", locals: {
+        filters: @search_details.filters,
+        presenter: @facet_presenter,
+      } %>
+  <% end %>
 
-    <%= render partial: 'search_info', locals: {
-      supported_orders: @presenter.supported_orders,
-      search: @search
-    } %>
+  <%= render partial: 'search_info', locals: {
+    supported_orders: @presenter.supported_orders,
+    search: @search
+  } %>
 
-    <% if @search.results.present? %>
-      <div class="row">
-        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <%= will_paginate @search.results, params: {action: :show},
-            renderer: BootstrapPagination::Rails %>
-        </div>
-      </div>
+  <% if @search.results.present? %>
+    <div>
+      <%= will_paginate @search.results, params: {action: :show},
+        renderer: BootstrapPagination::Rails %>
+    </div>
 
-      <%= render partial: 'search/results',
-        locals: {
-          type: :official,
-          documents: @search.results,
-          search: @search
-        }
-      %>
+    <%= render partial: 'search/results',
+      locals: {
+        type: :official,
+        documents: @search.results,
+        search: @search
+      }
+    %>
 
-      <div class="row">
-        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-          <%= will_paginate @search.results, params: {action: :show},
-            renderer: BootstrapPagination::Rails %>
-        </div>
-      </div>
+    <div>
+      <%= will_paginate @search.results, params: {action: :show},
+        renderer: BootstrapPagination::Rails %>
+    </div>
 
-    <% else %>
-      <div class="errors">
-        <p class="errors_header">No documents were found.</p>
-      </div>
-    <% end %>
-  </div>
+  <% else %>
+    <div class="errors">
+      <p class="errors_header">No documents were found.</p>
+    </div>
+  <% end %>
 </div>

@@ -21,17 +21,15 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row document-search search">
-    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-
-      <%= esi(documents_search_header_path(params)) %>
+  <div class="document-search search">
+      <div id="search-result-header">
+        <%= esi(documents_search_header_path(params)) %>
+      </div>
 
       <% unless @presenter.search.conditions_blank? %>
         <% if @presenter.search.valid? %>
-          <div class="row">
             <% if @presenter.search.results.present? %>
-              <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
-                <div class="facets">
+                <div id="search-facets" class="facets">
                   <%= esi( documents_search_facets_path(
                       @presenter.search.params.merge(facet: 'publication_date')
                     )
@@ -57,11 +55,10 @@
                     )
                   ) unless @presenter.search.sections.present? %>
                 </div>
-              </div>
             <% end %>
 
             <% col_span = @presenter.search.results.present? ? 9 : 12 %>
-            <div class="<%= bootstrap_col(xs: col_span, md: col_span) %>">
+            <div id="search-results">
               <% if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') &&
                 @presenter.search.params[:order].blank? %>
                 <%= esi documents_search_suggestions_path(@presenter.search.params)%>
@@ -86,7 +83,5 @@
           <% end %>
         <% end %>
       <% end %>
-
-    </div>
   </div>
 <% end %>
