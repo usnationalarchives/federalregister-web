@@ -209,18 +209,6 @@ $with-icon-left-margin: -36px;
 
 $small-viewport-width: 500px !default;
 @media only screen and (max-width: #{$small-viewport-width}) {
-
-  // On the homepage, remove fixed width setting for small viewports
-  // ==============================================
-
-  .bootstrap-scope {
-    .wrapper {
-      .container.fixed {
-        width: auto !important;
-      }
-    }
-  }
-
   // This allows the content in the .with-icon sections to be full width in mobile since the actual content below the headings is not wrapped in any containing element
   #explore-agencies h4.with-icon ~ * , #explore-topics h4.with-icon ~ *  {
     margin-left: $with-icon-left-margin;
