@@ -1,0 +1,30 @@
+#agencies-grid {
+  display: grid;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  padding: 0px 15px 0px 15px;
+
+  .agencies-sidebar {
+    grid-area:  agencies-sidebar;
+  }
+
+  .agencies-list {
+    grid-area:  agencies-list;
+  }
+
+}
+
+@media only screen and (max-width: $small-viewport-width) {
+  #agencies-grid {
+    grid-template-areas: "agencies-sidebar"
+                         "agencies-list"
+  }
+}
+
+@media only screen and (min-width: $small-viewport-width) {
+  #agencies-grid {
+    grid-template-columns: repeat(4, minmax(325px, 1fr));
+    grid-template-areas: "agencies-sidebar agencies-list agencies-list agencies-list"
+  }
+}
+

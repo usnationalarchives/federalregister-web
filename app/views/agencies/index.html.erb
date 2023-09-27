@@ -6,24 +6,18 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row">
-
-    <div class="<%= bootstrap_col(xs: 4, md: 4) %> item-filters">
-      <div class="row">
-        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+  <div id="agencies-grid">
+    <div class="item-filters agencies-sidebar">
+        <div>
           <%= render partial: 'components/filterable_list/filters/live_filter',
             locals: { type: 'Agency' } %>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+        <div>
           <%= render partial: 'components/filterable_list/filters/alphabetical' %>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+        <div>
           <h4>Sub Agencies</h4>
           <ul class="list-item-filter sub-agency-filter">
             <li class="on">
@@ -34,10 +28,9 @@
             </li>
           </ul>
         </div>
-      </div>
     </div>
 
-    <div class="<%= bootstrap_col(xs: 8, md: 8) %> filterable-list-container">
+    <div class="filterable-list-container agencies-list">
       <%= render partial: "components/filterable_list/header", locals: {
         item_count: @presenter.count,
         sorters: ['alphabetical'],
@@ -71,7 +64,6 @@
           </li>
         <% end %>
       <% end %>
-
     </div>
   </div>
 <% end %>
