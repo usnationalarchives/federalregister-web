@@ -67,7 +67,7 @@
     }
 
     // Pagination
-    .pagination li:not(:nth-child(-n+4)):not(.disabled):not(:nth-last-child(-n+4)):not(.next) a {
+    .pagination li:not(.active):not(:nth-child(-n+4)):not(.disabled):not(:nth-last-child(-n+4)):not(.next) a {
       display: none;
     }
 

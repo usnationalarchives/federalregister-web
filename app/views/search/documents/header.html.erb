@@ -15,15 +15,18 @@
     } do |f| %>
 
     <div class="simple">
-      <label>Find</label>
-      <%= f.text_field :term,
-        class: 'search-term',
-        placeholder: 'Search term or citation' %>
-
-      <%= f.button fr_icon('Search').html_safe,
-        class: 'search-submit',
-        id: 'conditions_submit',
-        "aria-label" => 'Search' %>
+      <div id="search-input">
+        <div id="conditions_term">
+          <label class="sr-only">Find</label>
+          <%= f.text_field :term,
+            class: 'search-term',
+            placeholder: 'Enter a search term or citation' %>
+        </div>
+        <%= f.button fr_icon('Search').html_safe,
+          class: 'search-submit',
+          id: 'conditions_submit',
+          "aria-label" => 'Search' %>
+      </div>
 
       <span id="expected_result_count" class="search-result-count">
         <span class="document-count"></span>

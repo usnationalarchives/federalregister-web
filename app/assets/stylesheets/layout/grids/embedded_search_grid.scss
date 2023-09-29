@@ -54,22 +54,3 @@
   }
 }
 
-// Add separate grid for aligning label, term field, and icon
-#embedded-search-area #search-input {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-
-  label: {
-    justify-self: end;
-  }
-
-  #conditions_term {
-    width: 100%;
-    grid-column: span 11;
-  }
-
-  #conditions_submit {
-    justify-self: start;
-    grid-column: span 1;
-  }
-}

@@ -89,11 +89,16 @@
   }
 
   .search-options {
-    clear: both;
-    float: left;
-    margin-left: 4em;
-    margin-top: 10px;
-    width: 400px;
+    display: flex;
+    justify-content: space-between;
+
+    a:first-child {
+      margin-right: auto; /* Push the first item to the left by setting margin-right to auto */
+    }
+
+    a {
+      padding: 0 5px 0;
+    }
   }
 
   .search-result-count {

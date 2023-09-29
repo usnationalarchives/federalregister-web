@@ -49,6 +49,17 @@
 
   // Experimental advanced search form adjustments
   // =====================================
+
+  //Search bar changes
+
+  #expected_result_count {
+    float: right;
+  }
+
+  .simple div.actions {
+    clear: both;
+  }
+
   .search .advanced {
     // JS Radio buttons
     fieldset.date_options legend,  fieldset.cfr legend, fieldset.zip legend{
