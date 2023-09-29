@@ -48,6 +48,24 @@
   .facet_hidden { display: none; }
 }
 
+@media only screen and (max-width: $small-viewport-width) {
+
+  #search-results {
+    // Search Results Header
+    .small-stack {
+      margin-right: 0px;
+      font-size: 12px;
+    }
+
+    .filterable-list-container .filterable-list-info h2 .item-count {
+      font-size: 16px;
+    }  
+
+    .search-info ul.actions {
+      font-size: 12px;
+      li {width: 73px;}
+    }
+
     // Pagination
     .pagination li:not(:nth-child(-n+4)):not(.disabled):not(:nth-last-child(-n+4)):not(.next) a {
       display: none;
@@ -62,3 +80,14 @@
       margin-top: -21px;
     }
 
+    // Search Result Entries
+    .search-result-documents .icon-doctype {
+      right: 9px;
+    }
+
+    .document-clipping-actions .add-to-folder .button .icon-fr2-flag {
+      font-size: 26px;
+    }
+  }
+
+}
