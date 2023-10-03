@@ -1,4 +1,4 @@
-.document-search {
+.document-search, .public-inspection-document-search {
   display: grid;
   column-gap: 2rem;
 }
@@ -16,7 +16,7 @@
 }
 
 @media only screen and (max-width: $small-viewport-width) {
-  .document-search {
+  .document-search, .public-inspection-document-search {
     grid-template-areas: "search-result-header"
                          "search-results"
                          "search-facets"

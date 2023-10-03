@@ -95,3 +95,12 @@
     &:hover { color: $color-public-inspection-dark; }
   }
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  
+  .tabs li.on {
+    width: auto;
+    min-width: 152px !important;
+  }
+
+}

@@ -13,9 +13,7 @@
 <%= render partial: 'public_inspection_documents/metadata_content_area', locals: {document: @document} %>
 
 <%= bootstrap_context_wrapper do %>
-    <div class="clearfix"></div>
-
-    <div class="row doc doc-public-inspection">
+    <div class="doc doc-public-inspection">
       <%= render partial: 'public_inspection_documents/page_content', locals: {document: @document} %>
       <%= render partial: 'public_inspection_documents/document_side_bar', locals: {document: @document} %>
     </div>

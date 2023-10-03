@@ -6,7 +6,7 @@
   margin-right: auto;
 }
 
-body:not(#special.home):not(#agencies.index):not(#documents.show) {
+body:not(#special.home):not(#agencies.index):not(#documents.show):not(#public_inspection_documents.show) {
   // Ensures the header elements (nav and title) stretch across the viewport in fixed width mobile nav
   .header { @include fixed-width-layout-properties() }
   .main-title-bar { @include fixed-width-layout-properties() }
@@ -20,7 +20,7 @@ body:not(#special.home):not(#agencies.index):not(#documents.show) {
   }
 
   // remove fixed width setting for small viewports
-  body#special.home, body#agencies.index, body#documents.show  {
+  body#special.home, body#agencies.index, body#documents.show, body#public_inspection_documents.show  {
     .bootstrap-scope {
       .wrapper {
         .container.fixed {
@@ -31,10 +31,7 @@ body:not(#special.home):not(#agencies.index):not(#documents.show) {
   }
 
   // Ensures accurate spacing between icons and descriptions in fixed width mobile nav
-  body:not(#special.home):not(#agencies.index):not(#documents.show) {
-    * {
-      color: red;
-    }
+  body:not(#special.home):not(#agencies.index):not(#documents.show):not(#public_inspection_documents.show) {
     #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a, #non-essential-nav .top_nav {
       grid-template-columns: 3.5% 1fr;
     }

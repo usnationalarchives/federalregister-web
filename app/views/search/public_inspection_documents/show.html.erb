@@ -23,17 +23,15 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row public-inspection-document-search search">
-    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-
-      <%= esi(public_inspection_search_header_path(params.except(:action))) %>
+  <div class="public-inspection-document-search search">
+      <div id="search-result-header">
+        <%= esi(public_inspection_search_header_path(params.except(:action))) %>
+      </div>
 
       <% unless @presenter.search.conditions_blank? %>
         <% if @presenter.search.valid? %>
-          <div class="row">
             <% if @presenter.search.results.present? %>
-              <div class="<%= bootstrap_col(xs: 3, md: 3) %>">
-                <div class="facets">
+                <div id="search-facets" class="facets">
                 <%= esi(
                   public_inspection_search_facets_path(
                     @presenter.search.params.merge(facet: 'type')
@@ -46,11 +44,9 @@
                   )
                 ) unless @presenter.search.agencies.present? %>
                 </div>
-              </div>
             <% end %>
 
-            <% col_span = @presenter.search.results.present? ? 9 : 12 %>
-            <div class="<%= bootstrap_col(xs: col_span, md: col_span) %>">
+            <div id="search-results">
               <%# if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') && @presenter.search.params[:order].blank? %>
                 <%#= esi( public_inspection_search_suggestions_path(
                     @presenter.search.params.except(:action)
@@ -60,7 +56,7 @@
 
               <%= esi(public_inspection_search_results_path(@presenter.search.params)) %>
             </div>
-          </div>
+          <%# </div> %>
         <% else %>
           <% unless @presenter.search.valid? %>
             <div class="flash-message error">
@@ -78,6 +74,6 @@
         <% end %>
       <% end %>
 
-    </div>
+    <%# </div> %>
   </div>
 <% end %>
