@@ -57,7 +57,7 @@ Rails.application.config.content_security_policy do |policy|
   ]
   policy.img_src *img_srcs
 
-  policy.form_action :self, :report_sample, "#{Settings.services.fr_profile_base_url}"
+  policy.form_action :self, :report_sample, "#{Settings.services.ofr.profile.base_url}"
 
   policy.object_src :none
 

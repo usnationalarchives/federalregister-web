@@ -63,7 +63,7 @@ class FrIndexPresenter
   end
 
   def index_json_url
-    "#{Settings.federal_register.internal_base_url}/fr_index/json/#{year}/index.json"
+    "#{Settings.services.fr.web.internal_base_url}/fr_index/json/#{year}/index.json"
   end
 
   def date_last_issue_published

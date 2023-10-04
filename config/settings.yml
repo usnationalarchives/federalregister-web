@@ -52,10 +52,6 @@ database:
 feature_flags:
   # TODO: refactor announcements to not need feature flag
   announcements: false
-  events_search: false
-  unified_agenda:
-    search: false
-  regulatory_plan: false
 
 lograge:
   enabled: true
@@ -66,7 +62,7 @@ rails:
   report_deprecations: false
 
 # host is retrived from credentials
-# development environment uses ENV vars for this so key is defined here
+# development/test environment uses ENV vars for this so key is defined here
 redis:
   db: 0
   host:
