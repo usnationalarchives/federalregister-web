@@ -7,3 +7,29 @@ s3_buckets:
   image_variants: img.fr2.criticaljuncture.org
   private_images: private.images.fr2.criticaljuncture.org
   public_images: images.fr2.criticaljuncture.org
+
+################################################################
+# these are set by helm based on deployment settings
+# below are examples/staging defaults
+################################################################
+
+services:
+  fr:
+    api_core:
+      base_url: https://fr2.criticaljuncture.org/api/v1
+      internal_base_url: http://varnish.fr.svc.cluster.local:6081/api/v1
+
+    archives:
+      internal_base_url: http://archives.fr.svc.cluster.local:3000
+
+    web:
+      base_url: https://fr2.criticaljuncture.org
+      internal_base_url: http://varnish.fr.svc.cluster.local:6081
+      oidc_url: https://fr2.criticaljuncture.org/my/profile
+      oidc_redirect_url: https://fr2.criticaljuncture.org/auth/ofr/callback
+  ofr:
+    profile:
+      base_url: https://fr2.criticaljuncture.org/my/profile
+      internal_base_url: http://varnish.fr.svc.cluster.local:6081/my/profile
+    wordpress:
+      internal_base_url: http://varnish.fr.svc.cluster.local:6081
