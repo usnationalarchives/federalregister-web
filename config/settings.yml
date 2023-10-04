@@ -83,7 +83,7 @@ sidekiq:
 varnish:
   enable_cache_headers: true
   # expected to be set by helm/deployment
-  host:
+  host: varnish.fr-prod.svc.cluster.local
   port: 6082
 
 zendesk:

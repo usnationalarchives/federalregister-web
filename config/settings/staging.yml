@@ -33,3 +33,6 @@ services:
       internal_base_url: http://varnish.fr.svc.cluster.local:6081/my/profile
     wordpress:
       internal_base_url: http://varnish.fr.svc.cluster.local:6081
+
+varnish:
+  host: varnish.fr.svc.cluster.local
