@@ -99,6 +99,39 @@
       }
     }
 
+    // Reset labels/legend alignment to the left side of the form
+    fieldset.choices legend {
+      width: auto !important;
+      margin-left: 0px;
+      padding-left: 0px;
+      margin-bottom: 0px;
+
+      label, span {
+        width: auto !important;
+      }
+    }
+
+    // Experimental
+    $left-checkbox-margin: 15px;
+    #conditions_significant_input {
+      margin-left: $left-checkbox-margin;
+    }
+    ol.choices-group {
+      li {
+        margin-left: $left-checkbox-margin;
+        display: block !important;
+      }
+
+      li:last-child {
+        margin-bottom: 35px;
+      }
+    }
+
+    // Initially-hidden Presidential Document Checkbox Fields
+    fieldset.choices ol li {
+      clear: both;
+    }
+
     // Input Wrapper Padding
     .input-wrapper {
       padding: 0 1em 0 !important;
@@ -111,15 +144,6 @@
       .bsmListItem {
         width: 100% !important;
       }
-    }
-
-    // Manual Adjustments
-    #conditions_type_input legend label{
-      margin-left: -25px;
-    }
-
-    #conditions_small_entity_ids_input legend label{
-      margin-left: -76px;
     }
 
   }
