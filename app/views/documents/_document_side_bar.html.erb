@@ -1,7 +1,7 @@
 <div class="col-md-3 doc-aside doc-details">
   <%= render partial: 'doc_details', locals: {document: document} %>
 
-  <% if document.page_views[:last_updated] %>
+  <% if document.google_analytics_data_expected? && document.page_views[:last_updated] %>
     <div class="row">
       <%= fr_details_box(
         FrBox.build(

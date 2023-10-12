@@ -28,6 +28,12 @@ class PublicInspectionDocumentDecorator < ApplicationDecorator
     lambda {|doc| [0, 0, doc.document_number] }
   end
 
+  def google_analytics_data_expected?
+    # GA data is provided on a delay of 24-48 hours
+    filed_at_date = filed_at&.to_date
+    filed_at_date != Date.current
+  end
+
   private
 
   def revoked?

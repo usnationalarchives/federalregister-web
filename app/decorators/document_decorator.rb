@@ -150,4 +150,9 @@ class DocumentDecorator < ApplicationDecorator
     lambda {|doc| [doc.start_page, doc.end_page, doc.document_number] }
   end
 
+  def google_analytics_data_expected?
+    # GA data is provided on a delay of 24-48 hours
+    publication_date != Date.current
+  end
+
 end
