@@ -10,6 +10,14 @@ body:not(#special.home):not(#agencies.index):not(#documents.show):not(#public_in
   // Ensures the header elements (nav and title) stretch across the viewport in fixed width mobile nav
   .header { @include fixed-width-layout-properties() }
   .main-title-bar { @include fixed-width-layout-properties() }
+
+  @media only screen and (max-width: #{$small-viewport-width}) {
+    // Ensures accurate spacing between icons and descriptions in fixed width mobile nav
+    #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a, #non-essential-nav .top_nav {
+      grid-template-columns: 3.5% 1fr;
+    }
+  }
+
 }
 
 
@@ -30,12 +38,6 @@ body:not(#special.home):not(#agencies.index):not(#documents.show):not(#public_in
     }
   }
 
-  // Ensures accurate spacing between icons and descriptions in fixed width mobile nav
-  body:not(#special.home):not(#agencies.index):not(#documents.show):not(#public_inspection_documents.show):not(#agencies.show) {
-    #non-essential-nav .subnav:not(.reader-aids-list):not(.myfr2-list) a, #non-essential-nav .top_nav {
-      grid-template-columns: 3.5% 1fr;
-    }
-  }
 }
 
 // Some MyFR pages need a fixed layout specification to prevent bleeding off the page
