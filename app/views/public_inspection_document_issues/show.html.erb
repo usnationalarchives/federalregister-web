@@ -17,53 +17,39 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row">
-    <div>
-      <%= render partial: 'public_inspection_document_issues/summary', locals: {
-        home: false,
-        presenter: @presenter
-      } %>
-    </div>
-  </div>
+  <div id="public-inspection-issue-grid">
+    <%= render partial: 'public_inspection_document_issues/summary', locals: {
+      home: false,
+      presenter: @presenter
+    } %>
 
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-content doc-toc">
+    <div class="doc-content doc-toc">
       <%= render partial: 'info_box' %>
     </div>
-    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-subscribe">
-      <div class="row">
-        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-          <%= subscribe_box(search_type: 'PublicInspectionDocument') %>
-        </div>
+    <div class="doc-subscribe">
+      <div>
+        <%= subscribe_box(search_type: 'PublicInspectionDocument') %>
       </div>
 
-      <div class="row">
-        <div class="<%= bootstrap_col xs:12, md:12 %>">
-          <div class="date_input_holder">
-            <h2>Go to a specific date</h2>
-            <%= form_tag public_inspection_issues_search_path, :method => :get, :id => "date_selector" do %>
-              <label>Go to a specific date:</label>
-              <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
-              <%= submit_tag 'Go' %>
-            <% end %>
-          </div>
-        </div>
+      <div class="date_input_holder">
+        <h2>Go to a specific date</h2>
+        <%= form_tag public_inspection_issues_search_path, :method => :get, :id => "date_selector" do %>
+          <label>Go to a specific date:</label>
+          <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+          <%= submit_tag 'Go' %>
+        <% end %>
       </div>
 
-      <div class="row">
-        <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper"
-             data-document-type-js="public-inspection">
-          <%= public_inspection_calendar_esi_for(
-            @presenter.date,
-            current_date: @presenter.date.to_s(:iso)
-          ) %>
-        </div>
+      <div class="calendar-wrapper"
+            data-document-type-js="public-inspection">
+        <%= public_inspection_calendar_esi_for(
+          @presenter.date,
+          current_date: @presenter.date.to_s(:iso)
+        ) %>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
+    <div class="special-filing-toc doc-toc">
       <%= fr_content_box(
         FrBox.build(
           @special_filings_presenter.fr_content_box_type,
@@ -98,7 +84,7 @@
       <% end %>
     </div>
 
-    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
+    <div class="special-filing-toc-nav doc-toc-nav">
       <% if @special_filings_presenter.agencies.present? %>
         <%= fr_details_box(
           FrBox.build(
@@ -115,11 +101,7 @@
       <% end %>
     </div>
 
-    <div class="clearfix" style="height: 100px;"></div>
-  </div>
-
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
+    <div class="regular-filing-toc doc-toc">
       <%= fr_content_box(
         FrBox.build(
           @regular_filings_presenter.fr_content_box_type,
@@ -154,7 +136,7 @@
       <% end %>
     </div>
 
-    <div class="<%= bootstrap_col xs: 3, md: 3 %> doc-toc-nav">
+    <div class="regular-filing-toc-nav doc-toc-nav">
       <% if @regular_filings_presenter.agencies.present? %>
         <%= fr_details_box(
           FrBox.build(
@@ -170,7 +152,6 @@
         <% end %>
       <% end %>
     </div>
-  </div>
 
-  <div class="clearfix" style="height: 100px;"></div>
+  </div>
 <% end %>

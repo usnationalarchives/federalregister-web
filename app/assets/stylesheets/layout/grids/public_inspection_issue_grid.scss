@@ -1,0 +1,66 @@
+#public-inspection-issue-grid {
+  display: grid;
+  margin-top: 20px;
+
+  .doc-content {grid-area: doc-content}
+  .special-filing-toc {grid-area: special-filing-toc}
+  .special-filing-toc-nav {grid-area: special-filing-toc-nav}
+  .regular-filing-toc {grid-area: regular-filing-toc}
+  .regular-filing-toc-nav {grid-area: regular-filing-toc-nav}
+
+  @media only screen and (max-width: $small-viewport-width) {
+    grid-row-gap: 20px;
+    grid-template-areas: "pi-metadata-bar"
+    "doc-content"
+    "doc-subscribe"
+    "special-filing-toc-nav"
+    "special-filing-toc"
+    "regular-filing-toc-nav"
+    "regular-filing-toc";
+
+    .doc-toc {
+
+      .toc-category-level, .toc-level-1, .toc-level-2 {
+        margin-left: 10px;
+      }
+
+      .fr-box-official,
+      .fr-box-public-inspection,
+      .fr-box-published {
+        // TODO: Refactor into a shared sass variable that can be shared between the document issues grid
+        h1 { font-size: modular-scale(2); }
+        h2 { font-size: modular-scale(1); }
+        h3 { font-size: modular-scale(0); }
+        h4 { font-size: modular-scale(-1); }
+        h5 { font-size: modular-scale(-2); }
+        h6 { font-size: modular-scale(-3); }
+        h7 { font-size: modular-scale(-4); }
+
+        dl, dt, dd, dd a, dt a { font-size: modular-scale(-2); }
+      }
+
+      .info-box .icon-fr2-info_circle {
+        font-size: 47px;
+      }
+      
+      .fr-box-public-inspection .content-block {
+        // Move the hand icon to the left
+        .doc-background {
+          left: 0px;
+        }
+      }
+
+    }
+
+  }
+
+  @media only screen and (min-width: $small-viewport-width) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-template-areas: "pi-metadata-bar pi-metadata-bar pi-metadata-bar pi-metadata-bar"
+    "doc-content doc-content doc-content doc-subscribe"
+    "special-filing-toc special-filing-toc special-filing-toc special-filing-toc-nav"
+    "regular-filing-toc regular-filing-toc regular-filing-toc regular-filing-toc-nav"
+  }
+
+}
