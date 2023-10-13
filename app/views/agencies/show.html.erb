@@ -15,46 +15,37 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row agencies">
-    <div class="<%= bootstrap_col(xs: 12, md:12) %>">
+    <div id="agency-grid" class="agencies">
 
       <div class="agency-header">
-        <div class="row">
-          <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
-            <h1>
-              <% if @presenter.agency.logo.present? %>
-                <%= image_tag 'orange_loader.gif',
-                  alt: 'agency logo',
-                  class: 'agency-logo loading',
-                  data: {src: @presenter.agency.logo_url(:thumb)} %>
-              <% end %>
-              <%= @presenter.name %>
-            </h1>
+        <h1>
+          <% if @presenter.agency.logo.present? %>
+            <%= image_tag 'orange_loader.gif',
+              alt: 'agency logo',
+              class: 'agency-logo loading',
+              data: {src: @presenter.agency.logo_url(:thumb)} %>
+          <% end %>
+          <%= @presenter.name %>
+        </h1>
 
-            <div class="search-actions">
-              <p class="subscribe-wrapper pull-right">
-                <%= subscribe_link(@presenter.search_conditions) %>
-              </p>
-            </div>
-          </div>
+        <div class="search-actions">
+          <p class="subscribe-wrapper pull-right">
+            <%= subscribe_link(@presenter.search_conditions) %>
+          </p>
         </div>
       </div>
 
       <div class="page-summary">
-        <div class="row">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-            <% if @presenter.agency.description.present? %>
-              <div class="description">
-                <%= add_citation_links(
-                    simple_format(@presenter.agency.description)
-                ).html_safe %>
-              </div>
-            <% end %>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+        <% if @presenter.agency.description.present? %>
+          <div class="description">
+            <%= add_citation_links(
+                simple_format(@presenter.agency.description)
+            ).html_safe %>
+          </div>
+        <% end %>
+
+          <div>
             <dl class="fr-list fr-list-inline sub-agency-list">
               <% if @presenter.agency_url.present? %>
                 <dt>Agency URL:</dt>
@@ -81,18 +72,14 @@
               <% end %>
             </dl>
           </div>
-        </div>
       </div>
 
       <% if @presenter.total_significant_document_count > 0 %>
-        <div class="row row-eq-height">
-          <div class="<%= bootstrap_col(xs: 8, md: 8) %>">
             <%= render partial: 'embedded_search', locals: {
               agency: @presenter.agency
             } %>
-          </div>
 
-          <div class="<%= bootstrap_col(xs: 4, md: 4) %> jump-menu">
+          <div class="jump-menu">
             <h6>On this Page</h6>
 
             <ul class="fr-list with-bullets enhanced">
@@ -115,13 +102,10 @@
               <% end %>
             </ul>
           </div>
-        </div>
       <% end %>
 
       <% if @presenter.total_public_inspection_document_count > 0 %>
-        <div class="row">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
-            id='pi-documents'>
+          <div id='pi-documents'>
             <%= embedded_search_results_with_stacked_header(
               @presenter.public_inspection_document_results,
               "Pending <span>Publication</span>",
@@ -129,13 +113,10 @@
               document_type: :public_inspection,
               footer: false) %>
           </div>
-        </div>
       <% end %>
 
       <% if @presenter.total_significant_document_count > 0 %>
-        <div class="row">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
-            id='significant-documents'>
+          <div id='significant-documents'>
 
             <%= embedded_search_results_with_stacked_header(
               @presenter.significant_document_results,
@@ -143,21 +124,16 @@
               "Significant Documents",
               footer: false) %>
           </div>
-        </div>
       <% end %>
 
       <% if @presenter.total_document_count > 0 %>
-        <div class="row">
-          <div class="<%= bootstrap_col(xs: 12, md: 12) %>"
-            id='documents'>
+          <div id='documents'>
             <%= embedded_search_results_with_stacked_header(
               @presenter.document_results,
               "Listing <span>of</span>",
               "Recently Published Documents",
               footer: false) %>
           </div>
-        </div>
       <% end %>
     </div>
-  </div>
 <% end %>

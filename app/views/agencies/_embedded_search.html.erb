@@ -1,4 +1,4 @@
-<div class="embedded_search search_bar search-bar">
+<div id="embedded-search-area" class="embedded_search search-bar home-search-embedded">
   <%= semantic_form_for :conditions,
     url: documents_search_path,
     authenticity_token: false,
@@ -8,21 +8,22 @@
       class: 'documents'
     } do |f| %>
 
-    <label>Search Agency</label>
-    <%= f.text_field :term,
-      class: 'search-term',
-      placeholder: 'Search term or citation' %>
+    <div id="search-input">
+      <label class="sr-only">Search Agency</label>
+      <%= f.text_field :term,
+        class: 'search-term',
+        placeholder: 'Search agency' %>
 
-    <%= f.button fr_icon('Search').html_safe,
-      class: 'search-submit',
-      id: 'conditions_submit',
-      "aria-label" => 'Search' %>
-
-    <ul>
-      <%= content_tag(:li, class: "hidden optional", id: "conditions_agencies_input") do %>
-        <%= hidden_field_tag('conditions[agencies][]', agency.slug) %>
-      <% end %>
-    </ul>
+      <%= f.button fr_icon('Search').html_safe,
+        class: 'search-submit',
+        id: 'conditions_submit',
+        "aria-label" => 'Search' %>
+      <ul>
+        <%= content_tag(:li, class: "hidden optional", id: "conditions_agencies_input") do %>
+          <%= hidden_field_tag('conditions[agencies][]', agency.slug) %>
+        <% end %>
+      </ul>
+    </div>
 
     <span id="expected_result_count" class="search-result-count">
       <span class="document-count"></span>

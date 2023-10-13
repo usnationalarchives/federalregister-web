@@ -1,0 +1,63 @@
+#agency-grid {
+  display: grid;  
+
+  .agency-header {
+    grid-area: agency-header;
+  }
+
+  .page-summary {
+    grid-area: page-summary;
+  }
+
+  #embedded-search-area {
+    grid-area: embedded-search-area;
+  }
+
+  .jump-menu {
+    grid-area: jump-menu;
+  }
+
+  #significant-documents {
+    grid-area: significant-documents;
+  }
+
+  #pi-documents {
+    grid-area: pi-documents;
+  }
+
+  #documents {
+    grid-area: documents;
+  }
+
+  @media only screen and (max-width: $small-viewport-width) {
+      grid-template-areas: "agency-header"
+                          "page-summary"
+                          "embedded-search-area"
+                          "jump-menu"
+                          "pi-documents"
+                          "significant-documents"
+                          "documents";
+
+      .jump-menu {
+        margin-top: 15px;
+      }
+
+  }
+
+  @media only screen and (min-width: $small-viewport-width) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas: "agency-header agency-header agency-header agency-header"
+                          "page-summary page-summary page-summary page-summary"
+                          "embedded-search-area embedded-search-area embedded-search-area jump-menu"
+                          "pi-documents pi-documents pi-documents pi-documents"
+                          "significant-documents significant-documents significant-documents significant-documents"
+                          "documents documents documents documents";
+
+      .jump-menu {
+        margin-left: 15px;
+      }
+
+  }
+
+}
+

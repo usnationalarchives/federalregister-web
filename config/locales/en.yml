@@ -100,6 +100,8 @@ en:
     unknown:
       modal_title: "Communications Error"
       modal_html: "<p>We're sorry we are currently unable to communicate with Regulations.gov.</p> <p>You may want try again in a few moments, attempt to comment via Regulations.gov: %{regulations_dot_gov_link}, or via any other method described in the document.</p>"
+  search:
+    placeholder: "Enter a search term or citation"
   sessions:
     sign_in: "You will be redirected back to the Federal Register after you have signed in or created an account."
   subscriptions:
