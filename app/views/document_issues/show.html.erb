@@ -15,17 +15,13 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row">
-    <div>
-      <%= render partial: 'document_issues/summary', locals: {
-        home: false,
-        presenter: @doc_presenter
-      } %>
-    </div>
-  </div>
+  <div id="document-issue-grid">
+    <%= render partial: 'document_issues/summary', locals: {
+      home: false,
+      presenter: @doc_presenter
+    } %>
 
-  <div class="row">
-    <div class="<%= bootstrap_col xs: 9, md: 9 %> doc-toc">
+    <div class="doc-toc">
       <% if @presenter.editorial_note_title %>
         <%= render partial: 'editorial_note_box',
               locals: {
@@ -50,7 +46,7 @@
       <% end %>
     </div>
 
-    <div class="<%= bootstrap_col xs: 3, md: 3 %>">
+    <div id="subscribe-cal-nav-wrapper">
       <div class="doc-subscribe">
         <% if DocumentIssue.pdf_download_available?(@presenter.date) %>
           <div class="download-wrapper <%= @presenter.official_documents? ? 'official' : '' %>">
@@ -60,32 +56,26 @@
           </div>
         <% end %>
 
-        <div class="row">
-          <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-            <%= subscribe_box %>
+        <div>
+          <%= subscribe_box %>
+        </div>
+
+        <div>
+          <div class="date_input_holder">
+            <h2>Go to a specific date</h2>
+            <%= form_tag document_issues_search_path, :method => :get, :id => "date_selector" do %>
+              <label>Go to a specific date:</label>
+              <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
+              <%= submit_tag 'Go' %>
+            <% end %>
           </div>
         </div>
 
-        <div class="row">
-          <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-            <div class="date_input_holder">
-              <h2>Go to a specific date</h2>
-              <%= form_tag document_issues_search_path, :method => :get, :id => "date_selector" do %>
-                <label>Go to a specific date:</label>
-                <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
-                <%= submit_tag 'Go' %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="<%= bootstrap_col xs: 12, md: 12 %> calendar-wrapper">
-            <%= document_calendar_esi_for(
-              @presenter.date,
-              current_date: @presenter.date.to_s(:iso)
-            ) %>
-          </div>
+        <div class="calendar-wrapper">
+          <%= helpers.document_calendar_esi_for(
+            @presenter.date,
+            current_date: @presenter.date.to_s(:iso)
+          ) %>
         </div>
       </div>
 
@@ -104,7 +94,5 @@
         <% end %>
       </div>
     </div>
-  </div>
 
-  <div class="clearfix" style="height: 100px;"></div>
 <% end %>
