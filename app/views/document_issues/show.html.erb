@@ -72,7 +72,7 @@
         </div>
 
         <div class="calendar-wrapper">
-          <%= helpers.document_calendar_esi_for(
+          <%= document_calendar_esi_for(
             @presenter.date,
             current_date: @presenter.date.to_s(:iso)
           ) %>
