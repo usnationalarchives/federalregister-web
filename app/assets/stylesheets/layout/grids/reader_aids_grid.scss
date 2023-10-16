@@ -1,0 +1,17 @@
+.reader-aids-section {
+  display: grid;
+
+  .section {grid-area: section;}
+  .navigation {grid-area: navigation;}
+
+  @media only screen and (max-width: $small-viewport-width) {
+    grid-template-areas: "navigation"
+                         "section";
+  }
+  
+  @media only screen and (min-width: $small-viewport-width) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "section section section navigation";
+  }
+
+}
