@@ -5,8 +5,8 @@
         <div class="row toc-document-metadata">
           <div class="with-ajax-popover" data-document-title="<%=document.title%>"
                data-document-number="<%= document.document_number %>">
-            <div class="<%= bootstrap_col xs: 1, md: 1 %>"></div>
-            <div class="<%= bootstrap_col xs: 2, md: 2 %>">
+            <div class="<%= bootstrap_col xs: 0, md: 1 %>"></div>
+            <div class="<%= bootstrap_col xs: 2, md: 2 %> month-name">
               <% if index == 0 %>
                 <%= Date::MONTHNAMES[month] %>
               <% end %>
@@ -17,7 +17,7 @@
                 <dd><%= link_to(document.publication_date, document_issue_url(document.publication_date)) %></dd>
               </dl>
             </div>
-            <div class="<%= bootstrap_col xs: 4, md: 4 %>">
+            <div class="<%= bootstrap_col xs: 5, md: 4 %>">
               <dl>
                 <dt>FR Document</dt>
                 <dd class="document_number">

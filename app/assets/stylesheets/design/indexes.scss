@@ -79,6 +79,48 @@
       padding-top: 1px;
     }
   }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    table.agency-stats {
+      min-width: initial !important;
+    }
+
+    .title-bar form {
+      position: static !important;
+    }
+
+    // Reduce Indentions
+    .toc-category-level, .toc-level-1, .toc-level-2, .toc-subject-level, .toc-documents {
+      margin-left: 10px !important;
+    }
+
+    .with-ajax-popover > div, .rw.toc-document-metadata {
+      padding-left: 0px;
+    }
+
+    // TODO: Refactor into a common Sass variable
+    .fr-box-official,
+    .fr-box-public-inspection,
+    .fr-box-published,
+    .fr-box-reader-aid {
+      h1 { font-size: modular-scale(2); }
+      h2 { font-size: modular-scale(1); }
+      h3 { font-size: modular-scale(0); }
+      h4 { font-size: modular-scale(-1); }
+      h5 { font-size: modular-scale(-2); }
+      h6 { font-size: modular-scale(-3); }
+      h7 { font-size: modular-scale(-4); }
+
+      dl, dt, dd, dd a, dt a { font-size: modular-scale(-2) !important; }
+    }
+
+    .month-name {
+      font-weight: bold;
+      font-size: modular-scale(-2);
+    }
+
+  }
+
 }
 
 // END FR INDEX OF INDEXES PAGE
@@ -200,10 +242,6 @@ $tipsy-popover-inner-width: 580px;
       }
     }
   }
-}
 
-@media only screen and (max-width: $small-viewport-width) {
-  .fr-index .title-bar form {
-    position: static !important;
-  }
+
 }
