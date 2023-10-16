@@ -201,3 +201,9 @@ $tipsy-popover-inner-width: 580px;
     }
   }
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  .fr-index .title-bar form {
+    position: static !important;
+  }
+}
