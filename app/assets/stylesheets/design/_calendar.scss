@@ -113,4 +113,28 @@
   }
 
   .otherMonth { background: $fr-gray-10; }
+
+
+}
+
+@media only screen and (max-width: $small-viewport-width) {
+  .date_input_holder, .calendar-wrapper { margin-top: $row-gap;}
+
+  #date {width: 87%;}
+
+  .calendar-wrapper {
+    height: 309px;
+  }
+
+  .calendar {
+    height: 100%;
+    width: 100%;
+
+    td.published, td.current-issue {background: $color-enhanced-light !important;}
+
+    td a {
+      line-height: 0px;
+    }
+
+  }
 }
