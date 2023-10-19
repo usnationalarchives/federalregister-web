@@ -1,5 +1,4 @@
-<div class="row">
-  <div class='<%= bootstrap_col(xs: 12, md: 12) %> title-bar'>
+  <div class='title-bar'>
     <h1><%= presenter.name %></h1>
 
     <%= form_tag('', method: :get, id: "fr-index-year-select") do %>
@@ -9,10 +8,8 @@
         value: presenter.year %>
     <% end %>
   </div>
-</div>
 
-<div class="row">
-  <div class='<%= bootstrap_col(xs: 12, md: 12) %>' id="agency-top-nav">
+  <div id="agency-top-nav">
     <p>
       This index provides descriptive entries and Federal Register page numbers
       for documents published in the daily Federal Register. It includes entries,
@@ -54,4 +51,3 @@
       </p>
     <% end %>
   </div>
-</div>

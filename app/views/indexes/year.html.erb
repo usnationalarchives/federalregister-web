@@ -9,8 +9,7 @@
 
 
 <%= bootstrap_context_wrapper do %>
-  <div class="row fr-index">
-    <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+  <div class="fr-index">
 
       <div class="page-summary">
         <%= render partial: "index_year_header", locals: {
@@ -18,8 +17,7 @@
         } %>
       </div>
 
-      <div class="row">
-        <div class="<%= bootstrap_col xs: 12, md: 12 %> doc-toc">
+        <div class="doc-toc">
           <%= fr_content_box(
             FrBox.build(
               @presenter.fr_content_box_type,
@@ -41,8 +39,6 @@
             <% end %>
           <% end %>
         </div>
-      </div>
 
-    </div>
   </div>
 <% end %>
