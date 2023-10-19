@@ -89,10 +89,7 @@
       position: static !important;
     }
 
-    // Reduce Indentions
-    .toc-category-level, .toc-level-1, .toc-level-2, .toc-subject-level, .toc-documents {
-      margin-left: 10px !important;
-    }
+    .doc-toc h1 a {top: 5px;}
 
     .with-ajax-popover > div, .rw.toc-document-metadata {
       padding-left: 0px;
