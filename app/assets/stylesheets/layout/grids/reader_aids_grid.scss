@@ -1,5 +1,6 @@
 .reader-aids-section {
   display: grid;
+  grid-gap: 20px;
 
   .section {grid-area: section;}
   .navigation {grid-area: navigation;}
