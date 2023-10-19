@@ -30,6 +30,9 @@
     width: auto !important;
   }
 
+  // Ensure adequate top space for outline browser focus on search field
+  #search-input {margin-top: 2px;}
+
   #conditions_term, #document-agency-search {
     // Remove fixed width text input sizes
     width: auto;
