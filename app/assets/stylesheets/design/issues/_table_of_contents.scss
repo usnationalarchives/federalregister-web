@@ -226,11 +226,43 @@
     position: absolute;
     width: 16px;
   }
+
+
+
 }
 
 .bootstrap-scope .doc-toc-nav {
   .count_pill {
     text-align: center;
     width: 16px;
+  }
+}
+
+@media only screen and (max-width: 501px) { 
+  // These media queries tailor the left indention of toc pages
+  .bootstrap-scope .doc-toc {
+
+    $toc-left-indention: 10px;
+
+    // each level of hierarchy gets an additional indentation
+    // which creates our hierarchy
+    .toc-category-level {
+      margin-left: $toc-left-indention;
+    }
+    .toc-subject-level {
+      margin-left: $toc-left-indention;
+    }
+
+    // add an additional level of indentation to documents that
+    // only have one level of heirarchy. This allows all columns
+    // to align and makes the table much easier to scan
+    .toc-level-1 > .toc-documents {
+      margin-left: $toc-left-indention;
+    }
+
+    .toc-document-metadata dl {
+      padding-left: 0px;
+    }
+
   }
 }
