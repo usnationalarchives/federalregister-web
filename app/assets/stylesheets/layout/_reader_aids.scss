@@ -134,4 +134,15 @@
       }
     }
   }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    .reader-aids-index-nav ul li {
+      float: none;
+      width: auto;
+    }
+
+    .search-box form input#conditions_term {
+      width: 85%;
+    }
+  }
 }
