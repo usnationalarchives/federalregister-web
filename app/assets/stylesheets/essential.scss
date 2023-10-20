@@ -1,5 +1,6 @@
 // our original reset file
 @import "reset";
+$small-viewport-width: 501px;
 
 @import "mixins/bullets";
 @import "mixins/css3_utils";
@@ -26,5 +27,4 @@ $em-base: 16px;
 @import "library/tables";
 @import "library/typeface";
 @import "library/utils";
-$small-viewport-width: 501px;
 $metadata-bar-font-size: 18px;

@@ -21,3 +21,7 @@ a.link { text-decoration: underline !important; }
 .visible {
   visibility: visible !important;
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  .desktop-only {display: none;}
+}

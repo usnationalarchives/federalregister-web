@@ -20,6 +20,12 @@
       <ul class="container">
         <%= esi navigation_path %>
         <%= render partial: 'special/navigation/my_fr' %>
+        <li>
+          <%= link_to(root_path, class: "mobile-only trigger_tender top_nav", 'aria-label' => 'Site Feedback') do %>
+            <%= fr_icon('Chat') %>
+            Site Feedback
+          <% end %>
+        </li>
         </div><%# Closes the non-essential nav opened in navigation ESI %>
 
         <li class="inline_search">

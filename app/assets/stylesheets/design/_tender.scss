@@ -22,22 +22,26 @@
 #zendesk-link {
   position: fixed;
   bottom: 12px;
-  right: 12px;
+  right: 24px;
   z-index: 9999;
 
   a {
     background-color: #3f5b75 !important;
-    border-radius: 999rem;
+    border-radius: 50%;
     color: white;
+    display: block;
     font-size: 1.2em;
     font-weight: bold;
     padding: 0.4rem;
+    width: 20px;
+    height: 20px;
+
+    .icon-fr2.icon-fr2-Chat {
+      bottom: 2px;
+    }
+
   }
 
-  .icon-fr-2 {
-    color: white;
-    font-size: 22px;
-  }
 }
 
 @media only screen and (min-width : 510px) and (max-width:768px) {
@@ -53,5 +57,11 @@
     max-width: 360px;
     margin: 0 !important;
     left: 0 !important;
+  }
+
+  .zendesk_ticket {
+    #zendesk_ticket_technical_help_input label {
+      font-size: modular-scale(-2);
+    }
   }
 }
