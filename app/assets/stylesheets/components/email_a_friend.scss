@@ -113,4 +113,24 @@
   }
 
   .g-recaptcha { margin-left: 100px; }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    width: auto;
+
+    form {
+      .label {width: auto;}
+
+      .boolean, .g-recaptcha {margin-left: 0px;}
+
+      input[type=text], textarea  {
+        width: 96%;
+      }
+
+      textarea {
+        display: block;
+        width: 96%;
+      }
+    }
+
+  }
 }
