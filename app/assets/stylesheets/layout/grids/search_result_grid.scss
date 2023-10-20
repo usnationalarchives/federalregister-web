@@ -70,6 +70,10 @@
       text-align: left;
     }
 
+    #conditions_special_filing_input label {
+      padding-left: 0px;
+    }
+
     // Ensure "On or before" range field is aligned properly
     li.date.range.range_end {
       margin-left: 9px !important;
