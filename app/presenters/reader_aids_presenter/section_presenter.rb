@@ -152,7 +152,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     grid_width = 12
     col_width = grid_width / columns
 
-    "col-xs-#{col_width} col-md-#{col_width}"
+    "col-xs-12 col-md-#{col_width}"
   end
 
   def rss_subscription_available?
