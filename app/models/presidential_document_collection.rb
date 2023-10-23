@@ -67,7 +67,13 @@ class PresidentialDocumentCollection
     @results = %w(executive_order).include?(document_types) ? results.reverse : results
 
     if document_types == 'proclamation'
-      @results = @results.sort_by{|document| document.proclamation_number.to_i}.reverse
+      @results = @results.
+        tap do |results|
+          if include_proclamation_number_9494_placeholder?
+            results << proclamation_number_9494
+          end
+        end.
+        sort_by{|document| document.proclamation_number.to_i}.reverse
     else
       @results
     end
@@ -84,5 +90,20 @@ class PresidentialDocumentCollection
 
   def maximum_eo_number
     results.first.executive_order_number
+  end
+
+  private
+
+  def include_proclamation_number_9494_placeholder?
+    year == "2016" &&
+    president == President.find_by_identifier('barack-obama') &&
+    document_types == 'proclamation'
+  end
+
+  def proclamation_number_9494
+    OpenStruct.new(
+      proclamation_number: '9494',
+      note: "Proclamation number 9494 will not be used because a proclamation numbered 9494 appeared on the Public Inspection List on Friday September 16, 2016, but was withdrawn by the issuing agency before publication in the Federal Register."
+    )
   end
 end
