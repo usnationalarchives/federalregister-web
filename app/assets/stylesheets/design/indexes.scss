@@ -175,6 +175,23 @@ $tipsy-popover-inner-width: 580px;
   padding: 3px;
   width: $tipsy-popover-inner-width;
 
+  @media only screen and (max-width: $small-viewport-width) {
+    width: 95%;
+    margin: 0 auto;
+
+    .popover-content {
+      dl dd {width: auto !important;}
+    }
+  }
+
+  @media only screen and (min-width: $small-viewport-width) {
+
+    .popover-content {
+      dl dd {width: 445px;}
+    }
+
+  }
+
   .popover-title {
     background-color: $fr-gray-10;
     border-bottom: 1px solid $fr-gray-10;
@@ -235,7 +252,6 @@ $tipsy-popover-inner-width: 580px;
         float: left;
         margin-bottom: 10px;
         text-align: left;
-        width: 445px;
       }
     }
   }
