@@ -1,7 +1,6 @@
 @mixin title_bar($color, $background-image) {
   clear: both;
   text-align: right;
-  margin-bottom: 2em;
 
   .bar {
     height: 25px;
@@ -28,7 +27,7 @@
     position: relative;
     top: -4px;
     height: 25px;
-    padding: 0 10px;
+    padding: 0 10px 1.5em 10px;
     margin: 0 !important;
 
     .icon-fr2 {
