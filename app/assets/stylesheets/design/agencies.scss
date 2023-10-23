@@ -24,8 +24,14 @@
     .description { margin: 10px 0; }
 
     .sub-agency-list {
-      dt { width: 15%; }
-      dd { width: 85%; }
+      @media only screen and (max-width: $small-viewport-width) {
+        dt { width: 25%; }
+        dd { width: 75%; }
+      }
+      @media only screen and (min-width: $small-viewport-width) {
+        dt { width: 15%; }
+        dd { width: 85%; }
+      }
       dd + dd { margin-left: 15%; }
     }
   }
