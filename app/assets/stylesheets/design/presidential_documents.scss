@@ -167,4 +167,11 @@
     }
 
   }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    .document-type ul.fr-list.fr-list-inline li {
+      float: none;
+      line-height: 30px;
+    }
+  }
 }
