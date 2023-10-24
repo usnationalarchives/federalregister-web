@@ -48,4 +48,8 @@
 
     p.result-count { margin-bottom: 0; }
   }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    .description {height: auto;}
+  }
 }

@@ -11,7 +11,7 @@
     <div class="row">
 
       <% searches.each do |suggested_search| %>
-        <div class="<%= bootstrap_col(xs: 6, md: 6) %>">
+        <div class="<%= bootstrap_col(xs: 12, md: 6) %>">
           <h4>
             <%= link_to(suggested_search.title,
                 suggested_search_path(suggested_search.slug)
@@ -54,7 +54,7 @@
     <div class="row secondary-searches">
 
       <% searches.each do |suggested_search| %>
-        <div class="<%= bootstrap_col(xs: 4, md: 4) %>">
+        <div class="<%= bootstrap_col(xs: 12, md: 4) %>">
           <div class="separator"></div>
           <h6>
             <%= link_to(suggested_search.title,
