@@ -50,7 +50,7 @@
   }
 
 
-  // Experimental advanced search form adjustments
+  // Advanced search form adjustments
   // =====================================
 
   //Search bar changes
@@ -68,6 +68,11 @@
     fieldset.date_options legend,  fieldset.cfr legend, fieldset.zip legend{
       float: none !important;
       text-align: left;
+    }
+
+    .row_of_options {
+      // Prevent wrapping of radio options onto second line in very small width devices (sub 385px)
+      min-width: 320px;
     }
 
     #conditions_special_filing_input label {
@@ -117,7 +122,6 @@
       }
     }
 
-    // Experimental
     $left-checkbox-margin: 15px;
     #conditions_significant_input {
       margin-left: $left-checkbox-margin;
