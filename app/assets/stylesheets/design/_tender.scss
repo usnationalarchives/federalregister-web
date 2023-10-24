@@ -22,19 +22,34 @@
 #zendesk-link {
   position: fixed;
   bottom: 12px;
-  right: 24px;
+  right: 12px;
   z-index: 9999;
 
   a {
     background-color: #3f5b75 !important;
-    border-radius: 50%;
+    border-radius: 999rem;
     color: white;
-    display: block;
     font-size: 1.2em;
     font-weight: bold;
     padding: 0.4rem;
-    width: 20px;
-    height: 20px;
+  }
+
+  .icon-fr-2 {
+    color: white;
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: $small-viewport-width) {
+  #zendesk-link {
+    right: 24px;
+
+    a {
+      border-radius: 50%;
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
 
     .icon-fr2.icon-fr2-Chat {
       bottom: 2px;
