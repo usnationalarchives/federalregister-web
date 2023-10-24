@@ -159,7 +159,7 @@
 
 @media only screen and (max-width: $small-viewport-width) {
   // adjust doc type icons to the left
-  body#agencies.show, body#topics.show {
+  body#agencies.show, body#topics.show, body#suggested_searches.show {
     .icon-doctype {right: 9px;}
   }
 }

@@ -7,7 +7,7 @@
 }
 
 
-body:not(#special.home):not(#agencies.index):not(.controller-path-search-documents):not(.controller-path-search-public_inspection_documents):not(#public_inspection_documents.show):not(#agencies.show):not(#document_issues.current):not(#document_issues.show):not(#public_inspection_document_issues.current):not(#public_inspection_document_issues.show):not(#indexes):not(#reader_aids):not(#sections.show):not(#presidential_documents.index):not(#presidential_documents.by_president_and_year):not(#topics.index):not(#topics.show):not(#presidential_documents.show) {
+body:not(#special.home):not(#agencies.index):not(.controller-path-search-documents):not(.controller-path-search-public_inspection_documents):not(#public_inspection_documents.show):not(#agencies.show):not(#document_issues.current):not(#document_issues.show):not(#public_inspection_document_issues.current):not(#public_inspection_document_issues.show):not(#indexes):not(#reader_aids):not(#sections.show):not(#presidential_documents.index):not(#presidential_documents.by_president_and_year):not(#topics.index):not(#topics.show):not(#presidential_documents.show):not(#suggested_searches.show) {
   // Ensures the header elements (nav and title) stretch across the viewport in fixed width mobile nav
   .header { @include fixed-width-layout-properties() }
   .main-title-bar { @include fixed-width-layout-properties() }
@@ -29,7 +29,7 @@ body:not(#special.home):not(#agencies.index):not(.controller-path-search-documen
   }
 
   // remove fixed width setting for small viewports
-  body#special.home, body#agencies.index, body.controller-path-search-documents, body.controller-path-search-public_inspection_documents, body#public_inspection_documents.show, body#agencies.show, body#document_issues.current, body#document_issues.show, body#public_inspection_document_issues.current, body#public_inspection_document_issues.show, body#indexes, body#reader_aids, body#sections.show, body#presidential_documents.index, #presidential_documents.by_president_and_year, #topics.index, #topics.show, #presidential_documents.show {
+  body#special.home, body#agencies.index, body.controller-path-search-documents, body.controller-path-search-public_inspection_documents, body#public_inspection_documents.show, body#agencies.show, body#document_issues.current, body#document_issues.show, body#public_inspection_document_issues.current, body#public_inspection_document_issues.show, body#indexes, body#reader_aids, body#sections.show, body#presidential_documents.index, #presidential_documents.by_president_and_year, #topics.index, #topics.show, #presidential_documents.show, #suggested_searches.show {
     .bootstrap-scope {
       .wrapper {
         .container.fixed {
