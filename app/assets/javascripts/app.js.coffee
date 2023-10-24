@@ -160,7 +160,7 @@ $(document).ready ()->
     commentLink = $('a#start_comment[data-comment=1]').get(0)
     republishedDocumentCommentUrl = $('#comment-bar').data('republished-document-comment-url')
 
-    if (commentLink || window.location.hash == "#open-comment") && window.location.hash != '#addresses'
+    if (commentLink || window.location.hash == "#open-comment")
       FR2.commentFormHandlerInstance = new FR2.CommentFormHandler(
         $('#comment-bar.comment')
       )
