@@ -14,7 +14,7 @@
 
   <div class="row">
 
-    <div class="<%= bootstrap_col(xs: 4, md: 4) %> item-filters">
+    <div class="<%= bootstrap_col(xs: 12, md: 4) %> item-filters">
       <div class="row">
         <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
           <%= render partial: 'components/filterable_list/filters/live_filter',
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="<%= bootstrap_col(xs: 8, md: 8) %> filterable-list-container">
+    <div class="<%= bootstrap_col(xs: 12, md: 8) %> filterable-list-container">
       <%= render partial: "components/filterable_list/header", locals: {
         item_count: @topics.count,
         sorters: ['alphabetical', 'count'],
