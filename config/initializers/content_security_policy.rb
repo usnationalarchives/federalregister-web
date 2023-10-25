@@ -23,8 +23,7 @@ Rails.application.config.content_security_policy do |policy|
     :unsafe_eval,
     :https,
     :report_sample,
-    :strict_dynamic,
-    'https://use.typekit.net',
+    :strict_dynamic
   ]
 
   if Settings.rack_mini_profiler
