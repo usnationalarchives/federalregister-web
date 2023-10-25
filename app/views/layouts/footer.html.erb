@@ -31,9 +31,6 @@
           <ul class="bullets">
             <li><%= link_to 'Document Search', documents_search_path %></li>
             <li><%= link_to 'Advanced Document Search', documents_search_path(:anchor => 'advanced') %></li>
-            <% if Settings.feature_flags.unified_agenda.search %>
-              <li><%= link_to 'Unified Agenda Search', unified_agenda_search_path %></li>
-            <% end %>
             <li><%= link_to 'Public Inspection Search', public_inspection_search_path %></li>
           </ul>
         </div>

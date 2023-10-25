@@ -22,20 +22,4 @@
       <% end %>
     <% end %>
   </li>
-
-  <% if Settings.feature_flags.unified_agenda.search %>
-    <li class="<%= 'on' if selected == :regulatory_plans %> search-tab unified-agenda">
-      <% if selected == :regulatory_plans %>
-        Unified Agenda Items
-      <% else %>
-        <%= link_to regulatory_plans_search_path(conditions: search.conditions) do %>
-          Unified Agenda Items
-
-          <span class="number_of_results">
-            <%= number_with_delimiter search.regulatory_plan_count %>
-          </span>
-        <% end %>
-      <% end %>
-    </li>
-  <% end %>
 </ul>

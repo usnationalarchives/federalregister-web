@@ -168,28 +168,6 @@ Rails.application.routes.draw do
     }
 
   #
-  # Events Search
-  #
-
-  if Settings.feature_flags.events_search
-    get 'events/search',
-      to: 'events/search#show',
-      as: 'events_search'
-  end
-
-
-  #
-  # Regulatory Plans Search
-  #
-
-  if Settings.feature_flags.regulatory_plan
-    get 'regulatory_plans/search',
-      to: 'regulatory_plans/search#show',
-      as: 'regulatory_plans_search'
-  end
-
-
-  #
   # Citations
   #
 

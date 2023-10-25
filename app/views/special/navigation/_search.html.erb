@@ -22,15 +22,6 @@
       <% end %>
     </li>
 
-    <% if Settings.feature_flags.unified_agenda.search %>
-    <li id='regulations-search'>
-      <%= link_to(regulatory_plans_search_path, class: "unified-agenda-search") do %>
-        <%= fr_icon('merge') %>
-        Unified Agenda Search
-      <% end %>
-    </li>
-    <% end %>
-
     <li id='public-inspection-search'>
       <%= link_to(public_inspection_search_path, class: "public-inspection-search") do %>
         <%= fr_icon('clipboards') %>

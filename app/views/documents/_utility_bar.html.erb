@@ -37,23 +37,7 @@
       </li>
     <% end %>
 
-    <% if Settings.feature_flags.regulatory_plan %>
-      <li class="enhanced">
-        <i class="icon-fr2 icon-fr2-map" role="button" data-toggle="dropdown"></i>
-        <%= fr_utility_nav_box(
-          FrBox.build(
-            :enhanced_content,
-            title: "Enhanced Content - Regulatory Plan"
-          )
-        ) do %>
-          <ul>
-            <li>Regulatory Agenda</li>
-          </ul>
-        <% end %>
-      </li>
-    <% end %>
-
-    <% if document.full_text_available? || Settings.feature_flags.regulatory_plan %>
+    <% if document.full_text_available? %>
       <li class="divider"></li>
     <% end %>
 
