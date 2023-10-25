@@ -17,6 +17,7 @@ $small-viewport-width: 501px;
 $em-base: 16px;
 @import 'bourbon/modular-scale';
 @import 'application_fonts';
+@import "mixins/mobile_font_hierarchy"; // Needs to be defined after modular-scale
 
 @import 'application_colors';
 

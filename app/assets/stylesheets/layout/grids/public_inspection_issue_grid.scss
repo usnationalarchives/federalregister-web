@@ -23,16 +23,7 @@
       .fr-box-official,
       .fr-box-public-inspection,
       .fr-box-published {
-        // TODO: Refactor into a shared sass variable that can be shared between the document issues grid
-        h1 { font-size: modular-scale(2); }
-        h2 { font-size: modular-scale(1); }
-        h3 { font-size: modular-scale(0); }
-        h4 { font-size: modular-scale(-1); }
-        h5 { font-size: modular-scale(-2); }
-        h6 { font-size: modular-scale(-3); }
-        h7 { font-size: modular-scale(-4); }
-
-        dl, dt, dd, dd a, dt a { font-size: modular-scale(-2); }
+        @include mobile-font-hierarchy;
       }
 
       .info-box .icon-fr2-info_circle {

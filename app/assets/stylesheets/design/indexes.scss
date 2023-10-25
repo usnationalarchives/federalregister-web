@@ -100,15 +100,7 @@
     .fr-box-public-inspection,
     .fr-box-published,
     .fr-box-reader-aid {
-      h1 { font-size: modular-scale(2); }
-      h2 { font-size: modular-scale(1); }
-      h3 { font-size: modular-scale(0); }
-      h4 { font-size: modular-scale(-1); }
-      h5 { font-size: modular-scale(-2); }
-      h6 { font-size: modular-scale(-3); }
-      h7 { font-size: modular-scale(-4); }
-
-      dl, dt, dd, dd a, dt a { font-size: modular-scale(-2) !important; }
+      @include mobile-font-hierarchy;
     }
 
     .month-name {
