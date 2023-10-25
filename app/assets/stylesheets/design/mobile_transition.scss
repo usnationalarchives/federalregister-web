@@ -37,6 +37,11 @@ body:not(#special.home):not(#agencies.index):not(.controller-path-search-documen
         }
       }
     }
+
+    // Turn off tooltips in mobile
+    div.tipsy {
+      display: none !important;
+    }
   }
 
 }
