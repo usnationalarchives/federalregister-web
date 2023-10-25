@@ -3,9 +3,17 @@
   h2 { font-size: modular-scale(1); }
   h3 { font-size: modular-scale(0); }
   h4 { font-size: modular-scale(-1); }
-  h5 { font-size: modular-scale(-2); }
+  h5 { font-size: modular-scale(-1); }
   h6 { font-size: modular-scale(-3); }
   h7 { font-size: modular-scale(-4); }
 
-  dl, dt, dd, dd a, dt a { font-size: modular-scale(-2); }
+  dl, dt, dd { font-size: modular-scale(-1); }
+
+  dd a, dt a {
+    font-size: modular-scale(-1) !important;
+  }
+
+  .toc-editorial-note p {
+    font-size: modular-scale(-1);
+  }
 }

@@ -10,14 +10,14 @@
     <% if document.is_a?(String) %>
       <%# render the content if we couldn't find the document %>
       <div class="row toc-document-metadata">
-        <dl class="col-xs-5 col-md-5">
+        <dl class="col-xs-12 col-md-5">
           <dt>FR Document:</dt>
           <dd><%= document %></dd>
         </dl>
       </div>
     <% else %>
       <div class="row toc-document-metadata">
-        <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+        <dl class="<%= bootstrap_col xs: 12, md: 6 %>">
           <dt>Filed on:</dt>
           <dd><%= document.filed_at %></dd>
 
@@ -35,7 +35,7 @@
           <% end %>
         </dl>
 
-        <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
+        <dl class="<%= bootstrap_col xs: 12, md: 6 %>">
           <dt class="toc-pdf">
             <%= link_to document.pdf_url do %>
               <%= fr_icon 'doc-pdf' %> PDF
