@@ -52,6 +52,7 @@ Rails.application.config.content_security_policy do |policy|
     :report_sample,
     'https://s3.amazonaws.com', # FR stores images on s3 but not ideal to be open to all of s3
     "https://www.google-analytics.com",
+    "https://region1.google-analytics.com",
     "https://www.googletagmanager.com/",
     *internal_srcs
   ]
@@ -65,6 +66,7 @@ Rails.application.config.content_security_policy do |policy|
     :self,
     'https://api.honeybadger.io',
     "https://www.google-analytics.com",
+    "https://region1.google-analytics.com",
 
     # zendesk
     'https://ekr.zdassets.com',
