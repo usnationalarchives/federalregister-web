@@ -37,6 +37,15 @@
           <label>Go to a specific date:</label>
           <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
           <%= submit_tag 'Go' %>
+                <%= link_to "Show Date Picker",
+                  "#",
+                  class: "toggle mobile-only calendar-toggle-link",
+                  'data-toggle' => {
+                    toggleTarget: ".calendar-wrapper",
+                    textTarget:   ".calendar-toggle-link",
+                    hideText:     "Hide Date Picker",
+                    showText:     "Show Date Picker"
+                  }.to_json %>
         <% end %>
       </div>
 

@@ -60,7 +60,6 @@
           <%= subscribe_box %>
         </div>
 
-        <div>
           <div class="date_input_holder">
             <h2>Go to a specific date</h2>
             <%= form_tag document_issues_search_path, :method => :get, :id => "date_selector" do %>
@@ -68,8 +67,16 @@
               <%= text_field_tag :date, '', :placeholder => 'MM/DD/YYYY', :class => "browse_search" %>
               <%= submit_tag 'Go' %>
             <% end %>
+            <%= link_to "Show Date Picker",
+                  "#",
+                  class: "toggle mobile-only calendar-toggle-link",
+                  'data-toggle' => {
+                    toggleTarget: ".calendar-wrapper",
+                    textTarget:   ".calendar-toggle-link",
+                    hideText:     "Hide Date Picker",
+                    showText:     "Show Date Picker"
+                  }.to_json %>
           </div>
-        </div>
 
         <div class="calendar-wrapper">
           <%= document_calendar_esi_for(

@@ -33,6 +33,10 @@ $row-gap: 20px;
 
     }
 
+    .calendar-wrapper {
+      display: none;
+    }
+
   }
 
   @media only screen and (min-width: $small-viewport-width) {
