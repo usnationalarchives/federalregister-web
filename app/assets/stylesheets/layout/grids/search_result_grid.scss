@@ -36,6 +36,7 @@
   #conditions_term, #document-agency-search {
     // Remove fixed width text input sizes
     width: auto;
+    min-width: 283px;
   }
 
   .search .advanced fieldset.actions {
