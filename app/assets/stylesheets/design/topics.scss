@@ -23,3 +23,9 @@
 
   .page-summary .frequency-wrapper{ margin-top: 10px; }
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  #topics.index .title-subhead {
+    font-size: modular-scale(1);
+  }
+}

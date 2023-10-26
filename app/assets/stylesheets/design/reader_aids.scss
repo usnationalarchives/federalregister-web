@@ -1,7 +1,11 @@
 .main-title-bar.reader-aids {
-  h1 .icon-fr2.icon-fr2-government {
-    font-size: 32px;
-    top: 2px;
+  h1 {
+    max-width: 72%;
+
+    .icon-fr2.icon-fr2-government {
+      font-size: 32px;
+      top: 2px;
+    }
   }
 }
 
