@@ -11,22 +11,18 @@
 
 <%= bootstrap_context_wrapper do %>
 
-  <div class="row">
-    <div class="<%= bootstrap_col(xs: 12, md: 12) %> with-icon-header">
+    <div class="with-icon-header">
       <%= render partial: 'suggested_searches',
         locals: {
           suggested_searches: @presenter.suggested_searches
         } %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="<%= bootstrap_col(xs: 12, md: 12) %> with-icon-header">
+    <div class="with-icon-header">
       <%= render partial: 'documents_by_date',
         locals: {
           documents_by_date: @presenter.documents_in_last_five_issues,
           search_conditions: @presenter.search_conditions
         } %>
     </div>
-  </div>
 <% end %>
