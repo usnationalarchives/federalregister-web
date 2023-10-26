@@ -39,6 +39,12 @@ $row-gap: 10px;
     "doc-toc doc-toc doc-toc subscribe-cal-nav-wrapper";
   }
 
+  @media only screen and (min-width: $small-viewport-width) {
+    .date_input_holder {
+      margin: 20px 0px;
+    }
+  }
+
 }
 
 

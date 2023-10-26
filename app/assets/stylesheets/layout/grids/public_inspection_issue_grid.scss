@@ -54,4 +54,10 @@
     "regular-filing-toc regular-filing-toc regular-filing-toc regular-filing-toc-nav"
   }
 
+  @media only screen and (min-width: $small-viewport-width) {
+    .date_input_holder {
+      margin: 20px 0px;
+    }
+  }
+
 }
