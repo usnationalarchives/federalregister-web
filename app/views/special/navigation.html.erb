@@ -10,6 +10,12 @@
       <%= fr_icon('home') %>
     <% end %>
   </li>
+  <li>
+    <%= link_to(root_path, class: "mobile-only top_nav", 'aria-label' => 'Home') do %>
+      <%= fr_icon('home') %>
+      Home
+    <% end %>
+  </li>
 
   <%= render partial: 'sections/navigation', locals: {
     presenters: Section.all.map do |section|
