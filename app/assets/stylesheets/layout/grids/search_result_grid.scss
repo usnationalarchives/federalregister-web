@@ -64,8 +64,15 @@
   }
 
   .search .advanced {
+
+    label {
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+    }
+
     // JS Radio buttons
     fieldset.date_options legend,  fieldset.cfr legend, fieldset.zip legend{
+      margin-bottom: 3px;
       float: none !important;
       text-align: left;
     }
@@ -96,6 +103,10 @@
       padding-left: 0px;
     }
 
+    li.agency input {
+      margin-left: 0px !important;
+    }
+
     li.docket, li.reg_id {
       height: auto;
     }
@@ -122,11 +133,21 @@
       }
     }
 
+    #conditions_regulation_id_number_input {
+      padding-top: 1px;
+
+      label {
+        width: auto;
+      }
+    }
+
     $left-checkbox-margin: 15px;
     #conditions_significant_input {
       margin-left: $left-checkbox-margin;
     }
-    ol.choices-group {
+    fieldset.choices ol.choices-group {
+      top: 0;
+
       li {
         margin-left: $left-checkbox-margin;
         display: block !important;
