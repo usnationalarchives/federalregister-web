@@ -12,6 +12,7 @@ public/sitemap*
 
 spec/rspec_example_status_persistence_file.txt
 spec/vcr/*.yml
+data/helveticons_svgs/*
 
 config/settings.local.yml
 config/settings/*.local.yml
@@ -25,6 +26,7 @@ config/varnish.development.vcl
 
 node_modules/*
 
+.irb_history
 .env
 
 vendor/bundle
