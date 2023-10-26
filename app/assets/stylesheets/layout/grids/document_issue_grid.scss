@@ -1,4 +1,4 @@
-$row-gap: 20px;
+$row-gap: 10px;
 
 #document-issue-grid {
   display: grid;
@@ -29,6 +29,7 @@ $row-gap: 20px;
       display: none;
     }
 
+    
   }
 
   @media only screen and (min-width: $small-viewport-width) {
@@ -39,3 +40,5 @@ $row-gap: 20px;
   }
 
 }
+
+
