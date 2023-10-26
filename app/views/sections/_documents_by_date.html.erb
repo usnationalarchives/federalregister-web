@@ -13,7 +13,8 @@
 
         <% index = 0 %>
         <% documents_by_date.each do |date, documents| %>
-          <li class="<%= 'active' if index == 0 %>">
+          <% aria_label = "#{date.strftime('%A')} #{date.strftime('%B')} #{date.day.ordinalize}" %>
+          <li role="tab" class="<%= 'active' if index == 0 %>" aria-label="<%= aria_label %>" aria-selected="<%= index == 0 %>">
             <%= link_to '#', class: "toggle-all",
               'data-toggle' => {
                 toggleTarget: "#documents-published-on-#{date.to_s(:iso)}",
@@ -31,7 +32,7 @@
           <% index += 1 %>
         <% end %>
 
-        <li>
+        <li role="tab" area-selected="false">
           <%= link_to "Search <br> to see older documents.".html_safe,
             documents_search_path(search_conditions) %>
         </li>
