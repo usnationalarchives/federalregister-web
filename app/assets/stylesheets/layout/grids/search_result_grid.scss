@@ -26,8 +26,15 @@
     width: auto !important;
   }
 
-  .search-bar .search-options {
+  .search-bar {
+    li {
+      height: auto;
+      margin-bottom: 0px !important;
+    }
+
+    .search-options {
     width: auto !important;
+    }
   }
 
   // Ensure adequate top space for outline browser focus on search field
@@ -65,6 +72,11 @@
   }
 
   .search .advanced {
+    $advanced-search-fieldset-vertical-spacing: 20px; // The intent of this setting is to provide a setting that can be used to globally affect the spacing between the various kinds of fieldsets on the advanced search form 
+
+    fieldset:not(.show_labels), fieldset.show_labels ol.choices-group, fieldset.show_labels li.string input {
+      margin-bottom: $advanced-search-fieldset-vertical-spacing;
+    }
 
     label {
       padding-bottom: 0px;
@@ -114,6 +126,7 @@
 
     // Checkboxes
     #conditions_type_input legend, #conditions_small_entity_ids_input legend {
+      float: left;
       padding: 0px;
       margin-bottom: 0px;
 
