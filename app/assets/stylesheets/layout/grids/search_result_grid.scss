@@ -57,12 +57,6 @@
     margin-bottom: 7px !important;
   }
 
-
-  // Advanced search form adjustments
-  // =====================================
-
-  //Search bar changes
-
   #expected_result_count {
     float: right;
   }
@@ -71,6 +65,7 @@
     clear: both;
   }
 
+  // Advanced search form adjustments
   .search .advanced {
     $advanced-search-fieldset-vertical-spacing: 20px; // The intent of this setting is to provide a setting that can be used to globally affect the spacing between the various kinds of fieldsets on the advanced search form 
 
@@ -192,9 +187,6 @@
     }
 
   }
-
-
-
 
 }
 
