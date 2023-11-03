@@ -191,7 +191,7 @@
 }
 
 @media only screen and (min-width: $small-viewport-width) {
-  .document-search {
+  .document-search, .public-inspection-document-search {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: "search-result-header search-result-header search-result-header search-result-header"
                           "search-facets search-results search-results search-results "
