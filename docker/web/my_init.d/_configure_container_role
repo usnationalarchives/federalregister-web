@@ -3,7 +3,6 @@
 # only worker container should run migrate and clear cache
 if ! [ "$CONTAINER_ROLE" = "worker" ]; then
   rm -f /etc/my_init.d/migrate
-  rm -f /etc/my_init.d/varnish
   rm -rf /etc/my_init.d/whenever
 fi
 
