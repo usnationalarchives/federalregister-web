@@ -8,7 +8,7 @@
     </title>
 
     <!-- Tell search engines to use the proper hostname and protocol -->
-    <%= tag(:link, :rel  => 'canonical', :href => 'https://www.federalregister.gov' + request.fullpath.sub(/\/$/,'')) %>
+    <%= tag(:link, rel: 'canonical', href: Settings.services.fr.web.base_url + request.fullpath.sub(/\/$/,'')) %>
 
     <link rel="alternate icon" type="image/png" href="<%= image_url('fr2_favicon.png') %>">
     <link rel="icon" type="image/svg+xml" href="<%= image_url('fr2_favicon.svg') %>">
@@ -80,7 +80,7 @@
     <%= yield :templates %>
   </head>
 
-  <body id="<%= controller_name %>" class="<%= action_name %> <%= "controller-path-#{controller_path.gsub("/","-")}" %>"    
+  <body id="<%= controller_name %>" class="<%= action_name %> <%= "controller-path-#{controller_path.gsub("/","-")}" %>"
     data-environment="<%= Rails.env %>"
     data-honeybadger-js-api-key="<%= Rails.application.credentials.dig(:honeybadger, :js_api_key) %>"
     data-honeybadger-js-comment-submission-api-key="<%= Rails.application.credentials.dig(:honeybadger, :js_comment_submission_api_key) %>">
