@@ -12,7 +12,7 @@ Rails.application.config.content_security_policy_nonce_generator = -> request {
 Rails.application.config.content_security_policy_nonce_directives = %w[script-src]
 
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src *[:none, :self]
+  policy.default_src :self
 
   internal_srcs = ["*.federalregister.gov", "*.ecfr.gov"]
   internal_srcs << "*.criticaljuncture.org" unless Rails.env.production?
