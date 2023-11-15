@@ -8,6 +8,10 @@ s3_buckets:
   private_images: private.images.fr2.criticaljuncture.org
   public_images: images.fr2.criticaljuncture.org
 
+sidekiq:
+  # kilobytes (integer) like 1048576 (1GB)
+  memory_threshold: 1048576
+
 ################################################################
 # these are set by helm based on deployment settings
 # below are examples/staging defaults

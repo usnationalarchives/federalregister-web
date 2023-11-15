@@ -12,3 +12,7 @@ s3_buckets:
   image_variants: img.federalregister.gov
   private_images: private.images.federalregister.gov
   public_images: images.federalregister.gov
+
+sidekiq:
+  # kilobytes (integer) like 1048576 (1GB)
+  memory_threshold: 1048576
