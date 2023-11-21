@@ -18,21 +18,15 @@ Rails.application.config.content_security_policy do |policy|
   internal_srcs << "*.criticaljuncture.org" unless Rails.env.production?
 
   script_srcs = [
-    :self,
-    :unsafe_inline,
-    :unsafe_eval,
-    :https,
-    :report_sample,
-    :strict_dynamic
+    :strict_dynamic, # For scripts that have a valid nonce, trust other scripts it loads
+    :self, # Fallback to self for scripts without a valid nonce
+    :report_sample, # Provide a snippet of violation to report URL
+    :unsafe_eval, # Needed by rack-mini-profiler and possibly jQuery
+    # ==========================================================================
+    # Explicit exemptions for older versions of Safari (eg 12.1.2, 15.1) since the 'strict_dynamic' directive may not be fully implemented in these browsers and granting permissions allowing for googletagmanager to be loaded dynamically from already explicitly-allowed scripts (eg those with a valid nonce):
+    "https://www.googletagmanager.com/",
+    "https://www.google-analytics.com/", 
   ]
-
-  if Settings.rack_mini_profiler
-    script_srcs << :unsafe_eval
-  end
-
-  # if Rails.env.test? # poltergeist seems to require this
-  #   script_srcs << :unsafe_eval
-  # end
 
   policy.script_src *script_srcs
 
@@ -43,8 +37,6 @@ Rails.application.config.content_security_policy do |policy|
   ]
   policy.style_src *style_srcs
 
-  policy.font_src :self
-
   img_srcs = [
     :self,
     :data,
@@ -53,6 +45,8 @@ Rails.application.config.content_security_policy do |policy|
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
     "https://www.googletagmanager.com/",
+    "https://p.typekit.net",
+    "https://translate.google.com/",
     *internal_srcs
   ]
   policy.img_src *img_srcs
@@ -63,6 +57,7 @@ Rails.application.config.content_security_policy do |policy|
 
   connect_srcs = [
     :self,
+    'https://www.ecfr.gov',
     'https://api.honeybadger.io',
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
@@ -79,12 +74,27 @@ Rails.application.config.content_security_policy do |policy|
   ].compact
 
   policy.connect_src *connect_srcs
+  policy.frame_src :self
   policy.frame_ancestors :none
-  policy.base_uri :none
+  policy.base_uri :self
 
   if ['production', 'staging'].include?(Rails.env)
+    # Increment version on each change to this file
+    csp_version = 4
+
     policy.report_uri -> {
-      "https://api.honeybadger.io/v1/browser/csp?api_key=#{Rails.application.credentials.dig(:honeybadger, :csp_api_key)}&env=#{Rails.env}&#{{context: try(:honeybadger_context) || {} }.to_query}"
+      if defined?(request)
+        user_agent = request.env['HTTP_USER_AGENT']
+        if /(PhantomJS|bot)/i.match?(user_agent)
+          return
+        end
+      end
+
+      api_key = Rails.application.credentials.dig(:honeybadger, :csp_api_key)
+      context = {context: try(:honeybadger_context) || {}}
+      context[:context][:csp_version] = csp_version
+      context_args = context.to_query
+      "https://api.honeybadger.io/v1/browser/csp?api_key=#{api_key}&env=#{Rails.env}&report_only=#{Settings.app.csp.report_only}&#{context_args}"
     }
   end
 end

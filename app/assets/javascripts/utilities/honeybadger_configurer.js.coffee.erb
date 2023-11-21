@@ -9,6 +9,9 @@ class @FR2.HoneybadgerConfigurer
 
     <% unless Settings.app.honeybadger_js.enableUncaught %>
     Honeybadger.beforeNotify(@._ignore_everything)
+    Honeybadger.beforeNotify(@._ignore_foreign_errors)
+    Honeybadger.beforeNotify(@._add_some_context)
+    Honeybadger.beforeNotify(@._ignore_bots)
     <% end %>
 
     FR2.CommentSubmissionHoneybadger = Honeybadger.factory({
@@ -31,3 +34,16 @@ class @FR2.HoneybadgerConfigurer
       return false
     else
       return true
+
+  _ignore_foreign_errors: (notice) ->
+    if /^404/.test(notice.message) && '<%= Settings.services.fr.web.base_url %>' != window.location.origin
+      return false
+    return true
+
+  _add_some_context: (notice) ->
+    notice.cookies = document.cookie
+
+  _ignore_bots: (notice) ->
+    if /bot/i.test(navigator.userAgent) || /PhantomJS/i.test(navigator.userAgent)
+      return false
+    return true
