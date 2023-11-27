@@ -6,7 +6,11 @@ module DocumentDecorator::Clippings
   end
 
   def agency_dd
-    wrap_in_dd(linked_agency_names(definite_article: false))
+    results = linked_agency_names(definite_article: false)
+    if results.blank?
+      results = []
+    end
+    wrap_in_dd(results)
   end
 
   def docket_dt_dd
