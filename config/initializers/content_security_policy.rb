@@ -7,7 +7,7 @@
 Rails.application.config.content_security_policy_report_only = Settings.app.csp.report_only
 
 Rails.application.config.content_security_policy_nonce_generator = -> request {
-  Rails.application.credentials.dig(:app, :csp, :esi_unifying_nonce)
+  SecureRandom.base64(16)
 }
 Rails.application.config.content_security_policy_nonce_directives = %w[script-src]
 
@@ -80,7 +80,7 @@ Rails.application.config.content_security_policy do |policy|
 
   if ['production', 'staging'].include?(Rails.env)
     # Increment version on each change to this file
-    csp_version = 4
+    csp_version = 5
 
     policy.report_uri -> {
       if defined?(request)
