@@ -11,7 +11,7 @@ module DocumentDecorator::Agencies
     name_method = options.fetch(:name_method, :name)
 
     if agencies.present?
-      agencies = document.excluding_parent_agencies.map{|a|
+      agencies = document.agencies.map{|a|
         agency_name = a.send(name_method)
         next if agency_name.nil?
 
