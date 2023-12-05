@@ -18,15 +18,16 @@ Rails.application.config.content_security_policy do |policy|
   internal_srcs << "*.criticaljuncture.org" unless Rails.env.production?
 
   script_srcs = [
+    # Explicit exemptions for older versions of Safari (eg 12.1.2, 15.1) since the 'strict_dynamic' directive may not be fully implemented in these browsers and granting permissions allowing for googletagmanager to be loaded dynamically from already explicitly-allowed scripts (eg those with a valid nonce).  Some other clients also seem to need an explicit allowance.
+    "www.google-analytics.com",
+    "www.googletagmanager.com",
+    "dap.digitalgov.gov",
+    "fonts.googleapis.com",
+    # ==========================================================================
     :strict_dynamic, # For scripts that have a valid nonce, trust other scripts it loads
     :self, # Fallback to self for scripts without a valid nonce
     :report_sample, # Provide a snippet of violation to report URL
     :unsafe_eval, # Needed by rack-mini-profiler and possibly jQuery
-    # ==========================================================================
-    # Explicit exemptions for older versions of Safari (eg 12.1.2, 15.1) since the 'strict_dynamic' directive may not be fully implemented in these browsers and granting permissions allowing for googletagmanager to be loaded dynamically from already explicitly-allowed scripts (eg those with a valid nonce):
-    "https://www.googletagmanager.com/",
-    "https://www.google-analytics.com/", 
-    "https://dap.digitalgov.gov/",
   ]
 
   policy.script_src *script_srcs
@@ -81,7 +82,7 @@ Rails.application.config.content_security_policy do |policy|
 
   if ['production', 'staging'].include?(Rails.env)
     # Increment version on each change to this file
-    csp_version = 6
+    csp_version = 7
 
     policy.report_uri -> {
       if defined?(request)
