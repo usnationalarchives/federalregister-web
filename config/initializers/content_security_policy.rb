@@ -26,6 +26,7 @@ Rails.application.config.content_security_policy do |policy|
     # Explicit exemptions for older versions of Safari (eg 12.1.2, 15.1) since the 'strict_dynamic' directive may not be fully implemented in these browsers and granting permissions allowing for googletagmanager to be loaded dynamically from already explicitly-allowed scripts (eg those with a valid nonce):
     "https://www.googletagmanager.com/",
     "https://www.google-analytics.com/", 
+    "https://dap.digitalgov.gov/",
   ]
 
   policy.script_src *script_srcs
@@ -80,7 +81,7 @@ Rails.application.config.content_security_policy do |policy|
 
   if ['production', 'staging'].include?(Rails.env)
     # Increment version on each change to this file
-    csp_version = 5
+    csp_version = 6
 
     policy.report_uri -> {
       if defined?(request)
