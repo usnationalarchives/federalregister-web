@@ -39,6 +39,9 @@
       defer: true,
       nonce: content_security_policy_nonce %>
 
+    <%= render partial: 'layouts/google_analytics',
+      locals: {custom_page_to_track: @page_to_track} %>
+
     <%= yield :feeds %>
 
     <%= add_handlebars_template('flickr_exit_modal') %>
