@@ -43,12 +43,12 @@ Rails.application.config.content_security_policy do |policy|
     :self,
     :data,
     :report_sample,
-    'https://s3.amazonaws.com', # FR stores images on s3 but not ideal to be open to all of s3
-    "https://www.google-analytics.com",
-    "https://region1.google-analytics.com",
-    "https://www.googletagmanager.com/",
-    "https://p.typekit.net",
-    "https://translate.google.com/",
+    's3.amazonaws.com', # FR stores images on s3 but not ideal to be open to all of s3
+    "www.google-analytics.com",
+    "region1.google-analytics.com",
+    "www.googletagmanager.com",
+    "p.typekit.net",
+    "translate.google.com",
     *internal_srcs
   ]
   policy.img_src *img_srcs
@@ -64,10 +64,6 @@ Rails.application.config.content_security_policy do |policy|
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
 
-    # zendesk
-    'https://ekr.zdassets.com',
-    'https://ofr.zendesk.com',
-
     # Regulations.gov
     'https://api.regulations.gov',
     'https://uploads-regulations-gov.s3.amazonaws.com',
@@ -82,7 +78,7 @@ Rails.application.config.content_security_policy do |policy|
 
   if ['production', 'staging'].include?(Rails.env)
     # Increment version on each change to this file
-    csp_version = 7
+    csp_version = 8
 
     policy.report_uri -> {
       if defined?(request)
