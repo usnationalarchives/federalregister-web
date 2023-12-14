@@ -23,7 +23,8 @@
 
         <% document.linked_agency_names(
           definite_article: false,
-          name_method: :raw_name
+          name_method: :raw_name,
+          include_parent_agencies: true
         ).each do |agency| -%>
           <dd>
             <%= agency %>

@@ -9,9 +9,16 @@ module DocumentDecorator::Agencies
     autolink = options.fetch(:links){ true }
     definite_article = options.fetch(:definite_article, true)
     name_method = options.fetch(:name_method, :name)
+    include_parent_agencies = options[:include_parent_agencies]
 
     if agencies.present?
-      agencies = document.agencies.map{|a|
+      if include_parent_agencies
+        filtered = document.agencies
+      else
+        filtered = document.excluding_parent_agencies
+      end
+      
+      agencies = filtered.map{|a|
         agency_name = a.send(name_method)
         next if agency_name.nil?
 
