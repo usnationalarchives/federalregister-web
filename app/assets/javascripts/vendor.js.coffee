@@ -4,7 +4,8 @@
 #= require honeybadger.min.js
 #= require underscore
 #= require strftime
-#= require handlebars-1.0.0.rc.3
+
+
 #= require bootstrap/dropdown
 #= require bootstrap/tab
 #= require bootstrap/tooltip
@@ -49,3 +50,9 @@
 
 # USED FOR ZENDESK BROWSER DETECTION
 #= require bowser.js
+
+#= require handlebars.runtime
+#= require_tree ./templates
+#= require_tree ../../../app/templates
+
+

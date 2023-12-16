@@ -276,6 +276,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    handlebars_assets (0.23.9)
+      execjs (~> 2.0)
+      sprockets (>= 2.0.0)
+      tilt (>= 1.2)
     hashdiff (0.3.7)
     hashie (3.6.0)
     honeybadger (4.9.0)
@@ -597,6 +601,7 @@ DEPENDENCIES
   geokit (= 1.4.1)
   guard
   guard-rspec
+  handlebars_assets
   honeybadger
   htmlentities
   httparty

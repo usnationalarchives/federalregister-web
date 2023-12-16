@@ -7,6 +7,7 @@ gem 'rack'
 gem 'mysql2', '0.5.5'
 gem 'passenger', '~> 6.0' # production app server
 gem 'bootsnap', require: false
+gem 'handlebars_assets'
 
 
 # AR like interface to static data hash based classes
