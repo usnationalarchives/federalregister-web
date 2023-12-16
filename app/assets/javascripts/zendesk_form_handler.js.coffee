@@ -51,13 +51,10 @@ class @FR2.ZendeskFormHandler
     if !$('#interstitial_tender_modal').is(":visible") # eg the user is on a non-document page
       this._initializeModal()
 
-    zendeskTemplate = $('#zendesk-feedback-modal-template')
-    compiled = Handlebars.compile( zendeskTemplate.html() )
-    $('.tender_interstitial_modal').html(compiled({}))
+    $('.tender_interstitial_modal').html(HandlebarsTemplates['zendesk_feedback_modal']({}))
 
   _initializeModal: ->
-    interstitial_tender_modal_template = $('#interstitial-tender-modal-template')
-    interstitial_tender_modal_template = Handlebars.compile( interstitial_tender_modal_template.html() )
+    interstitial_tender_modal_template = HandlebarsTemplates['interstitial_tender_modal']
     FR2.Modal.displayModal(
       '',
       interstitial_tender_modal_template({
@@ -72,8 +69,7 @@ class @FR2.ZendeskFormHandler
     )
 
   _displaySuccessMessage: ->
-    template = $('#feedback-success-template')
-    compiled = Handlebars.compile( template.html() )
+    compiled = HandlebarsTemplates['feedback_success']
     $('form.zendesk_ticket').remove()
     $('#interstitial_tender_modal h3').after(compiled({}))
 

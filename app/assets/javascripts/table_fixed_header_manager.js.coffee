@@ -8,7 +8,7 @@ class @FR2.TableFixedHeaderManager
     backgroundColor = $('#fulltext_content_area').closest('.fr-box').css('background-color')
 
     $('#documents .table-wrapper table').each (i) ->
-      expandTableLink = Handlebars.compile $("#expand-table-link-template").html()
+      expandTableLink = HandlebarsTemplates['documents/expand_table_link']
 
       $(this).closest('.table-wrapper').prepend(expandTableLink)
 

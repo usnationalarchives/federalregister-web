@@ -574,9 +574,7 @@ class @FR2.CommentForm
   
   _replaceDynamicAgencyText: (agencyName, regsDotGovDocumentId) ->
     $("#dynamic-agency-text-js").html(
-      Handlebars.compile(
-        $('#agency-comment-selection-template').html()
-      )({
+      HandlebarsTemplates['agency_comment_selection']({
         agencyName: agencyName,
         regsDotGovDocumentId: regsDotGovDocumentId
       })

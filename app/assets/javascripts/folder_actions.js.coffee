@@ -8,7 +8,7 @@ $(document).ready ->
       token: $('meta[name="csrf-token"]').attr('content')
     }
 
-    modalTemplate = Handlebars.compile $("#delete-folder-modal-template").html()
+    modalTemplate = HandlebarsTemplates['delete_folder_modal']
 
     FR2.Modal.displayModal(
       "", modalTemplate(folderData),

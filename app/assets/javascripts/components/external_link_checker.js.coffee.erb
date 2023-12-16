@@ -10,7 +10,7 @@ class @FR2.ExternalLinkChecker
       @displayModal()
 
   displayModal: ->
-    modalBody = Handlebars.compile($('#external-link-warning-modal-template').html())({
+    modalBody = HandlebarsTemplates['external_link_warning_modal']({
       url: @url
     })
 

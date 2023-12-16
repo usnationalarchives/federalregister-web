@@ -79,12 +79,10 @@ class @FR2.CommentFormFileUploader
         uploadTemplateId: null
         downloadTemplateId: null
         uploadTemplate: (o)->
-          source = $("#comment-attachment-upload-template").html()
-          template = Handlebars.compile source
+          template = HandlebarsTemplates['comment_attachment_upload']
           template o
         downloadTemplate: (o)->
-          source = $("#comment-attachment-complete-template").html()
-          template = Handlebars.compile source
+          template = HandlebarsTemplates['comment_attachment_complete']
           template o
         destroy: (e, data) ->
           if e.isDefaultPrevented()

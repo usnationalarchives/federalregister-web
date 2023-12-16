@@ -198,7 +198,7 @@ class @FR2.DocumentClipper
 
 
   displayNewFolderModal: ->
-    modalTemplate = Handlebars.compile $("#new-folder-modal-template").html()
+    modalTemplate = HandlebarsTemplates['new_folder_modal']
 
     FR2.Modal.displayModal("", modalTemplate(), {includeTitle: false, modalClass: 'new-folder-modal'})
 
@@ -210,7 +210,7 @@ class @FR2.DocumentClipper
     )
 
   displayAccountNeededModal: ->
-    modalTemplate = Handlebars.compile $("#account-needed-modal-template").html()
+    modalTemplate = HandlebarsTemplates['account_needed_modal']
 
     url_params = {redirect_to: window.location.href}
     redirectUrl = "/auth/sign_in?#{$.param(url_params)}"
@@ -243,7 +243,7 @@ class @FR2.DocumentClipper
     $('body').off 'folderCreated', '#fr_modal', @runFolderCreationHandler
 
   addNewFolderToMenus: (response)->
-    template = Handlebars.compile $("#add-to-folder-menu-li-fr2-template").html()
+    template = HandlebarsTemplates['add_to_folder_menu_li_fr2']
 
     # add folder to current menu, add element actions, close menu
     newFolderEl = $(template(response))

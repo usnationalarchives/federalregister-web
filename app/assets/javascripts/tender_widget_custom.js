@@ -13,7 +13,7 @@ Tender = {
   var showInterstitialModal = function () {
     var interstitial_tender_modal_template = $('#interstitial-tender-modal-template');
     if ( interstitial_tender_modal_template.length > 0 ) {
-      interstitial_tender_modal_template = Handlebars.compile( interstitial_tender_modal_template.html() );
+      interstitial_tender_modal_template = HandlebarsTemplates['interstitial_tender_modal'];
 
       var document_feedback_text,
           document_button_enabled = '',

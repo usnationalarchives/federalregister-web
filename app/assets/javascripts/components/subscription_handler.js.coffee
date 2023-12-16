@@ -67,7 +67,7 @@ class @FR2.SubscriptionHandler
     })
 
   @modalTemplate: ->
-    Handlebars.compile $("#subscription-modal-template").html()
+    HandlebarsTemplates['subscription_modal']
 
   @subscriptionFeeds: ->
     $('link.subscription_feed')

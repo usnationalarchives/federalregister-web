@@ -14,11 +14,11 @@ class @FR2.ClippingsManager
     @addAddToFolderMenu()
 
   addViewFolderMenu: ->
-    template = Handlebars.compile $("#jump-to-folder-menu-template").html()
+    template = HandlebarsTemplates['jump_to_folder_menu']
     @actionBar.append template(@userFolderDetails())
 
   addAddToFolderMenu: ->
-    template = Handlebars.compile $("#add-to-folder-menu-template").html()
+    template = HandlebarsTemplates['add_to_folder_menu']
     @actionBar.append template(@userFolderDetails())
 
   userFolderDetails: ->
@@ -224,7 +224,7 @@ class @FR2.ClippingsManager
 
 
   displayNewFolderModal: ->
-    modalTemplate = Handlebars.compile $("#new-folder-modal-template").html()
+    modalTemplate = HandlebarsTemplates['new_folder_modal']
 
     FR2.Modal.displayModal("", modalTemplate(), {includeTitle: false, modalClass: 'new-folder-modal'})
 
@@ -236,7 +236,7 @@ class @FR2.ClippingsManager
     )
 
   displayAccountNeededModal: ->
-    modalTemplate = Handlebars.compile $("#account-needed-modal-template").html()
+    modalTemplate = HandlebarsTemplates['account_needed_modal']
 
     url_params = {redirect_to: window.location.href}
     redirectUrl = "/auth/sign_in?#{$.param(url_params)}"
@@ -283,7 +283,7 @@ class @FR2.ClippingsManager
 
 
   addNewFolderToMenus: (response)->
-    template = Handlebars.compile $("#add-to-folder-menu-li-template").html()
+    template = HandlebarsTemplates['add_to_folder_menu_li']
 
     newFolderEl = $(template(response))
     newGotoFolderEl = newFolderEl.clone()

@@ -60,10 +60,9 @@ class @FR2.CommentFormSuccessHandler
       printModalLink = $(this)
 
       modalTitle    = 'Print your comment'
-      modalTemplate = $("#comment-print-summary-template")
       modalData     = printModalLink.data('comment-data')
 
-      modalHtml = Handlebars.compile(modalTemplate.html())({
+      modalHtml = HandlebarsTemplates['comment_print_summary']({
         fields: modalData
         document_details: printModalLink.data 'current-document-details'
         comment_details: printModalLink.data 'comment-details'

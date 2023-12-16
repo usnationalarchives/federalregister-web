@@ -62,16 +62,14 @@ class @FR2.CommentFormHandler
       Handlebars.registerPartial 'comment_summary', $('#comment-summary-template').html()
 
       modalTitle    = 'Preview your comment'
-      modalTemplate = $('#comment-summary-template')
       modalData     = fields
 
-      compiledTemplate = Handlebars.compile modalTemplate.html()
+      compiledTemplate = HandlebarsTemplates['comment_summary']
       modalHtml        = compiledTemplate({
         fields: modalData
       })
 
-      source = $('#comment-summary-template').html()
-      template = Handlebars.compile source
+      template = HandlebarsTemplates['comment_summary']
 
       FR2.Modal.displayModal(
         modalTitle,
@@ -80,8 +78,7 @@ class @FR2.CommentFormHandler
       )
 
   renderCommentSummary: (fields)->
-    source = $('#comment-summary-template').html()
-    template = Handlebars.compile source
+    template = HandlebarsTemplates['comment_summary'] 
     template fields
 
   addPublicIcons: ->
@@ -221,9 +218,7 @@ class @FR2.CommentFormHandler
           .addClass 'open'
 
         flashMessage.html(
-          Handlebars.compile(
-            $('#new-comment-byline-template').html()
-          )({
+          HandlebarsTemplates['new_comment_byline']({
             commentDueDate: $('.comment_form_wrapper').data('comment-due')
           })
         )
@@ -249,9 +244,7 @@ class @FR2.CommentFormHandler
     }
 
     $('#comment-bar.comment p').replaceWith(
-      Handlebars.compile(
-        $('#comment-header-template').html()
-      )(data)
+      HandlebarsTemplates['comment_header'](data)
     )
     commentBar.height('inherit')
     new FR2.CommentFormHandler(commentBar, true)
