@@ -6,15 +6,13 @@ $(document).ready ->
     modalLink = $(this)
 
     modal_title    = modalLink.data('modal-title')
-    modal_template = $("##{modalLink.data('modal-template-name')}")
+    templateName   = $("##{modalLink.data('modal-template-name')}").replace(/-/g,"_").replace("#","").replace("_template","")
     modal_data     = modalLink.data('modal-data')
 
     #ensure template exists on page
     modal_html = ''
     if ( modal_template.length > 0 )
-      modal_html = Handlebars.compile(
-        modal_template.html()
-      )(modal_data)
+      modal_html = HandlebarsTemplates[templateName](modal_data)
     else
       modal_html = modalLink.data('modal-html')
 

@@ -10,6 +10,11 @@ $(document).ready ->
 
   $('.bootstrap-popover').popover({container: '.bootstrap-scope', trigger: 'manual'})
 
+  # Define utility function for converting Handlebars XSLT template names to the handlebars_assets gem convention
+  CJ.convertTemplateNameToHandlebarsAssets =  (string) ->
+    # eg convert something like '#regtext-auth-tooltip-template' => 'regtext-auth-tooltip'
+    string.replace(/-/g,"_").replace("#","").replace("_template","")
+
   # This is used to enable event delegation-based clipboard copying
   $( "body" ).on "click", '.copy-to-clipboard', (event) ->
     event.preventDefault()
@@ -52,9 +57,9 @@ $(document).ready ->
       if isVisible
         $(this).popover('hide')
       else
-        $(this).data('bs.popover').options.content = Handlebars.compile(
-          $( $(this).data('tooltip-template') ).html()
-        )( tooltipData )
+        templateName = CJ.convertTemplateNameToHandlebarsAssets($(this).data('tooltip-template'))
+
+        $(this).data('bs.popover').options.content = HandlebarsTemplates[templateName]( tooltipData )
         $(this).popover('show')
         #The tooltips have to be reinitialized since the tipsy element isn't in the DOM yet
         CJ.Tooltip.addTooltip(
@@ -94,10 +99,8 @@ $(document).ready ->
             if $('#document-citation').data('citation-vol')
               tooltipData['volume'] = $('#document-citation').data('citation-vol')
 
-
-          Handlebars.compile(
-            $( $(this).data('tooltip-template') ).html()
-          )( tooltipData )
+          templateName = CJ.convertTemplateNameToHandlebarsAssets($(this).data('tooltip-template'))
+          HandlebarsTemplates[templateName]( tooltipData )
       },
       {
         position: 'centerTop'
