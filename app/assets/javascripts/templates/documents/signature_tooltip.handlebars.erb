@@ -1,0 +1,19 @@
+<%= ApplicationController.helpers.fr_tooltip_box(
+  FrBox.build(
+    :enhanced_content,
+    title: "Enhanced Content - Signature"
+  )
+) do 
+  "<p>
+    The Signature section contains the name and title of the person,
+    as determined by the agency, who signed the submitted document for
+    publication in the Federal Register.
+  </p>
+
+  <p>
+    For more information please see the
+    <a href='http://www.archives.gov/federal-register/write/handbook/ddh.pdf'>
+    Document Drafting Handbook
+    </a> sections on the use of Signature in Federal Register documents.
+  </p>"
+end %>

@@ -1,0 +1,29 @@
+<%= ApplicationController.helpers.fr_tooltip_box(
+  FrBox.build(
+    :inherit,
+    title: "Printed Page"
+  )
+) do 
+  "<p>
+    The text following this element occurred on page {{page}} of the
+    print and PDF versions of this document.
+  </p>
+
+  <dl class='fr-list fr-list-inline'>
+    <dt>Page citation</dt>
+    <dd>
+      {{volume}} FR {{page}}
+      <span class='icon-fr2 icon-fr2-clipboard copy-to-clipboard clipboard-copy cj-tooltip'
+        data-tooltip='Click to copy page citation'
+        data-clipboard-text='{{volume}} FR {{page}}'></span>
+    </dd>
+
+    <dt>Page short url</dt>
+    <dd>
+      {{shortUrl}}/page-{{page}}
+      <span class='icon-fr2 icon-fr2-clipboard copy-to-clipboard clipboard-copy cj-tooltip'
+        data-tooltip='Click to copy short URL'
+        data-clipboard-text='{{shortUrl}}'></span>
+    </dd>
+  </dl>"
+end %>

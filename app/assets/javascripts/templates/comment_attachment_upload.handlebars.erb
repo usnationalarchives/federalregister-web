@@ -1,0 +1,15 @@
+{{#each files}}
+  <tr class="template-upload fade" data-name="{{this.name}}">
+    <td class="name"><span>{{this.name}}</span></td>
+    <td class="progress-bar">
+      <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:100%;">Uploading</div></div>
+    </td>
+    <td class="size"><span>{{human_size this.size}}</span></td>
+    <td class="cancel">
+      <button class="button cancel">
+        <span class="icon-fr2 icon-fr2-delete"></span>
+        <span class="action">Cancel</span>
+      </button>
+    </td>
+  </tr>
+{{/each}}

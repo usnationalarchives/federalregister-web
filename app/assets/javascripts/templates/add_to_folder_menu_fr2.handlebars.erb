@@ -1,0 +1,30 @@
+<div id="add-to-folder" class="add-to-folder" data-tooltip="Clip document for later">
+  <div class="button">
+    <span class="icon icon-fr2 icon-fr2-flag {{#if clipped}}clipped{{/if}}"></span>
+    <span class="icon-fr2 icon-fr2-menu_arrow"></span>
+  </div>
+  <div class="menu">
+    <ul>
+      <li id="new-folder" class="new-folder">
+        <a href="">
+          <span class="icon-fr2 icon-fr2-badge_plus"></span>
+          New folder
+        </a>
+      </li>
+
+      {{#each folders}}
+        {{#ifInFolder ../currentDocumentNumber}}
+          <li class="in-folder" data-slug="{{this.slug}}">
+        {{else}}
+          <li class="not-in-folder" data-slug="{{this.slug}}">
+        {{/ifInFolder}}
+            <a href="">
+              <span class="name">{{this.name}}</span>
+              <span class="checked icon icon-fr2 icon-fr2-badge_check_mark"></span>
+              <span class="loader"></span>
+            </a>
+          </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

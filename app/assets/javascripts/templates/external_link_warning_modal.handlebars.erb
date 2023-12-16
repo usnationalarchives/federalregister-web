@@ -1,0 +1,17 @@
+<div class="bootstrap-scope">
+  <div class="row">
+    <div class="<%= ApplicationController.helpers.bootstrap_col xs: 12, md: 12 %>">
+      <p class="instructions">
+        You are now leaving FederalRegister.gov and will be accessing:
+      </p>
+
+      <div class="external-link">{{url}}</div>
+
+      <%= ApplicationController.helpers.form_tag "/", method: 'get' do
+          ApplicationController.helpers.label_tag('accept', 'Do not show this warning again') +
+          ApplicationController.helpers.check_box_tag('accept') +
+          ApplicationController.helpers.submit_tag("Continue", :class =>"fr_button primary large")
+      end %>
+    </div>
+  </div>
+</div>
