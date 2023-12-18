@@ -12,7 +12,7 @@ fr_index_popover_handler.article_fields = 'fields%5B%5D=abstract&fields%5B%5D=co
 fr_index_popover_handler.add_popover_content = function() {
     var $tipsy_el = $('.tipsy'),
         current_dl = this.current_el,
-        fr_index_entry_popover_content_template = HandlebarsTemplates['fr_index_entry_popover_content'],
+        fr_index_entry_popover_content_template = window.HandlebarsTemplates.fr_index_entry_popover_content,
         popover_id = '#popover-' + current_dl.data('document-number');
     var new_html = fr_index_entry_popover_content_template( this.popover_cache[current_dl.data('document-number')] );
 
@@ -29,7 +29,7 @@ $(document).ready(function() {
   var popover_handler = fr_index_popover_handler.initialize();
 
   if ( $("#fr-index-entry-popover-template").length > 0) {
-    var fr_index_entry_popover_template = HandlebarsTemplates['fr_index_entry_popover'];
+    var fr_index_entry_popover_template = window.HandlebarsTemplates.fr_index_entry_popover;
   }
 
   // Start the debugging here

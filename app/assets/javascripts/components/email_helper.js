@@ -49,7 +49,7 @@ var EmailHelper = (function() {
     display_or_remove_suggestion: function() {
       this.input.mailcheck({
         suggested: function(element, suggestion) {
-          var template = HandlebarsTemplates['email_suggestion'],
+          var template = window.HandlebarsTemplates.email_suggestion,
               html = $(template({suggestion: suggestion}));
 
           element.closest('li').find('span.email_suggestion').remove();
@@ -62,7 +62,7 @@ var EmailHelper = (function() {
     },
 
     display_error: function(email_validator) {
-      var template = HandlebarsTemplates['email_invalid'],
+      var template = window.HandlebarsTemplates.email_invalid,
             html = $(template({blank: email_validator.error === 'blank'}));
 
       this.input.after( html );
