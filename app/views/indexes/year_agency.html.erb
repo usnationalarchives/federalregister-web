@@ -2,10 +2,6 @@
 <% page_title "#{@presenter.name} :: #{@presenter.agency_name}" %>
 <% description @presenter.description %>
 
-<%= add_handlebars_template('fr_index_entry_popover', 'fr-index-entry-popover') %>
-<%= add_handlebars_template('fr_index_entry_popover_content',
-                            'fr-index-entry-popover-content') %>
-
 <% title title_bar_class: "reader-aids" do %>
   <%= fr_icon('indent') %>
   <%= @presenter.name %>

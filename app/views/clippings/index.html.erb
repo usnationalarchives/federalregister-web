@@ -6,9 +6,6 @@
   My Clippings
 <% end %>
 
-<%= add_handlebars_template('add_to_folder_menu_li', 'add-to-folder-menu-li') %>
-<%= add_handlebars_template('delete_folder_modal', 'delete-folder-modal') %>
-
 <%= content_tag(:div, flash[:notice], class: 'flash notice') if flash[:notice] %>
 <%= content_tag(:div, flash[:error],  class: 'flash error') if flash[:error]  %>
 
@@ -47,9 +44,6 @@
         <%= my_fr_document_filters %>
       </ul>
     </div>
-
-    <%= add_handlebars_template('jump_to_folder_menu', 'jump-to-folder-menu') %>
-    <%= add_handlebars_template('add_to_folder_menu', 'add-to-folder-menu') %>
 
     <div id="select-all-clippings">
       <%= fr_icon 'badge_check_mark' %>
