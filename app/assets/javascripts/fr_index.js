@@ -28,11 +28,8 @@ $(document).ready(function() {
 
   var popover_handler = fr_index_popover_handler.initialize();
 
-  if ( $("#fr-index-entry-popover-template").length > 0) {
-    var fr_index_entry_popover_template = window.HandlebarsTemplates.fr_index_entry_popover;
-  }
+  var fr_index_entry_popover_template = window.HandlebarsTemplates.fr_index_entry_popover;
 
-  // Start the debugging here
   $('.doc-document-issue').delegate('.with-ajax-popover', 'mouseenter', function(event) {
     var $el = $(this);
 
