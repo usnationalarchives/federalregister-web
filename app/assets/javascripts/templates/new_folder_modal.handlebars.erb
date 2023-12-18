@@ -16,9 +16,24 @@
     </p>
   </div>
 
-  <%#= semantic_form_for :folder, :authenticity_token => false, :url => folders_path() do |f| %>
-    <%#= render :partial => "folders/form", :locals => {:f => f} %>
-  <%# end %>
+  <%= ApplicationController.helpers.semantic_form_for :folder, :authenticity_token => false, :url => Rails.application.routes.url_helpers.folders_path() do |f|
+    '<fieldset class="inputs">
+        <ol>
+          <span class="icon-fr2 icon-fr2-folder"></span>
+          <li class="string input optional stringish" id="folder_name_input"><label for="folder_name" class="label">Folder Name</label><input id="folder_name" type="text" value="My Clipboard" name="folder[name]">
+          </li>
+        </ol>
+      </fieldset>
+      <fieldset class="actions">
+        <ol>
+          <li class="action button_action commit fr_button medium primary" id="folder_submit_action">
+            <button name="button" type="submit" class="browser_reset">
+              Create Folder
+            </button>
+          </li>
+        </ol>
+      </fieldset>'
+  end %>
 
   <div class="folder_create">
     <p>
