@@ -1,7 +1,6 @@
 class @FR2.DocumentClipper
   clipperTemplate: ->
-    Handlebars
-      .compile $("#add-to-folder-menu-fr2-template").html()
+    HandlebarsTemplates.add_to_folder_menu_fr2
 
   constructor: (clipper)->
     @clipper = $(clipper)
