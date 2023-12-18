@@ -51,7 +51,8 @@ class @FR2.ZendeskFormHandler
     if !$('#interstitial_tender_modal').is(":visible") # eg the user is on a non-document page
       this._initializeModal()
 
-    $('.tender_interstitial_modal').html(HandlebarsTemplates['zendesk_feedback_modal']({}))
+    compiled = HandlebarsTemplates['zendesk_feedback_modal']
+    $('.tender_interstitial_modal').html(compiled({}))
 
   _initializeModal: ->
     interstitial_tender_modal_template = HandlebarsTemplates['interstitial_tender_modal']
