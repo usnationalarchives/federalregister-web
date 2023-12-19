@@ -52,11 +52,10 @@ Tender = {
         var formal_comment_link = $('.button.formal_comment');
 
         if( formal_comment_link.length > 0 && formal_comment_link.first().attr('href') != '#addresses') {
-          /* open in new window */
-          window.open(
-            formal_comment_link.attr('href'),
-            '_blank'
-          );
+          // Close modal
+          $('.jqmClose').click() 
+          // Click "Submit a Formal Comment" button
+          $('#start_comment').click()
         } else if( $('#addresses').length > 0 ) {
           window.location.href = '#addresses';
         } else {
