@@ -27,7 +27,6 @@ Rails.application.config.content_security_policy do |policy|
     :strict_dynamic, # For scripts that have a valid nonce, trust other scripts it loads
     :self, # Fallback to self for scripts without a valid nonce
     :report_sample, # Provide a snippet of violation to report URL
-    :unsafe_eval, # Needed by rack-mini-profiler and possibly jQuery
   ]
 
   policy.script_src *script_srcs
