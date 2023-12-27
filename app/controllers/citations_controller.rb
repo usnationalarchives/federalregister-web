@@ -33,17 +33,29 @@ class CitationsController < ApplicationController
   def eo
     @eo_number = params[:eo_number]
 
-    search = SearchPresenter::Document.new(conditions: {term: "EO #{@eo_number}"}).search
-    document_numbers = search.search_details.suggestions.
-      select{|s| s.respond_to?(:document_numbers)}.
-      map(&:document_numbers).
-      flatten.
-      compact
+    result_set = FederalRegister::Document.
+      search(
+        :conditions => {"executive_order_numbers" => [params[:eo_number]]},
+        "fields" => ["executive_order_number","citation", "document_number"]
+      )
 
-    if document_numbers.size == 0
-      render
-    else
+    document_numbers = result_set.map(&:document_number).compact
+    citations = result_set.map(&:citation).compact
+    if document_numbers.present?
       redirect_to short_document_path(document_numbers.first)
+    elsif citations.present?
+      @fr_archives_citation = lookup_fr_archives_citation(citations.first)
+      render :eo, status: (@fr_archives_citation.pdf_url ? 200 : 404)
+    else
+      render :eo, status: 404
     end
+  end
+
+  private
+
+  def lookup_fr_archives_citation(citation) #eg 50 FR 499
+    volume = citation.match(/(\d+) FR/)[1]
+    page   = citation.match(/FR (\d+)/)[1]
+    FrArchivesCitation.new(volume, page)
   end
 end
