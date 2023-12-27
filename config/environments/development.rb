@@ -82,7 +82,10 @@ Rails.application.configure do
 
   if Settings.vcr.enabled
     file = "#{Rails.root}/#{Settings.vcr.library_dir}/#{Settings.vcr.cassette}.yml"
-    raise "VCR cassette is too large! Max cassette size is #{Settings.vcr.max_cassette_size}Mb. Check the file size in #{Settings.vcr.library_dir}." if (File.size(file).to_f / 1024000) > Settings.vcr.max_cassette_size
+
+    if File.exist?(file) && (File.size(file).to_f / 1024000) > Settings.vcr.max_cassette_size
+      raise "VCR cassette is too large! Max cassette size is #{Settings.vcr.max_cassette_size}Mb. Check the file size in #{Settings.vcr.library_dir}."
+    end
   end
 
   # Raises error for missing translations.
