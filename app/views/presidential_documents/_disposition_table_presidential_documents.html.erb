@@ -31,7 +31,11 @@
 
 
         <h5>
-          <%= link_to presidential_document.title, document_path(presidential_document) %>
+          <% if (presenter.type == 'executive_orders') && presidential_document.document_number.blank? %>
+            <%= link_to presidential_document.title, executive_order_path(presidential_document.executive_order_number) %>
+          <% else %>
+            <%= link_to presidential_document.title, document_path(presidential_document) %>
+          <% end %>
         </h5>
 
         <div class="row metadata_wrapper">
@@ -40,35 +44,41 @@
             <dd><%= presidential_document.signing_date %></dd>
             <dt>Published:</dt>
             <dd>
-              <%= link_to presidential_document.publication_date,
+              <%= link_to_if presidential_document.document_number, presidential_document.publication_date,
                 document_issue_path(presidential_document) %>
             </dd>
             <dt>FR Citation:</dt>
             <dd><%= presidential_document.citation %></dd>
-            <dt>FR Doc. Number:</dt>
-            <dd>
-              <%= link_to presidential_document.document_number,
-                document_path(presidential_document) %>
-           </dd>
+            <% if presidential_document.document_number %>
+              <dt>FR Doc. Number:</dt>
+              <dd>
+                <%= link_to presidential_document.document_number,
+                  document_path(presidential_document) %>
+            </dd>
+            <% end %>
           </dl>
 
           <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
-            <dt class="toc-pdf">
-              <%= link_to presidential_document.pdf_url do %>
-                <%= fr_icon 'doc-pdf' %> PDF
-              <% end %>
-            </dt>
+            <% if presidential_document.document_number %>
+              <dt class="toc-pdf">
+                <%= link_to presidential_document.pdf_url do %>
+                  <%= fr_icon 'doc-pdf' %> PDF
+                <% end %>
+              </dt>
 
-            <dd>
-              <%= pluralize presidential_document.pages, 'page' %>
-            </dd>
+              <dd>
+                <%= pluralize presidential_document.pages, 'page' %>
+              </dd>
 
-            <dt class="permalink">
-              <%= link_to short_document_url(presidential_document) do %>
-                <%= fr_icon 'link' %> Permalink
+              <% if presidential_document.document_number %>
+                <dt class="permalink">
+                  <%= link_to short_document_url(presidential_document) do %>
+                    <%= fr_icon 'link' %> Permalink
+                  <% end %>
+                </dt>
               <% end %>
-            </dt>
-            <dd></dd>
+              <dd></dd>
+            <% end %>
           </dl>
         </div>
 
