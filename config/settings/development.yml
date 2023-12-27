@@ -7,6 +7,8 @@ app:
   document_render:
     # should we get precompiled content from remote (eg in development)
     from_remote: true
+  # default to not requiring varnish in development
+  expire_varnish: false
   subscriptions:
     deliver: false
     deliver_pil: false

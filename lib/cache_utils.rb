@@ -1,6 +1,6 @@
 module CacheUtils
   def purge_cache(regexp)
-    Client.instance.purge(regexp)
+    Client.instance.purge(regexp) if Settings.app.expire_varnish
   end
   module_function :purge_cache
 
@@ -9,6 +9,7 @@ module CacheUtils
 
     def purge(regexp)
       Rails.logger.info("Expiring from varnish: '#{regexp}'...")
+
       begin
         client.send(:cmd, "ban req.url ~ #{regexp}")
       rescue SocketError => e

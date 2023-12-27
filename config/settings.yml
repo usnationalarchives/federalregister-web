@@ -5,6 +5,7 @@ app:
   allow_bot_traffic: false
   csp:
     report_only: false
+  expire_varnish: true
   external_modal_domain_allow_list:
     - "www.archives.gov"
     - "www.govinfo.gov"
