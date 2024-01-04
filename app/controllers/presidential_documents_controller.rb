@@ -18,7 +18,7 @@ class PresidentialDocumentsController < ApplicationController
       presidential_document_params.merge(view_context: view_context)
     )
 
-    @presidents = President.all.sort_by(&:starts_on).reverse
+    @presidents = @presenter.presidents
   end
 
   def by_president_and_year

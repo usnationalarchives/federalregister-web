@@ -53,7 +53,7 @@ class PresidentialDocumentsPresenter
   end
 
   def documents_by_president_and_year
-    President.all.sort_by(&:starts_on).reverse.map do |president|
+    presidents.sort_by(&:starts_on).reverse.map do |president|
       presidential_years = president.
         year_ranges.
         map do |year_range|
@@ -96,11 +96,20 @@ class PresidentialDocumentsPresenter
     eo_count_by_president_identifier_and_year["#{president.identifier}-#{year}"].nil?
   end
 
+  def presidents
+    if presidential_document_type.include_pre_1993
+      President.all
+    else
+      President.all.select{|x| x.starts_on.year >= 1993}
+    end
+  end
+  memoize :presidents
+
   private
 
   def eo_count_by_president_identifier_and_year
-    # TODO: Further limit query by presidential dates to optimize speed
-    President.all.each_with_object(Hash.new) do |president, hsh|
+    # TODO: Possibly limit query by presidential dates to optimize speed
+    presidents.each_with_object(Hash.new) do |president, hsh|
       EoCollectionFacet.new(president, :yearly).facet.each do |facet|
         if facet.count > 0
           key = "#{president.identifier}-#{facet.year}"
@@ -110,6 +119,7 @@ class PresidentialDocumentsPresenter
     end
   end
   memoize :eo_count_by_president_identifier_and_year
+
 
   def conditions_for_format(format)
     if presidential_document_type.identifier == 'executive_order'
