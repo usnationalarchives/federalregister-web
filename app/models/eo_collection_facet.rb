@@ -11,7 +11,8 @@ class EoCollectionFacet
       QueryConditions::PresidentialDocumentConditions.all_presidential_documents_for(
         president, 'executive_order'
       ).deep_merge!({
-        conditions: {correction: 0}
+        conditions: {correction: 0},
+        include_pre_1994_docs: true
       })
     ).results.map do |facet|
       EoFacet.new(

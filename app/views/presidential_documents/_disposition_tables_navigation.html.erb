@@ -13,9 +13,18 @@
     <ul>
       <% presidential_document_collections.each do |presidential_document_collection| %>
         <li <%= 'class=current' if presenter.current_page?(president, presidential_document_collection) %>>
+
+          <% if presenter.presidential_document_type == PresidentialDocumentType::EXECUTIVE_ORDER %>
+            <%# Use a facet-based search for EOs otherwise the nav page loads too slowly %>
+            <% no_results = presenter.no_results?(president, presidential_document_collection.year) %>
+          <% else %>
+            <% no_results = presidential_document_collection.presidential_documents.empty? %>
+          <% end %>
+
+
           <%= link_to_unless (
               presenter.current_page?(president, presidential_document_collection) ||
-               presidential_document_collection.presidential_documents.empty?
+              no_results
             ),
             presidential_document_collection.year,
             presidential_documents_by_president_and_year_path(

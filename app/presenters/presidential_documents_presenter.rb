@@ -1,4 +1,5 @@
 class PresidentialDocumentsPresenter
+  extend Memoist
   include RouteBuilder::Fr2ApiUrls
   attr_reader :h, :president, :presidential_document_type, :type, :year
 
@@ -91,7 +92,24 @@ class PresidentialDocumentsPresenter
     I18n.t("presidential_documents.#{type}.fr_details_box_title").html_safe
   end
 
+  def no_results?(president, year)
+    eo_count_by_president_identifier_and_year["#{president.identifier}-#{year}"].nil?
+  end
+
   private
+
+  def eo_count_by_president_identifier_and_year
+    # TODO: Further limit query by presidential dates to optimize speed
+    President.all.each_with_object(Hash.new) do |president, hsh|
+      EoCollectionFacet.new(president, :yearly).facet.each do |facet|
+        if facet.count > 0
+          key = "#{president.identifier}-#{facet.year}"
+          hsh[key] = facet.count
+        end
+      end
+    end
+  end
+  memoize :eo_count_by_president_identifier_and_year
 
   def conditions_for_format(format)
     if presidential_document_type.identifier == 'executive_order'
