@@ -43,7 +43,8 @@ class CitationsController < ApplicationController
     citations = result_set.map(&:citation).compact
     if document_numbers.present?
       redirect_to short_document_path(document_numbers.first)
-    elsif citations.present?
+    elsif citations.present? #ie API call returns historical EO results without document numbers
+      @presidential_document = result_set.first
       @fr_archives_citation = lookup_fr_archives_citation(citations.first)
       render :eo, status: (@fr_archives_citation.pdf_url ? 200 : 404)
     else
