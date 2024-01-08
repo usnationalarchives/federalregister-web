@@ -24,75 +24,11 @@
         </div>
       <% end %>
 
-      <div class="<%= bootstrap_col xs: 12, md: 10 %>">
-        <% if presidential_document.proclamation_number == '9494' %>
-          <%= presidential_document.note %>
-        <% else %>
-
-
-        <h5>
-          <% if (presenter.type == 'executive_orders') && presidential_document.document_number.blank? %>
-            <%= link_to presidential_document.title, executive_order_path(presidential_document.executive_order_number) %>
-          <% else %>
-            <%= link_to presidential_document.title, document_path(presidential_document) %>
-          <% end %>
-        </h5>
-
-        <div class="row metadata_wrapper">
-          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
-            <dt>Signed:</dt>
-            <dd><%= presidential_document.signing_date %></dd>
-            <dt>Published:</dt>
-            <dd>
-              <%= link_to_if presidential_document.document_number, presidential_document.publication_date,
-                document_issue_path(presidential_document) %>
-            </dd>
-            <dt>FR Citation:</dt>
-            <dd><%= presidential_document.citation %></dd>
-            <% if presidential_document.document_number %>
-              <dt>FR Doc. Number:</dt>
-              <dd>
-                <%= link_to presidential_document.document_number,
-                  document_path(presidential_document) %>
-            </dd>
-            <% end %>
-          </dl>
-
-          <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
-            <% if presidential_document.document_number %>
-              <dt class="toc-pdf">
-                <%= link_to presidential_document.pdf_url do %>
-                  <%= fr_icon 'doc-pdf' %> PDF
-                <% end %>
-              </dt>
-
-              <dd>
-                <%= pluralize presidential_document.pages, 'page' %>
-              </dd>
-
-              <% if presidential_document.document_number %>
-                <dt class="permalink">
-                  <%= link_to short_document_url(presidential_document) do %>
-                    <%= fr_icon 'link' %> Permalink
-                  <% end %>
-                </dt>
-              <% end %>
-              <dd></dd>
-            <% end %>
-          </dl>
-        </div>
-
-        <% if presenter.type == 'executive_orders' || presenter.type == 'proclamations' %>
-          <% if presidential_document.disposition_notes.present? %>
-            <div class="row disposition-notes">
-              <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-                <%= simple_format add_citation_links(presidential_document.disposition_notes, class: "notes") %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'shared/disposition_table_entry',
+            locals: {
+              presidential_document: presidential_document,
+              presenter: presenter
+            } %>
 
     </div>
   <% end %>
