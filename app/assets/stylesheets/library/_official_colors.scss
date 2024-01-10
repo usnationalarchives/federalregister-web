@@ -1,14 +1,14 @@
 // FR Boxes
-$color-inactive:                    $gray-70;
-$color-inactive-light:              $gray-70;
+$color-inactive:                    $gray-60;
+$color-inactive-light:              $gray-5;
 
 $color-official:                    #5797CE;
 $color-official-light:              #f7fafb;
 $color-official-light-alt:          #e5f1f8;
 
 $color-enhanced:                    #A8BF82;
-$color-enhanced-mid:                #c8d8b2;
-$color-enhanced-light:              #e3ecda;
+$color-enhanced-mid:                #C8D8B2;
+$color-enhanced-light:              #E9EDE6;
 // use only for green text on light green bg -- eg hover states
 $color-enhanced-dark: darken($color-enhanced, 20);
 
@@ -19,24 +19,24 @@ $color-public-inspection-dark:      darken($color-public-inspection, 10);
 
 $color-reader-aid:                  #b462a2;
 $color-reader-aid-med:              #fbdfeb;
-$color-reader-aid-light:            #f7eff6;
+$color-reader-aid-light:            #faf0f4;
 
-$color-published:                    $gray-50;
-$color-published-light:              $gray-5;
-$color-published-light-alt:          $gray-15;
+$color-published:                   $gray-60;
+$color-published-light:             #FBFBFB;
+$color-published-light-alt:         $gray-20;
 
 $public-inspection-fr-stamp: $color-public-inspection-light;
 
 
 // FR Box Utility Nav
-$utility-nav:                         $med-gray;
-$utility-nav-background:              #E6E6E5;
-$utility-nav-hover-background:        $gray-10;
+$utility-nav:                         $gray-60;
+$utility-nav-background:              $gray-10;
+$utility-nav-hover-background:        $color-published-light;
 $utility-nav-hover-background-light:  #EFEFEF;
 $utility-nav-divider-color:           $gray-30;
 
-$utility-nav-pi:                  #8a3737;
-$utility-nav-pi-background:       #D7A5A1;
+$utility-nav-pi:                  $color-public-inspection;
+$utility-nav-pi-background:       $color-public-inspection-light;
 $utility-nav-pi-hover-background: $color-public-inspection-light-alt;
 
 $utility-nav-published:            $gray-50;
