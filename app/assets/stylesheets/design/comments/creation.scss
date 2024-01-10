@@ -1,5 +1,5 @@
 %required_abbr {
-  color: $fr-orange;
+  color: $orange;
   font-size: 20px;
   margin-left: 2px;
   position: absolute;
@@ -38,8 +38,8 @@
 
 #metadata_content_area .loading {
   @include rounded-bottom(6);
-  background-color: $fr-gray-20;
-  border: 1px solid $fr-gray-20;
+  background-color: $gray-20;
+  border: 1px solid $gray-20;
   height: 23px;
   padding: 10px;
   padding-top: 13px;
@@ -66,7 +66,7 @@
 
 .comment_form_wrapper {
   @include rounded-bottom(6);
-  background-color: $fr-gray-15;
+  background-color: $gray-15;
   padding: 20px;
   padding-top: 10px;
 
@@ -80,11 +80,11 @@
 
     .icon-fr2 {
       font-size: 70px;
-      color: $fr-gray-30;
+      color: $gray-30;
     }
 
     .icon-fr2.selected {
-      color: $fr-blue;
+      color: $blue;
     }
 
     input[type="radio"] {
@@ -98,7 +98,7 @@
 }
 
 .formtastic.comment {
-  background-color: $fr-gray-10;
+  background-color: $gray-10;
   border-radius: 5px;
   padding: 15px;
 
@@ -113,7 +113,7 @@
       width: 455px;
 
       label {
-        color: $fr-gray-60;
+        color: $gray-60;
         font-size: 15px;
 
         abbr { @extend %required_abbr; }
@@ -134,7 +134,7 @@
 
   li {
     span.public {
-      color: $fr-gray-40;
+      color: $gray-40;
       display: inline-block;
       font-size: 23px;
       height: 25px;
@@ -192,7 +192,7 @@
   input[type='text'],
   select,
   textarea {
-    @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
+    @include input-box-shadow($gray-20, $gray-10, $white);
     border-radius: 3px;
     font-size: 13px;
     height: 30px;
@@ -210,7 +210,7 @@
   input[type='text']:focus,
   select:focus,
   textarea:focus {
-    @include input-focus-box-shadow($fr-green);
+    @include input-focus-box-shadow($green);
   }
 
   p.inline-hints {
@@ -243,25 +243,25 @@
     li { display: inline-block; }
 
     .commit.button {
-      background-color: $fr-green;
+      background-color: $green;
       position: relative;
 
-      &:hover { background-color: $fr-orange; }
+      &:hover { background-color: $orange; }
 
       &.disabled {
-        background-color: $fr-gray-15;
+        background-color: $gray-15;
         cursor: default;
 
         input { cursor: default; }
 
-        &:hover { background-color: $fr-gray-15; }
+        &:hover { background-color: $gray-15; }
       }
     }
 
     .submitting.commit.button {
-      background-color: $fr-gray-20;
+      background-color: $gray-20;
 
-      &:hover { background-color: $fr-gray-20; }
+      &:hover { background-color: $gray-20; }
 
       input {
         background: image-url('fr_orange_loader.svg') 210px 0 no-repeat;
@@ -301,28 +301,28 @@
 
 .formtastic.comment {
   .errors {
-    background: $fr-light-red;
-    border: 1px solid $fr-red;
+    background: $light-red;
+    border: 1px solid $red;
     border-radius: 6px;
-    color: $fr-red;
+    color: $red;
     margin-bottom: 10px;
     padding: 0.5em 0.5em 0.25em;
     text-align: center;
   }
 
   .error {
-    .label { color: $fr-red; }
+    .label { color: $red; }
 
     input[type='text'],
     select,
-    textarea { @include input-focus-box-shadow($fr-red); }
+    textarea { @include input-focus-box-shadow($red); }
   }
 }
 
 .formtastic.comment {
   p.inline-errors {
     background: none;
-    color: $fr-red;
+    color: $red;
     font-size: 15px;
     font-weight: normal;
     left: 212px;
@@ -330,7 +330,7 @@
     position: relative;
     top: 5px;
 
-    &.warning { color: $fr-green; }
+    &.warning { color: $green; }
   }
 
   #comment_general_comment_input p.inline-errors { top: inherit; }
@@ -382,7 +382,7 @@
     }
 
     .add_file {
-      background-color: $fr-green;
+      background-color: $green;
       color: $white;
       font-weight: bold;
       height: 23px;
@@ -400,7 +400,7 @@
 
       &:hover,
       &.hover {
-        background-color: lighten($fr-green, 10);
+        background-color: lighten($green, 10);
       }
     }
   }
@@ -413,7 +413,7 @@
 
   button.cancel,
   button.delete {
-    background-color: $fr-red;
+    background-color: $red;
     border: 0;
     color: $white;
     font-size: 0.8em;
@@ -428,7 +428,7 @@
     top: 1px;
     width: 75px;
 
-    &:hover { background-color: lighten($fr-red, 10); }
+    &:hover { background-color: lighten($red, 10); }
 
     span {
       display: block;
@@ -448,7 +448,7 @@
     button.cancel { top: 0; }
 
     td.file-error {
-      color: $fr-red;
+      color: $red;
       font-weight: bold;
     }
   }
@@ -461,12 +461,12 @@ table.attachments {
   width: 638px;
 
   tr {
-    border-top: 1px solid $fr-gray-20;
+    border-top: 1px solid $gray-20;
     margin-top: 5px;
 
     &.error {
       background: none; // remove unwanted cascade
-      color: $fr-red;
+      color: $red;
       display: table-row; // remove unwanted cascade
       font-weight: bold;
     }
@@ -494,17 +494,17 @@ table.attachments {
 
   td.progress-bar { padding-left: 0; }
 
-  .progress-striped .bar { background-color: $fr-orange; }
+  .progress-striped .bar { background-color: $orange; }
 
   .progress-success .bar {
-    @include striped-progress-background(lighten($fr-green, 20), $fr-green, lighten($fr-green, 10));
+    @include striped-progress-background(lighten($green, 20), $green, lighten($green, 10));
     padding-top: 1px;
   }
 }
 
 .formtastic.comment {
   .regulations_dot_gov_notices {
-    color: $fr-gray-60;
+    color: $gray-60;
     font-size: modular-scale(-1);
     font-style: italic;
     margin: 10px auto 0;
@@ -516,7 +516,7 @@ table.attachments {
 
 div.comment-preview-modal {
   background-color: $white;
-  border: 5px solid $fr-dark-blue;
+  border: 5px solid $dark-blue;
   display: none;
   padding: 1em;
   position: fixed;
@@ -550,7 +550,7 @@ div.alternative-comment-modal {
 
 
   .print_button {
-    color: $fr-blue;
+    color: $blue;
     cursor: pointer;
     font-size: 1.2em;
     font-weight: bold;
@@ -565,16 +565,16 @@ div.alternative-comment-modal {
   }
 
   .agency {
-    border-bottom: 1px solid $fr-gray-20;
-    border-top: 1px solid $fr-gray-20;
+    border-bottom: 1px solid $gray-20;
+    border-top: 1px solid $gray-20;
     margin: 0.5em 0;
     overflow: hidden;
     padding: 0.5em 0;
   }
 
   .comment_details {
-    background-color: $fr-gray-10;
-    border: 1px $fr-gray-20 solid;
+    background-color: $gray-10;
+    border: 1px $gray-20 solid;
     border-radius: 6px;
     margin-bottom: 1.5em;
     padding: 10px;
@@ -582,7 +582,7 @@ div.alternative-comment-modal {
 
     dd.tracking_number {
       background-color: $white;
-      border: 1px $fr-gray-20 solid;
+      border: 1px $gray-20 solid;
       border-radius: 6px;
       font-family: courier;
       padding: 0px 5px;
@@ -593,7 +593,7 @@ div.alternative-comment-modal {
 
 // COMMENT FORM SUBMIT SUCCESS
 .tracking_number {
-  @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
+  @include input-box-shadow($gray-20, $gray-10, $white);
   background-color: $white;
   border-radius: 3px;
   font-family: courier;
@@ -626,13 +626,13 @@ div.alternative-comment-modal {
   }
 
   label.required-error {
-    color: $fr-red;
+    color: $red;
   }
 }
 
 .comment_wrapper .comment_next_steps {
-  @include input-box-shadow($fr-gray-20, $fr-gray-10, $white);
-  background-color: $fr-gray-5;
+  @include input-box-shadow($gray-20, $gray-10, $white);
+  background-color: $gray-5;
   border-radius: 5px;
   margin-top: 20px;
   padding: 15px;
@@ -663,7 +663,7 @@ div.alternative-comment-modal {
       margin-top: 0;
 
       .button {
-        background-color: $fr-green;
+        background-color: $green;
         color: $white;
         font-weight: bold;
         height: 20px;
@@ -671,7 +671,7 @@ div.alternative-comment-modal {
         padding: 5px;
         width: 200px;
 
-        &:hover { background-color: $fr-orange; }
+        &:hover { background-color: $orange; }
       }
 
       .button input {
@@ -694,7 +694,7 @@ div.alternative-comment-modal {
 
 .comment_wrapper .comment_next_steps {
   .icon-fr2 {
-    color: $fr-gray-60;
+    color: $gray-60;
     float: left;
     font-size: 28px;
     left: 20px;
@@ -727,7 +727,7 @@ div.alternative-comment-modal {
       width: 600px;
 
       &.first {
-        border-bottom: 1px solid $fr-gray-20;
+        border-bottom: 1px solid $gray-20;
         margin-bottom: 5px;
         padding-bottom: 5px;
       }
@@ -739,7 +739,7 @@ div.alternative-comment-modal {
       }
 
       a.notifications {
-        background-color: $fr-green;
+        background-color: $green;
         border-radius: 5px;
         color: $white;
         float: right;
@@ -749,12 +749,12 @@ div.alternative-comment-modal {
         top: 10px;
         width: 75px;
 
-        &:hover { background-color: $fr-orange; }
+        &:hover { background-color: $orange; }
 
         &.remove {
-          background-color: $fr-red;
+          background-color: $red;
 
-          &:hover { background-color: $fr-dark-red; }
+          &:hover { background-color: $dark-red; }
         }
       }
     }

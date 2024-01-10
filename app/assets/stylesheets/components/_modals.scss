@@ -1,7 +1,7 @@
 .jqmWindow {
-  background-color: $fr-gray-10;
+  background-color: $gray-10;
   border: 1px solid $black;
-  color: $fr-gray-80;
+  color: $gray-80;
   display: none;
   left: 50%;
   padding: 12px;
@@ -91,7 +91,7 @@
 
 .fr-modal {
   background-color: $white;
-  border: 5px solid $fr-dark-blue;
+  border: 5px solid $dark-blue;
   display: none;
   max-height: 87vh;
   overflow: auto;
@@ -123,7 +123,7 @@
 
   .external_link,
   .external-link {
-    background: $fr-gray-10;
+    background: $gray-10;
     display: block;
     margin: 0.5em 0 1em;
     padding: 1em;
@@ -131,7 +131,7 @@
   }
 
   .jqmClose {
-    color: $fr-dark-blue;
+    color: $dark-blue;
     font-size: 26px;
     position: absolute;
     right: 0.25em;
@@ -139,7 +139,7 @@
   }
 
   h3 {
-    border-bottom: 2px solid $fr-gray-80;
+    border-bottom: 2px solid $gray-80;
     border-top: 0;
     font-size: 1.8em;
     margin-bottom: 0.5em;
@@ -149,7 +149,7 @@
 
   .title_bar {
     border-top: 0;
-    color: $fr-dark-blue;
+    color: $dark-blue;
     margin-bottom: 0.5em;
     margin-top: 0;
 
@@ -174,13 +174,13 @@
 
   p { margin-bottom: 10px; }
   .bullets {
-    @include custom-bullets($fr-dark-blue);
+    @include custom-bullets($dark-blue);
   }
 
   form {
     textarea,
     input[type=text] {
-      border: 1px solid $fr-gray-15;
+      border: 1px solid $gray-15;
       padding: 1px 5px;
     }
 
@@ -215,23 +215,23 @@
 
 .subscription-modal {
   h3 {
-    border-color: $fr-dark-blue;
-    color: $fr-dark-blue;
+    border-color: $dark-blue;
+    color: $dark-blue;
     font-size: modular-scale(2);
     margin-top: 0 !important;
   }
 
-  h4 { color: $fr-dark-blue; }
+  h4 { color: $dark-blue; }
 
-  li.error { color: $fr-red; }
+  li.error { color: $red; }
 
   input.error {
-    border-color: $fr-red;
-    outline-color: $fr-red;
+    border-color: $red;
+    outline-color: $red;
   }
 
   .subscription-list {
-    border-bottom: 1px solid $fr-gray-20;
+    border-bottom: 1px solid $gray-20;
 
     &:last-child { border-bottom: 0; }
 
@@ -278,7 +278,7 @@
 
           input[type=text] {
             @include placeholder {
-              color: $fr-gray-70;
+              color: $gray-70;
               font-style: italic;
             }
 
@@ -310,7 +310,7 @@
             margin-right: 10px;
 
             &.disabled {
-              color: $fr-gray-40;
+              color: $gray-40;
             }
 
             label {
@@ -342,8 +342,8 @@
         }
 
         &.submitting {
-          background-color: $fr-gray-15;
-          //input { background-color: $fr-gray-15; }
+          background-color: $gray-15;
+          //input { background-color: $gray-15; }
           .loader { display: inline-block; }
         }
       }
@@ -361,7 +361,7 @@
 
   .folder_success {
     .icon-fr2-badge_check_mark {
-      color: $fr-green;
+      color: $green;
       font-size: 20px;
       left: 10px;
       top: 4px;
@@ -369,10 +369,10 @@
   }
 
   .button.saving {
-    background-color: $fr-gray-20;
+    background-color: $gray-20;
     position: relative;
 
-    &:hover { background-color: $fr-gray-20; }
+    &:hover { background-color: $gray-20; }
 
     .loader {
       background: image-url('fr_orange_loader.svg') 0 0 no-repeat;
@@ -388,7 +388,7 @@
     display: none;
 
     p {
-      color: $fr-red;
+      color: $red;
       height: 25px;
       padding: 0;
     }
@@ -408,7 +408,7 @@
       position: relative;
 
       .icon-fr2 {
-        color: $fr-gray-40;
+        color: $gray-40;
         font-size: 23px;
         left: 105px;
         position: absolute;
@@ -420,7 +420,7 @@
       .input { margin-bottom: 20px; }
 
       label {
-        color: $fr-gray-70;
+        color: $gray-70;
         font-size: modular-scale(0);
         font-weight: 700;
         margin-right: 5px;

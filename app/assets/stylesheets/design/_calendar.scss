@@ -40,8 +40,8 @@
   }
 
   .dayName th {
-    border-bottom: 1px solid $fr-gray-80;
-    border-top: 1px solid $fr-gray-80;
+    border-bottom: 1px solid $gray-80;
+    border-top: 1px solid $gray-80;
     width: (100/7) * 1%;
 
     abbr { border-bottom: 0; }
@@ -67,15 +67,15 @@
     &:visited { color: inherit; }
   }
 
-  .weekend { background: $fr-gray-20; }
+  .weekend { background: $gray-20; }
 
   .late {
-    background: $fr-light-red;
+    background: $light-red;
     font-weight: 500;
   }
 
   .holiday {
-    background: $fr-dark-blue !important;
+    background: $dark-blue !important;
     color: $white;
     font-weight: bold;
 
@@ -95,7 +95,7 @@
   }
 
   .current {
-    background: $fr-orange;
+    background: $orange;
     color: $white !important;
     font-weight: bold;
   }
@@ -112,7 +112,7 @@
     &:visited { color: $white; }
   }
 
-  .otherMonth { background: $fr-gray-10; }
+  .otherMonth { background: $gray-10; }
 
 
 }

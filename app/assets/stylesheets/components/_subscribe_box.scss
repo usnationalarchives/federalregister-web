@@ -43,12 +43,12 @@
 }
 
 .subscription.subscription_action {
-  color: $fr-link-dark;
+  color: $link-dark;
   font-weight: 500;
   text-transform: none;
 
-  &:visited { color: $fr-link-dark; }
-  &:hover { color: $fr-orange; }
+  &:visited { color: $link-dark; }
+  &:hover { color: $orange; }
 
   .icon-fr2 {
     position: relative;

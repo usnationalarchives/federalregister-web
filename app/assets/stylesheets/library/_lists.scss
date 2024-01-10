@@ -1,5 +1,5 @@
 .fr-list-header {
-  border-bottom: 1px solid $fr-gray-20;
+  border-bottom: 1px solid $gray-20;
 }
 
 .fr-list {
@@ -30,8 +30,8 @@
   }
 
   &.with-bullets {
-    @include custom-bullets($fr-gray-30, "19px");
-    @include custom-bullets($fr-gray-30, "19px", "dd");
+    @include custom-bullets($gray-30, "19px");
+    @include custom-bullets($gray-30, "19px", "dd");
 
     &.reader-aids {
       @include custom-bullets($color-reader-aid, "19px");
@@ -60,7 +60,7 @@
     }
 
     li {
-      color: $fr-gray-40;
+      color: $gray-40;
       font-size: modular-scale(-1);
       font-weight: normal;
       line-height: 17px;
@@ -70,7 +70,7 @@
     }
 
     span.rule_type {
-      color: $fr-blue;
+      color: $blue;
       float: left;
       font-size: 18px;
       margin-right: 10px;
@@ -86,7 +86,7 @@
 
     ul.fr-link-stats {
       clear: both;
-      color: $fr-gray-30 !important;
+      color: $gray-30 !important;
       display:block;
       margin: 0 0 5px 50px;
       overflow: hidden;

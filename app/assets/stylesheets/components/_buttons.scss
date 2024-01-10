@@ -14,43 +14,43 @@
   input:focus { outline: 0; }
 
   &.primary {
-    background: $fr-green;
+    background: $green;
     color: $white;
 
     &:hover,
     &.hover {
-      background: darken($fr-green, 5);
+      background: darken($green, 5);
     }
   }
 
   &.secondary {
-    background: $fr-blue;
+    background: $blue;
     color: $white;
 
     &:hover,
     &.hover {
-      background: darken($fr-blue, 5);
+      background: darken($blue, 5);
     }
   }
 
   &.optional {
-    background: $fr-gray-15;
+    background: $gray-15;
     color: $black;
 
     &:hover,
     &.hover {
-      background: $fr-bright-orange;
+      background: $bright-orange;
       color: $white;
     }
   }
 
   &.danger {
-    background: $fr-red;
+    background: $red;
     color: $white;
 
     &:hover,
     &.hover {
-      background: darken($fr-red, 10);
+      background: darken($red, 10);
     }
   }
 
@@ -59,7 +59,7 @@
 
     &:hover,
     .hover {
-      background: $fr-gray-15;
+      background: $gray-15;
     }
   }
 

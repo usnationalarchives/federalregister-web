@@ -59,11 +59,11 @@
 
   .president-wrapper {
     h3 {
-      border-bottom: 1px solid $fr-dark-blue;
+      border-bottom: 1px solid $dark-blue;
       a {
-        color: $fr-blue;
+        color: $blue;
 
-        &:hover { color: $fr-orange; }
+        &:hover { color: $orange; }
       }
     }
   }
@@ -178,7 +178,7 @@
       float: none;
       line-height: 30px;
     }
-    
+
     .navigation {margin-top: 20px;}
   }
 }

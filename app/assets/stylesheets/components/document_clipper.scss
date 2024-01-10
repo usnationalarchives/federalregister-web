@@ -33,13 +33,13 @@
         @include rounded-bottom(0);
         @include rounded-top(6);
 
-        background-color: $fr-gray-10;
-        border: $fr-gray-20 1px solid;
+        background-color: $gray-10;
+        border: $gray-20 1px solid;
         border-bottom: 0;
         z-index: 1200;
 
         .icon-fr2-flag,
-        .icon-fr2-menu_arrow { color: $fr-orange; }
+        .icon-fr2-menu_arrow { color: $orange; }
       }
 
       .menu {
@@ -56,9 +56,9 @@
       z-index: 100;
 
       .icon-fr2 {
-        color: $fr-gray-60;
+        color: $gray-60;
 
-        &.clipped { color: $fr-orange; }
+        &.clipped { color: $orange; }
       }
 
       .icon-fr2-flag {
@@ -74,8 +74,8 @@
 
     .menu {
       @include rounded-bottom(6);
-      background-color: $fr-gray-10;
-      border: solid 1px $fr-gray-20;
+      background-color: $gray-10;
+      border: solid 1px $gray-20;
       border-top-left-radius: 0;
       clear: both;
       display: none;
@@ -106,9 +106,9 @@
         width: 200px;
 
         li {
-          border-bottom: 1px dashed $fr-gray-20;
+          border-bottom: 1px dashed $gray-20;
           clear: both;
-          color: $fr-gray-60;
+          color: $gray-60;
           display: list-item;
           float: none;
           padding: 4px 5px;
@@ -116,7 +116,7 @@
           &:last-child { border-bottom: 0; }
 
           a {
-            color: $fr-gray-60;
+            color: $gray-60;
             display: block;
             font-weight: 500;
             position: relative;
@@ -125,7 +125,7 @@
           }
 
           .icon-fr2 {
-            color: $fr-gray-60;
+            color: $gray-60;
             font-size: modular-scale(3);
           }
 
@@ -136,12 +136,12 @@
 
             &:hover,
             &.hover {
-              color: $fr-orange;
+              color: $orange;
 
               a {
-                color: $fr-orange;
+                color: $orange;
 
-                .icon-fr2 { color: $fr-orange; }
+                .icon-fr2 { color: $orange; }
               }
             }
           }
@@ -167,7 +167,7 @@
 
             a {
 
-              .icon-fr2-badge_check_mark.checked { color: $fr-green; }
+              .icon-fr2-badge_check_mark.checked { color: $green; }
 
               .icon-fr2-badge_x.delete,
               .icon-fr2-badge_forward_arrow.goto { display: none; }
@@ -176,10 +176,10 @@
             &:hover,
             &.hover {
               a {
-                color: $fr-gray-60;
+                color: $gray-60;
 
                 .icon-fr2-badge_x.delete { display: inline-block; }
-                .icon-fr2-badge_x.delete:hover { color: $fr-red; }
+                .icon-fr2-badge_x.delete:hover { color: $red; }
 
                 .icon-fr2-badge_forward_arrow.goto {
                   display: inline-block;
@@ -187,7 +187,7 @@
                 }
 
                 .icon-fr2-badge_forward_arrow.goto:hover {
-                  color: $fr-green;
+                  color: $green;
                 }
               }
             }
@@ -195,12 +195,12 @@
 
           &.not-in-folder {
             a {
-              .icon-fr2-badge_check_mark { color: $fr-gray-20; }
+              .icon-fr2-badge_check_mark { color: $gray-20; }
             }
 
             &:hover {
               a {
-                .icon-fr2-badge_check_mark { color: $fr-orange; }
+                .icon-fr2-badge_check_mark { color: $orange; }
               }
             }
           }

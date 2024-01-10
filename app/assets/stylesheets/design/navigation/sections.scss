@@ -43,18 +43,18 @@ SECTION SUGGESTED SEARCHES
     }
 
     a {
-      color: $fr-link-dark;
+      color: $link-dark;
       padding: 0;
       line-height: inherit;
       font-size: inherit;
 
-      &:hover { color: $fr-nav-orange !important;}
+      &:hover { color: $nav-orange !important;}
     }
 
     .result-count {
       font-size: modular-scale(-1);
       font-style: italic;
-      color: $fr-gray-60;
+      color: $gray-60;
       padding: 0;
       margin: 0;
     }
@@ -68,9 +68,9 @@ SECTION DAILY STATS
 
 **************************************/
 #navigation .preview .daily_stats {
-  border-top: 1px solid $fr-gray-20;
+  border-top: 1px solid $gray-20;
   font-weight: bold;
-  color: $fr-gray-40;
+  color: $gray-40;
   margin-bottom: 3px;
 
   // bootstrap hack
@@ -81,9 +81,9 @@ SECTION DAILY STATS
 
   a {
     font-weight: inherit;
-    color: $fr-gray-40;
+    color: $gray-40;
 
-    &:hover { color: $fr-nav-orange !important; }
+    &:hover { color: $nav-orange !important; }
   }
 
   .count {

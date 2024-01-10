@@ -5,17 +5,17 @@
   padding: 10px !important;
 
   &.error {
-    background-color: $fr-light-red;
-    border: 1px solid $fr-red;
+    background-color: $light-red;
+    border: 1px solid $red;
   }
 
   &.success {
-    background-color: $fr-light-green;
-    border: 1px solid $fr-green;
+    background-color: $light-green;
+    border: 1px solid $green;
   }
 
   &.warning {
-    background-color: $fr-yellow;
-    border: 1px solid $fr-golden;
+    background-color: $yellow;
+    border: 1px solid $golden;
   }
 }

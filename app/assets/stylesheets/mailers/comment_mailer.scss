@@ -1,8 +1,8 @@
 @import "library/colors";
 
 %bordered {
-  border-bottom:1px solid $fr-gray-20;
-  border-top: 1px solid $fr-gray-20;
+  border-bottom:1px solid $gray-20;
+  border-top: 1px solid $gray-20;
   margin-top: 5px;
   padding: 3px 5px;
 }
@@ -15,9 +15,9 @@
     padding-bottom: 20px;
 
     .comment_tracking_number {
-      background-color: $fr-gray-5;
+      background-color: $gray-5;
       border-radius: 6px;
-      border: 1px $fr-gray-20 solid;
+      border: 1px $gray-20 solid;
       font-size: 18px;
       padding: 10px;
       text-align: center;
@@ -30,7 +30,7 @@
   }
 
   .document_title a {
-    color: $fr-blue;
+    color: $blue;
     font-size: 1.5em;
     font-weight: bold;
     text-decoration: none;

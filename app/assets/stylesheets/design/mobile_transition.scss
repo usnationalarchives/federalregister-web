@@ -25,7 +25,7 @@ body:not(#special.home):not(#agencies.index):not(.controller-path-search-documen
 @media only screen and (max-width: #{$small-viewport-width}) {
   #navigation {
     // This ensures the orange nav stripe streteches across fixed width mobile viewport
-    border-top: 4px solid $fr-nav-orange !important;
+    border-top: 4px solid $nav-orange !important;
   }
 
   // remove fixed width setting for small viewports

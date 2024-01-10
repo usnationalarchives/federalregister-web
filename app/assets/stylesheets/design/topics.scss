@@ -1,6 +1,6 @@
 // TOPIC INDEX
 .topic-document-count {
-  color: $fr-dark-blue;
+  color: $dark-blue;
   display: inline-block;
   float: none;
   font-size: modular-scale(2);
@@ -15,7 +15,7 @@
 .topics {
   .topic-header {
     h1 {
-      border-bottom: 2px solid $fr-gray-20;
+      border-bottom: 2px solid $gray-20;
       margin-bottom: .25em !important;
       padding-left: 5px;
     }

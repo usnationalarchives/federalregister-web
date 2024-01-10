@@ -46,9 +46,9 @@ table td {border-collapse:collapse;}
 
 /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: COMMON PAGE ELEMENTS /\/\/\/\/\/\/\/\/\/\ */
 
-body, #backgroundTable { background-color: $fr-gray-5; }
+body, #backgroundTable { background-color: $gray-5; }
 
-#templateContainer { border: 1px solid $fr-gray-20; }
+#templateContainer { border: 1px solid $gray-20; }
 
 h1, .h1{
   color:#202020;
@@ -111,7 +111,7 @@ h4, .h4{
 /* used for creating a better preview in the subject line in clients like Gmail */
 .subject_teaser {
   display: none;
-  color:  $fr-gray-5;
+  color:  $gray-5;
 }
 
 /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
@@ -255,13 +255,13 @@ h4, .h4{
   > div { padding: 10px; }
 
   h3 {
-    color: $fr-gray-40;
+    color: $gray-40;
     font-size: 13px;
     margin: 0;
   }
 
   p {
-    color: $fr-gray-30;
+    color: $gray-30;
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size:10px;
   }
@@ -269,7 +269,7 @@ h4, .h4{
 
 .notification_disclaimer {
   margin-top: 20px;
-  color: $fr-gray-40;
+  color: $gray-40;
   font-size: 11px;
   text-align: center;
 }

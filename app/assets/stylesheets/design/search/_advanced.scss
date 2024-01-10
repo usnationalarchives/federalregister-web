@@ -11,7 +11,7 @@
     display: block;
 
     .seperator {
-      border-top: 1px solid $fr-gray-20;
+      border-top: 1px solid $gray-20;
       margin: 20px auto;
       width: 95%;
     }
@@ -32,7 +32,7 @@
     border-bottom: 0;
 
     &[title] {
-      color: $fr-orange;
+      color: $orange;
     }
   }
 
@@ -48,7 +48,7 @@
 
     input {
       @include placeholder {
-        color: $fr-gray-15;
+        color: $gray-15;
         font-style: italic;
         font-weight: 400;
       }
@@ -154,7 +154,7 @@
 
         input {
           @include placeholder {
-            color: $fr-gray-15;
+            color: $gray-15;
             font-style: italic;
             font-weight: 400;
           }
@@ -258,7 +258,7 @@
 
     .bsmListItem,
     .inline-hints {
-      background: $fr-dark-blue;
+      background: $dark-blue;
       border-radius: 5px;
       color: $white;
       height: 30px;
@@ -271,7 +271,7 @@
 
     .bsmListItem {
       &:hover {
-        background: $fr-orange;
+        background: $orange;
         color: $white;
       }
 
@@ -288,7 +288,7 @@
       }
     }
 
-    .bsmHighlight { background-color: $fr-orange; }
+    .bsmHighlight { background-color: $orange; }
   }
 
   //clear the float on any bsm items above
@@ -319,7 +319,7 @@
   }
 
   #conditions_cfr_title {
-    width: 44px !important; 
+    width: 44px !important;
   }
 
 }

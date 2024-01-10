@@ -1,8 +1,8 @@
 .active-filters {
   margin-bottom: 20px;
-  
+
   .filter-group {
-    background-color: $fr-yellow;
+    background-color: $yellow;
     border-radius: 5px;
     margin: 0;
     padding: 10px 10px 9px 25px;
@@ -17,7 +17,7 @@
       vertical-align: top;
     }
     .type {
-      color: $fr-golden;
+      color: $golden;
       font-weight: 500;
       padding-right: 5px;
 
@@ -30,11 +30,11 @@
 
       .filter {
         &:first-child { padding-top: 0; }
-        
+
         padding: 3px 0;
 
         .filter-connector {
-          color: $fr-golden;
+          color: $golden;
           font-weight: 500;
         }
 
@@ -45,9 +45,9 @@
     }
 
     .icon-fr2 {
-      color: $fr-golden;
+      color: $golden;
       font-size: 22px;
-      
+
       &.icon-fr2-filter {
         left: -26px;
         margin-right: -27px;
@@ -58,7 +58,7 @@
     a.remove .icon-fr2 {
       float: right;
 
-      &:hover { color: $fr-red; }
+      &:hover { color: $red; }
     }
   }
 }

@@ -40,7 +40,7 @@ ul.subscriptions {
   }
 
   .icon-fr2 {
-    color: $fr-bright-orange;
+    color: $bright-orange;
     display: inline-block;
     font-size: 60px;
     height: 54px;
@@ -66,7 +66,7 @@ ul.subscriptions {
       overflow: auto;
 
       li {
-        color: $fr-gray-40;
+        color: $gray-40;
         font-size: modular-scale(0);
         font-weight: 500;
         height: 28px;
@@ -76,8 +76,8 @@ ul.subscriptions {
 
         &.sub_pi { width: 175px; }
         &.on,
-        &.hover { color: $fr-bright-orange; }
-        &.disabled { color: $fr-gray-20; }
+        &.hover { color: $bright-orange; }
+        &.disabled { color: $gray-20; }
 
         &.sub_document,
         &.sub_pi {
@@ -109,8 +109,8 @@ ul.subscriptions {
 }
 
 .subscription_data {
-  .active { color: $fr-green; }
-  .inactive { color: $fr-red; }
+  .active { color: $green; }
+  .inactive { color: $red; }
 
   .csv_link,
   .rss_link {

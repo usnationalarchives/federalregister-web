@@ -33,7 +33,7 @@
     &.jump-to-folder {
       .button {
         background-color: $white;
-        border: 1px solid $fr-gray-20;
+        border: 1px solid $gray-20;
         border-radius: 6px;
         font-weight: 500;
         height: 20px;
@@ -48,8 +48,8 @@
       .menu {
         @include rounded-bottom(6);
 
-        background-color: $fr-gray-10;
-        border: 1px solid $fr-gray-20;
+        background-color: $gray-10;
+        border: 1px solid $gray-20;
         border-top: 0;
         display: none;
         font-size: 15px; //intential non-use of modular-scale
@@ -71,28 +71,28 @@
 
         ul {
           background-color: $white;
-          border: 1px solid $fr-gray-15;
+          border: 1px solid $gray-15;
           margin: 0;
 
           li {
-            border-bottom: 1px dashed $fr-gray-20;
-            color: $fr-gray-60;
+            border-bottom: 1px dashed $gray-20;
+            color: $gray-60;
             font-weight: bold;
             margin: 0;
             padding: 4px 5px;
             position: relative;
 
             a {
-              color: $fr-gray-60;
+              color: $gray-60;
               font-weight: bold;
             }
 
             &:hover {
-              background-color: $fr-gray-5;
-              color: $fr-orange;
+              background-color: $gray-5;
+              color: $orange;
               cursor: pointer;
 
-              a { color: $fr-orange; }
+              a { color: $orange; }
             }
 
             &:last-child { border-bottom: 0; }
@@ -102,15 +102,15 @@
               text-align: center;
 
               .icon-fr2 {
-                color: $fr-gray-60;
+                color: $gray-60;
                 font-size: 16px;
                 top: -1px;
               }
 
               &.hover,
               &:hover {
-                color: $fr-orange;
-                .icon-fr2 { color: $fr-orange; }
+                color: $orange;
+                .icon-fr2 { color: $orange; }
               }
             }
           }
@@ -122,7 +122,7 @@
           @include rounded-bottom(0);
           background-color: $white;
           border-bottom: 0;
-          color: $fr-orange;
+          color: $orange;
           padding-bottom: 6px;
         }
 
@@ -133,7 +133,7 @@
             @include rounded-bottom(6);
 
             background-color: $white;
-            border: 1px solid $fr-gray-15;
+            border: 1px solid $gray-15;
             border-top-left-radius: 6px;
             margin: 0;
           }
@@ -170,8 +170,8 @@
     @include border-radius(6);
 
     background-color: $white;
-    border: 1px solid $fr-gray-20;
-    color: $fr-gray-60;
+    border: 1px solid $gray-20;
+    color: $gray-60;
     font-size: 22px;
     height: 23px;
     padding: 0 4px 0 4px;
@@ -186,7 +186,7 @@
     }
 
     .icon-fr2-badge_check_mark  {
-      &:hover { color: $fr-orange; }
+      &:hover { color: $orange; }
     }
   }
 
@@ -194,8 +194,8 @@
     @include border-radius(6);
 
     background-color: $white;
-    border: 1px solid $fr-gray-20;
-    color: $fr-gray-60;
+    border: 1px solid $gray-20;
+    color: $gray-60;
     font-size: 22px;
     height: 23px;
     padding: 0 4px 0 4px;
@@ -209,6 +209,6 @@
       left: -1px;
       top: -1px;
     }
-    .icon-fr2-trash_can:hover { color: $fr-red; }
+    .icon-fr2-trash_can:hover { color: $red; }
   }
 }

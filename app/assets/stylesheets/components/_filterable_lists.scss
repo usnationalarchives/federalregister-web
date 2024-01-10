@@ -2,13 +2,13 @@
   ul { list-style: none; }
 
   .filterable-list-info {
-    border-bottom: 3px solid $fr-dark-blue;
+    border-bottom: 3px solid $dark-blue;
     margin-bottom: 1em;
     overflow: hidden;
     position: relative;
 
     h2 {
-      color: $fr-dark-blue;
+      color: $dark-blue;
       margin-bottom: 0;
       margin-top: 0;
 
@@ -18,7 +18,7 @@
 
   .filterable-list {
     .unmatched > a {
-      color: $fr-gray-50;
+      color: $gray-50;
     }
   }
 }
@@ -36,7 +36,7 @@
 
   &:hover,
   &.on {
-    background-color: $fr-dark-blue;
+    background-color: $dark-blue;
 
     a { color: $white; }
   }
@@ -44,8 +44,8 @@
 
 .item-filters {
   h4 {
-    border-bottom: 2px solid $fr-dark-blue;
-    color: $fr-dark-blue;
+    border-bottom: 2px solid $dark-blue;
+    color: $dark-blue;
     margin-top: 16px !important;
   }
 

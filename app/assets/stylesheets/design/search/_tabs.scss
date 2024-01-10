@@ -1,6 +1,6 @@
 %tab-on-state {
-  background-color: $fr-gray-10;
-  border: 1px solid $fr-gray-20;
+  background-color: $gray-10;
+  border: 1px solid $gray-20;
 }
 
 .tabs {
@@ -11,7 +11,7 @@
 
   li {
     @include rounded-top(5);
-    background-color: $fr-gray-2;
+    background-color: $gray-2;
     color: $text-inactive;
     display: inline-block;
     list-style-image: none;
@@ -37,7 +37,7 @@
       top: 3px;
 
       &:visited { color: $text-inactive; }
-      &:hover { color: $fr-orange; }
+      &:hover { color: $orange; }
     }
 
     &.documents { width: 165px; }
@@ -51,7 +51,7 @@
     @extend %tab-on-state;
 
     border-bottom: 0;
-    color: $fr-dark-blue;
+    color: $dark-blue;
     font-weight: 700;
     position: relative;
     text-align: center;
@@ -59,7 +59,7 @@
     z-index: 100;
 
     &:hover {
-      color: $fr-dark-blue;
+      color: $dark-blue;
       border-bottom: 0;
       padding-left: 10px;
     }
@@ -97,7 +97,7 @@
 }
 
 @media only screen and (max-width: $small-viewport-width) {
-  
+
   .tabs li.on {
     width: auto;
     min-width: 152px !important;

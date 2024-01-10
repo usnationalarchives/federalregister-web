@@ -3,8 +3,8 @@
   width: 960px;
 
   .metadata_share_bar {
-    border-bottom: 1px solid $fr-gray-20;
-    border-top: 1px solid $fr-gray-20;
+    border-bottom: 1px solid $gray-20;
+    border-top: 1px solid $gray-20;
     overflow: visible;
     padding: 10px 0 8px;
     position: relative;
@@ -25,9 +25,9 @@
 }
 
 .document-notice-bar {
-  background: $fr-gray-10;
+  background: $gray-10;
   border-radius: 5px;
-  color: $fr-gray-60;
+  color: $gray-60;
   //height: 26px;
   margin: 20px 0;
   overflow: hidden;
@@ -37,7 +37,7 @@
   z-index: 1000;
 
   .button {
-    background: $fr-green;
+    background: $green;
     color: $white;
     font-weight: normal;
     margin: 0;
@@ -49,16 +49,16 @@
     text-transform: uppercase;
     top: 0;
 
-    &:hover { background: darken($fr-green, 10); }
+    &:hover { background: darken($green, 10); }
   }
 
   &.correction .button {
-    background: $fr-red;
-    &:hover { background: darken($fr-red, 10); }
+    background: $red;
+    &:hover { background: darken($red, 10); }
   }
   &.correction-of .button {
-    background: $fr-orange;
-    &:hover { background: darken($fr-orange, 10); }
+    background: $orange;
+    &:hover { background: darken($orange, 10); }
   }
 
 
@@ -67,7 +67,7 @@
     padding: 0;
 
     .icon-fr2 {
-      color: $fr-gray-50;
+      color: $gray-50;
       float: left;
       font-size: modular-scale(5);
       padding-right: 5px;
@@ -78,7 +78,7 @@
 }
 
 .reg-gov-comments-count {
-  color: $fr-gray-80;
+  color: $gray-80;
   font-weight: bold;
   margin-top: -15px;
   padding-bottom: 0;

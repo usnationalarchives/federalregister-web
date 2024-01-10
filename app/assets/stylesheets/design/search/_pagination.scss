@@ -8,12 +8,12 @@
 
   span,
   a {
-    border: 1px solid $fr-gray-20;
+    border: 1px solid $gray-20;
     padding: 5px 10px;
   }
 
   .active span {
-    background-color: $fr-nav-orange;
+    background-color: $nav-orange;
     color: $white;
   }
 }

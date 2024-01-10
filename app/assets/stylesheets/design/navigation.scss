@@ -6,7 +6,7 @@
     background: $nav-background-color;
     border: 1px solid $nav-border-color;
     border-top: 0;
-    box-shadow: 0 3px 5px $fr-gray-40;
+    box-shadow: 0 3px 5px $gray-40;
     height: 30px;
     list-style: none;
     margin: 0 auto;
@@ -43,7 +43,7 @@
 
   a {
     @include sans_serif;
-    color: $fr-gray-60;
+    color: $gray-60;
     cursor: pointer;
     display: block;
     font-size: 13px;
@@ -53,7 +53,7 @@
 
     &:hover,
     &.hover {
-      color: $fr-bright-orange;
+      color: $bright-orange;
     }
   }
 }
@@ -83,7 +83,7 @@
     a { padding-right: 5px; }
 
     .icon-fr2-menu_arrow {
-      color: $fr-gray-50;
+      color: $gray-50;
       float: right;
       font-size: 14px;
       top: 8px;
@@ -131,7 +131,7 @@
   @include rounded-bottom(4px);
   background: $white;
   border: 1px solid $nav-border-color;
-  box-shadow: 0 3px 5px $fr-gray-40;
+  box-shadow: 0 3px 5px $gray-40;
   display: none;
   left: -1px;
   position: absolute;
@@ -180,12 +180,12 @@
   a {
     border-bottom: 1px solid $white;
     border-top: 1px solid $white;
-    color: $fr-gray-60;
+    color: $gray-60;
     line-height: 30px;
   }
 
   a.inactive {
-    color: $fr-gray-30;
+    color: $gray-30;
     pointer-events: none;
   }
 }
@@ -204,15 +204,15 @@
   background-color: inherit;
   border-bottom-color: inherit;
   border-top-color: inherit;
-  color: $fr-gray-60;
+  color: $gray-60;
 }
 #navigation .subnav a:hover,
 #navigation .subnav a.hover,
 #navigation .previewable .subnav a.hover {
-  background-color: $fr-gray-10;
+  background-color: $gray-10;
   border-bottom-color: $white;
   border-top-color: $white;
-  color: $fr-bright-orange;
+  color: $bright-orange;
 }
 
 
@@ -306,14 +306,14 @@
       &:hover {
         background: none;
         border: 0;
-        color: $fr-bright-orange;
+        color: $bright-orange;
       }
     }
   }
 
   %right_column_header {
-    border-bottom: 2px solid $fr-gray-60;
-    color: $fr-gray-60;
+    border-bottom: 2px solid $gray-60;
+    color: $gray-60;
     font-size: 15px;
     margin-bottom: 5px;
     margin-left: 5px;
@@ -333,7 +333,7 @@
     h2 {
       .supplemental,
       .secondary {
-        color: $fr-gray-60;
+        color: $gray-60;
         float: right;
         font-size: 12px;
       }
@@ -362,7 +362,7 @@
           margin-left: 5px;
 
           td {
-            color: $fr-gray-60;
+            color: $gray-60;
             font-size: 13px;
             font-weight: bold;
             padding: 0;
@@ -379,7 +379,7 @@
 
         input[placeholder] {
           @include placeholder {
-            color: $fr-gray-70;
+            color: $gray-70;
             font-style: italic;
           }
         }
@@ -406,7 +406,7 @@
       td { padding: 0; }
 
       th {
-        border-bottom: 1px solid $fr-gray-40;
+        border-bottom: 1px solid $gray-40;
 
         &.past_7_days,
         &.closing_soon {
@@ -420,15 +420,15 @@
           padding: 2px 0 2px 10px;
 
           a {
-            color: $fr-link-dark;
-            &:hover { color: $fr-bright-orange; }
+            color: $link-dark;
+            &:hover { color: $bright-orange; }
           }
         }
       }
 
       .count_7_days,
       .comments_closing_soon {
-        color: $fr-gray-60;
+        color: $gray-60;
         font-weight: bold;
         text-align: center;
 
@@ -443,7 +443,7 @@
         line-height: 14px;
         padding: 0;
 
-        &:hover { color: $fr-bright-orange; }
+        &:hover { color: $bright-orange; }
       }
     }
   }
@@ -460,14 +460,14 @@
 #navigation .previewable {
   p.info a {
     border: 0;
-    color: $fr-link-dark;
+    color: $link-dark;
     display: inline-block;
     font-family: inherit;
     font-weight: normal;
     line-height: 1.1em;
     padding: 0;
 
-    &:hover { color: $fr-bright-orange; }
+    &:hover { color: $bright-orange; }
   }
 }
 
@@ -500,7 +500,7 @@
     float: left;
 
     a {
-      color: $fr-link-dark;
+      color: $link-dark;
       line-height: 14px;
     }
   }
@@ -510,8 +510,8 @@
   .fr_stats h2,
   .calendar_holder h2,
   .date_input_holder h2 {
-    border-bottom: 1px solid $fr-gray-40;
-    color: $fr-gray-40;
+    border-bottom: 1px solid $gray-40;
+    color: $gray-40;
     font-size: 1.1em;
     margin-bottom: 5px;
     margin-left: 5px;
@@ -523,7 +523,7 @@
 
 
   .right_column .fr_stats .statistics li {
-    color: $fr-gray-70;
+    color: $gray-70;
     display: inline-block;
     font-size: 15px;
     font-weight: bold;
@@ -531,12 +531,12 @@
   }
 
   .fr_stats .statistics a {
-    color: $fr-link-dark;
+    color: $link-dark;
     line-height: 12px;
 
     &:hover {
       background: none;
-      color: $fr-bright-orange;
+      color: $bright-orange;
     }
   }
 }
@@ -573,7 +573,7 @@
 
   #blog-browse-preview {
     h1 a {
-      color: $fr-gray-40;
+      color: $gray-40;
       line-height: 14px;
       padding-left: 0;
     }
@@ -584,13 +584,13 @@
       padding-left: 0;
 
       a {
-        color: $fr-link-dark;
+        color: $link-dark;
         font-size: 13px;
         line-height: 14px;
         padding-left: 0;
         text-transform: none;
 
-        &:hover { color: $fr-bright-orange; }
+        &:hover { color: $bright-orange; }
       }
     }
 
@@ -644,7 +644,7 @@
 
 #navigation .search-form {
   background: $white;
-  border: 1px solid $fr-gray-30;
+  border: 1px solid $gray-30;
   border-radius: 3px;
   height: 24px;
   margin: 1px 5px 0;
@@ -670,13 +670,13 @@
     &:-moz-placeholder,
     &::-moz-placeholder,
     &:-ms-placeholder {
-      color: $fr-gray-70;
+      color: $gray-70;
     }
   }
 
   .search-submit {
     @include rounded-right(4);
-    background-color: $fr-gray-5;
+    background-color: $gray-5;
     border: 0;
     cursor: pointer;
     float: right;
@@ -686,10 +686,10 @@
     top: -22px;
     width: 31px;
 
-    &:hover { background-color: $fr-gray-15; }
+    &:hover { background-color: $gray-15; }
 
     .icon-fr2 {
-      color: $fr-gray-50;
+      color: $gray-50;
       left: 2px;
       top: 1px;
     }
@@ -894,7 +894,7 @@
 @media only screen and (min-width: #{$small-viewport-width}) {
 
   body {
-    border-top: 4px solid $fr-nav-orange !important;
+    border-top: 4px solid $nav-orange !important;
   }
 
   .mobile-only {

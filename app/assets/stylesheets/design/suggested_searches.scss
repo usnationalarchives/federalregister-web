@@ -4,7 +4,7 @@ DESCRIPTION AREA
 
 ******************************/
 .page-summary {
-  background-color: $fr-gray-5;
+  background-color: $gray-5;
   border-radius: 5px;
   margin-bottom: 3em;
   padding: 10px 20px 2px;
@@ -14,7 +14,7 @@ DESCRIPTION AREA
   &.reader-aid { background-color: $color-reader-aid-light; }
 
   h1 {
-    border-bottom: 2px solid $fr-gray-20;
+    border-bottom: 2px solid $gray-20;
     margin: 0.25em 0 .25em !important;
   }
 

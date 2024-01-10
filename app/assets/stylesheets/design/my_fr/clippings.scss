@@ -7,10 +7,10 @@ h2.title {
     position: relative;
 
     .icon-fr2-trash_can {
-      color: $fr-gray-30;
+      color: $gray-30;
       font-size: 23px;
 
-      &:hover { color: $fr-orange; }
+      &:hover { color: $orange; }
     }
   }
 }
@@ -65,8 +65,8 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   /*@include my_fr2-sprite(icon_comment_small_orange, $my_fr2-sprite-dimensions, 0, 2);*/
   }
 
-#clippings dl.metadata dt.comment_close.open { color: $fr-green; }
-#clippings dl.metadata dt.corrected_by { color: $fr-red; }
+#clippings dl.metadata dt.comment_close.open { color: $green; }
+#clippings dl.metadata dt.corrected_by { color: $red; }
 
 #clippings div.add_to_folder_pane {
   width: 37px;
@@ -132,7 +132,7 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
 #clipping-actions {
   #add-to-folder span.update {
-    color: $fr-green;
+    color: $green;
     font-weight: 700;
     opacity: 0;
     position: absolute;

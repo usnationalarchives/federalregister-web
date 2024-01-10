@@ -24,7 +24,7 @@ $modular-scale-base: 16px;
 
   h1#regular-filing,
   h1#special-filing {
-    color: $fr-gray-60;
+    color: $gray-60;
     font-size: modular-scale(0);
   }
 
@@ -41,19 +41,19 @@ $modular-scale-base: 16px;
   h1 { font-size: modular-scale(4); }
   h2 { font-size: modular-scale(3); }
   h3 {
-    color: $fr-gray-90;
+    color: $gray-90;
     font-size: modular-scale(2);
   }
   h4 {
-    color: $fr-gray-80;
+    color: $gray-80;
     font-size: modular-scale(1);
   }
   h5 {
-    color: $fr-gray-70;
+    color: $gray-70;
     font-size: modular-scale(1);
   }
   h6 {
-    color: $fr-gray-60;
+    color: $gray-60;
     font-size: modular-scale(0);
   }
   h7 { font-size: modular-scale(0); }
@@ -72,12 +72,12 @@ $modular-scale-base: 16px;
 }
 
 table.highlight {
-  background-color: $fr-gray-2;
+  background-color: $gray-2;
   margin: 20px 0;
   padding: 10px;
 
   h4 {
-    color: $fr-green;
+    color: $green;
 
     &.top_aligned {
       font-size: 18px;
@@ -90,7 +90,7 @@ tr.social {
   margin: 0;
 
   td div {
-    background-color: $fr-gray-2;
+    background-color: $gray-2;
     font-family: Arial;
     font-size: 13px;
     margin-bottom: 10px;
@@ -99,7 +99,7 @@ tr.social {
 
     a,
     a:visited {
-      color: $fr-link-dark;
+      color: $link-dark;
       font-weight: normal;
       text-decoration: underline;
     }
@@ -112,15 +112,15 @@ tr.social {
 
   h1 {
     clear: both;
-    color: $fr-blue;
+    color: $blue;
     font-size: 26px;
     margin: 0 0 30px 0;
     padding: 0;
   }
 
   .info {
-    border-bottom: 1px solid $fr-gray-40;
-    color: $fr-gray-60;
+    border-bottom: 1px solid $gray-40;
+    color: $gray-60;
     font-size: 12px;
     font-style:italic;
     font-weight: normal;

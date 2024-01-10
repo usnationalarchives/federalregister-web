@@ -4,18 +4,18 @@
   .suggestion {
     display: grid;
     grid-template-columns:  1fr 11fr;
-    grid-gap: 10px; 
+    grid-gap: 10px;
 
     .grid-container > *:first-child {
       grid-column: 1;
     }
 
     .grid-container > *:nth-child(2) {
-      grid-column: 2 / span 11; 
+      grid-column: 2 / span 11;
     }
 
-    border: 1px solid $fr-gray-10;
-    box-shadow: $fr-gray-10 3px 3px 3px;
+    border: 1px solid $gray-10;
+    box-shadow: $gray-10 3px 3px 3px;
     font-weight: 400;
     margin-bottom: 10px;
     overflow: auto;
@@ -23,7 +23,7 @@
     padding-bottom: 0;
 
     .icon-fr2 {
-      color: $fr-gray-50;
+      color: $gray-50;
       display: block;
       font-size: 24px;
       padding-right: 10px;
@@ -40,7 +40,7 @@
 
       .addition,
       .term {
-        background-color: $fr-yellow;
+        background-color: $yellow;
         font-weight: 700;
         padding: 3px 5px;
       }

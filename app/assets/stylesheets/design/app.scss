@@ -102,8 +102,8 @@ div.message {
 }
 
 div.notice {
-  background: $fr-light-green;
-  border: 1px solid $fr-green;
+  background: $light-green;
+  border: 1px solid $green;
 
   &.message p {
     line-height: 25px;
@@ -114,15 +114,15 @@ div.notice {
 div.warning,
 div.danger,
 div.flash.error {
-  background: $fr-light-red;
-  border: 1px solid $fr-red;
+  background: $light-red;
+  border: 1px solid $red;
 }
 
 div.flash.error { background-image: none; }
 
 div.info_warning {
-  background-color: $fr-light-yellow;
-  border: 1px solid $fr-golden;
+  background-color: $light-yellow;
+  border: 1px solid $golden;
 }
 
 .has_js .skip_to_content { display: none; }
@@ -130,7 +130,7 @@ div.info_warning {
 
 
 span.unsaved {
-  color: $fr-red;
+  color: $red;
   font-weight: bold;
 }
 
@@ -180,7 +180,7 @@ span.unsaved {
 
     &.on {
       @include rounded-bottom(6);
-      background: $fr-gray-5;
+      background: $gray-5;
       margin-bottom: -1em;
       padding-bottom: 1em;
       padding-top: 0.25em;
@@ -189,7 +189,7 @@ span.unsaved {
 }
 
 .signup_bar {
-  background: $fr-gray-5;
+  background: $gray-5;
   border-radius: 6;
   margin-bottom: 5em;
   overflow: hidden;
@@ -202,7 +202,7 @@ span.unsaved {
 
 .small-stack,
 .small_stack {
-  color: $fr-dark-blue;
+  color: $dark-blue;
   display: inline-block;
   font-size: modular-scale(-2);
   font-variant: small-caps;

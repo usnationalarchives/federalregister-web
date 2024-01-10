@@ -5,7 +5,7 @@
   }
 
   label.required-error {
-    color: $fr-red !important;
+    color: $red !important;
   }
 
   #zendesk_ticket_name, #zendesk_ticket_email {
@@ -34,12 +34,12 @@
   line-height: 20px;
 
   .title_bar {
-    border-bottom: 2px solid $fr_dark_blue;
+    border-bottom: 2px solid $dark-blue;
     text-align: center;
   }
 
   .info:not(.omit-custom-styling) {
-    border-bottom: 1px solid $fr-gray-20;
+    border-bottom: 1px solid $gray-20;
     font-size: modular-scale(0);
     line-height: 20px;
     margin-bottom: 10px;
@@ -59,7 +59,7 @@
   }
 
   .site_feedback {
-    border-right: 1px solid $fr-gray-20;
+    border-right: 1px solid $gray-20;
     margin-left: 10px;
     padding-right: 20px;
   }
@@ -74,7 +74,7 @@
   }
 
   .button {
-    background-color: $fr-blue;
+    background-color: $blue;
     color: $white;
     height: 130px;
     margin-left: 20px;
@@ -84,12 +84,12 @@
     width: 70%;
 
     &:hover {
-      background-color: $fr-nav-orange;
+      background-color: $nav-orange;
       cursor: pointer;
     }
 
     &.disabled {
-      background-color: $fr-gray-10;
+      background-color: $gray-10;
       cursor: default;
     }
 

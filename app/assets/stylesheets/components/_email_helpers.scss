@@ -10,7 +10,7 @@ form.formtastic .string {
   }
 
   .email_suggestion .link {
-      color: $fr-link;
+      color: $link;
       cursor: pointer;
       font-weight: bold;
       margin: 0;
@@ -18,7 +18,7 @@ form.formtastic .string {
   }
 
   .email_invalid {
-    color: $fr-red;
+    color: $red;
   }
 }
 

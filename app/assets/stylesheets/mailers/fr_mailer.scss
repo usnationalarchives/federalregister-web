@@ -14,7 +14,7 @@
   }
   table.column {
     width: 320px;
-   
+
     p.column_content {
       padding: 20px;
       padding-top: 10px;
@@ -46,7 +46,7 @@
     padding-left: 7px;
     padding-top: 5px;
     vertical-align: middle;
-    color: $fr-green;
+    color: $green;
     margin: 0;
     }
 
@@ -60,17 +60,16 @@
 
 
 
-.leftColumnContent div a:link, .leftColumnContent div a:visited, 
+.leftColumnContent div a:link, .leftColumnContent div a:visited,
 /* Yahoo! Mail Override */ .leftColumnContent div a .yshortcuts /* Yahoo! Mail Override */ {
   color:#336699;
   font-weight:normal;
   text-decoration:underline;
   }
 
-.rightColumnContent div a:link, .rightColumnContent div a:visited, 
+.rightColumnContent div a:link, .rightColumnContent div a:visited,
 /* Yahoo! Mail Override */ .rightColumnContent div a .yshortcuts /* Yahoo! Mail Override */ {
   color:#336699;
   font-weight:normal;
   text-decoration:underline;
   }
-

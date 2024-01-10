@@ -1,7 +1,7 @@
 // FR INDEX OF INDEXES PAGE
 
 .fr-index {
-  hr { border-color: $fr-gray-20; }
+  hr { border-color: $gray-20; }
 
   .page-summary {
     margin-left: -15px;
@@ -13,7 +13,7 @@
     position: relative;
 
     h1 {
-      border-bottom: 2px solid $fr-gray-20;
+      border-bottom: 2px solid $gray-20;
       margin-bottom: 0.25em !important;
       padding-left: 10px;
     }
@@ -121,9 +121,9 @@
 }
 
 .doc-document-issue{
-  .comments-open { color: $fr-green; }
-  .comments-received { color: $fr-gray-30; }
-  .significant { color: $fr-orange; }
+  .comments-open { color: $green; }
+  .comments-received { color: $gray-30; }
+  .significant { color: $orange; }
 }
 
 .fr-index-agency-metadata {
@@ -185,8 +185,8 @@ $tipsy-popover-inner-width: 580px;
   }
 
   .popover-title {
-    background-color: $fr-gray-10;
-    border-bottom: 1px solid $fr-gray-10;
+    background-color: $gray-10;
+    border-bottom: 1px solid $gray-10;
     border-radius: 3px 3px 0 0;
     border-top: 0;
     font-size: modular-scale(1);
@@ -235,9 +235,9 @@ $tipsy-popover-inner-width: 580px;
           &::after { content: ""; }
         }
 
-        &.comments-open .icon-fr2 { color: $fr-green; }
-        &.comments-received .icon-fr2 { color: $fr-gray-30; }
-        &.significant .icon-fr2 { color: $fr-orange; }
+        &.comments-open .icon-fr2 { color: $green; }
+        &.comments-received .icon-fr2 { color: $gray-30; }
+        &.significant .icon-fr2 { color: $orange; }
       }
 
       dd {

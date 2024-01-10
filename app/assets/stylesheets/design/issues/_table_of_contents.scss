@@ -30,10 +30,10 @@
   }
 
   %table-of-contents-link {
-    color: $fr-link-dark;
+    color: $link-dark;
 
     &:hover {
-      color: $fr-orange;
+      color: $orange;
       text-decoration: none;
     }
   }
@@ -238,7 +238,7 @@
   }
 }
 
-@media only screen and (max-width: 501px) { 
+@media only screen and (max-width: 501px) {
   // These media queries tailor the left indention of toc pages
   .bootstrap-scope .doc-toc {
 

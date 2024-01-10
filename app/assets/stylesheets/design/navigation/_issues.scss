@@ -22,7 +22,7 @@
 
       input.browse_search {
         @include rounded-left(4);
-        border: 1px solid $fr-gray-40;
+        border: 1px solid $gray-40;
         border-right: 0;
         float: left;
         height: 30px;
@@ -33,16 +33,16 @@
       input[type="submit"] {
         @include rounded-right(4);
         background: 0;
-        background-color: $fr-gray-5;
-        border: 1px solid $fr-gray-40;
+        background-color: $gray-5;
+        border: 1px solid $gray-40;
         border-left: 0;
         height: 30px;
         padding: 0;
         width: 35px;
 
-        // for reference: background png/svg is $fr-gray-50
+        // for reference: background png/svg is $gray-50
         &:hover {
-          background-color: $fr-gray-15;
+          background-color: $gray-15;
         }
       }
     }
@@ -101,15 +101,15 @@
         th.calendarPrev a,
         th.calendarNext a {
           border: 0;
-          color: $fr-gray-70;
+          color: $gray-70;
           font-size: 12px;
           font-weight: bold;
           line-height: 18px;
         }
 
         a {
-          color: $fr-link-dark;
-          &:hover { color: $fr-bright-orange; }
+          color: $link-dark;
+          &:hover { color: $bright-orange; }
         }
       }
     }

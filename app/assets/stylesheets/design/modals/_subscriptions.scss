@@ -14,7 +14,7 @@
     margin-left: 1em;
 
     li {
-      border-bottom: 1px solid $fr-gray-30;
+      border-bottom: 1px solid $gray-30;
       list-style: none;
       margin-bottom: 1em;
       padding-left: 0;
@@ -28,7 +28,7 @@
         text-transform: none;
       }
 
-      h4 { color: $fr-blue; }
+      h4 { color: $blue; }
 
       h5 {
         float: left;
@@ -38,7 +38,7 @@
         font-size: 1.2em;
         margin-right: 10px;
         text-transform: none;
-        color: $fr-gray-60;
+        color: $gray-60;
 
         .icon-fr2 { font-size: 16px; }
         .icon-fr2-message {
@@ -54,7 +54,7 @@
           font-weight: bold;
           font-size: 14px;
           width: 300px;
-          color: $fr-green;
+          color: $green;
         }
 
         ul {

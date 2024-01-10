@@ -1,8 +1,8 @@
 .search-bar {
   @include rounded-right(5);
-  background: $fr-gray-10;
+  background: $gray-10;
   border-bottom-left-radius: 5px;
-  border: 1px solid $fr-gray-20;
+  border: 1px solid $gray-20;
   clear: both;
   margin-bottom: 1em;
   overflow: hidden;
@@ -21,11 +21,11 @@
       margin-top: 10px;
 
       a {
-        color: $fr-link-dark;
+        color: $link-dark;
         font-weight: 500;
 
-        &:visited { color: $fr-link-dark; }
-        &:hover { color: $fr-orange; }
+        &:visited { color: $link-dark; }
+        &:hover { color: $orange; }
       }
     }
   }
@@ -50,7 +50,7 @@
   }
 
   .search-term {
-    border: 1px solid $fr-gray-20;
+    border: 1px solid $gray-20;
     display: block;
     float: left;
     height: 40px;
@@ -68,17 +68,17 @@
 
   .search-submit {
     @include rounded-right(5);
-    background-color: $fr-gray-5;
-    border: 1px solid $fr-gray-20;
+    background-color: $gray-5;
+    border: 1px solid $gray-20;
     border-left: 0;
     cursor: pointer;
     float: left;
     height: 40px;
 
     &:hover {
-      background-color: $fr-gray-15;
+      background-color: $gray-15;
 
-      .icon-fr2 { color: $fr-orange; }
+      .icon-fr2 { color: $orange; }
     }
 
     .icon-fr2 {
@@ -103,10 +103,10 @@
 
   .search-result-count {
     @include sans_serif;
-    background: $fr-gray-2;
+    background: $gray-2;
     border-radius: 5px;
-    border: 1px solid $fr-gray-20;
-    color: $fr-orange;
+    border: 1px solid $gray-20;
+    color: $orange;
     display: none;
     float: left;
     font-size: modular-scale(0);

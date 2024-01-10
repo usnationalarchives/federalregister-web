@@ -38,7 +38,7 @@
   .result_set {
     .pagination {
       em {
-        border: 1px solid $fr-gray-20;
+        border: 1px solid $gray-20;
         line-height: 1;
         padding: 5px;
       }
@@ -59,7 +59,7 @@
 
     .filterable-list-container .filterable-list-info h2 .item-count {
       font-size: 16px;
-    }  
+    }
 
     .search-info ul.actions {
       font-size: 12px;

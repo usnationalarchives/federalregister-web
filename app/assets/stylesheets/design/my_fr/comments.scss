@@ -30,7 +30,7 @@
 }
 
 .green-btn {
-  background-color: $fr-green;
+  background-color: $green;
   color: $white;
   cursor: pointer;
   font-weight: bold;
@@ -43,11 +43,11 @@
   &:hover,
   &.hover {
     color: white;
-    background-color: lighten($fr-green, 20);
+    background-color: lighten($green, 20);
   }
 
   &.selected {
-    background-color: lighten($fr-green, 20);
+    background-color: lighten($green, 20);
   }
 }
 
@@ -83,7 +83,7 @@ ul#comments {
     width: 53px;
 
     .icon-fr2.icon-fr2-conversation-alt {
-      color: $fr-green;
+      color: $green;
       float: left;
       font-size: 20px;
     }
@@ -91,7 +91,7 @@ ul#comments {
     .count {
       @include border-radius(12);
 
-      background-color: $fr-green;
+      background-color: $green;
       border: 2px solid $white;
       color: $white;
       font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
@@ -109,8 +109,8 @@ ul#comments {
     }
 
     &:hover {
-      .icon-fr2 { color: $fr-orange; }
-      .count { background-color: $fr-orange; }
+      .icon-fr2 { color: $orange; }
+      .count { background-color: $orange; }
     }
   }
 

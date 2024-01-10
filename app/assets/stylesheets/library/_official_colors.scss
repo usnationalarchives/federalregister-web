@@ -1,6 +1,6 @@
 // FR Boxes
-$color-inactive:                    $fr-gray-70;
-$color-inactive-light:              $fr-gray-70;
+$color-inactive:                    $gray-70;
+$color-inactive-light:              $gray-70;
 
 $color-official:                    #5797CE;
 $color-official-light:              #f7fafb;
@@ -21,9 +21,9 @@ $color-reader-aid:                  #b462a2;
 $color-reader-aid-med:              #fbdfeb;
 $color-reader-aid-light:            #f7eff6;
 
-$color-published:                    $fr-gray-50;
-$color-published-light:              $fr-gray-5;
-$color-published-light-alt:          $fr-gray-15;
+$color-published:                    $gray-50;
+$color-published-light:              $gray-5;
+$color-published-light-alt:          $gray-15;
 
 $public-inspection-fr-stamp: $color-public-inspection-light;
 
@@ -31,16 +31,16 @@ $public-inspection-fr-stamp: $color-public-inspection-light;
 // FR Box Utility Nav
 $utility-nav:                         $med-gray;
 $utility-nav-background:              #E6E6E5;
-$utility-nav-hover-background:        $fr-gray-10;
+$utility-nav-hover-background:        $gray-10;
 $utility-nav-hover-background-light:  #EFEFEF;
-$utility-nav-divider-color:           $fr-gray-30;
+$utility-nav-divider-color:           $gray-30;
 
 $utility-nav-pi:                  #8a3737;
 $utility-nav-pi-background:       #D7A5A1;
 $utility-nav-pi-hover-background: $color-public-inspection-light-alt;
 
-$utility-nav-published:            $fr-gray-50;
-$utility-nav-published-background: $fr-gray-20;
+$utility-nav-published:            $gray-50;
+$utility-nav-published-background: $gray-20;
 
 
 /* navigation */
@@ -50,11 +50,11 @@ $nav-border-color: #CECECE;
 /* BASICS */
 
 /* links */
-$link: $fr-link-dark;
-$link-hover: $fr-orange;
+$link: $link-dark;
+$link-hover: $orange;
 $link-visited: $link;
 
-$current-issue-link: $fr-green;
+$current-issue-link: $green;
 $current-issue-link-hover: darken($current-issue-link, 15);
 
 $public-inspection-link: $color-public-inspection;
@@ -62,6 +62,6 @@ $public-inspection-link-hover: darken($public-inspection-link, 20);
 
 /* text */
 $text-inactive: $med-gray;
-$text-light: $fr-gray-60;
+$text-light: $gray-60;
 $text: $dark-gray;
 $header: $dark-gray;

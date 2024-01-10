@@ -2,8 +2,8 @@
 %page-title {
   @include sans_serif;
 
-  border-bottom: 1px solid $fr-gray-30;
-  color: $fr-blue;
+  border-bottom: 1px solid $gray-30;
+  color: $blue;
   font-size: modular-scale(4);
   font-weight: 500;
   line-height: 1.1;
@@ -12,7 +12,7 @@
   width: 100%;
 
   .icon-fr2 {
-    color: $fr-blue;
+    color: $blue;
     font-size: 34px;
     top: 4px;
   }

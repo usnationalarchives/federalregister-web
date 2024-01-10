@@ -1,15 +1,15 @@
 .bootstrap-scope {
   a.pi_warning {
-    color: $fr-red;
+    color: $red;
     font-weight: bold;
     text-decoration: underline;
 
-    &:hover { color: $fr-red; }
+    &:hover { color: $red; }
   }
 }
 
 .pi_warning {
-  color: $fr-red;
+  color: $red;
   font-weight: bold;
 }
 
@@ -39,7 +39,7 @@
 
   .pil-agency-letters {
     margin-bottom: 20px;
-    
+
     p {
       font-weight: bold;
       margin-bottom: 5px;

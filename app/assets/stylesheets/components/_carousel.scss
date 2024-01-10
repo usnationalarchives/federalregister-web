@@ -77,7 +77,7 @@
             width: 85%;
 
             color: $white;
-            &:hover { color: $fr-nav-orange; }
+            &:hover { color: $nav-orange; }
           }
         }
 
@@ -94,7 +94,7 @@
             a {
               color: $white;
               line-height: inherit !important;
-              &:hover { color: $fr-nav-orange; }
+              &:hover { color: $nav-orange; }
             }
           }
 
@@ -140,10 +140,10 @@
       width: 25px;
       position: relative;
       cursor: pointer;
-      color: $fr-gray-40;
+      color: $gray-40;
       background: none;
 
-      &:hover { color: $fr-nav-orange; }
+      &:hover { color: $nav-orange; }
     }
 
     .prev {
@@ -171,14 +171,14 @@
       width: 9px;
       height: 9px;
       border-radius: 0px;
-      background: $fr-gray-40;
+      background: $gray-40;
       overflow: hidden;
       margin-right: 4px;
       cursor: pointer;
 
       &:hover,
       &.active {
-        background: $fr-nav-orange;
+        background: $nav-orange;
       }
 
       &:last-child { margin: 0; }
@@ -250,7 +250,7 @@
 
   .carousel-wrapper {
     margin: 10px 35px 20px;
-    background: $fr-gray-5;
+    background: $gray-5;
 
     .carousel-scroller .text-wrapper {
       width: 90%;
@@ -259,7 +259,7 @@
     }
 
     p.summary {
-      background-color: $fr-gray-5;
+      background-color: $gray-5;
       font-size: modular-scale(-1);
       margin: 25px 0 0 0;
       padding: 0 5px;
@@ -302,13 +302,13 @@
       a {
         color: $white !important;
 
-        &:hover { color: $fr-nav-orange !important; }
+        &:hover { color: $nav-orange !important; }
       }
     }
 
     .carousel-scroller .attribution {
       a {
-        color: $fr-gray-30 !important;
+        color: $gray-30 !important;
         font-size: modular-scale(-2);
 
         &:hover { color: $white !important; }
@@ -332,10 +332,10 @@
     z-index: 1000;
     padding-left: 10px;
     font-size: modular-scale(-1);
-    color: $fr-gray-30;
+    color: $gray-30;
 
     a {
-      color: $fr-gray-30;
+      color: $gray-30;
       z-index: 1000;
       padding-right: 5px;
 

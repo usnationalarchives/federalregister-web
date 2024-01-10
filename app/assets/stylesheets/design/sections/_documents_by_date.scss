@@ -13,13 +13,13 @@
     text-align: center;
 
     li {
-      background-color: $fr-gray-30;
+      background-color: $gray-30;
       margin-bottom: 10px;
       padding: 10px;
       border-radius: 2px;
 
       &.active,
-      &:hover { background-color: $fr-nav-orange; }
+      &:hover { background-color: $nav-orange; }
 
       &:visited,
       &:focus { text-decoration: none; }

@@ -3,7 +3,7 @@
     margin-bottom: 1rem;
 
     .code-styling {
-      background-color: $fr-gray-2;
+      background-color: $gray-2;
       font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
       font-size: modular-scale(-1);
       white-space: normal;
@@ -66,7 +66,7 @@
             overflow: hidden;
 
             .authorship { float: right; }
-            .comments { color: $fr-gray-60; }
+            .comments { color: $gray-60; }
           }
         }
       }

@@ -25,7 +25,7 @@
       }
 
       a {
-        color: $fr-dark-blue;
+        color: $dark-blue;
         font-weight: 400;
         text-transform: uppercase;
       }
@@ -34,8 +34,8 @@
       &.on,
       .tabs-selected,
       .action_button {
-        background: $fr-dark-blue;
-        border-color: $fr-dark-blue;
+        background: $dark-blue;
+        border-color: $dark-blue;
         padding: 0.25em 0.5em;
 
         a {
@@ -115,7 +115,7 @@
   }
 
   .document-wrapper {
-    border-bottom: 1px solid $fr-gray-20;
+    border-bottom: 1px solid $gray-20;
     float: left;
     padding-bottom: 1.25em;
     width: 90%;
@@ -139,7 +139,7 @@
       margin-bottom: 0;
 
       .match {
-        background-color: $fr-light-yellow;
+        background-color: $light-yellow;
         padding: 0px 3px;
       }
     }

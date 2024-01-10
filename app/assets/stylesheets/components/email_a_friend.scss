@@ -18,7 +18,7 @@
     margin-bottom: 20px;
 
     ul.bullets {
-      @include custom-bullets($fr-red);
+      @include custom-bullets($red);
       margin-bottom: 0;
     }
   }
@@ -29,11 +29,11 @@
 
       &.text .label { vertical-align: top; }
 
-      &.error input { border-color: $fr-red; }
+      &.error input { border-color: $red; }
     }
 
     p.inline-errors {
-      color: $fr-red;
+      color: $red;
       display: inline-block;
       font-weight: 700;
       margin: 0;
@@ -49,7 +49,7 @@
       width: 90px;
 
       abbr {
-        color: $fr-orange;
+        color: $orange;
         margin-left: 2px;
       }
     }
@@ -97,7 +97,7 @@
 
         &.disabled,
         &.submitting {
-          background-color: $fr-gray-20;
+          background-color: $gray-20;
         }
 
         .loader {

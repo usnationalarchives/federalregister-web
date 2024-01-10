@@ -45,11 +45,11 @@
 
         text-decoration: none !important;
 
-        &:hover {color: $fr-orange; }
+        &:hover {color: $orange; }
       }
 
       .fr-doc-date {
-        color: $fr-gray-40;
+        color: $gray-40;
         font-size: modular-scale(-1);
         line-height: 20px;
       }
