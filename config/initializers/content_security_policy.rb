@@ -35,6 +35,7 @@ Rails.application.config.content_security_policy do |policy|
     :self,
     :unsafe_inline,
     :report_sample,
+    'https://fonts.googleapis.com'
   ]
   policy.style_src *style_srcs
 
