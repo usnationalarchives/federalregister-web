@@ -10,10 +10,10 @@ ul.subject-list {
 
 
   a {
-    color: $link;
+    color: $link-dark;
 
     &:hover {
-      color: $orange;
+      color: $link-hover;
       text-decoration: none;
     }
   }

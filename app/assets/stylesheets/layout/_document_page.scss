@@ -1,4 +1,7 @@
-.wrapper .row.doc { margin-bottom: 100px !important; }
+.wrapper .row.doc,
+.wrapper .doc-public-inspection {
+  overflow: auto;
+}
 
 %doc-background {
   color: $fr-background-seal;

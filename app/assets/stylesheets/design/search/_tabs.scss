@@ -37,7 +37,7 @@
       top: 3px;
 
       &:visited { color: $text-inactive; }
-      &:hover { color: $orange; }
+      &:hover { color: $link-hover; }
     }
 
     &.documents { width: 165px; }

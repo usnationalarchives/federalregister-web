@@ -33,7 +33,7 @@
     color: $link-dark;
 
     &:hover {
-      color: $orange;
+      color: $link-hover;
       text-decoration: none;
     }
   }
@@ -51,11 +51,20 @@
     h2 { margin-top: 2em !important; }
   }
 
-  .fr-box-official,
-  .fr-box-published {
+  .fr-box-official {
     h2 {
       border-bottom: 2px solid $color-official;
       color: $color-official;
+      margin-top: 0 !important;
+    }
+
+    .icon-fr2.icon-doctype { color: $text; }
+  }
+
+  .fr-box-published {
+    h2 {
+      border-bottom: 2px solid $color-published;
+      color: $color-published;
       margin-top: 0 !important;
     }
 
@@ -76,10 +85,10 @@
     .icon-fr2.icon-doctype { color: $text; }
 
     a {
-      color: $color-public-inspection;
+      color: $public-inspection-link;
 
       &:hover {
-        color: darken($color-public-inspection, 20);
+        color: $public-inspection-link-hover;
         text-decoration: none;
       }
     }

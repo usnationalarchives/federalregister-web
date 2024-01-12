@@ -1,9 +1,14 @@
-@mixin fr-metadata-bar-header($main-color, $secondary-color) {
+@mixin fr-metadata-bar-header($main-color, $secondary-color, $label-bg:$main-color) {
   background-color: $secondary-color;
 
   .fr-head-meta-label {
-    background-color: $main-color;
-    a { color: inherit; }
+    background-color: $label-bg;
+
+    a {
+      color: $secondary-color;
+
+      &:hover { color: $white; }
+    }
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
@@ -18,16 +23,12 @@
 
 .fr-head-metadata-bar {
   &.fr-head-metadata-bar-official {
-    @include fr-metadata-bar-header($current-issue-link, $color-enhanced-light);
+    @include fr-metadata-bar-header($current-issue-link, $color-enhanced-light, darken($color-enhanced, 16));
 
-    .fr-head-meta-label a {
-      i { color: $color-enhanced-light; }
+    a {
+      color: $current-issue-link;
 
-      &:hover {
-        color: $current-issue-link-hover;
-
-        i { color: $current-issue-link-hover; }
-      }
+      &:hover { color: $current-issue-link-hover; }
     }
   }
 
@@ -45,16 +46,8 @@
 
     a {
       color: $public-inspection-link;
-    }
 
-    .fr-head-meta-label a {
-      i { color: $color-public-inspection-light; }
-
-      &:hover {
-        color: $public-inspection-link-hover;
-
-        i { color: $public-inspection-link-hover; }
-      }
+      &:hover { color: $public-inspection-link-hover; }
     }
 
     .fr-head-meta-label-holder {

@@ -61,9 +61,9 @@
     h3 {
       border-bottom: 1px solid $dark-blue;
       a {
-        color: $blue;
+        color: $link-dark;
 
-        &:hover { color: $orange; }
+        &:hover { color: $link-hover; }
       }
     }
   }

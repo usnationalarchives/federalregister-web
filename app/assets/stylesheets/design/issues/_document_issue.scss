@@ -160,14 +160,14 @@
   .fr-box-official-alt {
     a {
       color: $link-dark;
-      &:hover { color: $orange; }
+      &:hover { color: $link-hover; }
     }
   }
 
   .fr-box-public-inspection-alt {
     a {
-      color: $color-public-inspection;
-      &:hover { color: darken($color-public-inspection, 20); }
+      color: $public-inspection-link;
+      &:hover { color: $public-inspection-link-hover; }
     }
   }
 

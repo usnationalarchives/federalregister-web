@@ -4,20 +4,6 @@
     color: $utility-nav;
     height: 100%;
   }
-
-  &.doc-public-inspection {
-    .doc-nav-wrapper {
-      background-color: $utility-nav-pi-background;
-      color: $utility-nav-pi;
-    }
-  }
-
-  &.doc-published {
-    .doc-nav-wrapper {
-      background-color: $utility-nav-published-background;
-      color: $utility-nav-published;
-    }
-  }
 }
 
 .doc {
@@ -29,11 +15,6 @@
       padding-top: 25px;
       width: 53px;
       z-index: 1000;
-
-      &.fixed {
-        // deal with sidescrolling on small screens by adding a bg
-        background-color: rgba(209, 210, 212, 0.90);
-      }
 
       &> li {
         border-bottom: 2px solid transparent;
@@ -48,7 +29,7 @@
 
           .icon-fr2.icon-fr2-clipboard { font-size: modular-scale(1); }
         }
-        
+
         .icon-fr2 {
           font-size: 25px;
 
@@ -95,6 +76,12 @@
 
             .fr-box.fr-box-public-inspection {
               background-color: $color-public-inspection-light-alt;
+
+              a {
+                color: $public-inspection-link;
+
+                &:hover { color: $public-inspection-link-hover; }
+              }
             }
           }
           &.unavailable {
@@ -166,7 +153,6 @@
 
                   &:hover {
                     .icon_fr2 { color: inherit; }
-                    //a { color: inherit; }
                   }
 
                   &.with_icon { margin: 10px 0; }

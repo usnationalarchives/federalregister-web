@@ -48,7 +48,7 @@
   text-transform: none;
 
   &:visited { color: $link-dark; }
-  &:hover { color: $orange; }
+  &:hover { color: $link-hover; }
 
   .icon-fr2 {
     position: relative;

@@ -1,15 +1,15 @@
 .bootstrap-scope {
   a.pi_warning {
-    color: $red;
+    color: $public-inspection-link;
     font-weight: bold;
     text-decoration: underline;
 
-    &:hover { color: $red; }
+    &:hover { color: $public-inspection-link-hover; }
   }
 }
 
 .pi_warning {
-  color: $red;
+  color: $public-inspection-link;
   font-weight: bold;
 }
 
@@ -50,10 +50,10 @@
 
 .doc-details .fr-box-public-inspection-alt {
   a {
-    color: $color-public-inspection;
+    color: $public-inspection-link;
 
     &:hover {
-      color: darken($color-public-inspection, 20);
+      color: $public-inspection-link-hover;
       text-decoration: none;
     }
   }

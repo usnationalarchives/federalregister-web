@@ -22,6 +22,7 @@ $dark-blue: #3f5b75;
 
 $bright-orange: #F77825; // menu and subscription icons
 $orange:        #B88659;
+$dark-orange:   #88603A; // text/link hover states
 $nav-orange:    #e4a529;
 
 $green:       #7aa13d;
@@ -37,7 +38,7 @@ $light-yellow: #fcf8e3;
 $highlight-yellow: $light-yellow;
 
 $link: #428BCA;
-$link-dark: darken($link, 10);
+$link-dark: darken($link, 12);
 
 $med-gray:  $gray-40;
 $dark-gray: $gray-80;
