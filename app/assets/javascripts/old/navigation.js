@@ -38,18 +38,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Handle clicks on hamburger icon
   var hamburgerIcon = document.querySelector('#nav-hamburger');
-  hamburgerIcon.addEventListener('click', function (e) {
-    e.preventDefault();
-    // Apply slide down animation
-    var $slideDown = $('#non-essential-nav');
-    if ($slideDown.hasClass('show')) {
-      $slideDown.removeClass('show');
-      document.getElementById('navigation').classList.toggle('hamburger-expanded');
-    } else {
-      $slideDown.removeClass('hide').addClass('show');
-      document.getElementById('navigation').classList.toggle('hamburger-expanded');
-    }
-  });
+  if (hamburgerIcon) {
+    hamburgerIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      // Apply slide down animation
+      var $slideDown = $('#non-essential-nav');
+      if ($slideDown.hasClass('show')) {
+        $slideDown.removeClass('show');
+        document.getElementById('navigation').classList.toggle('hamburger-expanded');
+      } else {
+        $slideDown.removeClass('hide').addClass('show');
+        document.getElementById('navigation').classList.toggle('hamburger-expanded');
+      }
+    });
+  }
 
 });
 //=====================================================================
