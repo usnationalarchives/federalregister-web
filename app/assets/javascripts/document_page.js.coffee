@@ -13,7 +13,23 @@ $(document).ready ->
   # Define utility function for converting Handlebars XSLT template names to the handlebars_assets gem convention
   CJ.convertTemplateNameToHandlebarsAssets =  (string) ->
     # eg convert something like '#regtext-auth-tooltip-template' => 'regtext-auth-tooltip'
-    string.replace(/-/g,"_").replace("#","").replace("_template","")
+    string.
+      replace(/-/g,"_").
+      replace("#","").
+      replace("_template","").
+      # Refactoring Opportunity: In lieu of doing manual filename replacements here, move handlebars templates in app/templates/documents to app/templates so this is no longer necessary.  Locally, there is some issue with the templates not re-registering in the correct location.
+      replace("expand_table_link","documents/expand_table_link").
+      replace("lstsub_tooltip","documents/lstsub_tooltip").
+      replace("print_page_tooltip","documents/print_page_tooltip").
+      replace("regtext_amendpart_tooltip","documents/regtext_amendpart_tooltip").
+      replace("regtext_auth_tooltip","documents/regtext_auth_tooltip").
+      replace("signature_tooltip","documents/signature_tooltip").
+      replace("suplinf_tooltip","documents/suplinf_tooltip").
+      replace("furinf_tooltip","documents/furinf_tooltip").
+      replace("preamble_tooltip","documents/preamble_tooltip").
+      replace("regtext_appendix_tooltip","documents/regtext_appendix_tooltip").
+      replace("regtext_part_tooltip","documents/regtext_part_tooltip").
+      replace("stars_5_tooltip","documents/stars_5_tooltip")
 
   # This is used to enable event delegation-based clipboard copying
   $( "body" ).on "click", '.copy-to-clipboard', (event) ->
