@@ -1,0 +1,49 @@
+<% if @fr_archives_citation.pdf_url %>
+  <div class='presidential-documents'>
+    <div class="row presidential-document-wrapper">
+      <%= render partial: 'shared/disposition_table_entry', locals: {presidential_document: @presidential_document, presenter: OpenStruct.new(type: 'executive_orders')} %>
+    </div>
+  </div> 
+
+  <% if local_assigns[:include_flash_messages] %>
+    <%= flash_message :success do %>
+      An issue was located for citation
+      <span class="citation"><%= @volume %> FR <%= @page %></span>.
+    <% end %>
+  <% end %>
+
+  <p>
+    The 1936-1994 official print volumes of the Federal Register have been
+    digitalized and are available online in PDF format.
+    <% if @fr_archives_citation.publication_date %>
+      We found the following published on
+      <%= @fr_archives_citation.publication_date.to_s(:month_day_year) %>.
+    <% end %>
+  </p>
+
+  <ul class="fr-list">
+    <li>
+      <h6>
+        <%= link_to "#{@volume} FR #{@page} :: Document View (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
+              @fr_archives_citation.pdf_url %>
+      </h6>
+    </li>
+    <li>
+      <h6>
+        <%= link_to "#{@volume} FR #{@page} :: Full Archival Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
+              @fr_archives_citation.gpo_url %>
+      </h6>
+    </li>
+  </ul>
+
+<% else %>
+
+  <% if local_assigns[:include_flash_messages] %>
+    <%= flash_message :error do %>
+      No documents found with citation
+      <span class="citation"><%= @volume %> FR <%= @page %></span>.
+    <% end %>
+  <% end %>
+  <p>You may be able to find this FR citation and download the document from the Government Publishing Office's Federal Register archives on <%= link_to "govinfo.gov", 'https://www.govinfo.gov/app/collection/fr' %>.</p>
+
+<% end %>
