@@ -1,5 +1,7 @@
 class Document < FederalRegister::Document
 
+  add_attribute :not_received_for_publication
+
   def excluding_parent_agencies
     agency_names = agencies.map{|a| a.name}
 
