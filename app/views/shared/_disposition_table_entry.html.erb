@@ -6,7 +6,7 @@
 
   <h5>
     <% if (presenter.type == 'executive_orders') && presidential_document.document_number.blank? %>
-      <%= link_to presidential_document.title, executive_order_path(presidential_document.executive_order_number) %>
+      <%= link_to_if !presidential_document.not_received_for_publication, presidential_document.title, executive_order_path(presidential_document.executive_order_number) %>
     <% else %>
       <%= link_to presidential_document.title, document_path(presidential_document) %>
     <% end %>
@@ -18,8 +18,12 @@
       <dd><%= presidential_document.signing_date %></dd>
       <dt>Published:</dt>
       <dd>
-        <%= link_to_if presidential_document.document_number, presidential_document.publication_date,
-          document_issue_path(presidential_document) %>
+        <% if presidential_document.not_received_for_publication %>
+          Not received for publication
+        <% else %>
+          <%= link_to_if presidential_document.document_number, presidential_document.publication_date,
+            document_issue_path(presidential_document) %>
+        <% end %>
       </dd>
       <dt>FR Citation:</dt>
       <dd><%= presidential_document.citation %></dd>

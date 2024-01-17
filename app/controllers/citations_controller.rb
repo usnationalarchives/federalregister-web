@@ -33,7 +33,7 @@ class CitationsController < ApplicationController
   def eo
     @eo_number = params[:eo_number]
 
-    result_set = FederalRegister::Document.
+    result_set = Document.
       search(
         :conditions => {
           "executive_order_numbers" => [params[:eo_number]],
@@ -41,6 +41,7 @@ class CitationsController < ApplicationController
         },
         "fields" => [
           "executive_order_number",
+          "not_received_for_publication",
           "citation",
           "document_number",
           "title",
