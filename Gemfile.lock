@@ -32,8 +32,8 @@ GIT
 
 GIT
   remote: https://github.com/criticaljuncture/reference_parser.git
-  revision: aff0f21601ce620556bdf5d6beee1c8132070d51
-  branch: main
+  revision: a3b4b84aca21c81b4dbb5da9aa844ed59ab22ba7
+  branch: permit_historical_eos
   specs:
     reference_parser (0.1.0)
       actionview

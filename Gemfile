@@ -36,7 +36,7 @@ gem 'calendar_helper',
 # link citations & internal references
 gem 'reference_parser',
   github: 'criticaljuncture/reference_parser',
-  branch: 'main'
+  branch: 'permit_historical_eos'
 
 # parse more date formats when needed
 gem 'chronic', '~> 0.10.2'
