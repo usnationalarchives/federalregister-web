@@ -18,6 +18,7 @@ class PresidentialDocumentCollection
   EXECUTIVE_ORDER_FIELDS = FIELDS + [
     :disposition_notes,
     :executive_order_number,
+    :not_received_for_publication
   ]
 
   PRESIDENTIAL_DOCUMENT_FIELDS = FIELDS + [
