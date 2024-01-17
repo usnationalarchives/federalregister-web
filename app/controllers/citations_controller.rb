@@ -35,8 +35,18 @@ class CitationsController < ApplicationController
 
     result_set = FederalRegister::Document.
       search(
-        :conditions => {"executive_order_numbers" => [params[:eo_number]]},
-        "fields" => ["executive_order_number","citation", "document_number"]
+        :conditions => {
+          "executive_order_numbers" => [params[:eo_number]],
+          "presidential_document_type" => ['executive_order'],
+        },
+        "fields" => [
+          "executive_order_number",
+          "citation",
+          "document_number",
+          "title",
+          "publication_date",
+          "signing_date",
+        ]
       )
 
     document_numbers = result_set.map(&:document_number).compact
