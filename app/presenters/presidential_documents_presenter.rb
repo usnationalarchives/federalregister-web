@@ -97,7 +97,7 @@ class PresidentialDocumentsPresenter
   end
 
   def presidents
-    if presidential_document_type.include_pre_1993
+    if presidential_document_type.include_pre_1993_presidents
       President.all
     else
       President.all.select{|x| x.starts_on.year >= 1993}
@@ -108,7 +108,7 @@ class PresidentialDocumentsPresenter
   private
 
   def eo_count_by_president_identifier_and_year
-    # TODO: Possibly limit query by presidential dates to optimize speed
+    # Possible Speed Optimization: Limit query by presidential dates to optimize speed
     presidents.each_with_object(Hash.new) do |president, hsh|
       EoCollectionFacet.new(president, :yearly).facet.each do |facet|
         if facet.count > 0
