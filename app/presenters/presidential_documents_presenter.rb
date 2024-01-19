@@ -98,9 +98,9 @@ class PresidentialDocumentsPresenter
 
   def presidents
     if presidential_document_type.include_pre_1993_presidents
-      President.all
+      President.all.reverse
     else
-      President.all.select{|x| x.starts_on.year >= 1993}
+      President.all.select{|x| x.starts_on.year >= 1993}.reverse
     end
   end
   memoize :presidents
