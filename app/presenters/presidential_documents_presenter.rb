@@ -147,7 +147,8 @@ class PresidentialDocumentsPresenter
       fields: fields,
       format: format,
       order: order,
-      per_page: '1000',
+      per_page: presidential_document_type.maximum_per_page || 1000,
+      maximum_per_page: presidential_document_type.maximum_per_page || 1000
     })
   end
 end

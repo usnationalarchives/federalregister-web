@@ -8,6 +8,7 @@ class Search::DocumentsController < ApplicationController
     render :layout => false
   end
 
+  DEFAULT_CSV_MAXIMUM_PER_PAGE = 1000
   def show
     cache_for 1.day
 
@@ -25,7 +26,7 @@ class Search::DocumentsController < ApplicationController
           redirect_to documents_search_api_path(
             shared_search_params.merge(
               conditions: params[:conditions],
-              per_page: 1000
+              per_page: params[:per_page] || DEFAULT_CSV_MAXIMUM_PER_PAGE
             ),
             format: :csv
           )

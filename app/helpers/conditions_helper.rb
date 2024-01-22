@@ -51,6 +51,6 @@ module ConditionsHelper
   end
 
   def shared_search_params
-    params.slice(:page, :order, :fields, :per_page)
+    params.slice(:page, :order, :fields, :per_page, :maximum_per_page)
   end
 end
