@@ -3,6 +3,7 @@ class President < ActiveHash::Base
     {
       :id => 32,
       :identifier => 'franklin-d-roosevelt',
+      :incomplete_eo_set => true,
       :full_name => "Franklin D. Roosevelt",
       :starts_on => Date.new(1933, 3, 4),
       :ends_on => Date.new(1945, 4, 12)
