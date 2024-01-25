@@ -34,3 +34,4 @@ vendor/bundle
 
 /config/master.key
 /config/credentials/*.key
+.local/share/pry/*
