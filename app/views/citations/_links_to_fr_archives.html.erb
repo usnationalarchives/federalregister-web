@@ -4,6 +4,7 @@
       <%= render partial: 'shared/disposition_table_entry', locals: {presidential_document: @presidential_document, presenter: OpenStruct.new(type: 'executive_orders')} %>
     </div>
   </div> 
+  <hr>
 
   <% if local_assigns[:include_flash_messages] %>
     <%= flash_message :success do %>
