@@ -45,7 +45,7 @@ class President < ActiveHash::Base
     {
       :id => 38,
       :identifier => 'gerald-ford',
-      :full_name => "Gerald Ford",
+      :full_name => "Gerald R. Ford",
       :starts_on => Date.new(1974, 8, 9),
       :ends_on => Date.new(1977, 1, 20)
     },
