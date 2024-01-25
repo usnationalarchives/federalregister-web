@@ -41,6 +41,7 @@ class CitationsController < ApplicationController
         },
         "fields" => [
           "executive_order_number",
+          "disposition_notes",
           "not_received_for_publication",
           "citation",
           "document_number",
