@@ -55,10 +55,10 @@ class CitationsController < ApplicationController
     citations = result_set.map(&:citation).compact
     if document_numbers.present?
       redirect_to short_document_path(document_numbers.first)
-    elsif citations.present? #ie API call returns historical EO results without document numbers
+    elsif result_set.first
       @presidential_document = result_set.first
       @fr_archives_citation = lookup_fr_archives_citation(citations.first)
-      render :eo, status: (@fr_archives_citation.pdf_url ? 200 : 404)
+      render :eo
     else
       render :eo, status: 404
     end
@@ -67,6 +67,10 @@ class CitationsController < ApplicationController
   private
 
   def lookup_fr_archives_citation(citation) #eg 50 FR 499
+    if citation.blank?
+      return
+    end
+
     volume = citation.match(/(\d+) FR/)[1]
     page   = citation.match(/FR (\d+)/)[1]
     FrArchivesCitation.new(volume, page)
