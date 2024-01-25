@@ -12,7 +12,7 @@ class ImageVariant < FederalRegister::Base
   def self.find(image_identifier, options = {})
     query = {}
 
-    response = get("/images/#{image_identifier}", query: query).parsed_response
+    response = get("/images/#{URI.encode_www_form_component(image_identifier)}", query: query).parsed_response
 
     response.map do |style, attributes|
       new(attributes.merge("style" => style))
