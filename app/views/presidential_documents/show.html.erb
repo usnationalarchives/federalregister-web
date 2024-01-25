@@ -153,6 +153,7 @@
                           data-tooltip-gravity="w">
                           <%= presidential_document_collection.count %>
                         </span>
+                      <% else %>
                           No <%= @presenter.presidential_document_type.name.pluralize.downcase %> issued.
                       <% end %>
                     </li>
