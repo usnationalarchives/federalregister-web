@@ -5,7 +5,7 @@ module DocumentDecorator::Comments
   end
 
   def comment_count
-    commentable_documents.map(&:comment_count).compact.sum
+    regs_dot_gov_documents.map(&:comment_count).compact.sum
   end
 
   def republished_document_comment_url
