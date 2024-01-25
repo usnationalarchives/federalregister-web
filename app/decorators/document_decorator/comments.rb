@@ -100,6 +100,10 @@ module DocumentDecorator::Comments
     end
   end
 
+  def ever_commentable_documents
+    regs_dot_gov_documents.select(&:ever_commentable?)
+  end
+
   def commentable_documents
     regs_dot_gov_documents.select(&:commentable?)
   end

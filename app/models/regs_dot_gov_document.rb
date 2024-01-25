@@ -1,6 +1,10 @@
 class RegsDotGovDocument < FederalRegister::Base
   add_attribute :allow_late_comments, :comment_count, :comment_end_date, :comment_start_date, :comment_url, :docket, :id, :regulations_dot_gov_open_for_comment, :updated_at
 
+  def ever_commentable?
+    comment_start_date
+  end
+
   def commentable?
     allow_late_comments || (regulations_dot_gov_open_for_comment && comment_end_date_unelapsed?)
   end
