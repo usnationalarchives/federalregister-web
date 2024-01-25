@@ -5,11 +5,15 @@
   &:hover { color: darken($color-reader-aid, 15) !important; }
 }
 
-.presidential-documents {
+.presidential-documents:not(.normal-link-coloration) {
   a,
   .fr-box .content-block a {
     @extend %reader-aid-link;
   }
+}
+
+
+.presidential-documents {
 
   .agency-header {
     @extend %agency-header;

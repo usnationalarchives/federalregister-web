@@ -1,5 +1,5 @@
 <% if @fr_archives_citation.pdf_url %>
-  <div class='presidential-documents'>
+  <div class='presidential-documents normal-link-coloration'>
     <div class="row presidential-document-wrapper">
       <%= render partial: 'shared/disposition_table_entry', locals: {presidential_document: @presidential_document, presenter: OpenStruct.new(type: 'executive_orders')} %>
     </div>
