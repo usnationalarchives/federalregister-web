@@ -5,7 +5,8 @@ class President < ActiveHash::Base
       :identifier => 'franklin-d-roosevelt',
       :incomplete_eo_set => true,
       :full_name => "Franklin D. Roosevelt",
-      :starts_on => Date.new(1933, 3, 4),
+      # :starts_on => Date.new(1933, 3, 4), # FDR's tenure starts here but EOs are only available from 1937 onwards
+      :starts_on => Date.new(1937, 1, 8),
       :ends_on => Date.new(1945, 4, 12)
     },
     {
