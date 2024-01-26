@@ -113,11 +113,16 @@
             <div class="row">
               <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
                 <h3>
+                  <% if (president.starts_on..president.ends_on).cover? Date.current #Try to link to the most-recent year with docs %>
+                    <% linked_year = documents_by_year.find{|x| x.results.count != 0 }.try(:year) || documents_by_year.first.year   %>
+                  <% else %>
+                    <% linked_year = documents_by_year.first.year %>
+                  <% end %>
                   <%= link_to president.full_name,
                     presidential_documents_by_president_and_year_path(
                       @presenter.type.gsub('_','-'),
                       president.identifier,
-                      documents_by_year.first.year
+                      linked_year
                     ) %>
                 </h3>
 
