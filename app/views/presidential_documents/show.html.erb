@@ -136,7 +136,7 @@
 
                 <ul class="document-list">
                   <% documents_by_year.each do |presidential_document_collection| %>
-                    <% next if presidential_document_collection.year < 1937 %>
+                    <% next if presidential_document_collection.year < @presenter.presidential_document_type.available_since_year %>
                     <li>
                       <%= link_to_if presidential_document_collection.presidential_documents.present?, presidential_document_collection.year,
                         presidential_documents_by_president_and_year_path(
