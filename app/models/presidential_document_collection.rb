@@ -75,6 +75,12 @@ class PresidentialDocumentCollection
           end
         end.
         sort_by{|document| document.proclamation_number.to_i}.reverse
+    elsif document_types == 'executive_order'
+      @results = @results.
+        sort_by do|document|
+          [document.executive_order_number.to_i, document.executive_order_number]
+        end.
+        reverse
     else
       @results
     end
