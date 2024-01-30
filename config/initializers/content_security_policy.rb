@@ -75,7 +75,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.frame_ancestors :none
   policy.base_uri :self
 
-  if ['production', 'staging'].include?(Rails.env)
+  if ['staging'].include?(Rails.env)
     # Increment version on each change to this file
     csp_version = 8
 
