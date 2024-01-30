@@ -385,9 +385,6 @@
         }
       }
     }
-
-    //TODO: shouldn't be needed once sprites are removed
-    .browse { background: none; }
   }
 
   .right_column {
@@ -710,8 +707,16 @@
       width: auto; // Make nav width dynamic at small sizes
     }
 
-    #nav-hamburger a {
-      padding-top: 10px;
+    .nav-hamburger {
+      a { padding-top: 10px; }
+
+      svg.svg-icon-hamburger {
+        fill: $text;
+        height: 22px;
+        width: 32px;
+
+        &:hover { fill: $bright-orange; }
+      }
     }
 
     ul.container {
@@ -772,6 +777,10 @@
 
     #nav-home {
       display: none
+    }
+
+    svg.svg-icon-hamburger {
+      fill: $bright-orange;
     }
 
     .hamburger-expanded-only {
