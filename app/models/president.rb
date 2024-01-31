@@ -97,14 +97,14 @@ class President < ActiveHash::Base
     {
       :id => 4,
       :identifier => 'donald-trump',
-      :full_name => "Donald Trump",
+      :full_name => "Donald J. Trump",
       :starts_on => Date.new(2017,1,20),
       :ends_on => Date.new(2021,1,19)
     },
     {
       :id => 5,
       :identifier => 'joe-biden',
-      :full_name => "Joseph R. Biden Jr.",
+      :full_name => "Joseph R. Biden, Jr.",
       :starts_on => Date.new(2021,1,20),
       :ends_on => Date.new(2025,1,19)
     },
