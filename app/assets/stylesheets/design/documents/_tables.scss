@@ -70,10 +70,10 @@
 
     @each $level in 0,1,2,3,4,5,6,7,8,9 {
       .primary-indent-#{$level} {
-        padding-left: #{$level * 2}em;
+        padding-left: #{$level * 1}em;
       }
       .primary-indent-hanging-#{$level} {
-        padding-left: #{($level * 2) + 1}em;
+        padding-left: #{($level * 1) + 1}em;
         text-indent: -1em;
       }
     }
