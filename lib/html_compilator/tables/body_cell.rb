@@ -1,4 +1,6 @@
 class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
+  extend Memoist
+
   # key is the ENT I attribute value
   # the first value is how much to ident
   # the second value is whether it should be a hanging indent
@@ -53,7 +55,7 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
   end
 
   def stub_classes
-    if stub?
+    if stub? || override_indentation
       if primary_indentation && primary_indentation > 0
         if hanging_indentation
           ["primary-indent-hanging-#{primary_indentation}"]
@@ -136,9 +138,20 @@ class HtmlCompilator::Tables::BodyCell < HtmlCompilator::Tables::Cell
   end
 
   def primary_indentation
+    return override_indentation if override_indentation
+
     cell_i = node.attr("I").to_i
     INDENTATION_RULES[cell_i].try(:first)
   end
+
+  OVERRIDE_INDENTATION = /i(?<indentation>\d+)/
+
+  def override_indentation
+    if (match = OVERRIDE_INDENTATION.match(node.attr("O")))
+      match[:indentation].to_i
+    end
+  end
+  memoize :override_indentation
 
   def hanging_indentation
     cell_i = node.attr("I").to_i
