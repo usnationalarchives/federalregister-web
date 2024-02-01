@@ -151,6 +151,38 @@ $(document).ready ()->
     200
   )
 
+  ##############################
+  # EO Disposition Tables
+  ##############################
+
+  modalLinks = $('.fr-archives-pdf-links-modal-js')
+  if modalLinks.length > 0
+    renderModal = (response) ->
+      if Object.keys(response).length > 0
+        template = HandlebarsTemplates['fr_archives_download_links_modal']
+        modalContents = template(response)
+      else
+        modalContents = "No historical content could be located for the provided citation.  If you suspect this may be an error, you can let us know by using the 'Site Feedback' button below."
+
+      FR2.Modal.displayModal(
+        "Download Historical Content",
+        modalContents
+      )
+
+    $('.fr-archives-pdf-links-modal-js').on 'click', (e) ->
+      volume = $(this).data('archivesVolumeJs')
+      page   = $(this).data('archivesPageJs')
+
+      $.ajax({
+        url: 'https://fr2.criticaljuncture.org/api/archives/v1/citation.json',
+        method: 'GET',
+        data: {volume: volume, page: page},
+        success: (data) ->
+          renderModal(data)
+        error: () ->
+          renderModal({})
+      })
+
 
   ##############################
   # Documents Page

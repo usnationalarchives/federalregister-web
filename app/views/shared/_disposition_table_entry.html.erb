@@ -58,6 +58,15 @@
           </dt>
         <% end %>
         <dd></dd>
+      <% elsif presidential_document.citation %>
+        <dt class="toc-pdf">
+          <%= link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
+              'archives-volume-js' => presidential_document.citation.match(/(\d+) FR/)[1],
+              'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1]
+            } do %>
+            <%= fr_icon 'doc-pdf' %> PDF
+          <% end %>
+        </dt>
       <% end %>
     </dl>
   </div>

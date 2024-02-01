@@ -105,6 +105,18 @@ Handlebars.registerHelper('formatted_date', function(date) {
   return strftime('%m/%d/%Y', new Date(date));
 });
 
+Handlebars.registerHelper('locale_date', function(date) {
+  var inputDate = new Date(date); // Assuming your input date is in YYYY-MM-DD format
+
+  var options = { 
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric' 
+  };
+
+  return inputDate.toLocaleDateString('en-US', options);
+});
+
 Handlebars.registerHelper('pluralize', function(number, single, plural) {
   if( number === 1 ) {
     return single;
