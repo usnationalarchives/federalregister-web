@@ -37,7 +37,7 @@
             <p><%= t('presidential_documents.processing_delay_note').html_safe %></p>
 
             <p>
-              <%= @presenter.name.pluralize.capitalize %> issued since <%= @presenter.presidential_document_type.available_since_year %> are available as a single
+              <%= @presenter.name.pluralize.capitalize %> signed since <%= @presenter.presidential_document_type.available_since_year %> are available as a single
               bulk download and as a bulk download by President, or you can
               browse by President and year from the list below. More details
               about our APIs and other developer tools can be found on our
@@ -126,7 +126,7 @@
                 </h3>
 
                 <p>
-                  <%= president.full_name %> issued
+                  <%= president.full_name %> signed 
                   <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
                   between <%= documents_by_year.last.year %>
                   and <%= documents_by_year.first.year %>.
@@ -158,7 +158,7 @@
                           <%= presidential_document_collection.count %>
                         </span>
                       <% else %>
-                          No <%= @presenter.presidential_document_type.name.pluralize.downcase %> issued.
+                          No <%= @presenter.presidential_document_type.name.pluralize.downcase %> signed.
                       <% end %>
                     </li>
                   <% end %>

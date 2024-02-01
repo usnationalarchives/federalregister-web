@@ -19,7 +19,7 @@
     <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
       <p>
         In <%= presenter.year %>, <%= presenter.president.full_name %>
-        published
+        signed
         <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize.capitalize) %>
 
         <% if presenter.type == 'executive_orders' %>
