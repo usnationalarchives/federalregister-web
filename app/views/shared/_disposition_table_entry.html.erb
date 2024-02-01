@@ -25,8 +25,10 @@
             document_issue_path(presidential_document) %>
         <% end %>
       </dd>
-      <dt>FR Citation:</dt>
-      <dd><%= presidential_document.citation %></dd>
+      <% if !presidential_document.not_received_for_publication %>
+        <dt>FR Citation:</dt>
+        <dd><%= presidential_document.citation %></dd>
+      <% end %>
       <% if presidential_document.document_number %>
         <dt>FR Doc. Number:</dt>
         <dd>
