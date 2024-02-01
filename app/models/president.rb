@@ -105,7 +105,8 @@ class President < ActiveHash::Base
       :identifier => 'joe-biden',
       :full_name => "Joseph R. Biden, Jr.",
       :starts_on => Date.new(2021,1,20),
-      :ends_on => Date.new(2025,1,19)
+      :ends_on => Date.new(2025,1,19),
+      :generational_suffix => true
     },
   ]
 
