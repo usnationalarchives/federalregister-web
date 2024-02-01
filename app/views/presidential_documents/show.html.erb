@@ -127,7 +127,7 @@
 
                 <p>
                   <%= president.full_name %> signed 
-                  <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
+                  <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.capitalize) %>
                   between <%= documents_by_year.last.year %>
                   and <%= documents_by_year.first.year %>.
                 </p>
@@ -158,7 +158,7 @@
                           <%= presidential_document_collection.count %>
                         </span>
                       <% else %>
-                          No <%= @presenter.presidential_document_type.name.pluralize.downcase %> signed.
+                          No <%= @presenter.presidential_document_type.name.pluralize.downcase.capitalize %> signed.
                       <% end %>
                     </li>
                   <% end %>

@@ -5,7 +5,7 @@
   )
 ) do %>
 
-  <%= link_to "#{presenter.presidential_document_type.name.pluralize.capitalize} Index", presidential_documents_path(presenter.type.gsub('_', '-')),
+  <%= link_to "#{presenter.presidential_document_type.name.pluralize} Index", presidential_documents_path(presenter.type.gsub('_', '-')),
     class: 'back-to-link' %>
 
   <% presenter.documents_by_president_and_year.each do |president, presidential_document_collections| %>
