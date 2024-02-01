@@ -37,7 +37,7 @@
             <p><%= t('presidential_documents.processing_delay_note').html_safe %></p>
 
             <p>
-              <%= @presenter.name.pluralize %> issued since <%= @presenter.presidential_document_type.available_since_year %> are available as a single
+              <%= @presenter.name.pluralize.capitalize %> issued since <%= @presenter.presidential_document_type.available_since_year %> are available as a single
               bulk download and as a bulk download by President, or you can
               browse by President and year from the list below. More details
               about our APIs and other developer tools can be found on our
@@ -73,7 +73,7 @@
               <% end %>
               <li>
                 <span class="title">
-                  <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize} since #{@presenter.presidential_document_type.available_since_year}" %>
+                  <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize.capitalize} Since #{@presenter.presidential_document_type.available_since_year}" %>
                   <%= all_eo_description %>
                 </span>
                 <span class="links">

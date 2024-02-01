@@ -2,7 +2,7 @@
   <div class="row">
     <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
       <h1>
-        <%= "#{presenter.year} #{presenter.president.full_name} #{presenter.presidential_document_type.name.pluralize}" %>
+        <%= "#{presenter.year} #{presenter.president.full_name} #{presenter.presidential_document_type.name.pluralize.capitalize}" %>
 
         <span class="header-link">
           <%= link_to 'view all Presidential Documents',
@@ -20,7 +20,7 @@
       <p>
         In <%= presenter.year %>, <%= presenter.president.full_name %>
         published
-        <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize) %>
+        <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize.capitalize) %>
 
         <% if presenter.type == 'executive_orders' %>
           (from EO <%= presenter.presidential_documents_collection.minimum_eo_number %>
@@ -33,7 +33,7 @@
       </p>
 
       <p>
-        These <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize) %>
+        These <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize.capitalize) %>
         can be downloaded in
         <%= presenter.link_to_presidential_documents_for_format(:csv) %>
         and
