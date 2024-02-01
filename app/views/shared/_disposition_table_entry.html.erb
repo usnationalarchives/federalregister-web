@@ -15,13 +15,13 @@
   <div class="row metadata_wrapper">
     <dl class="<%= bootstrap_col xs: 6, md: 6 %>">
       <dt>Signed:</dt>
-      <dd><%= presidential_document.signing_date %></dd>
+      <dd><%= presidential_document.signing_date&.to_s(:month_day_year) %></dd>
       <dt>Published:</dt>
       <dd>
         <% if presidential_document.not_received_for_publication %>
           Not received for publication
         <% else %>
-          <%= link_to_if presidential_document.document_number, presidential_document.publication_date,
+          <%= link_to_if presidential_document.document_number, presidential_document.publication_date&.to_s(:month_day_year),
             document_issue_path(presidential_document) %>
         <% end %>
       </dd>
