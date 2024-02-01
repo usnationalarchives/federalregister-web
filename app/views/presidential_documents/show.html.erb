@@ -57,6 +57,20 @@
         <div class="row">
           <div class='<%= bootstrap_col(xs: 12, md: 12) %>'>
             <ul class="bulk-files">
+              <% @presidents.each do |president| %>
+                <% @president_presenter = PresidentialDocumentsPresenter.new(
+                  type: @presenter.presidential_document_type.name.downcase.pluralize.gsub(' ','-'),
+                  president: president.identifier,
+                  view_context: @presenter.h
+                ) %>
+                <li>
+                  <span class="title"><%= president.full_name %></span>
+                  <span class="links">
+                    <%= @president_presenter.link_to_presidential_documents_for_format(:csv) %>
+                    <%= @president_presenter.link_to_presidential_documents_for_format(:json) %>
+                  </span>
+                </li>
+              <% end %>
               <li>
                 <span class="title">
                   <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize} since #{@presenter.presidential_document_type.available_since_year}" %>
@@ -72,21 +86,6 @@
                   ) %>
                 </span>
               </li>
-
-              <% @presidents.each do |president| %>
-                <% @president_presenter = PresidentialDocumentsPresenter.new(
-                  type: @presenter.presidential_document_type.name.downcase.pluralize.gsub(' ','-'),
-                  president: president.identifier,
-                  view_context: @presenter.h
-                ) %>
-                <li>
-                  <span class="title"><%= president.full_name %></span>
-                  <span class="links">
-                    <%= @president_presenter.link_to_presidential_documents_for_format(:csv) %>
-                    <%= @president_presenter.link_to_presidential_documents_for_format(:json) %>
-                  </span>
-                </li>
-              <% end %>
             </ul>
             <%= subscribe_link %>
           </div>
