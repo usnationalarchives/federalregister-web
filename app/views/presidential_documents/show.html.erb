@@ -126,16 +126,10 @@
                 </h3>
 
                 <p>
-                  <% if president.incomplete_eo_set %>
-                    <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
-                    available for viewing between <%= documents_by_year.last.year %>
-                    and <%= documents_by_year.first.year %>.
-                  <% else %>
-                    <%= president.full_name %> issued
-                    <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
-                    between <%= documents_by_year.last.year %>
-                    and <%= documents_by_year.first.year %>.
-                  <% end %>
+                  <%= president.full_name %> issued
+                  <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.downcase) %>
+                  between <%= documents_by_year.last.year %>
+                  and <%= documents_by_year.first.year %>.
                 </p>
 
                 <ul class="document-list">
