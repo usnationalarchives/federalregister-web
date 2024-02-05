@@ -62,7 +62,8 @@
         <dt class="toc-pdf">
           <%= link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
               'archives-volume-js' => presidential_document.citation.match(/(\d+) FR/)[1],
-              'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1]
+              'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1],
+              'eo-number'          => presidential_document.executive_order_number
             } do %>
             <%= fr_icon 'doc-pdf' %> PDF
           <% end %>

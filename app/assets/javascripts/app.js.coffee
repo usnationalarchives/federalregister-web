@@ -158,29 +158,33 @@ $(document).ready ()->
   modalLinks = $('.fr-archives-pdf-links-modal-js')
   if modalLinks.length > 0
     renderModal = (response) ->
-      if Object.keys(response).length > 0
+      if Object.keys(response).length > 1
         template = HandlebarsTemplates['fr_archives_download_links_modal']
         modalContents = template(response)
       else
         modalContents = "No historical content could be located for the provided citation.  If you suspect this may be an error, you can let us know by using the 'Site Feedback' button below."
 
+      modalTitle = "Download Historical Content (EO " + response.eoNumber + ")"
       FR2.Modal.displayModal(
-        "Download Historical Content",
+        modalTitle,
         modalContents
       )
 
     $('.fr-archives-pdf-links-modal-js').on 'click', (e) ->
+      e.preventDefault()
       volume = $(this).data('archivesVolumeJs')
       page   = $(this).data('archivesPageJs')
+      eoNumber = $(this).data('eoNumber')
 
       $.ajax({
         url: 'https://fr2.criticaljuncture.org/api/archives/v1/citation.json',
         method: 'GET',
         data: {volume: volume, page: page},
         success: (data) ->
+          data.eo_number = eoNumber
           renderModal(data)
         error: () ->
-          renderModal({})
+          renderModal({eoNumber: eoNumber})
       })
 
 
