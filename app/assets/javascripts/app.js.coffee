@@ -181,7 +181,7 @@ $(document).ready ()->
         method: 'GET',
         data: {volume: volume, page: page},
         success: (data) ->
-          data.eo_number = eoNumber
+          data.eoNumber = eoNumber
           renderModal(data)
         error: () ->
           renderModal({eoNumber: eoNumber})

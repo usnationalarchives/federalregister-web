@@ -73,7 +73,7 @@
               <% end %>
               <li>
                 <span class="title">
-                  <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize.capitalize} Since #{@presenter.presidential_document_type.available_since_year}" %>
+                  <% all_eo_description = "#{'All' unless @presenter.type == 'other_presidential_documents'} #{@presenter.name.pluralize.titlecase} Since #{@presenter.presidential_document_type.available_since_year}" %>
                   <%= all_eo_description %>
                 </span>
                 <span class="links">
