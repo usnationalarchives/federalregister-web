@@ -20,6 +20,11 @@ class PresidentialDocumentsPresenter
     I18n.t("presidential_documents.#{type}.description").html_safe
   end
 
+  def display_disposition_notes?
+    type == 'executive_orders' ||
+    type == 'proclamations'
+  end
+
   def table_description
     I18n.t("presidential_documents.#{type}.tables", president: President.first.full_name).html_safe
   end

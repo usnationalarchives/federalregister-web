@@ -1,85 +1,72 @@
 <div class="<%= bootstrap_col xs: 12, md: 10 %>">
-  <% if presidential_document.proclamation_number == '9494' %>
-    <%= presidential_document.note %>
+  <% if presidential_document.document_specific_note %>
+    <%= document_specific_note %>
   <% else %>
+    <h5>
+      <%= presidential_document.presidential_doc_show_link(presenter) %>
+    </h5>
 
-
-  <h5>
-    <% if (presenter.type == 'executive_orders') && presidential_document.document_number.blank? %>
-      <%= link_to_if !presidential_document.not_received_for_publication, presidential_document.title, executive_order_path(presidential_document.executive_order_number) %>
-    <% else %>
-      <%= link_to presidential_document.title, document_path(presidential_document) %>
-    <% end %>
-  </h5>
-
-  <div class="row metadata_wrapper">
-    <dl class="<%= bootstrap_col xs: 7, md: 7 %>">
-      <dt>Signed:</dt>
-      <dd><%= presidential_document.signing_date&.to_s(:month_day_year) %></dd>
-      <dt>Published:</dt>
-      <dd>
-        <% if presidential_document.not_received_for_publication %>
-          Not received for publication
-        <% else %>
-          <%= link_to_if presidential_document.document_number, presidential_document.publication_date&.to_s(:month_day_year),
-            document_issue_path(presidential_document) %>
-        <% end %>
-      </dd>
-      <% if !presidential_document.not_received_for_publication %>
-        <dt>FR Citation:</dt>
-        <dd><%= presidential_document.citation %></dd>
-      <% end %>
-      <% if presidential_document.document_number %>
-        <dt>FR Doc. Number:</dt>
+    <div class="row metadata_wrapper">
+      <dl class="<%= bootstrap_col xs: 7, md: 7 %>">
+        <dt>Signed:</dt>
+        <dd><%= presidential_document.signing_date %></dd>
+        <dt>Published:</dt>
         <dd>
-          <%= link_to presidential_document.document_number,
-            document_path(presidential_document) %>
-      </dd>
-      <% end %>
-    </dl>
-
-    <dl class="<%= bootstrap_col xs: 5, md: 5 %>">
-      <% if presidential_document.document_number %>
-        <dt class="toc-pdf">
-          <%= link_to presidential_document.pdf_url do %>
-            <%= fr_icon 'doc-pdf' %> PDF
-          <% end %>
-        </dt>
-
-        <dd>
-          <%= pluralize presidential_document.pages, 'page' %>
+          <%= presidential_document.publication_date_link  %>
         </dd>
-
+        <% if presidential_document.citation %>
+          <dt>FR Citation:</dt>
+          <dd><%= presidential_document.citation %></dd>
+        <% end %>
         <% if presidential_document.document_number %>
-          <dt class="permalink">
-            <%= link_to short_document_url(presidential_document) do %>
-              <%= fr_icon 'link' %> Permalink
+          <dt>FR Doc. Number:</dt>
+          <dd>
+            <%= link_to presidential_document.document_number,
+              document_path(presidential_document) %>
+        </dd>
+        <% end %>
+      </dl>
+
+      <dl class="<%= bootstrap_col xs: 5, md: 5 %>">
+        <% if !presidential_document.historical_eo? %>
+          <dt class="toc-pdf">
+            <%= link_to presidential_document.pdf_url do %>
+              <%= fr_icon 'doc-pdf' %> PDF
+            <% end %>
+          </dt>
+
+          <dd>
+            <%= pluralize presidential_document.pages, 'page' %>
+          </dd>
+
+          <% if !presidential_document.historical_eo? %>
+            <dt class="permalink">
+              <%= link_to short_document_url(presidential_document) do %>
+                <%= fr_icon 'link' %> Permalink
+              <% end %>
+            </dt>
+          <% end %>
+          <dd></dd>
+        <% elsif presidential_document.citation %>
+          <dt class="toc-pdf">
+            <%= link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
+                'archives-volume-js' => presidential_document.citation.match(/(\d+) FR/)[1],
+                'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1],
+                'eo-number'          => presidential_document.executive_order_number
+              } do %>
+              <%= fr_icon 'doc-pdf' %> PDF
             <% end %>
           </dt>
         <% end %>
-        <dd></dd>
-      <% elsif presidential_document.citation %>
-        <dt class="toc-pdf">
-          <%= link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
-              'archives-volume-js' => presidential_document.citation.match(/(\d+) FR/)[1],
-              'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1],
-              'eo-number'          => presidential_document.executive_order_number
-            } do %>
-            <%= fr_icon 'doc-pdf' %> PDF
-          <% end %>
-        </dt>
-      <% end %>
-    </dl>
-  </div>
+      </dl>
+    </div>
 
-  <% if presenter.type == 'executive_orders' || presenter.type == 'proclamations' %>
-    <% if presidential_document.disposition_notes.present? %>
+    <% if presenter.display_disposition_notes? && presidential_document.disposition_notes.present? %>
       <div class="row disposition-notes">
         <div class="<%= bootstrap_col xs: 12, md: 12 %>">
           <%= simple_format add_citation_links(presidential_document.disposition_notes.gsub("\\n","\n"), class: "notes") %>
         </div>
       </div>
     <% end %>
-  <% end %>
   <% end %>
 </div>
