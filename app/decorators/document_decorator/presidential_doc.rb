@@ -1,5 +1,21 @@
 module DocumentDecorator::PresidentialDoc
 
+  def pdf_link
+    if !historical_eo?
+      h.link_to pdf_url do
+        "#{h.fr_icon('doc-pdf')} PDF".html_safe
+      end
+    elsif citation
+      h.link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
+          'archives-volume-js' => citation.match(/(\d+) FR/)[1],
+          'archives-page-js'   => citation.match(/FR (\d+)/)[1],
+          'eo-number'          => executive_order_number
+        } do
+        "#{h.fr_icon('doc-pdf')} PDF".html_safe
+      end
+    end
+  end
+
   def presidential_doc_show_link(presenter)
     if (presenter.type == 'executive_orders') && historical_eo?
       h.link_to_if !not_received_for_publication,

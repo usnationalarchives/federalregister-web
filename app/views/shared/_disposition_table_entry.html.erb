@@ -28,36 +28,23 @@
       </dl>
 
       <dl class="<%= bootstrap_col xs: 5, md: 5 %>">
-        <% if !presidential_document.historical_eo? %>
+        <% if presidential_document.pdf_link %>
           <dt class="toc-pdf">
-            <%= link_to presidential_document.pdf_url do %>
-              <%= fr_icon 'doc-pdf' %> PDF
-            <% end %>
+            <%= presidential_document.pdf_link %>
           </dt>
 
-          <dd>
-            <%= pluralize presidential_document.pages, 'page' %>
-          </dd>
-
           <% if !presidential_document.historical_eo? %>
+            <dd>
+              <%= pluralize presidential_document.pages, 'page' %>
+            </dd>
             <dt class="permalink">
               <%= link_to short_document_url(presidential_document) do %>
                 <%= fr_icon 'link' %> Permalink
               <% end %>
             </dt>
           <% end %>
-          <dd></dd>
-        <% elsif presidential_document.citation %>
-          <dt class="toc-pdf">
-            <%= link_to '#', class: 'fr-archives-pdf-links-modal-js', data: {
-                'archives-volume-js' => presidential_document.citation.match(/(\d+) FR/)[1],
-                'archives-page-js'   => presidential_document.citation.match(/FR (\d+)/)[1],
-                'eo-number'          => presidential_document.executive_order_number
-              } do %>
-              <%= fr_icon 'doc-pdf' %> PDF
-            <% end %>
-          </dt>
         <% end %>
+
       </dl>
     </div>
 
