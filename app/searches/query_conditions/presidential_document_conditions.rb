@@ -10,7 +10,8 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
           year: year
         },
         type: ["PRESDOCU"],
-      }
+      },
+      include_pre_1994_docs: true
     }
   end
 
@@ -24,7 +25,8 @@ class QueryConditions::PresidentialDocumentConditions < QueryConditions::Documen
           lte: president.ends_on
         },
         type: ["PRESDOCU"],
-      }
+      },
+      include_pre_1994_docs: true
     }
   end
 end

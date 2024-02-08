@@ -153,7 +153,8 @@ class PresidentialDocumentsPresenter
       format: format,
       order: order,
       per_page: presidential_document_type.maximum_per_page || 1000,
-      maximum_per_page: presidential_document_type.maximum_per_page || 1000
+      maximum_per_page: presidential_document_type.maximum_per_page || 1000,
+      include_pre_1994_docs: true
     })
   end
 end

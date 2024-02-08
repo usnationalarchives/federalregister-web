@@ -48,7 +48,8 @@ class CitationsController < ApplicationController
           "title",
           "publication_date",
           "signing_date",
-        ]
+        ],
+        include_pre_1994_docs: true
       )
 
     document_numbers = result_set.map(&:document_number).compact
