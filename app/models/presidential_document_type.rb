@@ -27,6 +27,7 @@ class PresidentialDocumentType < ActiveHash::Base
         name: "Other Presidential Document",
         identifier: other_presidential_document_types.map(&:identifier),
         id: other_presidential_document_types.map(&:id),
+        available_since_year: 1994
       )
       doc_type.attributes[:type] = 'other_presidential_document'
     else
