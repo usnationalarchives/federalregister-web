@@ -7,6 +7,13 @@ $(document).ready(function(){
   $('.doc_unknown.add_tipsy').tipsy( {gravity: 'e', fallback: "Document of Unknown Type", delayIn: 100, fade: true, offset: 0});
   $('.doc_uncategorized.add_tipsy').tipsy( {gravity: 'e', fallback: "Uncategorized Document", delayIn: 100, fade: true, offset: 0});
   $('.doc_correct.add_tipsy').tipsy( {gravity: 'e', fallback: "Correction",               delayIn: 100, fade: true, offset: 0});
+  $('.help-text').tipsy( {
+    gravity: 'e',
+    delayIn: 100,
+    fade: true,
+    offset: 0,
+    title: function() { return $(this).data('tooltip');}
+  });
 
   /* home page - officialness */
   /* popular documents */
