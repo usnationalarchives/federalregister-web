@@ -2,7 +2,6 @@
 class ImageVariant < FederalRegister::Base
   add_attribute :content_type,
     :height,
-    :image_source,
     :sha,
     :size,
     :style,
