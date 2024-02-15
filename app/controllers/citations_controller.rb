@@ -37,7 +37,8 @@ class CitationsController < ApplicationController
     document_numbers = search.search_details.suggestions.
       select{|s| s.respond_to?(:document_numbers)}.
       map(&:document_numbers).
-      flatten
+      flatten.
+      compact
 
     if document_numbers.size == 0
       render
