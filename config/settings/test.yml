@@ -1,3 +1,6 @@
+container:
+  role: worker
+
 lograge:
   enabled: false
 

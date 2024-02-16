@@ -10,7 +10,7 @@ services:
     environment:
       RAILS_ENV: development
       FR_BASE_URL: 'http://127.0.0.1:4000'
-      CONTAINER_ROLE: 'worker'
+      SETTINGS__CONTAINER__ROLE: 'worker'
     ports:
       - "4000:3000"
     expose:

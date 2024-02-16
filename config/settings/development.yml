@@ -13,6 +13,9 @@ app:
     deliver: false
     deliver_pil: false
 
+container:
+  role: worker
+
 lograge:
   enabled: false
 

@@ -35,6 +35,11 @@ app:
     deliver: true
     deliver_pil: true
 
+container:
+  git_repo: https://github.com/criticaljuncture/federalregister-web
+  process: rails
+  revision: <%= `git rev-parse --short HEAD` %>
+  role:
 
 # host, password and username are retrived from credentials
 # development environment uses ENV vars for these so keys are defined here

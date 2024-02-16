@@ -15,7 +15,7 @@ services:
       ATTACHMENTS_AWS_ACCESS_KEY_ID: 'XXX'
       ATTACHMENTS_AWS_SECRET_ACCESS_KEY: 'XXX'
       RAILS_SESSION_KEY: XXXXxxxxXXXXxxxxXXXXxxxxXXXXxxxx
-      CONTAINER_PROCESS: rails
+      SETTINGS__CONTAINER__PROCESS: rails
       REG_GOV_API_KEY: xxxxxxxxxxxxxxxxxx
       SETTINGS__REDIS__HOST: redis
     restart: always
