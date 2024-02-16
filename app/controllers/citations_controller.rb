@@ -57,7 +57,7 @@ class CitationsController < ApplicationController
     if document_numbers.present?
       redirect_to short_document_path(document_numbers.first)
     elsif result_set.first
-      @presidential_document = result_set.first
+      @presidential_document = DocumentDecorator.decorate(result_set.first)
       @fr_archives_citation = lookup_fr_archives_citation(citations.first)
       render :eo
     else
