@@ -34,7 +34,7 @@ class XsltFunctions
 
   def list_of_subjects(nodes)
     return blank_document.children unless nodes.present?
-    
+
     topics = ListOfSubjectsTopicParser.parse(nodes.first.content)
 
     document = blank_document
@@ -44,11 +44,7 @@ class XsltFunctions
       ) {
         topics.each do |topic|
           doc.li {
-            # doc.a(
-            #   href: "/topics/#{topic.downcase.gsub(' ', '-')}"
-            # ) {
-              doc.text topic
-            # }
+            doc.text topic
           }
         end
       }
