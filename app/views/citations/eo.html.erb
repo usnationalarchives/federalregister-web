@@ -7,7 +7,7 @@
 
 <%= bootstrap_context_wrapper do %>
   <% if @fr_archives_citation %>
-    <%= render partial: 'links_to_fr_archives' %>
+    <%= render partial: 'links_to_fr_archives', locals: {include_disposition_table_entry: true} %>
   <% elsif @presidential_document %>
     <div class='presidential-documents normal-link-coloration'>
       <div class="row presidential-document-wrapper">
