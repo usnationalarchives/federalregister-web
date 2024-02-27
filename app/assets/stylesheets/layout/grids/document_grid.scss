@@ -1,3 +1,5 @@
+// Bob's grid changes
+// ========================================================================
 .doc-content {
   display: grid;
 
@@ -13,3 +15,140 @@
     grid-template-columns: 81px 1fr;
   }
 }
+
+// ========================================================================
+
+
+@media only screen and (max-width: $small-viewport-width) {
+  // ========================================================================
+  // Comment Bar Header
+
+  #start_comment {
+    width: 100%;
+  }
+
+  // Accounts for the conditional collapsing behavior 
+  #comment-bar:has(div.byline) {
+    height: 150px !important;
+  }
+
+  #comment-bar p {
+    margin-top: 41px;
+  }
+
+  img.reg_gov_logo {
+    top: 112px !important;
+    right: none;
+    left: 16px !important;
+  }
+
+  div.byline {
+    margin: -37px 0px 0px 32px;
+  }
+
+  .reg-gov-comments-count {
+    margin: 10px 20px 34px 20px;
+    width: 87% !important;
+  }
+
+  // ========================================================================
+
+  .comment_form_wrapper .submitter-type-js div {
+    margin: 0px 0px 0px 7px !important;
+  }
+
+  #metadata_content_area {
+    width: auto;
+  }
+
+  .formtastic.comment fieldset {
+    .label {
+      display: block !important;
+    }
+
+    .text {
+      .label {
+        position: relative;
+        top: 0px;
+      }
+  
+      textarea {
+        position: relative;
+        width: 100%;
+      }
+    }
+  }
+
+  .formtastic.comment {
+    input[type='text'],
+    select,
+    textarea {
+      width: 100% !important;
+    }
+
+    .actions {
+      margin-left: 0px !important;
+    }
+
+    .file {
+      .label {
+        float: none !important;
+      }
+
+      .fileupload-button {
+        float: none !important;
+      }
+
+      table.attachments{
+        margin-left: 0px;
+        width: 95%;
+      }
+
+    }
+
+    p.inline-hints {
+      margin-left: 0px !important;
+    }
+
+    li.input {
+      width: auto !important;
+
+      &.boolean {
+        margin-left: 0px !important;
+      }
+
+    }
+
+    div.regulations_dot_gov_notices {
+      width: auto;
+    }
+
+  }
+}
+
+@media only screen and (min-width: $small-viewport-width) {
+  #metadata_content_area {
+    width: 960px;
+  }
+
+  .formtastic.comment fieldset {
+
+    .label {
+      display: inline-block;
+    }
+
+    .text {
+      .label {
+        position: relative;
+        top: 16px;
+      }
+  
+      textarea {
+        left: 210px;
+        position: relative;
+      }
+    }
+  }
+
+}
+
