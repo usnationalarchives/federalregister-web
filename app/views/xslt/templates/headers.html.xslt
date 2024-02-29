@@ -13,7 +13,8 @@
   </xsl:template>
 
   <!--  returns an 'h-#' id for a header element, where # is an incremented number
-        returns 'addresses' if the header is for the ADDRESSES node -->
+        returns custom id for some nodes,
+        eg 'addresses' if the header is for the ADDRESSES node -->
   <xsl:template name="header_id">
     <xsl:choose>
       <xsl:when test="contains('ADDRESSES:', text())">
@@ -21,6 +22,9 @@
       </xsl:when>
       <xsl:when test="contains('FOR FURTHER INFORMATION CONTACT:', text())">
         <xsl:text>further-info</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains('DATES:', text())">
+        <xsl:text>dates</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <!--  this number is based off the preceeding number of headers in the
