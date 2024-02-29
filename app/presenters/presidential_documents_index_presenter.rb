@@ -24,7 +24,7 @@ class PresidentialDocumentsIndexPresenter
   end
 
   def description_for(doc_type)
-    I18n.t("presidential_documents.#{doc_type.type.pluralize}.description").html_safe
+    (I18n.t("presidential_documents.#{doc_type.type.pluralize}.description") + "  #{doc_type.name.pluralize} are available back through #{doc_type.available_since_year}.").html_safe
   end
 
   def short_description_for(doc_type)
