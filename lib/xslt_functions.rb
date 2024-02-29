@@ -138,6 +138,15 @@ class XsltFunctions
   def capitalize_most_words(nodes)
     nodes.first.content.downcase.capitalize_most_words
   end
+
+  def convert_table(nodes)
+    table = nodes.first
+    nodes.shift
+    nodes.push(
+      Nokogiri::HTML(
+        HtmlCompilator::Tables::Table.new(table).to_html
+      )
+    )
   end
 
   private
