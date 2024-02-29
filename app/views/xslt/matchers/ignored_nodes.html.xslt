@@ -14,7 +14,7 @@
        that we don't show as part of the document or display via other means -->
 
   <!-- These tags only contain text nodes -->
-  <xsl:template match="SUBJECT | AGENCY | SUBAGY | CFR | DEPDOC | RIN" />
+  <xsl:template match="SUBJECT" />
 
   <!-- These tags don't contain other child nodes so we'll ignore them too -->
   <!-- we no longer ignore AGY tags but left here for reference -->
@@ -22,7 +22,7 @@
 
 
   <!-- Ignore tags we handle explicitely elsewhere -->
-  <xsl:template match="BILCOD | FRDOC | FTNT | FTREF" />
+  <xsl:template match="BILCOD | FRDOC | FTNT | FTREF | SUBAGY | CFR | DEPDOC | RIN" />
 
   <!-- Ignore tags usually found elsewhere in a document -->
   <xsl:template match="CNTNTS | UNITNAME | INCLUDES | EDITOR | EAR | FRDOCBP | HRULE | NOLPAGES | OLPAGES | SECHD | TITLE3 | PRES | NOPRINTSUBJECT | NOPRINTEONOTES" />

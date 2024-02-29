@@ -5,6 +5,7 @@
   <xsl:include href="app/views/xslt/matchers/text/all.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/ignored_nodes.html.xslt" />
 
+  <xsl:include href="app/views/xslt/matchers/full_text/document_headings.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/end_matter.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/footnotes.html.xslt" />
   <xsl:include href="app/views/xslt/matchers/full_text/headers.html.xslt" />

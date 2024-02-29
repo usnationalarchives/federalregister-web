@@ -135,8 +135,9 @@ class XsltFunctions
     document.children
   end
 
-  def capitalize(nodes)
-    nodes.first.content.upcase
+  def capitalize_most_words(nodes)
+    nodes.first.content.downcase.capitalize_most_words
+  end
   end
 
   private
