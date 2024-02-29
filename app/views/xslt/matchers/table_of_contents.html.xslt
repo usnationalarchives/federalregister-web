@@ -38,6 +38,9 @@
           <xsl:text>#</xsl:text>
           <xsl:call-template name="header_id" />
         </xsl:attribute>
+        <xsl:attribute name="data-close-utility-nav">
+          <xsl:text>true</xsl:text>
+        </xsl:attribute>
         <xsl:apply-templates/>
       </a>
     </li>
@@ -63,6 +66,9 @@
         <xsl:attribute name="href">
           <xsl:value-of select="concat('#los-', $id)" />
         </xsl:attribute>
+        <xsl:attribute name="data-close-utility-nav">
+          <xsl:text>true</xsl:text>
+        </xsl:attribute>
         <xsl:apply-templates/>
       </a>
     </li>
@@ -80,6 +86,9 @@
         <a>
           <xsl:attribute name="href">
             <xsl:value-of select="'#footnotes'" />
+          </xsl:attribute>
+          <xsl:attribute name="data-close-utility-nav">
+            <xsl:text>true</xsl:text>
           </xsl:attribute>
 
           <xsl:text>Footnotes</xsl:text>
