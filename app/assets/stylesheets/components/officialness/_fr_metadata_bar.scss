@@ -1,5 +1,7 @@
 @mixin fr-metadata-bar-header($main-color, $secondary-color, $label-bg:$main-color) {
   background-color: $secondary-color;
+  border-bottom: 1px solid $main-color;
+  border-top: 1px solid $main-color;
 
   .fr-head-meta-label {
     background-color: $label-bg;
@@ -23,9 +25,9 @@
 
 .fr-head-metadata-bar {
   &.fr-head-metadata-bar-official {
-    @include fr-metadata-bar-header($current-issue-link, $color-enhanced-light, darken($color-enhanced, 16));
+    @include fr-metadata-bar-header($color-enhanced, $color-enhanced-light, darken($color-enhanced, 16));
 
-    a {
+    .fr-head-meta-counts a {
       color: $current-issue-link;
 
       &:hover { color: $current-issue-link-hover; }
@@ -44,7 +46,7 @@
   &.fr-head-metadata-bar-public-inspection {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
 
-    a {
+    .fr-head-meta-counts a {
       color: $public-inspection-link;
 
       &:hover { color: $public-inspection-link-hover; }
