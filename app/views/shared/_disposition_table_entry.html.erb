@@ -51,7 +51,7 @@
     <% if presenter.display_disposition_notes? && presidential_document.disposition_notes.present? %>
       <div class="row disposition-notes">
         <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-          <%= simple_format add_citation_links(presidential_document.disposition_notes.gsub("\\n","\n"), class: "notes") %>
+          <%= presidential_document.disposition_notes %>
         </div>
       </div>
     <% end %>

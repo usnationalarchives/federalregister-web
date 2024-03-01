@@ -14,8 +14,13 @@ module DocumentDecorator::PresidentialDoc
   end
 
   def executive_order_notes
-    h.add_citation_links(object.executive_order_notes).gsub(/\n+/, "<br />").html_safe
+    h.simple_format(
+      h.add_citation_links(
+        object.executive_order_notes || object.disposition_notes
+      ).gsub("\\n","\n").html_safe
+    )
   end
+  alias disposition_notes executive_order_notes
 
   def historical_eo?
     document_number.blank?
