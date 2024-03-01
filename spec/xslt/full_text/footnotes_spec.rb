@@ -74,13 +74,16 @@ describe "XSLT::FullText::Footnotes" do
       <p id="p-1" data-page="1000">
         <sup>[<a class="footnote-reference" href="#footnote-1-p1000" id="citation-1-p1000">1</a>] </sup>
       </p>
-      <span class="printed-page printed-page-inline unprinted-element icon-fr2 icon-fr2-doc-generic document-markup" data-page="1001"></span>
-      <span class="printed-page-wrapper unprinted-element-wrapper">
-        <span class="unprinted-element-border"></span>
-        <span class="printed-page unprinted-element document-markup bootstrap-popover" id="page-1001" data-page="1001" data-text="Start Printed Page 1001" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 1001}">
-        <span class="icon-fr2 icon-fr2-doc-generic"></span>
-        <span class="text cj-tooltip" data-tooltip="Click for more print page information">Start Printed Page 1001</span>
-        </span>
+      <span class="printed-page-inline unprinted-element document-markup" data-page="1001">
+        <svg class="svg-icon svg-icon-doc-generic">
+          <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
+        </svg>
+      </span>
+      <span class="printed-page-details unprinted-element document-markup cj-tooltip" id="page-1001" data-page="1001" data-text="Print Page 1001" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 1001}" data-tooltip="Click for more print page information">
+        <svg class="svg-icon svg-icon-doc-generic">
+          <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
+        </svg>
+        <span class="text">Print Page 1001</span>
       </span>
       <p id="p-3" data-page="1001">
         <sup>[<a class="footnote-reference" href="#footnote-2-p1001" id="citation-2-p1001">2</a>] </sup>

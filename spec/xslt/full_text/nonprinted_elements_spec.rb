@@ -13,21 +13,11 @@ describe "XSLT::NonPrintedElements" do
       </PREAMB>
     XML
 
-    expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.preamble.unprinted-element.document-markup",
-        with: {"data-text" => "Start Preamble"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.preamble-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.preamble.unprinted-element.document-markup",
-        with: {"data-text" => "End Preamble"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="preamble">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "creates the proper elements for FURINF" do
@@ -38,24 +28,12 @@ describe "XSLT::NonPrintedElements" do
       </FURINF>
     XML
 
-    expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.further-info.unprinted-element.document-markup",
-        with: {"data-text" => "Start Further Info"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to have_tag('h1#further-info') do
-      with_text "FOR FURTHER INFORMATION CONTACT:"
-    end
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.further-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.further-info.unprinted-element.document-markup",
-        with: {"data-text" => "End Further Info"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="further-info">
+        <h1 id="further-info">FOR FURTHER INFORMATION CONTACT:</h1>
+        <p id="p-1" data-page="1000">Some text nodes and other content nodes</p>
+      </div>
+    HTML
   end
 
   it "creates the proper tooltip elements for APPENDIX in a REGTEXT block" do
@@ -67,21 +45,11 @@ describe "XSLT::NonPrintedElements" do
       </REGTEXT>
     XML
 
-    expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.appendix.unprinted-element.document-markup",
-        with: {"data-text" => "Start Appendix"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.appendix.unprinted-element.document-markup",
-        with: {"data-text" => "End Appendix"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="appendix">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "does not creates the tooltip elements for APPENDIX not in a REGTEXT block" do
@@ -91,21 +59,9 @@ describe "XSLT::NonPrintedElements" do
       </APPENDIX>
     XML
 
-    expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.appendix.unprinted-element.document-markup",
-        with: {"data-text" => "Start Appendix"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to_not have_tag("span.appendix-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.appendix.unprinted-element.document-markup",
-        with: {"data-text" => "End Appendix"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      Some text nodes and other content nodes
+    HTML
   end
 
   it "creates the proper elements for SIG" do
@@ -115,23 +71,11 @@ describe "XSLT::NonPrintedElements" do
       </SIG>
     XML
 
-    expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.signature.unprinted-element.document-markup",
-        with: {"data-text" => "Start Signature"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to have_tag("div.signature") do
-      with_text /Some text nodes and other content nodes/
-    end
-
-    expect(html).to have_tag("span.signature-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.signature.unprinted-element.document-markup",
-        with: {"data-text" => "End Signature"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="signature">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "creates the proper elements for SUPLINF" do
@@ -141,21 +85,11 @@ describe "XSLT::NonPrintedElements" do
       </SUPLINF>
     XML
 
-    expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.supplemental-info.unprinted-element.document-markup",
-        with: {"data-text" => "Start Supplemental Information"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.supplemental-info-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.supplemental-info.unprinted-element.document-markup",
-        with: {"data-text" => "End Supplemental Information"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="supplemental-info">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "creates the proper elements for LSTSUB" do
@@ -165,21 +99,11 @@ describe "XSLT::NonPrintedElements" do
       </LSTSUB>
     XML
 
-    expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.list-of-subjects.unprinted-element.document-markup",
-        with: {"data-text" => "Start List of Subjects"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.list-of-subjects-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.list-of-subjects.unprinted-element.document-markup",
-        with: {"data-text" => "End List of Subjects"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="list-of-subjects">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "creates the proper elements for PART" do
@@ -189,21 +113,11 @@ describe "XSLT::NonPrintedElements" do
       </PART>
     XML
 
-    expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.part.unprinted-element.document-markup",
-        with: {"data-text" => "Start Part"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.part.unprinted-element.document-markup",
-        with: {"data-text" => "End Part"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <div class="part">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
   it "creates the proper elements for AMDPAR" do
@@ -213,21 +127,11 @@ describe "XSLT::NonPrintedElements" do
       </AMDPAR>
     XML
 
-    expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.amend-part.unprinted-element.document-markup",
-        with: {"data-text" => "Start Amendment Part"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.amend-part-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.amend-part.unprinted-element.document-markup",
-        with: {"data-text" => "End Amendment Part"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <p class="amendment-part" id="p-amd-1">
+        Some text nodes and other content nodes
+      </p>
+    HTML
   end
 
   it "creates the proper elements for AUTH" do
@@ -237,21 +141,11 @@ describe "XSLT::NonPrintedElements" do
       </AUTH>
     XML
 
-    expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.authority.unprinted-element.document-markup",
-        with: {"data-text" => "Start Authority"}
-      with_tag "span.unprinted-element-border"
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.authority-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.authority.unprinted-element.document-markup",
-        with: {"data-text" => "End Authority"}
-      with_tag "span.unprinted-element-border"
-    end
+    expect_equivalent <<-HTML
+      <p class="authority" id="p-1" data-page="1000">
+        Some text nodes and other content nodes
+      </p>
+    HTML
   end
 
   it "creates the proper elements for SUBPART" do
@@ -261,19 +155,11 @@ describe "XSLT::NonPrintedElements" do
       </SUBPART>
     XML
 
-    expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-        with: {"data-text" => "Start Sub-Part"}
-    end
-
-    expect(html).to match("Some text nodes and other content nodes")
-
-    expect(html).to have_tag("span.subpart-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.subpart.unprinted-element.icon-fr2-book.cj-tooltip",
-        with: {"data-text" => "End Sub-Part"}
-    end
+    expect_equivalent <<-HTML
+      <div class="subpart">
+        Some text nodes and other content nodes
+      </div>
+    HTML
   end
 
 end

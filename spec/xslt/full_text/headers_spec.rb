@@ -135,7 +135,7 @@ describe "XSLT::FullText::Headers" do
       with_text "SUMMARY:"
     end
 
-    expect(html).to have_tag('h1#h-4') do
+    expect(html).to have_tag('h1#dates') do
       with_text "DATES:"
     end
   end

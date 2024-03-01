@@ -24,25 +24,25 @@ describe "XSLT::TableOfContents" do
     expect_equivalent <<-HTML
       <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
-          <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
+          <a href="#h-1" data-close-utility-nav="true">SUPPLEMENTARY INFORMATION:</a>
         </li>
         <li class="level-2">
-          <a href="#h-2">Background</a>
+          <a href="#h-2" data-close-utility-nav="true">Background</a>
         </li>
         <li class="level-2">
-          <a href="#h-3">Specific Changes Made by This Rule</a>
+          <a href="#h-3" data-close-utility-nav="true">Specific Changes Made by This Rule</a>
         </li>
         <li class="level-3">
-          <a href="#h-4">Creation of License Exception Support for the Cuban People (SCP)</a>
+          <a href="#h-4" data-close-utility-nav="true">Creation of License Exception Support for the Cuban People (SCP)</a>
         </li>
         <li class="level-4">
-          <a href="#h-5">Expansion of License Exception Consumer Communications Devices (CCD)</a>
+          <a href="#h-5" data-close-utility-nav="true">Expansion of License Exception Consumer Communications Devices (CCD)</a>
         </li>
         <li class="level-2">
-          <a href="#h-6">Export Administration Act</a>
+          <a href="#h-6" data-close-utility-nav="true">Export Administration Act</a>
         </li>
         <li class="level-5">
-          <a href="#h-7">Expansion of License Exception Gift Parcels and Humanitarian Donations (GFT)</a>
+          <a href="#h-7" data-close-utility-nav="true">Expansion of License Exception Gift Parcels and Humanitarian Donations (GFT)</a>
         </li>
       </ul>
     HTML
@@ -61,7 +61,7 @@ describe "XSLT::TableOfContents" do
     expect_equivalent <<-HTML
       <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
-          <a href="#addresses">ADDRESSES:</a>
+          <a href="#addresses" data-close-utility-nav="true">ADDRESSES:</a>
         </li>
       </ul>
     HTML
@@ -115,10 +115,10 @@ describe "XSLT::TableOfContents" do
     expect_equivalent <<-HTML
       <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
-          <a href="#h-1">SUPPLEMENTARY INFORMATION:</a>
+          <a href="#h-1" data-close-utility-nav="true">SUPPLEMENTARY INFORMATION:</a>
         </li>
         <li class="level-2">
-          <a href="#h-2">
+          <a href="#h-2" data-close-utility-nav="true">
             Proposed Critical Habitat Designation for
             <em>Harrisia aboriginum</em>
           </a>

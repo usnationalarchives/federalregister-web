@@ -13,7 +13,7 @@ describe "XSLT::PrintPage" do
 
     expect(html).to have_tag("span", with: {
       'data-page' => '1000',
-      class: 'printed-page unprinted-element document-markup',
+      class: 'printed-page-details unprinted-element document-markup',
       id: "page-1000"
     })
   end
@@ -23,13 +23,11 @@ describe "XSLT::PrintPage" do
       <PRTPAGE P="1000"/>
     XML
 
-    expect(html).to have_tag("span.printed-page-wrapper.unprinted-element-wrapper") do
-      with_tag "span.unprinted-element-border"
-      with_tag "span.printed-page.unprinted-element.document-markup",
-        with: {"data-text" => "Start Printed Page 1000"} do
-
-        with_text "Start Printed Page 1000"
-      end
+    expect(html).to have_tag(
+      "span.printed-page-details.unprinted-element.document-markup",
+      with: {"data-text" => "Print Page 1000"}
+    ) do
+      with_text "Print Page 1000"
     end
   end
 

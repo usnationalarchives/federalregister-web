@@ -7,23 +7,50 @@ describe "XSLT::FullText::Tables" do
   end
 
   context "GPOTABLE" do
-    it "adds a unique ESI for each document" do
+    it "adds a full html table" do
       process <<-XML
-        <GPOTABLE><BOXHD><CHED><E T="04">ABC</E></CHED></BOXHD></GPOTABLE>
-
-        <GPOTABLE><BOXHD><CHED>DEF</CHED></BOXHD></GPOTABLE>
+        <GPOTABLE COLS="4" OPTS="L2,nj,tp0,i1" CDEF="s100,xs48,r40,xs44">
+        <TTITLE> </TTITLE>
+        <BOXHD>
+        <CHED H="1">Review title</CHED>
+        <CHED H="1">RIN</CHED>
+        <CHED H="1">Docket ID #</CHED>
+        <CHED H="1">Status</CHED>
+        </BOXHD>
+        <ROW>
+        <ENT I="01">Section 610 Review of the Tier 3 Motor Vehicle Emission and Fuel Standards</ENT>
+        <ENT>2060–AV90</ENT>
+        <ENT>EPA–HQ–OAR–2011–0135</ENT>
+        <ENT>Ongoing.</ENT>
+        </ROW>
+        </GPOTABLE>
       XML
 
-      # ideally, we wouldn't include the xmlns declaration here
-      #   can't seem to find a way to exclude it when generated
-      #   from a nested XSLT template
       expect_equivalent <<-HTML
-        <esi:include
-          xmlns:esi="http://www.edge-delivery.org/esi/1.0"
-          src="/documents/tables/html/2014/10/15/2014-12345/1.html"></esi:include>
-        <esi:include
-          xmlns:esi="http://www.edge-delivery.org/esi/1.0"
-          src="/documents/tables/html/2014/10/15/2014-12345/2.html"></esi:include>
+        <html xmlns="http://www.w3.org/1999/xhtml">
+          <body>
+            <div class="table-wrapper">
+              <table class="" data-point-width="232">
+                <thead>
+                  <tr>
+                    <th class="center border-top-single border-bottom-single border-right-single">Review title</th>
+                    <th class="center border-top-single border-bottom-single border-right-single">RIN</th>
+                    <th class="center border-top-single border-bottom-single border-right-single">Docket ID #</th>
+                    <th class="center border-top-single border-bottom-single">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="left border-bottom-single border-right-single">Section 610 Review of the Tier 3 Motor Vehicle Emission and Fuel Standards</td>
+                    <td class="left border-bottom-single border-right-single">2060AV90</td>
+                    <td class="left border-bottom-single border-right-single">EPAHQOAR20110135</td>
+                    <td class="left border-bottom-single">Ongoing.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </body>
+        </html>
       HTML
     end
   end

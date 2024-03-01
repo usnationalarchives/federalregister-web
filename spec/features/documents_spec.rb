@@ -100,7 +100,7 @@ feature "Document", :no_ci do
         expect(page).to have_document_details_content('dd', document.subtype)
 
         expect(page).to have_document_details_content('dt', 'E.O. Citation:')
-        expect(page).to have_document_details_content('dd', "E.O. #{document.executive_order_number} of #{document.shorter_ordinal_signing_date}")
+        expect(page).to have_document_details_content('dd', "E.O. #{document.executive_order_number}}")
 
         expect(page).to have_document_details_content('dt', 'E.O. Notes:')
         expect(page).to have_document_details_content('dd', document.executive_order_notes)
