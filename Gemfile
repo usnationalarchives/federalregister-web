@@ -110,6 +110,9 @@ gem 'memoist'
 # xslt parsing
 gem 'nokogiri'
 
+# Allow creation of some non-digested assets
+gem "non-digest-assets"
+
 # Single sign on
 gem 'omniauth_openid_connect',
   git: 'https://github.com/criticaljuncture/omniauth-openid-connect',

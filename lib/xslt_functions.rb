@@ -139,6 +139,18 @@ class XsltFunctions
     nodes.first.content.downcase.capitalize_most_words
   end
 
+  def svg_icon(icon)
+    document = blank_document
+
+    Nokogiri::XML::Builder.with(document) do |doc|
+      doc.svg(class: "svg-icon svg-icon-#{icon}") {
+        doc.use("xlink:href" => "/assets/fr-icons.svg##{icon}")
+      }
+    end
+
+    document.children
+  end
+
   def convert_table(nodes)
     table = nodes.first
     nodes.shift
