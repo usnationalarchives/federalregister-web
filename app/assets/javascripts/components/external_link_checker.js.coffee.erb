@@ -27,7 +27,9 @@ class @FR2.ExternalLinkChecker
       e.preventDefault()
 
       if $('#fr_modal.external-link-warning-modal input[name=accept]').prop('checked')
-        amplify.store('showExternalModal', false, expires: 2592000000)
+        FR2.UserPreferenceStore.saveExternalUrlModalSetting(
+          {optOut: true}
+        )
 
       if (@el.attr('target') == "_blank") || (@el.attr('target') == "blank")
         FR2.Modal.closeModal('#fr_modal')
@@ -37,7 +39,7 @@ class @FR2.ExternalLinkChecker
         window.location.href = @url
 
   showModal: ->
-    amplify.store('showExternalModal') != false
+    FR2.UserPreferenceStore.getExternalUrlModalSetting('optOut') != true
 
   isOwnDomain: ->
     RegExp("^#{window.location.origin}").test(@url)
