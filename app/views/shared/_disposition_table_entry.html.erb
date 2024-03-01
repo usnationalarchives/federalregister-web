@@ -1,6 +1,6 @@
 <div class="<%= bootstrap_col xs: 12, md: 10 %>">
-  <% if presidential_document.document_specific_note %>
-    <%= document_specific_note %>
+  <% if presidential_document.proclamation_number == '9494' %>
+    <%= presidential_document.note %>
   <% else %>
     <h5>
       <%= presidential_document.presidential_doc_show_link(presenter) %>
