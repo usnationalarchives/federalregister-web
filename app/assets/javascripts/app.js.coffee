@@ -177,7 +177,7 @@ $(document).ready ()->
       eoNumber = $(this).data('eoNumber')
 
       $.ajax({
-        url: 'https://fr2.criticaljuncture.org/api/archives/v1/citation.json',
+        url: "https://#{window.location.host}/api/archives/v1/citation.json",
         method: 'GET',
         data: {volume: volume, page: page},
         success: (data) ->
