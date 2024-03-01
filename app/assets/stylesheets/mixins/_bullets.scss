@@ -5,12 +5,16 @@
     padding-left: unquote($indent);
     text-indent: unquote("-" + $indent);
 
-    &:before {
-      content: $content;
-      color: $color;
-      padding-right: 7px;
-      top: -2px;
-      position: relative;
-    }
+    @include bullet($color, $content:"\25A0")
+  }
+}
+
+@mixin bullet($color, $content:"\25A0") {
+  &:before {
+    content: $content;
+    color: $color;
+    padding-right: 7px;
+    top: -2px;
+    position: relative;
   }
 }

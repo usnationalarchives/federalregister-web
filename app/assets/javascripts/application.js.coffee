@@ -21,10 +21,13 @@
 #= require utilities/user_navigation_manager
 #= require utilities/user_utils
 
+#= require ofr/copy_to_clipboard
+
 #= require components
 #= require fr_modal
 #= require form_utils
 #= require subscription
+#= require user_preference_store
 #= require user_session
 
 #= require_tree ./components/comments/
@@ -37,9 +40,7 @@
 #= require tipsy
 #= require document_page
 #= require public_inspection
-#= require utility_bar
-#= require documents/utility_bar/document_tools
-#= require documents/paragraph_citation
+#= require utility_nav
 
 # Homepage
 #= require home/home_section_preview_manager

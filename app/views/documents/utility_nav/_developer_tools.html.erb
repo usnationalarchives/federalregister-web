@@ -1,0 +1,48 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'doc-code',
+  label: t('documents.utility_nav.developer_tools.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {
+    class: 'utility-nav-developer-tools',
+    id: 'utility-nav-developer-tools'
+  },
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - #{t('documents.utility_nav.developer_tools.nav_label')}"
+    )
+  ) do %>
+    <p>
+      This document is also available in the following formats:
+    </p>
+
+    <dl>
+      <dt>JSON</dt>
+      <dd>
+        <%= link_to 'Normalized attributes and metadata',
+          document.json_url %>
+      </dd>
+      <% if document.full_text_available? %>
+        <dt>XML</dt>
+        <dd>
+          <%= link_to 'Original full text XML',
+            document.full_text_xml_url %>
+        </dd>
+      <% end %>
+      <% if document.mods_available? %>
+        <dt>MODS</dt>
+        <dd>
+          <%= link_to 'Government Publishing Office metadata',
+            govinfo_document_mods_url(document) %>
+        </dd>
+      <% end %>
+    </dl>
+
+    <p>
+      More information and documentation can be found in our
+      <%= link_to 'developer tools pages',
+        reader_aids_section_path('developer-resources') %>.
+    </p>
+  <% end %>
+<% end %>

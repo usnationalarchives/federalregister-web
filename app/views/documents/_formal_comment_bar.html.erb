@@ -22,18 +22,16 @@
 
 <% if document.has_comments? %>
   <div class="reg-gov-comments-count">
-    <%= link_to "#{document.comment_count} comments", "#", class: "deploy-comment-sidebar-js" %>
+    <%= link_to pluralize(document.comment_count, "comment"), "#",
+      class: "deploy-comment-sidebar-js" %>
     received.
-    <% if document.regs_dot_gov_documents.select{|x| x.comment_count && x.comment_count > 0}.count > 1 %>
-      <%= link_to "View posted comments", "#", class: "deploy-comment-sidebar-js" %>
-    <% else%>
-      <%= link_to "View posted comments", document.public_comments_url %>
-    <% end %>
+
+    <%= document.posted_comments_link %>
   </div>
 <% end %>
 
 <%= render partial: "comment_wrapper",
   locals: {
     document: document,
-    multi_agency_comment_submission: document.commentable_documents.count > 1
+    multi_agency_comment_submission: document.regs_dot_gov_documents_accepting_comments.count > 1
   } %>

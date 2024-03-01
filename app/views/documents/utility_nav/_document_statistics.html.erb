@@ -1,0 +1,32 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'chart',
+  label: t('documents.utility_nav.document_statistics.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {
+    class: 'utility-nav-document-statistics',
+    id: 'utility-nav-document-statistics'
+  }
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - #{t('documents.utility_nav.document_statistics.nav_label')}"
+    )
+  ) do %>
+
+    <p>
+      Document page views are updated periodically throughout the day and are
+      cumulative counts for this document. Counts are subject to sampling,
+      reprocessing and revision (up or down) throughout the day.
+    </p>
+
+    <dl>
+      <dt>Page views</dt>
+      <dd>
+        <%= number_with_delimiter(document.page_views[:count]) %>
+        as of
+        <%= document.page_views[:last_updated].in_time_zone.to_s(:datetime_with_abbv_zone) %>
+      </dd>
+    </dl>
+  <% end %>
+<% end %>

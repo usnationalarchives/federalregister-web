@@ -1,0 +1,49 @@
+.content-nav > li {
+  align-items: center;
+  display: grid;
+
+  > .svg-tooltip {
+    grid-area: icon;
+    justify-self: center;
+  }
+
+  .content-nav-label {
+    grid-area: label;
+  }
+
+  .svg-icon-previous-media {
+    grid-area: label;
+    justify-self: right;
+  }
+}
+
+.wide-utility-nav .content-nav > li {
+  grid-template-areas: "icon label";
+  grid-template-columns: 35px 1fr;
+}
+
+.narrow-utility-nav .content-nav > li {
+  grid-template-areas: "icon";
+  grid-template-columns: 1fr;
+
+  .svg-icon-previous-media {
+    grid-area: icon;
+  }
+}
+
+.utility-nav-comments {
+  .fr-box .content-block {
+    display: grid;
+
+    grid-row-gap: 20px;
+    grid-template-columns: 40px 1fr;
+
+    > .svg-icon {
+      justify-self: center;
+    }
+  }
+
+  &.unavailable .fr-box .content-block {
+    grid-template-columns: 1fr;
+  }
+}

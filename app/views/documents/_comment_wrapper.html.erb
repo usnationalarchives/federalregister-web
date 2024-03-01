@@ -28,7 +28,7 @@
       </p>
 
       <div id="dynamic-agency-text-js">
-        <% if document.commentable_documents.count < 2 %>
+        <% if document.regs_dot_gov_documents_accepting_comments.count < 2 %>
           <p>
             <% agency_name = document.agencies.map(&:name).first %>
             Once you have filled in the required fields below you can preview and/or submit your comment to the <%= agency_name %> for review.  All comments are considered public and will be posted online once the <%= agency_name %> has reviewed them.
@@ -94,7 +94,7 @@
                   </thead>
                   <tbody>
                     <% document.dockets.each do |docket| %>
-                      <% docket.regs_dot_gov_documents.select(&:commentable?).each do |doc| %>
+                      <% docket.regs_dot_gov_documents.select(&:accepting_comments?).each do |doc| %>
                         <tr>
                           <td>
                             <input class="multi-agency-radio-js" type="radio" value="<%= doc.id %>" name="<%= "hiddenAgencyRadio-#{doc.id}" %>">

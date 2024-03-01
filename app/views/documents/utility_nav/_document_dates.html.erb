@@ -1,0 +1,31 @@
+<%= content_nav_item(type: :published,
+  icon: 'calendar-alt',
+  label: t('documents.utility_nav.document_dates.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {id: 'utility-nav-document-dates'}
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :published,
+      css_selector: 'fr-box-published-alt',
+      title: "Published Content - #{t('documents.utility_nav.document_dates.nav_label')}"
+    )
+  ) do %>
+    <dl class='metadata_list'>
+      <% if document.display_comment_close_date? %>
+        <dt>Comments Close</dt>
+        <dd><%= document.comments_close_on %></dd>
+      <% end %>
+
+      <% if document.effective_on.present? %>
+        <dt>Effective Date</dt>
+        <dd><%= document.effective_on %></dd>
+      <% end %>
+
+      <% if document.dates.present? %>
+        <dt>Dates Text</dt>
+        <dd><%= add_citation_links(document.dates).html_safe %></dd>
+      <% end %>
+    </dl>
+  <% end %>
+<% end %>

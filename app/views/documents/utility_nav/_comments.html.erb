@@ -1,0 +1,44 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'chat',
+  label: t('documents.utility_nav.comments.nav_label'),
+  options: {
+    icon_badge: document.has_comments? ? document.comment_count : nil,
+    tooltip: true
+  },
+  wrapper_options: {
+    class: "utility-nav-comments #{'unavailable' if !document.once_accepted_comments?}",
+    id: "utility-nav-comments"
+  }
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - Public Comments"
+    )
+  ) do %>
+
+    <% if document.once_accepted_comments? %>
+      <%= svg_icon('chat') %>
+      <p>
+        <% if document.accepting_comments? %>
+          Comments are being accepted - <%= document.comment_link %>.
+        <% else %>
+          Comments are no longer being accepted.
+          See <%= link_to 'DATES', '#dates', data: {
+            "close-utility-nav" => true
+          } %> for details.
+        <% end %>
+      </p>
+
+      <% if document.has_comments? %>
+        <%= svg_icon('conversation-alt') %>
+        <%= render partial: 'comment_count_by_docket', locals: {
+          document: document,
+          visible: true
+        } %>
+      <% end %>
+    <% else %>
+      <p>This functionality is not available for this document.</p>
+    <% end %>
+  <% end %>
+<% end %>

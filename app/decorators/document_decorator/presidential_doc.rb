@@ -1,4 +1,25 @@
 module DocumentDecorator::PresidentialDoc
+  def citation
+    if not_received_for_publication
+      nil #no-op
+    else
+      object.citation
+    end
+  end
+
+  def document_specific_note
+    if proclamation_number == '9494'
+      note
+    end
+  end
+
+  def executive_order_notes
+    h.add_citation_links(object.executive_order_notes).gsub(/\n+/, "<br />").html_safe
+  end
+
+  def historical_eo?
+    document_number.blank?
+  end
 
   def pdf_link
     if !historical_eo?
@@ -26,26 +47,8 @@ module DocumentDecorator::PresidentialDoc
     end
   end
 
-  def historical_eo?
-    document_number.blank?
-  end
-
-  def document_specific_note
-    if proclamation_number == '9494'
-      note
-    end
-  end
-
-  def signing_date
-    object.signing_date&.to_s(:month_day_year)
-  end
-
-  def citation
-    if not_received_for_publication
-      nil #no-op
-    else
-      object.citation
-    end
+  def presidential_document?
+    type == "Presidential Document"
   end
 
   def publication_date_link
@@ -58,4 +61,7 @@ module DocumentDecorator::PresidentialDoc
     end
   end
 
+  def signing_date
+    object.signing_date&.to_s(:month_day_year)
+  end
 end

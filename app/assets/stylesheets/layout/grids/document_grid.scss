@@ -1,0 +1,15 @@
+.doc-content {
+  display: grid;
+
+  grid-template-areas: "utility-nav content";
+
+  .content-nav-wrapper { grid-area: utility-nav; }
+  .content-wrapper { grid-area: content; }
+
+  &.wide-utility-nav {
+    grid-template-columns: 162px 1fr;
+  }
+  &.narrow-utility-nav {
+    grid-template-columns: 81px 1fr;
+  }
+}

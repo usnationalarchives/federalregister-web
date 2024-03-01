@@ -14,11 +14,11 @@ Modifiers here control the color of the box elements.
 Styleguide 1.1 FR Boxes
 */
 
-@mixin fr-doc($main-color, $secondary-color) {
+@mixin fr-doc($main-color, $secondary-color, $tertiary-color:$secondary-color) {
   // Styles for the fr-box
   background-color: $secondary-color;
 
-  .fr-seal-block {
+  > .fr-seal-block {
     h6 {background-color: $main-color; }
 
     &.fr-seal-block-header {
@@ -33,8 +33,23 @@ Styleguide 1.1 FR Boxes
           z-index: 100;
 
           .fr-seal-meta {
+            background-color: $tertiary-color;
+            border-bottom: 3px solid $main-color;
+            border-left: 1px solid darken($tertiary-color, 20);
+            border-right: 1px solid darken($tertiary-color, 20);
+            color: $text;
             display: inline-block;
             margin-top: 0;
+            width: 100%;
+
+            p { margin-bottom: 0; }
+
+            ol.bullets,
+            ul.bullets {
+              margin-left: 20px;
+
+              li { text-indent: -20px; }
+            }
           }
         }
       }
@@ -43,6 +58,10 @@ Styleguide 1.1 FR Boxes
     &.fr-seal-block-footer {
       border-bottom: 3px solid $main-color;
     }
+  }
+
+  &.no-footer .content-block {
+    border-bottom: 3px solid $main-color;
   }
 }
 
@@ -128,7 +147,7 @@ Styleguide 1.1 FR Boxes
     @include fr-doc($color-published, $color-published-light);
   }
   &.fr-box-published-alt {
-    @include fr-doc($color-published, $color-published-light-alt);
+    @include fr-doc($color-published, $color-published-light-alt, $color-published-light);
   }
 
   &.fr-box-small {
@@ -192,10 +211,10 @@ Styleguide 1.1 FR Boxes
     padding: 15px 15px 20px 15px;
 
     p {
-      @include sans_serif;
-      color: $white;
+      // @include sans_serif;
+      // color: $white;
       font-size: modular-scale(0);
-      padding: 10px 130px 0 15px;
+      // padding: 10px 130px 0 15px;
     }
   }
 }

@@ -7,6 +7,8 @@ app:
   document_render:
     # should we get precompiled content from remote (eg in development)
     from_remote: true
+    # should we render content from local XML (eg xslt development)
+    from_raw_xml: false
   # default to not requiring varnish in development
   expire_varnish: false
   subscriptions:
@@ -43,7 +45,7 @@ vcr:
   enabled: true
   library_dir: "vcr/dev"
   cassette: 'development'
-  ignore_hosts: ['127.0.0.1', 'localhost', 'fr2.dev', 'dev-fr2.criticaljuncture.org']
+  ignore_hosts: ['127.0.0.1', 'localhost', 'fr2.dev', '*.dev.criticaljuncture.org']
   ignore_paths: [] #["^/api/v1/documents"]
   re_record_interval: 7 #days
   log_output: false

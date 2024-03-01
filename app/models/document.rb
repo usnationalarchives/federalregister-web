@@ -37,4 +37,10 @@ class Document < FederalRegister::Document
       @public_inspection_document = nil
     end
   end
+
+  def president
+    President.all.find do |president|
+      (president.starts_on..president.ends_on).cover? signing_date
+    end
+  end
 end

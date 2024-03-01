@@ -1,0 +1,32 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'doc-generic',
+  label: t('documents.utility_nav.document_tools.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {id: 'utility-nav-document-tools'},
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - #{t('documents.utility_nav.document_tools.nav_label')}"
+    )
+  ) do %>
+    <p>
+      These tools are designed to help you understand the official document
+      better and aid in comparing the online edition to the print edition.
+    </p>
+
+    <ul class="list">
+      <li>
+        <p>
+          These markup elements allow the user to see how the document follows the
+          <a href='http://www.archives.gov/federal-register/write/handbook/ddh.pdf'>
+            Document Drafting Handbook
+          </a> that agencies use to create their documents. These can be useful
+          for better understanding how a document is structured but
+          <strong>are not part of the published document</strong> itself.
+        </p>
+        <%= link_to 'Display Non-Printed Markup Elements', '#', id: "display-unprinted-elements" %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

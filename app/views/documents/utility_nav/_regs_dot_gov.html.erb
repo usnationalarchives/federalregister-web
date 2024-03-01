@@ -1,0 +1,70 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'network-alt',
+  label: t('documents.utility_nav.regs_dot_gov.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {
+    class: 'utility-nav-regs-dot-gov',
+    id: 'utility-nav-regs-dot-gov'
+  }
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - #{t('documents.utility_nav.regs_dot_gov.nav_label')}"
+    )
+  ) do %>
+    <% if document.display_regulations_dot_gov_enhanced_content? %>
+      <%= image_tag asset_path('regulations_dot_gov_logo_sidebar.png'),
+        alt: 'Regulations.gov Logo',
+        class: 'regulations-dot-gov-logo',
+        height: '26',
+        width: '140' %>
+
+      <p>
+        FederalRegister.gov retrieves relevant information about this document
+        from Regulations.gov to provide users with additional context. This
+        information is not part of the official Federal Register document.
+      </p>
+
+      <hr>
+
+      <% document.dockets_displayed_in_enhanced_content.each do |docket| %>
+        <h5><%= docket.title %></h5>
+        <dl>
+          <dt>Docket ID</dt>
+          <dd>
+            <%= link_to docket.id,
+              "https://www.regulations.gov/docket/#{docket.id}",
+              target: "_blank" %>
+          </dd>
+
+          <dt>Supporting Documents</dt>
+
+          <% if docket.supporting_documents.present? %>
+            <% docket.supporting_documents.each do |supporting_doc| %>
+              <dd class="bulleted">
+                <%= link_to truncate_words(supporting_doc['title'], length: 125),
+                  regulations_dot_gov_supporting_document_url(supporting_doc['document_id']),
+                  target: "_blank",
+                  title: supporting_doc['title'] %>
+              </dd>
+            <% end %>
+
+            <%# API currently returns 10 supporting docs, see entry_serializer %>
+            <% if docket.supporting_documents_count > 10 %>
+              <dd class="link-see-all">
+                <%= link_to "See all #{docket.supporting_documents_count} supporting documents",
+                  regulations_dot_gov_docket_supporting_documents_url(docket.id),
+                  target: "_blank" %>
+              </dd>
+            <% end %>
+          <% else %>
+            <dd>No supporting documents available</dd>
+          <% end %>
+        </dl>
+      <% end %>
+    <% else %>
+      <p>This functionality is not available for this document.</p>
+    <% end %>
+  <% end %>
+<% end %>

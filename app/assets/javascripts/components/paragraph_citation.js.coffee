@@ -51,6 +51,9 @@ class @FR2.ParagraphCitation
 
   enterElement: ->
     @contentArea.on 'mouseenter tap', @citationTargetEls(), (event)=>
+      if event.target.closest(".printed-page-details")
+        return
+
       paragraph = $(event.currentTarget)
 
       # clean up in case of tap event (eg no mouseleave from previous element)
@@ -112,7 +115,6 @@ class @FR2.ParagraphCitation
 
   clickIcon: ->
     @contentArea.on 'click tap', '.citation-target-icon', =>
-      @pulse()
       @copyUrlToClipboard()
       @setTooltipSuccessMessage()
 
@@ -125,15 +127,6 @@ class @FR2.ParagraphCitation
     el.prepend(
       $('.citation-target-icon')
     )
-
-  pulse: ->
-    @background().addClass('pulse')
-    @icon().addClass('pulse')
-
-    setTimeout =>
-      @background().removeClass('pulse')
-      @icon().removeClass('pulse')
-    , 200
 
   copyUrlToClipboard: ->
     @cb.copyToClipboard @citationUrl()

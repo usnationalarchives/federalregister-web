@@ -1,0 +1,52 @@
+<div class="comment-count-by-docket <%= 'hidden' unless local_assigns[:visible] %>">
+  <% dockets = document.
+    regs_dot_gov_documents_once_accepted_comments.
+    map(&:docket).uniq %>
+
+  <p>
+    <%= "#{pluralize(document.comment_count, "comment")}
+    #{document.comment_count == 1 ? "has" : "have"}
+    been received at Regulations.gov." %>
+  </p>
+
+  <p>
+    Agencies review all submissions and may choose to redact, or withhold,
+    certain submissions (or portions thereof). Submitted comments may not be
+    available to be read until the agency has approved them.
+  </p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>Docket Title</th>
+        <th>Document ID</th>
+        <th class="text-center">Comments</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% document.regs_dot_gov_documents_once_accepted_comments.each do |doc| %>
+          <tr>
+            <td>
+              <%= doc.docket.try(:title) %>
+            </td>
+            <td>
+              <%= link_to doc.id,
+                "https://www.regulations.gov/document/#{doc.id}",
+                target: "_blank" %>
+            </td>
+            <td>
+              <%= doc.comment_count %>
+            </td>
+            <td>
+              <% if doc.updated_at %>
+                <%= tooltip_icon "info-circle",
+                  "data-title" => "Last synced with regulations.gov at #{doc.updated_at.to_s(:datetime)}",
+                  "data-placement" => "left" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

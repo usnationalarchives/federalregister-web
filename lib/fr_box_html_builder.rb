@@ -69,13 +69,11 @@ class FrBoxHtmlBuilder
   end
 
   def fr_box_header_description
-    col_span = @box_type == :small ? 12 : (@header_options[:seal] ? 9 : 12)
-
-    view_context.content_tag(:div, class: "row fr-seal-meta") do
+    view_context.content_tag(:div, class: "fr-seal-meta") do
       html = @header_options[:seal] ? fr_box_seal : "".html_safe
 
       html +
-      view_context.content_tag(:div, class: "fr-seal-desc col-md-#{col_span} col-xs-#{col_span}") do
+      view_context.content_tag(:div, class: "fr-seal-desc") do
         if @header_options[:description]
           @header_options[:description].html_safe
         else

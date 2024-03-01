@@ -1,0 +1,77 @@
+<ul class="content-nav ui sticky">
+  <li class="button">
+    <%= svg_icon 'previous-media',
+      class: 'content-nav-compress-toggle',
+      role: 'button',
+      'arial-label' => 'compress content nav' %>
+  </li>
+
+  <% if document.pdf_available? %>
+    <%= render partial: 'documents/utility_nav/pdf', locals: {
+      document: @document
+    } %>
+  <% end %>
+
+  <%= render partial: 'documents/utility_nav/document_details', locals: {
+      document: @document
+    } %>
+
+  <% if document.executive_order_number.present? %>
+    <%= render partial: 'documents/utility_nav/executive_order_data', locals: {
+        document: @document
+      } %>
+  <% else %>
+    <%= render partial: 'documents/utility_nav/document_dates', locals: {
+        document: @document
+      } %>
+  <% end %>
+
+  <% if document.full_text_available? %>
+    <%= render partial: 'documents/utility_nav/table_of_contents', locals: {
+      document: @document
+    } %>
+  <% end %>
+
+  <li class="divider"></li>
+
+  <%= render partial: 'documents/utility_nav/comments', locals: {
+      document: @document
+    } %>
+
+  <%= render partial: 'documents/utility_nav/regs_dot_gov', locals: {
+    document: @document,
+    docket_info: @document.regulations_dot_gov_info
+  } %>
+
+  <%= render partial: 'shared/utility_nav/sharing', locals: {
+    document: @document
+  } %>
+
+  <li class="divider"></li>
+
+  <% if document.full_text_available? %>
+    <%= render partial: 'documents/utility_nav/print', locals: {
+      document: @document
+    } %>
+
+    <%#= render partial: 'documents/utility_nav/document_tools', locals: {
+      document: @document
+    } %>
+  <% end %>
+
+  <% if document.google_analytics_data_expected? && document.page_views[:last_updated] %>
+    <%= render partial: 'documents/utility_nav/document_statistics', locals: {
+        document: @document
+      } %>
+  <% end %>
+
+  <%= render partial: 'documents/utility_nav/developer_tools', locals: {
+      document: @document
+    } %>
+
+  <% if document.public_inspection_document.present? %>
+    <%= render partial: 'shared/utility_nav/public_inspection', locals: {
+      document: @document
+    } %>
+  <% end %>
+</ul>

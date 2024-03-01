@@ -1,3 +1,4 @@
+ol.bullets,
 ul.bullets,
 ul.subject-list {
   @include custom-bullets($color-published);

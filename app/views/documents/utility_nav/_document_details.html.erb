@@ -1,0 +1,111 @@
+<%= content_nav_item(type: :published,
+  icon: 'book-alt-2',
+  label: t('documents.utility_nav.document_details.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {id: 'utility-nav-document-details'}
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :published,
+      css_selector: 'fr-box-published-alt',
+      title: "Published Content - #{t('documents.utility_nav.document_details.nav_label')}"
+    )
+  ) do %>
+    <dl class='metadata_list'>
+      <% if document.agencies.present? %>
+        <dt><%= pluralize_without_count document.agencies.size, 'Agency' %></dt>
+
+        <% document.linked_agency_names(
+          definite_article: false,
+          name_method: :raw_name,
+          include_parent_agencies: true
+        ).each do |agency| -%>
+          <dd>
+            <%= agency %>
+          </dd>
+        <% end -%>
+      <% end %>
+
+      <% if document.docket_ids.present? %>
+        <dt><%= pluralize_without_count document.docket_ids.size, 'Agency/Docket Number' %></dt>
+        <% document.docket_ids.each do |docket_id| %>
+          <dd><%= docket_id %></dd>
+        <% end %>
+      <% end %>
+
+      <% if document.cfr_references.present? %>
+        <dt>CFR</dt>
+        <% document.formatted_cfr_references.each do |cfr_reference| %>
+          <dd><%= cfr_reference %></dd>
+        <% end %>
+      <% end %>
+
+      <% if document.citation.present? %>
+        <dt>Document Citation</dt>
+        <dd id="document-citation"
+          data-citation-vol='<%= document.citation_vol %>' >
+          <%= document.citation %>
+          <%= copy_icon document.citation %>
+        </dd>
+      <% end %>
+
+      <% if document.document_number.present? %>
+        <dt>Document Number</dt>
+        <dd class="doc_number">
+          <%= document.document_number %>
+          <%= copy_icon document.document_number %>
+        </dd>
+      <% end %>
+
+      <% if document.type.present? %>
+        <dt>Document Type</dt>
+        <dd><%= document.type %></dd>
+      <% end %>
+
+      <% if document.presidential_document? %>
+        <% if document.subtype.present? %>
+          <dt>Presidential Document Type</dt>
+          <dd><%= document.subtype %></dd>
+        <% end %>
+
+        <% if document.executive_order_number.present? %>
+          <dt>EO Citation</dt>
+          <dd>
+            EO <%= document.executive_order_number %>
+            <%= copy_icon document.executive_order_number %>
+          </dd>
+        <% end %>
+      <% end %>
+
+      <% if document.start_page? %>
+        <dt><%= pluralize_without_count document.pages, 'Page' %></dt>
+        <dd>
+          <%= document.page_range %>
+          (<%= pluralize document.pages, 'page' %>)
+        </dd>
+      <% end %>
+
+      <% if document.publication_date.present? %>
+        <dt>Publication Date</dt>
+        <dd>
+          <%= link_to document.publication_date,
+                      document_issue_path(document) %>
+        </dd>
+      <% end %>
+
+      <% if document.regulation_id_numbers.present? %>
+        <dt>RIN</dt>
+        <% document.regulation_id_numbers.each do |rin| %>
+          <% details = document.regulation_id_number_info[rin] %>
+          <dd>
+            <% if details.present? && details["html_url"].present? %>
+              <%= link_to(rin, details["html_url"]) %>
+            <% else %>
+              <%= rin %>
+            <% end %>
+          </dd>
+        <% end %>
+      <% end %>
+    </dl>
+  <% end %>
+<% end %>

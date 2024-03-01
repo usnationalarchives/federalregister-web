@@ -33,9 +33,12 @@
     </div>
   </div>
 
-  <%= render( partial: "formal_comment_bar",
-              locals: {document: document,
-                       docket_info: document.regulations_dot_gov_info}) if document.accepting_comments? %>
+  <%= render(
+    partial: "formal_comment_bar", locals: {
+      document: document,
+      docket_info: document.regulations_dot_gov_info
+    }
+  ) if document.accepting_comments? %>
 
   <%= render partial: "corrections", locals: {document: document} if document.corrections? %>
 </div>

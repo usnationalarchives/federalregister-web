@@ -7,12 +7,12 @@ class @FR2.TableFixedHeaderManager
     isSafari        = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
     backgroundColor = $('#fulltext_content_area').closest('.fr-box').css('background-color')
 
+    expandTableLink = $(@expandTableMarkup())
+
     $('#documents .table-wrapper table').each (i) ->
-      expandTableLink = HandlebarsTemplates['documents/expand_table_link']
+      $(this).closest('.table-wrapper').prepend(expandTableLink.clone())
 
-      $(this).closest('.table-wrapper').prepend(expandTableLink)
-
-      docContentWidth = 584
+      docContentWidth = $(".doc-content-area").outerWidth()
 
       # Wide table handling
       if $(this).find('thead').width() > docContentWidth
@@ -20,18 +20,10 @@ class @FR2.TableFixedHeaderManager
         $(this).closest('.table-wrapper').css('overflow-x', 'hidden')
         # Apply gradient to table
         $(this).css('-webkit-mask-image', 'linear-gradient(to right, black 70%, transparent 100%)')
-        # Change tooltip
-        $(this).closest('.table-wrapper').find('.expand-table-link').attr('data-tooltip', 'Click to access full width of table')
       else
         handler = new FR2.TableFixedHeaderHandler this, isSafari, backgroundColor
         handler.perform()
         $(this).html(handler.table.html())
-
-    # Activate tooltips added to DOM after page load
-    CJ.Tooltip.addTooltip(
-      '.expand-table-link.bootstrap-tooltip',
-      context.tooltipOptions
-    )
 
     # Activate Semantic UI sticky
     _.each $('.expand-table-link'), (link)->
@@ -44,3 +36,19 @@ class @FR2.TableFixedHeaderManager
     # Attach event listeners for deploying modals
     $('.expand-table-link').on 'click', (e)->
       new FR2.TableModalHandler(this)
+
+  expandTableMarkup: ->
+    '
+    <div class="expand-table-positioning-wrapper hidden-print">
+      <span class="expand-table-link ui sticky">
+        <span class="svg-tooltip"
+          data-toggle="tooltip"
+          data-title="Click to view full table width">
+          <svg class="svg-icon svg-icon-fullscreen">
+            <use xlink:href="/assets/fr-icons.svg#fullscreen"></use>
+          </svg>
+          <span class="text">Expand Table</span>
+        </span>
+      </span>
+    </div>
+    '

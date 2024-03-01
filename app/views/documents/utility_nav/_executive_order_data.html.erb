@@ -1,0 +1,45 @@
+<%= content_nav_item(type: :reader_aid,
+  icon: 'stars',
+  label: t('documents.utility_nav.executive_order_data.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {id: 'utility-nav-executive-order-data'}
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :reader_aid,
+      #css_selector: 'fr-box-published-alt',
+      title: "Reader Aids - #{t('documents.utility_nav.executive_order_data.nav_label')}"
+    )
+  ) do %>
+    <p>Executive order notes are compiled and maintained by the Office of the Federal Register editors.</p>
+
+    <dl class='metadata_list'>
+      <% if document.executive_order_number.present? %>
+        <dt>EO Citation</dt>
+        <dd>
+          EO <%= document.executive_order_number %>
+          <%= copy_icon document.executive_order_number %>
+        </dd>
+      <% end %>
+
+      <% if document.executive_order_notes.present? %>
+        <dt>EO Notes</dt>
+        <dd>
+          <%= document.executive_order_notes %>
+        </dd>
+      <% end %>
+
+      <dt>President</dt>
+      <dd>
+        <%= document.president.full_name %>
+      </dd>
+
+      <% if document.signing_date.present? %>
+        <dt>Signing Date</dt>
+        <dd>
+          <%= document.signing_date %>
+        </dd>
+      <% end %>
+    </dl>
+  <% end %>
+<% end %>

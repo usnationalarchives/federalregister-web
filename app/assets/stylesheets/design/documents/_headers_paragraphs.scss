@@ -1,10 +1,22 @@
+@keyframes fade-target-highlight {
+  // delay until 25% of animation time
+  0%, 25% {
+    background-color: $color-enhanced-light;
+  }
+  100% {
+    background-color: inherit;
+  }
+}
+
 .fr-box-published .content-block,
 .fr-box-official .content-block {
   h3.cfr-subjects { margin-left: 25px; }
 
-  #addresses:target {
-    background-color: $color-enhanced-light;
-    transition: background-color 1.5s ease-in;
+  #addresses:target,
+  #dates:target {
+    animation: fade-target-highlight 4s;
+    border-bottom: 2px solid $color-enhanced;
+    border-top: 2px solid $color-enhanced;
   }
 
   p {
@@ -40,16 +52,26 @@
       }
     }
 
-    &:target,&.highlight {
-      background-color: $color-enhanced-light;
-      transition: background-color 1.5s ease-in;
+    &:target,
+    &.highlight {
+      animation: fade-target-highlight 4s;
+      border-bottom: 2px solid $color-enhanced;
+      border-top: 2px solid $color-enhanced;
 
       .icon-fr2-link {
         bottom: 5px;
-        color: darken($color-enhanced-light, 30);
+        color: $color-enhanced;
         position: absolute;
         right: 5px;
       }
+    }
+  }
+
+  .printed-page-inline,
+  .printed-page-details {
+    &.highlight {
+      color: $color-enhanced-dark;
+      fill: $color-enhanced-dark;
     }
   }
 

@@ -134,6 +134,8 @@ span.unsaved {
   font-weight: bold;
 }
 
+span.svg-tooltip { overflow: auto; }
+
 .tipsy {
   @include sans_serif;
   font-size: modular-scale(-1);

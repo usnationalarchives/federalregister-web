@@ -1,0 +1,20 @@
+<%= content_nav_item(type: :official,
+  icon: 'doc-pdf',
+  label: t('documents.utility_nav.pdf.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {id: 'utility-nav-pdf'},
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :official,
+      title: "Official Content"
+    )
+  ) do %>
+    <ul>
+      <li>
+        <%= link_to 'View printed version (PDF)',
+          govinfo_document_pdf_url(document) %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

@@ -21,15 +21,34 @@ module DocumentDecorator::Comments
     document_comment_period_open? || regulations_dot_gov_accepting_comments?
   end
 
+  # This method provides us with a way to know whether the document is
+  # open for comment irrespective of whether its publishing agencies receive
+  # submissions at regulations.gov.
+  # We still want to show a "Submit a comment" link in these cases, but link
+  # to text in the FR document itself
   def document_comment_period_open?
-    # NOTE: This method provides us with a way to know whether the document is open for comment irrespective of whether its publishing agencies receive submissions at regulations.gov.  We still want to show a "Submit a comment" link in these cases, but link to text in the FR document itself
     comments_close_on.present? && comments_close_on >= Time.current.to_date
+  end
+
+  # this is not the negation of #document_comment_period_open? as it requires
+  # there to be a comments_close_on present
+  def document_comment_period_closed?
+    comments_close_on.present? && comments_close_on < Time.current.to_date
   end
 
   # occasionally comment periods are extended on regulations.gov past the
   # originally published date in the document
   def regulations_dot_gov_accepting_comments?
-    commentable_documents.present?
+    regs_dot_gov_documents_accepting_comments.present?
+  end
+
+  # show date if document comment date isn't past or is past and doc is no
+  # longer open for comment - we don't want to show the date when the comment
+  # period has been extended as this is confusing
+  def display_comment_close_date?
+    document_comment_period_open? ||
+      (document_comment_period_closed? &&
+        !regulations_dot_gov_accepting_comments?)
   end
 
   def formal_comment_link
@@ -48,6 +67,7 @@ module DocumentDecorator::Comments
 
   def comment_link
     link_text = "Submit a public comment on this document"
+
     href = if comment_url.present?
       calculated_comment_url
     else
@@ -55,6 +75,22 @@ module DocumentDecorator::Comments
     end
 
     h.link_to link_text, href, id: 'utility-nav-comment-link', class: 'force-event-propagation'
+  end
+
+  def posted_comments_link
+    link_text = "View posted comments"
+
+    if more_than_one_regs_dot_gov_document_with_comments?
+      h.link_to link_text, "#", class: "deploy-comment-sidebar-js"
+    else
+      h.link_to link_text, public_comments_url, target: "_blank"
+    end
+  end
+
+  def more_than_one_regs_dot_gov_document_with_comments?
+    regs_dot_gov_documents.select do |x|
+      x.comment_count && x.comment_count > 0
+    end.count > 1
   end
 
   def calculated_comment_url
@@ -92,7 +128,7 @@ module DocumentDecorator::Comments
   def public_comments_url
     return unless has_comments?
 
-    doc_with_max_comments = commentable_documents.max_by{|x| x.comment_count}
+    doc_with_max_comments = regs_dot_gov_documents_accepting_comments.max_by{|x| x.comment_count}
     if doc_with_max_comments
       "https://www.regulations.gov/document/#{doc_with_max_comments.id}/comment"
     else
@@ -100,12 +136,17 @@ module DocumentDecorator::Comments
     end
   end
 
-  def ever_commentable_documents
-    regs_dot_gov_documents.select(&:ever_commentable?)
+  def regs_dot_gov_documents_once_accepted_comments
+    regs_dot_gov_documents.select(&:once_accepted_comments?)
   end
 
-  def commentable_documents
-    regs_dot_gov_documents.select(&:commentable?)
+  def regs_dot_gov_documents_accepting_comments
+    regs_dot_gov_documents.select(&:accepting_comments?)
+  end
+
+  def once_accepted_comments?
+    comments_close_on.present? ||
+      regs_dot_gov_documents_once_accepted_comments.present?
   end
 
   def dockets_displayed_in_enhanced_content
@@ -130,7 +171,7 @@ module DocumentDecorator::Comments
   private
 
   def default_regs_dot_gov_document
-    commentable_documents.first
+    regs_dot_gov_documents_accepting_comments.first
   end
 
 end

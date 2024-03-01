@@ -10,10 +10,16 @@
   <% end %>
 <% end %>
 
-<div class="col-md-9 doc-content with-utility-bar">
-  <div class="row">
-    <%= render partial: "utility_bar", locals: {document: document, docket_info: document.regulations_dot_gov_info} %>
+<div class="doc-content with-utility-nav wide-utility-nav">
 
+  <div class="content-nav-wrapper">
+    <%= render partial: "utility_nav", locals: {
+      document: document,
+      docket_info: document.regulations_dot_gov_info
+    } %>
+  </div>
+
+  <div class="content-col content-wrapper-narrow">
     <%= fr_content_box(
       FrBox.build(document.fr_content_box_type, document.fr_content_box_options)
     ) do %>
@@ -63,4 +69,5 @@
       </div>
     <% end %>
   </div>
+
 </div>

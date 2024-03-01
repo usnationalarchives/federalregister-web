@@ -1,68 +1,74 @@
-<div class="col-md-9 doc-content with-utility-bar">
-  <div class="row">
-    <%= render partial: "public_inspection_documents/utility_bar", locals: {document: document} %>
+<div class="doc-content with-utility-nav wide-utility-nav">
 
-    <%= fr_content_box(
-      FrBox.build(document.fr_content_box_type)
-    ) do %>
-      <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
+    <div class="content-nav-wrapper">
+      <%= render partial: "utility_nav", locals: {
+        document: document
+      } %>
+    </div>
 
-      <div id="fulltext_content_area" class="doc-content-area">
-        <div class="content-wrap-enforcement"></div>
+    <div class="content-col">
+      <%= fr_content_box(
+        FrBox.build(document.fr_content_box_type)
+      ) do %>
+        <span class="icon-fr2 icon-fr2-stop-hand doc-background"></span>
 
-        <% if document.editorial_note.present? %>
-          <p class="editorial_note">
-            Editorial Note: <%= document.editorial_note %>
-          </p>
-        <% end %>
+        <div id="fulltext_content_area" class="doc-content-area">
+          <div class="content-wrap-enforcement"></div>
 
-        <% if document.publication_date.present? %>
-          <p>
-            <span class="icon-fr2 icon-fr2-stop-hand"></span>
-
-            This document is <strong>unpublished</strong>.
-            It is scheduled to be published on <%= document.publication_date %>.
-          </p>
-
-          <p>
-            Once it is published it will be available on this page in an official form.
-            <% if document.pdf_url.present? %>
-              Until then, you can
-              <%= link_to 'download the unpublished', document.pdf_url, class: "pi_warning" %>
-              PDF version.
-            <% end %>
-          </p>
-
-          <% if document.agency_letters.present? %>
-            <div class="pil-agency-letters">
-              <p>
-                The following letter(s) were electronically-signed and submitted by the
-                publishing agency in accordance with 1 CFR 18.13(b).
-              </p>
-              <ul>
-              <% document.agency_letters.each do |agency_letter| %>
-                <li><%= link_to agency_letter.title, agency_letter.url %></li>
-              <% end %>
-              </ul>
-            </div>
+          <% if document.editorial_note.present? %>
+            <p class="editorial_note">
+              Editorial Note: <%= document.editorial_note %>
+            </p>
           <% end %>
 
-          <p class="pi_notice">
-            Although we make a concerted effort to reproduce the original document
-            in full on our Public Inspection pages, in some cases graphics may not
-            be displayed, and non-substantive markup language may appear alongside
-            substantive text. If you are using public inspection listings for legal
-            research, you should verify the contents of documents against a final,
-            official edition of the Federal Register.
-            <strong>
-              Only official editions of the Federal Register provide legal
-              notice of publication to the public and judicial notice to the courts under
-              <%= public_inspection_uscode_link %>.
-            </strong>
-            Learn more <%= link_to 'here', public_inspection_learn_path %>.
-          </p>
-        <% end %>
-      </div> <!-- end fulltext_content_area area -->
-    <% end %>
-  </div>
+          <% if document.publication_date.present? %>
+            <p>
+              <span class="icon-fr2 icon-fr2-stop-hand"></span>
+
+              This document is <strong>unpublished</strong>.
+              It is scheduled to be published on <%= document.publication_date %>.
+            </p>
+
+            <p>
+              Once it is published it will be available on this page in an official form.
+              <% if document.pdf_url.present? %>
+                Until then, you can
+                <%= link_to 'download the unpublished', document.pdf_url, class: "pi_warning" %>
+                PDF version.
+              <% end %>
+            </p>
+
+            <% if document.agency_letters.present? %>
+              <div class="pil-agency-letters">
+                <p>
+                  The following letter(s) were electronically-signed and submitted by the
+                  publishing agency in accordance with 1 CFR 18.13(b).
+                </p>
+                <ul>
+                <% document.agency_letters.each do |agency_letter| %>
+                  <li><%= link_to agency_letter.title, agency_letter.url %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <p class="pi_notice">
+              Although we make a concerted effort to reproduce the original document
+              in full on our Public Inspection pages, in some cases graphics may not
+              be displayed, and non-substantive markup language may appear alongside
+              substantive text. If you are using public inspection listings for legal
+              research, you should verify the contents of documents against a final,
+              official edition of the Federal Register.
+              <strong>
+                Only official editions of the Federal Register provide legal
+                notice of publication to the public and judicial notice to the courts under
+                <%= public_inspection_uscode_link %>.
+              </strong>
+              Learn more <%= link_to 'here', public_inspection_learn_path %>.
+            </p>
+          <% end %>
+        </div> <!-- end fulltext_content_area area -->
+      <% end %>
+    </div>
+
 </div>

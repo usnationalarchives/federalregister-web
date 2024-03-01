@@ -1,0 +1,34 @@
+<%= content_nav_item(type: :enhanced,
+  icon: 'sharing',
+  label: t('documents.utility_nav.sharing.nav_label'),
+  options: {tooltip: true},
+  wrapper_options: {
+    class: 'utility-nav-sharing',
+    id: 'utility-nav-sharing'
+  },
+) do %>
+  <% fr_utility_nav_box(
+    FrBox.build(
+      :enhanced_content,
+      title: "Enhanced Content - #{t('documents.utility_nav.sharing.nav_label')}"
+    )
+  ) do %>
+    <dl>
+      <dt>Shorter Document URL</dt>
+      <dd>
+        <%= link_to short_document_url(document), short_document_url(document),
+          class: "shorter_url" %>
+
+        <%= copy_icon short_document_url(document) %>
+      </dd>
+
+      <dt>Email</dt>
+      <dd>
+        <a id="email-a-friend" href=""
+          data-document-number="<%= document.document_number %>">
+          Email this document to a friend
+        </a>
+      </dd>
+    </dl>
+  <% end %>
+<% end %>

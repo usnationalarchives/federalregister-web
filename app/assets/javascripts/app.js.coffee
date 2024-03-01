@@ -15,6 +15,7 @@ $(document).ready ()->
     opacity: 0.9
     delay:   0.3
     fade:    true
+    html:    true
   }
 
   # Tooltips
@@ -109,11 +110,6 @@ $(document).ready ()->
       successMessage = "Shorter document URL copied to clipboard"
       clipboard.copyToClipboard $(this).data('clipboardText')
       $('.tipsy .tipsy-inner').text(successMessage)
-
-  # Fixed Header Handling
-  if $('.doc-content-area').length > 0
-    manager = new FR2.TableFixedHeaderManager(tooltipOptions)
-    manager.perform()
 
   if $("#fulltext_content_area").length > 0
     new FR2.FootnoteHandler
@@ -234,7 +230,6 @@ $(document).ready ()->
         .css 'width', $(pager).width() + 5
         .css 'display', 'block'
 
-
   ##############################
   # Subscriptions Page
   ##############################
@@ -254,6 +249,12 @@ $(document).ready ()->
     new FR2.TopicListFilter('#topic-list')
     new FR2.TopicListSorter('#topic-list')
 
+  ##############################
+  # Utility Nav
+  ##############################
+
+  if $(".doc-content.with-utility-nav").length > 0
+    new FR2.UtilityNav(".doc-content.with-utility-nav")
 
   ##############################
   # API Docs Page

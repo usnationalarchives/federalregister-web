@@ -19,7 +19,6 @@
   <div class="clearfix"></div>
 
   <div class="row doc doc-document <%= @document.official? ? 'doc-official' : 'doc-published' %>">
-    <%= render partial: 'document_side_bar', locals: {document: @document} %>
     <%= render partial: 'page_content', locals: {document: @document} %>
   </div>
 

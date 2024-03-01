@@ -1,4 +1,7 @@
-$unprinted-element-color: $color-enhanced-dark;
+// intentional non-use of modular scale, need a font between -1 and 0
+// -1 is too small but need something smaller than body font so that
+// it's not competing visually
+$non-printed-text-font-size: 15px;
 
 .doc-content .content-block p { position: relative; }
 
@@ -7,25 +10,19 @@ $unprinted-element-color: $color-enhanced-dark;
   text-indent: 0;
 }
 
-.printed-page-inline {
-  display: inline-block;
-  font-size: modular-scale(-1);
-  padding: 0 3px 0 1px;
-
-  &.hover { color: $color-enhanced-dark !important; }
-}
-
 .expand-table-positioning-wrapper {
   position: absolute;
-  left: 600px;
+  left: -70px;
   margin-top: 25px;
 }
 
 .expand-table-link {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 14px;
-  color:  rgb(127, 127, 127);
+  color: $gray-50;
   cursor: pointer;
+  fill: $gray-50;
+
+  overflow: auto;
+  display: inline-block;
 
   &.ui.sticky.bound.bottom {
     bottom: 80px;
@@ -33,149 +30,146 @@ $unprinted-element-color: $color-enhanced-dark;
 
   &:hover {
     color: $color-enhanced-dark;
+    fill: $color-enhanced-dark;
   }
 
-  .icon-fr2 {
+  .svg-tooltip {
     display: inline-block;
-    font-size: 24px;
-    text-align: center;
-    width: 93px;
+    height: 77px;
   }
 
-  .text {
-    display: inline-block;
-    font-size: 16px;
-    text-align: center;
-    width: 89px;
-  }
-
-}
-
-.unprinted-element-wrapper {
-  clear: both;
-  color: $unprinted-element-color;
-  display: none;
-  float: right;
-  line-height: 1;
-  margin-left: -150px;
-  padding-right: 5px;
-  position: relative;
-  right: -150px;
-  text-indent: -24px;
-  width: 110px;
-
-  &.printed-page-wrapper {
-    display: block;
-    text-indent: -17px;
-  }
-
-  .icon-fr2 {
-    font-size: modular-scale(-1);
-    padding-right: 5px;
-  }
-
-  .icon-fr2-source_code{
-    font-size: 26px;
-    top: 6px;
-  }
-
-  .text {
-    @include sans_serif;
-    font-size: modular-scale(-1);
-  }
-
-  &.blocked {
-    float: none;
-    left: 0;
-    margin: 20px 0 10px;
+  .svg-icon {
+    height: 30px;
+    left: 20px;
+    width: 30px;
     position: relative;
-    width: 100%;
-
-    .unprinted-element-border {
-      border-bottom: 1px solid $unprinted-element-color;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-
-    .unprinted-element {
-      display: block;
-      margin: 0 auto;
-      position: relative;
-      text-align: center;
-      text-indent: 0;
-      top: -18px;
-      z-index: 100;
-
-      &.printed-page { top: -7px; }
-    }
-
-    &.printed-page-wrapper      .unprinted-element { width: 190px; }
-    &.supplemental-info-wrapper .unprinted-element { width: 228px; }
-    &.part-wrapper              .unprinted-element { width:  95px; }
-    &.amend-part-wrapper        .unprinted-element { width: 170px; }
-    &.further-info-wrapper      .unprinted-element { width: 145px; }
-    &.list-of-subjects-wrapper  .unprinted-element { width: 160px; }
-    &.signature-wrapper         .unprinted-element { width: 133px; }
-    &.preamble-wrapper          .unprinted-element { width: 132px; }
-    &.appendix-wrapper          .unprinted-element { width: 133px; }
-    &.subpart-wrapper           .unprinted-element { width: 133px; }
-    &.authority-wrapper         .unprinted-element { width: 133px; }
   }
+
+  .text {
+    display: block;
+    font-size: $non-printed-text-font-size;
+    text-align: center;
+    width: 70px;
+  }
+
+  .tooltip { width: 150px; }
 }
-
-
-.unprinted-element-wrapper + h1,
-.unprinted-element-wrapper + h2,
-.unprinted-element-wrapper + h3,
-.unprinted-element-wrapper + h4,
-.unprinted-element-wrapper + h5,
-.unprinted-element-wrapper + h6,
-.unprinted-element-wrapper + h7,
-.unprinted-element-wrapper + .authority,
-.unprinted-element-wrapper + .section,
-.unprinted-element-wrapper + .signature,
-.unprinted-element-wrapper + p {
-  clear: both;
-}
-
-p + .unprinted-element-wrapper {
-  margin-top: -1em;
-}
-
 
 // Only set colors for elements that change based on document status,
 // set other colors above.
-@mixin unprinted_element_colors($printed-page-color, $unprinted-element-background-color) {
+@mixin unprinted_element_colors($printed-page-color) {
   .printed-page-inline {
     color: $printed-page-color;
+    fill: $printed-page-color;
 
-    &.hover { color: darken($printed-page-color, 10) !important; }
-  }
-
-  .unprinted-element-wrapper {
-    &.printed-page-wrapper {
-      color: $printed-page-color;
-
-      &.blocked .unprinted-element-border {
-        border-bottom-color: $printed-page-color;
-      }
-
-      &:hover {
-        .icon-fr2 { color: darken($printed-page-color, 10) !important; }
-      }
-    }
-
-    &.blocked {
-      .unprinted-element { background-color: $unprinted-element-background-color; }
+    &.hover {
+      color: darken($printed-page-color, 10) !important;
+      fill: darken($printed-page-color, 10) !important;
     }
   }
 }
 
 &.doc-official {
-  @include unprinted_element_colors($color-official, $color-official-light);
+  @include unprinted_element_colors($color-official);
 }
 
 &.doc-published {
-  @include unprinted_element_colors($color-published, $color-published-light);
+  @include unprinted_element_colors($color-published);
+}
+
+
+.printed-page-inline { display: inline-block; }
+
+// most page breaks occur within paragraphs but some appear in between or after
+// other specific items - these need some style adjustments to appear the same
+div.table-wrapper,
+p {
+  &+ .printed-page-inline {
+    display: block;
+    margin-bottom: 35px;
+    margin-top: 15px;
+  }
+
+  &+ .printed-page-inline + .printed-page-details {
+    left: -70px;
+    margin-top: -60px;
+  }
+}
+
+.printed-page-inline {
+  .svg-icon {
+    height: 13px;
+    width: 13px;
+  }
+}
+
+.printed-page-details {
+  color: $gray-50;
+  fill: $gray-50;
+  font-size: $non-printed-text-font-size;
+  left: -50px;
+  line-height: 18px;
+  margin-left: 10px;
+  padding-top: 4px;
+  position: absolute;
+  text-indent: -15px;
+  width: 45px;
+
+  &:hover {
+    color: $text;
+    fill: $text;
+  }
+
+  .page-menu {
+    backdrop-filter: blur(1px);
+    height: 300px;
+    left: 60px;
+    position: relative;
+    text-indent: 0;
+    top: -125px;
+    z-index: 100;
+
+    > .fr-box {
+      position: relative;
+      top: 53px;
+    }
+
+    dt {
+      max-width: 115px;
+      padding-right: 5px;
+      text-align: right;
+
+      &::after { content: ":"; }
+    }
+
+    dd {
+      .svg-tooltip.copy-to-clipboard {
+        cursor: pointer;
+        display: inline;
+        position: relative;
+      }
+
+      .svg-icon-content-copy {
+        height: 22px;
+        left: 2px;
+        position: absolute;
+        top: -2px;
+        width: 22px;
+
+        &:hover { fill: $orange; }
+      }
+    }
+
+    p { line-height: 20px; }
+  }
+
+  .svg-icon {
+    display: block;
+    height: 14px;
+    margin-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+    top: 2px;
+    width: 14px;
+  }
 }

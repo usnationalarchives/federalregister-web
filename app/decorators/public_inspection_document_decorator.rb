@@ -18,6 +18,10 @@ class PublicInspectionDocumentDecorator < ApplicationDecorator
     "#{toc_subject} #{toc_doc}"
   end
 
+  def public_inspection_document?
+    true
+  end
+
   def revoked_and_older_date?
     revoked? &&
     model.last_public_inspection_issue &&

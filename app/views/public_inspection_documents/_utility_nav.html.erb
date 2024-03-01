@@ -1,0 +1,14 @@
+<ul class="content-nav ui sticky">
+  <li class="button">
+    <%= svg_icon 'previous-media',
+      class: 'content-nav-compress-toggle',
+      role: 'button', 'arial-label': 'compress content nav' %>
+  </li>
+
+  <%= render partial: 'public_inspection_documents/utility_nav/document_details',
+    locals: { document: @document } %>
+
+  <%= render partial: 'shared/utility_nav/sharing', locals: {
+    document: @document
+  } %>
+</ul>

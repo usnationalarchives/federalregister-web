@@ -125,3 +125,7 @@ body {
     dl, dt, dd { font-size: modular-scale(0); }
   }
 }
+
+.bootstrap-scope .tooltip {
+  font-size: modular-scale(-1);
+}

@@ -11,15 +11,12 @@ class DocumentDecorator < ApplicationDecorator
   include DocumentDecorator::Corrections
   include DocumentDecorator::GovernmentPublishingOffice
   include DocumentDecorator::Officialness
+  include DocumentDecorator::PresidentialDoc
   include DocumentDecorator::RegulationsDotGovInfo
   include DocumentDecorator::PresidentialDoc
 
   def slug
     html_url.split('/').last
-  end
-
-  def presidential_document?
-    type == "Presidential Document"
   end
 
   def http_abstract_html_url
@@ -35,13 +32,6 @@ class DocumentDecorator < ApplicationDecorator
 
   def internal_body_html_url
     body_html_url.gsub(Settings.services.fr.web.base_url, Settings.services.fr.web.internal_base_url)
-  end
-
-  # Dec 17th, 2013
-  def shorter_ordinal_signing_date
-    if attributes['signing_date']
-      Date.parse(attributes['signing_date']).to_s(:short_month_day_year)
-    end
   end
 
   # Page Count/Range methods
@@ -157,5 +147,4 @@ class DocumentDecorator < ApplicationDecorator
     # GA data is provided on a delay of 24-48 hours
     publication_date != Date.current
   end
-
 end
