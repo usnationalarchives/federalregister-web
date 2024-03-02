@@ -161,8 +161,8 @@ gem 'sendgrid'
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-throttled"
 
-# js minification
-gem 'uglifier'
+# Sprockets 4 ES6 Support
+gem "terser"
 
 # search pagination
 gem 'will_paginate'
