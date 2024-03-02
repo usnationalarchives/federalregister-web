@@ -1,4 +1,4 @@
-// Bob's grid changes
+// Utility Nav Grid
 // ========================================================================
 .doc-content {
   display: grid;
@@ -27,9 +27,17 @@
     width: 100%;
   }
 
-  // Accounts for the conditional collapsing behavior 
-  #comment-bar:has(div.byline) {
+  #metadata_content_area {
+    #comment-bar, h1 {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  #comment-bar:has(div.byline) { // has selector used to detect whether comment form is collapsed or not
     height: 150px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
   }
 
   #comment-bar p {
