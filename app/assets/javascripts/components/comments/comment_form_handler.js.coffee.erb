@@ -50,7 +50,7 @@ class @FR2.CommentFormHandler
     $('.comment_wrapper')
 
   refreshDocStickyNav: ->
-    $('.doc-document ul.doc-nav').sticky('refresh')
+    $('.content-nav-wrapper .content-nav').sticky('refresh')
 
   previewComment: ->
     @commentFormEl().on 'click', '.comment_preview', (e)=>
