@@ -1,11 +1,3 @@
-function closeOnEscape(hash) {
-  $(window).one('keyup', function(event) {
-    if( event.keyCode === '27' ){
-      hash.w.jqmHide();
-    }
-  });
-}
-
 
 // http://www.quirksmode.org/js/cookies.html
 function readCookie(name) {
