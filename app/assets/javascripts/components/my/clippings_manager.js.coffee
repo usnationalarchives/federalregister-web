@@ -130,7 +130,7 @@ class @FR2.ClippingsManager
     })
 
     deleteClippings.done (response)->
-      _.each response.folder.documents, (doc_id)->
+      _.each response.folder.documents, (doc_id)=>
         $("#clippings li[data-doc-id='" + doc_id + "']")
           .animate({opacity: 0}, 600)
 
@@ -139,10 +139,9 @@ class @FR2.ClippingsManager
           _.each response.folder.documents, (doc_id)->
             $("#clippings li[data-doc-id='" + doc_id + "']").remove()
 
-          update_clippings_on_page_count response.folder.doc_count
-          update_add_folder_count response, 'remove'
-          update_jump_folder_count response, 'remove'
-          update_user_util_counts response.folder.doc_count, response.folder.slug, false, 'delete'
+          @update_clippings_on_page_count response.folder.doc_count
+          @update_add_folder_count response, 'remove'
+          @update_jump_folder_count response, 'remove'
         600
       )
 
@@ -217,8 +216,7 @@ class @FR2.ClippingsManager
         setTimeout(
           =>
             @removeMovedItemsFromView response
-            update_jump_folder_count response
-            update_user_util_counts response.folder.doc_count, response.folder.slug, false
+            @update_jump_folder_count response
           2400
         )
 
@@ -277,7 +275,6 @@ class @FR2.ClippingsManager
     setTimeout(
       =>
         @removeMovedItemsFromView response
-        update_user_util_counts response.folder.doc_count, response.folder.slug, true
       2400
     )
 
@@ -345,7 +342,7 @@ class @FR2.ClippingsManager
 
 
   removeMovedItemsFromView: (response)->
-    _.each response.folder.documents, (doc_id)->
+    _.each response.folder.documents, (doc_id)=>
       $("#clippings li[data-doc-id='#{doc_id}']")
         .animate(
           {opacity: 0},
@@ -356,5 +353,34 @@ class @FR2.ClippingsManager
           }
         )
 
-    update_clippings_on_page_count response.folder.doc_count
-    update_current_folder_page_counts response.folder.doc_count
+    @update_clippings_on_page_count response.folder.doc_count
+    @update_current_folder_page_counts response.folder.doc_count
+
+  update_clippings_on_page_count: (count) ->
+    count_span = $('#folder_metadata_bar span.clippings_on_page_count')
+    current_count = parseInt( count_span.html(), 0 )
+    count_span.html( current_count - count)
+
+  update_current_folder_page_counts: (count) ->
+    current_folder_slug = $('h2.title').data('folder-slug')
+    jump_to_folder_inner = $('#jump-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner')
+    add_to_folder_inner  = $('#add-to-folder .menu li[data-slug="' + current_folder_slug + '"] .document_count_inner')
+
+    jump_to_folder_inner.html( parseInt(jump_to_folder_inner.html(), 0) - count )
+    add_to_folder_inner.html( parseInt(add_to_folder_inner.html(), 0) - count )
+
+  update_add_folder_count: (response, action) ->
+    add_to_folder_inner = $('#add-to-folder .menu li[data-slug="' + response.folder.slug + '"] .document_count_inner')
+
+    if (action == undefined || action == 'add')
+      add_to_folder_inner.html( parseInt(add_to_folder_inner.html(), 0) + response.folder.doc_count )
+    else if (action == 'remove')
+      add_to_folder_inner.html( parseInt(add_to_folder_inner.html(), 0) - response.folder.doc_count )
+
+  update_jump_folder_count: (response, action) ->
+    jump_to_folder_inner = $('#jump-to-folder .menu li[data-slug="' + response.folder.slug + '"] .document_count_inner');
+
+    if (action == undefined || action == 'add')
+      jump_to_folder_inner.html( parseInt(jump_to_folder_inner.html(), 0) + response.folder.doc_count )
+    else if (action == 'remove')
+      jump_to_folder_inner.html( parseInt(jump_to_folder_inner.html(), 0) - response.folder.doc_count )
