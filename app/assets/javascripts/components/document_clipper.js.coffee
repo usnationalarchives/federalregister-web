@@ -164,13 +164,6 @@ class @FR2.DocumentClipper
 
         documentClipper.addFolderElementHandler(menuItem)
 
-        if menuItem.data('slug') == "my-clippings"
-          update_user_clipped_document_count @storedDocumentNumbers()
-        else
-          update_user_folder_document_count response
-
-
-
       clip.always (response)->
         menuItem.find('.loader').hide()
         menuItem.find('.icon.checked').show()

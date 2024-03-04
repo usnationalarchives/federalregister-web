@@ -9,35 +9,6 @@ function expect_logged_in() {
   }
 }
 
-function update_user_clipped_document_count(stored_documents) {
-  //document_count = stored_documents !== undefined ? Object.keys(stored_documents).length : 0;
-  var document_count = parseInt( $('#document-count #doc_count').html(), 10 );
-  $('#document-count #doc_count').html( document_count + 1 );
-}
-
-function update_user_folder_count(folder_object) {
-  var folder_count = parseInt( $('#document-count-holder #user_folder_count').html(), 10 );
-  $('#user_folder_count').html( folder_count + 1 );
-  }
-
-function update_user_folder_document_count(folder_object) {
-  var folder_docs_count = parseInt( $('#document-count-holder #user_documents_in_folders_count').html(), 10 );
-  $('#user_documents_in_folders_count').html( folder_docs_count + 1 );
-  }
-
-function update_user_folder_and_document_count(folder_object) {
-  update_user_folder_count(folder_object);
-  update_user_folder_document_count(folder_object);
-  }
-
-// No calling function - likely dead code
-// function document_number_present(document_number, user_folder_details) {
-//   return _.filter( user_folder_details.folders, function(folder) {
-//     /* return the folder if it has the document in it */
-//     return $.inArray( document_number, folder.documents) > -1;
-//   }).length !== 0;
-// }
-
 function show_folder_success(response) {
   var new_p = $('<p>').append(
     'Successfully created folder "' + response.folder.name + '"'
