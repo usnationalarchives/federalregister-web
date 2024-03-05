@@ -31,6 +31,11 @@ $(document).ready ()->
   _.each $('.toggle-all'), (el)->
     new CJ.ToggleAll(el)
 
+  # Nav Analytics
+  $('.dropdown.nav_myfr2 ul.subnav li a:not(.inactive)').each ->
+    $(this).bind 'click', ->
+      @FR2.Analytics.trackMyFR2NavigationEvent($(this).html())
+
   # Calendars
   standardCalendars = $('.calendar-wrapper:not(.cal-double) table.calendar')
   _.each standardCalendars, (calendar)->

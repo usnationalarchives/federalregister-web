@@ -134,7 +134,7 @@ class @FR2.DocumentClipper
       menuItem.find('.icon.checked').hide()
       menuItem.find('.loader').show()
 
-      track_clipping_event('add', @documentNumber, menuItem.data('slug'))
+      FR2.Analytics.trackClippingEvent('add', @documentNumber, menuItem.data('slug'))
 
       data = [
         {

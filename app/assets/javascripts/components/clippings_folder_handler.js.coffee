@@ -123,8 +123,8 @@ class @FR2.ClippingsFolderHandler
     })
 
     folderCreate.done (response)=>
-      track_folder_event('create', 1)
-      track_clipping_event('add', @document_number, folderName)
+      FR2.Analytics.trackFolderEvent('create', 1)
+      FR2.Analytics.trackClippingEvent('add', @document_number, folderName)
 
       @setSuccessState(response)
 

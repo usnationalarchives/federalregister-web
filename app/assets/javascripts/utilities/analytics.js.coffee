@@ -1,9 +1,15 @@
 class @FR2.Analytics
-  @trackCommentEvent: (category, agency, documentNumber)=>
+  @trackCommentEvent: (category, agency, documentNumber) =>
     @trackGAEvent category, agency, documentNumber
 
-  @trackGAEvent: (category, action, label)->
-    gtag('event', category, {'event_action': action, 'event_label': label})
+  @trackGAEvent: (category, action, label, value) ->
+    data = {'event_action': action, 'event_label': label}
+
+    # optional - used by some events
+    if value
+      data['value'] = value
+
+    gtag('event', category, data)
 
   @trackSearchPageVisit: ->
     term = new URLSearchParams(window.location.search).get('conditions[term]')
@@ -77,3 +83,54 @@ class @FR2.Analytics
     params      = new URLSearchParams(queryString)
     paramValues = params.getAll(paramName)
     return paramValues
+
+
+  ###########################################################################
+  # Clippings
+  ###########################################################################
+
+  @trackClippingEvent: (action, document_number, folder_slug) =>
+    # current actions: add, remove
+    user_state  = @_userState()
+    page_type = @_pageType()
+    folder_type = @_folderType(folder_slug)
+
+    label = "#{user_state}/#{folder_type}/#{page_type}/#{document_number}"
+
+    @trackGAEvent("Clipping", action, label)
+
+  @trackFolderEvent: (action, document_count) =>
+    # current actions: create
+
+    user_state  = @_userState()
+    page_type = @_pageType()
+    folder_type = "folder"
+
+    label = "#{user_state}/#{folder_type}/#{page_type}"
+
+    @trackGAEvent("Folder", action, label, document_count)
+
+  @_userState: ->
+    if FR2.UserUtils.loggedIn()
+      'logged_in'
+    else
+      'logged_out'
+
+  @_pageType: ->
+    if window.location.pathname.match(/\/search/) == null
+      'document'
+    else
+      'search'
+
+  @_folderType: (folder_slug)->
+    if folder_slug == 'my-clippings'
+      'clipboard'
+    else
+      'folder'
+
+  ###########################################################################
+  # Navigation
+  ###########################################################################
+
+  @trackMyFR2NavigationEvent: (value)->
+    @trackGAEvent("Navigation", "Navigation", "MyFR", value)

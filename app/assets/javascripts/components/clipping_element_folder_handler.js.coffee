@@ -76,7 +76,7 @@ class @FR2.ClippingElementFolderHandler
     @folderEl.find('a span.icon').hide()
     @folderEl.find('a span.loader').show()
 
-    track_clipping_event 'remove', @document_number, @folderEl.data('slug')
+    FR2.Analytics.trackClippingEvent 'remove', @document_number, @folderEl.data('slug')
 
     data = {
       folder_clippings: {
