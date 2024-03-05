@@ -1,5 +1,5 @@
 function get_user_state() {
-  if( expect_logged_in() ) {
+  if( FR2.UserUtils.loggedIn() ) {
     return 'logged_in';
   } else {
     return 'logged_out';
