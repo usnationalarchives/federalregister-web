@@ -1,15 +1,4 @@
 $(document).ready(function () {
-    var commentButton = $('#start_comment.how_to_comment');
-    if (commentButton.length > 0) {
-      if($('#addresses').length === 0) {
-        if ($('#further-info').length === 0) {
-          commentButton.remove();
-        } else {
-          commentButton.attr('href', '#further-info');
-        }
-      }
-    }
-
     $('div.article[data-internal-id]').each(function () {
         var id = $(this).attr('data-internal-id');
         $.ajax({
