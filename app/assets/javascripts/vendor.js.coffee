@@ -29,9 +29,6 @@
 
 #= require jquery.tipsy.js
 
-# PLACEHOLDER SUPPORT FRO IE 8-9
-#= require jquery.textPlaceholder
-
 # BETTER SELECT MULTIPLE PLUGIN
 #= require jquery.bsmselect
 
