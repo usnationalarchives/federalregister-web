@@ -1,19 +1,15 @@
 $(document).ready(function () {
-  $('div.article[data-internal-id]').each(function () {
-    var id = $(this).attr('data-internal-id');
-    $.ajax({
-        url: '/articles/views',
-        type: 'POST',
-        data: {
-            'id': id,
-            'referer': document.referrer
-        }
-    });
-  });
-
   var citation_modal_template;
   if ( $("#select-cfr-citation-template").length > 0 ) {
     citation_modal_template = Handlebars.compile($("#select-cfr-citation-template").html());
+  }
+
+  function closeOnEscape(hash) {
+    $(window).one('keyup', function(event) {
+      if( event.keyCode === '27' ){
+        hash.w.jqmHide();
+      }
+    });
   }
 
   function display_cfr_modal(title, html) {

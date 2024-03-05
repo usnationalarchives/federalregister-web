@@ -2,7 +2,6 @@
 #= require namespace
 
 #= require handlebars_helpers
-#= require storage.js
 #= require tender_widget_custom.js
 
 # Namespaced JS Classes
