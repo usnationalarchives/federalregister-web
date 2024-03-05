@@ -40,7 +40,7 @@ class DocumentDecorator < ApplicationDecorator
   # Dec 17th, 2013
   def shorter_ordinal_signing_date
     if attributes['signing_date']
-      DateTime.parse(attributes['signing_date']).to_s(:short_month_day_year)
+      Date.parse(attributes['signing_date']).to_s(:short_month_day_year)
     end
   end
 
