@@ -10,8 +10,7 @@
 fr_index_popover_handler.uses_pi = false;
 fr_index_popover_handler.article_fields = 'fields%5B%5D=abstract&fields%5B%5D=comments_close_on&fields%5B%5D=significant&fields%5B%5D=regulations_dot_gov_info&fields%5B%5D=document_number';
 fr_index_popover_handler.add_popover_content = function() {
-    var $tipsy_el = $('.tipsy'),
-        current_dl = this.current_el,
+    var current_dl = this.current_el,
         fr_index_entry_popover_content_template = window.HandlebarsTemplates.fr_index_entry_popover_content,
         popover_id = '#popover-' + current_dl.data('document-number');
     var new_html = fr_index_entry_popover_content_template( this.popover_cache[current_dl.data('document-number')] );
@@ -21,7 +20,7 @@ fr_index_popover_handler.add_popover_content = function() {
 
 
 $(document).ready(function() {
-  $('#fr-index-year-select select').on('change', function(e) {
+  $('#fr-index-year-select select').on('change', function() {
     var year = $(this).val();
     window.location.href = '/index/'+year;
   });
@@ -30,7 +29,7 @@ $(document).ready(function() {
 
   var fr_index_entry_popover_template = window.HandlebarsTemplates.fr_index_entry_popover;
 
-  $('.doc-document-issue').delegate('.with-ajax-popover', 'mouseenter', function(event) {
+  $('.doc-document-issue').delegate('.with-ajax-popover', 'mouseenter', function() {
     var $el = $(this);
 
     /* add tipsy to the element */
