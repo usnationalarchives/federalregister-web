@@ -12,20 +12,6 @@ function inGroupsOf(count, arr) {
   }, [[]]);
 }
 
-/* jshint ignore:start */
-Handlebars.registerHelper("debug", function(optionalValue) {
-  console.log("Current Context");
-  console.log("====================");
-  console.log(this);
-
-  if (optionalValue) {
-    console.log("Value");
-    console.log("====================");
-    console.log(optionalValue);
-  }
-});
-/* jshint ignore:end */
-
 Handlebars.registerHelper('unlessMyClipboard', function(block) {
   if( this.slug === "my-clippings" ) {
     return block.inverse(this);
@@ -50,19 +36,6 @@ Handlebars.registerHelper('human_size', function(bytes) {
     return (bytes / 1000000).toFixed(2) + ' MB';
   }
   return (bytes / 1000).toFixed(2) + ' KB';
-});
-
-Handlebars.registerHelper('localize', function(str) {
-  var messages =  {
-    "maxFileSize": "File is too big",
-    "minFileSize": "File is too small",
-    "acceptFileTypes": "File type not allowed",
-    "maxNumberOfFiles": "Max number of files exceeded",
-    "uploadedBytes": "Uploaded bytes exceed file size",
-    "emptyResult": "Empty file upload result"
-  };
-
-  return messages[str] || str;
 });
 
 Handlebars.registerHelper('createDd', function(item) {
@@ -101,17 +74,13 @@ Handlebars.registerHelper('date_in_past', function(date, block) {
   }
 });
 
-Handlebars.registerHelper('formatted_date', function(date) {
-  return strftime('%m/%d/%Y', new Date(date));
-});
-
 Handlebars.registerHelper('locale_date', function(date) {
   var inputDate = new Date(date); // Assuming your input date is in YYYY-MM-DD format
 
-  var options = { 
+  var options = {
     year: 'numeric',
     month: 'long',
-    day: 'numeric' 
+    day: 'numeric'
   };
 
   return inputDate.toLocaleDateString('en-US', options);
