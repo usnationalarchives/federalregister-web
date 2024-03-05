@@ -28,13 +28,13 @@ function destroy_subscription_success($link, response) {
 
 
 $(document).ready( function() {
-  /* set height so that dotted border on subscription data is 
+  /* set height so that dotted border on subscription data is
    * the same size as the search data */
   $('#subscriptions li').each( function() {
     var li = $(this),
         height = li.find('.search_data').height();
-    
-    li.find('.subscription_data').height(height);    
+
+    li.find('.subscription_data').height(height);
   });
 
 
@@ -52,7 +52,7 @@ $(document).ready( function() {
       success: function(response) {
         unsubscribe_success($link, response);
       },
-      error: function(error) {
+      error: function() {
       }
     });
   });
@@ -71,7 +71,7 @@ $(document).ready( function() {
       success: function(response) {
         resubscribe_success($link, response);
       },
-      error: function(error) {
+      error: function() {
       }
     });
   });
@@ -102,7 +102,7 @@ $(document).ready( function() {
       success: function(response) {
         destroy_subscription_success($link, response);
       },
-      error: function(error) {
+      error: function() {
       }
     });
   });
