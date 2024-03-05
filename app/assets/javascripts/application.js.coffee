@@ -1,5 +1,3 @@
-#= require old/application
-
 #= require utilities/csrf_setup
 #= require namespace
 

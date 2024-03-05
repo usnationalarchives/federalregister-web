@@ -59,6 +59,9 @@ $(document).ready ()->
 
     gtag('event', eventName, eventParameters)
 
+  # Print View
+  (new FR2.PrintViewManager).setup()
+
   # Subcription modals
   $('a.rss, a.subscription, a.subscription_action').not('.no-modal-action').on 'click', (e)->
     e.preventDefault()

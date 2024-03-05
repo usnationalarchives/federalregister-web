@@ -20,8 +20,17 @@
 .doc .doc-content.with-utility-nav .content-block {
   margin-right: 30px;
 
+  // remove blur (if utility nav item is open)
+  &.blur {
+    filter: blur(0) !important;
+  }
+
   table.wide {
     page-break-inside: avoid;
     page: rotated;
   }
+
+  .citation-target-icon { display: none !important; }
+
+  .page-menu { display: none; }
 }

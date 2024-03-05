@@ -25,7 +25,7 @@
 
     <link href="<%= asset_path('vendor.css') %>", media="all", rel="preload stylesheet", as="style">
     <link href="<%= asset_path('application.css') %>", media="all", rel="preload stylesheet", as="style">
-    <link href="<%= asset_path('print.css') %>", media="print">
+    <link href="<%= asset_path('print.css') %>", media="print", rel="preload stylesheet", as="style">
     <%= yield :page_specific_css %>
 
     <%= javascript_include_tag asset_path('vendor.js'),
