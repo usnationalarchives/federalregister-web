@@ -6,14 +6,11 @@
 }
 
 @media only screen and (max-width: #{$small-viewport-width}) {
-    .bootstrap-scope .wrapper .container.fixed {
-      width: auto !important;
-    }
 
-    // Turn off tooltips in mobile
-    div.tipsy {
-      display: none !important;
-    }
+  // Turn off tooltips in mobile
+  div.tipsy {
+    display: none !important;
+  }
 
 }
 

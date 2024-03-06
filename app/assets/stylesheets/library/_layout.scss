@@ -4,7 +4,14 @@
     padding: 0;
 
     .container.fixed {
-      width: 970px !important;
+      @media only screen and (max-width: #{$small-viewport-width}) {
+        width: auto !important;
+      }
+
+      @media only screen and (min-width: $small-viewport-width) {
+        width: 970px !important;
+      }
     }
+
   }
 }
