@@ -9,6 +9,9 @@ $(document).ready ()->
   FR2.currentUserStorage = new FR2.NonPersistentStorage()
   FR2.currentUserStorage.set('userEmailAddress', userData.email)
 
+  # Ensure user preference store has defaults
+  FR2.UserPreferenceStore.init()
+
 
   tooltipOptions = {
     offset:  5
