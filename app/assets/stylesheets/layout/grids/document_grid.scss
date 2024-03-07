@@ -12,7 +12,14 @@
     grid-template-columns: 162px 1fr;
   }
   &.narrow-utility-nav {
-    grid-template-columns: 81px 1fr;
+    @media only screen and (max-width: $small-viewport-width) {
+      grid-template-columns: 50px 1fr;
+    }
+
+    @media only screen and (min-width: $small-viewport-width) {
+      grid-template-columns: 81px 1fr;
+    }
+
   }
 
   @media print {
