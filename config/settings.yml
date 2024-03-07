@@ -26,8 +26,7 @@ app:
   document_render:
     # false means use precompiled content via esi's
     from_raw_xml: false
-    # should we get precompiled content from remote (as opposed to local fs)
-    # primarily a dev setting
+    from_remote_raw_xml: false #ie dynamically download XML from remote and recompile XML on the fly.  Used to dynamically test recompilation in development.
     from_remote: false
   search:
     location_search_enabled: true

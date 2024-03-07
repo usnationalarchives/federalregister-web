@@ -23,19 +23,15 @@ class HtmlCompilator
   end
 
   def compile
-    if File.exists? document_xml_enhanced_path(xml_type)
-      # BB TODO: this removes html entities which we need in the view
-      # ideally we find a way for this to work but turning it off for now
-      #XsltTransform.standardized_html(
-        XsltTransform.transform_xml(
-          File.read(document_xml_enhanced_path(xml_type)),
-          xslt_template,
-          xslt_variables
-        ).to_xml
-      #)
-    else
-      raise MissingXmlFile, document_xml_enhanced_path(xml_type)
-    end
+    # BB TODO: this removes html entities which we need in the view
+    # ideally we find a way for this to work but turning it off for now
+    #XsltTransform.standardized_html(
+      XsltTransform.transform_xml(
+        xml_source,
+        xslt_template,
+        xslt_variables
+      ).to_xml
+    #)
   end
 
   def save(html)
@@ -57,5 +53,24 @@ class HtmlCompilator
 
   def xslt_variables
     {}
+  end
+
+  private
+
+  def xml_source
+    if Settings.app.document_render.from_remote_raw_xml
+      response = HTTParty.get(document.full_text_xml_url)
+      if response.ok?
+        response.body
+      else
+        raise MissingXmlFile, document.full_text_xml_url
+      end
+    else
+      if File.exists? document_xml_enhanced_path(xml_type)
+        File.read(document_xml_enhanced_path(xml_type))
+      else
+        raise MissingXmlFile, document_xml_enhanced_path(xml_type)
+      end
+    end
   end
 end
