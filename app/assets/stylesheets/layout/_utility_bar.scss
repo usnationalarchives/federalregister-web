@@ -71,7 +71,13 @@
       z-index: 1000;
 
       // override bootstrap style
-      .fr-box.dropdown-menu { border: none; }
+      .fr-box.dropdown-menu {
+        border: none; 
+
+        @media only screen and (max-width: $small-viewport-width) {
+          max-width: calc(100vw - 56px); // Ensure utility nav dropdown items are not cut off in mobile
+        }
+      }
 
       &> li.button {
         height: 40px;
