@@ -2,9 +2,11 @@
 
 <div class="byline">
   You are submitting an official comment to Regulations.gov.
+  <br>
   {{#if commentDueDate}}
+    <div>Comments are due {{commentDueDate}}.</div>
+  {{else}}
     <br>
-    Comments are due {{commentDueDate}}.
   {{/if}}
 </div>
 
