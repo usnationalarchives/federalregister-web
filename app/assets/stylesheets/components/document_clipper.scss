@@ -3,7 +3,14 @@
   border: 0;
   margin-right: 0px;
   position: relative;
-  width: 50px;
+
+  @media only screen and (max-width: $small-viewport-width) {
+    width: auto; // The normal fixed pixel width adds a small bit of vertical space on the right edge of the viewport that interferes with the utility nav's position
+  }
+
+  @media only screen and (min-width: $small-viewport-width) {
+    width: 50px;
+  }
 
   .icon-fr2 {
     text-indent: 0;
