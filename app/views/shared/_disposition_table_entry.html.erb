@@ -28,7 +28,7 @@
       </dl>
 
       <dl class="<%= bootstrap_col xs: 5, md: 5 %>">
-        <% if presidential_document.pdf_link %>
+        <% if presidential_document.pdf_link && !local_assigns[:suppress_pdf_link] %>
           <dt class="toc-pdf">
             <%= presidential_document.pdf_link %>
           </dt>
