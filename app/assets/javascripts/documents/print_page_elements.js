@@ -1,14 +1,6 @@
 FR2.PrintPageElements = class PrintPageElements {
   contentCol = document.querySelector(".doc-content .content-col");
 
-  printPageGutterElements = this.contentCol.getElementsByClassName(
-    ".printed-page-details"
-  );
-
-  printPageTextualIcons = this.contentCol.getElementsByClassName(
-    ".printed-page-inline"
-  );
-
   shortUrl = this.contentCol.querySelector(".doc-content-area").dataset.shortUrl
 
   volume = document.getElementById("document-citation").dataset.citationVol
