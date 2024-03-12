@@ -42,8 +42,6 @@
 # Homepage
 #= require home/home_section_preview_manager
 
-#= require old/navigation
-
 #= require_tree ./documents
 #= require content_copy_to_clipboard
 #= require fr_index_popover_handler
@@ -54,7 +52,7 @@
 #= require table_modal_handler
 #= require fr_index
 #= require issues
-
+#= require navigation
 #= require search
 
 # Instantiate and bind common application js items
