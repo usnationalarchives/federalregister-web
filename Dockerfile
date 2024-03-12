@@ -50,7 +50,7 @@ RUN apt-get update
 RUN apt-get install -y nodejs
 
 # npm packages for testing
-RUN npm install -g jshint
+RUN npm install -g eslint
 RUN npm install -g coffeelint
 
 

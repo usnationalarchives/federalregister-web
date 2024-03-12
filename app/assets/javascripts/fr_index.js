@@ -1,7 +1,4 @@
-/**
- *
- * @depend fr_index_popover_handler.js
- */
+/* global fr_index_popover_handler */
 
 /* fr_index_entry_popover is defined elsewhere we add
  * the custom methods we need for this instance of it here,

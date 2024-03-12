@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "globals": {
+        "CJ": true,
+        "FR2": true,
+        "Handlebars": true,
+        "OFR": true,
+        "_": true,
+        "bowser": true
+    },
+    "rules": {
+    }
+}

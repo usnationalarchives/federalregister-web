@@ -5,7 +5,8 @@
  * include document_number and how to present the
  * data returned (add_popover_content) are required. */
 
-/*global fr_index_popover_handler:true */
+/* global fr_index_popover_handler:writable */
+/* exported fr_index_popover_handler */
 fr_index_popover_handler = {
   popover_cache: {},
   pi_base_url: '/api/v1/public-inspection-documents/',
