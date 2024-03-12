@@ -2,7 +2,6 @@
 #= require namespace
 
 #= require handlebars_helpers
-#= require tender_widget_custom.js
 
 # Namespaced JS Classes
 #= require utilities/analytics
@@ -18,6 +17,9 @@
 #= require utilities/user_utils
 
 #= require ofr/copy_to_clipboard
+#= require ofr/site_feedback_handler
+#= require ofr/zendesk_form_handler
+#= require ofr/zendesk_modal_handler
 
 #= require components
 #= require fr_modal
@@ -46,6 +48,7 @@
 #= require content_copy_to_clipboard
 #= require fr_index_popover_handler
 #= require footnote_handler
+#= require interstitial_modal_handler
 #= require table_fixed_header_handler
 #= require table_fixed_header_manager
 #= require table_modal_handler
@@ -53,7 +56,6 @@
 #= require issues
 
 #= require search
-#= require zendesk_form_handler
 
 # Instantiate and bind common application js items
 #= require app

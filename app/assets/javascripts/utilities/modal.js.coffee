@@ -41,8 +41,10 @@ class @FR2.Modal
     if options.alternateModalCloseSelector
       currentModal.jqmAddClose(options.alternateModalCloseSelector)
 
+    @addAdditionalCloseHandler(options)
+    @addAdditionalOpenHandler(options)
+
     currentModal.jqmShow().centerScreen()
-    @addCloseHandler(options)
 
   @addCloseHandler: (options)->
     $("#{options.modalId}").jqm({
@@ -56,6 +58,40 @@ class @FR2.Modal
           )
           $("#{options.modalId}").trigger('modalClose')
     })
+
+  @addAdditionalCloseHandler: (options)->
+    if options.additionalOnHide
+      $("#{options.modalId}").jqm({
+        onHide: (hash) ->
+          options.additionalOnHide(hash)
+
+          hash.w.fadeOut(
+            '400',
+            -> hash.o.remove()
+          )
+          $("#{options.modalId}").trigger('modalClose')
+      })
+    else
+      @addCloseHandler(options)
+
+  @addAdditionalOpenHandler: (options)->
+    if options.additionalOnShow
+      $("#{options.modalId}").jqm({
+        onShow: (hash) ->
+          options.additionalOnShow(hash)
+
+          ## original function from jqm
+          if hash.c.overlay > 0
+            hash.o.prependTo('body')
+
+          # make modal visible
+          hash.w.show()
+
+          # call focusFunc (attempts to focus on first input in modal)
+          $.jqm.focusFunc(hash.w,true)
+
+          return true
+      })
 
   @closeModal: (modalId)->
     $("#{modalId}").jqmHide()

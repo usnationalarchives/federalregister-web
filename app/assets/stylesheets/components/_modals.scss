@@ -209,7 +209,7 @@
 }
 
 
-.interstitial_tender_modal {
+.interstitial_modal {
   .title_bar { margin-top: 0; }
 }
 
@@ -474,7 +474,7 @@
   }
 }
 
-@media only screen and (min-width : 768px) and (max-width:910px) {
+@media only screen and (min-width:768px) and (max-width:910px) {
   $max-modal-width: 750px;
   .fr-modal {
     width: $max-modal-width;
@@ -484,7 +484,7 @@
   }
 }
 
-@media only screen and (min-width : 510px) and (max-width:768px) {
+@media only screen and (min-width:510px) and (max-width:675px) {
   $max-modal-width: 500px;
   .fr-modal {
     width: $max-modal-width;
@@ -494,7 +494,7 @@
   }
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:510px) {
   $max-modal-width: 300px;
   .fr-modal {
     width: $max-modal-width;

@@ -1,24 +1,3 @@
-#tender {
-  background-color: $dark-blue;
-  border: 2px solid $gray-20;
-  border-bottom: 0;
-  color: $white;
-  display: block;
-  padding: 5px 10px 8px;
-  position: fixed;
-  right: -51px;
-  top: 200px;
-  transform: rotate(-90deg);
-  z-index: 5000;
-
-  .icon-fr2 {
-    font-size: modular-scale(2);
-    margin-left: -5px;
-    margin-right: -2px;
-    top: 3px;
-  }
-}
-
 #zendesk-link {
   position: fixed;
   bottom: 12px;
@@ -59,7 +38,7 @@
 
 }
 
-@media only screen and (min-width : 510px) and (max-width:768px) {
+@media only screen and (min-width:510px) and (max-width:768px) {
   #tender_window {
     max-width: 500px;
     margin: 0 !important;
