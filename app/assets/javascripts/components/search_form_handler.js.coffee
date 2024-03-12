@@ -85,7 +85,7 @@ class @FR2.SearchFormHandler
 
     @calculateExpectedResults()
 
-  _triggerAdvancedSearchFullPageRefresh: (event) =>
+  _triggerAdvancedSearchFullPageRefresh: (event) ->
     window.location.href = "/documents/search#advanced"
     window.location.reload()
 

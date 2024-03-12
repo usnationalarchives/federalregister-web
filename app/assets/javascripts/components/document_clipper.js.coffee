@@ -157,7 +157,7 @@ class @FR2.DocumentClipper
         type: "POST"
       })
 
-      clip.done (response) =>
+      clip.done (response) ->
         menuItem.removeClass('not-in-folder').addClass('in-folder')
 
         documentClipper.updateClippedStatus()

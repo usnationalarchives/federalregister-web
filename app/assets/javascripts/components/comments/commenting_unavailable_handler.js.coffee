@@ -3,7 +3,7 @@ class @FR2.CommentingUnavailableHandler
     this.formWrapper = $formWrapper
     this.modalText   = modalText
     if onHideHandler == false
-      this.onHideHandler = () => # no-op
+      this.onHideHandler = () -> # no-op
     else
       this.onHideHandler = this._defaultOnHideHandler
     this._bindClickListener()

@@ -1,7 +1,5 @@
 class @FR2.UtilityNav
   constructor: (content)->
-    # @navWrapper = $(navWrapper)
-    # @contentWrapper = $(contentWrapper)
     @content = $(content)
     @navWrapper = $(@content.find('.content-nav-wrapper'))
     @contentWrapper = $(@content.find('.content-col'))
@@ -98,7 +96,7 @@ class @FR2.UtilityNav
 
   addPrintOnClickEvent: ->
     printLink = @navWrapper.find('.print-content')
-    printLink.on 'click', (e) =>
+    printLink.on 'click', (e) ->
       e.preventDefault()
       window.print()
 
@@ -112,8 +110,8 @@ class @FR2.UtilityNav
       # if we're clicking on an open item close it
       # but not if we're clicking on an item in the open menu portion
       if navEl.hasClass('open') && (
-          navEl == event.target || !$(event.target).parents('.dropdown-menu').length
-        ) && !$(event.target).hasClass('toggle')
+        navEl == event.target || !$(event.target).parents('.dropdown-menu').length
+      ) && !$(event.target).hasClass('toggle')
         navEl.removeClass('open')
         @updateTextBlur("remove")
       else if $(event.target).data('close-utility-nav')

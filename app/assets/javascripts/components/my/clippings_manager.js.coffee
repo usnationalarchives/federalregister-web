@@ -130,7 +130,7 @@ class @FR2.ClippingsManager
     })
 
     deleteClippings.done (response)->
-      _.each response.folder.documents, (doc_id)=>
+      _.each response.folder.documents, (doc_id)->
         $("#clippings li[data-doc-id='" + doc_id + "']")
           .animate({opacity: 0}, 600)
 
@@ -342,7 +342,7 @@ class @FR2.ClippingsManager
 
 
   removeMovedItemsFromView: (response)->
-    _.each response.folder.documents, (doc_id)=>
+    _.each response.folder.documents, (doc_id)->
       $("#clippings li[data-doc-id='#{doc_id}']")
         .animate(
           {opacity: 0},
@@ -378,7 +378,7 @@ class @FR2.ClippingsManager
       add_to_folder_inner.html( parseInt(add_to_folder_inner.html(), 0) - response.folder.doc_count )
 
   update_jump_folder_count: (response, action) ->
-    jump_to_folder_inner = $('#jump-to-folder .menu li[data-slug="' + response.folder.slug + '"] .document_count_inner');
+    jump_to_folder_inner = $('#jump-to-folder .menu li[data-slug="' + response.folder.slug + '"] .document_count_inner')
 
     if (action == undefined || action == 'add')
       jump_to_folder_inner.html( parseInt(jump_to_folder_inner.html(), 0) + response.folder.doc_count )
