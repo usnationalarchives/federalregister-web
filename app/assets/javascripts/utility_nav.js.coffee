@@ -77,13 +77,9 @@ class @FR2.UtilityNav
 
   setUtilityNavTooltips: (action)->
     if action == 'add'
-      @nav.tooltip({
-        selector: '> li > .svg-tooltip[data-toggle="tooltip"]'
-      })
+      @nav.find('> li > .svg-tooltip[data-toggle="tooltip"]').tooltip()
     else if action == 'remove'
-      @nav.tooltip('destroy', {
-        selector: '> li > .svg-tooltip[data-toggle="tooltip"]'
-      })
+      @nav.find('> li > .svg-tooltip[data-toggle="tooltip"]').tooltip('destroy')
 
   addSticky: ->
     context = "." + @navWrapper.parents('.with-utility-nav')

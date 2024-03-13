@@ -25,7 +25,7 @@ $(document).ready ->
 
 
   if $('.doc-document .doc-content').length > 0
-    $('.doc-content').tooltip({
+    $('.doc-content .content-col').tooltip({
       selector: '.svg-tooltip[data-toggle="tooltip"]'
     })
     (new OFR.CopyToClipboard).addTo(".doc-content")
