@@ -51,7 +51,9 @@
         &.flush-paragraph-no-wrap { white-space: nowrap; }
       }
     }
+  }
 
+  h1, h2, h3, p {
     &:target,
     &.highlight {
       animation: fade-target-highlight 4s;
@@ -63,6 +65,17 @@
         color: $color-enhanced;
         position: absolute;
         right: 5px;
+      }
+    }
+  }
+  h1, h2, h3 {
+    &:target,
+    &.highlight {
+      .icon-fr2-link {
+        font-size: 18px;
+        left: 5px;
+        position: relative;
+        top: 2px;
       }
     }
   }
