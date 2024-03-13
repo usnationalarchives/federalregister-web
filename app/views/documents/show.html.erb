@@ -16,9 +16,7 @@
 <%= render partial: 'metadata_content_area', locals: {document: @document} %>
 
 <%= bootstrap_context_wrapper do %>
-  <div class="clearfix"></div>
-
-  <div class="row doc doc-document <%= @document.official? ? 'doc-official' : 'doc-published' %>">
+  <div class="doc doc-document <%= @document.official? ? 'doc-official' : 'doc-published' %>">
     <%= render partial: 'page_content', locals: {document: @document} %>
   </div>
 
