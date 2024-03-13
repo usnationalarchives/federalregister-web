@@ -23,15 +23,11 @@ class HtmlCompilator
   end
 
   def compile
-    # BB TODO: this removes html entities which we need in the view
-    # ideally we find a way for this to work but turning it off for now
-    #XsltTransform.standardized_html(
-      XsltTransform.transform_xml(
-        xml_source,
-        xslt_template,
-        xslt_variables
-      ).to_xml
-    #)
+    XsltTransform.transform_xml(
+      xml_source,
+      xslt_template,
+      xslt_variables
+    ).to_xml
   end
 
   def save(html)
