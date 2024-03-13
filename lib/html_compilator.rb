@@ -54,19 +54,18 @@ class HtmlCompilator
   private
 
   def xml_source
-    if Settings.app.document_render.from_remote_raw_xml
+    if File.exists? document_xml_enhanced_path(xml_type)
+      File.read(document_xml_enhanced_path(xml_type))
+    elsif Settings.app.document_render.from_remote_raw_xml
       response = HTTParty.get(document.full_text_xml_url)
       if response.ok?
+        File.write(document_xml_enhanced_path(xml_type), response.body)
         response.body
       else
         raise MissingXmlFile, document.full_text_xml_url
       end
     else
-      if File.exists? document_xml_enhanced_path(xml_type)
-        File.read(document_xml_enhanced_path(xml_type))
-      else
-        raise MissingXmlFile, document_xml_enhanced_path(xml_type)
-      end
+      raise MissingXmlFile, document_xml_enhanced_path(xml_type)
     end
   end
 end
