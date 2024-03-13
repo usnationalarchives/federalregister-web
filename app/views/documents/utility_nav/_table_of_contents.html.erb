@@ -17,7 +17,8 @@
       has no substantive legal effect.
     </p>
 
-    <% if Settings.app.document_render.from_raw_xml %>
+    <% if Settings.app.document_render.from_remote_raw_xml ||
+      Settings.app.document_render.from_raw_xml %>
       <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
     <% elsif Settings.app.document_render.from_remote %>
       <%

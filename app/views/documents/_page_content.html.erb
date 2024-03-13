@@ -38,7 +38,8 @@
         <div class="citation-target-background"></div>
 
         <% if document.full_text_available? %>
-          <% if Settings.app.document_render.from_remote_raw_xml || Settings.app.document_render.from_raw_xml %>
+          <% if Settings.app.document_render.from_remote_raw_xml ||
+            Settings.app.document_render.from_raw_xml %>
             <%= HtmlCompilator::DocumentFullText.compile(document).html_safe %>
           <% elsif Settings.app.document_render.from_remote %>
             <%
