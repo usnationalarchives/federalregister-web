@@ -6,7 +6,7 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-  <% if @fr_archives_citation&.pdf_url %>
+  <% if @fr_archives_citation&.download_link_available? %>
     <%= render partial: 'links_to_fr_archives', locals: {include_disposition_table_entry: true} %>
   <% elsif @presidential_document %>
     <div class='presidential-documents normal-link-coloration'>

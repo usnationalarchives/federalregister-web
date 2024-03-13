@@ -7,7 +7,11 @@ class FrArchivesCitation
     @page   = page
   end
 
-  def pdf_url
+  def download_link_available?
+    issue_slice_available? || gpo_url
+  end
+
+  def issue_slice_url
     if issue_slice_available?
       "#{response_url}#page=#{specific_page}"
     end
@@ -54,7 +58,7 @@ class FrArchivesCitation
   end
 
   def issue_slice_available?
-    response.code == 200
+    response['pdf_url']
   end
 
   def response_url

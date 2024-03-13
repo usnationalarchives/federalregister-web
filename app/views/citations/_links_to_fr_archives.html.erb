@@ -1,11 +1,10 @@
-<% if @fr_archives_citation.pdf_url %>
+<% if @fr_archives_citation.download_link_available? %>
   <% if local_assigns[:include_disposition_table_entry] %>
     <div class='presidential-documents normal-link-coloration'>
       <div class="row presidential-document-wrapper">
         <%= render partial: 'shared/disposition_table_entry', locals: {presidential_document: @presidential_document, presenter: OpenStruct.new(type: 'executive_orders')} %>
       </div>
     </div> 
-    <hr>
   <% end %>
 
   <% if local_assigns[:include_flash_messages] %>
@@ -15,29 +14,33 @@
     <% end %>
   <% end %>
 
-  <p>
-    The 1936-1994 official print volumes of the Federal Register have been
-    digitalized and are available online in PDF format.
-    <% if @fr_archives_citation.publication_date %>
-      We found the following published on
-      <%= @fr_archives_citation.publication_date.to_s(:month_day_year) %>.
-    <% end %>
-  </p>
+  <% if local_assigns[:include_disposition_table_entry].blank? %>
+    <p>
+      The 1936-1994 official print volumes of the Federal Register have been
+      digitalized and are available online in PDF format.
+      <% if @fr_archives_citation.publication_date %>
+        We found the following published on
+        <%= @fr_archives_citation.publication_date.to_s(:month_day_year) %>.
+      <% end %>
+    </p>
 
-  <ul class="fr-list">
-    <li>
-      <h6>
-        <%= link_to "#{@volume} FR #{@page} :: Document View (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
-              @fr_archives_citation.pdf_url %>
-      </h6>
-    </li>
-    <li>
-      <h6>
-        <%= link_to "#{@volume} FR #{@page} :: Full Archival Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
-              @fr_archives_citation.gpo_url %>
-      </h6>
-    </li>
-  </ul>
+    <ul class="fr-list">
+      <% if @fr_archives_citation.issue_slice_url %>
+        <li>
+          <h6>
+            <%= link_to "#{@volume} FR #{@page} :: Document View (#{number_to_human_size(@fr_archives_citation.optimized_file_size)})",
+                  @fr_archives_citation.issue_slice_url %>
+          </h6>
+        </li>
+      <% end %>
+      <li>
+        <h6>
+          <%= link_to "#{@volume} FR #{@page} :: Full Archival Issue (#{number_to_human_size(@fr_archives_citation.original_file_size)})",
+                @fr_archives_citation.gpo_url %>
+        </h6>
+      </li>
+    </ul>
+  <% end %>
 
 <% else %>
 

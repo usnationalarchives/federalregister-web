@@ -5,11 +5,13 @@
 </p> 
 
 <ul class="fr-list">
-  <li>
-    <h6>
-      <a href="{{pdf_url}}"> FR  :: Document View ({{human_size this.slice_file_size}})</a>
-    </h6>
-  </li>
+  {{#if pdf_url}}
+    <li>
+      <h6>
+        <a href="{{pdf_url}}"> FR  :: Document View ({{human_size this.slice_file_size}})</a>
+      </h6>
+    </li>
+  {{/if}}
   <li>
     <h6>
       <a href="{{gpo_url}}"> FR  :: Full Archival Issue ({{human_size this.original_file_size}})</a>

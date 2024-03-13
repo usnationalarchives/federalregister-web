@@ -31,7 +31,7 @@
     <% else %>
       <% archives_citation = FrArchivesCitation.new(citation_suggestion.volume, citation_suggestion.page) %>
 
-      <% if archives_citation.pdf_url %>
+      <% if archives_citation.download_link_available? %>
         <p>
           The 1936-1994 official print volumes of the Federal Register have been
           digitalized and are available online in PDF format.
@@ -44,14 +44,16 @@
         <ul>
           <li class="result-item">
             <div class="result-info">
-              <p class="excerpts">
-                <%= link_to sanitize(
-                      "#{citation_suggestion.name} :: Document View (#{number_to_human_size(archives_citation.optimized_file_size)})",
-                      tags: %w(span),
-                      attributes: %w(class)
-                    ),
-                    archives_citation.pdf_url %>
-              </p>
+              <% if archives_citation.issue_slice_url %>
+                <p class="excerpts">
+                  <%= link_to sanitize(
+                        "#{citation_suggestion.name} :: Document View (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                        tags: %w(span),
+                        attributes: %w(class)
+                      ),
+                      archives_citation.issue_slice_url %>
+                </p>
+              <% end %>
               <p class="excerpts">
                 <%= link_to "#{citation_suggestion.name} :: Full Archival Issue (#{number_to_human_size(archives_citation.original_file_size)})",
                       archives_citation.gpo_url %>
