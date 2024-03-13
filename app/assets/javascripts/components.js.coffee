@@ -4,7 +4,6 @@
 #= require components/email_a_friend
 #= require components/external_link_checker
 #= require components/calendar
-#= require components/carousel
 #= require components/clipping_element_folder_handler
 #= require components/clippings_folder_handler
 #= require components/clipboard

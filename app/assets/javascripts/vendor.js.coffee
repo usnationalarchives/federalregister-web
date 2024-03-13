@@ -32,9 +32,6 @@
 # BETTER SELECT MULTIPLE PLUGIN
 #= require jquery.bsmselect
 
-# CAROUSEL
-#= require iscroll
-
 # SEARCH
 # debounce search result count lookahead
 #= require jquery.typewatch.js

@@ -415,9 +415,6 @@ Rails.application.routes.draw do
     :conditions => { :method => :get },
     as: 'significant_entries_section'
 
-  post '/sections/carousel-preview',
-    to: 'sections#carousel_preview'
-
 
   #
   # Single Sign On

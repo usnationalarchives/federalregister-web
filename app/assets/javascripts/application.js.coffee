@@ -39,9 +39,6 @@
 #= require public_inspection
 #= require utility_nav
 
-# Homepage
-#= require home/home_section_preview_manager
-
 #= require_tree ./documents
 #= require content_copy_to_clipboard
 #= require fr_index_popover_handler

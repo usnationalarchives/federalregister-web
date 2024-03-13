@@ -1,6 +1,5 @@
 class SectionsController < ApplicationController
   skip_before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: :carousel_preview
   layout false, only: [:navigation]
 
 
@@ -23,18 +22,6 @@ class SectionsController < ApplicationController
     end
   end
 
-  def homepage
-    cache_for 1.day
-
-    date = DocumentIssue.current.publication_date
-    @presenters = Section.all.map do |section|
-      RequestStore.store["section_page_#{section.slug}_#{date.to_s(:iso)}"] ||= section.highlighted_documents_for(date)
-      SectionPagePresenter.new(section, date)
-    end
-
-    render layout: false
-  end
-
   def significant_entries
     cache_for 1.day
     @presenter = SectionPresenter.new(params[:section])
@@ -46,19 +33,6 @@ class SectionsController < ApplicationController
         options = "conditions[sections]=#{@section.id}&order=newest.com&conditions[significant]=1"
         redirect_to base_url + options, status: :moved_permanently
       end
-    end
-  end
-
-  def carousel_preview
-    @section = Section.find_by_slug(params[:slug])
-    @highlighted_documents = JSON.parse(
-      Addressable::URI.unencode(params[:highlighted_documents])
-    ).map{|h| OpenStruct.new(h)}
-
-    if @highlighted_documents.present?
-      render layout: "carousel_preview"
-    else
-      render plain: ""
     end
   end
 end

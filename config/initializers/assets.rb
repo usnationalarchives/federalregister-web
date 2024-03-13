@@ -20,7 +20,6 @@ Rails.application.config.assets.precompile += %w(
   vendor.js
   admin/vendor.js
 
-  admin/highlighted_documents.js
   utilities/modal.js
 
   print.css

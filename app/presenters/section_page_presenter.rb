@@ -26,10 +26,6 @@ class SectionPagePresenter
     section.documents_with_open_comment_periods_for_date_conditions(date)
   end
 
-  def highlighted_documents
-    section.highlighted_documents_for(date)
-  end
-
   def feed_urls
     feeds = []
 
