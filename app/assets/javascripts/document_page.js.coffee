@@ -1,18 +1,4 @@
 $(document).ready ->
-  #allow additional DOM elements for bootstrap popovers
-  bootstrapDomElementWhitelist = $.fn.tooltip.Constructor.DEFAULTS.whiteList
-  bootstrapDomElementWhitelist['dl'] = []
-  bootstrapDomElementWhitelist['dt'] = []
-  bootstrapDomElementWhitelist['dd'] = []
-  bootstrapDomElementWhitelist['dd'] = []
-  bootstrapDomElementWhitelist['dd'] = []
-  bootstrapDomElementWhitelist.span = ['data-clipboard-text', 'data-tooltip']
-
-  $('.bootstrap-popover').popover({
-    container: '.bootstrap-scope',
-    trigger: 'manual'
-  })
-
   # Define utility function for converting Handlebars XSLT template names to the handlebars_assets gem convention
   CJ.convertTemplateNameToHandlebarsAssets =  (string) ->
     # eg convert something like '#regtext-auth-tooltip-template' => 'regtext-auth-tooltip'
