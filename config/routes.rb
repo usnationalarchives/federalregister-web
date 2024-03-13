@@ -249,21 +249,9 @@ Rails.application.routes.draw do
       to: 'reader_aids#homepage',
       as: :home_reader_aids
 
-    esi.get 'esi/home/explore_agencies',
-      to: 'agencies#explore_agencies',
-      as: :home_explore_agencies
-
-    esi.get 'esi/home/explore_topics',
-      to: 'topics#explore_topics',
-      as: :home_explore_topics
-
     esi.get 'esi/home/presidential_documents',
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
-
-    esi.get 'esi/home/sections',
-      to: 'sections#homepage',
-      as: :home_sections
 
     esi.get 'esi/home/popular_documents',
       to: 'special#popular_documents',
@@ -410,7 +398,7 @@ Rails.application.routes.draw do
     }
 
   get 'sections/:id/significant.:format',
-    :controller => "agencies",
+    :controller => "sections",
     :action => "significant_entries",
     :conditions => { :method => :get },
     as: 'significant_entries_section'

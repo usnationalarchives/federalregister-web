@@ -1,6 +1,5 @@
 class TopicsController < ApplicationController
   skip_before_action :authenticate_user!
-  layout false, only: [:navigation, :explore_topics]
 
   def index
     cache_for 1.day
@@ -40,10 +39,5 @@ class TopicsController < ApplicationController
           status: :moved_permanently
       end
     end
-  end
-
-  def explore_topics
-    cache_for 1.day
-    @presenter = Facets::TopicsPresenter.new
   end
 end

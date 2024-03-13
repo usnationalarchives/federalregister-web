@@ -1,6 +1,5 @@
 class AgenciesController < ApplicationController
   skip_before_action :authenticate_user!
-  layout false, only: [:navigation, :explore_agencies]
 
   def index
     cache_for 1.day
@@ -39,10 +38,5 @@ class AgenciesController < ApplicationController
           status: :moved_permanently
       end
     end
-  end
-
-  def explore_agencies
-    cache_for 1.day
-    @presenter = Facets::AgenciesPresenter.new
   end
 end
