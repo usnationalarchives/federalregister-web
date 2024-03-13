@@ -43,8 +43,8 @@ FR2.PrintPageElements = class PrintPageElements {
         }
       } else {
         // don't do anything if the click was in the page menu box
-        // .page-menu is a wrapper with a background blur and we want that to
-        // close the menu
+        // but .page-menu is a wrapper with a background blur and we want that
+        // to close the menu if clicked
         if (target.closest(".page-menu-box") !== null) return;
 
         if (pageDetailsTarget.classList.contains("menu-open")) {
@@ -171,6 +171,7 @@ FR2.PrintPageElements = class PrintPageElements {
   swapIcon(target, replacementIcon) {
     let href = target.querySelector("use").getAttribute("xlink:href")
 
+    target.classList.toggle("hover")
     target.querySelector("use").setAttribute("xlink:href",
       href.replace(/#\w+-?\w+/, `#${replacementIcon}`)
     )

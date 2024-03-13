@@ -58,13 +58,15 @@ $non-printed-text-font-size: 15px;
 // Only set colors for elements that change based on document status,
 // set other colors above.
 @mixin unprinted_element_colors($printed-page-color) {
-  .printed-page-inline {
+  .printed-page-inline,
+  .printed-page-details {
     color: $printed-page-color;
     fill: $printed-page-color;
 
-    &.hover {
-      color: darken($printed-page-color, 10) !important;
-      fill: darken($printed-page-color, 10) !important;
+    &.hover,
+    &:hover {
+      color: $text;
+      fill: $text;
     }
   }
 }
@@ -117,8 +119,6 @@ div.preamble {
 }
 
 .printed-page-details {
-  color: $gray-50;
-  fill: $gray-50;
   font-size: $non-printed-text-font-size;
   left: -50px;
   line-height: 18px;
@@ -127,11 +127,6 @@ div.preamble {
   position: absolute;
   text-indent: -15px;
   width: 45px;
-
-  &:hover {
-    color: $text;
-    fill: $text;
-  }
 
   .page-menu {
     backdrop-filter: blur(1px);
