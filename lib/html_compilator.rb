@@ -59,7 +59,11 @@ class HtmlCompilator
     elsif Settings.app.document_render.from_remote_raw_xml
       response = HTTParty.get(document.full_text_xml_url)
       if response.ok?
-        File.write(document_xml_enhanced_path(xml_type), response.body)
+        FileUtils.mkdir_p(document_dir(xml_type, 'xml_enhanced'))
+        File.write(
+          document_xml_enhanced_path(xml_type),
+          response.body.force_encoding(Encoding::UTF_8)
+        )
         response.body
       else
         raise MissingXmlFile, document.full_text_xml_url
