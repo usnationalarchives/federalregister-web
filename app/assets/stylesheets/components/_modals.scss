@@ -48,6 +48,7 @@
       height: calc(100% - 21px);
       overflow-x: auto;
       overflow-y: auto;
+      clear: both; // Ensure smaller tables are centered within modal.  This clears the float from the h6 modal heading
     }
 
     table {
