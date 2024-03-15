@@ -10,6 +10,7 @@ class @FR2.UtilityNav
   addEvents: ->
     @initializeUtilityNav()
     @addToggleWidthEvent()
+    @addTooltips()
     @addSticky()
     @addNavElementEvents()
     @addResizeWindowEvent()
@@ -59,11 +60,11 @@ class @FR2.UtilityNav
     if value == "narrow"
       @content.removeClass('wide-utility-nav')
       @content.addClass('narrow-utility-nav')
-      @setUtilityNavTooltips('add')
+      @setUtilityNavItemTooltips('add')
     else if value == "wide"
       @content.removeClass('narrow-utility-nav')
       @content.addClass('wide-utility-nav')
-      @setUtilityNavTooltips('remove')
+      @setUtilityNavItemTooltips('remove')
 
     @setNavDropdownPositions()
 
@@ -75,7 +76,8 @@ class @FR2.UtilityNav
       1000
     )
 
-  setUtilityNavTooltips: (action)->
+  # when the util nav is wide we don't want tooltips on the nav items themselves
+  setUtilityNavItemTooltips: (action)->
     if action == 'add'
       @nav.find('> li > .svg-tooltip[data-toggle="tooltip"]').tooltip()
     else if action == 'remove'
@@ -90,11 +92,10 @@ class @FR2.UtilityNav
       offset: 0
     })
 
-  addPrintOnClickEvent: ->
-    printLink = @navWrapper.find('.print-content')
-    printLink.on 'click', (e) ->
-      e.preventDefault()
-      window.print()
+  addTooltips: ->
+    @nav.find('.dropdown-menu').tooltip({
+      selector: '.svg-tooltip[data-toggle="tooltip"]'
+    })
 
   ######################
   # NAV ELEMENTS (LI's)
