@@ -26,7 +26,6 @@
 #= require form_utils
 #= require subscription
 #= require user_preference_store
-#= require user_session
 
 #= require_tree ./components/comments/
 
