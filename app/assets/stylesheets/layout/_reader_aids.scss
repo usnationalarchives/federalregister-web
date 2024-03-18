@@ -40,6 +40,15 @@
       font-size: modular-scale(-2);
       font-weight: 400;
     }
+
+    .category-statistics-table {
+      font-size: modular-scale(-2);
+      font-weight: 400;
+
+      td {
+        width: 10%;
+      }
+    }
   }
 
   .fr-box.fr-box-reader-aid {

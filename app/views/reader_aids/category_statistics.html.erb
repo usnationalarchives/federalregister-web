@@ -1,0 +1,73 @@
+<% header_type 'reader-aids' %>
+<% page_title "Reader Aids :: #{@auxillary_presenter.statistic_type.name} Statistics" %>
+
+<%= title title_bar_class: "reader-aids" do %>
+  <%= fr_icon 'Search' %>
+  Category Statistics
+<% end %>
+
+<%= bootstrap_context_wrapper do %>
+  <div class="reader-aids-section">
+    <div class="section">
+      <%= fr_details_box FrBox.build(:reader_aid) do %>
+          <div class="row">
+            <div class="<%= bootstrap_col xs: 12, md: 12 %> page_content">
+              <h4 id="<%= @auxillary_presenter.identifier %>" class="fr-list-header"><%= "#{@auxillary_presenter.name}" %></h4>
+              <ul>
+                <li><%= link_to 'CSV', @auxillary_presenter.csv_url %></li>
+              </ul>
+              <table class="table table-condensed table-hover category-statistics-table" >
+                <thead>
+                  <% @auxillary_presenter.header_columns.each_with_index do |cell, i| %>
+                    <th class="<%= i == 0 ? 'text-left' : 'text-right' %>"><%= cell %></th>
+                  <% end %>
+                </thead>
+                <tbody>
+                  <% @auxillary_presenter.table_rows.each do |row| %>
+                    <tr>
+                      <% row.each_with_index do |cell, i| %>
+                        <td class="<%= i == 0 ? 'text-left' : 'text-right' %>">
+                          <%= i == 0 ? cell : number_with_delimiter(cell) %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+                <ul>
+                </ul>
+              </table>
+              <ul class="list-unstyled">
+              <% @auxillary_presenter.footnotes.each do |footnote| %>
+                <li><%= footnote %></li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+    <div class="navigation">
+      <div class="row">
+        <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+          <%= fr_details_box(
+            FrBox.build(
+              :reader_aid,
+              title: 'Reader Aid Navigation',
+              header: {hover: false}
+            )
+          ) do %>
+            <h5><%= link_to "All Reader Aids Content", reader_aids_path %></h5>
+
+            <ul class="fr-list with-bullets reader-aids">
+              <% @presenter.sections.each do |section_identifier, section_data| %>
+                <li><%= link_to section_data[:title], reader_aids_section_path(section_identifier), class: "#{'active' if section_data[:title] == @presenter.title}" %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<% end %>
+

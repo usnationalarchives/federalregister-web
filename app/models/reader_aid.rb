@@ -87,6 +87,18 @@ class ReaderAid
   }
 
   INTERACTIVE_PAGES = {
+    'category-document-statistics' => {
+      template: 'reader_aids/category_statistics',
+      auxillary_presenter: Proc.new do
+        CategoryStatisticsPresenter.new(StatisticType::DOCUMENT_TYPE)
+      end
+    },
+    'category-page-statistics' => {
+      template: 'reader_aids/category_statistics',
+      auxillary_presenter: Proc.new do
+        CategoryStatisticsPresenter.new(StatisticType::PAGE_COUNT)
+      end
+    },
     'utilizing-complex-search-terms' => {
       template: 'search/documents/help',
     },
