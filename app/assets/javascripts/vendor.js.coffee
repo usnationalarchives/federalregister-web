@@ -39,8 +39,8 @@
 #= require numeral.min.js
 #= require languages.min.js
 
-# STICKY FROM SEMANTIC-UI (doc utility bar)
-#= require semantic-ui/sticky.min.js
+# STICKY FROM FOMANTIC-UI (doc utility bar)
+#= require fomantic-ui/sticky.min.js
 
 # USED FOR ZENDESK BROWSER DETECTION
 #= require bowser.js
