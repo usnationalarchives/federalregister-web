@@ -84,12 +84,21 @@ class @FR2.UtilityNav
       @nav.find('> li > .svg-tooltip[data-toggle="tooltip"]').tooltip('destroy')
 
   addSticky: ->
-    context = "." + @navWrapper.parents('.with-utility-nav')
+    context = "." + @contentWrapper
       .attr('class').split(' ').join('.')
 
     @nav.sticky({
       context: context,
-      offset: 0
+      offset: 0,
+      onReposition: () =>
+        # the grid structure of the util nav / content area causes the sticky
+        # code to be unable to calculate the height we want - so we hook into
+        # the reflow event, calculate as needed, and notify the sticky code again
+        contentBoxHeight = @contentWrapper.find('> .fr-box').height()
+        sizeDifference =  contentBoxHeight - @navWrapper.height()
+        if sizeDifference >= 1 || sizeDifference <= -1
+          @navWrapper.css('height', contentBoxHeight)
+          @nav.sticky('refresh')
     })
 
   addTooltips: ->
