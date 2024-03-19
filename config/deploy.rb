@@ -70,9 +70,9 @@ task :staging do
 
   role :rvm, "web-1.fr2.ec2.internal", "sphinx.fr2.ec2.internal", "worker.fr2.ec2.internal", "proxy.fr2.ec2.internal"
 
-  set :github_user_repo, 'criticaljuncture'
+  set :github_user_repo, 'usnationalarchives'
   set :github_project_repo, 'federalregister-web'
-  set :github_username, 'criticaljuncture'
+  set :github_username, 'usnationalarchives'
   set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
 end
 
