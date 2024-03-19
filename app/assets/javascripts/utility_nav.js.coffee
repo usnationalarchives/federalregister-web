@@ -73,7 +73,7 @@ class @FR2.UtilityNav
     setTimeout(
       =>
         @nav.find('.dropdown-menu').css('left', @nav.outerWidth())
-      1000
+      500
     )
 
   # when the util nav is wide we don't want tooltips on the nav items themselves
