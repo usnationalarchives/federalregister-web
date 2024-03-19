@@ -71,7 +71,7 @@ Rails.application.config.content_security_policy do |policy|
   ].compact
 
   policy.connect_src *connect_srcs
-  policy.frame_src :self, 'www.google.com'
+  policy.frame_src :self, 'www.google.com', 'www.youtube.com'
   policy.frame_ancestors :none
   policy.base_uri :self
 
