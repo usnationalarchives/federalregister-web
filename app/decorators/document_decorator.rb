@@ -26,12 +26,26 @@ class DocumentDecorator < ApplicationDecorator
   end
 
   def http_body_html_url
-    body_html_url.
-      gsub("https", "http")
+    uri = body_html_uri
+    uri.scheme = "http"
+    uri.to_s
   end
 
   def internal_body_html_url
-    body_html_url.gsub(Settings.services.fr.web.base_url, Settings.services.fr.web.internal_base_url)
+    uri = body_html_uri
+    internal_uri = URI.parse(
+      Settings.services.fr.web.internal_base_url
+    )
+
+    uri.hostname = internal_uri.hostname
+    uri.path = uri.path.prepend(internal_uri.path)
+    uri.port = internal_uri.port
+    uri.scheme = internal_uri.scheme
+    uri.to_s
+  end
+
+  def body_html_uri
+    URI.parse(body_html_url)
   end
 
   # Page Count/Range methods
