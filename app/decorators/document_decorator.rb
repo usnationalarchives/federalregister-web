@@ -161,4 +161,28 @@ class DocumentDecorator < ApplicationDecorator
     # GA data is provided on a delay of 24-48 hours
     publication_date != Date.current
   end
+
+  def full_text
+    if Settings.app.document_render.from_remote_raw_xml ||
+      Settings.app.document_render.from_raw_xml
+
+      HtmlCompilator::DocumentFullText.compile(object).html_safe
+    elsif Settings.app.document_render.from_remote
+      content = begin
+        HTTParty.get(body_html_url)
+      rescue StandardError
+        ""
+      end
+
+      content.html_safe
+    else
+      content = begin
+        HTTParty.get(internal_body_html_url)
+      rescue StandardError
+        ""
+      end
+
+      content.html_safe
+    end
+  end
 end
