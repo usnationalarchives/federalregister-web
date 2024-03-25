@@ -17,22 +17,6 @@
       has no substantive legal effect.
     </p>
 
-    <% if Settings.app.document_render.from_remote_raw_xml ||
-      Settings.app.document_render.from_raw_xml %>
-      <%= HtmlCompilator::TableOfContents.compile(document).html_safe %>
-    <% elsif Settings.app.document_render.from_remote %>
-      <%
-        url, path = document.body_html_url.split('full_text/')
-        url = "#{url}table_of_contents/#{path}"
-        content = begin
-          HTTParty.get(url)
-        rescue SocketError
-          ""
-        end
-      %>
-      <%= content.html_safe %>
-    <% else %>
-      <%= esi document_table_of_contents_path(document) %>
-    <% end %>
+    <%= document.table_of_contents %>
   <% end %>
 <% end %>

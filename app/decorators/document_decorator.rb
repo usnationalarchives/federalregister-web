@@ -19,12 +19,6 @@ class DocumentDecorator < ApplicationDecorator
     html_url.split('/').last
   end
 
-  def http_abstract_html_url
-    # RW: Fix this when upgrading varnish
-    abstract_html_url.
-      gsub("https", "http")
-  end
-
   def http_body_html_url
     uri = body_html_uri
     uri.scheme = "http"
@@ -42,6 +36,10 @@ class DocumentDecorator < ApplicationDecorator
     uri.port = internal_uri.port
     uri.scheme = internal_uri.scheme
     uri.to_s
+  end
+
+  def doc_table_of_contents_html_url
+    body_html_url.sub("/full_text/", "/table_of_contents/")
   end
 
   def body_html_uri
@@ -177,12 +175,46 @@ class DocumentDecorator < ApplicationDecorator
       content.html_safe
     else
       content = begin
-        HTTParty.get(internal_body_html_url)
+        File.read(path_manager.document_html_path("full_text"))
+      rescue StandardError
+        Honeybadger.notify(
+          "Missing document html full text",
+          context: {document: object}
+        )
+      end
+
+      content.html_safe
+    end
+  end
+
+  def table_of_contents
+    if Settings.app.document_render.from_remote_raw_xml ||
+      Settings.app.document_render.from_raw_xml
+
+      HtmlCompilator::TableOfContents.compile(object).html_safe
+    elsif Settings.app.document_render.from_remote
+      content = begin
+        HTTParty.get(doc_table_of_contents_html_url)
       rescue StandardError
         ""
       end
 
       content.html_safe
+    else
+      content = begin
+        File.read(path_manager.document_html_path("table_of_contents"))
+      rescue StandardError
+        Honeybadger.notify(
+          "Missing document html table of contents",
+          context: {document: object}
+        )
+      end
+
+      content.html_safe
     end
+  end
+
+  def path_manager
+    @path_manager ||= XsltPathManager.new(document_number, publication_date)
   end
 end
