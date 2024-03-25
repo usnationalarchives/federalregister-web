@@ -30,22 +30,6 @@
 
       <% unless @presenter.search.conditions_blank? %>
         <% if @presenter.search.valid? %>
-            <% if @presenter.search.results.present? %>
-                <div id="search-facets" class="facets">
-                <%= esi(
-                  public_inspection_search_facets_path(
-                    @presenter.search.params.merge(facet: 'type')
-                  )
-                ) unless @presenter.search.type.present? %>
-
-                <%= esi(
-                  public_inspection_search_facets_path(
-                    @presenter.search.params.merge(facet: 'agencies')
-                  )
-                ) unless @presenter.search.agencies.present? %>
-                </div>
-            <% end %>
-
             <div id="search-results">
               <%# if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') && @presenter.search.params[:order].blank? %>
                 <%#= esi( public_inspection_search_suggestions_path(

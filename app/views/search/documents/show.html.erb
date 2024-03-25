@@ -28,35 +28,6 @@
 
       <% unless @presenter.search.conditions_blank? %>
         <% if @presenter.search.valid? %>
-            <% if @presenter.search.results.present? %>
-                <div id="search-facets" class="facets">
-                  <%= esi( documents_search_facets_path(
-                      @presenter.search.params.merge(facet: 'publication_date')
-                    )
-                  ) unless @presenter.search.publication_date.present? %>
-
-                  <%= esi( documents_search_facets_path(
-                      @presenter.search.params.merge(facet: 'type')
-                    )
-                  ) unless @presenter.search.type.present? %>
-
-                  <%= esi( documents_search_facets_path(
-                      @presenter.search.params.merge(facet: 'agency', num_facets: 6, limit: 12)
-                    )
-                  ) unless @presenter.search.agencies.present? %>
-
-                  <%= esi( documents_search_facets_path(
-                      @presenter.search.params.merge(facet: 'topic', num_facets: 6)
-                    )
-                  ) unless @presenter.search.topics.present? %>
-
-                  <%= esi( documents_search_facets_path(
-                      @presenter.search.params.merge(facet: 'section', num_facets: 6)
-                    )
-                  ) unless @presenter.search.sections.present? %>
-                </div>
-            <% end %>
-
             <% col_span = @presenter.search.results.present? ? 9 : 12 %>
             <div id="search-results">
               <% if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') &&
