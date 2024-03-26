@@ -4,6 +4,7 @@
   - issue_processor
   - subscriptions
   - issue_reprocessor
+  - issue_recompilator
   - web_reg_gov
 
 # env specific settings if needed
