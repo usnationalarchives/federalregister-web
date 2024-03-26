@@ -181,6 +181,7 @@ class DocumentDecorator < ApplicationDecorator
           "Missing document html full text",
           context: {document: object}
         )
+        ""
       end
 
       content.html_safe
@@ -208,6 +209,7 @@ class DocumentDecorator < ApplicationDecorator
           "Missing document html table of contents",
           context: {document: object}
         )
+        ""
       end
 
       content.html_safe
