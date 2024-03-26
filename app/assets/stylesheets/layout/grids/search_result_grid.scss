@@ -191,5 +191,19 @@
     grid-template-areas: "search-result-header search-result-header search-result-header search-result-header"
                           "search-results search-results search-results search-results "
   }
+
+  fieldset.choices ol.choices-group { // Ensures checkboxes are displayed as block items instead of inline 
+    top: 0;
+
+    li {
+      margin-left: 215px;
+      display: block !important;
+    }
+
+    li:last-child {
+      margin-bottom: 35px;
+    }
+  }
+
 }
 
