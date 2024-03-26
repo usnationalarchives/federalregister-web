@@ -15,6 +15,9 @@ sidekiq:
   # kilobytes (integer) like 1048576 (1GB)
   memory_threshold: 1048576
 
+varnish:
+  host: varnish.fr.svc.cluster.local
+
 ################################################################
 # these are set by helm based on deployment settings
 # below are examples/staging defaults
@@ -40,6 +43,3 @@ services:
       internal_base_url: http://varnish.fr.svc.cluster.local:6081/my/profile
     wordpress:
       internal_base_url: http://varnish.fr.svc.cluster.local:6081
-
-varnish:
-  host: varnish.fr.svc.cluster.local
