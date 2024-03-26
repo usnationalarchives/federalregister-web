@@ -1,4 +1,8 @@
 // Add separate grid for aligning label, term field, and icon
+#entry_search_form #search-input {
+  margin-top: 2px; // Ensure top border of text input isn't cut off when focused
+}
+
 #search-input {
   display: grid;
   grid-template-columns: repeat(12,1fr);
