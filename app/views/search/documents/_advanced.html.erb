@@ -98,11 +98,11 @@
     label: 'Search',
     button_html: {
       id: 'conditions_submit',
-      class: 'fr_button primary large'
+      class: 'btn btn-primary fr_button'
     } %>
 
   <li>
-    <%= link_to "Clear Form", documents_search_path({}),
-      class: "clear_form" %>
+    <%= link_to "Reset", documents_search_path({}),
+      class: "btn btn-primary clear_form" %>
   </li>
 <% end %>

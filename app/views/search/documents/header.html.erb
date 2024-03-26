@@ -86,6 +86,21 @@
             wrapper_html: {class: "presidential_dependent"} %>
         <% end %>
       </div>
+
+      <%= f.actions do %>
+        <%= f.action :submit, as: :button,
+          label: 'Search',
+          button_html: {
+            id: 'conditions_submit',
+            class: 'btn btn-primary fr_button'
+          } %>
+
+        <li>
+          <%= link_to "Reset", documents_search_path({}),
+            class: "btn btn-primary clear_form" %>
+        </li>
+      <% end %>
+
     </div>
 
     <div class="advanced">

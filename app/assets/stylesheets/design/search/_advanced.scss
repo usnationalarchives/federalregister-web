@@ -8,8 +8,17 @@
   display: none;
 }
 
+.advanced.open .actions:nth-child(2) {
+  // Hide first set of buttons when additional filters are shown
+  display: none;
+}
+
 .advanced {
   margin-top: 1em;
+
+  .btn {
+    min-width: 150px;
+  }
 
   &.open {
     display: block;
@@ -310,15 +319,19 @@
 
     .button { background: none; }
     .fr_button {
-      border-radius: 6px;
-      border: 0;
-      height: 30px;
+      background: #7aa13d;
+      border-color: #7aa13d;
     }
 
     .clear_form {
-      margin-left: 10px;
+      border-color: #ccc;
+      background-color: #fff;
       position: relative;
       top: 1px;
+    }
+
+    .clear_form:active, .clear_form:hover, .clear_form:focus {
+      color: #3071a9;
     }
   }
 
