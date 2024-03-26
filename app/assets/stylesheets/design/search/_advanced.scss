@@ -3,8 +3,12 @@
   overflow: hidden;
 }
 
-.advanced {
+.advanced:not(.secondary-fields) {
+  // Don't hide secondary fields originally designed for advanced search
   display: none;
+}
+
+.advanced {
   margin-top: 1em;
 
   &.open {
@@ -323,3 +327,4 @@
   }
 
 }
+

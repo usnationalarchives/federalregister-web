@@ -15,43 +15,6 @@
 } %>
 
 <%= f.inputs :class => 'show_labels' do %>
-  <li class="string optional agency ui-front">
-    <label>Agency</label>
-    <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
-
-    <%= f.select :agencies,
-      @presenter.agencies.map{|a| [a.name, a.slug]},
-      {},
-      {
-        multiple: true,
-        class: 'selected_agency_list'
-      } %>
-  </li>
-
-  <%= f.input :type,
-    as: :check_boxes,
-    collection: DocumentType.
-      document_types_for_search.
-      map{|t| [t.display_type, t.granule_class]},
-    label: "Document Category",
-    required: false %>
-
-  <%= f.input :presidential_document_type,
-    as: :check_boxes,
-    collection: PresidentialDocumentType.all.
-      map{|pdt| [pdt.name, pdt.identifier]},
-    label: "Presidential Document Type",
-    required: false,
-    wrapper_html: {class: "presidential_dependent"} %>
-
-  <%= f.input :president,
-    as: :check_boxes,
-    collection: President.all.select{|x| x.starts_on >= Date.new(1993,1,20)}.
-      map{|p| [p.full_name, p.identifier]},
-    label: "President",
-    required: false,
-    wrapper_html: {class: "presidential_dependent"} %>
-
   <%= f.input :docket_id,
     input_html: {placeholder: "EPA-HQ-OPPT-2005-0049"},
     label: "Agency Docket",

@@ -111,13 +111,13 @@ class @FR2.SearchFormHandler
   openAdvancedSearch: ->
     $(".advanced").addClass("open")
     window.location.hash = "#advanced"
-    $("#toggle_advanced").text("Hide Advanced Search")
+    $("#toggle_advanced").text("Hide Additional Filters")
     @calculateExpectedResults()
 
   closeAdvancedSearch: ->
     $(".advanced").removeClass("open")
     window.location.hash = ""
-    $("#toggle_advanced").text("Show Advanced Search")
+    $("#toggle_advanced").text("More Filters")
     @calculateExpectedResults()
     false #return false or the hash will reset improperly
 

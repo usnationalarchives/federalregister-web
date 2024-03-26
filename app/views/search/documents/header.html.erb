@@ -37,7 +37,6 @@
         <%= subscribe_link conditions_for_subscription(@search) %>
 
         <span class="other-formats">
-          Other Formats:
           <%= link_to 'CSV/Excel', documents_search_path(
               params.except(:controller, :action, :quiet).merge(format: :csv)
             ) %>,
@@ -47,20 +46,60 @@
         </span>
       </div>
 
-      <div class="search-options">
-        <%= link_to "Show Advanced Search", '#advanced',
-          id: "toggle_advanced",
-          class: "pull-left" %>
-        <%= link_to 'Learn More', reader_aids_search_help_url,
-          class: 'pull-right' %>
+    </div>
+
+    <div class="advanced secondary-fields">
+      <div class="input-wrapper">
+        <%= f.inputs :class => 'show_labels' do %>
+          <li class="string optional agency ui-front">
+            <label>Agency</label>
+            <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
+
+            <%= f.select :agencies,
+              @presenter.agencies.map{|a| [a.name, a.slug]},
+              {},
+              {
+                multiple: true,
+                class: 'selected_agency_list'
+              } %>
+          </li>
+          <%= f.input :type,
+            as: :check_boxes,
+            collection: DocumentType.
+              document_types_for_search.
+              map{|t| [t.display_type, t.granule_class]},
+            label: "Document Category",
+            required: false %>
+          <%= f.input :presidential_document_type,
+            as: :check_boxes,
+            collection: PresidentialDocumentType.all.
+              map{|pdt| [pdt.name, pdt.identifier]},
+            label: "Presidential Document Type",
+            required: false,
+            wrapper_html: {class: "presidential_dependent"} %>
+          <%= f.input :president,
+            as: :check_boxes,
+            collection: President.all.reverse.
+              map{|p| [p.full_name, p.identifier]},
+            label: "President",
+            required: false,
+            wrapper_html: {class: "presidential_dependent"} %>
+        <% end %>
       </div>
     </div>
 
     <div class="advanced">
-      <div class="seperator"></div>
       <div class="input-wrapper">
         <%= render partial: "advanced", locals: {f: f} %>
       </div>
+    </div>
+
+    <div class="search-options">
+      <%= link_to "More Filters", '#advanced',
+        id: "toggle_advanced",
+        class: "pull-left" %>
+      <%= link_to 'Learn More', reader_aids_search_help_url,
+        class: 'pull-right' %>
     </div>
   <% end %>
 </div>
