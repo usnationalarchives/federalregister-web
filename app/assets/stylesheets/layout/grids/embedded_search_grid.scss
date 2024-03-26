@@ -2,6 +2,10 @@
   grid-area: search-input;
 }
 
+#embedded_entry_search_form #search-input {
+  column-gap: 2px;
+}
+
 #expected_result_count {
   grid-area: expected_result_count;
 }
