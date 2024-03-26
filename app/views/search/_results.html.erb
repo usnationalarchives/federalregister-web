@@ -71,7 +71,7 @@
         <% else %>
           <% if document.excerpts.present? %>
             <p class="description">
-              <%= truncate_words(sanitize(document.excerpts), :length => 350).try(:html_safe) %>
+              <%= sanitize(document.excerpts).try(:html_safe) %>
             </p>
           <% end %>
         <% end %>
