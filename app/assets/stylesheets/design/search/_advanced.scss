@@ -24,14 +24,15 @@
     min-width: 150px;
   }
 
+  .seperator {
+    border-top: 1px solid $gray-20;
+    margin: 20px auto;
+    width: 95%;
+  }
+
   &.open {
     display: block;
 
-    .seperator {
-      border-top: 1px solid $gray-20;
-      margin: 20px auto;
-      width: 95%;
-    }
   }
 
   .input-wrapper { padding: 0 5em 0; }
@@ -314,7 +315,6 @@
 
   fieldset.actions {
     margin-left: 215px;
-    margin-top: 20px;
 
     li {
       display: inline-block;
@@ -331,7 +331,6 @@
       border-color: #ccc;
       background-color: #fff;
       position: relative;
-      top: 1px;
     }
 
     .clear_form:active, .clear_form:hover, .clear_form:focus {

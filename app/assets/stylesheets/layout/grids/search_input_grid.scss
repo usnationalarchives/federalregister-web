@@ -20,4 +20,14 @@
     justify-self: start;
     grid-column: span 1;
   }
+
+  #toggle_advanced {
+    grid-column: span 6;
+  }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    #toggle_advanced {
+      margin: 10px 0px;
+    }
+  }
 }

@@ -26,6 +26,7 @@
           class: 'search-submit',
           id: 'conditions_submit',
           "aria-label" => 'Search' %>
+        <%= link_to "More Filters", '#advanced', id: "toggle_advanced" %>
       </div>
 
       <span id="expected_result_count" class="search-result-count">
@@ -44,11 +45,14 @@
               params.except(:controller, :action, :quiet).merge(format: :json)
             ) %>
         </span>
+        <%= link_to 'Learn More', reader_aids_search_help_url,
+          class: '' %>
       </div>
 
     </div>
 
     <div class="advanced secondary-fields">
+      <div class="seperator"></div>
       <div class="input-wrapper">
         <%= f.inputs :class => 'show_labels' do %>
           <li class="string optional agency ui-front">
@@ -109,12 +113,5 @@
       </div>
     </div>
 
-    <div class="search-options">
-      <%= link_to "More Filters", '#advanced',
-        id: "toggle_advanced",
-        class: "pull-left" %>
-      <%= link_to 'Learn More', reader_aids_search_help_url,
-        class: 'pull-right' %>
-    </div>
   <% end %>
 </div>

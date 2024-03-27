@@ -14,15 +14,18 @@
     padding-right: 10px;
     text-align: right;
 
+    ol {
+      margin-bottom: 0px;
+    }
+
 
     .other-formats {
       display: block;
       font-size: modular-scale(0);
-      margin-top: 10px;
+      margin-top: 3px;
 
       a {
         color: $link-dark;
-        font-weight: 500;
 
         &:visited { color: $link-dark; }
         &:hover { color: $link-hover; }
