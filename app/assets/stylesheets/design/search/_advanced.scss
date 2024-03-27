@@ -16,6 +16,10 @@
 .advanced {
   margin-top: 1em;
 
+  #conditions_agencies, .presidential_dependent { // Prevent page-load flash by hiding these items by default
+    display: none;
+  }
+
   .btn {
     min-width: 150px;
   }
