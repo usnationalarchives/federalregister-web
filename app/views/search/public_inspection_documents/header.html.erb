@@ -15,53 +15,102 @@
       class: 'public-inspection'
     } do |f| %>
 
-    <div class="simple">
-      <div id="search-input">
-        <label class="sr-only">Find</label>
-        <%= f.text_field :term,
-          class: 'search-term',
-          placeholder: t('search.placeholder') %>
-        <%= f.button fr_icon('Search').html_safe,
-          class: 'search-submit',
-          id: 'conditions_submit',
-          "aria-label" => 'Search' %>
+  <div class="search-form-grid">
+    <div class="search-form-inputs">
+      <div class="advanced secondary-fields">
+        <div class="input-wrapper">
+          <%= f.inputs :class => 'show_labels' do %>
+            <%= f.input :term,
+              label: "Find",
+              placeholder: t('search.placeholder'),
+              wrapper_html: {class: 'docket'} %>
+              <span id="expected_result_count" class="search-result-count">
+                <span class="document-count"></span>
+                <span class="loader"></span>
+              </span>
+            <%= f.input :type,
+              as: :check_boxes,
+              collection: DocumentType.
+                document_types_for_search.
+                map{|t| [t.display_type, t.granule_class]},
+              label: "Document Category",
+              required: false %>
+            <%= f.input :presidential_document_type,
+              as: :check_boxes,
+              collection: PresidentialDocumentType.all.
+                map{|pdt| [pdt.name, pdt.identifier]},
+              label: "Presidential Document Type",
+              required: false,
+              wrapper_html: {class: "presidential_dependent"} %>
+            <%= f.input :president,
+              as: :check_boxes,
+              collection: President.all.select{|x| x.starts_on > Date.new(1993,1,20)}.reverse.
+                map{|p| [p.full_name, p.identifier]},
+              label: "President",
+              required: false,
+              wrapper_html: {class: "presidential_dependent"} %>
+          <% end %>
+          <%= f.inputs :class => 'show_labels' do %>
+            <li class="string optional agency ui-front">
+              <label>Agency</label>
+              <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
+
+              <%= f.select :agencies,
+                @presenter.agencies.map{|a| [a.name, a.slug]},
+                {},
+                {
+                  multiple: true,
+                  class: 'selected_agency_list'
+                } %>
+            </li>
+          <% end %>
+        </div>
       </div>
 
-      <span id="expected_result_count" class="search-result-count">
-        <span class="document-count"></span>
-        <span class="loader"></span>
+      <div class="advanced">
+        <div class="input-wrapper">
+          <%= render partial: "advanced", locals: {f: f} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions auxillary-links">
+      <%= subscribe_link conditions_for_subscription(@search) %>
+      <span class="other-formats">
+        <%= link_to 'CSV/Excel', public_inspection_search_path(
+          params.except(:controller, :action, :quiet).merge(format: :csv)
+        ) %>,
+        <%= link_to 'JSON', public_inspection_search_path(
+            params.except(:controller, :action, :quiet).merge(format: :json)
+          ) %>
       </span>
-
-
-      <div class="actions">
-        <%= subscribe_link conditions_for_subscription(@search) %>
-
-        <span class="other-formats">
-          Other Formats:
-          <%= link_to 'CSV/Excel', public_inspection_search_path(
-              params.except(:controller, :action, :quiet).merge(format: :csv)
-            ) %>,
-          <%= link_to 'JSON', public_inspection_search_path(
-              params.except(:controller, :action, :quiet).merge(format: :json)
-            ) %>
-        </span>
-      </div>
-
-
-      <div class="search-options">
-        <%= link_to 'Show Advanced Search', '#advanced',
-          id: "toggle_advanced",
-          class: "pull-left" %>
-        <%= link_to 'Learn More', reader_aids_search_help_url,
-          class: "pull-right" %>
-      </div>
+      <%= link_to 'Learn More', reader_aids_search_help_url,
+        class: '' %>
     </div>
 
-    <div class="advanced">
-      <div class="seperator"></div>
-      <div class="input-wrapper">
-        <%= render partial: "advanced", locals: {f: f} %>
-      </div>
+    <div class="action-buttons">
+      <%= f.actions do %>
+        <li>
+          <%= link_to "More Filters", '#advanced', id: "toggle_advanced", class: "btn btn-primary white-btn" %>
+        </li>
+
+        <div>
+          <%= f.action :submit, as: :button,
+            label: 'Search',
+            button_html: {
+              id: 'conditions_submit',
+              class: 'btn btn-primary fr_button'
+            } %>
+
+          <li>
+            <%= link_to "Reset", public_inspection_search_path({}),
+              class: "btn btn-primary clear_form white-btn" %>
+          </li>
+        </div>
+      <% end %>
     </div>
+  </div>
+
   <% end %>
+
 </div>

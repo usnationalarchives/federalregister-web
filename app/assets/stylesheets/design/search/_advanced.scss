@@ -8,13 +8,18 @@
   display: none;
 }
 
-.advanced.open .actions:nth-child(3) {
+.advanced.open .actions:nth-child(2) {
   // Hide first set of buttons when additional filters are shown
-  display: none;
+  // display: none;
 }
 
 .advanced {
   margin-top: 1em;
+
+  #conditions_term {
+    top: 0px;
+    height: 40px;
+  }
 
   #conditions_agencies, .presidential_dependent { // Prevent page-load flash by hiding these items by default
     display: none;
@@ -35,7 +40,7 @@
 
   }
 
-  .input-wrapper { padding: 0 5em 0; }
+  .input-wrapper { padding: 0 2em 0; }
 
   %advanced-legend {
     color: $search-form-label-text;
@@ -313,30 +318,6 @@
   #conditions_type_input { clear: both; }
 
 
-  fieldset.actions {
-    margin-left: 215px;
-
-    li {
-      display: inline-block;
-      height: 100%;
-    }
-
-    .button { background: none; }
-    .fr_button {
-      background: #7aa13d;
-      border-color: #7aa13d;
-    }
-
-    .clear_form {
-      border-color: #ccc;
-      background-color: #fff;
-      position: relative;
-    }
-
-    .clear_form:active, .clear_form:hover, .clear_form:focus {
-      color: #3071a9;
-    }
-  }
 
   #conditions_cfr_title {
     width: 44px !important;
@@ -344,3 +325,31 @@
 
 }
 
+.search-bar fieldset.actions {
+
+  li {
+    display: inline-block;
+    height: 100%;
+  }
+
+  .button { background: none; }
+  .fr_button {
+    background: #7aa13d;
+    border-color: #7aa13d;
+  }
+
+  .btn {
+    min-width: 150px;
+  }
+
+  .white-btn {
+    border-color: #ccc;
+    background-color: #fff;
+    position: relative;
+    color: #3071a9 !important;
+
+    &:active, &:hover, &:focus {
+      color: #3071a9;
+    }
+  }
+}

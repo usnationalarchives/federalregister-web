@@ -1,25 +1,4 @@
 <%= f.inputs :class => 'show_labels' do %>
-  <li class="string optional agency">
-    <label>Agency</label>
-    <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department"/>
-
-    <%= f.select :agencies,
-      @presenter.agencies.map{|a| [a.name, a.slug]},
-      {},
-      {
-        multiple: :multiple,
-        class: 'selected_agency_list'
-      } %>
-  </li>
-
-  <%= f.input :type,
-              :label => "Document Category",
-              :as => :check_boxes,
-              :collection => DocumentType.
-                document_types_for_search.
-                map{|t| [t.display_type, t.granule_class]},
-              :required => false %>
-
   <%= f.input :special_filing,
               :as => :radio,
               :label => "Filing Type",
@@ -31,18 +10,4 @@
               :input_html => {:placeholder => "EPA-HQ-OPPT-2005-0049"},
               :wrapper_html => {:class => 'docket'},
               :required => false %>
-<% end %>
-
-<%= f.actions do %>
-  <%= f.action :submit, as: :button,
-    label: 'Search',
-    button_html: {
-      id: 'conditions_submit',
-      class: 'fr_button primary large'
-    } %>
-
-  <li>
-    <%= link_to "Clear Form", public_inspection_search_path({}),
-      :class => "clear_form" %>
-  </li>
 <% end %>

@@ -92,17 +92,3 @@
     <%= hidden_field_tag "conditions[#{param}][]", val %>
   <% end %>
 <% end %>
-
-<%= f.actions do %>
-  <%= f.action :submit, as: :button,
-    label: 'Search',
-    button_html: {
-      id: 'conditions_submit',
-      class: 'btn btn-primary fr_button'
-    } %>
-
-  <li>
-    <%= link_to "Reset", documents_search_path({}),
-      class: "btn btn-primary clear_form" %>
-  </li>
-<% end %>
