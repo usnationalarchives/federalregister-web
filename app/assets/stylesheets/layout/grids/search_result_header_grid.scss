@@ -1,22 +1,8 @@
-div.search-bar {
-
-  .search-form-grid {
+div.search-bar .search-form-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
 
-    #expected_result_count {
-      position: absolute;
-      top: 32px;
-      left: 500px;
-    }
 
-    .search-form-inputs {
-      grid-column: span 11;
-    }
-
-    .auxillary-links {
-      grid-column:  span 1;
-    }
 
     .action-buttons {
       grid-column: span 12;
@@ -26,14 +12,11 @@ div.search-bar {
         grid-template-columns: repeat(2, 1fr);
 
         li:nth-child(1) {
-          margin: 0px 14px;
+          // margin: 0px 14px;
           justify-self: start;
         }
       }
     }
-
-
-  }
 
   .actions {
     $action_font_size: 14px;
@@ -60,22 +43,48 @@ div.search-bar {
   }
 
   @media only screen and (max-width: $small-viewport-width) {
-    .simple {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-areas: 
-        "search-input search-input search-input search-input"
-        "expected_result_count . . actions"
-        "search-options search-options search-options search-options"
+    .search-form-inputs {
+      grid-column: span 12;
+    }
+
+    .auxillary-links {
+      grid-column:  span 12;
+      margin: 10px 0px;
+      justify-self: start;
+    }
+
+    #expected_result_count {
+      margin: 0px;
+    }
+
+    .actions {
+      height: 43px;
+    }
+
+    .btn {
+      min-width: 127px;
     }
   }
 
   @media only screen and (min-width: $small-viewport-width) {
-    .simple {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-areas: 
-        "search-input search-input expected_result_count actions"
-        "search-options search-options search-options search-options"
+    .search-form-inputs {
+      grid-column: span 11;
     }
+
+    .auxillary-links {
+      grid-column:  span 1;
+    }
+
+    #expected_result_count {
+      position: absolute;
+      top: 32px;
+      left: 500px;
+    }
+
+    .btn {
+      min-width: 150px;
+    }
+
   }
 
 }
