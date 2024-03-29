@@ -189,7 +189,7 @@
                           "search-results search-results search-results search-results "
   }
 
-  fieldset.choices ol.choices-group { // Ensures checkboxes are displayed as block items instead of inline 
+  fieldset.choices ol.choices-group { // By default, ensure checkboxes are vertically aligned
     top: 0;
 
     li {
@@ -200,6 +200,14 @@
     li:last-child {
       margin-bottom: 35px;
     }
+  }
+
+  .column-checkbox-display ol { // Arranges checkboxes in a column-based layout
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+
+    li {margin-left: 20px !important;}
   }
 
 }
