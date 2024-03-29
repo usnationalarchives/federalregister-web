@@ -2,8 +2,6 @@ div.search-bar .search-form-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
 
-
-
     .action-buttons {
       grid-column: span 12;
 
@@ -77,20 +75,17 @@ div.search-bar .search-form-grid {
   @media only screen and (min-width: $small-viewport-width) {
     .search-form-inputs {
       grid-column: span 11;
+      padding-bottom: 10px;
     }
 
     .auxillary-links {
       grid-column:  span 1;
     }
 
-    .actions {
-      height: 42px;
-    }
-
     #expected_result_count {
       position: absolute;
       top: 32px;
-      left: 500px;
+      left: 619px;
     }
 
     .btn {

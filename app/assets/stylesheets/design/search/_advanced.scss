@@ -17,8 +17,9 @@
   margin-top: 1em;
 
   #conditions_term {
-    top: 0px;
     height: 40px;
+    margin-left: 7px;
+    top: 0px;
   }
 
   #conditions_agencies, .presidential_dependent { // Prevent page-load flash by hiding these items by default
@@ -40,7 +41,7 @@
 
   }
 
-  .input-wrapper { padding: 0 2em 0; }
+  .input-wrapper { padding: 0 1em 0; }
 
   %advanced-legend {
     color: $search-form-label-text;
@@ -49,6 +50,20 @@
     text-align: right;
     white-space: normal;
     width: 200px;
+  }
+
+  // replicating bootstrap input styles
+  %input-base-styles {
+    border: 1px solid $gray-20;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+    &:focus {
+      border-color: #66afe9;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+    }
   }
 
   abbr {
@@ -66,10 +81,20 @@
 
   ol { list-style: none; }
 
+  select {
+    @extend %input-base-styles;
+
+    height: 40px;
+    text-align: center;
+    width: 132px;
+  }
+
   li.input {
-    clear: both;
+    min-height: 50px;
 
     input {
+      @extend %input-base-styles;
+
       @include placeholder {
         color: $gray-15;
         font-style: italic;
@@ -79,7 +104,14 @@
       position: relative;
       top: 10px;
     }
+
+    input[type=text] {
+      height: 40px;
+      width: 382px;
+    }
   }
+
+  li.row_of_options { margin-bottom: 0; }
 
   fieldset {
     clear: both;
@@ -101,6 +133,8 @@
     &.zip {
       legend { float: left; }
       label { margin-top: 0; }
+
+      > ol { margin-bottom: 0; }
     }
 
     &.cfr,
@@ -112,6 +146,11 @@
 
         input { top: 0; }
       }
+    }
+
+    &.cfr legend {
+      position: relative;
+      top: 8px;
     }
   }
 
@@ -134,6 +173,28 @@
         overflow: auto;
 
         &.exact_date,
+        &.exact_year,
+        &.range {
+          label {
+            position: relative;
+            top: 9px;
+          }
+        }
+
+        &.exact_date,
+        &.exact_year {
+          input { width: 282px; }
+        }
+
+        &.exact_date { margin-left: 230px; }
+        &.exact_year { margin-left: 211px; }
+
+        &.range {
+          margin-left: 200px;
+          input { width: 240px; }
+        }
+
+        &.exact_date,
         &.exact_year {
           label { margin-left: 40px; }
         }
@@ -154,7 +215,6 @@
         select {
           position: relative;
           top: 2px;
-          width: 75px;
         }
 
         input { top: 0px; }
@@ -171,8 +231,19 @@
         margin-left: 0;
       }
 
+      li.string {
+        &.agency label {
+          position: relative;
+          top: 7px;
+        }
+
+        &.docket label {
+          position: relative;
+          top: 8px;
+        }
+      }
+
       li.agency {
-        height: auto;
         position: relative;
 
         input {
@@ -182,10 +253,23 @@
             font-weight: 400;
           }
 
+          height: 40px;
           margin-left: 7px;
           position: relative;
           top: 6px;
-          width: 500px;
+          width: 382px;
+
+          // replicating bootstrap input styles
+          border: 1px solid $gray-20;
+          border-radius: 4px;
+          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+          &:focus {
+            border-color: #66afe9;
+            outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+          }
         }
       }
 
@@ -201,8 +285,6 @@
           margin-right: 15px;
           padding-right: 0px;
         }
-
-        input { width: 250px; }
       }
 
       li.significant {
@@ -235,6 +317,7 @@
     }
 
     ol {
+      overflow: auto;
       position: relative;
       top: 12px;
 
@@ -318,11 +401,9 @@
   #conditions_type_input { clear: both; }
 
 
-
-  #conditions_cfr_title {
-    width: 44px !important;
-  }
-
+  #conditions_cfr_title { width: 100px; }
+  #conditions_cfr_part { width: 245px; }
+  #conditions_near_location { width: 200px; }
 }
 
 .search-bar fieldset.actions {

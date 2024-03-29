@@ -59,7 +59,7 @@
 
   // Advanced search form adjustments
   .search .advanced {
-    $advanced-search-fieldset-vertical-spacing: 20px; // The intent of this setting is to provide a setting that can be used to globally affect the spacing between the various kinds of fieldsets on the advanced search form 
+    $advanced-search-fieldset-vertical-spacing: 20px; // The intent of this setting is to provide a setting that can be used to globally affect the spacing between the various kinds of fieldsets on the advanced search form
 
     fieldset:not(.show_labels), fieldset.show_labels ol.choices-group, fieldset.show_labels li.string input {
       margin-bottom: $advanced-search-fieldset-vertical-spacing;
@@ -97,7 +97,7 @@
     }
 
     // Text Input Fields
-    li.agency label, li.docket label, li.reg_id label{
+    input[type=text] label{
       text-align: left !important;
       float: none;
       padding-left: 0px;
@@ -107,9 +107,9 @@
       margin-left: 0px !important;
     }
 
-    li.docket, li.reg_id {
-      height: auto;
-    }
+    // li.docket, li.reg_id {
+    //   height: auto;
+    // }
 
     // Checkboxes
     #conditions_type_input legend, #conditions_small_entity_ids_input legend {
@@ -118,7 +118,7 @@
       margin-bottom: 0px;
 
       label {
-        float: none; 
+        float: none;
       }
     }
 
@@ -193,7 +193,6 @@
     top: 0;
 
     li {
-      margin-left: 215px;
       display: block !important;
     }
 
@@ -211,4 +210,3 @@
   }
 
 }
-

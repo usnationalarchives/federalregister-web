@@ -14,8 +14,11 @@
 
   .search-bar {
     li {
-      height: 21px;
       margin-bottom: 13px;
+
+      &.choice { height: 21px; }
+      // &.string { min-height: 40px; }
+
       fieldset {
         float: left;
         width: 100%;
