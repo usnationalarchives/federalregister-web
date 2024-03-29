@@ -8,6 +8,7 @@ class @FR2.SearchCount
         amplify.store('searchCount', {})
 
     get: (url)->
+      @init() # After 5 minutes occur, if a get() is re-attempted the 'searchCount' key no longer appears to exist', make sure the hash key is re-initialized accordingly
       amplify.store('searchCount')[url]
 
     set: (url, value)->
