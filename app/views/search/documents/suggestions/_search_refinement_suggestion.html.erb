@@ -1,22 +1,20 @@
-<div class="suggestion">
-  <%= fr_icon 'Search' %>
-
-  <div class="suggestion-content">
-    <p>
-      Did you mean the
-      <%= link_to pluralize(search_refinement_suggestion.count, "document"),
-        documents_search_path(
-          conditions: search_refinement_suggestion.search_conditions
-        ),
-        class: 'fr-ga-event',
-        data: {
-          event_name: 'fr_search_suggestion_click',
-          event_parameters: {
-            suggestion_type: 'search_refinement',
-            suggestion_text: CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe
-          }.to_json
-        } %>
-      <%= CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe %>?
-    </p>
-  </div>
-</div>
+<%= notification(
+  ContentNotification.new(
+    text: "Did you mean the #{pluralize(search_refinement_suggestion.count, "document")} #{CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe}?",
+    link: link_to("View Results",
+      documents_search_path(
+        conditions: search_refinement_suggestion.search_conditions
+      ),
+      class: 'fr-ga-event',
+      data: {
+        event_name: 'fr_search_suggestion_click',
+        event_parameters: {
+          suggestion_type: 'search_refinement',
+          suggestion_text: CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe
+        }.to_json
+      }
+    ),
+    type: :success,
+    icon: 'search'
+  )
+) %>

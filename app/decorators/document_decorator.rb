@@ -129,6 +129,12 @@ class DocumentDecorator < ApplicationDecorator
     @document_metadata_description = description.html_safe
   end
 
+  # used by search suggestions
+  def simple_metadata_description
+    description = "#{type.with_indefinite_article(true)} by " +
+      content_tag(:span, h.strip_tags(agency_name_sentence))
+  end
+
   def citation_vol
     return unless citation_available?
     citation.split('FR').first().strip

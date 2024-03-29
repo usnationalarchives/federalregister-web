@@ -15,4 +15,13 @@ class SearchPresenter::Base
   def agency_ids
     agencies.map(&:id)
   end
+
+  def search_suggestions
+    search_details = search.search_details
+
+    return nil unless search_details.present? &&
+      search_details.suggestions.present?
+
+    SearchPresenter::Suggestions.new(search_details.suggestions)
+  end
 end

@@ -32,7 +32,14 @@
             <div id="search-results">
               <% if (@presenter.search.params[:page].blank? || @presenter.search.params[:page] == '1') &&
                 @presenter.search.params[:order].blank? %>
-                <%= esi documents_search_suggestions_path(@presenter.search.params)%>
+                <% if @presenter.search_suggestions.present? %>
+                  <div class="suggestions">
+                    <% @presenter.search_suggestions.each do |suggestion| %>
+                      <%= notification(suggestion) %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <%#= esi documents_search_suggestions_path(@presenter.search.params)%>
               <% end %>
 
               <%= esi(documents_search_results_path(@presenter.search.params)) %>

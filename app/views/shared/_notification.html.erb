@@ -1,0 +1,33 @@
+<div class="<%= wrapper_classes %>"
+  id="<%= content_notification.id || "content-notification-#{content_notification.trackable_id}" %>"
+>
+  <% if content_notification.closable? %>
+    <div class="dismiss-link">
+      <%= svg_icon 'badge-x' %>
+    </div>
+  <% end %>
+
+  <div class="message-icon">
+    <%= content_notification.icon ? svg_icon(content_notification.icon)
+      : content_notification_icon(content_notification.type) %>
+  </div>
+
+  <div class="message">
+
+      <%= content_notification.text.html_safe %>
+
+
+  </div>
+    <% if content_notification.actions.present? %>
+      <div class="message-actions">
+        <%= content_notification.actions %>
+      </div>
+    <% end %>
+
+
+  <% if content_notification.link.present? %>
+    <div class="message-link">
+      <%= content_notification.link %>
+    </div>
+  <% end %>
+</div>

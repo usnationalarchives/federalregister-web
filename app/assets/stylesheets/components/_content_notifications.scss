@@ -1,0 +1,213 @@
+.content-notification {
+  display: grid;
+
+  grid-template-areas: "icon message link";
+
+  grid-template-columns: 35px 1fr 150px;
+
+  .message { grid-area: message; }
+  .message-icon {
+    align-self: center;
+    grid-area: icon;
+    justify-self: center;
+  }
+  .message-link {
+    align-self: center;
+    grid-area: link;
+    justify-self: right;
+  }
+
+  // because we don't specify an area, actions are auto filled by the grid
+  // but we want them in the second col under the message area
+  .message-actions { grid-column-start: 2; }
+}
+
+.content-notification {
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: modular-scale(1);
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  position: relative;
+
+  a { cursor: pointer !important; }
+
+  $svg-icon-size: 28px;
+  .svg-icon {
+    float: left;
+    height: $svg-icon-size;
+    margin-right: 10px;
+    width: $svg-icon-size;
+  }
+
+  .message,
+  .message-actions {
+    a,
+    a:visited {
+      text-decoration: underline;
+
+      color: darken($link-dark, 10);
+
+      &:hover { color: darken($link-dark, 20); }
+    }
+  }
+
+  .message,
+  .message-actions {
+    p {
+      font-size: modular-scale(1);
+      margin: 0;
+      padding: 10px;
+      text-align: left;
+    }
+  }
+
+  .message {
+    ul { margin-left: 10px; }
+
+    .addition,
+    .term {
+      font-weight: bold;
+    }
+
+    .svg-icon {
+      height: 18px;
+      margin: 0;
+      position: relative;
+      top: 3px;
+      width: 18px;
+    }
+  }
+
+  .message-link {
+    a,
+    a:visited {
+      font-weight: 500;
+      color: darken($link-dark, 10);
+      text-decoration: none;
+
+      &:hover { color: darken($link-dark, 20); }
+    }
+  }
+
+  .dismiss-link {
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top: 2px;
+
+    .svg-icon {
+      font-size: modular-scale(2);
+      margin-right: 0;
+    }
+  }
+
+  &.basic {
+    background-color: $gray-10;
+    border-color: $gray-15;
+  }
+
+  &.danger {
+    background-color: $alert-danger-bg;
+    border-color: $alert-danger-border;
+    color: $alert-danger-text;
+
+    // a,
+    // a:visited {
+    //   color: $alert-danger-text;
+
+    //   &:hover { color: darken($alert-danger-text, 15); }
+    // }
+
+    .svg-icon { fill: $alert-danger-text; }
+  }
+
+  &.feature {
+    background-color: lighten($feature-color, 55);
+    border-color: lighten($feature-color, 45);
+    color: $feature-color;
+
+    // a,
+    // a:visited {
+    //   color: $feature-color;
+
+    //   &:hover { color: darken($feature-color, 15); }
+    // }
+
+    .svg-icon { fill: $feature-color; }
+  }
+
+  &.info {
+    background-color: $alert-info-bg;
+    border-color: $alert-info-border;
+    color: $alert-info-text;
+
+    // a,
+    // a:visited {
+    //   color: $alert-info-text;
+
+    //   &:hover { color: darken($alert-info-text, 15); }
+    // }
+
+    .svg-icon { fill: $alert-info-text; }
+  }
+
+  &.success {
+    background-color: $alert-success-bg;
+    border-color: $alert-success-border;
+    color: $alert-success-text;
+
+    // a,
+    // a:visited {
+    //   color: darken($link-dark, 5);
+
+    //   &:hover { color: darken($link-dark, 15); }
+    // }
+
+    .svg-icon { fill: $alert-success-text; }
+  }
+
+  &.warning {
+    background-color: $alert-warning-bg;
+    border-color: $alert-warning-border;
+    color: $alert-warning-text;
+
+    // a,
+    // a:visited {
+    //   color: $alert-warning-text;
+
+    //   &:hover { color: darken($alert-warning-text, 15); }
+    // }
+
+    .svg-icon { fill: $alert-warning-text; }
+  }
+
+  // additional suggestion specific styles
+
+  // citation suggestions
+  .message-actions .matching-documents {
+    > ul {
+      margin-left: 30px;
+      $indent: 20px;
+      @include custom-bullets($color-enhanced-dark, $indent);
+
+      > li {
+        margin-bottom: 10px;
+
+        ul {
+          margin-left: $indent;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    h5 {
+      display: inline;
+      margin: 0;
+
+      a { font-weight: normal; }
+    }
+
+    .metadata { font-size: modular-scale(0); }
+  }
+}
