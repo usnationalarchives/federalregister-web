@@ -39,7 +39,10 @@ div.search-bar .search-form-grid {
 
   .search-options {
     margin-top: 10px;
-    // grid-area: search-options;
+  }
+
+  #toggle_advanced {
+    margin: 0px 10px;
   }
 
   @media only screen and (max-width: $small-viewport-width) {
@@ -58,12 +61,17 @@ div.search-bar .search-form-grid {
     }
 
     .actions {
-      height: 43px;
+      height: 81px;
     }
 
     .btn {
       min-width: 127px;
     }
+
+    .clear_form {
+      margin-top: 16px;
+    }
+
   }
 
   @media only screen and (min-width: $small-viewport-width) {
@@ -73,6 +81,10 @@ div.search-bar .search-form-grid {
 
     .auxillary-links {
       grid-column:  span 1;
+    }
+
+    .actions {
+      height: 42px;
     }
 
     #expected_result_count {
