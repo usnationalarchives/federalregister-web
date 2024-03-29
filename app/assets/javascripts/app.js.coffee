@@ -1,3 +1,7 @@
+# manipulating the DOM before it's rendered to avoid flash of content
+$(document).on "DOMContentLoaded", (event)->
+  (new OFR.ContentNotifications(FR2.UserPreferenceStore)).hideIgnored()
+
 
 $(document).ready ()->
   new FR2.HoneybadgerConfigurer()

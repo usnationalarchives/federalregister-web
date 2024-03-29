@@ -16,6 +16,7 @@
 #= require utilities/user_navigation_manager
 #= require utilities/user_utils
 
+#= require ofr/content_notifications
 #= require ofr/copy_to_clipboard
 #= require ofr/site_feedback_handler
 #= require ofr/zendesk_form_handler

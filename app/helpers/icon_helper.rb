@@ -1,4 +1,19 @@
 module IconHelper
+  def content_notification_icon(type)
+    case type.to_sym
+    when :basic, :success
+      ""
+    when :danger
+      svg_icon("alert-alt")
+    when :feature
+      svg_icon("megaphone")
+    when :info
+      svg_icon("info-circle")
+    when :warning
+      svg_icon("alert")
+    end
+  end
+
   def fr_icon(name, options={})
     css_class = options.delete(:class) if options[:class]
     options.merge!(

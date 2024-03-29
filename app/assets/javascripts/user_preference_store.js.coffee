@@ -26,6 +26,19 @@ class @FR2.UserPreferenceStore
       {externalUrlModal: Object.assign(@_get().externalUrlModal, setting)}
     )
 
+  # Content Notifications
+  @getContentNotificationsSettings: ->
+    @_getSession().contentNotificationsSettings
+
+  @saveContentNotificationsSetting: (setting)->
+    @_saveSession(
+      {
+        contentNotificationsSettings: Object.assign(
+          @_getSession().contentNotificationsSettings, setting
+        )
+      }
+    )
+
   # private
   @_get: ->
     amplify.store().userPreferences
@@ -80,7 +93,7 @@ class @FR2.UserPreferenceStore
 
   @_defaultSessionStore: ->
     {
-      # contentNotificationsSettings: {
-      #   ignoredNotifications: []
-      # }
+      contentNotificationsSettings: {
+        ignoredNotifications: []
+      }
     }

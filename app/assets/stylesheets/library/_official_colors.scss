@@ -60,3 +60,32 @@ $text-inactive: $med-gray;
 $text-light: $gray-60;
 $text: $dark-gray;
 $header: $dark-gray;
+
+
+// bootstrap background colors
+$success-green: #dff0d8;
+$danger-red: #f2dede;
+$warning-yellow: #fcf8e3;
+$info-blue: #d9edf7;
+$active-gray: #f5f5f5;
+
+// success modified to match our enhanced colors
+$alert-success-text:   $color-enhanced-dark !default;
+$alert-success-bg:     $color-enhanced-light !default;
+$alert-success-border: $color-enhanced-mid !default;
+
+$alert-info-text:      #31708f !default;
+$alert-info-bg:        #d9edf7 !default;
+$alert-info-border:    darken(adjust-hue($alert-info-bg, -10), 7%) !default;
+
+$alert-warning-text:   #8a6d3b !default;
+$alert-warning-bg:     #fcf8e3 !default;
+$alert-warning-border: darken(adjust-hue($alert-warning-bg, -10), 5%) !default;
+
+$alert-danger-text:    #a94442 !default;
+$alert-danger-bg:      #f2dede !default;
+$alert-danger-border:  darken(adjust-hue($alert-danger-bg, -10), 5%) !default;
+
+// content notification colors
+// most use bootstrap default colors
+$feature-color: #70418a;
