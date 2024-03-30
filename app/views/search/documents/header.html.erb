@@ -84,14 +84,13 @@
             params.except(:controller, :action, :quiet).merge(format: :json)
           ) %>
       </span>
-      <%= link_to 'Learn More', reader_aids_search_help_url,
-        class: '' %>
     </div>
 
     <div class="action-buttons">
       <%= f.actions do %>
         <li>
           <%= link_to "More Filters", '#advanced', id: "toggle_advanced", class: "btn btn-primary white-btn" %>
+          <%= link_to 'View Advanced Query Options', reader_aids_search_help_url %>
         </li>
 
         <div>

@@ -1,6 +1,4 @@
 div.search-bar .search-form-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
 
     .action-buttons {
       grid-column: span 12;
@@ -43,15 +41,33 @@ div.search-bar .search-form-grid {
     margin: 0px 10px;
   }
 
+  .btn {
+    min-width: 150px;
+  }
+
   @media only screen and (max-width: $small-viewport-width) {
+    display: grid;
+    grid-template-areas:
+      "auxillary-links"
+      "search-form-inputs"
+      "action-buttons";
+
+    .advanced {
+      margin-top: 0px;
+    }
+
     .search-form-inputs {
-      grid-column: span 12;
+      grid-area: search-form-inputs;
     }
 
     .auxillary-links {
-      grid-column:  span 12;
-      margin: 10px 0px;
-      justify-self: start;
+      grid-area: auxillary-links;
+      justify-self: end;
+      height: auto !important;
+    }
+
+    .action-buttons {
+      grid-area: action-buttons;
     }
 
     #expected_result_count {
@@ -62,17 +78,17 @@ div.search-bar .search-form-grid {
       height: 81px;
     }
 
-    .btn {
-      min-width: 127px;
-    }
-
     .clear_form {
       margin-top: 16px;
+      display: none;
     }
 
   }
 
   @media only screen and (min-width: $small-viewport-width) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
     .search-form-inputs {
       grid-column: span 11;
       padding-bottom: 10px;
@@ -86,10 +102,6 @@ div.search-bar .search-form-grid {
       position: absolute;
       top: 32px;
       left: 619px;
-    }
-
-    .btn {
-      min-width: 150px;
     }
 
   }
