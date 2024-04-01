@@ -39,6 +39,14 @@ class SearchPresenter::Suggestions
       link: h.link_to("View on eCFR.gov",
         FederalRegisterReferenceParser.ecfr_url(
           suggestion.title, suggestion.part),
+        class: 'fr-ga-event',
+        data: {
+          event_name: 'fr_search_suggestion_click',
+          event_parameters: {
+            suggestion_type: 'cfr',
+            suggestion_text: "#{suggestion.title} CFR #{suggestion.part}"
+          }.to_json
+        },
         target: "_blank"
       ),
       type: :success,
@@ -77,7 +85,15 @@ class SearchPresenter::Suggestions
               links += h.content_tag("li") do
                 h.link_to(
                   "Document View",
-                  citation.issue_slice_url
+                  citation.issue_slice_url,
+                  class: 'fr-ga-event',
+                  data: {
+                    event_name: 'fr_search_suggestion_click',
+                    event_parameters: {
+                      suggestion_type: 'fr_archives_document',
+                      suggestion_text: suggestion.name
+                    }.to_json
+                  }
                 ) +
                   " (#{h.number_to_human_size(citation.optimized_file_size)})"
               end
@@ -90,7 +106,15 @@ class SearchPresenter::Suggestions
                   tags: %w(span),
                   attributes: %w(class)
                 ),
-                citation.gpo_url
+                citation.gpo_url,
+                class: 'fr-ga-event',
+                data: {
+                  event_name: 'fr_search_suggestion_click',
+                  event_parameters: {
+                    suggestion_type: 'fr_archives_issue',
+                    suggestion_text: suggestion.name
+                  }.to_json
+                }
               ) +
                 " (#{h.number_to_human_size(citation.original_file_size)})"
             end
@@ -145,7 +169,16 @@ class SearchPresenter::Suggestions
               <h5>
                 #{h.link_to h.sanitize(document.title,
                     tags: %w(span), attributes: %w(class)),
-                  document_path(document)}
+                  document_path(document),
+                  class: 'fr-ga-event',
+                  data: {
+                    event_name: 'fr_search_suggestion_click',
+                    event_parameters: {
+                      suggestion_type: 'citation',
+                      suggestion_text: document.title
+                    }.to_json
+                  }
+                }
               </h5>
 
               <ul class="metadata">
@@ -235,7 +268,7 @@ class SearchPresenter::Suggestions
           event_parameters: {
             suggestion_type: 'search_refinement',
             suggestion_text: CGI.unescapeHTML(
-              search_refinement_suggestion.search_summary
+              suggestion.search_summary
             ).html_safe
           }.to_json
         }
