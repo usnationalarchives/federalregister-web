@@ -101,10 +101,10 @@ class DocumentType
   # note: order matters here
   def self.document_types_for_search
     @types_for_search ||= [
-      new("Rule"),
-      new("Proposed Rule"),
       new("Notice"),
       new("Presidential Document"),
+      new("Proposed Rule"),
+      new("Rule"),
     ]
   end
 end

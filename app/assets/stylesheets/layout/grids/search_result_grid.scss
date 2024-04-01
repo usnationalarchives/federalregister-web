@@ -203,10 +203,8 @@
 
   .column-checkbox-display ol { // Arranges checkboxes in a column-based layout
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
     justify-items: start;
-
-    li {margin-left: 20px !important;}
   }
 
 }
