@@ -18,7 +18,7 @@
     <div class="search-form-inputs">
       <div class="advanced secondary-fields">
         <div class="input-wrapper">
-          <%= f.inputs :class => 'show_labels' do %>
+          <%= f.inputs class: 'show_labels' do %>
             <%= f.input :term,
               label: "Find",
               placeholder: t('search.placeholder'),
@@ -27,6 +27,7 @@
                 <span class="document-count"></span>
                 <span class="loader"></span>
               </span>
+
             <%= f.input :type,
               as: :check_boxes,
               collection: DocumentType.
@@ -35,6 +36,7 @@
               label: "Document Category",
               wrapper_html: {class: 'column-checkbox-display'},
               required: false %>
+
             <%= f.input :presidential_document_type,
               as: :check_boxes,
               collection: PresidentialDocumentType.all.
@@ -42,6 +44,7 @@
               label: "Presidential Document Type",
               required: false,
               wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
+
             <%= f.input :president,
               as: :check_boxes,
               collection: President.all.select{|x| x.starts_on > Date.new(1993,1,20)}.reverse.
@@ -49,8 +52,7 @@
               label: "President",
               required: false,
               wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
-          <% end %>
-          <%= f.inputs :class => 'show_labels' do %>
+
             <li class="string optional agency ui-front">
               <label>Agency</label>
               <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />

@@ -59,9 +59,14 @@
 
   // Advanced search form adjustments
   .search .advanced {
-    $advanced-search-fieldset-vertical-spacing: 20px; // The intent of this setting is to provide a setting that can be used to globally affect the spacing between the various kinds of fieldsets on the advanced search form
+    // The intent of this setting is to provide a setting that can be used to
+    // globally affect the spacing between the various kinds of fieldsets on
+    // the advanced search form
+    $advanced-search-fieldset-vertical-spacing: 20px;
 
-    fieldset:not(.show_labels), fieldset.show_labels ol.choices-group, fieldset.show_labels li.string input {
+    fieldset:not(.show_labels),
+    fieldset.show_labels ol.choices-group,
+    fieldset.show_labels li.string input {
       margin-bottom: $advanced-search-fieldset-vertical-spacing;
     }
 
