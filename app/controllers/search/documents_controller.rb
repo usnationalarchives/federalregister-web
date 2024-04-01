@@ -75,12 +75,12 @@ class Search::DocumentsController < ApplicationController
     end
   end
 
-  def suggestions
-    cache_for 1.day
-    @search_details = @search.search_details
+  # def suggestions
+  #   cache_for 1.day
+  #   @search_details = @search.search_details
 
-    render :layout => false
-  end
+  #   render :layout => false
+  # end
 
   def help
     redirect_to reader_aids_search_help_url
