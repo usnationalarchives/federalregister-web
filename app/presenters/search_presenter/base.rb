@@ -16,6 +16,11 @@ class SearchPresenter::Base
     agencies.map(&:id)
   end
 
+  def display_suggestions?
+    (search.params[:page].blank? || search.params[:page] == '1') &&
+      search.params[:order].blank?
+  end
+
   def search_suggestions
     search_details = search.search_details
 
