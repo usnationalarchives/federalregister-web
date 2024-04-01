@@ -12,6 +12,8 @@
 }
 
 @media only screen and (max-width: $small-viewport-width) {
+  // $string_input_field_length: ;
+
   .document-search, .public-inspection-document-search {
     grid-template-areas: "search-result-header"
                          "search-results"
@@ -34,11 +36,14 @@
 
   // Ensure adequate top space for outline browser focus on search field
   #search-input {margin-top: 2px;}
-
-  #conditions_term, #document-agency-search {
-    // Remove fixed width text input sizes
-    width: auto;
-    min-width: 283px;
+  
+  .search .advanced {
+    #conditions_term, #document-agency-search {
+      // Remove fixed width text input sizes
+      width: auto;
+      min-width: 283px;
+      margin-left: 0px !important;
+    }
   }
 
   .search .advanced fieldset.actions {
@@ -70,14 +75,20 @@
       margin-bottom: $advanced-search-fieldset-vertical-spacing;
     }
 
+    ol li.input input[type=text] {
+      width: 300px;
+    }
+
     label {
       padding-bottom: 0px;
       margin-bottom: 0px;
+      text-align: left !important;
+      padding-left: 0px !important;
     }
 
     // JS Radio buttons
     fieldset.date_options legend,  fieldset.cfr legend, fieldset.zip legend{
-      margin-bottom: 3px;
+      margin-bottom: 10px;
       float: none !important;
       text-align: left;
     }
@@ -128,15 +139,26 @@
     }
 
     // Reset labels/legend alignment to the left side of the form
-    fieldset.choices legend {
-      width: auto !important;
-      margin-left: 0px;
-      padding-left: 0px;
-      margin-bottom: 0px;
+    fieldset.choices {
 
-      label, span {
-        width: auto !important;
+      ol {
+        overflow: visible !important;
       }
+      
+      legend {
+        width: auto !important;
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-bottom: 0px;
+
+        label, span {
+          width: auto !important;
+        }
+      }
+    }
+
+    .bsmList {
+      #conditions_cfr_title { width: 65px; }
     }
 
     #conditions_regulation_id_number_input {
