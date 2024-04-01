@@ -218,7 +218,7 @@ class SearchPresenter::Suggestions
   def search_refinement_suggestion(suggestion)
     text = <<~TEXT
       <p>
-        Did you mean the #{h.pluralize(suggestion.count, "document")}
+        Searching for the #{h.pluralize(suggestion.count, "document")}
         #{CGI.unescapeHTML(suggestion.search_summary).html_safe}?
       </p>
     TEXT
