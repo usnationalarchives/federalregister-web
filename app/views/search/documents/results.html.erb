@@ -1,12 +1,5 @@
-<div class="result-set"
-  data-expected-result-count="<%= @search.result_metadata.count %>">
 
-  <% if @search_details.filters.present? %>
-    <%= render partial: "search/filters", locals: {
-        filters: @search_details.filters,
-        presenter: @facet_presenter,
-      } %>
-  <% end %>
+
 
   <%= render partial: 'search_info', locals: {
     supported_orders: @presenter.supported_orders,
@@ -38,4 +31,3 @@
       <p class="errors_header">No documents were found.</p>
     </div>
   <% end %>
-</div>

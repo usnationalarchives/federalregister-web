@@ -38,7 +38,19 @@
               </div>
           <% end %>
 
-          <%= esi(documents_search_results_path(@presenter.search.params)) %>
+          <div class="result-set"
+            data-expected-result-count="<%= @presenter.search.result_metadata.count %>">
+
+            <% if @presenter.search_filters.present? %>
+              <div class="filters">
+                <% @presenter.search_filters.each do |filter| %>
+                  <%= notification(filter) %>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= esi(documents_search_results_path(@presenter.search.params)) %>
+          </div>
         </div>
       <% else %>
         <div class="flash-message error">

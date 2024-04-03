@@ -1,11 +1,15 @@
 # valid types: basic, info, danger, feature, success, warning
 class ContentNotification
-  attr_reader :actions, :hidden, :icon, :id, :link, :options, :text, :type
+  attr_reader :actions, :hidden, :icon, :icon_label, :id, :link,
+    :options, :text, :type
 
-  def initialize(text:, actions: nil, icon: nil, link: nil, type: :basic, hidden: nil, id: nil, options: {})
+  def initialize(text:, actions: nil, icon: nil, icon_label: nil,
+    link: nil, type: :basic, hidden: nil, id: nil, options: {})
+
     @actions = actions
     @hidden = hidden
     @icon = icon
+    @icon_label = icon_label
     @id = id
     @link = link
     @options = options

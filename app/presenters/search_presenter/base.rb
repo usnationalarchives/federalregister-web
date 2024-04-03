@@ -21,6 +21,16 @@ class SearchPresenter::Base
       search.params[:order].blank?
   end
 
+  def search_filters
+    search_details = search.search_details
+
+    return nil unless search_details.present? &&
+      search_details.filters.present?
+
+    SearchPresenter::Filters.new(search_details.filters, search.params)
+      .filters
+  end
+
   def search_suggestions
     search_details = search.search_details
 
@@ -28,5 +38,6 @@ class SearchPresenter::Base
       search_details.suggestions.present?
 
     SearchPresenter::Suggestions.new(search_details.suggestions)
+      .suggestions
   end
 end

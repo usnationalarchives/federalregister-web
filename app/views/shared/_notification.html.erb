@@ -12,18 +12,21 @@
       : content_notification_icon(content_notification.type) %>
   </div>
 
+  <% if content_notification.icon_label %>
+    <div class="message-icon-label">
+      <%= content_notification.icon_label %>
+    </div>
+  <% end %>
+
   <div class="message">
-
-      <%= content_notification.text.html_safe %>
-
-
+    <%= content_notification.text.html_safe %>
   </div>
-    <% if content_notification.actions.present? %>
-      <div class="message-actions">
-        <%= content_notification.actions %>
-      </div>
-    <% end %>
 
+  <% if content_notification.actions.present? %>
+    <div class="message-actions">
+      <%= content_notification.actions %>
+    </div>
+  <% end %>
 
   <% if content_notification.link.present? %>
     <div class="message-link">

@@ -278,16 +278,9 @@ class SearchPresenter::Suggestions
     )
   end
 
-  def each
-    suggestions.each { |suggestion| yield suggestion }
-  end
-
   private
 
   def h
     ActionController::Base.helpers
-  end
-
-  def citation_suggestion_result
   end
 end

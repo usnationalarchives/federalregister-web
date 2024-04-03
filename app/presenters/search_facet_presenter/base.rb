@@ -37,16 +37,6 @@ class SearchFacetPresenter::Base
     )
   end
 
-  def link_to_remove_search_filter(facet, &block)
-    h.link_to(
-      remove_search_filter_path(facet.condition.to_sym, facet.value),
-      title: 'Remove Filter',
-      class: 'remove',
-    ) do
-      yield
-    end
-  end
-
   def facet_on?(facet)
     condition = facet.condition.to_sym
     params[:conditions][condition] && params[:conditions][condition].include?(facet.value)
@@ -65,16 +55,5 @@ class SearchFacetPresenter::Base
     end
 
     params.except(:quiet, :all, :facet).recursive_merge(page: nil, action: :show, conditions: conditions)
-  end
-
-  def remove_search_filter_path(condition, value)
-    conditions = params.deep_dup[:conditions] || {}
-    if SearchDetails::Base::PLURAL_FILTERS.include?(condition)
-      conditions[condition] ||= []
-      conditions[condition] = conditions[condition] - Array(value.to_s)
-    else
-      conditions.except!(condition)
-    end
-    params.except(:quiet).merge(page: nil, action: :show, conditions: conditions)
   end
 end
