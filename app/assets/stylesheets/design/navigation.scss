@@ -349,42 +349,6 @@
         word-spacing: initial;
       }
     }
-
-    .bootstrap-scope {
-      .facet-explorer {
-        h4 {
-          @extend %right_column_header;
-        }
-
-        .table-search-box { padding: 0 5px 0 10px; }
-
-        .fr-table {
-          margin-left: 5px;
-
-          td {
-            color: $gray-60;
-            font-size: 13px;
-            font-weight: bold;
-            padding: 0;
-
-            &.item_name { padding-right: 0; }
-
-            a { padding-right: 0; }
-          }
-
-          .icon-fr2 {
-            padding-left: 12px;
-          }
-        }
-
-        input[placeholder] {
-          @include placeholder {
-            color: $gray-70;
-            font-style: italic;
-          }
-        }
-      }
-    }
   }
 
   .right_column {
