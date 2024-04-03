@@ -13,13 +13,14 @@
           <div class="row">
             <div class="<%= bootstrap_col xs: 12, md: 12 %> page_content">
               <h4 id="<%= @auxillary_presenter.identifier %>" class="fr-list-header"><%= "#{@auxillary_presenter.name}" %></h4>
+              <p>The table below is dynamically updated based on XML-derived document counts from the year 2000 onwards.  Years prior to 2000 are static and based on a historical count.  The current year's data is incremented as documents are published.</p>
               <ul>
-                <li><%= link_to 'CSV', @auxillary_presenter.csv_url %></li>
+                <li><%= link_to 'Download (CSV)', @auxillary_presenter.csv_url %></li>
               </ul>
               <table class="table table-condensed table-hover category-statistics-table" >
                 <thead>
                   <% @auxillary_presenter.header_columns.each_with_index do |cell, i| %>
-                    <th class="<%= i == 0 ? 'text-left' : 'text-right' %>"><%= cell %></th>
+                    <th class="<%= i == 0 ? 'text-left' : 'text-center' %>"><%= cell %></th>
                   <% end %>
                 </thead>
                 <tbody>
@@ -37,9 +38,9 @@
                 </ul>
               </table>
               <ul class="list-unstyled">
-              <% @auxillary_presenter.footnotes.each do |footnote| %>
-                <li><%= footnote %></li>
-              <% end %>
+                <% @auxillary_presenter.footnotes.each do |footnote| %>
+                  <li><%= footnote %></li>
+                <% end %>
               </ul>
             </div>
           </div>

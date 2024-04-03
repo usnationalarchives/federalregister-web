@@ -41,7 +41,7 @@ class CategoryStatisticsPresenter
 
     def document_type_stats_csv
       response = Faraday.get(csv_url)
-      CSV.parse(response.body)
+      CSV.parse(response.body, encoding: 'UTF-8')
     end
     memoize :document_type_stats_csv
 

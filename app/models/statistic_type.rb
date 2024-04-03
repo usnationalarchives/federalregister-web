@@ -6,14 +6,14 @@ class StatisticType < ActiveHash::Base
     {
       identifier: 'document_type',
       header_csv_index: 3,
-      name: 'Count by Document Category',
-      footnote_count: 0
+      name: 'Document Count by Category',
+      footnote_count: 1
     },
     {
       identifier: 'page_count',
       header_csv_index: 4,
-      name: 'Page Count By Document Category',
-      footnote_count: 6
+      name: 'Page Count By Category',
+      footnote_count: 3
     },
   ]
 end
