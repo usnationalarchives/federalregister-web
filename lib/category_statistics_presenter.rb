@@ -32,7 +32,7 @@ class CategoryStatisticsPresenter
       if Rails.env.development?
         "https://fr2.criticaljuncture.org/api/v1/category_counts/#{statistic_type.identifier}.csv"
       else
-        "#{Settings.services.fr.api_core.internal_base_url}/category_counts/#{statistic_type.identifier}.csv"
+        "#{Settings.services.fr.api_core.base_url}/category_counts/#{statistic_type.identifier}.csv"
       end
     end
 
