@@ -54,7 +54,7 @@
       <dt>Other Formats:</dt>
       <dd class="rss_link">
         <% if subscription.type == "PublicInspectionDocument" %>
-          <%= link_to "RSS", public_inspection_search_api_path(
+          <%= link_to "RSS", public_inspection_search_api_url(
             subscription.search_params, format: :rss
           ) %>
         <% else %>

@@ -46,7 +46,7 @@ class PublicInspectionIssuePresenter
     feeds = []
 
     feeds << FeedAutoDiscovery.new(
-      url: public_inspection_search_api_path({}, format: :rss),
+      url: public_inspection_search_api_url({}, format: :rss),
       description: Search::PublicInspection.new({}).summary,
       search_conditions: {}
     )
@@ -94,7 +94,7 @@ class PublicInspectionIssuePresenter
       # pil isn't technically current on Saturdays as documents have published as part of the import of
       # Monday's issue but we don't yet have an updated pil
       pil_current = public_inspection_issue.publication_date >= DocumentIssue.current.publication_date
-      
+
       pil_current = true if Rails.env.development?
 
       (document_count != 0) && pil_current

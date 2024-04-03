@@ -11,7 +11,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
         wants.html
 
         wants.csv do
-          redirect_to public_inspection_search_api_path(
+          redirect_to public_inspection_search_api_url(
             shared_search_params.merge(
               conditions: params[:conditions],
               per_page: 500
@@ -21,7 +21,7 @@ class Search::PublicInspectionDocumentsController < ApplicationController
         end
 
         wants.json do
-          redirect_to public_inspection_search_api_path(
+          redirect_to public_inspection_search_api_url(
             shared_search_params.merge(
               conditions: params[:conditions]
             ),

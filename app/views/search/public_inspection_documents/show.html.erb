@@ -3,7 +3,7 @@
 
 <% if @presenter.search.valid? %>
   <%= feed_autodiscovery(
-    public_inspection_search_api_path(
+    public_inspection_search_api_url(
       {conditions: @presenter.search.valid_conditions.except(:publication_date)},
       format: :rss
     ),
