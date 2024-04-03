@@ -6,7 +6,6 @@
 
 .search {
   @import 'search/advanced';
-  @import 'search/facets';
   @import 'search/filters';
   @import 'search/pagination';
   @import 'search/suggestions';
@@ -46,8 +45,6 @@
       }
     }
   }
-
-  .facet_hidden { display: none; }
 }
 
 @media only screen and (max-width: $small-viewport-width) {

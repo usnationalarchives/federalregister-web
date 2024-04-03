@@ -10,7 +10,6 @@
 #= require components/document_clipper
 #= require components/paragraph_citation
 #= require components/print_view_manager
-#= require components/search_facet_handler
 #= require components/search_form_handler
 #= require components/search_count
 #= require components/search_form_count
