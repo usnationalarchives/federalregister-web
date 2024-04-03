@@ -9,6 +9,8 @@
 
 #search-results {
   grid-area: search-results;
+  // provide some space to the footer
+  margin-bottom: 100px;
 }
 
 @media only screen and (max-width: $small-viewport-width) {
@@ -36,7 +38,7 @@
 
   // Ensure adequate top space for outline browser focus on search field
   #search-input {margin-top: 2px;}
-  
+
   .search .advanced {
     #conditions_term, #document-agency-search {
       // Remove fixed width text input sizes
@@ -144,7 +146,7 @@
       ol {
         overflow: visible !important;
       }
-      
+
       legend {
         width: auto !important;
         margin-left: 0px;

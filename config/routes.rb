@@ -76,28 +76,8 @@ Rails.application.routes.draw do
     to: 'search/documents#show',
     as: 'documents_search'
 
-  with_options(:quiet => true) do |esi|
-    esi.get 'documents/search/header',
-      to: 'search/documents#header',
-      as: 'documents_search_header'
-
-    esi.get 'documents/search/facets/:facet',
-      to: 'search/documents#facets',
-      as: 'documents_search_facets'
-
-    esi.get 'documents/search/results',
-      to: 'search/documents#results',
-      as: 'documents_search_results'
-
-    esi.get 'documents/search/suggestions',
-      to: 'search/documents#suggestions',
-      as: 'documents_search_suggestions'
-
-    esi.get 'documents/search/help',
-      to: 'search/documents#help',
-      as: 'documents_search_help'
-
-    esi.get 'documents/search/count',
+  with_options(:quiet => true) do |js|
+    js.get 'documents/search/count',
       to: 'search/documents#search_count',
       as: 'documents_search_search_count'
   end
@@ -140,20 +120,8 @@ Rails.application.routes.draw do
     to: 'search/public_inspection_documents#show',
     as: 'public_inspection_search'
 
-  with_options(:quiet => true) do |esi|
-    esi.get 'public-inspection/search/header',
-      to: 'search/public_inspection_documents#header',
-      as: 'public_inspection_search_header'
-
-    esi.get 'public-inspection/search/results',
-      to: 'search/public_inspection_documents#results',
-      as: 'public_inspection_search_results'
-
-    esi.get 'public-inspection/search/facets/:facet',
-      to: 'search/public_inspection_documents#facets',
-      as: 'public_inspection_search_facets'
-
-    esi.get 'public-inspection/search/count',
+  with_options(:quiet => true) do |js|
+    js.get 'public-inspection/search/count',
       to: 'search/public_inspection_documents#search_count',
       as: 'public_inspection_search_count'
   end

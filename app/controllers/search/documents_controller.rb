@@ -1,12 +1,7 @@
 class Search::DocumentsController < ApplicationController
   include ConditionsHelper
-  before_action :load_presenter, except: [:facets, :help]
+  before_action :load_presenter, except: [:help]
   skip_before_action :authenticate_user!
-
-  def header
-    cache_for 1.day
-    render :layout => false
-  end
 
   DEFAULT_CSV_MAXIMUM_PER_PAGE = 1000
   def show
@@ -44,44 +39,6 @@ class Search::DocumentsController < ApplicationController
     end
   end
 
-  def results
-    cache_for 1.day
-    @search_details = @search.search_details
-    @facet_presenter = SearchFacetPresenter::Document.new(
-      facet_params.to_h,
-      view_context
-    )
-
-    respond_to do |wants|
-      wants.html do
-        render :layout => false
-      end
-    end
-  end
-
-  def facets
-    cache_for 1.day
-    @presenter = SearchFacetPresenter::Document.new(
-      facet_params.to_h,
-      view_context
-    )
-
-    if params[:all]
-      render partial: "search/facet", collection: @presenter.facets, as: :facet
-    else
-      render partial: "search/facets", locals: {
-        facets: @presenter.facets
-      }, layout: false
-    end
-  end
-
-  # def suggestions
-  #   cache_for 1.day
-  #   @search_details = @search.search_details
-
-  #   render :layout => false
-  # end
-
   def help
     redirect_to reader_aids_search_help_url
   end
@@ -108,17 +65,6 @@ class Search::DocumentsController < ApplicationController
     @search = @presenter.search
   end
 
-  def facet_params
-    facet_params = params.permit(
-      :all,
-      :facet,
-      :order,
-      conditions: {}
-    )
-
-    facet_params[:conditions] = Search::Document.new(facet_params.to_h).valid_conditions
-    facet_params
-  end
   DISALLOWED_SUBSCRIPTION_SEARCH_PARAMS = 'publication_date', 'effective_date', 'comment_date'
   def subscription_params
     ActionController::Parameters.new({

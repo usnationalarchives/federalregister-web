@@ -23,7 +23,9 @@
 <%= bootstrap_context_wrapper do %>
   <div class="document-search search">
     <div id="search-result-header">
-      <%= esi(documents_search_header_path(params)) %>
+      <%= render partial: 'header', locals: {
+        presenter: @presenter
+      } %>
     </div>
 
     <% unless @presenter.search.conditions_blank? %>
@@ -49,7 +51,37 @@
               </div>
             <% end %>
 
-            <%= esi(documents_search_results_path(@presenter.search.params)) %>
+            <%= render partial: 'search_info', locals: {
+              supported_orders: @presenter.supported_orders,
+              search: @presenter.search
+            } %>
+
+            <% if @presenter.search.results.present? %>
+              <div>
+                <%= will_paginate @presenter.search.results,
+                  params: {action: :show},
+                  renderer: BootstrapPagination::Rails %>
+              </div>
+
+              <%= render partial: 'search/results',
+                locals: {
+                  type: :published,
+                  documents: @presenter.search.results,
+                  search: @presenter.search,
+                  track_search_result_click_throughs: true
+                }
+              %>
+
+              <div>
+                <%= will_paginate @presenter.search.results,
+                  params: {action: :show},
+                  renderer: BootstrapPagination::Rails %>
+              </div>
+            <% else %>
+              <div class="errors">
+                <p class="errors_header">No documents were found.</p>
+              </div>
+            <% end %>
           </div>
         </div>
       <% else %>

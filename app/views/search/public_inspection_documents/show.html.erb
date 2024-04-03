@@ -25,13 +25,55 @@
 <%= bootstrap_context_wrapper do %>
   <div class="public-inspection-document-search search">
     <div id="search-result-header">
-      <%= esi(public_inspection_search_header_path(params.except(:action))) %>
+      <%= render partial: 'header', locals: {
+        presenter: @presenter
+      } %>
     </div>
 
     <% unless @presenter.search.conditions_blank? %>
       <% if @presenter.search.valid? %>
         <div id="search-results">
-          <%= esi(public_inspection_search_results_path(@presenter.search.params)) %>
+          <div class="result-set"
+            data-expected-result-count="<%= @presenter.search.result_metadata.count %>">
+
+            <% if @presenter.search_filters.present? %>
+              <div class="filters">
+                <% @presenter.search_filters.each do |filter| %>
+                  <%= notification(filter) %>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= render partial: 'search_info', locals: {
+              supported_orders: @presenter.supported_orders,
+              search: @presenter.search
+            } %>
+
+            <% if @presenter.search.results.present? %>
+              <div>
+                <%= will_paginate @presenter.search.results,
+                  params: {action: :show},
+                  renderer: BootstrapPagination::Rails %>
+              </div>
+
+              <%= render partial: 'search/results',
+                locals: {
+                  type: :public_inspection,
+                  documents: @presenter.search.results,
+                  search: @presenter.search
+                }
+              %>
+
+              <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+                <%= will_paginate @presenter.search.results, params: {action: :show},
+                  renderer: BootstrapPagination::Rails %>
+              </div>
+            <% else %>
+              <div class="errors">
+                <p class="errors_header">No Public Inspection documents were found.</p>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% else %>
         <div class="flash-message error">

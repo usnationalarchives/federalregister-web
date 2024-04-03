@@ -1,12 +1,7 @@
 class Search::PublicInspectionDocumentsController < ApplicationController
   include ConditionsHelper
-  before_action :load_presenter, except: :facets
+  before_action :load_presenter
   skip_before_action :authenticate_user!
-
-  def header
-    cache_for 1.day
-    render layout: false
-  end
 
   def show
     cache_for 1.day
@@ -39,37 +34,6 @@ class Search::PublicInspectionDocumentsController < ApplicationController
     end
   end
 
-  def results
-    cache_for 1.day
-    @search_details = @search.search_details
-    @facet_presenter = SearchFacetPresenter::PublicInspection.new(
-      facet_params.to_h,
-      view_context
-    )
-
-    respond_to do |wants|
-      wants.html do
-        render :layout => false
-      end
-    end
-  end
-
-  def facets
-    cache_for 1.day
-    @presenter = SearchFacetPresenter::PublicInspection.new(
-      facet_params.to_h,
-      view_context
-    )
-
-    if params[:all]
-      render partial: "search/facet", collection: @presenter.facets, as: :facet
-    else
-      render partial: "search/facets", locals: {
-        facets: @presenter.facets
-      }, layout: false
-    end
-  end
-
   def search_count
     cache_for 1.day
     valid_conditions = Search::PublicInspection.new(params.permit!.to_h).valid_conditions
@@ -90,17 +54,5 @@ class Search::PublicInspectionDocumentsController < ApplicationController
   def load_presenter
     @presenter ||= SearchPresenter::PublicInspection.new(params.permit!.to_h)
     @search = @presenter.search
-  end
-
-  def facet_params
-    facet_params = params.permit(
-      :all,
-      :facet,
-      :order,
-      conditions: {}
-    )
-
-    facet_params[:conditions] = Search::PublicInspection.new(facet_params.to_h).valid_conditions
-    facet_params
   end
 end
