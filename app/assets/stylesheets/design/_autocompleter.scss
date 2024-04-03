@@ -47,21 +47,6 @@
   }
 }
 
-#navigation .previewable .right_column .ui-autocomplete {
-  // Navigation specific
-  // using !important to override inline styles
-  left: 0px !important;
-
-  a {
-    color: $link-dark !important;
-    font-size: 12px !important;
-    line-height: 18px;
-
-    @extend %ui-autocomplete-active-state;
-  }
-
-}
-
 .ui-autocomplete-input + .loader {
   background: image-url('fr_orange_loader.svg') no-repeat;
   height: 25px;
