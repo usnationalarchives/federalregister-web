@@ -5,10 +5,29 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  gtag('set', {
+    'debug_mode': true,
+    'page_title': 'Travel Destinations',
+    'currency': 'USD',
+    'agencies': 'Test Agency',
+    'test_parameter': 'arbitrary content'
+  });
+
+  if (window.location.pathname == "/documents/search") {
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString)
+
+    gtag('event', 'search_refinement', {
+      'term':          urlParams.get('conditions[term]'),
+      'agencies':      'parameter2_value',
+      'document_type':
+    });
+  }
+
   <% if custom_page_to_track %>
-    gtag('config', 'UA-17607887-1', {'page_location': custom_page_to_track, 'fr_page_path': window.location.pathname});
+    gtag('config', 'UA-17607887-1', {'page_location': custom_page_to_track, 'debug_mode': true, 'test_param': 'foobar', 'agencies': 'test agency'});
   <% else %>
-    gtag('config', 'UA-17607887-1', {'fr_page_path': window.location.pathname});
+    gtag('config', 'UA-17607887-1', {'debug_mode': true, 'test_param': 'arbitrary', 'agencies': 'test agency'});
   <% end %>
     gtag('event', 'fr_page_view', {
       'fr_page_path': window.location.pathname,

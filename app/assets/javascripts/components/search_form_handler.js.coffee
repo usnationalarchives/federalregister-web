@@ -10,9 +10,6 @@ class @FR2.SearchFormHandler
     $('#conditions_type_presdocu')
       .bind('click', @togglePresidentialDocumentTypes)
 
-    $('.clear_form')
-      .bind('click', @clearForm)
-
     # Ensure we trigger a full-page refresh of the search page when clicking on "Advanced Search" from the "Document Search" page
     $(".advanced-search")
       .bind('click', @_triggerAdvancedSearchFullPageRefresh)
@@ -48,42 +45,6 @@ class @FR2.SearchFormHandler
         .hide()
         .find(':input')
         .prop('disabled', 'disabled')
-
-  clearForm: (event)=>
-    event.preventDefault()
-
-    @searchForm
-      .find('input[type=text],input[type=hidden]')
-      .val('')
-
-    @searchForm
-      .find('input[type=radio],input[type=checkbox]')
-      .removeAttr('checked')
-      .change()
-
-    @searchForm
-      .find('select option:eq(0)')
-      .prop('selected','selected')
-
-    @searchForm
-      .find('#conditions_agency_ids option')
-      .remove()
-
-    @searchForm
-      .find('#conditions_within option:eq(3)')
-      .prop('selected','selected')
-
-    @searchForm
-      .find('.bsmListItem')
-      .remove()
-
-    @searchForm
-      .find('.date')
-      .hide()
-      .find("input")
-      .val('')
-
-    @calculateExpectedResults()
 
   _triggerAdvancedSearchFullPageRefresh: (event) ->
     window.location.href = "/documents/search#advanced"
