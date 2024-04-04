@@ -72,7 +72,7 @@ $(document).ready ->
     )
 
     # utility nav items
-    $('.doc-nav-wrapper a#email-a-friend').on 'click', (event)->
+    $('.content-nav-wrapper a#email-a-friend').on 'click', (event)->
       event.preventDefault()
       emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
       emailAFriend.display()

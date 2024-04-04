@@ -26,7 +26,7 @@ class @FR2.ContentCopyToClipboard
       )
 
       $(div).find(":header, .inline-header, .paragraph-heading, dt").css('font-weight', 'bold')
-      $(div).find(".expand-table-link, .paragraph-citation, #feedbackbutton, #launcher, .no-print-header, .doc-nav-wrapper, .unprinted-element, .document-clipping-actions, .regulations-dot-gov-logo").remove()
+      $(div).find(".expand-table-link, .paragraph-citation, #feedbackbutton, #launcher, .no-print-header, .content-nav-wrapper, .unprinted-element, .document-clipping-actions, .regulations-dot-gov-logo").remove()
 
       html = div.innerHTML
 
@@ -54,6 +54,6 @@ class @FR2.ContentCopyToClipboard
       for j in [0...source_attributes.length] by 1
         attribute = source_attributes[j]
         target_attributes[attribute.nodeName] = attribute.nodeValue
-      
+
       target.attr(target_attributes)
       $(source).replaceWith(target)
