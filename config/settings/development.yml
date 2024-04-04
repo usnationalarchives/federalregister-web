@@ -39,7 +39,7 @@ varnish:
 # DEVELOPMENT ONLY SETTINGS
 ####################################
 
-permitted_hosts:
+permitted_hosts: ""
 
 vcr:
   enabled: true
