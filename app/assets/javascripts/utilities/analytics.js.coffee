@@ -26,10 +26,10 @@ class @FR2.Analytics
     })
 
   @_getQueryParamArray: (paramName) ->
-    queryString = window.location.search.substring(1);
-    params      = new URLSearchParams(queryString);
-    paramValues = params.getAll(paramName);
-    return paramValues;
+    queryString = window.location.search.substring(1)
+    params      = new URLSearchParams(queryString)
+    paramValues = params.getAll(paramName)
+    return paramValues
 
   @_debugMode: ->
     # Use this in development to toggle debug mode
