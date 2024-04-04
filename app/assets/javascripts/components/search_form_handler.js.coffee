@@ -95,6 +95,9 @@ class @FR2.SearchFormHandler
     if currentlyOpen
       @closeAdvancedSearch()
     else
+      if !this.sentTrackingEvent
+        this.sentTrackingEvent = true
+        FR2.Analytics.trackToggleAdvancedSearch()
       @openAdvancedSearch()
 
   initializeAdvancedSearch: =>

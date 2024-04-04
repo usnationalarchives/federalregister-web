@@ -3,6 +3,7 @@ $(document).ready ()->
     new FR2.EmbeddedSearch $('#embedded_entry_search_form')
 
   if $('#entry_search_form').length > 0
+    FR2.Analytics.trackSearchPageVisit()
     frSearch = new FR2.SearchFormHandler $('#entry_search_form')
     searchCounts = [new FR2.SearchTabCount($('#entry_search_form'), $('.tabs li.public-inspection'))]
   else if $('#public_inspection_search_form').length > 0
