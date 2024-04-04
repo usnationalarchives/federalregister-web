@@ -11,14 +11,16 @@
     )
   ) do %>
     <div class="content">
-      <% pdf_url = document.public_inspection_document? ? document.pdf_url : document.public_inspection_pdf_url %>
+      <% pdf_url = document.public_inspection_document? ?
+        document.pdf_url : document.public_inspection_pdf_url %>
       <p>
-        This <%= link_to 'PDF', pdf_url %> is the current document as it
-        appeared on Public Inspection on
+        This <%= link_to 'PDF', pdf_url, target: "_blank" %> is the current
+        document as it appeared on Public Inspection on
         <%= document.public_inspection_document.filed_at %>.
       </p>
 
-      <% if !document.public_inspection_document? && document.public_inspection_document.page_views %>
+      <% if !document.public_inspection_document? &&
+        document.public_inspection_document.page_views %>
         <p>
           It was viewed
           <%= document.public_inspection_document.page_views[:count] %>
