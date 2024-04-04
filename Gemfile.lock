@@ -385,7 +385,7 @@ GEM
       parallel
     parser (2.5.3.0)
       ast (~> 2.4.0)
-    passenger (6.0.18)
+    passenger (6.0.20)
       rack
       rake (>= 0.8.1)
     pickup (0.0.8)
