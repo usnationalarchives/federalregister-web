@@ -55,6 +55,10 @@ body {
     font-size: modular-scale(6);
     font-family: inherit;
     margin-top: 0;
+
+    &.large-title { font-size: modular-scale(5); }
+    &.extra-large-title { font-size: modular-scale(4); }
+    &.jumbo-title { font-size: modular-scale(3); }
   }
 
   .metadata_share_bar {

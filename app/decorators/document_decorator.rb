@@ -168,6 +168,20 @@ class DocumentDecorator < ApplicationDecorator
     return false
   end
 
+  # we mark long titles so that we can reduce their font size
+  def title_class
+    case title.size
+    when 0..115
+      ""
+    when 116..300
+      "large-title"
+    when 301..600
+      "extra-large-title"
+    else
+      "jumbo-title"
+    end
+  end
+
   def table_of_contents_sorting_algorithm
     lambda {|doc| [doc.start_page, doc.end_page, doc.document_number] }
   end
