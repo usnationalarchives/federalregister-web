@@ -21,11 +21,13 @@ class CategoryStatisticsPresenter
     end
 
     def table_rows
-      document_type_stats_csv[(statistic_type.header_csv_index + 1)..-(statistic_type.footnote_count + 1)]
+      document_type_stats_csv[(statistic_type.header_csv_index + 1)..-(statistic_type.footnote_count + 2)]
     end
 
     def footnotes
-      document_type_stats_csv.last(statistic_type.footnote_count).map(&:first)
+      result = document_type_stats_csv.last(statistic_type.footnote_count + 1).map(&:first)
+      result.pop
+      result
     end
 
     def csv_url
