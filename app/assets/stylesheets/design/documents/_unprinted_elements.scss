@@ -80,7 +80,8 @@ $non-printed-text-font-size: 15px;
 // most page breaks occur within paragraphs but some appear in between or after
 // other specific items - these need some style adjustments to appear the same
 div.table-wrapper,
-p {
+p,
+ul {
   &+ .printed-page-inline {
     display: block;
     margin-bottom: 35px;
@@ -104,14 +105,6 @@ div.preamble {
     margin-top: -60px;
   }
 }
-///
-
-.printed-page-inline {
-  .svg-icon {
-    height: 13px;
-    width: 13px;
-  }
-}
 
 .flush-paragraph .printed-page-details {
   left: -96px;
@@ -125,6 +118,14 @@ div.preamble {
   > .printed-page-details {
     left: -80px;
     top: -4px;
+  }
+}
+///
+
+.printed-page-inline {
+  .svg-icon {
+    height: 13px;
+    width: 13px;
   }
 }
 
