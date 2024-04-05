@@ -5,11 +5,6 @@ $non-printed-text-font-size: 15px;
 
 .doc-content .content-block p { position: relative; }
 
-.flush-paragraph .printed-page-inline.icon-fr2 {
-  margin-left: 5px;
-  text-indent: 0;
-}
-
 .expand-table-positioning-wrapper {
   position: absolute;
   left: -70px;
@@ -116,6 +111,10 @@ div.preamble {
     height: 13px;
     width: 13px;
   }
+}
+
+.flush-paragraph .printed-page-details {
+  left: -96px;
 }
 
 .printed-page-details {
