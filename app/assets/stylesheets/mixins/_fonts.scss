@@ -1,8 +1,15 @@
+// The Roboto glyph for the paragraph symbol is filled in and has a single leg
+// here we fall back to the standard representation
+@font-face {
+  font-family: ParagraphSymbols;
+  src: local("Helvetica"), local("Arial");
+  unicode-range: U+00B6;
+}
+
 @mixin sans_serif {
-  font-family: 'Roboto', sans-serif;
+  font-family: ParagraphSymbols, 'Roboto', sans-serif;
 }
 
 @mixin serif {
   font-family: 'Bitter', serif;
 }
-
