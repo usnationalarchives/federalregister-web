@@ -117,6 +117,17 @@ div.preamble {
   left: -96px;
 }
 
+.further-info,
+.signature,
+.suplemental-info {
+  position: relative;
+
+  > .printed-page-details {
+    left: -80px;
+    top: -4px;
+  }
+}
+
 .printed-page-details {
   font-size: $non-printed-text-font-size;
   left: -50px;
