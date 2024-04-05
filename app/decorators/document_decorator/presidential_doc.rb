@@ -14,6 +14,8 @@ module DocumentDecorator::PresidentialDoc
   end
 
   def executive_order_notes
+    return nil unless object.executive_order_notes || object.disposition_notes
+
     h.simple_format(
       h.add_citation_links(
         object.executive_order_notes || object.disposition_notes
