@@ -20,7 +20,9 @@
     <%= render partial: 'documents/utility_nav/executive_order_data', locals: {
         document: @document
       } %>
-  <% elsif !document.presidential_document? %>
+  <% end %>
+
+  <% if document.has_dates? %>
     <%= render partial: 'documents/utility_nav/document_dates', locals: {
         document: @document
       } %>

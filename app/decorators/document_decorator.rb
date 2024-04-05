@@ -157,6 +157,17 @@ class DocumentDecorator < ApplicationDecorator
     end
   end
 
+  # not all documents have date related information
+  # used to determine display of document dates util nav item
+  def has_dates?
+    return false if presidential_document?
+
+    return true if display_comment_close_date? ||
+      effective_on.present? || dates.present?
+
+    return false
+  end
+
   def table_of_contents_sorting_algorithm
     lambda {|doc| [doc.start_page, doc.end_page, doc.document_number] }
   end
