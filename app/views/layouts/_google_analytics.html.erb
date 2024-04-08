@@ -11,9 +11,9 @@
   });
 
   <% if custom_page_to_track %>
-    gtag('config', 'UA-17607887-1', {'page_location': custom_page_to_track});
+    gtag('config', 'UA-17607887-1', {'page_location': custom_page_to_track, 'fr_page_path': window.location.pathname});
   <% else %>
-    gtag('config', 'UA-17607887-1');
+    gtag('config', 'UA-17607887-1', {'fr_page_path': window.location.pathname});
   <% end %>
 </script>
 
