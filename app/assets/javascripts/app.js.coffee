@@ -49,6 +49,15 @@ $(document).ready ()->
 
     FR2.Analytics.trackGAEvent category, action, documentNumber
 
+  # GA4 Generic handler for click tracking
+  $('.fr-ga-event').on 'click', (e) ->
+    eventName = $(this).data('eventName')
+    if !eventName
+      throw new Error('event_name must be defined')
+    eventParameters = $(this).data('eventParameters')
+
+    gtag('event', eventName, eventParameters)
+
   # Subcription modals
   $('a.rss, a.subscription, a.subscription_action').not('.no-modal-action').on 'click', (e)->
     e.preventDefault()
