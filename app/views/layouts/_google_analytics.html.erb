@@ -5,6 +5,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // Track whether user is signed in
+  gtag('set', 'user_properties', {
+    signed_in: readCookie('expect_signed_in') == "1"
+  });
+
   <% if custom_page_to_track %>
     gtag('config', 'UA-17607887-1', {'page_location': custom_page_to_track});
   <% else %>
