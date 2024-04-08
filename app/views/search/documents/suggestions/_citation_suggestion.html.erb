@@ -51,12 +51,28 @@
                         tags: %w(span),
                         attributes: %w(class)
                       ),
-                      archives_citation.issue_slice_url %>
+                      archives_citation.issue_slice_url,
+                      class: 'fr-ga-event',
+                      data: {
+                        event_name: 'fr_search_suggestion_click',
+                        event_parameters: {
+                          suggestion_type: 'fr_archives_document',
+                          suggestion_text: citation_suggestion.name
+                        }.to_json
+                      } %>
                 </p>
               <% end %>
               <p class="excerpts">
                 <%= link_to "#{citation_suggestion.name} :: Full Archival Issue (#{number_to_human_size(archives_citation.original_file_size)})",
-                      archives_citation.gpo_url %>
+                      archives_citation.gpo_url,
+                      class: 'fr-ga-event',
+                      data: {
+                        event_name: 'fr_search_suggestion_click',
+                        event_parameters: {
+                          suggestion_type: 'fr_archives_issue',
+                          suggestion_text: citation_suggestion.name
+                        }.to_json
+                      } %>
               </p>
             </div>
           </li>

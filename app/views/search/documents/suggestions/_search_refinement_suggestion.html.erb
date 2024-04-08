@@ -7,7 +7,15 @@
       <%= link_to pluralize(search_refinement_suggestion.count, "document"),
         documents_search_path(
           conditions: search_refinement_suggestion.search_conditions
-        ) %>
+        ),
+        class: 'fr-ga-event',
+        data: {
+          event_name: 'fr_search_suggestion_click',
+          event_parameters: {
+            suggestion_type: 'search_refinement',
+            suggestion_text: CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe
+          }.to_json
+        } %>
       <%= CGI.unescapeHTML(search_refinement_suggestion.search_summary).html_safe %>?
     </p>
   </div>

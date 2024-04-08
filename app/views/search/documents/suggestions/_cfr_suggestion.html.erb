@@ -15,7 +15,15 @@
       <ul class="bullets">
         <li>
           <%= link_to 'eCFR',
-            FederalRegisterReferenceParser.ecfr_url(cfr_suggestion.title, cfr_suggestion.part) %>
+            FederalRegisterReferenceParser.ecfr_url(cfr_suggestion.title, cfr_suggestion.part),
+            class: 'fr-ga-event',
+            data: {
+              event_name: 'fr_search_suggestion_click',
+              event_parameters: {
+                suggestion_type: 'cfr',
+                suggestion_text: "#{cfr_suggestion.title} CFR #{cfr_suggestion.part}"
+              }.to_json
+            } %>
         </li>
       </ul>
     </div>

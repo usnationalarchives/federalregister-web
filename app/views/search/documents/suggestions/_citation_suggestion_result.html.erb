@@ -1,7 +1,15 @@
 <li class="result-item">
   <h5>
     <%= link_to sanitize(document.title, tags: %w(span), attributes: %w(class)),
-      document_path(document) %>
+      document_path(document),
+      class: 'fr-ga-event',
+      data: {
+        event_name: 'fr_search_suggestion_click',
+        event_parameters: {
+          suggestion_type: 'citation',
+          suggestion_text: document.title
+        }.to_json
+      } %>
   </h5>
 
   <% if document.abstract %>
