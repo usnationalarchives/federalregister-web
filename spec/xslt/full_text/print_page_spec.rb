@@ -25,10 +25,8 @@ describe "XSLT::PrintPage" do
 
     expect(html).to have_tag(
       "span.printed-page-details.unprinted-element.document-markup",
-      with: {"data-text" => "Print Page 1000"}
-    ) do
-      with_text "Print Page 1000"
-    end
+      with: {"data-page" => "1000"}
+    )
   end
 
   it "ignores PRTPAGE nodes inside of footnotes" do

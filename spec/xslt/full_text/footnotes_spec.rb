@@ -79,11 +79,10 @@ describe "XSLT::FullText::Footnotes" do
           <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
         </svg>
       </span>
-      <span class="printed-page-details unprinted-element document-markup cj-tooltip" id="page-1001" data-page="1001" data-text="Print Page 1001" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 1001}" data-tooltip="Click for more print page information">
+      <span class="printed-page-details unprinted-element document-markup" id="page-1001" data-page="1001">
         <svg class="svg-icon svg-icon-doc-generic">
           <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
         </svg>
-        <span class="text">Print Page 1001</span>
       </span>
       <p id="p-3" data-page="1001">
         <sup>[<a class="footnote-reference" href="#footnote-2-p1001" id="citation-2-p1001">2</a>] </sup>
