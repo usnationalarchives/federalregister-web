@@ -205,3 +205,18 @@ div.preamble {
     width: $icon-size;
   }
 }
+
+@media only screen and (max-width: $small-viewport-width) {
+  .printed-page-details .page-menu {
+    dl { margin-bottom: 0; }
+
+    dt,
+    dd {
+      float: none;
+      text-align: left;
+      width: 100%;
+    }
+
+    dd { margin-bottom: 10px; }
+  }
+}
