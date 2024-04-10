@@ -12,7 +12,7 @@ OFR.ContentNotifications = class ContentNotifications {
       .forEach(dismissLink => {
         dismissLink.addEventListener('click', (event) => {
           const notification = event.target.closest('.content-notification')
-          notification.style.display = 'none'
+          notification.classList.add("hidden")
           this.ignoreForSession(notification.id)
         })
       }
@@ -30,7 +30,7 @@ OFR.ContentNotifications = class ContentNotifications {
       const notification = body.querySelector(`#${id}`)
 
       if (notification !== null) {
-        notification.style.display = 'none'
+        notification.classList.add("hidden")
       }
     })
   }

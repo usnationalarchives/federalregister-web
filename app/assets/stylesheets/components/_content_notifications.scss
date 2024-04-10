@@ -311,5 +311,9 @@
     &.public-inspection-documents-controller {
       width: 940px;
     }
+
+    &:not(.hidden) + .metadata-content-area {
+      margin-top: 30px;
+    }
   }
 }
