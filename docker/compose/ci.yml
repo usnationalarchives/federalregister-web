@@ -15,6 +15,7 @@ services:
       MYSQL_PORT_3306_TCP_ADDR: mysql
       DB_STRUCTURE_ACCESS_KEY: ''
       DB_STRUCTURE_SECRET: ''
+      ESLINT_USE_FLAT_CONFIG: false
     links:
       - mysql
       - redis
