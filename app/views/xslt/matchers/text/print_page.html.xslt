@@ -18,7 +18,7 @@
       <xsl:copy-of select="fr:svg_icon('doc-generic')" />
     </span>
 
-    <span class="printed-page-details unprinted-element document-markup cj-tooltip">
+    <span class="printed-page-details unprinted-element document-markup">
       <xsl:attribute name="id">
         <xsl:text>page-</xsl:text><xsl:value-of select="@P" />
       </xsl:attribute>
@@ -27,46 +27,7 @@
         <xsl:value-of select="@P" />
       </xsl:attribute>
 
-      <xsl:attribute name="data-text">
-        <xsl:value-of select="concat('Print Page ', @P)" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-tooltip-template">
-        <xsl:value-of select="'#print-page-tooltip-template'" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-toggle">
-        <xsl:value-of select="'popover'" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-original-title">
-        <xsl:value-of select="''" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-placement">
-        <xsl:value-of select="'left'" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-html">
-        <xsl:value-of select="'true'" />
-      </xsl:attribute>
-
-      <xsl:attribute name="data-tooltip-data">
-        <xsl:text>{"page": </xsl:text>
-        <xsl:value-of select="@P" />
-        <xsl:text>}</xsl:text>
-      </xsl:attribute>
-
-      <xsl:attribute name="data-tooltip">
-        <xsl:value-of select="'Click for more print page information'" />
-      </xsl:attribute>
-
       <xsl:copy-of select="fr:svg_icon('doc-generic')" />
-
-      <span class="text">
-        <xsl:text>Print Page </xsl:text>
-        <xsl:value-of select="@P" />
-      </span>
     </span>
   </xsl:template>
 </xsl:stylesheet>

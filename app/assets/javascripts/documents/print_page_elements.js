@@ -12,6 +12,14 @@ FR2.PrintPageElements = class PrintPageElements {
 
       if (!this.printPageTarget(target)) return
 
+      // add tooltip if we haven't already
+      if (!target.dataset.tooltip) {
+        target.dataset.tooltip = `
+          Printed Page ${target.dataset.page}. <br> Click to view page tools.
+        `
+        CJ.Tooltip.addTooltip(target, {html: true}).tipsy('show')
+      }
+
       let icon = "doc-filled";
       this.updateUI(target, icon);
     }, true)
@@ -45,6 +53,7 @@ FR2.PrintPageElements = class PrintPageElements {
         // don't do anything if the click was in the page menu box
         // but .page-menu is a wrapper with a background blur and we want that
         // to close the menu if clicked
+        console.log(target, target.closest(".page-menu-box"))
         if (target.closest(".page-menu-box") !== null) return;
 
         if (pageDetailsTarget.classList.contains("menu-open")) {

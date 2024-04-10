@@ -1,6 +1,21 @@
 class @FR2.TableFixedHeaderManager
-  constructor: (tooltipOptions)->
-    @tooltipOptions = tooltipOptions
+  constructor: ()->
+    @addEvents()
+
+  addEvents: ->
+    $('#documents').on('mouseenter', '.table-wrapper table', ->
+      $(this).closest('.table-wrapper')
+        .find('.expand-table-link .svg-tooltip')
+        .addClass('hover')
+        .trigger('mouseenter')
+    )
+
+    $('#documents').on('mouseleave', '.table-wrapper table', ->
+      $(this).closest('.table-wrapper')
+        .find('.expand-table-link .svg-tooltip')
+        .removeClass('hover')
+        .trigger('mouseleave')
+    )
 
   perform: ->
     context         = this
@@ -43,11 +58,10 @@ class @FR2.TableFixedHeaderManager
       <span class="expand-table-link ui sticky">
         <span class="svg-tooltip"
           data-toggle="tooltip"
-          data-title="Click to view full table width">
+          data-title="Click icon to view full table width">
           <svg class="svg-icon svg-icon-fullscreen">
             <use xlink:href="/assets/fr-icons.svg#fullscreen"></use>
           </svg>
-          <span class="text">Expand Table</span>
         </span>
       </span>
     </div>

@@ -7,7 +7,7 @@ $non-printed-text-font-size: 15px;
 
 .expand-table-positioning-wrapper {
   position: absolute;
-  left: -70px;
+  left: -40px;
   margin-top: 25px;
 }
 
@@ -23,7 +23,8 @@ $non-printed-text-font-size: 15px;
     bottom: 80px;
   }
 
-  &:hover {
+  &:hover,
+  .hover {
     color: $color-enhanced-dark;
     fill: $color-enhanced-dark;
   }
@@ -35,7 +36,6 @@ $non-printed-text-font-size: 15px;
 
   .svg-icon {
     height: 30px;
-    left: 20px;
     width: 30px;
     position: relative;
   }
@@ -47,7 +47,9 @@ $non-printed-text-font-size: 15px;
     width: 70px;
   }
 
-  .tooltip { width: 150px; }
+  .tooltip {
+    width: 150px;
+  }
 }
 
 // Only set colors for elements that change based on document status,
@@ -79,6 +81,7 @@ $non-printed-text-font-size: 15px;
 
 // most page breaks occur within paragraphs but some appear in between or after
 // other specific items - these need some style adjustments to appear the same
+div.list-of-subjects,
 div.table-wrapper,
 p,
 ul {
@@ -86,10 +89,11 @@ ul {
     display: block;
     margin-bottom: 35px;
     margin-top: 15px;
+    width: 13px;
   }
 
   &+ .printed-page-inline + .printed-page-details {
-    left: -70px;
+    left: -40px;
     margin-top: -60px;
   }
 }
@@ -98,16 +102,17 @@ div.preamble {
     display: block;
     margin-bottom: 35px;
     margin-top: 15px;
+    width: 13px;
   }
 
   &> .printed-page-inline + .printed-page-details {
-    left: -70px;
+    left: -40px;
     margin-top: -60px;
   }
 }
 
 .flush-paragraph .printed-page-details {
-  left: -96px;
+  left: -66px;
 }
 
 .further-info,
@@ -116,7 +121,7 @@ div.preamble {
   position: relative;
 
   > .printed-page-details {
-    left: -80px;
+    left: -50px;
     top: -4px;
   }
 }
@@ -131,24 +136,30 @@ div.preamble {
 
 .printed-page-details {
   font-size: $non-printed-text-font-size;
-  left: -50px;
+  height: 23px;
+  left: -20px;
   line-height: 18px;
   margin-left: 10px;
   padding-top: 4px;
   position: absolute;
   text-indent: -15px;
-  width: 45px;
+  // width hack set for tooltip alignment/centering
+  width: 8px;
+
+  .text { display: none; }
 
   .page-menu {
     backdrop-filter: blur(1px);
     height: 300px;
-    left: 60px;
+    left: 20px;
     position: relative;
     text-indent: 0;
-    top: -125px;
+    top: -100px;
     z-index: 600; // above inline fr boxes like doc headings/ednotes
 
     > .fr-box {
+      // items visible outside box cause ui click issues (even if just padding)
+      overflow: hidden;
       position: relative;
       top: 53px;
     }
@@ -183,12 +194,14 @@ div.preamble {
   }
 
   .svg-icon {
+    $icon-size: 16px;
+
     display: block;
-    height: 14px;
+    height: $icon-size;
     margin-bottom: 5px;
     padding-right: 5px;
     position: relative;
     top: 2px;
-    width: 14px;
+    width: $icon-size;
   }
 }
