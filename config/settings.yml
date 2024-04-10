@@ -33,6 +33,8 @@ app:
     from_remote: false
   search:
     location_search_enabled: true
+  site_notifications:
+    display: true
   subscriptions:
     deliver: true
     deliver_pil: true

@@ -104,6 +104,12 @@
 
       <%= yield(:title_bar) %>
 
+      <% SiteNotification.site_notifications_for(
+          @notification_location || controller
+        ).each do |notification| %>
+          <%= notification(notification.to_content_notification(controller)) %>
+      <% end %>
+
       <%= yield %>
     </div>
     </main>

@@ -16,6 +16,7 @@ $(document).ready ()->
   # Ensure user preference store has defaults
   FR2.UserPreferenceStore.init()
 
+  (new OFR.ContentNotifications(FR2.UserPreferenceStore)).addEvents()
 
   tooltipOptions = {
     offset:  5

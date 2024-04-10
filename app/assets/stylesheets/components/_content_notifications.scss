@@ -12,7 +12,10 @@
     .message { align-self: center; }
   }
 
-  .message { grid-area: message; }
+  .message {
+    align-self: center;
+    grid-area: message;
+  }
   .message-icon {
     align-self: center;
     grid-area: icon;
@@ -32,6 +35,10 @@
   // because we don't specify an area, actions are auto filled by the grid
   // but we want them in the second col under the message area
   .message-actions { grid-column-start: 2; }
+
+  &.site-notification {
+    grid-template-columns: 35px 1fr 35px;
+  }
 }
 
 .content-notification {
@@ -107,14 +114,8 @@
 
   .dismiss-link {
     cursor: pointer;
-    float: right;
-    position: relative;
-    top: 2px;
-
-    .svg-icon {
-      font-size: modular-scale(2);
-      margin-right: 0;
-    }
+    height: $svg-icon-size;
+    width: $svg-icon-size;
   }
 
   &.basic {
@@ -130,6 +131,12 @@
 
         &:hover { color: darken($text, 15); }
       }
+    }
+
+    &.svg-icon-delete:hover {
+      fill: $gray-10;
+      background-color: $text;
+      border-radius: 14px;
     }
   }
 
@@ -148,7 +155,15 @@
       }
     }
 
-    .svg-icon { fill: $alert-danger-text; }
+    .svg-icon {
+      fill: $alert-danger-text;
+
+      &.svg-icon-delete:hover {
+        fill: $alert-danger-bg;
+        background-color: $alert-danger-text;
+        border-radius: 14px;
+      }
+    }
   }
 
   &.feature {
@@ -166,7 +181,15 @@
       }
     }
 
-    .svg-icon { fill: $feature-color; }
+    .svg-icon {
+      fill: $feature-color;
+
+      &.svg-icon-delete:hover {
+        fill: lighten($feature-color, 55);
+        background-color: $feature-color;
+        border-radius: 14px;
+      }
+    }
   }
 
   &.info {
@@ -184,7 +207,15 @@
       }
     }
 
-    .svg-icon { fill: $alert-info-text; }
+    .svg-icon {
+      fill: $alert-info-text;
+
+      &.svg-icon-delete:hover {
+        fill: $alert-info-bg;
+        background-color: $alert-info-text;
+        border-radius: 14px;
+      }
+    }
   }
 
   &.success {
@@ -202,7 +233,15 @@
       }
     }
 
-    .svg-icon { fill: $alert-success-text; }
+    .svg-icon {
+      fill: $alert-success-text;
+
+      &.svg-icon-delete:hover {
+        fill: $alert-success-bg;
+        background-color: $alert-success-text;
+        border-radius: 14px;
+      }
+    }
   }
 
   &.warning {
@@ -220,7 +259,15 @@
       }
     }
 
-    .svg-icon { fill: $alert-warning-text; }
+    .svg-icon {
+      fill: $alert-warning-text;
+
+      &.svg-icon-delete:hover {
+        fill: $alert-warning-bg;
+        background-color: $alert-warning-text;
+        border-radius: 14px;
+      }
+    }
   }
 
   // additional suggestion specific styles
@@ -254,5 +301,15 @@
 
   &:last-of-type {
     margin-bottom: 30px !important;
+  }
+
+  &.site-notification {
+    margin: auto;
+    width: 910px;
+
+    &.documents-controller,
+    &.public-inspection-documents-controller {
+      width: 940px;
+    }
   }
 }

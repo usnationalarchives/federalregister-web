@@ -1,12 +1,6 @@
 <div class="<%= wrapper_classes %>"
   id="<%= content_notification.id || "content-notification-#{content_notification.trackable_id}" %>"
 >
-  <% if content_notification.closable? %>
-    <div class="dismiss-link">
-      <%= svg_icon 'badge-x' %>
-    </div>
-  <% end %>
-
   <div class="message-icon">
     <%= content_notification.icon ? svg_icon(content_notification.icon)
       : content_notification_icon(content_notification.type) %>
@@ -28,9 +22,15 @@
     </div>
   <% end %>
 
-  <% if content_notification.link.present? %>
+  <% if content_notification.link.present? || content_notification.closable? %>
     <div class="message-link">
       <%= content_notification.link %>
+
+      <% if content_notification.closable? %>
+        <div class="dismiss-link cj-tooltip" data-tooltip="Dismiss Notification">
+          <%= svg_icon 'delete' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
