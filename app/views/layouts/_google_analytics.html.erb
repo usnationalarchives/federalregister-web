@@ -15,6 +15,10 @@
   <% else %>
     gtag('config', 'UA-17607887-1', {'fr_page_path': window.location.pathname});
   <% end %>
+    gtag('event', 'fr_page_view', {
+      'fr_page_path': window.location.pathname,
+      'fr_page_referrer': document.referrer
+    });
 </script>
 
 <% if Rails.env.production? %>
