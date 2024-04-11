@@ -91,6 +91,17 @@
           }
 
           max-width: calc(100vw - 56px); // Ensure utility nav dropdown items are not cut off in mobile
+          
+          // These enhanced/PIL item dropdowns can extend off the bottom of the mobile screen and won't be scrollable unless we add a max height and make them scrollable
+          &.fr-box-enhanced .content-block {
+            max-height: 403px !important;
+            overflow: auto;
+          }
+
+          &.fr-box-public-inspection .content { 
+            max-height: 177px;
+            overflow: auto;
+          }
         }
       }
 
