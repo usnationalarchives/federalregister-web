@@ -76,6 +76,20 @@
         border: none;
 
         @media only screen and (max-width: $small-viewport-width) {
+          dl {  // Change the definition list layouts so dd and dt stack on top of one another in lieu of being displayed alongside one another
+            display: grid;
+            grid-template-columns: 1fr;
+
+            dt {
+              margin-top: 6px;
+              text-align: left !important; 
+            }
+            dd {
+              margin-top: -2px;
+              padding-left: unset !important;
+            }
+          }
+
           max-width: calc(100vw - 56px); // Ensure utility nav dropdown items are not cut off in mobile
         }
       }
