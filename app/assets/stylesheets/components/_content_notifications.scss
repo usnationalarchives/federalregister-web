@@ -316,4 +316,12 @@
       margin-top: 30px;
     }
   }
+
+  @media only screen and (max-width: $small-viewport-width) {
+    &.feature {
+      display: none;
+    }
+
+  }
+
 }
