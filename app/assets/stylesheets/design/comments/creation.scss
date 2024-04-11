@@ -816,11 +816,37 @@ div.alternative-comment-modal {
 }
 
 @media only screen and (max-width: $small-viewport-width) {
-  .comment_form_wrapper .submitter-type-js {
-    .icon-fr2 {
+
+  .comment_form_wrapper {
+    .submitter-type-js .icon-fr2 {
       font-size: 50px;
     }
+
+    table.attachments {
+
+      .template-download {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 7px;
+
+        .progress {
+          top: unset;
+          width: auto !important;
+        }
+
+        td.size {
+          text-align: unset !important;
+        }
+
+        button.delete {
+          left: 0px !important;
+        }
+      }
+
+    }
+
   }
+
 }
 
 @media print {
