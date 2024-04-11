@@ -38,7 +38,12 @@ FR2.PrintPageElements = class PrintPageElements {
     document.body.addEventListener("click", (event) => {
       let target = event.target
 
-      let pageDetailsTarget = target.closest(".printed-page-details")
+      let pageDetailsTarget = target.closest(".printed-page-details") ||
+        this.correspondingGutterItem(
+          this.pageNumber(
+            target.closest(".printed-page-inline")
+          )
+        )
 
       if (pageDetailsTarget === null) {
         // close menu on click elsewhere
@@ -53,7 +58,6 @@ FR2.PrintPageElements = class PrintPageElements {
         // don't do anything if the click was in the page menu box
         // but .page-menu is a wrapper with a background blur and we want that
         // to close the menu if clicked
-        console.log(target, target.closest(".page-menu-box"))
         if (target.closest(".page-menu-box") !== null) return;
 
         if (pageDetailsTarget.classList.contains("menu-open")) {
@@ -162,6 +166,8 @@ FR2.PrintPageElements = class PrintPageElements {
   }
 
   pageNumber(el) {
+    if (!el) return 0;
+
     return el.dataset.page
   }
 
