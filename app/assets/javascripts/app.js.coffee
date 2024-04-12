@@ -4,6 +4,18 @@ $(document).on "DOMContentLoaded", (event)->
 
 
 $(document).ready ()->
+  # ES-based search autocomplete
+  $('#embedded_entry_search_form').find("#conditions_term").autocomplete({
+    minLength: 3,
+    source: (request, response) ->
+      $.ajax({
+        url: "/api/v1/documents/autocomplete-suggestions?conditions[term]=" + request.term,
+        success: (data) ->
+          response(data)
+        error: (data) ->
+      })
+  })
+
   new FR2.HoneybadgerConfigurer()
 
   userData = new FR2.UserData()
