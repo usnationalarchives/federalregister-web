@@ -5,6 +5,7 @@ class SearchDetails::Base
     :agencies,
     :president,
     :presidential_document_type,
+    :search_type_ids,
     :sections,
     :small_entity_ids,
     :topics,

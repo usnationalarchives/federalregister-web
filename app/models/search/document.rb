@@ -18,6 +18,7 @@ class Search::Document < Search::Base
     :presidential_document_type_id,
     :publication_date,
     :regulation_id_number,
+    :search_type_ids,
     :section_ids,
     :sections,
     :significant,
