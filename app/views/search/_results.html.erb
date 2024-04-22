@@ -75,6 +75,17 @@
             </p>
           <% end %>
         <% end %>
+
+        <% if document.explanation %>
+          </br>
+          <div><em>Score Summary</em></div>
+          <span class="cj-tooltip" data-tooltip="<%= OpenSearchExplanationPresenter.summary_formula %>">
+            <b><%= document.score %></b> = <%= document.explanation_summary %>
+          </span>
+          <div class="score-explanation-js"
+              data-json="<%= raw CGI.escapeHTML(document.explanation.to_json) %>">
+          </div>
+        <% end %>
       </div>
     </li>
   <% end %>

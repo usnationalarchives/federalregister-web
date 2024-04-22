@@ -292,5 +292,8 @@ $(document).ready ()->
     new FR2.UtilityNav(".doc-content.with-utility-nav")
 
   ##############################
-  # API Docs Page
+  # Collapsible Open Search Score Score Explanations
   ##############################
+  $('.score-explanation-js').each (index, element) ->
+    data = $(element).data('json')
+    $(element).jsonViewer(data, {collapsed: true})

@@ -1,6 +1,15 @@
 class Document < FederalRegister::Document
 
   add_attribute :not_received_for_publication
+  add_attribute :explanation
+
+  def score
+    OpenSearchExplanationPresenter.new(explanation).overall_score
+  end
+
+  def explanation_summary
+    OpenSearchExplanationPresenter.new(explanation).summary
+  end
 
   def excluding_parent_agencies
     agency_names = agencies.map{|a| a.name}
@@ -23,6 +32,7 @@ class Document < FederalRegister::Document
       :publication_date,
       :title,
       :type,
+      :explanation,
     ]
   end
 
