@@ -2,7 +2,7 @@
 <% page_title "Reader Aids :: #{@presenter.title}" %>
 
 <%= title title_bar_class: "reader-aids" do %>
-  <%= fr_icon 'Directions' %>
+  <%= fr_icon @presenter.icon_class %>
   <%= @presenter.title %>
 <% end %>
 
