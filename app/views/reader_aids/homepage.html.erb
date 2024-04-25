@@ -11,8 +11,11 @@
 
       <div id="ofr-blog-callout">
         <p class="blog">
-          <span class="icon-fr2 icon-fr2-quote"></span>
-          Read the <%= link_to 'Office of the Federal Register Blog', reader_aids_section_path("office-of-the-federal-register-blog") %>
+          <% announcements = ReaderAid::SECTIONS['office-of-the-federal-register-announcements'] %>
+          <span class="icon-fr2 icon-fr2-<%= announcements[:icon_class]%>"></span>
+
+          Read <%= link_to announcements[:title],
+            reader_aids_section_path('office-of-the-federal-register-announcements') %>
         </p>
       </div>
 

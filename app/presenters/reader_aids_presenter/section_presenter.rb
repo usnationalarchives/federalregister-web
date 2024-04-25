@@ -13,7 +13,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   RESULTS_PER_PAGE = 100 #seems to be max allowed by WP
 
   SECTION_SLUGS_WITH_RSS_FEEDS = [
-    'office-of-the-federal-register-blog',
+    'office-of-the-federal-register-announcements',
     'recent-updates',
   ]
 
@@ -93,7 +93,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
     posts_collection = WpApi::Client.get_posts(config)
 
-    if section_identifier == 'office-of-the-federal-register-blog'
+    if section_identifier == 'office-of-the-federal-register-announcements'
       posts_collection.content = posts_collection.posts.reject do |post|
         post.categories.map{|c| c.slug}.include?('site-updates')
       end

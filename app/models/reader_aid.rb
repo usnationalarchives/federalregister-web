@@ -1,8 +1,8 @@
 class ReaderAid
   SECTIONS = {
-    'office-of-the-federal-register-blog'=> {
-      title: 'Office of the Federal Register Blog',
-      icon_class: 'quote',
+    'office-of-the-federal-register-announcements'=> {
+      title: 'Office of the Federal Register Announcements',
+      icon_class: 'megaphone',
       type: 'posts',
       show_authorship: true,
       index_settings: {

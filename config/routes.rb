@@ -298,6 +298,12 @@ Rails.application.routes.draw do
     to: 'reader_aids#search',
     as: :reader_aids_search
 
+  get 'reader-aids/office-of-the-federal-register-blog',
+    to: redirect("reader-aids/office-of-the-federal-register-announcements")
+
+  get 'reader-aids/office-of-the-federal-register-blog/(*all)',
+    to: redirect("reader-aids/office-of-the-federal-register-announcements/%{all}")
+
   get 'reader-aids/:section',
     to: 'reader_aids#section',
     as: :reader_aids_section
@@ -306,12 +312,13 @@ Rails.application.routes.draw do
     to: 'reader_aids#show',
     as: :reader_aid_blog_post,
     contraints: {
-      section: ['office-of-the-federal-register-blog', 'recent-updates']
+      section: ['office-of-the-federal-register-announcements', 'recent-updates']
     }
 
   get 'reader-aids/:section/:page(/*subpage)',
     to: 'reader_aids#show',
     as: :reader_aid
+
 
 
   #
