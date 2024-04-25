@@ -4,6 +4,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
               :display_count,
               :item_partial,
               :item_ul_class,
+              :newer_than,
               :page_identifier,
               :section_identifier,
               :subpage_identifier
@@ -30,6 +31,8 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
     @columns = config.fetch(:columns) { 1 }
     @display_count = config.fetch(:display_count) { nil }
+
+    @newer_than = config.fetch(:newer_than) { section_settings[:newer_than] }
 
     @per_page_offset = 0
     if config.fetch(:validate_item) { false }
@@ -100,6 +103,12 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     elsif section_identifier == 'recent-updates'
       posts_collection.content = posts_collection.posts.select do |post|
         post.categories.map{|c| c.slug}.include?('site-updates')
+      end
+    end
+
+    if newer_than
+      posts_collection.content = posts_collection.content.select do |post|
+        Date.parse(post.attributes["date"]) > Date.today - newer_than
       end
     end
 
