@@ -75,14 +75,18 @@ class FederalRegisterStats
   end
 
   def comments_submitted
-    $redis.keys("comment_post_success:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
+    monthly_stat_count("comment_post_success")
   end
 
   def comment_forms_opened
-    $redis.keys("comment_opened:#{redisize_date(beginning_of_month)}").map{|k| Hash[$redis.zrangebyscore(k, 0, 1000, with_scores: true)].values}.flatten.sum.to_i
+    monthly_stat_count("comment_opened")
   end
 
-  def redisize_date(date)
-    date.strftime('%Y-%m*')
+  def monthly_stat_count(statistic_type)
+    Statistic.
+      where("MONTH(date) = ?", beginning_of_month).
+      where("YEAR(date) = ?", beginning_of_year).
+      where(statistic_type: statistic_type).
+      sum(:count)
   end
 end
