@@ -333,7 +333,8 @@ GEM
     mime-types-data (3.2020.1104)
     mini_mime (1.1.2)
     mini_portile2 (2.8.5)
-    minitest (5.22.2)
+    minitest (5.22.3)
+    mock_redis (0.44.0)
     msgpack (1.4.2)
     multi_json (1.14.1)
     multi_xml (0.6.0)
@@ -616,6 +617,7 @@ DEPENDENCIES
   lograge-sql
   mail_view!
   memoist
+  mock_redis
   mysql2 (= 0.5.6)
   nokogiri
   omniauth_openid_connect!

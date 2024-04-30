@@ -219,3 +219,7 @@ group :development, :test do
   gem "vcr", "~> 2.6.0"
   gem 'watchr', '0.7'
 end
+
+group :test do
+  gem 'mock_redis'
+end
