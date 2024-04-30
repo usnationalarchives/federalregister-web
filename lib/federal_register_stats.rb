@@ -5,6 +5,44 @@ class FederalRegisterStats
     :end_of_month,
     :launch_date
 
+  STATISTIC_TYPES = [
+    "comment_post_success",
+    "comment_opened"
+  ]
+  def self.populate_daily_redis_stats_to_disk(date=Date.current - 1.day)
+    STATISTIC_TYPES.each do |statistic_type|
+      key   = "#{statistic_type}:#{date.to_s(:iso)}"
+      count = $redis.zrangebyscore(key, 0, 1000, with_scores: true).sum{|x| x.last}
+      Statistic.find_or_create_by!(
+        statistic_type: statistic_type,
+        date:           date,
+        count:          count
+      )
+    end
+  end
+
+  def self.populate_all_statistic_types
+    STATISTIC_TYPES.each do |statistic_type|
+      populate_statistics_table_from_redis(statistic_type)
+    end
+  end
+
+  def self.populate_statistics_table_from_redis(statistic_type)
+    #NOTE: This should be run BEFORE we've migrated to a hosted redis
+    date_keys = $redis.keys("#{statistic_type}:*")
+    date_keys.each do |key|
+      date = Date.parse(key.split(":").last)
+      count = $redis.zrangebyscore(key, 0, 1000, with_scores: true).sum{|x| x.last}
+      if count
+        stat = Statistic.find_or_create_by(
+          statistic_type: statistic_type,
+          date: date
+        )
+        stat.update!(count: count)
+      end
+    end
+  end
+
   def initialize(date, env='production')
     #site launched on this day - no stats make sense before this
     @launch_date = Date.parse('2010-07-26')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_21_223011) do
+ActiveRecord::Schema.define(version: 2024_04_30_185455) do
 
   create_table "clippings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2024_03_21_223011) do
     t.string "type"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_mailing_lists_on_deleted_at"
+  end
+
+  create_table "statistics", charset: "utf8", force: :cascade do |t|
+    t.string "statistic_type"
+    t.date "date"
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["statistic_type", "date"], name: "index_statistics_on_statistic_type_and_date"
   end
 
   create_table "subscriptions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

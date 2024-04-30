@@ -32,3 +32,7 @@ every 1.day, at: '6PM' do
   rake 'regulations_dot_gov:notify_comment_publication'
 end
 
+every 1.day, at: '12:01 am' do
+  rake 'monthly:stats:persist_daily_redis_stats_to_disk'
+end
+
