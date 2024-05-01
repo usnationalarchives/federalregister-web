@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    track_ipaddress "comment_opened", request.remote_ip
+    track_stat("comment_opened", request.remote_ip)
 
     head :ok
   end
@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
     end
     @comment.save!
 
-    track_ipaddress "comment_post_success", request.remote_ip
+    track_stat("comment_post_success", request.remote_ip)
     render_created_comment
   end
 
@@ -73,7 +73,11 @@ class CommentsController < ApplicationController
     render action: :show, status: 200
   end
 
-  def track_ipaddress(key, ipaddress)
-    $redis.zincrby "#{key}:#{Date.current.to_s(:iso)}", 1, ipaddress
+  def track_stat(key, ipaddress)
+    if Settings.feature_flags.store_commenting_metadata_without_ip
+      $redis.incr("#{key}:#{Date.current.to_s(:iso)}")
+    else
+      $redis.zincrby "#{key}:#{Date.current.to_s(:iso)}", 1, ipaddress
+    end
   end
 end

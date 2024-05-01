@@ -21,14 +21,24 @@ class FederalRegisterStats
     end
   end
 
+  def self.populate_redis_from_database
+    STATISTIC_TYPES.each do |statistic_type|
+      Statistic.find_each do |statistic|
+        key = "#{statistic_type}:#{statistic.date.to_s(:iso)}"
+        $redis.set(key, statistic.count)
+      end
+    end
+  end
+
   def self.populate_all_statistic_types
+    #NOTE: This should be run BEFORE we've migrated to a hosted redis.  Should be deleted if past 2024-06-01
     STATISTIC_TYPES.each do |statistic_type|
       populate_statistics_table_from_redis(statistic_type)
     end
   end
 
   def self.populate_statistics_table_from_redis(statistic_type)
-    #NOTE: This should be run BEFORE we've migrated to a hosted redis
+    #NOTE: This should be run BEFORE we've migrated to a hosted redis.  Should be deleted if past 2024-06-01
     date_keys = $redis.keys("#{statistic_type}:*")
     date_keys.each do |key|
       date = Date.parse(key.split(":").last)

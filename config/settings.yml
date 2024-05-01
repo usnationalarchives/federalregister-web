@@ -58,6 +58,7 @@ database:
 feature_flags:
   # TODO: refactor announcements to not need feature flag
   announcements: false
+  store_commenting_metadata_without_ip: false
 
 lograge:
   enabled: true

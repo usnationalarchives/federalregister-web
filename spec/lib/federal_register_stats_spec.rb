@@ -5,6 +5,13 @@ describe FederalRegisterStats do
     $redis = MockRedis.new
   end
 
+  it "populate_redis_from_database" do
+    date = Date.new(2024,3,1)
+    Statistic.create!(date: date, count: 99, statistic_type: "comment_post_success")
+    FederalRegisterStats.populate_redis_from_database
+    expect($redis.get("comment_post_success:#{date.to_s(:iso)}")).to eq("99")
+  end
+
   it "#populate_daily_redis_stats_to_disk" do
     $redis.zincrby "comment_post_success:#{Date.new(2024,3,5).to_s(:iso)}", 1, '44.242.75.21'
     $redis.zincrby "comment_post_success:#{Date.new(2024,3,5).to_s(:iso)}", 1, '44.242.75.21'
