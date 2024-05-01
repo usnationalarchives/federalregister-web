@@ -1,6 +1,9 @@
 database:
   name: federal_register_web_staging
 
+feature_flags:
+  store_commenting_metadata_without_ip: true
+
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.federalregister.gov
