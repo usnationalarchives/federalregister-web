@@ -319,6 +319,7 @@ Rails.application.routes.draw do
     to: 'reader_aids#show',
     as: :reader_aid
 
+  get '/policy/continuity-information', to: redirect('https://www.archives.gov/federal-register/write/newsletter/2024-may')
 
 
   #
