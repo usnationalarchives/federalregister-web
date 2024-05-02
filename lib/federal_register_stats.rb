@@ -12,7 +12,11 @@ class FederalRegisterStats
   def self.populate_daily_redis_stats_to_disk(date=Date.current - 1.day)
     STATISTIC_TYPES.each do |statistic_type|
       key   = "#{statistic_type}:#{date.to_s(:iso)}"
-      count = $redis.zrangebyscore(key, 0, 1000, with_scores: true).sum{|x| x.last}
+      if Settings.feature_flags.store_commenting_metadata_without_ip
+        count = $redis.get(key)
+      else
+        count = $redis.zrangebyscore(key, 0, 1000, with_scores: true).sum{|x| x.last}
+      end
       Statistic.find_or_create_by!(
         statistic_type: statistic_type,
         date:           date,
