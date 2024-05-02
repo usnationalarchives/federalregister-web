@@ -39,7 +39,9 @@ varnish:
 # DEVELOPMENT ONLY SETTINGS
 ####################################
 
-permitted_hosts: ""
+development_flags:
+  # below are stubs - set these in development.local.yml if you need them
+  permitted_hosts: ""
 
 vcr:
   enabled: true

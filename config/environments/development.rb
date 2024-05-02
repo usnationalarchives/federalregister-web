@@ -98,6 +98,8 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "fr2.criticaljuncture.org"
+
+  # Note: Set this in your development.local.yml
   Settings.development_flags.permitted_hosts&.split(',')&.each do |host|
     config.hosts << host
   end
