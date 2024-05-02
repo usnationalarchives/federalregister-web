@@ -11,10 +11,10 @@
 
     .content-block {
       a {
-        color: $color-reader-aid;
+        color: $color-reader-aid-link;
 
-        &:visited { color: $color-reader-aid; }
-        &:hover { color: darken($color-reader-aid, 20); }
+        &:visited { color: $color-reader-aid-link; }
+        &:hover { color: darken($color-reader-aid-link, 20); }
       }
 
       img {
