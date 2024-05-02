@@ -35,7 +35,7 @@ class ReaderAid
       index_settings: {
         display_count: 3,
         columns: 1,
-        # newer_than: 180.days
+        newer_than: 180.days
       }
     },
     'federal-register-statistics' => {
