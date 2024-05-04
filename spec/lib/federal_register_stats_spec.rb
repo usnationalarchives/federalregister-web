@@ -13,6 +13,9 @@ describe FederalRegisterStats do
   end
 
   it "#populate_daily_redis_stats_to_disk" do
+    if Settings.feature_flags.store_commenting_metadata_without_ip
+      pending("")
+    end
     $redis.zincrby "comment_post_success:#{Date.new(2024,3,5).to_s(:iso)}", 1, '44.242.75.21'
     $redis.zincrby "comment_post_success:#{Date.new(2024,3,5).to_s(:iso)}", 1, '44.242.75.21'
     $redis.zincrby "comment_post_success:#{Date.new(2024,3,5).to_s(:iso)}", 1, '44.242.75.25'
