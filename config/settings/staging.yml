@@ -4,6 +4,9 @@ database:
 feature_flags:
   store_commenting_metadata_without_ip: true
 
+redis:
+  db: 2
+
 # Make any updates -api-core also
 s3_buckets:
   zipped_eps_images: eps.images.federalregister.gov

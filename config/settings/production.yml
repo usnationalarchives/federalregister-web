@@ -3,6 +3,9 @@ app:
   csp:
     report_only: false
 
+redis:
+  db: 0
+
 regulations_dot_gov:
   api_base_url: https://api.regulations.gov/v4
 
