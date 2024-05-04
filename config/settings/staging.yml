@@ -1,9 +1,6 @@
 database:
   name: federal_register_web_staging
 
-feature_flags:
-  store_commenting_metadata_without_ip: true
-
 redis:
   db: 2
 
