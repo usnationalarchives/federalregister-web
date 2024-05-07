@@ -4,9 +4,9 @@
   <xsl:template match="text()">
     <xsl:variable name="text_content">
       <xsl:choose>
-        <xsl:when test="starts-with(.,'&#x2022;') and (ancestor::P or ancestor::FP)">
+        <xsl:when test="starts-with(normalize-space(.),'&#x2022;') and (ancestor::P or ancestor::FP)">
           <!-- strip bullet and following space -->
-          <xsl:value-of select="substring(.,3)" />
+          <xsl:value-of select="substring(normalize-space(.),3)" />
         </xsl:when>
 
         <xsl:otherwise>

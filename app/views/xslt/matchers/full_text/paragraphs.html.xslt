@@ -10,8 +10,8 @@
       FP[starts-with(text(),'&#x2022;')]
     ">
     <xsl:choose>
-      <xsl:when test="starts-with(text(),'&#x2022;')">
-        <xsl:if test="not(preceding-sibling::*[name() != 'PRTPAGE'][1][starts-with(text(),'&#x2022;')])">
+      <xsl:when test="starts-with(normalize-space(text()),'&#x2022;')">
+        <xsl:if test="not(preceding-sibling::*[name() != 'PRTPAGE'][1][starts-with(normalize-space(text()),'&#x2022;')])">
            <xsl:text disable-output-escaping="yes">
             &lt;ul class=&quot;bullets&quot; &gt;
           </xsl:text>
@@ -25,7 +25,7 @@
           </xsl:attribute>
           <xsl:apply-templates />
         </li>
-        <xsl:if test="not(following-sibling::*[name() != 'PRTPAGE'][1][starts-with(text(),'&#x2022;') and (name() = 'P' or name() = 'FP')])">
+        <xsl:if test="not(following-sibling::*[name() != 'PRTPAGE'][1][starts-with(normalize-space(text()),'&#x2022;') and (name() = 'P' or name() = 'FP')])">
           <xsl:text disable-output-escaping="yes">
             &lt;/ul&gt;
           </xsl:text>

@@ -202,6 +202,29 @@ describe "XSLT::FullText::Paragraphs" do
             </ul>
           HTML
         end
+
+        it "handles PRTPAGE tags properly" do
+          process <<-XML
+            <P>Potential areas for funded AI research could include:</P>
+            <P>&#x2022; Enhancing the safety of pedestrians,</P>
+            <P>&#x2022; Real-time AI-based decision support tools,</P>
+            <P>
+            &#x2022; Offline analysis of traffic data,
+            <PRTPAGE P="36851"/>
+            </P>
+            <P>&#x2022; Enhancing mapping and spatial AI</P>
+          XML
+
+          expect_equivalent <<-HTML
+            <p id="p-1" data-page="1000">Potential areas for funded AI research could include:</p>
+            <ul class="bullets">
+              <li id="p-2" data-page="1000">Enhancing the safety of pedestrians,</li>
+              <li id="p-3" data-page="1000">Real-time AI-based decision support tools,</li>
+              <li id="p-4" data-page="1000">Offline analysis of traffic data,<span class="printed-page printed-page-inline unprinted-element icon-fr2 icon-fr2-doc-generic document-markup" data-page="36851"></span><span class="printed-page-wrapper unprinted-element-wrapper"><span class="unprinted-element-border"></span><span class="printed-page unprinted-element document-markup bootstrap-popover" id="page-36851" data-page="36851" data-text="Start Printed Page 36851" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 36851}"><span class="icon-fr2 icon-fr2-doc-generic"></span><span class="text cj-tooltip" data-tooltip="Click for more print page information">Start Printed Page 36851</span></span></span> </li>
+              <li id="p-5" data-page="36851">Enhancing mapping and spatial AI</li>
+            </ul>
+          HTML
+        end
       end
     end
   end
