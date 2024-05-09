@@ -8,11 +8,13 @@ class @FR2.Analytics
   @trackSearchPageVisit: ->
     term = new URLSearchParams(window.location.search).get('conditions[term]')
     suggestionsCount = $('#search-results .suggestion:not(.ga-exclude)').length
+    paginationPage = new URLSearchParams(window.location.search).get('page')
 
     gtag('event', 'search_page_visit', {
       'term':          term,
       'agencies':      this._getQueryParamArray('conditions[agencies][]'),
       'document_type': this._getQueryParamArray('conditions[type][]'),
+      'pagination_page': paginationPage,
       'logged_in':     FR2.UserUtils.loggedIn(),
       'suggestions_count': suggestionsCount
     })
