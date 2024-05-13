@@ -19,6 +19,27 @@ class @FR2.Analytics
       'suggestions_count': suggestionsCount
     })
 
+  @trackSearchResultClickThroughs: ->
+    context = this
+
+    $('a[data-search-result-position]').on 'click', (e) ->
+      e.preventDefault()
+      term = new URLSearchParams(window.location.search).get('conditions[term]')
+      suggestionsCount = $('#search-results .suggestion:not(.ga-exclude)').length
+      paginationPage = new URLSearchParams(window.location.search).get('page')
+
+      searchResultPosition = $(this).data('search-result-position')
+      gtag('event', 'search_page_click_through', {
+        'term':          term,
+        'agencies':      context._getQueryParamArray('conditions[agencies][]'),
+        'document_type': context._getQueryParamArray('conditions[type][]'),
+        'pagination_page': paginationPage,
+        'logged_in':     FR2.UserUtils.loggedIn(),
+        'suggestions_count': suggestionsCount,
+        'search_result_position': searchResultPosition,
+      })
+      window.location.href = $(this).attr('href')
+
   @trackToggleAdvancedSearch: ->
     term = new URLSearchParams(window.location.search).get('conditions[term]')
     gtag('event', 'toggle_advanced_search', {

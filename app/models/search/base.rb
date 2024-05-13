@@ -49,7 +49,7 @@ class Search::Base
   end
 
   def per_page
-    params[:per_page] || 20
+    (params[:per_page])&.to_i || 20
   end
 
   def order
@@ -102,6 +102,14 @@ class Search::Base
   def valid?
     result_metadata
     errors.empty? && validation_errors.empty?
+  end
+
+  def starting_search_result_index
+    if @page == 1 || @page.blank?
+      0
+    else
+      @page * per_page
+    end
   end
 
   delegate :as_json, :to => :valid_conditions

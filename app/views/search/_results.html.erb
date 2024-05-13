@@ -1,12 +1,16 @@
 <% search ||= nil %>
 <ul class="search-result-documents <%= type %> row">
-  <% documents.each do |document| %>
+  <% documents.each_with_index do |document, i| %>
     <li class="<%= bootstrap_col(xs: 12, md: 12) %> search-result-document <%= document.document? ? (document.official? ? 'doc-official' : 'doc-published') : 'doc-public-inspection' %>">
       <%= simple_document_type_icon document.type %>
 
       <div class="document-wrapper">
         <h5>
-          <%= link_to document.title, document.html_url %>
+          <%= link_to document.title,
+                document.html_url,
+                data: ({
+                  search_result_position: search.starting_search_result_index + i,
+                } if local_assigns[:track_search_result_click_throughs]) %>
         </h5>
 
         <% unless document.public_inspection_document? %>
