@@ -106,9 +106,9 @@ class Search::Base
 
   def starting_search_result_index
     if @page == 1 || @page.blank?
-      0
+      1
     else
-      @page * per_page
+      ((@page - 1) * per_page) + 1
     end
   end
 
