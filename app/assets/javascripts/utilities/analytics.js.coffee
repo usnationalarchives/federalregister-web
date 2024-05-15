@@ -37,6 +37,7 @@ class @FR2.Analytics
         'logged_in':     FR2.UserUtils.loggedIn(),
         'suggestions_count': suggestionsCount,
         'search_result_position': searchResultPosition,
+        'search_result_position_dimension': searchResultPosition,
       })
       window.location.href = $(this).attr('href')
 
