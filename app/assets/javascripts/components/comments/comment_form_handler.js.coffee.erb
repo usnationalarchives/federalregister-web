@@ -59,8 +59,6 @@ class @FR2.CommentFormHandler
       fields = @commentForm.previewFields()
       html = @renderCommentSummary fields
 
-      Handlebars.registerPartial 'comment_summary', $('#comment-summary-template').html()
-
       modalTitle    = 'Preview your comment'
       modalData     = fields
 
@@ -68,8 +66,6 @@ class @FR2.CommentFormHandler
       modalHtml        = compiledTemplate({
         fields: modalData
       })
-
-      template = HandlebarsTemplates['comment_summary']
 
       FR2.Modal.displayModal(
         modalTitle,
