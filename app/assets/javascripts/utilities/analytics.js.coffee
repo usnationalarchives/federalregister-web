@@ -16,7 +16,8 @@ class @FR2.Analytics
       'document_type': this._getQueryParamArray('conditions[type][]'),
       'pagination_page': paginationPage,
       'logged_in':     FR2.UserUtils.loggedIn(),
-      'suggestions_count': suggestionsCount
+      'suggestions_count': suggestionsCount,
+      'search_result_count': $('#item-count').text().trim().replace(/,/g, ''),
     })
 
   @trackSearchResultClickThroughs: ->
@@ -38,6 +39,7 @@ class @FR2.Analytics
         'suggestions_count': suggestionsCount,
         'search_result_position': searchResultPosition,
         'search_result_position_dimension': searchResultPosition,
+        'search_result_count': $('#item-count').text().trim().replace(/,/g, ''),
       })
       window.location.href = $(this).attr('href')
 
