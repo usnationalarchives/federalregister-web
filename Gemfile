@@ -161,9 +161,6 @@ gem "sidekiq-throttled"
 # js minification
 gem 'uglifier'
 
-# js helper functions
-gem 'underscore-rails', '~> 1.6.0'
-
 # search pagination
 gem 'will_paginate'
 gem 'will_paginate-bootstrap', '~> 1.0.1'

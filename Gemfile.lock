@@ -536,7 +536,6 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    underscore-rails (1.6.0)
     unicode-display_width (1.4.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
@@ -655,7 +654,6 @@ DEPENDENCIES
   timecop
   turbo_tests
   uglifier
-  underscore-rails (~> 1.6.0)
   vcr (~> 2.6.0)
   watchr (= 0.7)
   web-console (~> 2.0)

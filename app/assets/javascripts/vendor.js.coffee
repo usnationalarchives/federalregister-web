@@ -2,7 +2,6 @@
 #= require jquery-ui-1.12.1.custom.min.js
 
 #= require honeybadger.min.js
-#= require underscore
 #= require strftime
 
 
@@ -16,6 +15,7 @@
 
 # RANDOM ASSORTMENT UTILITIES
 #= require jquery.utilities
+#= require underscore.1.13.6.min.js
 
 #= require jqModal
 
@@ -54,5 +54,3 @@
 #= require handlebars.runtime
 #= require_tree ./templates
 #= require_tree ../../../app/templates
-
-
