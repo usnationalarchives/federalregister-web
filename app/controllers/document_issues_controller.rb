@@ -22,7 +22,7 @@ class DocumentIssuesController < ApplicationController
 
     date = Chronic.parse(params[:date]).try(:to_date)
 
-    if date
+    if date && date >= Date.new(1994,1,1) && date <= Date.current
       redirect_to document_issue_path(date)
     else
       raise ActiveRecord::RecordNotFound
