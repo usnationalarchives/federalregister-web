@@ -97,9 +97,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << "dev-fr2.criticaljuncture.org"
   config.hosts << "fr2.criticaljuncture.org"
-  Settings.permitted_hosts&.split(',')&.each do |host|
+  Settings.development_flags.permitted_hosts&.split(',')&.each do |host|
     config.hosts << host
   end
 
