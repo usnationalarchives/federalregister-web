@@ -89,11 +89,15 @@ class FederalRegisterStats
   end
 
   def comments_submitted
-    monthly_stat_count("comment_post_success")
+    (beginning_of_month..end_of_month).to_a.sum do |date|
+      $redis.get("comment_post_success:#{date.to_s(:iso)}").to_i
+    end
   end
 
   def comment_forms_opened
-    monthly_stat_count("comment_opened")
+    (beginning_of_month..end_of_month).to_a.sum do |date|
+      $redis.get("comment_opened:#{date.to_s(:iso)}").to_i
+    end
   end
 
   def monthly_stat_count(statistic_type)
