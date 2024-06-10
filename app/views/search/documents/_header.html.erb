@@ -28,12 +28,11 @@
                 <span class="loader"></span>
               </span>
 
-              <% if Settings.feature_flags.display_search_type_options %>
-                <%= f.input :search_type_ids,
-                  as: :check_boxes,
+              <% if Settings.feature_flags.display_search_type_options || f.object.search_type_id.present? %>
+                <%= f.input :search_type_id,
                   collection: SearchType.all.map{|x| [x.name, x.id]},
+                  include_blank: false,
                   label: "Search Type",
-                  wrapper_html: {class: 'column-checkbox-display'},
                   required: false %>
               <% end %>
 
