@@ -554,7 +554,6 @@ GEM
       rspec
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    underscore-rails (1.6.0)
     unicode-display_width (1.4.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
@@ -674,7 +673,6 @@ DEPENDENCIES
   terser
   timecop
   turbo_tests
-  underscore-rails (~> 1.6.0)
   vcr (~> 2.6.0)
   watchr (= 0.7)
   web-console (~> 2.0)
