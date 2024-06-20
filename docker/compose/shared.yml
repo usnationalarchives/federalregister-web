@@ -28,6 +28,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
 
   redis:
-    image: redis:3.2-alpine
+    image: redis:6-alpine
     expose:
       - "6379"
