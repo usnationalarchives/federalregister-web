@@ -220,7 +220,7 @@ describe "XSLT::FullText::Paragraphs" do
             <ul class="bullets">
               <li id="p-2" data-page="1000">Enhancing the safety of pedestrians,</li>
               <li id="p-3" data-page="1000">Real-time AI-based decision support tools,</li>
-              <li id="p-4" data-page="1000">Offline analysis of traffic data,<span class="printed-page printed-page-inline unprinted-element icon-fr2 icon-fr2-doc-generic document-markup" data-page="36851"></span><span class="printed-page-wrapper unprinted-element-wrapper"><span class="unprinted-element-border"></span><span class="printed-page unprinted-element document-markup bootstrap-popover" id="page-36851" data-page="36851" data-text="Start Printed Page 36851" data-tooltip-template="#print-page-tooltip-template" data-toggle="popover" data-original-title="" data-placement="left" data-html="true" data-tooltip-data="{&quot;page&quot;: 36851}"><span class="icon-fr2 icon-fr2-doc-generic"></span><span class="text cj-tooltip" data-tooltip="Click for more print page information">Start Printed Page 36851</span></span></span> </li>
+              <li id="p-4" data-page="1000">Offline analysis of traffic data,<span class="printed-page-inline unprinted-element document-markup" data-page="36851"><svg class="svg-icon svg-icon-doc-generic"><use xlink:href="/assets/fr-icons.svg#doc-generic"></use></svg></span><span class="printed-page-details unprinted-element document-markup" id="page-36851" data-page="36851"><svg class="svg-icon svg-icon-doc-generic"><use xlink:href="/assets/fr-icons.svg#doc-generic"></use></svg></span> </li>
               <li id="p-5" data-page="36851">Enhancing mapping and spatial AI</li>
             </ul>
           HTML
