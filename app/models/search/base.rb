@@ -30,7 +30,7 @@ class Search::Base
       @collection ||= WillPaginate::Collection.create(@page, 20) do |pager|
         @result_set = search_type.search(
           conditions: conditions,
-          fields: search_type.search_fields,
+          fields: search_fields,
           page: @page,
           order: order,
           per_page: per_page
@@ -115,6 +115,19 @@ class Search::Base
   delegate :as_json, :to => :valid_conditions
 
   private
+
+  SORN_FIELDS = [:sorn_system_name, :sorn_system_number]
+  def search_fields
+    search_type.search_fields.tap do |fields|
+      if sorn_search?
+        SORN_FIELDS.each{|field| fields << field}
+      end
+    end
+  end
+
+  def sorn_search?
+    (conditions[:notice_type] || []).include?("sorn") || conditions[:term].try(:downcase).try(:include?, "sorn")
+  end
 
   def add_errors(error)
     error.response["errors"].each do |key, message|

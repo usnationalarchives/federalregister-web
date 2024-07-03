@@ -59,6 +59,9 @@
         <% end %>
 
         <%# multiple pages use this shared result partial but not all provide a search or have an abstract %>
+        <% if document.sorn_system_name %>
+          <%= document.sorn_system_name %>
+        <% end %>
         <% if (search &&
           search.conditions[:term].blank? &&
           document.model.respond_to?(:abstract)

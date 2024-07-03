@@ -2,6 +2,8 @@ class Document < FederalRegister::Document
 
   add_attribute :not_received_for_publication
   add_attribute :explanation
+  add_attribute :sorn_system_name
+  add_attribute :sorn_system_number
 
   def score
     OpenSearchExplanationPresenter.new(explanation).overall_score
