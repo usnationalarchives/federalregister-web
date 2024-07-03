@@ -3,6 +3,7 @@ class SearchDetails::Base
 
   PLURAL_FILTERS = [
     :agencies,
+    :notice_type,
     :president,
     :presidential_document_type,
     :search_type_id,

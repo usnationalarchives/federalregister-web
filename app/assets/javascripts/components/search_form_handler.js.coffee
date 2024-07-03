@@ -9,6 +9,8 @@ class @FR2.SearchFormHandler
   addEvents: ->
     $('#conditions_type_presdocu')
       .bind('click', @togglePresidentialDocumentTypes)
+    $('#conditions_type_notice')
+      .bind('click', @toggleNoticeTypes)
 
     # Ensure we trigger a full-page refresh of the search page when clicking on "Advanced Search" from the "Document Search" page
     $(".advanced-search")
@@ -36,6 +38,20 @@ class @FR2.SearchFormHandler
     typeCheckboxes = $('.presidential_dependent')
 
     if $('#conditions_type_presdocu').prop('checked')
+      typeCheckboxes
+        .show()
+        .find(':input')
+        .removeAttr('disabled')
+    else
+      typeCheckboxes
+        .hide()
+        .find(':input')
+        .prop('disabled', 'disabled')
+
+  toggleNoticeTypes: ->
+    typeCheckboxes = $('.notice_dependent')
+
+    if $('#conditions_type_notice').prop('checked')
       typeCheckboxes
         .show()
         .find(':input')

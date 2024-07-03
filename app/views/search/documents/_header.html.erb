@@ -45,6 +45,15 @@
               wrapper_html: {class: 'column-checkbox-display'},
               required: false %>
 
+            <% if Settings.feature_flags.display_sorn_search %>
+              <%= f.input :notice_type,
+                as: :check_boxes,
+                collection: NoticeType.all.map{|x| [x.name, x.identifier]},
+                label: "Notice Type",
+                required: false,
+                wrapper_html: {class: "notice_dependent column-checkbox-display"} %>
+            <% end %>
+
             <%= f.input :presidential_document_type,
               as: :check_boxes,
               collection: PresidentialDocumentType.all.

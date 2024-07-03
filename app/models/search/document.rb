@@ -13,6 +13,7 @@ class Search::Document < Search::Base
     :correction,
     :effective_date,
     :near,
+    :notice_type,
     :president,
     :presidential_document_type,
     :presidential_document_type_id,
