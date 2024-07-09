@@ -41,7 +41,12 @@ class @FR2.Analytics
         'search_result_position_dimension': searchResultPosition,
         'search_result_count': $('#item-count').text().trim().replace(/,/g, ''),
       })
-      window.location.href = $(this).attr('href')
+
+      url = $(this).attr('href')
+      if (event.ctrlKey || event.metaKey || event.button == 1) # ie command-click
+        window.open(url, '_blank')
+      else
+        window.location.href = url
 
   @trackToggleAdvancedSearch: ->
     term = new URLSearchParams(window.location.search).get('conditions[term]')
