@@ -22,7 +22,7 @@
     top: 0px;
   }
 
-  #conditions_agencies, .presidential_dependent { // Prevent page-load flash by hiding these items by default
+  #conditions_agencies, .presidential_dependent, .notice_dependent { // Prevent page-load flash by hiding these items by default
     display: none;
   }
 

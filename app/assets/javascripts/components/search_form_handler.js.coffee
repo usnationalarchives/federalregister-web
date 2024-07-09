@@ -24,6 +24,7 @@ class @FR2.SearchFormHandler
 
   setup: ->
     @togglePresidentialDocumentTypes()
+    @toggleNoticeTypes()
     @initializeAdvancedSearch()
 
     $(".date_options .date").hide()
