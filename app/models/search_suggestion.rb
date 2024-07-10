@@ -16,7 +16,8 @@ class SearchSuggestion
     "cfr"               => SearchSuggestion::CFRSuggestion,
     "search_refinement" => SearchSuggestion::SearchRefinementSuggestion,
     "citation"          => SearchSuggestion::CitationSuggestion,
-    "public_inspection" => SearchSuggestion::PublicInspectionSuggestion
+    "public_inspection" => SearchSuggestion::PublicInspectionSuggestion,
+    "explanatory"       => SearchSuggestion::ExplanatorySuggestion
   }
 
   def self.build(type, details, conditions)

@@ -11,7 +11,8 @@ class SearchPresenter::Suggestions
     "citation_suggestion",
     "search_refinement_suggestion",
     "cfr_suggestion",
-    "public_inspection_suggestion"
+    "public_inspection_suggestion",
+    "explanatory_suggestion",
   ]
 
   def suggestions
@@ -24,6 +25,16 @@ class SearchPresenter::Suggestions
 
   def suggestion_type(suggestion)
     suggestion.class.name.split("::").last.snakecase
+  end
+
+  def explanatory_suggestion(suggestion)
+    ContentNotification.new(
+      text: suggestion.text,
+      actions: "",
+      link: h.link_to("View", suggestion.link_url),
+      type: :info,
+      icon: 'link'
+    )
   end
 
   def cfr_suggestion(suggestion)
