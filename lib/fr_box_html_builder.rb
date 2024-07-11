@@ -62,7 +62,8 @@ class FrBoxHtmlBuilder
       view_context.content_tag(:div, class: "fr-seal-content") do
         description = @header_options[:hover] ? fr_box_header_description : "".html_safe
 
-        view_context.content_tag(:h6, @box_obj.title) +
+        options = {class: "h6"}
+        view_context.content_tag(:span, @box_obj.title, options) +
           description
       end
     end
@@ -91,7 +92,10 @@ class FrBoxHtmlBuilder
 
   def fr_box_footer
     view_context.content_tag(:div, class: "fr-seal-block fr-seal-block-footer") do
-      view_context.content_tag(:h6, @box_obj.title) unless @box_html_options[:suppress_footer_title]
+      unless @box_html_options[:suppress_footer_title]
+        options = {class: "h6"}
+        view_context.content_tag(:span, @box_obj.title, options)
+      end
     end
   end
 

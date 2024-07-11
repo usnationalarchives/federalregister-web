@@ -23,10 +23,10 @@
 
         <div class="fr-seal-block fr-seal-block-header">
           <div class="fr-seal-content">
-            <h6>
+            <span class="h6">
               <xsl:if test="$type = 'POSTPUB'">Enhanced Content - </xsl:if>
               Editorial Note
-            </h6>
+            </span>
           </div>
         </div>
         <div class="content-block ">

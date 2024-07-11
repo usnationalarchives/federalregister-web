@@ -19,7 +19,11 @@ Styleguide 1.1 FR Boxes
   background-color: $secondary-color;
 
   > .fr-seal-block {
-    h6 {background-color: $main-color; }
+    h6, span.h6 {
+      background-color: $main-color;
+      height: 18px;
+      padding-top: 1px;
+    }
 
     &.fr-seal-block-header {
       border-top: 3px solid $main-color;
@@ -163,7 +167,7 @@ Styleguide 1.1 FR Boxes
 
   &.fr-box-full {
     .fr-seal-block {
-      h6 {
+      h6, span.h6 {
         color: $white;
         font-family: inherit;
         font-size: modular-scale(-2);
@@ -174,7 +178,7 @@ Styleguide 1.1 FR Boxes
       &.fr-seal-block-footer {
         border-bottom-width: 2px;
 
-        h6 { display: none; }
+        h6, span.h6 { display: none; }
       }
     }
   }
@@ -186,7 +190,7 @@ Styleguide 1.1 FR Boxes
   overflow: inherit;
   width: 100%;
 
-  h6 {
+  h6, span.h6 {
     clear: both;
     color: inherit !important;
     display: inline-block;
@@ -225,7 +229,7 @@ Styleguide 1.1 FR Boxes
 
     &.with-hover{ position: absolute; }
 
-    h6 {
+    h6, span.h6 {
       float:left;
       padding-bottom: 2px;
       padding-left: 5px;
@@ -236,18 +240,18 @@ Styleguide 1.1 FR Boxes
     bottom: 0;
     position: absolute;
 
-    h6 {
+    h6, span.h6 {
       float:right;
       padding-left: 40px !important;
       padding-right: 5px;
-      padding-top: 3px;
+      padding-top: 3px !important;
       text-align: right;
     }
   }
 }
 .fr-box-small .fr-seal-block {
-  &.fr-seal-block-header h6 { padding-right: 20px; }
-  &.fr-seal-block-footer h6 { padding-left: 20px !important; }
+  &.fr-seal-block-header h6, span.h6 { padding-right: 20px; }
+  &.fr-seal-block-footer h6, span.h6 { padding-left: 20px !important; }
 }
 
 .bootstrap-scope {
