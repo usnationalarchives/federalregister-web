@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // Handle toggling of subnav
-  var toggleableList = document.querySelectorAll('#non-essential-nav > li.dropdown');
+  var toggleableList = document.querySelectorAll('#non-essential-nav li.dropdown');
   toggleableList.forEach(function(item) {
     item.addEventListener('click', function(event) {
         var el = event.target.closest('li');
