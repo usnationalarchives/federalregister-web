@@ -24,7 +24,7 @@ describe "XSLT::FullText::Notes" do
           <div class="fr-box fr-box-published-alt no-footer">
             <div class="fr-seal-block fr-seal-block-header">
               <div class="fr-seal-content">
-                <h6> Editorial Note </h6>
+                <span class="h6"> Editorial Note </span>
               </div>
             </div>
             <div class="content-block ">
@@ -57,7 +57,7 @@ describe "XSLT::FullText::Notes" do
           <div class="fr-box fr-box-enhanced no-footer">
             <div class="fr-seal-block fr-seal-block-header">
               <div class="fr-seal-content">
-                <h6>Enhanced Content - Editorial Note </h6>
+                <span class="h6">Enhanced Content - Editorial Note </span>
               </div>
             </div>
             <div class="content-block ">

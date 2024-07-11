@@ -25,7 +25,7 @@ describe "XSLT::FullText::DocumentHeadings" do
         <div class="fr-box fr-box-published-alt no-footer">
           <div class="fr-seal-block fr-seal-block-header with-hover">
             <div class="fr-seal-content">
-              <h6>Document Headings</h6>
+              <span class="h6">Document Headings</span>
               <div class="fr-seal-meta">
                 <div class="fr-seal-desc">
                   <p>
