@@ -116,7 +116,7 @@ class Search::Base
 
   private
 
-  SORN_FIELDS = [:sorn_system_name, :sorn_system_number]
+  SORN_FIELDS = [] #TODO: Add new has_many SORN fields
   def search_fields
     search_type.search_fields.tap do |fields|
       if sorn_search?
