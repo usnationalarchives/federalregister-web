@@ -14,7 +14,7 @@
   }
   .fr-head-meta-counts {
     background-color: $secondary-color;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 
     a { color: $main-color; }
 
@@ -25,7 +25,7 @@
 
 .fr-head-metadata-bar {
   &.fr-head-metadata-bar-official {
-    @include fr-metadata-bar-header($color-enhanced, $color-enhanced-light, darken($color-enhanced, 16));
+    @include fr-metadata-bar-header($color-enhanced, $color-enhanced-light, darken($color-enhanced, 20));
 
     .fr-head-meta-counts a {
       color: $current-issue-link;
@@ -133,6 +133,7 @@
       font-size: modular-scale(0);
       list-style-type: none;
       margin-right: 10px;
+      min-height: 24px;
     }
 
     h5 {
@@ -215,14 +216,13 @@
   }
 
   .filings-updated {
-    font-size: modular-scale(-2);
     font-style: italic;
   }
   .public-inspection-list-stats {
     color: $gray-80;
     float: left;
     font-size: modular-scale(0);
-    margin-top: 5px;
+    margin-top: 10px;
     width: 100%;
 
     .filings-summary {

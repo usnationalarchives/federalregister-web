@@ -1,33 +1,31 @@
 <% presenter.all_filings.each do |filing_type| %>
-  <div class="<%#= bootstrap_col(xs: full_width ? 12 : 6, md: full_width ? 12 : 6) %>">
-    <ul class="fr-list with-stats row">
-      <li>
-        <h5><%= filing_type.name %></h5>
-        <div class="filings-updated">
-          updated on <%= filing_type.formatted_updated_at %>
+  <ul class="fr-list with-stats row">
+    <li>
+      <h5><%= filing_type.name %></h5>
+      <div class="filings-updated">
+        updated on <%= filing_type.formatted_updated_at %>
+      </div>
+      <div class="public-inspection-list-stats">
+        <div class="filings-summary">
+          <%= link_to_if filing_type.display_links?,
+            pluralize(filing_type.document_count, 'document'),
+            public_inspection_search_path(filing_type.search_conditions)
+          %>
+          from <%= pluralize(filing_type.agency_count, 'agency') %>
         </div>
-        <div class="public-inspection-list-stats">
-          <div class="filings-summary">
-            <%= link_to_if filing_type.display_links?,
-              pluralize(filing_type.document_count, 'document'),
-              public_inspection_search_path(filing_type.search_conditions)
-            %>
-            from <%= pluralize(filing_type.agency_count, 'agency') %>
-          </div>
 
-          <ul class="document-stats">
-            <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
-              <li>
-                <%= link_to_if filing_type.display_links?,
-                  pluralize(facet.count, facet.name),
-                  public_inspection_search_path(
-                    conditions: facet.search_conditions[:conditions].except(:publication_date)
-                  ) %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
+        <ul class="document-stats">
+          <% filing_type.document_type_facets.sort_by(&:name).each do |facet| %>
+            <li>
+              <%= link_to_if filing_type.display_links?,
+                pluralize(facet.count, facet.name),
+                public_inspection_search_path(
+                  conditions: facet.search_conditions[:conditions].except(:publication_date)
+                ) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+  </ul>
 <% end %>

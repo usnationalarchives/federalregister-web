@@ -33,7 +33,7 @@
   .fr-head-metadata-bar {
     grid-template-columns: minmax(276px, 276px) 1fr;
     grid-template-areas: "fr-head-meta-label-holder fr-head-meta-counts";
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .fr-head-meta-counts {
