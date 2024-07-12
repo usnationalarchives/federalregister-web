@@ -10,7 +10,7 @@ class @FR2.Calendar
   addYearDropdown: ->
     # only add year dropdown if it doesn't already exist
     if @calendar.find('.monthName select').length == 0 && @calendar.data('year-select') == true
-      @select = $('<select />')
+      @select = $('<select aria-label="Year"/>')
       today = new Date()
       startYear = parseInt(@calendar.data('year-start'), 10)
       endYear = parseInt(@calendar.data('year-end'), 10)
