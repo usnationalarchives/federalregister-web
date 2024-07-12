@@ -229,6 +229,10 @@
         margin-left: 0;
       }
 
+      ol.choices-group label { // Fix alignment of long Notice Types
+        text-align: left;
+      }
+
       li.string {
         &.agency label {
           position: relative;
