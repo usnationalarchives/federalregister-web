@@ -52,6 +52,8 @@
     <%= esi csrf_protection_path %>
 
     <% header_type = yield(:header_type).present? ? yield(:header_type) : 'official' %>
-    <%= esi header_path(header_type) %>
+    <%= render partial: 'special/site_header', locals: {
+        header_type: header_type
+      } %>
   </div>
 </div>

@@ -1,0 +1,19 @@
+<div class="logo">
+  <div class="hgroup <%= header_type %>">
+    <hgroup>
+      <h1><a href="/" title="Federal Register Home">The Federal Register</a></h1>
+      <h2>
+        <%=
+          case header_type
+          when "official"
+            "The Daily Journal of the United States Government"
+          when "public-inspection"
+            "Public Inspection :: Tomorrow's Documents, Today"
+          when "reader-aids"
+            "Reader Aids :: Insight Into the FR Ecosystem"
+          end
+          %>
+      </h2>
+    </hgroup>
+  </div>
+</div>

@@ -200,13 +200,6 @@ Rails.application.routes.draw do
       to: 'special#csrf_protection',
       as: :csrf_protection
 
-    esi.get 'special/header/:type',
-      to: 'special#header',
-      as: :header,
-      constraints: {
-        type: /(official|public-inspection|reader-aids)/
-      }
-
     esi.get 'special/site_notifications/:identifier',
       to: 'special#site_notifications',
       as: :site_notification

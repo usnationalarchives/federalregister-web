@@ -13,11 +13,6 @@ class SpecialController < ApplicationController
     cache_for 1.day
   end
 
-  def header
-    cache_for 1.day
-    render template: "special/header/#{params[:type].gsub('-','_')}"
-  end
-
   def robots
     cache_for 1.day
     render 'robots', layout: false, content_type: 'text/plain'
