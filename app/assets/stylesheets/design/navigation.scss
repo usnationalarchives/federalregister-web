@@ -34,10 +34,10 @@
     }
 
     &.nav-home { width: 36px; }
-    &.nav_sections { width: 112px; }
-    &.nav_browse { width: 106px; }
-    &.nav_search { width: 102px; }
-    &.nav_blog { width:85px; }
+    &.nav_sections { width: 115px; }
+    &.nav_browse { width: 109px; }
+    &.nav_search { width: 105px; }
+    &.nav_blog { width:88px; }
     &.nav_myfr2 { width: 75px; }
   }
 
@@ -46,7 +46,7 @@
     color: $gray-60;
     cursor: pointer;
     display: block;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
     line-height: 32px;
     padding: 0 10px;
@@ -83,7 +83,7 @@
     a { padding-right: 5px; }
 
     .icon-fr2-menu_arrow {
-      color: $gray-50;
+      color: $gray-40;
       float: right;
       font-size: 14px;
       top: 8px;
@@ -128,7 +128,7 @@
 //
 //******************************
 #navigation .subnav {
-  @include rounded-bottom(4px);
+  @include rounded-bottom(4);
   background: $white;
   border: 1px solid $nav-border-color;
   box-shadow: 0 3px 5px $gray-40;
@@ -136,7 +136,7 @@
   left: -1px;
   position: absolute;
   top: 30px;
-  width: 200px;
+  width: 205px;
   z-index: 5555;
 
   &.search-list { width: 230px; }
@@ -230,7 +230,7 @@
   background: $white;
   border: 1px solid $gray-30;
   border-radius: 3px;
-  height: 24px;
+  height: 26px;
   margin: 1px 5px 0;
   position: relative;
   width: 210px;
@@ -244,39 +244,40 @@
 
   .search-term {
     font-size: modular-scale(-1);
-    height: 22px;
+    height: 25px;
     outline: 0;
     padding: 0 0 0 5px;
     width: 175px;
 
-    &.placeholder,
-    &::-webkit-input-placeholder,
-    &:-moz-placeholder,
-    &::-moz-placeholder,
-    &:-ms-placeholder {
-      color: $gray-70;
+    &::placeholder {
+      color: $gray-40;
+      font-size: 15px;
     }
   }
 
   .search-submit {
-    @include rounded-right(4);
-    background-color: $gray-5;
+    background: none;
     border: 0;
     cursor: pointer;
     float: right;
     height: 24px;
     padding: 0;
     position: relative;
-    top: -22px;
+    top: -24px;
     width: 31px;
-
-    &:hover { background-color: $gray-15; }
 
     .icon-fr2 {
       color: $gray-50;
       left: 2px;
       top: 1px;
     }
+
+    &:hover {
+      background-color: $gray-5;
+
+      .icon-fr2 { color: $gray-70; }
+    }
+
   }
 }
 
@@ -350,7 +351,7 @@
     }
 
     .logo {
-      padding: 25px 17px 0px 17px;
+      padding: 15px 17px 10px 17px;
       width: auto !important;
 
       .hgroup.official {
