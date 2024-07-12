@@ -16,38 +16,7 @@
       </div>
     <% end %>
 
-    <div class="nav <%= 'announcement-present' if Settings.feature_flags.announcements %>" id="navigation">
-      <ul class="container">
-        <%= esi navigation_path %>
-        <%= render partial: 'special/navigation/my_fr' %>
-        <li>
-          <%= link_to(nil, class: "mobile-only site-feedback-button top_nav", 'aria-label' => 'Site Feedback') do %>
-            <%= fr_icon('Chat') %>
-            Site Feedback
-          <% end %>
-        </li>
-        </ul></li><%# Closes the non-essential nav opened in navigation ESI %>
-
-        <li class="inline_search">
-          <%= semantic_form_for 'conditions',
-            as: :conditions,
-            url: documents_search_path,
-            html: {id: "nav-search", method: :get, class: "search-form"} do |f| %>
-
-            <label for="term">Search the Federal Register</label>
-            <%= f.text_field :term,
-              class: 'search-term',
-              placeholder: 'Search Documents',
-              "aria-label" => 'Search Documents' %>
-
-            <%= f.button fr_icon('Search').html_safe,
-              class: 'search-submit',
-              id: 'conditions_submit',
-              "aria-label" => 'Search' %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+    <%= render partial: "special/navigation" %>
 
     <%= esi csrf_protection_path %>
 

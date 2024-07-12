@@ -9,10 +9,6 @@ class SpecialController < ApplicationController
     cache_for 1.day
   end
 
-  def navigation
-    cache_for 1.day
-  end
-
   def robots
     cache_for 1.day
     render 'robots', layout: false, content_type: 'text/plain'

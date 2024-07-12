@@ -192,10 +192,6 @@ Rails.application.routes.draw do
       as: :late_issue_summary
 
     # HEADER
-    esi.get 'special/navigation',
-      to: 'special#navigation',
-      as: :navigation
-
     esi.get '/esi/special/csrf_protection',
       to: 'special#csrf_protection',
       as: :csrf_protection
