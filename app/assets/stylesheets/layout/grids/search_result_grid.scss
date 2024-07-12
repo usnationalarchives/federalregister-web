@@ -95,6 +95,33 @@
       text-align: left;
     }
 
+    // Publication Date Filters
+    fieldset.date_options {
+
+      li.exact_date label {
+        margin-left: 5px !important; 
+      }
+
+      li.date.range.range_start {
+        margin-left: 9px !important;
+      }
+
+      .date.range label {
+        margin-left: 0px !important;
+        position: static !important;
+      }
+
+
+      li.date.input {
+        height: auto !important;
+
+        &.exact_date,
+        &.exact_year {
+          margin-left: 0px !important;
+        }
+      }
+    }
+
     .row_of_options {
       // Prevent wrapping of radio options onto second line in very small width devices (sub 385px)
       min-width: 321px;
