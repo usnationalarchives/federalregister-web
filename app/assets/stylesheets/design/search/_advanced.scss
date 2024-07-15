@@ -416,22 +416,5 @@
       display: inline-block;
       margin: 0;
     }
-
-    .button { background: none; }
-    .fr_button {
-      background: #7aa13d;
-      border-color: #7aa13d;
-    }
-
-    .white-btn {
-      border-color: #ccc;
-      background-color: #fff;
-      position: relative;
-      color: #3071a9 !important;
-
-      &:active, &:hover, &:focus {
-        color: #3071a9;
-      }
-    }
   }
 }

@@ -33,6 +33,17 @@
     }
   }
 
+  &.tertiary {
+    background: $white;
+    border-color: $gray-20;
+    color: $link-dark;
+
+    &:hover,
+    &.hover {
+      background: $gray-5;
+    }
+  }
+
   &.optional {
     background: $gray-15;
     color: $black;

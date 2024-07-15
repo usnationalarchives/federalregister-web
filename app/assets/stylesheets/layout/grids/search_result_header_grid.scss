@@ -35,7 +35,7 @@ div.search-bar .search-form-grid {
     }
 
   .actions {
-    $action_font_size: 14px;
+    $action_font_size: modular-scale(0);
     min-width: 133px;
 
     .other-formats {
@@ -46,6 +46,8 @@ div.search-bar .search-form-grid {
       font-size: $action_font_size;
       font-weight: normal;
     }
+
+    .btn { font-size: $action_font_size; }
   }
 
   #expected_result_count {

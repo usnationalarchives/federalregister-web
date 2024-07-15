@@ -112,7 +112,7 @@
       <%= f.actions class: 'actions left' do %>
         <li>
           <%= link_to "More Filters", '#advanced', id: "toggle_advanced",
-            class: "btn btn-primary white-btn" %>
+            class: "btn tertiary medium fr_button" %>
         </li>
         <li>
           <%= link_to 'View Advanced Query Options',
@@ -125,12 +125,12 @@
             label: 'Search',
             button_html: {
               id: 'conditions_submit',
-              class: 'btn btn-primary fr_button'
+              class: 'btn primary medium fr_button'
             } %>
 
           <li>
             <%= link_to "Reset", documents_search_path({}),
-              class: "btn btn-primary clear_form white-btn" %>
+              class: "btn tertiary medium fr_button clear_form" %>
           </li>
       <% end %>
     </div>
