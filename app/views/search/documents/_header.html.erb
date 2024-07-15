@@ -23,10 +23,13 @@
               label: "Find",
               placeholder: t('search.placeholder'),
               wrapper_html: {class: 'term'} %>
-              <span id="expected_result_count" class="search-result-count">
-                <span class="document-count"></span>
-                <span class="loader"></span>
-              </span>
+
+              <li>
+                <span id="expected_result_count" class="search-result-count">
+                  <span class="document-count"></span>
+                  <span class="loader"></span>
+                </span>
+              </li>
 
               <% if Settings.feature_flags.display_search_type_options || f.object.search_type_id.present? %>
                 <%= f.input :search_type_id,
@@ -106,13 +109,18 @@
     </div>
 
     <div class="action-buttons">
-      <%= f.actions do %>
+      <%= f.actions class: 'actions left' do %>
         <li>
-          <%= link_to "More Filters", '#advanced', id: "toggle_advanced", class: "btn btn-primary white-btn" %>
-          <%= link_to 'View Advanced Query Options', reader_aids_search_help_url %>
+          <%= link_to "More Filters", '#advanced', id: "toggle_advanced",
+            class: "btn btn-primary white-btn" %>
         </li>
+        <li>
+          <%= link_to 'View Advanced Query Options',
+            reader_aids_search_help_url %>
+        </li>
+      <% end %>
 
-        <div>
+      <%= f.actions class: 'actions right' do %>
           <%= f.action :submit, as: :button,
             label: 'Search',
             button_html: {
@@ -124,7 +132,6 @@
             <%= link_to "Reset", documents_search_path({}),
               class: "btn btn-primary clear_form white-btn" %>
           </li>
-        </div>
       <% end %>
     </div>
   </div>

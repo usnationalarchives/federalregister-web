@@ -3,13 +3,33 @@ div.search-bar .search-form-grid {
     .action-buttons {
       grid-column: span 12;
 
+      .actions {
+        max-width: 50%;
+
+        &.left {
+          float: left;
+        }
+
+        &.right {
+          float: right;
+          right: 0;
+          position: relative;
+
+          ol { grid-template-columns: 150px 150px; }
+        }
+      }
+
       ol {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 170px 1fr;
+        grid-gap: 10px;
 
-        li:nth-child(1) {
-          // margin: 0px 14px;
-          justify-self: start;
+        li {
+          align-self: center;
+
+          :nth-child(1) {
+            justify-self: start;
+          }
         }
       }
     }
@@ -66,16 +86,24 @@ div.search-bar .search-form-grid {
       height: auto !important;
     }
 
+    #conditions_term { margin-bottom: 5px; }
+
     .action-buttons {
       grid-area: action-buttons;
+
+      .actions {
+        &.right ol { grid-gap: 0; }
+
+        ol {
+          grid-template-columns: 1fr !important;
+
+          li { text-align: center; }
+        }
+      }
     }
 
     #expected_result_count {
       margin: 0px;
-    }
-
-    .actions {
-      height: 81px;
     }
 
     .clear_form {
