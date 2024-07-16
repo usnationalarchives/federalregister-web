@@ -13,7 +13,7 @@ class @FR2.SearchTabCount
 
   populateExpectedResults: (obj)->
     @linkEl.attr('href', obj.url)
-    @resultEl.html(obj.count)
+    @resultEl.html(obj.count.toLocaleString())
 
   indicateLoading: ->
     @resultEl.html("<div class='loader'></div>")
