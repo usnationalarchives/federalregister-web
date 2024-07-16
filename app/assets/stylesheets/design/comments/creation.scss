@@ -192,7 +192,6 @@
   input[type='text'],
   select,
   textarea {
-    @include input-box-shadow($gray-20, $gray-10, $white);
     border-radius: 3px;
     font-size: 13px;
     height: 30px;
@@ -206,12 +205,6 @@
   }
 
   select { width: 380px; }
-
-  input[type='text']:focus,
-  select:focus,
-  textarea:focus {
-    @include input-focus-box-shadow($green);
-  }
 
   p.inline-hints {
     background: none;
@@ -312,10 +305,6 @@
 
   .error {
     .label { color: $red; }
-
-    input[type='text'],
-    select,
-    textarea { @include input-focus-box-shadow($red); }
   }
 }
 
@@ -593,7 +582,6 @@ div.alternative-comment-modal {
 
 // COMMENT FORM SUBMIT SUCCESS
 .tracking_number {
-  @include input-box-shadow($gray-20, $gray-10, $white);
   background-color: $white;
   border-radius: 3px;
   font-family: courier;
@@ -631,7 +619,6 @@ div.alternative-comment-modal {
 }
 
 .comment_wrapper .comment_next_steps {
-  @include input-box-shadow($gray-20, $gray-10, $white);
   background-color: $gray-5;
   border-radius: 5px;
   margin-top: 20px;
