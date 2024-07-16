@@ -215,10 +215,7 @@ Styleguide 1.1 FR Boxes
     padding: 15px 15px 20px 15px;
 
     p {
-      // @include sans_serif;
-      // color: $white;
       font-size: modular-scale(0);
-      // padding: 10px 130px 0 15px;
     }
   }
 }
@@ -264,7 +261,6 @@ Styleguide 1.1 FR Boxes
     margin: -1px;
 
     .fr-box-inherit {
-      // background-color: $color-enhanced-light;
       background-color: #D8D8D8;
 
       .icon-fr2-clipboard.copy-to-clipboard {

@@ -12,7 +12,6 @@
         margin-bottom: 0.4em;
         padding-left: 20px;
         padding-top: 3px;
-        //background: sprite-image('icons/icon_notepad.png', 0, 0, 50px) no-repeat;
       }
     }
   }
@@ -30,7 +29,6 @@
   float: right;
   height: 40px;
   width: 7px;
-  //background: sprite-image('icons/icon_pen.png', 0, 1px, 200px) no-repeat;
   }
 #entries #fulltext_content_area .signature {
   margin-left: 4px;
@@ -46,7 +44,7 @@
   padding-top: 2px;
   padding-bottom: 2px;
   }
-#entries #fulltext_content_area .signature p.signature_date { 
+#entries #fulltext_content_area .signature p.signature_date {
   padding-top: 0;
   margin-bottom: 10px;
   }

@@ -8,11 +8,6 @@
   display: none;
 }
 
-.advanced.open .actions:nth-child(2) {
-  // Hide first set of buttons when additional filters are shown
-  // display: none;
-}
-
 .advanced {
   margin-top: 1em;
 
@@ -22,7 +17,8 @@
     top: 0px;
   }
 
-  #conditions_agencies, .presidential_dependent, .notice_dependent { // Prevent page-load flash by hiding these items by default
+  // Prevent page-load flash by hiding these items by default
+  #conditions_agencies, .presidential_dependent, .notice_dependent {
     display: none;
   }
 
