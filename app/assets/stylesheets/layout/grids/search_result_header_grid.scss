@@ -55,6 +55,8 @@ div.search-bar .search-form-grid {
     width: 180px;
   }
 
+  .auxillary-links { padding-right: 5px; }
+
   .search-options {
     margin-top: 10px;
   }
@@ -94,12 +96,13 @@ div.search-bar .search-form-grid {
       grid-area: action-buttons;
 
       .actions {
-        &.right ol { grid-gap: 0; }
-
         ol {
           grid-template-columns: 1fr !important;
 
-          li { text-align: center; }
+          li {
+            overflow: hidden;
+            text-align: center;
+          }
         }
       }
     }
@@ -107,12 +110,6 @@ div.search-bar .search-form-grid {
     #expected_result_count {
       margin: 0px;
     }
-
-    .clear_form {
-      margin-top: 16px;
-      display: none;
-    }
-
   }
 
   @media only screen and (min-width: $small-viewport-width) {

@@ -11,8 +11,9 @@
 
   .actions {
     overflow: auto;
-    padding-right: 10px;
     text-align: right;
+
+    &.right { padding-right: 10px; }
 
     ol {
       margin-bottom: 0px;
