@@ -2,6 +2,7 @@ class PublicInspectionDocument < FederalRegister::PublicInspectionDocument
 
   add_attribute :page_views
   add_attribute :last_public_inspection_issue, type: :date
+  add_attribute :explanation
 
   def excluding_parent_agencies
     # Public Inspection Documents only get a parent agency associated when
