@@ -14,129 +14,126 @@
       class: 'documents'
     } do |f| %>
 
-  <div class="search-form-grid">
-    <div class="search-form-inputs">
-      <div class="advanced secondary-fields">
-        <div class="input-wrapper">
-          <%= f.inputs class: 'show_labels' do %>
-            <%= f.input :term,
-              label: "Find",
-              placeholder: t('search.placeholder'),
-              wrapper_html: {class: 'term'} %>
+    <div class="search-form-grid">
+      <div class="search-form-inputs">
+        <div class="advanced secondary-fields">
+          <div class="input-wrapper">
+            <%= f.inputs class: 'show_labels' do %>
+              <%= f.input :term,
+                label: "Find",
+                placeholder: t('search.placeholder'),
+                wrapper_html: {class: 'term'} %>
 
-              <li>
-                <span id="expected_result_count" class="search-result-count">
-                  <span class="document-count"></span>
-                  <span class="loader"></span>
-                </span>
-              </li>
+                <li>
+                  <span id="expected_result_count" class="search-result-count">
+                    <span class="document-count"></span>
+                    <span class="loader"></span>
+                  </span>
+                </li>
 
-              <% if Settings.feature_flags.display_search_type_options || f.object.search_type_id.present? %>
-                <%= f.input :search_type_id,
-                  collection: SearchType.all.map{|x| [x.name, x.id]},
-                  include_blank: false,
-                  label: "Search Type",
-                  required: false %>
+                <% if Settings.feature_flags.display_search_type_options || f.object.search_type_id.present? %>
+                  <%= f.input :search_type_id,
+                    collection: SearchType.all.map{|x| [x.name, x.id]},
+                    include_blank: false,
+                    label: "Search Type",
+                    required: false %>
+                <% end %>
+
+              <%= f.input :type,
+                as: :check_boxes,
+                collection: DocumentType.
+                  document_types_for_search.
+                  map{|t| [t.display_type, t.granule_class]},
+                label: "Document Category",
+                wrapper_html: {class: 'column-checkbox-display'},
+                required: false %>
+
+              <% if Settings.feature_flags.display_sorn_search %>
+                <%= f.input :notice_type,
+                  as: :check_boxes,
+                  collection: NoticeType.all.map{|x| [x.name, x.identifier]},
+                  label: "Notice Type",
+                  required: false,
+                  wrapper_html: {class: "notice_dependent column-checkbox-display"} %>
               <% end %>
 
-            <%= f.input :type,
-              as: :check_boxes,
-              collection: DocumentType.
-                document_types_for_search.
-                map{|t| [t.display_type, t.granule_class]},
-              label: "Document Category",
-              wrapper_html: {class: 'column-checkbox-display'},
-              required: false %>
-
-            <% if Settings.feature_flags.display_sorn_search %>
-              <%= f.input :notice_type,
+              <%= f.input :presidential_document_type,
                 as: :check_boxes,
-                collection: NoticeType.all.map{|x| [x.name, x.identifier]},
-                label: "Notice Type",
+                collection: PresidentialDocumentType.all.
+                  map{|pdt| [pdt.name, pdt.identifier]},
+                label: "Presidential Document Type",
                 required: false,
-                wrapper_html: {class: "notice_dependent column-checkbox-display"} %>
+                wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
+
+              <%= f.input :president,
+                as: :check_boxes,
+                collection: President.all.select{|x| x.starts_on > Date.new(1993,1,20)}.reverse.
+                  map{|p| [p.full_name, p.identifier]},
+                label: "President",
+                required: false,
+                wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
+
+              <li class="string optional agency ui-front">
+                <label>Agency</label>
+                <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
+
+                <%= f.select :agencies,
+                  @presenter.agencies.map{|a| [a.name, a.slug]},
+                  {},
+                  {
+                    multiple: true,
+                    class: 'selected_agency_list'
+                  } %>
+              </li>
             <% end %>
+          </div>
+        </div>
 
-            <%= f.input :presidential_document_type,
-              as: :check_boxes,
-              collection: PresidentialDocumentType.all.
-                map{|pdt| [pdt.name, pdt.identifier]},
-              label: "Presidential Document Type",
-              required: false,
-              wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
-
-            <%= f.input :president,
-              as: :check_boxes,
-              collection: President.all.select{|x| x.starts_on > Date.new(1993,1,20)}.reverse.
-                map{|p| [p.full_name, p.identifier]},
-              label: "President",
-              required: false,
-              wrapper_html: {class: "presidential_dependent column-checkbox-display"} %>
-
-            <li class="string optional agency ui-front">
-              <label>Agency</label>
-              <input data-autocomplete="autocomplete" id="document-agency-search" placeholder="Agriculture Department" />
-
-              <%= f.select :agencies,
-                @presenter.agencies.map{|a| [a.name, a.slug]},
-                {},
-                {
-                  multiple: true,
-                  class: 'selected_agency_list'
-                } %>
-            </li>
-          <% end %>
+        <div class="advanced">
+          <div class="input-wrapper">
+            <%= render partial: "advanced", locals: {f: f} %>
+          </div>
         </div>
       </div>
 
-      <div class="advanced">
-        <div class="input-wrapper">
-          <%= render partial: "advanced", locals: {f: f} %>
-        </div>
+      <div class="actions auxillary-links">
+        <%= subscribe_link conditions_for_subscription(@search) %>
+        <span class="other-formats">
+          <%= link_to 'CSV/Excel', documents_search_path(
+              params.except(:controller, :action, :quiet).merge(format: :csv)
+            ) %>,
+          <%= link_to 'JSON', documents_search_path(
+              params.except(:controller, :action, :quiet).merge(format: :json)
+            ) %>
+        </span>
       </div>
-    </div>
 
-    <div class="actions auxillary-links">
-      <%= subscribe_link conditions_for_subscription(@search) %>
-      <span class="other-formats">
-        <%= link_to 'CSV/Excel', documents_search_path(
-            params.except(:controller, :action, :quiet).merge(format: :csv)
-          ) %>,
-        <%= link_to 'JSON', documents_search_path(
-            params.except(:controller, :action, :quiet).merge(format: :json)
-          ) %>
-      </span>
-    </div>
-
-    <div class="action-buttons">
-      <%= f.actions class: 'actions left' do %>
-        <li>
-          <%= link_to "More Filters", '#advanced', id: "toggle_advanced",
-            class: "btn tertiary medium fr_button" %>
-        </li>
-        <li>
-          <%= link_to 'View Advanced Query Options',
-            reader_aids_search_help_url %>
-        </li>
-      <% end %>
-
-      <%= f.actions class: 'actions right' do %>
-          <%= f.action :submit, as: :button,
-            label: 'Search',
-            button_html: {
-              id: 'conditions_submit',
-              class: 'btn primary medium fr_button'
-            } %>
-
+      <div class="action-buttons">
+        <%= f.actions class: 'actions left' do %>
           <li>
-            <%= link_to "Reset", documents_search_path({}),
-              class: "btn tertiary medium fr_button clear_form" %>
+            <%= link_to "More Filters", '#advanced', id: "toggle_advanced",
+              class: "btn tertiary medium fr_button" %>
           </li>
-      <% end %>
+          <li>
+            <%= link_to 'View Advanced Query Options',
+              reader_aids_search_help_url %>
+          </li>
+        <% end %>
+
+        <%= f.actions class: 'actions right' do %>
+            <%= f.action :submit, as: :button,
+              label: 'Search',
+              button_html: {
+                id: 'conditions_submit',
+                class: 'btn primary medium fr_button'
+              } %>
+
+            <li>
+              <%= link_to "Reset", documents_search_path({}),
+                class: "btn tertiary medium fr_button clear_form" %>
+            </li>
+        <% end %>
+      </div>
     </div>
-  </div>
-
   <% end %>
-
-
 </div>

@@ -1,6 +1,5 @@
 %tab-on-state {
   background-color: $gray-10;
-  border: 1px solid $gray-20;
 }
 
 .tabs {
@@ -12,7 +11,8 @@
   li {
     @include rounded-top(5);
     background-color: $gray-2;
-    color: $text-inactive;
+    border: 1px solid $gray-20;
+    color: $link-dark;
     display: inline-block;
     list-style-image: none;
     list-style-type: none;
@@ -23,27 +23,32 @@
 
     &:hover {
       @extend %tab-on-state;
-      padding: 5px 5px 10px 9px;
+    }
 
-      .number_of_results { right: 3px; }
+    &.public-inspection a {
+      color: $color-public-inspection;
     }
 
     a {
       @include sans_serif;
-      color: $text-inactive;
+      color: $link-dark;
       font-weight: 500;
       margin-bottom: 0.5em;
       position: relative;
       top: 3px;
 
-      &:visited { color: $text-inactive; }
+      &:visited { color: $link-dark; }
       &:hover { color: $link-hover; }
     }
 
     &.documents { width: 165px; }
     &.public-inspection {
       width: 177px;
-      a:hover { color: $color-public-inspection-dark; }
+
+      a { color: $color-public-inspection; }
+
+      a:hover,
+      a:visited { color: $color-public-inspection-dark; }
     }
   }
 
@@ -67,11 +72,11 @@
 
   .number_of_results {
     float: right;
-    font-size: modular-scale(-1);
+    // font-size: modular-scale(-1);
     font-weight: normal;
     position: relative;
     text-align: right;
-    top: 2px;
+    top: -1px;
     right: 4px;
 
     .loader {
