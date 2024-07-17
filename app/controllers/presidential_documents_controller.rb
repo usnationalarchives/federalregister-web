@@ -1,12 +1,6 @@
 class PresidentialDocumentsController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def homepage
-    cache_for 1.day
-    @presenter = PresidentialDocumentsHomepagePresenter.new
-    render layout: false
-  end
-
   def index
     cache_for 1.day
     @presenter = PresidentialDocumentsIndexPresenter.new

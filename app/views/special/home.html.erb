@@ -22,7 +22,9 @@
 
     <div id="popular-and-presdoc-container">
       <%= esi home_popular_documents_path %>
-      <%= esi home_presidential_documents_path %>
+      <%= render partial: 'presidential_documents/homepage', locals: {
+        presenter: PresidentialDocumentsHomepagePresenter.new
+      } %>
     </div>
   </div>
 <% end %>

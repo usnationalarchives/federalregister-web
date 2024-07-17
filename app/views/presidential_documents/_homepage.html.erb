@@ -1,25 +1,25 @@
 <div class="section with-icon-header pres-doc-preview">
   <h4 class="with-icon">
-    <span class="icon-fr2 icon-fr2-stars"></span>
+    <%= fr_icon("stars") %>
     Presidential Documents
   </h4>
 
   <ul class="fr-list">
-    <%= render partial: 'presidential_document',
+    <%= render partial: 'presidential_documents/presidential_document',
       locals: {
-        documents: @presenter.latest_document_by_type,
-        subtypes: @presenter.subtypes_for_homepage
+        documents: presenter.latest_document_by_type,
+        subtypes: presenter.subtypes_for_homepage
       } %>
   </ul>
 
   <div id="monthly-document-counts">
     <% [Date.today - 1.month, Date.today].each_with_index do |date, index| %>
       <table class="fr-table fr-monthly-overview">
-        <%= render partial: 'monthly_document_counts',
+        <%= render partial: 'presidential_documents/monthly_document_counts',
           locals: {
             date: date,
-            facets: @presenter.document_facets_for_month(date),
-            subtypes: @presenter.subtypes
+            facets: presenter.document_facets_for_month(date),
+            subtypes: presenter.subtypes
           } %>
       </table>
     <% end %>

@@ -191,10 +191,6 @@ Rails.application.routes.draw do
       as: :site_notification
 
     # HOME PAGE
-    esi.get 'esi/home/presidential_documents',
-      to: 'presidential_documents#homepage',
-      as: :home_presidential_documents
-
     esi.get 'esi/home/popular_documents',
       to: 'special#popular_documents',
       as: :home_popular_documents
