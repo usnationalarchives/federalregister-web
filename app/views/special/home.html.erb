@@ -25,5 +25,9 @@
         presenter: PresidentialDocumentsHomepagePresenter.new
       } %>
     </div>
+
+    <%= render partial: "reader_aids/homepage", locals: {
+      presenter: ReaderAidsPresenter::HomepagePresenter.new
+    } %>
   </div>
 <% end %>
