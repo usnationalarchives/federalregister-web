@@ -16,12 +16,11 @@
 
     <%= render partial: 'special/home/embedded_search' %>
 
-    <%= render partial: "reader_aids/homepage", locals: {
-      presenter: ReaderAidsPresenter::HomepagePresenter.new
-    } %>
-
     <div id="popular-and-presdoc-container">
-      <%= esi home_popular_documents_path %>
+      <%= render partial: 'special/home/popular_documents', locals: {
+        presenter: PopularDocumentsPresenter.new
+      } %>
+
       <%= render partial: 'presidential_documents/homepage', locals: {
         presenter: PresidentialDocumentsHomepagePresenter.new
       } %>

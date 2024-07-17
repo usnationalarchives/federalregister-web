@@ -46,14 +46,6 @@ class SpecialController < ApplicationController
     render "layouts/footer"
   end
 
-  def popular_documents
-    cache_for 1.hour
-
-    @popular_documents = PopularDocument.popular.sort_by(&:comment_count).reverse.first(PopularDocument::POPULAR_DOCUMENT_COUNT)
-
-    render 'special/home/popular_documents'
-  end
-
   def error_page
     render template: 'errors/500', layout: 'minimal'
   end

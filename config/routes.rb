@@ -190,12 +190,6 @@ Rails.application.routes.draw do
       to: 'special#site_notifications',
       as: :site_notification
 
-    # HOME PAGE
-    esi.get 'esi/home/popular_documents',
-      to: 'special#popular_documents',
-      as: :home_popular_documents
-
-
     # READER AIDS
     esi.get 'esi/reader_aids/:section',
       to: 'reader_aids#index_section',
