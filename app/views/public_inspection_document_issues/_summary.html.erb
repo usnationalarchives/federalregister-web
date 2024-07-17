@@ -1,20 +1,13 @@
 <!-- issue public inspection metadata -->
-<div id="pi-metadata-bar"
-  class="metadata-explicit-grid pi-metadata-bar <%= home ? 'home' : '' %>">
-
+<div id="pi-metadata-bar" class="metadata-explicit-grid pi-metadata-bar">
   <div class="fr-head-metadata-bar fr-head-metadata-bar-public-inspection">
     <div class="fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <h4>
-          <%
-            link_text = home ? "Public Inspection" : presenter.date
-            link_path = home ? current_public_inspection_issue_path : public_inspection_issue_path(presenter.date)
-          %>
-
-          <%= link_to(
-            "<i class=\"icon-fr2-clipboard\"></i><span>#{link_text}</span>".html_safe,
-            link_path
-          ) %>
+          <%= link_to presenter.metadata_bar_link_path do %>
+            <%= fr_icon("clipboard") %>
+            <span><%= presenter.metadata_bar_name %></span>
+          <% end %>
         </h4>
       </div>
     </div>

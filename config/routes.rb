@@ -181,16 +181,6 @@ Rails.application.routes.draw do
         :month       => /\d{1,2}/
       }
 
-
-    # ISSUES
-    esi.get 'esi/issues/summary',
-      to: 'issues#summary',
-      as: :issue_summary
-
-    esi.get 'esi/issues/late_summary',
-      to: 'issues#late_summary',
-      as: :late_issue_summary
-
     # HEADER
     esi.get '/esi/special/csrf_protection',
       to: 'special#csrf_protection',

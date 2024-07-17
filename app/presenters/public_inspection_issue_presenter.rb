@@ -1,5 +1,7 @@
 class PublicInspectionIssuePresenter
   include RouteBuilder::Fr2ApiUrls
+  include Rails.application.routes.url_helpers
+  include RouteBuilder::PublicInspectionDocuments
 
   attr_reader :agencies, :date, :options, :regular_filings, :special_filings
 
@@ -40,6 +42,18 @@ class PublicInspectionIssuePresenter
     else
       description + "on Public Inspection for #{date.to_formatted_s(:pretty)} and scheduled to be published on the dates listed."
     end
+  end
+
+  def metadata_bar_name
+    home? ? "Public Inspection" : date
+  end
+
+  def metadata_bar_link_path
+    home? ? current_public_inspection_issue_path : public_inspection_issue_path(date)
+  end
+
+  def home?
+    options[:home]
   end
 
   def feed_urls

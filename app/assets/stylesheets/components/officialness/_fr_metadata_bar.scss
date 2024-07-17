@@ -37,7 +37,7 @@
   &.fr-head-metadata-bar-late {
     @include fr-metadata-bar-header($color-public-inspection, $color-public-inspection-light);
 
-    .fr-head-meta-label i {
+    .fr-head-meta-label .icon-fr2 {
       color: $color-public-inspection-light;
       &:hover { color: $public-inspection-link-hover; }
     }
@@ -56,7 +56,7 @@
       .fr-head-meta-label {
         padding-left: 28px;
 
-        i {
+        .icon-fr2 {
           color: $color-public-inspection-light;
           padding-right: 0px;
         }
@@ -92,7 +92,7 @@
       text-decoration: underline;
     }
 
-    i {
+    .icon-fr2 {
       display: inline-block;
       font-size: 34px;
       margin-right: 5px;
@@ -204,7 +204,6 @@
 
     li {
       margin-bottom: 3px;
-      padding: 1px 15px 0 0;
       width: inherit;
 
       h5 {
@@ -246,13 +245,6 @@
   }
 }
 
-// scss-lint:disable MergeableSelector
-.pi-metadata-bar.home {
-  .fr-list.with-stats li { padding: 0; }
-}
-// scss-lint:enable MergeableSelector
-
-
 @media only screen and (max-width: $small-viewport-width) {
   @mixin mobile-metadata-bars {
     .fr-head-meta-label {
@@ -260,7 +252,7 @@
 
       h4 {
         font-size: $metadata-bar-font-size;
-        i {
+        .icon-fr2 {
           left: -17px;
           top: -1px;
         }

@@ -10,11 +10,9 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="homepage-grid">
-    <% if DocumentIssue.current_issue_is_late? %>
-      <%= esi late_issue_summary_path %>
-    <% else %>
-      <%= esi issue_summary_path(path: 'home') %>
-    <% end %>
+    <%= render partial: "issues/summary", locals: {
+      presenter: IssueSummaryPresenter.new(location: "home")
+    } %>
 
     <%= render partial: 'special/home/embedded_search' %>
 

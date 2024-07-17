@@ -4,18 +4,20 @@
     <div class="fr-head-meta-label-holder">
       <div class="fr-head-meta-label">
         <h4>
-          <%= link_to presenter.metadata_bar_link_path do %>
+          <%= link_to current_document_issue_path do %>
             <%= fr_icon("calendar-alt") %>
-            <span><%= presenter.metadata_bar_name %></span>
+            <span>Current Issue</span>
           <% end %>
         </h4>
       </div>
     </div>
 
     <div class="fr-head-meta-counts">
-      <%= render partial: 'document_issues/summary_document_counts', locals: {
-        presenter: presenter
-      } %>
+      <p>
+        Today's issue is currently unavailable on FederalRegister.gov.
+        It may be available on
+        <%= link_to "GovInfo", "https://www.govinfo.gov/app/frtoc/today" %>.
+      </p>
     </div>
   </div>
 </div>

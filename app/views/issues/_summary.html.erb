@@ -1,0 +1,15 @@
+<% if presenter.display_document_issue_summary? %>
+  <%= render partial: 'document_issues/summary',
+    locals: {
+      presenter: presenter.doc_issue_presenter
+    } %>
+<% elsif presenter.display_late_document_issue_notification? %>
+  <%= render partial: 'document_issues/late_summary' %>
+<% end %>
+
+<% if presenter.display_pil_issue_summary? %>
+  <%= render partial: 'public_inspection_document_issues/summary',
+    locals: {
+      presenter: presenter.pil_issue_presenter
+    } %>
+<% end %>

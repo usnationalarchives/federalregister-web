@@ -1,5 +1,7 @@
 class DocumentIssuePresenter
   include RouteBuilder::Fr2ApiUrls
+  include Rails.application.routes.url_helpers
+  include RouteBuilder::Documents
 
   attr_reader :date, :options
 
@@ -9,11 +11,15 @@ class DocumentIssuePresenter
   end
 
   def metadata_bar_name
-    current_issue_page? ? "Current Issue" : date
+    home? ? "Current Issue" : date
   end
 
-  def current_issue_page?
-    options["toc_page"] != true
+  def metadata_bar_link_path
+    home? ? current_document_issue_path : document_issue_path(date)
+  end
+
+  def home?
+    options[:home]
   end
 
   def entry_dates_for_month
