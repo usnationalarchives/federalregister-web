@@ -11,21 +11,21 @@
 
       <div id="ofr-blog-callout">
         <p class="blog">
-          <% announcements = ReaderAid::SECTIONS['office-of-the-federal-register-announcements'] %>
-          <span class="icon-fr2 icon-fr2-<%= announcements[:icon_class]%>"></span>
+          <%= fr_icon(presenter.announcements[:icon_class]) %>
 
-          Read <%= link_to announcements[:title],
+          Read <%= link_to presenter.announcements[:title],
             reader_aids_section_path('office-of-the-federal-register-announcements') %>
         </p>
       </div>
 
       <div id="using-fr" class="section">
         <%= render template: 'reader_aids/index_section',
-          locals: {presenter: @using_fr_presenter} %>
+          locals: {presenter: presenter.using_fr_presenter} %>
       </div>
+
       <div id="recent-site-updates" class="section">
         <%= render template: 'reader_aids/index_section',
-          locals: {presenter: @recent_updates_presenter} %>
+          locals: {presenter: presenter.recent_updates_presenter} %>
       </div>
   <% end %>
 </div>

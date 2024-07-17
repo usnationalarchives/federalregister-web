@@ -16,7 +16,9 @@
 
     <%= render partial: 'special/home/embedded_search' %>
 
-    <%= esi home_reader_aids_path %>
+    <%= render partial: "reader_aids/homepage", locals: {
+      presenter: ReaderAidsPresenter::HomepagePresenter.new
+    } %>
 
     <div id="popular-and-presdoc-container">
       <%= esi home_popular_documents_path %>

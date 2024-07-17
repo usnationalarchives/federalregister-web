@@ -190,12 +190,7 @@ Rails.application.routes.draw do
       to: 'special#site_notifications',
       as: :site_notification
 
-
     # HOME PAGE
-    esi.get 'esi/home/reader_aids',
-      to: 'reader_aids#homepage',
-      as: :home_reader_aids
-
     esi.get 'esi/home/presidential_documents',
       to: 'presidential_documents#homepage',
       as: :home_presidential_documents
