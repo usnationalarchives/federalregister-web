@@ -1,7 +1,37 @@
-// New Mobile Navbar Handling
-//=====================================================================
 document.addEventListener('DOMContentLoaded', function() {
 
+  function handleDesktopNavigationTabbing () {
+    // NOTE: The intention is for this logic not to be executed in mobile viewports
+    var dropdowns = document.querySelectorAll('#navigation li.dropdown');
+
+    function showSubnav() {
+      if (window.innerWidth > 501) {
+        this.querySelector('.subnav').style.display = 'block';
+      }
+    }
+
+    function hideSubnav() {
+      if (window.innerWidth > 501) {
+        var dropdown = this;
+        // Set a timeout to delay the hiding to check if the new focused element is within the dropdown
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.querySelector('.subnav').style.display = 'none';
+          }
+        }, 10);
+      }
+    }
+
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('focusin', showSubnav);
+      dropdown.addEventListener('focusout', hideSubnav);
+    });
+  }
+  handleDesktopNavigationTabbing()
+
+
+  // New Mobile Navbar Handling:
+  // ===========================================================================
   // Handle toggling of subnav
   var toggleableList = document.querySelectorAll('#non-essential-nav li.dropdown');
   toggleableList.forEach(function(item) {
@@ -40,6 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  // ===========================================================================
 
 });
-//=====================================================================

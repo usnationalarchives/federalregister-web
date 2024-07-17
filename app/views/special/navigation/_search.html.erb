@@ -1,11 +1,11 @@
 <li class="dropdown nav_search">
-  <a class="top_nav">
+  <%= link_to('', class: "top_nav") do %>
     <%= fr_icon('Search') %>
     <span>
       Search
       <%= fr_icon('menu_arrow') %>
     </span>
-  </a>
+  <% end %>
 
   <ul class="subnav search-list">
     <li id='articles-search'>

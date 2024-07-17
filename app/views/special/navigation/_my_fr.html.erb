@@ -1,12 +1,11 @@
 <li class="dropdown nav_myfr2">
-  <a class="myfr2 top_nav">
-    <span class="icon-fr2 icon-fr2-nav_male_female_user"></span>
+  <%= link_to('', class: "top_nav") do %>
+    <%= fr_icon('nav_male_female_user') %>
     <span>
       My FR
       <%= fr_icon('menu_arrow') %>
-      <span class="arrow"></span>
     </span>
-  </a>
+  <% end %>
 
   <ul class="subnav myfr2-list">
     <li id='myfr2-account'>

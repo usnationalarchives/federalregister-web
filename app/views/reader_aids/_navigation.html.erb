@@ -1,11 +1,11 @@
 <li class="dropdown nav_reader_aids">
-  <a class="top_nav">
-    <span class="icon-fr2 icon-fr2-Directions"></span>
+  <%= link_to('', class: "top_nav") do %>
+    <%= fr_icon('Directions') %>
     <span>
       Reader Aids
-      <%= fr_icon('menu_arrow', class: "arrow") %>
+      <%= fr_icon('menu_arrow') %>
     </span>
-  </a>
+  <% end %>
 
   <ul class="subnav reader-aids-list">
     <li>
