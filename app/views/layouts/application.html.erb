@@ -28,6 +28,8 @@
     <link href="<%= asset_path('print.css') %>", media="print", rel="preload stylesheet", as="style">
     <%= yield :page_specific_css %>
 
+    <link href="<= asset_path('header/official_masthead.svg') %>" rel="preload" as="image">
+
     <%= javascript_include_tag asset_path('vendor.js'),
       asyc: true,
       defer: true,
