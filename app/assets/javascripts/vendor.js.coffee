@@ -8,7 +8,11 @@
 #= require bootstrap/tooltip
 #= require bootstrap/popover
 #= require bootstrap/modal
+
+# Used to read user data cookie
 #= require js.cookie
+
+# Lazy image load - agency images .Lazy(
 #= require jquery.lazy.min
 
 # RANDOM ASSORTMENT UTILITIES
