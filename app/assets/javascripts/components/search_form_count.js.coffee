@@ -1,3 +1,5 @@
+# TODO: FR2.SearchTabCount should be combined with this code as there is a lot
+# of reuse
 class @FR2.SearchFormCount
   constructor: (@searchForm)->
     @searchCount = new FR2.SearchCount(@searchFormType())
@@ -10,11 +12,10 @@ class @FR2.SearchFormCount
       'public-inspection'
 
   populateExpectedResults: (obj)->
-    formattedCount = numeral(obj.count).format('0,0')
-    if formattedCount == "1"
-      text = "#{formattedCount} document"
+    if obj.count == 1
+      text = "#{obj.count.toLocaleString()} document"
     else
-      text = "#{formattedCount} documents"
+      text = "#{obj.count.toLocaleString()} documents"
 
     $('#expected_result_count')
       .find '.loader'

@@ -30,9 +30,6 @@
 # SEARCH
 # debounce search result count lookahead
 #= require jquery.typewatch.js
-# format numbers appropriately with comma's, etc
-#= require numeral.min.js
-#= require languages.min.js
 
 # STICKY FROM FOMANTIC-UI (doc utility bar)
 #= require fomantic-ui/sticky.min.js
