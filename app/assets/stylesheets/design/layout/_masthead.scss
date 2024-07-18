@@ -1,39 +1,21 @@
-%header_logo {
+.logo {
   margin: 20px auto -10px;
   padding-left: 5px;
   position: relative;
   width: 955px;
 
   .hgroup {
-    text-indent: -9999em;
-    overflow: hidden;
-    text-align: left;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-
-    a { display: block; }
-  }
-}
-
-@mixin masthead_svg($name) {
-  background-image: image-url('header/#{$name}_masthead.svg');
-  background-position: 0 0;
-  background-clip: content-box;
-
-  a { height: 100px; }
-}
-
-.logo {
-  @extend %header_logo;
-
-  .hgroup {
-    width: 700px;
     height: 120px;
     margin-bottom: 10px;
+    width: 700px;
 
-    &.official { @include masthead_svg('official'); }
-    &.public-inspection { @include masthead_svg('public_inspection'); }
-    &.reader-aids { @include masthead_svg('reader_aids'); }
+    a {
+      display: block;
+      img {
+        height: 100px;
+        width: 700px;
+      }
+    }
   }
 }
 
@@ -43,9 +25,14 @@
     margin-top: 0px;
 
     .hgroup {
+      height: 63px !important;
       width: auto;
       top: 0px !important;
-      height: 63px !important;
+
+      a img {
+        height: auto;
+        width: 360px;
+      }
     }
   }
 }

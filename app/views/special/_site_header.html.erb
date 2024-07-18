@@ -1,9 +1,7 @@
 <div class="logo">
   <div class="hgroup <%= header_type %>">
     <hgroup>
-      <h1><a href="/" title="Federal Register Home">The Federal Register</a></h1>
-      <h2>
-        <%=
+      <% alt_text =
           case header_type
           when "official"
             "The Daily Journal of the United States Government"
@@ -12,8 +10,12 @@
           when "reader-aids"
             "Reader Aids :: Insight Into the FR Ecosystem"
           end
-          %>
-      </h2>
+      %>
+      <a href="/" title="Federal Register Home">
+        <img
+          src="<%= asset_path("header/#{header_type.gsub('-','_')}_masthead.svg") %>"
+          alt="<%= alt_text %>" />
+      </a>
     </hgroup>
   </div>
 </div>
