@@ -22,9 +22,6 @@
 #= require amplify.store-1.1.0.min.js
 #= require jquery.scrollintoview.min.js
 
-# EMAIL ADDRESS VALIDATOR/HELPER
-#= require mailcheck.min.js
-
 #= require jquery.tipsy.js
 
 # BETTER SELECT MULTIPLE PLUGIN
