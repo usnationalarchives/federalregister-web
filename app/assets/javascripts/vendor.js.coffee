@@ -2,8 +2,6 @@
 #= require jquery-ui-1.12.1.custom.min.js
 
 #= require honeybadger.min.js
-#= require strftime
-
 
 #= require bootstrap/dropdown
 #= require bootstrap/tab

@@ -22,10 +22,8 @@
       "Handlebars",
       "_",
       "gtag",
-      "strftime",
       "CJ",
       "FR2",
-      "Tender",
 
       // Some methods defined across files; should prob be refactored
       "addIconViaJS",
