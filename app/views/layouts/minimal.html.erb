@@ -13,10 +13,12 @@
 
     <%= javascript_include_tag asset_path('vendor.js'), nonce: content_security_policy_nonce %>
     <%= javascript_include_tag asset_path('application.js'), nonce: content_security_policy_nonce %>
+
+    <link href="<%= asset_path('fr-mastheads.svg') %>" rel="preload" as="image">
   </head>
 
   <body>
-    <div class="header" id="header_refresh">
+    <div class="header">
       <div class="header_wrapper">
         <div class="nav" id="navigation" style="margin-bottom: 20px;"></div>
 

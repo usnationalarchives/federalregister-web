@@ -1,21 +1,20 @@
-<div class="logo">
-  <div class="hgroup <%= header_type %>">
-    <hgroup>
-      <% alt_text =
-          case header_type
-          when "official"
-            "The Daily Journal of the United States Government"
-          when "public-inspection"
-            "Public Inspection :: Tomorrow's Documents, Today"
-          when "reader-aids"
-            "Reader Aids :: Insight Into the FR Ecosystem"
-          end
-      %>
-      <a href="/" title="Federal Register Home">
-        <img
-          src="<%= asset_path("header/#{header_type.gsub('-','_')}_masthead.svg") %>"
-          alt="<%= alt_text %>" />
-      </a>
-    </hgroup>
+<div class="logo <%= header_type %>">
+  <div class="hgroup">
+    <% title_text =
+        case header_type
+        when "official"
+          "The Daily Journal of the United States Government"
+        when "public-inspection"
+          "Public Inspection :: Tomorrow's Documents, Today"
+        when "reader-aids"
+          "Reader Aids :: Insight Into the FR Ecosystem"
+        end
+    %>
+    <a href="/" title="Federal Register Home - <%= title_text %>">
+      <svg class="masthead">
+        <use xlink:href="<%= asset_path("fr-mastheads.svg")%>#<%= header_type %>-masthead">
+        </use>
+      </svg>
+    </a>
   </div>
 </div>
