@@ -8,9 +8,11 @@
 </p>
 
 <ul class="file-type-list bullets">
-  {{#inColumns fileTypes count=2}}
-    {{#each this}}
-      <li>{{this}}</li>
-    {{/each}}
-  {{/inColumns}}
+  <%
+    left, right = Comment::ALLOWED_EXTENSIONS.sort.in_groups(2)
+    file_types = left.zip(right).flatten
+    file_types.each do |file_type|
+  %>
+    <li><%= file_type %></li>
+  <% end %>
 </ul>

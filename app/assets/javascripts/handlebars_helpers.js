@@ -1,17 +1,3 @@
-function inGroupsOf(count, arr) {
-  return _.reduce(arr, function(memo, item) {
-    var group = memo[memo.length - 1];
-
-    if( group.length < count ) {
-      group.push( item );
-    } else {
-      memo.push( [item] );
-    }
-
-    return memo;
-  }, [[]]);
-}
-
 Handlebars.registerHelper('unlessMyClipboard', function(block) {
   if( this.slug === "my-clippings" ) {
     return block.inverse(this);
@@ -21,7 +7,7 @@ Handlebars.registerHelper('unlessMyClipboard', function(block) {
 });
 
 Handlebars.registerHelper('ifInFolder', function(current_document_number, block) {
-  if( _.include(this.documents, current_document_number) ) {
+  if( this.documents.includes(current_document_number) ) {
     return block.fn(this);
   } else {
     return block.inverse(this);
@@ -104,25 +90,6 @@ Handlebars.registerHelper('pluralize_array', function(arr, single, plural) {
 
 Handlebars.registerHelper('count', function(arr) {
   return arr.length;
-});
-
-Handlebars.registerHelper('inColumns', function(arr, options) {
-  var inEachColumn, perColumnCount, result, count;
-
-  count = options.hash.count;
-
-  inEachColumn =  Math.floor(arr.length / count);
-
-  if( arr.length % count === 0 ) {
-    perColumnCount = inEachColumn;
-  } else {
-    perColumnCount = inEachColumn + 1;
-  }
-
-  result = inGroupsOf(perColumnCount, arr);
-  result = _.flatten(_.zip.apply(_, result));
-
-  return options.fn(result);
 });
 
 Handlebars.registerHelper('defaultSubscriptionToDocument', function(val, options) {
