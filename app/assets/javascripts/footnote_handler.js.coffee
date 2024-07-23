@@ -7,7 +7,7 @@ class @FR2.FootnoteHandler
     $('#fulltext_content_area').on 'click', 'a.footnote-reference', (event) ->
       event.preventDefault()
       href                  = $(this).attr('href')
-      originalPageNumber    = _.last(href.split('-')).replace(/\D/g, '')
+      originalPageNumber    = href.split('-').at(-1).replace(/\D/g, '')
       alternatePossibleHref = href.replace("p#{originalPageNumber}", "p#{(parseInt(originalPageNumber, 10) + 1)}")
 
       if $(href).length > 0
@@ -21,7 +21,7 @@ class @FR2.FootnoteHandler
     $('#fulltext_content_area').on 'click', 'a.back', (event) ->
       event.preventDefault()
       href                  = $(this).attr('href')
-      originalPageNumber    = _.last(href.split('-')).replace(/\D/g, '')
+      originalPageNumber    = href.split('-').at(-1).replace(/\D/g, '')
       alternatePossibleHref = href.replace("p#{originalPageNumber}", "p#{(parseInt(originalPageNumber, 10) - 1)}")
 
       if $(href).length > 0
