@@ -29,16 +29,26 @@ class @FR2.ListItemSorter
       when 'count'
         @countSorter.find('li').removeClass('on')
 
+  sortByAttr: (dataAttr, numerical)->
+    return (a, b) ->
+      aText = if $(a).data(dataAttr) then $(a).data(dataAttr) else $(a).text()
+      bText = if $(b).data(dataAttr) then $(b).data(dataAttr) else $(b).text()
+
+      if numerical
+        parseInt(aText, 10) - parseInt(bText, 10)
+      else
+        (aText > bText) ? 1 : ((bText > aText) ? -1 : 0)
+
   addAlphaSorter: ()->
     @alphaSorter = $('.list-item-sorter.alphabetical-sorter')
     listItemSorter = this
 
     items = @itemList.find('> li')
 
-    @alphaSorter.on 'click', 'li', (event)->
+    @alphaSorter.on 'click', 'li', (event)=>
       event.preventDefault()
 
-      li = $(this)
+      li = $(event.target).closest('li')
       el = li.find 'a'
 
       sortDirection = el.data('sort-direction')
@@ -46,9 +56,7 @@ class @FR2.ListItemSorter
       listItemSorter.alphaSorter.find('li').removeClass('on')
       li.addClass('on')
 
-      sortedItems = _.sortBy items, (item)->
-        item = $(item)
-        return  if item.data('sorter-text') then item.data('sorter-text') else item.text()
+      sortedItems = items.toArray().toSorted(@sortByAttr('sorter-text'))
 
       if sortDirection == 'asc'
         listItemSorter.itemList.html sortedItems
@@ -63,10 +71,10 @@ class @FR2.ListItemSorter
 
     items = @itemList.find('> li')
 
-    @countSorter.on 'click', 'li', (event)->
+    @countSorter.on 'click', 'li', (event)=>
       event.preventDefault()
 
-      li = $(this)
+      li = $(event.target).closest('li')
       el = li.find 'a'
 
       sortDirection = el.data('sort-direction')
@@ -74,9 +82,7 @@ class @FR2.ListItemSorter
       listItemSorter.countSorter.find('li').removeClass('on')
       li.addClass('on')
 
-      sortedItems = _.sortBy items, (item)->
-        item = $(item)
-        return  if item.data('sorter-count') then item.data('sorter-count') else item.text()
+      sortedItems = items.toArray().toSorted(@sortByAttr('sorter-count', true))
 
       if sortDirection == 'asc'
         listItemSorter.itemList.html sortedItems
