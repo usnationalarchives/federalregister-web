@@ -7,12 +7,13 @@ class @FR2.SubscriptionFilter
     @addEvents()
 
   init: ->
-    _.each $('.subscription-type-filter li'), (filter)->
+    $('.subscription-type-filter li').each((i, filter)->
       if subscriptionTypeFilters.includes( $(filter).data('filter-doc-type') )
         $(filter).addClass('on')
         $(filter).data('tooltip', 'Hide ' + $(filter).data('filter-doc-type-display') + ' subscriptions' )
       else
         $(filter).addClass('disabled')
+    )
 
   addEvents: ->
     subscriptionFilter = this

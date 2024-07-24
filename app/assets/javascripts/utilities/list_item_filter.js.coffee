@@ -20,9 +20,10 @@ class @FR2.ListItemFilter
       @addLiveFilter()
 
   notifyFilterUpdate: (triggeringFilter)->
-    _.each @settings.filters, (active, filter)=>
+    Object.entries(@settings.filters).forEach(([filter,active],index)=>
       if filter != triggeringFilter && active == true
         @resetFilter filter, triggeringFilter
+    )
 
     @updateFilterCount()
 
@@ -93,13 +94,14 @@ class @FR2.ListItemFilter
         items.hide().removeClass('unmatched')
 
         if @settings.nestedItems
-          _.each matchingItems, (item)->
+          matchingItems.forEach((item)->
             item = $(item)
             item.show()
             item
               .parents 'li[data-filter-live]'
               .show()
               .addClass 'unmatched'
+          )
         else
           $(matchingItems).show()
 
@@ -172,7 +174,7 @@ class @FR2.AgencyListFilter extends @FR2.ListItemFilter
     @subAgencyFilter.on 'click', 'li', (event)->
       event.preventDefault()
 
-      li = $(this).closest('li')
+      li = $(this)
       el = li.find 'a'
 
       showChildAgencies = el.data('show-sub-agencies')

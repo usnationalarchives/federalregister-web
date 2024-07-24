@@ -14,5 +14,6 @@ $(document).ready ()->
 
   if frSearch
     frSearch.calculateExpectedResults()
-    _.each searchCounts, (searchCount)->
+    searchCounts.forEach((searchCount)->
       searchCount.getResultCount()
+    )

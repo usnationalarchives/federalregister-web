@@ -93,8 +93,9 @@ class @FR2.DocumentClipper
       documentClipper.handleNewFolderAction()
 
   addFolderElementHandlers: ->
-    _.each @clipper.find('.menu li.in-folder'), (el)=>
+    @clipper.find('.menu li.in-folder').each((i, el)=>
       @addFolderElementHandler(el)
+    )
 
   showClippingMenu: (el)->
     # turn on hover
@@ -259,7 +260,7 @@ class @FR2.DocumentClipper
 
     # add folder to other menus on page (search results page)
     # but mark as not clipped
-    _.each $('.document-clipping-actions'), (clipper)=>
+    $('.document-clipping-actions').each (i, clipper)=>
       unless @clipper.is $(clipper)
         newFolderEl = $(template(response))
 

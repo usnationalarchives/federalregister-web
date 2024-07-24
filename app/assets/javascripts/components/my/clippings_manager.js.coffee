@@ -131,14 +131,16 @@ class @FR2.ClippingsManager
     })
 
     deleteClippings.done (response)->
-      _.each response.folder.documents, (doc_id)->
+      response.folder.documents.forEach((doc_id)->
         $("#clippings li[data-doc-id='" + doc_id + "']")
           .animate({opacity: 0}, 600)
+      )
 
       setTimeout(
         ()->
-          _.each response.folder.documents, (doc_id)->
+          response.folder.documents.forEach((doc_id)->
             $("#clippings li[data-doc-id='" + doc_id + "']").remove()
+          )
 
           @update_clippings_on_page_count response.folder.doc_count
           @update_add_folder_count response, 'remove'
@@ -343,7 +345,7 @@ class @FR2.ClippingsManager
 
 
   removeMovedItemsFromView: (response)->
-    _.each response.folder.documents, (doc_id)->
+    response.folder.documents.forEach((doc_id)->
       $("#clippings li[data-doc-id='#{doc_id}']")
         .animate(
           {opacity: 0},
@@ -353,6 +355,7 @@ class @FR2.ClippingsManager
               this.remove()
           }
         )
+    )
 
     @update_clippings_on_page_count response.folder.doc_count
     @update_current_folder_page_counts response.folder.doc_count

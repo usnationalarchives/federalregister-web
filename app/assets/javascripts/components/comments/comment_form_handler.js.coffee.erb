@@ -74,13 +74,13 @@ class @FR2.CommentFormHandler
       )
 
   renderCommentSummary: (fields)->
-    template = HandlebarsTemplates['comment_summary'] 
+    template = HandlebarsTemplates['comment_summary']
     template fields
 
   addPublicIcons: ->
     items = @commentFormEl().find '.inputs li'
 
-    _.each items, (li)->
+    items.each((i, li)->
       $li = $(li)
       if $li.hasClass 'public'
         el = $li
@@ -98,9 +98,10 @@ class @FR2.CommentFormHandler
               .addClass 'public icon-fr2 icon-fr2-globe'
               .data 'tooltip-gravity', tooltipGravity
           )
+    )
 
   addTooltipToPublicIcons: ->
-    _.each @commentFormEl().find('.inputs span.public'), (el)->
+    @commentFormEl().find('.inputs span.public').each((i, el)->
       el = $(el)
 
       tooltip = el.siblings('input').data('tooltip')
@@ -126,6 +127,7 @@ class @FR2.CommentFormHandler
           verticalOffset: -5
         }
       )
+    )
 
   fileUploadButton: ->
     @commentFormEl().find '#fileupload'

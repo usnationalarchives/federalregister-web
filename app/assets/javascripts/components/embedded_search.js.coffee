@@ -9,7 +9,7 @@ class @FR2.EmbeddedSearch
     @calculateExpectedResults()
 
   setupTooltips: ->
-    _.each @doctypeFilters, (filter)->
+    @doctypeFilters.each((i, filter)->
       filter = $(filter)
       type = filter.data('filter-doc-type-display')
 
@@ -17,6 +17,7 @@ class @FR2.EmbeddedSearch
         'tooltip',
         "Limit search to documents of type #{type}"
       )
+    )
 
   # only add tooltips to items that are active
   addTooltips: ->

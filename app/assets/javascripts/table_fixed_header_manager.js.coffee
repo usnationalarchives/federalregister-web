@@ -41,12 +41,13 @@ class @FR2.TableFixedHeaderManager
         $(this).html(handler.table.html())
 
     # Activate Semantic UI sticky
-    _.each $('.expand-table-link'), (link)->
+    $('.expand-table-link').each((i, link)->
       stickyContainer = $(link).closest('.table-wrapper')
       $(link).sticky({
         context: $(stickyContainer),
         offset: 80
       })
+    )
 
     # Attach event listeners for deploying modals
     $('.expand-table-link').on 'click', (e)->

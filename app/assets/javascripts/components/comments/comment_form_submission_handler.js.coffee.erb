@@ -66,9 +66,10 @@ class @FR2.CommentFormSubmissionHandler
     if uploader.fileUploadSubmissionKey
       data["submissionType"] = "API"
       data["submissionKey"] = uploader.fileUploadSubmissionKey
-      _.each uploader.uploadedFiles, (file) ->
+      uploader.uploadedFiles.forEach((file) ->
         data.files ||= []
         data.files.push(file.name)
+      )
 
     data
 

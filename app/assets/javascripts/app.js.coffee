@@ -33,10 +33,10 @@ $(document).ready ()->
   )
 
   # Toggle show/hides
-  _.each $('.toggle'), (el)->
+  $('.toggle').each (i, el)->
     new CJ.ToggleOne(el)
 
-  _.each $('.toggle-all'), (el)->
+  $('.toggle-all').each (i, el)->
     new CJ.ToggleAll(el)
 
   # Nav Analytics
@@ -46,11 +46,11 @@ $(document).ready ()->
 
   # Calendars
   standardCalendars = $('.calendar-wrapper:not(.cal-double) table.calendar')
-  _.each standardCalendars, (calendar)->
+  standardCalendars.each (i, calendar)->
     new FR2.Calendar $(calendar)
 
   multiCalendars = $('.calendars-wrapper')
-  _.each multiCalendars, (wrapper)->
+  multiCalendars.each (i, wrapper)->
     new FR2.MultiCalendarHandler $(wrapper).find('table.calendar')
 
   # Analytics
@@ -97,7 +97,7 @@ $(document).ready ()->
       FR2.currentUserStorage.set('userFolderDetails', {folders: data.folders})
 
       stored_document_numbers = {}
-      _.each(data.clippings, (clipping) ->
+      data.clippings.forEach (clipping) ->
         stored_document_numbers[clipping.document_number] ||= []
 
         slug = if clipping.folder
@@ -106,13 +106,12 @@ $(document).ready ()->
           'my-clipboard'
 
         stored_document_numbers[clipping.document_number].push(slug)
-      )
 
       FR2.currentUserStorage.set('storedDocumentNumbers',
         [stored_document_numbers])
 
       FR2.documentClippers = []
-      _.each $('.document-clipping-actions'), (clipper)->
+      $('.document-clipping-actions').each (i, clipper)->
         FR2.documentClippers.push(new FR2.DocumentClipper(clipper))
 
       #clippings page - currently dependent on ajax call completion
@@ -157,7 +156,7 @@ $(document).ready ()->
   # set the size of the clipping data div to match the size of the
   # document data div (which we assume is larger) so that we get our
   # nice dashed border seperating the two
-  _.each $('ul#clippings li div.clipping_data'), (el)->
+  $('ul#clippings li div.clipping_data').each (i, el)->
     $(el).height(
       $(el).siblings('div.document_data').height()
     )
@@ -166,7 +165,7 @@ $(document).ready ()->
   # delay 200ms to allow for final page paint with webfonts (and thus element size)
   setTimeout(
     ()->
-      _.each $('ul#clippings li div.add_to_folder_pane'), (el)->
+      $('ul#clippings li div.add_to_folder_pane').each (i, el)->
         $(el).height(
           $(el).closest('ul#clippings li').innerHeight()
         )
@@ -248,7 +247,7 @@ $(document).ready ()->
   if $(".search").length > 0
     pagers = $('.search .result-set .pagination')
 
-    _.each pagers, (pager) ->
+    pagers.each (i, pager) ->
       $(pager)
         .css 'width', $(pager).width() + 5
         .css 'display', 'block'

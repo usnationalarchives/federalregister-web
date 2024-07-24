@@ -30,11 +30,12 @@ class @CJ.Toggle
   prepTargets: ()->
     toggler = this
 
-    _.each $(@settings.toggleTarget), (target)->
+    $(@settings.toggleTarget).each((i, target)->
       target = $(target)
 
       if target.hasClass(toggler.settings.hiddenClass)
         target.hide().removeClass(toggler.settings.hiddenClass)
+    )
 
 class @CJ.ToggleOne extends @CJ.Toggle
   addToggleEvent: ()->

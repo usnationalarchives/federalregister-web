@@ -31,7 +31,9 @@ class @FR2.SearchFormHandler
     $(".date_options input[data-show-field]:checked")
       .trigger "change"
 
-    _.each $("input[data-show-field]"), @intializeInputDataShowFields
+    $("input[data-show-field]").each((i, input)=>
+      @intializeInputDataShowFields(input)
+    )
 
     @addHelperText()
 
@@ -125,10 +127,11 @@ class @FR2.SearchFormHandler
     matchingInputs = parentFieldset
       .find(".#{input.attr("data-show-field")} :input")
 
-    _.each matchingInputs, (matchingInput)->
+    matchingInputs.each((i, matchingInput)->
       if $(matchingInput).val() != '' && !$(matchingInput).hasClass('text-placeholder')
         input.prop('checked', true)
         input.change()
+    )
 
   addHelperText: ->
     # add in some text to make certain form fields more

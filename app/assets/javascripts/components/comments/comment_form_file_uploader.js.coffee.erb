@@ -207,7 +207,7 @@ class @FR2.CommentFormFileUploader
       .bind 'fileuploadprocessfail', (e, data)=>
         @updateUploaderStatus 'fail'
         if data.files.error
-          _.each data.context, (el, index)=>
+          data.context.toArray().forEach((el, index)=>
             error = data.files[index].error
             $el = $(el)
             if error
@@ -220,6 +220,7 @@ class @FR2.CommentFormFileUploader
               $el
                 .find '.button.cancel .action'
                 .text 'Delete'
+          )
 
     # this is triggered when a file with an error is removed
     # from the file list - go figure...
@@ -261,10 +262,11 @@ class @FR2.CommentFormFileUploader
     fileUploader = this
 
     @uploader._hasError = (file)->
-      _.each fileUploader.attachmentContainer().find('tr'), (i, el)->
+      fileUploader.attachmentContainer().find('tr').each((i, el)->
         $el = $(el)
         if $el.data('name') == file.name
           file.error = 'A file with the same name has already been attached.'
+      )
 
       priorValidations.call(this, file)
 

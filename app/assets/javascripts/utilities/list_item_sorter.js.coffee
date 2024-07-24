@@ -18,9 +18,10 @@ class @FR2.ListItemSorter
       @addCountSorter()
 
   notifySorterUpdate: (skipSorter)->
-    _.each @settings.sorters, (active, sorter)=>
+    Object.entries(@settings.sorters).forEach(([sorter,active],index)=>
       if sorter != skipSorter && active == true
         @resetSorter sorter
+    )
 
   resetSorter: (sorter)->
     switch sorter

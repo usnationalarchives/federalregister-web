@@ -28,7 +28,7 @@
     <link href="<%= asset_path('print.css') %>", media="print", rel="preload stylesheet", as="style">
     <%= yield :page_specific_css %>
 
-    <link href="<%= asset_path('fr-mastheads.svg') %>" rel="preload" as="image">
+    <link href="<%= asset_path('fr-mastheads.svg') %>" rel="preload" as="image" type="image/svg+xml">
 
     <%= javascript_include_tag asset_path('vendor.js'),
       asyc: true,

@@ -52,7 +52,7 @@ class @FR2.CommentForm
       .formData()
 
     fields = []
-    _.each formData, (fieldValue, fieldName) ->
+    Object.entries(formData).forEach(([fieldName,fieldValue],index) ->
       label = switch fieldName
         when 'comment' then 'Comment'
         when 'files' then 'Upload File(s)'
@@ -76,13 +76,15 @@ class @FR2.CommentForm
           label: label,
           values: values
         })
+    )
 
     fields.files = @commentFormHandler.commentFormFileUploader.uploadedFiles || 'None attached'
     fields
 
   removeNotSentFields: ($els)->
-    _.each @notSentFieldIds, (id)->
+    @notSentFieldIds.forEach((id)->
       $els = $els.filter("li:not(#{id})")
+    )
 
     $els
 
@@ -93,7 +95,7 @@ class @FR2.CommentForm
     $item.find(type).val()
 
   comboBoxChangeHandler: ->
-    _.each @commentFormEl().find('li.combo'), (li)=>
+    @commentFormEl().find('li.combo').each((i, li)=>
       $li = $(li)
       dependencies = $li.data('dependencies')
       input = $li.find('input')
@@ -130,6 +132,7 @@ class @FR2.CommentForm
               .show()
 
         .change()
+    )
 
   addCommentSecret: ->
     commentSecret = @commentFormEl().find '#comment_secret'
@@ -377,7 +380,7 @@ class @FR2.CommentForm
       $(el).val() != ""
     ) && _.all(this._visibleCharCountFields(), (el) ->
       $(el).siblings('.inline-errors:not(.warning)').length == 0
-    ) 
+    )
 
   _visibleCharCountFields: () ->
     this._requiredFields().filter((el) ->
@@ -558,13 +561,13 @@ class @FR2.CommentForm
 
   _hideAllCommentFields: ->
     this._hideElement('.comment-form-fields-js')
-  
+
   _showAllCommentFields: ->
     this._showElement('.comment-form-fields-js')
 
   _showChangeCommentRecipientLink: ->
     this._showElement('#change-recipient-fields-js', 'fast')
-  
+
   _hideChangeCommentRecipientLink: ->
     this._hideElement("#change-recipient-fields-js", 'fast')
 
@@ -576,7 +579,7 @@ class @FR2.CommentForm
 
   _clearDynamicAgencyText: ->
     $("#dynamic-agency-text-js").html("")
-  
+
   _replaceDynamicAgencyText: (agencyName, regsDotGovDocumentId) ->
     $("#dynamic-agency-text-js").html(
       HandlebarsTemplates['agency_comment_selection']({
