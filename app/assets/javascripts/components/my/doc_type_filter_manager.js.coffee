@@ -5,7 +5,7 @@ class @FR2.DocTypeFilterManager
   addFilterEvents: ->
     manager = this
     $('#doc-type-filter li').each( ->
-      if ( _.include( manager.docTypeFilters(), $(this).data('filter-doc-type') ) )
+      if ( manager.docTypeFilters().includes( $(this).data('filter-doc-type') ) )
         $(this).addClass('on')
         $(this).data('tooltip',
           'Hide documents of type ' + $(this).data('filter-doc-type-display')
@@ -60,7 +60,7 @@ class @FR2.DocTypeFilterManager
     documents_to_hide = _.filter(
       $('ul#clippings li'),
       (clipping) ->
-        ! _.include(doc_type_filters, $(clipping).data('doc-type') )
+        ! doc_type_filters.includes( $(clipping).data('doc-type') )
     )
 
     $('#clippings li').show()

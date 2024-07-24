@@ -8,7 +8,7 @@ class @FR2.SubscriptionFilter
 
   init: ->
     _.each $('.subscription-type-filter li'), (filter)->
-      if _.include(subscriptionTypeFilters, $(filter).data('filter-doc-type'))
+      if subscriptionTypeFilters.includes( $(filter).data('filter-doc-type') )
         $(filter).addClass('on')
         $(filter).data('tooltip', 'Hide ' + $(filter).data('filter-doc-type-display') + ' subscriptions' )
       else
