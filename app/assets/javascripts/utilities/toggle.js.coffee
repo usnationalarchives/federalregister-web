@@ -20,7 +20,7 @@ class @CJ.Toggle
       trigger: 'click'
     }
 
-    @settings = _.extend({}, defaults, @settings)
+    @settings =  Object.assign(defaults, @settings || {})
 
     @prepTargets()
     @addToggleEvent()

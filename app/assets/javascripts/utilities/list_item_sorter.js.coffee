@@ -9,7 +9,7 @@ class @FR2.ListItemSorter
 
   constructor: (itemList, options)->
     @itemList = $(itemList)
-    @settings = _.extend(@defaultOptions(), options || {})
+    @settings =  Object.assign(@defaultOptions(), options || {})
 
     if @settings.sorters.alphabetical
       @addAlphaSorter()

@@ -11,7 +11,7 @@ class @FR2.ListItemFilter
 
   constructor: (itemList, options)->
     @itemList = $(itemList)
-    @settings = _.extend(@defaultOptions(), options || {})
+    @settings = Object.assign(@defaultOptions(), options || {})
 
     if @settings.filters.alphabetical
       @addAlphaFilter()
@@ -65,7 +65,7 @@ class @FR2.ListItemFilter
         items.show()
       else
         matchingItems = items.toArray().filter((item)->
-          return $(item).data('filter-alpha').match(new RegExp(el.data('filter-regex')))
+          return !!$(item).data('filter-alpha').match(new RegExp(el.data('filter-regex')))
         )
 
         items.hide()
@@ -87,7 +87,7 @@ class @FR2.ListItemFilter
         @notifyFilterUpdate()
       else
         matchingItems = items.toArray().filter( (item)->
-          return $(item).data('filter-live').match(new RegExp("\\b#{input.val()}", 'i'))
+          return !!$(item).data('filter-live').match(new RegExp("\\b#{input.val()}", 'i'))
         )
 
         items.hide().removeClass('unmatched')
@@ -117,7 +117,7 @@ class @FR2.TopicListFilter extends @FR2.ListItemFilter
       filterCountTarget: '#item-count'
     }
 
-    _.extend super(), topicDefaults
+    Object.assign(super(), topicDefaults)
 
   constructor: (itemList, options)->
     super itemList, options
@@ -135,7 +135,7 @@ class @FR2.AgencyListFilter extends @FR2.ListItemFilter
       nestedItems: true
     }
 
-    _.extend super(), agencyDefaults
+    Object.assign(super(), agencyDefaults)
 
   constructor: (itemList, options)->
     super itemList, options
@@ -172,7 +172,7 @@ class @FR2.AgencyListFilter extends @FR2.ListItemFilter
     @subAgencyFilter.on 'click', 'li', (event)->
       event.preventDefault()
 
-      li = $(this)
+      li = $(this).closest('li')
       el = li.find 'a'
 
       showChildAgencies = el.data('show-sub-agencies')

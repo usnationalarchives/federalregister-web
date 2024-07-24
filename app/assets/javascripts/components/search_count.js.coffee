@@ -12,7 +12,7 @@ class @FR2.SearchCount
       amplify.store('searchCount')[url]
 
     set: (url, value)->
-      val = _.extend(
+      val =  Object.assign(
         amplify.store('searchCount'),
         {"#{url}": value}
       )

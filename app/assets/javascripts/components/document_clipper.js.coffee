@@ -41,7 +41,7 @@ class @FR2.DocumentClipper
     #create a shallow copy for this instance of DocumentClipper
     folderDetails = _.clone @folderDetails()
 
-    data = _.extend(
+    data = Object.assign(
       folderDetails,
       {
         currentDocumentNumber: @documentNumber,

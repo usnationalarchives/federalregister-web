@@ -8,7 +8,7 @@ class @CJ.Tooltip
       gravity: ->
         $(this).data('tooltip-gravity') || 's'
     }
-    _.extend tipsyOptions, tooltipOptions
+    Object.assign(tipsyOptions, tooltipOptions)
 
     $(selector)
       .tipsy tipsyOptions
@@ -21,9 +21,9 @@ class @CJ.Tooltip
       gravity: ->
         $(this).data('tooltip-gravity') || 's'
     }
-    _.extend tipsyOptions, tooltipOptions
+    Object.assign(tipsyOptions, tooltipOptions)
 
-    options =  _.extend {}, options
+    options =  Object.assign({}, options)
 
     Tooltip = this
 

@@ -7,7 +7,7 @@ class @FR2.Modal
     }
 
   @displayModal: (title, html, options)->
-    options = _.extend @defaults(), options
+    options = Object.assign(@defaults(), options)
     modalClass = "#{@defaults().modalClass} #{options.modalClass}"
 
     currentModal = $(options.modalId)
