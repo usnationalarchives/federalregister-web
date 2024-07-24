@@ -70,12 +70,13 @@ class @FR2.CommentFormFileUploader
         excludeCsrfTokenHeader: true,
         filesContainer: @attachmentContainer(),
         getFilesFromResponse: (res, files) ->
-          _.map res.files, (file) ->
+          res.files.map((file) ->
             {
               name: file.name,
               size: file.size,
               url: null,
             }
+          )
         uploadTemplateId: null
         downloadTemplateId: null
         uploadTemplate: (o)->
@@ -286,8 +287,9 @@ $.blueimp.fileupload.prototype.processActions.fetchUrlFromRegulationsDotGov = (d
           dfd.resolveWith(@, [data])
         .fail (e) ->
           data.files.error = true
-          errorMessages = _.map e.errors, (error) ->
+          errorMessages = e.errors.map((error) ->
             error.title
+          )
           file.error = errorMessages.join(', ')
           dfd.rejectWith(@, [data])
   return dfd.promise()

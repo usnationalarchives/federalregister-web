@@ -109,12 +109,13 @@ class @FR2.CommentForm
             currentValue = input.val()
             select = $("<select name='#{input.attr('name')}'><option></option></select>")
 
-            _.map dependencies[parentValue], (options)->
+            dependencies[parentValue].map((options)->
               option = $('<option>')
               option
                 .attr 'value', options[0]
                 .text options[1]
               select.append option
+            )
 
             select.val currentValue
 
@@ -184,8 +185,9 @@ class @FR2.CommentForm
     @commentFormHandler.storeComment()
 
   loadComment: (commentData) ->
-    _.map commentData, (value, name) =>
+    Object.entries(commentData).forEach(([name, value], index) =>
       @commentFormEl().find("[name='" + name + "']").val(value)
+    )
 
   enableSubmitButton: ->
     @submitButtonWrapper()

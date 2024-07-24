@@ -101,8 +101,9 @@ class @FR2.ClippingsManager
     $(el).removeClass 'hover'
 
   clippingIds: ->
-    _.map $('form#folder_clippings input:checked'), (input)->
+    $('form#folder_clippings input:checked').toArray().map((input)->
       return $(input).closest('li').data('doc-id')
+    )
 
   deleteClippings: ->
     unless @clippingIds()

@@ -47,7 +47,7 @@ class @FR2.CommentFormSubmissionHandler
     formElements = @commentFormEl().serializeArray()
     booleanFields = ['comment[sendEmailReceipt]']
 
-    data = _.reduce formElements, (memo, el)->
+    data = formElements.reduce((memo, el)->
       if el.value
         match = el.name.match(/comment\[(\w*)\]/)
         if match && regulationsDotGovAllowedFields.includes(match[1])
@@ -59,6 +59,7 @@ class @FR2.CommentFormSubmissionHandler
           memo[match[1]] = value
       memo
     , {}
+    )
 
     uploader = @commentFormFileUploader()
 

@@ -58,8 +58,9 @@ class @FR2.SubscriptionHandler
 
 
   @modalHtml: ->
-    elements = _.map @subscriptionFeeds(), (feed)=>
+    elements = @subscriptionFeeds().toArray().map((feed)=>
       @extractDataFromFeed $(feed)
+    )
 
     @modalTemplate()({
       elements: elements,

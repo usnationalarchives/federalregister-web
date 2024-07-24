@@ -38,16 +38,17 @@ class @FR2.CommentFormStore
     formInputs = @commentFormEl().find ':input'
 
     formInputs = formInputs
-      .filter ':input[name!=authenticity_token]'
-      .filter ':input[name!=utf8]'
-      .filter ':input[name!="comment[confirm_submission]"]'
-      .filter ':input[name!="commit"]'
+      .filter(':input[name!=authenticity_token]')
+      .filter(':input[name!=utf8]')
+      .filter(':input[name!="comment[confirm_submission]"]')
+      .filter(':input[name!="commit"]')
 
-    formData = _.reduce formInputs, (memo, input)->
+    formData = formInputs.toArray().reduce((memo, input)->
       if $(input).val() != ""
         memo[input.name] = input.value
       memo
     , {}
+    )
 
     if formData['comment[comment]'] == "See attached file(s)"
       formData['comment[comment]'] = null
