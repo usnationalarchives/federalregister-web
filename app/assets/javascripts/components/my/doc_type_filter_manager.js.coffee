@@ -43,9 +43,10 @@ class @FR2.DocTypeFilterManager
       el.tipsy('hide')
       el.tipsy('show')
 
-      index = _.indexOf(doc_type_filters, doc_type)
+      index = doc_type_filters.indexOf(doc_type)
       doc_type_filters[index] = null
-      doc_type_filters = _.compact(doc_type_filters)
+      # remove falsy values
+      doc_type_filters = doc_type_filters.filter(Boolean)
     else
       el.addClass('on')
 
