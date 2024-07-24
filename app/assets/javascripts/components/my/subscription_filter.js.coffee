@@ -61,7 +61,8 @@ class @FR2.SubscriptionFilter
     el.tipsy('show')
 
   toggleSubscriptions: (docType)->
-    subscriptionsToToggle = _.filter $('.subscriptions li'), (subscription)->
-      return docType == $(subscription).data('doc-type')
+    subscriptionsToToggle = $('.subscriptions li').toArray().filter((subscription)->
+      docType == $(subscription).data('doc-type')
+    )
 
     $(subscriptionsToToggle).toggle()

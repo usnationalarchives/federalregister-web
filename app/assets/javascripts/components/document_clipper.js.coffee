@@ -116,9 +116,8 @@ class @FR2.DocumentClipper
   documentClipped: ->
     documentClipper = this
 
-    _.filter(
-      @folderDetails().folders, (folder)->
-        folder.documents.includes( documentClipper.documentNumber )
+    @folderDetails().folders.filter((folder)->
+      folder.documents.includes( documentClipper.documentNumber )
     ).length != 0
 
   documentInClipboard: ->

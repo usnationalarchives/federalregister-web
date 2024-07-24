@@ -275,7 +275,9 @@ class @FR2.CommentForm
     )
 
     # Apply red to missing required fields
-    blankRequiredFields = _.filter(this._requiredFields(), (el) -> $(el).val() == '' )
+    blankRequiredFields = this._requiredFields().filter((el) ->
+      $(el).val() == ''
+    )
     $.each(blankRequiredFields, () ->
       $(this).siblings('label').addClass('required-error')
     )
@@ -376,14 +378,15 @@ class @FR2.CommentForm
     ) 
 
   _visibleCharCountFields: () ->
-    _.filter(this._requiredFields(), (el) ->
+    this._requiredFields().filter((el) ->
       $(el).is(":visible") && $(el).closest('li').data('max-size')
     )
 
   _requiredFields: () ->
     isVisible = (el) ->
       $(el).is(":visible")
-    _.filter(this._validatableFields(), isVisible).
+
+    this._validatableFields().toArray().filter(isVisible).
       concat( $("#comment_submitterType") ) #Add submitter type since it's a hidden field
 
   _validatableFields: () ->

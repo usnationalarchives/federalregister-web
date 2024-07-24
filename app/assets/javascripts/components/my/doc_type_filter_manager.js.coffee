@@ -57,10 +57,8 @@ class @FR2.DocTypeFilterManager
 
       doc_type_filters.push( doc_type )
 
-    documents_to_hide = _.filter(
-      $('ul#clippings li'),
-      (clipping) ->
-        ! doc_type_filters.includes( $(clipping).data('doc-type') )
+    documents_to_hide = $('ul#clippings li').toArray().filter((clipping) ->
+      ! doc_type_filters.includes( $(clipping).data('doc-type') )
     )
 
     $('#clippings li').show()
