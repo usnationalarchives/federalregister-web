@@ -55,14 +55,12 @@ class @FR2.UserPreferenceStore
     else
       @_save(
         {
-          "utilityNav": _.defaults(
-            @_get().utilityNav || {},
-            @_defaults().utilityNav
-          ),
-          "externalUrlModal": _.defaults(
-            @_get().externalUrlModal || {},
-            @_defaults().externalUrlModal
-          ),
+          "utilityNav": Object.assign({},
+            @_defaults().utilityNav,
+            @_get().utilityNav || {}),
+          "externalUrlModal": Object.assign({},
+            @_defaults().externalUrlModal,
+            @_get().externalUrlModal || {})
         }
       )
 
