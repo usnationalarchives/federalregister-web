@@ -50,8 +50,8 @@ class @FR2.CommentFormSubmissionHandler
     data = _.reduce formElements, (memo, el)->
       if el.value
         match = el.name.match(/comment\[(\w*)\]/)
-        if match && _.contains(regulationsDotGovAllowedFields, match[1])
-          if _.contains(booleanFields, el.name)
+        if match && regulationsDotGovAllowedFields.includes(match[1])
+          if booleanFields.includes(el.name)
             selector = "input[name ='#{el.name}'"
             value = $(selector).is(':checked')
           else

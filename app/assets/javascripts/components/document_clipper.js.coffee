@@ -118,14 +118,14 @@ class @FR2.DocumentClipper
 
     _.filter(
       @folderDetails().folders, (folder)->
-        _.contains(folder.documents, documentClipper.documentNumber)
+        folder.documents.includes( documentClipper.documentNumber )
     ).length != 0
 
   documentInClipboard: ->
     clipboard = _.find @folderDetails().folders, (folder)->
       folder.slug == 'my-clippings'
 
-    _.contains clipboard.documents, @documentNumber
+    clipboard.documents.includes( @documentNumber )
 
   addDocumentToFolder: (menuItem)->
     if FR2.UserUtils.loggedIn()
