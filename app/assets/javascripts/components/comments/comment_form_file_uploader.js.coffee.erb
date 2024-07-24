@@ -297,8 +297,9 @@ $.blueimp.fileupload.prototype.processActions.rejectDuplicates = (data, options)
   uploader = data.commentFormFileUploader
   file = data.files[data.index]
 
-  duplicateNameDetected = _.find data.commentFormFileUploader.uploadedFiles, (uploadedFile) ->
+  duplicateNameDetected = data.commentFormFileUploader.uploadedFiles.find((uploadedFile) ->
     file.name == uploadedFile.name
+  )
 
   if duplicateNameDetected
     data.files.error = true

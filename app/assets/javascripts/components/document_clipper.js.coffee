@@ -121,8 +121,9 @@ class @FR2.DocumentClipper
     ).length != 0
 
   documentInClipboard: ->
-    clipboard = _.find @folderDetails().folders, (folder)->
+    clipboard = @folderDetails().folders.find((folder)->
       folder.slug == 'my-clippings'
+    )
 
     clipboard.documents.includes( @documentNumber )
 

@@ -67,7 +67,7 @@ class @FR2.DocTypeFilterManager
   currentFolder: ->
     currentFolderSlug = $("#main h2.title").data().folderSlug
 
-    _.find(@userFolderDetails().folders, (folder) ->
+    @userFolderDetails().folders.find((folder) ->
       folder.slug == currentFolderSlug
     )
 
