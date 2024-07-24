@@ -39,7 +39,7 @@ class @FR2.DocumentClipper
     attachTo = @clipper.find 'li.clip-for-later'
 
     #create a shallow copy for this instance of DocumentClipper
-    folderDetails = _.clone @folderDetails()
+    folderDetails = Object.assign({}, @folderDetails())
 
     data = Object.assign(
       folderDetails,
