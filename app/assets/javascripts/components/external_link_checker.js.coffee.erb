@@ -48,5 +48,6 @@ class @FR2.ExternalLinkChecker
     RegExp('^(https?:)//').test(@url)
 
   isAllowedDomain: ->
-    _.any @constructor.ALLOWED_DOMAINS, (domain)=>
+    @constructor.ALLOWED_DOMAINS.some((domain)=>
       RegExp("^https?://#{domain}").test(@url)
+    )
