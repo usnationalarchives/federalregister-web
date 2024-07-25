@@ -241,7 +241,12 @@ class @FR2.CommentFormFileUploader
     @uploaderEl.bind 'fileuploaddestroyed', (e, data) =>
 
       removedFileName = data.context.data('name')
-      @uploadedFiles = _.without @uploadedFiles, _.findWhere(@uploadedFiles, { name: removedFileName })
+      # remove file from list of files
+      @uploadedFiles = @uploadedFiles.filter((file) ->
+        file != @uploadedFiles.find((file) ->
+          file.name == removedFileName
+        )[0]
+      )
 
       @clearCommentPlaceholder()
       @updateUploaderStatus 'destroy'
