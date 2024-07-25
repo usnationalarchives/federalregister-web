@@ -25,14 +25,11 @@
     width: auto !important;
   }
 
-  .search-bar {
-    li {
-      height: auto;
-      margin-bottom: 0px !important;
-    }
+  .search .search-bar {
+    li.term { margin-bottom: 0px; }
 
     .search-options {
-    width: auto !important;
+      width: auto !important;
     }
   }
 
@@ -99,7 +96,7 @@
     fieldset.date_options {
 
       li.exact_date label {
-        margin-left: 5px !important; 
+        margin-left: 5px !important;
       }
 
       li.date.range.range_start {
@@ -113,8 +110,6 @@
 
 
       li.date.input {
-        height: auto !important;
-
         &.exact_date,
         &.exact_year {
           margin-left: 0px !important;
