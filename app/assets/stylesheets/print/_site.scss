@@ -15,6 +15,16 @@ body > #footer,
 
 .content-notification.site-notification { display: none; }
 
+.fr-box.fr-box-public-inspection {
+  > .fr-seal-block-footer,
+  > .fr-seal-block-header {
+    span.h6 {
+      background-color: $white;
+      color: $color-public-inspection !important;
+    }
+  }
+}
+
 @page rotated {
   // this isn't supported but may/should be someday
   size: landscape;
