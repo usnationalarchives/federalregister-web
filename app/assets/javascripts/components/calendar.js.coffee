@@ -100,8 +100,8 @@ class @FR2.Calendar
 
 class @FR2.MultiCalendar extends @FR2.Calendar
   constructor: (calendar, handler)->
-    @multiHandler = handler
     super(calendar)
+    @multiHandler = handler
 
   changeCalendarEvent: ->
     @calendar.on 'click', '.nav', (event)=>
