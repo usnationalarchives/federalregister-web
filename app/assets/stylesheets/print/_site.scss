@@ -13,6 +13,8 @@ body > #footer,
   display: none;
 }
 
+.content-notification.site-notification { display: none; }
+
 @page rotated {
   // this isn't supported but may/should be someday
   size: landscape;
