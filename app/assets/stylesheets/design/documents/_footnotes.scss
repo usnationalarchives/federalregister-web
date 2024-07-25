@@ -2,6 +2,10 @@
   margin-top: 3em;
 }
 
+// footnotes stretch past the designated area for undefined reasons
+// on some pages - so force a max width
+.footnotes { max-width: 829px; }
+
 .footnote {
   font-style: italic;
   margin-bottom: 20px;
