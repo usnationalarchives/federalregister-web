@@ -375,10 +375,16 @@ class @FR2.CommentForm
       context.setSubmitButtonState()
     )
 
-  _formPassesPrevalidation: () ->
-    _.all(this._requiredFields(), (el) ->
+  _formPassesPrevalidation: ()->
+     this._requiredFieldsValid() && this._maxCharCountFieldsValid()
+
+  _requiredFieldsValid: ()->
+    this._requiredFields().every((el) ->
       $(el).val() != ""
-    ) && _.all(this._visibleCharCountFields(), (el) ->
+    )
+
+  _maxCharCountFieldsValid: ()->
+    this._visibleCharCountFields().every((el) ->
       $(el).siblings('.inline-errors:not(.warning)').length == 0
     )
 
