@@ -242,7 +242,7 @@ class @FR2.CommentFormFileUploader
 
       removedFileName = data.context.data('name')
       # remove file from list of files
-      @uploadedFiles = @uploadedFiles.filter((file) ->
+      @uploadedFiles = @uploadedFiles.filter((file) =>
         file != @uploadedFiles.find((file) ->
           file.name == removedFileName
         )[0]
