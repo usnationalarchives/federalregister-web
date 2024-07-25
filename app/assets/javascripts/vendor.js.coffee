@@ -17,7 +17,6 @@
 
 # RANDOM ASSORTMENT UTILITIES
 #= require jquery.utilities
-#= require underscore.1.13.6.min.js
 
 #= require jqModal
 
