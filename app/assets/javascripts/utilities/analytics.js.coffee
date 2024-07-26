@@ -20,6 +20,21 @@ class @FR2.Analytics
       'search_result_count': $('#item-count').text().trim().replace(/,/g, ''),
     })
 
+  @trackPopularDocumentClickThroughs: ->
+    context = this
+
+    $('a[data-popular-document-position]').on 'click', (e) ->
+      e.preventDefault()
+
+      popularDocumentPosition = $(this).data('popular-document-position')
+  
+      gtag('event', 'popular_document_click_through', {
+        'logged_in':     FR2.UserUtils.loggedIn(),
+        'popular_document_position': popularDocumentPosition,
+        'popular_document_position_dimension': popularDocumentPosition
+      })
+      window.location.href = $(this).attr('href')
+
   @trackSearchResultClickThroughs: ->
     context = this
 
