@@ -61,3 +61,16 @@
     }
   }
 }
+
+@media only screen and (max-width: 501px) {
+  .controller-path-public_inspection_document_issues {
+    .main-title-bar.public-inspection {
+      h1 { width: 63%; }
+
+      .bar.right {
+        position: relative;
+        top: 32px;
+      }
+    }
+  }
+}
