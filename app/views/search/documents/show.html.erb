@@ -1,5 +1,18 @@
 <% page_title @presenter.search.term.blank? ? 'Document Search' : "Document Search Results for '#{@presenter.search.term}'" %>
 
+<% if Settings.app.search.explain_query_results %>
+  <% content_for :page_specific_css do %>
+    <%= stylesheet_link_tag asset_path('json-viewer.css'), media: "all" %>
+  <% end %>
+
+  <% content_for :page_specific_js do %>
+    <%= javascript_include_tag asset_path('json-viewer.js'),
+      asyc: true,
+      defer: true,
+      nonce: content_security_policy_nonce %>
+  <% end %>
+<% end %>
+
 <% if @subscription_search.valid? %>
   <% feed_autodiscovery(
     documents_search_api_path(

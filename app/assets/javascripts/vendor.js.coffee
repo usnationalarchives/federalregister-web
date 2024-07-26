@@ -43,6 +43,3 @@
 
 #= require handlebars.runtime
 #= require_tree ./templates
-
-# Used for JSON exploration of Open Search scoring
-#= require json-viewer.js

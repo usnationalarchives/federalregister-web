@@ -25,6 +25,9 @@ Rails.application.config.assets.precompile += %w(
   print.css
   vendor.css
 
+  json-viewer.js
+  json-viewer.scss
+
   mailers/comment_mailer.css
   mailers/common.css
   mailers/fr_mailer.css

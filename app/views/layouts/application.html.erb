@@ -40,6 +40,8 @@
       defer: true,
       nonce: content_security_policy_nonce %>
 
+    <%= yield :page_specific_js %>
+
     <%= render partial: 'layouts/google_analytics',
       locals: {custom_page_to_track: @page_to_track} %>
 

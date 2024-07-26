@@ -58,7 +58,8 @@
           </p>
         <% end %>
 
-        <%# multiple pages use this shared result partial but not all provide a search or have an abstract %>
+        <%# multiple pages use this shared result partial but not all
+            provide a search or have an abstract %>
         <% if (search &&
           search.conditions[:term].blank? &&
           document.model.respond_to?(:abstract)
@@ -76,10 +77,11 @@
           <% end %>
         <% end %>
 
-        <% if document.explanation %>
-          </br>
+        <% if Settings.app.search.explain_query_results && document.explanation %>
+          <br>
           <div><em>Score Summary</em></div>
-          <span class="cj-tooltip" data-tooltip="<%= OpenSearchExplanationPresenter.summary_formula %>">
+          <span class="cj-tooltip"
+            data-tooltip="<%= OpenSearchExplanationPresenter.summary_formula %>">
             <b><%= document.score %></b> = <%= document.explanation_summary %>
           </span>
           <div class="score-explanation-js"
