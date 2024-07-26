@@ -183,7 +183,11 @@
     .toc-document-metadata,
     .toc-editorial-note {
       margin-left: 10px;
-      a { font-weight: normal; }
+
+      a {
+        font-weight: normal;
+        padding: 3px 0 3px;
+      }
     }
 
     .toc-editorial-note {
@@ -211,6 +215,7 @@
       clear: both;
       font-weight: 500; //medium
       margin-right: 5px;
+      min-height: 24px;
 
       &.toc-pdf,
       &.permalink {
