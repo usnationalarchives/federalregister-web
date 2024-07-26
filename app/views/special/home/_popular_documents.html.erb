@@ -5,12 +5,15 @@
   </h4>
 
   <% if presenter.popular_documents.present? %>
-    <% presenter.popular_documents.each do |popular_document| %>
+    <% presenter.popular_documents.each_with_index do |popular_document, i| %>
       <ul class="fr-list with-stats popular-documents">
         <li>
           <%= document_type_icon popular_document.document_type %>
           <%= link_to popular_document.title, popular_document.html_url,
-            class: "popular-document-title" %>
+                class: "popular-document-title",
+                data: {
+                  popular_document_position: i,
+                } %>
         </li>
       </ul>
     <% end %>
