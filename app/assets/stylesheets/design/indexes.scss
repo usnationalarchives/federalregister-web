@@ -52,10 +52,10 @@
     }
 
     a {
-      color: darken($color-reader-aid, 10) !important;
+      color: $color-reader-aid-link !important;
 
       &:hover {
-        color: darken($color-reader-aid, 20) !important;
+        color: darken($color-reader-aid-link, 15) !important;
       }
     }
 
