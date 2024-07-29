@@ -26,8 +26,8 @@
     display: inline-block;
     position: relative;
     top: -4px;
-    height: 25px;
-    padding: 0 10px 1.5em 10px;
+    min-height: 25px;
+    padding: 0 10px 1em 10px;
     margin: 0 !important;
 
     .icon-fr2 {
@@ -63,14 +63,34 @@
 }
 
 @media only screen and (max-width: 501px) {
+  %multiline-title-bar {
+    h1 { padding-bottom:.5em; }
+
+    .bar.right {
+      position: relative;
+      top: 32px;
+    }
+  }
+
   .controller-path-public_inspection_document_issues {
     .main-title-bar.public-inspection {
-      h1 { width: 63%; }
+      @extend %multiline-title-bar;
 
-      .bar.right {
-        position: relative;
-        top: 32px;
+      h1 { width: 63%; }
+    }
+  }
+
+  .controller-path-indexes,
+  .controller-path-reader_aids {
+    .main-title-bar.reader-aids {
+      @extend %multiline-title-bar;
+
+      h1 {
+        max-width: 75%;
+        width: 75%;
       }
+
+      .bar.right { flex-grow: 0.05; }
     }
   }
 }
