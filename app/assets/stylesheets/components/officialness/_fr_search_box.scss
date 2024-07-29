@@ -3,7 +3,21 @@
   padding: 13px 5px 13px 50px;
 
   &.reader-aids {
-    background-color: $color-reader-aid-med;
+    background-color: $color-reader-aid-light;
+    border-top: 2px solid $color-reader-aid;
+    border-bottom: 1px solid $color-reader-aid;
+
+    input#conditions_term { border-right: none; }
+
+    button {
+      border: 1px solid #D1D2D4;
+      border-left: none;
+      border-radius: 3px;
+
+      &:hover { background-color: $gray-15; }
+
+      .icon-fr2-Search { top: 2px; }
+    }
   }
 
   p {

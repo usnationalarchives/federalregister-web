@@ -8,7 +8,13 @@
 
 <%= bootstrap_context_wrapper do %>
   <div class="row">
-    <div class="col-xs-12 col-md-12 section">
+    <div class="col-xs-12 col-md-12">
+      <%= render partial: 'search_box' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
       <%= fr_details_box FrBox.build(:reader_aid) do %>
         <div class="section search_results">
           <div class="search-results-summary">

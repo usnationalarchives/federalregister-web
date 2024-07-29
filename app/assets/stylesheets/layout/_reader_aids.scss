@@ -127,14 +127,14 @@
 
   .reader-aids-index-nav {
     background-color: $color-reader-aid-med;
+    border-left: 5px solid $color-reader-aid;
     margin-left: 0px;
     margin-right: 0px;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 0 0;
 
     h4 {
       font-size: 16px;
       margin-top: 2px;
-      text-align: right;
     }
 
     ul {

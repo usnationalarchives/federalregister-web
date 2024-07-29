@@ -39,8 +39,9 @@ $color-public-inspection-light-alt: lighten(#EBD1D1, 6);
 $color-public-inspection-dark:      darken($color-public-inspection, 10);
 
 $color-reader-aid:                  #ae5699;
-$color-reader-aid-med:              #fbdfeb;
 $color-reader-aid-light:            #faf1f5;
+// used as a background color in box like items inside a reader-aid
+$color-reader-aid-med:              darken($color-reader-aid-light, 2);
 $color-reader-aid-link:             #793a6c;
 $color-reader-aid-dark:             $color-reader-aid-link;
 

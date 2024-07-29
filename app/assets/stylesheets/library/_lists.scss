@@ -7,9 +7,17 @@
   list-style-type: none;
   overflow: hidden;
 
-  li a.active {
-    color: $color-reader-aid;
-    font-weight: bold;
+  li {
+    min-height: 24px;
+
+    a {
+      padding: 3px 0;
+
+      &.active {
+        color: $color-reader-aid;
+        font-weight: bold;
+      }
+    }
   }
 
   &.fr-list-inline {
