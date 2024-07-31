@@ -24,6 +24,10 @@
     filter: blur(0) !important;
   }
 
+  .doc-content-area .stars span {
+    color: $color-official-light !important;
+  }
+
   table.wide {
     page-break-inside: avoid;
     page: rotated;
@@ -31,5 +35,6 @@
 
   .citation-target-icon { display: none !important; }
 
+  .printed-page-details.unprinted-element { display: none; }
   .page-menu { display: none; }
 }

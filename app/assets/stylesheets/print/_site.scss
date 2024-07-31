@@ -3,7 +3,11 @@
   display: block;
   margin-bottom: 40px;
 
-  p { padding: 10px; }
+  .content-block { padding: 5px; }
+  p {
+    font-size: modular-scale(-1);
+    margin: 10px;
+  }
 }
 
 // Turn off main site elements not appropriate for print
