@@ -1,3 +1,5 @@
+.metadata-content-area { margin-bottom: 30px; }
+
 .metadata_share_bar .document-clipping-actions,
 .document-notice-bar a {
   display: none;
@@ -37,4 +39,55 @@
 
   .printed-page-details.unprinted-element { display: none; }
   .page-menu { display: none; }
+}
+
+// we want to display some of the utility nav items
+// as block elements when printing
+
+#print-only-document-details {
+  display: block;
+
+  ul, li { overflow: auto; }
+
+  li { margin-bottom: 10px; }
+
+  .content-nav-label,
+  .svg-tooltip {
+    display: none;
+  }
+  .dropdown-menu {
+    border: 0;
+    display: block;
+    float: none;
+    padding: 0;
+    position: relative;
+
+    .fr-seal-block.fr-seal-block-footer {
+      border-bottom-width: 3px;
+    }
+
+    .content-block {
+      margin: 0;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    dt {
+      clear: both;
+      float: left;
+      margin-right: 5px;
+      text-align: right;
+      width: 200px;
+
+      &::after { content: ":"; }
+    }
+
+    dd {
+      float: left;
+
+      a:after { display: none; }
+
+      .svg-icon { display: none; }
+    }
+  }
 }

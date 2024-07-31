@@ -11,6 +11,19 @@
 <% end %>
 
 <div class="doc-content with-utility-nav wide-utility-nav">
+  <div id="print-only-document-details">
+    <ul>
+      <%= render partial: 'documents/utility_nav/document_details', locals: {
+        document: @document
+      } %>
+
+      <% if document.executive_order_number.present? %>
+        <%= render partial: 'documents/utility_nav/executive_order_data', locals: {
+            document: @document
+          } %>
+      <% end %>
+    </ul>
+  </div>
 
   <div class="content-nav-wrapper">
     <%= render partial: "utility_nav", locals: {

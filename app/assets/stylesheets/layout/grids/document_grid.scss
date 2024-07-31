@@ -23,12 +23,12 @@
   }
 
   @media print {
-    grid-template-areas: "content";
+    grid-template-areas: "doc-details"
+                         "content";
     grid-template-columns: 1fr !important;
 
-    .content-nav-wrapper {
-      display: none;
-    }
+    .content-nav-wrapper { display: none; }
+    #print-only-document-details { grid-area: doc-details; }
   }
 }
 
@@ -95,7 +95,7 @@
         position: relative;
         top: 0px;
       }
-  
+
       textarea {
         position: relative;
         width: 100%;
@@ -166,7 +166,7 @@
         position: relative;
         top: 16px;
       }
-  
+
       textarea {
         left: 210px;
         position: relative;
@@ -175,4 +175,3 @@
   }
 
 }
-
