@@ -27,7 +27,9 @@ class SiteNotification
           As part of our ongoing effort to make FederalRegister.gov more
           accessible and easier to use we've made changes to our desktop and
           mobile layouts.
-          <a href"">Read more in our feature announcement</a>.
+          <a href="/reader-aids/recent-updates/2024/07/accessibility-and-user-experience-enhancements">
+            Read more in our feature announcement
+          </a>.
         </p>
       HTML
 
@@ -38,7 +40,9 @@ class SiteNotification
           accessible and easier to use we've enlarged the space available to the
           document content and moved all document related data into the utility
           bar on the left of the document.
-          <a href"">Read more in our feature announcement</a>.
+          <a href="/reader-aids/recent-updates/2024/07/accessibility-and-user-experience-enhancements#user-experience-document">
+            Read more in our feature announcement
+          </a>.
         </p>
       HTML
 
