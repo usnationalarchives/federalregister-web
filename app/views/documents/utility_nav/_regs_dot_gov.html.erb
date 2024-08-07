@@ -51,7 +51,7 @@
             <% end %>
 
             <%# API currently returns 10 supporting docs, see entry_serializer %>
-            <% if docket.supporting_documents_count > 10 %>
+            <% if docket.supporting_documents_count.to_i > 10 %>
               <dd class="link-see-all">
                 <%= link_to "See all #{docket.supporting_documents_count} supporting documents",
                   regulations_dot_gov_docket_supporting_documents_url(docket.id),
