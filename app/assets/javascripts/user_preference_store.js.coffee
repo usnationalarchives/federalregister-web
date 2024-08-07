@@ -67,7 +67,7 @@ class @FR2.UserPreferenceStore
   @_defaults: ->
     {
       utilityNav: {
-        width: "wide"
+        width: ""
       }
       externalUrlModal: {
         optOut: 'false'

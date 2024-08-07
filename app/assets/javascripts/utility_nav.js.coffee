@@ -61,12 +61,19 @@ class @FR2.UtilityNav
       @content.removeClass('wide-utility-nav')
       @content.addClass('narrow-utility-nav')
       @setUtilityNavItemTooltips('add')
+      @setNavDropdownPositions()
     else if value == "wide"
       @content.removeClass('narrow-utility-nav')
       @content.addClass('wide-utility-nav')
       @setUtilityNavItemTooltips('remove')
+      @setNavDropdownPositions()
+    else
+      # set nav size based on screen size if user doesn't have a default
+      if window.matchMedia("(max-width: 501px)").matches
+        @setNavSize("narrow")
+      else
+        @setNavSize("wide")
 
-    @setNavDropdownPositions()
 
   setNavDropdownPositions: ->
     # delay needed to ensure new nav width has been painted
