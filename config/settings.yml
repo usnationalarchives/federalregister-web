@@ -65,8 +65,7 @@ feature_flags:
   announcements: false
   store_commenting_metadata_without_ip: true
   display_search_type_options: false
-  display_sorn_search: false
-
+  display_sorn_search: true
 
 lograge:
   enabled: true
