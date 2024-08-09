@@ -1,4 +1,7 @@
 class MailingList::PublicInspectionDocument < MailingList
+  extend Memoist
+  
+  class MissingPublicInspectionMailingApiResults < StandardError; end
 
   def model
     ::PublicInspectionDocument
@@ -8,22 +11,14 @@ class MailingList::PublicInspectionDocument < MailingList
     document_numbers = options.fetch('document_numbers')
     subscriptions = options["force_delivery"] ? subscriptions : subscriptions.not_delivered_for(document_numbers)
 
-    if subscriptions.present? && has_results?(document_numbers)
+    if subscriptions.present? && (result_count(document_numbers) > 0 )
 
       results = results_for_document_numbers(document_numbers).group_by(&:filing_type)
 
       special_filing_results = results["special"]
       regular_filing_results = results["regular"]
       if special_filing_results.blank? && regular_filing_results.blank?
-        Honeybadger.notify("Special and regular filings unexpectedly returned no results", context: {
-          mailing_list_id: id,
-          date: date,
-          document_numbers: document_numbers,
-          options: options,
-          results: results,
-        })
-        log_no_delivery
-        return
+        raise MissingPublicInspectionMailingApiResults.new("Special and regular filings unexpectedly returned no results.  Search metadata endpoint returned #{result_count(document_numbers)} results")
       end
 
       presenter = PublicInspectionIssuePresenter.new(date)
@@ -75,13 +70,15 @@ class MailingList::PublicInspectionDocument < MailingList
   end
  
   GROUP_SIZE = 100
-  def has_results?(document_numbers)
-    document_numbers.in_groups_of(GROUP_SIZE,false).any? do |batch_ids|
-      model.search_metadata(
-        conditions: mailing_list_conditions(batch_ids)
-      ).count > 0
+  def result_count(document_numbers)
+    document_numbers.in_groups_of(GROUP_SIZE, false).reduce(0) do |sum, doc_numbers|
+      count = model.search_metadata(
+        conditions: mailing_list_conditions(doc_numbers)
+      ).count
+      sum += count
     end
   end
+  memoize :result_count
 
   def results_for_document_numbers(document_numbers)
     document_numbers.in_groups_of(GROUP_SIZE,false).flat_map do |batch_ids|

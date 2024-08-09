@@ -9,7 +9,8 @@ class MailingListSender
   sidekiq_retries_exhausted do |msg, ex|
     Honeybadger.notify(ex, force: true)
   end
-
+  
+  MAX_RETRIES = 1
   def perform(mailing_list_id, date, options={})
     @mailing_list_id = mailing_list_id
     @date            = date
@@ -17,6 +18,7 @@ class MailingListSender
 
     ActiveRecord::Base.clear_active_connections!
 
+    retry_count = 0
     begin
       if options["document_numbers"]
         mailing_list.deliver_now(
@@ -31,6 +33,18 @@ class MailingListSender
           active_and_confirmed_subscriptions,
           confirmed_emails_by_user_id
         )
+      end
+    rescue MissingPublicInspectionMailingApiResults => e
+      if retry_count < MAX_RETRIES
+        retry_count += 1
+        sleep(0.5)
+        retry
+      else
+        Honeybadger.context({
+          date:            date,
+          mailing_list_id: mailing_list_id,
+          options:         options,
+        }) { raise e }
       end
     rescue StandardError => e
       Rails.logger.warn(e)
