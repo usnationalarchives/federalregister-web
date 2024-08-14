@@ -10,7 +10,11 @@
 
   &.wide-utility-nav {
     grid-template-columns: 162px 1fr;
+
+    .content-col { max-width: 800px; }
+    .table-wrapper, table { max-width: 748px; }
   }
+
   &.narrow-utility-nav {
     @media only screen and (max-width: $small-viewport-width) {
       grid-template-columns: 50px 1fr;
@@ -18,6 +22,9 @@
 
     @media only screen and (min-width: $small-viewport-width) {
       grid-template-columns: 81px 1fr;
+
+      .content-col { max-width: 881px; }
+      .table-wrapper, table { max-width: 829px; }
     }
 
   }
