@@ -74,11 +74,7 @@ describe "XSLT::FullText::Footnotes" do
       <p id="p-1" data-page="1000">
         <sup>[<a class="footnote-reference" href="#footnote-1-p1000" id="citation-1-p1000">1</a>] </sup>
       </p>
-      <span class="printed-page-inline unprinted-element document-markup" data-page="1001">
-        <svg class="svg-icon svg-icon-doc-generic">
-          <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
-        </svg>
-      </span>
+      <span class="printed-page-inline unprinted-element document-markup" data-page="1001"> (<svg class="svg-icon svg-icon-doc-generic"><use xlink:href="/assets/fr-icons.svg#doc-generic"></use></svg> print page 1001) </span>
       <span class="printed-page-details unprinted-element document-markup" id="page-1001" data-page="1001">
         <svg class="svg-icon svg-icon-doc-generic">
           <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>

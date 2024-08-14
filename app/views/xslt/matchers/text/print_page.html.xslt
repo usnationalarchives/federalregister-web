@@ -15,7 +15,7 @@
         <xsl:value-of select="@P" />
       </xsl:attribute>
 
-      <xsl:copy-of select="fr:svg_icon('doc-generic')" />
+      (<xsl:copy-of select="fr:svg_icon('doc-generic')" /> print page <xsl:value-of select="@P" />)
     </span>
 
     <span class="printed-page-details unprinted-element document-markup">

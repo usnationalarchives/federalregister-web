@@ -77,7 +77,10 @@ $non-printed-text-font-size: 15px;
 }
 
 
-.printed-page-inline { display: inline-block; }
+.printed-page-inline {
+  display: inline-block;
+  max-width: fit-content;
+}
 
 // most page breaks occur within paragraphs but some appear in between or after
 // other specific items - these need some style adjustments to appear the same
@@ -89,7 +92,7 @@ ul {
     display: block;
     margin-bottom: 35px;
     margin-top: 15px;
-    width: 13px;
+    max-width: fit-content;
   }
 
   &+ .printed-page-inline + .printed-page-details {
@@ -102,7 +105,7 @@ div.preamble {
     display: block;
     margin-bottom: 35px;
     margin-top: 15px;
-    width: 13px;
+    max-width: fit-content;
   }
 
   &> .printed-page-inline + .printed-page-details {
