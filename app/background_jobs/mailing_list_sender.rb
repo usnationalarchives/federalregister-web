@@ -34,7 +34,7 @@ class MailingListSender
           confirmed_emails_by_user_id
         )
       end
-    rescue MissingPublicInspectionMailingApiResults => e
+    rescue MailingList::PublicInspectionDocument::MissingPublicInspectionMailingApiResults => e
       if retry_count < MAX_RETRIES
         retry_count += 1
         sleep(0.5)
