@@ -30,6 +30,12 @@ module DocumentDecorator::Comments
     comments_close_on.present? && comments_close_on >= Time.current.to_date
   end
 
+  def comment_close_date_discrepancy_between_mods_and_regulations_dot_gov?
+    regulations_dot_gov_accepting_comments? &&
+    comments_close_on &&
+    comment_close_dates_per_regulations_dot_gov.any?{|date| date != comments_close_on}
+  end
+
   # this is not the negation of #document_comment_period_open? as it requires
   # there to be a comments_close_on present
   def document_comment_period_closed?
@@ -42,10 +48,15 @@ module DocumentDecorator::Comments
     regs_dot_gov_documents_accepting_comments.present?
   end
 
+  # If a discrepancy is detected between MODS and regs.gov dates, don't display, otherwise
   # show date if document comment date isn't past or is past and doc is no
   # longer open for comment - we don't want to show the date when the comment
   # period has been extended as this is confusing
   def display_comment_close_date?
+    if comment_close_date_discrepancy_between_mods_and_regulations_dot_gov?
+      return false
+    end
+
     document_comment_period_open? ||
       (document_comment_period_closed? &&
         !regulations_dot_gov_accepting_comments?)
@@ -162,6 +173,12 @@ module DocumentDecorator::Comments
 
   def regs_dot_gov_documents
     dockets.flat_map(&:regs_dot_gov_documents)
+  end
+
+  def comment_close_dates_per_regulations_dot_gov
+    regs_dot_gov_documents_accepting_comments.
+      map(&:non_utc_comment_end_date).
+      compact
   end
 
   private

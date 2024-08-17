@@ -515,6 +515,7 @@ class @FR2.CommentForm
       context._replaceDynamicAgencyText(
         $(this).data('agencyName'),
         $(this).data('regsDotGovDocumentId'),
+        $(this).data('regsDotGovCommentClose'),
       )
 
       # Click invisible radio button to store agency selection
@@ -586,10 +587,11 @@ class @FR2.CommentForm
   _clearDynamicAgencyText: ->
     $("#dynamic-agency-text-js").html("")
 
-  _replaceDynamicAgencyText: (agencyName, regsDotGovDocumentId) ->
+  _replaceDynamicAgencyText: (agencyName, regsDotGovDocumentId, regsDotGovCommentClose) ->
     $("#dynamic-agency-text-js").html(
       HandlebarsTemplates['agency_comment_selection']({
         agencyName: agencyName,
-        regsDotGovDocumentId: regsDotGovDocumentId
+        regsDotGovDocumentId: regsDotGovDocumentId,
+        regsDotGovCommentClose: regsDotGovCommentClose
       })
     )

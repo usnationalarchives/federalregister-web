@@ -15,6 +15,13 @@ class RegsDotGovDocument < FederalRegister::Base
     end
   end
 
+  def non_utc_comment_end_date
+    # The regs.gov commentEndDate attribute is provided as a UTC timestamp (which means it is stored as the next day in the DB)
+    return unless comment_end_date
+
+    Date.parse(comment_end_date) - 1.day
+  end
+
   private
 
   def comment_end_date_unelapsed?

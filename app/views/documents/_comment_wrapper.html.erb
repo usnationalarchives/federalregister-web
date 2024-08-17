@@ -1,7 +1,7 @@
 <div class="comment_wrapper">
   <% due_date = document.comments_close_on %>
   <% due_time = due_date ? Time.new(due_date.year, due_date.month, due_date.day,23,59).to_s(:datetime_with_abbv_zone) : nil %>
-  <div class="comment_form_wrapper" data-comment-due="<%= due_time unless (due_date && Date.current > due_date) %>">
+  <div class="comment_form_wrapper" data-comment-close-per-regs-dot-gov="<%= document.comment_close_dates_per_regulations_dot_gov.first&.to_s(:default) if !multi_agency_comment_submission %>">
     <div class="instructions">
       <p>
         Thank you for taking the time to create a comment. Your input is important.
@@ -78,7 +78,7 @@
                         <tr>
                           <td>
                             <input class="multi-agency-radio-js" type="radio" value="<%= doc.id %>" name="<%= "hiddenAgencyRadio-#{doc.id}" %>">
-                            <a class="btn green-btn agency-select-btn-js" data-agency-name="<%= docket.agency_name %>" data-agency-acronym="<%= docket.agency_name %>" data-regs-dot-gov-document-id="<%= doc.id %>">Select</a>
+                            <a class="btn green-btn agency-select-btn-js" data-agency-name="<%= docket.agency_name %>" data-agency-acronym="<%= docket.agency_name %>" data-regs-dot-gov-document-id="<%= doc.id %>" data-regs-dot-gov-comment-close=<%= doc.non_utc_comment_end_date %>>Select</a>
                           </td>
                           <td><%= docket.agency_name %></td>
                           <td><%= docket.title %></td>

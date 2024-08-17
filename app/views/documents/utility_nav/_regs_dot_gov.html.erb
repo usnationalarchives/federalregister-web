@@ -31,6 +31,10 @@
       <% document.dockets_displayed_in_enhanced_content.each do |docket| %>
         <h5><%= docket.title %></h5>
         <dl>
+          <% if document.comment_close_dates_per_regulations_dot_gov.uniq.count == 1 %>
+            <dt>Comment Due Date</dt>
+            <dd><%= document.comment_close_dates_per_regulations_dot_gov.first %></dd>
+          <% end %>
           <dt>Docket ID</dt>
           <dd>
             <%= link_to docket.id,

@@ -5,3 +5,9 @@
 <p>
   You can view <a class="alternative_ways_to_comment addresses" href="#addresses">alternative ways to comment</a> or you may also comment via Regulations.gov at <a href="https://www.regulations.gov/commenton/{{regsDotGovDocumentId}}">https://www.regulations.gov/commenton/{{regsDotGovDocumentId}}</a>
 </p>
+
+{{#if regsDotGovCommentClose}}
+  <p>
+    Comments are due {{regsDotGovCommentClose}}.
+  </p>
+{{/if}}

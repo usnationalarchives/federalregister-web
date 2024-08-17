@@ -9,7 +9,7 @@
   data-reg-gov-participating-agency="<%= document.participating_agency? %>">
   <p>
     <%= fr_icon 'Chat' %>
-    <% if document.document_comment_period_open? %>
+    <% if document.document_comment_period_open? && !document.comment_close_date_discrepancy_between_mods_and_regulations_dot_gov? %>
       This document has a comment period that ends <%= document.comment_period_days_remaining %>.
       (<%= document.comments_close_on %>)
     <% else %>
