@@ -6,7 +6,8 @@ class SiteNotification
   # no entry means only global and 'all' notifications will be shown
   CONTROLLER_LOCATION_MAP = {
     "DocumentsController" => "documents",
-    "PublicInspectionDocumentsController" => "documents"
+    "PublicInspectionDocumentsController" => "documents",
+    "Search::DocumentsController" => "search"
   }
 
   vattr_initialize [
@@ -18,7 +19,7 @@ class SiteNotification
   ]
 
   def self.all
-    all = []
+    notifications = []
 
     if Settings.app.site_notifications.display
       generic_message = <<~HTML
@@ -46,17 +47,36 @@ class SiteNotification
         </p>
       HTML
 
-      all << new(
+      notifications << new(
         location: "all",
         message: generic_message,
         notification_type: "feature",
-        skip_locations: ["documents"],
+        skip_locations: ["documents", "search"],
         user_dismissible: true
       )
 
-      all << new(
+      notifications << new(
         location: "documents",
         message: document_message,
+        notification_type: "feature",
+        user_dismissible: true
+      )
+
+      search_message = <<~HTML
+        <p>
+          <strong>Search Filter Update:</strong>
+          System of Records Notices (SORN) and Sunshine Act Meeting Notices are
+          now available as sub-type filters when Notice is selected as a
+          'Document Category' filter.
+          <a href="/reader-aids/2024/08/enhanced-notice-sub-type-search-now-available">
+            Read more in our feature announcement
+          </a>.
+        </p>
+      HTML
+
+      notifications << new(
+        location: "search",
+        message: search_message,
         notification_type: "feature",
         user_dismissible: true
       )
