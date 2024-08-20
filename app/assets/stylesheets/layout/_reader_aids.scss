@@ -17,10 +17,14 @@
         &:hover { color: darken($color-reader-aid-link, 20); }
       }
 
+      figure { margin: 20px auto; }
+      figcaption { font-style: italic; }
+
       img {
+        border: 1px solid #D8D8D8;
         display: block;
         height: auto;
-        margin: 20px auto;
+        margin-bottom: 7px;
         max-width: 100%;
         width: auto;
       }

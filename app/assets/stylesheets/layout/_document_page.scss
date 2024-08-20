@@ -35,9 +35,7 @@
     z-index: 1;
 
     .content-col {
-      @media only screen and (max-width: $small-viewport-width) {
-        overflow: hidden;
-      }
+      overflow: hidden;
 
       > .fr-box {
         min-height: 650px;

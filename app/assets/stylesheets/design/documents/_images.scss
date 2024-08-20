@@ -1,5 +1,5 @@
 .doc-content-area .document-graphic {
-  overflow-x: scroll;
+  overflow-x: auto !important;
   text-align: center;
 
   .document-graphic-image { max-width: 574px; }

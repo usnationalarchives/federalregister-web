@@ -1,27 +1,54 @@
 .doc-content-area {
   .table-wrapper {
     @media only screen and (max-width: $small-viewport-width) {
-      overflow-x: hidden;
-      max-width: 221px; // Ideally it would be nice to dynamically resize the max table width based on mobile device width, but this may require additional refactoring.
+      // overflow-x: hidden;
+      // max-width: 221px; // Ideally it would be nice to dynamically resize the max table width based on mobile device width, but this may require additional refactoring.
     }
     @media only screen and (min-width: $small-viewport-width) {
-      overflow-x: visible;
+      // overflow-x: visible;
     }
-    width: 100%;
+
+    --background-color: rgba(255, 255, 255, 1);
+    --shadow-color: rgba(34,34,34, 0.5);
+    --shadow-size: 0.75em;
+    --transparent: rgba(255, 255, 255, 0); /* We can't use "transparent" directly, because Safari would interpret the color as "transparent black" (see https://css-tricks.com/thing-know-gradients-transparent-black/). Using this workaround, it works fine. */
+
+    overflow-x: auto;
+    background:
+      linear-gradient(to right, var(--background-color), var(--background-color), var(--transparent) calc(var(--shadow-size) * 2)),
+      radial-gradient(farthest-side at 0 50%, var(--shadow-color), var(--transparent)),
+      linear-gradient(to left, var(--background-color), var(--background-color), var(--transparent) calc(var(--shadow-size) * 2)),
+      radial-gradient(farthest-side at 100% 50%, var(--shadow-color), var(--transparent)) 100%;
+    background-color: var(--background-color);
+    background-repeat: no-repeat;
+    background-attachment: local, scroll, local, scroll;
+    background-size: 100% 100%, var(--shadow-size) 100%, 100% 100%, var(--shadow-size) 100%;
+    // height: 100%;
+
+    margin-bottom: 40px;
   }
 
   table {
-    display: block;
-    margin-bottom: 20px;
     padding: 10px;
     border-collapse: separate;
+
+    &.wide { min-width: 100%; }
 
     caption {
       color: $text;
       margin-bottom: 10px;
       text-align: center;
 
-      p {margin: 0 !important;}
+      p {
+        margin: 0 !important;
+        padding: 0 20px !important;
+      }
+    }
+
+    tbody {
+      tr:hover {
+        background-color: darken($color-published-light, 5);
+      }
     }
 
     tfoot {
@@ -30,13 +57,13 @@
       tr:first-child td {padding-top: 20px;}
     }
 
+    thead {
+      position: sticky;
+      top: 0;
+    }
+
     th {
       vertical-align: middle;
-      position: -webkit-sticky;
-      position: -moz-sticky;
-      position: -ms-sticky;
-      position: -o-sticky;
-      position: sticky;
       z-index: 1; // Formula superscripts/subscripts appear on top of th's without this.
     }
 

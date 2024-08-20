@@ -8,11 +8,16 @@
   .content-nav-wrapper { grid-area: utility-nav; }
   .content-wrapper { grid-area: content; }
 
+  > * {
+    min-width: 0px;
+    // min-height: 0px;
+  }
+
   &.wide-utility-nav {
     grid-template-columns: 162px 1fr;
 
-    .content-col { max-width: 800px; }
-    .table-wrapper, table { max-width: 748px; }
+    // .content-col { max-width: 800px; }
+    // .table-wrapper, table { max-width: 748px; }
   }
 
   &.narrow-utility-nav {
@@ -23,8 +28,8 @@
     @media only screen and (min-width: $small-viewport-width) {
       grid-template-columns: 81px 1fr;
 
-      .content-col { max-width: 881px; }
-      .table-wrapper, table { max-width: 829px; }
+      // .content-col { max-width: 881px; }
+      // .table-wrapper, table { max-width: 829px; }
     }
 
   }
