@@ -3,26 +3,6 @@
   <% due_time = due_date ? Time.new(due_date.year, due_date.month, due_date.day,23,59).to_s(:datetime_with_abbv_zone) : nil %>
   <div class="comment_form_wrapper" data-comment-due="<%= due_time unless (due_date && Date.current > due_date) %>">
     <div class="instructions">
-
-      <% if false && @comment.comment_form.comments_close_at %>
-        <% if @comment.comment_form.comments_close_at > Time.now && @comment.comment_form.comments_close_at < Time.now + 1.hour %>
-          <div class="notice warning">
-            <p>
-              Comments on this document close in less than 1 hour.
-              Ensure that you submit your comment before
-              <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
-            </p>
-          </div>
-        <% elsif @comment.comment_form.comments_close_at < Time.now && @comment.comment_form.comments_close_at + 2.hours > Time.now %>
-            <div class="notice warning">
-            <p>
-              Comments on this document may no longer be open.
-              The comment close date was <%= @comment.comment_form.comments_close_at.to_s(:datetime_with_zone) %>.
-            </p>
-          </div>
-        <% end %>
-      <% end %>
-
       <p>
         Thank you for taking the time to create a comment. Your input is important.
       </p>
