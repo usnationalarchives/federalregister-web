@@ -176,11 +176,16 @@ class SearchPresenter::Suggestions
       h.content_tag("ul") do
         suggestion.matching_fr_entries.map do |document|
           h.content_tag("li") do
+            path = document_path(document)
+            if suggestion.page != document.start_page.to_s
+              path << "#page-#{suggestion.page}"
+            end
+
             html = <<~HTML
               <h5>
                 #{h.link_to h.sanitize(document.title,
                     tags: %w(span), attributes: %w(class)),
-                  document_path(document),
+                  path,
                   class: 'fr-ga-event',
                   data: {
                     event_name: 'fr_search_suggestion_click',
