@@ -20,7 +20,7 @@
               <h6>
                 <%= simple_document_type_icon document.type,
                   icon_class: document.official? ? 'official' : 'published' %>
-                <%= link_to document.title, document.html_url %>
+                <%= link_to document.title, citation_link_with_page_number(document, @page) %>
               </h6>
 
               <div class="citation-details">

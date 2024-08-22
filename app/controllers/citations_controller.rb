@@ -24,7 +24,8 @@ class CitationsController < ApplicationController
         when 0
       # none found
     when 1
-      redirect_to short_document_path(document_numbers.first)
+      document = DocumentDecorator.find(document_numbers.first)
+      redirect_to helpers.citation_link_with_page_number(document, @page)
     else
       @documents = DocumentDecorator.decorate_collection Document.find_all(document_numbers)
     end
