@@ -1,0 +1,29 @@
+<div class='cfr-ref-wrapper'>
+  <div data-controller="placeholder">
+    <%#= TODO: Fix form url path %>
+    <%= simple_form_for :cfr, url: root_path, method: :get,
+      html: {
+        class: 'go-to-cfr-reference'
+      } do |f| %>
+
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control string optional"
+          data-action="focus->placeholder#suggestions"
+          placeholder="Enter a search term or CFR reference (eg. fishing or 1 CFR 1.1)"
+          type="text"
+          data-suggestions-target="nonModalInput"
+          name="cfr[reference]"
+          id="suggestion">
+        <span class="input-group-btn"
+          data-action="click->placeholder#suggestions">
+
+          <button class="btn btn-optional" type="button"
+            data-suggestions-target="nonModalSearchIcon"
+            data-action="click->placeholder#suggestions">
+              <%= fr_icon('Search') %>
+          </button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

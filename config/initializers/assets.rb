@@ -18,8 +18,12 @@ Rails.application.config.sass.load_paths << "#{Rails.root}/vendor/asssets/styles
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
   application_pipeline.js
-  controllers/hello_controller.js
   controllers/index.js
+  controllers/hello_controller.js
+  controllers/modal_controller.js
+  controllers/suggestions_controller.js
+  controllers/placeholder_controller.js
+  stimulus-autocomplete.js
 
   vendor.js
   admin/vendor.js

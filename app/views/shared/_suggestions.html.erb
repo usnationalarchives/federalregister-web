@@ -1,0 +1,136 @@
+<% path = root_path %><%# TODO: Fix path to cfr_reference_path %>
+<div>
+  <div id="suggestions" data-controller="suggestions autocomplete"
+    data-autocomplete-url-value="/suggestions"
+    data-autocomplete-delay-value="300">
+
+    <div class="modal hidden" data-controller="modal"
+      data-action="keyup@document->modal#escClose"
+      data-suggestions-target="modal">
+
+      <button class="backdrop" type="button" tabindex="-1"
+        data-action="modal#close"></button>
+
+      <div class="content">
+
+        <div class="panel panel-default panel-info" data-suggestions-target="help">
+          <div class="panel-heading">
+            <p>
+              <strong>Navigate by entering citations or phrases</strong>
+              (eg:
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">1 CFR 1.1</span>
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">49 CFR 172.101</span>
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">Organization and Purpose</span>
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">1/1.1</span>
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">Regulation Y</span>
+                <span data-action="click->suggestions#fillExample"
+                  class="example badge badge-info">FAR</span>).
+            </p>
+            <p>
+              Choosing an item from
+              <span class="suggestion-header-example">citations and headings</span>
+              will bring you directly to the content. Choosing an item from
+              <span class="suggestion-header-example">full text search results</span>
+              will bring you to those results. Pressing enter in the search box
+              will also bring you to search results.
+            </p>
+            <p>
+              Background and more details are available in the
+              <em>
+                <%= link_to "Search & Navigation",
+                  reader_aid_path('using-ecfr','navigating-to-content-of-interest',
+                    anchor: "search-navigation")
+                 %>
+              </em>
+              guide.
+            </p>
+          </div>
+        </div>
+
+        <div class="cfr-ref-wrapper go-to-cfr-reference">
+          <%= simple_form_for :search, url: path, method: :get,
+            html: {
+              class: 'go-to-cfr-reference',
+              data: {
+                'suggestions-target': 'form',
+                'turbo': false
+              }
+            } do |f| %>
+            <%= f.hidden_field :date,
+              value: (current ? 'current' : date),
+              "data-param": "date" %>
+            <%= f.hidden_field :hierarchy,
+              value: @ecfr_content_presenter&.hierarchy_presenter&.current_hierarchy_for_search&.to_json,
+              "data-param": "hierarchy" %>
+            <%= f.hidden_field :prior_hierarchy,
+              value: @ecfr_content_presenter&.hierarchy_presenter&.current_hierarchy_for_search&.to_json,
+              "data-param": "prior_hierarchy"  %>
+
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control"
+                placeholder="Enter a search term or CFR reference (eg. fishing or 1 CFR 1.1)"
+                aria-describedby="reference-search-icon"
+                data-autocomplete-target="input"
+                data-suggestions-target="input"
+                name="search[query]"
+                id="suggestion_query">
+
+              <span class="input-group-btn"
+                id="reference-search-icon"
+                aria-label="search">
+                <button class="btn btn-optional" type="button"
+                  data-suggestions-target="searchIcon"
+                  data-action="click->suggestions#goDefault">
+                    <%#= ecfr_icon('search') %>
+                </button>
+              </span>
+            </div>
+
+            <div data-autocomplete-target="results"
+              data-suggestions-target="results"></div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <%= simple_form_for :cfr, url: path, method: :get,
+      html: {
+        class: 'go-to-cfr-reference hidden',
+        'data-suggestions-target': 'nonModalForm'
+      } do |f| %>
+      <%= f.hidden_field :date,
+        label: false,
+        value: (current ? 'current' : date) %>
+      <%= f.hidden_field :prior_hierarchy,
+        value: @ecfr_content_presenter&.hierarchy_presenter&.current_hierarchy_for_search&.to_json %>
+      <%= f.hidden_field :suggestion_id,
+        value: nil,
+        "data-autocomplete-target" => "hidden" %>
+
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control string optional"
+          data-action="focus->suggestions#modal"
+          placeholder="Enter a search term or CFR reference (eg. fishing or 1 CFR 1.1)"
+          type="text"
+          data-suggestions-target="nonModalInput"
+          name="cfr[reference]"
+          id="suggestion">
+        <span class="input-group-btn"
+          data-action="click->suggestions#go">
+
+          <button class="btn btn-optional" type="button"
+            data-suggestions-target="nonModalSearchIcon"
+            data-action="click->suggestions#go">
+              <%#= ecfr_icon('search') %>
+          </button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

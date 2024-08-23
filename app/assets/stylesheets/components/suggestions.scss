@@ -1,0 +1,38 @@
+$text-extra-light: $gray-30;
+
+.cfr-ref-wrapper {
+  background-color: $gray-10;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.go-to-cfr-reference {
+  label { font-weight: 400; }
+
+  input {
+    @include rounded-right(0);
+
+    display: inline-block;
+    width: 60%;
+
+    &::placeholder {
+      color: $text-extra-light;
+      font-size: modular-scale(0);
+      font-style: italic;
+    }
+  }
+
+  button {
+    @include rounded-left(0);
+
+    border: 1px solid $nav-border-color !important;
+    cursor: pointer;
+    min-width: 33px !important;
+    position: relative;
+  }
+
+  button.prior {
+    margin-left: -4px;
+  }
+}
