@@ -17,6 +17,10 @@ Rails.application.config.sass.load_paths << "#{Rails.root}/vendor/asssets/styles
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
+  application_pipeline.js
+  controllers/hello_controller.js
+  controllers/index.js
+
   vendor.js
   admin/vendor.js
 
