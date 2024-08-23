@@ -69,6 +69,7 @@ gem 'fog-aws'
 
 # forms
 gem 'formtastic'
+gem 'simple_form'
 
 # geocoding and distance calculation API
 gem 'geokit', '1.4.1', require: 'geokit'

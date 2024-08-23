@@ -1,0 +1,99 @@
+<% if false#@suggestions_presenter.results? %>
+  <div class="results">
+    <table class="suggestions" data-autocomplete-target="results" data-suggestions-target="results">
+      <% overflow_toggle_shown = false %>
+      <% @suggestions_presenter.results_without_search_results.each_with_index do |suggestion, index| %>
+        <% if index == 0 %>
+        <tr class="kind"><td colspan="4">citations &amp; headings</td></tr>
+        <% end %>
+        <tr class="<%= suggestion.row_classes %>" role="option" data-autocomplete-value="<%= suggestion.path %>" data-toc="<%= suggestion.toc_suffix %>" data-autocomplete-label="">
+          <td>
+            <%= suggestion.highlighted_citation %>
+          </td>
+          <td class="highlight">
+          <% if (highlight = suggestion.usable_highlight).present? %>
+            <%= highlight.html_safe %>
+          <% end %>
+          </td>
+
+          <td class="toc">
+            <% if suggestion.toc_suffix.present? %>
+              <a href="<%= suggestion.path %><%= suggestion.toc_suffix %>" data-toggle="tooltip" data-placement="left" data-title="View Table of Contents">
+                <span class="icon-ecfr icon-ecfr-directions"></span>
+                ToC
+              </a>
+            <% end %>
+          </td>
+          <td>
+            <span class="icon-ecfr icon-ecfr-<%= suggestion.icon %>"></span>
+          </td>
+        </tr>
+      <% end %>
+      <% if @suggestions_presenter.search_results.present? %>
+        <tr class="kind"><td colspan="4">full text search results</td></tr>
+        <%- total_suggestion = @suggestions_presenter.total_search_results %>
+        <%- hierarchy_suggestion = @suggestions_presenter.total_hierarchy_search_results %>
+        <%- suggestion = hierarchy_suggestion || total_suggestion %>
+        <% if total_suggestion && hierarchy_suggestion %>
+          <tr class="dual-suggestion <%= suggestion.row_classes %>" role="option" data-autocomplete-value="<%= suggestion.path %>" data-toc="<%= suggestion.toc_suffix %>" data-autocomplete-label="">
+            <td colspan="2" class="highlight">
+              <% if (highlight = suggestion.usable_highlight).present? %>
+                <%= highlight.html_safe %>
+              <% end %>
+          
+              <% if total_suggestion %>
+                <span class="suggestion-delimiter">or</span>
+                <div class="suggestion supplemental-suggestion" role="option" data-autocomplete-value="<%= total_suggestion.path %>" data-toc="<%= total_suggestion.toc_suffix %>" data-autocomplete-label="">
+                  <% if (highlight = total_suggestion.usable_highlight).present? %>
+                    <%= highlight.html_safe %>
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+            <td class="toc">
+            </td>
+            <td>
+              <span class="icon-ecfr icon-ecfr-<%= suggestion.icon %>"></span>
+            </td>
+          </tr>
+        <% else %>
+          <tr class="<%= suggestion.row_classes %>" role="option" data-autocomplete-value="<%= suggestion.path %>" data-toc="<%= suggestion.toc_suffix %>" data-autocomplete-label="">
+            <% if suggestion.search_suggestion? %>
+              <td colspan="2" class="highlight">
+                <% if (highlight = suggestion.usable_highlight).present? %>
+                  <%= highlight.html_safe %>
+                <% end %>
+              </td>
+            <% else %>
+            <td><%= suggestion.highlighted_citation %></td>
+            <td class="highlight">
+            <% if (highlight = suggestion.usable_highlight).present? %>
+              <%= highlight.html_safe %>
+            <% end %>
+
+            </td>
+            <% end %>
+            <td class="toc">
+              <% if suggestion.toc_suffix.present? %>
+                <a href="<%= suggestion.path %><%= suggestion.toc_suffix %>" data-toggle="tooltip" data-placement="left" data-title="View Table of Contents">
+                  <span class="icon-ecfr icon-ecfr-directions"></span>
+                  ToC
+                </a>
+              <% end %>
+            </td>
+            <td>
+              <span class="icon-ecfr icon-ecfr-<%= suggestion.icon %>"></span>
+            </td>
+          </tr>        
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+  <div class="results">
+    <div class="suggestions none" data-autocomplete-target="results" data-suggestions-target="results">
+      <p><strong>No results found</strong></p>
+      <p>Sorry, nothing found at the moment.</p>
+    </div>
+  </div>
+<% end %>

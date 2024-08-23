@@ -528,6 +528,9 @@ GEM
       concurrent-ruby
       redis-prescription (~> 2.2)
       sidekiq (~> 6.4)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sitemap_generator (6.0.2)
       builder (~> 3.0)
     slack-notifier (2.4.0)
@@ -675,6 +678,7 @@ DEPENDENCIES
   sendgrid
   sidekiq (~> 6.5.5)
   sidekiq-throttled
+  simple_form
   sitemap_generator
   slack-notifier
   spring

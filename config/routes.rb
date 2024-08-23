@@ -359,6 +359,8 @@ Rails.application.routes.draw do
   #
   get '/developers/documentation/api/v1', to: 'api_documentation#show', as: :api_documentation
 
+  get "/suggestions", to: "suggestions#index", as: :suggestions
+
 
   #
   # Suggested searches

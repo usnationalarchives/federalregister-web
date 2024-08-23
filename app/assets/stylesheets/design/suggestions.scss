@@ -1,0 +1,86 @@
+.suggestions {
+  position: absolute;
+  background-color: $gray-10;
+  z-index: 99;
+  width: 94%;
+  padding-inline-start: inherit;
+  border: 4px solid $gray-10;
+  margin-top: 4px;
+  border-top: none;
+  border-radius: 8px;
+
+  .suggestion:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .options {
+    text-align: right;
+    border: 1px solid $gray-60;
+    font-size: 0.8em;
+    padding-right: 0.2em;
+    cursor: pointer;
+    color: $gray-30;
+
+    .icon-ecfr::before {
+      vertical-align: middle;
+    }
+
+    .option {
+      font-weight: bold;
+      padding: 0 0.4em;
+    }
+
+    .divider {
+      color: $gray-60;
+    }
+
+    .selected {
+      color: #000;
+    }
+  }  
+
+  .suggestion {
+    position: relative;
+    display: block;
+    padding: 8px 16px;
+    margin-bottom: -1px;
+    background-color: $white;
+    border: 1px solid $gray-30;
+
+    .kind, .title, .highlight {
+      float: right;
+    }
+
+    .highlight {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;   
+      width: 50%;  
+      padding-right: 2em;
+    }
+
+    .kind {
+      padding-top: 0.1em;
+    }
+
+    .title {
+      padding-right: 1.5em;
+    }
+  }
+
+  .suggestion.active {
+    z-index: 2;
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+  }  
+
+  mark {
+    border: dotted 1px lighten($green, 25);
+    background-color: lighten($green, 50);
+    border-radius: 4px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
