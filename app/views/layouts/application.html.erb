@@ -49,6 +49,7 @@
 
     <!-- page specific templates -->
     <%= yield :templates %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body id="<%= controller_name %>" class="<%= action_name %> <%= "controller-path-#{controller_path.gsub("/","-")}" %>"

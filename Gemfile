@@ -82,6 +82,9 @@ gem 'honeybadger'
 # http requests
 gem "httparty"
 
+# Used for stimulusjs
+gem "importmap-rails"
+
 # adds indefinite article methods to String and Symbol
 gem 'indefinite_article'
 
@@ -163,6 +166,8 @@ gem "sidekiq-throttled"
 
 # send messages to slack
 gem "slack-notifier"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
 
 # Sprockets 4 ES6 Support
 gem "terser"
