@@ -16,3 +16,6 @@
 
 // fomantic-ui
 @import "fomantic-ui/sticky";
+
+// ECFR omni-search uses bootstrap panels from Bootstrap 3.  Backport panels to bootstrap 2
+@import "backport-bootstrap3-panels";
