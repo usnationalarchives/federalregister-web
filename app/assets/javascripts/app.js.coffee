@@ -234,10 +234,17 @@ $(document).ready ()->
         false
       )
     else
-      new FR2.CommentingUnavailableHandler(
-        $('#comment-bar.comment'),
-        "<p>Submitting a formal comment directly via federalregister.gov is not available for this document at this time.  However, you can click the button below to view more information on alternate methods of comment submission.</p></br><a class='fr_button medium primary jqm-close-js'>View Additional Information</a>"
-      )
+      $('#comment-bar.comment').on 'click', 'a#start_comment', (e) ->
+        e.preventDefault()
+        location = $("a#start_comment").attr('href')
+        $('html, body').stop().animate(
+          {scrollTop: $(location).offset().top},
+          1500,
+          () -> window.location.hash = location
+        )
+        $(location).next().addClass('highlight')
+
+
 
 
   ##############################

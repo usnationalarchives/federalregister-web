@@ -52,8 +52,6 @@ module DocumentDecorator::Comments
   end
 
   def formal_comment_link
-    link_text = "Submit a formal comment"
-
     if comment_url.present?
       href = comment_url
       options = { target: '_blank', :'data-comment' => 1}
@@ -66,8 +64,6 @@ module DocumentDecorator::Comments
   end
 
   def comment_link
-    link_text = "Submit a public comment on this document"
-
     href = if comment_url.present?
       calculated_comment_url
     else
@@ -78,12 +74,12 @@ module DocumentDecorator::Comments
   end
 
   def posted_comments_link
-    link_text = "View posted comments"
+    posted_comments_link_text = "View posted comments"
 
     if more_than_one_regs_dot_gov_document_with_comments?
-      h.link_to link_text, "#", class: "deploy-comment-sidebar-js"
+      h.link_to posted_comments_link_text, "#", class: "deploy-comment-sidebar-js"
     else
-      h.link_to link_text, public_comments_url, target: "_blank"
+      h.link_to posted_comments_link_text, public_comments_url, target: "_blank"
     end
   end
 
@@ -169,6 +165,14 @@ module DocumentDecorator::Comments
   end
 
   private
+
+  def link_text
+    if comment_url.present?
+      "Submit a formal comment"
+    else
+      "View Commenting Instructions"
+    end
+  end
 
   def default_regs_dot_gov_document
     regs_dot_gov_documents_accepting_comments.first
