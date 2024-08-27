@@ -36,6 +36,8 @@ app:
     location_search_enabled: true
   site_notifications:
     display: true
+    search_filter:
+      display: false
   subscriptions:
     deliver: true
     deliver_pil: true

@@ -62,24 +62,28 @@ class SiteNotification
         user_dismissible: true
       )
 
-      search_message = <<~HTML
-        <p>
-          <strong>Search Filter Update:</strong>
-          System of Records Notices (SORN) and Sunshine Act Meeting Notices are
-          now available as sub-type filters when Notice is selected as a
-          'Document Category' filter.
-          <a href="/reader-aids/2024/08/enhanced-notice-sub-type-search-now-available">
-            Read more in our feature announcement
-          </a>.
-        </p>
-      HTML
+      if Settings.app.site_notifications.search_filter.display
+        search_message = <<~HTML
+          <p>
+            <strong>Search Filter Update:</strong>
+            System of Records Notices (SORN) and Sunshine Act Meeting Notices are
+            now available as sub-type filters when Notice is selected as a
+            'Document Category' filter.
+            <a href="/reader-aids/2024/08/enhanced-notice-sub-type-search-now-available">
+              Read more in our feature announcement
+            </a>.
+          </p>
+        HTML
 
-      notifications << new(
-        location: "search",
-        message: search_message,
-        notification_type: "feature",
-        user_dismissible: true
-      )
+        notifications << new(
+          location: "search",
+          message: search_message,
+          notification_type: "feature",
+          user_dismissible: true
+        )
+      end
+
+      notifications
     end
   end
 

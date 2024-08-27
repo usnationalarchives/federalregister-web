@@ -1,3 +1,8 @@
+app:
+  site_notifications:
+    search_filter:
+      display: true
+
 database:
   name: federal_register_web_staging
 
