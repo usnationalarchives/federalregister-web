@@ -170,7 +170,7 @@ module DocumentDecorator::Comments
     if comment_url.present?
       "Submit a formal comment"
     else
-      "View Commenting Instructions"
+      "View Comment Instructions"
     end
   end
 
