@@ -220,31 +220,7 @@ $(document).ready ()->
   ##############################
 
   if $("#comment-bar").length > 0
-    commentLink = $('a#start_comment[data-comment=1]').get(0)
-    republishedDocumentCommentUrl = $('#comment-bar').data('republished-document-comment-url')
-
-    if (commentLink || window.location.hash == "#open-comment")
-      FR2.commentFormHandlerInstance = new FR2.CommentFormHandler(
-        $('#comment-bar.comment')
-      )
-    else if republishedDocumentCommentUrl
-      new FR2.CommentingUnavailableHandler(
-        $('#comment-bar.comment'),
-        "<p>Submitting a formal comment directly via federalregister.gov may be available for the original document.  Click the button below to view the original document.</p></br><a href='#{republishedDocumentCommentUrl}' class='fr_button medium primary'>View Original Document</a>",
-        false
-      )
-    else
-      $('#comment-bar.comment').on 'click', 'a#start_comment', (e) ->
-        e.preventDefault()
-        location = $("a#start_comment").attr('href')
-        $('html, body').stop().animate(
-          {scrollTop: $(location).offset().top},
-          1500,
-          () -> window.location.hash = location
-        )
-        $(location).next().addClass('highlight')
-
-
+    new FR2.CommentBarHandler
 
 
   ##############################

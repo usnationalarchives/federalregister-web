@@ -1,0 +1,46 @@
+class @FR2.CommentBarHandler
+  constructor: () ->
+    commentLink = $('a#start_comment[data-comment=1]').get(0)
+    republishedDocumentCommentUrl = $('#comment-bar').data('republished-document-comment-url')
+
+    @addCommentBarEvents()
+
+    if (commentLink || window.location.hash == "#open-comment")
+      new FR2.CommentFormHandler(
+        $('#comment-bar.comment')
+      )
+    else if republishedDocumentCommentUrl
+      new FR2.CommentingUnavailableHandler(
+        $('#comment-bar.comment'),
+        "<p>Submitting a formal comment directly via federalregister.gov may be available for the original document.  Click the button below to view the original document.</p></br><a href='#{republishedDocumentCommentUrl}' class='fr_button medium primary'>View Original Document</a>",
+        false
+      )
+    else
+      $('#comment-bar.comment').on 'click', 'a#start_comment', (e) =>
+        e.preventDefault()
+        @viewInstructions()
+
+  addCommentBarEvents: ->
+    @_enableCommentUtilityNavItemTogglingViaLink()
+
+  viewInstructions: ->
+    location = $("a#start_comment").attr('href')
+
+    $('html, body').stop().animate(
+      {scrollTop: $(location).offset().top},
+      1500,
+      () -> window.location.hash = location
+    )
+
+    $(location).next().addClass('highlight')
+
+  _enableCommentUtilityNavItemTogglingViaLink: ->
+    $("#metadata_content_area").on( "click", ".deploy-comment-sidebar-js", (e) =>
+      e.preventDefault()
+      @_scrollToCommentUtilityNavItem()
+    )
+
+  _scrollToCommentUtilityNavItem: ->
+    utilityNavItem = document.getElementById("utility-nav-comments")
+    utilityNavItem.scrollIntoView({behavior: "smooth"})
+    utilityNavItem.click()

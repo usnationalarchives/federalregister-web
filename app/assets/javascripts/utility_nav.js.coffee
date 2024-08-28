@@ -119,6 +119,7 @@ class @FR2.UtilityNav
 
   addElementClickEvents: ->
     @navElements.not('.disabled').on('click tap', (event)=>
+
       navEl = $(event.target).closest('li')
       # if we're clicking on an open item close it
       # but not if we're clicking on an item in the open menu portion
@@ -140,14 +141,20 @@ class @FR2.UtilityNav
     # close dropdown if we click outside the dropdown menu
     $('body').on 'click tap', (event)=>
       target = $(event.target)
-      @navElements
+
+      targetedElements = @navElements
         # filter out this navElement if it's the one we just opened
         # the 'body' event will bubble up last so we've already opened the menu
         .filter ()->
-          target[0] != this && target.parents('li.open')[0] != this
-        .removeClass('open')
+          target[0] != this &&
+            target.parents('li.open')[0] != this &&
+            !target.hasClass('deploy-comment-sidebar-js') # comment bar
 
-      @updateTextBlur("remove")
+      # handle closing if there are any unfiltered elements remaining
+      # eg we clicked outside the utility nav or associated linked items
+      if targetedElements.get(0)
+        targetedElements.removeClass('open')
+        @updateTextBlur("remove")
 
   updateTextBlur: (action)->
     contentBlock = @contentWrapper.find('> .fr-box > .content-block')
