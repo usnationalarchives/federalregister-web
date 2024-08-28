@@ -35,7 +35,9 @@
                 target: "_blank" %>
             </td>
             <td>
-              <%= doc.comment_count %>
+              <%= link_to doc.comment_count,
+                "https://www.regulations.gov/document/#{doc.id}/comment",
+                target: "_blank"  %>
             </td>
             <td>
               <% if doc.updated_at %>
