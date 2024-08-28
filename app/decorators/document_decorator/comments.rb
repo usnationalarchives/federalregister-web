@@ -76,7 +76,7 @@ module DocumentDecorator::Comments
   def posted_comments_link
     posted_comments_link_text = "View posted comments"
 
-    if more_than_one_regs_dot_gov_document_with_comments?
+    if more_than_one_regs_dot_gov_document_with_comments? || !public_comments_url
       h.link_to posted_comments_link_text, "#", class: "deploy-comment-sidebar-js"
     else
       h.link_to posted_comments_link_text, public_comments_url, target: "_blank"
