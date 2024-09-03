@@ -49,11 +49,11 @@ FR2.InterstitialModalHandler = class InterstitialModalHandler {
     if ( this._openForComment() ) {
       documentFeedbackText = `If you would like to submit a public comment
         to the issuing agency on the document you are currently viewing,
-        please use the "Document Feedback" button below.`
+        please use the "View Commenting Instructions" button below.`
     } else if( this._hasCommentInstructions() ) {
       documentFeedbackText = `If you would like to comment on the current
-        document, please use the "Document Comment" button below for
-        instructions on contacting the issuing agency`
+        document, please use the "View Commenting Instructions" button below for
+        instructions on contacting the issuing agency.`
     } else {
       documentFeedbackText = `The current document is not open for comment,
         please use other means to contact
@@ -120,7 +120,7 @@ FR2.InterstitialModalHandler = class InterstitialModalHandler {
 
           <div class='button ${documentButtonEnabled}' type="button">
             <span class='icon-fr2 icon-fr2-book-alt-2'></span>
-            <div class='button_title'>Document Feedback</div>
+            <div class='button_title'>View Commenting Instructions</div>
           </div>
         </div>
 
