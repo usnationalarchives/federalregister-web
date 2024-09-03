@@ -16,7 +16,7 @@ class @FR2.CommentingUnavailableHandler
       location = e.target.getAttribute('href')
 
       FR2.Modal.displayModal(
-        'Submit a Formal Comment',
+        'Submit a Public Comment',
         context.modalText,
         {
           'modalId': "#commentingUnavailableModal",

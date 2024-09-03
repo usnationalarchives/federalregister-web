@@ -185,7 +185,7 @@ module DocumentDecorator::Comments
 
   def link_text
     if comment_url.present?
-      "Submit a formal comment"
+      "Submit a public comment"
     else
       "View Comment Instructions"
     end

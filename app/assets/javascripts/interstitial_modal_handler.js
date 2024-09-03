@@ -47,7 +47,7 @@ FR2.InterstitialModalHandler = class InterstitialModalHandler {
     let documentFeedbackText = ""
 
     if ( this._openForComment() ) {
-      documentFeedbackText = `If you would like to submit a formal comment
+      documentFeedbackText = `If you would like to submit a public comment
         to the issuing agency on the document you are currently viewing,
         please use the "Document Feedback" button below.`
     } else if( this._hasCommentInstructions() ) {
