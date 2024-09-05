@@ -35,9 +35,13 @@
 
 <%= bootstrap_context_wrapper do %>
 
-  <%= render partial: 'shared/suggestions_placeholder', locals: {
-    current: true, date: nil
-  } %>
+  <div class='row'>
+    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+      <%= render partial: 'shared/suggestions_placeholder', locals: {
+        current: true, date: nil
+      } %>
+    </div>
+  </div>
   </br>
   </br>
   </br>

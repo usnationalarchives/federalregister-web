@@ -3,7 +3,7 @@ class SuggestionsController < ApplicationController
   # include SearchConditionsHelper
 
   def index
-    # @suggestions_presenter = SuggestionsPresenter.new(suggestion_params)
+    @suggestions_presenter = SuggestionsPresenter.new(suggestion_params)
 
     render :index, layout: nil
   end
@@ -11,6 +11,6 @@ class SuggestionsController < ApplicationController
   private
 
   def suggestion_params
-    params.permit(:date, :hierarchy, :query, :prior_hierarchy).merge(build_id: build_id)
+    params.permit(:query, :date) #TODO: Remove :date
   end
 end

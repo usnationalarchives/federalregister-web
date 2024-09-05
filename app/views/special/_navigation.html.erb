@@ -46,7 +46,7 @@
       </ul>
     </li>
 
-    <li class="inline_search">
+    <li class="inline_search" data-controller="placeholder">
       <%= semantic_form_for 'conditions',
         as: :conditions,
         url: documents_search_path,
@@ -56,6 +56,9 @@
         <%= f.text_field :term,
           class: 'search-term',
           placeholder: 'Search Documents',
+          data: {
+            action: "click->placeholder#suggestions"
+          },
           "aria-label" => 'Search Documents' %>
 
         <%= f.button fr_icon('Search').html_safe,
