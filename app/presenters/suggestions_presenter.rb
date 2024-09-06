@@ -82,14 +82,14 @@ class SuggestionsPresenter < ApplicationPresenter
     describe_search_results(global_search_results)
   end
 
-  def narrowed_search_description
+  def narrowed_search_description(narrowed_search_result)
     describe_search_results(
       narrowed_search_result.count,
       narrowed_search_result.omni_search_scope_description
     )
   end
 
-  def narrowed_search_path
+  def narrowed_search_path(narrowed_search_result)
     SearchPresenter::Suggestions.new(Array.wrap(narrowed_search_result)).suggestions.first.path
 
     # search_path({
@@ -115,9 +115,6 @@ class SuggestionsPresenter < ApplicationPresenter
 
   private
 
-  def narrowed_search_result
-    narrowed_search_result = narrowed_search_results.first #TODO: At some point we may want to change the logic here so multiple narrowed search results are presented in the UI, unlike ECFR 
-  end
 
   def describe_search_results(count, custom_scope_description = nil)
     if !count || count < 1
