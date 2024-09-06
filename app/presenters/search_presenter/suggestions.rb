@@ -249,13 +249,11 @@ class SearchPresenter::Suggestions
       </p>
     TEXT
 
+    path = public_inspection_search_path(conditions: suggestion.conditions)
     ContentNotification.new(
       text: text,
-      link: h.link_to("View Results",
-        public_inspection_search_path(
-          conditions: suggestion.conditions
-        )
-      ),
+      link: h.link_to("View Results", path),
+      path: path,
       type: :success,
       icon: 'clipboards',
       options: {

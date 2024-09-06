@@ -7,4 +7,8 @@ class SearchSuggestion::PublicInspectionSuggestion
     @conditions = conditions
     @count = options["count"]
   end
+
+  def  omni_search_scope_description
+    "scheduled for publication on Public Inspection that match your search"
+  end
 end

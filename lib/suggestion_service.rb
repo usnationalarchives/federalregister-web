@@ -16,7 +16,7 @@ class SuggestionService
     result = fr_search_metadata_result
     OpenStruct.new(
       global_search_results: result.count,
-      # narrowed_search_results: []
+      narrowed_search_results: narrowed_search_results
     )
   end
 
@@ -47,6 +47,14 @@ class SuggestionService
 
   private
 
+  def narrowed_search_results
+    fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
+      if ["SearchSuggestion::SearchRefinementSuggestion", "SearchSuggestion::PublicInspectionSuggestion"].include?(fr_search_suggestion.class.to_s)
+        results << fr_search_suggestion
+      end
+    end
+  end
+
   def fr_search_metadata_result
     valid_conditions = fr_search.valid_conditions
     ::Document.search_metadata(conditions: valid_conditions)
@@ -60,6 +68,7 @@ class SuggestionService
 
     search_details.suggestions
   end
+  memoize :fr_search_suggestions
 
   def fr_search
     Search::Document.new(conditions: {term: query})
