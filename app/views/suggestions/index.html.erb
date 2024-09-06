@@ -24,7 +24,7 @@
       <% overflow_toggle_shown = false %>
       <% @suggestions_presenter.results&.each_with_index do |suggestion, index| %>
         <% if index == 0 %>
-          <tr class="kind"><td colspan="4">citations and headings</td></tr>
+          <tr class="kind"><td colspan="4">suggestions</td></tr>
         <% end %>
 
         <tr class="<%= suggestion.row_classes %>"
