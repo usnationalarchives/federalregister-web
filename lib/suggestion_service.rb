@@ -1,4 +1,5 @@
 class SuggestionService
+  include ActionView::Helpers::NumberHelper
   extend Memoist
 
   # include SuggestionService::CustomPatterns
@@ -104,6 +105,44 @@ class SuggestionService
       # Handle FR citations
       case fr_search_suggestion.class.to_s
       when "SearchSuggestion::CitationSuggestion"
+        if fr_search_suggestion.matching_fr_entries.count == 0
+          archives_citation = FrArchivesCitation.new(fr_search_suggestion.volume, fr_search_suggestion.page)
+          if archives_citation.download_link_available?
+            base_suggestion_attributes = {
+              type: 'cfr_reference', #or 'autocomplete'
+              citation: archives_citation.omni_search_citation, 
+              row_classes: ["suggestion"],
+              toc_suffix: nil,
+              usable_highlight: false,
+              icon: 'baz',
+              fr_icon_class: "", # TODO: Find historical issue icon
+              usable_highlight: '',
+              kind: :total_search_results,
+              removed: false,
+              reserved?: false,
+              search_suggestion?: true
+              # hidden: false
+            }
+
+            if archives_citation.issue_slice_url
+              results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
+                highlight: "Historical issue document PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                path: archives_citation.issue_slice_url,
+                prefer_content_path: archives_citation.issue_slice_url
+              ))
+            end
+
+            results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
+              highlight: "Full historical issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
+              path: archives_citation.gpo_url,
+              prefer_content_path: archives_citation.gpo_url
+            ))
+          else
+            next
+          end
+        end
+
+
         page = fr_search_suggestion.page.to_i
         fr_search_suggestion.matching_fr_entries.each do |doc|
           path = doc.html_url

@@ -45,6 +45,10 @@ class FrArchivesCitation
     end
   end
 
+  def omni_search_citation
+    "#{volume} FR #{page}"
+  end
+
   private
 
   attr_reader :volume, :page
