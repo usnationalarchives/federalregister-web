@@ -1,0 +1,29 @@
+// NOTE: These overrides were applied on top of the omni-search CSS ported from ECFR
+#suggestions {
+  // These adjustments were neeeded to ensure the background blur is applied to all elements and the omni search is visible in the foreground
+  position: fixed;
+  left: 10%;
+  right: 10%;
+  top: -5%;
+  z-index: 1200;
+
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  #suggestion_query {
+    width: 93%;
+    height: 3em;
+  }
+
+  .panel-heading {
+    margin-bottom: -17px;
+  }
+
+  #reference-search-icon button{
+    height: 44px;
+    width: 46px;
+  }
+
+}
