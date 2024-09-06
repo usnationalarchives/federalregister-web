@@ -6,7 +6,7 @@ describe "XSLT::FullText::EndMatter" do
     @template = "matchers/full_text.html.xslt"
   end
 
-  before :all do
+  before :each do
     process <<-XML
       <FRDOC>[FR Doc. 2015-01323 Filed 1-23-15; 8:45 am]</FRDOC>
       <BILCOD>BILLING CODE 3410-DM-P</BILCOD>
@@ -30,6 +30,29 @@ describe "XSLT::FullText::EndMatter" do
       with_tag 'p.billing-code' do
         with_text /BILLING CODE 3410-DM-P/
       end
+    end
+  end
+
+  # billing codes are often associated with images and appear once for
+  # each image leading to them all being hoisted together to the end of the
+  # document and creating a mess - https://www.federalregister.gov/d/2021-16519
+  context "duplicative billing codes" do
+    it "are only output once" do
+      process <<-XML
+        <BILCOD>BILLING CODE 4120-01-P</BILCOD>
+        <BILCOD>BILLING CODE 4120-01-C</BILCOD>
+        <BILCOD>BILLING CODE 4120-01-P</BILCOD>
+        <BILCOD>BILLING CODE 4120-01-C</BILCOD>
+        <BILCOD>BILLING CODE 4120-01-P</BILCOD>
+        <BILCOD>BILLING CODE 4120-01-C</BILCOD>
+      XML
+
+      expect_equivalent <<-HTML
+        <div class="end-matter">
+          <p class="billing-code">BILLING CODE 4120-01-P</p>
+          <p class="billing-code">BILLING CODE 4120-01-C</p>
+        </div>
+      HTML
     end
   end
 end
