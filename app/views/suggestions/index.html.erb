@@ -61,7 +61,7 @@
             <% end %>
           </td>
 
-          <% if suggestion.display_toc_link? %>
+          <% if false#suggestion.display_toc_link? %>
             <td class="toc">
               <a href="<%= suggestion.table_of_contents_path %>"
                 data-toggle="tooltip" data-placement="left"
@@ -73,7 +73,10 @@
             </td>
           <% end %>
 
-          <td><span class="icon-ecfr icon-ecfr-book"></span></td>
+          <td>
+            <span class="<%= suggestion.fr_icon_class %>"></span>
+            <%# <span class="icon-ecfr icon-ecfr-book"></span> %>
+          </td>
         </tr>
       <% end %>
     </table>

@@ -67,9 +67,8 @@ class SuggestionDecorator < ApplicationDecorator
   end
 
   def display_toc_link?
-    return false
-
-    hierarchy.supports_toc?
+    false
+    # hierarchy.supports_toc?
   end
 
   def highlight_colspan

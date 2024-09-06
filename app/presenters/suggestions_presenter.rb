@@ -60,9 +60,6 @@ class SuggestionsPresenter < ApplicationPresenter
       "Collecting Specimens for <mark>Test</mark>ing"      
     end
 
-    def display_toc_link?
-      false
-    end
 
     def method_missing(method_name, *args, &block)
       raise NoMethodError, "undefined method `#{method_name}` for #{self}"

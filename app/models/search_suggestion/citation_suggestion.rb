@@ -11,4 +11,9 @@ class SearchSuggestion::CitationSuggestion < Citation
   def name
     conditions["term"]
   end
+
+  def citation
+    self.superclass.name
+  end
+
 end
