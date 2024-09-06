@@ -25,7 +25,30 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="HD[@SOURCE='HED' or @SOURCE='HD1' or @SOURCE = 'HD2' or @SOURCE = 'HD3' or @SOURCE = 'HD4'][not(ancestor::NOTE|ancestor::FP|ancestor::AUTH)]" mode="table_of_contents">
+  <xsl:template match="HD[@SOURCE='HED'][ancestor::PREAMB]" mode="table_of_contents">
+    <li>
+      <xsl:attribute name="class">
+        <xsl:text>level-</xsl:text>
+        <xsl:call-template name="header_level">
+          <xsl:with-param name="source" select="@SOURCE"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:text>#</xsl:text>
+          <xsl:call-template name="convertToIdOrClass">
+            <xsl:with-param name="text" select="substring-before(text(), ':')" />
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="data-close-utility-nav">
+          <xsl:text>true</xsl:text>
+        </xsl:attribute>
+        <xsl:apply-templates/>
+      </a>
+    </li>
+  </xsl:template>
+
+  <xsl:template match="HD[@SOURCE='HED' or @SOURCE='HD1' or @SOURCE = 'HD2' or @SOURCE = 'HD3' or @SOURCE = 'HD4'][not(ancestor::PREAMB|ancestor::NOTE|ancestor::FP|ancestor::AUTH)]" mode="table_of_contents">
     <li>
       <xsl:attribute name="class">
         <xsl:text>level-</xsl:text>

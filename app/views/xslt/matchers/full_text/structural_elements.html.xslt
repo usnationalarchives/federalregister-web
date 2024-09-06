@@ -9,14 +9,6 @@
   <!-- Some nodes are handled in seperate files if they use more extensive
     handling -->
 
-  <xsl:template match="AGY">
-    <xsl:apply-templates />
-  </xsl:template>
-
-  <xsl:template match="ACT">
-    <xsl:apply-templates />
-  </xsl:template>
-
   <xsl:template match="AMDPAR">
     <p class="amendment-part">
       <xsl:attribute name="id">
@@ -54,20 +46,8 @@
     </p>
   </xsl:template>
 
-  <xsl:template match="FURINF">
-    <div class="further-info">
-      <xsl:apply-templates />
-    </div>
-  </xsl:template>
-
   <xsl:template match="PART">
     <div class="part">
-      <xsl:apply-templates />
-    </div>
-  </xsl:template>
-
-  <xsl:template match="PREAMB">
-    <div class="preamble">
       <xsl:apply-templates />
     </div>
   </xsl:template>

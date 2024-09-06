@@ -31,4 +31,49 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+  <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+
+  <xsl:template name="downcase">
+    <xsl:param name="text" />
+    <xsl:value-of select="translate($text, $uppercase, $lowercase)" />
+  </xsl:template>
+
+  <xsl:template name="upcase">
+    <xsl:param name="text" />
+    <xsl:value-of select="translate($text, $lowercase, $uppercase)" />
+  </xsl:template>
+
+  <xsl:template name="dasherize">
+    <xsl:param name="text" />
+
+    <xsl:variable name="dasherized">
+      <xsl:call-template name="string_replace_all">
+        <xsl:with-param name="text" select="$text" />
+        <xsl:with-param name="replace" select="' '" />
+        <xsl:with-param name="by" select="'-'" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:value-of select="$dasherized" />
+  </xsl:template>
+
+  <xsl:template name="convertToIdOrClass">
+    <xsl:param name="text" />
+
+    <xsl:variable name="downcased">
+      <xsl:call-template name="downcase">
+        <xsl:with-param name="text" select="$text" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="dasherized">
+      <xsl:call-template name="dasherize">
+        <xsl:with-param name="text" select="$downcased" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:value-of select="$dasherized" />
+  </xsl:template>
 </xsl:stylesheet>

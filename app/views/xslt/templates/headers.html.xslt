@@ -12,27 +12,13 @@
     </xsl:choose>
   </xsl:template>
 
-  <!--  returns an 'h-#' id for a header element, where # is an incremented number
-        returns custom id for some nodes,
-        eg 'addresses' if the header is for the ADDRESSES node -->
+  <!-- Returns an 'h-#' id for a header element, where # is an incremented
+    number.
+    This number is based off the preceeding number of headers in the XML not
+    the preceeding number of headers we end up displaying in the html - so
+    while they will be increasing, some numbers may be missing -->
   <xsl:template name="header_id">
-    <xsl:choose>
-      <xsl:when test="contains('ADDRESSES:', text())">
-        <xsl:text>addresses</xsl:text>
-      </xsl:when>
-      <xsl:when test="contains('FOR FURTHER INFORMATION CONTACT:', text())">
-        <xsl:text>further-info</xsl:text>
-      </xsl:when>
-      <xsl:when test="contains('DATES:', text())">
-        <xsl:text>dates</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <!--  this number is based off the preceeding number of headers in the
-              XML not the preceeding number if headers we display in the html,
-              so while they will be increasing in the html some number may be missing -->
-        <xsl:value-of select="concat('h-', count(preceding::HD)+1)" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="concat('h-', count(preceding::HD)+1)" />
   </xsl:template>
 
   <!-- generate h1, h2, etc elements -->

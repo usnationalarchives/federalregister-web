@@ -48,20 +48,50 @@ describe "XSLT::TableOfContents" do
     HTML
   end
 
-  it "creates the proper reference to the addresses header" do
+  it "creates the proper reference to sections in the preamble" do
     process <<-XML
-      <ADD>
-        <HD SOURCE="HED">ADDRESSES:</HD>
-        <P>
-          Federal Communications Commission, 445 12th Street SW., Washington, DC 20554.
-        </P>
-      </ADD>
+      <PREAMB>
+        <ACT>
+          <HD SOURCE="HED">ACTION:</HD>
+        </ACT>
+        <SUM>
+          <HD SOURCE="HED">SUMMARY:</HD>
+        </SUM>
+        <DATES>
+          <HD SOURCE="HED">DATES:</HD>
+        </DATES>
+        <EFFDATE>
+          <HD SOURCE="HED">DATES:</HD>
+        </EFFDATE>
+        <ADD>
+          <HD SOURCE="HED">ADDRESSES:</HD>
+          <HD SOURCE="HD2">Electronic Submissions</HD>
+        </ADD>
+        <FURINF>
+          <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
+        </FURINF>
+      </PREAMB>
     XML
 
     expect_equivalent <<-HTML
       <ul class="#{table_of_contents_ul_css}">
         <li class="level-1">
+          <a href="#action" data-close-utility-nav="true">ACTION:</a>
+        </li>
+        <li class="level-1">
+          <a href="#summary" data-close-utility-nav="true">SUMMARY:</a>
+        </li>
+        <li class="level-1">
+          <a href="#dates" data-close-utility-nav="true">DATES:</a>
+        </li>
+        <li class="level-1">
+          <a href="#dates" data-close-utility-nav="true">DATES:</a>
+        </li>
+        <li class="level-1">
           <a href="#addresses" data-close-utility-nav="true">ADDRESSES:</a>
+        </li>
+        <li class="level-1">
+          <a href="#for-further-information-contact" data-close-utility-nav="true">FOR FURTHER INFORMATION CONTACT:</a>
         </li>
       </ul>
     HTML

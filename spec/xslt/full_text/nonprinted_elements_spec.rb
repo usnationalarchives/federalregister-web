@@ -6,37 +6,7 @@ describe "XSLT::NonPrintedElements" do
     @template = "matchers/full_text.html.xslt"
   end
 
-  it "creates the proper elements for PREAMB" do
-    process <<-XML
-      <PREAMB>
-        Some text nodes and other content nodes
-      </PREAMB>
-    XML
-
-    expect_equivalent <<-HTML
-      <div class="preamble">
-        Some text nodes and other content nodes
-      </div>
-    HTML
-  end
-
-  it "creates the proper elements for FURINF" do
-    process <<-XML
-      <FURINF>
-        <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
-        <P>Some text nodes and other content nodes</P>
-      </FURINF>
-    XML
-
-    expect_equivalent <<-HTML
-      <div class="further-info">
-        <h1 id="further-info">FOR FURTHER INFORMATION CONTACT:</h1>
-        <p id="p-1" data-page="1000">Some text nodes and other content nodes</p>
-      </div>
-    HTML
-  end
-
-  it "creates the proper tooltip elements for APPENDIX in a REGTEXT block" do
+  it "creates the proper elements for APPENDIX in a REGTEXT block" do
     process <<-XML
       <REGTEXT>
         <APPENDIX>
@@ -52,7 +22,7 @@ describe "XSLT::NonPrintedElements" do
     HTML
   end
 
-  it "does not creates the tooltip elements for APPENDIX not in a REGTEXT block" do
+  it "does not create elements for APPENDIX not in a REGTEXT block" do
     process <<-XML
       <APPENDIX>
         Some text nodes and other content nodes
