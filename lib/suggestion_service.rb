@@ -90,25 +90,44 @@ class SuggestionService
     end
   end
 
-  WHITELISTED_SUGGESTION_TYPES = [
-    SearchSuggestion::CitationSuggestion,
-  ]
   def search_suggestions
-
-    fr_search_suggestions.select{|x| WHITELISTED_SUGGESTION_TYPES.include? x.class}.each_with_object(Array.new) do |fr_search_suggestion, results|
+    fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
       # Handle FR citations
-      page = fr_search_suggestion.page.to_i
-      
-      fr_search_suggestion.matching_fr_entries.each do |doc|
-        path = doc.html_url
-        if doc.start_page != page
-          path << "#page-#{page}"
-        end
+      case fr_search_suggestion.class.to_s
+      when "SearchSuggestion::CitationSuggestion"
+        page = fr_search_suggestion.page.to_i
+        fr_search_suggestion.matching_fr_entries.each do |doc|
+          path = doc.html_url
+          if doc.start_page != page
+            path << "#page-#{page}"
+          end
 
+          results << FrSearchSuggestion.new(
+            type: 'cfr_reference', #or 'autocomplete'
+            highlight: doc.title,
+            citation: doc.citation, 
+            row_classes: ["suggestion"],
+            toc_suffix: nil,
+            usable_highlight: false,
+            path: path,
+            icon: 'baz',
+            fr_icon_class: doc.document_type.icon_class,
+            usable_highlight: '',
+            kind: :total_search_results,
+            removed: false,
+            prefer_content_path: path,
+            reserved?: false,
+            search_suggestion?: true
+            # hidden: false
+          )
+        end
+      when "SearchSuggestion::DocumentNumberSuggestion"
+        doc = fr_search_suggestion.document
+        path = doc.html_url
         results << FrSearchSuggestion.new(
           type: 'cfr_reference', #or 'autocomplete'
           highlight: doc.title,
-          citation: doc.citation, 
+          citation: doc.document_number, 
           row_classes: ["suggestion"],
           toc_suffix: nil,
           usable_highlight: false,

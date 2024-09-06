@@ -13,4 +13,8 @@ class SearchSuggestion::DocumentNumberSuggestion
       Document.find(document_number)
     )
   end
+
+  def citation
+    document_number
+  end
 end
