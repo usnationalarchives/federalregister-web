@@ -83,21 +83,22 @@ class SuggestionsPresenter < ApplicationPresenter
   end
 
   def narrowed_search_description
-    return "narrowed search description"
-    describe_search_results(narrowed_search_results, narrowed_hierarchy)
+    describe_search_results(
+      narrowed_search_result.count,
+      narrowed_search_result.omni_search_scope_description
+    )
   end
 
   def narrowed_search_path
-    return "http://www.google.com"
+    SearchPresenter::Suggestions.new(Array.wrap(narrowed_search_result)).suggestions.first.path
 
-    search_path({
-      search: {
-        date: date,
-        query: query,
-
-        # hierarchy: narrowed_hierarchy.hierarchy_hash
-      }
-    })
+    # search_path({
+    #   search: {
+    #     date: date,
+    #     query: query,
+    #     hierarchy: narrowed_hierarchy.hierarchy_hash
+    #   }
+    # })
   end
 
   def overflow_toggle_at_border?
@@ -114,17 +115,21 @@ class SuggestionsPresenter < ApplicationPresenter
 
   private
 
-  def describe_search_results(count)#, hierarchy = nil)
+  def narrowed_search_result
+    narrowed_search_result = narrowed_search_results.first #TODO: At some point we may want to change the logic here so multiple narrowed search results are presented in the UI, unlike ECFR 
+  end
+
+  def describe_search_results(count, custom_scope_description = nil)
     if !count || count < 1
       "<span class='no-results'>
         No results found, completing your word or phrase may improve results
       </span>".html_safe
     else
       count_description = (count >= 10_000) ? "10,000+" : number_with_delimiter(count)
-      # scope_description = hierarchy.present? ? hierarchy.citation : "the full text"
-      scope_description = "the full text"
 
-      "#{count_description} matching #{"result".pluralize(count)} in #{scope_description}"
+      scope_description = custom_scope_description || "in the full text"
+
+      "#{count_description} matching #{"result".pluralize(count)} #{scope_description}".html_safe
     end
   end
 end

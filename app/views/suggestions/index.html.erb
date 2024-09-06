@@ -3,7 +3,7 @@
     <table class="suggestions" data-autocomplete-target="results" data-suggestions-target="results">
       <% if @suggestions_presenter.search_results? %>
         <tr class="kind full-text"><td colspan="4">full text search results</td></tr>
-        <% if @suggestions_presenter.narrowed_search_results %>
+        <% if @suggestions_presenter.narrowed_search_results.present? %>
           <tr class="suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path %>" data-autocomplete-label="" data-kind="full text search">
             <td class="highlight" colspan="3">
               <%= @suggestions_presenter.narrowed_search_description %>

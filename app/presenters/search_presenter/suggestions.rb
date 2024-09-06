@@ -272,12 +272,11 @@ class SearchPresenter::Suggestions
       </p>
     TEXT
 
+    path = documents_search_path(conditions: suggestion.search_conditions)
     ContentNotification.new(
       text: text,
       link: h.link_to("View Results",
-        documents_search_path(
-          conditions: suggestion.search_conditions
-        ),
+        path,
         class: 'fr-ga-event',
         data: {
           event_name: 'fr_search_suggestion_click',
@@ -289,6 +288,7 @@ class SearchPresenter::Suggestions
           }.to_json
         }
       ),
+      path: path,
       type: :success,
       icon: 'search'
     )

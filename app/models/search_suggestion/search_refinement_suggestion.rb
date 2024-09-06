@@ -9,4 +9,9 @@ class SearchSuggestion::SearchRefinementSuggestion
     @count = options["count"]
     @search_summary = options["search_summary"]
   end
+
+  def omni_search_scope_description
+    search_summary
+  end
+
 end
