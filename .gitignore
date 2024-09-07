@@ -14,6 +14,8 @@ spec/rspec_example_status_persistence_file.txt
 spec/vcr/*.yml
 data/helveticons_svgs/*
 
+data/efs
+
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
