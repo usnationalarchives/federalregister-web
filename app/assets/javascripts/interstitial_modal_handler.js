@@ -70,13 +70,13 @@ FR2.InterstitialModalHandler = class InterstitialModalHandler {
     } else if (document.getElementById("addresses")) {
       window.location.href = '#addresses'
     } else {
-      window.location.href = '#further-info'
+      window.location.href = '#for-further-information-contact'
     }
   }
 
   _hasCommentInstructions() {
     let addresses = document.getElementById("addresses")
-    let furtherInfo = document.getElementById("further-info")
+    let furtherInfo = document.getElementById("for-further-information-contact")
 
     return addresses || furtherInfo
   }

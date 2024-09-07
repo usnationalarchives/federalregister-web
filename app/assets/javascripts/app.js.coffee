@@ -136,6 +136,7 @@ $(document).ready ()->
   if $("#fulltext_content_area").length > 0
     new FR2.FootnoteHandler
     new FR2.ContentCopyToClipboard
+    new FR2.ParagraphCitation $('#fulltext_content_area')
 
 
   ##############################

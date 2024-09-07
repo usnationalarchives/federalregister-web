@@ -12,13 +12,6 @@
 .fr-box-official .content-block {
   h3.cfr-subjects { margin-left: 25px; }
 
-  #addresses:target,
-  #dates:target {
-    animation: fade-target-highlight 4s;
-    border-bottom: 2px solid $color-enhanced;
-    border-top: 2px solid $color-enhanced;
-  }
-
   p {
     &.flush-paragraph {
       padding-bottom: 0;
@@ -53,21 +46,31 @@
     }
   }
 
-  h1, h2, h3, p {
+  div[id], h1, h2, h3, p {
     &:target,
     &.highlight {
       animation: fade-target-highlight 4s;
       border-bottom: 2px solid $color-enhanced;
       border-top: 2px solid $color-enhanced;
+      position: relative;
 
-      .icon-fr2-link {
+      .icon-fr2-link,
+      .svg-icon-link {
         bottom: 5px;
-        color: $color-enhanced;
         position: absolute;
         right: 5px;
       }
+
+      .icon-fr2-link { color: $color-enhanced; }
+
+      .svg-icon-link {
+        fill: $color-enhanced;
+        height: 18px;
+        width: 18px;
+      }
     }
   }
+
   h1, h2, h3 {
     &:target,
     &.highlight {

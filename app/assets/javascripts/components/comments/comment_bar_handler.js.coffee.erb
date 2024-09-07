@@ -32,8 +32,6 @@ class @FR2.CommentBarHandler
       () -> window.location.hash = location
     )
 
-    $(location).next().addClass('highlight')
-
   _enableCommentUtilityNavItemTogglingViaLink: ->
     $("#metadata_content_area").on( "click", ".deploy-comment-sidebar-js", (e) =>
       e.preventDefault()

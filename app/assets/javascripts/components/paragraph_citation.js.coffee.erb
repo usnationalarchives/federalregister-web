@@ -10,6 +10,7 @@
 class @FR2.ParagraphCitation
   constructor: (@contentArea)->
     @addEvents()
+    @handleTarget()
     @cb = new FR2.Clipboard
 
   addEvents: ->
@@ -17,8 +18,42 @@ class @FR2.ParagraphCitation
     @enterElement()
     @enterIcon()
     @leaveElement()
+    @hashChange()
 
     @clickIcon()
+
+  handleTarget: ->
+    # identify targets as appropriate
+    target = window.location.hash
+    targetsToSkip = ["#open-comment", "#page-"]
+
+    # add link icon and tooltip to paragraph targets
+    if target && !targetsToSkip.some((t) -> target.startsWith(t))
+      paragraphTarget = $(target)
+
+      # visually identify the cited paragraph
+      tooltipText = "The url for this page contains a paragraph citation. This is the paragraph that is cited."
+
+      linkIcon = $(
+        '<%= ApplicationController.helpers.svg_icon("link") %>'
+      )
+      linkIcon.data('tooltip', tooltipText)
+
+      paragraphTarget.append linkIcon
+
+      CJ.Tooltip.addFancyTooltip linkIcon,
+        { className: 'dynamic-citation-tooltip'},
+        {
+          horizontalOffset: -5
+          position: 'centerTop'
+          verticalOffset: -12
+        }
+
+    # add highlight to print page targets
+    if target && target.startsWith("#page-")
+      tooltipText = "The url for this page contains a page citation. This is the page that is cited."
+      printPageElements = new FR2.PrintPageElements
+      printPageElements.highlightPageTargets(target, tooltipText)
 
   citationTargetEls: ->
     '*[id^=p-]'
@@ -78,7 +113,6 @@ class @FR2.ParagraphCitation
         @moveIconTo(paragraph)
         @icon().show()
 
-
   enterIcon: ->
     @contentArea.on 'mouseenter tap', '.citation-target-icon', =>
       # get reference
@@ -112,6 +146,11 @@ class @FR2.ParagraphCitation
 
       # remove the class that is designating interaction
       el.removeClass('citation-hover-present')
+
+  hashChange: ->
+    window.addEventListener("hashchange", (event) =>
+      @handleTarget()
+    )
 
   clickIcon: ->
     @contentArea.on 'click tap', '.citation-target-icon', =>

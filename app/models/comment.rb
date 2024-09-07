@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   MAX_ATTACHMENTS = 20
 
   AGENCY_POSTING_GUIDELINES_LEXICON = {
-    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#further-info\'>FOR FURTHER INFORMATION CONTACT</a>",
+    'FOR FURTHER INFORMATION CONTACT' => "<a href=\'#for-further-information-contact\'>FOR FURTHER INFORMATION CONTACT</a>",
     'ADDRESSES' => "<a href=\'#addresses\'>ADDRESSES</a>",
   }
 

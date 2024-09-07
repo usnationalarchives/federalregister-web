@@ -80,7 +80,7 @@ $(document).ready ->
     commentButton = $('#start_comment')
     if commentButton.length > 0 && !$('#comment-bar').data('reggov-comment-url')
       if $('#addresses').length == 0
-        if $('#further-info').length == 0
+        if $('#for-further-information-contact').length == 0
           commentButton.remove()
         else
-          commentButton.attr('href', '#further-info')
+          commentButton.attr('href', '#for-further-information-contact')
