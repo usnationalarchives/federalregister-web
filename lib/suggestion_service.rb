@@ -88,7 +88,7 @@ class SuggestionService
   end
 
   class FrSearchSuggestion < OpenStruct
-
+    attr_reader :type
 
     def method_missing(method_name, *args, &block)
       # eg flag method call errors
@@ -191,6 +191,28 @@ class SuggestionService
           # hidden: false
         )
       end
+
+      end.tap do |results|
+        fr_autocomplete_suggestions.each do |autocomplete_suggestion|
+          results << FrSearchSuggestion.new(
+            type: 'autocomplete',
+            highlight: autocomplete_suggestion.search_term_completion,
+            citation: autocomplete_suggestion.document_number, #TODO: Potentially provide citation via ES
+            row_classes: ["suggestion"],
+            toc_suffix: nil,
+            usable_highlight: false,
+            path: "/d/#{autocomplete_suggestion.document_number}",
+            icon: 'baz',
+            fr_icon_class: "todo icon class",
+            usable_highlight: '',
+            kind: :total_search_results,
+            removed: false,
+            prefer_content_path: "/d/#{autocomplete_suggestion.document_number}",
+            reserved?: false,
+            search_suggestion?: true
+            # hidden: false
+          )
+      end
     end
 
     # ContentVersion.suggestions(
@@ -200,6 +222,10 @@ class SuggestionService
   memoize :search_suggestions
 
   private
+
+  def fr_autocomplete_suggestions
+    AutocompleteSuggestion.suggestions(query)
+  end
 
   def test_fr_search_suggestions
     # cache_for 1.day
