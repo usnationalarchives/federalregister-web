@@ -122,7 +122,8 @@ class SuggestionsPresenter < ApplicationPresenter
         No results found, completing your word or phrase may improve results
       </span>".html_safe
     else
-      count_description = (count >= 10_000) ? "10,000+" : number_with_delimiter(count)
+      # count_description = (count >= 10_000) ? "10,000+" : number_with_delimiter(count)
+      count_description = number_with_delimiter(count)
 
       scope_description = custom_scope_description || "in the full text"
 
