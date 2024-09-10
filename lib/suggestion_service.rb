@@ -115,7 +115,7 @@ class SuggestionService
               toc_suffix: nil,
               usable_highlight: false,
               icon: 'baz',
-              fr_icon_class: "", # TODO: Find historical issue icon
+              fr_icon_class: "icon-fr2 icon-doctype icon-fr2-doc-pdf",
               usable_highlight: '',
               kind: :total_search_results,
               removed: false,
@@ -203,7 +203,7 @@ class SuggestionService
             usable_highlight: false,
             path: "/d/#{autocomplete_suggestion.document_number}",
             icon: 'baz',
-            fr_icon_class: "todo icon class",
+            fr_icon_class: autocomplete_suggestion.icon,
             usable_highlight: '',
             kind: :total_search_results,
             removed: false,
