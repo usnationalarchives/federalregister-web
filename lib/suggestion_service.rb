@@ -230,6 +230,8 @@ class SuggestionService
   private
 
   def fr_autocomplete_suggestions
+    return [] unless Settings.feature_flags.omni_autocomplete
+
     AutocompleteSuggestion.suggestions(query)
   end
 

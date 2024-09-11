@@ -68,6 +68,7 @@ database:
 feature_flags:
   # TODO: refactor announcements to not need feature flag
   announcements: false
+  omni_autocomplete: false
   store_commenting_metadata_without_ip: true
   display_search_type_options: false
   display_sorn_search: true
