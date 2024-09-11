@@ -3,10 +3,10 @@
     <table class="suggestions" data-autocomplete-target="results" data-suggestions-target="results">
       <% if @suggestions_presenter.search_results? %>
         <tr class="kind full-text"><td colspan="4">full text search results</td></tr>
-        <% if @suggestions_presenter.global_search_results %>
-          <tr class="suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.global_search_path %>" data-autocomplete-label="" data-kind="full text search">
+        <% @suggestions_presenter.narrowed_search_results.each do |narrowed_search_result| %>
+          <tr class="suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search">
             <td class="highlight" colspan="3">
-              <%= @suggestions_presenter.global_search_description %>
+              <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
             </td>
             <td>
               <%= fr_icon("filter")%>
@@ -14,10 +14,10 @@
             </td>
           </tr>
         <% end %>
-        <% @suggestions_presenter.narrowed_search_results.each do |narrowed_search_result| %>
-          <tr class="suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search">
+        <% if @suggestions_presenter.global_search_results %>
+          <tr class="suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.global_search_path %>" data-autocomplete-label="" data-kind="full text search">
             <td class="highlight" colspan="3">
-              <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
+              <%= @suggestions_presenter.global_search_description %>
             </td>
             <td>
               <%= fr_icon("filter")%>

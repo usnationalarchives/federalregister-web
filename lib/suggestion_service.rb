@@ -67,7 +67,13 @@ class SuggestionService
     return [] unless search_details.present? &&
       search_details.suggestions.present?
 
-    search_details.suggestions
+    search_details.
+      suggestions.
+      sort_by do |suggestion|
+        SearchPresenter::Suggestions::SUGGESTIONS_ORDER.index(
+          suggestion.class.name.demodulize.snakecase
+        )
+      end
   end
   memoize :fr_search_suggestions
 
