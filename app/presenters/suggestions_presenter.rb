@@ -127,7 +127,8 @@ class SuggestionsPresenter < ApplicationPresenter
 
       scope_description = custom_scope_description || "in the full text"
 
-      "#{count_description} matching #{"result".pluralize(count)} #{scope_description}".html_safe
+      # "#{count_description} matching #{"result".pluralize(count)} #{scope_description}".html_safe
+      "#{count_description} matching #{"document".pluralize(count)} #{scope_description}".html_safe
     end
   end
 end

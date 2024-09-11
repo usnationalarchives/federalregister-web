@@ -197,7 +197,7 @@ class SuggestionService
           results << FrSearchSuggestion.new(
             type: 'autocomplete',
             highlight: autocomplete_suggestion.search_term_completion,
-            citation: autocomplete_suggestion.document_number, #TODO: Potentially provide citation via ES
+            citation: "FR Doc. #{autocomplete_suggestion.document_number}",
             row_classes: ["suggestion"],
             toc_suffix: nil,
             usable_highlight: false,
