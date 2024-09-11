@@ -11,4 +11,9 @@ class SearchSuggestion::PublicInspectionSuggestion
   def  omni_search_scope_description
     "scheduled for publication on Public Inspection that match your search"
   end
+
+  def icon_name
+    "clipboards"
+  end
+
 end

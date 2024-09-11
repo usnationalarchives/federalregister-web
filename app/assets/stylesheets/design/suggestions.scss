@@ -63,7 +63,7 @@ $reserved-gray: $gray-30;
       background: $white;
     }
 
-    .icon-ecfr-search:before {
+    .icon-ecfr-search:before, .icon-fr2:before {
       vertical-align: middle;
     }
 
@@ -125,8 +125,9 @@ table.suggestions {
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      .icon-ecfr {
+      .icon-ecfr, .icon-fr2 {
         color: $gray-20;
+        font-size: 26px;
       }
     }
 
@@ -187,7 +188,7 @@ table.suggestions {
     .toc {
       font-size: modular-scale(0);
 
-      .icon-ecfr {
+      .icon-ecfr, .icon-fr2 {
         color: inherit;
       }
     }

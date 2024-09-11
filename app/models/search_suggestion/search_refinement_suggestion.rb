@@ -14,4 +14,8 @@ class SearchSuggestion::SearchRefinementSuggestion
     search_summary
   end
 
+  def icon_name
+    "Search"
+  end
+
 end

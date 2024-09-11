@@ -9,7 +9,7 @@
               <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
             </td>
             <td>
-              <%= fr_icon("filter")%>
+              <%= fr_icon(narrowed_search_result.icon_name) %>
               <%# <span class="icon-ecfr icon-ecfr-search"></span> %>
             </td>
           </tr>
