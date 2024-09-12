@@ -14,7 +14,7 @@
       <% pdf_url = document.public_inspection_document? ?
         document.pdf_url : document.public_inspection_pdf_url %>
       <p>
-        This <%= link_to 'PDF', pdf_url, target: "_blank" %> is the current
+        This <%= link_to 'PDF', pdf_url, target: "_blank", class: "pi_warning" %> is the current
         document as it appeared on Public Inspection on
         <%= document.public_inspection_document.filed_at %>.
       </p>
