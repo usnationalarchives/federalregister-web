@@ -48,10 +48,6 @@ class SuggestionsPresenter < ApplicationPresenter
       false
     end
 
-    def highlight_colspan
-      2
-    end
-
     def highlighted_citation
       "10 CFR Part 26 Subpart E"
     end

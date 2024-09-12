@@ -1,0 +1,17 @@
+#suggestions .input-group-lg {
+  display: grid;
+  grid-template-columns: 11fr 1fr;
+  grid-column-gap: 10px;
+
+  @media only screen and (max-width: $small-viewport-width) {
+    grid-template-columns: 10fr 2fr;
+  }
+
+  @media only screen and (min-width: $small-viewport-width) {
+    grid-template-columns: 11fr 1fr;
+  }
+
+  span.icon-fr2-Search {
+    font-size: 24px;
+  }
+}

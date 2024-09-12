@@ -71,10 +71,6 @@ class SuggestionDecorator < ApplicationDecorator
     # hierarchy.supports_toc?
   end
 
-  def highlight_colspan
-    display_toc_link? ? 1 : 2
-  end
-
   def usable_highlight
     highlight = object.highlight || guess_highlight
 

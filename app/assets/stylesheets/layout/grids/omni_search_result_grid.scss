@@ -1,0 +1,70 @@
+#suggestions table.suggestions {
+    width: 100%;
+
+    tr {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-color: lightgray;
+
+      td {
+        border: none;
+        height: auto;
+        @media only screen and (max-width: $small-viewport-width) {
+          font-size: 16px;
+        }
+      }
+
+      td.highlight {max-width: none !important}
+
+      &.kind {
+        td:nth-child(1) {
+          margin-top: 4px;
+          grid-column: span 12;
+          border: none;
+        }
+      }
+
+      @media only screen and (max-width: $small-viewport-width) {
+        td { white-space: normal; }
+
+        &.full-text-suggestion {
+          td:nth-child(1) {
+            grid-column: span 12;
+            padding-left: 0px;
+            padding-right: 0px;
+          }
+        }
+
+        &.citations-and-headings {
+          td:nth-child(2) {
+            grid-column: span 12;
+            padding-left: 0px;
+            padding-right: 0px;
+          }
+        }
+      }
+
+
+      @media only screen and (min-width: $small-viewport-width) {
+
+        &.full-text-suggestion {
+          td:nth-child(1) { grid-column: span 11;}
+          td:nth-child(2) {
+            grid-column: span 1;
+            justify-self: end;
+          }
+        }
+
+        &.citations-and-headings {
+          td:nth-child(1) { grid-column: span 2;}
+          td:nth-child(2) { grid-column: span 9;}
+          td:nth-child(3) {
+            grid-column: span 1;
+            justify-self: end;
+          }
+        }
+
+      }
+    }
+
+  }
