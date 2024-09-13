@@ -2,6 +2,7 @@
   <div class="results">
     <table class="suggestions" data-autocomplete-target="results" data-suggestions-target="results">
       <% if @suggestions_presenter.search_results? %>
+        <tbody>
         <tr class="kind"><td>full text search results</td></tr>
         <% @suggestions_presenter.narrowed_search_results.each do |narrowed_search_result| %>
           <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search">
@@ -24,10 +25,12 @@
               <%# <span class="icon-ecfr icon-ecfr-search"></span> %>
             </td>
           </tr>
+          </tbody>
         <% end %>
       <% end %>
 
       <% overflow_toggle_shown = false %>
+      <tbody>
       <% @suggestions_presenter.results&.each_with_index do |suggestion, index| %>
         <% if index == 0 %>
           <tr class="kind"><td>suggestions</td></tr>
@@ -76,6 +79,7 @@
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
   </div>
 <% else %>

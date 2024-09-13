@@ -1,5 +1,7 @@
 // NOTE: These overrides were applied on top of the omni-search CSS ported from ECFR
 #suggestions {
+  $omnisearch-border-radius: 7px;
+
   // These adjustments were neeeded to ensure the background blur is applied to all elements and the omni search is visible in the foreground for FR
   position: fixed;
   left: 0%;
@@ -26,6 +28,8 @@
   }
 
   #suggestion_query {
+    border-top-left-radius: $omnisearch-border-radius;
+    border-bottom-left-radius: $omnisearch-border-radius;
     width: 100%;
     height: 46px;
     font-size: 20px;
@@ -41,6 +45,21 @@
     button {
       height: 51px;
       width: 100%;
+      border-top-right-radius: $omnisearch-border-radius;
+      border-bottom-right-radius: $omnisearch-border-radius;
+    }
+
+  }
+
+  tbody {
+    tr:nth-child(2) {
+      border-top-left-radius: $omnisearch-border-radius;
+      border-top-right-radius: $omnisearch-border-radius;
+    }
+
+    tr:last-of-type {
+      border-bottom-left-radius: $omnisearch-border-radius;
+      border-bottom-right-radius: $omnisearch-border-radius;
     }
   }
   
