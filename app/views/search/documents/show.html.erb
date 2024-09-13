@@ -34,60 +34,6 @@
 <% end %>
 
 <%= bootstrap_context_wrapper do %>
-
-  <div class='row'>
-    <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
-      <%= render partial: 'shared/suggestions_placeholder', locals: {
-        current: true, date: nil
-      } %>
-    </div>
-  </div>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-
-  <% if false #testing stimulus %>
-    <div data-controller="hello">
-      <p data-hello-target="output">Waiting for Stimulus...</p>
-      <button data-action="click->hello#greet">Click me</button>
-    </div>
-  <% end %>
-
-  <%# Fix form submission stub %>
-  <% if false %>
-    <div data-controller="autocomplete suggestions" data-autocomplete-url-value="/suggestions" data-autocomplete-delay-value="300" class="go-to-cfr-reference" id="suggestions">
-      <%= simple_form_for :cfr, url: root_path, method: :get,
-        html: {
-          class: 'go-to-cfr-reference',
-          'data-target': 'suggestions.form'
-        } do |f| %>
-        <%= f.hidden_field :date, label: false, value: (true ? 'current' : date) %><%#= TODO: Likely remove this and the true stub %>
-        <%= f.input :reference, required: false,
-          label: 'Go to CFR Reference',
-          input_html: {
-            class: 'reference',
-            'data-autocomplete-target': 'input'
-          },
-          wrapper: false,
-          placeholder: 'ex: 1 CFR 1.1' %>
-
-        <input type="hidden" name="suggestion_id" data-autocomplete-target="hidden"/>
-        <%= button_tag 'Go', class: 'btn btn-optional btn-medium', wrapper: false, "data-action" => "click->suggestions#search" %>
-        <ul class="suggestions" data-autocomplete-target="results"></ul>
-      <% end %>
-    </div>
-  <% end %>
-
-
-
-
   <div class="document-search search">
     <div id="search-result-header">
       <%= render partial: 'header', locals: {
