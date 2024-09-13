@@ -1,11 +1,21 @@
 // NOTE: These overrides were applied on top of the omni-search CSS ported from ECFR
 #suggestions {
-  // These adjustments were neeeded to ensure the background blur is applied to all elements and the omni search is visible in the foreground
+  // These adjustments were neeeded to ensure the background blur is applied to all elements and the omni search is visible in the foreground for FR
   position: fixed;
   left: 0%;
   right: 0%;
   z-index: 1200;
 
+  .content {
+    // Create additional space between sample bubbles 
+    .panel-heading {
+      p { line-height: 1.6 !important;
+      
+      font-weight: normal !important;
+      }
+      // font-weight: auto !important;
+    }
+  }
 
   .icon-fr2-badge_x {
     float: right;

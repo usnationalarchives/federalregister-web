@@ -9,7 +9,7 @@ class SearchSuggestion::PublicInspectionSuggestion
   end
 
   def  omni_search_scope_description
-    "scheduled for publication on Public Inspection that match your search"
+    "scheduled for publication on Public Inspection"
   end
 
   def icon_name
