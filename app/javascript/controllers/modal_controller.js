@@ -13,6 +13,10 @@ export default class extends Controller {
   close() {
     this.element.classList.add('hidden')
   }
+
+  forceClose(event) {
+    this.close()
+  }
   
   escClose(event) {
     if (event.key === 'Escape') this.close()
