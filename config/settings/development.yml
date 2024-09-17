@@ -5,12 +5,17 @@ active_model_serializers:
 app:
   # document page full text rendering
   document_render:
-    # should we get precompiled content from remote (eg in development)
-    from_remote: true
     # should we render content from local XML (eg xslt development)
     from_raw_xml: false
+    # should we render content from remote XML (eg xslt development)
+    from_remote_raw_xml: false
+    # should we get precompiled content from remote (eg in development)
+    from_remote: true
   # default to not requiring varnish in development
   expire_varnish: false
+  slack:
+    notifications:
+      enabled: false
   subscriptions:
     deliver: false
     deliver_pil: false

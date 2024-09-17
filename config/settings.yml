@@ -38,6 +38,9 @@ app:
     display: true
     search_filter:
       display: false
+  slack:
+    notifications:
+      enabled: true
   subscriptions:
     deliver: true
     deliver_pil: true

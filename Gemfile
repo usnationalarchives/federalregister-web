@@ -161,6 +161,9 @@ gem 'sendgrid'
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-throttled"
 
+# send messages to slack
+gem "slack-notifier"
+
 # Sprockets 4 ES6 Support
 gem "terser"
 

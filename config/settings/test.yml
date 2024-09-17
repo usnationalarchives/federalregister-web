@@ -1,3 +1,8 @@
+app:
+  slack:
+    notifications:
+      enabled: false
+
 container:
   role: worker
 
