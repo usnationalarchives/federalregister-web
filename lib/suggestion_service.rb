@@ -132,14 +132,14 @@ class SuggestionService
 
             if archives_citation.issue_slice_url
               results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
-                highlight: "Historical issue document PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                highlight: "Digitized document PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
                 path: archives_citation.issue_slice_url,
                 prefer_content_path: archives_citation.issue_slice_url
               ))
             end
 
             results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
-              highlight: "Full historical issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
+              highlight: "Digitized full issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
               path: archives_citation.gpo_url,
               prefer_content_path: archives_citation.gpo_url
             ))
