@@ -12,10 +12,12 @@
         class: 'documents'
       } do |f| %>
 
-      <div id="search-input">
+      <div id="search-input" data-controller="placeholder">
         <%= f.text_field :term,
           class: 'search-term',
-          placeholder: t('search.placeholder') %>
+          placeholder: t('search.placeholder'),
+          data: {action: "click->placeholder#suggestions"}
+          %>
 
         <%= f.button fr_icon('Search').html_safe,
           class: 'search-submit',
@@ -27,20 +29,6 @@
         <span class="document-count"></span>
         <span class="loader"></span>
       </span>
-
-      <div id="doc-type-filter" class="doc-type-filter">
-        <ul>
-          <%  DocumentType.document_types_for_search.each do |doc_type| %>
-            <li class="doc_<%= doc_type.identifier %>"
-              data-filter-doc-type="<%= doc_type.identifier %>"
-              data-filter-doc-type-display="<%= doc_type.display_type %>"
-              original-title="">
-                <div aria-hidden="true"
-                  class="icon-fr2 icon-fr2-<%= doc_type.identifier %>"></div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
 
       <ul>
         <li class="check_boxes optional" id="conditions_type_input">
