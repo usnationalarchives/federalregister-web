@@ -17,6 +17,10 @@
       td.highlight {max-width: none !important}
 
       &.kind {
+        td {
+          font-size: 18px;
+        }
+
         td:nth-child(1) {
           margin-top: 4px;
           grid-column: span 12;
