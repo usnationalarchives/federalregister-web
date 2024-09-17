@@ -25,15 +25,24 @@ $reserved-gray: $gray-30;
 
     .example {
       background-color: darken($suggestion-content-bg-color, 10);
+      border-radius: 22px;
       color: $suggestion-content-color;
+      cursor: pointer;
       font-size: modular-scale(-1);
-      padding: 3px 20px;
+      font-weight: normal;
       margin-bottom: 0.1em;
       margin-right: 0.5em;
-      font-weight: normal;
-      cursor: pointer;
-    }
+      white-space: nowrap;
 
+      @media only screen and (max-width: $small-viewport-width) {
+        padding: 3px 11px;
+      }
+
+      @media only screen and (min-width: $small-viewport-width) {
+        padding: 3px 20px;
+      }
+    }
+  
     .suggestion-header-example {
       color: $suggestion-result-kind-color;
       font-variant: small-caps;
@@ -271,4 +280,5 @@ table.suggestions {
     padding-left: 0;
     padding-right: 0;
   }
+
 }
