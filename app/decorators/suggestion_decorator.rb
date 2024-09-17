@@ -71,8 +71,9 @@ class SuggestionDecorator < ApplicationDecorator
     # hierarchy.supports_toc?
   end
 
+  MAX_CHARACTERS = 155
   def usable_highlight
-    highlight = object.highlight || guess_highlight
+    highlight = (object.highlight || guess_highlight).truncate(MAX_CHARACTERS, separator: " ")
 
     return unless highlight.present?
     return highlight if highlight.include?("<mark>") || !@context[:query].present?
