@@ -2,6 +2,12 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fr="http://federalregister.gov/functions" extension-element-prefixes="fr">
 
   <xsl:template name="document_headings" match="AGENCY">
+    <!-- only a few known instances of these print page inside the agency header
+      (essentially the beginning of the document) and we want them to appear
+      outside the document headings box - see C2-3011, 05-8393, Z6-18150 -->
+    <xsl:apply-templates select="./PRTPAGE"/>
+
+    <!-- create the document heading wrapper if this is the first AGENCY tag -->
     <xsl:if test="count(preceding-sibling::*[self::AGENCY]) = 0">
       <div class="document-headings">
         <div class="fr-box fr-box-published-alt no-footer">
@@ -52,25 +58,46 @@
   </xsl:template>
 
   <xsl:template mode="document_headings" match="AGENCY">
-    <xsl:variable name="agencyNodeID" select="generate-id(.)"/>
+    <!-- proceed if the agency header has content or
+      is followed by a SUBAGY tag with content -->
+    <xsl:if test="(string-length(text()) &gt; 0)
+      or (
+        (count(following-sibling::*[1][self::SUBAGY]) &gt; 0)
+        and (
+          string-length(
+            following-sibling::*[1][self::SUBAGY]/text()
+          ) &gt; 0
+        )
+      )">
+      <xsl:variable name="agencyNodeID" select="generate-id(.)"/>
 
-    <h6 class="agency">
-      <xsl:copy-of select="fr:capitalize_most_words(text())"/>
-    </h6>
+      <!-- only output the AGY tag if it has content -->
+      <xsl:if test="string-length(text()) &gt; 0">
+        <h6 class="agency">
+          <xsl:copy-of select="fr:capitalize_most_words(text(), $document_number, $publication_date)"/>
+        </h6>
+      </xsl:if>
 
-    <!-- select the following SUBAGY tags whose preceeding sibling AGENCY tag
-      is the same as the one we're currently processing -->
-    <xsl:for-each select="following-sibling::*[self::SUBAGY][generate-id(preceding-sibling::AGENCY[1]) = $agencyNodeID]">
-      <xsl:apply-templates select="." mode="document_headings"/>
-    </xsl:for-each>
 
-    <ol>
-      <!-- select the following CFR, DEPDOC, RIN, tags whose preceeding sibling
-        AGENCY tag is the same as the one we're currently processing -->
-      <xsl:for-each select="following-sibling::*[self::CFR|self::DEPDOC|self::RIN][generate-id(preceding-sibling::AGENCY[1]) = $agencyNodeID]">
+      <!-- select the following SUBAGY tags whose preceeding sibling AGENCY tag
+        is the same as the one we're currently processing -->
+      <xsl:for-each select="following-sibling::*[self::SUBAGY][generate-id(preceding-sibling::AGENCY[1]) = $agencyNodeID]">
         <xsl:apply-templates select="." mode="document_headings"/>
       </xsl:for-each>
-    </ol>
+
+      <!-- only output the ol tag if it will have content -->
+      <xsl:if test="count(
+        following-sibling::*[self::CFR|self::DEPDOC|self::RIN][generate-id(preceding-sibling::AGENCY[1]) = $agencyNodeID]
+      ) &gt; 0">
+        <ol>
+          <!-- select the following CFR, DEPDOC, RIN, tags whose preceeding sibling
+            AGENCY tag is the same as the one we're currently processing -->
+          <xsl:for-each select="following-sibling::*[self::CFR|self::DEPDOC|self::RIN][generate-id(preceding-sibling::AGENCY[1]) = $agencyNodeID]">
+            <xsl:apply-templates select="." mode="document_headings"/>
+          </xsl:for-each>
+        </ol>
+       </xsl:if>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template mode="document_headings" match="SUBAGY">

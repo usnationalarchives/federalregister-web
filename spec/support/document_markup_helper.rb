@@ -41,11 +41,24 @@ module DocumentMarkupHelper
               </div>
             </div>
           </div>
-          <div class="content-block ">
-            #{yield}
-          </div>
+          <div class="content-block ">#{yield if block_given?}</div>
         </div>
       </div>
+    HTML
+  end
+
+  def print_page_markup(page_number=1000)
+    <<~HTML
+      <span class="printed-page-inline unprinted-element document-markup" data-page="#{page_number}">
+        (<svg class="svg-icon svg-icon-doc-generic">
+          <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
+        </svg> print page #{page_number})
+      </span>
+      <span class="printed-page-details unprinted-element document-markup" id="page-#{page_number}" data-page="#{page_number}">
+        <svg class="svg-icon svg-icon-doc-generic">
+          <use xlink:href="/assets/fr-icons.svg#doc-generic"></use>
+        </svg>
+      </span>
     HTML
   end
 end

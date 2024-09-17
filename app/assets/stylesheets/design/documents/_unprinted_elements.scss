@@ -210,6 +210,11 @@ div.preamble {
   }
 }
 
+.document-headings .printed-page-details {
+  left: -50px;
+  padding-top: 0;
+}
+
 @media only screen and (max-width: $small-viewport-width) {
   .printed-page-details .page-menu {
     dl { margin-bottom: 0; }

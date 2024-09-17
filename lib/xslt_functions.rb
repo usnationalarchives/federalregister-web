@@ -1,5 +1,6 @@
 class XsltFunctions
   include GpoImages::ImageIdentifierNormalizer
+  include ::SlackHelper
 
   # GPO will occassionally include multiple footnotes in a single node
   # we need to break them out in order to link them properly.
@@ -135,8 +136,21 @@ class XsltFunctions
     document.children
   end
 
-  def capitalize_most_words(nodes)
-    nodes.first.content.downcase.capitalize_most_words
+  def capitalize_most_words(nodes, document_number, publication_date)
+    # sometimes nodes are empty even when we don't expect they should be
+    # usually due to mis-tagging during editorial process
+    text = nodes.inject(""){|s,n| s << n.content}.strip
+
+    if text.blank?
+      notify_slack!(
+        message: "Empty text node when attempting to capitalize - #{document_number} on #{publication_date}",
+        username: "XSLT Compilation"
+      )
+
+      return text
+    end
+
+    text.downcase.capitalize_most_words
   end
 
   def svg_icon(icon)

@@ -39,7 +39,7 @@
 
   <xsl:template match="HD" mode="notes">
     <h4 class="inline-header">
-      <xsl:copy-of select="fr:capitalize_most_words(text())"/>
+      <xsl:copy-of select="fr:capitalize_most_words(text(), $document_number, $publication_date)"/>
     </h4>
   </xsl:template>
 

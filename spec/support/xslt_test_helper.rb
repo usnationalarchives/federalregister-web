@@ -1,6 +1,7 @@
 module XsltTestHelper
   require 'nokogiri'
   require 'gpo_images/image_identifier_normalizer'
+  require_relative '../../app/helpers/slack_helper'
   require 'xslt_functions'
   require 'xslt_transform'
   require 'action_controller'

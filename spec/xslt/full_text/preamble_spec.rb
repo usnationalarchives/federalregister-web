@@ -222,7 +222,6 @@ describe "XSLT::Preamble" do
           #{document_heading_wrapper do
           <<-HTML
             <h6 class="agency">Federal Election Commission</h6>
-            <ol></ol>
           HTML
           end}
           <div id="time-and-date">
