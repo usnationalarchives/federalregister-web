@@ -88,6 +88,11 @@
       top: 9em;
       margin: 30px auto;
     }
+
+    .suggestion {
+      // NOTE: This is an override of padding specified in suggestions.scss
+      padding: 1px 16px;
+    }
   }
 
 }
