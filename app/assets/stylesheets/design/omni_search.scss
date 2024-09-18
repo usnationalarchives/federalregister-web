@@ -30,10 +30,10 @@
   #suggestion_query {
     border-top-left-radius: $omnisearch-border-radius;
     border-bottom-left-radius: $omnisearch-border-radius;
-    width: 100%;
+    width: calc(100% - 14px);
     height: 46px;
     font-size: 20px;
-    padding-left: 10px;
+    padding-left: 7px;
   }
 
   .citation {
