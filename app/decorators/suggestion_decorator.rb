@@ -16,6 +16,8 @@ class SuggestionDecorator < ApplicationDecorator
   end
 
   def highlighted_citation
+    return citation unless highlighting_enabled?
+
     return h.highlight(citation, citation) if supports_simple_highlight?
 
     terms = [@context[:query]]
@@ -76,6 +78,7 @@ class SuggestionDecorator < ApplicationDecorator
     highlight = (object.highlight || guess_highlight).truncate(MAX_CHARACTERS, separator: " ")
 
     return unless highlight.present?
+    return highlight unless highlighting_enabled?
     return highlight if highlight.include?("<mark>") || !@context[:query].present?
 
     h.highlight(
@@ -85,6 +88,10 @@ class SuggestionDecorator < ApplicationDecorator
   end
 
   private
+
+  def highlighting_enabled?
+    Settings.feature_flags.omni_autocomplete #NOTE: Whenever we re-enable omni autocomplete, re-enable highlights elsewhere automatically since we'll likely need to revisit the UI
+  end
 
   def guess_highlight
     return nil unless object.type == "cfr_reference"
