@@ -25,7 +25,7 @@ module DocumentDecorator::Officialness
   end
 
   def fr_content_box_options
-    options = {}
+    options = {title: "Published Document: #{document_number} (#{citation})"}
     unless pdf_available?
       options.merge!(
         description: I18n.t('fr_box.description.published_document_no_pdf')
