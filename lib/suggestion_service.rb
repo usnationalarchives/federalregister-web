@@ -124,9 +124,10 @@ class SuggestionService
               fr_icon_class: "icon-fr2 icon-doctype icon-fr2-doc-pdf",
               usable_highlight: '',
               kind: :total_search_results,
+              page_range: nil,
               removed: false,
               reserved?: false,
-              search_suggestion?: true
+              search_suggestion?: true,
               # hidden: false
             }
 
@@ -169,6 +170,7 @@ class SuggestionService
             usable_highlight: '',
             kind: :total_search_results,
             removed: false,
+            page_range: doc.page_range,
             prefer_content_path: path,
             reserved?: false,
             search_suggestion?: true
@@ -185,6 +187,7 @@ class SuggestionService
           row_classes: ["suggestion"],
           toc_suffix: nil,
           usable_highlight: false,
+          page_range: doc.page_range,
           path: path,
           icon: 'baz',
           fr_icon_class: doc.document_type.icon_class,

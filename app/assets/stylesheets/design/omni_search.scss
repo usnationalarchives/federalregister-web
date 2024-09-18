@@ -39,6 +39,11 @@
   .citation {
     font-weight: bold;
     color: $suggestion-item-active-color;
+
+    .page-range {
+      color: $gray-30;
+      font-size: 14px;
+    }
   }
 
   .panel-heading {
@@ -78,6 +83,10 @@
       .panel {
         margin-bottom: 0px;
       }
+    }
+
+    .page-range {
+      padding-left: 10px;
     }
   }
 

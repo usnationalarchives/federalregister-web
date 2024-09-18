@@ -49,6 +49,11 @@
             <% end %>
 
             <%= suggestion.highlighted_citation %>
+            <% if suggestion.page_range.present? %>
+              <div class="page-range">
+                <%= "pp. #{suggestion.page_range}" %>
+              </div>
+            <% end %>
 
             <% if suggestion.removed %>
               </span>
@@ -56,8 +61,13 @@
           </td>
 
           <td class="highlight">
-            <div class="mobile-only">
+            <div class="mobile-only citation">
               <%= suggestion.highlighted_citation %>
+              <% if suggestion.page_range.present? %>
+                <span class="page-range">
+                  <%= "pp. #{suggestion.page_range}" %>
+                </span>
+              <% end %>
             </div>
             <% if suggestion.usable_highlight.present? %>
               <% if suggestion.removed %>
