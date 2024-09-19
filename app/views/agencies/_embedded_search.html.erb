@@ -36,46 +36,5 @@
       <span class="loader"></span>
     </span>
 
-    <% unless false # RW: agency == AgencyName.find_by_name!("Executive Office of the President").agency %>
-      <div id="doc-type-filter" class="doc-type-filter">
-        <ul>
-          <%  DocumentType.document_types_for_search.
-              reject{|dt| dt.identifier == "presidential_document"}.
-              each do |doc_type| %>
-            <li class="doc_<%= doc_type.identifier %>"
-              data-filter-doc-type="<%= doc_type.identifier %>"
-              data-filter-doc-type-display="<%= doc_type.display_type %>"
-              original-title="">
-                <div aria-hidden="true"
-                  class="icon-fr2 icon-fr2-<%= doc_type.identifier %>"></div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-
-      <li class="check_boxes optional" id="conditions_type_input">
-        <fieldset>
-          <legend class="label">
-            <label for="conditions_type">Document Category</label>
-          </legend>
-
-          <ol>
-            <%  DocumentType.document_types_for_search.
-                reject{|dt| dt.identifier == "presidential_document"}.
-                each do |doc_type| %>
-              <li>
-                <label for="conditions_type_<%= doc_type.identifier %>">
-                  <input name="conditions[type][]" type="hidden" value="">
-                  <input id="conditions_type_<%= doc_type.identifier %>"
-                    name="conditions[type][]"
-                    type="checkbox" value="<%= doc_type.granule_class %>">
-                  <%= doc_type.display_type %>
-                </label>
-              </li>
-            <% end %>
-          </ol>
-        </fieldset>
-      </li>
-    <% end %>
   <% end %>
 </div>
