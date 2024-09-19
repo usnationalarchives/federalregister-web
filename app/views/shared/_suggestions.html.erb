@@ -67,6 +67,11 @@
                 'turbo': false
               }
             } do |f| %>
+            <% if local_assigns[:agency] %>
+              <%= f.hidden_field "agencies[]",
+                value: agency.slug,
+                "data-param": "agencies[]" %>
+            <% end %>
             <%#= f.hidden_field :date,
               value: (current ? 'current' : date),
               "data-param": "date" %>
@@ -121,6 +126,7 @@
         "data-autocomplete-target" => "hidden" %>
 
       <div class="input-group input-group-lg">
+      <% if false %>
         <input type="text" class="form-control string optional"
           data-action="focus->suggestions#modal"
           placeholder="Enter a search term or CFR reference (eg. fishing or 1 CFR 1.1)"
@@ -137,6 +143,7 @@
               <%#= ecfr_icon('search') %>
           </button>
         </span>
+      <% end %>
       </div>
     <% end %>
   </div>

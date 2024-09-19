@@ -11,6 +11,10 @@ class SuggestionsController < ApplicationController
   private
 
   def suggestion_params
-    params.permit(:query, :date) #TODO: Remove :date
+    params.permit(
+      :query,
+      :date,
+      agencies: []
+    ) #TODO: Remove :date
   end
 end

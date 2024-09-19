@@ -13,6 +13,7 @@ class SuggestionsPresenter < ApplicationPresenter
 
   def initialize(params)
     # VERIFY: don't pass prior_hierarchy along as this is a new request cycle?
+    @params = params
     @service = SuggestionService.new(
       params.except(:prior_hierarchy)
     )
@@ -111,6 +112,14 @@ class SuggestionsPresenter < ApplicationPresenter
 
   private
 
+  attr_reader :params
+
+  def agency
+    if params[:agencies]
+      Agency.find(params[:agencies].first)
+    end
+  end
+  memoize :agency
 
   def describe_search_results(count, custom_scope_description = nil)
     if !count || count < 1
@@ -122,6 +131,10 @@ class SuggestionsPresenter < ApplicationPresenter
       count_description = number_with_delimiter(count)
 
       scope_description = custom_scope_description || "in the full text"
+
+      if agency
+        scope_description << " (Limited to #{agency.name})"
+      end
 
       # "#{count_description} matching #{"result".pluralize(count)} #{scope_description}".html_safe
       "#{count_description} matching #{"document".pluralize(count)} #{scope_description}".html_safe

@@ -26,6 +26,7 @@ class SuggestionService
     # @date = params.fetch(:date, nil)
     @prior_count = nil
     @query = params.fetch(:query, nil)
+    @agencies = params.fetch(:agencies, nil)
     # handle_hierarchy
   end
 
@@ -47,6 +48,8 @@ class SuggestionService
   end
 
   private
+
+  attr_reader :agencies
 
   def narrowed_search_results
     fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
@@ -78,7 +81,15 @@ class SuggestionService
   memoize :fr_search_suggestions
 
   def fr_search
-    Search::Document.new(conditions: {term: query})
+    Search::Document.new(fr_search_parameters)
+  end
+
+  def fr_search_parameters
+    {conditions: {term: query}}.tap do |fr_params|
+      if agencies
+        fr_params[:conditions][:agencies] = agencies
+      end
+    end
   end
 
   def custom_suggestions

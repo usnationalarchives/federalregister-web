@@ -1,3 +1,8 @@
+<%= render partial: 'shared/suggestions', locals: {
+      current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
+      date: @ecfr_content_presenter&.date,
+      agency: agency
+    } %>
 <div id="embedded-search-area" class="embedded_search search-bar home-search-embedded">
   <%= semantic_form_for :conditions,
     url: documents_search_path,
@@ -8,11 +13,12 @@
       class: 'documents'
     } do |f| %>
 
-    <div id="search-input">
+    <div id="search-input" data-controller="placeholder">
       <label class="sr-only">Search Agency</label>
       <%= f.text_field :term,
         class: 'search-term',
-        placeholder: 'Search agency' %>
+        placeholder: 'Search agency',
+        data: {action: "click->placeholder#suggestions"} %>
 
       <%= f.button fr_icon('Search').html_safe,
         class: 'search-submit',
