@@ -62,7 +62,7 @@ class SuggestionService
   end
 
   def fr_search_suggestions
-    search_details = fr_search.search_details
+    search_details = fr_search.suggestion_search_details
 
     return [] unless search_details.present? &&
       search_details.suggestions.present?

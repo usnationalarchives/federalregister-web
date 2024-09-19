@@ -37,6 +37,11 @@ class Search::Document < Search::Base
     @search_details ||= SearchDetails::Document.new(conditions)
   end
 
+  def suggestion_search_details
+    # NOTE: Used to call a version a custom object that omits spelling suggestions 
+    @suggestion_search_details ||= SearchDetails::SuggestionServiceDocument.new(conditions)
+  end
+
   def near
     OpenStruct.new(
       location: conditions[:near].try(:[], :location),
