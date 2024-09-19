@@ -11,6 +11,17 @@ class FrArchivesCitation
     issue_slice_available? || gpo_url
   end
 
+  def issue_slice_page_range
+    if issue_slice_available?
+      if issue_slice_start_page == issue_slice_end_page
+        "#{issue_slice_start_page}"
+      else
+        "#{issue_slice_start_page}-#{issue_slice_end_page}"
+      end
+
+    end
+  end
+
   def issue_slice_url
     if issue_slice_available?
       "#{response_url}#page=#{specific_page}"
@@ -75,6 +86,14 @@ class FrArchivesCitation
     else
       page_offset + 1
     end
+  end
+
+  def issue_slice_start_page
+    response.fetch("slice_start_page")
+  end
+
+  def issue_slice_end_page
+    response.fetch("slice_end_page")
   end
 
   def page_offset

@@ -135,7 +135,6 @@ class SuggestionService
               fr_icon_class: "icon-fr2 icon-doctype icon-fr2-doc-pdf",
               usable_highlight: '',
               kind: :total_search_results,
-              page_range: nil,
               removed: false,
               reserved?: false,
               search_suggestion?: true,
@@ -146,13 +145,15 @@ class SuggestionService
               results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
                 highlight: "Digitized document PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
                 path: archives_citation.issue_slice_url,
-                prefer_content_path: archives_citation.issue_slice_url
+                prefer_content_path: archives_citation.issue_slice_url,
+                page_range: archives_citation.issue_slice_page_range
               ))
             end
 
             results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
               highlight: "Digitized full issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
               path: archives_citation.gpo_url,
+              page_range: nil,
               prefer_content_path: archives_citation.gpo_url
             ))
           else
