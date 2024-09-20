@@ -144,7 +144,7 @@ class XsltFunctions
     if text.blank?
       notify_slack!(
         message: "Empty text node when attempting to capitalize - #{document_number} on #{publication_date}",
-        username: "XSLT Compilation"
+        username: "XSLT Compilation (#{Rails.env})"
       )
 
       return text
