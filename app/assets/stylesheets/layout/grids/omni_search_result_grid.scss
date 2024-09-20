@@ -3,6 +3,7 @@
 
     tr {
       display: grid;
+      align-items: center;
       grid-template-columns: repeat(12, 1fr);
       border-color: lightgray;
 
