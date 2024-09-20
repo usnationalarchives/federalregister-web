@@ -130,7 +130,7 @@ table.suggestions {
     td, th {
       border-bottom: 1px solid $gray-10;
       overflow: hidden;
-      padding: 10px 16px;
+      padding: 8px 16px;
       text-overflow: ellipsis;
       white-space: nowrap;
 
@@ -221,7 +221,7 @@ table.suggestions {
       font-style: italic;
     }
 
-    &:hover {
+    &:hover, &:focus, &:active {
       background-color: $suggestion-item-active-bg-color;
       color: $suggestion-item-active-color
     }
