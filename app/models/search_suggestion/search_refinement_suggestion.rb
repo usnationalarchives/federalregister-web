@@ -15,7 +15,7 @@ class SearchSuggestion::SearchRefinementSuggestion
   end
 
   def icon_name
-    "Search"
+    "search"
   end
 
 end

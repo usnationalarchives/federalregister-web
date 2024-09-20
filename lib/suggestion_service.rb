@@ -17,7 +17,8 @@ class SuggestionService
     result = fr_search_metadata_result
     OpenStruct.new(
       global_search_results: result.count,
-      narrowed_search_results: narrowed_search_results
+      narrowed_search_results: narrowed_search_results,
+      public_inspection_search_results: public_inspection_search_results
     )
   end
 
@@ -51,9 +52,17 @@ class SuggestionService
 
   attr_reader :agencies
 
+  def public_inspection_search_results
+    fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
+      if [ "SearchSuggestion::PublicInspectionSuggestion"].include?(fr_search_suggestion.class.to_s)
+        results << fr_search_suggestion
+      end
+    end
+  end
+
   def narrowed_search_results
     fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
-      if ["SearchSuggestion::SearchRefinementSuggestion", "SearchSuggestion::PublicInspectionSuggestion"].include?(fr_search_suggestion.class.to_s)
+      if ["SearchSuggestion::SearchRefinementSuggestion"].include?(fr_search_suggestion.class.to_s)
         results << fr_search_suggestion
       end
     end

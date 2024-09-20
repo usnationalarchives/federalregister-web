@@ -8,7 +8,7 @@ class SuggestionsPresenter < ApplicationPresenter
   delegate :date, :metadata, :prior_count, :prior_hierarchy, :query,
     to: :service, allow_nil: true
 
-  delegate :global_search_results, :narrowed_hierarchy, :narrowed_search_results,
+  delegate :global_search_results, :narrowed_hierarchy, :narrowed_search_results, :public_inspection_search_results,
     to: :metadata, allow_nil: true
 
   def initialize(params)

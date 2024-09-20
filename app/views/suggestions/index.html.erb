@@ -10,8 +10,7 @@
               <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
             </td>
             <td class="desktop-only">
-              <%= fr_icon(narrowed_search_result.icon_name) %>
-              <%# <span class="icon-ecfr icon-ecfr-search"></span> %>
+              <%= svg_icon(narrowed_search_result.icon_name) %>
             </td>
           </tr>
         <% end %>
@@ -21,12 +20,23 @@
               <%= @suggestions_presenter.global_search_description %>
             </td>
             <td class="desktop-only">
-              <%= fr_icon("Search")%>
+              <%= svg_icon("search") %>
+            </td>
+          </tr>
+        <% end %>
+        <% @suggestions_presenter.public_inspection_search_results.each do |narrowed_search_result| %>
+          <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search">
+            <td class="highlight">
+              <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
+            </td>
+            <td class="desktop-only">
+              <%= svg_icon(narrowed_search_result.icon_name) %>
+              <%#= fr_icon(narrowed_search_result.icon_name) %>
               <%# <span class="icon-ecfr icon-ecfr-search"></span> %>
             </td>
           </tr>
-          </tbody>
         <% end %>
+        </tbody>
       <% end %>
 
       <% overflow_toggle_shown = false %>
