@@ -115,6 +115,11 @@
           <%= notification(notification.to_content_notification(controller)) %>
       <% end %>
 
+      <%= render partial: 'shared/suggestions', locals: {
+            current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
+            date: @ecfr_content_presenter&.date
+          } %>
+
       <%= yield %>
     </div>
     </main>

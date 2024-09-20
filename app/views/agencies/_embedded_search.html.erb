@@ -13,7 +13,7 @@
       class: 'documents'
     } do |f| %>
 
-    <div id="search-input" data-controller="placeholder">
+    <div id="search-input" data-controller="placeholder" data-placeholder-agency-scoped-search="true">
       <label class="sr-only">Search Agency</label>
       <%= f.text_field :term,
         class: 'search-term',
