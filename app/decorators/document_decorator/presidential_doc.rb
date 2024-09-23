@@ -29,7 +29,7 @@ module DocumentDecorator::PresidentialDoc
   end
 
   def pdf_link
-    if !historical_eo?
+    if !historical_eo? && pdf_url
       h.link_to pdf_url do
         "#{h.fr_icon('doc-pdf')} PDF".html_safe
       end
