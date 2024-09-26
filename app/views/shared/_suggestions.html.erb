@@ -68,7 +68,8 @@
               }
             } do |f| %>
             <% if local_assigns[:agency] %>
-              <%= f.hidden_field "agencies[]",
+              <%= f.hidden_field :agencies,
+                name: 'conditions[agencies][]',
                 value: agency.slug,
                 "data-param": "agencies[]" %>
             <% end %>

@@ -64,7 +64,13 @@ class SuggestionsPresenter < ApplicationPresenter
   end
 
   def global_search_path
-    documents_search_path(conditions: {term: query})
+    conditions = {term: query}.tap do |x|
+      if agency
+        x.merge!(agencies: agency.slug)
+      end
+    end
+    documents_search_path(conditions: conditions)
+
     # documents_search_path({
     #   search: {
     #     date: date,

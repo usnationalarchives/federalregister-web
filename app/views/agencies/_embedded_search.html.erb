@@ -18,10 +18,17 @@
       <%= f.text_field :term,
         class: 'search-term',
         placeholder: 'Search agency',
-        data: {action: "click->placeholder#suggestions"} %>
+        data: {
+          action: "focus->placeholder#suggestions",
+          suggestions_target: "nonModalInput",
+        } %>
 
       <%= f.button fr_icon('Search').html_safe,
         class: 'search-submit',
+        data: {
+          action: "click->placeholder#suggestions",
+          suggestions_target: "nonModalSearchIcon"
+        },
         id: 'conditions_submit',
         "aria-label" => 'Search' %>
       <ul>
