@@ -1,8 +1,11 @@
-<%= render partial: 'shared/suggestions', locals: {
-      current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
-      date: @ecfr_content_presenter&.date,
-      agency: agency
-    } %>
+<%= content_for :page_specific_suggestions do %>
+  <%= render partial: 'shared/suggestions', locals: {
+        current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
+        date: @ecfr_content_presenter&.date,
+        agency: agency
+      } %>
+<% end %>
+
 <div id="embedded-search-area" class="embedded_search search-bar home-search-embedded">
   <%= semantic_form_for :conditions,
     url: documents_search_path,

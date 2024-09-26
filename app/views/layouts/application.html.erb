@@ -119,6 +119,7 @@
             current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
             date: @ecfr_content_presenter&.date
           } %>
+      <%= yield(:page_specific_suggestions) %>
 
       <%= yield %>
     </div>
