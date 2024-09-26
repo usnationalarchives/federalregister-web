@@ -132,11 +132,12 @@ class SuggestionService
       case fr_search_suggestion.class.to_s
       when "SearchSuggestion::CitationSuggestion"
         if fr_search_suggestion.matching_fr_entries.count == 0
-          archives_citation = FrArchivesCitation.new(fr_search_suggestion.volume, fr_search_suggestion.page)
-          if archives_citation.download_link_available?
+          archives_citations = FrArchivesClient.citations(fr_search_suggestion.volume, fr_search_suggestion.page)
+          if archives_citations.any?(&:download_link_available?)
+            omni_search_citation = archives_citations.first.omni_search_citation
             base_suggestion_attributes = {
               type: 'cfr_reference', #or 'autocomplete'
-              citation: archives_citation.omni_search_citation, 
+              citation: omni_search_citation, 
               row_classes: ["suggestion"],
               toc_suffix: nil,
               usable_highlight: false,
@@ -150,15 +151,18 @@ class SuggestionService
               # hidden: false
             }
 
-            if archives_citation.issue_slice_url
-              results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
-                highlight: "Digitized document PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
-                path: archives_citation.issue_slice_url,
-                prefer_content_path: archives_citation.issue_slice_url,
-                page_range: archives_citation.issue_slice_page_range
-              ))
+            archives_citations.each do |archives_citation|
+              if archives_citation.issue_slice_url
+                results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
+                  highlight: "Digitized partial issue page range PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                  path: archives_citation.issue_slice_url,
+                  prefer_content_path: archives_citation.issue_slice_url,
+                  page_range: archives_citation.issue_slice_page_range
+                ))
+              end
             end
 
+            archives_citation = archives_citations.first
             results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
               highlight: "Digitized full issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
               path: archives_citation.gpo_url,

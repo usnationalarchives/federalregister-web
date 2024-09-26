@@ -1,10 +1,9 @@
 class FrArchivesCitation
-  include HTTParty
-  base_uri Settings.services.fr.archives.internal_base_url
 
-  def initialize(volume, page)
+  def initialize(volume, page, citation_attributes=nil)
     @volume = volume
     @page   = page
+    @response = citation_attributes || HTTParty.get("#{Settings.services.fr.archives.internal_base_url}/api/archives/v1/citation.json", options)
   end
 
   def download_link_available?
@@ -62,7 +61,7 @@ class FrArchivesCitation
 
   private
 
-  attr_reader :volume, :page
+  attr_reader :volume, :page, :response
 
   def is_before_archives
     response["before_archives"] == true
@@ -98,10 +97,6 @@ class FrArchivesCitation
 
   def page_offset
     response.fetch("page_offset")
-  end
-
-  def response
-    @response ||= self.class.get('/api/archives/v1/citation.json', options)
   end
 
   def options
