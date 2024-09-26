@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['form', 'fulltext', 'help', 'input', 'modal', 'nonModalInput', 'nonModalForm', 'nonModalSearchIcon', 'results', 'searchIcon', 'toc']
+  static targets = ['form', 'fulltext', 'help', 'globalSearchResults', 'input', 'modal', 'nonModalInput', 'nonModalForm', 'nonModalSearchIcon', 'results', 'searchIcon', 'toc']
   
   initialize() {
     this.boundInputBlur = null
@@ -182,5 +182,11 @@ export default class extends Controller {
     } else {
       this.searchIconTarget.classList.add('default')
     }
+
   }
+
+  removeGlobalSearchResultsDefaultColor(event) {
+    this.globalSearchResultsTarget.classList.remove('default')
+  }
+
 }
