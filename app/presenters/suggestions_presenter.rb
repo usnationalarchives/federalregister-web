@@ -79,16 +79,16 @@ class SuggestionsPresenter < ApplicationPresenter
     global_search_results || narrowed_search_results
   end
 
-  private
-
-  attr_reader :params
-
   def agency
     if params[:agencies]
       Agency.find(params[:agencies].first)
     end
   end
   memoize :agency
+
+  private
+
+  attr_reader :params
 
   def describe_search_results(count, custom_scope_description = nil)
     if !count || count < 1
@@ -100,10 +100,6 @@ class SuggestionsPresenter < ApplicationPresenter
       count_description = number_with_delimiter(count)
 
       scope_description = custom_scope_description || "in the full text"
-
-      if agency
-        scope_description << " (Limited to #{agency.name})"
-      end
 
       "#{count_description} matching #{"document".pluralize(count)} #{scope_description}".html_safe
     end
