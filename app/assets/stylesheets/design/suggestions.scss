@@ -227,18 +227,6 @@ table.suggestions {
     }
   }
 
-  // REMOVE: unused
-  // .dual-suggestion {
-  //   background: $white;
-  //   margin: 0;
-  //   padding: 0;
-
-  //   td {
-  //     padding-top: 0;
-  //     padding-bottom: 0;
-  //   }
-  // }
-
   .suggestion.removed {
     td.citation, td.highlight {
       text-decoration: line-through;
@@ -250,28 +238,6 @@ table.suggestions {
       }
     }
   }
-
-  // REMOVE: unused
-  // .supplemental-suggestion {
-  //   background-color: $white;
-  //   border-radius: 3px;
-  //   border: 1px solid $gray-10;
-  //   display: inline-block;
-  //   // float: right;
-  //   // position: relative;
-  //   margin: 0;
-  //   margin: 0;
-  //   padding: 0;
-  //   padding: 4px 1em;
-  //   top: -6px;
-  // }
-
-  // .suggestion-delimiter {
-  //   color: $gray-20;
-  //   font-size: modular-scale(-1);
-  //   // font-weight: bold;
-  //   margin: 0 0.5em;
-  // }
 
   .suggestion.active {
     background-color: $suggestion-item-active-bg-color;

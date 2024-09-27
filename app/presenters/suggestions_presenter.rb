@@ -35,34 +35,6 @@ class SuggestionsPresenter < ApplicationPresenter
   end
   memoize :results
 
-  class InterfaceProbe 
-
-    def row_classes
-      "suggestion cfr_reference"
-    end
-
-    def prefer_content_path
-      "https://www.yahoo.com"
-    end
-
-    def removed
-      false
-    end
-
-    def highlighted_citation
-      "10 CFR Part 26 Subpart E"
-    end
-
-    def usable_highlight
-      "Collecting Specimens for <mark>Test</mark>ing"      
-    end
-
-
-    def method_missing(method_name, *args, &block)
-      raise NoMethodError, "undefined method `#{method_name}` for #{self}"
-    end
-  end
-
   def global_search_path
     conditions = {term: query}.tap do |x|
       if agency
@@ -70,15 +42,6 @@ class SuggestionsPresenter < ApplicationPresenter
       end
     end
     documents_search_path(conditions: conditions)
-
-    # documents_search_path({
-    #   search: {
-    #     date: date,
-    #     query: query
-    #   },
-    #   prior_hierarchy: prior_hierarchy.to_hash,
-    #   prior_count: prior_count
-    # })
   end
 
   def global_search_description
@@ -142,7 +105,6 @@ class SuggestionsPresenter < ApplicationPresenter
         scope_description << " (Limited to #{agency.name})"
       end
 
-      # "#{count_description} matching #{"result".pluralize(count)} #{scope_description}".html_safe
       "#{count_description} matching #{"document".pluralize(count)} #{scope_description}".html_safe
     end
   end

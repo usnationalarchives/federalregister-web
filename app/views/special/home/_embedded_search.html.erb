@@ -1,7 +1,3 @@
-  <%= render partial: 'shared/suggestions', locals: {
-        current: @ecfr_content_presenter ? @ecfr_content_presenter.current : true,
-        date: @ecfr_content_presenter&.date,
-      } %>
   <div id="embedded-search-area" class="embedded_search search-bar home-search-embedded">
     <div id="embedded-search-header">
       <h3><span class="icon-fr2-Search"></span> <span>Search Federal Register Documents</span></h3>
@@ -20,7 +16,10 @@
         <%= f.text_field :term,
           class: 'search-term',
           placeholder: t('search.placeholder'),
-          data: {action: "click->placeholder#suggestions"}
+          data: {
+            action: "click->placeholder#suggestions",
+            suggestions_target: "nonModalInput"
+          }
           %>
 
         <%= f.button fr_icon('Search').html_safe,

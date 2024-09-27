@@ -2,7 +2,7 @@ class SuggestionService
   include ActionView::Helpers::NumberHelper
   extend Memoist
 
-  # include SuggestionService::CustomPatterns
+  include SuggestionService::CustomPatterns
 
   QUERY_LENGTH_LIMIT = 128
 
@@ -12,8 +12,7 @@ class SuggestionService
 
   attr_reader :date, :params, :prior_count, :prior_hierarchy, :query
 
-  # delegate :metadata, to: :search_suggestions
-  def metadata #FR-specific addition
+  def metadata #FR-specific addition (ECFR delegates metadata to search_suggestions)
     result = fr_search_metadata_result
     OpenStruct.new(
       global_search_results: result.count,
@@ -24,11 +23,9 @@ class SuggestionService
 
   def initialize(params)
     @params = params.to_hash.compact
-    # @date = params.fetch(:date, nil)
     @prior_count = nil
     @query = params.fetch(:query, nil)
     @agencies = params.fetch(:agencies, nil)
-    # handle_hierarchy
   end
 
   def perform
@@ -128,27 +125,25 @@ class SuggestionService
 
   def search_suggestions
     fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
-      # Handle FR citations
+      # NOTE: Someday it may make sense to refactor these attributes into their respective classes
       case fr_search_suggestion.class.to_s
       when "SearchSuggestion::CitationSuggestion"
+        # FR Archives Suggestion
         if fr_search_suggestion.matching_fr_entries.count == 0
           archives_citations = FrArchivesClient.citations(fr_search_suggestion.volume, fr_search_suggestion.page)
           if archives_citations.any?(&:download_link_available?)
             omni_search_citation = archives_citations.first.omni_search_citation
             base_suggestion_attributes = {
-              type: 'cfr_reference', #or 'autocomplete'
+              type: 'cfr_reference',
               citation: omni_search_citation, 
               row_classes: ["suggestion"],
               toc_suffix: nil,
               usable_highlight: false,
-              icon: 'baz',
               fr_icon_class: "doc-pdf",
               usable_highlight: '',
               kind: :total_search_results,
               removed: false,
-              reserved?: false,
               search_suggestion?: true,
-              # hidden: false
             }
 
             archives_citations.each do |archives_citation|
@@ -174,7 +169,7 @@ class SuggestionService
           end
         end
 
-
+        # Non-FR Archives (Standard) Suggestions
         page = fr_search_suggestion.page.to_i
         fr_search_suggestion.matching_fr_entries.each do |doc|
           path = doc.html_url
@@ -183,30 +178,27 @@ class SuggestionService
           end
 
           results << FrSearchSuggestion.new(
-            type: 'cfr_reference', #or 'autocomplete'
+            type: 'cfr_reference',
             highlight: doc.title,
             citation: doc.citation, 
             row_classes: ["suggestion"],
             toc_suffix: nil,
             usable_highlight: false,
             path: path,
-            icon: 'baz',
             fr_icon_class: doc.document_type.identifier,
             usable_highlight: '',
             kind: :total_search_results,
             removed: false,
             page_range: doc.page_range,
             prefer_content_path: path,
-            reserved?: false,
             search_suggestion?: true
-            # hidden: false
           )
         end
       when "SearchSuggestion::DocumentNumberSuggestion"
         doc = fr_search_suggestion.document
         path = doc.html_url
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference', #or 'autocomplete'
+          type: 'cfr_reference',
           highlight: doc.title,
           citation: doc.document_number, 
           row_classes: ["suggestion"],
@@ -214,15 +206,12 @@ class SuggestionService
           usable_highlight: false,
           page_range: doc.page_range,
           path: path,
-          icon: 'baz',
           fr_icon_class: doc.document_type.identifier,
           usable_highlight: '',
           kind: :total_search_results,
           removed: false,
           prefer_content_path: path,
-          reserved?: false,
           search_suggestion?: true
-          # hidden: false
         )
       end
 
@@ -236,22 +225,16 @@ class SuggestionService
             toc_suffix: nil,
             usable_highlight: false,
             path: "/d/#{autocomplete_suggestion.document_number}",
-            icon: 'baz',
             fr_icon_class: autocomplete_suggestion.icon,
             usable_highlight: '',
             kind: :total_search_results,
             removed: false,
             prefer_content_path: "/d/#{autocomplete_suggestion.document_number}",
-            reserved?: false,
             search_suggestion?: true
             # hidden: false
           )
       end
     end
-
-    # ContentVersion.suggestions(
-    #   params.merge(autocomplete: true)
-    # )
   end
   memoize :search_suggestions
 
@@ -262,31 +245,6 @@ class SuggestionService
 
     AutocompleteSuggestion.suggestions(query)
   end
-
-  def test_fr_search_suggestions
-    # cache_for 1.day
-    valid_conditions = Search::Document.new(params).valid_conditions
-    begin
-      count = ::Document.search_metadata(conditions: valid_conditions).count
-    rescue FederalRegister::Client::BadRequest => e
-      raise "TODO: Figure out handling"
-    end
-
-    url =  documents_search_path(conditions: valid_conditions)
-  end
-
-
-  # def handle_hierarchy
-  #   hierarchy = @params.delete("hierarchy") || {}
-
-  #   if hierarchy.present?
-  #     hierarchy = CommonHierarchy.new(JSON.parse(hierarchy).stringify_keys)
-  #     @params[:hierarchy] = hierarchy.to_hash.except(:complete)
-  #     @prior_hierarchy = hierarchy.dup
-  #   else
-  #     @prior_hierarchy = {}
-  #   end
-  # end
 
   def deduplicate(suggestions)
     suggestions.select do |suggestion|

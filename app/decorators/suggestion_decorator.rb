@@ -12,6 +12,7 @@ class SuggestionDecorator < ApplicationDecorator
   # delegation is broken here and delegates to a route builder route
   # instead of to the object as expected
   def table_of_contents_path
+    raise "ECFR-specific implementation"
     object.table_of_contents_path
   end
 
@@ -63,7 +64,6 @@ class SuggestionDecorator < ApplicationDecorator
   def row_classes
     class_str = %i[suggestion]
     class_str << object.type
-    class_str << :reserved if object.reserved?
     class_str << :removed if object.removed
     class_str.map(&:to_s).join(" ")
   end
