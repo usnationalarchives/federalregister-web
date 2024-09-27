@@ -17,7 +17,9 @@ class SearchSuggestion
     "search_refinement" => SearchSuggestion::SearchRefinementSuggestion,
     "citation"          => SearchSuggestion::CitationSuggestion,
     "public_inspection" => SearchSuggestion::PublicInspectionSuggestion,
-    "explanatory"       => SearchSuggestion::ExplanatorySuggestion
+    "explanatory"       => SearchSuggestion::ExplanatorySuggestion,
+    "agency"            => SearchSuggestion::AgencySuggestion,
+    "issue"             => SearchSuggestion::IssueSuggestion,
   }
 
   def self.build(type, details, conditions)

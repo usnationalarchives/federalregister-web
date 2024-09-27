@@ -13,6 +13,8 @@ class SearchPresenter::Suggestions
     "cfr_suggestion",
     "public_inspection_suggestion",
     "explanatory_suggestion",
+    "agency_suggestion",
+    "issue_suggestion",
   ]
 
   def suggestions
@@ -25,6 +27,26 @@ class SearchPresenter::Suggestions
 
   def suggestion_type(suggestion)
     suggestion.class.name.split("::").last.snakecase
+  end
+
+  def agency_suggestion(suggestion)
+    ContentNotification.new(
+      text: "",
+      actions: "",
+      link: "",
+      type: :info,
+      icon: 'link'
+    )
+  end
+
+  def issue_suggestion(suggestion)
+    ContentNotification.new(
+      text: "",
+      actions: "",
+      link: "",
+      type: :info,
+      icon: 'link'
+    )
   end
 
   def explanatory_suggestion(suggestion)

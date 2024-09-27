@@ -213,6 +213,42 @@ class SuggestionService
           prefer_content_path: path,
           search_suggestion?: true
         )
+      when "SearchSuggestion::AgencySuggestion"
+        path = "/agencies/#{fr_search_suggestion.agency_slug}"
+        results << FrSearchSuggestion.new(
+          type: 'cfr_reference',
+          highlight: "#{fr_search_suggestion.agency_name}",
+          citation: fr_search_suggestion.agency_slug, 
+          row_classes: ["suggestion"],
+          toc_suffix: nil,
+          usable_highlight: false,
+          page_range: nil,
+          path: path,
+          fr_icon_class: "network-alt",
+          usable_highlight: '',
+          kind: :total_search_results,
+          removed: false,
+          prefer_content_path: path,
+          search_suggestion?: true
+        )
+      when "SearchSuggestion::IssueSuggestion"
+        path = "/documents/#{fr_search_suggestion.date.to_s(:ymd)}"
+        results << FrSearchSuggestion.new(
+          type: 'cfr_reference',
+          highlight: "Document Issue Table of Contents",
+          citation: fr_search_suggestion.date.to_s(:default), 
+          row_classes: ["suggestion"],
+          toc_suffix: nil,
+          usable_highlight: false,
+          page_range: nil,
+          path: path,
+          fr_icon_class: "book-alt-2",
+          usable_highlight: '',
+          kind: :total_search_results,
+          removed: false,
+          prefer_content_path: path,
+          search_suggestion?: true
+        )
       end
 
       end.tap do |results|
