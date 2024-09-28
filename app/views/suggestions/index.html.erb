@@ -53,7 +53,8 @@
           data-autocomplete-value="<%= suggestion.prefer_content_path %>"
           data-toc="<%= suggestion.toc_suffix %>"
           data-autocomplete-label=""
-          data-kind="citations and headings">
+          data-kind="citations and headings"
+          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor">
 
           <td class="citation desktop-only">
             <% if suggestion.removed %>
