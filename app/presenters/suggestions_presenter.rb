@@ -55,6 +55,13 @@ class SuggestionsPresenter < ApplicationPresenter
     )
   end
 
+  def pil_search_description(narrowed_search_result)
+    count             = narrowed_search_result.count
+    count_description = number_with_delimiter(count)
+
+    "#{count_description} #{"public inspection document".pluralize(count)} matching '#{query}'"
+  end
+
   def narrowed_search_path(narrowed_search_result)
     SearchPresenter::Suggestions.new(Array.wrap(narrowed_search_result)).suggestions.first.path
 

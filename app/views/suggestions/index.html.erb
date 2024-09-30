@@ -31,7 +31,7 @@
           <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search"
           data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor">
             <td class="highlight">
-              <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
+              <%= @suggestions_presenter.pil_search_description(narrowed_search_result).html_safe %>
             </td>
             <td class="desktop-only">
               <%= svg_icon(narrowed_search_result.icon_name) %>
