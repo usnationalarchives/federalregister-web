@@ -29,7 +29,7 @@ class SiteNotification
             System of Records Notices (SORN) and Sunshine Act Meeting Notices are
             now available as sub-type filters when Notice is selected as a
             'Document Category' filter.
-            <a href="/reader-aids/2024/08/enhanced-notice-sub-type-search-now-available">
+            <a href="/reader-aids/recent-updates/2024/09/enhanced-notice-sub-type-search-now-available">
               Read more in our feature announcement
             </a>.
           </p>
