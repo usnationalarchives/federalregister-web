@@ -194,6 +194,26 @@ class SuggestionService
             search_suggestion?: true
           )
         end
+      when "SearchSuggestion::CFRSuggestion"
+        path = FederalRegisterReferenceParser.ecfr_url(
+          fr_search_suggestion.title,
+          fr_search_suggestion.part
+        )
+        results << FrSearchSuggestion.new(
+          type: 'cfr_reference',
+          highlight: "View Code of Federal Regulations citation on eCFR.gov",
+          citation: fr_search_suggestion.name, 
+          row_classes: ["suggestion"],
+          toc_suffix: nil,
+          usable_highlight: false,
+          page_range: nil,
+          path: path,
+          fr_icon_class: "link",
+          kind: :total_search_results,
+          removed: false,
+          prefer_content_path: path,
+          search_suggestion?: true
+        )
       when "SearchSuggestion::DocumentNumberSuggestion"
         doc = fr_search_suggestion.document
         path = doc.html_url
@@ -226,6 +246,23 @@ class SuggestionService
           path: path,
           fr_icon_class: "network-alt",
           usable_highlight: '',
+          kind: :total_search_results,
+          removed: false,
+          prefer_content_path: path,
+          search_suggestion?: true
+        )
+      when "SearchSuggestion::ExplanatorySuggestion"
+        path = fr_search_suggestion.link_url
+        results << FrSearchSuggestion.new(
+          type: 'cfr_reference',
+          highlight: fr_search_suggestion.text,
+          citation: fr_search_suggestion.citation, 
+          row_classes: ["suggestion"],
+          toc_suffix: nil,
+          usable_highlight: false,
+          page_range: nil,
+          path: path,
+          fr_icon_class: "network-alt",
           kind: :total_search_results,
           removed: false,
           prefer_content_path: path,
