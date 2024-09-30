@@ -218,7 +218,7 @@ class SuggestionService
         results << FrSearchSuggestion.new(
           type: 'cfr_reference',
           highlight: "#{fr_search_suggestion.agency_name}",
-          citation: fr_search_suggestion.agency_slug, 
+          citation: fr_search_suggestion.agency_short_name, 
           row_classes: ["suggestion"],
           toc_suffix: nil,
           usable_highlight: false,
