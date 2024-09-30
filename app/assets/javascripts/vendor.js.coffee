@@ -42,3 +42,6 @@
 
 #= require handlebars.runtime
 #= require_tree ./templates
+
+# contains just the debounce function
+#= require lodash.custom.min.js
