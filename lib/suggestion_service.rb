@@ -235,7 +235,7 @@ class SuggestionService
         path = "/documents/#{fr_search_suggestion.date.to_s(:ymd)}"
         results << FrSearchSuggestion.new(
           type: 'cfr_reference',
-          highlight: "Document Issue Table of Contents",
+          highlight: "Document Issue",
           citation: fr_search_suggestion.date.to_s(:default), 
           row_classes: ["suggestion"],
           toc_suffix: nil,
@@ -243,6 +243,24 @@ class SuggestionService
           page_range: nil,
           path: path,
           fr_icon_class: "book-alt-2",
+          usable_highlight: '',
+          kind: :total_search_results,
+          removed: false,
+          prefer_content_path: path,
+          search_suggestion?: true
+        )
+
+        path = "/documents/#{fr_search_suggestion.date.to_s(:ymd)}"
+        results << FrSearchSuggestion.new(
+          type: 'cfr_reference',
+          highlight: "Public Inspection Issue",
+          citation: fr_search_suggestion.date.to_s(:default), 
+          row_classes: ["suggestion"],
+          toc_suffix: nil,
+          usable_highlight: false,
+          page_range: nil,
+          path: path,
+          fr_icon_class: "clipboards",
           usable_highlight: '',
           kind: :total_search_results,
           removed: false,
