@@ -37,7 +37,7 @@ app:
   site_notifications:
     display: true
     search_filter:
-      display: false
+      display: true
   slack:
     notifications:
       enabled: true
