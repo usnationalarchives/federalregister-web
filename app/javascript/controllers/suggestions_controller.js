@@ -189,4 +189,8 @@ export default class extends Controller {
     this.globalSearchResultsTarget.classList.remove('default')
   }
 
+  addGlobalSearchResultsDefaultColor(event) {
+    this.globalSearchResultsTarget.classList.add('default')
+  }
+
 }

@@ -8,7 +8,7 @@
         </tr>
         <% @suggestions_presenter.narrowed_search_results.each do |narrowed_search_result| %>
           <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search" 
-          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor">
+          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor mouseleave->suggestions#addGlobalSearchResultsDefaultColor">
             <td class="highlight">
               <%= @suggestions_presenter.narrowed_search_description(narrowed_search_result).html_safe %>
             </td>
@@ -29,7 +29,8 @@
         <% end %>
         <% @suggestions_presenter.public_inspection_search_results.each do |narrowed_search_result| %>
           <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search"
-          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor">
+          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor mouseleave->suggestions#addGlobalSearchResultsDefaultColor"
+          >
             <td class="highlight">
               <%= @suggestions_presenter.pil_search_description(narrowed_search_result).html_safe %>
             </td>
@@ -54,7 +55,7 @@
           data-toc="<%= suggestion.toc_suffix %>"
           data-autocomplete-label=""
           data-kind="citations and headings"
-          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor">
+          data-action="mouseenter->suggestions#removeGlobalSearchResultsDefaultColor mouseleave->suggestions#addGlobalSearchResultsDefaultColor">
 
           <td class="citation desktop-only">
             <% if suggestion.removed %>
