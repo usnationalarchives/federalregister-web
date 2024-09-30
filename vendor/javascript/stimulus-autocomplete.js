@@ -24,7 +24,7 @@ export default class Autocomplete extends Controller {
 
     this.mouseDown = false
 
-    this.onInputChange = debounce(this.onInputChange, this.delayValue)
+    this.onInputChange = _.debounce(this.onInputChange, 300, { 'maxWait': 300 })
 
     this.inputTarget.addEventListener("keydown", this.onKeydown)
     this.inputTarget.addEventListener("blur", this.onInputBlur)
@@ -289,15 +289,6 @@ export default class Autocomplete extends Controller {
 
   optionsForFetch() {
     return { headers: { "X-Requested-With": "XMLHttpRequest" } } // override if you need
-  }
-}
-
-const debounce = (fn, delay = 10) => {
-  let timeoutId = null
-
-  return (...args) => {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(fn, delay)
   }
 }
 
