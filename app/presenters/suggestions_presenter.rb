@@ -101,7 +101,11 @@ class SuggestionsPresenter < ApplicationPresenter
 
       scope_description = custom_scope_description || "in the full text"
 
-      "#{count_description} matching #{"document".pluralize(count)} #{scope_description}".html_safe
+      if custom_scope_description
+        "#{count_description} #{"document".pluralize(count)} #{scope_description}"#.html_safe
+      else
+        "#{count_description} #{"document".pluralize(count)} matching '#{query}'"
+      end
     end
   end
 end
