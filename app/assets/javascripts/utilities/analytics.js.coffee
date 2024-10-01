@@ -11,6 +11,11 @@ class @FR2.Analytics
 
     gtag('event', category, data)
 
+  @trackOmniSearchInputInteraction: ->
+    gtag('event', 'omni_search_input_interaction', {
+      'logged_in':     FR2.UserUtils.loggedIn(),
+    })
+
   @trackSearchPageVisit: ->
     term = new URLSearchParams(window.location.search).get('conditions[term]')
     suggestionsCount = $('#search-results .suggestion:not(.ga-exclude)').length

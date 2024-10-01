@@ -13,9 +13,9 @@ export default class extends Controller {
     this.everAbandoned = false
   }
 
-  call_ga(event_action) {
+  call_ga(eventName, eventParameters = {} ) {
     if (typeof ga == 'function') {
-      gtag('event', 'Search', {'event_action': event_action});
+      gtag('event', eventName, eventParameters);
     }
   }
 
@@ -108,7 +108,13 @@ export default class extends Controller {
     event.preventDefault()
     if (!this.everSelected) {
       this.everSelected = true;
-      this.call_ga(event.detail.selected.getAttribute('data-kind') + ' selection');
+      this.call_ga(
+        'fr_omni_search_suggestion_click',
+        {
+          'kind': (event.detail.selected.getAttribute('data-kind') + ' selection'),
+          'suggestion_type': event.detail.selected.getAttribute('data-suggestion-type')
+        }
+      );
     }
 
     var target = event.detail.value
@@ -121,6 +127,7 @@ export default class extends Controller {
       if (this.hasResultsTarget) this.resultsTarget.hidden = true
     }    
 
+    // alert("picked" + event.detail.value)
     window.location.href = event.detail.value
   }
 

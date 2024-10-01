@@ -113,7 +113,9 @@ class SuggestionService
   def search_suggestions
     fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
       # NOTE: Someday it may make sense to refactor these attributes into their respective classes
-      case fr_search_suggestion.class.name.demodulize
+
+      klass = fr_search_suggestion.class.name.demodulize
+      case klass
       when "CitationSuggestion"
         # FR Archives Suggestion
         if fr_search_suggestion.matching_fr_entries.count == 0
@@ -123,6 +125,7 @@ class SuggestionService
             base_suggestion_attributes = {
               citation: omni_search_citation, 
               fr_icon_class: "doc-pdf",
+              suggestion_type: klass,
               type: 'cfr_reference',
             }
 
@@ -164,6 +167,7 @@ class SuggestionService
             page_range: doc.page_range,
             path: path,
             prefer_content_path: path,
+            suggestion_type: klass,
             type: 'cfr_reference',
             usable_highlight: '',
           )
@@ -180,6 +184,7 @@ class SuggestionService
           page_range: nil,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
       when "DocumentNumberSuggestion"
@@ -192,6 +197,7 @@ class SuggestionService
           page_range: doc.page_range,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
       when "AgencySuggestion"
@@ -203,6 +209,7 @@ class SuggestionService
           page_range: nil,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
       when "ExplanatorySuggestion"
@@ -214,6 +221,7 @@ class SuggestionService
           page_range: nil,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
       when "IssueSuggestion"
@@ -225,6 +233,7 @@ class SuggestionService
           page_range: nil,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
 
@@ -236,6 +245,7 @@ class SuggestionService
           page_range: nil,
           path: path,
           prefer_content_path: path,
+          suggestion_type: klass,
           type: 'cfr_reference',
         )
       end
@@ -248,6 +258,7 @@ class SuggestionService
             highlight: autocomplete_suggestion.search_term_completion,
             path: "/d/#{autocomplete_suggestion.document_number}",
             prefer_content_path: "/d/#{autocomplete_suggestion.document_number}",
+            suggestion_type: klass,
             type: 'autocomplete',
           )
       end
