@@ -110,49 +110,29 @@ class SuggestionService
     end.compact
   end
 
-  class FrSearchSuggestion < OpenStruct
-    attr_reader :type
-
-    def method_missing(method_name, *args, &block)
-      # eg flag method call errors
-      if @table.key?(method_name.to_sym) || @table.key?(method_name.to_s.chomp('=').to_sym)
-        super
-      else
-        raise NoMethodError, "undefined method `#{method_name}` for #{self}"
-      end
-    end
-  end
-
   def search_suggestions
     fr_search_suggestions.each_with_object(Array.new) do |fr_search_suggestion, results|
       # NOTE: Someday it may make sense to refactor these attributes into their respective classes
-      case fr_search_suggestion.class.to_s
-      when "SearchSuggestion::CitationSuggestion"
+      case fr_search_suggestion.class.name.demodulize
+      when "CitationSuggestion"
         # FR Archives Suggestion
         if fr_search_suggestion.matching_fr_entries.count == 0
           archives_citations = FrArchivesClient.citations(fr_search_suggestion.volume, fr_search_suggestion.page)
           if archives_citations.any?(&:download_link_available?)
             omni_search_citation = archives_citations.first.omni_search_citation
             base_suggestion_attributes = {
-              type: 'cfr_reference',
               citation: omni_search_citation, 
-              row_classes: ["suggestion"],
-              toc_suffix: nil,
-              usable_highlight: false,
               fr_icon_class: "doc-pdf",
-              usable_highlight: '',
-              kind: :total_search_results,
-              removed: false,
-              search_suggestion?: true,
+              type: 'cfr_reference',
             }
 
             archives_citations.each do |archives_citation|
               if archives_citation.issue_slice_url
                 results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
                   highlight: "Digitized partial issue page range PDF (#{number_to_human_size(archives_citation.optimized_file_size)})",
+                  page_range: archives_citation.issue_slice_page_range,
                   path: archives_citation.issue_slice_url,
                   prefer_content_path: archives_citation.issue_slice_url,
-                  page_range: archives_citation.issue_slice_page_range
                 ))
               end
             end
@@ -160,8 +140,8 @@ class SuggestionService
             archives_citation = archives_citations.first
             results << FrSearchSuggestion.new(**base_suggestion_attributes.merge(
               highlight: "Digitized full issue PDF containing #{archives_citation.omni_search_citation} (#{number_to_human_size(archives_citation.original_file_size)})",
-              path: archives_citation.gpo_url,
               page_range: nil,
+              path: archives_citation.gpo_url,
               prefer_content_path: archives_citation.gpo_url
             ))
           else
@@ -178,151 +158,97 @@ class SuggestionService
           end
 
           results << FrSearchSuggestion.new(
-            type: 'cfr_reference',
-            highlight: doc.title,
             citation: doc.citation, 
-            row_classes: ["suggestion"],
-            toc_suffix: nil,
-            usable_highlight: false,
-            path: path,
             fr_icon_class: doc.document_type.identifier,
-            usable_highlight: '',
-            kind: :total_search_results,
-            removed: false,
+            highlight: doc.title,
             page_range: doc.page_range,
+            path: path,
             prefer_content_path: path,
-            search_suggestion?: true
+            type: 'cfr_reference',
+            usable_highlight: '',
           )
         end
-      when "SearchSuggestion::CFRSuggestion"
+      when "CFRSuggestion"
         path = FederalRegisterReferenceParser.ecfr_url(
           fr_search_suggestion.title,
           fr_search_suggestion.part
         )
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: "View Code of Federal Regulations citation on eCFR.gov",
           citation: fr_search_suggestion.name, 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: "link",
+          highlight: "View Code of Federal Regulations citation on eCFR.gov",
           page_range: nil,
           path: path,
-          fr_icon_class: "link",
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
-      when "SearchSuggestion::DocumentNumberSuggestion"
+      when "DocumentNumberSuggestion"
         doc = fr_search_suggestion.document
         path = doc.html_url
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: doc.title,
           citation: doc.document_number, 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: doc.document_type.identifier,
+          highlight: doc.title,
           page_range: doc.page_range,
           path: path,
-          fr_icon_class: doc.document_type.identifier,
-          usable_highlight: '',
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
-      when "SearchSuggestion::AgencySuggestion"
+      when "AgencySuggestion"
         path = "/agencies/#{fr_search_suggestion.agency_slug}"
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: "#{fr_search_suggestion.agency_name}",
           citation: fr_search_suggestion.agency_short_name, 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: "network-alt",
+          highlight: "#{fr_search_suggestion.agency_name}",
           page_range: nil,
           path: path,
-          fr_icon_class: "network-alt",
-          usable_highlight: '',
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
-      when "SearchSuggestion::ExplanatorySuggestion"
+      when "ExplanatorySuggestion"
         path = fr_search_suggestion.link_url
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: fr_search_suggestion.text,
           citation: fr_search_suggestion.citation, 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: "clipboards",
+          highlight: fr_search_suggestion.text,
           page_range: nil,
           path: path,
-          fr_icon_class: "network-alt",
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
-      when "SearchSuggestion::IssueSuggestion"
+      when "IssueSuggestion"
         path = "/documents/#{fr_search_suggestion.date.to_s(:ymd)}"
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: "Document Issue",
           citation: fr_search_suggestion.date.to_s(:default), 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: "book-alt-2",
+          highlight: "Document Issue",
           page_range: nil,
           path: path,
-          fr_icon_class: "book-alt-2",
-          usable_highlight: '',
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
 
         path = "/documents/#{fr_search_suggestion.date.to_s(:ymd)}"
         results << FrSearchSuggestion.new(
-          type: 'cfr_reference',
-          highlight: "Public Inspection Issue",
           citation: fr_search_suggestion.date.to_s(:default), 
-          row_classes: ["suggestion"],
-          toc_suffix: nil,
-          usable_highlight: false,
+          fr_icon_class: "clipboards",
+          highlight: "Public Inspection Issue",
           page_range: nil,
           path: path,
-          fr_icon_class: "clipboards",
-          usable_highlight: '',
-          kind: :total_search_results,
-          removed: false,
           prefer_content_path: path,
-          search_suggestion?: true
+          type: 'cfr_reference',
         )
       end
 
       end.tap do |results|
         fr_autocomplete_suggestions.each do |autocomplete_suggestion|
           results << FrSearchSuggestion.new(
-            type: 'autocomplete',
-            highlight: autocomplete_suggestion.search_term_completion,
             citation: "FR Doc. #{autocomplete_suggestion.document_number}",
-            row_classes: ["suggestion"],
-            toc_suffix: nil,
-            usable_highlight: false,
-            path: "/d/#{autocomplete_suggestion.document_number}",
             fr_icon_class: autocomplete_suggestion.icon,
-            usable_highlight: '',
-            kind: :total_search_results,
-            removed: false,
+            highlight: autocomplete_suggestion.search_term_completion,
+            path: "/d/#{autocomplete_suggestion.document_number}",
             prefer_content_path: "/d/#{autocomplete_suggestion.document_number}",
-            search_suggestion?: true
-            # hidden: false
+            type: 'autocomplete',
           )
       end
     end
