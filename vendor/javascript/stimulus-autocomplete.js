@@ -24,7 +24,7 @@ export default class Autocomplete extends Controller {
 
     this.mouseDown = false
 
-    this.onInputChange = _.debounce(this.onInputChange, 300, { 'maxWait': 300 })
+    this.onInputChange = _.debounce(this.onInputChange, 300, { })
 
     this.inputTarget.addEventListener("keydown", this.onKeydown)
     this.inputTarget.addEventListener("blur", this.onInputBlur)
@@ -181,6 +181,13 @@ export default class Autocomplete extends Controller {
       this.fetchResults(query)
     } else {
       this.hideAndRemoveOptions()
+    }
+  }
+
+  _trackOmniSearchInputInteraction () {
+    if (!window.Ofr_search_suggestion.class.name.demodulizemniSearchInputInteractionRecorded) {
+      FR2.Analytics.trackOmniSearchInputInteraction()
+      window.OmniSearchInputInteractionRecorded = true
     }
   }
 
