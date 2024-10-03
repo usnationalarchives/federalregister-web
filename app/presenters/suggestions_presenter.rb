@@ -111,7 +111,11 @@ class SuggestionsPresenter < ApplicationPresenter
       if custom_scope_description
         "#{count_description} #{"document".pluralize(count)} #{scope_description}"#.html_safe
       else
-        "#{count_description} #{"document".pluralize(count)} matching '#{query}'"
+        "#{count_description} #{"document".pluralize(count)} matching '#{query}'".tap do |string|
+          if agency
+            string << " for #{agency.name}"
+          end
+        end
       end
     end
   end

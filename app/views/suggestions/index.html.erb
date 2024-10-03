@@ -4,7 +4,7 @@
       <% if @suggestions_presenter.search_results? %>
         <tbody>
         <tr class="kind">
-          <td>full text search results <%= "(limited to #{@suggestions_presenter.agency.name})" if @suggestions_presenter.agency %></td>
+          <td>full text search results</td>
         </tr>
         <% @suggestions_presenter.narrowed_search_results.each do |narrowed_search_result| %>
           <tr class="suggestion full-text-suggestion" role="option" data-autocomplete-value="<%= @suggestions_presenter.narrowed_search_path(narrowed_search_result) %>" data-autocomplete-label="" data-kind="full text search" 
