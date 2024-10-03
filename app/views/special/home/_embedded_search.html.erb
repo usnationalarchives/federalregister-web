@@ -29,8 +29,7 @@
       </div>
 
       <span id="expected_result_count" class="search-result-count">
-        <span class="document-count"></span>
-        <span class="loader"></span>
+        <%= number_with_delimiter(Document.search_metadata(conditions: {}).count) %> documents
       </span>
 
       <ul>
