@@ -38,6 +38,6 @@ class SearchPresenter::Base
       search_details.suggestions.present?
 
     SearchPresenter::Suggestions.new(search_details.suggestions)
-      .suggestions
+      .suggestions(exclusions: ["agency_suggestion", "issue_suggestion"])
   end
 end

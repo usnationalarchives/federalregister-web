@@ -17,8 +17,9 @@ class SearchPresenter::Suggestions
     "issue_suggestion",
   ]
 
-  def suggestions
+  def suggestions(exclusions: [])
     @suggestions
+      .reject{ |s| exclusions.include? suggestion_type(s) }
       .sort_by { |s| SUGGESTIONS_ORDER.index(suggestion_type(s)) }
       .map do |suggestion|
         self.send(suggestion_type(suggestion), suggestion)
