@@ -93,6 +93,12 @@ class SuggestionsPresenter < ApplicationPresenter
   end
   memoize :agency
 
+  def display_global_search_results?
+    count = global_search_results
+    count > 0 ||
+    count == 0 && (narrowed_search_results.count == 0) # hide if there are no results but a suggestion available (eg 10 CFR 2 tort)
+  end
+
   private
 
   attr_reader :params
