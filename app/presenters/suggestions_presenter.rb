@@ -109,7 +109,8 @@ class SuggestionsPresenter < ApplicationPresenter
       scope_description = custom_scope_description || "in the full text"
 
       if custom_scope_description
-        "#{count_description} #{"document".pluralize(count)} #{scope_description}"#.html_safe
+        "#{count_description} #{"document".pluralize(count)} #{scope_description}".
+          gsub(/<span\s+class="term">(.*?)<\/span>/, '<span class="term">\'\1\'</span>') # eg Add quotes to term for queries like "10 CFR 2 tort"
       else
         "#{count_description} #{"document".pluralize(count)} matching '#{query}'".tap do |string|
           if agency
