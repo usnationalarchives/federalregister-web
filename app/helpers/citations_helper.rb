@@ -13,4 +13,12 @@ module CitationsHelper
 
     path
   end
+
+  def page_range_with_page_abbreviation_prefix(page_range)
+    if page_range.to_s.include?("-")
+      "pp. #{page_range}"
+    else
+      "p. #{page_range}"
+    end
+  end
 end

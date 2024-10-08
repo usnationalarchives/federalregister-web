@@ -68,7 +68,7 @@
             <%= suggestion.highlighted_citation %>
             <% if suggestion.page_range.present? %>
               <div class="page-range">
-                <%= "pp. #{suggestion.page_range}" %>
+                <%= page_range_with_page_abbreviation_prefix(suggestion.page_range) %>
               </div>
             <% end %>
 
@@ -82,7 +82,7 @@
               <%= suggestion.highlighted_citation %>
               <% if suggestion.page_range.present? %>
                 <span class="page-range">
-                  <%= "pp. #{suggestion.page_range}" %>
+                  <%= page_range_with_page_abbreviation_prefix(suggestion.page_range) %>
                 </span>
               <% end %>
             </div>
