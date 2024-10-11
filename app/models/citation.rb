@@ -16,7 +16,7 @@ class Citation
 
   def initialize(options)
     options = options || {}
-    @document_numbers = options["document_numbers"] || []
+    @document_numbers = options["document_numbers"]&.compact || []
     @public_inspection = options["public_inspection"].try(:[], "count")
     @volume            = options["volume"]
     @page              = options["page"]
