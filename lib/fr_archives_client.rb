@@ -14,9 +14,13 @@ class FrArchivesClient
 
   def self.citations(volume, page)
     response = client.get('/api/archives/v1/citations.json', volume: volume, page: page)
-    citations_response = JSON.parse(response.body)
-    citations_response.map do |citation_response|
-      FrArchivesCitation.new(volume, page, citation_response)
+    if response.success?
+      citations_response = JSON.parse(response.body)
+      citations_response.map do |citation_response|
+        FrArchivesCitation.new(volume, page, citation_response)
+      end
+    else
+      []
     end
   end
 
