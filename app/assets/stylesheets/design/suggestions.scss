@@ -24,9 +24,10 @@ $reserved-gray: $gray-30;
     .panel-heading p { line-height: 1.2; }
 
     .example {
-      background-color: darken($suggestion-content-bg-color, 10);
+      background-color: #D8EDF8;
+      border: 1px solid #337599;
       border-radius: 22px;
-      color: $suggestion-content-color;
+      color: #333;
       cursor: pointer;
       font-size: modular-scale(-1);
       font-weight: normal;

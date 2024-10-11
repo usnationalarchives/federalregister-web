@@ -15,7 +15,6 @@
   font-size: 17.5px;
   font-weight: 500;      
   background-color: #f5f5f5;
-  border-bottom: 1px solid #dddddd;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
@@ -30,13 +29,13 @@
 }
 
 .panel-primary {
-  border-color: #428bca;
+  border-color: #337599;
 }
 
 .panel-primary .panel-heading {
   color: #ffffff;
   background-color: #428bca;
-  border-color: #428bca;
+  border-color: #337599;
 }
 
 .panel-success {
@@ -70,11 +69,11 @@
 }
 
 .panel-info {
-  border-color: #bce8f1;
+  border-color: #337599;
 }
 
 .panel-info .panel-heading {
-  color: #3a87ad;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  color: #337599;
+  background-color: #F2F9FD;
+  border-color: #337599;
 }
