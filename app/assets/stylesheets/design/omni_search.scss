@@ -33,7 +33,6 @@
     width: calc(100% - 14px);
     height: 46px;
     font-size: 20px;
-    padding-left: 7px;
   }
 
   .citation {
@@ -55,7 +54,7 @@
     width: 100%;
 
     button {
-      height: 51px;
+      height: 100%;
       width: 100%;
       border-top-right-radius: $omnisearch-border-radius;
       border-bottom-right-radius: $omnisearch-border-radius;
@@ -104,6 +103,11 @@
       .example {
         margin-right: 0px;
       }
+
+    }
+
+    #suggestion_query {
+      padding-left: 0px;
     }
 
   }
@@ -130,6 +134,10 @@
       .example {
         margin-right: 0.5em;
       }
+    }
+
+    #suggestion_query {
+      padding-left: 7px;
     }
 
   }
