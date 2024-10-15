@@ -184,13 +184,6 @@ export default class Autocomplete extends Controller {
     }
   }
 
-  _trackOmniSearchInputInteraction () {
-    if (!window.Ofr_search_suggestion.class.name.demodulizemniSearchInputInteractionRecorded) {
-      FR2.Analytics.trackOmniSearchInputInteraction()
-      window.OmniSearchInputInteractionRecorded = true
-    }
-  }
-
   identifyOptions() {
     const prefix = this.resultsTarget.id || "stimulus-autocomplete"
     const optionsWithoutId = this.resultsTarget.querySelectorAll(`${optionSelector}:not([id])`)

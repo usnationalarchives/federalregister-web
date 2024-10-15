@@ -10,6 +10,15 @@ export default class extends Controller {
       var querySelector = '#suggestions'
     }
 
+    this._trackOmniSearchInputInteraction()
     Stimulus.getControllerForElementAndIdentifier(document.querySelector(querySelector), "suggestions").modal();
   }
+
+  _trackOmniSearchInputInteraction () {
+    if (!window.OmniSearchInputInteractionRecorded) {
+      FR2.Analytics.trackOmniSearchInputInteraction()
+      window.OmniSearchInputInteractionRecorded = true
+    }
+  }
+
 }

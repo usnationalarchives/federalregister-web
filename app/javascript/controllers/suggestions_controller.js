@@ -127,7 +127,6 @@ export default class extends Controller {
       if (this.hasResultsTarget) this.resultsTarget.hidden = true
     }    
 
-    // alert("picked" + event.detail.value)
     window.location.href = event.detail.value
   }
 
