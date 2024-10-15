@@ -89,6 +89,23 @@
     .page-range {
       padding-left: 10px;
     }
+
+    .content {
+      // Create additional space between sample bubbles 
+      .panel-heading {
+        padding-top: 0px !important;
+        padding-bottom: 1px !important;
+
+        p {
+          line-height: 1.4 !important;
+        }
+      }
+
+      .example {
+        margin-right: 0px;
+      }
+    }
+
   }
 
   @media only screen and (min-width: $small-viewport-width) {
@@ -103,6 +120,18 @@
       // NOTE: This is an override of padding specified in suggestions.scss
       padding: 1px 16px;
     }
+
+    .content {
+      // Create additional space between sample bubbles 
+      .panel-heading {
+        p { line-height: 1.6 !important; }
+      }
+
+      .example {
+        margin-right: 0.5em;
+      }
+    }
+
   }
 
 }
