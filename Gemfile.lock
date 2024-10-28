@@ -40,6 +40,14 @@ GIT
       activesupport
       htmlentities
 
+GIT
+  remote: https://github.com/usnationalarchives/federal_register.git
+  revision: 83e21f8b29dcb691beb370b0618be6d9e61f92cb
+  branch: http_client_change
+  specs:
+    federal_register (0.7.7)
+      faraday (>= 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -220,27 +228,29 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    faraday (1.8.0)
+    faraday (1.10.4)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
-      faraday-httpclient (~> 1.0.1)
+      faraday-httpclient (~> 1.0)
+      faraday-multipart (~> 1.0)
       faraday-net_http (~> 1.0)
-      faraday-net_http_persistent (~> 1.1)
+      faraday-net_http_persistent (~> 1.0)
       faraday-patron (~> 1.0)
       faraday-rack (~> 1.0)
-      multipart-post (>= 1.2, < 3)
+      faraday-retry (~> 1.0)
       ruby2_keywords (>= 0.0.4)
     faraday-em_http (1.0.0)
     faraday-em_synchrony (1.0.0)
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)
-    faraday-net_http (1.0.1)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (1.0.2)
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    federal_register (0.7.7)
-      httparty (>= 0.14.0)
+    faraday-retry (1.0.3)
     ffi (1.15.5)
     fog-aws (3.6.6)
       fog-core (~> 2.1)
@@ -347,7 +357,7 @@ GEM
     msgpack (1.4.2)
     multi_json (1.14.1)
     multi_xml (0.6.0)
-    multipart-post (2.1.1)
+    multipart-post (2.4.1)
     mysql2 (0.5.6)
     nenv (0.3.0)
     net-imap (0.4.10)
@@ -625,7 +635,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails (~> 4.0)
   faraday
-  federal_register (= 0.7.7)
+  federal_register!
   fog-aws
   formtastic
   geokit (= 1.4.1)

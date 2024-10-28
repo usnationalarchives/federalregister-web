@@ -57,12 +57,11 @@ gem "draper"
 gem 'faraday'
 
 # FR API ruby library
-gem 'federal_register', '0.7.7'
+# gem 'federal_register', '0.7.7'
 #gem 'federal_register', :path => '../federal_register'
-#gem 'federal_register', :git => "https://github.com/usnationalarchives/federal_register.git",
-#                        :ref => "master"
-  # :git => 'https://github.com/criticaljuncture/federal_register',
-  # :branch => 'batch_multi_get_requests'
+gem 'federal_register',
+  :git => "https://github.com/usnationalarchives/federal_register.git",
+  :branch => "http_client_change"
 
 # aws integration
 gem 'fog-aws'
