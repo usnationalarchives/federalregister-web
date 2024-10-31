@@ -47,6 +47,7 @@ varnish:
 development_flags:
   # below are stubs - set these in development.local.yml if you need them
   permitted_hosts: ""
+  use_file_polling: true
 
 vcr:
   enabled: true
