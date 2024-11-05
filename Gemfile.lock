@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://github.com/usnationalarchives/federal_register.git
-  revision: 83e21f8b29dcb691beb370b0618be6d9e61f92cb
+  revision: 3be1ff0b0b8eb14f0f45954bdc3ae89d87717522
   branch: http_client_change
   specs:
     federal_register (0.7.7)
