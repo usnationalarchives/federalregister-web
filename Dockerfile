@@ -102,7 +102,7 @@ RUN gem install bundler -v '~> 2.0'
 
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
-COPY Gemfile.lock /tmp/Gemfile.lock
+COPY Gemfile.lock /tmp/Gemfile.lock 
 RUN bundle install &&\
   passenger-config install-standalone-runtime &&\
   passenger start --runtime-check-only
