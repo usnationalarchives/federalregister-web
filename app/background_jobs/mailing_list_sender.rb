@@ -53,6 +53,7 @@ class MailingListSender
         date:            date,
         options:         options
       })
+      raise e
     end
   end
 
