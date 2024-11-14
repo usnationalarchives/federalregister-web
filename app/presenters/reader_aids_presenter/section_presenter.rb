@@ -82,8 +82,9 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
     }
 
     pages_collection = WpApi::Client.get_pages(config)
-  rescue WpApi::Client::PageNotFound
-    raise ActiveRecord::RecordNotFound
+  rescue WpApi::Client::PageNotFound => e
+    Honeybadger.notify(e)
+    return []
   end
 
   def posts_collection
@@ -141,6 +142,10 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def items
+    if pages_collection.blank?
+      return []
+    end
+
     items = type == 'pages' ? pages_collection.content.sort_by(&:menu_order) : posts_collection.content
   end
 
@@ -149,12 +154,17 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def grouped_items
+    if items_for_display.count == 0
+      return []
+    end
+
     if columns == 1
       [items_for_display]
     else
       items_for_display.
         in_groups_of(items_for_display.count/(columns.to_f).ceil)
     end
+
   end
 
   def css_columns

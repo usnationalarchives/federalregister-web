@@ -78,7 +78,11 @@ class WpApi::Client
   private
 
   def self.get(uri)
-    super( Addressable::URI.escape(uri) )
+    response = super( Addressable::URI.escape(uri) )
+    if response.code != 200
+      raise WpApi::Client::PageNotFound
+    end
+    response
   end
 
   def self.build_url(endpoint, params)
