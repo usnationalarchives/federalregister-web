@@ -83,7 +83,6 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
 
     pages_collection = WpApi::Client.get_pages(config)
   rescue WpApi::Client::PageNotFound => e
-    Honeybadger.notify(e)
     return []
   end
 
@@ -142,7 +141,7 @@ class ReaderAidsPresenter::SectionPresenter < ReaderAidsPresenter::Base
   end
 
   def items
-    if pages_collection.blank?
+    if type == 'pages' && pages_collection.blank?
       return []
     end
 
