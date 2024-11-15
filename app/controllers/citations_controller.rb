@@ -50,6 +50,7 @@ class CitationsController < ApplicationController
           "publication_date",
           "signing_date",
         ],
+        "order" => "oldest",
         include_pre_1994_docs: true
       )
 
