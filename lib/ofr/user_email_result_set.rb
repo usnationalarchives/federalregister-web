@@ -7,7 +7,7 @@ class Ofr::UserEmailResultSet
         Rails.application.credentials.dig(:services, :ofr, :profile, :basic_username),
         Rails.application.credentials.dig(:services, :ofr, :profile, :basic_password)
     end
-    response = conn.post "#{Settings.services.ofr.profile.internal_base_url}/api/profile/v1/emails", {ids: user_ids}
+    response = conn.post "#{Settings.services.ofr.profile.internal_base_url}/api/profile/v1/emails", {ids: Array.wrap(user_ids)}
     JSON.parse(response.body)
   end
 end
