@@ -7,8 +7,14 @@
     overflow: visible;
   }
 
-  // make positioning in li's work
-  .bullets li { position: relative; }
+  .bullets li {
+    // make positioning in li's work
+    position: relative;
+
+    // make room for paragraph citation icon with in the bounds of the li
+    margin-left: -30px;
+    padding-left: 45px;
+  }
 }
 
 .citation-target-icon {
@@ -64,7 +70,7 @@ p {
 
 .bullets li {
   .citation-target-icon {
-    left: -12px;
+    left: 15px;
     top: 0;
   }
 
