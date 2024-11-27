@@ -100,6 +100,18 @@ ul {
     margin-top: -60px;
   }
 }
+
+li {
+  &> .printed-page-inline {
+    display: inline;
+  }
+
+  &> .printed-page-inline + .printed-page-details {
+    left: -45px;
+    margin-top: -4px;
+  }
+}
+
 div.preamble {
   &> .printed-page-inline {
     display: block;
@@ -111,6 +123,20 @@ div.preamble {
   &> .printed-page-inline + .printed-page-details {
     left: -40px;
     margin-top: -60px;
+  }
+}
+
+div#action {
+  &> .printed-page-inline {
+    display: block;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    max-width: fit-content;
+  }
+
+  &> .printed-page-inline + .printed-page-details {
+    left: -50px;
+    margin-top: -50px;
   }
 }
 
@@ -129,11 +155,13 @@ div.preamble {
     top: -4px;
   }
 }
-///
+// end special printed page handling
 
 .printed-page-inline {
   .svg-icon {
     height: 13px;
+    position: relative;
+    top: 1px;
     width: 13px;
   }
 }
