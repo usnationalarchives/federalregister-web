@@ -35,7 +35,7 @@ class @FR2.ParagraphCitation
       tooltipText = "The url for this page contains a paragraph citation. This is the paragraph that is cited."
 
       linkIcon = $(
-        '<%= ApplicationController.helpers.svg_icon("link") %>'
+        '<svg class="svg-icon svg-icon-link"><use xlink:href="/assets/fr-icons.svg#link"></use></svg>'
       )
       linkIcon.data('tooltip', tooltipText)
 
