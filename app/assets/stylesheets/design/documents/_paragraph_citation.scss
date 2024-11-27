@@ -66,6 +66,11 @@ p {
     }
     .citation-target-background { left: 25px; }
   }
+
+  &.flush-paragraph-2 .citation-target-icon {
+    left: 40px;
+    top: 1px;
+  }
 }
 
 .bullets li {
