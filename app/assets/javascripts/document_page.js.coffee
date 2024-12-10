@@ -9,6 +9,12 @@ $(document).ready ->
       # Refactoring Opportunity: In lieu of doing manual filename replacements here, move handlebars templates in app/templates/documents to app/templates so this is no longer necessary.  Locally, there is some issue with the templates not re-registering in the correct location.
       replace("stars_5_tooltip","documents/stars_5_tooltip")
 
+  if $('.doc.doc-public-inspection').length > 0
+    (new OFR.CopyToClipboard).addTo(".doc-content")
+    $('a#email-a-friend').on 'click', (event)->
+        event.preventDefault()
+        emailAFriend = new FR2.EmailAFriend $(this).data('document-number')
+        emailAFriend.display()
 
   if $('.doc-document .doc-content').length > 0
     $('.doc-content .content-col').tooltip({
