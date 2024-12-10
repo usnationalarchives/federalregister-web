@@ -3,7 +3,11 @@ FR2.PrintPageElements = class PrintPageElements {
 
   shortUrl = this.contentCol.querySelector(".doc-content-area").dataset.shortUrl
 
-  volume = document.getElementById("document-citation").dataset.citationVol
+  volume() {
+    if (document.getElementById("document-citation")) {
+      return document.getElementById("document-citation").dataset.citationVol
+    } 
+  }
 
   addUIEvents() {
     // start hover
@@ -93,7 +97,7 @@ FR2.PrintPageElements = class PrintPageElements {
 
       menu.classList.add("page-menu")
       menu.innerHTML = this.paragraphDetailsMenuMarkup(
-        target.dataset.page, this.shortUrl, this.volume
+        target.dataset.page, this.shortUrl, this.volume()
       )
       let boxLeftCSSValue = 60;
       let gutterOffsetWidth = 30;
