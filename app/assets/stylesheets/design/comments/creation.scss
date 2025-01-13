@@ -822,7 +822,25 @@ div.alternative-comment-modal {
 
   }
 
+  #fr_modal.comment-preview-modal {
+    width: 80%;
+    left: auto;
+
+    dl dt {
+      text-align: left !important;
+    }
+  }
+
 }
+
+@media only screen and (min-width: $small-viewport-width) {
+
+  #fr_modal.comment-preview-modal {
+    width: 700px;
+  }
+
+}
+
 
 @media print {
 
