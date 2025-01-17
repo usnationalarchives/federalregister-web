@@ -33,6 +33,11 @@
 }
 
 @media only screen and (max-width: 500px) {
+
+  .site-notification-text {
+    width: 100% !important;
+  }
+
   .header {
     // reduce logo size at smaller screen sizes
     .logo {
