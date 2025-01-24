@@ -32,6 +32,8 @@
         <% end %>
       </p>
 
+      <p><%= t('presidential_documents.processing_delay_note').html_safe %></p>
+
       <p>
         These <%= pluralize(presenter.presidential_documents_collection.count, presenter.presidential_document_type.name.downcase.singularize.capitalize) %>
         can be downloaded in
