@@ -67,7 +67,10 @@
 
               <%= f.input :president,
                 as: :check_boxes,
-                collection: President.all.select{|x| x.starts_on > Date.new(1993,1,20)}.reverse.
+                collection: President.all.
+                  select{|x| x.starts_on > Date.new(1993,1,20)}.
+                  reverse.
+                  uniq(&:identifier).
                   map{|p| [p.full_name, p.identifier]},
                 label: "President",
                 required: false,

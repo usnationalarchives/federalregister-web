@@ -108,6 +108,13 @@ class President < ActiveHash::Base
       :ends_on => Date.new(2025,1,19),
       :generational_suffix => true
     },
+    {
+      :id => 47,
+      :identifier => 'donald-trump',
+      :full_name => "Donald Trump",
+      :starts_on => Date.new(2025,1,20),
+      :ends_on => Date.new(2029,1,19)
+    },
   ]
 
   def year_ranges
