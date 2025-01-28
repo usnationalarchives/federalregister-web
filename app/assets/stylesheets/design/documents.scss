@@ -60,7 +60,7 @@
   }
 
 
-  p {
+  p,div {
     margin: 0;
     padding: 0;
 
@@ -98,3 +98,32 @@
 }
 
 #print-only-document-details { display: none; }
+
+@media only screen and (max-width: $small-viewport-width) {
+
+  .notice-bar-grid {
+    display: grid;
+    grid-template-areas: 
+    "bar-button bar-button"
+    "bar-icon message-text";
+    grid-template-columns: 38px 1fr;
+    row-gap: 10px;
+
+    .button {
+      grid-area: bar-button;
+      position: static !important;
+    }
+
+    .message-text {
+      grid-area: message-text;
+    }
+
+    .bar-icon {
+      grid-area: bar-icon;
+      align-self: center;
+      font-size: 28px;
+    } 
+
+  }
+
+}

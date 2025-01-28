@@ -1,32 +1,19 @@
 <% if document.correction_of %>
-  <div class="document-notice-bar correction-of">
-    <p>
-      <%= fr_icon 'alert_alt' %>
-
-      <% if document.republication? %>
-        This document is a corrected republication of a document published on <%= document.correction_of_document.publication_date %>.
-      <% else %>
-        This document is a correction of a document that was published on <%= document.correction_of_document.publication_date %>.
-      <% end %>
-      <%= link_to 'View Uncorrected Document', document.correction_of_document.html_url, :class => "button" %>
-    </p>
-  </div>
+  <%= render partial: 'shared/notice_bar', locals: {
+    css_class: 'correction-of',
+    message_text: (document.republication? ? "This document is a corrected republication of a document published on #{document.correction_of_document.publication_date}." : "This document is a correction of a document that was published on #{document.correction_of_document.publication_date}."),
+    link_text: 'View Uncorrected Document',
+    link_url: document.correction_of_document.html_url
+  } %>
 <% end %>
 
 <% if document.corrections.present? %>
   <% document.corrected_documents.each do |correction| %>
-    <div class="document-notice-bar correction">
-      <p>
-        <%= fr_icon 'alert_alt' %>
-
-        <% if correction.republication? %>
-          This document has been corrected and republished on <%= correction.publication_date %>.
-          <%= link_to 'View Republication', correction.html_url, :class => "button" %>
-        <% else %>
-          This document was corrected by a document published on <%= correction.publication_date %>.
-          <%= link_to 'View Correction', correction.html_url, :class => "button" %>
-        <% end %>
-      </p>
-    </div>
+    <%= render partial: 'shared/notice_bar', locals: {
+      css_class: 'correction',
+      message_text: (correction.republication? ? "This document has been corrected and republished on #{correction.publication_date}" : "This document was corrected by a document published on #{correction.publication_date}."),
+      link_text: "View #{correction.republication? ? "Republication" : "Correction"}",
+      link_url: correction.html_url
+    } %>
   <% end %>
 <% end %>

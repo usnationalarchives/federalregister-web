@@ -1,0 +1,9 @@
+<div class="<%= "document-notice-bar #{css_class}" %>">
+  <div class="notice-bar-grid">
+    <%= fr_icon 'alert_alt', class: "bar-icon" %>
+    <p class="message-text">
+      <%= message_text %>
+    </p>
+    <%= link_to link_text, link_url, :class => "button" %>
+  </div>
+</div>
