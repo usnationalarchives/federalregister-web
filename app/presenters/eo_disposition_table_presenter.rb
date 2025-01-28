@@ -13,6 +13,6 @@ class EoDispositionTablePresenter < ExecutiveOrderPresenter
   end
 
   def current_page?(president, eo_collection)
-    president == self.president && eo_collection.year == year.to_i
+    president.identifier == self.president.identifier && eo_collection.year == year.to_i
   end
 end
