@@ -126,10 +126,14 @@
                 </h3>
 
                 <p>
-                  <%= "#{president.full_name}#{',' if president.generational_suffix}" %> signed 
+                  <%= "#{president.full_name}#{',' if president.generational_suffix}" %> signed
                   <%= pluralize(documents_by_year.sum{|doc| doc.count}, @presenter.name.singularize.capitalize) %>
-                  between <%= documents_by_year.last.year %>
-                  and <%= documents_by_year.first.year %>.
+                  <% if documents_by_year.last.year == documents_by_year.first.year %>
+                    in <%= documents_by_year.last.year %>.
+                  <% else %>
+                    between <%= documents_by_year.last.year %>
+                    and <%= documents_by_year.first.year %>.
+                  <% end %>
                 </p>
 
                 <ul class="document-list">
