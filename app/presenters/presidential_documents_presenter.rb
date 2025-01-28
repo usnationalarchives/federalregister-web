@@ -9,7 +9,7 @@ class PresidentialDocumentsPresenter
     @year = args[:year]
 
     @presidential_document_type = PresidentialDocumentType.find(@type.singularize)
-    @president = President.find_by_identifier!(args[:president]) if args[:president]
+    @president = lookup_president(args)
   end
 
   def name
@@ -112,6 +112,16 @@ class PresidentialDocumentsPresenter
 
   private
 
+  def lookup_president(args)
+    if args[:president]
+      if args[:president].is_a?(President)
+        args[:president]
+      else
+        raise "A president object must be supplied.  A #{args[:president].class} was provided instead."
+      end
+    end
+  end
+
   def eo_count_by_president_identifier_and_year
     # Possible Speed Optimization: Limit query by presidential dates to optimize speed
     presidents.each_with_object(Hash.new) do |president, hsh|
@@ -155,6 +165,17 @@ class PresidentialDocumentsPresenter
       per_page: presidential_document_type.maximum_per_page || 1000,
       maximum_per_page: presidential_document_type.maximum_per_page || 1000,
       include_pre_1994_docs: true
-    })
+    }).tap do |params|
+      if president
+        params.deep_merge!(
+          conditions: {
+            signing_date: {
+              gte: president.starts_on,
+              lte: president.ends_on
+            },
+          }
+        )
+      end
+    end
   end
 end
