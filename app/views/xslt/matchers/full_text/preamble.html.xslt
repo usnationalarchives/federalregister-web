@@ -3,6 +3,17 @@
 
   <xsl:template match="PREAMB">
     <div class="preamble">
+
+      <!-- Process any top-level P or HD tags that come before the first section
+        - these are usually C1- style corrections -->
+      <xsl:for-each select="*[self::P | self::HD][
+        not(self::ACT | self::ADD | self::AGY | self::DATES | self::EFFDATE | self::FURINF | self::SUM | self::AGENCY)
+      ][
+        not(preceding-sibling::*[self::ACT | self::ADD | self::AGY | self::DATES | self::EFFDATE | self::FURINF | self::SUM])
+      ]">
+        <xsl:apply-templates select="." />
+      </xsl:for-each>
+
       <!-- only apply templates for the headers we want to process, other tags
         in the preamble will get hoisted into their preceding header -->
       <xsl:apply-templates select="AGENCY" />
@@ -12,9 +23,9 @@
         <xsl:when test="count(child::ACT | child::ADD | child::AGY | child::DATES | child::EFFDATE | child::FURINF | child::SUM) &gt; 0">
           <xsl:apply-templates select="ACT | ADD | AGY | DATES | EFFDATE | FURINF | SUM"/>
         </xsl:when>
-        <!-- some notice documents docs -->
+        <!-- some notice documents docs (like sunshine notices) that have other tags) -->
         <xsl:otherwise>
-          <xsl:apply-templates select="*[not(self::AGENCY)]" />
+          <xsl:apply-templates select="*[not(self::AGENCY | self::P | self::HD)]" />
         </xsl:otherwise>
       </xsl:choose>
     </div>

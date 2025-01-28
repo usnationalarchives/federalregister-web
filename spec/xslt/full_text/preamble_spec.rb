@@ -187,6 +187,41 @@ describe "XSLT::Preamble" do
       HTML
     end
 
+    it "outputs a mix of marked up grouping and paragraphs when there is a mix" do
+      # SUBJECT node is not output in our HTML as it is the doc title
+      # placing in spec as an anchor for this sort of content
+      # see https://www.federalregister.gov/d/C1-2024-10515
+      process <<-XML
+        <PREAMB>
+          <SUBJECT>Demurrage and Detention Billing Requirements</SUBJECT>
+          <HD SOURCE="HD2">Correction</HD>
+          <P>In rule document 2024-10515 appearing on page 41895 in the issue of Tuesday, May 14, 2024, make the following correction:</P>
+          <P>
+          In the second column, starting in the twenty-eighth line, the
+          <E T="02">DATES</E>
+          section is corrected to read:
+          </P>
+          <EFFDATE>
+            <HD SOURCE="HED">DATES:</HD>
+            <P>This rule is effective on May 28, 2024. The amendments adding 46 CFR 541.6 (instruction 2) and 541.99 (instruction 3), published on February 26, 2024 (89 FR 14330), are effective on May 28, 2024.</P>
+          </EFFDATE>
+        </PREAMB>
+      XML
+
+      expect_equivalent <<-HTML
+        <div class="preamble">
+          <h3 id="h-1">Correction</h3>
+          <p id="p-1" data-page="1000">In rule document 2024-10515 appearing on page 41895 in the issue of Tuesday, May 14, 2024, make the following correction:</p>
+          <p id="p-2" data-page="1000"> In the second column, starting in the twenty-eighth line, the <strong class="minor-caps">DATES</strong> section is corrected to read: </p>
+
+          <div id="dates">
+            <h1 id="h-2">DATES:</h1>
+            <p id="p-3" data-page="1000">This rule is effective on May 28, 2024. The amendments adding 46 CFR 541.6 (instruction 2) and 541.99 (instruction 3), published on February 26, 2024 (89 FR 14330), are effective on May 28, 2024.</p>
+          </div>
+        </div>
+      HTML
+    end
+
     it "processes PREAMHD headers (sunshine act meetings notices)" do
       process <<-XML
         <PREAMB>
