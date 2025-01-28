@@ -171,7 +171,7 @@ class PresidentialDocumentsPresenter
           conditions: {
             signing_date: {
               gte: president.starts_on,
-              lte: president.ends_on
+              lte: (president.ends_on + 1.day) #To account for signings that occur on the morning of their last day in office
             },
           }
         )
