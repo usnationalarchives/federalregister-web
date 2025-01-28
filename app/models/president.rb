@@ -161,6 +161,10 @@ class President < ActiveHash::Base
   end
 
   def in_office
-    "#{starts_on.year}-#{ends_on.year}"
+    if starts_on.year == ends_on.year
+      starts_on.year
+    else
+      "#{starts_on.year}-#{ends_on.year}"
+    end
   end
 end
