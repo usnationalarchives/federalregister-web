@@ -17,17 +17,15 @@ class PresidentialDocumentsController < ApplicationController
 
   def by_president_and_year
     cache_for 1.day
-    @presenter = PresidentialDocumentsDispositionTablePresenter.new(
-      presidential_document_params.tap do |p_params|
-        president = President.
-          in_office_on_year(p_params[:year].to_i).
-          find do |president|
-            president.identifier == p_params[:president]
-          end
 
-        p_params[:president] = president
-      end.
-      merge(view_context: view_context)
+    president = president_from_params
+    raise ActiveRecord::RecordNotFound unless president
+
+    @presenter = PresidentialDocumentsDispositionTablePresenter.new(
+      presidential_document_params.merge(
+        president: president,
+        view_context: view_context
+      )
     )
 
     raise ActiveRecord::RecordNotFound unless @presenter.valid_year? && @presenter.presidential_documents_collection.results.present?
@@ -37,5 +35,12 @@ class PresidentialDocumentsController < ApplicationController
 
   def presidential_document_params
     params.permit(:president, :type, :year)
+  end
+
+  def president_from_params
+    President.
+      in_office_on_year(presidential_document_params[:year].to_i).
+      find{|president|
+        president.identifier == presidential_document_params[:president]}
   end
 end
