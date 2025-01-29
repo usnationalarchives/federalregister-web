@@ -4,6 +4,10 @@
   <xsl:template match="PREAMB">
     <div class="preamble">
 
+      <!-- only apply templates for the headers we want to process, other tags
+        in the preamble will get hoisted into their preceding header -->
+      <xsl:apply-templates select="AGENCY" />
+
       <!-- Process any top-level P or HD tags that come before the first section
         - these are usually C1- style corrections -->
       <xsl:for-each select="*[self::P | self::HD][
@@ -13,10 +17,6 @@
       ]">
         <xsl:apply-templates select="." />
       </xsl:for-each>
-
-      <!-- only apply templates for the headers we want to process, other tags
-        in the preamble will get hoisted into their preceding header -->
-      <xsl:apply-templates select="AGENCY" />
 
       <xsl:choose>
         <!-- many notices and all prorule and rule docs -->

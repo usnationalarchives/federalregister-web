@@ -193,6 +193,10 @@ describe "XSLT::Preamble" do
       # see https://www.federalregister.gov/d/C1-2024-10515
       process <<-XML
         <PREAMB>
+          <AGENCY TYPE="N">FEDERAL MARITIME COMMISSION</AGENCY>
+          <CFR>46 CFR Part 541</CFR>
+          <DEPDOC>[Docket No. FMC-2022-0066]</DEPDOC>
+          <RIN>RIN 3072-AC90</RIN>
           <SUBJECT>Demurrage and Detention Billing Requirements</SUBJECT>
           <HD SOURCE="HD2">Correction</HD>
           <P>In rule document 2024-10515 appearing on page 41895 in the issue of Tuesday, May 14, 2024, make the following correction:</P>
@@ -210,6 +214,16 @@ describe "XSLT::Preamble" do
 
       expect_equivalent <<-HTML
         <div class="preamble">
+          #{document_heading_wrapper do
+          <<-HTML
+            <h6 class="agency">Federal Maritime Commission</h6>
+            <ol>
+              <li>46 CFR Part 541</li>
+              <li>[Docket No. FMC-2022-0066]</li>
+              <li>RIN 3072-AC90</li>
+            </ol>
+          HTML
+          end}
           <h3 id="h-1">Correction</h3>
           <p id="p-1" data-page="1000">In rule document 2024-10515 appearing on page 41895 in the issue of Tuesday, May 14, 2024, make the following correction:</p>
           <p id="p-2" data-page="1000"> In the second column, starting in the twenty-eighth line, the <strong class="minor-caps">DATES</strong> section is corrected to read: </p>
