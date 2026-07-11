@@ -87,11 +87,15 @@
 }
 
 .modal-backdrop {
-  background-color: rgb(255, 255, 255) !important;
+  background-color: $bg !important;
 }
 
 .fr-modal {
-  background-color: $white;
+  // Not a $white literal: $white does not invert in dark mode (--fr-white stays
+  // #FFFFFF for white-on-color button text), so a $white modal would keep a
+  // white face while its text tokens invert to light -- unreadable. $bg is the
+  // page-surface token: #FFFFFF light (identical to before) / #1A1A1A dark.
+  background-color: $bg;
   border: 5px solid $dark-blue;
   display: none;
   max-height: 87vh;

@@ -1,0 +1,73 @@
+// The toggle lives in the primary nav as its last item, so it should read as a
+// native nav item -- the same rectangular cell, divider, weight and hover as its
+// siblings (see navigation.scss) rather than a standalone pill.
+//
+// My FR already carries a right border (.nav_myfr2), which now serves as the
+// divider before the toggle; so the toggle drops its own left border (to avoid
+// doubling) and instead closes the menu with a right border, exactly as My FR
+// used to when it was the last item.
+#navigation #theme-toggle-nav {
+  border-left: 0;
+  border-right: 1px solid $nav-border-color;
+
+  .theme-toggle {
+    @include sans_serif;
+    align-items: center;
+    background: none;
+    border: 0;
+    color: $gray-60;
+    cursor: pointer;
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
+    gap: 6px;
+    height: 30px;
+    line-height: 32px;
+    padding: 0 10px;
+
+    &:hover {
+      color: $bright-orange;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $link-dark;
+      outline-offset: -2px;
+    }
+  }
+
+  .theme-toggle-icon {
+    height: 16px;
+    width: 16px;
+  }
+
+  // Reserve the width of the wider word ("Light") so swapping the label between
+  // themes doesn't change the button width and shift the rest of the nav.
+  .theme-toggle-label {
+    display: inline-block;
+    min-width: 2.8em;
+    text-align: left;
+  }
+
+  // Light theme (default): show the moon + "Dark" ("switch to dark").
+  .theme-toggle-icon-light,
+  .theme-toggle-label-light {
+    display: none;
+  }
+
+  // Dark theme: the controller sets aria-pressed="true" on the button, swapping
+  // the pair to the sun + "Light" ("switch to light").
+  .theme-toggle[aria-pressed="true"] {
+    .theme-toggle-icon-dark,
+    .theme-toggle-label-dark {
+      display: none;
+    }
+
+    .theme-toggle-icon-light {
+      display: block;
+    }
+
+    .theme-toggle-label-light {
+      display: inline-block;
+    }
+  }
+}

@@ -386,7 +386,7 @@
                   max-width: 735px;
 
                   svg.ecfr-svg-icon-content-copy {
-                    fill: darken($color-enhanced, 10);
+                    fill: $color-enhanced-hover-10;
                     height: 18px;
                     left: 2px;
                     position: absolute;

@@ -55,7 +55,7 @@
       color: $color-reader-aid-link !important;
 
       &:hover {
-        color: darken($color-reader-aid-link, 15) !important;
+        color: $color-reader-aid-link-hover-15 !important;
       }
     }
 
@@ -153,8 +153,8 @@
 
 /* popover customizations */
 
-$tipsy-popover-innner-background-color: rgba(0, 0, 0, 0.8);
-$tipsy-popover-inner-box-shadow-color: rgba(0, 0, 0, 0.3);
+$tipsy-popover-innner-background-color: rgba(0, 0, 0, 0.8); // no matching dark-mode token, kept literal
+$tipsy-popover-inner-box-shadow-color: rgba(0, 0, 0, 0.3); // no matching dark-mode token, kept literal
 $tipsy-popover-inner-width: 580px;
 
 .tipsy-n.popover .tipsy-inner {
@@ -201,7 +201,7 @@ $tipsy-popover-inner-width: 580px;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
 
-    background-color: $white;
+    background-color: $bg;
     border-radius: 0 0 3px 3px;
     font-size: modular-scale(0);
     padding: 14px;

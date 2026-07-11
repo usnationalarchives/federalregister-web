@@ -77,9 +77,9 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
 
   padding: 0 5px 0 8px;
 
-  background-color: #EEE;
-  border: #CCC 1px solid;
-  border-left: #B3C2CF 1px solid;
+  background-color: $gray-10;
+  border: $gray-20 1px solid;
+  border-left: $capsule-border 1px solid;
 
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -90,8 +90,8 @@ div#folder_metadata_bar { @extend %list_page_title_metadata_bar; }
   }
 #clippings div.add_to_folder_pane .left_side {
   width: 6px;
-  background-color: #F5F8F9;
-  border: #B3C2CF 1px solid;
+  background-color: $gray-2;
+  border: $capsule-border 1px solid;
   height: 100%;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;

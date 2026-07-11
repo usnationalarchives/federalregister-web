@@ -1,7 +1,7 @@
 /* these colors don't cascade properly when using sprites so they
  * defined as vars here so they can be used there... */
-$list-item-filter-bg: #FFF;
-$list-item-filter-bg-on: #F5F8F9;
+$list-item-filter-bg: $bg;
+$list-item-filter-bg-on: $bg-surface;
 
 %list_item_filters {
   position: absolute;
@@ -13,7 +13,7 @@ $list-item-filter-bg-on: #F5F8F9;
     float: left;
     width: 21px;
     height: 20px;
-    border: 1px solid #CCC;
+    border: 1px solid $gray-20;
     background-color: $list-item-filter-bg;
     border-right: 0px;
     overflow: hidden;
@@ -29,7 +29,7 @@ $list-item-filter-bg-on: #F5F8F9;
     li.first { @include rounded-left(6); }
     li.last { 
       @include rounded-right(6);
-      border-right: 1px solid #CCC;
+      border-right: 1px solid $gray-20;
     }
     li img { position: relative; }
   }

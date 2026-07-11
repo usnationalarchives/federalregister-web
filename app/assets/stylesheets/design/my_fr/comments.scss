@@ -43,11 +43,11 @@
   &:hover,
   &.hover {
     color: white;
-    background-color: lighten($green, 20);
+    background-color: $green-tint-20;
   }
 
   &.selected {
-    background-color: lighten($green, 20);
+    background-color: $green-tint-20;
   }
 }
 

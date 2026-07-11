@@ -5,11 +5,11 @@
   padding: 10px;
   position: relative;
 
-  background-color: #F5F8F9;
+  background-color: $bg-surface;
   margin-bottom: 10px;
 
   @include border-radius(6);
-  border: #B3C2CF 1px solid;
+  border: $capsule-border 1px solid;
 
   @include sans_serif;
 }
@@ -31,7 +31,7 @@
   color: $text;
   }
 %capsule_metadata_dash_separated {
-  border-left: 1px dashed #CCC;
+  border-left: 1px dashed $gray-20;
   padding-left: 10px;
   width: 140px;
   @extend %capsule_metadata_wrapper;
@@ -46,7 +46,7 @@
     float: left;
 
     dt {
-      color: #6E6E6E;
+      color: $gray-60;
       height: 19px;
       }
 

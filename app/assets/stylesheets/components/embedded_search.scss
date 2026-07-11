@@ -1,9 +1,9 @@
 $doc_icon_mini_height: 20;
 
-$filter-bg-color: #FFFFFF;
-$filter-border-color: #CCCCCC;
-$filter-hover-bg-color: #F5F8F9;
-$filter-disabled-bg-color: #FFFFFF;
+$filter-bg-color: $bg;
+$filter-border-color: $nav-border-color;
+$filter-hover-bg-color: $color-official-light;
+$filter-disabled-bg-color: $bg;
 
 .doc-type-filter {
   overflow: hidden;
@@ -81,7 +81,7 @@ $filter-disabled-bg-color: #FFFFFF;
   #conditions_submit {
     background: none;
     background-color: $gray-5;
-    border: 1px solid #CCC;
+    border: 1px solid $nav-border-color;
     border-left: none;
     @include rounded-right(4);
 

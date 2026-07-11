@@ -1,3 +1,7 @@
+// library/colors must load before reset -- reset now references color
+// tokens (e.g. $text) for a couple of dark-mode-aware defaults
+@import "library/colors";
+
 // our original reset file
 @import "reset";
 $small-viewport-width: 501px;
@@ -8,8 +12,6 @@ $small-viewport-width: 501px;
 @import "mixins/placeholders";
 @import "mixins/progress";
 @import "mixins/rounded";
-
-@import "library/colors";
 
 // Font sizes based on ratios
 $em-base: 16px;

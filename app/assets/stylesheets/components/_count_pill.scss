@@ -15,13 +15,13 @@
 
   &.public-inspection {
     background-color: $color-public-inspection-light-alt;
-    border-color: lighten($color-public-inspection, 40);
+    border-color: $color-public-inspection-tint-40;
     color: $color-public-inspection;
   }
 
   &.reader-aid {
     background-color: $color-reader-aid-med;
-    border-color: lighten($color-reader-aid, 20);
+    border-color: $color-reader-aid-tint-20;
     color: $color-reader-aid-dark;
   }
 }

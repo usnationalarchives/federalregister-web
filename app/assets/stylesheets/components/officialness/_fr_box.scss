@@ -14,7 +14,18 @@ Modifiers here control the color of the box elements.
 Styleguide 1.1 FR Boxes
 */
 
-@mixin fr-doc($main-color, $secondary-color, $tertiary-color:$secondary-color) {
+@mixin fr-doc($main-color, $secondary-color, $tertiary-color: $secondary-color, $border-color: null) {
+  // $border-color is only needed when $tertiary-color is a themed token
+  // (a CSS custom property, not a real Sass color) -- darken() can't run
+  // on those at compile time. Mailers pass real colors (see
+  // library/_static_colors.scss) and don't need to pass $border-color at
+  // all, since darken() still works fine there.
+  $resolved-border-color: if(
+    $border-color,
+    $border-color,
+    if(type-of($tertiary-color) == color, darken($tertiary-color, 20), $tertiary-color)
+  );
+
   // Styles for the fr-box
   background-color: $secondary-color;
 
@@ -38,8 +49,8 @@ Styleguide 1.1 FR Boxes
           .fr-seal-meta {
             background-color: $tertiary-color;
             border-bottom: 3px solid $main-color;
-            border-left: 1px solid darken($tertiary-color, 20);
-            border-right: 1px solid darken($tertiary-color, 20);
+            border-left: 1px solid $resolved-border-color;
+            border-right: 1px solid $resolved-border-color;
             color: $text;
             display: inline-block;
             margin-top: 0;
@@ -70,7 +81,7 @@ Styleguide 1.1 FR Boxes
 
 .fr-box {
   // show box as inactive unless we specify the proper box type
-  @include fr-doc($color-inactive, $color-inactive-light);
+  @include fr-doc($color-inactive, $color-inactive-light, $border-color: $color-inactive-light-border);
   position:relative;
 
   .fr-seal-stamp {
@@ -129,28 +140,28 @@ Styleguide 1.1 FR Boxes
 
   // Establishes the color scheme for boxes that have header/footer blocks
   &.fr-box-official {
-    @include fr-doc($color-official, $color-official-light);
+    @include fr-doc($color-official, $color-official-light, $border-color: $color-official-light-border);
   }
   &.fr-box-official-alt {
-    @include fr-doc($color-official, $color-official-light-alt);
+    @include fr-doc($color-official, $color-official-light-alt, $border-color: $color-official-light-alt-border);
   }
   &.fr-box-enhanced {
-    @include fr-doc($color-enhanced, $color-enhanced-light);
+    @include fr-doc($color-enhanced, $color-enhanced-light, $border-color: $color-enhanced-light-border);
   }
   &.fr-box-public-inspection {
-    @include fr-doc($color-public-inspection, $color-public-inspection-light);
+    @include fr-doc($color-public-inspection, $color-public-inspection-light, $border-color: $color-public-inspection-light-border);
   }
   &.fr-box-public-inspection-alt {
-    @include fr-doc($color-public-inspection, $color-public-inspection-light-alt);
+    @include fr-doc($color-public-inspection, $color-public-inspection-light-alt, $border-color: $color-public-inspection-light-alt-border);
   }
   &.fr-box-reader-aid {
-    @include fr-doc($color-reader-aid, $color-reader-aid-light);
+    @include fr-doc($color-reader-aid, $color-reader-aid-light, $border-color: $color-reader-aid-light-border);
   }
   &.fr-box-published {
-    @include fr-doc($color-published, $color-published-light);
+    @include fr-doc($color-published, $color-published-light, $border-color: $color-published-light-border);
   }
   &.fr-box-published-alt {
-    @include fr-doc($color-published, $color-published-light-alt, $color-published-light);
+    @include fr-doc($color-published, $color-published-light-alt, $color-published-light, $color-published-light-border);
   }
 
   &.fr-box-small {
@@ -260,7 +271,7 @@ Styleguide 1.1 FR Boxes
     margin: -1px;
 
     .fr-box-inherit {
-      background-color: #D8D8D8;
+      background-color: $gray-15;
 
       .icon-fr2-clipboard.copy-to-clipboard {
         cursor: pointer;
@@ -269,10 +280,10 @@ Styleguide 1.1 FR Boxes
   }
 
   .popover.right .arrow:after {
-    border-left-color: #D8D8D8;
+    border-left-color: $gray-15;
   }
 
   .popover.left .arrow:after {
-    border-left-color: #D8D8D8;
+    border-left-color: $gray-15;
   }
 }

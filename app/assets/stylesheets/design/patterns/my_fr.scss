@@ -23,7 +23,7 @@
 
   ul {
     font-weight: 700;
-    color: #666;
+    color: $gray-60;
     list-style: none;
     font-size: 13px;
 
@@ -46,8 +46,8 @@
   margin-bottom: 10px;
   z-index: 1001;
 
-  background-color: #EEE;
-  border: #CCC 1px solid;
+  background-color: $gray-10;
+  border: $gray-20 1px solid;
 
   @include rounded-top(6);
 }

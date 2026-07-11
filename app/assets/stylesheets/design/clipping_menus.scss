@@ -32,7 +32,7 @@
     &.add-to-folder,
     &.jump-to-folder {
       .button {
-        background-color: $white;
+        background-color: $bg;
         border: 1px solid $gray-20;
         border-radius: 6px;
         font-weight: 500;
@@ -70,7 +70,7 @@
         }
 
         ul {
-          background-color: $white;
+          background-color: $bg;
           border: 1px solid $gray-15;
           margin: 0;
 
@@ -120,7 +120,7 @@
       &.hover {
         .button {
           @include rounded-bottom(0);
-          background-color: $white;
+          background-color: $bg;
           border-bottom: 0;
           color: $orange;
           padding-bottom: 6px;
@@ -132,7 +132,7 @@
           ul {
             @include rounded-bottom(6);
 
-            background-color: $white;
+            background-color: $bg;
             border: 1px solid $gray-15;
             border-top-left-radius: 6px;
             margin: 0;
@@ -169,7 +169,7 @@
   #select-all-clippings {
     @include border-radius(6);
 
-    background-color: $white;
+    background-color: $bg;
     border: 1px solid $gray-20;
     color: $gray-60;
     font-size: 22px;
@@ -193,7 +193,7 @@
   .remove-clipping {
     @include border-radius(6);
 
-    background-color: $white;
+    background-color: $bg;
     border: 1px solid $gray-20;
     color: $gray-60;
     font-size: 22px;

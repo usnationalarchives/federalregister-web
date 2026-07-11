@@ -1,7 +1,7 @@
 // in our current setup these need to be outside the usual bootstrap-scope
 // as they are placed immediately inside the <body> tag
 
-@mixin document_markup_tooltip_colors($color, $light-color) {
+@mixin document_markup_tooltip_colors($color, $light-color, $icon-hover-color: $color) {
   .tipsy-arrow { border-top-color: $color; }
 
   .fr-seal-block-header,
@@ -15,18 +15,18 @@
     background-color: $light-color;
 
     .icon-fr2-clipboard.copy-to-clipboard:hover {
-      color: darken($color, 50);
+      color: $icon-hover-color;
     }
   }
 }
 
 .tipsy.document-markup-tooltip {
   &.tooltip-doc-published {
-    @include document_markup_tooltip_colors($color-published, $color-published-light-alt);
+    @include document_markup_tooltip_colors($color-published, $color-published-light-alt, $color-published-icon-hover);
   }
 
   &.tooltip-doc-official {
-    @include document_markup_tooltip_colors($color-official, $color-official-light-alt);
+    @include document_markup_tooltip_colors($color-official, $color-official-light-alt, $color-official-icon-hover);
   }
 
   .tipsy-arrow {

@@ -1,152 +1,887 @@
-// base
-$white: #FFFFFF;
-$black: #000000;
+// =====================================================================
+// Color tokens
+//
+// Every public $variable below resolves to a CSS custom property so the
+// dark theme (app/javascript/controllers/theme_controller.js) can swap
+// values at runtime via [data-theme="dark"] on <html>, or automatically
+// via prefers-color-scheme when no explicit choice has been made.
+//
+// Structure:
+//   1. Private $_ constants: exact reproduction of the original static
+//      (light-mode) color math -- unchanged values, compile-time only.
+//   2. :root block: exposes every constant as a --fr-* custom property.
+//      This block is NOT wrapped in a media query, so it is also what
+//      print sees (print always renders light, per print.scss).
+//   3. fr-dark-theme mixin: only the entries whose value actually
+//      differs in dark mode. Anything omitted here inherits its :root
+//      (light) value unchanged -- correct by default for brand accents
+//      that read fine on both backgrounds.
+//   4. Public $variables: same names as before this refactor, now
+//      pointing at var(--fr-*) instead of literals, so none of the
+//      ~150 files that consume them need to change.
+// =====================================================================
 
-// gray percentages
-$gray-90: #191919;
-$gray-80: #333333;
-$gray-70: #4C4C4C;
-$gray-60: #666666;
-$gray-50: #7F7F7F;
-$gray-40: #999999;
-$gray-30: #B2B2B2;
-$gray-20: #D1D2D4;
-$gray-15: #D8D8D8;
-$gray-10: #ECECEC;
-$gray-5: #F1F1F1;
-$gray-2: #F9F9F9;
+// ---------------------------------------------------------------------
+// 1. Private constants -- byte-identical to the pre-refactor values
+// ---------------------------------------------------------------------
 
-$med-gray:  $gray-40;
-$dark-gray: $gray-80;
+$_white: #FFFFFF;
+$_black: #000000;
+
+$_gray-90: #191919;
+$_gray-80: #333333;
+$_gray-70: #4C4C4C;
+$_gray-60: #666666;
+$_gray-50: #7F7F7F;
+$_gray-40: #999999;
+$_gray-30: #B2B2B2;
+$_gray-20: #D1D2D4;
+$_gray-15: #D8D8D8;
+$_gray-10: #ECECEC;
+$_gray-5: #F1F1F1;
+$_gray-2: #F9F9F9;
+
+$_med-gray: $_gray-40;
+$_dark-gray: $_gray-80;
+
+$_color-inactive: $_gray-60;
+$_color-inactive-light: $_gray-5;
+
+$_color-official: #5797CE;
+$_color-official-light: #f7fafb;
+$_color-official-light-alt: #e5f1f8;
+
+$_color-enhanced: darken(#A8BF82, 10);
+$_color-enhanced-mid: #C8D8B2;
+$_color-enhanced-light: lighten(#E9EDE6, 3);
+$_color-enhanced-dark: darken($_color-enhanced, 20);
+
+$_color-public-inspection: #803333;
+$_color-public-inspection-light: #fbf2f5;
+$_color-public-inspection-light-alt: lighten(#EBD1D1, 6);
+$_color-public-inspection-dark: darken($_color-public-inspection, 10);
+
+$_color-reader-aid: #ae5699;
+$_color-reader-aid-light: #faf1f5;
+$_color-reader-aid-med: darken($_color-reader-aid-light, 2);
+$_color-reader-aid-link: #793a6c;
+$_color-reader-aid-dark: $_color-reader-aid-link;
+
+$_color-published: $_gray-60;
+$_color-published-light: $_gray-2;
+$_color-published-light-alt: darken($_gray-10, 1);
+
+$_public-inspection-fr-stamp: $_color-public-inspection-light;
+
+$_utility-nav: $_gray-60;
+$_utility-nav-background: $_gray-10;
+$_utility-nav-hover-background: $_color-published-light;
+$_utility-nav-hover-background-light: #EFEFEF;
+$_utility-nav-divider-color: $_gray-30;
+$_utility-nav-pi-hover-background: $_color-public-inspection-light-alt;
+
+$_blue: #5697CF;
+$_dark-blue: #3f5b75;
+
+$_bright-orange: #F77825;
+$_orange: #B88659;
+$_dark-orange: #88603A;
+$_nav-orange: #e4a529;
+
+$_green: darken(#7aa13d, 9);
+$_light-green: #D7E5C2;
+
+$_red: #8A3737;
+$_light-red: #EDD3D3;
+$_dark-red: darken($_red, 10);
+
+$_golden: #c09853;
+$_yellow: #fbeed5;
+$_light-yellow: #fcf8e3;
+$_highlight-yellow: $_light-yellow;
+
+$_fr-background-seal: $_gray-10;
+$_search-form-label-text: $_gray-80;
+
+$_link-dark: #245784;
+$_link: $_link-dark;
+$_link-hover: $_dark-orange;
+$_link-visited: $_link-dark;
+
+$_current-issue-link: darken($_color-enhanced, 25);
+$_current-issue-link-hover: darken($_current-issue-link, 15);
+
+$_public-inspection-link: $_color-public-inspection;
+$_public-inspection-link-hover: darken($_public-inspection-link, 20);
+
+$_nav-background-color: #FEFEFE;
+$_nav-border-color: #CECECE;
+
+$_text-inactive: $_med-gray;
+$_text-light: $_gray-60;
+$_text: $_dark-gray;
+$_header: $_dark-gray;
+
+$_success-green: #dff0d8;
+$_danger-red: #f2dede;
+$_warning-yellow: #fcf8e3;
+$_info-blue: #d9edf7;
+$_active-gray: #f5f5f5;
+
+$_alert-success-text: $_color-enhanced-dark;
+$_alert-success-bg: $_color-enhanced-light;
+$_alert-success-border: $_color-enhanced-mid;
+
+$_alert-info-text: #31708f;
+$_alert-info-bg: #d9edf7;
+$_alert-info-border: darken(adjust-hue($_alert-info-bg, -10), 7%);
+
+$_alert-warning-text: #8a6d3b;
+$_alert-warning-bg: #fcf8e3;
+$_alert-warning-border: darken(adjust-hue($_alert-warning-bg, -10), 5%);
+
+$_alert-danger-text: #a94442;
+$_alert-danger-bg: #f2dede;
+$_alert-danger-border: darken(adjust-hue($_alert-danger-bg, -10), 5%);
+
+$_feature-color: #70418a;
+
+$_correction-document-icon-color: #82d0d4;
+$_notice-document-icon-color: #fab827;
+$_presidential-document-icon-color: #73bd44;
+$_proposed-rule-document-icon-color: #d081b6;
+$_rule-document-icon-color: #5898ce;
+$_uncategorized-document-icon-color: #999999;
+
+// page-level surface -- did not exist as a named variable before this
+// refactor (the browser default white was relied on implicitly)
+$_bg: $_white;
+$_bg-surface: $_gray-2;
+
+// ---------------------------------------------------------------------
+// 2. Light values (default; also what print sees)
+// ---------------------------------------------------------------------
+
+:root {
+  --fr-white: #{$_white};
+  --fr-black: #{$_black};
+  // Inverting near-black ink: #000 in light (preserves the original literal),
+  // light in dark. Use for text that sits on a themed surface (where $black
+  // would go black-on-dark and $white would go light-on-light).
+  --fr-ink: #{$_black};
+
+  --fr-gray-90: #{$_gray-90};
+  --fr-gray-80: #{$_gray-80};
+  --fr-gray-70: #{$_gray-70};
+  --fr-gray-60: #{$_gray-60};
+  --fr-gray-50: #{$_gray-50};
+  --fr-gray-40: #{$_gray-40};
+  --fr-gray-30: #{$_gray-30};
+  --fr-gray-20: #{$_gray-20};
+  --fr-gray-15: #{$_gray-15};
+  --fr-gray-10: #{$_gray-10};
+  --fr-gray-5: #{$_gray-5};
+  --fr-gray-2: #{$_gray-2};
+
+  --fr-bg: #{$_bg};
+  --fr-bg-surface: #{$_bg-surface};
+
+  --fr-color-inactive: #{$_color-inactive};
+  --fr-color-inactive-light: #{$_color-inactive-light};
+
+  --fr-color-official: #{$_color-official};
+  --fr-color-official-light: #{$_color-official-light};
+  --fr-color-official-light-alt: #{$_color-official-light-alt};
+
+  --fr-color-enhanced: #{$_color-enhanced};
+  --fr-color-enhanced-mid: #{$_color-enhanced-mid};
+  --fr-color-enhanced-light: #{$_color-enhanced-light};
+  --fr-color-enhanced-dark: #{$_color-enhanced-dark};
+
+  --fr-color-public-inspection: #{$_color-public-inspection};
+  --fr-color-public-inspection-light: #{$_color-public-inspection-light};
+  --fr-color-public-inspection-light-alt: #{$_color-public-inspection-light-alt};
+  --fr-color-public-inspection-dark: #{$_color-public-inspection-dark};
+
+  --fr-color-reader-aid: #{$_color-reader-aid};
+  --fr-color-reader-aid-light: #{$_color-reader-aid-light};
+  --fr-color-reader-aid-med: #{$_color-reader-aid-med};
+  --fr-color-reader-aid-link: #{$_color-reader-aid-link};
+  --fr-color-reader-aid-dark: #{$_color-reader-aid-dark};
+
+  --fr-color-published: #{$_color-published};
+  --fr-color-published-light: #{$_color-published-light};
+  --fr-color-published-light-alt: #{$_color-published-light-alt};
+
+  --fr-public-inspection-fr-stamp: #{$_public-inspection-fr-stamp};
+
+  --fr-utility-nav: #{$_utility-nav};
+  --fr-utility-nav-background: #{$_utility-nav-background};
+  --fr-utility-nav-hover-background: #{$_utility-nav-hover-background};
+  --fr-utility-nav-hover-background-light: #{$_utility-nav-hover-background-light};
+  --fr-utility-nav-divider-color: #{$_utility-nav-divider-color};
+  --fr-utility-nav-pi-hover-background: #{$_utility-nav-pi-hover-background};
+
+  --fr-blue: #{$_blue};
+  --fr-dark-blue: #{$_dark-blue};
+
+  --fr-bright-orange: #{$_bright-orange};
+  --fr-orange: #{$_orange};
+  --fr-dark-orange: #{$_dark-orange};
+  --fr-nav-orange: #{$_nav-orange};
+
+  --fr-green: #{$_green};
+  --fr-light-green: #{$_light-green};
+
+  --fr-red: #{$_red};
+  --fr-light-red: #{$_light-red};
+  --fr-dark-red: #{$_dark-red};
+
+  --fr-golden: #{$_golden};
+  --fr-yellow: #{$_yellow};
+  --fr-light-yellow: #{$_light-yellow};
+  --fr-highlight-yellow: #{$_highlight-yellow};
+
+  --fr-fr-background-seal: #{$_fr-background-seal};
+  --fr-search-form-label-text: #{$_search-form-label-text};
+
+  --fr-link-dark: #{$_link-dark};
+  --fr-link: #{$_link};
+  --fr-link-hover: #{$_link-hover};
+  --fr-link-visited: #{$_link-visited};
+
+  --fr-current-issue-link: #{$_current-issue-link};
+  --fr-current-issue-link-hover: #{$_current-issue-link-hover};
+
+  --fr-public-inspection-link: #{$_public-inspection-link};
+  --fr-public-inspection-link-hover: #{$_public-inspection-link-hover};
+
+  --fr-nav-background-color: #{$_nav-background-color};
+  --fr-nav-border-color: #{$_nav-border-color};
+  --fr-capsule-border: #B3C2CF; // folder-pane / rounded-capsule border
+
+  --fr-text-inactive: #{$_text-inactive};
+  --fr-text-light: #{$_text-light};
+  --fr-text: #{$_text};
+  --fr-header: #{$_header};
+
+  --fr-backdrop: rgba(255, 255, 255, 0.8);
+
+  --fr-success-green: #{$_success-green};
+  --fr-danger-red: #{$_danger-red};
+  --fr-warning-yellow: #{$_warning-yellow};
+  --fr-info-blue: #{$_info-blue};
+  --fr-active-gray: #{$_active-gray};
+
+  --fr-alert-success-text: #{$_alert-success-text};
+  --fr-alert-success-bg: #{$_alert-success-bg};
+  --fr-alert-success-border: #{$_alert-success-border};
+
+  --fr-alert-info-text: #{$_alert-info-text};
+  --fr-alert-info-bg: #{$_alert-info-bg};
+  --fr-alert-info-border: #{$_alert-info-border};
+
+  --fr-alert-warning-text: #{$_alert-warning-text};
+  --fr-alert-warning-bg: #{$_alert-warning-bg};
+  --fr-alert-warning-border: #{$_alert-warning-border};
+
+  --fr-alert-danger-text: #{$_alert-danger-text};
+  --fr-alert-danger-bg: #{$_alert-danger-bg};
+  --fr-alert-danger-border: #{$_alert-danger-border};
+
+  --fr-feature-color: #{$_feature-color};
+
+  --fr-correction-document-icon-color: #{$_correction-document-icon-color};
+  --fr-notice-document-icon-color: #{$_notice-document-icon-color};
+  --fr-presidential-document-icon-color: #{$_presidential-document-icon-color};
+  --fr-proposed-rule-document-icon-color: #{$_proposed-rule-document-icon-color};
+  --fr-rule-document-icon-color: #{$_rule-document-icon-color};
+  --fr-uncategorized-document-icon-color: #{$_uncategorized-document-icon-color};
+
+  --fr-doc-icon-inactive: #888888;
+  --fr-doc-icon-disabled: #E6E6E6;
+
+  // lets native form controls, scrollbars and UA chrome follow the theme
+  color-scheme: light dark;
+}
+
+// ---------------------------------------------------------------------
+// 3. Dark overrides -- only entries whose value actually changes.
+//    Wrapped in @media screen so print (which imports this same file)
+//    never sees a dark surface.
+// ---------------------------------------------------------------------
+
+@mixin fr-dark-theme {
+  // native form controls / scrollbars must follow the dark choice too
+  color-scheme: dark;
+
+  --fr-gray-90: #EDEDED;
+  --fr-gray-80: #D6D6D6;
+  --fr-gray-70: #BFBFBF;
+  --fr-gray-60: #A3A3A3;
+  --fr-gray-50: #8C8C8C;
+  --fr-gray-40: #767676;
+  --fr-gray-30: #454545;
+  --fr-gray-20: #333333;
+  --fr-gray-15: #2C2C2C;
+  --fr-gray-10: #262626;
+  --fr-gray-5: #212121;
+  --fr-gray-2: #1E1E1E;
+
+  // Neutral text tokens are baked as literal grays in :root (e.g. --fr-text:
+  // #333), so the inverted gray scale above never reaches them. Re-map each to
+  // its dark-scale counterpart so body copy, headings and muted text stay
+  // legible in dark mode (all pairs clear WCAG AA on --fr-bg / --fr-bg-surface).
+  --fr-text: #E6E6E6;
+  --fr-header: #EDEDED;
+  --fr-search-form-label-text: #EDEDED;
+  --fr-text-light: #A3A3A3;
+  --fr-text-inactive: #8C8C8C;
+  --fr-color-inactive: #A3A3A3;
+  --fr-color-published: #A3A3A3;
+  --fr-utility-nav: #A3A3A3;
+
+  --fr-bg: #1A1A1A;
+  --fr-bg-surface: #1E1E1E;
+
+  --fr-color-official-light: #1C2830;
+  --fr-color-official-light-alt: #223440;
+
+  --fr-color-enhanced-mid: #445533;
+  --fr-color-enhanced-light: #20281C;
+  --fr-color-enhanced-dark: #A8C97D;
+
+  --fr-color-public-inspection: #CC8888;
+  --fr-color-public-inspection-light: #2B1F22;
+  --fr-color-public-inspection-light-alt: #35262A;
+  --fr-color-public-inspection-dark: #B96E6E;
+
+  --fr-color-reader-aid-light: #2A2129;
+  --fr-color-reader-aid-med: #302530;
+  --fr-color-reader-aid-link: #C48FB8;
+
+  --fr-color-published-light-alt: #292929;
+
+  --fr-utility-nav-hover-background-light: #2A2A2A;
+
+  --fr-dark-blue: #93B3CC;
+  --fr-dark-orange: #E0A470;
+  --fr-green: #9FC96A;
+  --fr-light-green: #2A331F;
+  --fr-red: #D08888;
+  --fr-light-red: #3A2626;
+  --fr-dark-red: #C06E6E;
+  --fr-yellow: #332B1A;
+  --fr-light-yellow: #302E1E;
+
+  --fr-link-dark: #7FB3E8;
+
+  --fr-current-issue-link: #9BC96C;
+  --fr-current-issue-link-hover: #B4DB8C;
+
+  --fr-public-inspection-link-hover: #E0A0A0;
+
+  --fr-nav-background-color: #242424;
+  --fr-nav-border-color: #3D3D3D;
+  --fr-capsule-border: #3D3D3D;
+
+  --fr-success-green: #1F2E1F;
+  --fr-danger-red: #2E1F1F;
+  --fr-warning-yellow: #302E1E;
+  --fr-info-blue: #1C2833;
+  --fr-active-gray: #262626;
+
+  --fr-alert-info-text: #7FB8D6;
+  --fr-alert-info-bg: #1C2833;
+  --fr-alert-info-border: #2A4A5A;
+
+  --fr-alert-warning-text: #D6B389;
+  --fr-alert-warning-bg: #302E1E;
+  --fr-alert-warning-border: #4A3F24;
+
+  --fr-alert-danger-text: #E08886;
+  --fr-alert-danger-bg: #2E1F1F;
+  --fr-alert-danger-border: #4A2E2E;
+
+  --fr-feature-color: #B08AC7;
+
+  --fr-doc-icon-disabled: #333333;
+  --fr-backdrop: rgba(0, 0, 0, 0.8);
+  --fr-ink: #E6E6E6; // near-black text goes light on dark surfaces
+
+  // Light-only surface/fill tokens whose themed border/hover siblings were
+  // mapped but the base was missed -- they kept rendering as light boxes on the
+  // dark page. Re-map to dark surfaces so the box / bar / alert go dark too.
+  --fr-color-inactive-light: #212121;
+  --fr-color-published-light: #1E1E1E;
+  --fr-utility-nav-background: #242424;
+  --fr-utility-nav-hover-background: #2A2A2A;
+  --fr-utility-nav-pi-hover-background: #35262A;
+  --fr-utility-nav-divider-color: #3D3D3D;
+  --fr-fr-background-seal: #2A2A2A;
+
+  // alert-success was the only alert type left un-inverted (info/warning/danger
+  // were already done); reuse the enhanced-green dark family.
+  --fr-alert-success-text: #A8C97D;
+  --fr-alert-success-bg: #20281C;
+  --fr-alert-success-border: #445533;
+}
+
+@media screen {
+  // An explicit choice must also drive `color-scheme`: the base
+  // `color-scheme: light dark` otherwise lets the OS preference win, leaving
+  // native form controls (e.g. the nav search field) dark on a light page.
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    @include fr-dark-theme;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      @include fr-dark-theme;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
+// 4. Public variables -- same names as before, now backed by tokens
+// ---------------------------------------------------------------------
+
+$white: var(--fr-white);
+$black: var(--fr-black);
+$ink: var(--fr-ink); // near-black text that inverts on themed surfaces
+
+$gray-90: var(--fr-gray-90);
+$gray-80: var(--fr-gray-80);
+$gray-70: var(--fr-gray-70);
+$gray-60: var(--fr-gray-60);
+$gray-50: var(--fr-gray-50);
+$gray-40: var(--fr-gray-40);
+$gray-30: var(--fr-gray-30);
+$gray-20: var(--fr-gray-20);
+$gray-15: var(--fr-gray-15);
+$gray-10: var(--fr-gray-10);
+$gray-5: var(--fr-gray-5);
+$gray-2: var(--fr-gray-2);
+
+$med-gray: var(--fr-gray-40);
+$dark-gray: var(--fr-gray-80);
+
+$bg: var(--fr-bg);
+$bg-surface: var(--fr-bg-surface);
+$backdrop: var(--fr-backdrop); // page scrim: rgba white .8 light / black .8 dark
 
 // FR Boxes
-$color-inactive:                    $gray-60;
-$color-inactive-light:              $gray-5;
+$color-inactive: var(--fr-color-inactive);
+$color-inactive-light: var(--fr-color-inactive-light);
 
-$color-official:                    #5797CE;
-$color-official-light:              #f7fafb;
-$color-official-light-alt:          #e5f1f8;
+$color-official: var(--fr-color-official);
+$color-official-light: var(--fr-color-official-light);
+$color-official-light-alt: var(--fr-color-official-light-alt);
 
-$color-enhanced:                    darken(#A8BF82, 10);
-$color-enhanced-mid:                #C8D8B2;
-$color-enhanced-light:              lighten(#E9EDE6, 3);
+$color-enhanced: var(--fr-color-enhanced);
+$color-enhanced-mid: var(--fr-color-enhanced-mid);
+$color-enhanced-light: var(--fr-color-enhanced-light);
 // use only for green text on light green bg -- eg hover states
-$color-enhanced-dark: darken($color-enhanced, 20);
+$color-enhanced-dark: var(--fr-color-enhanced-dark);
 
-$color-public-inspection:           #803333;
-$color-public-inspection-light:     #fbf2f5;
-$color-public-inspection-light-alt: lighten(#EBD1D1, 6);
-$color-public-inspection-dark:      darken($color-public-inspection, 10);
+$color-public-inspection: var(--fr-color-public-inspection);
+$color-public-inspection-light: var(--fr-color-public-inspection-light);
+$color-public-inspection-light-alt: var(--fr-color-public-inspection-light-alt);
+$color-public-inspection-dark: var(--fr-color-public-inspection-dark);
 
-$color-reader-aid:                  #ae5699;
-$color-reader-aid-light:            #faf1f5;
+$color-reader-aid: var(--fr-color-reader-aid);
+$color-reader-aid-light: var(--fr-color-reader-aid-light);
 // used as a background color in box like items inside a reader-aid
-$color-reader-aid-med:              darken($color-reader-aid-light, 2);
-$color-reader-aid-link:             #793a6c;
-$color-reader-aid-dark:             $color-reader-aid-link;
+$color-reader-aid-med: var(--fr-color-reader-aid-med);
+$color-reader-aid-link: var(--fr-color-reader-aid-link);
+$color-reader-aid-dark: var(--fr-color-reader-aid-link);
 
-$color-published:                   $gray-60;
-$color-published-light:             $gray-2;
-$color-published-light-alt:         darken($gray-10, 1);
+$color-published: var(--fr-color-published);
+$color-published-light: var(--fr-color-published-light);
+$color-published-light-alt: var(--fr-color-published-light-alt);
 
-$public-inspection-fr-stamp: $color-public-inspection-light;
-
+$public-inspection-fr-stamp: var(--fr-public-inspection-fr-stamp);
 
 // FR Box Utility Nav
-$utility-nav:                         $gray-60;
-$utility-nav-background:              $gray-10;
-$utility-nav-hover-background:        $color-published-light;
-$utility-nav-hover-background-light:  #EFEFEF;
-$utility-nav-divider-color:           $gray-30;
+$utility-nav: var(--fr-utility-nav);
+$utility-nav-background: var(--fr-utility-nav-background);
+$utility-nav-hover-background: var(--fr-utility-nav-hover-background);
+$utility-nav-hover-background-light: var(--fr-utility-nav-hover-background-light);
+$utility-nav-divider-color: var(--fr-utility-nav-divider-color);
 
-$utility-nav-pi-hover-background: $color-public-inspection-light-alt;
-
-
+$utility-nav-pi-hover-background: var(--fr-utility-nav-pi-hover-background);
 
 /* BASICS */
 
 /* application */
-$blue:      #5697CF;
-$dark-blue: #3f5b75;
+$blue: var(--fr-blue);
+$dark-blue: var(--fr-dark-blue);
 
-$bright-orange: #F77825; // menu and subscription icons
-$orange:        #B88659;
-$dark-orange:   #88603A; // text/link hover alerts
-$nav-orange:    #e4a529;
+$bright-orange: var(--fr-bright-orange); // menu and subscription icons
+$orange: var(--fr-orange);
+$dark-orange: var(--fr-dark-orange); // text/link hover alerts
+$nav-orange: var(--fr-nav-orange);
 
-$green:       darken(#7aa13d, 9);
-$light-green: #D7E5C2;
+$green: var(--fr-green);
+$light-green: var(--fr-light-green);
 
-$red:       #8A3737;
-$light-red: #EDD3D3;
-$dark-red: darken($red, 10);
+$red: var(--fr-red);
+$light-red: var(--fr-light-red);
+$dark-red: var(--fr-dark-red);
 
-$golden:       #c09853;
-$yellow:       #fbeed5;
-$light-yellow: #fcf8e3;
-$highlight-yellow: $light-yellow;
+$golden: var(--fr-golden);
+$yellow: var(--fr-yellow);
+$light-yellow: var(--fr-light-yellow);
+$highlight-yellow: var(--fr-highlight-yellow);
 
-$fr-background-seal: $gray-10;
-$search-form-label-text: $gray-80;
-
+$fr-background-seal: var(--fr-fr-background-seal);
+$search-form-label-text: var(--fr-search-form-label-text);
 
 /* links */
-//$link: #428BCA;
-$link-dark: #245784;
-$link: $link-dark;
-$link-hover: $dark-orange;
-$link-visited: $link-dark;
+$link-dark: var(--fr-link-dark);
+$link: var(--fr-link-dark);
+$link-hover: var(--fr-dark-orange);
+$link-visited: var(--fr-link-dark);
 
-$current-issue-link: darken($color-enhanced, 25);
-$current-issue-link-hover: darken($current-issue-link, 15);
+$current-issue-link: var(--fr-current-issue-link);
+$current-issue-link-hover: var(--fr-current-issue-link-hover);
 
-$public-inspection-link: $color-public-inspection;
-$public-inspection-link-hover: darken($public-inspection-link, 20);
+$public-inspection-link: var(--fr-color-public-inspection);
+$public-inspection-link-hover: var(--fr-public-inspection-link-hover);
 
 /* navigation */
-$nav-background-color: #FEFEFE;
-$nav-border-color: #CECECE;
+$nav-background-color: var(--fr-nav-background-color);
+$nav-border-color: var(--fr-nav-border-color);
+$capsule-border: var(--fr-capsule-border);
 
 /* text */
-$text-inactive: $med-gray;
-$text-light: $gray-60;
-$text: $dark-gray;
-$header: $dark-gray;
-
+$text-inactive: var(--fr-text-inactive);
+$text-light: var(--fr-text-light);
+$text: var(--fr-text);
+$header: var(--fr-header);
 
 // bootstrap background colors
-$success-green: #dff0d8;
-$danger-red: #f2dede;
-$warning-yellow: #fcf8e3;
-$info-blue: #d9edf7;
-$active-gray: #f5f5f5;
+$success-green: var(--fr-success-green);
+$danger-red: var(--fr-danger-red);
+$warning-yellow: var(--fr-warning-yellow);
+$info-blue: var(--fr-info-blue);
+$active-gray: var(--fr-active-gray);
 
 // success modified to match our enhanced colors
-$alert-success-text:   $color-enhanced-dark !default;
-$alert-success-bg:     $color-enhanced-light !default;
-$alert-success-border: $color-enhanced-mid !default;
+$alert-success-text: var(--fr-alert-success-text) !default;
+$alert-success-bg: var(--fr-alert-success-bg) !default;
+$alert-success-border: var(--fr-alert-success-border) !default;
 
-$alert-info-text:      #31708f !default;
-$alert-info-bg:        #d9edf7 !default;
-$alert-info-border:    darken(adjust-hue($alert-info-bg, -10), 7%) !default;
+$alert-info-text: var(--fr-alert-info-text) !default;
+$alert-info-bg: var(--fr-alert-info-bg) !default;
+$alert-info-border: var(--fr-alert-info-border) !default;
 
-$alert-warning-text:   #8a6d3b !default;
-$alert-warning-bg:     #fcf8e3 !default;
-$alert-warning-border: darken(adjust-hue($alert-warning-bg, -10), 5%) !default;
+$alert-warning-text: var(--fr-alert-warning-text) !default;
+$alert-warning-bg: var(--fr-alert-warning-bg) !default;
+$alert-warning-border: var(--fr-alert-warning-border) !default;
 
-$alert-danger-text:    #a94442 !default;
-$alert-danger-bg:      #f2dede !default;
-$alert-danger-border:  darken(adjust-hue($alert-danger-bg, -10), 5%) !default;
+$alert-danger-text: var(--fr-alert-danger-text) !default;
+$alert-danger-bg: var(--fr-alert-danger-bg) !default;
+$alert-danger-border: var(--fr-alert-danger-border) !default;
 
 // content notification colors
 // most use bootstrap default colors
-$feature-color: #70418a;
-
+$feature-color: var(--fr-feature-color);
 
 // document icon colors
-$correction-document-icon-color: #82d0d4;
-$notice-document-icon-color: #fab827;
-$presidential-document-icon-color: #73bd44;
-$proposed-rule-document-icon-color: #d081b6;
-$rule-document-icon-color: #5898ce;
-$uncategorized-document-icon-color: #999999;
+$correction-document-icon-color: var(--fr-correction-document-icon-color);
+$notice-document-icon-color: var(--fr-notice-document-icon-color);
+$presidential-document-icon-color: var(--fr-presidential-document-icon-color);
+$proposed-rule-document-icon-color: var(--fr-proposed-rule-document-icon-color);
+$rule-document-icon-color: var(--fr-rule-document-icon-color);
+$uncategorized-document-icon-color: var(--fr-uncategorized-document-icon-color);
+
+$doc-icon-inactive: var(--fr-doc-icon-inactive);
+$doc-icon-disabled: var(--fr-doc-icon-disabled);
+
+// =====================================================================
+// 5. Derived shades (hover/tint/border states)
+//
+// A number of call sites used darken()/lighten() directly on a palette
+// variable. Once that variable became a custom property those calls can
+// no longer run at compile time, so each one is promoted to its own
+// named token here instead. Dark-mode values are generated by inverting
+// the original function (lighten<->darken, same amount) against the
+// dark-theme base -- a heuristic, not a hand-tuned value; flagged for a
+// follow-up dark-mode contrast pass rather than individually eyeballed.
+// =====================================================================
+
+// dark-theme base constants, only where the value differs from light
+$_t-gray-2: #1E1E1E;
+$_t-gray-5: #212121;
+$_t-gray-30: #454545;
+$_t-gray-60: #A3A3A3;
+$_t-gray-80: #D6D6D6;
+$_t-color-official-light: #1C2830;
+$_t-color-official-light-alt: #223440;
+$_t-color-enhanced-light: #20281C;
+$_t-color-enhanced-dark: #A8C97D;
+$_t-color-public-inspection: #CC8888;
+$_t-color-public-inspection-light: #2B1F22;
+$_t-color-public-inspection-light-alt: #35262A;
+$_t-color-reader-aid-light: #2A2129;
+$_t-color-reader-aid-link: #C48FB8;
+$_t-color-published-light-alt: #292929;
+$_t-green: #9FC96A;
+$_t-red: #D08888;
+$_t-link-dark: #7FB3E8;
+$_t-alert-info-bg: #1C2833;
+$_t-alert-info-text: #7FB8D6;
+$_t-alert-danger-text: #E08886;
+$_t-alert-warning-text: #D6B389;
+$_t-feature-color: #B08AC7;
+
+:root {
+  // components/officialness/_fr_box.scss fr-doc() tertiary border
+  --fr-color-inactive-light-border: #{darken($_color-inactive-light, 20)};
+  --fr-color-official-light-border: #{darken($_color-official-light, 20)};
+  --fr-color-official-light-alt-border: #{darken($_color-official-light-alt, 20)};
+  --fr-color-enhanced-light-border: #{darken($_color-enhanced-light, 20)};
+  --fr-color-public-inspection-light-border: #{darken($_color-public-inspection-light, 20)};
+  --fr-color-public-inspection-light-alt-border: #{darken($_color-public-inspection-light-alt, 20)};
+  --fr-color-reader-aid-light-border: #{darken($_color-reader-aid-light, 20)};
+  --fr-color-published-light-border: #{darken($_color-published-light, 20)};
+
+  // design/custom_tooltips.scss document_markup_tooltip_colors()
+  --fr-color-published-icon-hover: #{darken($_color-published, 50)};
+  --fr-color-official-icon-hover: #{darken($_color-official, 50)};
+
+  // design/suggestions.scss
+  --fr-alert-info-bg-hover: #{darken($_alert-info-bg, 6)};
+  --fr-gray-30-tint-15: #{lighten($_gray-30, 15)};
+  --fr-color-enhanced-dark-tint-25: #{lighten($_color-enhanced-dark, 25)};
+
+  // layout/_utility_bar.scss, components/officialness/_fr_metadata_bar.scss
+  --fr-color-enhanced-hover-10: #{darken($_color-enhanced, 10)};
+  --fr-color-enhanced-hover-20: #{darken($_color-enhanced, 20)};
+
+  // layout/_reader_aids.scss, design/indexes.scss
+  --fr-color-reader-aid-link-hover-20: #{darken($_color-reader-aid-link, 20)};
+  --fr-color-reader-aid-link-hover-15: #{darken($_color-reader-aid-link, 15)};
+
+  // design/documents.scss, components/_buttons.scss
+  --fr-green-hover-10: #{darken($_green, 10)};
+  --fr-green-hover-5: #{darken($_green, 5)};
+  --fr-red-hover-10: #{darken($_red, 10)};
+  --fr-orange-hover-10: #{darken($_orange, 10)};
+  --fr-blue-hover-5: #{darken($_blue, 5)};
+
+  // design/documents/_tables.scss
+  --fr-color-published-light-hover-5: #{darken($_color-published-light, 5)};
+
+  // design/presidential_documents.scss
+  --fr-color-reader-aid-hover-15: #{darken($_color-reader-aid, 15)};
+
+  // design/documents/_paragraph_citation.scss
+  --fr-color-enhanced-light-hover-2: #{darken($_color-enhanced-light, 2)};
+
+  // design/comments/creation.scss, design/my_fr/comments.scss
+  --fr-green-tint-10: #{lighten($_green, 10)};
+  --fr-green-tint-20: #{lighten($_green, 20)};
+  --fr-red-tint-10: #{lighten($_red, 10)};
+
+  // design/issues/_document_issue.scss
+  --fr-color-official-hover-10: #{darken($_color-official, 10)};
+  --fr-color-official-tint-20: #{lighten($_color-official, 20)};
+  --fr-color-public-inspection-tint-40: #{lighten($_color-public-inspection, 40)};
+  --fr-color-published-hover-10: #{darken($_color-published, 10)};
+
+  // components/_content_notifications.scss
+  --fr-link-dark-hover-10: #{darken($_link-dark, 10)};
+  --fr-link-dark-hover-20: #{darken($_link-dark, 20)};
+  --fr-text-hover-15: #{darken($_text, 15)};
+  --fr-alert-danger-text-hover-15: #{darken($_alert-danger-text, 15)};
+  --fr-alert-info-text-hover-15: #{darken($_alert-info-text, 15)};
+  --fr-alert-success-text-hover-15: #{darken($_alert-success-text, 15)};
+  --fr-alert-warning-text-hover-15: #{darken($_alert-warning-text, 15)};
+  --fr-feature-color-tint-55: #{lighten($_feature-color, 55)};
+  --fr-feature-color-tint-45: #{lighten($_feature-color, 45)};
+  --fr-feature-color-hover-15: #{darken($_feature-color, 15)};
+
+  // components/_count_pill.scss
+  --fr-color-reader-aid-tint-20: #{lighten($_color-reader-aid, 20)};
+}
+
+@media screen {
+  [data-theme="dark"] {
+    --fr-color-inactive-light-border: #{lighten($_t-gray-5, 15)};
+    --fr-color-official-light-border: #{lighten($_t-color-official-light, 15)};
+    --fr-color-official-light-alt-border: #{lighten($_t-color-official-light-alt, 15)};
+    --fr-color-enhanced-light-border: #{lighten($_t-color-enhanced-light, 15)};
+    --fr-color-public-inspection-light-border: #{lighten($_t-color-public-inspection-light, 15)};
+    --fr-color-public-inspection-light-alt-border: #{lighten($_t-color-public-inspection-light-alt, 15)};
+    --fr-color-reader-aid-light-border: #{lighten($_t-color-reader-aid-light, 15)};
+    --fr-color-published-light-border: #{lighten($_t-gray-2, 15)};
+
+    --fr-color-published-icon-hover: #{lighten($_t-gray-60, 40)};
+    --fr-color-official-icon-hover: #{lighten($_color-official, 35)};
+
+    --fr-alert-info-bg-hover: #{lighten($_t-alert-info-bg, 10)};
+    --fr-gray-30-tint-15: #{darken($_t-gray-30, 12)};
+    --fr-color-enhanced-dark-tint-25: #{darken($_t-color-enhanced-dark, 15)};
+
+    --fr-color-enhanced-hover-10: #{lighten($_color-enhanced, 12)};
+    --fr-color-enhanced-hover-20: #{lighten($_color-enhanced, 22)};
+
+    --fr-color-reader-aid-link-hover-20: #{darken($_t-color-reader-aid-link, 12)};
+    --fr-color-reader-aid-link-hover-15: #{darken($_t-color-reader-aid-link, 9)};
+
+    --fr-green-hover-10: #{lighten($_t-green, 10)};
+    --fr-green-hover-5: #{lighten($_t-green, 5)};
+    --fr-red-hover-10: #{lighten($_t-red, 10)};
+    --fr-orange-hover-10: #{lighten($_orange, 10)};
+    --fr-blue-hover-5: #{lighten($_blue, 5)};
+
+    --fr-color-published-light-hover-5: #{lighten($_t-gray-2, 5)};
+
+    --fr-color-reader-aid-hover-15: #{lighten($_color-reader-aid, 15)};
+
+    --fr-color-enhanced-light-hover-2: #{lighten($_t-color-enhanced-light, 2)};
+
+    --fr-green-tint-10: #{darken($_t-green, 10)};
+    --fr-green-tint-20: #{darken($_t-green, 20)};
+    --fr-red-tint-10: #{darken($_t-red, 10)};
+
+    --fr-color-official-hover-10: #{lighten($_color-official, 10)};
+    --fr-color-official-tint-20: #{darken($_color-official, 20)};
+    --fr-color-public-inspection-tint-40: #{darken($_t-color-public-inspection, 40)};
+    --fr-color-published-hover-10: #{lighten($_t-gray-60, 10)};
+
+    --fr-link-dark-hover-10: #{lighten($_t-link-dark, 10)};
+    --fr-link-dark-hover-20: #{lighten($_t-link-dark, 20)};
+    --fr-text-hover-15: #{lighten($_t-gray-80, 15)};
+    --fr-alert-danger-text-hover-15: #{lighten($_t-alert-danger-text, 15)};
+    --fr-alert-info-text-hover-15: #{lighten($_t-alert-info-text, 15)};
+    --fr-alert-success-text-hover-15: #{lighten($_t-color-enhanced-dark, 15)};
+    --fr-alert-warning-text-hover-15: #{lighten($_t-alert-warning-text, 15)};
+    --fr-feature-color-tint-55: #{darken($_t-feature-color, 55)};
+    --fr-feature-color-tint-45: #{darken($_t-feature-color, 45)};
+    --fr-feature-color-hover-15: #{lighten($_t-feature-color, 15)};
+
+    --fr-color-reader-aid-tint-20: #{darken($_color-reader-aid, 20)};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --fr-color-inactive-light-border: #{lighten($_t-gray-5, 15)};
+      --fr-color-official-light-border: #{lighten($_t-color-official-light, 15)};
+      --fr-color-official-light-alt-border: #{lighten($_t-color-official-light-alt, 15)};
+      --fr-color-enhanced-light-border: #{lighten($_t-color-enhanced-light, 15)};
+      --fr-color-public-inspection-light-border: #{lighten($_t-color-public-inspection-light, 15)};
+      --fr-color-public-inspection-light-alt-border: #{lighten($_t-color-public-inspection-light-alt, 15)};
+      --fr-color-reader-aid-light-border: #{lighten($_t-color-reader-aid-light, 15)};
+      --fr-color-published-light-border: #{lighten($_t-gray-2, 15)};
+
+      --fr-color-published-icon-hover: #{lighten($_t-gray-60, 40)};
+      --fr-color-official-icon-hover: #{lighten($_color-official, 35)};
+
+      --fr-alert-info-bg-hover: #{lighten($_t-alert-info-bg, 10)};
+      --fr-gray-30-tint-15: #{darken($_t-gray-30, 12)};
+      --fr-color-enhanced-dark-tint-25: #{darken($_t-color-enhanced-dark, 15)};
+
+      --fr-color-enhanced-hover-10: #{lighten($_color-enhanced, 12)};
+      --fr-color-enhanced-hover-20: #{lighten($_color-enhanced, 22)};
+
+      --fr-color-reader-aid-link-hover-20: #{darken($_t-color-reader-aid-link, 12)};
+      --fr-color-reader-aid-link-hover-15: #{darken($_t-color-reader-aid-link, 9)};
+
+      --fr-green-hover-10: #{lighten($_t-green, 10)};
+      --fr-green-hover-5: #{lighten($_t-green, 5)};
+      --fr-red-hover-10: #{lighten($_t-red, 10)};
+      --fr-orange-hover-10: #{lighten($_orange, 10)};
+      --fr-blue-hover-5: #{lighten($_blue, 5)};
+
+      --fr-color-published-light-hover-5: #{lighten($_t-gray-2, 5)};
+
+      --fr-color-reader-aid-hover-15: #{lighten($_color-reader-aid, 15)};
+
+      --fr-color-enhanced-light-hover-2: #{lighten($_t-color-enhanced-light, 2)};
+
+      --fr-green-tint-10: #{darken($_t-green, 10)};
+      --fr-green-tint-20: #{darken($_t-green, 20)};
+      --fr-red-tint-10: #{darken($_t-red, 10)};
+
+      --fr-color-official-hover-10: #{lighten($_color-official, 10)};
+      --fr-color-official-tint-20: #{darken($_color-official, 20)};
+      --fr-color-public-inspection-tint-40: #{darken($_t-color-public-inspection, 40)};
+      --fr-color-published-hover-10: #{lighten($_t-gray-60, 10)};
+
+      --fr-link-dark-hover-10: #{lighten($_t-link-dark, 10)};
+      --fr-link-dark-hover-20: #{lighten($_t-link-dark, 20)};
+      --fr-text-hover-15: #{lighten($_t-gray-80, 15)};
+      --fr-alert-danger-text-hover-15: #{lighten($_t-alert-danger-text, 15)};
+      --fr-alert-info-text-hover-15: #{lighten($_t-alert-info-text, 15)};
+      --fr-alert-success-text-hover-15: #{lighten($_t-color-enhanced-dark, 15)};
+      --fr-alert-warning-text-hover-15: #{lighten($_t-alert-warning-text, 15)};
+      --fr-feature-color-tint-55: #{darken($_t-feature-color, 55)};
+      --fr-feature-color-tint-45: #{darken($_t-feature-color, 45)};
+      --fr-feature-color-hover-15: #{lighten($_t-feature-color, 15)};
+
+      --fr-color-reader-aid-tint-20: #{darken($_color-reader-aid, 20)};
+    }
+  }
+}
+
+// public $variables for the derived tokens above
+$color-inactive-light-border: var(--fr-color-inactive-light-border);
+$color-official-light-border: var(--fr-color-official-light-border);
+$color-official-light-alt-border: var(--fr-color-official-light-alt-border);
+$color-enhanced-light-border: var(--fr-color-enhanced-light-border);
+$color-public-inspection-light-border: var(--fr-color-public-inspection-light-border);
+$color-public-inspection-light-alt-border: var(--fr-color-public-inspection-light-alt-border);
+$color-reader-aid-light-border: var(--fr-color-reader-aid-light-border);
+$color-published-light-border: var(--fr-color-published-light-border);
+
+$color-published-icon-hover: var(--fr-color-published-icon-hover);
+$color-official-icon-hover: var(--fr-color-official-icon-hover);
+
+$alert-info-bg-hover: var(--fr-alert-info-bg-hover);
+$gray-30-tint-15: var(--fr-gray-30-tint-15);
+$color-enhanced-dark-tint-25: var(--fr-color-enhanced-dark-tint-25);
+
+$color-enhanced-hover-10: var(--fr-color-enhanced-hover-10);
+$color-enhanced-hover-20: var(--fr-color-enhanced-hover-20);
+
+$color-reader-aid-link-hover-20: var(--fr-color-reader-aid-link-hover-20);
+$color-reader-aid-link-hover-15: var(--fr-color-reader-aid-link-hover-15);
+
+$green-hover-10: var(--fr-green-hover-10);
+$green-hover-5: var(--fr-green-hover-5);
+$red-hover-10: var(--fr-red-hover-10);
+$orange-hover-10: var(--fr-orange-hover-10);
+$blue-hover-5: var(--fr-blue-hover-5);
+
+$color-published-light-hover-5: var(--fr-color-published-light-hover-5);
+$color-reader-aid-hover-15: var(--fr-color-reader-aid-hover-15);
+$color-enhanced-light-hover-2: var(--fr-color-enhanced-light-hover-2);
+
+$green-tint-10: var(--fr-green-tint-10);
+$green-tint-20: var(--fr-green-tint-20);
+$red-tint-10: var(--fr-red-tint-10);
+
+$color-official-hover-10: var(--fr-color-official-hover-10);
+$color-official-tint-20: var(--fr-color-official-tint-20);
+$color-public-inspection-tint-40: var(--fr-color-public-inspection-tint-40);
+$color-published-hover-10: var(--fr-color-published-hover-10);
+
+$link-dark-hover-10: var(--fr-link-dark-hover-10);
+$link-dark-hover-20: var(--fr-link-dark-hover-20);
+$text-hover-15: var(--fr-text-hover-15);
+$alert-danger-text-hover-15: var(--fr-alert-danger-text-hover-15);
+$alert-info-text-hover-15: var(--fr-alert-info-text-hover-15);
+$alert-success-text-hover-15: var(--fr-alert-success-text-hover-15);
+$alert-warning-text-hover-15: var(--fr-alert-warning-text-hover-15);
+$feature-color-tint-55: var(--fr-feature-color-tint-55);
+$feature-color-tint-45: var(--fr-feature-color-tint-45);
+$feature-color-hover-15: var(--fr-feature-color-hover-15);
+
+$color-reader-aid-tint-20: var(--fr-color-reader-aid-tint-20);

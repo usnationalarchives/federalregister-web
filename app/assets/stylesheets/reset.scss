@@ -59,14 +59,14 @@ a {
 }
 
 ins {
-    background-color:#ff9;
-    color:#000;
+    background-color:#ff9; // no matching dark-mode token, kept literal
+    color:#000; // no matching dark-mode token, kept literal
     text-decoration:none;
 }
 
 mark {
-    background-color:#ff9;
-    color:#000;
+    background-color:#ff9; // no matching dark-mode token, kept literal
+    color:#000; // no matching dark-mode token, kept literal
     font-style:italic;
     font-weight:bold;
 }
@@ -76,7 +76,7 @@ del {
 }
 
 abbr[title], dfn[title] {
-    border-bottom:1px dotted #000;
+    border-bottom:1px dotted $text;
     cursor:help;
 }
 
@@ -89,11 +89,19 @@ hr {
     display:block;
     height:1px;
     border:0;
-    border-top:1px solid #cccccc;
+    border-top:1px solid $nav-border-color;
     margin:1em 0;
     padding:0;
 }
 
 input, select {
     vertical-align:middle;
+}
+
+// Base fill for sprite icons: black in light (unchanged from the browser
+// default the un-styled icons already had), light-inverting in dark so action
+// icons (copy, book, chat, ...) don't vanish on the dark page. This loads first
+// (see essential.scss ordering), so brand-colored icon rules still win.
+.svg-icon {
+    fill: $ink;
 }

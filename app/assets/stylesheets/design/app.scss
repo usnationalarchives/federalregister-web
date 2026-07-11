@@ -18,7 +18,7 @@ body .nara-background-seal {
   background-size: 100% 100%;
 
   .nara-background-seal-fade {
-    background-image: linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(bottom, $bg, rgba(255, 255, 255, 0)); // no matching dark-mode token, kept literal (alpha-0 stop, channel values are moot)
     background-repeat: repeat-x;
     bottom: 0px;
     height: 351px;

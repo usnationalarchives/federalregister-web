@@ -1,8 +1,6 @@
-$doc-icon-inactive:               #888888;
-$doc-icon-notice:                 #FAB827;
-$doc-icon-proposed_rule:          #D081B6;
-$doc-icon-rule:                   #5898CE;
-$doc-icon-presidential_document:  #73BD44;
-$doc-icon-correction:             #82D0D4;
-$doc-icon-uncategorized:          #999999;
-$doc-icon-disabled:               #E6E6E6;
+$doc-icon-notice:                 $notice-document-icon-color;
+$doc-icon-proposed_rule:          $proposed-rule-document-icon-color;
+$doc-icon-rule:                   $rule-document-icon-color;
+$doc-icon-presidential_document:  $presidential-document-icon-color;
+$doc-icon-correction:             $correction-document-icon-color;
+$doc-icon-uncategorized:          $uncategorized-document-icon-color;

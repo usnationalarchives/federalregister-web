@@ -10,7 +10,7 @@
     input#conditions_term { border-right: none; }
 
     button {
-      border: 1px solid #D1D2D4;
+      border: 1px solid $gray-20;
       border-left: none;
       border-radius: 3px;
 
@@ -34,7 +34,7 @@
       width: 90%;
       height: 34px;
       padding: 6px 12px;
-      border: 1px solid #CCC;
+      border: 1px solid $nav-border-color;
       display: block;
       float: left;
       @include border-radius(0);
@@ -44,7 +44,7 @@
     input#conditions_submit {
       background: none;
       background-color: $gray-5;
-      border: 1px solid #CCC;
+      border: 1px solid $nav-border-color;
       border-left: none;
       @include rounded-right(4);
 

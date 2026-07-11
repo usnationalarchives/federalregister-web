@@ -16,8 +16,8 @@
 
   .date_input_holder {
     h2 {
-      border-bottom: 1px solid black;
-      color: black;
+      border-bottom: 1px solid $ink;
+      color: $ink;
       font-size: 1em;
       margin-top: 0px;
       text-transform: uppercase;
@@ -74,7 +74,7 @@
       border-top-color: $color-official;
 
       a {
-        color: darken($color-official, 10) !important;
+        color: $color-official-hover-10 !important;
       }
     }
 
@@ -119,35 +119,35 @@
 
     .fr-box-official-alt .count_pill {
       background-color: $color-official-light;
-      border: 1px solid lighten($color-official, 20);
+      border: 1px solid $color-official-tint-20;
       color: $color-official;
     }
 
     .fr-box-public-inspection .count_pill {
       background-color: $color-public-inspection-light-alt;
-      border: 1px solid lighten($color-public-inspection, 40);
+      border: 1px solid $color-public-inspection-tint-40;
       color: $color-public-inspection;
     }
 
     .fr-box-public-inspection-alt .count_pill {
       background-color: $color-public-inspection-light;
-      border: 1px solid lighten($color-public-inspection, 40);
+      border: 1px solid $color-public-inspection-tint-40;
       color: $color-public-inspection;
     }
 
     .fr-box-published .count_pill {
       background-color: $color-published-light-alt;
       border: 1px solid $color-published;
-      color: darken($color-published, 10);
+      color: $color-published-hover-10;
     }
 
     .fr-box-published-alt {
-      .download-wrapper { border-color: darken($color-published, 10); }
+      .download-wrapper { border-color: $color-published-hover-10; }
 
       .count_pill {
         background-color: $color-published-light;
         border: 1px solid $color-published;
-        color: darken($color-published, 10);
+        color: $color-published-hover-10;
       }
     }
   }

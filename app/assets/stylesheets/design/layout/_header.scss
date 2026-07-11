@@ -32,6 +32,24 @@
   }
 }
 
+// The masthead and NARA seal are brand SVGs with hardcoded gray fills (inline
+// style="fill:#5c5d5e"), so CSS `fill` can't recolor them; lift them with a
+// brightness filter on the dark page so the logo stays legible. Scoped to
+// screen so print (which always renders light) is never touched.
+@media screen {
+  [data-theme="dark"] .header svg.masthead,
+  [data-theme="dark"] .nara-background-seal {
+    filter: brightness(2.2);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .header svg.masthead,
+    :root:not([data-theme]) .nara-background-seal {
+      filter: brightness(2.2);
+    }
+  }
+}
+
 @media only screen and (max-width: 500px) {
 
   .site-notification-text {

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
   <head>
+    <%= render 'layouts/theme_bootstrap' %>
+
     <title>Federal Register <%= ":: #{yield(:page_title)}" unless yield(:page_title).empty? %></title>
 
     <!-- Tell search engines to use the proper hostname and protocol -->

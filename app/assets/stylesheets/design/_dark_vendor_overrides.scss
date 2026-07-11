@@ -1,0 +1,45 @@
+// Bootstrap-sass ships its own light-only palette (bootstrap-custom.scss
+// doesn't override bootstrap/variables, see vendor.scss). Rather than
+// reworking the vendor bundle wholesale, only the components actually
+// rendered in the app get a dark-mode override here, scoped under
+// [data-theme="dark"] / prefers-color-scheme.
+@mixin fr-dark-vendor-overrides {
+  .modal-content {
+    background-color: $bg-surface;
+    border-color: $gray-20;
+    color: $text;
+  }
+
+  .modal-header,
+  .modal-footer {
+    border-color: $gray-20;
+  }
+
+  .popover {
+    background-color: $bg-surface;
+    border-color: $gray-20;
+    color: $text;
+
+    &.top .arrow::after { border-top-color: $bg-surface; }
+    &.bottom .arrow::after { border-bottom-color: $bg-surface; }
+    &.left .arrow::after { border-left-color: $bg-surface; }
+    &.right .arrow::after { border-right-color: $bg-surface; }
+  }
+
+  .popover-title {
+    background-color: $gray-10;
+    border-color: $gray-20;
+  }
+}
+
+@media screen {
+  [data-theme="dark"] {
+    @include fr-dark-vendor-overrides;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      @include fr-dark-vendor-overrides;
+    }
+  }
+}

@@ -45,7 +45,7 @@
   z-index: -1;
 
   &.pulse {
-    background-color: darken($color-enhanced-light, 2);
+    background-color: $color-enhanced-light-hover-2;
     transition: background-color 0.5s ease-out;
   }
 }

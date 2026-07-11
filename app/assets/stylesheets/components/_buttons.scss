@@ -15,11 +15,14 @@
 
   &.primary {
     background: $green;
-    color: $white;
+    // On-accent label uses $bg (white in light, near-black #1A1A1A in dark) so
+    // it stays legible when dark mode desaturates $green/$red to pastel fills.
+    // $white does not invert and fails WCAG on the pastel fill (~1.9:1).
+    color: $bg;
 
     &:hover,
     &.hover {
-      background: darken($green, 5);
+      background: $green-hover-5;
     }
   }
 
@@ -29,12 +32,12 @@
 
     &:hover,
     &.hover {
-      background: darken($blue, 5);
+      background: $blue-hover-5;
     }
   }
 
   &.tertiary {
-    background: $white;
+    background: $bg;
     border-color: $gray-20;
     color: $link-dark;
 
@@ -46,7 +49,10 @@
 
   &.optional {
     background: $gray-15;
-    color: $black;
+    // $gray-15 inverts to a dark fill in dark mode; $ink keeps the original
+    // black label in light and inverts to light ink in dark, staying legible
+    // where a plain $black would be black-on-dark.
+    color: $ink;
 
     &:hover,
     &.hover {
@@ -57,11 +63,11 @@
 
   &.danger {
     background: $red;
-    color: $white;
+    color: $bg; // see .primary -- dark ink on the pastel-red dark fill
 
     &:hover,
     &.hover {
-      background: darken($red, 10);
+      background: $red-hover-10;
     }
   }
 

@@ -51,14 +51,14 @@
   margin-bottom: 20px;
   overflow: hidden;
 
-  @include striped-progress-background(#F7F7F7, #F5F5F5, #F9F9F9);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
+  @include striped-progress-background($gray-2, $active-gray, $gray-2);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0); // IE-only proprietary filter string, can't hold a CSS var, kept literal
 
   @include border-radius(4);
-  
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); // translucent shadow overlay, theme-agnostic, kept literal
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); // translucent shadow overlay, theme-agnostic, kept literal
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); // translucent shadow overlay, theme-agnostic, kept literal
   }
 
 .progress .bar {
@@ -68,26 +68,26 @@
   font-size: 12px;
   color: white;
   text-align: center;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
- 
-  @include striped-progress-background(#0E90D2, #149BDF, #0480BE); 
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); // translucent shadow overlay, theme-agnostic, kept literal
+
+  @include striped-progress-background(#0E90D2, #149BDF, #0480BE); // no matching dark-mode token, kept literal
   @include border-radius(4);
-  
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15); // translucent shadow overlay, theme-agnostic, kept literal
+  -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15); // translucent shadow overlay, theme-agnostic, kept literal
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15); // translucent shadow overlay, theme-agnostic, kept literal
 
   @include css3-box-sizing(border-box);
   @include css3-transition(width, 0.6s, ease);
   }
 
 .progress-striped .bar {
-  background-color: #149BDF;
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-color: #149BDF; // no matching dark-mode token, kept literal (matches .bar gradient color above)
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent)); // translucent stripe overlay, theme-agnostic, kept literal
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); // translucent stripe overlay, theme-agnostic, kept literal
+  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); // translucent stripe overlay, theme-agnostic, kept literal
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); // translucent stripe overlay, theme-agnostic, kept literal
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); // translucent stripe overlay, theme-agnostic, kept literal
   @include css3-background-size(40px, 40px);
   }
 

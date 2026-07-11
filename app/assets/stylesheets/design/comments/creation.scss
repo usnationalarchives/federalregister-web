@@ -377,7 +377,7 @@
 
       &:hover,
       &.hover {
-        background-color: lighten($green, 10);
+        background-color: $green-tint-10;
       }
     }
   }
@@ -405,7 +405,7 @@
     top: 1px;
     width: 75px;
 
-    &:hover { background-color: lighten($red, 10); }
+    &:hover { background-color: $red-tint-10; }
 
     span {
       display: block;
@@ -474,7 +474,7 @@ table.attachments {
   .progress-striped .bar { background-color: $orange; }
 
   .progress-success .bar {
-    @include striped-progress-background(lighten($green, 20), $green, lighten($green, 10));
+    @include striped-progress-background($green-tint-20, $green, $green-tint-10);
     padding-top: 1px;
   }
 }
@@ -492,7 +492,7 @@ table.attachments {
 }
 
 div.comment-preview-modal {
-  background-color: $white;
+  background-color: $bg;
   border: 5px solid $dark-blue;
   display: none;
   padding: 1em;
@@ -558,7 +558,7 @@ div.alternative-comment-modal {
     padding-top: 15px;
 
     dd.tracking_number {
-      background-color: $white;
+      background-color: $bg;
       border: 1px $gray-20 solid;
       border-radius: 6px;
       font-family: courier;
@@ -570,7 +570,7 @@ div.alternative-comment-modal {
 
 // COMMENT FORM SUBMIT SUCCESS
 .tracking_number {
-  background-color: $white;
+  background-color: $bg;
   border-radius: 3px;
   font-family: courier;
   padding: 2px 5px;

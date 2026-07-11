@@ -66,9 +66,9 @@
     a:visited {
       text-decoration: underline;
 
-      color: darken($link-dark, 10);
+      color: $link-dark-hover-10;
 
-      &:hover { color: darken($link-dark, 20); }
+      &:hover { color: $link-dark-hover-20; }
     }
   }
 
@@ -105,10 +105,10 @@
     a,
     a:visited {
       font-weight: 500;
-      color: darken($link-dark, 10);
+      color: $link-dark-hover-10;
       text-decoration: none;
 
-      &:hover { color: darken($link-dark, 20); }
+      &:hover { color: $link-dark-hover-20; }
     }
   }
 
@@ -129,7 +129,7 @@
         color: $text;
         text-decoration: underline;
 
-        &:hover { color: darken($text, 15); }
+        &:hover { color: $text-hover-15; }
       }
     }
 
@@ -151,7 +151,7 @@
         color: $alert-danger-text;
         text-decoration: underline;
 
-        &:hover { color: darken($alert-danger-text, 15); }
+        &:hover { color: $alert-danger-text-hover-15; }
       }
     }
 
@@ -167,8 +167,8 @@
   }
 
   &.feature {
-    background-color: lighten($feature-color, 55);
-    border-color: lighten($feature-color, 45);
+    background-color: $feature-color-tint-55;
+    border-color: $feature-color-tint-45;
     color: $feature-color;
 
     .message-link {
@@ -177,7 +177,7 @@
         color: $feature-color;
         text-decoration: underline;
 
-        &:hover { color: darken($feature-color, 15); }
+        &:hover { color: $feature-color-hover-15; }
       }
     }
 
@@ -185,7 +185,7 @@
       fill: $feature-color;
 
       &.svg-icon-delete:hover {
-        fill: lighten($feature-color, 55);
+        fill: $feature-color-tint-55;
         background-color: $feature-color;
         border-radius: 14px;
       }
@@ -203,7 +203,7 @@
         color: $alert-info-text;
         text-decoration: underline;
 
-        &:hover { color: darken($alert-info-text, 15); }
+        &:hover { color: $alert-info-text-hover-15; }
       }
     }
 
@@ -229,7 +229,7 @@
         color: $alert-success-text;
         text-decoration: underline;
 
-        &:hover { color: darken($alert-success-text, 15); }
+        &:hover { color: $alert-success-text-hover-15; }
       }
     }
 
@@ -255,7 +255,7 @@
         color: $alert-warning-text;
         text-decoration: underline;
 
-        &:hover { color: darken($alert-warning-text, 15); }
+        &:hover { color: $alert-warning-text-hover-15; }
       }
     }
 

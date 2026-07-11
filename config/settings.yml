@@ -3,6 +3,13 @@ active_model_serializers:
 
 app:
   allow_bot_traffic: false
+  # Theme shown to a first-time visitor who hasn't picked one yet (their toggle
+  # choice is always remembered and wins). One of: auto | light | dark.
+  #   auto  - follow the visitor's OS setting (prefers-color-scheme)
+  #   light - always start light (dark only via the toggle)
+  #   dark  - always start dark
+  # Override per deploy with SETTINGS__APP__DEFAULT_THEME.
+  default_theme: auto
   csp:
     report_only: false
   expire_varnish: true

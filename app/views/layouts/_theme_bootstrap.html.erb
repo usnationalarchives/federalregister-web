@@ -1,0 +1,25 @@
+<% default_theme = %w[auto light dark].include?(Settings.app.default_theme.to_s) ? Settings.app.default_theme : "auto" %>
+<script nonce="<%= content_security_policy_nonce %>">
+  (function () {
+    // The visitor's own choice (from the toggle) always wins. Otherwise fall
+    // back to the deploy-configured default: 'light'/'dark' force that theme by
+    // setting [data-theme]; 'auto' leaves it unset so the stylesheet follows the
+    // OS via prefers-color-scheme.
+    var DEFAULT = '<%= default_theme %>';
+    function applyDefault() {
+      if (DEFAULT === 'light' || DEFAULT === 'dark') {
+        document.documentElement.setAttribute('data-theme', DEFAULT);
+      }
+    }
+    try {
+      var stored = localStorage.getItem('fr-theme');
+      if (stored === 'light' || stored === 'dark') {
+        document.documentElement.setAttribute('data-theme', stored);
+      } else {
+        applyDefault();
+      }
+    } catch (e) {
+      applyDefault();
+    }
+  })();
+</script>

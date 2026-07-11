@@ -47,16 +47,16 @@
     text-transform: uppercase;
     top: 0;
 
-    &:hover { background: darken($green, 10); }
+    &:hover { background: $green-hover-10; }
   }
 
   &.correction .button {
     background: $red;
-    &:hover { background: darken($red, 10); }
+    &:hover { background: $red-hover-10; }
   }
   &.correction-of .button {
     background: $orange;
-    &:hover { background: darken($orange, 10); }
+    &:hover { background: $orange-hover-10; }
   }
 
 

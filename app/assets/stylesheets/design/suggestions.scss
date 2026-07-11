@@ -24,10 +24,10 @@ $reserved-gray: $gray-30;
     .panel-heading p { line-height: 1.2; }
 
     .example {
-      background-color: #D8EDF8;
+      background-color: $info-blue;
       border: 1px solid #337599;
       border-radius: 22px;
-      color: #333;
+      color: $text;
       cursor: pointer;
       font-size: modular-scale(-1);
       font-weight: normal;
@@ -53,7 +53,7 @@ $reserved-gray: $gray-30;
     }
 
     kbd {
-      background-color: darken($suggestion-content-bg-color, 6);
+      background-color: $alert-info-bg-hover;
       color: $suggestion-content-color;
       font-size: modular-scale(-1);
     }
@@ -70,7 +70,7 @@ $reserved-gray: $gray-30;
     }
 
     .input-group-addon {
-      background: $white;
+      background: $bg;
     }
 
     .icon-ecfr-search:before, .icon-fr2:before {
@@ -84,7 +84,7 @@ $reserved-gray: $gray-30;
   }
 
   .backdrop {
-    background: rgba(255, 255, 255, 0.8);
+    background: $backdrop; // page scrim: white .8 light / black .8 dark
     border: none;
     height: 100%;
     left:0;
@@ -104,7 +104,7 @@ $reserved-gray: $gray-30;
     border-bottom-left-radius: 10px;
 
     .none {
-      background: $white;
+      background: $bg;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       border: solid 1px $gray-20;
@@ -212,7 +212,7 @@ table.suggestions {
   }
 
   .suggestion {
-    background-color: $white;
+    background-color: $bg;
     border: 1px solid $gray-30;
     cursor: pointer;
     margin-bottom: -1px;
@@ -231,7 +231,7 @@ table.suggestions {
   .suggestion.removed {
     td.citation, td.highlight {
       text-decoration: line-through;
-      color: lighten($reserved-gray, 15);
+      color: $gray-30-tint-15;
       font-weight: normal;
       font-style: italic;
       span {
@@ -248,7 +248,7 @@ table.suggestions {
   mark {
     background-color: $suggestion-item-active-bg-color;
     border-radius: 4px;
-    border: dotted 2px lighten($suggestion-item-active-color, 25);
+    border: dotted 2px $color-enhanced-dark-tint-25;
     color: $suggestion-item-active-color;
     padding-left: 0;
     padding-right: 0;

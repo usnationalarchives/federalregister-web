@@ -7,14 +7,14 @@
 ul.json-dict, ol.json-array {
   list-style-type: none;
   margin: 0 0 0 1px;
-  border-left: 1px dotted #ccc;
+  border-left: 1px dotted $gray-20;
   padding-left: 2em;
 }
 .json-string {
-  color: #0B7500;
+  color: #0B7500; // no matching dark-mode token, kept literal
 }
 .json-literal {
-  color: #1A01CC;
+  color: #1A01CC; // no matching dark-mode token, kept literal
   font-weight: bold;
 }
 
@@ -29,7 +29,7 @@ a.json-toggle:focus {
 }
 a.json-toggle:before {
   font-size: 1.1em;
-  color: #c0c0c0;
+  color: $gray-30;
   content: "\25BC"; /* down arrow */
   position: absolute;
   display: inline-block;
@@ -39,7 +39,7 @@ a.json-toggle:before {
   left: -1.2em;
 }
 a.json-toggle:hover:before {
-  color: #aaa;
+  color: $gray-40;
 }
 a.json-toggle.collapsed:before {
   /* Use rotated down arrow, prevents right arrow appearing smaller than down arrow in some browsers */
@@ -48,7 +48,7 @@ a.json-toggle.collapsed:before {
 
 /* Collapsable placeholder links */
 a.json-placeholder {
-  color: #aaa;
+  color: $text-inactive;
   padding: 0 1em;
   text-decoration: none;
 }

@@ -5,7 +5,13 @@
   background-image: -webkit-linear-gradient(top, $color1, $color2);
   background-image: -o-linear-gradient(top, $color1, $color2);
   background-image: linear-gradient(to bottom, $color1, $color2);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#{ie-hex-str($color1)}', endColorstr='#{ie-hex-str($color2)}', GradientType=0);
+
+  // ie-hex-str() needs a real Sass color, not a var()-backed token -- IE
+  // doesn't support custom properties either, so this legacy filter is
+  // moot for themed callers anyway.
+  @if type-of($color1) == color and type-of($color2) == color {
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#{ie-hex-str($color1)}', endColorstr='#{ie-hex-str($color2)}', GradientType=0);
+  }
 
   background-repeat: repeat-x;
   }

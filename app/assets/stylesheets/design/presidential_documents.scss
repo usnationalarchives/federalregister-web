@@ -2,7 +2,7 @@
   color: $color-reader-aid !important;
 
   &:visited { color: $color-reader-aid !important; }
-  &:hover { color: darken($color-reader-aid, 15) !important; }
+  &:hover { color: $color-reader-aid-hover-15 !important; }
 }
 
 .presidential-documents:not(.normal-link-coloration) {

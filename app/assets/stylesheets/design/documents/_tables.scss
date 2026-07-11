@@ -8,10 +8,10 @@
       // overflow-x: visible;
     }
 
-    --background-color: rgba(255, 255, 255, 1);
-    --shadow-color: rgba(34,34,34, 0.5);
+    --background-color: #{$bg};
+    --shadow-color: rgba(34,34,34, 0.5); // no matching dark-mode token for a variable-alpha shadow tint, kept literal
     --shadow-size: 0.75em;
-    --transparent: rgba(255, 255, 255, 0); /* We can't use "transparent" directly, because Safari would interpret the color as "transparent black" (see https://css-tricks.com/thing-know-gradients-transparent-black/). Using this workaround, it works fine. */
+    --transparent: rgba(255, 255, 255, 0); /* We can't use "transparent" directly, because Safari would interpret the color as "transparent black" (see https://css-tricks.com/thing-know-gradients-transparent-black/). Using this workaround, it works fine. */ // alpha 0, not a real color to token-match, kept literal
 
     overflow-x: auto;
     background:
@@ -47,7 +47,7 @@
 
     tbody {
       tr:hover {
-        background-color: darken($color-published-light, 5);
+        background-color: $color-published-light-hover-5;
       }
     }
 
